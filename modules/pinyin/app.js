@@ -1828,3 +1828,177 @@ ${typeof selectedInfoPanel === 'function' ? selectedInfoPanel() : ''}
     if (typeof state !== 'undefined' && state.tab === 'groups') render();
   } catch (e) {}
 })();
+
+/* PATCH_PINYIN_V20_MOBILE_BANG_TONG
+   Bảng tổng: mặc định dạng nhóm/chip dễ dùng, có nút xem bảng rộng.
+*/
+(function () {
+  if (typeof state !== 'undefined' && !state.chartMode) {
+    state.chartMode = 'cards';
+  }
+
+  function v20ItemMap() {
+    const map = {};
+    playableItems().forEach(x => {
+      map[`${x.initial}__${x.chartFinal}`] = x;
+    });
+    return map;
+  }
+
+  function v20InitialLabel(key) {
+    const found = DATA.initials.find(x => x.key === key);
+    return found ? found.label : (key || '∅');
+  }
+
+  function v20Mark(py, tone) {
+    if (typeof markPinyinTone === 'function') return markPinyinTone(py, tone || state.tone || 1);
+    return py;
+  }
+
+  window.pinyinChartClickNoRenderV20 = function pinyinChartClickNoRenderV20(safe, btn) {
+    const it = itemBySafe(safe);
+    if (!it) return;
+
+    state.selected = safe;
+    saveState();
+
+    document.querySelectorAll('.chart-sound-chip.selected, .syllable.selected').forEach(el => {
+      el.classList.remove('selected');
+    });
+
+    if (btn) btn.classList.add('selected');
+
+    const tone = Number(state.tone || 1);
+    const playableTone = it.audio && it.audio[String(tone)] ? tone : Number((it.tones && it.tones[0]) || tone);
+
+    if (typeof playTone === 'function') {
+      playTone(safe, playableTone, btn);
+    }
+
+    if (typeof showPinyinCompactPanelV15 === 'function') {
+      setTimeout(() => showPinyinCompactPanelV15(it, playableTone), 50);
+    } else if (typeof showPinyinCompactPanelFor === 'function') {
+      setTimeout(() => showPinyinCompactPanelFor(it, playableTone), 50);
+    }
+  };
+
+  function v20Chip(item) {
+    const tone = Number(state.tone || 1);
+    const selected = state.selected === item.safe ? 'selected' : '';
+    const learned = state.learned[item.safe] ? 'learned' : '';
+    const fav = state.favorite[item.safe] ? 'favorite' : '';
+
+    return `<button type="button"
+      class="chart-sound-chip ${selected} ${learned} ${fav}"
+      onclick="event.preventDefault();event.stopPropagation();pinyinChartClickNoRenderV20('${item.safe}', this)">
+      <span class="chart-pinyin-raw">${item.pinyin}</span>
+      <span class="chart-pinyin-tone">${v20Mark(item.pinyin, tone)}</span>
+    </button>`;
+  }
+
+  function v20GroupCard(group, map) {
+    const initials = filteredInitials();
+    const rows = initials.map(ini => {
+      const sounds = group.finals
+        .map(fin => map[`${ini.key}__${fin}`])
+        .filter(Boolean);
+
+      if (!sounds.length) return '';
+
+      return `<div class="chart-mobile-row">
+        <div class="chart-mobile-initial">${v20InitialLabel(ini.key)}</div>
+        <div class="chart-mobile-sounds">
+          ${sounds.map(v20Chip).join('')}
+        </div>
+      </div>`;
+    }).filter(Boolean).join('');
+
+    if (!rows) return '';
+
+    return `<details class="chart-group-acc" open>
+      <summary>
+        <span>${group.title}</span>
+        <small>${group.finals.join(' · ')}</small>
+      </summary>
+      <div class="chart-group-body">${rows}</div>
+    </details>`;
+  }
+
+  function renderChartCardsV20() {
+    const map = v20ItemMap();
+    const groups = filteredFinalGroups();
+    const html = groups.map(g => v20GroupCard(g, map)).filter(Boolean).join('');
+
+    if (!html) {
+      return `<div class="chart-empty-v20">Không có âm phù hợp với bộ lọc hiện tại.</div>`;
+    }
+
+    return `<div class="chart-cards-v20">${html}</div>`;
+  }
+
+  // Override bảng table cũ để click không render lại nữa.
+  window.renderTableV20Original = window.renderTable;
+  window.renderTable = function renderTable(initials, groups, map) {
+    return `<div class="table-wrap">
+      <table class="pinyin-chart ${state.hideEmpty?'hide-empty':''}">
+        <thead>
+          <tr><th class="row-head" rowspan="2">Thanh mẫu</th>${groups.map(g=>`<th colspan="${g.finals.length}">${g.title}</th>`).join('')}</tr>
+          <tr>${groups.flatMap(g=>g.finals.map(f=>`<th>${f}</th>`)).join('')}</tr>
+        </thead>
+        <tbody>
+          ${initials.map(i=>`<tr>
+            <th class="row-head">${i.label}</th>
+            ${groups.flatMap(g=>g.finals.map(f=>{
+              const x = map[`${i.key}__${f}`];
+              if(!x) return `<td class="empty">—</td>`;
+              const cls = ['syllable', ruleClass(x), state.selected===x.safe?'selected':'', state.learned[x.safe]?'learned':'', state.favorite[x.safe]?'favorite':''].join(' ');
+              return `<td class="has"><button class="${cls}" onclick="event.preventDefault();event.stopPropagation();pinyinChartClickNoRenderV20('${x.safe}', this)">${x.pinyin}</button></td>`;
+            })).join('')}
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>`;
+  };
+
+  window.setChartModeV20 = function setChartModeV20(mode) {
+    state.chartMode = mode;
+    saveState();
+    render();
+  };
+
+  window.renderChart = function renderChart() {
+    const zeroItems = playableItems().filter(x => x.initial === '' || x.initial === 'y' || x.initial === 'w').slice(0, 80);
+    const mode = state.chartMode || 'cards';
+
+    return appShell(`
+${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trên điện thoại. Có thể chuyển sang bảng rộng khi cần xem toàn cảnh.', `
+  <button class="btn ${mode === 'cards' ? 'primary' : ''}" onclick="setChartModeV20('cards')">Dễ bấm</button>
+  <button class="btn ${mode === 'table' ? 'primary' : ''}" onclick="setChartModeV20('table')">Bảng rộng</button>
+`)}
+<div class="zero-strip"><b>Đứng riêng:</b>${zeroItems.map(x=>chip(x.pinyin)).join('')}</div>
+<section class="chart-full-v20">
+  <div class="toolbar">
+    <input class="search" placeholder="Tìm trong bảng: ren, ma, xue..." value="${state.search}" oninput="state.search=this.value;saveState();render()">
+    <select onchange="state.initialGroup=this.value;saveState();render()">
+      <option value="all">Tất cả thanh mẫu</option>
+      ${DATA.initialGroups.map(g=>`<option value="${g.key}" ${state.initialGroup===g.key?'selected':''}>${g.title}</option>`).join('')}
+    </select>
+    <select onchange="state.finalGroup=this.value;saveState();render()">
+      <option value="all">Tất cả vận mẫu</option>
+      ${DATA.finalGroups.map(g=>`<option value="${g.key}" ${state.finalGroup===g.key?'selected':''}>${g.title}</option>`).join('')}
+    </select>
+  </div>
+  <div class="legend">
+    <span><i class="dot learned-dot"></i>Đã học</span>
+    <span><i class="dot rule-special-dot"></i>-i đặc biệt</span>
+    <span><i class="dot rule-umlaut-dot"></i>ü</span>
+    <span><i class="dot rule-abbr-dot"></i>viết tắt</span>
+  </div>
+  ${state.search ? renderSearchResults() : (mode === 'table' ? renderTable(filteredInitials(), filteredFinalGroups(), itemMap()) : renderChartCardsV20())}
+</section>`);
+  };
+
+  try {
+    if (typeof state !== 'undefined' && state.tab === 'chart') render();
+  } catch (e) {}
+})();
