@@ -596,3 +596,48 @@ async function playAudioUrl(url){
   setTimeout(cleanupRootUi, 200);
   setTimeout(cleanupRootUi, 1000);
 })();
+
+/* PATCH_PINYIN_MODULE_V11_LINK
+   Click Pinyin ở root app mở module Pinyin full page trong cùng tab.
+*/
+(function () {
+  function norm(s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+  }
+
+  document.addEventListener('click', function (e) {
+    let el = e.target;
+    for (let i = 0; el && i < 7; i++, el = el.parentElement) {
+      const txt = norm(el.textContent || '');
+      const dataPage = norm((el.dataset && (el.dataset.page || el.dataset.module)) || '');
+      if (txt === 'pinyin' || txt.includes('pinyin module') || dataPage === 'pinyin') {
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href = 'modules/pinyin/index.html';
+        return;
+      }
+    }
+  }, true);
+})();
+
+/* PATCH_PINYIN_MODULE_V12_LINK
+   Click Pinyin ở root app mở module Pinyin full page trong cùng tab.
+*/
+(function () {
+  function norm(s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+  }
+  document.addEventListener('click', function (e) {
+    let el = e.target;
+    for (let i = 0; el && i < 7; i++, el = el.parentElement) {
+      const txt = norm(el.textContent || '');
+      const dataPage = norm((el.dataset && (el.dataset.page || el.dataset.module)) || '');
+      if (txt === 'pinyin' || txt.includes('pinyin module') || dataPage === 'pinyin') {
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href = 'modules/pinyin/index.html';
+        return;
+      }
+    }
+  }, true);
+})();
