@@ -151,16 +151,56 @@ function findAudio(base, tone){
   return null;
 }
 
-function playAudioUrl(url){
-  if(!url) return;
+// v3 mobile audio fix
+function ensureMobileAudioPlayer(){
+  let wrap = document.getElementById("mobileAudioPlayer");
 
-  if(currentAudio){
-    currentAudio.pause();
-    currentAudio.currentTime = 0;
+  if(!wrap){
+    wrap = document.createElement("div");
+    wrap.id = "mobileAudioPlayer";
+    wrap.className = "mobile-audio-player";
+    wrap.innerHTML = `
+      <audio id="sharedAudioPlayer" controls preload="auto" playsinline></audio>
+      <div id="sharedAudioMsg" class="audio-msg">Sẵn sàng phát âm.</div>
+    `;
+    document.body.appendChild(wrap);
   }
 
-  currentAudio = new Audio(url);
-  currentAudio.play();
+  return {
+    wrap,
+    audio: document.getElementById("sharedAudioPlayer"),
+    msg: document.getElementById("sharedAudioMsg")
+  };
+}
+
+async function playAudioUrl(url){
+  if(!url) return;
+
+  const player = ensureMobileAudioPlayer();
+  const finalUrl = new URL(url, document.baseURI).href;
+
+  player.wrap.classList.add("show");
+  player.msg.textContent = "Đang tải audio...";
+
+  try{
+    if(currentAudio && currentAudio !== player.audio){
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
+
+    currentAudio = player.audio;
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+    currentAudio.src = finalUrl;
+    currentAudio.load();
+
+    await currentAudio.play();
+
+    player.msg.textContent = "Đang phát: " + finalUrl.split("/").pop();
+  }catch(err){
+    console.warn("Audio play failed:", err);
+    player.msg.textContent = "Chưa phát được. Hãy bấm nút play trên thanh audio hoặc kiểm tra silent mode/volume.";
+  }
 }
 
 function renderPinyin(){
@@ -296,3 +336,80 @@ init().catch(err => {
   console.error(err);
   pageContent.innerHTML = `<div class="card"><h3>Lỗi tải dữ liệu</h3><p>${escapeHtml(err.message)}</p></div>`;
 });
+
+
+// v4 audio debug + robust play override
+function ensureMobileAudioPlayer(){
+  let wrap = document.getElementById("mobileAudioPlayer");
+
+  if(!wrap){
+    wrap = document.createElement("div");
+    wrap.id = "mobileAudioPlayer";
+    wrap.className = "mobile-audio-player";
+    wrap.innerHTML = `
+      <audio id="sharedAudioPlayer" controls preload="metadata" playsinline></audio>
+      <div id="sharedAudioMsg" class="audio-msg">Sẵn sàng phát âm.</div>
+      <a id="sharedAudioLink" class="audio-debug-link" href="#" target="_blank" rel="noopener">Mở file audio</a>
+      <div id="sharedAudioUrl" class="audio-file-url"></div>
+    `;
+    document.body.appendChild(wrap);
+  }
+
+  return {
+    wrap,
+    audio: document.getElementById("sharedAudioPlayer"),
+    msg: document.getElementById("sharedAudioMsg"),
+    link: document.getElementById("sharedAudioLink"),
+    urlText: document.getElementById("sharedAudioUrl")
+  };
+}
+
+async function playAudioUrl(url){
+  if(!url) return;
+
+  const player = ensureMobileAudioPlayer();
+  const finalUrl = new URL(url, document.baseURI).href;
+
+  player.wrap.classList.add("show");
+  player.link.href = finalUrl;
+  player.urlText.textContent = finalUrl;
+  player.msg.textContent = "Đang tải audio...";
+
+  if(currentAudio && currentAudio !== player.audio){
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+  }
+
+  currentAudio = player.audio;
+
+  currentAudio.onerror = () => {
+    player.msg.textContent = "Không tải được file audio. Bấm 'Mở file audio' để kiểm tra đường dẫn.";
+  };
+
+  currentAudio.onloadedmetadata = () => {
+    const d = Number.isFinite(currentAudio.duration) ? currentAudio.duration.toFixed(2) : "?";
+    player.msg.textContent = "Đã tải audio, thời lượng: " + d + " giây.";
+  };
+
+  currentAudio.onplay = () => {
+    player.msg.textContent = "Đang phát: " + finalUrl.split("/").pop();
+  };
+
+  currentAudio.onended = () => {
+    player.msg.textContent = "Đã phát xong: " + finalUrl.split("/").pop();
+  };
+
+  try{
+    currentAudio.pause();
+    currentAudio.removeAttribute("src");
+    currentAudio.load();
+
+    currentAudio.src = finalUrl + (finalUrl.includes("?") ? "&" : "?") + "v=" + Date.now();
+    currentAudio.load();
+
+    await currentAudio.play();
+  }catch(err){
+    console.warn("Audio play failed:", err);
+    player.msg.textContent = "Trình duyệt chưa cho phát tự động. Hãy bấm nút play trên thanh audio.";
+  }
+}

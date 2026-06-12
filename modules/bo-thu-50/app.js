@@ -472,16 +472,56 @@ function boThuAudioUrlForModule(item){
   return item.audio.replace(/^modules\/pinyin\//, "../pinyin/");
 }
 
-function boThuPlayAudio(url){
-  if(!url) return;
+// v3 mobile audio fix for bo-thu module
+function ensureBoThuMobileAudioPlayer(){
+  let wrap = document.getElementById("boThuMobileAudioPlayer");
 
-  if(boThuCurrentAudio){
-    boThuCurrentAudio.pause();
-    boThuCurrentAudio.currentTime = 0;
+  if(!wrap){
+    wrap = document.createElement("div");
+    wrap.id = "boThuMobileAudioPlayer";
+    wrap.className = "mobile-audio-player";
+    wrap.innerHTML = `
+      <audio id="boThuSharedAudioPlayer" controls preload="auto" playsinline></audio>
+      <div id="boThuSharedAudioMsg" class="audio-msg">Sẵn sàng phát âm.</div>
+    `;
+    document.body.appendChild(wrap);
   }
 
-  boThuCurrentAudio = new Audio(url);
-  boThuCurrentAudio.play();
+  return {
+    wrap,
+    audio: document.getElementById("boThuSharedAudioPlayer"),
+    msg: document.getElementById("boThuSharedAudioMsg")
+  };
+}
+
+async function boThuPlayAudio(url){
+  if(!url) return;
+
+  const player = ensureBoThuMobileAudioPlayer();
+  const finalUrl = new URL(url, document.baseURI).href;
+
+  player.wrap.classList.add("show");
+  player.msg.textContent = "Đang tải audio...";
+
+  try{
+    if(boThuCurrentAudio && boThuCurrentAudio !== player.audio){
+      boThuCurrentAudio.pause();
+      boThuCurrentAudio.currentTime = 0;
+    }
+
+    boThuCurrentAudio = player.audio;
+    boThuCurrentAudio.pause();
+    boThuCurrentAudio.currentTime = 0;
+    boThuCurrentAudio.src = finalUrl;
+    boThuCurrentAudio.load();
+
+    await boThuCurrentAudio.play();
+
+    player.msg.textContent = "Đang phát: " + finalUrl.split("/").pop();
+  }catch(err){
+    console.warn("Bo-thu audio play failed:", err);
+    player.msg.textContent = "Chưa phát được. Hãy bấm nút play trên thanh audio hoặc kiểm tra silent mode/volume.";
+  }
 }
 
 async function boThuLoadRadicalAudio(){
@@ -529,3 +569,80 @@ renderHeader = function(){
 };
 
 boThuLoadRadicalAudio();
+
+
+// v4 audio debug + robust play override for bo-thu module
+function ensureBoThuMobileAudioPlayer(){
+  let wrap = document.getElementById("boThuMobileAudioPlayer");
+
+  if(!wrap){
+    wrap = document.createElement("div");
+    wrap.id = "boThuMobileAudioPlayer";
+    wrap.className = "mobile-audio-player";
+    wrap.innerHTML = `
+      <audio id="boThuSharedAudioPlayer" controls preload="metadata" playsinline></audio>
+      <div id="boThuSharedAudioMsg" class="audio-msg">Sẵn sàng phát âm.</div>
+      <a id="boThuSharedAudioLink" class="audio-debug-link" href="#" target="_blank" rel="noopener">Mở file audio</a>
+      <div id="boThuSharedAudioUrl" class="audio-file-url"></div>
+    `;
+    document.body.appendChild(wrap);
+  }
+
+  return {
+    wrap,
+    audio: document.getElementById("boThuSharedAudioPlayer"),
+    msg: document.getElementById("boThuSharedAudioMsg"),
+    link: document.getElementById("boThuSharedAudioLink"),
+    urlText: document.getElementById("boThuSharedAudioUrl")
+  };
+}
+
+async function boThuPlayAudio(url){
+  if(!url) return;
+
+  const player = ensureBoThuMobileAudioPlayer();
+  const finalUrl = new URL(url, document.baseURI).href;
+
+  player.wrap.classList.add("show");
+  player.link.href = finalUrl;
+  player.urlText.textContent = finalUrl;
+  player.msg.textContent = "Đang tải audio...";
+
+  if(boThuCurrentAudio && boThuCurrentAudio !== player.audio){
+    boThuCurrentAudio.pause();
+    boThuCurrentAudio.currentTime = 0;
+  }
+
+  boThuCurrentAudio = player.audio;
+
+  boThuCurrentAudio.onerror = () => {
+    player.msg.textContent = "Không tải được file audio. Bấm 'Mở file audio' để kiểm tra đường dẫn.";
+  };
+
+  boThuCurrentAudio.onloadedmetadata = () => {
+    const d = Number.isFinite(boThuCurrentAudio.duration) ? boThuCurrentAudio.duration.toFixed(2) : "?";
+    player.msg.textContent = "Đã tải audio, thời lượng: " + d + " giây.";
+  };
+
+  boThuCurrentAudio.onplay = () => {
+    player.msg.textContent = "Đang phát: " + finalUrl.split("/").pop();
+  };
+
+  boThuCurrentAudio.onended = () => {
+    player.msg.textContent = "Đã phát xong: " + finalUrl.split("/").pop();
+  };
+
+  try{
+    boThuCurrentAudio.pause();
+    boThuCurrentAudio.removeAttribute("src");
+    boThuCurrentAudio.load();
+
+    boThuCurrentAudio.src = finalUrl + (finalUrl.includes("?") ? "&" : "?") + "v=" + Date.now();
+    boThuCurrentAudio.load();
+
+    await boThuCurrentAudio.play();
+  }catch(err){
+    console.warn("Bo-thu audio play failed:", err);
+    player.msg.textContent = "Trình duyệt chưa cho phát tự động. Hãy bấm nút play trên thanh audio.";
+  }
+}
