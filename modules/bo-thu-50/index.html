@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>50 Bộ Thủ Tiếng Trung</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">字</div>
+        <div>
+          <h1>50 Bộ Thủ</h1>
+          <p>GitHub optimized</p>
+        </div>
+      </div>
+
+      <div class="main-mode-switch">
+        <button id="lessonModeBtn" class="mode-btn active" type="button">Bài học 2.0</button>
+        <button id="legacyModeBtn" class="mode-btn" type="button">Bảng gốc</button>
+      </div>
+
+      <label class="search-box">
+        <span>🔍</span>
+        <input id="searchInput" type="search" placeholder="Tìm chữ, Hán Việt, pinyin, nghĩa..." />
+      </label>
+
+      <div class="side-tools">
+        <button id="showAllBtn" class="mini-btn active" type="button">Tất cả</button>
+        <button id="showFavBtn" class="mini-btn" type="button">Yêu thích</button>
+        <button id="themeBtn" class="mini-btn" type="button">🌙</button>
+      </div>
+
+      <div id="lessonList" class="lesson-list"></div>
+    </aside>
+
+    <main class="content">
+      <header class="lesson-header">
+        <div>
+          <div class="eyebrow">Bài học bộ thủ</div>
+          <h2 id="lessonTitle">Đang tải...</h2>
+          <p id="lessonMeta"></p>
+        </div>
+        <div class="header-actions">
+          <button id="favBtn" class="ghost-btn" type="button">☆ Yêu thích</button>
+          <button id="learnedBtn" class="ghost-btn" type="button">☐ Đã học</button>
+          <button id="openLegacyBtn" class="ghost-btn" type="button">↔ Bảng gốc</button>
+        </div>
+      </header>
+
+      <nav class="tabs">
+        <button class="tab active" data-tab="overview" type="button">Tổng quan</button>
+        <button class="tab" data-tab="write" type="button">Cách viết</button>
+        <button class="tab" data-tab="examples" type="button">Chữ ví dụ</button>
+        <button class="tab" data-tab="vocab" type="button">Từ vựng</button>
+        <button class="tab" data-tab="sentences" type="button">Mẫu câu</button>
+        <button class="tab" data-tab="practice" type="button">Bài tập</button>
+        <button class="tab" data-tab="check" type="button">Kiểm tra</button>
+      </nav>
+
+      <section id="tabContent" class="tab-content"></section>
+    </main>
+  </div>
+
+  <dialog id="imageDialog">
+    <button id="closeDialog" class="dialog-close" type="button">×</button>
+    <img id="dialogImage" alt="Phóng to minh họa" />
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
