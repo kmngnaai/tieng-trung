@@ -151,3 +151,50 @@ dialog::backdrop{background:rgba(2,6,23,.7)}#dialogImage{max-width:100%;max-heig
   font-size:11px;
   word-break:break-all;
 }
+
+/* PATCH_V9_HIDE_AUDIO_DOCK_STYLE */
+
+/* Ẩn audio/debug dock do patch mobile/debug tạo ra */
+.audio-debug-link,
+.audio-file-url,
+audio[controls],
+audio {
+  display: none !important;
+}
+
+/* Nếu dock bị tạo bằng class khác, JS sẽ ẩn parent. CSS này xử lý thêm các tên hay gặp. */
+.audio-dock,
+.audio-panel,
+.audio-player,
+.audio-player-box,
+.audio-status,
+.bo-thu-audio-player,
+.mobile-audio-player,
+.fixed-audio-player,
+[data-audio-debug],
+[data-audio-dock] {
+  display: none !important;
+}
+
+/* Nút loa đang phát: chỉ báo trạng thái tại chính nút loa */
+.speaker-playing,
+.audio-playing {
+  background: #2563eb !important;
+  color: #fff !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18) !important;
+  transform: translateY(-1px);
+}
+
+.speaker-playing::after,
+.audio-playing::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 4px;
+  border-radius: 999px;
+  background: currentColor;
+  vertical-align: middle;
+  opacity: .9;
+}

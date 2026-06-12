@@ -716,3 +716,141 @@ async function boThuPlayAudio(url){
   setTimeout(cleanOpenButtons, 1000);
   setTimeout(cleanOpenButtons, 2500);
 })();
+
+/* PATCH_V9_HIDE_AUDIO_DOCK
+   Chỉ giữ trạng thái trên nút loa, ẩn toàn bộ audio dock/debug.
+*/
+(function () {
+  let activeSpeakerButton = null;
+
+  function isSpeakerButton(el) {
+    if (!el) return false;
+    const text = (el.textContent || '').trim();
+    const aria = (el.getAttribute && (el.getAttribute('aria-label') || '')) || '';
+    const title = (el.getAttribute && (el.getAttribute('title') || '')) || '';
+    const cls = (el.className || '').toString();
+
+    return (
+      text.includes('🔊') ||
+      text.includes('🔈') ||
+      /audio|speaker|sound|listen|play/i.test(aria + ' ' + title + ' ' + cls)
+    );
+  }
+
+  function nearestButton(el) {
+    if (!el) return null;
+    if (el.closest) {
+      const btn = el.closest('button, a, [role="button"]');
+      if (btn && isSpeakerButton(btn)) return btn;
+    }
+    return null;
+  }
+
+  function setSpeakerActive(btn, active) {
+    if (!btn) return;
+    btn.classList.toggle('speaker-playing', !!active);
+    btn.classList.toggle('audio-playing', !!active);
+
+    if (active) {
+      btn.setAttribute('aria-pressed', 'true');
+      btn.setAttribute('title', 'Đang phát');
+    } else {
+      btn.setAttribute('aria-pressed', 'false');
+      btn.setAttribute('title', 'Phát âm');
+    }
+  }
+
+  function clearActiveSpeaker() {
+    if (activeSpeakerButton) {
+      setSpeakerActive(activeSpeakerButton, false);
+      activeSpeakerButton = null;
+    }
+  }
+
+  function setActiveSpeaker(btn) {
+    if (activeSpeakerButton && activeSpeakerButton !== btn) {
+      setSpeakerActive(activeSpeakerButton, false);
+    }
+    activeSpeakerButton = btn;
+    setSpeakerActive(btn, true);
+  }
+
+  function looksLikeAudioDock(el) {
+    if (!el || !(el instanceof Element)) return false;
+
+    const text = (el.textContent || '').trim();
+    const hasAudio = !!el.querySelector('audio');
+    const hasDebugLink = !!el.querySelector('.audio-debug-link, .audio-file-url');
+
+    if (hasDebugLink) return true;
+
+    if (hasAudio && (
+      text.includes('Đang phát') ||
+      text.includes('Đã phát xong') ||
+      text.includes('Trình duyệt chưa cho phát') ||
+      text.includes('Mở file audio') ||
+      text.includes('http://localhost') ||
+      text.includes('/modules/pinyin/audio/')
+    )) {
+      return true;
+    }
+
+    return false;
+  }
+
+  function hideAudioDock() {
+    document.querySelectorAll('.audio-debug-link, .audio-file-url').forEach(function (el) {
+      el.style.display = 'none';
+      el.setAttribute('hidden', 'hidden');
+    });
+
+    document.querySelectorAll('audio').forEach(function (audio) {
+      audio.removeAttribute('controls');
+      audio.style.display = 'none';
+      audio.setAttribute('aria-hidden', 'true');
+
+      if (!audio.dataset.v9SpeakerHooked) {
+        audio.dataset.v9SpeakerHooked = '1';
+
+        audio.addEventListener('play', function () {
+          if (activeSpeakerButton) setSpeakerActive(activeSpeakerButton, true);
+        });
+
+        audio.addEventListener('pause', function () {
+          clearActiveSpeaker();
+        });
+
+        audio.addEventListener('ended', function () {
+          clearActiveSpeaker();
+        });
+
+        audio.addEventListener('error', function () {
+          clearActiveSpeaker();
+        });
+      }
+    });
+
+    document.querySelectorAll('div, section, aside, footer').forEach(function (el) {
+      if (looksLikeAudioDock(el)) {
+        el.style.display = 'none';
+        el.setAttribute('hidden', 'hidden');
+      }
+    });
+  }
+
+  document.addEventListener('click', function (e) {
+    const btn = nearestButton(e.target);
+    if (!btn) return;
+
+    setActiveSpeaker(btn);
+
+    // Cho code phát âm cũ chạy trước, sau đó ẩn dock.
+    setTimeout(hideAudioDock, 0);
+    setTimeout(hideAudioDock, 120);
+    setTimeout(hideAudioDock, 500);
+  }, true);
+
+  document.addEventListener('DOMContentLoaded', hideAudioDock);
+  window.addEventListener('load', hideAudioDock);
+  setInterval(hideAudioDock, 800);
+})();
