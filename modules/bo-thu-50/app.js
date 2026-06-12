@@ -854,3 +854,46 @@ async function boThuPlayAudio(url){
   window.addEventListener('load', hideAudioDock);
   setInterval(hideAudioDock, 800);
 })();
+
+/* PATCH_V11_COMPACT_TOP_NAV
+   Thanh điều hướng gọn ở trên tiêu đề module.
+*/
+(function () {
+  function removeOldBottomHomeLink() {
+    document.querySelectorAll('.module-home-link').forEach(function (el) {
+      el.remove();
+    });
+  }
+
+  function addTopNav() {
+    removeOldBottomHomeLink();
+
+    if (document.querySelector('.tt-module-top-nav')) return;
+
+    const isBoThu = /\/bo-thu-50\//i.test(location.pathname);
+    const isPinyin = /\/pinyin\//i.test(location.pathname);
+
+    const nav = document.createElement('header');
+    nav.className = 'tt-module-top-nav';
+    nav.innerHTML = `
+      <a class="tt-top-brand" href="../../index.html" target="_self" aria-label="Về trang chủ Tiếng Trung">
+        <span class="tt-top-logo">中</span>
+        <span class="tt-top-name">Tiếng Trung</span>
+      </a>
+      <nav class="tt-top-links" aria-label="Điều hướng module">
+        <a href="../../index.html" target="_self">Trang chủ</a>
+        <a href="../bo-thu-50/index.html" target="_self" class="${isBoThu ? 'active' : ''}">Bộ thủ</a>
+        <a href="../pinyin/index.html" target="_self" class="${isPinyin ? 'active' : ''}">Pinyin</a>
+      </nav>
+    `;
+
+    document.body.prepend(nav);
+    document.documentElement.classList.add('has-tt-module-top-nav');
+    document.body.classList.add('has-tt-module-top-nav');
+  }
+
+  document.addEventListener('DOMContentLoaded', addTopNav);
+  window.addEventListener('load', addTopNav);
+  setTimeout(addTopNav, 100);
+  setTimeout(addTopNav, 500);
+})();

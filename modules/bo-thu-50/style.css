@@ -198,3 +198,137 @@ audio {
   vertical-align: middle;
   opacity: .9;
 }
+
+/* PATCH_V11_COMPACT_TOP_NAV_STYLE */
+
+/* Ẩn nút quay về góc dưới của patch cũ */
+.module-home-link {
+  display: none !important;
+}
+
+/* Chừa chỗ cho top nav cố định */
+html.has-tt-module-top-nav body,
+body.has-tt-module-top-nav {
+  padding-top: 58px !important;
+}
+
+/* Thanh điều hướng gọn, nằm trên tiêu đề */
+.tt-module-top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 58px;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 0 24px;
+  box-sizing: border-box;
+  background: rgba(255, 250, 243, 0.96);
+  border-bottom: 1px solid rgba(202, 172, 130, 0.42);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  backdrop-filter: blur(12px);
+}
+
+.tt-top-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #0f172a;
+  text-decoration: none;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.tt-top-logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display: inline-grid;
+  place-items: center;
+  background: linear-gradient(135deg, #2563eb, #0f766e);
+  color: #fff;
+  font-weight: 900;
+  font-size: 19px;
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.22);
+}
+
+.tt-top-name {
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+.tt-top-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tt-top-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  color: #334155;
+  text-decoration: none;
+  font-weight: 750;
+  font-size: 14px;
+  border: 1px solid transparent;
+}
+
+.tt-top-links a:hover {
+  color: #1d4ed8;
+  background: rgba(37, 99, 235, 0.08);
+  border-color: rgba(37, 99, 235, 0.18);
+}
+
+.tt-top-links a.active {
+  color: #fff;
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+/* Tránh một số layout 100vh bị đội thanh top */
+body.has-tt-module-top-nav .app,
+body.has-tt-module-top-nav #app,
+body.has-tt-module-top-nav .layout,
+body.has-tt-module-top-nav .shell {
+  min-height: calc(100vh - 58px);
+}
+
+@media (max-width: 760px) {
+  html.has-tt-module-top-nav body,
+  body.has-tt-module-top-nav {
+    padding-top: 54px !important;
+  }
+
+  .tt-module-top-nav {
+    height: 54px;
+    padding: 0 12px;
+    gap: 8px;
+  }
+
+  .tt-top-logo {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    font-size: 17px;
+  }
+
+  .tt-top-name {
+    font-size: 15px;
+  }
+
+  .tt-top-links {
+    gap: 4px;
+  }
+
+  .tt-top-links a {
+    min-height: 32px;
+    padding: 0 9px;
+    font-size: 12px;
+  }
+}
