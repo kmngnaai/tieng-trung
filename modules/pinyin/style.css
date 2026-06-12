@@ -1407,3 +1407,228 @@ html, body {
     font-size: 11px;
   }
 }
+
+/* PATCH_PINYIN_V18_MOBILE_18_TABLES_STYLE */
+
+/* 18 bảng dạng card/chip, không còn table ngang khó dùng */
+.mini-list-v18 {
+  display: grid;
+  gap: 14px;
+}
+
+.mini-acc-v18 {
+  border-radius: 20px !important;
+  overflow: hidden;
+}
+
+.mini-acc-v18 summary {
+  min-height: 74px !important;
+  padding: 14px 18px !important;
+}
+
+.mini-acc-v18 .mini-title {
+  width: 100%;
+}
+
+.mini-acc-v18 .mini-title small {
+  font-size: 13.5px !important;
+  line-height: 1.35 !important;
+}
+
+.mini-body-v18 {
+  padding: 14px 16px 18px !important;
+  background: rgba(255,255,255,.58);
+}
+
+.mini-mobile-chart {
+  display: grid;
+  gap: 10px;
+}
+
+.mini-mobile-finals {
+  display: grid;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #f8fbff;
+}
+
+.mini-mobile-finals b {
+  color: #1e3a8a;
+  font-size: 13px;
+}
+
+.mini-mobile-finals div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.mini-mobile-finals span {
+  border: 1px solid #dbe5f1;
+  background: #fff;
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 12.5px;
+  font-weight: 650;
+  color: #334155;
+}
+
+.mini-mobile-row {
+  display: grid;
+  grid-template-columns: 58px minmax(0,1fr);
+  gap: 10px;
+  align-items: start;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: #fff;
+}
+
+.mini-mobile-initial {
+  min-height: 42px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  background: #e8f1ff;
+  color: #1e3a8a;
+  font-weight: 850;
+  font-size: 18px;
+}
+
+.mini-mobile-sounds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.mini-sound-chip {
+  min-height: 38px;
+  min-width: 58px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  color: #111827;
+  padding: 5px 9px;
+  display: grid;
+  gap: 1px;
+  justify-items: center;
+  align-content: center;
+  font-weight: 720;
+}
+
+.mini-sound-chip:hover,
+.mini-sound-chip.selected {
+  background: #dcecff;
+  border-color: #93c5fd;
+  color: #174ea6;
+}
+
+.mini-sound-chip.learned {
+  background: #dcfce7;
+  border-color: #86efac;
+  color: #166534;
+}
+
+.mini-sound-chip.favorite {
+  box-shadow: inset 0 0 0 2px #f59e0b;
+}
+
+.mini-pinyin-raw {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.mini-pinyin-tone {
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1;
+}
+
+.mini-sound-chip.selected .mini-pinyin-tone,
+.mini-sound-chip:hover .mini-pinyin-tone {
+  color: #174ea6;
+}
+
+.mini-mobile-empty {
+  border: 1px dashed var(--line);
+  background: rgba(255,255,255,.65);
+  border-radius: 14px;
+  padding: 14px;
+  color: var(--muted);
+}
+
+/* Ẩn table cũ nếu còn sót trong 18 bảng */
+.mini-body-v18 .table-wrap {
+  display: none !important;
+}
+
+/* Mobile tối ưu: card lớn dễ bấm, không kéo ngang */
+@media (max-width: 680px) {
+  .mini-list-v18 {
+    gap: 12px;
+  }
+
+  .mini-acc-v18 summary {
+    min-height: 70px !important;
+    padding: 12px 14px !important;
+  }
+
+  .mini-body-v18 {
+    padding: 12px !important;
+  }
+
+  .mini-mobile-row {
+    grid-template-columns: 48px minmax(0,1fr);
+    gap: 8px;
+    padding: 9px;
+  }
+
+  .mini-mobile-initial {
+    min-height: 38px;
+    border-radius: 12px;
+    font-size: 16px;
+  }
+
+  .mini-mobile-sounds {
+    gap: 6px;
+  }
+
+  .mini-sound-chip {
+    min-width: 54px;
+    min-height: 36px;
+    padding: 5px 8px;
+  }
+
+  .mini-pinyin-raw {
+    font-size: 13.5px;
+  }
+
+  .mini-pinyin-tone {
+    font-size: 11px;
+  }
+}
+
+/* PATCH_PINYIN_V19_FIX_18_CLICK_STYLE */
+
+/* Khi bấm âm trong 18 bảng, giữ bảng ổn định, không cảm giác thoát */
+.mini-list-v19 .mini-sound-chip {
+  touch-action: manipulation;
+}
+
+.mini-list-v19 .mini-sound-chip.selected {
+  background: #dcecff !important;
+  border-color: #1f5fd1 !important;
+  color: #174ea6 !important;
+  box-shadow: inset 0 0 0 1px rgba(31, 95, 209, .25);
+}
+
+.mini-list-v19 .mini-sound-chip:active {
+  transform: scale(.98);
+}
+
+/* Bỏ scrollIntoView cũ gây nhảy vị trí: CSS giữ scroll nhẹ hơn */
+.mini-acc-v19[open] {
+  scroll-margin-top: 72px;
+}

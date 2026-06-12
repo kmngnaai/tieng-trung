@@ -1591,3 +1591,240 @@ ${selectedInfoPanel ? selectedInfoPanel() : ''}
     if (typeof state !== 'undefined' && (state.tab === 'rules' || state.tab === 'groups')) render();
   } catch (e) {}
 })();
+
+/* PATCH_PINYIN_V18_MOBILE_18_TABLES
+   18 bảng chuyển từ table ngang sang card/chip dễ dùng trên mobile.
+*/
+(function () {
+  function v18ItemMap() {
+    const map = {};
+    playableItems().forEach(x => {
+      map[`${x.initial}__${x.chartFinal}`] = x;
+    });
+    return map;
+  }
+
+  function v18InitialLabel(key) {
+    const found = DATA.initials.find(x => x.key === key);
+    return found ? found.label : (key || '∅');
+  }
+
+  function v18Mark(py, tone) {
+    if (typeof markPinyinTone === 'function') return markPinyinTone(py, tone || state.tone || 1);
+    return py;
+  }
+
+  function v18MiniChip(item) {
+    const tone = Number(state.tone || 1);
+    const selected = state.selected === item.safe ? 'selected' : '';
+    const learned = state.learned[item.safe] ? 'learned' : '';
+    const fav = state.favorite[item.safe] ? 'favorite' : '';
+
+    return `<button type="button"
+      class="mini-sound-chip ${selected} ${learned} ${fav}"
+      onclick="selectItem('${item.safe}');playTone('${item.safe}', ${tone}, this)">
+      <span class="mini-pinyin-raw">${item.pinyin}</span>
+      <span class="mini-pinyin-tone">${v18Mark(item.pinyin, tone)}</span>
+    </button>`;
+  }
+
+  function v18MiniChart(t) {
+    const map = v18ItemMap();
+
+    const rows = t.initials.map(ini => {
+      const sounds = t.finals
+        .map(fin => map[`${ini}__${fin}`])
+        .filter(Boolean);
+
+      if (!sounds.length) return '';
+
+      return `<div class="mini-mobile-row">
+        <div class="mini-mobile-initial">${v18InitialLabel(ini)}</div>
+        <div class="mini-mobile-sounds">
+          ${sounds.map(v18MiniChip).join('')}
+        </div>
+      </div>`;
+    }).filter(Boolean).join('');
+
+    const finals = t.finals.map(f => `<span>${f}</span>`).join('');
+
+    if (!rows) {
+      return `<div class="mini-mobile-empty">Bảng này chưa có âm ghép khả dụng.</div>`;
+    }
+
+    return `<div class="mini-mobile-chart">
+      <div class="mini-mobile-finals">
+        <b>Vận mẫu:</b>
+        <div>${finals}</div>
+      </div>
+      ${rows}
+    </div>`;
+  }
+
+  window.renderGroups = function renderGroups() {
+    return appShell(`
+${hero('18 bảng nhỏ', 'Mỗi bảng được gom theo thẻ để dễ bấm trên điện thoại. Bấm một bảng để mở, bấm âm để nghe.')}
+${typeof selectedInfoPanel === 'function' ? selectedInfoPanel() : ''}
+<div class="mini-list mini-list-v18">
+  ${DATA.miniTables.map(t => `<details class="mini-acc mini-acc-v18">
+    <summary>
+      <span class="mini-title">
+        <span class="badge">${String(t.no).padStart(2,'0')}</span>
+        <span>${t.title}<small>${t.tip}</small></span>
+      </span>
+    </summary>
+    <div class="mini-body mini-body-v18">${v18MiniChart(t)}</div>
+  </details>`).join('')}
+</div>`);
+  };
+
+  // Chỉ mở 1 bảng tại một thời điểm.
+  document.addEventListener('toggle', function (e) {
+    const item = e.target;
+    if (!item || !item.classList || !item.classList.contains('mini-acc-v18')) return;
+    if (!item.open) return;
+
+    document.querySelectorAll('.mini-acc-v18[open]').forEach(other => {
+      if (other !== item) other.open = false;
+    });
+
+    setTimeout(() => {
+      item.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
+  }, true);
+
+  try {
+    if (typeof state !== 'undefined' && state.tab === 'groups') render();
+  } catch (e) {}
+})();
+
+/* PATCH_PINYIN_V19_FIX_18_CLICK
+   18 bảng: bấm âm không render lại trang, không đóng accordion.
+*/
+(function () {
+  function v19ItemMap() {
+    const map = {};
+    playableItems().forEach(x => {
+      map[`${x.initial}__${x.chartFinal}`] = x;
+    });
+    return map;
+  }
+
+  function v19InitialLabel(key) {
+    const found = DATA.initials.find(x => x.key === key);
+    return found ? found.label : (key || '∅');
+  }
+
+  function v19Mark(py, tone) {
+    if (typeof markPinyinTone === 'function') return markPinyinTone(py, tone || state.tone || 1);
+    return py;
+  }
+
+  window.pinyinMiniClickNoRenderV19 = function pinyinMiniClickNoRenderV19(safe, btn) {
+    const it = itemBySafe(safe);
+    if (!it) return;
+
+    // Cập nhật selected nhưng KHÔNG gọi render().
+    state.selected = safe;
+    saveState();
+
+    document.querySelectorAll('.mini-sound-chip.selected').forEach(el => {
+      el.classList.remove('selected');
+    });
+
+    if (btn) btn.classList.add('selected');
+
+    const tone = Number(state.tone || 1);
+    const playableTone = it.audio && it.audio[String(tone)] ? tone : Number((it.tones && it.tones[0]) || tone);
+
+    if (typeof playTone === 'function') {
+      playTone(safe, playableTone, btn);
+    }
+
+    if (typeof showPinyinCompactPanelV15 === 'function') {
+      setTimeout(() => showPinyinCompactPanelV15(it, playableTone), 50);
+    } else if (typeof showPinyinCompactPanelFor === 'function') {
+      setTimeout(() => showPinyinCompactPanelFor(it, playableTone), 50);
+    }
+  };
+
+  function v19MiniChip(item) {
+    const tone = Number(state.tone || 1);
+    const selected = state.selected === item.safe ? 'selected' : '';
+    const learned = state.learned[item.safe] ? 'learned' : '';
+    const fav = state.favorite[item.safe] ? 'favorite' : '';
+
+    return `<button type="button"
+      class="mini-sound-chip ${selected} ${learned} ${fav}"
+      onclick="event.preventDefault();event.stopPropagation();pinyinMiniClickNoRenderV19('${item.safe}', this)">
+      <span class="mini-pinyin-raw">${item.pinyin}</span>
+      <span class="mini-pinyin-tone">${v19Mark(item.pinyin, tone)}</span>
+    </button>`;
+  }
+
+  function v19MiniChart(t) {
+    const map = v19ItemMap();
+
+    const rows = t.initials.map(ini => {
+      const sounds = t.finals
+        .map(fin => map[`${ini}__${fin}`])
+        .filter(Boolean);
+
+      if (!sounds.length) return '';
+
+      return `<div class="mini-mobile-row">
+        <div class="mini-mobile-initial">${v19InitialLabel(ini)}</div>
+        <div class="mini-mobile-sounds">
+          ${sounds.map(v19MiniChip).join('')}
+        </div>
+      </div>`;
+    }).filter(Boolean).join('');
+
+    const finals = t.finals.map(f => `<span>${f}</span>`).join('');
+
+    if (!rows) {
+      return `<div class="mini-mobile-empty">Bảng này chưa có âm ghép khả dụng.</div>`;
+    }
+
+    return `<div class="mini-mobile-chart">
+      <div class="mini-mobile-finals">
+        <b>Vận mẫu:</b>
+        <div>${finals}</div>
+      </div>
+      ${rows}
+    </div>`;
+  }
+
+  window.renderGroups = function renderGroups() {
+    return appShell(`
+${hero('18 bảng nhỏ', 'Mỗi bảng được gom theo thẻ để dễ bấm trên điện thoại. Bấm bảng để mở, bấm âm để nghe, bảng không tự đóng.')}
+${typeof selectedInfoPanel === 'function' ? selectedInfoPanel() : ''}
+<div class="mini-list mini-list-v18 mini-list-v19">
+  ${DATA.miniTables.map(t => `<details class="mini-acc mini-acc-v18 mini-acc-v19">
+    <summary>
+      <span class="mini-title">
+        <span class="badge">${String(t.no).padStart(2,'0')}</span>
+        <span>${t.title}<small>${t.tip}</small></span>
+      </span>
+    </summary>
+    <div class="mini-body mini-body-v18 mini-body-v19">${v19MiniChart(t)}</div>
+  </details>`).join('')}
+</div>`);
+  };
+
+  // Chỉ đóng bảng khác khi mở một bảng mới.
+  // Không xử lý khi bấm âm bên trong.
+  document.addEventListener('toggle', function (e) {
+    const item = e.target;
+    if (!item || !item.classList || !item.classList.contains('mini-acc-v19')) return;
+    if (!item.open) return;
+
+    document.querySelectorAll('.mini-acc-v19[open]').forEach(other => {
+      if (other !== item) other.open = false;
+    });
+  }, true);
+
+  try {
+    if (typeof state !== 'undefined' && state.tab === 'groups') render();
+  } catch (e) {}
+})();
