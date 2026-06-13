@@ -94,6 +94,7 @@ function appShell(content){
     <a href="../../index.html" target="_self">Trang chủ</a>
     <a href="../bo-thu-50/index.html" target="_self">Bộ thủ</a>
     <a href="../pinyin/index.html" target="_self" class="active">Pinyin</a>
+    <a href="../../index.html#dialogue301" target="_self">301 Đàm thoại</a>
   </nav>
 </header>
 
