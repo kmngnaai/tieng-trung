@@ -1,0 +1,47 @@
+{
+  "version": "pinyin_review_rules_v1",
+  "storageKey": "tiengtrung_pinyin_v12_state",
+  "thresholds": {
+    "wrongManyMin": 3,
+    "dueAfterHours": 24,
+    "masteredQuizCorrectMin": 3,
+    "masteredWrongMax": 0
+  },
+  "rules": [
+    {
+      "id": "not_started",
+      "title": "Chưa học",
+      "description": "Không có learned/heard/shadowed/quiz/mastered trong localStorage."
+    },
+    {
+      "id": "due",
+      "title": "Cần ôn",
+      "description": "Có lỗi, chưa đủ điều kiện thành thạo, hoặc đã qua hạn ôn."
+    },
+    {
+      "id": "wrong_many",
+      "title": "Sai nhiều",
+      "description": "wrong >= thresholds.wrongManyMin."
+    },
+    {
+      "id": "unheard",
+      "title": "Chưa nghe",
+      "description": "heard chưa được ghi nhận."
+    },
+    {
+      "id": "unshadowed",
+      "title": "Chưa nhại",
+      "description": "shadowed chưa được ghi nhận."
+    },
+    {
+      "id": "unquizzed",
+      "title": "Chưa làm quiz",
+      "description": "quizAttempts = 0."
+    },
+    {
+      "id": "mastered",
+      "title": "Đã thành thạo",
+      "description": "mastered=true hoặc đạt đủ learned/heard/quizCorrect và ít lỗi."
+    }
+  ]
+}

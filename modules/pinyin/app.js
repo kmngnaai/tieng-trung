@@ -13,7 +13,15 @@ let state = {
   learned: {},
   favorite: {},
   wrong: {},
-  quiz: null
+  quiz: null,
+  chartMode: 'cards',
+  activeGroup: 'intro',
+  activeReviewGroup: 'not_started',
+  progress: {
+    syllables: {},
+    hanzi: {},
+    shadowing: {}
+  }
 };
 
 let audio = new Audio();
@@ -23,17 +31,45 @@ function $(s){return document.querySelector(s)}
 function $all(s){return Array.from(document.querySelectorAll(s))}
 function norm(s){return (s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim()}
 
+function ensureProgressState(){
+  state.progress = state.progress || {};
+  state.progress.syllables = state.progress.syllables || {};
+  state.progress.hanzi = state.progress.hanzi || {};
+  state.progress.shadowing = state.progress.shadowing || {};
+
+  Object.keys(state.learned || {}).forEach(safe => {
+    if(!state.learned[safe]) return;
+    const p = state.progress.syllables[safe] || {};
+    p.learned = true;
+    p.learnedAt = p.learnedAt || new Date().toISOString();
+    state.progress.syllables[safe] = p;
+  });
+
+  Object.keys(state.wrong || {}).forEach(safe => {
+    const count = Number(state.wrong[safe] || 0);
+    if(!count) return;
+    const p = state.progress.syllables[safe] || {};
+    p.wrong = Math.max(Number(p.wrong || 0), count);
+    state.progress.syllables[safe] = p;
+  });
+}
+
 function loadState(){
   try{
     const raw = localStorage.getItem(LS_KEY);
     if(raw) state = {...state, ...JSON.parse(raw)};
   }catch(e){}
+  ensureProgressState();
 }
 function saveState(){
+  ensureProgressState();
   localStorage.setItem(LS_KEY, JSON.stringify({
     tab: state.tab, selected: state.selected, tone: state.tone, search: state.search,
     finalGroup: state.finalGroup, initialGroup: state.initialGroup, hideEmpty: state.hideEmpty,
-    learned: state.learned, favorite: state.favorite, wrong: state.wrong
+    learned: state.learned, favorite: state.favorite, wrong: state.wrong,
+    quiz: state.quiz, chartMode: state.chartMode,
+    activeGroup: state.activeGroup, activeReviewGroup: state.activeReviewGroup,
+    progress: state.progress
   }));
 }
 
@@ -2002,4 +2038,652 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
   try {
     if (typeof state !== 'undefined' && state.tab === 'chart') render();
   } catch (e) {}
+})();
+
+/* PINYIN_V21_LEARNING_GROUPS
+   Data-driven learning groups + localStorage-based review buckets.
+*/
+(function () {
+  const DATA_FILES_V21 = {
+    groups: 'data/pinyin_groups.json',
+    required: 'data/required_syllables.json',
+    hanzi: 'data/hanzi_1000.json',
+    shadowing: 'data/shadowing_sentences.json',
+    reviewRules: 'data/review_rules.json'
+  };
+
+  const renderBeforeV21 = window.render;
+  const appShellBeforeV21 = window.appShell;
+  const playToneBeforeV21 = window.playTone;
+
+  const V21 = window.PIN_YIN_GROUPS_V21 = {
+    ready: false,
+    groups: null,
+    required: null,
+    hanzi: null,
+    shadowing: null,
+    reviewRules: null,
+    loadError: ''
+  };
+
+  function esc(s) {
+    return String(s ?? '').replace(/[&<>"']/g, ch => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#039;'
+    }[ch]));
+  }
+
+  function nowIso() {
+    return new Date().toISOString();
+  }
+
+  function fetchJsonV21(url) {
+    return fetch(url).then(res => {
+      if (!res.ok) throw new Error(`${url}: ${res.status}`);
+      return res.json();
+    });
+  }
+
+  function hasV21Data() {
+    return V21.ready && V21.groups && V21.required;
+  }
+
+  function progressBucket(type) {
+    if (type === 'hanzi') return 'hanzi';
+    if (type === 'shadowing') return 'shadowing';
+    return 'syllables';
+  }
+
+  function getProgress(type, id) {
+    ensureProgressState();
+    const bucket = progressBucket(type);
+    state.progress[bucket][id] = state.progress[bucket][id] || {};
+
+    if (type === 'syllable') {
+      if (state.learned && state.learned[id]) state.progress[bucket][id].learned = true;
+      if (state.wrong && state.wrong[id]) {
+        state.progress[bucket][id].wrong = Math.max(
+          Number(state.progress[bucket][id].wrong || 0),
+          Number(state.wrong[id] || 0)
+        );
+      }
+    }
+
+    return state.progress[bucket][id];
+  }
+
+  function patchProgress(type, id, patch, rerender = true) {
+    const p = getProgress(type, id);
+    Object.assign(p, patch, { updatedAt: nowIso() });
+
+    if (type === 'syllable') {
+      if (patch.learned !== undefined) state.learned[id] = !!patch.learned;
+      if (patch.wrong !== undefined) {
+        if (Number(patch.wrong || 0) > 0) state.wrong[id] = Number(patch.wrong || 0);
+        else delete state.wrong[id];
+      }
+    }
+
+    saveState();
+    if (rerender) render();
+  }
+
+  function markHeard(type, id, rerender = false) {
+    const p = getProgress(type, id);
+    p.heard = true;
+    p.heardAt = p.heardAt || nowIso();
+    p.lastReviewedAt = nowIso();
+    p.updatedAt = nowIso();
+    saveState();
+    if (rerender) render();
+  }
+
+  function allSyllablesV21() {
+    const rows = (V21.required && V21.required.syllables) || (DATA && DATA.items) || [];
+    return rows.filter(x => x && x.safe);
+  }
+
+  function syllableBySafeV21(safe) {
+    return allSyllablesV21().find(x => x.safe === safe) || itemBySafe(safe);
+  }
+
+  function toneForV21(item) {
+    if (!item) return Number(state.tone || 1);
+    if (item.audio && item.audio[String(state.tone)]) return Number(state.tone || 1);
+    return Number((item.tones && item.tones[0]) || state.tone || 1);
+  }
+
+  function markedV21(item, tone) {
+    if (!item) return '—';
+    if (typeof markPinyinTone === 'function') return markPinyinTone(item.pinyin, tone || toneForV21(item));
+    return item.pinyin;
+  }
+
+  function groupByIdV21(id) {
+    const groups = (V21.groups && V21.groups.learningGroups) || [];
+    return groups.find(g => g.id === id) || groups[0] || null;
+  }
+
+  function activeLearningGroupV21() {
+    if (!state.activeGroup && V21.groups) state.activeGroup = V21.groups.defaultLearningGroup || 'intro';
+    return groupByIdV21(state.activeGroup);
+  }
+
+  function activeReviewGroupV21() {
+    const groups = (V21.groups && V21.groups.reviewGroups) || [];
+    if (!state.activeReviewGroup && V21.groups) state.activeReviewGroup = V21.groups.defaultReviewGroup || 'not_started';
+    return groups.find(g => g.id === state.activeReviewGroup) || groups[0] || null;
+  }
+
+  function syllablesForGroupV21(group) {
+    if (!group || group.contentType !== 'syllable') return [];
+    return (group.items || []).map(syllableBySafeV21).filter(Boolean);
+  }
+
+  function contentForGroupV21(group) {
+    if (!group) return [];
+    if (group.contentType === 'syllable') return syllablesForGroupV21(group);
+    if (group.contentType === 'hanzi') return (V21.hanzi && V21.hanzi.items) || [];
+    if (group.contentType === 'shadowing') return (V21.shadowing && V21.shadowing.sentences) || [];
+    return [];
+  }
+
+  function hasStartedV21(type, id) {
+    const p = getProgress(type, id);
+    return !!(p.learned || p.heard || p.shadowed || p.quizAttempts || p.mastered || Number(p.wrong || 0));
+  }
+
+  function isMasteredV21(type, id) {
+    const p = getProgress(type, id);
+    const thresholds = (V21.reviewRules && V21.reviewRules.thresholds) || {};
+    const minCorrect = Number(thresholds.masteredQuizCorrectMin || 3);
+    const maxWrong = Number(thresholds.masteredWrongMax || 0);
+    if (p.mastered) return true;
+    if (type === 'hanzi') return !!p.learned;
+    if (type === 'shadowing') return !!(p.learned && p.shadowed);
+    return !!(p.learned && p.heard && Number(p.quizCorrect || 0) >= minCorrect && Number(p.wrong || 0) <= maxWrong);
+  }
+
+  function groupDoneCountV21(group) {
+    return contentForGroupV21(group).filter(item => isMasteredV21(group.contentType, item.safe || item.id)).length;
+  }
+
+  function statusChipsV21(type, id) {
+    const p = getProgress(type, id);
+    const chips = [];
+    if (p.heard) chips.push('đã nghe');
+    if (p.learned) chips.push('đã học');
+    if (p.shadowed) chips.push('đã nhại');
+    if (Number(p.quizAttempts || 0)) chips.push(`quiz ${p.quizCorrect || 0}/${p.quizAttempts}`);
+    if (Number(p.wrong || 0)) chips.push(`sai ${p.wrong}`);
+    if (isMasteredV21(type, id)) chips.push('thành thạo');
+    return chips.length ? `<div class="v21-status">${chips.map(x => `<span>${esc(x)}</span>`).join('')}</div>` : `<div class="v21-status muted">chưa có tiến độ</div>`;
+  }
+
+  function reviewUniverseV21() {
+    const syllables = allSyllablesV21().map(item => ({
+      type: 'syllable',
+      id: item.safe,
+      title: item.pinyin,
+      subtitle: `${item.initialLabel || '∅'} + ${item.chartFinal}`,
+      item
+    }));
+
+    const hanzi = ((V21.hanzi && V21.hanzi.items) || []).map(item => ({
+      type: 'hanzi',
+      id: item.id,
+      title: item.char,
+      subtitle: `#${item.rank}`,
+      item
+    }));
+
+    const shadowing = ((V21.shadowing && V21.shadowing.sentences) || []).map(item => ({
+      type: 'shadowing',
+      id: item.id,
+      title: item.zh,
+      subtitle: item.pinyin,
+      item
+    }));
+
+    return [...syllables, ...hanzi, ...shadowing];
+  }
+
+  function isDueV21(record) {
+    const p = getProgress(record.type, record.id);
+    if (Number(p.wrong || 0) > 0) return true;
+    if (!hasStartedV21(record.type, record.id) || isMasteredV21(record.type, record.id)) return false;
+
+    const dueHours = Number((V21.reviewRules && V21.reviewRules.thresholds && V21.reviewRules.thresholds.dueAfterHours) || 24);
+    if (!p.lastReviewedAt) return true;
+    const elapsed = Date.now() - Date.parse(p.lastReviewedAt);
+    return Number.isFinite(elapsed) && elapsed >= dueHours * 60 * 60 * 1000;
+  }
+
+  function recordsForReviewV21(bucketId) {
+    const wrongMany = Number((V21.reviewRules && V21.reviewRules.thresholds && V21.reviewRules.thresholds.wrongManyMin) || 3);
+    return reviewUniverseV21().filter(record => {
+      const p = getProgress(record.type, record.id);
+      if (bucketId === 'not_started') return !hasStartedV21(record.type, record.id);
+      if (bucketId === 'due') return isDueV21(record);
+      if (bucketId === 'wrong_many') return Number(p.wrong || 0) >= wrongMany;
+      if (bucketId === 'unheard') return record.type !== 'hanzi' && !p.heard;
+      if (bucketId === 'unshadowed') return record.type !== 'hanzi' && !p.shadowed;
+      if (bucketId === 'unquizzed') return record.type === 'syllable' && !Number(p.quizAttempts || 0);
+      if (bucketId === 'mastered') return isMasteredV21(record.type, record.id);
+      return false;
+    });
+  }
+
+  function renderTopHeroV21(title, subtitle, extra = '') {
+    return `<section class="v21-hero">
+      <div>
+        <div class="kicker">Pinyin data-driven</div>
+        <h1 class="title">${esc(title)}</h1>
+        <p class="subtitle">${esc(subtitle)}</p>
+      </div>
+      ${extra ? `<div class="v21-hero-extra">${extra}</div>` : ''}
+    </section>`;
+  }
+
+  window.appShell = function appShell(content) {
+    if (!hasV21Data()) return appShellBeforeV21 ? appShellBeforeV21(content) : content;
+
+    const groups = V21.groups.learningGroups || [];
+    const reviewGroups = V21.groups.reviewGroups || [];
+    const total = (V21.required && V21.required.audioCount) || (DATA && DATA.stats && DATA.stats.audioItems) || 0;
+    const reviewTotal = recordsForReviewV21('due').length;
+    const masteredTotal = recordsForReviewV21('mastered').length;
+
+    return `
+<header class="tt-module-top-nav">
+  <a class="tt-top-brand" href="../../index.html" target="_self"><span class="tt-top-logo">中</span><span class="tt-top-name">Tiếng Trung</span></a>
+  <nav class="tt-top-links">
+    <a href="../../index.html" target="_self">Trang chủ</a>
+    <a href="../bo-thu-50/index.html" target="_self">Bộ thủ</a>
+    <a href="../pinyin/index.html" target="_self" class="active">Pinyin</a>
+    <a href="../../index.html#dialogue301" target="_self">301 Đàm thoại</a>
+  </nav>
+</header>
+
+<div class="app-shell v21-shell">
+  <aside class="sidebar v21-sidebar">
+    <div class="brand"><div class="brand-logo">拼</div><div><h1>Pinyin</h1><p>Nhóm học · Ôn tự động</p></div></div>
+    ${navButton('learn','Cần học', groups.length)}
+    ${navButton('review','Cần ôn', reviewTotal)}
+    ${navButton('chart','Bảng tổng', total)}
+    ${navButton('rules','Quy tắc', 'ghi nhớ')}
+    ${navButton('practice','Quiz', 'nghe')}
+    <div class="side-card">
+      <div class="side-stat">
+        <div><span>Nhóm học</span><b>${groups.length}</b></div>
+        <div><span>Âm bắt buộc</span><b>${(V21.required && V21.required.count) || 0}</b></div>
+        <div><span>Đã thành thạo</span><b>${masteredTotal}</b></div>
+        <div><span>Audio thật</span><b>${total}</b></div>
+      </div>
+    </div>
+  </aside>
+  <main class="content v21-content">${content}</main>
+</div>`;
+  };
+
+  window.setTab = function setTab(tab) {
+    state.tab = tab;
+    saveState();
+    render();
+  };
+
+  window.setActiveGroupV21 = function setActiveGroupV21(id) {
+    state.activeGroup = id;
+    state.tab = 'learn';
+    saveState();
+    render();
+  };
+
+  window.setReviewGroupV21 = function setReviewGroupV21(id) {
+    state.activeReviewGroup = id;
+    state.tab = 'review';
+    saveState();
+    render();
+  };
+
+  window.markProgressV21 = function markProgressV21(type, id, action) {
+    const p = getProgress(type, id);
+    if (action === 'learned') patchProgress(type, id, { learned: !p.learned, learnedAt: p.learned ? p.learnedAt : nowIso() });
+    if (action === 'heard') patchProgress(type, id, { heard: true, heardAt: p.heardAt || nowIso(), lastReviewedAt: nowIso() });
+    if (action === 'shadowed') patchProgress(type, id, { shadowed: !p.shadowed, shadowedAt: p.shadowed ? p.shadowedAt : nowIso() });
+    if (action === 'mastered') patchProgress(type, id, { mastered: !p.mastered, masteredAt: p.mastered ? p.masteredAt : nowIso(), learned: true });
+    if (action === 'wrong') patchProgress(type, id, { wrong: Number(p.wrong || 0) + 1, lastReviewedAt: nowIso() });
+    if (action === 'clearWrong') patchProgress(type, id, { wrong: 0, lastReviewedAt: nowIso() });
+  };
+
+  window.playTone = function playTone(safe, tone, btn) {
+    markHeard('syllable', safe, false);
+    return playToneBeforeV21 ? playToneBeforeV21(safe, tone, btn) : undefined;
+  };
+
+  window.playSyllableV21 = function playSyllableV21(safe, tone, btn) {
+    state.selected = safe;
+    saveState();
+    playTone(safe, tone, btn);
+  };
+
+  window.markShadowingHeardV21 = function markShadowingHeardV21(id) {
+    markHeard('shadowing', id, true);
+  };
+
+  window.toggleLearned = function toggleLearned(safe) {
+    const p = getProgress('syllable', safe);
+    patchProgress('syllable', safe, { learned: !p.learned, learnedAt: p.learned ? p.learnedAt : nowIso() });
+  };
+
+  window.markWrong = function markWrong(safe) {
+    const p = getProgress('syllable', safe);
+    patchProgress('syllable', safe, { wrong: Number(p.wrong || 0) + 1, lastReviewedAt: nowIso() });
+  };
+
+  window.clearWrong = function clearWrong(safe) {
+    patchProgress('syllable', safe, { wrong: 0, lastReviewedAt: nowIso() });
+  };
+
+  function learningGroupButtonV21(group) {
+    const done = groupDoneCountV21(group);
+    const total = contentForGroupV21(group).length || group.count || 0;
+    return `<button class="v21-group-tab ${state.activeGroup === group.id ? 'active' : ''}" onclick="setActiveGroupV21('${esc(group.id)}')">
+      <span>${String(group.order || '').padStart(2, '0')}</span>
+      <b>${esc(group.title)}</b>
+      <small>${done}/${total}</small>
+    </button>`;
+  }
+
+  function renderSyllableCardV21(item) {
+    const tone = toneForV21(item);
+    const p = getProgress('syllable', item.safe);
+    const rule = typeof getBetterRule === 'function' ? getBetterRule(item) : { rule: item.rule, hint: item.hint };
+    return `<article class="v21-card v21-syllable-card ${isMasteredV21('syllable', item.safe) ? 'mastered' : ''}">
+      <div class="v21-card-head">
+        <div>
+          <b class="v21-pinyin">${esc(markedV21(item, tone))}</b>
+          <span>${esc(item.pinyin)} · ${esc(item.initialLabel || '∅')} + ${esc(item.chartFinal)}</span>
+        </div>
+        <button class="tone-btn" onclick="playSyllableV21('${esc(item.safe)}', ${tone}, this)">Nghe</button>
+      </div>
+      <p><b>${esc(rule.rule || item.rule)}</b> · ${esc(rule.hint || item.hint || '')}</p>
+      ${statusChipsV21('syllable', item.safe)}
+      <div class="v21-actions">
+        <button class="btn ${p.learned ? 'primary' : ''}" onclick="markProgressV21('syllable','${esc(item.safe)}','learned')">Đã học</button>
+        <button class="btn ${p.shadowed ? 'primary' : ''}" onclick="markProgressV21('syllable','${esc(item.safe)}','shadowed')">Đã nhại</button>
+        <button class="btn ${p.mastered ? 'primary' : ''}" onclick="markProgressV21('syllable','${esc(item.safe)}','mastered')">Thuộc</button>
+        <button class="btn" onclick="markProgressV21('syllable','${esc(item.safe)}','wrong')">Sai</button>
+      </div>
+    </article>`;
+  }
+
+  function renderHanziCardV21(item) {
+    const p = getProgress('hanzi', item.id);
+    return `<article class="v21-card v21-hanzi-card ${isMasteredV21('hanzi', item.id) ? 'mastered' : ''}">
+      <div class="v21-hanzi">${esc(item.char)}</div>
+      <div class="v21-hanzi-meta">#${item.rank} · ${esc(item.source || '')}</div>
+      ${statusChipsV21('hanzi', item.id)}
+      <div class="v21-actions">
+        <button class="btn ${p.learned ? 'primary' : ''}" onclick="markProgressV21('hanzi','${esc(item.id)}','learned')">Đã học</button>
+        <button class="btn ${p.mastered ? 'primary' : ''}" onclick="markProgressV21('hanzi','${esc(item.id)}','mastered')">Thuộc</button>
+      </div>
+    </article>`;
+  }
+
+  function renderShadowingCardV21(item) {
+    const p = getProgress('shadowing', item.id);
+    return `<article class="v21-card v21-shadow-card ${isMasteredV21('shadowing', item.id) ? 'mastered' : ''}">
+      <div class="v21-shadow-zh">${esc(item.zh)}</div>
+      <div class="v21-shadow-pinyin">${esc(item.pinyin)}</div>
+      <p>${esc(item.vi)}</p>
+      ${statusChipsV21('shadowing', item.id)}
+      <div class="v21-actions">
+        <button class="btn ${p.heard ? 'primary' : ''}" onclick="markShadowingHeardV21('${esc(item.id)}')">Đã nghe</button>
+        <button class="btn ${p.shadowed ? 'primary' : ''}" onclick="markProgressV21('shadowing','${esc(item.id)}','shadowed')">Đã nhại</button>
+        <button class="btn ${p.mastered ? 'primary' : ''}" onclick="markProgressV21('shadowing','${esc(item.id)}','mastered')">Thuộc</button>
+      </div>
+    </article>`;
+  }
+
+  function renderGroupDetailV21(group) {
+    if (!group) return `<div class="panel">Chưa có nhóm học.</div>`;
+    const items = contentForGroupV21(group);
+    const done = groupDoneCountV21(group);
+    const total = items.length || group.count || 0;
+    const goals = (group.goals || []).map(goal => `<li>${esc(goal)}</li>`).join('');
+
+    let body = '';
+    if (group.contentType === 'syllable') {
+      body = `<div class="v21-card-grid syllables">${items.map(renderSyllableCardV21).join('')}</div>`;
+    } else if (group.contentType === 'hanzi') {
+      body = `<div class="v21-card-grid hanzi">${items.slice(0, 120).map(renderHanziCardV21).join('')}</div>
+        <p class="muted v21-footnote">Đang hiển thị 120/1000 chữ đầu để trang nhẹ hơn; ôn tự động vẫn tính trên toàn bộ 1000 chữ.</p>`;
+    } else if (group.contentType === 'shadowing') {
+      body = `<div class="v21-card-grid shadowing">${items.map(renderShadowingCardV21).join('')}</div>`;
+    }
+
+    return `<section class="v21-detail">
+      <div class="v21-detail-head">
+        <div>
+          <div class="kicker">${esc(group.contentType)}</div>
+          <h2>${esc(group.title)}</h2>
+          <p>${esc(group.description || '')}</p>
+        </div>
+        <div class="v21-progress-ring"><b>${done}</b><span>/${total}</span></div>
+      </div>
+      ${goals ? `<ul class="v21-goals">${goals}</ul>` : ''}
+      ${group.contentType === 'syllable' ? `<div class="v21-toolbar">
+        <button class="btn primary" onclick="startGroupQuizV21('${esc(group.id)}')">Quiz nhóm này</button>
+        <button class="btn" onclick="setTab('chart')">Mở bảng tổng</button>
+      </div>` : ''}
+      ${body}
+    </section>`;
+  }
+
+  window.renderLearn = function renderLearn() {
+    const groups = (V21.groups && V21.groups.learningGroups) || [];
+    const active = activeLearningGroupV21();
+    return appShell(`
+${renderTopHeroV21('Nhóm cần học', 'Không chia theo ngày nữa: chọn đúng nhóm kiến thức, học đến đâu localStorage ghi tiến độ đến đó.', `
+  <button class="btn primary" onclick="setTab('review')">Mở nhóm cần ôn</button>
+  <button class="btn" onclick="setTab('practice')">Làm quiz</button>
+`)}
+<section class="v21-learning-layout">
+  <aside class="v21-group-list">${groups.map(learningGroupButtonV21).join('')}</aside>
+  ${renderGroupDetailV21(active)}
+</section>`);
+  };
+
+  function renderReviewRecordV21(record) {
+    const p = getProgress(record.type, record.id);
+    if (record.type === 'syllable') {
+      const item = record.item;
+      const tone = toneForV21(item);
+      return `<article class="v21-review-row">
+        <div><b>${esc(markedV21(item, tone))}</b><span>${esc(record.subtitle)}</span></div>
+        ${statusChipsV21(record.type, record.id)}
+        <div class="v21-actions">
+          <button class="btn primary" onclick="playSyllableV21('${esc(item.safe)}', ${tone}, this)">Nghe</button>
+          <button class="btn ${p.shadowed ? 'primary' : ''}" onclick="markProgressV21('syllable','${esc(item.safe)}','shadowed')">Nhại</button>
+          <button class="btn ${p.mastered ? 'primary' : ''}" onclick="markProgressV21('syllable','${esc(item.safe)}','mastered')">Thuộc</button>
+          <button class="btn" onclick="markProgressV21('syllable','${esc(item.safe)}','clearWrong')">Xóa lỗi</button>
+        </div>
+      </article>`;
+    }
+
+    if (record.type === 'hanzi') {
+      return `<article class="v21-review-row">
+        <div><b class="v21-hanzi-inline">${esc(record.title)}</b><span>${esc(record.subtitle)}</span></div>
+        ${statusChipsV21(record.type, record.id)}
+        <div class="v21-actions">
+          <button class="btn ${p.learned ? 'primary' : ''}" onclick="markProgressV21('hanzi','${esc(record.id)}','learned')">Đã học</button>
+          <button class="btn ${p.mastered ? 'primary' : ''}" onclick="markProgressV21('hanzi','${esc(record.id)}','mastered')">Thuộc</button>
+        </div>
+      </article>`;
+    }
+
+    return `<article class="v21-review-row">
+      <div><b>${esc(record.title)}</b><span>${esc(record.subtitle)}</span></div>
+      ${statusChipsV21(record.type, record.id)}
+      <div class="v21-actions">
+        <button class="btn ${p.heard ? 'primary' : ''}" onclick="markShadowingHeardV21('${esc(record.id)}')">Đã nghe</button>
+        <button class="btn ${p.shadowed ? 'primary' : ''}" onclick="markProgressV21('shadowing','${esc(record.id)}','shadowed')">Đã nhại</button>
+        <button class="btn ${p.mastered ? 'primary' : ''}" onclick="markProgressV21('shadowing','${esc(record.id)}','mastered')">Thuộc</button>
+      </div>
+    </article>`;
+  }
+
+  window.renderReview = function renderReview() {
+    const groups = (V21.groups && V21.groups.reviewGroups) || [];
+    const active = activeReviewGroupV21();
+    const records = active ? recordsForReviewV21(active.id) : [];
+    return appShell(`
+${renderTopHeroV21('Nhóm cần ôn', 'Các nhóm này được tính tự động từ tiến độ localStorage: nghe, nhại, quiz, lỗi và thành thạo.', `
+  <button class="btn primary" onclick="setTab('learn')">Quay lại nhóm học</button>
+`)}
+<section class="v21-review-layout">
+  <aside class="v21-group-list">
+    ${groups.map(g => `<button class="v21-group-tab ${state.activeReviewGroup === g.id ? 'active' : ''}" onclick="setReviewGroupV21('${esc(g.id)}')">
+      <span>${recordsForReviewV21(g.id).length}</span><b>${esc(g.title)}</b><small>${esc(g.description || '')}</small>
+    </button>`).join('')}
+  </aside>
+  <section class="v21-detail">
+    <div class="v21-detail-head">
+      <div><div class="kicker">auto review</div><h2>${esc(active ? active.title : 'Ôn tập')}</h2><p>${esc(active ? active.description : '')}</p></div>
+      <div class="v21-progress-ring"><b>${records.length}</b><span>mục</span></div>
+    </div>
+    <div class="v21-review-list">
+      ${records.length ? records.slice(0, 220).map(renderReviewRecordV21).join('') : `<div class="panel"><p class="muted">Nhóm này đang trống.</p></div>`}
+    </div>
+  </section>
+</section>`);
+  };
+
+  function quizPoolForGroupV21(groupId) {
+    const group = groupByIdV21(groupId || state.activeGroup);
+    const items = group && group.contentType === 'syllable' ? syllablesForGroupV21(group) : allSyllablesV21();
+    return items.filter(x => x.hasAudio && x.tones && x.tones.length);
+  }
+
+  window.startGroupQuizV21 = function startGroupQuizV21(groupId) {
+    const pool = quizPoolForGroupV21(groupId);
+    if (!pool.length) return;
+    const item = pool[Math.floor(Math.random() * pool.length)];
+    const tone = item.tones[Math.floor(Math.random() * item.tones.length)];
+    state.quiz = { safe: item.safe, tone, answered: false, feedback: '', groupId: groupId || state.activeGroup };
+    state.tab = 'practice';
+    saveState();
+    render();
+  };
+
+  window.newQuiz = function newQuiz() {
+    startGroupQuizV21(state.activeGroup);
+  };
+
+  window.answerQuiz = function answerQuiz(tone) {
+    if (!state.quiz) return;
+    const item = syllableBySafeV21(state.quiz.safe);
+    if (!item) return;
+    const p = getProgress('syllable', item.safe);
+    const ok = Number(tone) === Number(state.quiz.tone);
+    const attempts = Number(p.quizAttempts || 0) + 1;
+    const correct = Number(p.quizCorrect || 0) + (ok ? 1 : 0);
+    const wrong = Number(p.wrong || 0) + (ok ? 0 : 1);
+    Object.assign(p, {
+      quizAttempts: attempts,
+      quizCorrect: correct,
+      quizWrong: attempts - correct,
+      wrong,
+      lastReviewedAt: nowIso(),
+      updatedAt: nowIso()
+    });
+    state.wrong[item.safe] = wrong;
+    if (wrong <= 0) delete state.wrong[item.safe];
+    state.quiz.answered = true;
+    state.quiz.feedback = ok ? `Đúng: ${markedV21(item, state.quiz.tone)}` : `Sai. Đáp án đúng: ${markedV21(item, state.quiz.tone)}`;
+    saveState();
+    render();
+  };
+
+  window.renderPractice = function renderPractice() {
+    const group = activeLearningGroupV21();
+    const pool = quizPoolForGroupV21(group && group.id);
+    const q = state.quiz;
+    const item = q ? syllableBySafeV21(q.safe) : null;
+    return appShell(`
+${renderTopHeroV21('Quiz nghe theo nhóm', `Nguồn câu hỏi hiện tại: ${group ? group.title : 'toàn bộ âm tiết'}.`, `
+  <button class="btn primary" onclick="startGroupQuizV21('${esc(group ? group.id : '')}')">Câu mới</button>
+  <button class="btn" onclick="setTab('learn')">Chọn nhóm khác</button>
+`)}
+<div class="quiz-card v21-quiz">
+  ${!q || !item ? `<p class="muted">Có ${pool.length} âm có thể đưa vào quiz từ nhóm đang chọn.</p><button class="btn primary" onclick="startGroupQuizV21('${esc(group ? group.id : '')}')">Bắt đầu</button>` : `
+    <div class="muted">Nghe và chọn đúng thanh</div>
+    <div class="quiz-big">${q.answered ? esc(markedV21(item, q.tone)) : '?'}</div>
+    <button class="btn primary" onclick="playSyllableV21('${esc(q.safe)}', ${q.tone}, this)">Phát âm</button>
+    <div class="quiz-options">${[1,2,3,4].map(t => `<button class="btn" onclick="answerQuiz(${t})">Thanh ${t}</button>`).join('')}</div>
+    ${q.answered ? `<div class="feedback ${q.feedback.startsWith('Đúng') ? 'ok' : 'bad'}">${esc(q.feedback)}</div><button class="btn primary" style="margin-top:12px" onclick="startGroupQuizV21('${esc(q.groupId || (group && group.id) || '')}')">Câu tiếp</button>` : ''}
+  `}
+</div>`);
+  };
+
+  window.render = function render() {
+    const app = $('#app');
+    if (!app) return;
+    if (!DATA) {
+      app.innerHTML = '<div class="loading">Đang tải Pinyin...</div>';
+      return;
+    }
+    if (!hasV21Data()) {
+      if (typeof renderBeforeV21 === 'function') return renderBeforeV21();
+      app.innerHTML = '<div class="loading">Đang tải nhóm Pinyin...</div>';
+      return;
+    }
+
+    ensureProgressState();
+    if (!state.tab || state.tab === 'listen' || state.tab === 'groups') state.tab = 'learn';
+    if (!state.activeGroup) state.activeGroup = V21.groups.defaultLearningGroup || 'intro';
+    if (!state.activeReviewGroup) state.activeReviewGroup = V21.groups.defaultReviewGroup || 'not_started';
+
+    let html = '';
+    if (state.tab === 'learn') html = renderLearn();
+    else if (state.tab === 'review') html = renderReview();
+    else if (state.tab === 'chart') html = renderChart();
+    else if (state.tab === 'rules') html = renderRules();
+    else if (state.tab === 'practice') html = renderPractice();
+    else html = renderLearn();
+    app.innerHTML = html;
+  };
+
+  function loadV21Data() {
+    Promise.all([
+      fetchJsonV21(DATA_FILES_V21.groups),
+      fetchJsonV21(DATA_FILES_V21.required),
+      fetchJsonV21(DATA_FILES_V21.hanzi),
+      fetchJsonV21(DATA_FILES_V21.shadowing),
+      fetchJsonV21(DATA_FILES_V21.reviewRules)
+    ]).then(([groups, required, hanzi, shadowing, reviewRules]) => {
+      V21.groups = groups;
+      V21.required = required;
+      V21.hanzi = hanzi;
+      V21.shadowing = shadowing;
+      V21.reviewRules = reviewRules;
+      V21.ready = true;
+      V21.loadError = '';
+      if (!state.activeGroup) state.activeGroup = groups.defaultLearningGroup || 'intro';
+      if (!state.activeReviewGroup) state.activeReviewGroup = groups.defaultReviewGroup || 'not_started';
+      if (!state.tab || state.tab === 'listen' || state.tab === 'groups') state.tab = 'learn';
+      saveState();
+      render();
+    }).catch(err => {
+      V21.loadError = err.message || String(err);
+      console.error('Không tải được dữ liệu nhóm Pinyin V21:', err);
+      if (typeof renderBeforeV21 === 'function') renderBeforeV21();
+    });
+  }
+
+  loadV21Data();
 })();
