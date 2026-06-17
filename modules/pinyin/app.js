@@ -2115,36 +2115,6 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
     return state.progress[bucket][id];
   }
 
-  function renderPreserveScrollV21() {
-    const x = window.scrollX || 0;
-    const y = window.scrollY || 0;
-    render();
-    requestAnimationFrame(() => window.scrollTo(x, y));
-  }
-
-  function refreshProgressElementsV21(type, id) {
-    try {
-      document.querySelectorAll(`[data-v21-type="${type}"]`).forEach(el => {
-        if (el.getAttribute('data-v21-id') !== String(id)) return;
-        const slot = el.querySelector('[data-v21-status-slot]');
-        if (slot) slot.innerHTML = statusChipsV21(type, id);
-        el.classList.toggle('mastered', isMasteredV21(type, id));
-        const p = getProgress(type, id);
-        el.querySelectorAll('[data-v21-active]').forEach(node => {
-          const flag = node.getAttribute('data-v21-active');
-          const active = flag === 'learned' ? !!p.learned
-            : flag === 'heard' ? !!p.heard
-            : flag === 'mastered' ? !!p.mastered || isMasteredV21(type, id)
-            : flag === 'wrong' ? Number(p.wrong || 0) > 0
-            : false;
-          node.classList.toggle('active', active);
-          node.classList.toggle('primary', active);
-          node.setAttribute('aria-pressed', active ? 'true' : 'false');
-        });
-      });
-    } catch (e) {}
-  }
-
   function patchProgress(type, id, patch, rerender = true) {
     const p = getProgress(type, id);
     Object.assign(p, patch, { updatedAt: nowIso() });
@@ -2158,27 +2128,17 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
     }
 
     saveState();
-    if (rerender) renderPreserveScrollV21();
-    else refreshProgressElementsV21(type, id);
+    if (rerender) render();
   }
 
   function markHeard(type, id, rerender = false) {
     const p = getProgress(type, id);
-    const stamp = nowIso();
     p.heard = true;
-    p.heardAt = p.heardAt || stamp;
-    p.lastReviewedAt = stamp;
-    p.updatedAt = stamp;
-
-    if (type === 'syllable' || type === 'shadowing') {
-      p.learned = true;
-      p.learnedAt = p.learnedAt || stamp;
-      if (type === 'syllable') state.learned[id] = true;
-    }
-
+    p.heardAt = p.heardAt || nowIso();
+    p.lastReviewedAt = nowIso();
+    p.updatedAt = nowIso();
     saveState();
-    if (rerender) renderPreserveScrollV21();
-    else refreshProgressElementsV21(type, id);
+    if (rerender) render();
   }
 
   function allSyllablesV21() {
@@ -2231,55 +2191,6 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
     return [];
   }
 
-  function groupIndexV21(id) {
-    const groups = (V21.groups && V21.groups.learningGroups) || [];
-    const idx = groups.findIndex(g => g.id === id);
-    return idx >= 0 ? idx : 0;
-  }
-
-  function shadowingByIdV21(id) {
-    return ((V21.shadowing && V21.shadowing.sentences) || []).find(item => item.id === id) || null;
-  }
-
-  function audioSrcFromV21(item) {
-    if (!item) return '';
-    const raw = item.audio || item.audioSrc || item.audioUrl || item.src || item.file || item.url;
-    if (typeof raw === 'string') return raw;
-    if (raw && typeof raw === 'object') {
-      return raw.src || raw.url || raw.file || raw.default || raw['1'] || Object.values(raw).find(v => typeof v === 'string') || '';
-    }
-    return '';
-  }
-
-  function playToneRawV21(safe, tone, btn) {
-    const it = itemBySafe(safe) || syllableBySafeV21(safe);
-    if (!it || !it.audio || !it.audio[String(tone)]) return undefined;
-    clearPlaying();
-    activeBtn = btn || null;
-    setPlaying(activeBtn, true);
-    audio.src = it.audio[String(tone)];
-    audio.currentTime = 0;
-    return audio.play().catch(() => clearPlaying());
-  }
-
-  function playAudioSrcV21(src, btn) {
-    if (!src) return undefined;
-    clearPlaying();
-    activeBtn = btn || null;
-    setPlaying(activeBtn, true);
-    audio.src = src;
-    audio.currentTime = 0;
-    return audio.play().catch(() => clearPlaying());
-  }
-
-  function iconButtonV21(label, title, onclick, active = false, extraClass = '', activeFlag = '') {
-    return `<button class="v23-icon-btn ${extraClass} ${active ? 'active primary' : ''}" type="button" title="${esc(title)}" aria-label="${esc(title)}" aria-pressed="${active ? 'true' : 'false'}" ${activeFlag ? `data-v21-active="${esc(activeFlag)}"` : ''} onclick="${onclick}"><span>${label}</span></button>`;
-  }
-
-  function iconStateV21(label, title, active = false, activeFlag = '') {
-    return `<span class="v23-icon-state ${active ? 'active primary' : ''}" title="${esc(title)}" aria-label="${esc(title)}" aria-pressed="${active ? 'true' : 'false'}" ${activeFlag ? `data-v21-active="${esc(activeFlag)}"` : ''}>${label}</span>`;
-  }
-
   function hasStartedV21(type, id) {
     const p = getProgress(type, id);
     return !!(p.learned || p.heard || p.shadowed || p.quizAttempts || p.mastered || Number(p.wrong || 0));
@@ -2303,13 +2214,13 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
   function statusChipsV21(type, id) {
     const p = getProgress(type, id);
     const chips = [];
-    if (p.heard || p.learned) chips.push(['✓', type === 'shadowing' ? 'đã nghe' : 'đã nghe / đã học']);
-    if (Number(p.quizAttempts || 0)) chips.push([`Q ${p.quizCorrect || 0}/${p.quizAttempts}`, 'quiz']);
-    if (Number(p.wrong || 0)) chips.push([`! ${p.wrong}`, 'cần ôn']);
-    if (isMasteredV21(type, id)) chips.push(['★', 'thuộc / thành thạo']);
-    return chips.length
-      ? `<div class="v21-status v23-status">${chips.map(x => `<span title="${esc(x[1])}">${esc(x[0])}</span>`).join('')}</div>`
-      : `<div class="v21-status v23-status muted"><span>chưa học</span></div>`;
+    if (p.heard) chips.push('đã nghe');
+    if (p.learned) chips.push('đã học');
+    if (p.shadowed) chips.push('đã nhại');
+    if (Number(p.quizAttempts || 0)) chips.push(`quiz ${p.quizCorrect || 0}/${p.quizAttempts}`);
+    if (Number(p.wrong || 0)) chips.push(`sai ${p.wrong}`);
+    if (isMasteredV21(type, id)) chips.push('thành thạo');
+    return chips.length ? `<div class="v21-status">${chips.map(x => `<span>${esc(x)}</span>`).join('')}</div>` : `<div class="v21-status muted">chưa có tiến độ</div>`;
   }
 
   function reviewUniverseV21() {
@@ -2359,7 +2270,7 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
       if (bucketId === 'due') return isDueV21(record);
       if (bucketId === 'wrong_many') return Number(p.wrong || 0) >= wrongMany;
       if (bucketId === 'unheard') return record.type !== 'hanzi' && !p.heard;
-      if (bucketId === 'unshadowed') return false;
+      if (bucketId === 'unshadowed') return record.type !== 'hanzi' && !p.shadowed;
       if (bucketId === 'unquizzed') return record.type === 'syllable' && !Number(p.quizAttempts || 0);
       if (bucketId === 'mastered') return isMasteredV21(record.type, record.id);
       return false;
@@ -2435,18 +2346,6 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
     state.tab = 'learn';
     saveState();
     render();
-    requestAnimationFrame(() => {
-      const target = document.getElementById('v21-current-study') || document.getElementById('v21-group-detail');
-      if (target) target.scrollIntoView({ block: 'start' });
-    });
-  };
-
-  window.stepActiveGroupV21 = function stepActiveGroupV21(delta) {
-    const groups = (V21.groups && V21.groups.learningGroups) || [];
-    if (!groups.length) return;
-    const idx = groupIndexV21(state.activeGroup);
-    const next = Math.max(0, Math.min(groups.length - 1, idx + Number(delta || 0)));
-    setActiveGroupV21(groups[next].id);
   };
 
   window.setReviewGroupV21 = function setReviewGroupV21(id) {
@@ -2457,8 +2356,11 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
   };
 
   window.openStudyGroupsV21 = function openStudyGroupsV21() {
-    const target = document.getElementById('v21-current-study') || document.getElementById('v21-group-detail');
-    if (target) target.scrollIntoView({ block: 'start' });
+    const drawer = document.getElementById('v21-study-groups');
+    if (drawer) {
+      drawer.open = true;
+      drawer.scrollIntoView({ block: 'start' });
+    }
   };
 
   function homeActionV21(title, subtitle, action, tone = 'blue') {
@@ -2470,26 +2372,17 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
 
   window.markProgressV21 = function markProgressV21(type, id, action) {
     const p = getProgress(type, id);
-    const stamp = nowIso();
-    if (action === 'learned') patchProgress(type, id, { learned: !p.learned, learnedAt: p.learned ? p.learnedAt : stamp });
-    if (action === 'heard') patchProgress(type, id, { heard: true, learned: true, heardAt: p.heardAt || stamp, learnedAt: p.learnedAt || stamp, lastReviewedAt: stamp });
-    if (action === 'shadowed') patchProgress(type, id, { shadowed: !p.shadowed, shadowedAt: p.shadowed ? p.shadowedAt : stamp });
-    if (action === 'mastered') patchProgress(type, id, { mastered: !p.mastered, masteredAt: p.mastered ? p.masteredAt : stamp, learned: true, learnedAt: p.learnedAt || stamp });
-    if (action === 'wrong') patchProgress(type, id, { wrong: Number(p.wrong || 0) + 1, lastReviewedAt: stamp });
-    if (action === 'clearWrong') patchProgress(type, id, { wrong: 0, lastReviewedAt: stamp });
+    if (action === 'learned') patchProgress(type, id, { learned: !p.learned, learnedAt: p.learned ? p.learnedAt : nowIso() });
+    if (action === 'heard') patchProgress(type, id, { heard: true, heardAt: p.heardAt || nowIso(), lastReviewedAt: nowIso() });
+    if (action === 'shadowed') patchProgress(type, id, { shadowed: !p.shadowed, shadowedAt: p.shadowed ? p.shadowedAt : nowIso() });
+    if (action === 'mastered') patchProgress(type, id, { mastered: !p.mastered, masteredAt: p.mastered ? p.masteredAt : nowIso(), learned: true });
+    if (action === 'wrong') patchProgress(type, id, { wrong: Number(p.wrong || 0) + 1, lastReviewedAt: nowIso() });
+    if (action === 'clearWrong') patchProgress(type, id, { wrong: 0, lastReviewedAt: nowIso() });
   };
 
   window.playTone = function playTone(safe, tone, btn) {
-    if (state.tab === 'practice') {
-      if (state.quiz && state.quiz.safe === safe) state.quiz.heard = true;
-      markHeard('syllable', safe, false);
-      saveState();
-      if (typeof window.hidePinyinCompactPanel === 'function') window.hidePinyinCompactPanel();
-      return playToneRawV21(safe, tone, btn);
-    }
-
     markHeard('syllable', safe, false);
-    const result = playToneBeforeV21 ? playToneBeforeV21(safe, tone, btn) : playToneRawV21(safe, tone, btn);
+    const result = playToneBeforeV21 ? playToneBeforeV21(safe, tone, btn) : undefined;
     setTimeout(() => {
       if (state.tab !== 'listen' && state.tab !== 'chart' && typeof window.hidePinyinCompactPanel === 'function') {
         window.hidePinyinCompactPanel();
@@ -2502,23 +2395,6 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
     state.selected = safe;
     saveState();
     playTone(safe, tone, btn);
-  };
-
-  window.playQuizToneV21 = function playQuizToneV21(safe, tone, btn) {
-    state.selected = safe;
-    if (state.quiz && state.quiz.safe === safe) state.quiz.heard = true;
-    markHeard('syllable', safe, false);
-    saveState();
-    if (typeof window.hidePinyinCompactPanel === 'function') window.hidePinyinCompactPanel();
-    return playToneRawV21(safe, tone, btn);
-  };
-
-  window.playShadowingAudioV21 = function playShadowingAudioV21(id, btn) {
-    const item = shadowingByIdV21(id);
-    const src = audioSrcFromV21(item);
-    if (!src) return;
-    markHeard('shadowing', id, false);
-    return playAudioSrcV21(src, btn);
   };
 
   window.markShadowingHeardV21 = function markShadowingHeardV21(id) {
@@ -2549,72 +2425,53 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
     </button>`;
   }
 
-  function renderGroupPickerV21(groups, active) {
-    if (!groups.length || !active) return '';
-    const idx = groupIndexV21(active.id);
-    const done = groupDoneCountV21(active);
-    const total = contentForGroupV21(active).length || active.count || 0;
-    return `<div class="v23-group-picker" aria-label="Chọn nhóm học">
-      <button class="v23-group-step" type="button" onclick="stepActiveGroupV21(-1)" ${idx <= 0 ? 'disabled' : ''} aria-label="Nhóm trước">‹</button>
-      <label class="v23-group-current">
-        <span>Nhóm ${String(idx + 1).padStart(2, '0')}/${groups.length} · ${done}/${total}</span>
-        <select class="v23-group-select" onchange="setActiveGroupV21(this.value)">
-          ${groups.map(g => `<option value="${esc(g.id)}" ${g.id === active.id ? 'selected' : ''}>${String(g.order || '').padStart(2, '0')} · ${esc(g.title)}</option>`).join('')}
-        </select>
-      </label>
-      <button class="v23-group-step" type="button" onclick="stepActiveGroupV21(1)" ${idx >= groups.length - 1 ? 'disabled' : ''} aria-label="Nhóm sau">›</button>
-    </div>`;
-  }
-
   function renderSyllableCardV21(item) {
     const tone = toneForV21(item);
     const p = getProgress('syllable', item.safe);
     const rule = typeof getBetterRule === 'function' ? getBetterRule(item) : { rule: item.rule, hint: item.hint };
-    const wrongCount = Number(p.wrong || 0);
-    return `<article class="v21-card v21-syllable-card ${isMasteredV21('syllable', item.safe) ? 'mastered' : ''}" data-v21-type="syllable" data-v21-id="${esc(item.safe)}">
+    return `<article class="v21-card v21-syllable-card ${isMasteredV21('syllable', item.safe) ? 'mastered' : ''}">
       <div class="v21-card-head">
         <div>
           <b class="v21-pinyin">${esc(markedV21(item, tone))}</b>
           <span>${esc(item.pinyin)} · ${esc(item.initialLabel || '∅')} + ${esc(item.chartFinal)}</span>
         </div>
-        ${iconButtonV21('🔊', 'Nghe âm này. Nghe xong tự đánh dấu đã học.', `playSyllableV21('${esc(item.safe)}', ${tone}, this)`, !!p.heard, 'v23-listen-btn', 'heard')}
+        <button class="tone-btn" onclick="playSyllableV21('${esc(item.safe)}', ${tone}, this)">Nghe</button>
       </div>
       <p><b>${esc(rule.rule || item.rule)}</b> · ${esc(rule.hint || item.hint || '')}</p>
-      <div data-v21-status-slot>${statusChipsV21('syllable', item.safe)}</div>
-      <div class="v21-actions v23-icon-actions">
-        ${iconStateV21('✓', 'Đã nghe / đã học', !!(p.heard || p.learned), 'learned')}
-        ${iconButtonV21('★', 'Đánh dấu thuộc', `markProgressV21('syllable','${esc(item.safe)}','mastered')`, !!p.mastered || isMasteredV21('syllable', item.safe), 'v23-master-btn', 'mastered')}
-        ${iconButtonV21('!', wrongCount ? `Đang cần ôn: ${wrongCount} lần` : 'Đánh dấu sai / cần ôn', `markProgressV21('syllable','${esc(item.safe)}','wrong')`, wrongCount > 0, 'v23-wrong-btn', 'wrong')}
-        ${wrongCount ? iconButtonV21('↺', 'Xóa lỗi sau khi đã ôn', `markProgressV21('syllable','${esc(item.safe)}','clearWrong')`, false, 'v23-clear-btn') : ''}
+      ${statusChipsV21('syllable', item.safe)}
+      <div class="v21-actions">
+        <button class="btn ${p.learned ? 'primary' : ''}" onclick="markProgressV21('syllable','${esc(item.safe)}','learned')">Đã học</button>
+        <button class="btn ${p.shadowed ? 'primary' : ''}" onclick="markProgressV21('syllable','${esc(item.safe)}','shadowed')">Đã nhại</button>
+        <button class="btn ${p.mastered ? 'primary' : ''}" onclick="markProgressV21('syllable','${esc(item.safe)}','mastered')">Thuộc</button>
+        <button class="btn" onclick="markProgressV21('syllable','${esc(item.safe)}','wrong')">Sai</button>
       </div>
     </article>`;
   }
 
   function renderHanziCardV21(item) {
     const p = getProgress('hanzi', item.id);
-    return `<article class="v21-card v21-hanzi-card ${isMasteredV21('hanzi', item.id) ? 'mastered' : ''}" data-v21-type="hanzi" data-v21-id="${esc(item.id)}">
+    return `<article class="v21-card v21-hanzi-card ${isMasteredV21('hanzi', item.id) ? 'mastered' : ''}">
       <div class="v21-hanzi">${esc(item.char)}</div>
       <div class="v21-hanzi-meta">#${item.rank} · ${esc(item.source || '')}</div>
-      <div data-v21-status-slot>${statusChipsV21('hanzi', item.id)}</div>
-      <div class="v21-actions v23-icon-actions">
-        ${iconButtonV21('✓', 'Đã học chữ này', `markProgressV21('hanzi','${esc(item.id)}','learned')`, !!p.learned, 'v23-learned-btn', 'learned')}
-        ${iconButtonV21('★', 'Thuộc chữ này', `markProgressV21('hanzi','${esc(item.id)}','mastered')`, !!p.mastered || isMasteredV21('hanzi', item.id), 'v23-master-btn', 'mastered')}
+      ${statusChipsV21('hanzi', item.id)}
+      <div class="v21-actions">
+        <button class="btn ${p.learned ? 'primary' : ''}" onclick="markProgressV21('hanzi','${esc(item.id)}','learned')">Đã học</button>
+        <button class="btn ${p.mastered ? 'primary' : ''}" onclick="markProgressV21('hanzi','${esc(item.id)}','mastered')">Thuộc</button>
       </div>
     </article>`;
   }
 
   function renderShadowingCardV21(item) {
     const p = getProgress('shadowing', item.id);
-    const src = audioSrcFromV21(item);
-    return `<article class="v21-card v21-shadow-card ${isMasteredV21('shadowing', item.id) ? 'mastered' : ''}" data-v21-type="shadowing" data-v21-id="${esc(item.id)}">
+    return `<article class="v21-card v21-shadow-card ${isMasteredV21('shadowing', item.id) ? 'mastered' : ''}">
       <div class="v21-shadow-zh">${esc(item.zh)}</div>
       <div class="v21-shadow-pinyin">${esc(item.pinyin)}</div>
       <p>${esc(item.vi)}</p>
-      <div data-v21-status-slot>${statusChipsV21('shadowing', item.id)}</div>
-      <div class="v21-actions v23-icon-actions">
-        ${src ? iconButtonV21('🔊', 'Nghe câu mẫu', `playShadowingAudioV21('${esc(item.id)}', this)`, !!p.heard, 'v23-listen-btn', 'heard') : `<button class="v23-icon-btn" type="button" disabled title="Chưa có audio mẫu" aria-label="Chưa có audio mẫu"><span>🔇</span></button>`}
-        ${iconButtonV21('✓', 'Đánh dấu đã nghe / đã học', `markProgressV21('shadowing','${esc(item.id)}','heard')`, !!(p.heard || p.learned), 'v23-learned-btn', 'learned')}
-        ${iconButtonV21('★', 'Thuộc câu này', `markProgressV21('shadowing','${esc(item.id)}','mastered')`, !!p.mastered || isMasteredV21('shadowing', item.id), 'v23-master-btn', 'mastered')}
+      ${statusChipsV21('shadowing', item.id)}
+      <div class="v21-actions">
+        <button class="btn ${p.heard ? 'primary' : ''}" onclick="markShadowingHeardV21('${esc(item.id)}')">Đã nghe</button>
+        <button class="btn ${p.shadowed ? 'primary' : ''}" onclick="markProgressV21('shadowing','${esc(item.id)}','shadowed')">Đã nhại</button>
+        <button class="btn ${p.mastered ? 'primary' : ''}" onclick="markProgressV21('shadowing','${esc(item.id)}','mastered')">Thuộc</button>
       </div>
     </article>`;
   }
@@ -2636,7 +2493,7 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
       body = `<div class="v21-card-grid shadowing">${items.map(renderShadowingCardV21).join('')}</div>`;
     }
 
-    return `<section id="v21-group-detail" class="v21-detail">
+    return `<section class="v21-detail">
       <div class="v21-detail-head">
         <div>
           <div class="kicker">${esc(group.contentType)}</div>
@@ -2686,10 +2543,13 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
     </div>
   </section>
 
-  <section id="v21-current-study" class="v23-study-panel">
-    ${renderGroupPickerV21(groups, active)}
-    ${renderGroupDetailV21(active)}
-  </section>
+  <details id="v21-study-groups" class="v22-study-drawer">
+    <summary><span>Nhóm học</span><b>${groups.length} nhóm</b></summary>
+    <section class="v21-learning-layout">
+      <aside class="v21-group-list">${groups.map(learningGroupButtonV21).join('')}</aside>
+      ${renderGroupDetailV21(active)}
+    </section>
+  </details>
 </section>`);
   };
 
@@ -2698,38 +2558,36 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
     if (record.type === 'syllable') {
       const item = record.item;
       const tone = toneForV21(item);
-      const wrongCount = Number(p.wrong || 0);
-      return `<article class="v21-review-row" data-v21-type="syllable" data-v21-id="${esc(item.safe)}">
+      return `<article class="v21-review-row">
         <div><b>${esc(markedV21(item, tone))}</b><span>${esc(record.subtitle)}</span></div>
-        <div data-v21-status-slot>${statusChipsV21(record.type, record.id)}</div>
-        <div class="v21-actions v23-icon-actions">
-          ${iconButtonV21('🔊', 'Nghe lại âm này', `playSyllableV21('${esc(item.safe)}', ${tone}, this)`, !!p.heard, 'v23-listen-btn', 'heard')}
-          ${iconStateV21('✓', 'Đã nghe / đã học', !!(p.heard || p.learned), 'learned')}
-          ${iconButtonV21('★', 'Đánh dấu thuộc', `markProgressV21('syllable','${esc(item.safe)}','mastered')`, !!p.mastered || isMasteredV21('syllable', item.safe), 'v23-master-btn', 'mastered')}
-          ${wrongCount ? iconButtonV21('↺', 'Xóa lỗi sau khi đã ôn', `markProgressV21('syllable','${esc(item.safe)}','clearWrong')`, true, 'v23-clear-btn', 'wrong') : iconButtonV21('!', 'Đánh dấu cần ôn', `markProgressV21('syllable','${esc(item.safe)}','wrong')`, false, 'v23-wrong-btn')}
+        ${statusChipsV21(record.type, record.id)}
+        <div class="v21-actions">
+          <button class="btn primary" onclick="playSyllableV21('${esc(item.safe)}', ${tone}, this)">Nghe</button>
+          <button class="btn ${p.shadowed ? 'primary' : ''}" onclick="markProgressV21('syllable','${esc(item.safe)}','shadowed')">Nhại</button>
+          <button class="btn ${p.mastered ? 'primary' : ''}" onclick="markProgressV21('syllable','${esc(item.safe)}','mastered')">Thuộc</button>
+          <button class="btn" onclick="markProgressV21('syllable','${esc(item.safe)}','clearWrong')">Xóa lỗi</button>
         </div>
       </article>`;
     }
 
     if (record.type === 'hanzi') {
-      return `<article class="v21-review-row" data-v21-type="hanzi" data-v21-id="${esc(record.id)}">
+      return `<article class="v21-review-row">
         <div><b class="v21-hanzi-inline">${esc(record.title)}</b><span>${esc(record.subtitle)}</span></div>
-        <div data-v21-status-slot>${statusChipsV21(record.type, record.id)}</div>
-        <div class="v21-actions v23-icon-actions">
-          ${iconButtonV21('✓', 'Đã học chữ này', `markProgressV21('hanzi','${esc(record.id)}','learned')`, !!p.learned, 'v23-learned-btn', 'learned')}
-          ${iconButtonV21('★', 'Thuộc chữ này', `markProgressV21('hanzi','${esc(record.id)}','mastered')`, !!p.mastered || isMasteredV21('hanzi', record.id), 'v23-master-btn', 'mastered')}
+        ${statusChipsV21(record.type, record.id)}
+        <div class="v21-actions">
+          <button class="btn ${p.learned ? 'primary' : ''}" onclick="markProgressV21('hanzi','${esc(record.id)}','learned')">Đã học</button>
+          <button class="btn ${p.mastered ? 'primary' : ''}" onclick="markProgressV21('hanzi','${esc(record.id)}','mastered')">Thuộc</button>
         </div>
       </article>`;
     }
 
-    const src = audioSrcFromV21(record.item);
-    return `<article class="v21-review-row" data-v21-type="shadowing" data-v21-id="${esc(record.id)}">
+    return `<article class="v21-review-row">
       <div><b>${esc(record.title)}</b><span>${esc(record.subtitle)}</span></div>
-      <div data-v21-status-slot>${statusChipsV21(record.type, record.id)}</div>
-      <div class="v21-actions v23-icon-actions">
-        ${src ? iconButtonV21('🔊', 'Nghe câu mẫu', `playShadowingAudioV21('${esc(record.id)}', this)`, !!p.heard, 'v23-listen-btn', 'heard') : `<button class="v23-icon-btn" type="button" disabled title="Chưa có audio mẫu" aria-label="Chưa có audio mẫu"><span>🔇</span></button>`}
-        ${iconButtonV21('✓', 'Đánh dấu đã nghe / đã học', `markProgressV21('shadowing','${esc(record.id)}','heard')`, !!(p.heard || p.learned), 'v23-learned-btn', 'learned')}
-        ${iconButtonV21('★', 'Thuộc câu này', `markProgressV21('shadowing','${esc(record.id)}','mastered')`, !!p.mastered || isMasteredV21('shadowing', record.id), 'v23-master-btn', 'mastered')}
+      ${statusChipsV21(record.type, record.id)}
+      <div class="v21-actions">
+        <button class="btn ${p.heard ? 'primary' : ''}" onclick="markShadowingHeardV21('${esc(record.id)}')">Đã nghe</button>
+        <button class="btn ${p.shadowed ? 'primary' : ''}" onclick="markProgressV21('shadowing','${esc(record.id)}','shadowed')">Đã nhại</button>
+        <button class="btn ${p.mastered ? 'primary' : ''}" onclick="markProgressV21('shadowing','${esc(record.id)}','mastered')">Thuộc</button>
       </div>
     </article>`;
   }
@@ -2739,7 +2597,7 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
     const active = activeReviewGroupV21();
     const records = active ? recordsForReviewV21(active.id) : [];
     return appShell(`
-${renderTopHeroV21('Nhóm cần ôn', 'Các nhóm này được tính tự động từ tiến độ localStorage: nghe, quiz, lỗi và thành thạo.', `
+${renderTopHeroV21('Nhóm cần ôn', 'Các nhóm này được tính tự động từ tiến độ localStorage: nghe, nhại, quiz, lỗi và thành thạo.', `
   <button class="btn primary" onclick="setTab('learn')">Quay lại nhóm học</button>
 `)}
 <section class="v21-review-layout">
@@ -2816,25 +2674,17 @@ ${renderTopHeroV21('Tiến độ', 'Tóm tắt từ localStorage hiện có. Kh�
     if (!item) return;
     const p = getProgress('syllable', item.safe);
     const ok = Number(tone) === Number(state.quiz.tone);
-    const stamp = nowIso();
     const attempts = Number(p.quizAttempts || 0) + 1;
     const correct = Number(p.quizCorrect || 0) + (ok ? 1 : 0);
     const wrong = Number(p.wrong || 0) + (ok ? 0 : 1);
-    const heardInQuiz = !!(p.heard || state.quiz.heard);
-    const learnedByQuiz = !!(p.learned || ok);
     Object.assign(p, {
       quizAttempts: attempts,
       quizCorrect: correct,
       quizWrong: attempts - correct,
       wrong,
-      heard: heardInQuiz || p.heard,
-      heardAt: heardInQuiz ? (p.heardAt || stamp) : p.heardAt,
-      learned: learnedByQuiz,
-      learnedAt: learnedByQuiz ? (p.learnedAt || stamp) : p.learnedAt,
-      lastReviewedAt: stamp,
-      updatedAt: stamp
+      lastReviewedAt: nowIso(),
+      updatedAt: nowIso()
     });
-    if (learnedByQuiz) state.learned[item.safe] = true;
     state.wrong[item.safe] = wrong;
     if (wrong <= 0) delete state.wrong[item.safe];
     state.quiz.answered = true;
@@ -2857,7 +2707,7 @@ ${renderTopHeroV21('Quiz nghe theo nhóm', `Nguồn câu hỏi hiện tại: ${g
   ${!q || !item ? `<p class="muted">Có ${pool.length} âm có thể đưa vào quiz từ nhóm đang chọn.</p><button class="btn primary" onclick="startGroupQuizV21('${esc(group ? group.id : '')}')">Bắt đầu</button>` : `
     <div class="muted">Nghe và chọn đúng thanh</div>
     <div class="quiz-big">${q.answered ? esc(markedV21(item, q.tone)) : '?'}</div>
-    <button class="btn primary" onclick="playQuizToneV21('${esc(q.safe)}', ${q.tone}, this)">Phát âm 🔊</button>
+    <button class="btn primary" onclick="playSyllableV21('${esc(q.safe)}', ${q.tone}, this)">Phát âm</button>
     <div class="quiz-options">${[1,2,3,4].map(t => `<button class="btn" onclick="answerQuiz(${t})">Thanh ${t}</button>`).join('')}</div>
     ${q.answered ? `<div class="feedback ${q.feedback.startsWith('Đúng') ? 'ok' : 'bad'}">${esc(q.feedback)}</div><button class="btn primary" style="margin-top:12px" onclick="startGroupQuizV21('${esc(q.groupId || (group && group.id) || '')}')">Câu tiếp</button>` : ''}
   `}
@@ -2922,4 +2772,1406 @@ ${renderTopHeroV21('Quiz nghe theo nhóm', `Nguồn câu hỏi hiện tại: ${g
   }
 
   loadV21Data();
+})();
+
+/* PATCH_PINYIN_V23_MOBILE_INTERACTIONS
+   Fix mobile learning flow: listen auto-learns, compact status buttons,
+   group picker, quiz audio without compact panel, and shadowing audio state.
+*/
+(function () {
+  const V23_VERSION = '20260617-mobile-interactions';
+  const V21 = window.PIN_YIN_GROUPS_V21 || {};
+  const appShellBeforeV23 = window.appShell;
+
+  function escV23(value) {
+    return String(value ?? '').replace(/[&<>"']/g, ch => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#039;'
+    }[ch]));
+  }
+
+  function nowIsoV23() {
+    return new Date().toISOString();
+  }
+
+  function hasV21DataV23() {
+    return !!(V21.ready && V21.groups && V21.required);
+  }
+
+  function progressBucketV23(type) {
+    if (type === 'hanzi') return 'hanzi';
+    if (type === 'shadowing') return 'shadowing';
+    return 'syllables';
+  }
+
+  function ensureProgressV23(type, id) {
+    ensureProgressState();
+    state.learned = state.learned || {};
+    state.wrong = state.wrong || {};
+    state.favorite = state.favorite || {};
+    const bucket = progressBucketV23(type);
+    state.progress[bucket] = state.progress[bucket] || {};
+    state.progress[bucket][id] = state.progress[bucket][id] || {};
+
+    if (type === 'syllable') {
+      if (state.learned && state.learned[id]) state.progress[bucket][id].learned = true;
+      if (state.wrong && state.wrong[id]) {
+        state.progress[bucket][id].wrong = Math.max(
+          Number(state.progress[bucket][id].wrong || 0),
+          Number(state.wrong[id] || 0)
+        );
+      }
+    }
+
+    return state.progress[bucket][id];
+  }
+
+  function patchProgressV23(type, id, patch) {
+    const p = ensureProgressV23(type, id);
+    Object.assign(p, patch, { updatedAt: nowIsoV23() });
+
+    if (type === 'syllable') {
+      if (patch.learned !== undefined) state.learned[id] = !!patch.learned;
+      if (patch.wrong !== undefined) {
+        const wrong = Number(patch.wrong || 0);
+        if (wrong > 0) state.wrong[id] = wrong;
+        else delete state.wrong[id];
+      }
+    }
+
+    saveState();
+    return p;
+  }
+
+  function allSyllablesV23() {
+    const rows = (V21.required && V21.required.syllables) || (DATA && DATA.items) || [];
+    return rows.filter(item => item && item.safe);
+  }
+
+  function syllableBySafeV23(safe) {
+    return allSyllablesV23().find(item => item.safe === safe) || itemBySafe(safe);
+  }
+
+  function toneForV23(item) {
+    if (!item) return Number(state.tone || 1);
+    if (item.audio && item.audio[String(state.tone)]) return Number(state.tone || 1);
+    return Number((item.tones && item.tones[0]) || state.tone || 1);
+  }
+
+  function markedV23(item, tone) {
+    if (!item) return '—';
+    if (typeof markPinyinTone === 'function') return markPinyinTone(item.pinyin, tone || toneForV23(item));
+    return item.pinyin;
+  }
+
+  function learningGroupsV23() {
+    return (V21.groups && V21.groups.learningGroups) || [];
+  }
+
+  function reviewGroupsV23() {
+    return (V21.groups && V21.groups.reviewGroups) || [];
+  }
+
+  function groupByIdV23(id) {
+    const groups = learningGroupsV23();
+    return groups.find(group => group.id === id) || groups[0] || null;
+  }
+
+  function activeGroupV23() {
+    if (!state.activeGroup && V21.groups) state.activeGroup = V21.groups.defaultLearningGroup || 'intro';
+    return groupByIdV23(state.activeGroup);
+  }
+
+  function activeReviewGroupV23() {
+    const groups = reviewGroupsV23();
+    if (!state.activeReviewGroup && V21.groups) state.activeReviewGroup = V21.groups.defaultReviewGroup || 'not_started';
+    return groups.find(group => group.id === state.activeReviewGroup) || groups[0] || null;
+  }
+
+  function syllablesForGroupV23(group) {
+    if (!group || group.contentType !== 'syllable') return [];
+    return (group.items || []).map(syllableBySafeV23).filter(Boolean);
+  }
+
+  function contentForGroupV23(group) {
+    if (!group) return [];
+    if (group.contentType === 'syllable') return syllablesForGroupV23(group);
+    if (group.contentType === 'hanzi') return (V21.hanzi && V21.hanzi.items) || [];
+    if (group.contentType === 'shadowing') return (V21.shadowing && V21.shadowing.sentences) || [];
+    return [];
+  }
+
+  function hasStartedV23(type, id) {
+    const p = ensureProgressV23(type, id);
+    return !!(p.learned || p.heard || p.shadowed || p.quizAttempts || p.mastered || Number(p.wrong || 0));
+  }
+
+  function isMasteredV23(type, id) {
+    const p = ensureProgressV23(type, id);
+    const thresholds = (V21.reviewRules && V21.reviewRules.thresholds) || {};
+    const minCorrect = Number(thresholds.masteredQuizCorrectMin || 3);
+    const maxWrong = Number(thresholds.masteredWrongMax || 0);
+
+    if (p.mastered) return true;
+    if (type === 'hanzi') return !!p.learned;
+    if (type === 'shadowing') return !!p.mastered;
+    return !!(p.learned && p.heard && Number(p.quizCorrect || 0) >= minCorrect && Number(p.wrong || 0) <= maxWrong);
+  }
+
+  function groupProgressCountV23(group) {
+    return contentForGroupV23(group).filter(item => {
+      const id = item.safe || item.id;
+      const p = ensureProgressV23(group.contentType, id);
+      if (group.contentType === 'syllable') return !!(p.learned || p.heard || p.mastered);
+      if (group.contentType === 'hanzi') return !!(p.learned || p.mastered);
+      if (group.contentType === 'shadowing') return !!(p.heard || p.mastered);
+      return false;
+    }).length;
+  }
+
+  function totalAudioV23() {
+    return (V21.required && V21.required.audioCount) || (DATA && DATA.stats && DATA.stats.audioItems) || 0;
+  }
+
+  function reviewUniverseV23() {
+    const syllables = allSyllablesV23().map(item => ({
+      type: 'syllable',
+      id: item.safe,
+      title: item.pinyin,
+      subtitle: `${item.initialLabel || '∅'} + ${item.chartFinal}`,
+      item
+    }));
+
+    const hanzi = ((V21.hanzi && V21.hanzi.items) || []).map(item => ({
+      type: 'hanzi',
+      id: item.id,
+      title: item.char,
+      subtitle: `#${item.rank}`,
+      item
+    }));
+
+    const shadowing = ((V21.shadowing && V21.shadowing.sentences) || []).map(item => ({
+      type: 'shadowing',
+      id: item.id,
+      title: item.zh,
+      subtitle: item.pinyin,
+      item
+    }));
+
+    return [...syllables, ...hanzi, ...shadowing];
+  }
+
+  function isDueV23(record) {
+    const p = ensureProgressV23(record.type, record.id);
+    if (Number(p.wrong || 0) > 0) return true;
+    if (!hasStartedV23(record.type, record.id) || isMasteredV23(record.type, record.id)) return false;
+
+    const dueHours = Number((V21.reviewRules && V21.reviewRules.thresholds && V21.reviewRules.thresholds.dueAfterHours) || 24);
+    if (!p.lastReviewedAt) return true;
+    const elapsed = Date.now() - Date.parse(p.lastReviewedAt);
+    return Number.isFinite(elapsed) && elapsed >= dueHours * 60 * 60 * 1000;
+  }
+
+  function recordsForReviewV23(bucketId) {
+    const wrongMany = Number((V21.reviewRules && V21.reviewRules.thresholds && V21.reviewRules.thresholds.wrongManyMin) || 3);
+    return reviewUniverseV23().filter(record => {
+      const p = ensureProgressV23(record.type, record.id);
+      if (bucketId === 'not_started') return !hasStartedV23(record.type, record.id);
+      if (bucketId === 'due') return isDueV23(record);
+      if (bucketId === 'wrong_many') return Number(p.wrong || 0) >= wrongMany;
+      if (bucketId === 'unheard') return record.type !== 'hanzi' && !p.heard;
+      if (bucketId === 'unshadowed') return record.type !== 'hanzi' && !p.shadowed;
+      if (bucketId === 'unquizzed') return record.type === 'syllable' && !Number(p.quizAttempts || 0);
+      if (bucketId === 'mastered') return isMasteredV23(record.type, record.id);
+      return false;
+    });
+  }
+
+  function renderTopHeroV23(title, subtitle, extra = '') {
+    return `<section class="v21-hero v23-hero">
+      <div>
+        <div class="kicker">Pinyin</div>
+        <h1 class="title">${escV23(title)}</h1>
+        <p class="subtitle">${escV23(subtitle)}</p>
+      </div>
+      ${extra ? `<div class="v21-hero-extra">${extra}</div>` : ''}
+    </section>`;
+  }
+
+  function navButtonV23(tab, label, count = '') {
+    const active = state.tab === tab || (tab === 'learn' && (state.tab === 'chart' || state.tab === 'rules'));
+    return `<button class="nav-btn ${active ? 'active' : ''}" type="button" onclick="setTab('${tab}')"><span>${escV23(label)}</span>${count !== '' ? `<span class="count">${escV23(count)}</span>` : ''}</button>`;
+  }
+
+  window.appShell = function appShell(content) {
+    if (!hasV21DataV23()) return typeof appShellBeforeV23 === 'function' ? appShellBeforeV23(content) : content;
+
+    const groups = learningGroupsV23();
+    const requiredTotal = (V21.required && V21.required.count) || allSyllablesV23().length || 0;
+    const reviewTotal = recordsForReviewV23('due').length;
+    const masteredTotal = recordsForReviewV23('mastered').length;
+
+    return `
+<header class="tt-module-top-nav v22-top-nav">
+  <a class="tt-top-brand" href="../../index.html" target="_self"><span class="tt-top-logo">拼</span><span class="tt-top-name">Pinyin</span><span class="tt-top-meta"> · ${requiredTotal} âm · ${groups.length} nhóm</span></a>
+  <nav class="tt-top-links">
+    <a href="../../index.html" target="_self">Trang chủ</a>
+    <a href="../bo-thu-50/index.html" target="_self">Bộ thủ</a>
+    <a href="../pinyin/index.html" target="_self" class="active">Pinyin</a>
+    <a href="../../index.html#dialogue301" target="_self">301 Đàm thoại</a>
+  </nav>
+</header>
+
+<div class="app-shell v21-shell v23-shell">
+  <aside class="sidebar v21-sidebar">
+    <div class="brand"><div class="brand-logo">拼</div><div><h1>Pinyin</h1><p>Học nhanh · nghe đúng</p></div></div>
+    ${navButtonV23('learn','Học', groups.length)}
+    ${navButtonV23('listen','Nghe', totalAudioV23())}
+    ${navButtonV23('practice','Quiz')}
+    ${navButtonV23('review','Ôn', reviewTotal)}
+    ${navButtonV23('progress','Tiến độ', masteredTotal)}
+    <div class="side-card">
+      <div class="side-stat">
+        <div><span>Nhóm học</span><b>${groups.length}</b></div>
+        <div><span>Âm bắt buộc</span><b>${requiredTotal}</b></div>
+        <div><span>Đã thành thạo</span><b>${masteredTotal}</b></div>
+        <div><span>Audio thật</span><b>${totalAudioV23()}</b></div>
+      </div>
+    </div>
+  </aside>
+  <main class="content v21-content">${content}</main>
+</div>`;
+  };
+
+  function restoreScrollAfterRenderV23(top) {
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: Math.max(0, Number(top || 0)), behavior: 'auto' });
+    });
+  }
+
+  function renderPreserveScrollV23() {
+    const y = window.scrollY || document.documentElement.scrollTop || 0;
+    window.render();
+    restoreScrollAfterRenderV23(y);
+  }
+
+  function scrollToCurrentGroupV23() {
+    const target = document.getElementById('v23-current-group-detail') || document.getElementById('v23-group-picker');
+    if (!target) return;
+    const top = target.getBoundingClientRect().top + window.scrollY - 62;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+  }
+
+  window.scrollToCurrentGroupV23 = scrollToCurrentGroupV23;
+
+  window.setTab = function setTab(tab) {
+    if (typeof window.hidePinyinCompactPanel === 'function') window.hidePinyinCompactPanel();
+    state.tab = tab;
+    saveState();
+    window.render();
+  };
+
+  window.setActiveGroupV21 = function setActiveGroupV21(id) {
+    state.activeGroup = id;
+    state.tab = 'learn';
+    saveState();
+    window.render();
+    requestAnimationFrame(scrollToCurrentGroupV23);
+  };
+
+  window.moveActiveGroupV23 = function moveActiveGroupV23(delta) {
+    const groups = learningGroupsV23();
+    if (!groups.length) return;
+    const current = activeGroupV23();
+    const index = Math.max(0, groups.findIndex(group => group.id === (current && current.id)));
+    const next = groups[Math.min(groups.length - 1, Math.max(0, index + Number(delta || 0)))];
+    if (next) window.setActiveGroupV21(next.id);
+  };
+
+  window.setReviewGroupV21 = function setReviewGroupV21(id) {
+    state.activeReviewGroup = id;
+    state.tab = 'review';
+    saveState();
+    window.render();
+  };
+
+  window.openStudyGroupsV21 = function openStudyGroupsV21() {
+    scrollToCurrentGroupV23();
+  };
+
+  function statusChipsV23(type, id) {
+    const p = ensureProgressV23(type, id);
+    const chips = [];
+    if (type === 'syllable') {
+      if (p.heard || p.learned) chips.push(['ok', '✓ học']);
+      if (Number(p.quizAttempts || 0)) chips.push(['quiz', `Q ${p.quizCorrect || 0}/${p.quizAttempts}`]);
+      if (Number(p.wrong || 0)) chips.push(['bad', `! ${p.wrong}`]);
+      if (isMasteredV23(type, id)) chips.push(['star', '★']);
+    } else if (type === 'shadowing') {
+      if (p.heard) chips.push(['ok', '✓ nghe']);
+      if (p.mastered) chips.push(['star', '★ thuộc']);
+      if (Number(p.wrong || 0)) chips.push(['bad', `! ${p.wrong}`]);
+    } else {
+      if (p.learned) chips.push(['ok', '✓ học']);
+      if (p.mastered) chips.push(['star', '★ thuộc']);
+    }
+
+    return `<div class="v23-status-line" data-v23-status>${chips.length ? chips.map(([cls, text]) => `<span class="${cls}">${escV23(text)}</span>`).join('') : '<span class="muted">chưa học</span>'}</div>`;
+  }
+
+  function updateActiveGroupProgressV23() {
+    const group = activeGroupV23();
+    const total = group ? (contentForGroupV23(group).length || group.count || 0) : 0;
+    const done = group ? groupProgressCountV23(group) : 0;
+    document.querySelectorAll('[data-v23-group-progress]').forEach(node => {
+      node.textContent = String(done);
+    });
+    document.querySelectorAll('[data-v23-group-total]').forEach(node => {
+      node.textContent = String(total);
+    });
+  }
+
+  function updateSyllableDomV23(safe) {
+    document.querySelectorAll('[data-syllable-safe]').forEach(card => {
+      if (card.dataset.syllableSafe !== safe) return;
+      const p = ensureProgressV23('syllable', safe);
+      card.classList.toggle('learned', !!(p.learned || p.heard));
+      card.classList.toggle('mastered', !!isMasteredV23('syllable', safe));
+
+      const status = card.querySelector('[data-v23-status]');
+      if (status) status.outerHTML = statusChipsV23('syllable', safe);
+
+      card.querySelectorAll('[data-v23-role="learned"]').forEach(btn => {
+        btn.classList.toggle('active', !!(p.learned || p.heard));
+      });
+      card.querySelectorAll('[data-v23-role="mastered"]').forEach(btn => {
+        btn.classList.toggle('active', !!p.mastered);
+      });
+      card.querySelectorAll('[data-v23-role="wrong"]').forEach(btn => {
+        btn.classList.toggle('active', Number(p.wrong || 0) > 0);
+      });
+    });
+
+    updateActiveGroupProgressV23();
+  }
+
+  function updateShadowingDomV23(id) {
+    document.querySelectorAll('[data-shadowing-id]').forEach(card => {
+      if (card.dataset.shadowingId !== id) return;
+      const p = ensureProgressV23('shadowing', id);
+      card.classList.toggle('mastered', !!p.mastered);
+
+      const status = card.querySelector('[data-v23-status]');
+      if (status) status.outerHTML = statusChipsV23('shadowing', id);
+
+      card.querySelectorAll('[data-v23-role="heard"]').forEach(btn => {
+        btn.classList.toggle('active', !!p.heard);
+      });
+      card.querySelectorAll('[data-v23-role="mastered"]').forEach(btn => {
+        btn.classList.toggle('active', !!p.mastered);
+      });
+    });
+
+    updateActiveGroupProgressV23();
+  }
+
+  function markSyllableHeardLearnedV23(safe) {
+    const p = ensureProgressV23('syllable', safe);
+    patchProgressV23('syllable', safe, {
+      heard: true,
+      heardAt: p.heardAt || nowIsoV23(),
+      learned: true,
+      learnedAt: p.learnedAt || nowIsoV23(),
+      lastReviewedAt: nowIsoV23()
+    });
+    updateSyllableDomV23(safe);
+  }
+
+  window.markSyllableLearnedV23 = function markSyllableLearnedV23(safe) {
+    const p = ensureProgressV23('syllable', safe);
+    patchProgressV23('syllable', safe, {
+      learned: true,
+      learnedAt: p.learnedAt || nowIsoV23(),
+      lastReviewedAt: nowIsoV23()
+    });
+    updateSyllableDomV23(safe);
+  };
+
+  function playSyllableAudioDirectV23(safe, tone, btn) {
+    const item = syllableBySafeV23(safe) || itemBySafe(safe);
+    const src = item && item.audio && item.audio[String(tone)];
+    if (!src) return false;
+
+    clearPlaying();
+    activeBtn = btn || null;
+    setPlaying(activeBtn, true);
+    audio.src = src;
+    audio.currentTime = 0;
+    audio.play().catch(() => clearPlaying());
+    return true;
+  }
+
+  window.playSyllableV21 = function playSyllableV21(safe, tone, btn) {
+    state.selected = safe;
+    markSyllableHeardLearnedV23(safe);
+    saveState();
+    playSyllableAudioDirectV23(safe, tone, btn);
+    if (state.tab === 'practice' && typeof window.hidePinyinCompactPanel === 'function') {
+      window.hidePinyinCompactPanel();
+    }
+  };
+
+  window.playQuizToneV23 = function playQuizToneV23(safe, tone, btn) {
+    if (typeof window.hidePinyinCompactPanel === 'function') window.hidePinyinCompactPanel();
+    if (state.quiz && state.quiz.safe === safe) state.quiz.heard = true;
+    markSyllableHeardLearnedV23(safe);
+    saveState();
+    playSyllableAudioDirectV23(safe, tone, btn);
+    setTimeout(() => {
+      if (typeof window.hidePinyinCompactPanel === 'function') window.hidePinyinCompactPanel();
+    }, 80);
+  };
+
+  function shadowingItemsV23() {
+    return (V21.shadowing && V21.shadowing.sentences) || [];
+  }
+
+  function shadowingByIdV23(id) {
+    return shadowingItemsV23().find(item => item.id === id);
+  }
+
+  function shadowingAudioSrcV23(item) {
+    if (!item) return '';
+    const value = item.audio || item.audioSrc || item.src || item.url || item.audioUrl || item.mp3;
+    if (!value) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') return value.src || value.url || value.file || value.mp3 || value['1'] || '';
+    return '';
+  }
+
+  window.playShadowingV23 = function playShadowingV23(id, btn) {
+    const item = shadowingByIdV23(id);
+    const src = shadowingAudioSrcV23(item);
+    if (!src) return;
+
+    const p = ensureProgressV23('shadowing', id);
+    patchProgressV23('shadowing', id, {
+      heard: true,
+      heardAt: p.heardAt || nowIsoV23(),
+      lastReviewedAt: nowIsoV23()
+    });
+    updateShadowingDomV23(id);
+
+    clearPlaying();
+    activeBtn = btn || null;
+    setPlaying(activeBtn, true);
+    audio.src = src;
+    audio.currentTime = 0;
+    audio.play().catch(() => clearPlaying());
+  };
+
+  window.markShadowingHeardV21 = function markShadowingHeardV21(id) {
+    const p = ensureProgressV23('shadowing', id);
+    patchProgressV23('shadowing', id, {
+      heard: true,
+      heardAt: p.heardAt || nowIsoV23(),
+      lastReviewedAt: nowIsoV23()
+    });
+    updateShadowingDomV23(id);
+  };
+
+  window.markProgressV21 = function markProgressV21(type, id, action) {
+    const p = ensureProgressV23(type, id);
+
+    if (type === 'syllable' && action === 'heard') {
+      markSyllableHeardLearnedV23(id);
+      return;
+    }
+
+    if (type === 'syllable' && action === 'learned') {
+      window.markSyllableLearnedV23(id);
+      return;
+    }
+
+    if (action === 'heard') {
+      patchProgressV23(type, id, { heard: true, heardAt: p.heardAt || nowIsoV23(), lastReviewedAt: nowIsoV23() });
+      if (type === 'shadowing') updateShadowingDomV23(id);
+      else renderPreserveScrollV23();
+      return;
+    }
+
+    if (action === 'shadowed') {
+      patchProgressV23(type, id, { shadowed: !p.shadowed, shadowedAt: p.shadowed ? p.shadowedAt : nowIsoV23() });
+      renderPreserveScrollV23();
+      return;
+    }
+
+    if (action === 'mastered') {
+      const next = !p.mastered;
+      patchProgressV23(type, id, {
+        mastered: next,
+        masteredAt: next ? (p.masteredAt || nowIsoV23()) : '',
+        learned: type === 'syllable' || type === 'hanzi' ? true : p.learned,
+        learnedAt: (type === 'syllable' || type === 'hanzi') ? (p.learnedAt || nowIsoV23()) : p.learnedAt,
+        lastReviewedAt: nowIsoV23()
+      });
+      renderPreserveScrollV23();
+      return;
+    }
+
+    if (action === 'wrong') {
+      patchProgressV23(type, id, {
+        wrong: Number(p.wrong || 0) + 1,
+        lastReviewedAt: nowIsoV23()
+      });
+      renderPreserveScrollV23();
+      return;
+    }
+
+    if (action === 'clearWrong') {
+      patchProgressV23(type, id, {
+        wrong: 0,
+        lastReviewedAt: nowIsoV23()
+      });
+      renderPreserveScrollV23();
+      return;
+    }
+
+    if (action === 'learned') {
+      const next = !p.learned;
+      patchProgressV23(type, id, {
+        learned: next,
+        learnedAt: next ? (p.learnedAt || nowIsoV23()) : '',
+        lastReviewedAt: nowIsoV23()
+      });
+      renderPreserveScrollV23();
+    }
+  };
+
+  window.toggleLearned = function toggleLearned(safe) {
+    window.markSyllableLearnedV23(safe);
+  };
+
+  window.markWrong = function markWrong(safe) {
+    window.markProgressV21('syllable', safe, 'wrong');
+  };
+
+  window.clearWrong = function clearWrong(safe) {
+    window.markProgressV21('syllable', safe, 'clearWrong');
+  };
+
+  function iconButtonV23(role, active, label, onclick) {
+    return `<button class="v23-icon-btn ${active ? 'active' : ''}" data-v23-role="${escV23(role)}" type="button" aria-label="${escV23(label)}" title="${escV23(label)}" onclick="${onclick}">
+      <span>${role === 'mastered' ? '★' : role === 'wrong' ? '!' : role === 'heard' ? '✓' : '✓'}</span>
+    </button>`;
+  }
+
+  function renderSyllableCardV23(item) {
+    const tone = toneForV23(item);
+    const p = ensureProgressV23('syllable', item.safe);
+    const rule = typeof getBetterRule === 'function' ? getBetterRule(item) : { rule: item.rule, hint: item.hint };
+    const learned = !!(p.learned || p.heard);
+    const mastered = !!p.mastered || isMasteredV23('syllable', item.safe);
+    const wrong = Number(p.wrong || 0) > 0;
+
+    return `<article class="v21-card v21-syllable-card v23-syllable-card ${learned ? 'learned' : ''} ${mastered ? 'mastered' : ''}" data-syllable-safe="${escV23(item.safe)}">
+      <div class="v21-card-head v23-card-head">
+        <div>
+          <b class="v21-pinyin">${escV23(markedV23(item, tone))}</b>
+          <span>${escV23(item.pinyin)} · ${escV23(item.initialLabel || '∅')} + ${escV23(item.chartFinal)}</span>
+        </div>
+        <button class="v23-audio-btn" type="button" aria-label="Nghe ${escV23(item.pinyin)}" onclick="playSyllableV21('${escV23(item.safe)}', ${tone}, this)">🔊</button>
+      </div>
+      <p class="v23-rule"><b>${escV23(rule.rule || item.rule)}</b> · ${escV23(rule.hint || item.hint || '')}</p>
+      <div class="v23-card-footer">
+        ${statusChipsV23('syllable', item.safe)}
+        <div class="v23-compact-actions">
+          <span class="v23-icon-state ${learned ? 'active' : ''}" data-v23-role="learned" title="Tự đánh dấu khi nghe">✓</span>
+          ${iconButtonV23('mastered', mastered, 'Đánh dấu thuộc', `markProgressV21('syllable','${escV23(item.safe)}','mastered')`)}
+          ${iconButtonV23('wrong', wrong, 'Đánh dấu cần ôn', `markProgressV21('syllable','${escV23(item.safe)}','wrong')`)}
+        </div>
+      </div>
+    </article>`;
+  }
+
+  function renderHanziCardV23(item) {
+    const p = ensureProgressV23('hanzi', item.id);
+    return `<article class="v21-card v21-hanzi-card ${isMasteredV23('hanzi', item.id) ? 'mastered' : ''}">
+      <div class="v21-hanzi">${escV23(item.char)}</div>
+      <div class="v21-hanzi-meta">#${escV23(item.rank)} · ${escV23(item.source || '')}</div>
+      ${statusChipsV23('hanzi', item.id)}
+      <div class="v23-compact-actions">
+        ${iconButtonV23('learned', !!p.learned, 'Đánh dấu đã học', `markProgressV21('hanzi','${escV23(item.id)}','learned')`)}
+        ${iconButtonV23('mastered', !!p.mastered, 'Đánh dấu thuộc', `markProgressV21('hanzi','${escV23(item.id)}','mastered')`)}
+      </div>
+    </article>`;
+  }
+
+  function renderShadowingCardV23(item) {
+    const p = ensureProgressV23('shadowing', item.id);
+    const src = shadowingAudioSrcV23(item);
+    return `<article class="v21-card v21-shadow-card v23-shadow-card ${isMasteredV23('shadowing', item.id) ? 'mastered' : ''}" data-shadowing-id="${escV23(item.id)}">
+      <div class="v23-shadow-head">
+        <div>
+          <div class="v21-shadow-zh">${escV23(item.zh)}</div>
+          <div class="v21-shadow-pinyin">${escV23(item.pinyin)}</div>
+        </div>
+        <button class="v23-audio-btn" type="button" ${src ? `onclick="playShadowingV23('${escV23(item.id)}', this)" aria-label="Nghe câu mẫu"` : 'disabled aria-label="Chưa có audio"'}>${src ? '🔊' : '🔇'}</button>
+      </div>
+      <p>${escV23(item.vi)}</p>
+      ${!src ? '<p class="v23-audio-note">chưa có audio mẫu</p>' : ''}
+      <div class="v23-card-footer">
+        ${statusChipsV23('shadowing', item.id)}
+        <div class="v23-compact-actions">
+          <span class="v23-icon-state ${p.heard ? 'active' : ''}" data-v23-role="heard" title="Đã nghe">✓</span>
+          ${iconButtonV23('mastered', !!p.mastered, 'Đánh dấu thuộc', `markProgressV21('shadowing','${escV23(item.id)}','mastered')`)}
+        </div>
+      </div>
+    </article>`;
+  }
+
+  function renderGroupDetailV23(group) {
+    if (!group) return `<div class="panel" id="v23-current-group-detail">Chưa có nhóm học.</div>`;
+
+    const items = contentForGroupV23(group);
+    const done = groupProgressCountV23(group);
+    const total = items.length || group.count || 0;
+    const goals = (group.goals || []).map(goal => `<li>${escV23(goal)}</li>`).join('');
+
+    let body = '';
+    if (group.contentType === 'syllable') {
+      body = `<div class="v21-card-grid syllables v23-card-grid">${items.map(renderSyllableCardV23).join('')}</div>`;
+    } else if (group.contentType === 'hanzi') {
+      body = `<div class="v21-card-grid hanzi v23-card-grid">${items.slice(0, 120).map(renderHanziCardV23).join('')}</div>
+        <p class="muted v21-footnote">Đang hiển thị 120/1000 chữ đầu để trang nhẹ hơn; ôn tự động vẫn tính trên toàn bộ 1000 chữ.</p>`;
+    } else if (group.contentType === 'shadowing') {
+      body = `<div class="v21-card-grid shadowing v23-card-grid">${items.map(renderShadowingCardV23).join('')}</div>`;
+    }
+
+    return `<section class="v21-detail v23-current-group-detail" id="v23-current-group-detail">
+      <div class="v21-detail-head">
+        <div>
+          <div class="kicker">${escV23(group.contentType)}</div>
+          <h2>${escV23(group.title)}</h2>
+          <p>${escV23(group.description || '')}</p>
+        </div>
+        <div class="v21-progress-ring"><b data-v23-group-progress>${done}</b><span>/<span data-v23-group-total>${total}</span></span></div>
+      </div>
+      ${goals ? `<ul class="v21-goals">${goals}</ul>` : ''}
+      ${group.contentType === 'syllable' ? `<div class="v21-toolbar v23-toolbar">
+        <button class="btn primary" type="button" onclick="startGroupQuizV21('${escV23(group.id)}')">Quiz nhóm này</button>
+        <button class="btn" type="button" onclick="setTab('chart')">Bảng tổng</button>
+      </div>` : ''}
+      ${body}
+    </section>`;
+  }
+
+  function homeActionV23(title, subtitle, action, tone = 'blue') {
+    return `<button class="v22-action-card ${tone}" type="button" onclick="${action}">
+      <b>${escV23(title)}</b>
+      <span>${escV23(subtitle)}</span>
+    </button>`;
+  }
+
+  function renderGroupPickerV23(active) {
+    const groups = learningGroupsV23();
+    const index = Math.max(0, groups.findIndex(group => group.id === (active && active.id)));
+    const total = groups.length;
+    const done = active ? groupProgressCountV23(active) : 0;
+    const groupTotal = active ? (contentForGroupV23(active).length || active.count || 0) : 0;
+
+    return `<section class="v23-group-picker" id="v23-group-picker">
+      <div class="v23-group-current">
+        <span>Nhóm ${String(index + 1).padStart(2, '0')}/${total}</span>
+        <h2>${escV23(active ? active.title : 'Chọn nhóm')}</h2>
+        <p><b data-v23-group-progress>${done}</b>/<span data-v23-group-total>${groupTotal}</span> mục đã học</p>
+      </div>
+      <div class="v23-group-controls">
+        <button class="v23-nav-step" type="button" onclick="moveActiveGroupV23(-1)" ${index <= 0 ? 'disabled' : ''}>←</button>
+        <select class="v23-group-select" aria-label="Đổi nhóm học" onchange="setActiveGroupV21(this.value)">
+          ${groups.map((group, i) => `<option value="${escV23(group.id)}" ${active && active.id === group.id ? 'selected' : ''}>${String(i + 1).padStart(2, '0')} · ${escV23(group.title)}</option>`).join('')}
+        </select>
+        <button class="v23-nav-step" type="button" onclick="moveActiveGroupV23(1)" ${index >= total - 1 ? 'disabled' : ''}>→</button>
+      </div>
+    </section>`;
+  }
+
+  window.renderLearn = function renderLearn() {
+    const active = activeGroupV23();
+    const dueCount = recordsForReviewV23('due').length;
+    const syllables = allSyllablesV23();
+    const learnedCount = syllables.filter(item => {
+      const p = ensureProgressV23('syllable', item.safe);
+      return p.learned || p.heard;
+    }).length;
+    const requiredTotal = (V21.required && V21.required.count) || syllables.length || 0;
+
+    return appShell(`
+<section class="v22-home v23-home">
+  <div class="v22-home-head">
+    <div>
+      <div class="kicker">Hôm nay học gì?</div>
+      <h1>Học Pinyin</h1>
+      <p><span data-v23-learned-total>${learnedCount}</span>/${requiredTotal} âm đã học · ${dueCount} mục cần ôn</p>
+    </div>
+    <span>拼</span>
+  </div>
+  <div class="v22-action-grid">
+    ${homeActionV23('Tiếp tục học', active ? active.title : 'Chọn nhóm Pinyin', 'scrollToCurrentGroupV23()', 'green')}
+    ${homeActionV23('Nghe nhanh', 'Tra âm và nghe mẫu', "setTab('listen')", 'blue')}
+    ${homeActionV23('Quiz nghe', 'Luyện thanh theo nhóm', `startGroupQuizV21('${escV23(active ? active.id : '')}')`, 'amber')}
+    ${homeActionV23('Ôn âm yếu', `${dueCount} mục cần xem lại`, "setTab('review')", 'red')}
+  </div>
+
+  ${renderGroupPickerV23(active)}
+  ${renderGroupDetailV23(active)}
+
+  <section class="v22-lookup v23-lookup">
+    <h2>Tra cứu</h2>
+    <div class="v22-lookup-actions">
+      <button class="btn" type="button" onclick="setTab('listen')">Tra âm</button>
+      <button class="btn" type="button" onclick="setTab('chart')">Bảng tổng</button>
+      <button class="btn" type="button" onclick="setTab('rules')">Quy tắc</button>
+    </div>
+  </section>
+</section>`);
+  };
+
+  function quizPoolV23(groupId) {
+    const group = groupByIdV23(groupId || state.activeGroup);
+    const items = group && group.contentType === 'syllable' ? syllablesForGroupV23(group) : allSyllablesV23();
+    return items.filter(item => item.hasAudio && item.tones && item.tones.length);
+  }
+
+  window.startGroupQuizV21 = function startGroupQuizV21(groupId) {
+    const pool = quizPoolV23(groupId);
+    if (!pool.length) return;
+    const item = pool[Math.floor(Math.random() * pool.length)];
+    const tone = item.tones[Math.floor(Math.random() * item.tones.length)];
+    state.quiz = {
+      safe: item.safe,
+      tone,
+      answered: false,
+      feedback: '',
+      heard: false,
+      groupId: groupId || state.activeGroup
+    };
+    state.tab = 'practice';
+    saveState();
+    window.render();
+  };
+
+  window.newQuiz = function newQuiz() {
+    window.startGroupQuizV21(state.activeGroup);
+  };
+
+  window.answerQuiz = function answerQuiz(tone) {
+    if (!state.quiz) return;
+    const item = syllableBySafeV23(state.quiz.safe);
+    if (!item) return;
+
+    const p = ensureProgressV23('syllable', item.safe);
+    const ok = Number(tone) === Number(state.quiz.tone);
+    const attempts = Number(p.quizAttempts || 0) + 1;
+    const correct = Number(p.quizCorrect || 0) + (ok ? 1 : 0);
+    const patch = {
+      quizAttempts: attempts,
+      quizCorrect: correct,
+      quizWrong: attempts - correct,
+      lastReviewedAt: nowIsoV23()
+    };
+
+    if (ok) {
+      patch.learned = true;
+      patch.learnedAt = p.learnedAt || nowIsoV23();
+      if (state.quiz.heard || p.heard) {
+        patch.heard = true;
+        patch.heardAt = p.heardAt || nowIsoV23();
+      }
+    } else {
+      patch.wrong = Number(p.wrong || 0) + 1;
+    }
+
+    patchProgressV23('syllable', item.safe, patch);
+
+    state.quiz.answered = true;
+    state.quiz.feedback = ok ? `Đúng: ${markedV23(item, state.quiz.tone)}` : `Sai. Đáp án đúng: ${markedV23(item, state.quiz.tone)}`;
+    saveState();
+    window.render();
+  };
+
+  window.renderPractice = function renderPractice() {
+    const group = activeGroupV23();
+    const pool = quizPoolV23(group && group.id);
+    const q = state.quiz;
+    const item = q ? syllableBySafeV23(q.safe) : null;
+
+    return appShell(`
+${renderTopHeroV23('Quiz nghe theo nhóm', `Nguồn câu hỏi hiện tại: ${group ? group.title : 'toàn bộ âm tiết'}.`, `
+  <button class="btn primary" onclick="startGroupQuizV21('${escV23(group ? group.id : '')}')">Câu mới</button>
+  <button class="btn" onclick="setTab('learn')">Chọn nhóm khác</button>
+`)}
+<div class="quiz-card v21-quiz v23-quiz">
+  ${!q || !item ? `<p class="muted">Có ${pool.length} âm có thể đưa vào quiz từ nhóm đang chọn.</p><button class="btn primary" onclick="startGroupQuizV21('${escV23(group ? group.id : '')}')">Bắt đầu</button>` : `
+    <div class="muted">Nghe và chọn đúng thanh</div>
+    <div class="quiz-big">${q.answered ? escV23(markedV23(item, q.tone)) : '?'}</div>
+    <button class="btn primary v23-quiz-audio" onclick="playQuizToneV23('${escV23(q.safe)}', ${q.tone}, this)">🔊 Nghe</button>
+    <div class="quiz-options">${[1,2,3,4].map(t => `<button class="btn" onclick="answerQuiz(${t})">Thanh ${t}</button>`).join('')}</div>
+    ${q.answered ? `<div class="feedback ${q.feedback.startsWith('Đúng') ? 'ok' : 'bad'}">${escV23(q.feedback)}</div><button class="btn primary" style="margin-top:12px" onclick="startGroupQuizV21('${escV23(q.groupId || (group && group.id) || '')}')">Câu tiếp</button>` : ''}
+  `}
+</div>`);
+  };
+
+  function renderReviewRecordV23(record) {
+    const p = ensureProgressV23(record.type, record.id);
+
+    if (record.type === 'syllable') {
+      const item = record.item;
+      const tone = toneForV23(item);
+      return `<article class="v21-review-row v23-review-row" data-syllable-safe="${escV23(item.safe)}">
+        <div><b>${escV23(markedV23(item, tone))}</b><span>${escV23(record.subtitle)}</span></div>
+        ${statusChipsV23(record.type, record.id)}
+        <div class="v23-compact-actions">
+          <button class="v23-audio-btn" type="button" onclick="playSyllableV21('${escV23(item.safe)}', ${tone}, this)" aria-label="Nghe">🔊</button>
+          ${iconButtonV23('mastered', !!p.mastered, 'Đánh dấu thuộc', `markProgressV21('syllable','${escV23(item.safe)}','mastered')`)}
+          ${iconButtonV23('wrong', Number(p.wrong || 0) > 0, 'Xóa lỗi', `markProgressV21('syllable','${escV23(item.safe)}','clearWrong')`)}
+        </div>
+      </article>`;
+    }
+
+    if (record.type === 'hanzi') {
+      return `<article class="v21-review-row v23-review-row">
+        <div><b class="v21-hanzi-inline">${escV23(record.title)}</b><span>${escV23(record.subtitle)}</span></div>
+        ${statusChipsV23(record.type, record.id)}
+        <div class="v23-compact-actions">
+          ${iconButtonV23('learned', !!p.learned, 'Đánh dấu đã học', `markProgressV21('hanzi','${escV23(record.id)}','learned')`)}
+          ${iconButtonV23('mastered', !!p.mastered, 'Đánh dấu thuộc', `markProgressV21('hanzi','${escV23(record.id)}','mastered')`)}
+        </div>
+      </article>`;
+    }
+
+    const src = shadowingAudioSrcV23(record.item);
+    return `<article class="v21-review-row v23-review-row" data-shadowing-id="${escV23(record.id)}">
+      <div><b>${escV23(record.title)}</b><span>${escV23(record.subtitle)}</span></div>
+      ${statusChipsV23(record.type, record.id)}
+      <div class="v23-compact-actions">
+        <button class="v23-audio-btn" type="button" ${src ? `onclick="playShadowingV23('${escV23(record.id)}', this)"` : 'disabled'} aria-label="${src ? 'Nghe câu mẫu' : 'Chưa có audio'}">${src ? '🔊' : '🔇'}</button>
+        ${iconButtonV23('mastered', !!p.mastered, 'Đánh dấu thuộc', `markProgressV21('shadowing','${escV23(record.id)}','mastered')`)}
+      </div>
+    </article>`;
+  }
+
+  window.renderReview = function renderReview() {
+    const groups = reviewGroupsV23();
+    const active = activeReviewGroupV23();
+    const records = active ? recordsForReviewV23(active.id) : [];
+
+    return appShell(`
+${renderTopHeroV23('Nhóm cần ôn', 'Các nhóm này được tính tự động từ tiến độ localStorage: nghe, quiz, lỗi và thành thạo.', `
+  <button class="btn primary" onclick="setTab('learn')">Quay lại nhóm học</button>
+`)}
+<section class="v21-review-layout v23-review-layout">
+  <aside class="v21-group-list">
+    ${groups.map(group => `<button class="v21-group-tab ${state.activeReviewGroup === group.id ? 'active' : ''}" onclick="setReviewGroupV21('${escV23(group.id)}')">
+      <span>${recordsForReviewV23(group.id).length}</span><b>${escV23(group.title)}</b><small>${escV23(group.description || '')}</small>
+    </button>`).join('')}
+  </aside>
+  <section class="v21-detail">
+    <div class="v21-detail-head">
+      <div><div class="kicker">auto review</div><h2>${escV23(active ? active.title : 'Ôn tập')}</h2><p>${escV23(active ? active.description : '')}</p></div>
+      <div class="v21-progress-ring"><b>${records.length}</b><span>mục</span></div>
+    </div>
+    <div class="v21-review-list">
+      ${records.length ? records.slice(0, 220).map(renderReviewRecordV23).join('') : `<div class="panel"><p class="muted">Nhóm này đang trống.</p></div>`}
+    </div>
+  </section>
+</section>`);
+  };
+
+  window.renderProgressV21 = function renderProgressV21() {
+    const syllables = allSyllablesV23();
+    const total = syllables.length;
+    const learned = syllables.filter(item => {
+      const p = ensureProgressV23('syllable', item.safe);
+      return p.learned || p.heard;
+    }).length;
+    const heard = syllables.filter(item => ensureProgressV23('syllable', item.safe).heard).length;
+    const quizzed = syllables.filter(item => Number(ensureProgressV23('syllable', item.safe).quizAttempts || 0)).length;
+    const mastered = recordsForReviewV23('mastered').length;
+    const due = recordsForReviewV23('due').length;
+    const wrongMany = recordsForReviewV23('wrong_many').length;
+
+    return appShell(`
+${renderTopHeroV23('Tiến độ', 'Tóm tắt từ localStorage hiện có. Không đổi key, không đổi format dữ liệu.', `
+  <button class="btn primary" type="button" onclick="setTab('learn')">Học tiếp</button>
+  <button class="btn" type="button" onclick="setTab('review')">Ôn ngay</button>
+`)}
+<section class="v22-progress-grid">
+  <article><b>${learned}</b><span>Đã học</span></article>
+  <article><b>${heard}</b><span>Đã nghe</span></article>
+  <article><b>${quizzed}</b><span>Đã quiz</span></article>
+  <article><b>${mastered}</b><span>Thành thạo</span></article>
+  <article><b>${due}</b><span>Cần ôn</span></article>
+  <article><b>${wrongMany}</b><span>Sai nhiều</span></article>
+</section>
+<section class="v22-lookup">
+  <h2>Tổng quan</h2>
+  <p class="muted">Pinyin đang có ${total} âm tiết bắt buộc và ${learningGroupsV23().length} nhóm học. Tiến độ cũ vẫn nằm trong localStorage key <code>${LS_KEY}</code>.</p>
+</section>`);
+  };
+
+  window.PIN_YIN_V23 = {
+    version: V23_VERSION,
+    scrollToCurrentGroup: scrollToCurrentGroupV23
+  };
+
+  try {
+    if (hasV21DataV23()) window.render();
+  } catch (error) {
+    console.warn('PINYIN_V23_MOBILE_INTERACTIONS failed:', error);
+  }
+})();
+
+/* PATCH_PINYIN_V24_SHADOWING_COMPOSED_AUDIO
+   Use existing syllable audio as a fallback for Shadowing sentences and
+   allow the Learn tab to show the compact Pinyin panel for syllable cards only.
+*/
+(function () {
+  const V24_VERSION = '20260617-shadowing-composed-audio';
+  const V21 = window.PIN_YIN_GROUPS_V21 || {};
+  const renderBeforeV24 = window.render;
+  const playSyllableBeforeV24 = window.playSyllableV21;
+  const sentenceAudioV24 = new Audio();
+  let sentencePlayTokenV24 = 0;
+  let sentenceBtnV24 = null;
+
+  const TONE_CHAR_V24 = {
+    ā: ['a', 1], á: ['a', 2], ǎ: ['a', 3], à: ['a', 4],
+    ē: ['e', 1], é: ['e', 2], ě: ['e', 3], è: ['e', 4],
+    ī: ['i', 1], í: ['i', 2], ǐ: ['i', 3], ì: ['i', 4],
+    ō: ['o', 1], ó: ['o', 2], ǒ: ['o', 3], ò: ['o', 4],
+    ū: ['u', 1], ú: ['u', 2], ǔ: ['u', 3], ù: ['u', 4],
+    ǖ: ['ü', 1], ǘ: ['ü', 2], ǚ: ['ü', 3], ǜ: ['ü', 4],
+    ü: ['ü', 0], Ü: ['ü', 0], v: ['ü', 0], V: ['ü', 0]
+  };
+
+  function escV24(value) {
+    return String(value ?? '').replace(/[&<>"']/g, ch => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#039;'
+    }[ch]));
+  }
+
+  function nowIsoV24() {
+    return new Date().toISOString();
+  }
+
+  function normalizePinyinWithTonesV24(text) {
+    const plain = [];
+    const tones = [];
+    String(text || '').toLowerCase().split('').forEach(ch => {
+      if (TONE_CHAR_V24[ch]) {
+        const [base, tone] = TONE_CHAR_V24[ch];
+        plain.push(base);
+        tones[plain.length - 1] = tone || 0;
+        return;
+      }
+
+      if (/[a-z]/.test(ch)) {
+        plain.push(ch);
+        tones[plain.length - 1] = 0;
+      }
+    });
+
+    return { plain: plain.join(''), tones };
+  }
+
+  function syllableItemsV24() {
+    const required = (V21.required && V21.required.syllables) || [];
+    const dataItems = (typeof DATA !== 'undefined' && DATA && DATA.items) || [];
+    const bySafe = new Map();
+
+    [...required, ...dataItems].forEach(item => {
+      if (!item || !item.safe) return;
+      const full = typeof itemBySafe === 'function' ? (itemBySafe(item.safe) || item) : item;
+      bySafe.set(item.safe, Object.assign({}, item, full));
+    });
+
+    return Array.from(bySafe.values()).filter(item => item && item.safe && item.pinyin);
+  }
+
+  function syllableDictionaryV24() {
+    const byPlain = new Map();
+    syllableItemsV24().forEach(item => {
+      const key = normalizePinyinWithTonesV24(item.pinyin).plain;
+      if (!key) return;
+      if (!byPlain.has(key)) byPlain.set(key, item);
+    });
+
+    const keys = Array.from(byPlain.keys()).sort((a, b) => b.length - a.length);
+    return { byPlain, keys };
+  }
+
+  function audioForSyllableV24(item, tone) {
+    if (!item) return null;
+    const full = typeof itemBySafe === 'function' ? (itemBySafe(item.safe) || item) : item;
+    const audioMap = (full && full.audio) || item.audio || {};
+    const requested = String(Number(tone || 0));
+
+    if (audioMap[requested]) return { src: audioMap[requested], tone: Number(requested) };
+
+    const tones = (full && full.tones) || item.tones || [];
+    const fallbackTone = Number(tones[0] || Object.keys(audioMap)[0] || 1);
+    if (audioMap[String(fallbackTone)]) return { src: audioMap[String(fallbackTone)], tone: fallbackTone };
+
+    const firstKey = Object.keys(audioMap).find(key => audioMap[key]);
+    return firstKey ? { src: audioMap[firstKey], tone: Number(firstKey) || fallbackTone || 1 } : null;
+  }
+
+  function segmentPinyinTokenV24(rawToken, dict) {
+    const parsed = normalizePinyinWithTonesV24(rawToken);
+    const plain = parsed.plain;
+    const result = [];
+    let index = 0;
+
+    while (index < plain.length) {
+      const key = dict.keys.find(candidate => plain.startsWith(candidate, index));
+      if (!key) {
+        index += 1;
+        continue;
+      }
+
+      const item = dict.byPlain.get(key);
+      const start = index;
+      const end = index + key.length;
+      const markedTone = parsed.tones.slice(start, end).find(tone => Number(tone) > 0) || 0;
+      const audio = audioForSyllableV24(item, markedTone);
+
+      if (audio && audio.src) {
+        result.push({
+          safe: item.safe,
+          pinyin: item.pinyin,
+          tone: audio.tone,
+          src: audio.src,
+          token: rawToken
+        });
+      }
+
+      index = end;
+    }
+
+    return result;
+  }
+
+  function shadowingByIdV24(id) {
+    const items = (V21.shadowing && V21.shadowing.sentences) || [];
+    return items.find(item => item && item.id === id) || null;
+  }
+
+  function directShadowingAudioSrcV24(item) {
+    if (!item) return '';
+    const value = item.audio || item.audioSrc || item.src || item.url || item.audioUrl || item.mp3;
+    if (!value) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') return value.src || value.url || value.file || value.mp3 || value['1'] || '';
+    return '';
+  }
+
+  function composedShadowingQueueV24(item) {
+    if (!item || !item.pinyin) return [];
+    const dict = syllableDictionaryV24();
+    const tokens = String(item.pinyin)
+      .replace(/[，。！？；：,.!?;:]/g, ' $& ')
+      .split(/\s+/)
+      .filter(Boolean);
+
+    const queue = [];
+    tokens.forEach(token => {
+      if (/^[，。！？；：,.!?;:]$/.test(token)) {
+        if (queue.length) queue[queue.length - 1].pause = 150;
+        return;
+      }
+
+      const parts = segmentPinyinTokenV24(token, dict);
+      parts.forEach((part, idx) => {
+        part.pause = idx === parts.length - 1 ? 90 : 45;
+        queue.push(part);
+      });
+    });
+
+    return queue;
+  }
+
+  function hasShadowingAudioV24(item) {
+    return !!directShadowingAudioSrcV24(item) || composedShadowingQueueV24(item).length > 0;
+  }
+
+  function ensureShadowingProgressV24(id) {
+    state.progress = state.progress || {};
+    state.progress.shadowing = state.progress.shadowing || {};
+    state.progress.shadowing[id] = state.progress.shadowing[id] || {};
+    return state.progress.shadowing[id];
+  }
+
+  function markShadowingHeardV24(id) {
+    const p = ensureShadowingProgressV24(id);
+    p.heard = true;
+    p.heardAt = p.heardAt || nowIsoV24();
+    p.lastReviewedAt = nowIsoV24();
+    p.updatedAt = nowIsoV24();
+    saveState();
+    updateShadowingDomV24(id);
+  }
+
+  function shadowingStatusHtmlV24(id) {
+    const p = ensureShadowingProgressV24(id);
+    const chips = [];
+    if (p.heard) chips.push('<span class="ok">✓ nghe</span>');
+    if (p.mastered) chips.push('<span class="star">★ thuộc</span>');
+    if (Number(p.wrong || 0)) chips.push(`<span class="bad">! ${Number(p.wrong || 0)}</span>`);
+    return `<div class="v23-status-line" data-v23-status>${chips.length ? chips.join('') : '<span class="muted">chưa học</span>'}</div>`;
+  }
+
+  function updateShadowingDomV24(id) {
+    document.querySelectorAll('[data-shadowing-id]').forEach(card => {
+      if (card.dataset.shadowingId !== id) return;
+      const p = ensureShadowingProgressV24(id);
+      const status = card.querySelector('[data-v23-status]');
+      if (status) status.outerHTML = shadowingStatusHtmlV24(id);
+      card.querySelectorAll('[data-v23-role="heard"]').forEach(node => node.classList.toggle('active', !!p.heard));
+      card.querySelectorAll('[data-v23-role="mastered"]').forEach(node => node.classList.toggle('active', !!p.mastered));
+    });
+
+    updateActiveGroupProgressV24();
+  }
+
+  function activeGroupV24() {
+    const groups = (V21.groups && V21.groups.learningGroups) || [];
+    return groups.find(group => group && group.id === state.activeGroup) || groups[0] || null;
+  }
+
+  function activeGroupProgressV24(group) {
+    if (!group) return { done: 0, total: 0 };
+    let items = [];
+    if (group.contentType === 'shadowing') items = (V21.shadowing && V21.shadowing.sentences) || [];
+    else if (group.contentType === 'hanzi') items = (V21.hanzi && V21.hanzi.items) || [];
+    else if (group.contentType === 'syllable') {
+      items = (group.items || []).map(safe => (typeof itemBySafe === 'function' ? itemBySafe(safe) : null)).filter(Boolean);
+    }
+
+    const done = items.filter(item => {
+      const id = item.safe || item.id;
+      if (!id) return false;
+      const bucket = group.contentType === 'shadowing' ? 'shadowing' : group.contentType === 'hanzi' ? 'hanzi' : 'syllables';
+      const p = (state.progress && state.progress[bucket] && state.progress[bucket][id]) || {};
+      return !!(p.heard || p.learned || p.mastered);
+    }).length;
+
+    return { done, total: items.length || group.count || 0 };
+  }
+
+  function updateActiveGroupProgressV24() {
+    const progress = activeGroupProgressV24(activeGroupV24());
+    document.querySelectorAll('[data-v23-group-progress]').forEach(node => { node.textContent = String(progress.done); });
+    document.querySelectorAll('[data-v23-group-total]').forEach(node => { node.textContent = String(progress.total); });
+  }
+
+  function clearSentenceButtonV24() {
+    if (sentenceBtnV24) {
+      sentenceBtnV24.classList.remove('playing');
+      sentenceBtnV24.setAttribute('aria-pressed', 'false');
+    }
+    sentenceBtnV24 = null;
+  }
+
+  function playDirectShadowingV24(src, btn, id) {
+    sentencePlayTokenV24 += 1;
+    const token = sentencePlayTokenV24;
+    try { audio.pause(); } catch (e) {}
+    sentenceAudioV24.pause();
+    sentenceAudioV24.src = src;
+    sentenceAudioV24.currentTime = 0;
+
+    clearSentenceButtonV24();
+    sentenceBtnV24 = btn || null;
+    if (sentenceBtnV24) {
+      sentenceBtnV24.classList.add('playing');
+      sentenceBtnV24.setAttribute('aria-pressed', 'true');
+    }
+
+    sentenceAudioV24.onended = function () {
+      if (token === sentencePlayTokenV24) clearSentenceButtonV24();
+    };
+    sentenceAudioV24.onerror = function () {
+      if (token === sentencePlayTokenV24) clearSentenceButtonV24();
+    };
+
+    markShadowingHeardV24(id);
+    sentenceAudioV24.play().catch(clearSentenceButtonV24);
+  }
+
+  function playComposedQueueV24(queue, btn, id) {
+    if (!queue.length) return;
+    sentencePlayTokenV24 += 1;
+    const token = sentencePlayTokenV24;
+
+    try { audio.pause(); } catch (e) {}
+    sentenceAudioV24.pause();
+    clearSentenceButtonV24();
+    sentenceBtnV24 = btn || null;
+    if (sentenceBtnV24) {
+      sentenceBtnV24.classList.add('playing');
+      sentenceBtnV24.setAttribute('aria-pressed', 'true');
+    }
+
+    markShadowingHeardV24(id);
+
+    const playAt = index => {
+      if (token !== sentencePlayTokenV24) return;
+      if (index >= queue.length) {
+        clearSentenceButtonV24();
+        return;
+      }
+
+      const part = queue[index];
+      sentenceAudioV24.src = part.src;
+      sentenceAudioV24.currentTime = 0;
+      sentenceAudioV24.onended = function () {
+        if (token !== sentencePlayTokenV24) return;
+        setTimeout(() => playAt(index + 1), Number(part.pause || 70));
+      };
+      sentenceAudioV24.onerror = function () {
+        if (token !== sentencePlayTokenV24) return;
+        setTimeout(() => playAt(index + 1), 30);
+      };
+      sentenceAudioV24.play().catch(() => playAt(index + 1));
+    };
+
+    playAt(0);
+  }
+
+  window.playShadowingFromSyllablesV24 = function playShadowingFromSyllablesV24(id, btn) {
+    const item = shadowingByIdV24(id);
+    if (!item) return;
+
+    const direct = directShadowingAudioSrcV24(item);
+    if (direct) {
+      playDirectShadowingV24(direct, btn, id);
+      return;
+    }
+
+    const queue = composedShadowingQueueV24(item);
+    playComposedQueueV24(queue, btn, id);
+  };
+
+  window.playShadowingV23 = window.playShadowingFromSyllablesV24;
+  window.markShadowingHeardV21 = function markShadowingHeardV21(id) {
+    markShadowingHeardV24(id);
+  };
+
+  function upgradeShadowingAudioButtonsV24() {
+    document.querySelectorAll('[data-shadowing-id]').forEach(card => {
+      const id = card.dataset.shadowingId;
+      const item = shadowingByIdV24(id);
+      if (!item) return;
+
+      const hasAudio = hasShadowingAudioV24(item);
+      const direct = !!directShadowingAudioSrcV24(item);
+      const btn = card.querySelector('.v23-audio-btn');
+      if (!btn) return;
+
+      if (hasAudio) {
+        btn.disabled = false;
+        btn.textContent = '🔊';
+        btn.setAttribute('aria-label', direct ? 'Nghe audio mẫu' : 'Nghe câu ghép từ audio âm tiết');
+        btn.setAttribute('title', direct ? 'Audio mẫu' : 'Ghép từ audio âm tiết');
+        btn.classList.toggle('v24-composed-audio', !direct);
+        btn.onclick = function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          window.playShadowingFromSyllablesV24(id, this);
+        };
+      } else {
+        btn.disabled = true;
+        btn.textContent = '🔇';
+        btn.setAttribute('aria-label', 'Chưa có audio');
+        btn.setAttribute('title', 'Chưa có audio');
+        btn.classList.remove('v24-composed-audio');
+      }
+
+      const note = card.querySelector('.v23-audio-note');
+      if (note && hasAudio && !direct) {
+        note.textContent = 'audio ghép từ âm tiết Pinyin';
+        note.classList.add('v24-shadow-audio-source');
+      } else if (note && direct) {
+        note.textContent = 'audio mẫu';
+        note.classList.add('v24-shadow-audio-source');
+      }
+    });
+  }
+
+  function canKeepCompactPanelV24() {
+    const group = activeGroupV24();
+    return state.tab === 'listen' || state.tab === 'chart' || (state.tab === 'learn' && group && group.contentType === 'syllable');
+  }
+
+  function hideCompactIfNeededV24() {
+    if (!canKeepCompactPanelV24() && typeof window.hidePinyinCompactPanel === 'function') {
+      window.hidePinyinCompactPanel();
+    }
+  }
+
+  window.playSyllableV21 = function playSyllableV21(safe, tone, btn) {
+    const result = playSyllableBeforeV24 ? playSyllableBeforeV24(safe, tone, btn) : undefined;
+
+    if (state.tab === 'learn') {
+      const item = (typeof itemBySafe === 'function' ? itemBySafe(safe) : null) ||
+        (((V21.required && V21.required.syllables) || []).find(row => row.safe === safe));
+      if (item) {
+        setTimeout(() => {
+          if (typeof window.showPinyinCompactPanelV15 === 'function') window.showPinyinCompactPanelV15(item, Number(tone || state.tone || 1));
+          else if (typeof window.showPinyinCompactPanelFor === 'function') window.showPinyinCompactPanelFor(item, Number(tone || state.tone || 1));
+        }, 40);
+      }
+    } else if (state.tab !== 'listen' && state.tab !== 'chart' && typeof window.hidePinyinCompactPanel === 'function') {
+      window.hidePinyinCompactPanel();
+    }
+
+    return result;
+  };
+
+  window.render = function render() {
+    const result = renderBeforeV24 ? renderBeforeV24.apply(this, arguments) : undefined;
+    requestAnimationFrame(() => {
+      upgradeShadowingAudioButtonsV24();
+      hideCompactIfNeededV24();
+    });
+    return result;
+  };
+
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) {
+      sentencePlayTokenV24 += 1;
+      sentenceAudioV24.pause();
+      clearSentenceButtonV24();
+    }
+  });
+
+  window.PIN_YIN_V24 = {
+    version: V24_VERSION,
+    composedShadowingQueue: composedShadowingQueueV24,
+    upgradeShadowingAudioButtons: upgradeShadowingAudioButtonsV24
+  };
+
+  try {
+    if (typeof window.render === 'function') window.render();
+  } catch (error) {
+    console.warn('PINYIN_V24_SHADOWING_COMPOSED_AUDIO failed:', error);
+  }
 })();
