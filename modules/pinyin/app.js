@@ -3,7 +3,7 @@ const LS_KEY = 'tiengtrung_pinyin_v12_state';
 
 let DATA = null;
 let state = {
-  tab: 'listen',
+  tab: 'learn',
   selected: '',
   tone: 2,
   search: '',
@@ -2280,7 +2280,7 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
   function renderTopHeroV21(title, subtitle, extra = '') {
     return `<section class="v21-hero">
       <div>
-        <div class="kicker">Pinyin data-driven</div>
+        <div class="kicker">Pinyin</div>
         <h1 class="title">${esc(title)}</h1>
         <p class="subtitle">${esc(subtitle)}</p>
       </div>
@@ -2288,18 +2288,23 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
     </section>`;
   }
 
+  function navButtonV21(tab, label, count = '') {
+    const active = state.tab === tab || (tab === 'learn' && (state.tab === 'chart' || state.tab === 'rules'));
+    return `<button class="nav-btn ${active ? 'active' : ''}" type="button" onclick="setTab('${tab}')"><span>${esc(label)}</span>${count !== '' ? `<span class="count">${esc(count)}</span>` : ''}</button>`;
+  }
+
   window.appShell = function appShell(content) {
     if (!hasV21Data()) return appShellBeforeV21 ? appShellBeforeV21(content) : content;
 
     const groups = V21.groups.learningGroups || [];
-    const reviewGroups = V21.groups.reviewGroups || [];
     const total = (V21.required && V21.required.audioCount) || (DATA && DATA.stats && DATA.stats.audioItems) || 0;
     const reviewTotal = recordsForReviewV21('due').length;
     const masteredTotal = recordsForReviewV21('mastered').length;
+    const requiredTotal = (V21.required && V21.required.count) || allSyllablesV21().length || 0;
 
     return `
-<header class="tt-module-top-nav">
-  <a class="tt-top-brand" href="../../index.html" target="_self"><span class="tt-top-logo">中</span><span class="tt-top-name">Tiếng Trung</span></a>
+<header class="tt-module-top-nav v22-top-nav">
+  <a class="tt-top-brand" href="../../index.html" target="_self"><span class="tt-top-logo">拼</span><span class="tt-top-name">Pinyin</span><span class="tt-top-meta"> · ${requiredTotal} âm · ${groups.length} nhóm</span></a>
   <nav class="tt-top-links">
     <a href="../../index.html" target="_self">Trang chủ</a>
     <a href="../bo-thu-50/index.html" target="_self">Bộ thủ</a>
@@ -2310,16 +2315,16 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
 
 <div class="app-shell v21-shell">
   <aside class="sidebar v21-sidebar">
-    <div class="brand"><div class="brand-logo">拼</div><div><h1>Pinyin</h1><p>Nhóm học · Ôn tự động</p></div></div>
-    ${navButton('learn','Cần học', groups.length)}
-    ${navButton('review','Cần ôn', reviewTotal)}
-    ${navButton('chart','Bảng tổng', total)}
-    ${navButton('rules','Quy tắc', 'ghi nhớ')}
-    ${navButton('practice','Quiz', 'nghe')}
+    <div class="brand"><div class="brand-logo">拼</div><div><h1>Pinyin</h1><p>Học nhanh · nghe đúng</p></div></div>
+    ${navButtonV21('learn','Học', groups.length)}
+    ${navButtonV21('listen','Nghe', total)}
+    ${navButtonV21('practice','Quiz')}
+    ${navButtonV21('review','Ôn', reviewTotal)}
+    ${navButtonV21('progress','Tiến độ', masteredTotal)}
     <div class="side-card">
       <div class="side-stat">
         <div><span>Nhóm học</span><b>${groups.length}</b></div>
-        <div><span>Âm bắt buộc</span><b>${(V21.required && V21.required.count) || 0}</b></div>
+        <div><span>Âm bắt buộc</span><b>${requiredTotal}</b></div>
         <div><span>Đã thành thạo</span><b>${masteredTotal}</b></div>
         <div><span>Audio thật</span><b>${total}</b></div>
       </div>
@@ -2330,6 +2335,7 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
   };
 
   window.setTab = function setTab(tab) {
+    if (typeof window.hidePinyinCompactPanel === 'function') window.hidePinyinCompactPanel();
     state.tab = tab;
     saveState();
     render();
@@ -2349,6 +2355,21 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
     render();
   };
 
+  window.openStudyGroupsV21 = function openStudyGroupsV21() {
+    const drawer = document.getElementById('v21-study-groups');
+    if (drawer) {
+      drawer.open = true;
+      drawer.scrollIntoView({ block: 'start' });
+    }
+  };
+
+  function homeActionV21(title, subtitle, action, tone = 'blue') {
+    return `<button class="v22-action-card ${tone}" type="button" onclick="${action}">
+      <b>${esc(title)}</b>
+      <span>${esc(subtitle)}</span>
+    </button>`;
+  }
+
   window.markProgressV21 = function markProgressV21(type, id, action) {
     const p = getProgress(type, id);
     if (action === 'learned') patchProgress(type, id, { learned: !p.learned, learnedAt: p.learned ? p.learnedAt : nowIso() });
@@ -2361,7 +2382,13 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
 
   window.playTone = function playTone(safe, tone, btn) {
     markHeard('syllable', safe, false);
-    return playToneBeforeV21 ? playToneBeforeV21(safe, tone, btn) : undefined;
+    const result = playToneBeforeV21 ? playToneBeforeV21(safe, tone, btn) : undefined;
+    setTimeout(() => {
+      if (state.tab !== 'listen' && state.tab !== 'chart' && typeof window.hidePinyinCompactPanel === 'function') {
+        window.hidePinyinCompactPanel();
+      }
+    }, 140);
+    return result;
   };
 
   window.playSyllableV21 = function playSyllableV21(safe, tone, btn) {
@@ -2487,14 +2514,42 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
   window.renderLearn = function renderLearn() {
     const groups = (V21.groups && V21.groups.learningGroups) || [];
     const active = activeLearningGroupV21();
+    const dueCount = recordsForReviewV21('due').length;
+    const learnedCount = Object.values(state.learned || {}).filter(Boolean).length;
+    const requiredTotal = (V21.required && V21.required.count) || allSyllablesV21().length || 0;
     return appShell(`
-${renderTopHeroV21('Nhóm cần học', 'Không chia theo ngày nữa: chọn đúng nhóm kiến thức, học đến đâu localStorage ghi tiến độ đến đó.', `
-  <button class="btn primary" onclick="setTab('review')">Mở nhóm cần ôn</button>
-  <button class="btn" onclick="setTab('practice')">Làm quiz</button>
-`)}
-<section class="v21-learning-layout">
-  <aside class="v21-group-list">${groups.map(learningGroupButtonV21).join('')}</aside>
-  ${renderGroupDetailV21(active)}
+<section class="v22-home">
+  <div class="v22-home-head">
+    <div>
+      <div class="kicker">Hôm nay học gì?</div>
+      <h1>Học Pinyin</h1>
+      <p>${learnedCount}/${requiredTotal} âm đã học · ${dueCount} mục cần ôn</p>
+    </div>
+    <span>拼</span>
+  </div>
+  <div class="v22-action-grid">
+    ${homeActionV21('Tiếp tục học', active ? active.title : 'Chọn nhóm Pinyin', 'openStudyGroupsV21()', 'green')}
+    ${homeActionV21('Nghe nhanh', 'Tra âm và nghe mẫu', "setTab('listen')", 'blue')}
+    ${homeActionV21('Quiz nghe', 'Luyện thanh theo nhóm', `startGroupQuizV21('${esc(active ? active.id : '')}')`, 'amber')}
+    ${homeActionV21('Ôn âm yếu', `${dueCount} mục cần xem lại`, "setTab('review')", 'red')}
+  </div>
+
+  <section class="v22-lookup">
+    <h2>Tra cứu</h2>
+    <div class="v22-lookup-actions">
+      <button class="btn" type="button" onclick="setTab('listen')">Tra âm</button>
+      <button class="btn" type="button" onclick="setTab('chart')">Bảng tổng</button>
+      <button class="btn" type="button" onclick="setTab('rules')">Quy tắc</button>
+    </div>
+  </section>
+
+  <details id="v21-study-groups" class="v22-study-drawer">
+    <summary><span>Nhóm học</span><b>${groups.length} nhóm</b></summary>
+    <section class="v21-learning-layout">
+      <aside class="v21-group-list">${groups.map(learningGroupButtonV21).join('')}</aside>
+      ${renderGroupDetailV21(active)}
+    </section>
+  </details>
 </section>`);
   };
 
@@ -2560,6 +2615,35 @@ ${renderTopHeroV21('Nhóm cần ôn', 'Các nhóm này được tính tự độ
       ${records.length ? records.slice(0, 220).map(renderReviewRecordV21).join('') : `<div class="panel"><p class="muted">Nhóm này đang trống.</p></div>`}
     </div>
   </section>
+</section>`);
+  };
+
+  window.renderProgressV21 = function renderProgressV21() {
+    const syllables = allSyllablesV21();
+    const total = syllables.length;
+    const learned = syllables.filter(item => getProgress('syllable', item.safe).learned).length;
+    const heard = syllables.filter(item => getProgress('syllable', item.safe).heard).length;
+    const quizzed = syllables.filter(item => Number(getProgress('syllable', item.safe).quizAttempts || 0)).length;
+    const mastered = recordsForReviewV21('mastered').length;
+    const due = recordsForReviewV21('due').length;
+    const wrongMany = recordsForReviewV21('wrong_many').length;
+
+    return appShell(`
+${renderTopHeroV21('Tiến độ', 'Tóm tắt từ localStorage hiện có. Không đổi key, không đổi format dữ liệu.', `
+  <button class="btn primary" type="button" onclick="setTab('learn')">Học tiếp</button>
+  <button class="btn" type="button" onclick="setTab('review')">Ôn ngay</button>
+`)}
+<section class="v22-progress-grid">
+  <article><b>${learned}</b><span>Đã học</span></article>
+  <article><b>${heard}</b><span>Đã nghe</span></article>
+  <article><b>${quizzed}</b><span>Đã quiz</span></article>
+  <article><b>${mastered}</b><span>Thành thạo</span></article>
+  <article><b>${due}</b><span>Cần ôn</span></article>
+  <article><b>${wrongMany}</b><span>Sai nhiều</span></article>
+</section>
+<section class="v22-lookup">
+  <h2>Tổng quan</h2>
+  <p class="muted">Pinyin đang có ${total} âm tiết bắt buộc và ${(V21.groups && V21.groups.learningGroups || []).length} nhóm học. Tiến độ cũ vẫn nằm trong localStorage key <code>${LS_KEY}</code>.</p>
 </section>`);
   };
 
@@ -2644,17 +2728,19 @@ ${renderTopHeroV21('Quiz nghe theo nhóm', `Nguồn câu hỏi hiện tại: ${g
     }
 
     ensureProgressState();
-    if (!state.tab || state.tab === 'listen' || state.tab === 'groups') state.tab = 'learn';
+    if (!state.tab || state.tab === 'groups') state.tab = 'learn';
     if (!state.activeGroup) state.activeGroup = V21.groups.defaultLearningGroup || 'intro';
     if (!state.activeReviewGroup) state.activeReviewGroup = V21.groups.defaultReviewGroup || 'not_started';
 
     let html = '';
-    if (state.tab === 'learn') html = renderLearn();
-    else if (state.tab === 'review') html = renderReview();
-    else if (state.tab === 'chart') html = renderChart();
-    else if (state.tab === 'rules') html = renderRules();
-    else if (state.tab === 'practice') html = renderPractice();
-    else html = renderLearn();
+    if (state.tab === 'learn') html = window.renderLearn();
+    else if (state.tab === 'listen') html = window.renderListen();
+    else if (state.tab === 'practice') html = window.renderPractice();
+    else if (state.tab === 'review') html = window.renderReview();
+    else if (state.tab === 'progress') html = window.renderProgressV21();
+    else if (state.tab === 'chart') html = window.renderChart();
+    else if (state.tab === 'rules') html = window.renderRules();
+    else html = window.renderLearn();
     app.innerHTML = html;
   };
 
@@ -2675,7 +2761,7 @@ ${renderTopHeroV21('Quiz nghe theo nhóm', `Nguồn câu hỏi hiện tại: ${g
       V21.loadError = '';
       if (!state.activeGroup) state.activeGroup = groups.defaultLearningGroup || 'intro';
       if (!state.activeReviewGroup) state.activeReviewGroup = groups.defaultReviewGroup || 'not_started';
-      if (!state.tab || state.tab === 'listen' || state.tab === 'groups') state.tab = 'learn';
+      if (!state.tab || state.tab === 'groups') state.tab = 'learn';
       saveState();
       render();
     }).catch(err => {
