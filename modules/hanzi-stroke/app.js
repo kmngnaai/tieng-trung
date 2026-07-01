@@ -11,7 +11,7 @@ const defaultSettings = {
   delayBetweenStrokes: 180,
   drawingWidth: 34,
   strokeColor: '#111827',
-  radicalColor: '#14b8a6',
+  radicalColor: '#00C7FE',
   outlineColor: '#cbd5e1',
   drawingColor: '#2563eb',
   highlightColor: '#f97316',
