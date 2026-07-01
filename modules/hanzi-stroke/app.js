@@ -40,6 +40,8 @@ const els = {
   hintAfterMisses: document.getElementById('hintAfterMissesRange'),
   hintAfterMissesValue: document.getElementById('hintAfterMissesValue'),
   resetSettings: document.getElementById('resetSettingsBtn'),
+  presetBright: document.getElementById('presetBrightBtn'),
+  presetClassic: document.getElementById('presetClassicBtn'),
   play: document.getElementById('playBtn'),
   quiz: document.getElementById('quizBtn'),
   quizNoOutline: document.getElementById('quizNoOutlineBtn'),
@@ -65,6 +67,7 @@ let playId = 0;
 let autoplayToken = 0;
 let autoplayLoopActive = false;
 const charDataCache = new Map();
+const HANZI_COLOR_STORAGE_KEY = 'hanziStrokeColorSettings.v1';
 
 function getHanziChars(text){
   return Array.from(String(text || '')).filter(char => hanRegex.test(char));
@@ -397,6 +400,72 @@ function applyGridSetting(){
   });
 }
 
+function getColorSettings(){
+  return {
+    strokeColor: els.strokeColor.value || defaultSettings.strokeColor,
+    radicalColor: els.radicalColor.value || defaultSettings.radicalColor,
+    outlineColor: els.outlineColor.value || defaultSettings.outlineColor,
+    drawingColor: els.drawingColor.value || defaultSettings.drawingColor,
+    highlightColor: els.highlightColor.value || defaultSettings.highlightColor
+  };
+}
+
+function setColorSettings(colors){
+  if(!colors || typeof colors !== 'object'){
+    return;
+  }
+
+  if(colors.strokeColor) els.strokeColor.value = colors.strokeColor;
+  if(colors.radicalColor) els.radicalColor.value = colors.radicalColor;
+  if(colors.outlineColor) els.outlineColor.value = colors.outlineColor;
+  if(colors.drawingColor) els.drawingColor.value = colors.drawingColor;
+  if(colors.highlightColor) els.highlightColor.value = colors.highlightColor;
+}
+
+function saveColorSettings(){
+  try{
+    window.localStorage.setItem(HANZI_COLOR_STORAGE_KEY, JSON.stringify(getColorSettings()));
+  }catch(err){
+    console.warn('Cannot save color settings:', err);
+  }
+}
+
+function restoreColorSettings(){
+  try{
+    const raw = window.localStorage.getItem(HANZI_COLOR_STORAGE_KEY);
+    if(!raw) return;
+
+    const colors = JSON.parse(raw);
+    setColorSettings(colors);
+  }catch(err){
+    console.warn('Cannot restore color settings:', err);
+  }
+}
+
+function applyColorPreset(preset){
+  stopAutoplayLoop();
+
+  if(preset === 'bright'){
+    els.strokeColor.value = '#111827';
+    els.radicalColor.value = '#00C7FE';
+    els.outlineColor.value = '#cbd5e1';
+    els.drawingColor.value = '#2563eb';
+    els.highlightColor.value = '#f97316';
+  }
+
+  if(preset === 'classic'){
+    els.strokeColor.value = '#CD3636';
+    els.radicalColor.value = '#2C416D';
+    els.outlineColor.value = '#d9dde5';
+    els.drawingColor.value = '#CD3636';
+    els.highlightColor.value = '#2C416D';
+  }
+
+  saveColorSettings();
+  syncSettingLabels();
+  renderWriters();
+}
+
 function resetAdvancedSettings(){
   stopAutoplayLoop();
   els.showGrid.checked = defaultSettings.showGrid;
@@ -409,6 +478,7 @@ function resetAdvancedSettings(){
   els.drawingColor.value = defaultSettings.drawingColor;
   els.highlightColor.value = defaultSettings.highlightColor;
   els.hintAfterMisses.value = String(defaultSettings.showHintAfterMisses);
+  saveColorSettings();
   syncSettingLabels();
   renderWriters();
 }
@@ -554,6 +624,7 @@ function bindUI(){
   ].forEach(control => {
     control.addEventListener('input', () => {
       stopAutoplayLoop();
+      saveColorSettings();
       syncSettingLabels();
       renderWriters();
     });
@@ -565,7 +636,10 @@ function bindUI(){
   els.reset.addEventListener('click', resetAll);
   els.embed.addEventListener('click', copyEmbedCode);
   els.resetSettings.addEventListener('click', resetAdvancedSettings);
+  els.presetBright?.addEventListener('click', () => applyColorPreset('bright'));
+  els.presetClassic?.addEventListener('click', () => applyColorPreset('classic'));
 
+  restoreColorSettings();
   syncSettingLabels();
   renderWriters();
 }

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bút thuận chữ Hán</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=20260701-12" />
 </head>
 <body>
   <main class="hanzi-app">
@@ -74,6 +74,27 @@
       <details class="advanced-settings">
         <summary>Cài đặt nâng cao</summary>
         <div class="advanced-grid">
+          <div class="preset-section">
+            <div class="preset-title">Chọn nhanh màu mặc định</div>
+            <div class="preset-grid" aria-label="Màu mặc định">
+              <button id="presetBrightBtn" type="button" class="preset-btn">
+                <span class="preset-swatch" style="--c1:#00C7FE;--c2:#111827"></span>
+                <span>
+                  <strong>Mặc định xanh sáng</strong>
+                  <small>Bộ thủ #00C7FE</small>
+                </span>
+              </button>
+
+              <button id="presetClassicBtn" type="button" class="preset-btn">
+                <span class="preset-swatch" style="--c1:#2C416D;--c2:#CD3636"></span>
+                <span>
+                  <strong>Xanh đậm / đỏ</strong>
+                  <small>Bộ thủ #2C416D · Nét #CD3636</small>
+                </span>
+              </button>
+            </div>
+          </div>
+
           <label class="check-row">
             <input id="showGridToggle" type="checkbox" checked />
             <span>Hiển thị ô lưới</span>
@@ -160,6 +181,6 @@
   </dialog>
 
   <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.7/dist/hanzi-writer.min.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js?v=20260701-12"></script>
 </body>
 </html>
