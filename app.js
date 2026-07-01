@@ -1003,9 +1003,10 @@ async function playAudioUrl(url){
 
 /* PATCH_V6_EMBED_ONLY_NO_NEW_TAB
    Ép module nội bộ không mở tab mới và ẩn nút mở trực tiếp.
+   Đã bổ sung hanzi-stroke để không bị nhảy nhầm sang Bộ thủ.
 */
 (function () {
-  const INTERNAL_RE = /modules\/(bo-thu-50|pinyin)/i;
+  const INTERNAL_RE = /modules\/(bo-thu-50|pinyin|hanzi-stroke)/i;
   const HIDE_TEXTS = [
     '',
     '',
@@ -1021,17 +1022,20 @@ async function playAudioUrl(url){
   }
 
   const originalOpen = window.open;
+
   window.open = function (url, target, features) {
     if (isInternalUrl(url)) {
       window.location.href = url;
       return null;
     }
+
     return originalOpen ? originalOpen.apply(window, arguments) : null;
   };
 
   function cleanOpenButtons() {
     document.querySelectorAll('a[target="_blank"]').forEach(function (a) {
       const href = a.getAttribute('href') || '';
+
       if (isInternalUrl(href)) {
         a.setAttribute('target', '_self');
         a.removeAttribute('rel');
@@ -1040,6 +1044,7 @@ async function playAudioUrl(url){
 
     document.querySelectorAll('a, button').forEach(function (el) {
       const text = (el.textContent || '').trim();
+
       if (HIDE_TEXTS.some(function (w) { return w && text.includes(w); })) {
         el.remove();
       }
@@ -1047,7 +1052,9 @@ async function playAudioUrl(url){
 
     document.querySelectorAll('p, div, span').forEach(function (el) {
       const text = (el.textContent || '').trim();
+
       if (!text) return;
+
       if (/mở trực tiếp|toàn màn hình/i.test(text) && el.querySelectorAll('a, button').length === 0) {
         el.textContent = '';
       }
@@ -1056,8 +1063,11 @@ async function playAudioUrl(url){
 
   document.addEventListener('click', function (e) {
     const a = e.target.closest && e.target.closest('a[href]');
+
     if (!a) return;
+
     const href = a.getAttribute('href') || '';
+
     if (isInternalUrl(href) && a.getAttribute('target') === '_blank') {
       e.preventDefault();
       window.location.href = href;
@@ -1073,6 +1083,7 @@ async function playAudioUrl(url){
 
 /* PATCH_V8_CARD_CLICK_SAME_TAB
    Bắt click card/sidebar ở trang chính và mở module full page trong cùng tab.
+   Đã bổ sung route hanziStroke / Bút thuận chữ Hán.
 */
 (function () {
   function normalizeText(s) {
@@ -1104,9 +1115,36 @@ async function playAudioUrl(url){
     const dataPage = el.getAttribute && (el.getAttribute('data-page') || el.dataset?.page || '');
     const dataModule = el.getAttribute && (el.getAttribute('data-module') || el.dataset?.module || '');
     const txt = normalizeText(el.textContent || el.innerText || '');
+    const routeText = normalizeText(dataPage + ' ' + dataModule + ' ' + txt + ' ' + href);
 
-    if (/modules\/bo-thu-50/i.test(href)) return 'modules/bo-thu-50/index.html';
-    if (/modules\/pinyin/i.test(href)) return 'modules/pinyin/index.html';
+    /*
+      Quan trọng:
+      hanzi-stroke phải được kiểm tra TRƯỚC bo-thu-50.
+      Nếu không, parent/card chứa nhiều chữ có thể bị bắt nhầm sang Bộ thủ.
+    */
+    if (/modules\/hanzi-stroke/i.test(href)) {
+      return 'modules/hanzi-stroke/index.html';
+    }
+
+    if (/modules\/bo-thu-50/i.test(href)) {
+      return 'modules/bo-thu-50/index.html';
+    }
+
+    if (/modules\/pinyin/i.test(href)) {
+      return 'modules/pinyin/index.html';
+    }
+
+    if (
+      routeText.includes('hanzistroke') ||
+      routeText.includes('hanzi stroke') ||
+      routeText.includes('hanzi-stroke') ||
+      routeText.includes('but thuan') ||
+      routeText.includes('but thuan chu han') ||
+      routeText.includes('bút thuận') ||
+      routeText.includes('bút thuận chữ hán')
+    ) {
+      return 'modules/hanzi-stroke/index.html';
+    }
 
     if (/radicals|bo-thu-50|bo thu 50/i.test(dataPage + ' ' + dataModule)) {
       return 'modules/bo-thu-50/index.html';
@@ -1120,7 +1158,6 @@ async function playAudioUrl(url){
       return 'modules/bo-thu-50/index.html';
     }
 
-    // Sidebar nút "Bộ thủ 50"
     if (txt === 'bo thu 50' || txt === 'bo thu') {
       return 'modules/bo-thu-50/index.html';
     }
@@ -1134,16 +1171,21 @@ async function playAudioUrl(url){
 
   function findClickableRouteTarget(start) {
     let el = start;
+
     for (let i = 0; el && i < 8; i += 1, el = el.parentElement) {
       if (!(el instanceof Element)) continue;
+
       const route = routeFromElement(el);
-      if (route) return { el, route };
+
+      if (route) {
+        return { el, route };
+      }
     }
+
     return null;
   }
 
   function cleanupRootUi() {
-    // Xóa nút/link rỗng còn sót từ patch trước ở trang chủ.
     document.querySelectorAll('button, a').forEach(function (el) {
       const txt = (el.textContent || '').trim();
       const aria = (el.getAttribute('aria-label') || '').trim();
@@ -1155,13 +1197,24 @@ async function playAudioUrl(url){
       }
     });
 
-    // Biến các card có chữ Bộ thủ/Pinyin thành clickable cho rõ.
+    /*
+      Biến card module thành clickable cho rõ.
+      Bổ sung hanzi-stroke để card Bút thuận cũng được nhận đúng.
+    */
     document.querySelectorAll('div, article, section').forEach(function (el) {
       const route = routeFromElement(el);
+
       if (!route) return;
 
       const txt = normalizeText(el.textContent || '');
-      if (txt.includes('bo thu 50') || txt.includes('pinyin')) {
+
+      if (
+        txt.includes('bo thu 50') ||
+        txt.includes('pinyin') ||
+        txt.includes('but thuan') ||
+        txt.includes('bút thuận') ||
+        txt.includes('hanzi stroke')
+      ) {
         el.classList.add('js-module-card-clickable');
         el.setAttribute('role', 'button');
         el.setAttribute('tabindex', '0');
@@ -1175,6 +1228,7 @@ async function playAudioUrl(url){
     if (isDialogue301Target(e.target)) return;
 
     const hit = findClickableRouteTarget(e.target);
+
     if (!hit) return;
 
     e.preventDefault();
@@ -1188,6 +1242,7 @@ async function playAudioUrl(url){
     if (isDialogue301Target(e.target)) return;
 
     const hit = findClickableRouteTarget(e.target);
+
     if (!hit) return;
 
     e.preventDefault();
@@ -1200,19 +1255,26 @@ async function playAudioUrl(url){
   setTimeout(cleanupRootUi, 1000);
 })();
 
-/* PATCH_PINYIN_MODULE_V11_LINK
+/* PATCH_PINYIN_MODULE_LINK
    Click Pinyin ở root app mở module Pinyin full page trong cùng tab.
+   Gộp lại để tránh trùng PATCH_PINYIN_MODULE_V11_LINK và V12_LINK.
 */
 (function () {
   function norm(s) {
-    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+    return (s || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim();
   }
 
   document.addEventListener('click', function (e) {
     let el = e.target;
-    for (let i = 0; el && i < 7; i++, el = el.parentElement) {
+
+    for (let i = 0; el && i < 7; i += 1, el = el.parentElement) {
       const txt = norm(el.textContent || '');
       const dataPage = norm((el.dataset && (el.dataset.page || el.dataset.module)) || '');
+
       if (txt === 'pinyin' || txt.includes('pinyin module') || dataPage === 'pinyin') {
         e.preventDefault();
         e.stopPropagation();
@@ -1222,25 +1284,5 @@ async function playAudioUrl(url){
     }
   }, true);
 })();
-
-/* PATCH_PINYIN_MODULE_V12_LINK
-   Click Pinyin ở root app mở module Pinyin full page trong cùng tab.
-*/
-(function () {
-  function norm(s) {
-    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
-  }
-  document.addEventListener('click', function (e) {
-    let el = e.target;
-    for (let i = 0; el && i < 7; i++, el = el.parentElement) {
-      const txt = norm(el.textContent || '');
-      const dataPage = norm((el.dataset && (el.dataset.page || el.dataset.module)) || '');
-      if (txt === 'pinyin' || txt.includes('pinyin module') || dataPage === 'pinyin') {
-        e.preventDefault();
-        e.stopPropagation();
-        window.location.href = 'modules/pinyin/index.html';
-        return;
-      }
-    }
   }, true);
 })();
