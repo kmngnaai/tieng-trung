@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bút thuận chữ Hán - Embed</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="embed-body">
+  <main class="embed-shell">
+    <div class="embed-controls">
+      <button id="playBtn" class="primary-btn" type="button">Phát</button>
+      <button id="quizBtn" type="button">Luyện viết</button>
+      <button id="resetBtn" type="button">Đặt lại</button>
+    </div>
+    <div id="emptyState" class="empty-state" hidden>Nhập chữ Hán để xem bút thuận.</div>
+    <div id="writerList" class="embed-list"></div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.7/dist/hanzi-writer.min.js"></script>
+  <script>
+    const hanRegex = /\p{Script=Han}/u;
+    const params = new URLSearchParams(window.location.search);
+    const rawChars = params.has('chars') ? params.get('chars') : '写汉字';
+    const chars = Array.from(rawChars || '').filter(char => hanRegex.test(char));
+    const sizeParam = Number(params.get('size'));
+    const size = Math.min(320, Math.max(120, Number.isFinite(sizeParam) ? sizeParam : 180));
+    const autoplay = params.get('autoplay') === '1';
+    const settings = {
+      strokeColor: readColorParam('strokeColor', '#111827'),
+      radicalColor: readColorParam('radicalColor', '#14b8a6'),
+      outlineColor: readColorParam('outlineColor', '#cbd5e1'),
+      drawingColor: readColorParam('drawingColor', '#2563eb'),
+      speed: clampNumber(params.get('speed'), 0.3, 5, 1),
+      delay: clampNumber(params.get('delay'), 0, 1500, 180),
+      grid: params.get('grid') !== '0'
+    };
+    const list = document.getElementById('writerList');
+    const empty = document.getElementById('emptyState');
+    let writers = [];
+    let playId = 0;
+
+    function render(){
+      list.innerHTML = '';
+      empty.hidden = chars.length > 0;
+      writers = [];
+
+      chars.forEach((char, index) => {
+        const card = document.createElement('div');
+        const targetId = 'embed-writer-' + Date.now() + '-' + index;
+        card.className = 'embed-card';
+        card.innerHTML = '<div id="' + targetId + '" class="writer-box ' + (settings.grid ? 'has-grid' : '') + '" style="--writer-size:' + size + 'px"></div><div class="embed-char">' + escapeHtml(char) + '</div>';
+        list.appendChild(card);
+
+        const writer = HanziWriter.create(targetId, char, {
+          width: size,
+          height: size,
+          padding: 8,
+          showOutline: true,
+          showCharacter: false,
+          strokeColor: settings.strokeColor,
+          radicalColor: settings.radicalColor,
+          outlineColor: settings.outlineColor,
+          drawingColor: settings.drawingColor,
+          drawingWidth: 34,
+          strokeAnimationSpeed: settings.speed,
+          delayBetweenStrokes: settings.delay
+        });
+        writers.push(writer);
+      });
+
+      if(autoplay){
+        setTimeout(playAll, 120);
+      }
+    }
+
+    async function playAll(){
+      const currentPlay = ++playId;
+      for(const writer of writers){
+        if(currentPlay !== playId) return;
+        if(typeof writer.cancelQuiz === 'function'){
+          writer.cancelQuiz();
+        }
+        writer.showOutline();
+        writer.hideCharacter();
+        await writer.animateCharacter();
+      }
+    }
+
+    function startQuiz(){
+      playId += 1;
+      writers.forEach(writer => {
+        if(typeof writer.cancelQuiz === 'function'){
+          writer.cancelQuiz();
+        }
+        writer.hideCharacter();
+        writer.showOutline();
+        writer.quiz();
+      });
+    }
+
+    function resetAll(){
+      playId += 1;
+      writers.forEach(writer => {
+        if(typeof writer.cancelQuiz === 'function'){
+          writer.cancelQuiz();
+        }
+        writer.hideCharacter();
+        writer.showOutline();
+      });
+    }
+
+    function escapeHtml(value){
+      return String(value || '').replace(/[&<>"']/g, char => ({
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '"':'&quot;',
+        "'":'&#039;'
+      }[char]));
+    }
+
+    function clampNumber(value, min, max, fallback){
+      const number = Number(value);
+      if(!Number.isFinite(number)){
+        return fallback;
+      }
+      return Math.min(max, Math.max(min, number));
+    }
+
+    function readColorParam(name, fallback){
+      const value = params.get(name) || '';
+      return /^#[0-9a-f]{6}$/i.test(value) ? value : fallback;
+    }
+
+    document.getElementById('playBtn').addEventListener('click', playAll);
+    document.getElementById('quizBtn').addEventListener('click', startQuiz);
+    document.getElementById('resetBtn').addEventListener('click', resetAll);
+
+    if(window.HanziWriter){
+      render();
+    }else{
+      empty.hidden = false;
+      empty.textContent = 'Không tải được Hanzi Writer.';
+    }
+  </script>
+</body>
+</html>

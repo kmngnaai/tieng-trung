@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bút thuận chữ Hán</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="hanzi-app">
+    <header class="app-header">
+      <a class="back-link" href="../../index.html">Trang chủ</a>
+      <div>
+        <p class="eyebrow">Hanzi stroke</p>
+        <h1>Bút thuận chữ Hán</h1>
+        <p>Tìm chữ Hán, xem bút thuận, thứ tự nét và luyện viết.</p>
+      </div>
+    </header>
+
+    <section class="tool-panel" aria-label="Công cụ bút thuận chữ Hán">
+      <label class="field-label" for="hanziInput">Chữ Hán</label>
+      <input
+        id="hanziInput"
+        class="hanzi-input"
+        type="search"
+        value="写汉字"
+        placeholder="Nhập chữ Hán, ví dụ: 我爱中文"
+        autocomplete="off"
+        spellcheck="false"
+      />
+
+      <section class="preview-section" aria-live="polite">
+        <div id="emptyState" class="empty-state" hidden>Nhập chữ Hán để xem bút thuận.</div>
+        <div id="writerList" class="writer-list"></div>
+      </section>
+
+      <div class="size-row">
+        <label class="field-label" for="sizeRange">Kích thước: <span id="sizeValue">200px</span></label>
+        <input id="sizeRange" type="range" min="120" max="320" value="200" step="10" />
+      </div>
+
+      <div class="switch-grid">
+        <label class="check-row">
+          <input id="horizontalToggle" type="checkbox" />
+          <span>Xem trước ngang</span>
+        </label>
+        <label class="check-row">
+          <input id="autoplayToggle" type="checkbox" />
+          <span>Tự động phát</span>
+        </label>
+        <label class="check-row">
+          <input id="strokeOrderToggle" type="checkbox" />
+          <span>Hiển thị thứ tự nét</span>
+        </label>
+      </div>
+
+      <div class="actions primary-actions" aria-label="Thao tác chính">
+        <button id="playBtn" class="primary-btn" type="button">Phát</button>
+        <button id="quizBtn" type="button">Viết</button>
+        <button id="resetBtn" type="button">Reset</button>
+      </div>
+
+      <div class="actions secondary-actions" aria-label="Thao tác phụ">
+        <button id="quizNoOutlineBtn" type="button">Không viền</button>
+        <button id="embedBtn" type="button">Nhúng</button>
+      </div>
+
+      <div id="embedBox" class="embed-box" hidden>
+        <label class="field-label" for="embedCode">Mã iframe</label>
+        <textarea id="embedCode" readonly rows="4"></textarea>
+        <p id="embedStatus" class="status"></p>
+      </div>
+
+      <details class="advanced-settings">
+        <summary>Cài đặt nâng cao</summary>
+        <div class="advanced-grid">
+          <label class="check-row">
+            <input id="showGridToggle" type="checkbox" checked />
+            <span>Hiển thị ô lưới</span>
+          </label>
+
+          <label class="range-control" for="animationSpeedRange">
+            <span>Tốc độ nét vẽ: <b id="animationSpeedValue">1.0</b></span>
+            <input id="animationSpeedRange" type="range" min="0.3" max="5" step="0.1" value="1" />
+          </label>
+
+          <label class="range-control" for="strokeDelayRange">
+            <span>Độ trễ giữa nét: <b id="strokeDelayValue">180ms</b></span>
+            <input id="strokeDelayRange" type="range" min="0" max="1500" step="50" value="180" />
+          </label>
+
+          <label class="range-control" for="drawingWidthRange">
+            <span>Độ dày nét luyện viết: <b id="drawingWidthValue">34</b></span>
+            <input id="drawingWidthRange" type="range" min="4" max="40" step="1" value="34" />
+          </label>
+
+          <div class="color-grid">
+            <label class="color-control" for="strokeColorInput">
+              <span>Nét chính</span>
+              <input id="strokeColorInput" type="color" value="#111827" />
+            </label>
+            <label class="color-control" for="radicalColorInput">
+              <span>Bộ thủ</span>
+              <input id="radicalColorInput" type="color" value="#14b8a6" />
+            </label>
+            <label class="color-control" for="outlineColorInput">
+              <span>Viền</span>
+              <input id="outlineColorInput" type="color" value="#cbd5e1" />
+            </label>
+            <label class="color-control" for="drawingColorInput">
+              <span>Nét viết</span>
+              <input id="drawingColorInput" type="color" value="#2563eb" />
+            </label>
+            <label class="color-control" for="highlightColorInput">
+              <span>Gợi ý</span>
+              <input id="highlightColorInput" type="color" value="#f97316" />
+            </label>
+          </div>
+
+          <label class="range-control" for="hintAfterMissesRange">
+            <span>Gợi ý sau khi sai: <b id="hintAfterMissesValue">2</b></span>
+            <input id="hintAfterMissesRange" type="range" min="1" max="5" step="1" value="2" />
+          </label>
+
+          <button id="resetSettingsBtn" class="wide-btn" type="button">Khôi phục mặc định</button>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <dialog id="charInfoDialog" class="char-info-dialog">
+    <form method="dialog">
+      <button class="dialog-close" type="submit" aria-label="Đóng">×</button>
+    </form>
+    <div class="char-info-content">
+      <div id="charInfoLarge" class="char-info-large">字</div>
+      <dl class="char-info-list">
+        <div>
+          <dt>Pinyin</dt>
+          <dd id="charInfoPinyin">Chưa có dữ liệu</dd>
+        </div>
+        <div>
+          <dt>Nghĩa</dt>
+          <dd id="charInfoMeaning">Chưa có dữ liệu</dd>
+        </div>
+        <div>
+          <dt>Bộ thủ</dt>
+          <dd id="charInfoRadical">Chưa có dữ liệu</dd>
+        </div>
+        <div>
+          <dt>Số nét</dt>
+          <dd id="charInfoStrokeCount">Đang tải...</dd>
+        </div>
+        <div>
+          <dt>HSK</dt>
+          <dd id="charInfoHsk">Chưa có dữ liệu</dd>
+        </div>
+      </dl>
+    </div>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.7/dist/hanzi-writer.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

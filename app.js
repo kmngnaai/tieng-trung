@@ -64,6 +64,10 @@ function setPage(page){
     window.location.href = 'modules/bo-thu-50/index.html';
     return;
   }
+  if(page === 'hanziStroke'){
+    window.location.href = 'modules/hanzi-stroke/index.html';
+    return;
+  }
   document.querySelectorAll('.nav-btn, .top-nav-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.page === page);
   });
@@ -89,6 +93,11 @@ function renderHome(){
         <h3>Pinyin</h3>
         <p>Module phát âm mới dùng audio Kimma local, có thể dùng chung để đọc tên bộ thủ.</p>
         <button class="primary-btn" type="button" data-go="pinyin">Mở Pinyin</button>
+      </article>
+      <article class="card">
+        <h3>Bút thuận chữ Hán</h3>
+        <p>Tìm chữ Hán, xem bút thuận, thứ tự nét và luyện viết.</p>
+        <button class="primary-btn" type="button" data-go="hanziStroke">Mở bút thuận</button>
       </article>
       <article class="card">
         <h3>301 Đàm thoại</h3>
