@@ -894,18 +894,7 @@ function renderRadicalAudioList(){
   });
 }
 
-async function init(){
-  const [manifestRes, radicalRes] = await Promise.all([
-    fetch('modules/pinyin/data/audio_manifest.json?v=1'),
-    fetch('modules/pinyin/data/radical_audio.json?v=1')
-  ]);
-
-  const manifestData = await manifestRes.json();
-  const radicalData = await radicalRes.json();
-
-  audioManifest = manifestData.audio || {};
-  radicalAudio = radicalData.items || [];
-
+function bindRootNavigation(){
   document.querySelectorAll('.nav-btn, .top-nav-btn').forEach(btn => {
     btn.addEventListener('click', () => setPage(btn.dataset.page));
   });
@@ -915,13 +904,45 @@ async function init(){
       setPage('dialogue301');
     }
   });
+}
+
+async function loadPinyinAudioData(){
+  try{
+    const [manifestRes, radicalRes] = await Promise.all([
+      fetch('modules/pinyin/data/audio_manifest.json?v=1'),
+      fetch('modules/pinyin/data/radical_audio.json?v=1')
+    ]);
+
+    if(!manifestRes.ok){
+      throw new Error(`audio_manifest.json: ${manifestRes.status} ${manifestRes.statusText}`);
+    }
+
+    if(!radicalRes.ok){
+      throw new Error(`radical_audio.json: ${radicalRes.status} ${radicalRes.statusText}`);
+    }
+
+    const manifestData = await manifestRes.json();
+    const radicalData = await radicalRes.json();
+
+    audioManifest = manifestData.audio || {};
+    radicalAudio = radicalData.items || [];
+  }catch(err){
+    console.warn('Không tải được dữ liệu audio Pinyin. App vẫn chạy, chỉ phần audio có thể thiếu.', err);
+    audioManifest = {};
+    radicalAudio = [];
+  }
+}
+
+async function init(){
+  bindRootNavigation();
 
   setPage(location.hash === '#dialogue301' ? 'dialogue301' : 'home');
+
+  await loadPinyinAudioData();
 }
 
 init().catch(err => {
   console.error(err);
-  pageContent.innerHTML = `<div class="card"><h3>Lỗi tải dữ liệu</h3><p>${escapeHtml(err.message)}</p></div>`;
 });
 
 
