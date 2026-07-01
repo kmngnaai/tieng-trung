@@ -58,22 +58,21 @@ function setPage(page){
     history.replaceState(null, '', location.pathname + location.search);
   }
 
-  // PATCH_V7_RADICALS_SAME_TAB_FULL_PAGE
-  // Bộ thủ là app đầy đủ riêng, mở cùng tab để giữ layout đẹp.
-if(page === 'radicals'){
-  window.location.href = 'modules/bo-thu-50/index.html';
-  return;
-}
+  // Các module riêng mở full page trong cùng tab.
+  if(page === 'radicals'){
+    window.location.href = 'modules/bo-thu-50/index.html';
+    return;
+  }
 
-if(page === 'pinyin'){
-  window.location.href = 'modules/pinyin/index.html';
-  return;
-}
+  if(page === 'pinyin'){
+    window.location.href = 'modules/pinyin/index.html';
+    return;
+  }
 
-if(page === 'hanziStroke'){
-  window.location.href = 'modules/hanzi-stroke/index.html';
-  return;
-}
+  if(page === 'hanziStroke'){
+    window.location.href = 'modules/hanzi-stroke/index.html';
+    return;
+  }
   document.querySelectorAll('.nav-btn, .top-nav-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.page === page);
   });
@@ -117,9 +116,6 @@ function renderHome(){
     </div>
   `;
 
-  pageContent.querySelectorAll('[data-go]').forEach(btn => {
-    btn.addEventListener('click', () => setPage(btn.dataset.go));
-  });
 }
 
 function renderRadicals(){
@@ -901,8 +897,31 @@ function renderRadicalAudioList(){
 }
 
 function bindRootNavigation(){
-  document.querySelectorAll('.nav-btn, .top-nav-btn').forEach(btn => {
-    btn.addEventListener('click', () => setPage(btn.dataset.page));
+  // Một bộ điều hướng duy nhất cho cả sidebar, top nav và các nút trong trang chủ.
+  document.addEventListener('click', event => {
+    const trigger = event.target.closest('[data-page], [data-go]');
+
+    if(!trigger){
+      return;
+    }
+
+    const page = trigger.dataset.page || trigger.dataset.go;
+
+    const validPages = new Set([
+      'home',
+      'radicals',
+      'pinyin',
+      'hanziStroke',
+      'dialogue301'
+    ]);
+
+    if(!validPages.has(page)){
+      return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+    setPage(page);
   });
 
   window.addEventListener('hashchange', () => {
