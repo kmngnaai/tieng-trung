@@ -187,7 +187,6 @@ function renderWriters(){
         ${charActionButton('stroke-order', '①', 'Hiện thứ tự nét')}
         ${charActionButton('speak', '🔊', 'Phát âm')}
         ${charActionButton('info', 'i', 'Thông tin chữ')}
-        ${charActionButton('reset', '↺', 'Đặt lại')}
       </div>
       <div class="stroke-order" hidden></div>
     `;
@@ -574,8 +573,6 @@ function bindCharActions(item){
         speakChar(item.char);
       }else if(action === 'info'){
         showCharInfo(item.char);
-      }else if(action === 'reset'){
-        resetItem(item);
       }
     });
   });
