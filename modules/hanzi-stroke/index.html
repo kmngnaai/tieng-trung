@@ -4,114 +4,105 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bút thuận chữ Hán</title>
-  <link rel="stylesheet" href="style.css?v=20260701-12" />
+  <link rel="stylesheet" href="style.css?v=20260702-02" />
 </head>
 <body>
   <main class="hanzi-app">
     <header class="app-header">
-      <a class="back-link" href="../../index.html">Trang chủ</a>
-      <div>
-        <p class="eyebrow">Hanzi stroke</p>
-        <h1>Bút thuận chữ Hán</h1>
-        <p>Tìm chữ Hán, xem bút thuận, thứ tự nét và luyện viết.</p>
-      </div>
+      <a class="brand-link" href="../../index.html" aria-label="Về trang chủ">
+        <span class="brand-mark" aria-hidden="true">字</span>
+        <span>Hanzi Stroke</span>
+      </a>
+      <nav class="header-actions" aria-label="Điều hướng">
+        <a class="header-icon" href="../../index.html" aria-label="Trang chủ">⌂</a>
+        <button class="header-icon" id="themeBtn" type="button" aria-label="Đổi giao diện">◐</button>
+        <button class="header-icon" type="button" aria-label="Menu">☰</button>
+      </nav>
     </header>
 
-    <section class="tool-panel" aria-label="Công cụ bút thuận chữ Hán">
-      <label class="field-label" for="hanziInput">Chữ Hán</label>
-      <input
-        id="hanziInput"
-        class="hanzi-input"
-        type="search"
-        value="写汉字"
-        placeholder="Nhập chữ Hán, ví dụ: 我爱中文"
-        autocomplete="off"
-        spellcheck="false"
-      />
+    <h1>Bút thuận chữ Hán</h1>
 
-      <section class="preview-section" aria-live="polite">
-        <div id="emptyState" class="empty-state" hidden>Nhập chữ Hán để xem bút thuận.</div>
-        <div id="writerList" class="writer-list"></div>
-      </section>
+    <div class="hanzi-layout">
+    <section class="options-card" aria-label="Tùy chọn">
+      <h2>Tùy chọn</h2>
 
-      <div class="size-row">
-        <label class="field-label" for="sizeRange">Kích thước: <span id="sizeValue">200px</span></label>
+      <label class="field-group" for="hanziInput">
+        <span>Các ký tự hanzi</span>
+        <input
+          id="hanziInput"
+          class="hanzi-input"
+          type="search"
+          value="写汉字"
+          placeholder="写汉字"
+          autocomplete="off"
+          spellcheck="false"
+        />
+      </label>
+
+      <label class="range-control size-control" for="sizeRange">
+        <span>Kích thước</span>
         <input id="sizeRange" type="range" min="120" max="320" value="200" step="10" />
-      </div>
+        <b id="sizeValue">200px</b>
+      </label>
 
-      <div class="switch-grid">
-        <label class="check-row">
+      <div class="toggle-row">
+        <label class="toggle-pill">
           <input id="horizontalToggle" type="checkbox" />
-          <span>Xem trước ngang</span>
+          <span aria-hidden="true"></span>
+          <strong>Xem trước ngang</strong>
         </label>
-        <label class="check-row">
+        <label class="toggle-pill">
           <input id="autoplayToggle" type="checkbox" />
-          <span>Tự động phát</span>
+          <span aria-hidden="true"></span>
+          <strong>Tự động phát</strong>
         </label>
-        <label class="check-row">
-          <input id="strokeOrderToggle" type="checkbox" />
-          <span>Hiển thị thứ tự nét</span>
+        <label class="toggle-pill">
+          <input id="strokeOrderToggle" type="checkbox" checked />
+          <span aria-hidden="true"></span>
+          <strong>Nét</strong>
         </label>
-      </div>
-
-      <div class="actions primary-actions" aria-label="Thao tác chính">
-        <button id="playBtn" class="primary-btn" type="button">Phát</button>
-        <button id="quizBtn" type="button">Viết</button>
-        <button id="resetBtn" type="button">Reset</button>
-      </div>
-
-      <div class="actions secondary-actions" aria-label="Thao tác phụ">
-        <button id="quizNoOutlineBtn" type="button">Không viền</button>
-        <button id="embedBtn" type="button">Nhúng</button>
-      </div>
-
-      <div id="embedBox" class="embed-box" hidden>
-        <label class="field-label" for="embedCode">Mã iframe</label>
-        <textarea id="embedCode" readonly rows="4"></textarea>
-        <p id="embedStatus" class="status"></p>
       </div>
 
       <details class="advanced-settings">
         <summary>Cài đặt nâng cao</summary>
         <div class="advanced-grid">
-          <div class="preset-section">
-            <div class="preset-title">Chọn nhanh màu mặc định</div>
-            <div class="preset-grid" aria-label="Màu mặc định">
-              <button id="presetBrightBtn" type="button" class="preset-btn">
-                <span class="preset-swatch" style="--c1:#00C7FE;--c2:#111827"></span>
-                <span>
-                  <strong>Mặc định xanh sáng</strong>
-                  <small>Bộ thủ #00C7FE</small>
-                </span>
-              </button>
-
-              <button id="presetClassicBtn" type="button" class="preset-btn">
-                <span class="preset-swatch" style="--c1:#2C416D;--c2:#CD3636"></span>
-                <span>
-                  <strong>Xanh đậm / đỏ</strong>
-                  <small>Bộ thủ #2C416D · Nét #CD3636</small>
-                </span>
-              </button>
-            </div>
-          </div>
-
           <label class="check-row">
             <input id="showGridToggle" type="checkbox" checked />
             <span>Hiển thị ô lưới</span>
           </label>
 
+          <div class="preset-section">
+            <div class="preset-title">Màu nhanh</div>
+            <div class="preset-grid" aria-label="Màu nhanh">
+              <button id="presetBrightBtn" type="button" class="preset-btn" title="Bộ thủ xanh sáng, nét chính đen" aria-label="Bộ thủ xanh sáng, nét chính đen">
+                <span class="preset-swatch" style="--c1:#00C7FE;--c2:#111827;--c3:#f97316"></span>
+              </button>
+
+              <button id="presetClassicBtn" type="button" class="preset-btn" title="Bộ thủ xanh đậm, nét chính đỏ" aria-label="Bộ thủ xanh đậm, nét chính đỏ">
+                <span class="preset-swatch" style="--c1:#2C416D;--c2:#CD3636;--c3:#f97316"></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="advanced-actions" aria-label="Thao tác luyện tập">
+            <button id="playBtn" type="button">Phát</button>
+            <button id="quizBtn" type="button">Viết</button>
+            <button id="quizNoOutlineBtn" type="button">Không viền</button>
+            <button id="embedBtn" type="button">Mã nhúng</button>
+          </div>
+
           <label class="range-control" for="animationSpeedRange">
-            <span>Tốc độ nét vẽ: <b id="animationSpeedValue">1.0</b></span>
+            <span>Tốc độ nét vẽ <b id="animationSpeedValue">1.0</b></span>
             <input id="animationSpeedRange" type="range" min="0.3" max="5" step="0.1" value="1" />
           </label>
 
           <label class="range-control" for="strokeDelayRange">
-            <span>Độ trễ giữa nét: <b id="strokeDelayValue">180ms</b></span>
+            <span>Độ trễ giữa nét <b id="strokeDelayValue">180ms</b></span>
             <input id="strokeDelayRange" type="range" min="0" max="1500" step="50" value="180" />
           </label>
 
           <label class="range-control" for="drawingWidthRange">
-            <span>Độ dày nét luyện viết: <b id="drawingWidthValue">34</b></span>
+            <span>Độ dày nét luyện viết <b id="drawingWidthValue">34</b></span>
             <input id="drawingWidthRange" type="range" min="4" max="40" step="1" value="34" />
           </label>
 
@@ -139,14 +130,34 @@
           </div>
 
           <label class="range-control" for="hintAfterMissesRange">
-            <span>Gợi ý sau khi sai: <b id="hintAfterMissesValue">2</b></span>
+            <span>Gợi ý sau khi sai <b id="hintAfterMissesValue">2</b></span>
             <input id="hintAfterMissesRange" type="range" min="1" max="5" step="1" value="2" />
           </label>
 
           <button id="resetSettingsBtn" class="wide-btn" type="button">Khôi phục mặc định</button>
         </div>
       </details>
+
+      <div class="share-actions" aria-label="Thao tác chính">
+        <button id="shareBtn" type="button">Chia sẻ</button>
+        <button id="resetBtn" class="primary-btn" type="button">Đặt lại</button>
+      </div>
+
+      <div id="embedBox" class="embed-box" hidden>
+        <label class="field-group" for="embedCode">
+          <span>Mã iframe</span>
+          <textarea id="embedCode" readonly rows="4"></textarea>
+        </label>
+        <p id="embedStatus" class="status"></p>
+      </div>
     </section>
+
+    <section class="preview-section" aria-live="polite" aria-label="Xem trước">
+      <h2>Xem trước</h2>
+      <div id="emptyState" class="empty-state" hidden>Nhập chữ Hán để xem bút thuận.</div>
+      <div id="writerList" class="writer-list"></div>
+    </section>
+    </div>
   </main>
 
   <dialog id="charInfoDialog" class="char-info-dialog">
@@ -181,6 +192,6 @@
   </dialog>
 
   <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.7/dist/hanzi-writer.min.js"></script>
-  <script src="app.js?v=20260701-12"></script>
+  <script src="app.js?v=20260702-02"></script>
 </body>
 </html>
