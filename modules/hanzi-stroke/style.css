@@ -707,6 +707,129 @@ a:focus-visible{
   font-size:12px;
 }
 
+.char-info-panel{
+  width:100%;
+  max-width:260px;
+  min-width:0;
+  color:#243447;
+  font-size:12px;
+  line-height:1.45;
+}
+
+.char-info-empty{
+  margin:0;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.char-info-summary{
+  display:grid;
+  gap:8px;
+  border:1px solid rgba(230,216,199,.72);
+  border-radius:8px;
+  background:rgba(255,253,249,.72);
+  padding:9px 10px;
+}
+
+.char-info-title{
+  display:flex;
+  align-items:baseline;
+  gap:6px;
+  min-width:0;
+}
+
+.char-info-title strong{
+  color:#111827;
+  font-size:18px;
+  line-height:1;
+}
+
+.char-info-title span{
+  color:#2c416d;
+  font-weight:800;
+}
+
+.char-info-summary dl{
+  display:grid;
+  gap:5px;
+  margin:0;
+}
+
+.char-info-summary dl div{
+  display:grid;
+  grid-template-columns:64px minmax(0,1fr);
+  gap:8px;
+}
+
+.char-info-summary dt{
+  color:var(--muted);
+  font-weight:800;
+}
+
+.char-info-summary dd{
+  margin:0;
+  color:#1f2937;
+  font-weight:650;
+}
+
+.char-related{
+  display:grid;
+  gap:6px;
+  margin-top:8px;
+}
+
+.char-related-title{
+  color:#111827;
+  font-size:12px;
+  font-weight:900;
+}
+
+.char-related ul{
+  display:grid;
+  gap:0;
+  max-height:178px;
+  margin:0;
+  padding:0;
+  overflow:auto;
+  border:1px solid rgba(230,216,199,.72);
+  border-radius:8px;
+  background:#fffdf9;
+  list-style:none;
+}
+
+.char-related li{
+  display:grid;
+  grid-template-columns:auto minmax(52px,auto) minmax(0,1fr);
+  gap:7px;
+  align-items:baseline;
+  min-width:0;
+  border-bottom:1px solid rgba(230,216,199,.58);
+  padding:7px 8px;
+}
+
+.char-related li:last-child{
+  border-bottom:0;
+}
+
+.char-related strong{
+  color:#111827;
+  font-size:13px;
+  line-height:1.1;
+}
+
+.char-related span{
+  color:#2c416d;
+  font-size:11px;
+  font-weight:800;
+  white-space:nowrap;
+}
+
+.char-related small{
+  min-width:0;
+  color:#4b5563;
+  font-size:11px;
+}
+
 .char-info-dialog{
   width:min(420px,calc(100vw - 28px));
   border:1px solid var(--line);
@@ -781,6 +904,16 @@ a:focus-visible{
   margin:0;
   font-weight:700;
   word-break:break-word;
+}
+
+.char-info-extra{
+  display:grid;
+  gap:10px;
+}
+
+.dialog-hanviet{
+  color:#1f2937;
+  font-size:13px;
 }
 
 .embed-body{
