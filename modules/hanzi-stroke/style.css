@@ -27,6 +27,7 @@ body{
   font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
   background:var(--bg);
   color:var(--text);
+  overflow-x:hidden;
 }
 
 body.is-dim{
@@ -52,13 +53,14 @@ button{
 }
 
 .hanzi-app{
-  width:min(100%,328px);
+  width:100%;
+  max-width:none;
   min-height:100vh;
-  margin:0 auto;
-  padding:0 8px 26px;
+  margin:0;
+  padding:0 12px 26px;
   background:var(--page);
-  border-left:1px solid rgba(23,58,89,.08);
-  border-right:1px solid rgba(23,58,89,.08);
+  border-left:0;
+  border-right:0;
 }
 
 .app-header{
@@ -70,7 +72,7 @@ button{
   justify-content:space-between;
   gap:12px;
   min-height:44px;
-  margin:0 -8px 22px;
+  margin:0 -12px 22px;
   padding:8px 12px;
   border-bottom:1px solid var(--line);
   background:rgba(255,250,244,.94);
@@ -131,7 +133,7 @@ button{
 h1{
   margin:0 0 18px;
   text-align:center;
-  font-size:23px;
+  font-size:clamp(24px,6vw,38px);
   line-height:1.15;
   font-weight:900;
 }
@@ -146,6 +148,7 @@ h2{
 .hanzi-layout{
   display:grid;
   gap:18px;
+  min-width:0;
 }
 
 .options-card,
@@ -160,7 +163,8 @@ h2{
   display:grid;
   gap:16px;
   align-content:start;
-  padding:16px 18px;
+  min-width:0;
+  padding:14px;
 }
 
 .field-group{
@@ -235,73 +239,53 @@ input[type="range"]{
   accent-color:var(--accent);
 }
 
-.toggle-row{
+.quick-toggle-row{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   gap:8px;
-}
-
-.toggle-pill{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:6px;
   min-width:0;
-  min-height:42px;
-  border:1px solid #e0d0be;
-  border-radius:8px;
-  background:#fffdf9;
-  padding:7px 6px;
-  color:#111827;
-  font-size:13px;
-  font-weight:700;
-  line-height:1.2;
 }
 
-.toggle-pill input{
+.quick-toggle{
+  position:relative;
+  display:grid;
+  place-items:center;
+  min-height:40px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:#fffdf9;
+  cursor:pointer;
+}
+
+.quick-toggle input{
   position:absolute;
   opacity:0;
   pointer-events:none;
 }
 
-.toggle-pill span{
-  position:relative;
-  width:26px;
-  height:15px;
-  flex:0 0 auto;
-  border-radius:999px;
+.quick-toggle span{
+  display:grid;
+  place-items:center;
+  width:100%;
+  height:100%;
+  color:var(--accent);
+  font-size:17px;
+  font-weight:900;
+  line-height:1;
+}
+
+.quick-toggle:has(input:checked){
+  border-color:var(--accent);
   background:var(--accent);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);
 }
 
-.toggle-pill span::after{
-  content:"";
-  position:absolute;
-  top:2px;
-  left:2px;
-  width:11px;
-  height:11px;
-  border-radius:50%;
-  background:#fff;
-  transition:transform .16s ease;
+.quick-toggle:has(input:checked) span{
+  color:#fff;
 }
 
-.toggle-pill input:checked + span{
-  background:var(--accent-2);
-}
-
-.toggle-pill input:checked + span::after{
-  transform:translateX(11px);
-}
-
-.toggle-pill input:focus-visible + span{
+.quick-toggle:has(input:focus-visible){
   outline:3px solid var(--focus);
   outline-offset:2px;
-}
-
-.toggle-pill strong{
-  min-width:0;
-  white-space:nowrap;
 }
 
 .advanced-settings{
@@ -523,8 +507,9 @@ input[type="range"]{
   display:grid;
   gap:16px;
   align-content:start;
+  min-width:0;
   margin-top:0;
-  padding:18px 14px;
+  padding:14px;
 }
 
 .empty-state{
@@ -843,22 +828,10 @@ a:focus-visible{
   font-weight:850;
 }
 
-@media(min-width:390px){
-  .hanzi-app{
-    width:328px;
-    padding-left:12px;
-    padding-right:12px;
-  }
-
-  .app-header{
-    margin-left:-12px;
-    margin-right:-12px;
-  }
-}
-
 @media(min-width:720px){
   .hanzi-app{
     width:min(680px,calc(100% - 48px));
+    max-width:none;
     padding:0 20px 34px;
   }
 
@@ -972,12 +945,9 @@ a:focus-visible{
     padding-right:12px;
   }
 
-  .toggle-row{
-    gap:8px;
-  }
-
-  .toggle-pill{
-    font-size:11px;
+  .app-header{
+    margin-left:-8px;
+    margin-right:-8px;
   }
 
   .writer-box{

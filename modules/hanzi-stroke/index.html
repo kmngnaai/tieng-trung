@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bút thuận chữ Hán</title>
-  <link rel="stylesheet" href="style.css?v=20260702-04" />
+  <link rel="stylesheet" href="style.css?v=20260702-05" />
 </head>
 <body>
   <main class="hanzi-app">
@@ -45,21 +45,18 @@
         <b id="sizeValue">200px</b>
       </label>
 
-      <div class="toggle-row">
-        <label class="toggle-pill">
+      <div class="quick-toggle-row" aria-label="Tùy chọn nhanh">
+        <label class="quick-toggle" title="Xem trước ngang" aria-label="Xem trước ngang">
           <input id="horizontalToggle" type="checkbox" />
-          <span aria-hidden="true"></span>
-          <strong>Ngang</strong>
+          <span aria-hidden="true">↔</span>
         </label>
-        <label class="toggle-pill">
+        <label class="quick-toggle" title="Tự động phát" aria-label="Tự động phát">
           <input id="autoplayToggle" type="checkbox" />
-          <span aria-hidden="true"></span>
-          <strong>Tự phát</strong>
+          <span aria-hidden="true">▶</span>
         </label>
-        <label class="toggle-pill">
+        <label class="quick-toggle" title="Hiển thị thứ tự nét" aria-label="Hiển thị thứ tự nét">
           <input id="strokeOrderToggle" type="checkbox" checked />
-          <span aria-hidden="true"></span>
-          <strong>Nét</strong>
+          <span aria-hidden="true">①</span>
         </label>
       </div>
 
@@ -192,6 +189,6 @@
   </dialog>
 
   <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.7/dist/hanzi-writer.min.js"></script>
-  <script src="app.js?v=20260702-04"></script>
+  <script src="app.js?v=20260702-05"></script>
 </body>
 </html>
