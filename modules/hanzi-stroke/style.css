@@ -11,6 +11,8 @@
   --accent-2:#00a9d8;
   --focus:rgba(0,169,216,.22);
   --shadow:0 8px 22px rgba(44,65,109,.12);
+  --font-ui:Inter,"Be Vietnam Pro","Segoe UI",Arial,sans-serif;
+  --font-zh:"Noto Sans SC","Microsoft YaHei","PingFang SC","Source Han Sans SC",sans-serif;
 }
 
 *{box-sizing:border-box}
@@ -24,7 +26,7 @@ html{background:var(--bg)}
 body{
   margin:0;
   min-height:100vh;
-  font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  font-family:var(--font-ui);
   background:var(--bg);
   color:var(--text);
   overflow-x:hidden;
@@ -45,7 +47,8 @@ body.is-dim{
 button,
 input,
 textarea{
-  font:inherit;
+  font-family:var(--font-ui);
+  font-size:inherit;
 }
 
 button{
@@ -58,6 +61,7 @@ button{
   min-height:100vh;
   margin:0;
   padding:0 12px 26px;
+  font-family:var(--font-ui);
   background:var(--page);
   border-left:0;
   border-right:0;
@@ -153,6 +157,8 @@ h2{
 
 .options-card,
 .preview-section{
+  width:100%;
+  max-width:100%;
   border:1px solid var(--line);
   border-radius:8px;
   background:var(--panel);
@@ -179,6 +185,7 @@ h2{
 .hanzi-input,
 textarea{
   width:100%;
+  min-width:0;
   border:1px solid #d8c9b8;
   border-radius:8px;
   background:#fff;
@@ -235,6 +242,7 @@ textarea:focus{
 
 input[type="range"]{
   width:100%;
+  min-width:0;
   height:18px;
   accent-color:var(--accent);
 }
@@ -250,6 +258,7 @@ input[type="range"]{
   position:relative;
   display:grid;
   place-items:center;
+  min-width:0;
   min-height:40px;
   border:1px solid var(--line);
   border-radius:999px;
@@ -566,6 +575,13 @@ input[type="range"]{
   padding:0;
 }
 
+.char-main{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  min-width:0;
+}
+
 .char-label{
   display:grid;
   place-items:center;
@@ -576,14 +592,28 @@ input[type="range"]{
   border-radius:8px;
   background:#fffaf2;
   color:#0f172a;
+  font-family:var(--font-zh);
   font-size:18px;
   font-weight:900;
+}
+
+.char-pinyin{
+  min-width:0;
+  color:#2c416d;
+  font-family:var(--font-zh);
+  font-size:12px;
+  font-weight:800;
+  line-height:1;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
 .char-meta{
   color:#2c416d;
   font-size:10px;
   font-weight:700;
+  white-space:nowrap;
 }
 
 .writer-box{
@@ -707,84 +737,159 @@ a:focus-visible{
   font-size:12px;
 }
 
+.char-info-tools{
+  display:flex;
+  justify-content:center;
+  width:100%;
+  max-width:240px;
+}
+
+.char-info-toggle{
+  display:inline-grid;
+  place-items:center;
+  width:34px;
+  height:30px;
+  min-height:30px;
+  border:1px solid #e2d6c4;
+  border-radius:999px;
+  background:#fffdf9;
+  color:#173a59;
+  padding:0;
+  font-size:15px;
+  font-weight:900;
+  box-shadow:0 1px 4px rgba(15,23,42,.05);
+}
+
+.char-info-toggle:hover,
+.char-info-toggle.is-active{
+  border-color:var(--accent);
+  background:var(--accent);
+  color:#fff;
+}
+
+.char-info-panel[hidden]{
+  display:none;
+}
+
 .char-info-panel{
   width:100%;
   max-width:260px;
   min-width:0;
+  margin-top:2px;
   color:#243447;
+  font-family:var(--font-ui);
+  font-size:13px;
+  line-height:1.5;
+  animation:infoPanelIn .16s ease;
+}
+
+@keyframes infoPanelIn{
+  from{
+    opacity:0;
+    transform:translateY(-4px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.dict-empty{
+  margin:0;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:600;
+}
+
+.dict-info{
+  display:grid;
+  gap:10px;
+  min-width:0;
+  color:#1f2937;
+  font-family:var(--font-ui);
   font-size:12px;
   line-height:1.45;
 }
 
-.char-info-empty{
-  margin:0;
-  color:var(--muted);
-  font-size:12px;
-}
-
-.char-info-summary{
-  display:grid;
-  gap:8px;
+.dict-title{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  min-width:0;
   border:1px solid rgba(230,216,199,.72);
   border-radius:8px;
   background:rgba(255,253,249,.72);
   padding:9px 10px;
 }
 
-.char-info-title{
-  display:flex;
-  align-items:baseline;
+.dict-title strong{
+  color:#111827;
+  font-family:var(--font-zh);
+  font-size:20px;
+  font-weight:900;
+  line-height:1;
+}
+
+.dict-title span{
+  color:#2c416d;
+  font-family:var(--font-zh);
+  font-size:12px;
+  font-weight:800;
+  line-height:1;
+}
+
+.dict-grid{
+  display:grid;
+  gap:0;
+  margin:0;
+  border:1px solid rgba(230,216,199,.72);
+  border-radius:8px;
+  background:#fffdf9;
+  overflow:hidden;
+}
+
+.dict-row{
+  display:grid;
+  grid-template-columns:72px minmax(0,1fr);
+  gap:8px;
+  min-width:0;
+  border-bottom:1px solid rgba(230,216,199,.58);
+  padding:8px 10px;
+}
+
+.dict-row:last-child{
+  border-bottom:0;
+}
+
+.dict-label{
+  color:var(--muted);
+  font-size:12px;
+  font-weight:800;
+}
+
+.dict-value{
+  margin:0;
+  color:#1f2937;
+  font-size:12px;
+  font-weight:600;
+  line-height:1.45;
+  min-width:0;
+  word-break:break-word;
+}
+
+.dict-related{
+  display:grid;
   gap:6px;
   min-width:0;
 }
 
-.char-info-title strong{
-  color:#111827;
-  font-size:18px;
-  line-height:1;
-}
-
-.char-info-title span{
-  color:#2c416d;
-  font-weight:800;
-}
-
-.char-info-summary dl{
-  display:grid;
-  gap:5px;
-  margin:0;
-}
-
-.char-info-summary dl div{
-  display:grid;
-  grid-template-columns:64px minmax(0,1fr);
-  gap:8px;
-}
-
-.char-info-summary dt{
-  color:var(--muted);
-  font-weight:800;
-}
-
-.char-info-summary dd{
-  margin:0;
-  color:#1f2937;
-  font-weight:650;
-}
-
-.char-related{
-  display:grid;
-  gap:6px;
-  margin-top:8px;
-}
-
-.char-related-title{
+.dict-related-title{
   color:#111827;
   font-size:12px;
   font-weight:900;
 }
 
-.char-related ul{
+.dict-related ul{
   display:grid;
   gap:0;
   max-height:178px;
@@ -797,37 +902,78 @@ a:focus-visible{
   list-style:none;
 }
 
-.char-related li{
+.dict-related li{
   display:grid;
-  grid-template-columns:auto minmax(52px,auto) minmax(0,1fr);
+  grid-template-columns:minmax(38px,auto) minmax(54px,auto) minmax(0,1fr);
   gap:7px;
-  align-items:baseline;
+  align-items:center;
   min-width:0;
   border-bottom:1px solid rgba(230,216,199,.58);
   padding:7px 8px;
 }
 
-.char-related li:last-child{
+.dict-related li:last-child{
   border-bottom:0;
 }
 
-.char-related strong{
+.dict-related strong{
   color:#111827;
-  font-size:13px;
+  font-family:var(--font-zh);
+  font-size:12px;
+  font-weight:850;
   line-height:1.1;
 }
 
-.char-related span{
+.related-pinyin{
   color:#2c416d;
+  font-family:var(--font-zh);
   font-size:11px;
   font-weight:800;
   white-space:nowrap;
 }
 
-.char-related small{
+.related-meaning{
   min-width:0;
   color:#4b5563;
-  font-size:11px;
+  font-size:12px;
+  font-weight:500;
+  line-height:1.35;
+}
+
+.char-info-panel .dict-info{
+  gap:9px;
+}
+
+.char-info-panel .dict-title{
+  padding:8px 10px;
+}
+
+.char-info-panel .dict-grid{
+  border-radius:8px;
+}
+
+.char-info-dialog .dict-info{
+  gap:12px;
+}
+
+.char-info-dialog .dict-title{
+  padding:12px 14px;
+}
+
+.char-info-dialog .dict-title strong{
+  font-size:24px;
+}
+
+.char-info-dialog .dict-title span{
+  font-size:12px;
+}
+
+.char-info-dialog .dict-label,
+.char-info-dialog .dict-value,
+.char-info-dialog .dict-related-title,
+.char-info-dialog .dict-related strong,
+.char-info-dialog .related-meaning{
+  font-size:12px;
 }
 
 .char-info-dialog{
@@ -837,6 +983,7 @@ a:focus-visible{
   padding:0;
   background:#fff;
   color:var(--text);
+  font-family:var(--font-ui);
   box-shadow:0 30px 80px rgba(15,23,42,.24);
 }
 
@@ -865,55 +1012,7 @@ a:focus-visible{
 
 .char-info-content{
   display:grid;
-  gap:14px;
   padding:0 18px 18px;
-}
-
-.char-info-large{
-  display:grid;
-  place-items:center;
-  min-height:116px;
-  border:1px solid var(--line-cool);
-  border-radius:8px;
-  background:var(--panel-soft);
-  font-size:82px;
-  font-weight:900;
-  line-height:1;
-}
-
-.char-info-list{
-  display:grid;
-  gap:8px;
-  margin:0;
-}
-
-.char-info-list div{
-  display:grid;
-  grid-template-columns:88px minmax(0,1fr);
-  gap:10px;
-  border-bottom:1px solid var(--line-cool);
-  padding:8px 0;
-}
-
-.char-info-list dt{
-  color:var(--muted);
-  font-weight:800;
-}
-
-.char-info-list dd{
-  margin:0;
-  font-weight:700;
-  word-break:break-word;
-}
-
-.char-info-extra{
-  display:grid;
-  gap:10px;
-}
-
-.dialog-hanviet{
-  color:#1f2937;
-  font-size:13px;
 }
 
 .embed-body{
@@ -1000,7 +1099,8 @@ a:focus-visible{
 
   .char-head,
   .stroke-order,
-  .char-actions{
+  .char-actions,
+  .char-info-tools{
     max-width:260px;
   }
 
