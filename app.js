@@ -50,6 +50,34 @@ function escapeHtml(s){
   }[ch]));
 }
 
+
+function normalizeDialogue301Title(title){
+  return String(title || '')
+    .replace(/^\s*\d+\s*/, '')
+    .replace(/\s*[-—–]\s*/g, ' · ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function getDialogue301ShortTitle(data, lesson){
+  const raw = data?.title || lesson?.title || '301 Đàm thoại';
+  return normalizeDialogue301Title(raw) || raw;
+}
+
+function getDialogue301LessonTitleLine(lesson){
+  return normalizeDialogue301Title(lesson?.title) || lesson?.title || '';
+}
+
+function findColumnIndex(header, patterns){
+  return header.findIndex(cell => {
+    const text = String(cell || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+    return patterns.some(pattern => text.includes(pattern));
+  });
+}
+
 function setPage(page){
   currentPage = page;
   document.body.classList.toggle('is-dialogue301', page === 'dialogue301');
@@ -156,16 +184,22 @@ async function renderDialogue301(){
     if(currentPage !== 'dialogue301') return;
 
     pageContent.innerHTML = `
-      <div class="dialogue301-view">
-        <section class="card dialogue301-lesson-panel">
-          <div>
-            <div class="eyebrow">301 Đàm thoại</div>
-            <h3>Chọn bài học</h3>
-          </div>
-          <div class="dialogue301-lessons" id="dialogue301LessonList"></div>
-        </section>
-        <div class="dialogue301-content" id="dialogue301LessonContent"></div>
-      </div>
+      <section class="dialogue301-shell">
+        <a class="dialogue301-search search-entry" href="#" role="button" aria-label="Tìm bài học">
+          <span aria-hidden="true">⌕</span>
+          <span>Tìm bài học...</span>
+        </a>
+        <div class="dialogue301-view">
+          <section class="dialogue301-lesson-panel">
+            <div class="dialogue301-panel-head">
+              <div class="eyebrow">301 Đàm thoại</div>
+              <h3>Chọn bài học</h3>
+            </div>
+            <div class="dialogue301-lessons" id="dialogue301LessonList"></div>
+          </section>
+          <div class="dialogue301-content" id="dialogue301LessonContent"></div>
+        </div>
+      </section>
     `;
 
     renderDialogue301LessonList(lessons);
@@ -188,7 +222,7 @@ function renderDialogue301LessonList(lessons){
   listEl.innerHTML = lessons.map(lesson => `
     <button class="dialogue301-lesson-btn" type="button" data-lesson-id="${escapeHtml(lesson.lesson_id)}">
       <span>Bài ${escapeHtml(lesson.lesson_no)}</span>
-      <strong>${escapeHtml(lesson.title)}</strong>
+      <strong>${escapeHtml(getDialogue301LessonTitleLine(lesson))}</strong>
     </button>
   `).join('');
 
@@ -255,19 +289,20 @@ function getDialogue301LessonDir(data, lesson){
 
 function renderDialogue301Lesson(data, lesson){
   const lessonDir = getDialogue301LessonDir(data, lesson);
+  const shortTitle = getDialogue301ShortTitle(data, lesson);
+  const lessonNo = data.lesson_no || lesson?.lesson_no || '';
   const sections = data.sections || {};
   const sectionHtml = DIALOGUE301_SECTIONS
     .map(([key, label]) => renderDialogue301Section(key, label, sections[key]))
     .join('');
-  const slidesHtml = renderDialogue301MediaSection('slides', 'Slide gốc / ảnh tĩnh', data.slides, lessonDir);
+  const slidesHtml = renderDialogue301MediaSection('slides', 'Slide gốc', data.slides, lessonDir);
   const videosHtml = renderDialogue301VideoSection(data.videos, lessonDir);
 
   return `
     <article class="dialogue301-lesson-head">
       <div>
-        <div class="eyebrow">Bài ${escapeHtml(data.lesson_no || lesson?.lesson_no || '')}</div>
-        <h3>${escapeHtml(data.title || lesson?.title || '301 Đàm thoại')}</h3>
-        ${data.source_file ? `<p>Nguồn: ${escapeHtml(data.source_file)}</p>` : ''}
+        <div class="eyebrow">Bài ${escapeHtml(lessonNo)}</div>
+        <h3>Bài ${escapeHtml(lessonNo)} · ${escapeHtml(shortTitle)}</h3>
       </div>
       ${data.slide_count ? `<div class="dialogue301-count">${escapeHtml(data.slide_count)} slide</div>` : ''}
     </article>
@@ -290,7 +325,7 @@ function renderDialogue301Section(key, label, items){
   }
 
   const blocks = items
-    .map(item => renderDialogue301TextBlock(item))
+    .map(item => renderDialogue301TextBlock(item, key))
     .filter(Boolean)
     .join('');
 
@@ -298,9 +333,24 @@ function renderDialogue301Section(key, label, items){
     return '';
   }
 
+  const sectionNoMap = {
+    vocabulary: '1',
+    sentences: '2',
+    dialogue: '3',
+    notes: '4',
+    grammar: '4',
+    extension: '4',
+    practice: '4'
+  };
+  const displayLabel = key === 'grammar' ? 'Ngữ pháp / Ngữ âm' : label;
+  const number = sectionNoMap[key] || '';
+
   return `
-    <section class="card dialogue301-section" data-section="${escapeHtml(key)}">
-      <h3>${escapeHtml(label)}</h3>
+    <section class="card dialogue301-section dialogue301-section-${escapeHtml(key)}" data-section="${escapeHtml(key)}">
+      <div class="dialogue301-section-title">
+        <h3>${number ? `${escapeHtml(number)}. ` : ''}${escapeHtml(displayLabel)}</h3>
+        ${key === 'vocabulary' || key === 'sentences' || key === 'dialogue' ? '<span>Xem tất cả ›</span>' : ''}
+      </div>
       <div class="dialogue301-blocks">
         ${blocks}
       </div>
@@ -308,7 +358,7 @@ function renderDialogue301Section(key, label, items){
   `;
 }
 
-function renderDialogue301TextBlock(item){
+function renderDialogue301TextBlock(item, sectionKey){
   const slide = item && typeof item === 'object' ? item.slide : '';
   const text = cleanLessonText(item && typeof item === 'object' ? (item.text || '') : item);
 
@@ -316,13 +366,15 @@ function renderDialogue301TextBlock(item){
     return '';
   }
 
-  const vocabHtml = renderDialogue301VocabGrid(text);
-  const tableHtml = vocabHtml ? '' : renderDialogue301PipeTable(text);
+  const vocabHtml = sectionKey === 'vocabulary' ? renderDialogue301VocabList(text) : '';
+  const sentenceHtml = sectionKey === 'sentences' ? renderDialogue301SentenceList(text) : '';
+  const dialogueHtml = sectionKey === 'dialogue' ? renderDialogue301DialogueBlock(text) : '';
+  const tableHtml = vocabHtml || sentenceHtml || dialogueHtml ? '' : renderDialogue301PipeTable(text);
 
   return `
-    <article class="dialogue301-text-block">
+    <article class="dialogue301-text-block ${sectionKey ? `dialogue301-text-${escapeHtml(sectionKey)}` : ''}">
       ${slide ? `<div class="dialogue301-slide-tag">Slide ${escapeHtml(slide)}</div>` : ''}
-      ${vocabHtml || tableHtml || `<pre>${escapeHtml(text)}</pre>`}
+      ${vocabHtml || sentenceHtml || dialogueHtml || tableHtml || `<pre>${escapeHtml(text)}</pre>`}
     </article>
   `;
 }
@@ -372,6 +424,108 @@ function isDialogue301PinyinCell(text){
 
   return /^[A-Za-zÀ-ÖØ-öø-ÿĀ-ſƀ-ɏǍǎǏǐǑǒǓǔǕ-ǜḀ-ỿÜü\s'.’·-]+$/u.test(value) &&
     /[A-Za-zÀ-ÖØ-öø-ÿĀ-ſƀ-ɏǍǎǏǐǑǒǓǔǕ-ǜḀ-ỿÜü]/u.test(value);
+}
+
+function parseDialogue301RowsFromTable(text){
+  const rows = parseDialogue301PipeTable(text);
+  if(!rows || rows.length < 2 || !isDialogue301HeaderRow(rows[0])) return null;
+
+  const header = rows[0];
+  const chineseIndex = findColumnIndex(header, ['tieng trung', 'tu vung', '中文', 'han']);
+  const pinyinIndex = findColumnIndex(header, ['phien am', 'pinyin']);
+  const meaningIndex = findColumnIndex(header, ['nghia', 'viet', '越南']);
+
+  if(chineseIndex < 0 || pinyinIndex < 0) return null;
+
+  return rows.slice(1)
+    .map(row => ({
+      hanzi: row[chineseIndex] || '',
+      pinyin: row[pinyinIndex] || '',
+      meaning: meaningIndex >= 0 ? (row[meaningIndex] || '') : ''
+    }))
+    .filter(row => row.hanzi || row.pinyin || row.meaning);
+}
+
+function renderDialogue301VocabList(text){
+  let rows = parseDialogue301RowsFromTable(text);
+
+  if(!rows){
+    const cards = parseDialogue301VocabPairs(text);
+    rows = cards ? cards.map(card => ({ ...card, meaning: '' })) : null;
+  }
+
+  if(!rows || !rows.length){
+    return '';
+  }
+
+  return `
+    <div class="vocab-list">
+      ${rows.map(row => `
+        <div class="vocab-row">
+          <div class="vocab-row-hanzi">${escapeHtml(row.hanzi)}</div>
+          <div class="vocab-row-pinyin">${escapeHtml(row.pinyin)}</div>
+          <div class="vocab-row-meaning">${row.meaning ? escapeHtml(row.meaning) : '&nbsp;'}</div>
+          <button class="vocab-audio-btn" type="button" aria-label="Nghe ${escapeHtml(row.hanzi)}">🔊</button>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function renderDialogue301SentenceList(text){
+  const rows = parseDialogue301RowsFromTable(text);
+  if(!rows || !rows.length){
+    return '';
+  }
+
+  return `
+    <div class="sentence-list">
+      ${rows.map((row, index) => `
+        <div class="sentence-row">
+          <span class="sentence-index">${index + 1}</span>
+          <div class="sentence-main">
+            <strong>${escapeHtml(row.hanzi)}</strong>
+            <span>${escapeHtml(row.pinyin)}</span>
+            ${row.meaning ? `<small>${escapeHtml(row.meaning)}</small>` : ''}
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function renderDialogue301DialogueBlock(text){
+  const rows = parseDialogue301RowsFromTable(text);
+  if(rows && rows.length){
+    return `
+      <div class="dialogue-line-list">
+        ${rows.map((row, index) => `
+          <div class="dialogue-line">
+            <span class="dialogue-speaker">${index % 2 === 0 ? 'A' : 'B'}:</span>
+            <div>
+              <strong>${escapeHtml(row.hanzi)}</strong>
+              <span>${escapeHtml(row.pinyin)}</span>
+              ${row.meaning ? `<small>${escapeHtml(row.meaning)}</small>` : ''}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  const lines = String(text || '').split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+  if(!lines.length) return '';
+
+  return `
+    <div class="dialogue-line-list">
+      ${lines.map((line, index) => `
+        <div class="dialogue-line">
+          <span class="dialogue-speaker">${index % 2 === 0 ? 'A' : 'B'}:</span>
+          <div><strong>${escapeHtml(line)}</strong></div>
+        </div>
+      `).join('')}
+    </div>
+  `;
 }
 
 function parseDialogue301VocabPairs(text){
