@@ -13,6 +13,7 @@ let dialogue301Filter = 'all';
 const pageTitle = $('#pageTitle');
 const pageSubtitle = $('#pageSubtitle');
 const pageContent = $('#pageContent');
+const homePageContent = pageContent ? pageContent.innerHTML : '';
 
 const DIALOGUE301_BASE_CANDIDATES = (() => {
   const path = window.location.pathname.replace(/\/+$/g, '');
@@ -73,9 +74,7 @@ function setPage(page){
     window.location.href = 'modules/hanzi-stroke/index.html';
     return;
   }
-  document.querySelectorAll('.nav-btn, .top-nav-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.page === page);
-  });
+  updateNavActive(page);
 
   if(page === 'home') renderHome();
   if(page === 'radicals') renderRadicals();
@@ -84,38 +83,10 @@ function setPage(page){
 }
 
 function renderHome(){
-  pageTitle.textContent = 'Trang chủ';
-  pageSubtitle.textContent = 'Nền tảng chung để mở rộng từ Bộ thủ 50 sang Pinyin và bài học.';
-
-  pageContent.innerHTML = `
-    <div class="grid three">
-      <article class="card">
-        <h3>Bộ thủ 50</h3>
-        <p>Mở Bộ thủ 50 ở cùng tab, giữ nguyên giao diện rộng đẹp như bản ban đầu.</p>
-        <button class="primary-btn" type="button" data-go="radicals">Mở Bộ thủ</button>
-      </article>
-      <article class="card">
-        <h3>Pinyin</h3>
-        <p>Module phát âm mới dùng audio Kimma local, có thể dùng chung để đọc tên bộ thủ.</p>
-        <button class="primary-btn" type="button" data-go="pinyin">Mở Pinyin</button>
-      </article>
-      <article class="card">
-        <h3>Bút thuận chữ Hán</h3>
-        <p>Tìm chữ Hán, xem bút thuận, thứ tự nét và luyện viết.</p>
-        <button class="primary-btn" type="button" data-go="hanziStroke">Mở bút thuận</button>
-      </article>
-      <article class="card">
-        <h3>301 Đàm thoại</h3>
-        <p>Danh sách 10 bài đầu, đọc trực tiếp từ dữ liệu PPT đã tách sẵn trong lessons-301.</p>
-        <button class="primary-btn" type="button" data-go="dialogue301">Mở 301</button>
-      </article>
-      <article class="card">
-        <h3>Hướng phát triển</h3>
-        <p>Sau v1 có thể thêm bài học theo ngày, từ vựng, mẫu câu, quiz và ôn tập.</p>
-      </article>
-    </div>
-  `;
-
+  pageTitle.textContent = 'Tiếng Trung';
+  pageSubtitle.textContent = 'Pinyin · Bút thuận · Bộ thủ · 301 Đàm thoại';
+  pageContent.innerHTML = homePageContent;
+  updateNavActive('home');
 }
 
 function renderRadicals(){
@@ -172,7 +143,7 @@ async function loadDialogue301Lessons(){
 
 async function renderDialogue301(){
   pageTitle.textContent = '301 Đàm thoại';
-  pageSubtitle.textContent = 'Danh sách bài và nội dung trích từ PPT: từ vựng, câu mẫu, hội thoại, chú thích, luyện tập và slide ảnh tĩnh.';
+  pageSubtitle.textContent = 'Từ vựng · Câu mẫu · Hội thoại · Slide';
   pageContent.innerHTML = `
     <div class="card">
       <h3>Đang tải danh sách bài...</h3>
@@ -896,6 +867,14 @@ function renderRadicalAudioList(){
   });
 }
 
+
+function updateNavActive(page){
+  document.querySelectorAll('.bottom-nav-item, .desktop-nav-link, .top-nav-btn, .nav-btn').forEach(item => {
+    const itemPage = item.dataset.page || item.dataset.go;
+    item.classList.toggle('active', itemPage === page);
+  });
+}
+
 function bindRootNavigation(){
   // Một bộ điều hướng duy nhất cho cả sidebar, top nav và các nút trong trang chủ.
   document.addEventListener('click', event => {
@@ -969,5 +948,4 @@ async function init(){
 init().catch(err => {
   console.error(err);
 });
-
 

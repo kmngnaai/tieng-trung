@@ -4,53 +4,131 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Tiếng Trung</title>
+  <link rel="stylesheet" href="assets/css/theme.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar">
-      <div class="brand">
-        <div class="brand-mark">中</div>
-        <div>
-          <h1>Tiếng Trung</h1>
-          <p>Bộ thủ · Pinyin · Bài học</p>
-        </div>
-      </div>
+  <div class="app-frame">
+    <header class="app-header">
+      <div class="app-header-inner">
+        <a class="brand-link" data-page="home" href="index.html" aria-label="Trang chủ Tiếng Trung">
+          <span class="brand-mark" aria-hidden="true">中</span>
+          <span class="brand-text">
+            <strong>Tiếng Trung</strong>
+          </span>
+        </a>
 
-      <nav class="main-nav">
-        <button class="nav-btn active" data-page="home" type="button">Trang chủ</button>
-        <button class="nav-btn" data-page="radicals" type="button">Bộ thủ 50</button>
-        <button class="nav-btn" data-page="pinyin" type="button">Pinyin</button>
-        <button class="nav-btn" data-page="hanziStroke" type="button">Bút thuận chữ Hán</button>
-        <button class="nav-btn" data-page="dialogue301" type="button">301 Đàm thoại</button>
-      </nav>
-
-      <div class="side-note">
-        <b>V1</b>
-        <span>Đã tách module bộ thủ và tạo Pinyin audio dùng chung.</span>
-      </div>
-    </aside>
-
-    <main class="content">
-      <header class="top-header">
-        <div>
-          <div class="eyebrow">Web học tiếng Trung</div>
-          <h2 id="pageTitle">Trang chủ</h2>
-          <p id="pageSubtitle">Nền tảng chung để mở rộng từ Bộ thủ 50 sang Pinyin và bài học.</p>
-        </div>
-        <nav class="root-top-nav" aria-label="Điều hướng chính">
-          <button class="top-nav-btn active" data-page="home" type="button">Trang chủ</button>
-          <button class="top-nav-btn" data-page="radicals" type="button">Bộ thủ</button>
-          <button class="top-nav-btn" data-page="pinyin" type="button">Pinyin</button>
-          <button class="top-nav-btn" data-page="hanziStroke" type="button">Bút thuận</button>
-          <button class="top-nav-btn" data-page="dialogue301" type="button">301 Đàm thoại</button>
+        <nav class="desktop-nav" aria-label="Điều hướng chính">
+          <a class="desktop-nav-link active" data-page="home" href="index.html">Trang chủ</a>
+          <a class="desktop-nav-link" data-go="pinyin" href="modules/pinyin/index.html">Pinyin</a>
+          <a class="desktop-nav-link" data-go="hanziStroke" href="modules/hanzi-stroke/index.html">Bút thuận</a>
+          <a class="desktop-nav-link" data-go="dialogue301" href="#dialogue301">301 Đàm thoại</a>
         </nav>
-      </header>
 
-      <section id="pageContent"></section>
+        <div class="header-actions" aria-label="Tác vụ nhanh">
+          <a class="icon-btn" data-go="hanziStroke" href="modules/hanzi-stroke/index.html" aria-label="Tra chữ Hán hoặc luyện viết">⌕</a>
+          <button class="icon-btn" type="button" aria-label="Menu">☰</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="app-main" id="appRoot">
+      <section class="welcome-card">
+        <div>
+          <h1 id="pageTitle">Tiếng Trung</h1>
+          <p id="pageSubtitle">Pinyin · Bút thuận · Bộ thủ · 301 Đàm thoại</p>
+        </div>
+        <a class="search-entry" data-go="hanziStroke" href="modules/hanzi-stroke/index.html" aria-label="Tra chữ Hán hoặc luyện viết">
+          <span aria-hidden="true">⌕</span>
+          <span>Tra chữ Hán hoặc luyện viết...</span>
+        </a>
+      </section>
+
+      <div id="pageContent">
+        <section class="tool-section">
+          <div class="section-title-row">
+            <h2>Công cụ học</h2>
+          </div>
+
+          <div class="module-grid">
+            <a class="module-card module-red" data-go="hanziStroke" href="modules/hanzi-stroke/index.html">
+              <div class="module-card-top">
+                <span class="module-icon">写</span>
+              </div>
+              <h3>Bút thuận</h3>
+              <p>Xem nét và luyện viết.</p>
+              <span class="module-arrow" aria-hidden="true">›</span>
+            </a>
+
+            <a class="module-card module-green" data-go="pinyin" href="modules/pinyin/index.html">
+              <div class="module-card-top">
+                <span class="module-icon">拼</span>
+              </div>
+              <h3>Pinyin</h3>
+              <p>Luyện âm và thanh điệu.</p>
+              <span class="module-arrow" aria-hidden="true">›</span>
+            </a>
+
+            <a class="module-card module-blue" data-go="radicals" href="modules/bo-thu-50/index.html">
+              <div class="module-card-top">
+                <span class="module-icon">部</span>
+              </div>
+              <h3>Bộ thủ 50</h3>
+              <p>Nhớ bộ thủ thường gặp.</p>
+              <span class="module-arrow" aria-hidden="true">›</span>
+            </a>
+
+            <a class="module-card module-purple" data-go="dialogue301" href="#dialogue301">
+              <div class="module-card-top">
+                <span class="module-icon">会</span>
+              </div>
+              <h3>301 Đàm thoại</h3>
+              <p>Từ vựng, câu mẫu, hội thoại.</p>
+              <span class="module-arrow" aria-hidden="true">›</span>
+            </a>
+
+            <article id="tool-tra-chu" class="module-card module-orange is-disabled" aria-disabled="true">
+              <div class="module-card-top">
+                <span class="module-icon">查</span>
+              </div>
+              <h3>Tra chữ Hán</h3>
+              <p>Pinyin, nghĩa, bộ thủ.</p>
+              <span class="module-arrow" aria-hidden="true">›</span>
+            </article>
+
+            <article class="module-card module-brown is-disabled" aria-disabled="true">
+              <div class="module-card-top">
+                <span class="module-icon">复</span>
+              </div>
+              <h3>Ôn tập</h3>
+              <p>Ôn lại nội dung đã học.</p>
+              <span class="module-arrow" aria-hidden="true">›</span>
+            </article>
+          </div>
+        </section>
+      </div>
     </main>
+
+    <nav class="bottom-nav" aria-label="Điều hướng nhanh">
+      <a class="bottom-nav-item active" data-page="home" href="index.html">
+        <span aria-hidden="true">⌂</span>
+        <small>Trang chủ</small>
+      </a>
+      <a class="bottom-nav-item" data-go="pinyin" href="modules/pinyin/index.html">
+        <span aria-hidden="true">拼</span>
+        <small>Pinyin</small>
+      </a>
+      <a class="bottom-nav-item" data-go="hanziStroke" href="modules/hanzi-stroke/index.html">
+        <span aria-hidden="true">✎</span>
+        <small>Bút thuận</small>
+      </a>
+      <a class="bottom-nav-item" data-go="dialogue301" href="#dialogue301">
+        <span aria-hidden="true">☵</span>
+        <small>301</small>
+      </a>
+    </nav>
   </div>
 
-  <script src="app.js?v=20260701-5"></script>>
+  <script src="app.js?v=20260703-search-fix"></script>
 </body>
 </html>

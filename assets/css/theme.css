@@ -1,0 +1,38 @@
+:root {
+  --app-bg: #f8efe4;
+  --app-bg-soft: #fffaf2;
+  --app-card: #fffefd;
+  --app-card-warm: #fff7ec;
+  --app-text: #172033;
+  --app-muted: #667085;
+  --app-primary: #173a59;
+  --app-primary-soft: #e8f1f7;
+  --app-accent: #e86424;
+  --app-accent-soft: #fff0e4;
+  --app-border: #eadcc9;
+  --app-border-strong: #e2c7a8;
+  --app-shadow-soft: 0 8px 22px rgba(56, 42, 24, .06);
+  --app-shadow: 0 16px 40px rgba(56, 42, 24, .10);
+  --app-radius-sm: 12px;
+  --app-radius: 18px;
+  --app-radius-lg: 26px;
+  --app-font: Inter, "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
+  --app-font-zh: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--app-bg); scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(232, 100, 36, .10), transparent 34%),
+    linear-gradient(180deg, #fffaf2, #f8efe4);
+  color: var(--app-text);
+  font-family: var(--app-font);
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
+[hidden] { display: none !important; }
