@@ -54,13 +54,7 @@ const els = {
   embedStatus: document.getElementById('embedStatus'),
   empty: document.getElementById('emptyState'),
   list: document.getElementById('writerList'),
-  infoDialog: document.getElementById('charInfoDialog'),
-  infoLarge: document.getElementById('charInfoLarge'),
-  infoPinyin: document.getElementById('charInfoPinyin'),
-  infoMeaning: document.getElementById('charInfoMeaning'),
-  infoRadical: document.getElementById('charInfoRadical'),
-  infoStrokeCount: document.getElementById('charInfoStrokeCount'),
-  infoHsk: document.getElementById('charInfoHsk')
+  infoDialog: document.getElementById('charInfoDialog')
 };
 
 let writers = [];
@@ -177,7 +171,10 @@ function renderWriters(){
     const targetId = `writer-${Date.now()}-${currentRender}-${index}`;
     card.innerHTML = `
       <div class="char-head">
-        <div class="char-label">${escapeHtml(char)}</div>
+        <div class="char-main">
+          <div class="char-label">${escapeHtml(char)}</div>
+          <span class="char-pinyin" hidden></span>
+        </div>
         <div class="char-meta">Chữ ${index + 1}/${chars.length}</div>
       </div>
       <div id="${targetId}" class="writer-box ${settings.showGrid ? 'has-grid' : ''}" style="--writer-size:${settings.size}px"></div>
@@ -190,7 +187,17 @@ function renderWriters(){
         ${charActionButton('info', 'i', 'Thông tin chữ')}
       </div>
       <div class="stroke-order" hidden></div>
-      <div class="char-info-panel"></div>
+      <div class="char-info-tools">
+        <button
+          type="button"
+          class="char-info-toggle"
+          data-char-action="toggle-info"
+          title="Xem thông tin chữ"
+          aria-label="Xem thông tin chữ"
+          aria-expanded="false"
+        >📖</button>
+      </div>
+      <div class="char-info-panel" hidden></div>
     `;
 
     els.list.appendChild(card);
@@ -198,10 +205,21 @@ function renderWriters(){
     const writer = HanziWriter.create(targetId, char, createWriterOptions(settings.size, settings));
     const strokeContainer = card.querySelector('.stroke-order');
     const infoPanel = card.querySelector('.char-info-panel');
-    const item = { char, writer, card, strokeContainer, infoPanel };
+    const infoToggle = card.querySelector('.char-info-toggle');
+    const pinyinEl = card.querySelector('.char-pinyin');
+    const item = {
+      char,
+      writer,
+      card,
+      strokeContainer,
+      infoPanel,
+      infoToggle,
+      pinyinEl,
+      infoLoaded: false
+    };
     writers.push(item);
     bindCharActions(item);
-    renderCharacterInfo(item);
+    loadCardHeaderInfo(item);
 
     if(settings.strokeOrder){
       strokeContainer.hidden = false;
@@ -406,21 +424,6 @@ async function loadLocalCharInfo(char){
   return promise;
 }
 
-async function getStrokeCount(char, info = null){
-  if(Number.isFinite(Number(info?.strokeCount))){
-    return Number(info.strokeCount);
-  }
-
-  try{
-    const data = await loadCharData(char);
-    const strokes = Array.isArray(data.strokes) ? data.strokes : [];
-    return strokes.length || null;
-  }catch(err){
-    console.warn(`Cannot load stroke count for ${char}:`, err);
-    return null;
-  }
-}
-
 function formatInfoValue(value, fallback = 'Chưa có dữ liệu'){
   const text = String(value ?? '').trim();
   return text || fallback;
@@ -432,21 +435,64 @@ function formatMeaning(info){
   return [vi, en].filter(Boolean).join('; ');
 }
 
-function renderRelatedWords(words = []){
+function formatPinyin(pinyin){
+  return String(pinyin || '').trim().toLocaleLowerCase('vi-VN');
+}
+
+function renderDictionaryInfoHtml(info, options = {}){
+  const mode = options.mode === 'modal' ? 'modal' : 'panel';
+  const fallbackChar = String(options.char || '').trim();
+
+  if(!info){
+    return '<p class="dict-empty">Chưa có dữ liệu từ điển.</p>';
+  }
+
+  const char = formatInfoValue(info.char || fallbackChar, fallbackChar || '字');
+  const pinyin = formatPinyin(info.pinyin);
+  const strokeCount = Number.isFinite(Number(info.strokeCount)) ? String(Number(info.strokeCount)) : '';
+  const hsk = info.hsk ? `HSK ${info.hsk}` : '';
+  const rows = [
+    ['Hán Việt', formatInfoValue(info.hanViet)],
+    ['Nghĩa', formatInfoValue(formatMeaning(info))],
+    ['Bộ thủ', formatInfoValue(info.radical)],
+    ['Số nét', formatInfoValue(strokeCount)],
+    ['HSK', formatInfoValue(hsk)]
+  ];
+
+  return `
+    <section class="dict-info dict-info--${mode}">
+      <div class="dict-title">
+        <strong>${escapeHtml(char)}</strong>
+        ${pinyin ? `<span>/${escapeHtml(pinyin)}/</span>` : ''}
+      </div>
+      <dl class="dict-grid">
+        ${rows.map(([label, value]) => `
+          <div class="dict-row">
+            <dt class="dict-label">${escapeHtml(label)}</dt>
+            <dd class="dict-value">${escapeHtml(value)}</dd>
+          </div>
+        `).join('')}
+      </dl>
+      ${renderDictionaryRelatedHtml(info.relatedWords)}
+    </section>
+  `;
+}
+
+function renderDictionaryRelatedHtml(words = []){
   const related = Array.isArray(words) ? words.slice(0, 6) : [];
   if(!related.length){
     return '';
   }
 
   return `
-    <div class="char-related">
-      <div class="char-related-title">Từ liên quan</div>
+    <div class="dict-related">
+      <div class="dict-related-title">Từ liên quan</div>
       <ul>
         ${related.map(word => `
           <li>
             <strong>${escapeHtml(word.word || '')}</strong>
-            <span>${escapeHtml(word.pinyin || '')}</span>
-            <small>${escapeHtml(word.meaningVi || word.meaningEn || '')}</small>
+            <span class="related-pinyin">${escapeHtml(formatPinyin(word.pinyin))}</span>
+            <small class="related-meaning">${escapeHtml(word.meaningVi || word.meaningEn || '')}</small>
           </li>
         `).join('')}
       </ul>
@@ -454,35 +500,58 @@ function renderRelatedWords(words = []){
   `;
 }
 
+function setCardPinyin(item, pinyin){
+  if(!item?.pinyinEl){
+    return;
+  }
+
+  const value = formatPinyin(pinyin);
+  item.pinyinEl.textContent = value ? `/${value}/` : '';
+  item.pinyinEl.hidden = !value;
+}
+
+async function loadCardHeaderInfo(item){
+  if(!item?.char){
+    return;
+  }
+
+  const info = await loadLocalCharInfo(item?.char);
+  if(info?.pinyin){
+    setCardPinyin(item, info.pinyin);
+  }
+}
+
+async function toggleCharacterInfo(item){
+  if(!item?.infoPanel){
+    return;
+  }
+
+  const willOpen = item.infoPanel.hidden;
+  item.infoPanel.hidden = !willOpen;
+  item.infoToggle?.setAttribute('aria-expanded', String(willOpen));
+  item.infoToggle?.classList.toggle('is-active', willOpen);
+
+  if(willOpen && !item.infoLoaded){
+    item.infoLoaded = true;
+    await renderCharacterInfo(item);
+  }
+}
+
 async function renderCharacterInfo(item){
   if(!item?.infoPanel){
     return;
   }
 
-  item.infoPanel.innerHTML = '<p class="char-info-empty">Đang tải dữ liệu từ điển...</p>';
+  item.infoPanel.innerHTML = '<p class="dict-empty">Đang tải dữ liệu từ điển...</p>';
   const info = await loadLocalCharInfo(item.char);
 
   if(!info){
-    item.infoPanel.innerHTML = '<p class="char-info-empty">Chưa có dữ liệu từ điển.</p>';
+    item.infoPanel.innerHTML = renderDictionaryInfoHtml(null, { mode: 'panel', char: item.char });
     return;
   }
 
-  const strokeCount = await getStrokeCount(item.char, info);
-  item.infoPanel.innerHTML = `
-    <div class="char-info-summary">
-      <div class="char-info-title">
-        <strong>${escapeHtml(info.char || item.char)}</strong>
-        <span>/${escapeHtml(formatInfoValue(info.pinyin, ''))}/</span>
-      </div>
-      <dl>
-        <div><dt>Hán Việt</dt><dd>${escapeHtml(formatInfoValue(info.hanViet))}</dd></div>
-        <div><dt>Nghĩa</dt><dd>${escapeHtml(formatInfoValue(formatMeaning(info)))}</dd></div>
-        <div><dt>Bộ thủ</dt><dd>${escapeHtml(formatInfoValue(info.radical))}</dd></div>
-        <div><dt>Số nét</dt><dd>${escapeHtml(strokeCount || 'Chưa có dữ liệu')}</dd></div>
-      </dl>
-    </div>
-    ${renderRelatedWords(info.relatedWords)}
-  `;
+  setCardPinyin(item, info.pinyin);
+  item.infoPanel.innerHTML = renderDictionaryInfoHtml(info, { mode: 'panel', char: item.char });
 }
 
 async function renderStrokeOrder(char, container){
@@ -693,6 +762,8 @@ function bindCharActions(item){
         speakChar(item.char);
       }else if(action === 'info'){
         showCharInfo(item.char);
+      }else if(action === 'toggle-info'){
+        toggleCharacterInfo(item);
       }
     });
   });
@@ -716,46 +787,13 @@ function speakChar(char){
   }
 }
 
-function ensureDialogExtra(){
-  let extra = document.getElementById('charInfoExtra');
-  if(extra){
-    return extra;
-  }
-
-  extra = document.createElement('div');
-  extra.id = 'charInfoExtra';
-  extra.className = 'char-info-extra';
-  document.querySelector('.char-info-content')?.appendChild(extra);
-  return extra;
-}
-
-function renderDialogExtra(info){
-  const extra = ensureDialogExtra();
-  if(!extra){
-    return;
-  }
-
-  if(!info){
-    extra.innerHTML = '';
-    return;
-  }
-
-  extra.innerHTML = `
-    <div class="dialog-hanviet"><strong>Hán Việt:</strong> ${escapeHtml(formatInfoValue(info.hanViet))}</div>
-    ${renderRelatedWords(info.relatedWords)}
-  `;
-}
-
 async function showCharInfo(char){
   stopAutoplayLoop();
 
-  els.infoLarge.textContent = char;
-  els.infoPinyin.textContent = 'Chưa có dữ liệu';
-  els.infoMeaning.textContent = 'Chưa có dữ liệu';
-  els.infoRadical.textContent = 'Chưa có dữ liệu';
-  els.infoStrokeCount.textContent = 'Đang tải...';
-  els.infoHsk.textContent = 'Chưa có dữ liệu';
-  renderDialogExtra(null);
+  const content = document.querySelector('.char-info-content');
+  if(content){
+    content.innerHTML = '<p class="dict-empty">Đang tải dữ liệu từ điển...</p>';
+  }
 
   if(typeof els.infoDialog.showModal === 'function' && !els.infoDialog.open){
     els.infoDialog.showModal();
@@ -764,24 +802,8 @@ async function showCharInfo(char){
   }
 
   const localInfo = await loadLocalCharInfo(char);
-  if(localInfo){
-    const strokeCount = await getStrokeCount(char, localInfo);
-    els.infoPinyin.textContent = formatInfoValue(localInfo.pinyin);
-    els.infoMeaning.textContent = formatInfoValue(formatMeaning(localInfo));
-    els.infoRadical.textContent = formatInfoValue(localInfo.radical);
-    els.infoStrokeCount.textContent = strokeCount ? String(strokeCount) : 'Chưa có dữ liệu';
-    els.infoHsk.textContent = localInfo.hsk ? `HSK ${localInfo.hsk}` : 'Chưa có dữ liệu';
-    renderDialogExtra(localInfo);
-    return;
-  }
-
-  try{
-    const data = await loadCharData(char);
-    const strokes = Array.isArray(data.strokes) ? data.strokes : [];
-    els.infoStrokeCount.textContent = strokes.length ? String(strokes.length) : 'Chưa có dữ liệu';
-  }catch(err){
-    console.warn(`Cannot load info for ${char}:`, err);
-    els.infoStrokeCount.textContent = 'Chưa có dữ liệu';
+  if(content){
+    content.innerHTML = renderDictionaryInfoHtml(localInfo, { mode: 'modal', char });
   }
 }
 
