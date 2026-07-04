@@ -44,6 +44,8 @@ const DIALOGUE301_FILTERS = [
   ['vocabulary', 'Từ vựng'],
   ['sentences', 'Câu mẫu'],
   ['dialogue', 'Hội thoại'],
+  ['notes', 'Chú thích'],
+  ['extension', 'Mở rộng'],
   ['grammar', 'Ngữ pháp'],
   ['practice', 'Luyện tập'],
   ['slides', 'Slide']
