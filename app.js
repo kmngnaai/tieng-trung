@@ -15,7 +15,7 @@ let dialogue301CurrentData = null;
 let dialogue301CurrentLesson = null;
 let dialogue301ExpandedSections = new Set();
 let dialogue301OverviewExpandedSections = new Set();
-const DIALOGUE301_LESSON_CHIP_LIMIT = 40;
+const DIALOGUE301_LESSON_CHIP_LIMIT = 8;
 const DIALOGUE301_OVERVIEW_LIMITS = { vocabulary: 8, sentences: 3, dialogue: 3 };
 const DIALOGUE301_SECONDARY_SECTIONS = new Set(['notes', 'grammar', 'extension', 'practice']);
 
@@ -464,6 +464,7 @@ function updateDialogue301ActiveLesson(){
   document.querySelectorAll('.dialogue301-lesson-chip, .dialogue301-lesson-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lessonId === dialogue301SelectedId);
   });
+  scrollDialogue301ActiveChipIntoView('.dialogue301-lesson-chip.active');
 }
 
 async function openDialogue301Lesson(lesson){
@@ -1227,11 +1228,23 @@ function renderDialogue301VideoSection(videos, lessonDir, basePath){
   `;
 }
 
+
+function scrollDialogue301ActiveChipIntoView(selector){
+  const active = document.querySelector(selector);
+  if(!active || typeof active.scrollIntoView !== 'function') return;
+  try{
+    active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  }catch(_err){
+    active.scrollIntoView(false);
+  }
+}
+
 function bindDialogue301LessonUI(){
   document.querySelectorAll('.dialogue301-filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       dialogue301Filter = btn.dataset.filter || 'all';
       applyDialogue301Filter();
+      scrollDialogue301ActiveChipIntoView('.dialogue301-filter-btn.active');
     });
   });
 
