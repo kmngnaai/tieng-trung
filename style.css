@@ -1522,3 +1522,93 @@
 .dialogue301-search input::placeholder {
   color: var(--app-muted);
 }
+
+/* 301 learning screen refinement: overview becomes a real learning page */
+.dialogue301-section-title h3 {
+  font-size: 18px;
+}
+
+.dialogue301-section-action,
+.dialogue301-inline-more {
+  border: 0;
+  background: transparent;
+  color: var(--app-accent);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.dialogue301-inline-more {
+  width: 100%;
+  min-height: 40px;
+  margin-top: 10px;
+  border: 1px dashed var(--app-border);
+  border-radius: 999px;
+  background: var(--app-card-warm, #fffaf3);
+}
+
+.dialogue301-accordion-section {
+  padding: 0;
+}
+
+.dialogue301-accordion-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 62px;
+  border: 0;
+  background: transparent;
+  padding: 14px;
+  color: var(--app-text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.dialogue301-accordion-head span {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.dialogue301-accordion-head strong {
+  font-size: 17px;
+  line-height: 1.2;
+}
+
+.dialogue301-accordion-head small {
+  color: var(--app-muted);
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.dialogue301-accordion-head em {
+  flex: 0 0 auto;
+  color: var(--app-accent);
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.dialogue301-accordion-body {
+  padding: 0 14px 14px;
+}
+
+.dialogue301-filter-tabs {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.dialogue301-filter-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.dialogue301-text-block pre {
+  max-height: none;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 13px;
+  line-height: 1.45;
+}

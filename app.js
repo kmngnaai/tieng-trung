@@ -11,7 +11,13 @@ let dialogue301SelectedId = '';
 let dialogue301Filter = 'all';
 let dialogue301LessonSheetOpen = false;
 let dialogue301LessonSearch = '';
+let dialogue301CurrentData = null;
+let dialogue301CurrentLesson = null;
+let dialogue301ExpandedSections = new Set();
+let dialogue301OverviewExpandedSections = new Set();
 const DIALOGUE301_LESSON_CHIP_LIMIT = 8;
+const DIALOGUE301_OVERVIEW_LIMITS = { vocabulary: 8, sentences: 3, dialogue: 4 };
+const DIALOGUE301_SECONDARY_SECTIONS = new Set(['notes', 'grammar', 'extension', 'practice']);
 
 const pageTitle = $('#pageTitle');
 const pageSubtitle = $('#pageSubtitle');
@@ -419,6 +425,8 @@ async function openDialogue301Lesson(lesson){
 
   dialogue301SelectedId = lesson.lesson_id;
   dialogue301Filter = 'all';
+  dialogue301ExpandedSections = new Set();
+  dialogue301OverviewExpandedSections = new Set();
   updateDialogue301ActiveLesson();
   if(dialogue301Lessons.length){
     renderDialogue301LessonList(dialogue301Lessons);
@@ -440,6 +448,8 @@ async function openDialogue301Lesson(lesson){
     if(currentPage !== 'dialogue301') return;
 
     dialogue301SelectedId = data.lesson_id || lesson.lesson_id;
+    dialogue301CurrentData = data;
+    dialogue301CurrentLesson = lesson;
     updateDialogue301ActiveLesson();
     contentEl.innerHTML = renderDialogue301Lesson(data, lesson);
     bindDialogue301LessonUI();
@@ -500,43 +510,126 @@ function renderDialogue301Section(key, label, items){
     return '';
   }
 
-  const sectionNoMap = {
-    vocabulary: '1',
-    sentences: '2',
-    dialogue: '3',
-    notes: '4',
-    grammar: '4',
-    extension: '4',
-    practice: '4'
-  };
   const displayLabel = key === 'grammar' ? 'Ngữ pháp / Ngữ âm' : label;
-  const number = sectionNoMap[key] || '';
-
+  const isOverview = dialogue301Filter === 'all';
+  const isSecondary = DIALOGUE301_SECONDARY_SECTIONS.has(key);
+  const isExpanded = dialogue301ExpandedSections.has(key);
+  const limit = isOverview ? DIALOGUE301_OVERVIEW_LIMITS[key] : 0;
   let blocks = '';
+  let hiddenCount = 0;
+
   if(key === 'vocabulary'){
-    blocks = renderDialogue301VocabRows(collectDialogue301VocabRows(items));
+    const rows = collectDialogue301VocabRows(items);
+    hiddenCount = limit && rows.length > limit ? rows.length - limit : 0;
+    blocks = renderDialogue301VocabRows(limit ? rows.slice(0, limit) : rows);
+  }else if(key === 'sentences'){
+    const rows = collectDialogue301TableRows(items);
+    hiddenCount = limit && rows.length > limit ? rows.length - limit : 0;
+    blocks = rows.length
+      ? renderDialogue301SentenceRows(limit ? rows.slice(0, limit) : rows)
+      : renderDialogue301TextBlocks(items, key, limit ? 1 : 0);
+  }else if(key === 'dialogue'){
+    const rows = collectDialogue301TableRows(items);
+    hiddenCount = limit && rows.length > limit ? rows.length - limit : 0;
+    blocks = rows.length
+      ? renderDialogue301DialogueRows(limit ? rows.slice(0, limit) : rows)
+      : renderDialogue301TextBlocks(items, key, limit ? 1 : 0);
   }else{
-    blocks = items
-      .map(item => renderDialogue301TextBlock(item, key))
-      .filter(Boolean)
-      .join('');
+    blocks = renderDialogue301TextBlocks(items, key, 0);
   }
 
   if(!blocks){
     return '';
   }
 
+  if(isOverview && isSecondary){
+    const summary = getDialogue301SectionSummary(key, items);
+    return `
+      <section class="card dialogue301-section dialogue301-accordion-section dialogue301-section-${escapeHtml(key)} ${isExpanded ? 'is-open' : ''}" data-section="${escapeHtml(key)}">
+        <button class="dialogue301-accordion-head" type="button" data-action="toggle-dialogue301-section" data-section-key="${escapeHtml(key)}" aria-expanded="${isExpanded ? 'true' : 'false'}">
+          <span>
+            <strong>${escapeHtml(displayLabel)}</strong>
+            <small>${escapeHtml(summary)}</small>
+          </span>
+          <em>${isExpanded ? 'Thu gọn' : 'Mở'} ›</em>
+        </button>
+        ${isExpanded ? `<div class="dialogue301-blocks dialogue301-accordion-body">${blocks}</div>` : ''}
+      </section>
+    `;
+  }
+
+  const canOverviewExpand = isOverview && ['vocabulary', 'sentences', 'dialogue'].includes(key);
+  const isOverviewExpanded = canOverviewExpand && dialogue301OverviewExpandedSections.has(key);
+  if(canOverviewExpand && isOverviewExpanded){
+    if(key === 'vocabulary'){
+      const rows = collectDialogue301VocabRows(items);
+      blocks = renderDialogue301VocabRows(rows);
+      hiddenCount = 0;
+    }else if(key === 'sentences'){
+      const rows = collectDialogue301TableRows(items);
+      blocks = rows.length ? renderDialogue301SentenceRows(rows) : renderDialogue301TextBlocks(items, key, 0);
+      hiddenCount = 0;
+    }else if(key === 'dialogue'){
+      const rows = collectDialogue301TableRows(items);
+      blocks = rows.length ? renderDialogue301DialogueRows(rows) : renderDialogue301TextBlocks(items, key, 0);
+      hiddenCount = 0;
+    }
+  }
+
+  const actionHtml = canOverviewExpand && hiddenCount > 0
+    ? `<button class="dialogue301-section-action" type="button" data-action="expand-dialogue301-overview" data-section-key="${escapeHtml(key)}">Xem tất cả ›</button>`
+    : canOverviewExpand && isOverviewExpanded
+      ? `<button class="dialogue301-section-action" type="button" data-action="collapse-dialogue301-overview" data-section-key="${escapeHtml(key)}">Thu gọn ›</button>`
+      : '';
+  const moreHtml = hiddenCount > 0
+    ? `<button class="dialogue301-inline-more" type="button" data-action="expand-dialogue301-overview" data-section-key="${escapeHtml(key)}">+ Xem thêm ${escapeHtml(hiddenCount)} ${key === 'vocabulary' ? 'từ' : 'dòng'}</button>`
+    : canOverviewExpand && isOverviewExpanded
+      ? `<button class="dialogue301-inline-more" type="button" data-action="collapse-dialogue301-overview" data-section-key="${escapeHtml(key)}">Thu gọn</button>`
+      : '';
+
   return `
     <section class="card dialogue301-section dialogue301-section-${escapeHtml(key)}" data-section="${escapeHtml(key)}">
       <div class="dialogue301-section-title">
-        <h3>${number ? `${escapeHtml(number)}. ` : ''}${escapeHtml(displayLabel)}</h3>
-        ${key === 'vocabulary' || key === 'sentences' || key === 'dialogue' ? '<span>Xem tất cả ›</span>' : ''}
+        <h3>${escapeHtml(displayLabel)}</h3>
+        ${actionHtml}
       </div>
       <div class="dialogue301-blocks">
         ${blocks}
+        ${moreHtml}
       </div>
     </section>
   `;
+}
+
+function renderDialogue301TextBlocks(items, sectionKey, limit){
+  const selectedItems = limit ? items.slice(0, limit) : items;
+  return selectedItems
+    .map(item => renderDialogue301TextBlock(item, sectionKey))
+    .filter(Boolean)
+    .join('');
+}
+
+function collectDialogue301TableRows(items){
+  const out = [];
+  items.forEach(item => {
+    const text = cleanLessonText(item && typeof item === 'object' ? (item.text || '') : item);
+    const rows = parseDialogue301RowsFromTable(text);
+    if(rows && rows.length){
+      rows.forEach(row => out.push(row));
+    }
+  });
+  return out;
+}
+
+function getDialogue301SectionSummary(key, items){
+  const count = Array.isArray(items) ? items.length : 0;
+  const map = {
+    notes: `${count} phần chú thích`,
+    grammar: `${count} phần ngữ pháp / ngữ âm`,
+    extension: `${count} phần thay thế mở rộng`,
+    practice: `${count} phần luyện tập`
+  };
+  return map[key] || `${count} phần`;
 }
 
 function renderDialogue301TextBlock(item, sectionKey){
@@ -554,7 +647,6 @@ function renderDialogue301TextBlock(item, sectionKey){
 
   return `
     <article class="dialogue301-text-block ${sectionKey ? `dialogue301-text-${escapeHtml(sectionKey)}` : ''}">
-      ${slide ? `<div class="dialogue301-slide-tag">Slide ${escapeHtml(slide)}</div>` : ''}
       ${vocabHtml || sentenceHtml || dialogueHtml || tableHtml || `<pre>${escapeHtml(text)}</pre>`}
     </article>
   `;
@@ -704,7 +796,11 @@ function renderDialogue301VocabList(text){
 
 function renderDialogue301SentenceList(text){
   const rows = parseDialogue301RowsFromTable(text);
-  if(!rows || !rows.length){
+  return rows && rows.length ? renderDialogue301SentenceRows(rows) : '';
+}
+
+function renderDialogue301SentenceRows(rows){
+  if(!Array.isArray(rows) || !rows.length){
     return '';
   }
 
@@ -727,20 +823,7 @@ function renderDialogue301SentenceList(text){
 function renderDialogue301DialogueBlock(text){
   const rows = parseDialogue301RowsFromTable(text);
   if(rows && rows.length){
-    return `
-      <div class="dialogue-line-list">
-        ${rows.map((row, index) => `
-          <div class="dialogue-line">
-            <span class="dialogue-speaker">${index % 2 === 0 ? 'A' : 'B'}:</span>
-            <div>
-              <strong>${escapeHtml(row.hanzi)}</strong>
-              <span>${escapeHtml(row.pinyin)}</span>
-              ${row.meaning ? `<small>${escapeHtml(row.meaning)}</small>` : ''}
-            </div>
-          </div>
-        `).join('')}
-      </div>
-    `;
+    return renderDialogue301DialogueRows(rows);
   }
 
   const lines = String(text || '').split(/\r?\n/).map(line => line.trim()).filter(Boolean);
@@ -752,6 +835,27 @@ function renderDialogue301DialogueBlock(text){
         <div class="dialogue-line">
           <span class="dialogue-speaker">${index % 2 === 0 ? 'A' : 'B'}:</span>
           <div><strong>${escapeHtml(line)}</strong></div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function renderDialogue301DialogueRows(rows){
+  if(!Array.isArray(rows) || !rows.length){
+    return '';
+  }
+
+  return `
+    <div class="dialogue-line-list">
+      ${rows.map((row, index) => `
+        <div class="dialogue-line">
+          <span class="dialogue-speaker">${index % 2 === 0 ? 'A' : 'B'}:</span>
+          <div>
+            <strong>${escapeHtml(row.hanzi)}</strong>
+            <span>${escapeHtml(row.pinyin)}</span>
+            ${row.meaning ? `<small>${escapeHtml(row.meaning)}</small>` : ''}
+          </div>
         </div>
       `).join('')}
     </div>
@@ -956,7 +1060,46 @@ function bindDialogue301LessonUI(){
   document.querySelectorAll('.dialogue301-filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       dialogue301Filter = btn.dataset.filter || 'all';
-      applyDialogue301Filter();
+      rerenderDialogue301CurrentLesson();
+    });
+  });
+
+  document.querySelectorAll('[data-filter-jump]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const nextFilter = btn.getAttribute('data-filter-jump') || btn.dataset.filterJump || 'all';
+      dialogue301Filter = nextFilter;
+      rerenderDialogue301CurrentLesson();
+    });
+  });
+
+  document.querySelectorAll('[data-action="expand-dialogue301-overview"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.sectionKey || '';
+      if(!key) return;
+      dialogue301OverviewExpandedSections.add(key);
+      rerenderDialogue301CurrentLesson();
+    });
+  });
+
+  document.querySelectorAll('[data-action="collapse-dialogue301-overview"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.sectionKey || '';
+      if(!key) return;
+      dialogue301OverviewExpandedSections.delete(key);
+      rerenderDialogue301CurrentLesson();
+    });
+  });
+
+  document.querySelectorAll('[data-action="toggle-dialogue301-section"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.sectionKey || '';
+      if(!key) return;
+      if(dialogue301ExpandedSections.has(key)){
+        dialogue301ExpandedSections.delete(key);
+      }else{
+        dialogue301ExpandedSections.add(key);
+      }
+      rerenderDialogue301CurrentLesson();
     });
   });
 
@@ -967,6 +1110,13 @@ function bindDialogue301LessonUI(){
   applyDialogue301Filter();
 }
 
+function rerenderDialogue301CurrentLesson(){
+  const contentEl = $('#dialogue301LessonContent');
+  if(!contentEl || !dialogue301CurrentData || !dialogue301CurrentLesson) return;
+  contentEl.innerHTML = renderDialogue301Lesson(dialogue301CurrentData, dialogue301CurrentLesson);
+  bindDialogue301LessonUI();
+}
+
 function applyDialogue301Filter(){
   document.querySelectorAll('.dialogue301-filter-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.filter === dialogue301Filter);
@@ -974,7 +1124,11 @@ function applyDialogue301Filter(){
 
   document.querySelectorAll('.dialogue301-section').forEach(section => {
     const key = section.dataset.section || '';
-    section.hidden = dialogue301Filter !== 'all' && key !== dialogue301Filter;
+    if(dialogue301Filter === 'all'){
+      section.hidden = key === 'slides';
+    }else{
+      section.hidden = key !== dialogue301Filter;
+    }
   });
 }
 
