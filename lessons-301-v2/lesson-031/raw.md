@@ -1,0 +1,613 @@
+<!-- Slide number: 1 -->
+
+![](GoogleShape69p1.jpg)
+I
+
+![](GoogleShape66p1.jpg)
+第三十一课
+
+那儿的风景美极了
+
+![](GoogleShape68p1.jpg)
+
+![](GoogleShape67p1.jpg)
+Bài 31:
+Phong cảnh ở đó rất đẹp
+
+![](GoogleShape64p1.jpg)
+
+![](GoogleShape63p1.jpg)
+Minliang
+
+### Notes:
+
+<!-- Slide number: 2 -->
+
+![](GoogleShape79p2.jpg)
+目录
+
+06
+练习
+
+05
+语法
+
+04
+替换与扩展
+
+03
+课文
+
+02
+句子
+
+01
+生词
+Minliang
+
+### Notes:
+
+<!-- Slide number: 3 -->
+
+![](GoogleShape113p3.jpg)
+
+![](GoogleShape111p3.jpg)
+01
+生词
+
+![](GoogleShape112p3.jpg)
+
+![](GoogleShape114p3.jpg)
+
+![](GoogleShape116p3.jpg)
+
+![](GoogleShape119p3.jpg)
+
+![](GoogleShape115p3.jpg)
+Minliang
+
+### Notes:
+
+<!-- Slide number: 4 -->
+| 名胜古迹 | míngshèng gǔjī | 办 | bàn | 城市 | chéngshì |
+| --- | --- | --- | --- | --- | --- |
+| 来得及 | lái de jí | 热闹 | rènao | 工业 | gōngyè |
+| 来不及 | lái bu jí | 各 | gè | 展览馆 | zhǎnlǎnguǎn |
+| 游览 | yóulǎn | 非常 | fēicháng | 手续 | shǒuxù |
+| 风景 | fēngjǐng | 小吃 | xiǎochī | 水果 | shuǐguǒ |
+| 然后 | ránhòu | 有名 | yǒumíng | 之一 | zhīyī |
+| 计划 | jìhuà | 顺便 | shùnbiàn | 圆珠笔 | yuánzhūbǐ |
+
+### Notes:
+
+<!-- Slide number: 5 -->
+| STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
+| --- | --- | --- | --- | --- |
+| 1 | 名胜古迹 | míngshèng gǔjī | 名 | danh lam thắng cảnh |
+
+![迹的笔顺动画](GoogleShape134p5.jpg)
+
+![](GoogleShape132p5.jpg)
+
+### Notes:
+
+<!-- Slide number: 6 -->
+| STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
+| --- | --- | --- | --- | --- |
+| 2 | 来得及 | lái de jí |  | kịp |
+| 3 | 来不及 | lái bu jí |  | không kịp |
+
+![](GoogleShape140p6.jpg)
+
+### Notes:
+
+<!-- Slide number: 7 -->
+| STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
+| --- | --- | --- | --- | --- |
+| 4 | 游览 | yóulǎn | 动 | du lịch |
+
+![览的笔顺动画](GoogleShape149p7.jpg)
+
+![](GoogleShape147p7.jpg)
+
+### Notes:
+
+<!-- Slide number: 8 -->
+| STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
+| --- | --- | --- | --- | --- |
+| 5 | 风景 | fēngjǐng | 名 | phong cảnh |
+
+![景的笔顺动画](GoogleShape157p8.jpg)
+
+![](GoogleShape155p8.jpg)
+
+### Notes:
+
+<!-- Slide number: 9 -->
+| STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
+| --- | --- | --- | --- | --- |
+| 6 | 然后 | ránhòu | 副 | sau đó |
+
+![然的笔顺动画](GoogleShape165p9.jpg)
+
+![](GoogleShape163p9.jpg)
+
+### Notes:
+
+<!-- Slide number: 10 -->
+| STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
+| --- | --- | --- | --- | --- |
+| 7 | 计划 | jìhuà | 名，动 | kế hoạch |
+
+![划的笔顺动画](GoogleShape173p10.jpg)
+
+![](GoogleShape171p10.jpg)
+
+### Notes:
+
+<!-- Slide number: 11 -->
+| STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
+| --- | --- | --- | --- | --- |
+| 8 | 办 | bàn | 动 | làm |
+
+![](GoogleShape179p11.jpg)
+
+### Notes:
+
+<!-- Slide number: 12 -->
+| STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
+| --- | --- | --- | --- | --- |
+| 9 | 热闹 | rènao | 形 | náo nhiệt |
+
+![热的笔顺动画](GoogleShape188p12.jpg)
+
+![](GoogleShape186p12.jpg)
+
+### Notes:
+
+<!-- Slide number: 13 -->
+| STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
+| --- | --- | --- | --- | --- |
+| 10 | 各 | gè | 代 | các |
+
+![各的笔顺动画](GoogleShape196p13.jpg)
+
+![](GoogleShape194p13.jpg)
+
+### Notes:
+
+<!-- Slide number: 14 -->
+| STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
+| --- | --- | --- | --- | --- |
+| 11 | 非常 | fēicháng | 形，副 | cực kỳ, rất |
+
+![常的笔顺动画](GoogleShape204p14.jpg)
+
+![](GoogleShape202p14.jpg)
+
+### Notes:
+
+<!-- Slide number: 15 -->
+| STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
+| --- | --- | --- | --- | --- |
+| 12 | 小吃 | xiǎochī | 名 | đồ ăn vặt |
+
+![](GoogleShape210p15.jpg)
+
+### Notes:
+
+<!-- Slide number: 16 -->
+| STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
+| --- | --- | --- | --- | --- |
+| 13 | 有名 | yǒumíng | 形 | nổi tiếng, có tiếng |
+
+![](GoogleShape217p16.jpg)
+
+### Notes:
+
+<!-- Slide number: 17 -->
+| STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
+| --- | --- | --- | --- | --- |
+| 14 | 顺便 | shùnbiàn | 副 | thuận tiện, nhân tiện |
+
+![顺的笔顺动画](GoogleShape226p17.jpg)
+
+![](GoogleShape224p17.jpg)
+
+### Notes:
+
+<!-- Slide number: 18 -->
+| STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
+| --- | --- | --- | --- | --- |
+| 15 | 城市 | chéngshì | 名 | thành thị |
+
+![城的笔顺动画](GoogleShape234p18.jpg)
+
+![](GoogleShape232p18.jpg)
+
+### Notes:
+
+<!-- Slide number: 19 -->
+| STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
+| --- | --- | --- | --- | --- |
+| 16 | 工业 | gōngyè | 名 | công nghiệp |
+
+![](GoogleShape240p19.jpg)
+
+### Notes:
+
+<!-- Slide number: 20 -->
+| STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
+| --- | --- | --- | --- | --- |
+| 17 | 展览馆 | zhǎnlǎnguǎn | 名 | nhà triển lãm |
+
+![展的笔顺动画](GoogleShape249p20.jpg)
+
+![](GoogleShape247p20.jpg)
+
+### Notes:
+
+<!-- Slide number: 21 -->
+| STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
+| --- | --- | --- | --- | --- |
+| 18 | 手续 | shǒuxù | 名 | thủ tục |
+
+![续的笔顺动画](GoogleShape257p21.jpg)
+
+![](GoogleShape255p21.jpg)
+
+### Notes:
+
+<!-- Slide number: 22 -->
+| STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
+| --- | --- | --- | --- | --- |
+| 19 | 水果 | shuǐguǒ | 名 | trái cây, hoa quả |
+
+![](GoogleShape263p22.jpg)
+
+### Notes:
+
+<!-- Slide number: 23 -->
+| STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
+| --- | --- | --- | --- | --- |
+| 20 | 之一 | zhīyī |  | một trong số |
+
+![](GoogleShape270p23.jpg)
+
+### Notes:
+
+<!-- Slide number: 24 -->
+| STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
+| --- | --- | --- | --- | --- |
+| 21 | 圆珠笔 | yuánzhūbǐ | 名 | bút bi |
+
+![珠的笔顺动画](GoogleShape279p24.jpg)
+
+![](GoogleShape277p24.jpg)
+
+### Notes:
+
+<!-- Slide number: 25 -->
+| STT | Tiếng Trung | Phiên âm | Nghĩa của từ |
+| --- | --- | --- | --- |
+| 22 | 桂林 | Guìlín | Quế Lâm (Quảng Tây) |
+| 23 | 南京路 | Nánjīnglù | Đường Nam Kinh |
+| 24 | 豫园 | Yùyuán | Công viên Dự Viên |
+
+![](GoogleShape285p25.jpg)
+
+### Notes:
+
+<!-- Slide number: 26 -->
+
+![](GoogleShape292p26.jpg)
+
+![](GoogleShape294p26.jpg)
+02
+句子
+
+![](GoogleShape293p26.jpg)
+
+![](GoogleShape295p26.jpg)
+
+![](GoogleShape297p26.jpg)
+
+![](GoogleShape300p26.jpg)
+
+![](GoogleShape296p26.jpg)
+Minliang
+
+### Notes:
+
+<!-- Slide number: 27 -->
+
+![](GoogleShape309p27.jpg)
+1. 中国的名胜古迹多得很。
+/Zhōngguó de míngshèng gǔjī duō de hěn/ - Danh lam thắng cảnh của Trung Quốc nhiều vô kể.
+2. 你说吧，我听你的。
+/Nǐ shuō ba, wǒ tīng nǐ de./ - Bạn nói đi, tôi nghe (theo) bạn.
+3. 从这儿到桂林坐火车要做多长时间？
+/Cóng zhèr dào Guìlín zuò huǒchē yào zuò duō cháng shíjiān?/ - Từ đây đến Quế Lâm, đi xe lửa phải đi mất bao lâu?
+4. 七点有电影，现在去来得及来不及？
+/Qī diǎn yǒu diànyǐng, xiànzài qù lái de jí lái bu jí?./ - 7 giờ có phim, đi bây giờ có kịp không?
+
+### Notes:
+
+<!-- Slide number: 28 -->
+5. 我们看电影去。
+/Wǒmen kàn diànyǐng qù?/- Chúng ta đi xem phim.
+6. 我想买些礼物寄回家去。
+/Wǒ xiǎng mǎi xiē lǐwù jì huí jiā qù./ - Tôi định mua ít quà gửi về nhà.
+7. 上海的东西比这儿多得多。
+/Shànghǎi de dōngxi bǐ zhèr duō de duō./ - Đồ ở Thượng Hải nhiều hơn đây nhiều.
+8. 你不是要去豫园游览吗？
+/Nǐ bùshì yào qù yùyuán yóulǎn ma?/ - Chẳng phải là bạn muốn đi thăm quan công viên Dự Viên sao?
+
+![](GoogleShape317p28.jpg)
+
+### Notes:
+
+<!-- Slide number: 29 -->
+
+![](GoogleShape323p29.jpg)
+
+![](GoogleShape325p29.jpg)
+03
+课文
+
+![](GoogleShape324p29.jpg)
+
+![](GoogleShape326p29.jpg)
+
+![](GoogleShape328p29.jpg)
+
+![](GoogleShape331p29.jpg)
+
+![](GoogleShape327p29.jpg)
+Minliang
+
+### Notes:
+
+<!-- Slide number: 30 -->
+
+![](GoogleShape338p30.jpg)
+大卫：快放假了，你想不想去旅行？
+玛丽：当然想：
+大卫：中国的名胜古迹多得很，去哪儿呢？
+玛丽：你说吧，听你的。
+大卫：先去桂林吧，那儿的风景美极了。
+玛丽：从这儿到桂林坐火车要做多长时间？
+大卫：大概得三十多个小时。w我们在桂林玩三，四天然后去上海。
+玛丽：这个计划不错，就这么办吧。七点有电影，现在去来得及来不及？
+大卫：来得及。
+玛丽：我们看电影去吧。
+大卫：走吧。
+
+### Notes:
+
+<!-- Slide number: 31 -->
+和子：去上海的时候，我想买些礼物寄回家去。
+王兰：对，上海的东茜比这儿多得多。
+和了：上海哪儿最热闹？
+王兰：南京路。那儿有各种各样的商店，买东西非常方便。
+和子：听说上海的小吃也很有名。
+王兰：你不是要去豫园游览吗？顺便常常那儿的小吃。
+和子：上海是中国最大的城市。
+王兰：对了，你还可以去参观一下儿工业展览馆。
+
+![](GoogleShape345p31.jpg)
+
+### Notes:
+
+<!-- Slide number: 32 -->
+
+![](GoogleShape352p32.jpg)
+
+![](GoogleShape354p32.jpg)
+04
+替换与扩展
+
+![](GoogleShape353p32.jpg)
+
+![](GoogleShape355p32.jpg)
+
+![](GoogleShape357p32.jpg)
+
+![](GoogleShape360p32.jpg)
+
+![](GoogleShape356p32.jpg)
+Minliang
+
+### Notes:
+
+<!-- Slide number: 33 -->
+
+![](GoogleShape369p33.jpg)
+开会           参观学校
+游览名胜古迹   看话剧
+1.我们看电影去？
+
+2.坐火车要坐多长时间？
+
+3.我想买些礼物 寄回家去。
+坐船   坐飞机
+骑车   办手续
+菜     送
+药     奇
+水果   带
+
+### Notes:
+
+<!-- Slide number: 34 -->
+1.王府井是北京最热闹的地方之一。
+2.A：我的圆珠笔找不到了。
+B：那不是你的圆珠笔吗？
+A：啊！找到了。
+
+![](GoogleShape375p34.jpg)
+
+### Notes:
+
+<!-- Slide number: 35 -->
+
+![](GoogleShape382p35.jpg)
+
+![](GoogleShape384p35.jpg)
+05
+语法
+
+![](GoogleShape383p35.jpg)
+
+![](GoogleShape385p35.jpg)
+
+![](GoogleShape387p35.jpg)
+
+![](GoogleShape390p35.jpg)
+
+![](GoogleShape386p35.jpg)
+Minliang
+
+### Notes:
+
+<!-- Slide number: 36 -->
+1. 趋向床补语(三)  Bổ ngữ xu hướng (3)
+Các động từ“上，下，进,出，回，过，起”phía sau thêm “来” hoặc“去”có thể làm bổ ngữ cho động từ khác chỉ phương hướng của động tác. Loại bổ ngữ này gọi là bổ ngữ xu hướng kép. Ví dụ:
+(1) 他从教空走出来了。
+(2) 他想买些东西寄回去。
+Quan hệ giữa người nói (hay sự vật được đề cập tới) với phương hướng mà “来”hoặc “去”biểu thị trong bổ ngữ xu hướng kép, vị trí của tân ngữ biếu thị nơi chốn đều giống như bổ ngữ xu hướng đơn.
+(3) 上课了，老师走进教室来了。
+(4) 那些照片都寄回国去了。
+
+![](GoogleShape398p36.jpg)
+
+### Notes:
+
+<!-- Slide number: 37 -->
+2.“不是...吗？” “Chẳng phải... sao ?”
+“不是...吗？”tạo thành một câu phản vấn dùng để chỉ ý khẳng định, đồng thời lại có ý nhấn mạnh. Ví dụ:
+(1) 你不是要去麽行吗？	(你要去旅行)
+(2) 这个房间不是很干净吗？  (这个房间很干净)
+
+![](GoogleShape405p37.jpg)
+
+### Notes:
+
+<!-- Slide number: 38 -->
+
+![](GoogleShape410p38.jpg)
+
+![](GoogleShape412p38.jpg)
+
+![](GoogleShape414p38.jpg)
+06
+练习
+
+![](GoogleShape413p38.jpg)
+
+![](GoogleShape415p38.jpg)
+
+![](GoogleShape417p38.jpg)
+
+![](GoogleShape420p38.jpg)
+
+![](GoogleShape416p38.jpg)
+Minliang
+
+### Notes:
+
+<!-- Slide number: 39 -->
+1. 选择适当的动词组成动宾结构并造句.
+例：字
+(a) 写    那个孩子正在写字。
+(b) 画
+
+![](GoogleShape427p39.jpg)
+| (1)名胜古迹 | (2) 风景 | (3) 手续 |
+| --- | --- | --- |
+| (a) 游览 | (a) 参观 | (a)作 |
+| (b) 旅行 | (b) 看 | (b)办 |
+| (4) 能力 | (5) 电影 | (6) 自行车 |
+| (a) 提局 | (a) 演 | (a) 坐 |
+| (b) 练好 | (b) 开 | (b) 骑 |
+
+### Notes:
+
+<!-- Slide number: 40 -->
+
+![](GoogleShape435p40.jpg)
+2. 用动词及趋向补语完成句子。
+(1) 注意，前边..........一辆汽车。(开)
+(2) 和壬,楼下有人找你，你快.........吧。(下)
+(3) 下课了，萸门的老师.........了。(走)
+(4) 山上的风景很好，你们快...........吧。(爬)
+
+### Notes:
+
+<!-- Slide number: 41 -->
+3. 仿照例子，把下面的句子改成疑问句。
+例：昨天我们跳舞跳了两个小时。
+   → 昨天你们跳舞跳了几个小时？
+或：昨天你们跳舞跳了多长时间？
+(1) 我大北京的时候，坐飞机坐了十二个小时
+(2) 昨天我爬山爬了三个小时。
+(3) 今天早上我吃饭吃了一刻钟。
+(4) 从这儿到北海，骑圣要骑二个多小时。
+(5) 昨天我们划船划了两个小时
+
+![](GoogleShape440p41.jpg)
+
+### Notes:
+
+<!-- Slide number: 42 -->
+
+![](GoogleShape447p42.jpg)
+4. 说话 Nói chuyên
+介绍一个你游/过的名胜古迹、
+Giới thiệu một danh lam thắng cảnh mà bạn đã tham quan.
+提示；风景怎么样,有什公有名的东西.
+你最喜欢什么，游览了多长时间
+Gợi ý : Phong cảnh như thế nào ? Có gì nổi tiếng ?
+Bạn thích nhất cái gì ? Đã du ngoạn trong bao lâu ?
+
+### Notes:
+
+<!-- Slide number: 43 -->
+
+![](GoogleShape452p43.jpg)
+5. 听述 Nghe và kể lại
+我喜欢旅行，旅行可以游览名胜古迹，旅行还是一种学习汉语的好方法。在学校，我习惯听老师说话，换二个人就不习惯。可是旅行的时候要跟各种各样的人说话，要问路、要参观、要买东西......，这是学习汉语的好机会。放假的时候我就去旅行，提高我的听说能力。
+
+### Notes:
+
+<!-- Slide number: 44 -->
+
+![](GoogleShape459p44.jpg)
+6.语音练习 Bài tập ngữ âm
+(1) 常用音节练习  Luyện tập các âm tiết thường dùng
+shuōhuà          说话xiǎoshuō         小说shuōmíng   	   说明
+shuo
+qùnián           去年
+chūqu            出去
+qǔdé              取得
+qu
+
+### Notes:
+
+<!-- Slide number: 45 -->
+
+![](GoogleShape474p45.jpg)
+（2）朗读会话 Đọc to mẩu đàm thoại.
+A：Fàngjià yǐhòu nǐ jìhuà zuò shénme.
+B：Wǒ xiǎng qù lǚxíng.
+A：Nǐ qù nǎr ?
+B：Qù Dōngběi.
+A：Xiànzài Dōngběi duō lěng a ？
+B：Lěng hǎo a, kěyǐ kàn bīngdēng.
+
+### Notes:
+
+<!-- Slide number: 46 -->
+The End
+Minliang
+
+### Notes:

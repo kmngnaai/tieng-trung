@@ -15,8 +15,8 @@ let dialogue301CurrentData = null;
 let dialogue301CurrentLesson = null;
 let dialogue301ExpandedSections = new Set();
 let dialogue301OverviewExpandedSections = new Set();
-const DIALOGUE301_LESSON_CHIP_LIMIT = 8;
-const DIALOGUE301_OVERVIEW_LIMITS = { vocabulary: 8, sentences: 3, dialogue: 4 };
+const DIALOGUE301_LESSON_CHIP_LIMIT = 40;
+const DIALOGUE301_OVERVIEW_LIMITS = { vocabulary: 8, sentences: 3, dialogue: 3 };
 const DIALOGUE301_SECONDARY_SECTIONS = new Set(['notes', 'grammar', 'extension', 'practice']);
 
 const pageTitle = $('#pageTitle');
@@ -27,8 +27,8 @@ const homePageContent = pageContent ? pageContent.innerHTML : '';
 const DIALOGUE301_BASE_CANDIDATES = (() => {
   const path = window.location.pathname.replace(/\/+$/g, '');
   return path.endsWith('/tieng-trung-web') || path.includes('/tieng-trung-web/')
-    ? ['../lessons-301', 'lessons-301']
-    : ['lessons-301', '../lessons-301'];
+    ? ['../lessons-301-v2', 'lessons-301-v2']
+    : ['lessons-301-v2', '../lessons-301-v2'];
 })();
 const DIALOGUE301_SECTIONS = [
   ['vocabulary', 'Từ vựng'],
@@ -70,6 +70,8 @@ function normalizeDialogue301Title(title){
 }
 
 function getDialogue301ShortTitle(data, lesson){
+  const zh = String(data?.title_zh || lesson?.title_zh || '').trim();
+  if(zh) return zh;
   const raw = data?.title || lesson?.title || '301 Đàm thoại';
   const normalized = normalizeDialogue301Title(raw) || raw;
   const parts = String(normalized).split('·').map(part => part.trim()).filter(Boolean);
@@ -77,12 +79,54 @@ function getDialogue301ShortTitle(data, lesson){
 }
 
 function getDialogue301FullLessonTitle(data, lesson){
+  const zh = String(data?.title_zh || lesson?.title_zh || '').trim();
+  const vi = String(data?.title_vi || lesson?.title_vi || '').trim();
+  if(zh && vi) return `${zh} · ${vi}`;
+  if(zh) return zh;
   const raw = data?.title || lesson?.title || '';
   return normalizeDialogue301Title(raw) || raw;
 }
 
 function getDialogue301LessonTitleLine(lesson){
+  const zh = String(lesson?.title_zh || '').trim();
+  const vi = String(lesson?.title_vi || '').trim();
+  if(zh && vi) return `${zh} · ${vi}`;
+  if(zh) return zh;
   return normalizeDialogue301Title(lesson?.title) || lesson?.title || '';
+}
+
+function getDialogue301StructuredItems(data, key){
+  if(Array.isArray(data?.[key]) && data[key].length){
+    return data[key];
+  }
+  const sectionItems = data?.sections?.[key];
+  return Array.isArray(sectionItems) ? sectionItems : [];
+}
+
+function hasDialogue301StructuredItems(data, key){
+  return Array.isArray(data?.[key]) && data[key].length > 0;
+}
+
+function getDialogue301MediaItems(data, key){
+  if(Array.isArray(data?.[key]) && data[key].length) return data[key];
+  if(Array.isArray(data?.media?.[key]) && data.media[key].length) return data.media[key];
+  return [];
+}
+
+function getDialogue301MediaBasePath(data, key){
+  return dialogue301BasePath || 'lessons-301-v2';
+}
+
+async function enrichDialogue301WithLegacyMedia(data, lesson){
+  return data;
+}
+
+function buildDialogue301RenderSections(data){
+  const sections = {};
+  DIALOGUE301_SECTIONS.forEach(([key]) => {
+    sections[key] = getDialogue301StructuredItems(data, key);
+  });
+  return sections;
 }
 
 function getDialogue301LessonSearchResults(lessons){
@@ -202,7 +246,7 @@ async function loadDialogue301Lessons(){
     }
   }
 
-  throw new Error(`Không tải được lessons-301/lessons.json. ${errors.join(' | ')}`);
+  throw new Error(`Không tải được lessons-301-v2/lessons.json. ${errors.join(' | ')}`);
 }
 
 async function renderDialogue301(){
@@ -211,7 +255,7 @@ async function renderDialogue301(){
   pageContent.innerHTML = `
     <div class="card">
       <h3>Đang tải danh sách bài...</h3>
-      <p class="status">Đọc dữ liệu từ lessons-301/lessons.json.</p>
+      <p class="status">Đang đọc dữ liệu từ lessons-301-v2/lessons.json.</p>
     </div>
   `;
 
@@ -444,7 +488,8 @@ async function openDialogue301Lesson(lesson){
 
   try{
     const dataUrl = joinUrlPath(dialogue301BasePath, lesson.data || `${lesson.lesson_id}/data.json`);
-    const data = await fetchJson(dataUrl);
+    let data = await fetchJson(dataUrl);
+    data = await enrichDialogue301WithLegacyMedia(data, lesson);
     if(currentPage !== 'dialogue301') return;
 
     dialogue301SelectedId = data.lesson_id || lesson.lesson_id;
@@ -477,12 +522,36 @@ function renderDialogue301Lesson(data, lesson){
   const shortTitle = getDialogue301ShortTitle(data, lesson);
   const fullTitle = getDialogue301FullLessonTitle(data, lesson);
   const lessonNo = data.lesson_no || lesson?.lesson_no || '';
-  const sections = data.sections || {};
-  const sectionHtml = DIALOGUE301_SECTIONS
-    .map(([key, label]) => renderDialogue301Section(key, label, sections[key]))
-    .join('');
-  const slidesHtml = renderDialogue301MediaSection('slides', 'Slide gốc', data.slides, lessonDir);
-  const videosHtml = renderDialogue301VideoSection(data.videos, lessonDir);
+  const sections = buildDialogue301RenderSections(data);
+  const sectionEntries = DIALOGUE301_SECTIONS
+    .map(([key, label]) => ({
+      key,
+      label,
+      html: renderDialogue301Section(key, label, sections[key])
+    }))
+    .filter(entry => entry.html);
+
+  const slides = getDialogue301MediaItems(data, 'slides');
+  const videos = getDialogue301MediaItems(data, 'videos');
+  const slidesHtml = renderDialogue301MediaSection('slides', 'Slide gốc', slides, lessonDir, getDialogue301MediaBasePath(data, 'slides'));
+  const videosHtml = renderDialogue301VideoSection(videos, lessonDir, getDialogue301MediaBasePath(data, 'videos'));
+  const availableFilters = new Set(['all', ...sectionEntries.map(entry => entry.key)]);
+
+  if(slidesHtml){
+    availableFilters.add('slides');
+  }
+
+  if(!availableFilters.has(dialogue301Filter)){
+    dialogue301Filter = 'all';
+  }
+
+  const filterHtml = DIALOGUE301_FILTERS
+    .filter(([key]) => availableFilters.has(key))
+    .map(([key, label]) => `
+      <button class="dialogue301-filter-btn ${dialogue301Filter === key ? 'active' : ''}" type="button" data-filter="${escapeHtml(key)}">
+        ${escapeHtml(label)}
+      </button>
+    `).join('');
 
   return `
     <article class="dialogue301-lesson-head">
@@ -493,13 +562,9 @@ function renderDialogue301Lesson(data, lesson){
       </div>
     </article>
     <div class="dialogue301-filter-tabs" aria-label="Lọc nội dung bài">
-      ${DIALOGUE301_FILTERS.map(([key, label]) => `
-        <button class="dialogue301-filter-btn ${dialogue301Filter === key ? 'active' : ''}" type="button" data-filter="${escapeHtml(key)}">
-          ${escapeHtml(label)}
-        </button>
-      `).join('')}
+      ${filterHtml}
     </div>
-    ${sectionHtml || '<div class="card"><p>Chưa có nội dung chữ cho bài này.</p></div>'}
+    ${sectionEntries.length ? sectionEntries.map(entry => entry.html).join('') : '<div class="card"><p>Chưa có nội dung chữ cho bài này.</p></div>'}
     ${videosHtml}
     ${slidesHtml}
   `;
@@ -519,17 +584,17 @@ function renderDialogue301Section(key, label, items){
   let hiddenCount = 0;
 
   if(key === 'vocabulary'){
-    const rows = collectDialogue301VocabRows(items);
+    const rows = normalizeDialogue301VocabRows(items);
     hiddenCount = limit && rows.length > limit ? rows.length - limit : 0;
     blocks = renderDialogue301VocabRows(limit ? rows.slice(0, limit) : rows);
   }else if(key === 'sentences'){
-    const rows = collectDialogue301TableRows(items);
+    const rows = normalizeDialogue301SentenceRows(items);
     hiddenCount = limit && rows.length > limit ? rows.length - limit : 0;
     blocks = rows.length
       ? renderDialogue301SentenceRows(limit ? rows.slice(0, limit) : rows)
       : renderDialogue301TextBlocks(items, key, limit ? 1 : 0);
   }else if(key === 'dialogue'){
-    const rows = collectDialogue301TableRows(items);
+    const rows = normalizeDialogue301DialogueRows(items);
     hiddenCount = limit && rows.length > limit ? rows.length - limit : 0;
     blocks = rows.length
       ? renderDialogue301DialogueRows(limit ? rows.slice(0, limit) : rows)
@@ -553,7 +618,7 @@ function renderDialogue301Section(key, label, items){
           </span>
           <em>${isExpanded ? 'Thu gọn' : 'Mở'} ›</em>
         </button>
-        ${isExpanded ? `<div class="dialogue301-blocks dialogue301-accordion-body">${blocks}</div>` : ''}
+        <div class="dialogue301-blocks dialogue301-accordion-body" data-secondary-body="${escapeHtml(key)}" ${isExpanded ? '' : 'hidden'}>${blocks}</div>
       </section>
     `;
   }
@@ -562,15 +627,15 @@ function renderDialogue301Section(key, label, items){
   const isOverviewExpanded = canOverviewExpand && dialogue301OverviewExpandedSections.has(key);
   if(canOverviewExpand && isOverviewExpanded){
     if(key === 'vocabulary'){
-      const rows = collectDialogue301VocabRows(items);
+      const rows = normalizeDialogue301VocabRows(items);
       blocks = renderDialogue301VocabRows(rows);
       hiddenCount = 0;
     }else if(key === 'sentences'){
-      const rows = collectDialogue301TableRows(items);
+      const rows = normalizeDialogue301SentenceRows(items);
       blocks = rows.length ? renderDialogue301SentenceRows(rows) : renderDialogue301TextBlocks(items, key, 0);
       hiddenCount = 0;
     }else if(key === 'dialogue'){
-      const rows = collectDialogue301TableRows(items);
+      const rows = normalizeDialogue301DialogueRows(items);
       blocks = rows.length ? renderDialogue301DialogueRows(rows) : renderDialogue301TextBlocks(items, key, 0);
       hiddenCount = 0;
     }
@@ -609,10 +674,105 @@ function renderDialogue301TextBlocks(items, sectionKey, limit){
     .join('');
 }
 
+function pickDialogue301Value(item, keys){
+  for(const key of keys){
+    const value = item?.[key];
+    if(value !== undefined && value !== null && String(value).trim() !== ''){
+      return String(value).trim();
+    }
+  }
+  return '';
+}
+
+function normalizeDialogue301VocabRows(items){
+  if(!Array.isArray(items) || !items.length) return [];
+  const structuredRows = items
+    .filter(item => item && typeof item === 'object' && (item.zh || item.hanzi || item.word || item.pinyin || item.vi || item.meaning))
+    .map(item => ({
+      hanzi: pickDialogue301Value(item, ['zh', 'hanzi', 'word', 'text_zh']),
+      pinyin: pickDialogue301Value(item, ['pinyin', 'py']),
+      meaning: pickDialogue301Value(item, ['vi', 'meaning', 'meaning_vi', 'translation']),
+      type: pickDialogue301Value(item, ['word_type', 'type', 'word_type_zh'])
+    }))
+    .filter(row => row.hanzi || row.pinyin || row.meaning);
+
+  return structuredRows.length ? structuredRows : collectDialogue301VocabRows(items);
+}
+
+function normalizeDialogue301SentenceRows(items){
+  if(!Array.isArray(items) || !items.length) return [];
+  const structuredRows = items
+    .filter(item => item && typeof item === 'object' && (item.zh || item.hanzi || item.pinyin || item.vi || item.meaning))
+    .map(item => ({
+      hanzi: pickDialogue301Value(item, ['zh', 'hanzi', 'sentence_zh', 'text_zh']),
+      pinyin: pickDialogue301Value(item, ['pinyin', 'py']),
+      meaning: pickDialogue301Value(item, ['vi', 'meaning', 'meaning_vi', 'translation'])
+    }))
+    .filter(row => row.hanzi || row.pinyin || row.meaning);
+
+  return structuredRows.length ? structuredRows : collectDialogue301TableRows(items);
+}
+
+function normalizeDialogue301DialogueRows(items){
+  if(!Array.isArray(items) || !items.length) return [];
+  const structuredRows = items
+    .filter(item => item && typeof item === 'object' && (item.zh || item.hanzi || item.pinyin || item.vi || item.speaker_zh))
+    .map(item => ({
+      hanzi: pickDialogue301Value(item, ['zh', 'hanzi', 'line_zh', 'text_zh']),
+      pinyin: pickDialogue301Value(item, ['pinyin', 'py']),
+      meaning: pickDialogue301Value(item, ['vi', 'meaning', 'meaning_vi', 'translation']),
+      speaker: pickDialogue301Value(item, ['speaker_zh', 'speaker', 'speaker_vi']),
+      speakerPinyin: pickDialogue301Value(item, ['speaker_pinyin']),
+      speakerVi: pickDialogue301Value(item, ['speaker_vi'])
+    }))
+    .filter(row => row.hanzi || row.pinyin || row.meaning || row.speaker);
+
+  return structuredRows.length ? structuredRows : collectDialogue301TableRows(items);
+}
+
+function stringifyDialogue301StructuredItem(item){
+  if(item === undefined || item === null) return '';
+  if(typeof item !== 'object') return String(item || '');
+
+  const lines = [];
+  const push = value => {
+    const text = String(value ?? '').trim();
+    if(text) lines.push(text);
+  };
+
+  push(item.title || item.vi_title || item.title_zh || item.title_vi);
+  push(item.zh || item.hanzi);
+  push(item.pinyin);
+  push(item.vi || item.meaning || item.translation);
+  push(item.content || item.explanation_vi || item.explanation_raw || item.raw);
+
+  if(Array.isArray(item.examples) && item.examples.length){
+    item.examples.forEach(example => {
+      if(typeof example === 'object'){
+        push([example.zh, example.pinyin, example.vi || example.meaning].filter(Boolean).join('\n'));
+      }else{
+        push(example);
+      }
+    });
+  }
+
+  if(Array.isArray(item.items) && item.items.length){
+    item.items.forEach(entry => {
+      if(typeof entry === 'object'){
+        push([entry.zh, entry.pinyin, entry.vi || entry.meaning].filter(Boolean).join(' · '));
+      }else{
+        push(entry);
+      }
+    });
+  }
+
+  return lines.join('\n').trim();
+}
+
 function collectDialogue301TableRows(items){
   const out = [];
   items.forEach(item => {
-    const text = cleanLessonText(item && typeof item === 'object' ? (item.text || '') : item);
+    const text = cleanLessonText(item && typeof item === 'object' ? stringifyDialogue301StructuredItem(item) : item);
     const rows = parseDialogue301RowsFromTable(text);
     if(rows && rows.length){
       rows.forEach(row => out.push(row));
@@ -634,7 +794,7 @@ function getDialogue301SectionSummary(key, items){
 
 function renderDialogue301TextBlock(item, sectionKey){
   const slide = item && typeof item === 'object' ? item.slide : '';
-  const text = cleanLessonText(item && typeof item === 'object' ? (item.text || '') : item);
+  const text = cleanLessonText(item && typeof item === 'object' ? stringifyDialogue301StructuredItem(item) : item);
 
   if(!text){
     return '';
@@ -805,16 +965,17 @@ function renderDialogue301SentenceRows(rows){
   }
 
   return `
-    <div class="sentence-list">
+    <div class="sentence-card-list">
       ${rows.map((row, index) => `
-        <div class="sentence-row">
+        <article class="sentence-card">
           <span class="sentence-index">${index + 1}</span>
           <div class="sentence-main">
             <strong>${escapeHtml(row.hanzi)}</strong>
             <span>${escapeHtml(row.pinyin)}</span>
             ${row.meaning ? `<small>${escapeHtml(row.meaning)}</small>` : ''}
           </div>
-        </div>
+          <button class="sentence-audio-btn" type="button" aria-label="Nghe câu ${index + 1}">🔊</button>
+        </article>
       `).join('')}
     </div>
   `;
@@ -830,13 +991,17 @@ function renderDialogue301DialogueBlock(text){
   if(!lines.length) return '';
 
   return `
-    <div class="dialogue-line-list">
-      ${lines.map((line, index) => `
-        <div class="dialogue-line">
-          <span class="dialogue-speaker">${index % 2 === 0 ? 'A' : 'B'}:</span>
-          <div><strong>${escapeHtml(line)}</strong></div>
-        </div>
-      `).join('')}
+    <div class="dialogue-chat-list">
+      ${lines.map((line, index) => {
+        const speaker = index % 2 === 0 ? 'A' : 'B';
+        return `
+          <article class="dialogue-bubble ${speaker === 'B' ? 'speaker-b' : 'speaker-a'}">
+            <span class="dialogue-speaker">${speaker}</span>
+            <div class="dialogue-main"><strong>${escapeHtml(line)}</strong></div>
+            <button class="dialogue-audio-btn" type="button" aria-label="Nghe lượt thoại ${index + 1}">🔊</button>
+          </article>
+        `;
+      }).join('')}
     </div>
   `;
 }
@@ -847,17 +1012,21 @@ function renderDialogue301DialogueRows(rows){
   }
 
   return `
-    <div class="dialogue-line-list">
-      ${rows.map((row, index) => `
-        <div class="dialogue-line">
-          <span class="dialogue-speaker">${index % 2 === 0 ? 'A' : 'B'}:</span>
-          <div>
-            <strong>${escapeHtml(row.hanzi)}</strong>
-            <span>${escapeHtml(row.pinyin)}</span>
-            ${row.meaning ? `<small>${escapeHtml(row.meaning)}</small>` : ''}
-          </div>
-        </div>
-      `).join('')}
+    <div class="dialogue-chat-list">
+      ${rows.map((row, index) => {
+        const speaker = index % 2 === 0 ? 'A' : 'B';
+        return `
+          <article class="dialogue-bubble ${speaker === 'B' ? 'speaker-b' : 'speaker-a'}">
+            <span class="dialogue-speaker">${speaker}</span>
+            <div class="dialogue-main">
+              <strong>${escapeHtml(row.hanzi)}</strong>
+              <span>${escapeHtml(row.pinyin)}</span>
+              ${row.meaning ? `<small>${escapeHtml(row.meaning)}</small>` : ''}
+            </div>
+            <button class="dialogue-audio-btn" type="button" aria-label="Nghe lượt thoại ${index + 1}">🔊</button>
+          </article>
+        `;
+      }).join('')}
     </div>
   `;
 }
@@ -983,7 +1152,7 @@ function renderDialogue301PipeTable(text){
   `;
 }
 
-function renderDialogue301MediaSection(type, label, items, lessonDir){
+function renderDialogue301MediaSection(type, label, items, lessonDir, basePath){
   if(!Array.isArray(items) || !items.length || !lessonDir){
     return '';
   }
@@ -1000,7 +1169,7 @@ function renderDialogue301MediaSection(type, label, items, lessonDir){
       </div>
       <div class="dialogue301-slide-gallery">
         ${items.map((item, index) => {
-          const src = joinUrlPath(dialogue301BasePath || 'lessons-301', lessonDir, item);
+          const src = joinUrlPath(basePath || dialogue301BasePath || 'lessons-301-v2', lessonDir, item);
           return `
             <figure class="dialogue301-media-card">
               <button class="dialogue301-slide-open" type="button" data-src="${escapeHtml(src)}" aria-label="Phóng to slide ${index + 1}">
@@ -1015,16 +1184,16 @@ function renderDialogue301MediaSection(type, label, items, lessonDir){
   `;
 }
 
-function dialogue301MediaUrl(item, lessonDir){
+function dialogue301MediaUrl(item, lessonDir, basePath){
   const src = typeof item === 'string' ? item : (item?.src || item?.url || item?.path || '');
   if(!src) return '';
   if(/^[a-z][a-z0-9+.-]*:/i.test(src) || src.startsWith('/')){
     return src;
   }
-  return joinUrlPath(dialogue301BasePath || 'lessons-301', lessonDir, src);
+  return joinUrlPath(basePath || dialogue301BasePath || 'lessons-301-v2', lessonDir, src);
 }
 
-function renderDialogue301VideoSection(videos, lessonDir){
+function renderDialogue301VideoSection(videos, lessonDir, basePath){
   if(!Array.isArray(videos) || !videos.length || !lessonDir){
     return '';
   }
@@ -1037,9 +1206,9 @@ function renderDialogue301VideoSection(videos, lessonDir){
       </div>
       <div class="dialogue301-video-grid">
         ${videos.map((item, index) => {
-          const src = dialogue301MediaUrl(item, lessonDir);
+          const src = dialogue301MediaUrl(item, lessonDir, basePath);
           const title = typeof item === 'object' ? (item.title || item.name || `Video ${index + 1}`) : `Video ${index + 1}`;
-          const poster = typeof item === 'object' && item.poster ? dialogue301MediaUrl(item.poster, lessonDir) : '';
+          const poster = typeof item === 'object' && item.poster ? dialogue301MediaUrl(item.poster, lessonDir, basePath) : '';
           if(!src) return '';
 
           return `
@@ -1060,7 +1229,7 @@ function bindDialogue301LessonUI(){
   document.querySelectorAll('.dialogue301-filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       dialogue301Filter = btn.dataset.filter || 'all';
-      rerenderDialogue301CurrentLesson();
+      applyDialogue301Filter();
     });
   });
 
@@ -1113,11 +1282,23 @@ function bindDialogue301LessonUI(){
 function rerenderDialogue301CurrentLesson(){
   const contentEl = $('#dialogue301LessonContent');
   if(!contentEl || !dialogue301CurrentData || !dialogue301CurrentLesson) return;
+  const scrollY = window.scrollY;
   contentEl.innerHTML = renderDialogue301Lesson(dialogue301CurrentData, dialogue301CurrentLesson);
   bindDialogue301LessonUI();
+  requestAnimationFrame(() => window.scrollTo({ top: scrollY }));
 }
 
 function applyDialogue301Filter(){
+  const available = new Set(['all']);
+  document.querySelectorAll('.dialogue301-section').forEach(section => {
+    const key = section.dataset.section || '';
+    if(key) available.add(key);
+  });
+
+  if(!available.has(dialogue301Filter)){
+    dialogue301Filter = 'all';
+  }
+
   document.querySelectorAll('.dialogue301-filter-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.filter === dialogue301Filter);
   });
@@ -1128,6 +1309,20 @@ function applyDialogue301Filter(){
       section.hidden = key === 'slides';
     }else{
       section.hidden = key !== dialogue301Filter;
+    }
+
+    const secondaryBody = section.querySelector('[data-secondary-body]');
+    const accordionHead = section.querySelector('.dialogue301-accordion-head');
+    if(secondaryBody){
+      const shouldOpen = dialogue301Filter !== 'all' && key === dialogue301Filter;
+      const isManualOpen = dialogue301ExpandedSections.has(key);
+      secondaryBody.hidden = !(shouldOpen || isManualOpen);
+      section.classList.toggle('is-open', shouldOpen || isManualOpen);
+      if(accordionHead){
+        accordionHead.setAttribute('aria-expanded', shouldOpen || isManualOpen ? 'true' : 'false');
+        const em = accordionHead.querySelector('em');
+        if(em) em.textContent = (shouldOpen || isManualOpen) ? 'Thu gọn ›' : 'Mở ›';
+      }
     }
   });
 }
