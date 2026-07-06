@@ -11,10 +11,10 @@ const defaultSettings = {
   delayBetweenStrokes: 180,
   drawingWidth: 34,
   strokeColor: '#111827',
-  radicalColor: '#00C7FE',
-  outlineColor: '#cbd5e1',
-  drawingColor: '#2563eb',
-  highlightColor: '#f97316',
+  radicalColor: '#c96f4d',
+  outlineColor: '#d8c9b8',
+  drawingColor: '#c96f4d',
+  highlightColor: '#d97706',
   showHintAfterMisses: 2
 };
 
@@ -53,6 +53,7 @@ const els = {
   embedCode: document.getElementById('embedCode'),
   embedStatus: document.getElementById('embedStatus'),
   empty: document.getElementById('emptyState'),
+  compound: document.getElementById('compoundInfo'),
   list: document.getElementById('writerList'),
   infoDialog: document.getElementById('charInfoDialog')
 };
@@ -68,20 +69,121 @@ const localCharInfoCache = new Map();
 const HANZI_COLOR_STORAGE_KEY = 'hanziStrokeColorSettings.v1';
 const HANZI_PRESET_STORAGE_KEY = 'hanziStrokeActivePreset.v1';
 const HANZI_THEME_STORAGE_KEY = 'hanziStrokeTheme.v1';
+
+const wordBucketCache = new Map();
+const WORD_LOOKUP_SOURCES = ['by_first_char', 'by_length'];
+
+function getWordLookupPath(wordText, source){
+  const chars = getHanziChars(wordText);
+  if(!chars.length){
+    return '';
+  }
+  if(source === 'by_first_char'){
+    const first = chars[0];
+    return `data/words/by_first_char/${first.codePointAt(0).toString(16).toUpperCase().padStart(4, '0')}.json`;
+  }
+  if(source === 'by_length'){
+    return `data/words/by_length/len_${String(chars.length).padStart(2, '0')}.json`;
+  }
+  return '';
+}
+
+function loadWordBucket(wordText, source){
+  const path = getWordLookupPath(wordText, source);
+  if(!path){
+    return Promise.resolve(null);
+  }
+  if(wordBucketCache.has(path)){
+    return wordBucketCache.get(path);
+  }
+
+  const promise = fetch(path)
+    .then(response => {
+      if(response.status === 404){
+        return null;
+      }
+      if(!response.ok){
+        throw new Error(`${response.status} ${response.statusText}`);
+      }
+      return response.json();
+    })
+    .catch(err => {
+      console.warn(`Cannot load word dictionary bucket ${path}:`, err);
+      return null;
+    });
+
+  wordBucketCache.set(path, promise);
+  return promise;
+}
+
+function pickBestWordEntry(rows){
+  const list = Array.isArray(rows) ? rows : (rows ? [rows] : []);
+  if(!list.length){
+    return null;
+  }
+  return list.find(row => String(row?.vi || '').trim())
+    || list.find(row => String(row?.en || '').trim())
+    || list[0];
+}
+
+function findWordEntryInBucket(bucket, target){
+  if(!bucket){
+    return null;
+  }
+  if(Array.isArray(bucket)){
+    return pickBestWordEntry(bucket.filter(row => String(row?.s || row?.word || '').trim() === target));
+  }
+  return pickBestWordEntry(bucket[target]);
+}
+
+function normalizeWordDictionaryEntry(entry, target, source){
+  if(!entry){
+    return null;
+  }
+  return {
+    word: entry.s || entry.word || target,
+    traditional: entry.t || entry.traditional || '',
+    pinyin: entry.p || entry.pinyin || entry.pt || '',
+    meaningVi: entry.vi || entry.meaningVi || '',
+    meaningEn: entry.en || entry.meaningEn || '',
+    hanViet: entry.sv || entry.hanViet || '',
+    hsk: entry.hsk || '',
+    source: `data/words/${source}`
+  };
+}
+
+async function loadCompoundWordInfo(wordText){
+  const target = String(wordText || '').trim();
+  if(!target){
+    return null;
+  }
+
+  for(const source of WORD_LOOKUP_SOURCES){
+    const bucket = await loadWordBucket(target, source);
+    const entry = findWordEntryInBucket(bucket, target);
+    const normalized = normalizeWordDictionaryEntry(entry, target, source);
+    if(normalized){
+      return normalized;
+    }
+  }
+
+  return null;
+}
+
 const colorPresets = {
   bright: {
     strokeColor: '#111827',
-    radicalColor: '#00C7FE',
-    outlineColor: '#cbd5e1',
-    drawingColor: '#2563eb',
-    highlightColor: '#f97316'
+    radicalColor: '#c96f4d',
+    outlineColor: '#d8c9b8',
+    drawingColor: '#c96f4d',
+    highlightColor: '#d97706'
   },
   classic: {
-    strokeColor: '#CD3636',
-    radicalColor: '#2C416D',
-    outlineColor: '#d9dde5',
-    drawingColor: '#CD3636',
-    highlightColor: '#f97316'
+    strokeColor: '#9f2d20',
+    radicalColor: '#8b5a3c',
+    outlineColor: '#d8c9b8',
+    drawingColor: '#9f2d20',
+    highlightColor: '#d97706'
   }
 };
 
@@ -161,8 +263,14 @@ function renderWriters(){
   els.empty.hidden = chars.length > 0;
 
   if(!chars.length){
+    if(els.compound){
+      els.compound.hidden = true;
+      els.compound.innerHTML = '';
+    }
     return;
   }
+
+  renderCompoundInfo(chars, currentRender);
 
   chars.forEach((char, index) => {
     const card = document.createElement('article');
@@ -179,12 +287,12 @@ function renderWriters(){
       </div>
       <div id="${targetId}" class="writer-box ${settings.showGrid ? 'has-grid' : ''}" style="--writer-size:${settings.size}px"></div>
       <div class="char-actions" aria-label="Thao tác cho chữ ${escapeHtml(char)}">
-        ${charActionButton('play', '▶', 'Phát bút thuận')}
+        ${charActionButton('play', '▶', 'Phát nét')}
         ${charActionButton('quiz', '✎', 'Luyện viết')}
-        ${charActionButton('quiz-no-outline', '◌', 'Luyện viết không viền')}
-        ${charActionButton('stroke-order', '①', 'Hiện thứ tự nét')}
-        ${charActionButton('speak', '🔊', 'Phát âm')}
-        ${charActionButton('info', 'i', 'Thông tin chữ')}
+        ${charActionButton('quiz-no-outline', '◌', 'Không viền')}
+        ${charActionButton('stroke-order', '①', 'Thứ tự nét')}
+        ${charActionButton('speak', '🔊', 'Nghe âm')}
+        ${charActionButton('info', 'i', 'Từ điển')}
       </div>
       <div class="stroke-order" hidden></div>
       <div class="char-info-tools">
@@ -195,7 +303,7 @@ function renderWriters(){
           title="Xem thông tin chữ"
           aria-label="Xem thông tin chữ"
           aria-expanded="false"
-        >📖</button>
+        ><span aria-hidden="true">📖</span><span>Từ điển</span></button>
       </div>
       <div class="char-info-panel" hidden></div>
     `;
@@ -247,8 +355,9 @@ function renderWriters(){
 
 function charActionButton(action, icon, label){
   return `
-    <button type="button" class="icon-btn" data-char-action="${escapeHtml(action)}" title="${escapeHtml(label)}" aria-label="${escapeHtml(label)}">
-      <span aria-hidden="true">${escapeHtml(icon)}</span>
+    <button type="button" class="icon-btn icon-btn--${escapeHtml(action)}" data-char-action="${escapeHtml(action)}" title="${escapeHtml(label)}" aria-label="${escapeHtml(label)}">
+      <span class="icon-symbol" aria-hidden="true">${escapeHtml(icon)}</span>
+      <span class="icon-label">${escapeHtml(label)}</span>
     </button>
   `;
 }
@@ -437,6 +546,132 @@ function formatMeaning(info){
 
 function formatPinyin(pinyin){
   return String(pinyin || '').trim().toLocaleLowerCase('vi-VN');
+}
+
+function getPrimaryMeaningText(info){
+  return String(info?.meaningVi || info?.meaningEn || '').trim();
+}
+
+function getExactCompoundMatch(wordText, charInfos){
+  const target = String(wordText || '').trim();
+  if(!target){
+    return null;
+  }
+
+  const matches = [];
+  charInfos.forEach(info => {
+    const related = Array.isArray(info?.relatedWords) ? info.relatedWords : [];
+    related.forEach(word => {
+      if(String(word?.word || '').trim() === target){
+        matches.push(word);
+      }
+    });
+  });
+
+  if(!matches.length){
+    return null;
+  }
+
+  return matches.find(item => item.meaningVi) || matches[0];
+}
+
+function buildCompoundFallback(wordText, charInfos){
+  const pinyin = charInfos.map(info => formatPinyin(info?.pinyin)).filter(Boolean).join(' ');
+  const meaningVi = charInfos
+    .map(info => {
+      const char = String(info?.char || '').trim();
+      const meaning = getPrimaryMeaningText(info);
+      return char && meaning ? `${char}: ${meaning}` : '';
+    })
+    .filter(Boolean)
+    .join('; ');
+
+  return {
+    word: wordText,
+    pinyin,
+    meaningVi,
+    isFallback: true
+  };
+}
+
+function renderCompoundCharsHtml(charInfos){
+  const rows = charInfos
+    .filter(info => info?.char)
+    .map(info => {
+      const pinyin = formatPinyin(info.pinyin);
+      const meaning = getPrimaryMeaningText(info);
+      return `
+        <li class="compound-char-row">
+          <strong>${escapeHtml(info.char)}</strong>
+          <span>${escapeHtml(pinyin || '—')}</span>
+          <small>${escapeHtml(meaning || 'Chưa có nghĩa')}</small>
+        </li>
+      `;
+    })
+    .join('');
+
+  if(!rows){
+    return '';
+  }
+
+  return `
+    <div class="compound-char-section">
+      <div class="compound-section-title">Từng chữ trong cụm</div>
+      <ul class="compound-char-list">${rows}</ul>
+    </div>
+  `;
+}
+
+async function renderCompoundInfo(chars, currentRender = renderId){
+  if(!els.compound){
+    return;
+  }
+
+  const wordText = chars.join('');
+  if(chars.length <= 1){
+    els.compound.hidden = true;
+    els.compound.innerHTML = '';
+    return;
+  }
+
+  els.compound.hidden = false;
+  els.compound.innerHTML = '<p class="compound-loading">Đang tải nghĩa cụm từ...</p>';
+
+  const charInfos = await Promise.all(chars.map(char => loadLocalCharInfo(char)));
+  if(currentRender !== renderId || getHanziChars(els.input.value).join('') !== wordText){
+    return;
+  }
+
+  const displayInfos = charInfos.map((info, index) => info || { char: chars[index] });
+  const availableInfos = displayInfos.filter(Boolean);
+  const wordDictionaryMatch = await loadCompoundWordInfo(wordText);
+  if(currentRender !== renderId || getHanziChars(els.input.value).join('') !== wordText){
+    return;
+  }
+  const exactMatch = getExactCompoundMatch(wordText, availableInfos);
+  const compound = wordDictionaryMatch || exactMatch || buildCompoundFallback(wordText, displayInfos);
+  const compoundPinyin = formatPinyin(compound?.pinyin);
+  const compoundMeaning = String(compound?.meaningVi || compound?.meaningEn || '').trim();
+
+  els.compound.innerHTML = `
+    <article class="compound-card">
+      <div class="compound-head">
+        <div>
+          <p class="panel-kicker">Cụm từ đang học</p>
+          <h3>${escapeHtml(wordText)}</h3>
+        </div>
+        <button type="button" class="compound-speak" aria-label="Nghe cụm ${escapeHtml(wordText)}">🔊</button>
+      </div>
+      <div class="compound-main">
+        <div class="compound-word">${escapeHtml(wordText)}</div>
+        ${compoundPinyin ? `<div class="compound-pinyin">${escapeHtml(compoundPinyin)}</div>` : ''}
+        ${compoundMeaning ? `<div class="compound-meaning">${escapeHtml(compoundMeaning)}</div>` : '<div class="compound-meaning is-muted">Chưa có nghĩa cụm từ trực tiếp trong dữ liệu. Xem nghĩa từng chữ bên dưới.</div>'}
+      </div>
+      ${renderCompoundCharsHtml(displayInfos)}
+    </article>
+  `;
+
+  els.compound.querySelector('.compound-speak')?.addEventListener('click', () => speakChar(wordText));
 }
 
 function renderDictionaryInfoHtml(info, options = {}){
