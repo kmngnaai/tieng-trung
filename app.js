@@ -1615,6 +1615,166 @@ function renderDialogue301InlineLookupLoading(text){
   `;
 }
 
+
+
+let dialogue301InlineStrokeWriter = null;
+let dialogue301InlineStrokeChar = '';
+let dialogue301HanziWriterLoader = null;
+
+function ensureDialogue301HanziWriter(){
+  if(window.HanziWriter) return Promise.resolve(window.HanziWriter);
+  if(dialogue301HanziWriterLoader) return dialogue301HanziWriterLoader;
+
+  dialogue301HanziWriterLoader = new Promise((resolve, reject) => {
+    const existing = document.querySelector('script[data-dialogue301-hanzi-writer="true"]');
+    if(existing){
+      existing.addEventListener('load', () => resolve(window.HanziWriter), { once: true });
+      existing.addEventListener('error', reject, { once: true });
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/hanzi-writer@3.7/dist/hanzi-writer.min.js';
+    script.async = true;
+    script.dataset.dialogue301HanziWriter = 'true';
+    script.onload = () => resolve(window.HanziWriter);
+    script.onerror = reject;
+    document.head.appendChild(script);
+  }).catch(error => {
+    console.warn('Cannot load Hanzi Writer for Dialogue 301 popup:', error);
+    return null;
+  });
+
+  return dialogue301HanziWriterLoader;
+}
+
+function renderDialogue301StrokePractice(chars, activeChar){
+  const uniqueChars = getDialogue301UniqueHanziCharactersFromTerms(chars || []);
+  if(!uniqueChars.length) return '';
+  const selected = activeChar && uniqueChars.includes(activeChar) ? activeChar : uniqueChars[0];
+
+  return `
+    <section class="dialogue301-word-section dialogue301-stroke-section" data-dialogue301-stroke-section>
+      <div class="dialogue301-stroke-head">
+        <h4>Cách viết</h4>
+        <small>Chọn một chữ để xem nét</small>
+      </div>
+      ${uniqueChars.length > 1 ? `
+        <div class="dialogue301-word-chip-row dialogue301-stroke-char-row">
+          ${uniqueChars.map(char => `
+            <button class="dialogue301-word-chip dialogue301-stroke-chip ${char === selected ? 'active' : ''}" type="button" data-action="dialogue301-stroke-select" data-stroke-char="${escapeHtml(char)}">
+              ${escapeHtml(char)}
+            </button>
+          `).join('')}
+        </div>
+      ` : ''}
+      <div class="dialogue301-stroke-current">Đang luyện: <strong data-dialogue301-stroke-current>${escapeHtml(selected)}</strong></div>
+      <div class="dialogue301-stroke-canvas-wrap">
+        <div class="dialogue301-stroke-canvas" id="dialogue301InlineStrokeCanvas" aria-label="Cách viết ${escapeHtml(selected)}"></div>
+      </div>
+      <div class="dialogue301-stroke-actions">
+        <button type="button" data-action="dialogue301-stroke-animate">▶ Phát nét</button>
+        <button type="button" data-action="dialogue301-stroke-quiz">✎ Luyện viết</button>
+      </div>
+      <p class="dialogue301-stroke-status" data-dialogue301-stroke-status>Đang chuẩn bị nét chữ...</p>
+    </section>
+  `;
+}
+
+function setDialogue301StrokeStatus(root, message){
+  const status = root?.querySelector?.('[data-dialogue301-stroke-status]');
+  if(status) status.textContent = message || '';
+}
+
+async function activateDialogue301InlineStrokeChar(root, char){
+  const target = String(char || '').trim();
+  if(!root || !target) return;
+
+  dialogue301InlineStrokeChar = target;
+  const current = root.querySelector('[data-dialogue301-stroke-current]');
+  if(current) current.textContent = target;
+  root.querySelectorAll('[data-action="dialogue301-stroke-select"]').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-stroke-char') === target);
+  });
+
+  const canvas = root.querySelector('#dialogue301InlineStrokeCanvas');
+  if(!canvas) return;
+  canvas.innerHTML = '';
+  setDialogue301StrokeStatus(root, 'Đang tải nét chữ...');
+
+  const HanziWriterLib = await ensureDialogue301HanziWriter();
+  if(!HanziWriterLib){
+    setDialogue301StrokeStatus(root, 'Không tải được Hanzi Writer. Có thể mở Tra chữ Hán đầy đủ để luyện viết.');
+    return;
+  }
+
+  try{
+    dialogue301InlineStrokeWriter = HanziWriterLib.create(canvas, target, {
+      width: 172,
+      height: 172,
+      padding: 10,
+      showOutline: true,
+      showCharacter: false,
+      strokeAnimationSpeed: 1,
+      delayBetweenStrokes: 260,
+      drawingWidth: 22,
+      radicalColor: '#c85f42',
+      charDataLoader: (loadChar, onComplete, onError) => {
+        fetch(`https://cdn.jsdelivr.net/npm/hanzi-writer-data@latest/${encodeURIComponent(loadChar)}.json`)
+          .then(response => {
+            if(!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+            return response.json();
+          })
+          .then(onComplete)
+          .catch(onError);
+      }
+    });
+    setDialogue301StrokeStatus(root, 'Bấm Phát nét hoặc Luyện viết để học chữ này.');
+  }catch(error){
+    console.warn('Cannot create Dialogue 301 inline stroke writer:', error);
+    setDialogue301StrokeStatus(root, 'Không hiển thị được nét chữ này.');
+  }
+}
+
+function bindDialogue301InlineStrokePractice(root, chars){
+  const uniqueChars = getDialogue301UniqueHanziCharactersFromTerms(chars || []);
+  if(!root || !uniqueChars.length) return;
+
+  root.querySelectorAll('[data-action="dialogue301-stroke-select"]').forEach(btn => {
+    btn.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      activateDialogue301InlineStrokeChar(root, btn.getAttribute('data-stroke-char') || '');
+    });
+  });
+
+  root.querySelectorAll('[data-action="dialogue301-stroke-animate"]').forEach(btn => {
+    btn.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      if(dialogue301InlineStrokeWriter){
+        dialogue301InlineStrokeWriter.animateCharacter();
+      }else{
+        activateDialogue301InlineStrokeChar(root, dialogue301InlineStrokeChar || uniqueChars[0]);
+      }
+    });
+  });
+
+  root.querySelectorAll('[data-action="dialogue301-stroke-quiz"]').forEach(btn => {
+    btn.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      if(dialogue301InlineStrokeWriter){
+        dialogue301InlineStrokeWriter.quiz();
+      }else{
+        activateDialogue301InlineStrokeChar(root, dialogue301InlineStrokeChar || uniqueChars[0]);
+      }
+    });
+  });
+
+  activateDialogue301InlineStrokeChar(root, uniqueChars[0]);
+}
+
 function renderDialogue301InlineWordLookup(text, info){
   const target = String(text || '').trim();
   const chars = getDialogue301HanziCharacters(target);
@@ -1631,6 +1791,7 @@ function renderDialogue301InlineWordLookup(text, info){
       </div>
     </section>
   ` : '';
+  const strokeHtml = renderDialogue301StrokePractice(chars, chars[0]);
 
   const infoHtml = hasInfo ? `
     <section class="dialogue301-word-section">
@@ -1666,6 +1827,7 @@ function renderDialogue301InlineWordLookup(text, info){
       </div>
       ${charsHtml}
       ${infoHtml}
+      ${strokeHtml}
     </section>
   `;
 }
@@ -1679,6 +1841,7 @@ function renderDialogue301InlineCharLookup(text, info){
   const strokeCount = info?.strokeCount || '';
   const hasInfo = Boolean(info && (pinyin || meaning || info.hanViet || info.radical || strokeCount || hsk));
   const relatedHtml = renderDialogue301CharRelatedWords(info?.relatedWords);
+  const strokeHtml = renderDialogue301StrokePractice([target], target);
 
   const infoHtml = hasInfo ? `
     <section class="dialogue301-word-section">
@@ -1714,6 +1877,7 @@ function renderDialogue301InlineCharLookup(text, info){
         </div>
       </div>
       ${infoHtml}
+      ${strokeHtml}
       ${relatedHtml}
     </section>
   `;
@@ -1738,6 +1902,7 @@ async function openDialogue301InlineCharLookup(text, previousWord, options = {})
   const info = await loadDialogue301CharInfo(target);
   root.innerHTML = renderDialogue301InlineCharLookup(target, info);
   bindDialogue301InlineLookupShell(root, target, previousWord);
+  bindDialogue301InlineStrokePractice(root, getDialogue301HanziCharacters(target));
 }
 
 async function openDialogue301InlineWordLookup(text, previousWord, options = {}){
@@ -1759,6 +1924,7 @@ async function openDialogue301InlineWordLookup(text, previousWord, options = {})
   const info = await lookupDialogue301CompoundWord(target);
   root.innerHTML = renderDialogue301InlineWordLookup(target, info);
   bindDialogue301InlineLookupShell(root, target, previousWord);
+  bindDialogue301InlineStrokePractice(root, getDialogue301HanziCharacters(target));
 }
 
 function bindDialogue301InlineLookupShell(root, target, previousWord){
@@ -1896,6 +2062,8 @@ function openDialogue301WordPopup(word, options = {}){
 function closeDialogue301WordPopup(){
   const root = document.getElementById('dialogue301WordPopupRoot');
   if(root) root.innerHTML = '';
+  dialogue301InlineStrokeWriter = null;
+  dialogue301InlineStrokeChar = '';
   resetDialogue301PopupHistory();
   setDialogue301CurrentPopupView(null);
   document.body.classList.remove('dialogue301-word-popup-open');
