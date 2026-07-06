@@ -195,7 +195,7 @@ function setPage(page){
 
 function renderHome(){
   pageTitle.textContent = 'Tiếng Trung';
-  pageSubtitle.textContent = 'Pinyin · Bút thuận · Bộ thủ · 301 Đàm thoại';
+  pageSubtitle.textContent = 'Pinyin · Tra chữ Hán · Bộ thủ · 301 Đàm thoại';
   pageContent.innerHTML = homePageContent;
   updateNavActive('home');
 }

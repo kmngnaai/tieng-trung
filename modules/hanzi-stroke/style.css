@@ -2432,3 +2432,84 @@ input[type="range"]{
     font-size:10.5px;
   }
 }
+
+
+/* Layer 5 - rename Bút thuận to Tra chữ Hán and add app navigation */
+body{
+  padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+}
+
+.hanzi-app{
+  padding-bottom: 28px;
+}
+
+.hanzi-bottom-nav{
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  z-index: 60;
+  width: min(100%, 760px);
+  min-height: 66px;
+  padding: 8px 14px calc(8px + env(safe-area-inset-bottom, 0px));
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  background: rgba(255, 253, 249, .96);
+  border-top: 1px solid rgba(234, 220, 201, .92);
+  box-shadow: 0 -10px 28px rgba(56, 42, 24, .08);
+  backdrop-filter: blur(14px);
+}
+
+.hanzi-bottom-nav-item{
+  min-width: 0;
+  border-radius: 18px;
+  padding: 6px 4px;
+  color: #74675d;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  font-weight: 700;
+  transition: background .18s ease, color .18s ease, transform .18s ease;
+}
+
+.hanzi-bottom-nav-item span{
+  font-size: 18px;
+  line-height: 1;
+}
+
+.hanzi-bottom-nav-item small{
+  font-size: 11px;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.hanzi-bottom-nav-item:hover,
+.hanzi-bottom-nav-item:focus-visible{
+  background: rgba(255, 243, 237, .9);
+  color: #b95f43;
+  outline: none;
+}
+
+.hanzi-bottom-nav-item.active{
+  color: #c96f4d;
+  background: #fff3ed;
+}
+
+.study-hero-copy .eyebrow,
+.panel-title-row .learning-badge{
+  letter-spacing: .02em;
+}
+
+@media (min-width: 860px){
+  .hanzi-bottom-nav{
+    display: none;
+  }
+
+  body{
+    padding-bottom: 0;
+  }
+}

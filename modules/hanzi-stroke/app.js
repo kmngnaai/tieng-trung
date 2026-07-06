@@ -1087,7 +1087,7 @@ function getShareUrl(){
 
 async function shareCurrentView(){
   const shareUrl = getShareUrl();
-  const title = 'Bút thuận chữ Hán';
+  const title = 'Tra chữ Hán';
 
   try{
     if(navigator.share){
