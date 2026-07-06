@@ -1055,6 +1055,167 @@ function splitDialogue301HanziTerms(text){
     .filter(Boolean);
 }
 
+
+function getDialogue301HanziVariants(text){
+  const seen = new Set();
+  return splitDialogue301HanziTerms(text)
+    .filter(part => /[\u3400-\u9FFF\uF900-\uFAFF]/.test(part))
+    .filter(part => {
+      if(seen.has(part)) return false;
+      seen.add(part);
+      return true;
+    });
+}
+
+function getDialogue301HanziCharacters(text){
+  const seen = new Set();
+  return Array.from(String(text || ''))
+    .filter(char => /[\u3400-\u9FFF\uF900-\uFAFF]/.test(char))
+    .filter(char => {
+      if(seen.has(char)) return false;
+      seen.add(char);
+      return true;
+    });
+}
+
+function getDialogue301ChineseSpeakParts(text){
+  const parts = String(text || '')
+    .split(/[\/／、,，;；]/)
+    .map(part => part.trim())
+    .filter(Boolean)
+    .filter(part => /[\u3400-\u9FFF\uF900-\uFAFF]/.test(part));
+
+  const seen = new Set();
+  return parts.filter(part => {
+    if(seen.has(part)) return false;
+    seen.add(part);
+    return true;
+  });
+}
+
+function pickDialogue301ChineseVoice(){
+  if(!('speechSynthesis' in window)) return null;
+  const voices = window.speechSynthesis.getVoices ? window.speechSynthesis.getVoices() : [];
+  return voices.find(voice => /^zh[-_]?CN/i.test(voice.lang))
+    || voices.find(voice => /^zh/i.test(voice.lang))
+    || null;
+}
+
+function speakDialogue301ChineseText(text){
+  if(!('speechSynthesis' in window) || !window.SpeechSynthesisUtterance) return false;
+
+  const parts = getDialogue301ChineseSpeakParts(text);
+  if(!parts.length) return false;
+
+  window.speechSynthesis.cancel();
+  const voice = pickDialogue301ChineseVoice();
+
+  parts.forEach(part => {
+    const utterance = new SpeechSynthesisUtterance(part);
+    utterance.lang = voice?.lang || 'zh-CN';
+    if(voice) utterance.voice = voice;
+    utterance.rate = 0.88;
+    utterance.pitch = 1;
+    window.speechSynthesis.speak(utterance);
+  });
+
+  return true;
+}
+
+function renderDialogue301LookupChips(items, action, extraClass = ''){
+  if(!Array.isArray(items) || !items.length) return '';
+  return items.map(item => `
+    <button class="dialogue301-word-chip ${escapeHtml(extraClass)}" type="button" data-action="${escapeHtml(action)}" data-text="${escapeHtml(item)}" data-copy-text="${escapeHtml(item)}">
+      ${escapeHtml(item)}
+    </button>
+  `).join('');
+}
+
+function copyDialogue301Text(text){
+  const value = String(text || '').trim();
+  if(!value) return Promise.resolve(false);
+
+  if(navigator.clipboard && window.isSecureContext){
+    return navigator.clipboard.writeText(value).then(() => true).catch(() => false);
+  }
+
+  return new Promise(resolve => {
+    try{
+      const textarea = document.createElement('textarea');
+      textarea.value = value;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      textarea.style.top = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      const ok = document.execCommand('copy');
+      document.body.removeChild(textarea);
+      resolve(Boolean(ok));
+    }catch(error){
+      resolve(false);
+    }
+  });
+}
+
+function showDialogue301Toast(message){
+  let toast = document.getElementById('dialogue301WordToast');
+  if(!toast){
+    toast = document.createElement('div');
+    toast.id = 'dialogue301WordToast';
+    toast.className = 'dialogue301-word-toast';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.classList.add('is-visible');
+  window.clearTimeout(showDialogue301Toast.timer);
+  showDialogue301Toast.timer = window.setTimeout(() => {
+    toast.classList.remove('is-visible');
+  }, 1300);
+}
+
+function bindDialogue301CopyInteractions(root){
+  if(!root) return;
+
+  root.querySelectorAll('[data-action="copy-dialogue301-text"]').forEach(btn => {
+    btn.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      const text = btn.getAttribute('data-text') || '';
+      copyDialogue301Text(text).then(ok => showDialogue301Toast(ok ? 'Đã copy' : 'Không copy được'));
+    });
+  });
+
+  root.querySelectorAll('[data-copy-text]').forEach(el => {
+    let timer = null;
+    let copiedByHold = false;
+    const clear = () => {
+      if(timer){
+        window.clearTimeout(timer);
+        timer = null;
+      }
+    };
+    el.addEventListener('pointerdown', event => {
+      copiedByHold = false;
+      clear();
+      const text = el.getAttribute('data-copy-text') || '';
+      timer = window.setTimeout(() => {
+        copiedByHold = true;
+        copyDialogue301Text(text).then(ok => showDialogue301Toast(ok ? 'Đã copy' : 'Không copy được'));
+      }, 650);
+    });
+    ['pointerup', 'pointerleave', 'pointercancel'].forEach(type => {
+      el.addEventListener(type, clear);
+    });
+    el.addEventListener('click', event => {
+      if(copiedByHold){
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    });
+  });
+}
+
 function getDialogue301CurrentVocabularyRows(){
   if(!dialogue301CurrentData) return [];
   return normalizeDialogue301VocabRows(getDialogue301StructuredItems(dialogue301CurrentData, 'vocabulary'));
@@ -1113,6 +1274,27 @@ function renderDialogue301WordPopup(word){
   const related = getDialogue301RelatedWords(word);
   const examples = getDialogue301ExamplesForWord(word);
   const lessonNo = dialogue301CurrentData?.lesson_no || dialogue301CurrentLesson?.lesson_no || '';
+  const variants = getDialogue301HanziVariants(word?.hanzi || '');
+  const characters = getDialogue301HanziCharacters(variants[0] || word?.hanzi || '');
+  const copyText = variants[0] || word?.hanzi || word?.pinyin || word?.meaning || '';
+
+  const quickLookupHtml = variants.length ? `
+    <section class="dialogue301-word-section dialogue301-word-quick-section">
+      <h4>Tra nhanh</h4>
+      <div class="dialogue301-word-chip-row">
+        ${renderDialogue301LookupChips(variants, 'dialogue301-inline-word-ready', 'word-chip')}
+      </div>
+    </section>
+  ` : '';
+
+  const charLookupHtml = characters.length ? `
+    <section class="dialogue301-word-section dialogue301-word-char-section">
+      <h4>Từng chữ</h4>
+      <div class="dialogue301-word-chip-row dialogue301-word-char-row">
+        ${renderDialogue301LookupChips(characters, 'dialogue301-inline-char-ready', 'char-chip')}
+      </div>
+    </section>
+  ` : '';
 
   const relatedHtml = related.length ? `
     <section class="dialogue301-word-section">
@@ -1152,11 +1334,15 @@ function renderDialogue301WordPopup(word){
         <button class="dialogue301-word-close" type="button" data-action="close-dialogue301-word-popup" aria-label="Đóng">×</button>
       </div>
       <div class="dialogue301-word-main-card">
-        <div class="dialogue301-word-hanzi">${escapeHtml(word.hanzi || '')}</div>
+        <div class="dialogue301-word-hanzi" data-copy-text="${escapeHtml(copyText)}" title="Nhấn giữ để copy">${escapeHtml(word.hanzi || '')}</div>
         ${word.pinyin ? `<div class="dialogue301-word-pinyin">${escapeHtml(word.pinyin)}</div>` : ''}
         ${word.meaning ? `<div class="dialogue301-word-meaning">${escapeHtml(word.meaning)}</div>` : ''}
-        <button class="dialogue301-word-audio" type="button" aria-label="Nghe ${escapeHtml(word.hanzi || word.pinyin || '')}">🔊 Nghe</button>
+        <div class="dialogue301-word-action-row">
+          <button class="dialogue301-word-audio" type="button" aria-label="Nghe ${escapeHtml(word.hanzi || word.pinyin || '')}">🔊 Nghe</button>
+        </div>
       </div>
+      ${quickLookupHtml}
+      ${charLookupHtml}
       <section class="dialogue301-word-section">
         <h4>Thông tin</h4>
         <div class="dialogue301-word-info-grid">
@@ -1189,13 +1375,23 @@ function openDialogue301WordPopup(word){
   const audioBtn = root.querySelector('.dialogue301-word-audio');
   if(audioBtn){
     audioBtn.addEventListener('click', event => {
+      event.preventDefault();
       event.stopPropagation();
-      const text = word.hanzi || word.pinyin || '';
-      if(text){
-        console.info('Dialogue 301 word audio placeholder:', text);
-      }
+      const ok = speakDialogue301ChineseText(word.hanzi || '');
+      if(!ok) showDialogue301Toast('Không phát được âm');
     });
   }
+
+  bindDialogue301CopyInteractions(root);
+
+  root.querySelectorAll('[data-action="dialogue301-inline-word-ready"], [data-action="dialogue301-inline-char-ready"]').forEach(btn => {
+    btn.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      const text = btn.getAttribute('data-text') || '';
+      copyDialogue301Text(text).then(ok => showDialogue301Toast(ok ? 'Đã copy' : 'Không copy được'));
+    });
+  });
 }
 
 function closeDialogue301WordPopup(){
@@ -1574,6 +1770,10 @@ function bindDialogue301LessonUI(){
   document.querySelectorAll('.vocab-audio-btn').forEach(btn => {
     btn.addEventListener('click', event => {
       event.stopPropagation();
+      const row = btn.closest('.vocab-row[data-vocab-row]');
+      const text = row?.dataset?.hanzi || btn.getAttribute('aria-label')?.replace(/^Nghe\s+/i, '') || '';
+      const ok = speakDialogue301ChineseText(text);
+      if(!ok) showDialogue301Toast('Không phát được âm');
     });
   });
 
