@@ -2286,3 +2286,82 @@ body.is-dialogue301 .page-content{
     height: 160px;
   }
 }
+/* Dialogue 301 - mobile vocab single-line truncate
+   Không xuống hàng. Chữ/pinyin/nghĩa dài thì hiện được bao nhiêu hiện,
+   phần dư ẩn bằng ellipsis để không chồng lên nhau. */
+@media (max-width: 430px){
+  .vocab-row{
+    grid-template-columns: minmax(86px, 104px) minmax(72px, 92px) minmax(0, 1fr) 34px !important;
+    grid-template-areas: none !important;
+    column-gap: 8px !important;
+    row-gap: 0 !important;
+    align-items: center;
+    min-height: 54px;
+    padding: 8px 8px 8px 12px;
+  }
+
+  .vocab-row-hanzi,
+  .vocab-row-pinyin,
+  .vocab-row-meaning{
+    min-width: 0 !important;
+    max-width: 100%;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .vocab-row-hanzi{
+    grid-area: auto !important;
+    width: auto !important;
+    font-size: 28px;
+    line-height: 1;
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+
+  .vocab-row-pinyin{
+    grid-area: auto !important;
+    width: auto !important;
+    font-size: 12px;
+    line-height: 1.15;
+  }
+
+  .vocab-row-meaning{
+    grid-area: auto !important;
+    width: auto !important;
+    font-size: 13px;
+    line-height: 1.2;
+  }
+
+  .vocab-row .audio-btn,
+  .vocab-row button[data-action*="audio"],
+  .vocab-row button[aria-label*="Nghe"]{
+    grid-area: auto !important;
+    justify-self: center;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+  }
+}
+
+@media (max-width: 360px){
+  .vocab-row{
+    grid-template-columns: minmax(76px, 88px) minmax(60px, 74px) minmax(0, 1fr) 32px !important;
+    column-gap: 6px !important;
+    min-height: 52px;
+    padding-left: 10px;
+    padding-right: 6px;
+  }
+
+  .vocab-row-hanzi{
+    font-size: 26px;
+  }
+
+  .vocab-row-pinyin{
+    font-size: 11.5px;
+  }
+
+  .vocab-row-meaning{
+    font-size: 12.5px;
+  }
+}
