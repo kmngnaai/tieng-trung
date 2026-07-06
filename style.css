@@ -1912,3 +1912,263 @@ body.is-dialogue301 .page-content{
     bottom: 18px;
   }
 }
+
+/* Dialogue 301 layer 2: inline compound word lookup */
+.dialogue301-word-lookup-head{
+  align-items: center;
+}
+
+.dialogue301-word-back{
+  border: 1px solid var(--d301-border);
+  background: #fff8f1;
+  color: var(--d301-accent-strong);
+  border-radius: 999px;
+  min-height: 34px;
+  padding: 0 13px;
+  font-weight: 850;
+}
+
+.dialogue301-inline-lookup-card{
+  background: linear-gradient(180deg, #fff4ed, #fffdfb);
+}
+
+.dialogue301-word-en-meaning{
+  color: var(--d301-muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.dialogue301-lookup-status,
+.dialogue301-lookup-empty,
+.dialogue301-word-section-note{
+  color: var(--d301-muted);
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 4px 0 0;
+}
+
+.dialogue301-word-chip.word-chip{
+  cursor: pointer;
+}
+
+@media (max-width: 720px){
+  .dialogue301-word-back{
+    min-height: 32px;
+    padding: 0 11px;
+    font-size: 13px;
+  }
+
+  .dialogue301-word-en-meaning,
+  .dialogue301-lookup-status,
+  .dialogue301-lookup-empty,
+  .dialogue301-word-section-note{
+    font-size: 12.5px;
+  }
+}
+
+
+/* Dialogue 301 layer 3: inline single-character lookup */
+.dialogue301-inline-char-card{
+  text-align: left;
+}
+
+.dialogue301-inline-char-hanzi{
+  font-size: clamp(48px, 12vw, 76px);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.dialogue301-char-info-grid strong{
+  word-break: break-word;
+}
+
+.dialogue301-char-related-list{
+  display: grid;
+  gap: 8px;
+}
+
+.dialogue301-char-related-item{
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(64px, 94px) minmax(70px, 110px) minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--d301-border);
+  border-radius: 14px;
+  background: #fffdfb;
+  color: var(--d301-ink);
+  padding: 10px 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dialogue301-char-related-item strong{
+  font-family: var(--app-font-zh, "Noto Sans SC", "Microsoft YaHei", sans-serif);
+  font-size: 20px;
+  line-height: 1.1;
+}
+
+.dialogue301-char-related-item span{
+  color: #344260;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.dialogue301-char-related-item small{
+  color: var(--d301-muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+@media (max-width: 720px){
+  .dialogue301-inline-char-hanzi{
+    font-size: clamp(46px, 16vw, 64px);
+  }
+
+  .dialogue301-char-related-item{
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+}
+
+
+/* Dialogue 301 layer 3 - compact audio icon beside Hanzi */
+.dialogue301-word-main,
+.dialogue301-lookup-main,
+.dialogue301-char-main{
+  position: relative;
+}
+
+.dialogue301-word-main .dialogue301-word-actions,
+.dialogue301-lookup-main .dialogue301-word-actions,
+.dialogue301-char-main .dialogue301-word-actions,
+.dialogue301-word-main .word-actions,
+.dialogue301-lookup-main .word-actions,
+.dialogue301-char-main .word-actions{
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  margin: 0;
+}
+
+.dialogue301-word-main button[data-action*="audio"],
+.dialogue301-lookup-main button[data-action*="audio"],
+.dialogue301-char-main button[data-action*="audio"],
+.dialogue301-word-main .audio-btn,
+.dialogue301-lookup-main .audio-btn,
+.dialogue301-char-main .audio-btn,
+.dialogue301-word-main .speak-btn,
+.dialogue301-lookup-main .speak-btn,
+.dialogue301-char-main .speak-btn{
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  padding: 0;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.dialogue301-word-main button[data-action*="audio"] span,
+.dialogue301-lookup-main button[data-action*="audio"] span,
+.dialogue301-char-main button[data-action*="audio"] span{
+  display: none;
+}
+
+/* Dialogue 301 layer 3 - place audio icon beside Hanzi inside the main card */
+.dialogue301-word-main-card{
+  position: relative;
+  padding-right: 66px;
+}
+
+.dialogue301-word-main-card .dialogue301-word-audio{
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 15px;
+  line-height: 1;
+  z-index: 2;
+}
+
+@media (max-width: 480px){
+  .dialogue301-word-main-card{
+    padding-right: 58px;
+  }
+  .dialogue301-word-main-card .dialogue301-word-audio{
+    top: 16px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    min-height: 34px;
+  }
+}
+
+/* Dialogue 301 layer 3.1 - single-char lookup and related-word audio */
+.dialogue301-word-related-item,
+.dialogue301-char-related-item{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 34px;
+  align-items: center;
+  gap: 10px;
+}
+
+.dialogue301-related-text{
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(64px, 94px) minmax(70px, 110px) minmax(0, 1fr);
+  align-items: baseline;
+  gap: 10px;
+}
+
+.dialogue301-char-related-item .dialogue301-related-text{
+  align-items: center;
+}
+
+.dialogue301-related-audio{
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  border-radius: 999px;
+  border: 1px solid var(--d301-border);
+  background: #fffdfb;
+  color: var(--d301-accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.dialogue301-related-audio:hover{
+  background: var(--d301-accent-soft);
+  border-color: rgba(195, 105, 74, .36);
+}
+
+@media (max-width: 720px){
+  .dialogue301-related-text{
+    grid-template-columns: minmax(54px, 76px) minmax(62px, 88px) minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .dialogue301-related-audio{
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    font-size: 12px;
+  }
+}

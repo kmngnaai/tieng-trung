@@ -1078,6 +1078,28 @@ function getDialogue301HanziCharacters(text){
     });
 }
 
+
+function isDialogue301SingleHanziText(text){
+  const value = String(text || '').trim();
+  if(!value) return false;
+  const chars = getDialogue301HanziCharacters(value);
+  return chars.length === 1 && value === chars[0];
+}
+
+function getDialogue301UniqueHanziCharactersFromTerms(terms){
+  const seen = new Set();
+  const chars = [];
+  (Array.isArray(terms) ? terms : []).forEach(term => {
+    getDialogue301HanziCharacters(term).forEach(char => {
+      if(!seen.has(char)){
+        seen.add(char);
+        chars.push(char);
+      }
+    });
+  });
+  return chars;
+}
+
 function getDialogue301ChineseSpeakParts(text){
   const parts = String(text || '')
     .split(/[\/／、,，;；]/)
@@ -1122,6 +1144,175 @@ function speakDialogue301ChineseText(text){
   return true;
 }
 
+
+const dialogue301WordBucketCache = new Map();
+
+function cleanDialogue301PinyinText(text){
+  return String(text || '')
+    .replace(/\u200b/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function getDialogue301WordBucketPath(wordText, source){
+  const chars = getDialogue301HanziCharacters(wordText);
+  if(!chars.length) return '';
+  if(source === 'by_first_char'){
+    const hex = chars[0].codePointAt(0).toString(16).toUpperCase().padStart(4, '0');
+    return `modules/hanzi-stroke/data/words/by_first_char/${hex}.json`;
+  }
+  if(source === 'by_length'){
+    return `modules/hanzi-stroke/data/words/by_length/len_${String(chars.length).padStart(2, '0')}.json`;
+  }
+  return '';
+}
+
+function loadDialogue301WordBucket(wordText, source){
+  const path = getDialogue301WordBucketPath(wordText, source);
+  if(!path) return Promise.resolve(null);
+  if(dialogue301WordBucketCache.has(path)) return dialogue301WordBucketCache.get(path);
+
+  const promise = fetch(path)
+    .then(response => {
+      if(response.status === 404) return null;
+      if(!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+      return response.json();
+    })
+    .catch(error => {
+      console.warn(`Cannot load Dialogue 301 word bucket ${path}:`, error);
+      return null;
+    });
+
+  dialogue301WordBucketCache.set(path, promise);
+  return promise;
+}
+
+function pickDialogue301WordEntry(rows){
+  const list = Array.isArray(rows) ? rows : (rows ? [rows] : []);
+  if(!list.length) return null;
+  return list.find(row => String(row?.vi || '').trim())
+    || list.find(row => String(row?.en || '').trim())
+    || list[0];
+}
+
+function findDialogue301WordEntryInBucket(bucket, target){
+  if(!bucket) return null;
+  if(Array.isArray(bucket)){
+    return pickDialogue301WordEntry(bucket.filter(row => String(row?.s || row?.word || '').trim() === target));
+  }
+  return pickDialogue301WordEntry(bucket[target]);
+}
+
+function normalizeDialogue301WordDictionaryEntry(entry, target, source){
+  if(!entry) return null;
+  return {
+    word: entry.s || entry.word || target,
+    traditional: entry.t || entry.traditional || '',
+    pinyin: cleanDialogue301PinyinText(entry.p || entry.pinyin || entry.pt || ''),
+    meaningVi: entry.vi || entry.meaningVi || '',
+    meaningEn: entry.en || entry.meaningEn || '',
+    hanViet: entry.sv || entry.hanViet || '',
+    hsk: entry.hsk || '',
+    source: source === 'by_first_char' ? 'words/by_first_char' : 'words/by_length'
+  };
+}
+
+async function lookupDialogue301CompoundWord(wordText){
+  const target = String(wordText || '').trim();
+  if(!target) return null;
+  const sources = ['by_first_char', 'by_length'];
+  for(const source of sources){
+    const bucket = await loadDialogue301WordBucket(target, source);
+    const entry = findDialogue301WordEntryInBucket(bucket, target);
+    const normalized = normalizeDialogue301WordDictionaryEntry(entry, target, source);
+    if(normalized) return normalized;
+  }
+  return null;
+}
+
+
+const dialogue301CharInfoCache = new Map();
+
+function getDialogue301CharDataPath(char){
+  const code = String(char || '').codePointAt(0);
+  if(!Number.isFinite(code)) return '';
+  return `modules/hanzi-stroke/data/chars/${code.toString(16).toUpperCase()}.json`;
+}
+
+function loadDialogue301CharInfo(char){
+  const target = String(char || '').trim();
+  if(!target) return Promise.resolve(null);
+  if(dialogue301CharInfoCache.has(target)) return dialogue301CharInfoCache.get(target);
+
+  const path = getDialogue301CharDataPath(target);
+  if(!path) return Promise.resolve(null);
+
+  const promise = fetch(path)
+    .then(response => {
+      if(response.status === 404) return null;
+      if(!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+      return response.json();
+    })
+    .then(data => normalizeDialogue301CharInfo(data, target))
+    .catch(error => {
+      console.warn(`Cannot load Dialogue 301 char info ${path}:`, error);
+      return null;
+    });
+
+  dialogue301CharInfoCache.set(target, promise);
+  return promise;
+}
+
+function normalizeDialogue301CharInfo(info, fallbackChar){
+  if(!info) return null;
+  return {
+    char: info.char || info.s || fallbackChar,
+    pinyin: cleanDialogue301PinyinText(info.pinyin || info.p || ''),
+    meaningVi: info.meaningVi || info.vi || info.definitionVi || '',
+    meaningEn: info.meaningEn || info.en || info.definitionEn || '',
+    hanViet: info.hanViet || info.sv || info.vietnamese || '',
+    radical: info.radical || info.radicalChar || info.bushu || '',
+    strokeCount: info.strokeCount ?? info.strokes ?? info.stroke_count ?? '',
+    hsk: info.hsk || '',
+    relatedWords: Array.isArray(info.relatedWords) ? info.relatedWords : (Array.isArray(info.words) ? info.words : []),
+    source: 'data/chars'
+  };
+}
+
+function formatDialogue301LookupMeaning(info){
+  return String(info?.meaningVi || info?.meaningEn || '').trim();
+}
+
+function renderDialogue301CharRelatedWords(words){
+  const related = Array.isArray(words) ? words.slice(0, 8) : [];
+  if(!related.length) return '';
+
+  return `
+    <section class="dialogue301-word-section dialogue301-char-related-section">
+      <h4>Từ liên quan</h4>
+      <div class="dialogue301-char-related-list">
+        ${related.map(item => {
+          const word = String(item?.word || item?.s || '').trim();
+          if(!word) return '';
+          const pinyin = cleanDialogue301PinyinText(item?.pinyin || item?.p || '');
+          const meaning = String(item?.meaningVi || item?.vi || item?.meaningEn || item?.en || '').trim();
+          const lookupAction = isDialogue301SingleHanziText(word) ? 'dialogue301-inline-char-ready' : 'dialogue301-inline-word-ready';
+          return `
+            <article class="dialogue301-char-related-item" data-action="${lookupAction}" data-text="${escapeHtml(word)}" data-copy-text="${escapeHtml(word)}" tabindex="0">
+              <div class="dialogue301-related-text">
+                <strong>${escapeHtml(word)}</strong>
+                ${pinyin ? `<span>${escapeHtml(pinyin)}</span>` : ''}
+                ${meaning ? `<small>${escapeHtml(meaning)}</small>` : ''}
+              </div>
+              <button class="dialogue301-related-audio" type="button" data-action="dialogue301-related-audio" data-text="${escapeHtml(word)}" aria-label="Nghe ${escapeHtml(word)}">🔊</button>
+            </article>
+          `;
+        }).join('')}
+      </div>
+    </section>
+  `;
+}
+
 function renderDialogue301LookupChips(items, action, extraClass = ''){
   if(!Array.isArray(items) || !items.length) return '';
   return items.map(item => `
@@ -1129,6 +1320,52 @@ function renderDialogue301LookupChips(items, action, extraClass = ''){
       ${escapeHtml(item)}
     </button>
   `).join('');
+}
+
+
+const dialogue301PopupHistory = [];
+let dialogue301CurrentPopupView = null;
+
+function setDialogue301CurrentPopupView(view){
+  dialogue301CurrentPopupView = view ? { ...view } : null;
+}
+
+function pushDialogue301PopupHistory(){
+  if(!dialogue301CurrentPopupView) return;
+  dialogue301PopupHistory.push({ ...dialogue301CurrentPopupView });
+  if(dialogue301PopupHistory.length > 12){
+    dialogue301PopupHistory.shift();
+  }
+}
+
+function resetDialogue301PopupHistory(){
+  dialogue301PopupHistory.length = 0;
+}
+
+function openDialogue301PopupState(state){
+  if(!state) return;
+  if(state.type === 'vocab'){
+    openDialogue301WordPopup(state.word, { resetHistory: false, pushHistory: false });
+    return;
+  }
+  if(state.type === 'word'){
+    openDialogue301InlineWordLookup(state.text, state.previousWord, { pushHistory: false });
+    return;
+  }
+  if(state.type === 'char'){
+    openDialogue301InlineCharLookup(state.text, state.previousWord, { pushHistory: false });
+  }
+}
+
+function backDialogue301Popup(){
+  const previous = dialogue301PopupHistory.pop();
+  if(previous){
+    openDialogue301PopupState(previous);
+    return;
+  }
+  if(dialogue301CurrentPopupView?.previousWord){
+    openDialogue301WordPopup(dialogue301CurrentPopupView.previousWord, { resetHistory: false, pushHistory: false });
+  }
 }
 
 function copyDialogue301Text(text){
@@ -1275,14 +1512,15 @@ function renderDialogue301WordPopup(word){
   const examples = getDialogue301ExamplesForWord(word);
   const lessonNo = dialogue301CurrentData?.lesson_no || dialogue301CurrentLesson?.lesson_no || '';
   const variants = getDialogue301HanziVariants(word?.hanzi || '');
-  const characters = getDialogue301HanziCharacters(variants[0] || word?.hanzi || '');
+  const multiCharVariants = variants.filter(item => getDialogue301HanziCharacters(item).length > 1);
+  const characters = getDialogue301UniqueHanziCharactersFromTerms(variants.length ? variants : [word?.hanzi || '']);
   const copyText = variants[0] || word?.hanzi || word?.pinyin || word?.meaning || '';
 
-  const quickLookupHtml = variants.length ? `
+  const quickLookupHtml = multiCharVariants.length ? `
     <section class="dialogue301-word-section dialogue301-word-quick-section">
       <h4>Tra nhanh</h4>
       <div class="dialogue301-word-chip-row">
-        ${renderDialogue301LookupChips(variants, 'dialogue301-inline-word-ready', 'word-chip')}
+        ${renderDialogue301LookupChips(multiCharVariants, 'dialogue301-inline-word-ready', 'word-chip')}
       </div>
     </section>
   ` : '';
@@ -1301,11 +1539,14 @@ function renderDialogue301WordPopup(word){
       <h4>Từ liên quan trong bài</h4>
       <div class="dialogue301-word-related-list">
         ${related.map(item => `
-          <div class="dialogue301-word-related-item">
-            <strong>${escapeHtml(item.hanzi)}</strong>
-            <span>${escapeHtml(item.pinyin)}</span>
-            <small>${escapeHtml(item.meaning || '')}</small>
-          </div>
+          <article class="dialogue301-word-related-item" data-copy-text="${escapeHtml(item.hanzi || '')}" tabindex="0">
+            <div class="dialogue301-related-text">
+              <strong>${escapeHtml(item.hanzi)}</strong>
+              <span>${escapeHtml(item.pinyin)}</span>
+              <small>${escapeHtml(item.meaning || '')}</small>
+            </div>
+            <button class="dialogue301-related-audio" type="button" data-action="dialogue301-related-audio" data-text="${escapeHtml(item.hanzi || '')}" aria-label="Nghe ${escapeHtml(item.hanzi || '')}">🔊</button>
+          </article>
         `).join('')}
       </div>
     </section>
@@ -1338,7 +1579,7 @@ function renderDialogue301WordPopup(word){
         ${word.pinyin ? `<div class="dialogue301-word-pinyin">${escapeHtml(word.pinyin)}</div>` : ''}
         ${word.meaning ? `<div class="dialogue301-word-meaning">${escapeHtml(word.meaning)}</div>` : ''}
         <div class="dialogue301-word-action-row">
-          <button class="dialogue301-word-audio" type="button" aria-label="Nghe ${escapeHtml(word.hanzi || word.pinyin || '')}">🔊 Nghe</button>
+          <button class="dialogue301-word-audio" type="button" aria-label="Nghe ${escapeHtml(word.hanzi || word.pinyin || '')}">🔊</button>
         </div>
       </div>
       ${quickLookupHtml}
@@ -1357,8 +1598,243 @@ function renderDialogue301WordPopup(word){
   `;
 }
 
-function openDialogue301WordPopup(word){
+
+function renderDialogue301InlineLookupLoading(text){
+  return `
+    <div class="dialogue301-word-overlay" data-action="close-dialogue301-word-popup"></div>
+    <section class="dialogue301-word-sheet" role="dialog" aria-modal="true" aria-label="Tra chữ Hán">
+      <div class="dialogue301-word-head dialogue301-word-lookup-head">
+        <button class="dialogue301-word-back" type="button" data-action="back-dialogue301-word-popup">← Quay về</button>
+        <button class="dialogue301-word-close" type="button" data-action="close-dialogue301-word-popup" aria-label="Đóng">×</button>
+      </div>
+      <div class="dialogue301-word-main-card dialogue301-inline-lookup-card">
+        <div class="dialogue301-word-hanzi" data-copy-text="${escapeHtml(text)}" title="Nhấn giữ để copy">${escapeHtml(text)}</div>
+        <div class="dialogue301-lookup-status">Đang tra dữ liệu...</div>
+      </div>
+    </section>
+  `;
+}
+
+function renderDialogue301InlineWordLookup(text, info){
+  const target = String(text || '').trim();
+  const chars = getDialogue301HanziCharacters(target);
+  const pinyin = info?.pinyin || '';
+  const meaningVi = info?.meaningVi || '';
+  const meaningEn = info?.meaningEn || '';
+  const hasInfo = Boolean(info && (pinyin || meaningVi || meaningEn));
+
+  const charsHtml = chars.length ? `
+    <section class="dialogue301-word-section dialogue301-word-char-section">
+      <h4>Từng chữ trong từ</h4>
+      <div class="dialogue301-word-chip-row dialogue301-word-char-row">
+        ${renderDialogue301LookupChips(chars, 'dialogue301-inline-char-ready', 'char-chip')}
+      </div>
+    </section>
+  ` : '';
+
+  const infoHtml = hasInfo ? `
+    <section class="dialogue301-word-section">
+      <h4>Thông tin từ điển</h4>
+      <div class="dialogue301-word-info-grid">
+        ${info.hsk ? `<span>HSK</span><strong>HSK ${escapeHtml(info.hsk)}</strong>` : ''}
+        ${info.hanViet ? `<span>Hán Việt</span><strong>${escapeHtml(info.hanViet)}</strong>` : ''}
+        <span>Nguồn</span><strong>Tra chữ Hán · ${escapeHtml(info.source || 'words')}</strong>
+      </div>
+    </section>
+  ` : `
+    <section class="dialogue301-word-section">
+      <h4>Thông tin từ điển</h4>
+      <p class="dialogue301-lookup-empty">Chưa tìm thấy nghĩa cụm từ trong dữ liệu words. Vẫn có thể copy từng chữ để tra ở lớp tiếp theo.</p>
+    </section>
+  `;
+
+  return `
+    <div class="dialogue301-word-overlay" data-action="close-dialogue301-word-popup"></div>
+    <section class="dialogue301-word-sheet" role="dialog" aria-modal="true" aria-label="Tra chữ Hán">
+      <div class="dialogue301-word-head dialogue301-word-lookup-head">
+        <button class="dialogue301-word-back" type="button" data-action="back-dialogue301-word-popup">← Quay về từ vựng</button>
+        <button class="dialogue301-word-close" type="button" data-action="close-dialogue301-word-popup" aria-label="Đóng">×</button>
+      </div>
+      <div class="dialogue301-word-main-card dialogue301-inline-lookup-card">
+        <div class="dialogue301-word-hanzi" data-copy-text="${escapeHtml(target)}" title="Nhấn giữ để copy">${escapeHtml(target)}</div>
+        ${pinyin ? `<div class="dialogue301-word-pinyin">${escapeHtml(pinyin)}</div>` : ''}
+        ${meaningVi ? `<div class="dialogue301-word-meaning">${escapeHtml(meaningVi)}</div>` : ''}
+        ${meaningEn ? `<div class="dialogue301-word-en-meaning">${escapeHtml(meaningEn)}</div>` : ''}
+        <div class="dialogue301-word-action-row">
+          <button class="dialogue301-word-audio" type="button" aria-label="Nghe ${escapeHtml(target)}">🔊</button>
+        </div>
+      </div>
+      ${charsHtml}
+      ${infoHtml}
+    </section>
+  `;
+}
+
+
+function renderDialogue301InlineCharLookup(text, info){
+  const target = String(text || '').trim();
+  const pinyin = info?.pinyin || '';
+  const meaning = formatDialogue301LookupMeaning(info);
+  const hsk = info?.hsk ? `HSK ${info.hsk}` : '';
+  const strokeCount = info?.strokeCount || '';
+  const hasInfo = Boolean(info && (pinyin || meaning || info.hanViet || info.radical || strokeCount || hsk));
+  const relatedHtml = renderDialogue301CharRelatedWords(info?.relatedWords);
+
+  const infoHtml = hasInfo ? `
+    <section class="dialogue301-word-section">
+      <h4>Thông tin chữ Hán</h4>
+      <div class="dialogue301-word-info-grid dialogue301-char-info-grid">
+        ${info.hanViet ? `<span>Hán Việt</span><strong>${escapeHtml(info.hanViet)}</strong>` : ''}
+        ${info.radical ? `<span>Bộ thủ</span><strong>${escapeHtml(info.radical)}</strong>` : ''}
+        ${strokeCount ? `<span>Số nét</span><strong>${escapeHtml(strokeCount)}</strong>` : ''}
+        ${hsk ? `<span>HSK</span><strong>${escapeHtml(hsk)}</strong>` : ''}
+        <span>Nguồn</span><strong>Tra chữ Hán · ${escapeHtml(info.source || 'data/chars')}</strong>
+      </div>
+    </section>
+  ` : `
+    <section class="dialogue301-word-section">
+      <h4>Thông tin chữ Hán</h4>
+      <p class="dialogue301-lookup-empty">Chưa tìm thấy dữ liệu chi tiết cho chữ này.</p>
+    </section>
+  `;
+
+  return `
+    <div class="dialogue301-word-overlay" data-action="close-dialogue301-word-popup"></div>
+    <section class="dialogue301-word-sheet" role="dialog" aria-modal="true" aria-label="Tra chữ Hán">
+      <div class="dialogue301-word-head dialogue301-word-lookup-head">
+        <button class="dialogue301-word-back" type="button" data-action="back-dialogue301-word-popup">← Quay về từ vựng</button>
+        <button class="dialogue301-word-close" type="button" data-action="close-dialogue301-word-popup" aria-label="Đóng">×</button>
+      </div>
+      <div class="dialogue301-word-main-card dialogue301-inline-lookup-card dialogue301-inline-char-card">
+        <div class="dialogue301-word-hanzi dialogue301-inline-char-hanzi" data-copy-text="${escapeHtml(target)}" title="Nhấn giữ để copy">${escapeHtml(target)}</div>
+        ${pinyin ? `<div class="dialogue301-word-pinyin">${escapeHtml(pinyin)}</div>` : ''}
+        ${meaning ? `<div class="dialogue301-word-meaning">${escapeHtml(meaning)}</div>` : ''}
+        <div class="dialogue301-word-action-row">
+          <button class="dialogue301-word-audio" type="button" aria-label="Nghe ${escapeHtml(target)}">🔊</button>
+        </div>
+      </div>
+      ${infoHtml}
+      ${relatedHtml}
+    </section>
+  `;
+}
+
+async function openDialogue301InlineCharLookup(text, previousWord, options = {}){
+  const target = String(text || '').trim();
+  if(!target) return;
+  if(options.pushHistory !== false) pushDialogue301PopupHistory();
+  setDialogue301CurrentPopupView({ type: 'char', text: target, previousWord });
+  let root = document.getElementById('dialogue301WordPopupRoot');
+  if(!root){
+    root = document.createElement('div');
+    root.id = 'dialogue301WordPopupRoot';
+    document.body.appendChild(root);
+  }
+
+  root.innerHTML = renderDialogue301InlineLookupLoading(target);
+  document.body.classList.add('dialogue301-word-popup-open');
+  bindDialogue301InlineLookupShell(root, target, previousWord);
+
+  const info = await loadDialogue301CharInfo(target);
+  root.innerHTML = renderDialogue301InlineCharLookup(target, info);
+  bindDialogue301InlineLookupShell(root, target, previousWord);
+}
+
+async function openDialogue301InlineWordLookup(text, previousWord, options = {}){
+  const target = String(text || '').trim();
+  if(!target) return;
+  if(options.pushHistory !== false) pushDialogue301PopupHistory();
+  setDialogue301CurrentPopupView({ type: 'word', text: target, previousWord });
+  let root = document.getElementById('dialogue301WordPopupRoot');
+  if(!root){
+    root = document.createElement('div');
+    root.id = 'dialogue301WordPopupRoot';
+    document.body.appendChild(root);
+  }
+
+  root.innerHTML = renderDialogue301InlineLookupLoading(target);
+  document.body.classList.add('dialogue301-word-popup-open');
+  bindDialogue301InlineLookupShell(root, target, previousWord);
+
+  const info = await lookupDialogue301CompoundWord(target);
+  root.innerHTML = renderDialogue301InlineWordLookup(target, info);
+  bindDialogue301InlineLookupShell(root, target, previousWord);
+}
+
+function bindDialogue301InlineLookupShell(root, target, previousWord){
+  root.querySelectorAll('[data-action="close-dialogue301-word-popup"]').forEach(btn => {
+    btn.addEventListener('click', closeDialogue301WordPopup);
+  });
+
+  root.querySelectorAll('[data-action="back-dialogue301-word-popup"]').forEach(btn => {
+    btn.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      backDialogue301Popup();
+    });
+  });
+
+  const audioBtn = root.querySelector('.dialogue301-word-audio');
+  if(audioBtn){
+    audioBtn.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      const ok = speakDialogue301ChineseText(target || '');
+      if(!ok) showDialogue301Toast('Không phát được âm');
+    });
+  }
+
+  bindDialogue301CopyInteractions(root);
+
+  root.querySelectorAll('[data-action="dialogue301-related-audio"]').forEach(btn => {
+    btn.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      const text = btn.getAttribute('data-text') || '';
+      const ok = speakDialogue301ChineseText(text);
+      if(!ok) showDialogue301Toast('Không phát được âm');
+    });
+  });
+
+  root.querySelectorAll('[data-action="dialogue301-inline-word-ready"]').forEach(btn => {
+    btn.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      const text = btn.getAttribute('data-text') || '';
+      if(isDialogue301SingleHanziText(text)){
+        openDialogue301InlineCharLookup(text, previousWord);
+      }else{
+        openDialogue301InlineWordLookup(text, previousWord);
+      }
+    });
+    btn.addEventListener('keydown', event => {
+      if(event.key === 'Enter' || event.key === ' '){
+        event.preventDefault();
+        const text = btn.getAttribute('data-text') || '';
+        if(isDialogue301SingleHanziText(text)){
+          openDialogue301InlineCharLookup(text, previousWord);
+        }else{
+          openDialogue301InlineWordLookup(text, previousWord);
+        }
+      }
+    });
+  });
+
+  root.querySelectorAll('[data-action="dialogue301-inline-char-ready"]').forEach(btn => {
+    btn.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      const text = btn.getAttribute('data-text') || '';
+      openDialogue301InlineCharLookup(text, previousWord);
+    });
+  });
+}
+
+function openDialogue301WordPopup(word, options = {}){
   if(!word || (!word.hanzi && !word.pinyin && !word.meaning)) return;
+  if(options.resetHistory !== false) resetDialogue301PopupHistory();
+  if(options.pushHistory === true) pushDialogue301PopupHistory();
+  setDialogue301CurrentPopupView({ type: 'vocab', word });
   let root = document.getElementById('dialogue301WordPopupRoot');
   if(!root){
     root = document.createElement('div');
@@ -1384,12 +1860,35 @@ function openDialogue301WordPopup(word){
 
   bindDialogue301CopyInteractions(root);
 
-  root.querySelectorAll('[data-action="dialogue301-inline-word-ready"], [data-action="dialogue301-inline-char-ready"]').forEach(btn => {
+  root.querySelectorAll('[data-action="dialogue301-related-audio"]').forEach(btn => {
     btn.addEventListener('click', event => {
       event.preventDefault();
       event.stopPropagation();
       const text = btn.getAttribute('data-text') || '';
-      copyDialogue301Text(text).then(ok => showDialogue301Toast(ok ? 'Đã copy' : 'Không copy được'));
+      const ok = speakDialogue301ChineseText(text);
+      if(!ok) showDialogue301Toast('Không phát được âm');
+    });
+  });
+
+  root.querySelectorAll('[data-action="dialogue301-inline-word-ready"]').forEach(btn => {
+    btn.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      const text = btn.getAttribute('data-text') || '';
+      if(isDialogue301SingleHanziText(text)){
+        openDialogue301InlineCharLookup(text, word);
+      }else{
+        openDialogue301InlineWordLookup(text, word);
+      }
+    });
+  });
+
+  root.querySelectorAll('[data-action="dialogue301-inline-char-ready"]').forEach(btn => {
+    btn.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      const text = btn.getAttribute('data-text') || '';
+      openDialogue301InlineCharLookup(text, word);
     });
   });
 }
@@ -1397,6 +1896,8 @@ function openDialogue301WordPopup(word){
 function closeDialogue301WordPopup(){
   const root = document.getElementById('dialogue301WordPopupRoot');
   if(root) root.innerHTML = '';
+  resetDialogue301PopupHistory();
+  setDialogue301CurrentPopupView(null);
   document.body.classList.remove('dialogue301-word-popup-open');
 }
 
