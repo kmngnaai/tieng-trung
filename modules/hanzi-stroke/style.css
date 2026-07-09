@@ -3357,17 +3357,38 @@ body.hsk-popup-open{
 }
 
 .hsk-popup-writer{
-  min-height:170px;
+  width:min(var(--writer-size,200px), calc(100vw - 112px));
+  height:min(var(--writer-size,200px), calc(100vw - 112px));
+  min-height:0;
   display:grid;
   place-items:center;
-  border:1px dashed rgba(201,111,77,.28);
-  border-radius:20px;
-  background:#fffdf9;
+  margin:8px auto 4px;
+  border:1px solid rgba(234,220,201,.96);
+  border-radius:24px;
+  background:
+    linear-gradient(45deg,transparent calc(50% - .5px),#eadcc9 calc(50% - .5px),#eadcc9 calc(50% + .5px),transparent calc(50% + .5px)),
+    linear-gradient(-45deg,transparent calc(50% - .5px),#eadcc9 calc(50% - .5px),#eadcc9 calc(50% + .5px),transparent calc(50% + .5px)),
+    linear-gradient(#efe2d1 1px,transparent 1px) 0 50%/100% 1px no-repeat,
+    linear-gradient(90deg,#efe2d1 1px,transparent 1px) 50% 0/1px 100% no-repeat,
+    #fff;
+  box-shadow:inset 0 0 0 8px rgba(255,248,239,.78);
   overflow:hidden;
+}
+
+.hsk-popup-writer svg{
+  display:block;
 }
 
 .hsk-popup-writer-error{
   color:#8a796b;
+}
+
+@media (max-width: 420px){
+  .hsk-popup-writer{
+    width:min(190px, calc(100vw - 112px));
+    height:min(190px, calc(100vw - 112px));
+    border-radius:22px;
+  }
 }
 
 .hsk-popup-write-actions,
@@ -3522,4 +3543,196 @@ body.hsk-popup-open{
   .hsk-related-word{
     font-size:21px !important;
   }
+}
+
+
+/* Step 7.3 - HSK grouping filters */
+.hsk-filter-panel{
+  display:grid;
+  gap:10px;
+  margin:0 0 12px;
+}
+
+.hsk-filter-row{
+  display:grid;
+  gap:7px;
+}
+
+.hsk-filter-label{
+  color:#75675d;
+  font-weight:800;
+  font-size:12px;
+}
+
+.hsk-group-modes,
+.hsk-topic-filters{
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  padding:1px 1px 4px;
+  scrollbar-width:thin;
+}
+
+.hsk-group-modes button,
+.hsk-topic-filters button{
+  border:1px solid rgba(234,220,201,.95);
+  border-radius:999px;
+  background:#fffaf4;
+  color:#6f6258;
+  padding:8px 11px;
+  font-weight:800;
+  font-size:12px;
+  white-space:nowrap;
+  cursor:pointer;
+}
+
+.hsk-topic-filters button{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  max-width:240px;
+}
+
+.hsk-topic-filters small{
+  color:#9a897b;
+  font-weight:900;
+}
+
+.hsk-group-modes button.active,
+.hsk-topic-filters button.active{
+  background:#fff3ed;
+  border-color:rgba(201,111,77,.42);
+  color:#b95f43;
+  box-shadow:0 8px 16px rgba(201,111,77,.10);
+}
+
+.hsk-list.hsk-list--topics{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+}
+
+.hsk-topic-section{
+  border:1px solid rgba(234,220,201,.84);
+  background:rgba(255,250,244,.58);
+  border-radius:22px;
+  padding:10px;
+}
+
+.hsk-topic-heading{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:flex-start;
+  padding:3px 4px 10px;
+  color:#3d3028;
+}
+
+.hsk-topic-heading strong{
+  display:block;
+  font-size:14px;
+  line-height:1.35;
+}
+
+.hsk-topic-heading small,
+.hsk-topic-heading span{
+  color:#8a796b;
+  font-size:11px;
+  font-weight:800;
+}
+
+.hsk-topic-heading span{
+  border-radius:999px;
+  background:#f7efe5;
+  padding:4px 8px;
+  white-space:nowrap;
+}
+
+.hsk-topic-list{
+  grid-template-columns:repeat(2, minmax(0,1fr));
+}
+
+@media (max-width:780px){
+  .hsk-topic-list{
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width:520px){
+  .hsk-group-modes button,
+  .hsk-topic-filters button{
+    padding:7px 10px;
+    font-size:11.5px;
+  }
+
+  .hsk-topic-section{
+    padding:8px;
+    border-radius:20px;
+  }
+}
+
+
+/* Step 7.3.1 - topic dropdown overview */
+.hsk-topic-filters{
+  display:grid;
+  gap:6px;
+  overflow:visible;
+  padding:0;
+}
+
+.hsk-topic-select-label{
+  color:#75675d;
+  font-weight:800;
+  font-size:12px;
+}
+
+.hsk-topic-select-wrap{
+  position:relative;
+}
+
+.hsk-topic-select{
+  width:100%;
+  border:1px solid rgba(234,220,201,.95);
+  border-radius:16px;
+  background:#fffaf4;
+  color:#3d3028;
+  padding:10px 38px 10px 12px;
+  font-weight:800;
+  font-size:13px;
+  line-height:1.25;
+  min-height:42px;
+  cursor:pointer;
+  box-shadow:0 8px 18px rgba(111,78,55,.06);
+}
+
+.hsk-topic-select:focus{
+  outline:2px solid rgba(201,111,77,.24);
+  border-color:rgba(201,111,77,.52);
+}
+
+.hsk-topic-overview{
+  margin:0;
+  color:#8a796b;
+  font-size:12px;
+  line-height:1.45;
+}
+
+@media (max-width:520px){
+  .hsk-topic-select{
+    font-size:12.5px;
+    border-radius:14px;
+    padding-top:9px;
+    padding-bottom:9px;
+  }
+}
+
+/* Step 7.3.2 - HSK source + lesson dropdown */
+.hsk-source-select-block,
+.hsk-lesson-select-block{
+  display:grid;
+  gap:6px;
+}
+
+.hsk-source-select-block + .hsk-lesson-select-block{
+  margin-top:4px;
 }

@@ -1228,7 +1228,7 @@ if(window.HanziWriter){
 }
 
 
-/* Step 7.2 - HSK tab popup detail for Tra chữ Hán */
+/* Step 7.3.2 - HSK tab popup detail + lesson source dropdown for Tra chữ Hán */
 (function initHskLearningTab(){
   const lookupView = document.getElementById('lookupView');
   const hskView = document.getElementById('hskView');
@@ -1240,6 +1240,8 @@ if(window.HanziWriter){
   const hskStatus = document.getElementById('hskStatus');
   const hskSearch = document.getElementById('hskSearchInput');
   const hskTotalBadge = document.getElementById('hskTotalBadge');
+  const hskGroupModes = document.getElementById('hskGroupModes');
+  const hskTopicFilters = document.getElementById('hskTopicFilters');
 
   if(!lookupView || !hskView || !tabLookup || !tabHsk || !levelTabs || !hskList){
     return;
@@ -1256,7 +1258,10 @@ if(window.HanziWriter){
     popupStack: [],
     popupActiveChar: '',
     popupWriter: null,
-    popupWriterChar: ''
+    popupWriterChar: '',
+    groupMode: 'all',
+    topicKey: 'all',
+    sourceKey: 'new_hsk'
   };
 
   function ensureHskPopup(){
@@ -1360,11 +1365,13 @@ if(window.HanziWriter){
   async function loadHskLevel(level){
     const normalizedLevel = Number(level) || 1;
     hskState.currentLevel = normalizedLevel;
+    hskState.topicKey = 'all';
     renderHskLevelTabs();
 
     if(hskCache.has(normalizedLevel)){
       const data = hskCache.get(normalizedLevel);
       hskState.currentItems = Array.isArray(data?.items) ? data.items : [];
+      renderHskFilters();
       renderHskList();
       return;
     }
@@ -1375,6 +1382,7 @@ if(window.HanziWriter){
       const data = await fetchJson(`${HSK_DATA_BASE}hsk_${normalizedLevel}.json`);
       hskCache.set(normalizedLevel, data);
       hskState.currentItems = Array.isArray(data?.items) ? data.items : [];
+      renderHskFilters();
       renderHskList();
     }catch(err){
       console.warn(`Cannot load HSK ${normalizedLevel}:`, err);
@@ -1412,6 +1420,328 @@ if(window.HanziWriter){
     const title = primary.sectionTitle || primary.levelName || '';
     const library = primary.libraryName || primary.libraryId || '';
     return [library, title].filter(Boolean).join(' · ');
+  }
+
+
+  const HSK_LIBRARY_PRIORITY = ['new_hsk', 'hsk', 'yct', 'boya'];
+
+  function getRoutesForCurrentLevel(item){
+    const currentLevel = Number(hskState.currentLevel) || 1;
+    return (Array.isArray(item?.routes) ? item.routes : [])
+      .filter(route => Number(route?.levelNo) === currentLevel || !route?.levelNo);
+  }
+
+  function getCurrentSectionType(){
+    if(hskState.groupMode === 'topics') return 'topic';
+    if(hskState.groupMode === 'lessons') return 'lesson';
+    return '';
+  }
+
+  function getSectionModeLabel(){
+    return getCurrentSectionType() === 'topic' ? 'Chủ đề' : 'Bài học';
+  }
+
+  function getSectionModePluralLabel(){
+    return getCurrentSectionType() === 'topic' ? 'chủ đề' : 'bài học';
+  }
+
+  function getAvailableLessonSources(items = hskState.currentItems){
+    const map = new Map();
+    const sectionType = getCurrentSectionType();
+    items.forEach(item => {
+      const word = getHskWordKey(item);
+      getRoutesForCurrentLevel(item).forEach(route => {
+        if(sectionType && route?.sectionType !== sectionType){
+          return;
+        }
+        const libraryId = String(route?.libraryId || '').trim();
+        if(!libraryId){
+          return;
+        }
+        if(!map.has(libraryId)){
+          map.set(libraryId, {
+            key: libraryId,
+            label: route.libraryName || libraryId,
+            words: new Set()
+          });
+        }
+        if(word){
+          map.get(libraryId).words.add(word);
+        }
+      });
+    });
+    return Array.from(map.values()).map(source => ({
+      key: source.key,
+      label: source.label,
+      count: source.words.size
+    })).sort((a, b) => {
+      const ai = HSK_LIBRARY_PRIORITY.indexOf(a.key);
+      const bi = HSK_LIBRARY_PRIORITY.indexOf(b.key);
+      const ap = ai === -1 ? 99 : ai;
+      const bp = bi === -1 ? 99 : bi;
+      if(ap !== bp) return ap - bp;
+      return String(a.label).localeCompare(String(b.label), 'vi');
+    });
+  }
+
+  function ensureHskSourceSelection(){
+    const sources = getAvailableLessonSources();
+    if(!sources.length){
+      hskState.sourceKey = '';
+      return sources;
+    }
+    if(!sources.some(source => source.key === hskState.sourceKey)){
+      const preferred = HSK_LIBRARY_PRIORITY.map(key => sources.find(source => source.key === key)).find(Boolean);
+      hskState.sourceKey = (preferred || sources[0]).key;
+    }
+    return sources;
+  }
+
+  function getRoutesForSelectedSource(item, sectionType = ''){
+    const sourceKey = hskState.sourceKey || 'new_hsk';
+    return getRoutesForCurrentLevel(item).filter(route => {
+      if(String(route?.libraryId || '') !== sourceKey){
+        return false;
+      }
+      if(sectionType && route?.sectionType !== sectionType){
+        return false;
+      }
+      return true;
+    });
+  }
+
+  function getRouteSortOrder(route){
+    const sectionOrder = Number(route?.sectionOrder);
+    return Number.isFinite(sectionOrder) ? sectionOrder : 999999;
+  }
+
+  function getRouteTypeRank(route){
+    if(route?.sectionType === 'lesson') return 0;
+    if(route?.sectionType === 'topic') return 1;
+    return 2;
+  }
+
+  function sortRoutesForSections(routes){
+    return routes.slice().sort((a, b) => {
+      const ao = getRouteSortOrder(a);
+      const bo = getRouteSortOrder(b);
+      if(ao !== bo) return ao - bo;
+      const at = getRouteTypeRank(a);
+      const bt = getRouteTypeRank(b);
+      if(at !== bt) return at - bt;
+      return String(a?.sectionTitle || '').localeCompare(String(b?.sectionTitle || ''), 'vi');
+    });
+  }
+
+  function getBestSectionRoute(item){
+    const sectionType = getCurrentSectionType();
+    const sourceRoutes = sortRoutesForSections(getRoutesForSelectedSource(item, sectionType));
+    if(sourceRoutes.length){
+      return sourceRoutes[0];
+    }
+    return null;
+  }
+
+  function formatSectionNumber(route){
+    const order = getRouteSortOrder(route);
+    if(!Number.isFinite(order) || order >= 999999){
+      return 'Khác';
+    }
+    const prefix = route?.sectionType === 'topic' ? 'Chủ đề' : 'Bài';
+    return `${prefix} ${String(order).padStart(2, '0')}`;
+  }
+
+  function cleanLessonTitle(title){
+    return String(title || 'Chưa rõ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function getTopicLabel(route){
+    if(!route){
+      return getCurrentSectionType() === 'topic' ? 'Chưa rõ chủ đề' : 'Chưa rõ bài học';
+    }
+    const fallbackTitle = route.sectionType === 'topic' ? 'Chưa rõ chủ đề' : 'Chưa rõ bài học';
+    return `${formatSectionNumber(route)} · ${cleanLessonTitle(route.sectionTitle || route.levelName || fallbackTitle)}`;
+  }
+
+  function slugifyTopic(value){
+    return normalizeSearchText(value)
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '') || 'unknown';
+  }
+
+  function getTopicKeyFromRoute(route){
+    if(!route){
+      return 'unknown';
+    }
+    const library = route.libraryId || hskState.sourceKey || 'source';
+    return String(route.sectionId || `${library}__${slugifyTopic(getTopicLabel(route))}` || 'unknown');
+  }
+
+  function getItemTopic(item){
+    const route = getBestSectionRoute(item);
+    return {
+      key: getTopicKeyFromRoute(route),
+      label: getTopicLabel(route),
+      route
+    };
+  }
+
+  function getItemCharCount(item){
+    const word = getHskWordKey(item);
+    return Number(item?.charCount) || getHanziChars(word).length || word.length || 0;
+  }
+
+  function getCharGroupLabel(mode){
+    if(mode === 'char1') return '1 chữ';
+    if(mode === 'char2') return '2 chữ';
+    if(mode === 'char3plus') return '3+ chữ';
+    if(mode === 'lessons') return 'Bài học';
+    if(mode === 'topics') return 'Chủ đề';
+    return 'Tất cả';
+  }
+
+  function itemHasSelectedSourceRoute(item){
+    const sectionType = getCurrentSectionType();
+    if(!sectionType){
+      return false;
+    }
+    return getRoutesForSelectedSource(item, sectionType).length > 0;
+  }
+
+  function getFilteredByMode(items){
+    const mode = hskState.groupMode || 'all';
+    if(mode === 'char1'){
+      return items.filter(item => getItemCharCount(item) === 1);
+    }
+    if(mode === 'char2'){
+      return items.filter(item => getItemCharCount(item) === 2);
+    }
+    if(mode === 'char3plus'){
+      return items.filter(item => getItemCharCount(item) >= 3);
+    }
+    if(mode === 'lessons' || mode === 'topics'){
+      const sourceItems = items.filter(itemHasSelectedSourceRoute);
+      if(hskState.topicKey && hskState.topicKey !== 'all'){
+        return sourceItems.filter(item => getItemTopic(item).key === hskState.topicKey);
+      }
+      return sourceItems;
+    }
+    return items;
+  }
+
+  function getOrderInTopic(item, topicKey){
+    const sectionType = getCurrentSectionType();
+    const route = getRoutesForSelectedSource(item, sectionType).find(route => getTopicKeyFromRoute(route) === topicKey)
+      || getBestSectionRoute(item);
+    const order = Number(route?.orderInSection);
+    return Number.isFinite(order) ? order : 999999;
+  }
+
+  function getTopicGroups(items){
+    ensureHskSourceSelection();
+    const map = new Map();
+    items.filter(itemHasSelectedSourceRoute).forEach(item => {
+      const topic = getItemTopic(item);
+      if(!topic.route){
+        return;
+      }
+      if(!map.has(topic.key)){
+        map.set(topic.key, { key: topic.key, label: topic.label, route: topic.route, items: [] });
+      }
+      map.get(topic.key).items.push(item);
+    });
+    return Array.from(map.values()).map(group => ({
+      ...group,
+      items: group.items.slice().sort((a, b) => {
+        const ao = getOrderInTopic(a, group.key);
+        const bo = getOrderInTopic(b, group.key);
+        if(ao !== bo) return ao - bo;
+        return getHskWordKey(a).localeCompare(getHskWordKey(b), 'zh-Hans-CN');
+      })
+    })).sort((a, b) => {
+      const ao = getRouteSortOrder(a.route);
+      const bo = getRouteSortOrder(b.route);
+      if(ao !== bo) return ao - bo;
+      const at = getRouteTypeRank(a.route);
+      const bt = getRouteTypeRank(b.route);
+      if(at !== bt) return at - bt;
+      return String(a.label).localeCompare(String(b.label), 'vi');
+    });
+  }
+
+  function renderHskFilters(){
+    if(hskGroupModes){
+      Array.from(hskGroupModes.querySelectorAll('[data-hsk-group-mode]')).forEach(button => {
+        const active = button.dataset.hskGroupMode === hskState.groupMode;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+    }
+
+    if(!hskTopicFilters){
+      return;
+    }
+    const sectionMode = hskState.groupMode === 'lessons' || hskState.groupMode === 'topics';
+    hskTopicFilters.hidden = !sectionMode;
+    if(!sectionMode){
+      hskTopicFilters.innerHTML = '';
+      return;
+    }
+
+    const sectionLabel = getSectionModeLabel();
+    const sectionPlural = getSectionModePluralLabel();
+    const sources = ensureHskSourceSelection();
+    const selectedSource = sources.find(source => source.key === hskState.sourceKey) || sources[0] || null;
+    const groups = getTopicGroups(hskState.currentItems);
+    if(hskState.topicKey !== 'all' && !groups.some(group => group.key === hskState.topicKey)){
+      hskState.topicKey = 'all';
+    }
+    const selectedKey = hskState.topicKey || 'all';
+    const sourceTotal = selectedSource ? selectedSource.count : 0;
+    hskTopicFilters.innerHTML = `
+      <div class="hsk-source-select-block">
+        <label class="hsk-topic-select-label" for="hskSourceSelect">Nguồn học</label>
+        <div class="hsk-topic-select-wrap">
+          <select id="hskSourceSelect" class="hsk-topic-select" aria-label="Chọn nguồn học HSK">
+            ${sources.map(source => `
+              <option value="${escapeHtml(source.key)}" ${source.key === hskState.sourceKey ? 'selected' : ''}>${escapeHtml(source.label)} · ${source.count.toLocaleString('vi-VN')} mục</option>
+            `).join('')}
+          </select>
+        </div>
+      </div>
+      <div class="hsk-lesson-select-block">
+        <label class="hsk-topic-select-label" for="hskTopicSelect">${escapeHtml(sectionLabel)}</label>
+        <div class="hsk-topic-select-wrap">
+          <select id="hskTopicSelect" class="hsk-topic-select" aria-label="Chọn ${escapeHtml(sectionLabel.toLowerCase())} HSK">
+            <option value="all" ${selectedKey === 'all' ? 'selected' : ''}>Tất cả ${escapeHtml(sectionPlural)} · ${sourceTotal.toLocaleString('vi-VN')} mục</option>
+            ${groups.map(group => `
+              <option value="${escapeHtml(group.key)}" ${selectedKey === group.key ? 'selected' : ''}>${escapeHtml(group.label)} · ${group.items.length.toLocaleString('vi-VN')} từ</option>
+            `).join('')}
+          </select>
+        </div>
+      </div>
+      <p class="hsk-topic-overview">${groups.length.toLocaleString('vi-VN')} ${escapeHtml(sectionPlural)} trong HSK ${escapeHtml(hskState.currentLevel)} · ${escapeHtml(selectedSource?.label || 'Nguồn học')}.</p>
+    `;
+  }
+
+  function renderHskTopicSections(items){
+    const groups = getTopicGroups(items);
+    return groups.map(group => `
+      <section class="hsk-topic-section">
+        <div class="hsk-topic-heading">
+          <div>
+            <strong>${escapeHtml(group.label)}</strong>
+            ${group.route?.libraryName ? `<small>${escapeHtml(group.route.libraryName)}</small>` : ''}
+          </div>
+          <span>${group.items.length.toLocaleString('vi-VN')} mục</span>
+        </div>
+        <div class="hsk-list hsk-topic-list">
+          ${group.items.map(renderHskItem).join('')}
+        </div>
+      </section>
+    `).join('');
   }
 
   function getItemRadicalHints(item){
@@ -1737,9 +2067,15 @@ if(window.HanziWriter){
     }
     target.innerHTML = '';
     const settings = getSettings();
-    const size = Math.min(220, Math.max(150, Math.floor((target.closest('.hsk-popup-card')?.clientWidth || 280) - 96)));
+    const rectSize = Math.floor(target.getBoundingClientRect().width || 176);
+    const size = Math.min(190, Math.max(150, rectSize));
+    const popupWriterOptions = {
+      ...createWriterOptions(size, settings),
+      padding: 16,
+      showCharacter: true
+    };
     try{
-      hskState.popupWriter = HanziWriter.create('hskPopupWriter', char, createWriterOptions(size, settings));
+      hskState.popupWriter = HanziWriter.create('hskPopupWriter', char, popupWriterOptions);
       hskState.popupWriterChar = char;
     }catch(err){
       console.warn('Cannot create HSK popup writer:', err);
@@ -1801,19 +2137,34 @@ if(window.HanziWriter){
 
   function renderHskList(){
     const query = normalizeSearchText(hskState.query);
-    const filtered = hskState.currentItems.filter(item => itemMatchesQuery(item, query));
+    const searched = hskState.currentItems.filter(item => itemMatchesQuery(item, query));
+    const filtered = getFilteredByMode(searched);
     const level = Number(hskState.currentLevel) || 1;
-    hskStatus.textContent = query
-      ? `HSK ${level}: tìm thấy ${filtered.length.toLocaleString('vi-VN')} / ${hskState.currentItems.length.toLocaleString('vi-VN')} mục.`
-      : `HSK ${level}: ${hskState.currentItems.length.toLocaleString('vi-VN')} mục.`;
+    const groupLabel = getCharGroupLabel(hskState.groupMode);
+    const topicLabel = hskState.groupMode === 'topics' && hskState.topicKey !== 'all'
+      ? (getTopicGroups(hskState.currentItems).find(group => group.key === hskState.topicKey)?.label || 'Bài học')
+      : '';
+    const baseCount = hskState.currentItems.length.toLocaleString('vi-VN');
+    const foundCount = filtered.length.toLocaleString('vi-VN');
+    const searchText = query ? ` · tìm thấy ${foundCount} / ${baseCount}` : ` · ${foundCount} / ${baseCount}`;
+    hskStatus.textContent = `HSK ${level} · ${topicLabel || groupLabel}${searchText} mục.`;
 
     if(!filtered.length){
+      hskList.classList.remove('hsk-list--topics');
       hskList.innerHTML = '<p class="hsk-empty">Không tìm thấy mục phù hợp.</p>';
       return;
     }
 
+    if((hskState.groupMode === 'lessons' || hskState.groupMode === 'topics') && hskState.topicKey === 'all'){
+      hskList.classList.add('hsk-list--topics');
+      hskList.innerHTML = renderHskTopicSections(filtered);
+      return;
+    }
+
+    hskList.classList.remove('hsk-list--topics');
     hskList.innerHTML = filtered.map(renderHskItem).join('');
   }
+
 
   function openHskWord(word){
     const target = getHanziChars(word).join('');
@@ -1842,6 +2193,37 @@ if(window.HanziWriter){
 
   hskSearch?.addEventListener('input', () => {
     hskState.query = hskSearch.value || '';
+    renderHskList();
+  });
+
+
+  hskGroupModes?.addEventListener('click', event => {
+    const button = event.target.closest('[data-hsk-group-mode]');
+    if(!button){
+      return;
+    }
+    hskState.groupMode = button.dataset.hskGroupMode || 'all';
+    hskState.topicKey = 'all';
+    renderHskFilters();
+    renderHskList();
+  });
+
+  hskTopicFilters?.addEventListener('change', event => {
+    const sourceSelect = event.target.closest('#hskSourceSelect');
+    if(sourceSelect){
+      hskState.sourceKey = sourceSelect.value || 'new_hsk';
+      hskState.topicKey = 'all';
+      renderHskFilters();
+      renderHskList();
+      return;
+    }
+
+    const lessonSelect = event.target.closest('#hskTopicSelect');
+    if(!lessonSelect){
+      return;
+    }
+    hskState.topicKey = lessonSelect.value || 'all';
+    renderHskFilters();
     renderHskList();
   });
 

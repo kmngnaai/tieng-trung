@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tra chữ Hán</title>
-  <link rel="stylesheet" href="style.css?v=20260709-step7-hsk-tab" />
+  <link rel="stylesheet" href="style.css?v=20260709-step7-3-hsk-groups" />
 </head>
 <body>
   <main class="hanzi-app">
@@ -210,6 +210,20 @@
             <input id="hskSearchInput" type="search" placeholder="Tìm chữ, pinyin, nghĩa..." autocomplete="off" spellcheck="false" />
           </label>
         </div>
+        <div class="hsk-filter-panel" aria-label="Lọc danh sách HSK">
+          <div class="hsk-filter-row">
+            <span class="hsk-filter-label">Nhóm nhanh</span>
+            <div id="hskGroupModes" class="hsk-group-modes" role="group" aria-label="Chia nhóm HSK">
+              <button type="button" class="active" data-hsk-group-mode="all">Tất cả</button>
+              <button type="button" data-hsk-group-mode="char1">1 chữ</button>
+              <button type="button" data-hsk-group-mode="char2">2 chữ</button>
+              <button type="button" data-hsk-group-mode="char3plus">3+ chữ</button>
+              <button type="button" data-hsk-group-mode="lessons">Bài học</button>
+              <button type="button" data-hsk-group-mode="topics">Chủ đề</button>
+            </div>
+          </div>
+          <div id="hskTopicFilters" class="hsk-topic-filters" hidden aria-label="Chọn bài học hoặc chủ đề HSK"></div>
+        </div>
         <p id="hskStatus" class="hsk-status">Đang tải dữ liệu HSK...</p>
         <div id="hskList" class="hsk-list" aria-live="polite"></div>
       </div>
@@ -245,6 +259,6 @@
     </a>
   </nav>
 
-  <script src="app.js?v=20260709-step7-hsk-tab"></script>
+  <script src="app.js?v=20260709-step7-3-hsk-groups"></script>
 </body>
 </html>
