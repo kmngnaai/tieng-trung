@@ -1007,16 +1007,36 @@ function bindCharActions(item){
 function speakChar(char){
   stopAutoplayLoop();
 
+  const text = String(char || '').trim();
+  if(!text){
+    return;
+  }
+
   try{
     if(!('speechSynthesis' in window) || typeof SpeechSynthesisUtterance === 'undefined'){
       return;
     }
 
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(char);
+    const synth = window.speechSynthesis;
+    if(typeof synth.resume === 'function'){
+      synth.resume();
+    }
+    synth.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'zh-CN';
-    utterance.rate = 0.85;
-    window.speechSynthesis.speak(utterance);
+    utterance.rate = 0.78;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+
+    const voices = typeof synth.getVoices === 'function' ? synth.getVoices() : [];
+    const zhVoice = voices.find(voice => /^zh[-_]/i.test(voice.lang || ''))
+      || voices.find(voice => /Chinese|Mandarin|中文|普通话/i.test(voice.name || ''));
+    if(zhVoice){
+      utterance.voice = zhVoice;
+    }
+
+    synth.speak(utterance);
   }catch(err){
     console.warn('Speech synthesis failed:', err);
   }
@@ -1206,3 +1226,720 @@ if(window.HanziWriter){
   els.empty.hidden = false;
   els.empty.textContent = 'Không tải được Hanzi Writer. Vui lòng kiểm tra kết nối mạng.';
 }
+
+
+/* Step 7.2 - HSK tab popup detail for Tra chữ Hán */
+(function initHskLearningTab(){
+  const lookupView = document.getElementById('lookupView');
+  const hskView = document.getElementById('hskView');
+  const tabLookup = document.getElementById('studyTabLookup');
+  const tabHsk = document.getElementById('studyTabHsk');
+  const tabRadicals = document.getElementById('studyTabRadicals');
+  const levelTabs = document.getElementById('hskLevelTabs');
+  const hskList = document.getElementById('hskList');
+  const hskStatus = document.getElementById('hskStatus');
+  const hskSearch = document.getElementById('hskSearchInput');
+  const hskTotalBadge = document.getElementById('hskTotalBadge');
+
+  if(!lookupView || !hskView || !tabLookup || !tabHsk || !levelTabs || !hskList){
+    return;
+  }
+
+  const HSK_DATA_BASE = 'data/learning/hsk/';
+  const hskCache = new Map();
+  const hskState = {
+    summary: null,
+    currentLevel: 1,
+    currentItems: [],
+    query: '',
+    popupWord: '',
+    popupStack: [],
+    popupActiveChar: '',
+    popupWriter: null,
+    popupWriterChar: ''
+  };
+
+  function ensureHskPopup(){
+    let popup = document.getElementById('hskDetailOverlay');
+    if(popup){
+      return popup;
+    }
+    popup = document.createElement('div');
+    popup.id = 'hskDetailOverlay';
+    popup.className = 'hsk-popup-overlay';
+    popup.hidden = true;
+    popup.innerHTML = `
+      <div class="hsk-popup-card" role="dialog" aria-modal="true" aria-label="Chi tiết HSK">
+        <div class="hsk-popup-body" id="hskDetailBody"></div>
+      </div>
+    `;
+    document.body.appendChild(popup);
+    popup.addEventListener('click', event => {
+      if(event.target === popup){
+        closeHskPopup();
+      }
+    });
+    return popup;
+  }
+
+  function getHskPopupBody(){
+    ensureHskPopup();
+    return document.getElementById('hskDetailBody');
+  }
+
+  function setStudyTab(tabName){
+    const isHsk = tabName === 'hsk';
+    lookupView.hidden = isHsk;
+    hskView.hidden = !isHsk;
+    tabLookup.classList.toggle('active', !isHsk);
+    tabHsk.classList.toggle('active', isHsk);
+    tabLookup.setAttribute('aria-selected', String(!isHsk));
+    tabHsk.setAttribute('aria-selected', String(isHsk));
+
+    if(isHsk){
+      stopAutoplayLoop();
+      loadHskSummary();
+      window.setTimeout(() => hskSearch?.focus(), 80);
+    }else{
+      window.setTimeout(() => els.input?.focus(), 80);
+    }
+  }
+
+  async function fetchJson(path){
+    const response = await fetch(path);
+    if(!response.ok){
+      throw new Error(`${response.status} ${response.statusText}`);
+    }
+    return response.json();
+  }
+
+  async function loadHskSummary(){
+    if(hskState.summary){
+      renderHskLevelTabs();
+      if(!hskState.currentItems.length){
+        await loadHskLevel(hskState.currentLevel);
+      }
+      return;
+    }
+
+    try{
+      hskStatus.textContent = 'Đang tải danh sách cấp HSK...';
+      const summary = await fetchJson(`${HSK_DATA_BASE}hsk_summary.json`);
+      hskState.summary = summary;
+      const total = summary?.totals?.itemsAssignedToHsk || summary?.totals?.sourceWords || '';
+      if(hskTotalBadge){
+        hskTotalBadge.textContent = total ? `${Number(total).toLocaleString('vi-VN')} mục` : 'HSK';
+      }
+      renderHskLevelTabs();
+      await loadHskLevel(hskState.currentLevel);
+    }catch(err){
+      console.warn('Cannot load HSK summary:', err);
+      hskStatus.textContent = 'Không tải được dữ liệu HSK. Kiểm tra thư mục data/learning/hsk.';
+    }
+  }
+
+  function renderHskLevelTabs(){
+    const levels = Array.isArray(hskState.summary?.levels) ? hskState.summary.levels : [];
+    if(!levels.length){
+      levelTabs.innerHTML = '';
+      return;
+    }
+
+    levelTabs.innerHTML = levels.map(level => {
+      const levelNo = Number(level.level);
+      const active = levelNo === Number(hskState.currentLevel);
+      return `
+        <button type="button" class="hsk-level-btn ${active ? 'active' : ''}" data-hsk-level="${escapeHtml(levelNo)}" aria-pressed="${active}">
+          <strong>HSK ${escapeHtml(levelNo)}</strong>
+          <small>${escapeHtml(level.items || 0)} mục</small>
+        </button>
+      `;
+    }).join('');
+  }
+
+  async function loadHskLevel(level){
+    const normalizedLevel = Number(level) || 1;
+    hskState.currentLevel = normalizedLevel;
+    renderHskLevelTabs();
+
+    if(hskCache.has(normalizedLevel)){
+      const data = hskCache.get(normalizedLevel);
+      hskState.currentItems = Array.isArray(data?.items) ? data.items : [];
+      renderHskList();
+      return;
+    }
+
+    try{
+      hskStatus.textContent = `Đang tải HSK ${normalizedLevel}...`;
+      hskList.innerHTML = '';
+      const data = await fetchJson(`${HSK_DATA_BASE}hsk_${normalizedLevel}.json`);
+      hskCache.set(normalizedLevel, data);
+      hskState.currentItems = Array.isArray(data?.items) ? data.items : [];
+      renderHskList();
+    }catch(err){
+      console.warn(`Cannot load HSK ${normalizedLevel}:`, err);
+      hskState.currentItems = [];
+      hskStatus.textContent = `Không tải được HSK ${normalizedLevel}.`;
+      hskList.innerHTML = '';
+    }
+  }
+
+  function normalizeSearchText(value){
+    return String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  function itemMatchesQuery(item, query){
+    if(!query){
+      return true;
+    }
+    const haystack = [
+      item?.word,
+      item?.simplified,
+      item?.pinyin,
+      item?.pinyinPlain,
+      item?.meaningVi,
+      item?.hanViet,
+      ...(Array.isArray(item?.chars) ? item.chars.flatMap(char => [char.char, char.pinyin, char.meaningVi, char.hanViet]) : [])
+    ].map(normalizeSearchText).join(' ');
+    return haystack.includes(query);
+  }
+
+  function getPrimarySection(item){
+    const primary = item?.primaryRoute || (Array.isArray(item?.routes) ? item.routes[0] : null);
+    if(!primary){
+      return '';
+    }
+    const title = primary.sectionTitle || primary.levelName || '';
+    const library = primary.libraryName || primary.libraryId || '';
+    return [library, title].filter(Boolean).join(' · ');
+  }
+
+  function getItemRadicalHints(item){
+    const chars = Array.isArray(item?.chars) ? item.chars : [];
+    const hints = [];
+    chars.forEach(charInfo => {
+      const radical = charInfo?.radicalCandidate?.char || '';
+      if(!radical){
+        return;
+      }
+      const definition = charInfo?.radicalCandidate?.definition || '';
+      const label = `${radical}${definition ? ` · ${definition}` : ''}`;
+      if(!hints.includes(label)){
+        hints.push(label);
+      }
+    });
+    return hints.slice(0, 3);
+  }
+
+  function getHskWordKey(item){
+    return String(item?.word || item?.simplified || '').trim();
+  }
+
+  function formatSlashMeaning(value, limit = 3){
+    const parts = String(value || '')
+      .split(/\s*\/\s*/)
+      .map(part => part.trim())
+      .filter(Boolean);
+    if(!parts.length){
+      return '';
+    }
+    return parts.slice(0, limit).join(' / ');
+  }
+
+  function getAllKnownHskItems(){
+    const list = [];
+    for(const data of hskCache.values()){
+      if(Array.isArray(data?.items)){
+        list.push(...data.items);
+      }
+    }
+    list.push(...hskState.currentItems);
+    const seen = new Set();
+    return list.filter(item => {
+      const key = getHskWordKey(item);
+      if(!key || seen.has(key)){
+        return false;
+      }
+      seen.add(key);
+      return true;
+    });
+  }
+
+  function findHskItem(word){
+    const target = String(word || '').trim();
+    if(!target){
+      return null;
+    }
+    return getAllKnownHskItems().find(item => getHskWordKey(item) === target)
+      || hskState.currentItems.find(item => getHskWordKey(item) === target)
+      || null;
+  }
+
+  function getRelatedWords(item){
+    const related = [];
+    const self = getHskWordKey(item);
+    const add = row => {
+      const word = String(row?.word || row?.s || row?.simplified || '').trim();
+      if(!word || word === self || related.some(item => item.word === word)){
+        return;
+      }
+      const known = findHskItem(word);
+      related.push({
+        word,
+        pinyin: row?.pinyin || row?.p || known?.pinyin || '',
+        meaningVi: row?.meaningVi || row?.vi || row?.gloss || known?.meaningVi || '',
+        knownItem: known
+      });
+    };
+
+    const chars = Array.isArray(item?.chars) ? item.chars : [];
+    chars.forEach(charInfo => {
+      if(charInfo?.char){
+        add({ word: charInfo.char, pinyin: charInfo.pinyin, meaningVi: charInfo.meaningVi });
+      }
+      (Array.isArray(charInfo?.relatedWords) ? charInfo.relatedWords : []).forEach(add);
+    });
+
+    getAllKnownHskItems().forEach(candidate => {
+      if(related.length >= 12){
+        return;
+      }
+      const word = getHskWordKey(candidate);
+      if(!word || word === self){
+        return;
+      }
+      if(chars.some(charInfo => charInfo?.char && word.includes(charInfo.char))){
+        add({ word, pinyin: candidate.pinyin, meaningVi: candidate.meaningVi });
+      }
+    });
+
+    return related.slice(0, 12);
+  }
+
+  function renderRouteList(item){
+    const routes = Array.isArray(item?.routes) ? item.routes.slice(0, 5) : [];
+    if(!routes.length){
+      return '';
+    }
+    return `
+      <section class="hsk-popup-section">
+        <h4>Xuất hiện trong lộ trình</h4>
+        <ul class="hsk-popup-route-list">
+          ${routes.map(route => `
+            <li>
+              <strong>${escapeHtml(route.libraryName || route.libraryId || 'Nguồn học')}</strong>
+              ${route.sectionTitle ? `<span>${escapeHtml(route.sectionTitle)}</span>` : ''}
+            </li>
+          `).join('')}
+        </ul>
+      </section>
+    `;
+  }
+
+  function renderRelatedWords(item){
+    const related = getRelatedWords(item);
+    if(!related.length){
+      return '';
+    }
+    return `
+      <section class="hsk-popup-section">
+        <h4>Từ liên quan</h4>
+        <div class="hsk-popup-related-list">
+          ${related.map(row => `
+            <button type="button" class="hsk-popup-related-item" data-hsk-popup-open="${escapeHtml(row.word)}">
+              <span class="hsk-related-main">
+                <strong class="hsk-related-word">${escapeHtml(row.word)}</strong>
+                ${row.pinyin ? `<em class="hsk-related-pinyin">${escapeHtml(formatPinyin(row.pinyin))}</em>` : ''}
+                ${row.meaningVi ? `<small class="hsk-related-meaning">${escapeHtml(formatSlashMeaning(row.meaningVi, 3))}</small>` : '<small class="hsk-related-meaning is-muted">Chưa có nghĩa.</small>'}
+              </span>
+              <b type="button" role="button" tabindex="0" class="hsk-popup-inline-speaker" data-hsk-speak="${escapeHtml(row.word)}" aria-label="Nghe ${escapeHtml(row.word)}">🔊</b>
+            </button>
+          `).join('')}
+        </div>
+      </section>
+    `;
+  }
+
+  function renderPopupCharacters(item){
+    const chars = Array.isArray(item?.chars) ? item.chars : [];
+    if(!chars.length){
+      return '';
+    }
+    return `
+      <section class="hsk-popup-section">
+        <h4>Từng chữ trong từ</h4>
+        <div class="hsk-popup-char-grid">
+          ${chars.map(charInfo => `
+            <button type="button" class="hsk-popup-char-card" data-hsk-popup-open="${escapeHtml(charInfo.char || '')}">
+              <strong>${escapeHtml(charInfo.char || '')}</strong>
+              ${charInfo.pinyin ? `<span>${escapeHtml(formatPinyin(charInfo.pinyin))}</span>` : ''}
+              ${charInfo.meaningVi ? `<em>${escapeHtml(formatSlashMeaning(charInfo.meaningVi, 2))}</em>` : ''}
+              ${charInfo.hanViet ? `<small>Hán Việt: ${escapeHtml(charInfo.hanViet)}</small>` : ''}
+            </button>
+          `).join('')}
+        </div>
+      </section>
+    `;
+  }
+
+  function renderPopupDictionaryInfo(item){
+    const rows = [
+      item?.hsk ? ['HSK', `HSK ${item.hsk}`] : null,
+      item?.hanViet ? ['Hán Việt', item.hanViet] : null,
+      getPrimarySection(item) ? ['Lộ trình', getPrimarySection(item)] : null,
+      Array.isArray(item?.libraries) && item.libraries.length ? ['Nguồn', item.libraries.slice(0, 3).join(', ')] : null
+    ].filter(Boolean);
+    if(!rows.length){
+      return '';
+    }
+    return `
+      <section class="hsk-popup-section hsk-popup-info-box">
+        <h4>Thông tin từ điển</h4>
+        <dl>
+          ${rows.map(([label, value]) => `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`).join('')}
+        </dl>
+      </section>
+    `;
+  }
+
+  function getPopupChars(item){
+    const fromItem = Array.isArray(item?.chars) ? item.chars.map(row => row?.char).filter(Boolean) : [];
+    const fromWord = getHanziChars(getHskWordKey(item));
+    return Array.from(new Set([...fromItem, ...fromWord]));
+  }
+
+  function renderPopupWriting(item){
+    const chars = getPopupChars(item);
+    if(!chars.length){
+      return '';
+    }
+    const activeChar = hskState.popupActiveChar && chars.includes(hskState.popupActiveChar)
+      ? hskState.popupActiveChar
+      : chars[0];
+    hskState.popupActiveChar = activeChar;
+    return `
+      <section class="hsk-popup-section hsk-popup-writing">
+        <h4>Cách viết</h4>
+        <p>Chọn một chữ để xem nét và luyện viết.</p>
+        <div class="hsk-popup-write-chips">
+          ${chars.map(char => `
+            <button type="button" class="hsk-popup-write-chip ${char === activeChar ? 'active' : ''}" data-hsk-write-char="${escapeHtml(char)}">${escapeHtml(char)}</button>
+          `).join('')}
+        </div>
+        <div class="hsk-popup-writing-status">Đang luyện: <strong>${escapeHtml(activeChar)}</strong></div>
+        <div id="hskPopupWriter" class="hsk-popup-writer" aria-label="Luyện viết ${escapeHtml(activeChar)}"></div>
+        <div class="hsk-popup-write-actions">
+          <button type="button" data-hsk-popup-play-strokes>Phát nét</button>
+          <button type="button" data-hsk-popup-quiz>Luyện viết</button>
+        </div>
+      </section>
+    `;
+  }
+
+  function renderHskPopup(item){
+    const word = getHskWordKey(item);
+    const pinyin = formatPinyin(item?.pinyin);
+    const meaning = String(item?.meaningVi || '').trim();
+    const popup = ensureHskPopup();
+    const body = getHskPopupBody();
+    const canBack = hskState.popupStack.length > 0;
+    body.innerHTML = `
+      <div class="hsk-popup-topbar">
+        <button type="button" class="hsk-popup-back" data-hsk-popup-back>← ${canBack ? 'Quay lại' : 'Quay về HSK'}</button>
+        <button type="button" class="hsk-popup-close" data-hsk-popup-close aria-label="Đóng">×</button>
+      </div>
+
+      <section class="hsk-popup-hero">
+        <div>
+          <h3>${escapeHtml(word)}</h3>
+          ${pinyin ? `<p class="hsk-popup-pinyin">${escapeHtml(pinyin)}</p>` : ''}
+          ${meaning ? `<p class="hsk-popup-meaning">${escapeHtml(formatSlashMeaning(meaning, 4))}</p>` : '<p class="hsk-popup-meaning is-muted">Chưa có nghĩa tiếng Việt.</p>'}
+        </div>
+        <button type="button" class="hsk-popup-speaker" data-hsk-speak="${escapeHtml(word)}" aria-label="Nghe ${escapeHtml(word)}">🔊</button>
+      </section>
+
+      ${renderPopupCharacters(item)}
+      ${renderPopupDictionaryInfo(item)}
+      ${renderRelatedWords(item)}
+      ${renderPopupWriting(item)}
+      ${renderRouteList(item)}
+
+      <div class="hsk-popup-bottom-actions">
+        <button type="button" class="hsk-open-btn" data-hsk-open-lookup="${escapeHtml(word)}">Mở trong tab Tra</button>
+      </div>
+    `;
+    popup.hidden = false;
+    document.body.classList.add('hsk-popup-open');
+    window.setTimeout(initPopupWriter, 60);
+  }
+
+  function getFallbackItem(word){
+    const target = String(word || '').trim();
+    if(!target){
+      return null;
+    }
+    const chars = getHanziChars(target).map(char => ({ char }));
+    return {
+      word: target,
+      pinyin: '',
+      meaningVi: '',
+      hanViet: '',
+      hsk: '',
+      chars,
+      routes: [],
+      libraries: []
+    };
+  }
+
+  function openHskPopup(word, options = {}){
+    const target = String(word || '').trim();
+    if(!target){
+      return;
+    }
+    const current = hskState.popupWord;
+    if(options.pushHistory && current && current !== target){
+      hskState.popupStack.push(current);
+    }
+    hskState.popupWord = target;
+    hskState.popupActiveChar = '';
+    const item = findHskItem(target) || getFallbackItem(target);
+    renderHskPopup(item);
+  }
+
+  function closeHskPopup(){
+    const popup = ensureHskPopup();
+    popup.hidden = true;
+    document.body.classList.remove('hsk-popup-open');
+    hskState.popupWord = '';
+    hskState.popupStack = [];
+    hskState.popupActiveChar = '';
+    hskState.popupWriter = null;
+    hskState.popupWriterChar = '';
+  }
+
+  function goBackHskPopup(){
+    if(hskState.popupStack.length){
+      const previous = hskState.popupStack.pop();
+      hskState.popupWord = previous;
+      hskState.popupActiveChar = '';
+      const item = findHskItem(previous) || getFallbackItem(previous);
+      renderHskPopup(item);
+      return;
+    }
+    closeHskPopup();
+  }
+
+  function initPopupWriter(){
+    const target = document.getElementById('hskPopupWriter');
+    const char = hskState.popupActiveChar;
+    if(!target || !char || !window.HanziWriter){
+      return;
+    }
+    target.innerHTML = '';
+    const settings = getSettings();
+    const size = Math.min(220, Math.max(150, Math.floor((target.closest('.hsk-popup-card')?.clientWidth || 280) - 96)));
+    try{
+      hskState.popupWriter = HanziWriter.create('hskPopupWriter', char, createWriterOptions(size, settings));
+      hskState.popupWriterChar = char;
+    }catch(err){
+      console.warn('Cannot create HSK popup writer:', err);
+      target.innerHTML = '<p class="hsk-popup-writer-error">Không tải được nét chữ này.</p>';
+    }
+  }
+
+  function setPopupWriteChar(char){
+    const target = String(char || '').trim();
+    if(!target){
+      return;
+    }
+    hskState.popupActiveChar = target;
+    const item = findHskItem(hskState.popupWord) || getFallbackItem(hskState.popupWord);
+    renderHskPopup(item);
+  }
+
+  function popupAnimateStrokes(){
+    if(hskState.popupWriter){
+      hskState.popupWriter.animateCharacter();
+    }
+  }
+
+  function popupQuiz(){
+    if(hskState.popupWriter){
+      hskState.popupWriter.quiz({
+        showHintAfterMisses: getSettings().showHintAfterMisses
+      });
+    }
+  }
+
+  function renderHskItem(item){
+    const word = String(item?.word || item?.simplified || '').trim();
+    const pinyin = formatPinyin(item?.pinyin);
+    const meaning = String(item?.meaningVi || '').trim();
+    const route = getPrimarySection(item);
+    const charCount = Number(item?.charCount) || getHanziChars(word).length;
+
+    return `
+      <article class="hsk-item hsk-item-compact" data-hsk-popup-word="${escapeHtml(word)}" tabindex="0" role="button" aria-label="Mở chi tiết ${escapeHtml(word)}">
+        <div class="hsk-item-main">
+          <div class="hsk-word-row">
+            <strong class="hsk-word">${escapeHtml(word)}</strong>
+            ${pinyin ? `<span class="hsk-pinyin">${escapeHtml(pinyin)}</span>` : ''}
+            <span class="hsk-card-actions">
+              <button type="button" class="hsk-speak" data-hsk-speak="${escapeHtml(word)}" aria-label="Nghe ${escapeHtml(word)}">🔊</button>
+            </span>
+          </div>
+          ${meaning ? `<p class="hsk-meaning">${escapeHtml(formatSlashMeaning(meaning, 3))}</p>` : '<p class="hsk-meaning is-muted">Chưa có nghĩa tiếng Việt.</p>'}
+          <div class="hsk-meta-line">
+            ${item?.hsk ? `<span>HSK ${escapeHtml(item.hsk)}</span>` : ''}
+            <span>${charCount} chữ</span>
+            ${route ? `<span>${escapeHtml(route)}</span>` : ''}
+          </div>
+        </div>
+      </article>
+    `;
+  }
+
+  function renderHskList(){
+    const query = normalizeSearchText(hskState.query);
+    const filtered = hskState.currentItems.filter(item => itemMatchesQuery(item, query));
+    const level = Number(hskState.currentLevel) || 1;
+    hskStatus.textContent = query
+      ? `HSK ${level}: tìm thấy ${filtered.length.toLocaleString('vi-VN')} / ${hskState.currentItems.length.toLocaleString('vi-VN')} mục.`
+      : `HSK ${level}: ${hskState.currentItems.length.toLocaleString('vi-VN')} mục.`;
+
+    if(!filtered.length){
+      hskList.innerHTML = '<p class="hsk-empty">Không tìm thấy mục phù hợp.</p>';
+      return;
+    }
+
+    hskList.innerHTML = filtered.map(renderHskItem).join('');
+  }
+
+  function openHskWord(word){
+    const target = getHanziChars(word).join('');
+    if(!target){
+      return;
+    }
+    closeHskPopup();
+    stopAutoplayLoop();
+    els.input.value = target;
+    setStudyTab('lookup');
+    renderWriters();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  tabLookup.addEventListener('click', () => setStudyTab('lookup'));
+  tabHsk.addEventListener('click', () => setStudyTab('hsk'));
+  tabRadicals?.addEventListener('click', () => {});
+
+  levelTabs.addEventListener('click', event => {
+    const button = event.target.closest('[data-hsk-level]');
+    if(!button){
+      return;
+    }
+    loadHskLevel(button.dataset.hskLevel);
+  });
+
+  hskSearch?.addEventListener('input', () => {
+    hskState.query = hskSearch.value || '';
+    renderHskList();
+  });
+
+  hskList.addEventListener('click', event => {
+    const speakButton = event.target.closest('[data-hsk-speak]');
+    if(speakButton){
+      event.preventDefault();
+      event.stopPropagation();
+      speakChar(speakButton.dataset.hskSpeak || '');
+      return;
+    }
+
+    const popupTrigger = event.target.closest('[data-hsk-popup-word]');
+    if(popupTrigger){
+      event.preventDefault();
+      event.stopPropagation();
+      openHskPopup(popupTrigger.dataset.hskPopupWord || '');
+    }
+  });
+
+  hskList.addEventListener('keydown', event => {
+    if(event.key !== 'Enter' && event.key !== ' '){
+      return;
+    }
+    const item = event.target.closest('.hsk-item[data-hsk-popup-word]');
+    if(item){
+      event.preventDefault();
+      openHskPopup(item.dataset.hskPopupWord || '');
+    }
+  });
+
+  document.addEventListener('click', event => {
+    const popup = document.getElementById('hskDetailOverlay');
+    if(!popup || popup.hidden){
+      return;
+    }
+
+    const closeButton = event.target.closest('[data-hsk-popup-close]');
+    if(closeButton){
+      event.preventDefault();
+      closeHskPopup();
+      return;
+    }
+
+    const backButton = event.target.closest('[data-hsk-popup-back]');
+    if(backButton){
+      event.preventDefault();
+      goBackHskPopup();
+      return;
+    }
+
+    const speakButton = event.target.closest('[data-hsk-speak]');
+    if(speakButton){
+      event.preventDefault();
+      event.stopPropagation();
+      speakChar(speakButton.dataset.hskSpeak || '');
+      return;
+    }
+
+    const lookupButton = event.target.closest('[data-hsk-open-lookup]');
+    if(lookupButton){
+      event.preventDefault();
+      openHskWord(lookupButton.dataset.hskOpenLookup || '');
+      return;
+    }
+
+    const writeButton = event.target.closest('[data-hsk-write-char]');
+    if(writeButton){
+      event.preventDefault();
+      setPopupWriteChar(writeButton.dataset.hskWriteChar || '');
+      return;
+    }
+
+    const playButton = event.target.closest('[data-hsk-popup-play-strokes]');
+    if(playButton){
+      event.preventDefault();
+      popupAnimateStrokes();
+      return;
+    }
+
+    const quizButton = event.target.closest('[data-hsk-popup-quiz]');
+    if(quizButton){
+      event.preventDefault();
+      popupQuiz();
+      return;
+    }
+
+    const nextButton = event.target.closest('[data-hsk-popup-open]');
+    if(nextButton){
+      event.preventDefault();
+      openHskPopup(nextButton.dataset.hskPopupOpen || '', { pushHistory: true });
+    }
+  });
+
+  document.addEventListener('keydown', event => {
+    const popup = document.getElementById('hskDetailOverlay');
+    if(event.key === 'Escape' && popup && !popup.hidden){
+      closeHskPopup();
+    }
+  });
+})();

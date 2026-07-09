@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tra chữ Hán</title>
-  <link rel="stylesheet" href="style.css?v=20260706-layer5-hanzi-lookup" />
+  <link rel="stylesheet" href="style.css?v=20260709-step7-hsk-tab" />
 </head>
 <body>
   <main class="hanzi-app">
@@ -29,7 +29,22 @@
       <div class="study-hero-mark" aria-hidden="true">写</div>
     </section>
 
-    <div class="hanzi-layout study-layout">
+    <nav class="study-tabs" aria-label="Khu học chữ Hán">
+      <button id="studyTabLookup" class="study-tab active" type="button" data-study-tab="lookup" aria-selected="true">
+        <span aria-hidden="true">🔎</span>
+        <b>Tra</b>
+      </button>
+      <button id="studyTabHsk" class="study-tab" type="button" data-study-tab="hsk" aria-selected="false">
+        <span aria-hidden="true">HSK</span>
+        <b>Theo cấp</b>
+      </button>
+      <button id="studyTabRadicals" class="study-tab study-tab--soon" type="button" data-study-tab="radicals" aria-selected="false" disabled title="Bước 8 sẽ thêm tab Bộ thủ">
+        <span aria-hidden="true">部</span>
+        <b>Bộ thủ</b>
+      </button>
+    </nav>
+
+    <div id="lookupView" class="hanzi-layout study-layout">
       <section class="options-card study-panel" aria-label="Bài học chữ Hán">
         <div class="panel-title-row">
           <div>
@@ -175,6 +190,30 @@
         <div id="writerList" class="writer-list"></div>
       </section>
     </div>
+
+
+    <section id="hskView" class="hsk-study-view" hidden aria-label="Học chữ theo HSK">
+      <div class="hsk-card hsk-card--intro">
+        <div>
+          <p class="panel-kicker">Học theo lộ trình</p>
+          <h2>HSK trong Tra chữ Hán</h2>
+          <p class="hsk-intro-text">Chọn cấp HSK, xem từ/chữ, pinyin, nghĩa và bộ/thành phần gợi nhớ. Bấm một mục để xem chi tiết. Dùng nút Tra & luyện để mở phần Tra chữ Hán và luyện viết.</p>
+        </div>
+        <span id="hskTotalBadge" class="learning-badge">Đang tải...</span>
+      </div>
+
+      <div class="hsk-card">
+        <div class="hsk-toolbar">
+          <div id="hskLevelTabs" class="hsk-level-tabs" aria-label="Chọn cấp HSK"></div>
+          <label class="hsk-search" for="hskSearchInput">
+            <span>Tìm trong cấp đang chọn</span>
+            <input id="hskSearchInput" type="search" placeholder="Tìm chữ, pinyin, nghĩa..." autocomplete="off" spellcheck="false" />
+          </label>
+        </div>
+        <p id="hskStatus" class="hsk-status">Đang tải dữ liệu HSK...</p>
+        <div id="hskList" class="hsk-list" aria-live="polite"></div>
+      </div>
+    </section>
   </main>
 
   <dialog id="charInfoDialog" class="char-info-dialog">
@@ -206,6 +245,6 @@
     </a>
   </nav>
 
-  <script src="app.js?v=20260706-layer5-hanzi-lookup"></script>
+  <script src="app.js?v=20260709-step7-hsk-tab"></script>
 </body>
 </html>
