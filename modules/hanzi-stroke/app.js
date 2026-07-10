@@ -1262,6 +1262,7 @@ if(window.HanziWriter){
     popupWriterChar: '',
     popupReturnContext: null,
     popupSeed: null,
+    popupRelatedExpanded: false,
     groupMode: 'all',
     topicKey: 'all',
     sourceKey: 'new_hsk'
@@ -1892,11 +1893,15 @@ if(window.HanziWriter){
     if(!related.length){
       return '';
     }
+    const initialLimit = 3;
+    const expanded = Boolean(hskState.popupRelatedExpanded);
+    const visible = expanded ? related : related.slice(0, initialLimit);
+    const hiddenCount = Math.max(0, related.length - initialLimit);
     return `
-      <section class="hsk-popup-section">
+      <section class="hsk-popup-section hsk-popup-related-section">
         <h4>Từ liên quan</h4>
         <div class="hsk-popup-related-list">
-          ${related.map(row => `
+          ${visible.map(row => `
             <button type="button" class="hsk-popup-related-item" data-hsk-popup-open="${escapeHtml(row.word)}" data-hsk-popup-pinyin="${escapeHtml(row.pinyin || '')}" data-hsk-popup-meaning="${escapeHtml(row.meaningVi || '')}">
               <span class="hsk-related-main">
                 <strong class="hsk-related-word" data-copy-text="${escapeHtml(row.word)}">${escapeHtml(row.word)}</strong>
@@ -1907,6 +1912,11 @@ if(window.HanziWriter){
             </button>
           `).join('')}
         </div>
+        ${related.length > initialLimit ? `
+          <button type="button" class="hsk-popup-more-btn" data-hsk-related-toggle>
+            ${expanded ? 'Thu gọn' : `Xem thêm ${hiddenCount} từ`}
+          </button>
+        ` : ''}
       </section>
     `;
   }
@@ -2163,6 +2173,7 @@ if(window.HanziWriter){
     }
     hskState.popupWord = target;
     hskState.popupSeed = options.seed || {};
+    hskState.popupRelatedExpanded = false;
     hskState.popupActiveChar = '';
     const item = mergePopupSeed(findHskItem(target) || getFallbackItem(target, options.seed || {}), options.seed || {});
     renderHskPopup(item);
@@ -2179,6 +2190,7 @@ if(window.HanziWriter){
     hskState.popupWriterChar = '';
     hskState.popupReturnContext = null;
     hskState.popupSeed = null;
+    hskState.popupRelatedExpanded = false;
   }
 
   function goBackHskPopup(){
@@ -2188,6 +2200,7 @@ if(window.HanziWriter){
       const previousSeed = typeof previous === 'string' ? {} : (previous?.seed || {});
       hskState.popupWord = previousWord;
       hskState.popupSeed = previousSeed;
+      hskState.popupRelatedExpanded = false;
       hskState.popupActiveChar = '';
       const item = mergePopupSeed(findHskItem(previousWord) || getFallbackItem(previousWord, previousSeed), previousSeed);
       renderHskPopup(item);
@@ -2452,6 +2465,15 @@ if(window.HanziWriter){
     if(quizButton){
       event.preventDefault();
       popupQuiz();
+      return;
+    }
+
+    const relatedToggle = event.target.closest('[data-hsk-related-toggle]');
+    if(relatedToggle){
+      event.preventDefault();
+      hskState.popupRelatedExpanded = !hskState.popupRelatedExpanded;
+      const item = mergePopupSeed(findHskItem(hskState.popupWord) || getFallbackItem(hskState.popupWord, hskState.popupSeed || {}), hskState.popupSeed || {});
+      renderHskPopup(item);
       return;
     }
 
