@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tra chữ Hán</title>
-  <link rel="stylesheet" href="style.css?v=20260709-step7-3-hsk-groups" />
+  <link rel="stylesheet" href="style.css?v=20260709-step8-radicals" />
 </head>
 <body>
   <main class="hanzi-app">
@@ -38,7 +38,7 @@
         <span aria-hidden="true">HSK</span>
         <b>Theo cấp</b>
       </button>
-      <button id="studyTabRadicals" class="study-tab study-tab--soon" type="button" data-study-tab="radicals" aria-selected="false" disabled title="Bước 8 sẽ thêm tab Bộ thủ">
+      <button id="studyTabRadicals" class="study-tab" type="button" data-study-tab="radicals" aria-selected="false">
         <span aria-hidden="true">部</span>
         <b>Bộ thủ</b>
       </button>
@@ -228,6 +228,38 @@
         <div id="hskList" class="hsk-list" aria-live="polite"></div>
       </div>
     </section>
+
+    <section id="radicalsView" class="radical-study-view" hidden aria-label="Học bộ thủ và thành phần nghĩa">
+      <div class="radical-card radical-card--intro">
+        <div>
+          <p class="panel-kicker">Bộ thủ · thành phần nghĩa</p>
+          <h2>Bộ thủ trong Tra chữ Hán</h2>
+          <p class="radical-intro-text">Học bộ thủ để đoán nghĩa, nhớ chữ dễ hơn và liên kết với chữ/từ đã học. Bấm một bộ thủ để xem nguồn gốc, biến thể, ý nghĩa mở rộng, chữ cùng bộ, từ vựng và ví dụ.</p>
+        </div>
+        <span id="radicalTotalBadge" class="learning-badge">Đang tải...</span>
+      </div>
+
+      <div class="radical-card">
+        <div class="radical-toolbar">
+          <label class="radical-search" for="radicalSearchInput">
+            <span>Tìm bộ thủ</span>
+            <input id="radicalSearchInput" type="search" placeholder="Tìm 氵, thủy, nước, shuǐ..." autocomplete="off" spellcheck="false" />
+          </label>
+          <div class="radical-group-picker">
+            <span class="radical-group-label">Nhóm bộ thủ</span>
+            <button type="button" id="radicalGroupTrigger" class="radical-group-trigger" aria-haspopup="listbox" aria-expanded="false">
+              <span class="radical-group-trigger-main"><strong>Tất cả nhóm</strong><small>Đang tải...</small></span>
+              <span class="radical-group-trigger-icon" aria-hidden="true">⌄</span>
+            </button>
+            <div id="radicalGroupPanel" class="radical-group-panel" role="listbox" hidden></div>
+            <p id="radicalGroupSummary" class="radical-group-summary">Chọn nhóm để học bộ thủ theo chủ đề nghĩa.</p>
+          </div>
+        </div>
+        <p id="radicalStatus" class="radical-status">Đang tải dữ liệu bộ thủ...</p>
+        <div id="radicalList" class="radical-list" aria-live="polite"></div>
+      </div>
+    </section>
+
   </main>
 
   <dialog id="charInfoDialog" class="char-info-dialog">
@@ -259,6 +291,6 @@
     </a>
   </nav>
 
-  <script src="app.js?v=20260709-step7-3-hsk-groups"></script>
+  <script src="app.js?v=20260710-step8-radicals-popup-fix"></script>
 </body>
 </html>

@@ -1232,6 +1232,7 @@ if(window.HanziWriter){
 (function initHskLearningTab(){
   const lookupView = document.getElementById('lookupView');
   const hskView = document.getElementById('hskView');
+  const radicalsView = document.getElementById('radicalsView');
   const tabLookup = document.getElementById('studyTabLookup');
   const tabHsk = document.getElementById('studyTabHsk');
   const tabRadicals = document.getElementById('studyTabRadicals');
@@ -1259,6 +1260,8 @@ if(window.HanziWriter){
     popupActiveChar: '',
     popupWriter: null,
     popupWriterChar: '',
+    popupReturnContext: null,
+    popupSeed: null,
     groupMode: 'all',
     topicKey: 'all',
     sourceKey: 'new_hsk'
@@ -1293,18 +1296,28 @@ if(window.HanziWriter){
   }
 
   function setStudyTab(tabName){
+    const isLookup = tabName === 'lookup';
     const isHsk = tabName === 'hsk';
-    lookupView.hidden = isHsk;
+    const isRadicals = tabName === 'radicals';
+    lookupView.hidden = !isLookup;
     hskView.hidden = !isHsk;
-    tabLookup.classList.toggle('active', !isHsk);
+    if(radicalsView){
+      radicalsView.hidden = !isRadicals;
+    }
+    tabLookup.classList.toggle('active', isLookup);
     tabHsk.classList.toggle('active', isHsk);
-    tabLookup.setAttribute('aria-selected', String(!isHsk));
+    tabRadicals?.classList.toggle('active', isRadicals);
+    tabLookup.setAttribute('aria-selected', String(isLookup));
     tabHsk.setAttribute('aria-selected', String(isHsk));
+    tabRadicals?.setAttribute('aria-selected', String(isRadicals));
 
     if(isHsk){
       stopAutoplayLoop();
       loadHskSummary();
       window.setTimeout(() => hskSearch?.focus(), 80);
+    }else if(isRadicals){
+      stopAutoplayLoop();
+      window.dispatchEvent(new CustomEvent('hanzi:radicals-tab-open'));
     }else{
       window.setTimeout(() => els.input?.focus(), 80);
     }
@@ -1814,13 +1827,21 @@ if(window.HanziWriter){
         return;
       }
       const known = findHskItem(word);
+      const meaningVi = String(known?.meaningVi || row?.meaningVi || row?.vi || '').trim();
+      // Không dùng gloss tiếng Anh làm nghĩa Việt trong HSK popup.
+      // Nếu không có nghĩa Việt đáng tin cậy thì bỏ qua để tránh hiện tiếng Anh như 'client', 'no', 'only'.
+      if(!meaningVi){
+        return;
+      }
       related.push({
         word,
-        pinyin: row?.pinyin || row?.p || known?.pinyin || '',
-        meaningVi: row?.meaningVi || row?.vi || row?.gloss || known?.meaningVi || '',
+        pinyin: known?.pinyin || row?.pinyin || row?.p || '',
+        meaningVi,
         knownItem: known
       });
     };
+
+    (Array.isArray(item?.relatedWords) ? item.relatedWords : []).forEach(add);
 
     const chars = Array.isArray(item?.chars) ? item.chars : [];
     chars.forEach(charInfo => {
@@ -1876,9 +1897,9 @@ if(window.HanziWriter){
         <h4>Từ liên quan</h4>
         <div class="hsk-popup-related-list">
           ${related.map(row => `
-            <button type="button" class="hsk-popup-related-item" data-hsk-popup-open="${escapeHtml(row.word)}">
+            <button type="button" class="hsk-popup-related-item" data-hsk-popup-open="${escapeHtml(row.word)}" data-hsk-popup-pinyin="${escapeHtml(row.pinyin || '')}" data-hsk-popup-meaning="${escapeHtml(row.meaningVi || '')}">
               <span class="hsk-related-main">
-                <strong class="hsk-related-word">${escapeHtml(row.word)}</strong>
+                <strong class="hsk-related-word" data-copy-text="${escapeHtml(row.word)}">${escapeHtml(row.word)}</strong>
                 ${row.pinyin ? `<em class="hsk-related-pinyin">${escapeHtml(formatPinyin(row.pinyin))}</em>` : ''}
                 ${row.meaningVi ? `<small class="hsk-related-meaning">${escapeHtml(formatSlashMeaning(row.meaningVi, 3))}</small>` : '<small class="hsk-related-meaning is-muted">Chưa có nghĩa.</small>'}
               </span>
@@ -1900,11 +1921,33 @@ if(window.HanziWriter){
         <h4>Từng chữ trong từ</h4>
         <div class="hsk-popup-char-grid">
           ${chars.map(charInfo => `
-            <button type="button" class="hsk-popup-char-card" data-hsk-popup-open="${escapeHtml(charInfo.char || '')}">
+            <button type="button" class="hsk-popup-char-card" data-hsk-popup-open="${escapeHtml(charInfo.char || '')}" data-hsk-popup-pinyin="${escapeHtml(charInfo.pinyin || '')}" data-hsk-popup-meaning="${escapeHtml(charInfo.meaningVi || '')}" data-copy-text="${escapeHtml(charInfo.char || '')}">
               <strong>${escapeHtml(charInfo.char || '')}</strong>
               ${charInfo.pinyin ? `<span>${escapeHtml(formatPinyin(charInfo.pinyin))}</span>` : ''}
               ${charInfo.meaningVi ? `<em>${escapeHtml(formatSlashMeaning(charInfo.meaningVi, 2))}</em>` : ''}
               ${charInfo.hanViet ? `<small>Hán Việt: ${escapeHtml(charInfo.hanViet)}</small>` : ''}
+            </button>
+          `).join('')}
+        </div>
+      </section>
+    `;
+  }
+
+  function renderPopupSampleSentences(item){
+    const rows = normalizePopupSentences(item?.sampleSentences || item?.sentences || item?.examples?.sentences);
+    if(!rows.length){
+      return '';
+    }
+    return `
+      <section class="hsk-popup-section hsk-popup-sentences">
+        <h4>Câu mẫu</h4>
+        <div class="hsk-popup-sentence-list">
+          ${rows.map(row => `
+            <button type="button" class="hsk-popup-sentence-item" data-copy-text="${escapeHtml(row.zh)}" data-hsk-speak="${escapeHtml(row.zh)}">
+              <strong>${escapeHtml(row.zh)}</strong>
+              <em>${escapeHtml(formatPinyin(row.pinyin))}</em>
+              <span>${escapeHtml(row.vi)}</span>
+              <b aria-hidden="true">🔊</b>
             </button>
           `).join('')}
         </div>
@@ -1973,15 +2016,16 @@ if(window.HanziWriter){
     const popup = ensureHskPopup();
     const body = getHskPopupBody();
     const canBack = hskState.popupStack.length > 0;
+    const fallbackLabel = hskState.popupReturnContext?.label || 'Quay về HSK';
     body.innerHTML = `
       <div class="hsk-popup-topbar">
-        <button type="button" class="hsk-popup-back" data-hsk-popup-back>← ${canBack ? 'Quay lại' : 'Quay về HSK'}</button>
+        <button type="button" class="hsk-popup-back" data-hsk-popup-back>← ${canBack ? 'Quay lại' : fallbackLabel}</button>
         <button type="button" class="hsk-popup-close" data-hsk-popup-close aria-label="Đóng">×</button>
       </div>
 
       <section class="hsk-popup-hero">
         <div>
-          <h3>${escapeHtml(word)}</h3>
+          <h3 data-copy-text="${escapeHtml(word)}">${escapeHtml(word)}</h3>
           ${pinyin ? `<p class="hsk-popup-pinyin">${escapeHtml(pinyin)}</p>` : ''}
           ${meaning ? `<p class="hsk-popup-meaning">${escapeHtml(formatSlashMeaning(meaning, 4))}</p>` : '<p class="hsk-popup-meaning is-muted">Chưa có nghĩa tiếng Việt.</p>'}
         </div>
@@ -1991,6 +2035,7 @@ if(window.HanziWriter){
       ${renderPopupCharacters(item)}
       ${renderPopupDictionaryInfo(item)}
       ${renderRelatedWords(item)}
+      ${renderPopupSampleSentences(item)}
       ${renderPopupWriting(item)}
       ${renderRouteList(item)}
 
@@ -2003,22 +2048,103 @@ if(window.HanziWriter){
     window.setTimeout(initPopupWriter, 60);
   }
 
-  function getFallbackItem(word){
+  function normalizeSeedRelatedWords(rows){
+    return (Array.isArray(rows) ? rows : [])
+      .map(row => ({
+        word: String(row?.word || row?.char || row?.s || row?.simplified || '').trim(),
+        pinyin: String(row?.pinyin || row?.p || '').trim(),
+        meaningVi: String(row?.meaningVi || row?.vi || '').trim()
+      }))
+      .filter(row => row.word && row.meaningVi)
+      .slice(0, 12);
+  }
+
+  function normalizePopupSentences(rows){
+    return (Array.isArray(rows) ? rows : [])
+      .map(row => ({
+        zh: String(row?.zh || row?.sentence || '').trim(),
+        pinyin: String(row?.pinyin || '').trim(),
+        vi: String(row?.vi || row?.meaningVi || '').trim()
+      }))
+      .filter(row => row.zh && row.pinyin && row.vi)
+      .slice(0, 5);
+  }
+
+  function mergePopupSeed(item, seed = {}){
+    const base = item ? { ...item } : null;
+    if(!base){
+      return null;
+    }
+    const seedPinyin = String(seed?.pinyin || '').trim();
+    const seedMeaning = String(seed?.meaningVi || '').trim();
+    if(seedPinyin){
+      base.pinyin = seedPinyin;
+    }
+    if(seedMeaning){
+      base.meaningVi = seedMeaning;
+    }
+    const seedSentences = normalizePopupSentences(seed?.sampleSentences || seed?.sentences);
+    if(seedSentences.length){
+      base.sampleSentences = seedSentences;
+    }
+    const seedRelated = normalizeSeedRelatedWords(seed?.relatedWords);
+    if(seedRelated.length){
+      const existingRelated = Array.isArray(base.relatedWords) ? base.relatedWords : [];
+      const seenRelated = new Set();
+      base.relatedWords = [...seedRelated, ...existingRelated].filter(row => {
+        const key = String(row?.word || row?.s || row?.simplified || '').trim();
+        if(!key || seenRelated.has(key)){
+          return false;
+        }
+        seenRelated.add(key);
+        return true;
+      });
+    }
+    const word = getHskWordKey(base);
+    if(seedPinyin || seedMeaning){
+      const chars = Array.isArray(base.chars) ? base.chars.map(row => ({ ...row })) : [];
+      if(getHanziChars(word).length === 1){
+        const idx = chars.findIndex(row => row?.char === word);
+        const merged = { char: word, ...(idx >= 0 ? chars[idx] : {}) };
+        if(seedPinyin){
+          merged.pinyin = seedPinyin;
+        }
+        if(seedMeaning){
+          merged.meaningVi = seedMeaning;
+        }
+        if(idx >= 0){
+          chars[idx] = merged;
+        }else{
+          chars.unshift(merged);
+        }
+        base.chars = chars;
+      }
+    }
+    return base;
+  }
+
+  function getFallbackItem(word, seed = {}){
     const target = String(word || '').trim();
     if(!target){
       return null;
     }
-    const chars = getHanziChars(target).map(char => ({ char }));
-    return {
+    const seedPinyin = String(seed?.pinyin || '').trim();
+    const seedMeaning = String(seed?.meaningVi || '').trim();
+    const chars = getHanziChars(target).map(char => ({
+      char,
+      pinyin: getHanziChars(target).length === 1 ? seedPinyin : '',
+      meaningVi: getHanziChars(target).length === 1 ? seedMeaning : ''
+    }));
+    return mergePopupSeed({
       word: target,
-      pinyin: '',
-      meaningVi: '',
+      pinyin: seedPinyin,
+      meaningVi: seedMeaning,
       hanViet: '',
       hsk: '',
       chars,
       routes: [],
       libraries: []
-    };
+    }, seed);
   }
 
   function openHskPopup(word, options = {}){
@@ -2028,11 +2154,17 @@ if(window.HanziWriter){
     }
     const current = hskState.popupWord;
     if(options.pushHistory && current && current !== target){
-      hskState.popupStack.push(current);
+      hskState.popupStack.push({ type: 'word', word: current, seed: hskState.popupSeed || {} });
+    }
+    if(options.returnContext){
+      hskState.popupReturnContext = options.returnContext;
+    }else if(!options.pushHistory){
+      hskState.popupReturnContext = null;
     }
     hskState.popupWord = target;
+    hskState.popupSeed = options.seed || {};
     hskState.popupActiveChar = '';
-    const item = findHskItem(target) || getFallbackItem(target);
+    const item = mergePopupSeed(findHskItem(target) || getFallbackItem(target, options.seed || {}), options.seed || {});
     renderHskPopup(item);
   }
 
@@ -2045,18 +2177,27 @@ if(window.HanziWriter){
     hskState.popupActiveChar = '';
     hskState.popupWriter = null;
     hskState.popupWriterChar = '';
+    hskState.popupReturnContext = null;
+    hskState.popupSeed = null;
   }
 
   function goBackHskPopup(){
     if(hskState.popupStack.length){
       const previous = hskState.popupStack.pop();
-      hskState.popupWord = previous;
+      const previousWord = typeof previous === 'string' ? previous : previous?.word;
+      const previousSeed = typeof previous === 'string' ? {} : (previous?.seed || {});
+      hskState.popupWord = previousWord;
+      hskState.popupSeed = previousSeed;
       hskState.popupActiveChar = '';
-      const item = findHskItem(previous) || getFallbackItem(previous);
+      const item = mergePopupSeed(findHskItem(previousWord) || getFallbackItem(previousWord, previousSeed), previousSeed);
       renderHskPopup(item);
       return;
     }
+    const returnContext = hskState.popupReturnContext;
     closeHskPopup();
+    if(returnContext?.type === 'radical' && returnContext.id && window.openRadicalLearningPopup){
+      window.openRadicalLearningPopup(returnContext.id);
+    }
   }
 
   function initPopupWriter(){
@@ -2115,7 +2256,7 @@ if(window.HanziWriter){
     const charCount = Number(item?.charCount) || getHanziChars(word).length;
 
     return `
-      <article class="hsk-item hsk-item-compact" data-hsk-popup-word="${escapeHtml(word)}" tabindex="0" role="button" aria-label="Mở chi tiết ${escapeHtml(word)}">
+      <article class="hsk-item hsk-item-compact" data-hsk-popup-word="${escapeHtml(word)}" data-copy-text="${escapeHtml(word)}" tabindex="0" role="button" aria-label="Mở chi tiết ${escapeHtml(word)}">
         <div class="hsk-item-main">
           <div class="hsk-word-row">
             <strong class="hsk-word">${escapeHtml(word)}</strong>
@@ -2179,9 +2320,12 @@ if(window.HanziWriter){
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  window.openHanziLearningPopup = openHskPopup;
+  window.openHanziLookupWord = openHskWord;
+
   tabLookup.addEventListener('click', () => setStudyTab('lookup'));
   tabHsk.addEventListener('click', () => setStudyTab('hsk'));
-  tabRadicals?.addEventListener('click', () => {});
+  tabRadicals?.addEventListener('click', () => setStudyTab('radicals'));
 
   levelTabs.addEventListener('click', event => {
     const button = event.target.closest('[data-hsk-level]');
@@ -2314,7 +2458,13 @@ if(window.HanziWriter){
     const nextButton = event.target.closest('[data-hsk-popup-open]');
     if(nextButton){
       event.preventDefault();
-      openHskPopup(nextButton.dataset.hskPopupOpen || '', { pushHistory: true });
+      openHskPopup(nextButton.dataset.hskPopupOpen || '', {
+        pushHistory: true,
+        seed: {
+          pinyin: nextButton.dataset.hskPopupPinyin || '',
+          meaningVi: nextButton.dataset.hskPopupMeaning || ''
+        }
+      });
     }
   });
 
@@ -2325,3 +2475,764 @@ if(window.HanziWriter){
     }
   });
 })();
+
+
+/* Shared long-press copy for HSK and Radical learning UI */
+(function initLearningLongPressCopy(){
+  let pressTimer = null;
+  let pressTarget = null;
+  let startX = 0;
+  let startY = 0;
+  let copiedDuringPress = false;
+
+  function getCopyTarget(target){
+    return target?.closest?.('[data-copy-text]') || null;
+  }
+
+  async function copyText(text){
+    const value = String(text || '').trim();
+    if(!value){
+      return;
+    }
+    try{
+      if(navigator.clipboard?.writeText){
+        await navigator.clipboard.writeText(value);
+      }else{
+        const area = document.createElement('textarea');
+        area.value = value;
+        area.setAttribute('readonly', '');
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        document.execCommand('copy');
+        area.remove();
+      }
+      showLearningCopyToast(`Đã copy: ${value}`);
+    }catch(err){
+      showLearningCopyToast('Không copy được.');
+    }
+  }
+
+  function showLearningCopyToast(message){
+    let toast = document.getElementById('learningCopyToast');
+    if(!toast){
+      toast = document.createElement('div');
+      toast.id = 'learningCopyToast';
+      toast.className = 'learning-copy-toast';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.classList.add('show');
+    window.clearTimeout(showLearningCopyToast.timer);
+    showLearningCopyToast.timer = window.setTimeout(() => toast.classList.remove('show'), 1400);
+  }
+
+  function clearPress(){
+    if(pressTimer){
+      window.clearTimeout(pressTimer);
+      pressTimer = null;
+    }
+    pressTarget = null;
+  }
+
+  document.addEventListener('pointerdown', event => {
+    const target = getCopyTarget(event.target);
+    if(!target){
+      return;
+    }
+    pressTarget = target;
+    copiedDuringPress = false;
+    startX = event.clientX;
+    startY = event.clientY;
+    pressTimer = window.setTimeout(() => {
+      if(!pressTarget){
+        return;
+      }
+      copiedDuringPress = true;
+      copyText(pressTarget.dataset.copyText || pressTarget.textContent || '');
+    }, 650);
+  }, true);
+
+  document.addEventListener('pointermove', event => {
+    if(!pressTarget){
+      return;
+    }
+    if(Math.abs(event.clientX - startX) > 12 || Math.abs(event.clientY - startY) > 12){
+      clearPress();
+    }
+  }, true);
+
+  document.addEventListener('pointerup', clearPress, true);
+  document.addEventListener('pointercancel', clearPress, true);
+
+  document.addEventListener('click', event => {
+    if(!copiedDuringPress){
+      return;
+    }
+    const target = getCopyTarget(event.target);
+    if(target){
+      event.preventDefault();
+      event.stopPropagation();
+      copiedDuringPress = false;
+    }
+  }, true);
+})();
+
+/* Step 8 - Radical learning tab for Tra chữ Hán */
+(function initRadicalLearningTab(){
+  const view = document.getElementById('radicalsView');
+  const list = document.getElementById('radicalList');
+  const status = document.getElementById('radicalStatus');
+  const search = document.getElementById('radicalSearchInput');
+  const totalBadge = document.getElementById('radicalTotalBadge');
+  const groupTrigger = document.getElementById('radicalGroupTrigger');
+  const groupPanel = document.getElementById('radicalGroupPanel');
+  const groupSummary = document.getElementById('radicalGroupSummary');
+
+  if(!view || !list){
+    return;
+  }
+
+  const RADICAL_DATA_BASE = 'data/learning/radicals/';
+  const COMMON_RADICAL_IDS = [
+    'thuy_085','nhan_009','khau_030','nu_038','nhat_072','moc_075','tam_061','thu_064','thao_140','ngon_149','suoc_162','mien_040','muc_109','nguyet_074','kim_167','boi_154','thuc_184','ma_187','vu_173','hoa_086','ap_163','phu_170'
+  ];
+  const MODE_IDS = {
+    water: ['thuy_085','bang_015','vu_173'],
+    person: ['nhan_009','nu_038','tu_039','tam_061','thu_064'],
+    speech: ['khau_030','ngon_149']
+  };
+
+  const state = {
+    notes: null,
+    items: [],
+    groups: [],
+    groupId: 'all',
+    query: '',
+    activeId: '',
+    popupExpanded: {}
+  };
+
+  async function fetchJsonLocal(path){
+    const response = await fetch(path);
+    if(!response.ok){
+      throw new Error(`${response.status} ${response.statusText}`);
+    }
+    return response.json();
+  }
+
+  function normalizeRadicalText(value){
+    return String(value || '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .trim();
+  }
+
+
+  function formatRadicalSlashMeaning(value, limit = 3){
+    const parts = String(value || '')
+      .split(/\s*\/\s*/)
+      .map(part => part.trim())
+      .filter(Boolean);
+    if(!parts.length){
+      return '';
+    }
+    return parts.slice(0, limit).join(' / ');
+  }
+
+  function getRadicalExampleText(examples){
+    if(!Array.isArray(examples)){
+      return '';
+    }
+    return examples.map(row => [row?.char, row?.word, row?.zh, row?.pinyin, row?.meaningVi, row?.vi].filter(Boolean).join(' ')).join(' ');
+  }
+
+  function getSearchHaystack(note){
+    const short = note?.shortForCharLookup || {};
+    const detail = note?.detailForRadicalPopup || {};
+    return normalizeRadicalText([
+      note.id,
+      note.key,
+      note.mainForm,
+      note.sideForm,
+      note.displayNameVi,
+      note.pinyin,
+      note.hanViet,
+      short.meaningLine,
+      short.positionLine,
+      short.memoryLine,
+      detail.originMeaning,
+      detail.meaning,
+      detail.recognition,
+      detail.imageAssociation,
+      (detail.semanticGroups || []).map(group => `${group.title || ''} ${group.description || ''} ${getRadicalExampleText(group.examples)}`).join(' '),
+      getRadicalExampleText(note?.examples?.charsShort),
+      getRadicalExampleText(note?.examples?.chars),
+      getRadicalExampleText(note?.examples?.words),
+      getRadicalExampleText(note?.examples?.sentences)
+    ].filter(Boolean).join(' '));
+  }
+
+  function getRadicalSortRank(note){
+    const commonIndex = COMMON_RADICAL_IDS.indexOf(note?.id);
+    if(commonIndex !== -1){
+      return commonIndex;
+    }
+    const no = Number(note?.kangxiNo);
+    return 1000 + (Number.isFinite(no) ? no : 999);
+  }
+
+  function getActiveRadicalGroup(){
+    return state.groups.find(group => group.id === state.groupId) || state.groups.find(group => group.id === 'all') || null;
+  }
+
+  function noteMatchesGroup(note){
+    const group = getActiveRadicalGroup();
+    if(!group || group.id === 'all'){
+      return true;
+    }
+    return Array.isArray(group.radicals) && group.radicals.includes(note.id);
+  }
+
+  function getGroupOrderMap(){
+    const group = getActiveRadicalGroup();
+    const ids = Array.isArray(group?.radicals) ? group.radicals : [];
+    return new Map(ids.map((id, index) => [id, index]));
+  }
+
+  function getFilteredRadicals(){
+    const query = normalizeRadicalText(state.query);
+    const groupOrder = getGroupOrderMap();
+    return state.items.filter(note => {
+      if(!noteMatchesGroup(note)){
+        return false;
+      }
+      if(!query){
+        return true;
+      }
+      return getSearchHaystack(note).includes(query);
+    }).sort((a, b) => {
+      if(groupOrder.size){
+        const ai = groupOrder.has(a.id) ? groupOrder.get(a.id) : 9999;
+        const bi = groupOrder.has(b.id) ? groupOrder.get(b.id) : 9999;
+        if(ai !== bi) return ai - bi;
+      }
+      const ar = getRadicalSortRank(a);
+      const br = getRadicalSortRank(b);
+      if(ar !== br) return ar - br;
+      return String(a.displayNameVi || '').localeCompare(String(b.displayNameVi || ''), 'vi');
+    });
+  }
+
+  function formatRadicalBrief(note){
+    const short = note?.shortForCharLookup || {};
+    const chars = Array.isArray(note?.examples?.charsShort) ? note.examples.charsShort.slice(0, 5) : [];
+    return `
+      <button type="button" class="radical-item" data-radical-id="${escapeHtml(note.id)}" data-copy-text="${escapeHtml(note.key || note.mainForm || note.sideForm || '')}">
+        <span class="radical-item-main">
+          <strong class="radical-glyph">${escapeHtml(note.key || note.sideForm || note.mainForm || '')}</strong>
+          <span>
+            <b>${escapeHtml(note.displayNameVi || 'Bộ thủ')}</b>
+            <em>${escapeHtml(formatPinyin(note.pinyin || ''))}${note.hanViet ? ` · ${escapeHtml(note.hanViet)}` : ''}</em>
+          </span>
+        </span>
+        <span class="radical-item-copy">
+          ${short.meaningLine ? `<span>${escapeHtml(short.meaningLine)}</span>` : ''}
+          ${short.positionLine ? `<small>${escapeHtml(short.positionLine)}</small>` : ''}
+        </span>
+        ${chars.length ? `<span class="radical-item-chars">${chars.map(row => `<i>${escapeHtml(row.char || row.word || '')}</i>`).join('')}</span>` : ''}
+      </button>
+    `;
+  }
+
+  function renderRadicals(){
+    const items = getFilteredRadicals();
+    if(totalBadge){
+      totalBadge.textContent = state.items.length ? `${state.items.length.toLocaleString('vi-VN')} bộ` : 'Bộ thủ';
+    }
+    if(status){
+      const group = getActiveRadicalGroup();
+      const label = group?.title || 'Tất cả nhóm';
+      status.textContent = `${label}: ${items.length.toLocaleString('vi-VN')} bộ thủ.`;
+    }
+    if(groupSummary){
+      const group = getActiveRadicalGroup();
+      groupSummary.textContent = group?.description || 'Chọn nhóm để học bộ thủ theo chủ đề nghĩa.';
+    }
+    if(!items.length){
+      list.innerHTML = '<p class="radical-empty">Không tìm thấy bộ thủ phù hợp.</p>';
+      return;
+    }
+    list.innerHTML = items.map(formatRadicalBrief).join('');
+  }
+
+  function getFallbackRadicalGroups(){
+    return [
+      { id: 'all', order: 0, title: 'Tất cả nhóm', description: 'Hiển thị toàn bộ bộ thủ học chữ.', radicals: state.items.map(note => note.id) },
+      { id: 'common', order: 1, title: 'Hay gặp', description: 'Những bộ thủ hay gặp trong HSK và từ vựng cơ bản.', radicals: COMMON_RADICAL_IDS }
+    ];
+  }
+
+  function normalizeRadicalGroups(groups){
+    const validIds = new Set(state.items.map(note => note.id));
+    const rows = Array.isArray(groups) ? groups : [];
+    const normalized = rows
+      .filter(group => group && group.id && group.title)
+      .map(group => ({
+        id: String(group.id),
+        order: Number.isFinite(Number(group.order)) ? Number(group.order) : 999,
+        title: String(group.title || 'Nhóm bộ thủ'),
+        description: String(group.description || ''),
+        radicals: Array.isArray(group.radicals) ? group.radicals.filter(id => validIds.has(id)) : []
+      }))
+      .filter(group => group.id === 'all' || group.radicals.length);
+    if(!normalized.some(group => group.id === 'all')){
+      normalized.unshift({ id: 'all', order: 0, title: 'Tất cả nhóm', description: 'Hiển thị toàn bộ bộ thủ học chữ.', radicals: state.items.map(note => note.id) });
+    }
+    return normalized.sort((a, b) => (a.order - b.order) || a.title.localeCompare(b.title, 'vi'));
+  }
+
+  function getRadicalGroupCount(group){
+    return group?.id === 'all' ? state.items.length : (Array.isArray(group?.radicals) ? group.radicals.length : 0);
+  }
+
+  function closeRadicalGroupDropdown(){
+    if(groupPanel){
+      groupPanel.hidden = true;
+    }
+    groupTrigger?.setAttribute('aria-expanded', 'false');
+  }
+
+  function toggleRadicalGroupDropdown(){
+    if(!groupPanel || !groupTrigger){
+      return;
+    }
+    const willOpen = groupPanel.hidden;
+    groupPanel.hidden = !willOpen;
+    groupTrigger.setAttribute('aria-expanded', String(willOpen));
+  }
+
+  function renderRadicalGroupDropdown(){
+    if(!groupTrigger || !groupPanel){
+      return;
+    }
+    if(!state.groups.some(group => group.id === state.groupId)){
+      state.groupId = 'all';
+    }
+    const activeGroup = getActiveRadicalGroup() || state.groups[0] || null;
+    const activeCount = getRadicalGroupCount(activeGroup);
+    groupTrigger.innerHTML = `
+      <span class="radical-group-trigger-main">
+        <strong>${escapeHtml(activeGroup?.title || 'Tất cả nhóm')}</strong>
+        <small>${activeCount.toLocaleString('vi-VN')} bộ</small>
+      </span>
+      <span class="radical-group-trigger-icon" aria-hidden="true">⌄</span>
+    `;
+    groupTrigger.setAttribute('aria-expanded', 'false');
+    groupPanel.innerHTML = state.groups.map(group => {
+      const count = getRadicalGroupCount(group);
+      const active = group.id === state.groupId;
+      return `
+        <button type="button" class="radical-group-option ${active ? 'active' : ''}" data-radical-group-id="${escapeHtml(group.id)}" aria-pressed="${active ? 'true' : 'false'}">
+          <span>
+            <strong>${escapeHtml(group.title)}</strong>
+            ${group.description ? `<small>${escapeHtml(group.description)}</small>` : ''}
+          </span>
+          <em>${count.toLocaleString('vi-VN')} bộ</em>
+        </button>
+      `;
+    }).join('');
+    groupPanel.hidden = true;
+  }
+
+  async function loadRadicals(){
+    if(state.notes){
+      renderRadicals();
+      return;
+    }
+    try{
+      if(status) status.textContent = 'Đang tải dữ liệu bộ thủ...';
+      const notes = await fetchJsonLocal(`${RADICAL_DATA_BASE}radical_learning_notes.json`);
+      state.notes = notes || {};
+      state.items = Object.values(state.notes)
+        .filter(note => note && note.id)
+        .sort((a, b) => {
+          const ar = getRadicalSortRank(a);
+          const br = getRadicalSortRank(b);
+          if(ar !== br) return ar - br;
+          return String(a.displayNameVi || '').localeCompare(String(b.displayNameVi || ''), 'vi');
+        });
+      try{
+        const groups = await fetchJsonLocal(`${RADICAL_DATA_BASE}radical_groups.json`);
+        state.groups = normalizeRadicalGroups(groups);
+      }catch(groupErr){
+        console.warn('Cannot load radical groups, fallback to common groups:', groupErr);
+        state.groups = normalizeRadicalGroups(getFallbackRadicalGroups());
+      }
+      renderRadicalGroupDropdown();
+      renderRadicals();
+    }catch(err){
+      console.warn('Cannot load radical learning notes:', err);
+      if(status) status.textContent = 'Không tải được dữ liệu bộ thủ. Kiểm tra data/learning/radicals.';
+      list.innerHTML = '<p class="radical-empty">Chưa có dữ liệu bộ thủ.</p>';
+    }
+  }
+
+  function ensureRadicalPopup(){
+    let popup = document.getElementById('radicalDetailOverlay');
+    if(popup){
+      return popup;
+    }
+    popup = document.createElement('div');
+    popup.id = 'radicalDetailOverlay';
+    popup.className = 'radical-popup-overlay';
+    popup.hidden = true;
+    popup.innerHTML = `
+      <div class="radical-popup-card" role="dialog" aria-modal="true" aria-label="Chi tiết bộ thủ">
+        <div class="radical-popup-body" id="radicalDetailBody"></div>
+      </div>
+    `;
+    document.body.appendChild(popup);
+    popup.addEventListener('click', event => {
+      if(event.target === popup){
+        closeRadicalPopup();
+      }
+    });
+    return popup;
+  }
+
+  function closeRadicalPopup(){
+    const popup = ensureRadicalPopup();
+    popup.hidden = true;
+    document.body.classList.remove('radical-popup-open');
+    state.activeId = '';
+  }
+
+  function getExampleLabel(row){
+    return row?.char || row?.word || row?.zh || '';
+  }
+
+  function formatRadicalMeaningSnippet(value, limit = 3){
+    const parts = String(value || '')
+      .split(/\s*\/\s*/)
+      .map(part => part.trim())
+      .filter(Boolean);
+    if(!parts.length){
+      return '';
+    }
+    return parts.slice(0, limit).join(' / ');
+  }
+
+  function getActiveRadicalSentences(){
+    const note = state.items.find(row => row.id === state.activeId) || state.notes?.[state.activeId];
+    const rows = note?.examples?.sentences || [];
+    return (Array.isArray(rows) ? rows : [])
+      .map(row => ({
+        zh: String(row?.zh || '').trim(),
+        pinyin: String(row?.pinyin || '').trim(),
+        vi: String(row?.vi || row?.meaningVi || '').trim()
+      }))
+      .filter(row => row.zh && row.pinyin && row.vi)
+      .slice(0, 5);
+  }
+
+  function getActiveRadicalRelatedWords(currentWord){
+    const note = state.items.find(row => row.id === state.activeId) || state.notes?.[state.activeId];
+    const examples = note?.examples || {};
+    const rows = [
+      ...(Array.isArray(examples.chars) ? examples.chars : []),
+      ...(Array.isArray(examples.words) ? examples.words : [])
+    ];
+    const current = String(currentWord || '').trim();
+    const seen = new Set();
+    return rows
+      .map(row => {
+        const word = String(row?.word || row?.char || '').trim();
+        const pinyin = String(row?.pinyin || '').trim();
+        const meaningVi = String(row?.meaningVi || row?.vi || '').trim();
+        return { word, pinyin, meaningVi };
+      })
+      .filter(row => {
+        if(!row.word || row.word === current || seen.has(row.word)){
+          return false;
+        }
+        seen.add(row.word);
+        return Boolean(row.pinyin || row.meaningVi);
+      })
+      .slice(0, 12);
+  }
+
+  function renderExampleRows(rows, options = {}){
+    const listRows = Array.isArray(rows) ? rows.filter(row => getExampleLabel(row)).slice(0, options.limit || 50) : [];
+    if(!listRows.length){
+      return '';
+    }
+    const kind = options.kind || 'word';
+    return `
+      <div class="radical-example-list ${kind === 'sentence' ? 'radical-example-list--sentences' : ''}">
+        ${listRows.map(row => {
+          const label = getExampleLabel(row);
+          const pinyin = row?.pinyin || '';
+          const meaning = row?.meaningVi || row?.vi || '';
+          if(kind === 'sentence'){
+            return `
+              <button type="button" class="radical-sentence-item" data-radical-speak="${escapeHtml(row.zh || label)}" data-copy-text="${escapeHtml(row.zh || label)}">
+                <strong>${escapeHtml(row.zh || label)}</strong>
+                ${pinyin ? `<em>${escapeHtml(formatPinyin(pinyin))}</em>` : ''}
+                ${meaning ? `<span>${escapeHtml(meaning)}</span>` : ''}
+                <b aria-hidden="true">🔊</b>
+              </button>
+            `;
+          }
+          return `
+            <button type="button" class="radical-example-item" data-radical-open-word="${escapeHtml(label)}" data-radical-open-pinyin="${escapeHtml(pinyin)}" data-radical-open-meaning="${escapeHtml(meaning)}" data-copy-text="${escapeHtml(label)}">
+              <strong>${escapeHtml(label)}</strong>
+              ${pinyin ? `<em>${escapeHtml(formatPinyin(pinyin))}</em>` : ''}
+              ${meaning ? `<span>${escapeHtml(formatRadicalMeaningSnippet(meaning, 3))}</span>` : ''}
+              <b type="button" role="button" tabindex="0" data-radical-speak="${escapeHtml(label)}" aria-label="Nghe ${escapeHtml(label)}">🔊</b>
+            </button>
+          `;
+        }).join('')}
+      </div>
+    `;
+  }
+
+  function renderLimitedExampleSection(title, rows, options = {}){
+    const allRows = Array.isArray(rows) ? rows.filter(row => getExampleLabel(row)) : [];
+    if(!allRows.length){
+      return '';
+    }
+    const key = options.key || title;
+    const collapsedLimit = options.collapsedLimit || 5;
+    const fullLimit = options.fullLimit || 50;
+    const expanded = Boolean(state.popupExpanded[key]);
+    const limit = expanded ? fullLimit : collapsedLimit;
+    const hiddenCount = Math.max(0, allRows.length - collapsedLimit);
+    const html = renderExampleRows(allRows, { kind: options.kind || 'word', limit });
+    const toggle = hiddenCount > 0 ? `
+      <button type="button" class="radical-more-btn" data-radical-toggle-section="${escapeHtml(key)}">
+        ${expanded ? 'Thu gọn' : `Xem thêm ${hiddenCount} mục`}
+      </button>
+    ` : '';
+    return `<section class="radical-popup-section"><h4>${escapeHtml(title)}</h4>${html}${toggle}</section>`;
+  }
+
+  function renderFormVariants(variants){
+    const rows = Array.isArray(variants) ? variants : [];
+    if(!rows.length){
+      return '';
+    }
+    return `
+      <section class="radical-popup-section">
+        <h4>Dạng / biến thể</h4>
+        <div class="radical-variant-list">
+          ${rows.map(row => `
+            <article class="radical-variant-card">
+              <div class="radical-variant-head"><strong>${escapeHtml(row.form || '')}</strong><span>${escapeHtml(row.nameVi || '')}${row.pinyin ? ` · ${escapeHtml(formatPinyin(row.pinyin))}` : ''}</span></div>
+              ${row.description ? `<p>${escapeHtml(row.description)}</p>` : ''}
+              ${renderExampleRows(row.examples, { limit: 5 })}
+            </article>
+          `).join('')}
+        </div>
+      </section>
+    `;
+  }
+
+  function renderSemanticGroups(groups){
+    const rows = Array.isArray(groups) ? groups : [];
+    if(!rows.length){
+      return '';
+    }
+    return `
+      <section class="radical-popup-section">
+        <h4>Ý nghĩa mở rộng</h4>
+        <div class="radical-semantic-list">
+          ${rows.map((group, index) => `
+            <article class="radical-semantic-card">
+              <h5>${index + 1}. ${escapeHtml(group.title || 'Nhóm nghĩa')}</h5>
+              ${group.description ? `<p>${escapeHtml(group.description)}</p>` : ''}
+              ${renderExampleRows(group.examples, { limit: 5 })}
+            </article>
+          `).join('')}
+        </div>
+      </section>
+    `;
+  }
+
+  function renderRadicalPopup(note){
+    const popup = ensureRadicalPopup();
+    const body = document.getElementById('radicalDetailBody');
+    const short = note.shortForCharLookup || {};
+    const detail = note.detailForRadicalPopup || {};
+    const examples = note.examples || {};
+    body.innerHTML = `
+      <div class="radical-popup-topbar">
+        <button type="button" class="radical-popup-back" data-radical-popup-close>← Quay về Bộ thủ</button>
+        <button type="button" class="radical-popup-close" data-radical-popup-close aria-label="Đóng">×</button>
+      </div>
+
+      <section class="radical-popup-hero">
+        <div class="radical-popup-glyph">${escapeHtml(note.key || note.sideForm || note.mainForm || '')}</div>
+        <div>
+          <h3>${escapeHtml(note.key || '')} · ${escapeHtml(note.displayNameVi || 'Bộ thủ')}</h3>
+          <p>${escapeHtml(formatPinyin(note.pinyin || ''))}${note.hanViet ? ` · ${escapeHtml(note.hanViet)}` : ''}${note.kangxiNo ? ` · Kangxi ${escapeHtml(note.kangxiNo)}` : ''}</p>
+          ${short.meaningLine ? `<strong>${escapeHtml(short.meaningLine)}</strong>` : ''}
+          ${short.positionLine ? `<span>${escapeHtml(short.positionLine)}</span>` : ''}
+          ${short.memoryLine ? `<em>${escapeHtml(short.memoryLine)}</em>` : ''}
+        </div>
+        <button type="button" class="radical-popup-speaker" data-radical-speak="${escapeHtml(note.key || note.mainForm || '')}" aria-label="Nghe ${escapeHtml(note.key || note.mainForm || '')}">🔊</button>
+      </section>
+
+      ${detail.originMeaning ? `<section class="radical-popup-section"><h4>Nguồn gốc và ý nghĩa</h4><p>${escapeHtml(detail.originMeaning)}</p></section>` : ''}
+      ${renderFormVariants(detail.formVariants)}
+      ${renderSemanticGroups(detail.semanticGroups)}
+
+      <section class="radical-popup-section radical-popup-two-col">
+        ${detail.recognition ? `<article><h4>Nhận biết</h4><p>${escapeHtml(detail.recognition)}</p></article>` : ''}
+        ${detail.imageAssociation ? `<article><h4>Học qua hình ảnh</h4><p>${escapeHtml(detail.imageAssociation)}</p></article>` : ''}
+      </section>
+
+      ${Array.isArray(detail.avoidConfusion) && detail.avoidConfusion.length ? `
+        <section class="radical-popup-section"><h4>Dễ nhầm</h4><ul class="radical-note-list">${detail.avoidConfusion.map(row => `<li>${escapeHtml(row)}</li>`).join('')}</ul></section>
+      ` : ''}
+
+      ${renderLimitedExampleSection('Chữ cùng bộ', examples.chars, { key: 'chars', collapsedLimit: 5, fullLimit: 50 })}
+      ${renderLimitedExampleSection('Từ vựng', examples.words, { key: 'words', collapsedLimit: 5, fullLimit: 50 })}
+      ${renderLimitedExampleSection('Ví dụ', examples.sentences, { key: 'sentences', kind: 'sentence', collapsedLimit: 3, fullLimit: 8 })}
+    `;
+    popup.hidden = false;
+    document.body.classList.add('radical-popup-open');
+  }
+
+  function openRadicalPopup(id){
+    const note = state.items.find(row => row.id === id) || state.notes?.[id];
+    if(!note){
+      return;
+    }
+    state.activeId = id;
+    state.popupExpanded = {};
+    renderRadicalPopup(note);
+  }
+
+  window.openRadicalLearningPopup = openRadicalPopup;
+
+  window.addEventListener('hanzi:radicals-tab-open', () => {
+    loadRadicals();
+    window.setTimeout(() => search?.focus(), 80);
+  });
+
+  search?.addEventListener('input', () => {
+    state.query = search.value || '';
+    renderRadicals();
+  });
+
+  groupTrigger?.addEventListener('click', event => {
+    event.preventDefault();
+    toggleRadicalGroupDropdown();
+  });
+
+  groupPanel?.addEventListener('click', event => {
+    const option = event.target.closest('[data-radical-group-id]');
+    if(!option){
+      return;
+    }
+    event.preventDefault();
+    state.groupId = option.dataset.radicalGroupId || 'all';
+    closeRadicalGroupDropdown();
+    renderRadicalGroupDropdown();
+    renderRadicals();
+  });
+
+  document.addEventListener('click', event => {
+    if(!groupPanel || groupPanel.hidden){
+      return;
+    }
+    if(event.target.closest('.radical-group-picker')){
+      return;
+    }
+    closeRadicalGroupDropdown();
+  });
+
+  function handleRadicalCardClick(event){
+    const card = event.target.closest('.radical-item[data-radical-id]');
+    if(!card || !list.contains(card)){
+      return;
+    }
+    event.preventDefault();
+    event.stopPropagation();
+    openRadicalPopup(card.dataset.radicalId || '');
+  }
+
+  list.addEventListener('click', handleRadicalCardClick);
+
+  // Fallback delegated listener: on some mobile/browser states the nested button can
+  // swallow the list listener after re-render. Keep card opening reliable.
+  document.addEventListener('click', event => {
+    const card = event.target.closest('.radical-item[data-radical-id]');
+    if(!card || !list.contains(card)){
+      return;
+    }
+    handleRadicalCardClick(event);
+  }, true);
+
+  document.addEventListener('click', event => {
+    const popup = document.getElementById('radicalDetailOverlay');
+    if(!popup || popup.hidden){
+      return;
+    }
+    const closeButton = event.target.closest('[data-radical-popup-close]');
+    if(closeButton){
+      event.preventDefault();
+      closeRadicalPopup();
+      return;
+    }
+    const speaker = event.target.closest('[data-radical-speak]');
+    if(speaker){
+      event.preventDefault();
+      event.stopPropagation();
+      speakChar(speaker.dataset.radicalSpeak || '');
+      return;
+    }
+    const toggleSection = event.target.closest('[data-radical-toggle-section]');
+    if(toggleSection){
+      event.preventDefault();
+      const key = toggleSection.dataset.radicalToggleSection || '';
+      if(key){
+        state.popupExpanded[key] = !state.popupExpanded[key];
+        const note = state.items.find(row => row.id === state.activeId) || state.notes?.[state.activeId];
+        if(note){
+          renderRadicalPopup(note);
+        }
+      }
+      return;
+    }
+    const openWord = event.target.closest('[data-radical-open-word]');
+    if(openWord){
+      event.preventDefault();
+      const word = openWord.dataset.radicalOpenWord || '';
+      const seed = {
+        pinyin: openWord.dataset.radicalOpenPinyin || '',
+        meaningVi: openWord.dataset.radicalOpenMeaning || '',
+        sampleSentences: getActiveRadicalSentences(),
+        relatedWords: getActiveRadicalRelatedWords(word)
+      };
+      const returnContext = state.activeId ? { type: 'radical', id: state.activeId, label: 'Quay lại Bộ thủ' } : null;
+      closeRadicalPopup();
+      if(window.openHanziLearningPopup){
+        window.openHanziLearningPopup(word, { pushHistory: false, seed, returnContext });
+      }else if(window.openHanziLookupWord){
+        window.openHanziLookupWord(word);
+      }
+    }
+  });
+
+  document.addEventListener('keydown', event => {
+    const popup = document.getElementById('radicalDetailOverlay');
+    if(event.key === 'Escape' && popup && !popup.hidden){
+      closeRadicalPopup();
+    }
+  });
+})();
+
