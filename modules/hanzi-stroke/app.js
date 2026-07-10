@@ -1236,6 +1236,7 @@ if(window.HanziWriter){
   const tabLookup = document.getElementById('studyTabLookup');
   const tabHsk = document.getElementById('studyTabHsk');
   const tabRadicals = document.getElementById('studyTabRadicals');
+  const sourceTabs = document.getElementById('hskSourceTabs');
   const levelTabs = document.getElementById('hskLevelTabs');
   const hskList = document.getElementById('hskList');
   const hskStatus = document.getElementById('hskStatus');
@@ -1244,14 +1245,17 @@ if(window.HanziWriter){
   const hskGroupModes = document.getElementById('hskGroupModes');
   const hskTopicFilters = document.getElementById('hskTopicFilters');
 
-  if(!lookupView || !hskView || !tabLookup || !tabHsk || !levelTabs || !hskList){
+  if(!lookupView || !hskView || !tabLookup || !tabHsk || !sourceTabs || !levelTabs || !hskList){
     return;
   }
 
   const HSK_DATA_BASE = 'data/learning/hsk/';
+  const GRAMMAR_DATA_BASE = 'data/learning/grammar/';
   const hskCache = new Map();
+  const grammarCache = new Map();
   const hskState = {
     summary: null,
+    grammarSummary: null,
     currentLevel: 1,
     currentItems: [],
     query: '',
@@ -1265,7 +1269,7 @@ if(window.HanziWriter){
     popupRelatedExpanded: false,
     groupMode: 'all',
     topicKey: 'all',
-    sourceKey: 'new_hsk'
+    sourceKey: 'hsk'
   };
 
   function ensureHskPopup(){
@@ -1315,6 +1319,7 @@ if(window.HanziWriter){
     if(isHsk){
       stopAutoplayLoop();
       loadHskSummary();
+      loadGrammarSummary();
       window.setTimeout(() => hskSearch?.focus(), 80);
     }else if(isRadicals){
       stopAutoplayLoop();
@@ -1332,9 +1337,114 @@ if(window.HanziWriter){
     return response.json();
   }
 
+  async function loadGrammarSummary(){
+    if(hskState.grammarSummary){
+      normalizeHskSourceAndLevel();
+      renderHskSourceTabs();
+      renderHskLevelTabs();
+      renderHskFilters();
+      return hskState.grammarSummary;
+    }
+    try{
+      const summary = await fetchJson(`${GRAMMAR_DATA_BASE}grammar_summary.json`);
+      hskState.grammarSummary = summary;
+      normalizeHskSourceAndLevel();
+      if(hskState.groupMode === 'grammar' && !hasGrammarForCurrentSource()){
+        hskState.groupMode = 'all';
+      }
+      renderHskSourceTabs();
+      renderHskLevelTabs();
+      renderHskFilters();
+      return summary;
+    }catch(err){
+      console.warn('Cannot load grammar summary:', err);
+      hskState.grammarSummary = null;
+      normalizeHskSourceAndLevel();
+      renderHskSourceTabs();
+      renderHskLevelTabs();
+      renderHskFilters();
+      return null;
+    }
+  }
+
+  function getGrammarSourcesForLevel(level = hskState.currentLevel){
+    const sources = hskState.grammarSummary?.sources || {};
+    const levelKey = String(Number(level) || 1);
+    return Object.entries(sources).map(([key, source]) => {
+      const levelInfo = source?.levels?.[levelKey] || {};
+      return {
+        key,
+        label: source?.label || key,
+        total: Number(levelInfo.total || 0),
+        file: levelInfo.file || '',
+        hasGrammar: Boolean(levelInfo.hasGrammar && levelInfo.file && Number(levelInfo.total || 0) > 0)
+      };
+    }).filter(source => source.hasGrammar).sort((a, b) => {
+      const ai = HSK_LIBRARY_PRIORITY.indexOf(a.key);
+      const bi = HSK_LIBRARY_PRIORITY.indexOf(b.key);
+      const ap = ai === -1 ? 99 : ai;
+      const bp = bi === -1 ? 99 : bi;
+      if(ap !== bp) return ap - bp;
+      return String(a.label).localeCompare(String(b.label), 'vi');
+    });
+  }
+
+  function hasGrammarForCurrentSource(){
+    const levelKey = String(Number(hskState.currentLevel) || 1);
+    const source = hskState.grammarSummary?.sources?.[hskState.sourceKey];
+    const info = source?.levels?.[levelKey];
+    return Boolean(info?.hasGrammar && info?.file && Number(info?.total || 0) > 0);
+  }
+
+  function ensureGrammarSourceSelection(){
+    const sources = getGrammarSourcesForLevel();
+    if(!sources.length){
+      return sources;
+    }
+    if(!sources.some(source => source.key === hskState.sourceKey)){
+      const preferred = HSK_LIBRARY_PRIORITY.map(key => sources.find(source => source.key === key)).find(Boolean);
+      hskState.sourceKey = (preferred || sources[0]).key;
+    }
+    return sources;
+  }
+
+  function getCurrentGrammarInfo(){
+    const sources = hskState.grammarSummary?.sources || {};
+    const levelKey = String(Number(hskState.currentLevel) || 1);
+    const source = sources[hskState.sourceKey];
+    const levelInfo = source?.levels?.[levelKey] || null;
+    if(!source || !levelInfo?.hasGrammar || !levelInfo?.file){
+      return null;
+    }
+    return {
+      sourceKey: hskState.sourceKey,
+      sourceLabel: source.label || hskState.sourceKey,
+      level: Number(hskState.currentLevel) || 1,
+      total: Number(levelInfo.total || 0),
+      file: levelInfo.file
+    };
+  }
+
+  async function loadGrammarForCurrentLevel(){
+    const info = getCurrentGrammarInfo();
+    if(!info){
+      return null;
+    }
+    const cacheKey = `${info.sourceKey}:${info.level}`;
+    if(grammarCache.has(cacheKey)){
+      return grammarCache.get(cacheKey);
+    }
+    const data = await fetchJson(`${GRAMMAR_DATA_BASE}${info.file}`);
+    grammarCache.set(cacheKey, data);
+    return data;
+  }
+
   async function loadHskSummary(){
     if(hskState.summary){
+      normalizeHskSourceAndLevel();
+      renderHskSourceTabs();
       renderHskLevelTabs();
+      loadGrammarSummary();
       if(!hskState.currentItems.length){
         await loadHskLevel(hskState.currentLevel);
       }
@@ -1349,6 +1459,8 @@ if(window.HanziWriter){
       if(hskTotalBadge){
         hskTotalBadge.textContent = total ? `${Number(total).toLocaleString('vi-VN')} mục` : 'HSK';
       }
+      normalizeHskSourceAndLevel();
+      renderHskSourceTabs();
       renderHskLevelTabs();
       await loadHskLevel(hskState.currentLevel);
     }catch(err){
@@ -1358,7 +1470,8 @@ if(window.HanziWriter){
   }
 
   function renderHskLevelTabs(){
-    const levels = Array.isArray(hskState.summary?.levels) ? hskState.summary.levels : [];
+    normalizeHskSourceAndLevel();
+    const levels = getAvailableLevelsForSource(hskState.sourceKey);
     if(!levels.length){
       levelTabs.innerHTML = '';
       return;
@@ -1367,10 +1480,13 @@ if(window.HanziWriter){
     levelTabs.innerHTML = levels.map(level => {
       const levelNo = Number(level.level);
       const active = levelNo === Number(hskState.currentLevel);
+      const meta = getSourceLevelMeta(hskState.sourceKey, levelNo) || {};
+      const countText = level.count ? `${Number(level.count).toLocaleString('vi-VN')} từ` : (level.hasGrammar ? `${Number(level.grammarTotal || 0).toLocaleString('vi-VN')} ngữ pháp` : '0 mục');
+      const statusText = meta.status === 'PARTIAL' && meta.missingNote ? ` · thiếu ${meta.missingNote}` : '';
       return `
-        <button type="button" class="hsk-level-btn ${active ? 'active' : ''}" data-hsk-level="${escapeHtml(levelNo)}" aria-pressed="${active}">
-          <strong>HSK ${escapeHtml(levelNo)}</strong>
-          <small>${escapeHtml(level.items || 0)} mục</small>
+        <button type="button" class="hsk-level-btn ${active ? 'active' : ''} ${meta.status === 'PARTIAL' ? 'is-partial' : ''}" data-hsk-level="${escapeHtml(levelNo)}" aria-pressed="${active}">
+          <strong>${escapeHtml(getHskLevelLabel(levelNo))}</strong>
+          <small>${escapeHtml(countText + statusText)}</small>
         </button>
       `;
     }).join('');
@@ -1380,11 +1496,19 @@ if(window.HanziWriter){
     const normalizedLevel = Number(level) || 1;
     hskState.currentLevel = normalizedLevel;
     hskState.topicKey = 'all';
+    normalizeHskSourceAndLevel();
+    renderHskSourceTabs();
     renderHskLevelTabs();
 
     if(hskCache.has(normalizedLevel)){
       const data = hskCache.get(normalizedLevel);
       hskState.currentItems = Array.isArray(data?.items) ? data.items : [];
+      normalizeHskSourceAndLevel();
+      if(hskState.groupMode === 'grammar' && hskState.grammarSummary && !hasGrammarForCurrentSource()){
+        hskState.groupMode = 'all';
+      }
+      renderHskSourceTabs();
+      renderHskLevelTabs();
       renderHskFilters();
       renderHskList();
       return;
@@ -1396,6 +1520,12 @@ if(window.HanziWriter){
       const data = await fetchJson(`${HSK_DATA_BASE}hsk_${normalizedLevel}.json`);
       hskCache.set(normalizedLevel, data);
       hskState.currentItems = Array.isArray(data?.items) ? data.items : [];
+      normalizeHskSourceAndLevel();
+      if(hskState.groupMode === 'grammar' && hskState.grammarSummary && !hasGrammarForCurrentSource()){
+        hskState.groupMode = 'all';
+      }
+      renderHskSourceTabs();
+      renderHskLevelTabs();
       renderHskFilters();
       renderHskList();
     }catch(err){
@@ -1427,7 +1557,15 @@ if(window.HanziWriter){
   }
 
   function getPrimarySection(item){
-    const primary = item?.primaryRoute || (Array.isArray(item?.routes) ? item.routes[0] : null);
+    const routes = Array.isArray(item?.routes) ? item.routes : [];
+    const selected = routes.find(route => {
+      if(String(route?.libraryId || '') !== String(hskState.sourceKey || '')){
+        return false;
+      }
+      const routeLevel = Number(route?.levelNo);
+      return !Number.isFinite(routeLevel) || routeLevel === Number(hskState.currentLevel);
+    });
+    const primary = selected || item?.primaryRoute || routes[0] || null;
     if(!primary){
       return '';
     }
@@ -1437,7 +1575,196 @@ if(window.HanziWriter){
   }
 
 
-  const HSK_LIBRARY_PRIORITY = ['new_hsk', 'hsk', 'yct', 'boya'];
+  const HSK_LIBRARY_PRIORITY = ['hsk', 'new_hsk', 'yct', 'boya'];
+  const HSK_LIBRARY_LABELS = {
+    new_hsk: 'New HSK 9 cấp',
+    hsk: 'HSK 6 cấp',
+    yct: 'YCT',
+    boya: 'Boya'
+  };
+  const HSK_LEVEL_LABEL_PREFIX = {
+    new_hsk: 'HSK',
+    hsk: 'HSK',
+    yct: 'YCT',
+    boya: 'Boya'
+  };
+
+  function getHskSourceLabel(sourceKey = hskState.sourceKey){
+    return HSK_LIBRARY_LABELS[sourceKey] || String(sourceKey || 'Nguồn học');
+  }
+
+  function getSummaryLevels(){
+    return Array.isArray(hskState.summary?.levels) ? hskState.summary.levels : [];
+  }
+
+  function getGrammarLevelInfo(sourceKey, level){
+    const levelKey = String(Number(level) || 1);
+    return hskState.grammarSummary?.sources?.[sourceKey]?.levels?.[levelKey] || null;
+  }
+
+  function sourceHasAnyGrammar(sourceKey){
+    const levels = hskState.grammarSummary?.sources?.[sourceKey]?.levels || {};
+    return Object.values(levels).some(info => info?.hasGrammar && info?.file && Number(info?.total || 0) > 0);
+  }
+
+  function getSourceLevelMeta(sourceKey = hskState.sourceKey, level = hskState.currentLevel){
+    const levelNo = Number(level) || 1;
+    const summaryLevel = getSummaryLevels().find(row => Number(row?.level) === levelNo);
+    return summaryLevel?.statusBySource?.[sourceKey] || null;
+  }
+
+  function sourceHasVocabularyForCurrentLevel(){
+    const sourceItems = hskState.currentItems.filter(itemBelongsToSelectedSource);
+    if(sourceItems.length > 0){
+      return true;
+    }
+    return Boolean(getSourceLevelMeta()?.hasVocabulary);
+  }
+
+  function sourceHasSectionForCurrentLevel(sectionType){
+    if(!sourceHasVocabularyForCurrentLevel()){
+      return false;
+    }
+    return hskState.currentItems.some(item => {
+      if(!itemBelongsToSelectedSource(item)){
+        return false;
+      }
+      return getRoutesForSelectedSource(item, sectionType).length > 0;
+    });
+  }
+
+  function hskModeAvailable(mode){
+    if(mode === 'grammar') return hasGrammarForCurrentSource();
+    if(mode === 'lessons') return sourceHasSectionForCurrentLevel('lesson');
+    if(mode === 'topics') return sourceHasSectionForCurrentLevel('topic');
+    if(mode === 'char1' || mode === 'char2' || mode === 'char3plus') return sourceHasVocabularyForCurrentLevel();
+    return sourceHasVocabularyForCurrentLevel() || hasGrammarForCurrentSource();
+  }
+
+  function getFirstAvailableHskMode(){
+    const order = ['all', 'lessons', 'topics', 'grammar', 'char1', 'char2', 'char3plus'];
+    return order.find(hskModeAvailable) || 'all';
+  }
+
+  function normalizeHskGroupMode(){
+    if(!hskModeAvailable(hskState.groupMode)){
+      hskState.groupMode = getFirstAvailableHskMode();
+      hskState.topicKey = 'all';
+    }
+  }
+
+  function getAvailableHskSources(){
+    const sourceSet = new Set();
+    getSummaryLevels().forEach(level => {
+      const libs = level?.libraries || {};
+      Object.keys(libs).forEach(key => {
+        if(Number(libs[key] || 0) > 0){
+          sourceSet.add(key);
+        }
+      });
+    });
+    const grammarSources = hskState.grammarSummary?.sources || {};
+    Object.keys(grammarSources).forEach(key => {
+      if(sourceHasAnyGrammar(key)){
+        sourceSet.add(key);
+      }
+    });
+    const keys = HSK_LIBRARY_PRIORITY.filter(key => sourceSet.has(key));
+    if(!keys.length){
+      return HSK_LIBRARY_PRIORITY.slice();
+    }
+    return keys;
+  }
+
+  function getAvailableLevelsForSource(sourceKey = hskState.sourceKey){
+    const rows = [];
+    const seen = new Set();
+    getSummaryLevels().forEach(level => {
+      const levelNo = Number(level?.level);
+      if(!Number.isFinite(levelNo)) return;
+      const count = Number(level?.libraries?.[sourceKey] || 0);
+      const grammarInfo = getGrammarLevelInfo(sourceKey, levelNo);
+      const grammarTotal = Number(grammarInfo?.total || 0);
+      const hasGrammar = Boolean(grammarInfo?.hasGrammar && grammarInfo?.file && grammarTotal > 0);
+      if(count > 0 || hasGrammar){
+        seen.add(levelNo);
+        rows.push({
+          level: levelNo,
+          count,
+          grammarTotal,
+          hasGrammar,
+          file: level.file || `hsk_${levelNo}.json`
+        });
+      }
+    });
+    const grammarLevels = hskState.grammarSummary?.sources?.[sourceKey]?.levels || {};
+    Object.entries(grammarLevels).forEach(([levelKey, info]) => {
+      const levelNo = Number(levelKey);
+      const grammarTotal = Number(info?.total || 0);
+      const hasGrammar = Boolean(info?.hasGrammar && info?.file && grammarTotal > 0);
+      if(Number.isFinite(levelNo) && hasGrammar && !seen.has(levelNo)){
+        rows.push({ level: levelNo, count: 0, grammarTotal, hasGrammar, file: `hsk_${levelNo}.json` });
+        seen.add(levelNo);
+      }
+    });
+    return rows.sort((a, b) => a.level - b.level);
+  }
+
+  function normalizeHskSourceAndLevel(){
+    const sources = getAvailableHskSources();
+    if(!sources.includes(hskState.sourceKey)){
+      hskState.sourceKey = sources.includes('hsk') ? 'hsk' : sources[0] || 'new_hsk';
+    }
+    const levels = getAvailableLevelsForSource(hskState.sourceKey);
+    if(levels.length && !levels.some(row => Number(row.level) === Number(hskState.currentLevel))){
+      hskState.currentLevel = Number(levels[0].level) || 1;
+      hskState.topicKey = 'all';
+    }
+    if(hskState.groupMode === 'grammar' && hskState.grammarSummary && !hasGrammarForCurrentSource()){
+      hskState.groupMode = 'all';
+      hskState.topicKey = 'all';
+    }
+  }
+
+  function renderHskSourceTabs(){
+    if(!sourceTabs){
+      return;
+    }
+    const sources = getAvailableHskSources();
+    sourceTabs.innerHTML = sources.map(key => {
+      const active = key === hskState.sourceKey;
+      const levels = getAvailableLevelsForSource(key);
+      const levelCount = levels.length;
+      const grammarCount = levels.filter(row => row.hasGrammar).length;
+      const partialCount = levels.filter(row => getSourceLevelMeta(key, row.level)?.status === 'PARTIAL').length;
+      return `
+        <button type="button" class="hsk-source-btn ${active ? 'active' : ''}" data-hsk-source="${escapeHtml(key)}" aria-pressed="${active}">
+          <strong>${escapeHtml(getHskSourceLabel(key))}</strong>
+          <small>${levelCount ? `${levelCount} cấp` : 'Đang tải'}${grammarCount ? ` · ${grammarCount} có ngữ pháp` : ''}${partialCount ? ` · ${partialCount} thiếu` : ''}</small>
+        </button>
+      `;
+    }).join('');
+  }
+
+  function getHskLevelLabel(levelNo, sourceKey = hskState.sourceKey){
+    const no = Number(levelNo) || 1;
+    if(sourceKey === 'new_hsk' && no === 7){
+      return 'HSK 7-9';
+    }
+    const prefix = HSK_LEVEL_LABEL_PREFIX[sourceKey] || 'Cấp';
+    return `${prefix} ${no}`;
+  }
+
+  function itemBelongsToSelectedSource(item){
+    const sourceKey = hskState.sourceKey || '';
+    if(!sourceKey){
+      return true;
+    }
+    if(Array.isArray(item?.libraries) && item.libraries.includes(sourceKey)){
+      return true;
+    }
+    return (Array.isArray(item?.routes) ? item.routes : []).some(route => String(route?.libraryId || '') === sourceKey);
+  }
 
   function getRoutesForCurrentLevel(item){
     const currentLevel = Number(hskState.currentLevel) || 1;
@@ -1611,6 +1938,7 @@ if(window.HanziWriter){
     if(mode === 'char1') return '1 chữ';
     if(mode === 'char2') return '2 chữ';
     if(mode === 'char3plus') return '3+ chữ';
+    if(mode === 'grammar') return 'Ngữ pháp';
     if(mode === 'lessons') return 'Bài học';
     if(mode === 'topics') return 'Chủ đề';
     return 'Tất cả';
@@ -1626,23 +1954,27 @@ if(window.HanziWriter){
 
   function getFilteredByMode(items){
     const mode = hskState.groupMode || 'all';
+    const sourceItems = items.filter(itemBelongsToSelectedSource);
     if(mode === 'char1'){
-      return items.filter(item => getItemCharCount(item) === 1);
+      return sourceItems.filter(item => getItemCharCount(item) === 1);
     }
     if(mode === 'char2'){
-      return items.filter(item => getItemCharCount(item) === 2);
+      return sourceItems.filter(item => getItemCharCount(item) === 2);
     }
     if(mode === 'char3plus'){
-      return items.filter(item => getItemCharCount(item) >= 3);
+      return sourceItems.filter(item => getItemCharCount(item) >= 3);
     }
     if(mode === 'lessons' || mode === 'topics'){
-      const sourceItems = items.filter(itemHasSelectedSourceRoute);
+      const sectionItems = sourceItems.filter(itemHasSelectedSourceRoute);
       if(hskState.topicKey && hskState.topicKey !== 'all'){
-        return sourceItems.filter(item => getItemTopic(item).key === hskState.topicKey);
+        return sectionItems.filter(item => getItemTopic(item).key === hskState.topicKey);
       }
-      return sourceItems;
+      return sectionItems;
     }
-    return items;
+    if(mode === 'grammar'){
+      return [];
+    }
+    return sourceItems;
   }
 
   function getOrderInTopic(item, topicKey){
@@ -1654,9 +1986,8 @@ if(window.HanziWriter){
   }
 
   function getTopicGroups(items){
-    ensureHskSourceSelection();
     const map = new Map();
-    items.filter(itemHasSelectedSourceRoute).forEach(item => {
+    items.filter(itemBelongsToSelectedSource).filter(itemHasSelectedSourceRoute).forEach(item => {
       const topic = getItemTopic(item);
       if(!topic.route){
         return;
@@ -1686,9 +2017,15 @@ if(window.HanziWriter){
   }
 
   function renderHskFilters(){
+    normalizeHskGroupMode();
+
     if(hskGroupModes){
       Array.from(hskGroupModes.querySelectorAll('[data-hsk-group-mode]')).forEach(button => {
-        const active = button.dataset.hskGroupMode === hskState.groupMode;
+        const mode = button.dataset.hskGroupMode || 'all';
+        const available = hskModeAvailable(mode);
+        const active = mode === hskState.groupMode;
+        button.hidden = !available && !active;
+        button.disabled = !available && !active;
         button.classList.toggle('active', active);
         button.setAttribute('aria-pressed', String(active));
       });
@@ -1698,37 +2035,36 @@ if(window.HanziWriter){
       return;
     }
     const sectionMode = hskState.groupMode === 'lessons' || hskState.groupMode === 'topics';
-    hskTopicFilters.hidden = !sectionMode;
-    if(!sectionMode){
+    const grammarMode = hskState.groupMode === 'grammar';
+    hskTopicFilters.hidden = !sectionMode && !grammarMode;
+    if(!sectionMode && !grammarMode){
       hskTopicFilters.innerHTML = '';
+      return;
+    }
+
+    if(grammarMode){
+      const info = getCurrentGrammarInfo();
+      hskTopicFilters.innerHTML = `
+        <p class="hsk-topic-overview hsk-topic-overview--grammar">
+          ${info ? `${info.total.toLocaleString('vi-VN')} mục ngữ pháp trong ${escapeHtml(getHskLevelLabel(hskState.currentLevel))} · ${escapeHtml(getHskSourceLabel())}.` : 'Cấp này chưa có dữ liệu ngữ pháp.'}
+        </p>
+      `;
       return;
     }
 
     const sectionLabel = getSectionModeLabel();
     const sectionPlural = getSectionModePluralLabel();
-    const sources = ensureHskSourceSelection();
-    const selectedSource = sources.find(source => source.key === hskState.sourceKey) || sources[0] || null;
     const groups = getTopicGroups(hskState.currentItems);
     if(hskState.topicKey !== 'all' && !groups.some(group => group.key === hskState.topicKey)){
       hskState.topicKey = 'all';
     }
     const selectedKey = hskState.topicKey || 'all';
-    const sourceTotal = selectedSource ? selectedSource.count : 0;
+    const sourceTotal = hskState.currentItems.filter(itemBelongsToSelectedSource).length;
     hskTopicFilters.innerHTML = `
-      <div class="hsk-source-select-block">
-        <label class="hsk-topic-select-label" for="hskSourceSelect">Nguồn học</label>
-        <div class="hsk-topic-select-wrap">
-          <select id="hskSourceSelect" class="hsk-topic-select" aria-label="Chọn nguồn học HSK">
-            ${sources.map(source => `
-              <option value="${escapeHtml(source.key)}" ${source.key === hskState.sourceKey ? 'selected' : ''}>${escapeHtml(source.label)} · ${source.count.toLocaleString('vi-VN')} mục</option>
-            `).join('')}
-          </select>
-        </div>
-      </div>
       <div class="hsk-lesson-select-block">
         <label class="hsk-topic-select-label" for="hskTopicSelect">${escapeHtml(sectionLabel)}</label>
         <div class="hsk-topic-select-wrap">
-          <select id="hskTopicSelect" class="hsk-topic-select" aria-label="Chọn ${escapeHtml(sectionLabel.toLowerCase())} HSK">
+          <select id="hskTopicSelect" class="hsk-topic-select" aria-label="Chọn ${escapeHtml(sectionLabel.toLowerCase())}">
             <option value="all" ${selectedKey === 'all' ? 'selected' : ''}>Tất cả ${escapeHtml(sectionPlural)} · ${sourceTotal.toLocaleString('vi-VN')} mục</option>
             ${groups.map(group => `
               <option value="${escapeHtml(group.key)}" ${selectedKey === group.key ? 'selected' : ''}>${escapeHtml(group.label)} · ${group.items.length.toLocaleString('vi-VN')} từ</option>
@@ -1736,7 +2072,7 @@ if(window.HanziWriter){
           </select>
         </div>
       </div>
-      <p class="hsk-topic-overview">${groups.length.toLocaleString('vi-VN')} ${escapeHtml(sectionPlural)} trong HSK ${escapeHtml(hskState.currentLevel)} · ${escapeHtml(selectedSource?.label || 'Nguồn học')}.</p>
+      <p class="hsk-topic-overview">${groups.length.toLocaleString('vi-VN')} ${escapeHtml(sectionPlural)} trong ${escapeHtml(getHskLevelLabel(hskState.currentLevel))} · ${escapeHtml(getHskSourceLabel())}.</p>
     `;
   }
 
@@ -2289,7 +2625,169 @@ if(window.HanziWriter){
     `;
   }
 
+  function getGrammarItemsFromData(data){
+    if(Array.isArray(data?.items)) return data.items;
+    return [];
+  }
+
+  function getGrammarItemId(item){
+    return String(item?.id || '').trim();
+  }
+
+  function findGrammarItemById(id){
+    const target = String(id || '').trim();
+    if(!target) return null;
+    for(const data of grammarCache.values()){
+      const found = getGrammarItemsFromData(data).find(item => getGrammarItemId(item) === target);
+      if(found) return found;
+    }
+    return null;
+  }
+
+  function renderGrammarCard(item, index){
+    const topic = String(item?.topic || 'Ngữ pháp').trim();
+    const syntax = String(item?.syntax || item?.grammar_syntax || '').trim();
+    const examples = Array.isArray(item?.examples) ? item.examples : (Array.isArray(item?.example) ? item.example : []);
+    const chapter = item?.chapter || item?.from_book_chapter || '';
+    const id = getGrammarItemId(item);
+    return `
+      <article class="hsk-item hsk-grammar-item" tabindex="0" data-hsk-grammar-id="${escapeHtml(id)}" data-copy-text="${escapeHtml(topic)}">
+        <div class="hsk-item-main">
+          <div class="hsk-grammar-title-row">
+            <strong class="hsk-grammar-order">${String(index + 1).padStart(2, '0')}</strong>
+            <span class="hsk-grammar-topic">${escapeHtml(topic)}</span>
+          </div>
+          ${syntax ? `<p class="hsk-grammar-syntax">${escapeHtml(syntax)}</p>` : ''}
+          <div class="hsk-meta-line">
+            ${chapter ? `<span>Bài ${escapeHtml(chapter)}</span>` : ''}
+            <span>${examples.length.toLocaleString('vi-VN')} ví dụ</span>
+          </div>
+        </div>
+      </article>
+    `;
+  }
+
+  function renderGrammarListFromData(data){
+    const info = getCurrentGrammarInfo();
+    const query = normalizeSearchText(hskState.query);
+    const items = getGrammarItemsFromData(data).filter(item => {
+      if(!query) return true;
+      const examples = Array.isArray(item?.examples) ? item.examples : (Array.isArray(item?.example) ? item.example : []);
+      const haystack = [
+        item?.topic,
+        item?.syntax || item?.grammar_syntax,
+        item?.explanation || item?.grammar_explanation,
+        item?.tips || item?.grammar_tips,
+        item?.attentions || item?.grammar_attentions,
+        ...examples.flatMap(row => [row?.chinese, row?.pinyin, row?.vietnamese])
+      ].map(normalizeSearchText).join(' ');
+      return haystack.includes(query);
+    });
+    const total = getGrammarItemsFromData(data).length;
+    const foundCount = items.length.toLocaleString('vi-VN');
+    const baseCount = total.toLocaleString('vi-VN');
+    hskStatus.textContent = `${escapeHtml(getHskSourceLabel())} · ${escapeHtml(getHskLevelLabel(hskState.currentLevel))} · Ngữ pháp${query ? ` · tìm thấy ${foundCount} / ${baseCount}` : ` · ${foundCount} / ${baseCount}`} mục.`;
+    hskList.classList.remove('hsk-list--topics');
+    hskList.classList.add('hsk-list--grammar');
+    if(!items.length){
+      hskList.innerHTML = '<p class="hsk-empty">Không tìm thấy mục ngữ pháp phù hợp.</p>';
+      return;
+    }
+    hskList.innerHTML = items.map(renderGrammarCard).join('');
+  }
+
+  function renderGrammarList(){
+    const info = getCurrentGrammarInfo();
+    hskList.classList.remove('hsk-list--topics');
+    hskList.classList.add('hsk-list--grammar');
+    if(!info){
+      hskStatus.textContent = `${escapeHtml(getHskSourceLabel())} · ${escapeHtml(getHskLevelLabel(hskState.currentLevel))} · chưa có dữ liệu ngữ pháp.`;
+      hskList.innerHTML = '<p class="hsk-empty">Cấp này chưa có dữ liệu ngữ pháp.</p>';
+      return;
+    }
+    const cacheKey = `${info.sourceKey}:${info.level}`;
+    if(grammarCache.has(cacheKey)){
+      renderGrammarListFromData(grammarCache.get(cacheKey));
+      return;
+    }
+    hskStatus.textContent = `Đang tải ngữ pháp HSK ${info.level}...`;
+    hskList.innerHTML = '<p class="hsk-empty">Đang tải ngữ pháp...</p>';
+    loadGrammarForCurrentLevel().then(data => {
+      if(hskState.groupMode !== 'grammar') return;
+      renderGrammarListFromData(data);
+    }).catch(err => {
+      console.warn('Cannot load grammar data:', err);
+      if(hskState.groupMode === 'grammar'){
+        hskStatus.textContent = `Không tải được dữ liệu ngữ pháp HSK ${info.level}.`;
+        hskList.innerHTML = '<p class="hsk-empty">Không tải được dữ liệu ngữ pháp.</p>';
+      }
+    });
+  }
+
+  function normalizeGrammarExamples(item){
+    return (Array.isArray(item?.examples) ? item.examples : (Array.isArray(item?.example) ? item.example : []))
+      .map(row => ({
+        chinese: String(row?.chinese || row?.zh || '').trim(),
+        pinyin: String(row?.pinyin || '').trim(),
+        vietnamese: String(row?.vietnamese || row?.vi || row?.meaningVi || '').trim()
+      }))
+      .filter(row => row.chinese && row.vietnamese)
+      .slice(0, 6);
+  }
+
+  function renderGrammarPopup(item){
+    if(!item) return;
+    const popup = ensureHskPopup();
+    const body = getHskPopupBody();
+    const topic = String(item?.topic || 'Ngữ pháp').trim();
+    const syntax = String(item?.syntax || item?.grammar_syntax || '').trim();
+    const explanation = String(item?.explanation || item?.grammar_explanation || '').trim();
+    const tips = String(item?.tips || item?.grammar_tips || '').trim();
+    const attentions = String(item?.attentions || item?.grammar_attentions || '').trim();
+    const examples = normalizeGrammarExamples(item);
+    const chapter = item?.chapter || item?.from_book_chapter || '';
+    body.innerHTML = `
+      <div class="hsk-popup-topbar">
+        <button type="button" class="hsk-popup-back" data-hsk-popup-close>← Quay về Ngữ pháp</button>
+        <button type="button" class="hsk-popup-close" data-hsk-popup-close aria-label="Đóng">×</button>
+      </div>
+      <section class="hsk-popup-hero hsk-grammar-hero">
+        <div>
+          <h3 data-copy-text="${escapeHtml(topic)}">${escapeHtml(topic)}</h3>
+          ${syntax ? `<p class="hsk-popup-pinyin hsk-grammar-syntax-main">${escapeHtml(syntax)}</p>` : ''}
+          ${chapter ? `<p class="hsk-popup-meaning">Bài ${escapeHtml(chapter)} · ${escapeHtml(getHskLevelLabel(hskState.currentLevel))} · ${escapeHtml(getHskSourceLabel())}</p>` : `<p class="hsk-popup-meaning">${escapeHtml(getHskLevelLabel(hskState.currentLevel))} · ${escapeHtml(getHskSourceLabel())}</p>`}
+        </div>
+      </section>
+      ${syntax ? `<section class="hsk-popup-section"><h4>Cấu trúc</h4><p class="hsk-grammar-text" data-copy-text="${escapeHtml(syntax)}">${escapeHtml(syntax)}</p></section>` : ''}
+      ${explanation ? `<section class="hsk-popup-section"><h4>Giải thích</h4><p class="hsk-grammar-text">${escapeHtml(explanation)}</p></section>` : ''}
+      ${tips ? `<section class="hsk-popup-section"><h4>Mẹo nhớ</h4><p class="hsk-grammar-text">${escapeHtml(tips)}</p></section>` : ''}
+      ${attentions ? `<section class="hsk-popup-section"><h4>Lưu ý</h4><p class="hsk-grammar-text">${escapeHtml(attentions)}</p></section>` : ''}
+      ${examples.length ? `
+        <section class="hsk-popup-section hsk-grammar-examples">
+          <h4>Ví dụ</h4>
+          <div class="hsk-popup-sentence-list">
+            ${examples.map(row => `
+              <button type="button" class="hsk-popup-sentence-item" data-copy-text="${escapeHtml(row.chinese)}" data-hsk-speak="${escapeHtml(row.chinese)}">
+                <strong>${escapeHtml(row.chinese)}</strong>
+                ${row.pinyin ? `<em>${escapeHtml(formatPinyin(row.pinyin))}</em>` : ''}
+                <span>${escapeHtml(row.vietnamese)}</span>
+                <b aria-hidden="true">🔊</b>
+              </button>
+            `).join('')}
+          </div>
+        </section>
+      ` : ''}
+    `;
+    popup.hidden = false;
+    document.body.classList.add('hsk-popup-open');
+  }
+
   function renderHskList(){
+    if(hskState.groupMode === 'grammar'){
+      renderGrammarList();
+      return;
+    }
+    hskList.classList.remove('hsk-list--grammar');
     const query = normalizeSearchText(hskState.query);
     const searched = hskState.currentItems.filter(item => itemMatchesQuery(item, query));
     const filtered = getFilteredByMode(searched);
@@ -2301,7 +2799,7 @@ if(window.HanziWriter){
     const baseCount = hskState.currentItems.length.toLocaleString('vi-VN');
     const foundCount = filtered.length.toLocaleString('vi-VN');
     const searchText = query ? ` · tìm thấy ${foundCount} / ${baseCount}` : ` · ${foundCount} / ${baseCount}`;
-    hskStatus.textContent = `HSK ${level} · ${topicLabel || groupLabel}${searchText} mục.`;
+    hskStatus.textContent = `${escapeHtml(getHskSourceLabel())} · ${escapeHtml(getHskLevelLabel(level))} · ${topicLabel || groupLabel}${searchText} mục.`;
 
     if(!filtered.length){
       hskList.classList.remove('hsk-list--topics');
@@ -2340,6 +2838,23 @@ if(window.HanziWriter){
   tabHsk.addEventListener('click', () => setStudyTab('hsk'));
   tabRadicals?.addEventListener('click', () => setStudyTab('radicals'));
 
+  sourceTabs.addEventListener('click', event => {
+    const button = event.target.closest('[data-hsk-source]');
+    if(!button){
+      return;
+    }
+    const nextSource = button.dataset.hskSource || 'hsk';
+    if(nextSource === hskState.sourceKey){
+      return;
+    }
+    hskState.sourceKey = nextSource;
+    hskState.topicKey = 'all';
+    normalizeHskSourceAndLevel();
+    renderHskSourceTabs();
+    renderHskLevelTabs();
+    loadHskLevel(hskState.currentLevel);
+  });
+
   levelTabs.addEventListener('click', event => {
     const button = event.target.closest('[data-hsk-level]');
     if(!button){
@@ -2359,22 +2874,28 @@ if(window.HanziWriter){
     if(!button){
       return;
     }
-    hskState.groupMode = button.dataset.hskGroupMode || 'all';
+    const nextMode = button.dataset.hskGroupMode || 'all';
+    if(button.hidden || button.disabled || !hskModeAvailable(nextMode)){
+      return;
+    }
+    hskState.groupMode = nextMode;
     hskState.topicKey = 'all';
+    if(hskState.groupMode === 'grammar'){
+      if(!hskState.grammarSummary){
+        loadGrammarSummary().then(() => {
+          ensureGrammarSourceSelection();
+          renderHskFilters();
+          renderHskList();
+        });
+      }else{
+        ensureGrammarSourceSelection();
+      }
+    }
     renderHskFilters();
     renderHskList();
   });
 
   hskTopicFilters?.addEventListener('change', event => {
-    const sourceSelect = event.target.closest('#hskSourceSelect');
-    if(sourceSelect){
-      hskState.sourceKey = sourceSelect.value || 'new_hsk';
-      hskState.topicKey = 'all';
-      renderHskFilters();
-      renderHskList();
-      return;
-    }
-
     const lessonSelect = event.target.closest('#hskTopicSelect');
     if(!lessonSelect){
       return;
@@ -2393,6 +2914,14 @@ if(window.HanziWriter){
       return;
     }
 
+    const grammarTrigger = event.target.closest('[data-hsk-grammar-id]');
+    if(grammarTrigger){
+      event.preventDefault();
+      event.stopPropagation();
+      renderGrammarPopup(findGrammarItemById(grammarTrigger.dataset.hskGrammarId || ''));
+      return;
+    }
+
     const popupTrigger = event.target.closest('[data-hsk-popup-word]');
     if(popupTrigger){
       event.preventDefault();
@@ -2403,6 +2932,12 @@ if(window.HanziWriter){
 
   hskList.addEventListener('keydown', event => {
     if(event.key !== 'Enter' && event.key !== ' '){
+      return;
+    }
+    const grammarItem = event.target.closest('.hsk-item[data-hsk-grammar-id]');
+    if(grammarItem){
+      event.preventDefault();
+      renderGrammarPopup(findGrammarItemById(grammarItem.dataset.hskGrammarId || ''));
       return;
     }
     const item = event.target.closest('.hsk-item[data-hsk-popup-word]');

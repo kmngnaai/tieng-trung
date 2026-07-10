@@ -4055,3 +4055,182 @@ body.radical-popup-open{overflow:hidden;}
 .hsk-popup-related-section .hsk-popup-more-btn:active{
   transform: translateY(1px);
 }
+
+/* Step 9.2 - HSK grammar mode */
+.hsk-list--grammar{
+  grid-template-columns:repeat(2, minmax(0,1fr));
+}
+
+.hsk-grammar-item{
+  grid-template-columns:minmax(0,1fr);
+}
+
+.hsk-grammar-title-row{
+  display:flex;
+  align-items:flex-start;
+  gap:9px;
+  min-width:0;
+}
+
+.hsk-grammar-order{
+  flex:0 0 auto;
+  min-width:34px;
+  height:28px;
+  border-radius:999px;
+  display:grid;
+  place-items:center;
+  background:#fff3ed;
+  border:1px solid rgba(201,111,77,.22);
+  color:#b95f43;
+  font-size:12px;
+  line-height:1;
+}
+
+.hsk-grammar-topic{
+  color:#2f251d;
+  font-weight:900;
+  line-height:1.35;
+}
+
+.hsk-grammar-syntax{
+  margin:8px 0 0;
+  padding:9px 10px;
+  border-radius:14px;
+  background:#fffdf9;
+  border:1px solid rgba(234,220,201,.82);
+  color:#6c5040;
+  font-weight:750;
+  line-height:1.45;
+}
+
+.hsk-grammar-source-block{
+  max-width:420px;
+}
+
+.hsk-grammar-hero h3{
+  font-size:22px;
+  line-height:1.25;
+}
+
+.hsk-grammar-syntax-main{
+  font-size:15px;
+  line-height:1.45;
+}
+
+.hsk-grammar-text{
+  margin:0;
+  color:#3f342d;
+  line-height:1.65;
+}
+
+.hsk-grammar-examples .hsk-popup-sentence-item{
+  cursor:pointer;
+}
+
+@media (max-width: 720px){
+  .hsk-list--grammar{
+    grid-template-columns:1fr;
+  }
+
+  .hsk-grammar-title-row{
+    gap:8px;
+  }
+}
+
+/* Step 9.3 - HSK source -> level -> content layout */
+.hsk-toolbar--stacked{
+  display:grid;
+  grid-template-columns:1fr;
+  align-items:stretch;
+  gap:12px;
+}
+
+.hsk-path-panel{
+  display:grid;
+  gap:12px;
+  padding:12px;
+  border:1px solid rgba(234,220,201,.82);
+  border-radius:22px;
+  background:linear-gradient(180deg, rgba(255,250,244,.92), rgba(255,253,249,.98));
+}
+
+.hsk-path-row{
+  display:grid;
+  gap:7px;
+}
+
+.hsk-source-tabs{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:1px 1px 4px;
+  scrollbar-width:thin;
+}
+
+.hsk-source-btn{
+  min-width:128px;
+  border:1px solid rgba(234,220,201,.95);
+  border-radius:18px;
+  background:#fffaf4;
+  color:#66584d;
+  padding:9px 11px;
+  display:grid;
+  gap:2px;
+  text-align:left;
+  cursor:pointer;
+  flex:0 0 auto;
+}
+
+.hsk-source-btn strong{
+  font-size:13px;
+  line-height:1.15;
+}
+
+.hsk-source-btn small{
+  font-size:11px;
+  color:#8a796b;
+  line-height:1.25;
+}
+
+.hsk-source-btn.active{
+  background:#fff3ed;
+  color:#b95f43;
+  border-color:rgba(201,111,77,.38);
+  box-shadow:0 8px 18px rgba(201,111,77,.11);
+}
+
+.hsk-path-panel .hsk-level-tabs{
+  padding-bottom:4px;
+}
+
+.hsk-filter-panel .hsk-filter-label{
+  color:#8b604a;
+}
+
+.hsk-topic-overview--grammar{
+  border:1px solid rgba(234,220,201,.75);
+  border-radius:16px;
+  background:#fffaf4;
+  padding:10px 12px;
+}
+
+@media (max-width:520px){
+  .hsk-path-panel{
+    padding:10px;
+    border-radius:18px;
+  }
+
+  .hsk-source-btn{
+    min-width:116px;
+    padding:8px 10px;
+  }
+
+  .hsk-level-btn{
+    min-width:78px;
+  }
+}
+
+/* Step 9.3.1 - source-aware HSK status */
+.hsk-level-btn.is-partial small{
+  color: #b45309;
+}

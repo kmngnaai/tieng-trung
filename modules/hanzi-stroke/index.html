@@ -197,29 +197,39 @@
         <div>
           <p class="panel-kicker">Học theo lộ trình</p>
           <h2>HSK trong Tra chữ Hán</h2>
-          <p class="hsk-intro-text">Chọn cấp HSK, xem từ/chữ, pinyin, nghĩa và bộ/thành phần gợi nhớ. Bấm một mục để xem chi tiết. Dùng nút Tra & luyện để mở phần Tra chữ Hán và luyện viết.</p>
+          <p class="hsk-intro-text">Chọn nguồn học, cấp độ, rồi xem từ/chữ, bài học, chủ đề hoặc ngữ pháp. Bấm một mục để xem chi tiết. Dùng nút Tra & luyện để mở phần Tra chữ Hán và luyện viết.</p>
         </div>
         <span id="hskTotalBadge" class="learning-badge">Đang tải...</span>
       </div>
 
       <div class="hsk-card">
-        <div class="hsk-toolbar">
-          <div id="hskLevelTabs" class="hsk-level-tabs" aria-label="Chọn cấp HSK"></div>
+        <div class="hsk-toolbar hsk-toolbar--stacked">
+          <div class="hsk-path-panel" aria-label="Chọn lộ trình HSK">
+            <div class="hsk-path-row">
+              <span class="hsk-filter-label">Nguồn học</span>
+              <div id="hskSourceTabs" class="hsk-source-tabs" role="group" aria-label="Chọn nguồn học"></div>
+            </div>
+            <div class="hsk-path-row">
+              <span class="hsk-filter-label">Cấp độ</span>
+              <div id="hskLevelTabs" class="hsk-level-tabs" aria-label="Chọn cấp độ"></div>
+            </div>
+          </div>
           <label class="hsk-search" for="hskSearchInput">
-            <span>Tìm trong cấp đang chọn</span>
-            <input id="hskSearchInput" type="search" placeholder="Tìm chữ, pinyin, nghĩa..." autocomplete="off" spellcheck="false" />
+            <span>Tìm trong nguồn/cấp đang chọn</span>
+            <input id="hskSearchInput" type="search" placeholder="Tìm chữ, pinyin, nghĩa, ngữ pháp..." autocomplete="off" spellcheck="false" />
           </label>
         </div>
         <div class="hsk-filter-panel" aria-label="Lọc danh sách HSK">
           <div class="hsk-filter-row">
-            <span class="hsk-filter-label">Nhóm nhanh</span>
+            <span class="hsk-filter-label">Nội dung</span>
             <div id="hskGroupModes" class="hsk-group-modes" role="group" aria-label="Chia nhóm HSK">
               <button type="button" class="active" data-hsk-group-mode="all">Tất cả</button>
+              <button type="button" data-hsk-group-mode="lessons">Bài học</button>
+              <button type="button" data-hsk-group-mode="topics">Chủ đề</button>
+              <button type="button" data-hsk-group-mode="grammar">Ngữ pháp</button>
               <button type="button" data-hsk-group-mode="char1">1 chữ</button>
               <button type="button" data-hsk-group-mode="char2">2 chữ</button>
               <button type="button" data-hsk-group-mode="char3plus">3+ chữ</button>
-              <button type="button" data-hsk-group-mode="lessons">Bài học</button>
-              <button type="button" data-hsk-group-mode="topics">Chủ đề</button>
             </div>
           </div>
           <div id="hskTopicFilters" class="hsk-topic-filters" hidden aria-label="Chọn bài học hoặc chủ đề HSK"></div>
