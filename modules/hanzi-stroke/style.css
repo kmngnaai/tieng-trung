@@ -1475,7 +1475,7 @@ textarea:focus{
 .advanced-grid{
   gap:13px;
   border-top:1px solid rgba(234,220,201,.96);
-  background:#fffefd;
+  background:#f5f8ff;
   padding:13px;
 }
 
@@ -4612,4 +4612,366 @@ body.radical-popup-open{overflow:hidden;}
 .hsk-source-btn[data-hsk-source="yct"] strong,
 .hsk-source-btn[data-hsk-source="boya"] strong{
   letter-spacing:.01em;
+}
+
+/* Step 9.4A - refined HSK grammar list cards */
+.hsk-list--grammar{
+  align-items:stretch;
+}
+
+.hsk-grammar-item{
+  min-height:100%;
+  padding:0;
+  overflow:hidden;
+  border-color:rgba(226,199,168,.86);
+  background:linear-gradient(180deg, #fffefd 0%, #fffaf3 100%);
+  box-shadow:0 10px 24px rgba(56,42,24,.055);
+  transition:border-color .16s ease, background .16s ease, box-shadow .16s ease, transform .16s ease;
+}
+
+.hsk-grammar-item:hover{
+  transform:translateY(-1px);
+  border-color:rgba(201,111,77,.34);
+  background:linear-gradient(180deg, #fff 0%, #fff8ef 100%);
+  box-shadow:0 13px 28px rgba(56,42,24,.08);
+}
+
+.hsk-grammar-item:focus-visible{
+  outline:2px solid rgba(201,111,77,.26);
+  outline-offset:2px;
+}
+
+.hsk-grammar-card-main{
+  display:grid;
+  align-content:start;
+  gap:12px;
+  min-width:0;
+  width:100%;
+  padding:16px;
+}
+
+.hsk-grammar-card-meta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  min-width:0;
+}
+
+.hsk-grammar-chapter-badge{
+  display:inline-flex;
+  align-items:center;
+  min-height:26px;
+  padding:0 10px;
+  border:1px solid rgba(201,111,77,.20);
+  border-radius:999px;
+  background:#fff3ed;
+  color:#ad5b40;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.035em;
+  line-height:1;
+  white-space:nowrap;
+}
+
+.hsk-grammar-example-count{
+  color:#7b6f63;
+  font-size:12px;
+  font-weight:750;
+  white-space:nowrap;
+}
+
+.hsk-grammar-item .hsk-grammar-topic{
+  display:-webkit-box;
+  margin:0;
+  overflow:hidden;
+  color:#2f251d;
+  font-size:16px;
+  font-weight:900;
+  letter-spacing:-.012em;
+  line-height:1.42;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+}
+
+.hsk-grammar-item .hsk-grammar-syntax{
+  margin:0;
+  padding:10px 12px;
+  border:1px solid rgba(226,199,168,.68);
+  border-radius:14px;
+  background:#fff8e8;
+  color:#654b38;
+  font-size:13px;
+  font-weight:800;
+  line-height:1.5;
+  overflow-wrap:anywhere;
+  white-space:pre-wrap;
+}
+
+.hsk-grammar-preview{
+  display:-webkit-box;
+  margin:0;
+  overflow:hidden;
+  color:#74685d;
+  font-size:13px;
+  line-height:1.55;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+}
+
+@media (max-width:720px){
+  .hsk-grammar-card-main{
+    gap:10px;
+    padding:14px;
+  }
+
+  .hsk-grammar-item .hsk-grammar-topic{
+    font-size:15px;
+  }
+
+  .hsk-grammar-item .hsk-grammar-syntax,
+  .hsk-grammar-preview{
+    font-size:12.5px;
+  }
+}
+
+/* Step 9.4B - refined grammar detail popup */
+.hsk-grammar-detail-hero{
+  background:linear-gradient(180deg, #fffefd 0%, #fff8ef 100%);
+  border-color:rgba(226,199,168,.82);
+}
+
+.hsk-grammar-hero-kicker{
+  margin-bottom:8px;
+  color:#ad5b40;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.hsk-grammar-detail-hero h3{
+  margin:0;
+  color:#2f251d;
+  font-size:clamp(22px, 4vw, 30px);
+  line-height:1.3;
+}
+
+.hsk-grammar-hero-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:14px;
+}
+
+.hsk-grammar-hero-meta span{
+  display:inline-flex;
+  align-items:center;
+  min-height:27px;
+  padding:0 10px;
+  border:1px solid rgba(226,199,168,.82);
+  border-radius:999px;
+  background:rgba(255,255,255,.82);
+  color:#74685d;
+  font-size:12px;
+  font-weight:800;
+}
+
+.hsk-grammar-detail-stack{
+  display:grid;
+  gap:12px;
+}
+
+.hsk-popup-section.hsk-grammar-detail-block{
+  margin:0;
+  padding:16px;
+  border-radius:18px;
+  box-shadow:none;
+}
+
+.hsk-grammar-detail-head{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:10px;
+}
+
+.hsk-grammar-detail-head h4{
+  margin:0;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.045em;
+  text-transform:uppercase;
+}
+
+.hsk-grammar-detail-icon{
+  display:grid;
+  place-items:center;
+  width:23px;
+  height:23px;
+  flex:0 0 23px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:900;
+}
+
+.hsk-grammar-detail-block .hsk-grammar-text{
+  margin:0;
+  color:#3f342d;
+  font-size:14px;
+  line-height:1.75;
+  white-space:pre-wrap;
+}
+
+.hsk-grammar-detail-syntax{
+  border-color:#d8e1ee;
+  background:#f8fafc;
+}
+ .hsk-grammar-detail-syntax .hsk-grammar-detail-head h4{ color:#516273; }
+.hsk-grammar-detail-syntax .hsk-grammar-text{
+  color:#314154;
+  font-size:16px;
+  font-weight:850;
+  line-height:1.6;
+}
+
+.hsk-grammar-detail-explanation{
+  border-color:#d8e9df;
+  background:#f2fbf6;
+}
+ .hsk-grammar-detail-explanation .hsk-grammar-detail-head h4{ color:#42705a; }
+
+.hsk-grammar-detail-tips{
+  border-color:#eadfb7;
+  background:#fff9e8;
+}
+ .hsk-grammar-detail-tips .hsk-grammar-detail-head h4{ color:#8a6d2d; }
+.hsk-grammar-detail-tips .hsk-grammar-detail-icon{
+  background:#f8edc7;
+  color:#8a6d2d;
+}
+
+.hsk-grammar-detail-attention{
+  border-color:#efd8d8;
+  background:#fff3f3;
+}
+.hsk-grammar-detail-attention .hsk-grammar-detail-head h4{ color:#9b5558; }
+.hsk-grammar-detail-attention .hsk-grammar-detail-icon{
+  background:#fbe2e3;
+  color:#9b5558;
+}
+
+.hsk-popup-section.hsk-grammar-detail-examples{
+  margin:0;
+  padding:16px;
+  border-radius:18px;
+  background:#fffefd;
+}
+
+.hsk-grammar-examples-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.hsk-grammar-examples-head h4{
+  margin:0;
+}
+
+.hsk-grammar-examples-head span{
+  color:#7b6f63;
+  font-size:12px;
+  font-weight:750;
+}
+
+.hsk-grammar-example-list{
+  display:grid;
+  gap:9px;
+}
+
+.hsk-grammar-example-card{
+  display:grid;
+  grid-template-columns:34px minmax(0,1fr) 36px;
+  align-items:start;
+  gap:10px;
+  padding:12px;
+  border:1px solid #d8e1ee;
+  border-radius:15px;
+  background:#fff;
+}
+
+.hsk-grammar-example-index{
+  display:grid;
+  place-items:center;
+  width:28px;
+  height:28px;
+  border-radius:999px;
+  background:#fff3ed;
+  color:#ad5b40;
+  font-size:11px;
+  font-weight:900;
+}
+
+.hsk-grammar-example-main{
+  display:grid;
+  gap:4px;
+  min-width:0;
+}
+
+.hsk-grammar-example-main strong{
+  color:#2f251d;
+  font-size:18px;
+  line-height:1.45;
+}
+
+.hsk-grammar-example-main em{
+  color:#4d6277;
+  font-size:13px;
+  font-style:normal;
+  font-weight:700;
+  line-height:1.45;
+}
+
+.hsk-grammar-example-main span{
+  color:#74685d;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.hsk-grammar-example-speaker{
+  display:grid;
+  place-items:center;
+  width:34px;
+  height:34px;
+  border:1px solid rgba(201,111,77,.24);
+  border-radius:999px;
+  background:#fff7f0;
+  color:#ad5b40;
+  padding:0;
+}
+
+@media (max-width:720px){
+  .hsk-popup-section.hsk-grammar-detail-block,
+  .hsk-popup-section.hsk-grammar-detail-examples{
+    padding:14px;
+  }
+
+  .hsk-grammar-detail-block .hsk-grammar-text{
+    font-size:13.5px;
+  }
+
+  .hsk-grammar-detail-syntax .hsk-grammar-text{
+    font-size:15px;
+  }
+
+  .hsk-grammar-example-card{
+    grid-template-columns:30px minmax(0,1fr) 34px;
+    gap:8px;
+    padding:10px;
+  }
+
+  .hsk-grammar-example-main strong{
+    font-size:17px;
+  }
 }

@@ -1267,11 +1267,55 @@ if(window.HanziWriter){
     popupReturnContext: null,
     popupSeed: null,
     popupRelatedExpanded: false,
+    popupLoadId: 0,
     groupMode: 'lessons',
     topicKey: 'all',
     wordFilter: 'all',
-    sourceKey: 'hsk'
+    sourceKey: 'hsk',
+    levelLoading: false
   };
+
+  const HSK_MODE_STORAGE_KEY = 'hanziStroke.hskLastModeBySourceLevel.v1';
+
+  function getHskModeStorageId(sourceKey = hskState.sourceKey, level = hskState.currentLevel){
+    return `${String(sourceKey || 'hsk')}:${Number(level) || 1}`;
+  }
+
+  function readStoredHskModes(){
+    try{
+      const raw = window.localStorage?.getItem(HSK_MODE_STORAGE_KEY);
+      const parsed = raw ? JSON.parse(raw) : {};
+      return parsed && typeof parsed === 'object' ? parsed : {};
+    }catch(_err){
+      return {};
+    }
+  }
+
+  function getStoredHskMode(){
+    return readStoredHskModes()[getHskModeStorageId()] || '';
+  }
+
+  function saveStoredHskMode(mode){
+    if(!['lessons', 'topics', 'grammar', 'all'].includes(mode)) return;
+    try{
+      const values = readStoredHskModes();
+      values[getHskModeStorageId()] = mode;
+      window.localStorage?.setItem(HSK_MODE_STORAGE_KEY, JSON.stringify(values));
+    }catch(_err){
+      // localStorage có thể bị chặn; state trong phiên vẫn hoạt động bình thường.
+    }
+  }
+
+  function restoreHskModeForCurrentSourceLevel(){
+    const stored = getStoredHskMode();
+    if(stored && hskModeAvailable(stored)){
+      hskState.groupMode = stored;
+      return;
+    }
+    if(!hskModeAvailable(hskState.groupMode)){
+      hskState.groupMode = getFirstAvailableHskMode();
+    }
+  }
 
   function ensureHskPopup(){
     let popup = document.getElementById('hskDetailOverlay');
@@ -1441,6 +1485,9 @@ if(window.HanziWriter){
   }
 
   async function loadHskSummary(){
+    if(!hskState.currentItems.length){
+      hskState.levelLoading = true;
+    }
     if(hskState.summary){
       normalizeHskSourceAndLevel();
       renderHskSourceTabs();
@@ -1466,6 +1513,7 @@ if(window.HanziWriter){
       await loadHskLevel(hskState.currentLevel);
     }catch(err){
       console.warn('Cannot load HSK summary:', err);
+      hskState.levelLoading = false;
       hskStatus.textContent = 'Không tải được dữ liệu HSK. Kiểm tra thư mục data/learning/hsk.';
     }
   }
@@ -1496,6 +1544,7 @@ if(window.HanziWriter){
   async function loadHskLevel(level){
     const normalizedLevel = Number(level) || 1;
     hskState.currentLevel = normalizedLevel;
+    hskState.levelLoading = true;
     hskState.topicKey = 'all';
     hskState.wordFilter = 'all';
     normalizeHskSourceAndLevel();
@@ -1506,9 +1555,8 @@ if(window.HanziWriter){
       const data = hskCache.get(normalizedLevel);
       hskState.currentItems = Array.isArray(data?.items) ? data.items : [];
       normalizeHskSourceAndLevel();
-      if(hskState.groupMode === 'grammar' && hskState.grammarSummary && !hasGrammarForCurrentSource()){
-        hskState.groupMode = 'all';
-      }
+      hskState.levelLoading = false;
+      restoreHskModeForCurrentSourceLevel();
       renderHskSourceTabs();
       renderHskLevelTabs();
       renderHskFilters();
@@ -1523,9 +1571,8 @@ if(window.HanziWriter){
       hskCache.set(normalizedLevel, data);
       hskState.currentItems = Array.isArray(data?.items) ? data.items : [];
       normalizeHskSourceAndLevel();
-      if(hskState.groupMode === 'grammar' && hskState.grammarSummary && !hasGrammarForCurrentSource()){
-        hskState.groupMode = 'all';
-      }
+      hskState.levelLoading = false;
+      restoreHskModeForCurrentSourceLevel();
       renderHskSourceTabs();
       renderHskLevelTabs();
       renderHskFilters();
@@ -1533,6 +1580,7 @@ if(window.HanziWriter){
     }catch(err){
       console.warn(`Cannot load HSK ${normalizedLevel}:`, err);
       hskState.currentItems = [];
+      hskState.levelLoading = false;
       hskStatus.textContent = `Không tải được HSK ${normalizedLevel}.`;
       hskList.innerHTML = '';
     }
@@ -2129,6 +2177,9 @@ if(window.HanziWriter){
   }
 
   function ensureHskModeMatchesAvailableRows(){
+    if(hskState.levelLoading){
+      return;
+    }
     const rows = getRouteModeRows();
     if(!rows.some(row => row.mode === hskState.groupMode)){
       hskState.groupMode = rows[0]?.mode || getFirstAvailableHskMode();
@@ -2345,21 +2396,39 @@ if(window.HanziWriter){
       || null;
   }
 
+  function normalizePopupCharRows(item){
+    const wordChars = getHanziChars(getHskWordKey(item));
+    const rawChars = Array.isArray(item?.chars) ? item.chars : [];
+    const byChar = new Map();
+
+    rawChars.forEach(row => {
+      const normalized = typeof row === 'string'
+        ? { char: row }
+        : {
+            ...row,
+            char: String(row?.char || row?.s || '').trim()
+          };
+      if(normalized.char && !byChar.has(normalized.char)){
+        byChar.set(normalized.char, normalized);
+      }
+    });
+
+    wordChars.forEach(char => {
+      if(!byChar.has(char)) byChar.set(char, { char });
+    });
+    return Array.from(byChar.values());
+  }
+
   function getRelatedWords(item){
     const related = [];
     const self = getHskWordKey(item);
+    const chars = normalizePopupCharRows(item).map(row => row.char).filter(Boolean);
     const add = row => {
-      const word = String(row?.word || row?.s || row?.simplified || '').trim();
-      if(!word || word === self || related.some(item => item.word === word)){
-        return;
-      }
+      const word = String(row?.word || row?.s || row?.simplified || row?.char || '').trim();
+      if(!word || word === self || related.some(item => item.word === word)) return;
       const known = findHskItem(word);
       const meaningVi = String(known?.meaningVi || row?.meaningVi || row?.vi || '').trim();
-      // Không dùng gloss tiếng Anh làm nghĩa Việt trong HSK popup.
-      // Nếu không có nghĩa Việt đáng tin cậy thì bỏ qua để tránh hiện tiếng Anh như 'client', 'no', 'only'.
-      if(!meaningVi){
-        return;
-      }
+      if(!meaningVi) return;
       related.push({
         word,
         pinyin: known?.pinyin || row?.pinyin || row?.p || '',
@@ -2369,36 +2438,24 @@ if(window.HanziWriter){
     };
 
     (Array.isArray(item?.relatedWords) ? item.relatedWords : []).forEach(add);
-
-    const chars = Array.isArray(item?.chars) ? item.chars : [];
-    chars.forEach(charInfo => {
-      if(charInfo?.char){
-        add({ word: charInfo.char, pinyin: charInfo.pinyin, meaningVi: charInfo.meaningVi });
-      }
+    normalizePopupCharRows(item).forEach(charInfo => {
       (Array.isArray(charInfo?.relatedWords) ? charInfo.relatedWords : []).forEach(add);
     });
 
     getAllKnownHskItems().forEach(candidate => {
-      if(related.length >= 12){
-        return;
-      }
+      if(related.length >= 12) return;
       const word = getHskWordKey(candidate);
-      if(!word || word === self){
-        return;
-      }
-      if(chars.some(charInfo => charInfo?.char && word.includes(charInfo.char))){
+      if(!word || word === self) return;
+      if(chars.some(char => word.includes(char))){
         add({ word, pinyin: candidate.pinyin, meaningVi: candidate.meaningVi });
       }
     });
-
     return related.slice(0, 12);
   }
 
   function renderRouteList(item){
     const routes = Array.isArray(item?.routes) ? item.routes.slice(0, 5) : [];
-    if(!routes.length){
-      return '';
-    }
+    if(!routes.length) return '';
     return `
       <section class="hsk-popup-section">
         <h4>Xuất hiện trong lộ trình</h4>
@@ -2416,9 +2473,7 @@ if(window.HanziWriter){
 
   function renderRelatedWords(item){
     const related = getRelatedWords(item);
-    if(!related.length){
-      return '';
-    }
+    if(!related.length) return '';
     const initialLimit = 3;
     const expanded = Boolean(hskState.popupRelatedExpanded);
     const visible = expanded ? related : related.slice(0, initialLimit);
@@ -2432,7 +2487,7 @@ if(window.HanziWriter){
               <span class="hsk-related-main">
                 <strong class="hsk-related-word" data-copy-text="${escapeHtml(row.word)}">${escapeHtml(row.word)}</strong>
                 ${row.pinyin ? `<em class="hsk-related-pinyin">${escapeHtml(formatPinyin(row.pinyin))}</em>` : ''}
-                ${row.meaningVi ? `<small class="hsk-related-meaning">${escapeHtml(formatSlashMeaning(row.meaningVi, 3))}</small>` : '<small class="hsk-related-meaning is-muted">Chưa có nghĩa.</small>'}
+                ${row.meaningVi ? `<small class="hsk-related-meaning">${escapeHtml(formatSlashMeaning(row.meaningVi, 3))}</small>` : ''}
               </span>
               <b type="button" role="button" tabindex="0" class="hsk-popup-inline-speaker" data-hsk-speak="${escapeHtml(row.word)}" aria-label="Nghe ${escapeHtml(row.word)}">🔊</b>
             </button>
@@ -2448,10 +2503,8 @@ if(window.HanziWriter){
   }
 
   function renderPopupCharacters(item){
-    const chars = Array.isArray(item?.chars) ? item.chars : [];
-    if(!chars.length){
-      return '';
-    }
+    const chars = normalizePopupCharRows(item);
+    if(!chars.length) return '';
     return `
       <section class="hsk-popup-section">
         <h4>Từng chữ trong từ</h4>
@@ -2469,11 +2522,21 @@ if(window.HanziWriter){
     `;
   }
 
+  function collectPopupSentenceRows(item){
+    const rows = [];
+    const append = value => {
+      if(Array.isArray(value)) rows.push(...value);
+    };
+    append(item?.sampleSentences);
+    append(item?.sentences);
+    append(item?.examples);
+    append(item?.examples?.sentences);
+    return rows;
+  }
+
   function renderPopupSampleSentences(item){
-    const rows = normalizePopupSentences(item?.sampleSentences || item?.sentences || item?.examples?.sentences);
-    if(!rows.length){
-      return '';
-    }
+    const rows = normalizePopupSentences(collectPopupSentenceRows(item));
+    if(!rows.length) return '';
     return `
       <section class="hsk-popup-section hsk-popup-sentences">
         <h4>Câu mẫu</h4>
@@ -2481,8 +2544,8 @@ if(window.HanziWriter){
           ${rows.map(row => `
             <button type="button" class="hsk-popup-sentence-item" data-copy-text="${escapeHtml(row.zh)}" data-hsk-speak="${escapeHtml(row.zh)}">
               <strong>${escapeHtml(row.zh)}</strong>
-              <em>${escapeHtml(formatPinyin(row.pinyin))}</em>
-              <span>${escapeHtml(row.vi)}</span>
+              ${row.pinyin ? `<em>${escapeHtml(formatPinyin(row.pinyin))}</em>` : ''}
+              ${row.vi ? `<span>${escapeHtml(row.vi)}</span>` : ''}
               <b aria-hidden="true">🔊</b>
             </button>
           `).join('')}
@@ -2512,7 +2575,7 @@ if(window.HanziWriter){
   }
 
   function getPopupChars(item){
-    const fromItem = Array.isArray(item?.chars) ? item.chars.map(row => row?.char).filter(Boolean) : [];
+    const fromItem = normalizePopupCharRows(item).map(row => row.char).filter(Boolean);
     const fromWord = getHanziChars(getHskWordKey(item));
     return Array.from(new Set([...fromItem, ...fromWord]));
   }
@@ -2545,7 +2608,7 @@ if(window.HanziWriter){
     `;
   }
 
-  function renderHskPopup(item){
+  function renderHskPopup(item, options = {}){
     const word = getHskWordKey(item);
     const pinyin = formatPinyin(item?.pinyin);
     const meaning = String(item?.meaningVi || '').trim();
@@ -2582,6 +2645,10 @@ if(window.HanziWriter){
     popup.hidden = false;
     document.body.classList.add('hsk-popup-open');
     window.setTimeout(initPopupWriter, 60);
+    if(!options.skipEnrich){
+      const loadId = ++hskState.popupLoadId;
+      enrichHskPopupItem(item, loadId);
+    }
   }
 
   function normalizeSeedRelatedWords(rows){
@@ -2596,14 +2663,46 @@ if(window.HanziWriter){
   }
 
   function normalizePopupSentences(rows){
+    const seen = new Set();
     return (Array.isArray(rows) ? rows : [])
       .map(row => ({
-        zh: String(row?.zh || row?.sentence || '').trim(),
-        pinyin: String(row?.pinyin || '').trim(),
-        vi: String(row?.vi || row?.meaningVi || '').trim()
+        zh: String(row?.zh || row?.chinese || row?.hanzi || row?.sentence || row?.text || '').trim(),
+        pinyin: String(row?.pinyin || row?.py || '').trim(),
+        vi: String(row?.vi || row?.vietnamese || row?.meaningVi || row?.meaning_vi || row?.meaning || row?.translation || '').trim()
       }))
-      .filter(row => row.zh && row.pinyin && row.vi)
+      .filter(row => {
+        if(!row.zh || seen.has(row.zh)) return false;
+        seen.add(row.zh);
+        return true;
+      })
       .slice(0, 5);
+  }
+
+  async function enrichHskPopupItem(item, loadId){
+    const chars = normalizePopupCharRows(item);
+    if(!chars.length) return;
+    const infos = await Promise.all(chars.map(row => loadLocalCharInfo(row.char)));
+    if(loadId !== hskState.popupLoadId || getHskWordKey(item) !== hskState.popupWord) return;
+
+    const enrichedChars = chars.map((row, index) => {
+      const info = infos[index] || {};
+      return {
+        ...info,
+        ...row,
+        char: row.char,
+        pinyin: row.pinyin || info.pinyin || '',
+        meaningVi: row.meaningVi || info.meaningVi || '',
+        hanViet: row.hanViet || info.hanViet || '',
+        relatedWords: [
+          ...(Array.isArray(row.relatedWords) ? row.relatedWords : []),
+          ...(Array.isArray(info.relatedWords) ? info.relatedWords : [])
+        ]
+      };
+    });
+    const current = mergePopupSeed(findHskItem(hskState.popupWord) || getFallbackItem(hskState.popupWord, hskState.popupSeed || {}), hskState.popupSeed || {});
+    if(!current) return;
+    current.chars = enrichedChars;
+    renderHskPopup(current, { skipEnrich: true });
   }
 
   function mergePopupSeed(item, seed = {}){
@@ -2638,7 +2737,7 @@ if(window.HanziWriter){
     }
     const word = getHskWordKey(base);
     if(seedPinyin || seedMeaning){
-      const chars = Array.isArray(base.chars) ? base.chars.map(row => ({ ...row })) : [];
+      const chars = normalizePopupCharRows(base).map(row => ({ ...row }));
       if(getHanziChars(word).length === 1){
         const idx = chars.findIndex(row => row?.char === word);
         const merged = { char: word, ...(idx >= 0 ? chars[idx] : {}) };
@@ -2834,24 +2933,40 @@ if(window.HanziWriter){
     return null;
   }
 
-  function renderGrammarCard(item, index){
-    const topic = String(item?.topic || 'Ngữ pháp').trim();
-    const syntax = String(item?.syntax || item?.grammar_syntax || '').trim();
-    const examples = Array.isArray(item?.examples) ? item.examples : (Array.isArray(item?.example) ? item.example : []);
-    const chapter = item?.chapter || item?.from_book_chapter || '';
-    const id = getGrammarItemId(item);
+  function normalizeGrammarItem(item){
+    const examples = Array.isArray(item?.examples)
+      ? item.examples
+      : (Array.isArray(item?.example) ? item.example : []);
+    const chapterValue = item?.chapter ?? item?.from_book_chapter ?? '';
+    const chapterNumber = Number(chapterValue);
+    return {
+      id: getGrammarItemId(item),
+      topic: String(item?.topic || 'Ngữ pháp').trim(),
+      syntax: String(item?.syntax || item?.grammar_syntax || '').trim(),
+      explanation: String(item?.explanation || item?.grammar_explanation || '').trim(),
+      tips: String(item?.tips || item?.grammar_tips || '').trim(),
+      attentions: String(item?.attentions || item?.grammar_attentions || '').trim(),
+      examples,
+      chapter: Number.isFinite(chapterNumber) && chapterNumber > 0 ? chapterNumber : ''
+    };
+  }
+
+  function renderGrammarCard(item){
+    const grammar = normalizeGrammarItem(item);
+    const chapterLabel = grammar.chapter
+      ? `BÀI ${String(grammar.chapter).padStart(2, '0')}`
+      : 'NGỮ PHÁP';
+    const exampleLabel = `${grammar.examples.length.toLocaleString('vi-VN')} ví dụ`;
     return `
-      <article class="hsk-item hsk-grammar-item" tabindex="0" data-hsk-grammar-id="${escapeHtml(id)}" data-copy-text="${escapeHtml(topic)}">
-        <div class="hsk-item-main">
-          <div class="hsk-grammar-title-row">
-            <strong class="hsk-grammar-order">${String(index + 1).padStart(2, '0')}</strong>
-            <span class="hsk-grammar-topic">${escapeHtml(topic)}</span>
+      <article class="hsk-item hsk-grammar-item" tabindex="0" data-hsk-grammar-id="${escapeHtml(grammar.id)}" data-copy-text="${escapeHtml(grammar.topic)}">
+        <div class="hsk-item-main hsk-grammar-card-main">
+          <div class="hsk-grammar-card-meta">
+            <span class="hsk-grammar-chapter-badge">${escapeHtml(chapterLabel)}</span>
+            <span class="hsk-grammar-example-count">${escapeHtml(exampleLabel)}</span>
           </div>
-          ${syntax ? `<p class="hsk-grammar-syntax">${escapeHtml(syntax)}</p>` : ''}
-          <div class="hsk-meta-line">
-            ${chapter ? `<span>Bài ${escapeHtml(chapter)}</span>` : ''}
-            <span>${examples.length.toLocaleString('vi-VN')} ví dụ</span>
-          </div>
+          <h3 class="hsk-grammar-topic">${escapeHtml(grammar.topic)}</h3>
+          ${grammar.syntax ? `<p class="hsk-grammar-syntax">${escapeHtml(grammar.syntax)}</p>` : ''}
+          ${grammar.explanation ? `<p class="hsk-grammar-preview">${escapeHtml(grammar.explanation)}</p>` : ''}
         </div>
       </article>
     `;
@@ -2935,44 +3050,68 @@ if(window.HanziWriter){
     if(!item) return;
     const popup = ensureHskPopup();
     const body = getHskPopupBody();
-    const topic = String(item?.topic || 'Ngữ pháp').trim();
-    const syntax = String(item?.syntax || item?.grammar_syntax || '').trim();
-    const explanation = String(item?.explanation || item?.grammar_explanation || '').trim();
-    const tips = String(item?.tips || item?.grammar_tips || '').trim();
-    const attentions = String(item?.attentions || item?.grammar_attentions || '').trim();
+    const grammar = normalizeGrammarItem(item);
     const examples = normalizeGrammarExamples(item);
-    const chapter = item?.chapter || item?.from_book_chapter || '';
+    const levelLabel = getHskLevelLabel(hskState.currentLevel);
+    const sourceLabel = getHskSourceLabel();
+    const chapterLabel = grammar.chapter ? `Bài ${grammar.chapter}` : '';
+    const exampleLabel = `${examples.length.toLocaleString('vi-VN')} ví dụ`;
+    const metaItems = [sourceLabel, levelLabel, chapterLabel, exampleLabel].filter(Boolean);
+
+    const renderGrammarBlock = (type, label, text, icon = '') => {
+      if(!text) return '';
+      return `
+        <section class="hsk-popup-section hsk-grammar-detail-block hsk-grammar-detail-${escapeHtml(type)}">
+          <div class="hsk-grammar-detail-head">
+            ${icon ? `<span class="hsk-grammar-detail-icon" aria-hidden="true">${escapeHtml(icon)}</span>` : ''}
+            <h4>${escapeHtml(label)}</h4>
+          </div>
+          <p class="hsk-grammar-text" data-copy-text="${escapeHtml(text)}">${escapeHtml(text)}</p>
+        </section>
+      `;
+    };
+
     body.innerHTML = `
       <div class="hsk-popup-topbar">
         <button type="button" class="hsk-popup-back" data-hsk-popup-close>← Quay về Ngữ pháp</button>
         <button type="button" class="hsk-popup-close" data-hsk-popup-close aria-label="Đóng">×</button>
       </div>
-      <section class="hsk-popup-hero hsk-grammar-hero">
+      <section class="hsk-popup-hero hsk-grammar-hero hsk-grammar-detail-hero">
         <div>
-          <h3 data-copy-text="${escapeHtml(topic)}">${escapeHtml(topic)}</h3>
-          ${syntax ? `<p class="hsk-popup-pinyin hsk-grammar-syntax-main">${escapeHtml(syntax)}</p>` : ''}
-          ${chapter ? `<p class="hsk-popup-meaning">Bài ${escapeHtml(chapter)} · ${escapeHtml(getHskLevelLabel(hskState.currentLevel))} · ${escapeHtml(getHskSourceLabel())}</p>` : `<p class="hsk-popup-meaning">${escapeHtml(getHskLevelLabel(hskState.currentLevel))} · ${escapeHtml(getHskSourceLabel())}</p>`}
+          <div class="hsk-grammar-hero-kicker">NGỮ PHÁP</div>
+          <h3 data-copy-text="${escapeHtml(grammar.topic)}">${escapeHtml(grammar.topic)}</h3>
+          <div class="hsk-grammar-hero-meta">
+            ${metaItems.map(value => `<span>${escapeHtml(value)}</span>`).join('')}
+          </div>
         </div>
       </section>
-      ${syntax ? `<section class="hsk-popup-section"><h4>Cấu trúc</h4><p class="hsk-grammar-text" data-copy-text="${escapeHtml(syntax)}">${escapeHtml(syntax)}</p></section>` : ''}
-      ${explanation ? `<section class="hsk-popup-section"><h4>Giải thích</h4><p class="hsk-grammar-text">${escapeHtml(explanation)}</p></section>` : ''}
-      ${tips ? `<section class="hsk-popup-section"><h4>Mẹo nhớ</h4><p class="hsk-grammar-text">${escapeHtml(tips)}</p></section>` : ''}
-      ${attentions ? `<section class="hsk-popup-section"><h4>Lưu ý</h4><p class="hsk-grammar-text">${escapeHtml(attentions)}</p></section>` : ''}
-      ${examples.length ? `
-        <section class="hsk-popup-section hsk-grammar-examples">
-          <h4>Ví dụ</h4>
-          <div class="hsk-popup-sentence-list">
-            ${examples.map(row => `
-              <button type="button" class="hsk-popup-sentence-item" data-copy-text="${escapeHtml(row.chinese)}" data-hsk-speak="${escapeHtml(row.chinese)}">
-                <strong>${escapeHtml(row.chinese)}</strong>
-                ${row.pinyin ? `<em>${escapeHtml(formatPinyin(row.pinyin))}</em>` : ''}
-                <span>${escapeHtml(row.vietnamese)}</span>
-                <b aria-hidden="true">🔊</b>
-              </button>
-            `).join('')}
-          </div>
-        </section>
-      ` : ''}
+      <div class="hsk-grammar-detail-stack">
+        ${renderGrammarBlock('syntax', 'Cấu trúc', grammar.syntax)}
+        ${renderGrammarBlock('explanation', 'Giải thích', grammar.explanation)}
+        ${renderGrammarBlock('tips', 'Mẹo nhớ', grammar.tips, '💡')}
+        ${renderGrammarBlock('attention', 'Lưu ý', grammar.attentions, '!')}
+        ${examples.length ? `
+          <section class="hsk-popup-section hsk-grammar-examples hsk-grammar-detail-examples">
+            <div class="hsk-grammar-examples-head">
+              <h4>Ví dụ</h4>
+              <span>${escapeHtml(exampleLabel)}</span>
+            </div>
+            <div class="hsk-grammar-example-list">
+              ${examples.map((row, index) => `
+                <article class="hsk-grammar-example-card" data-copy-text="${escapeHtml(row.chinese)}">
+                  <span class="hsk-grammar-example-index">${String(index + 1).padStart(2, '0')}</span>
+                  <div class="hsk-grammar-example-main">
+                    <strong>${escapeHtml(row.chinese)}</strong>
+                    ${row.pinyin ? `<em>${escapeHtml(formatPinyin(row.pinyin))}</em>` : ''}
+                    ${row.vietnamese ? `<span>${escapeHtml(row.vietnamese)}</span>` : ''}
+                  </div>
+                  <button type="button" class="hsk-grammar-example-speaker" data-hsk-speak="${escapeHtml(row.chinese)}" aria-label="Nghe ${escapeHtml(row.chinese)}">🔊</button>
+                </article>
+              `).join('')}
+            </div>
+          </section>
+        ` : ''}
+      </div>
     `;
     popup.hidden = false;
     document.body.classList.add('hsk-popup-open');
@@ -3080,6 +3219,7 @@ if(window.HanziWriter){
       return;
     }
     hskState.groupMode = nextMode;
+    saveStoredHskMode(nextMode);
     hskState.topicKey = 'all';
     hskState.wordFilter = 'all';
     if(hskState.groupMode === 'grammar'){
