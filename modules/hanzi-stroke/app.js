@@ -1273,11 +1273,314 @@ if(window.HanziWriter){
     wordFilter: 'all',
     sourceKey: 'hsk',
     levelLoading: false,
-    vocabViewMode: 'list'
+    vocabViewMode: 'list',
+    flashcardSession: null,
+    flashcardStatsOpen: false
   };
 
   const HSK_MODE_STORAGE_KEY = 'hanziStroke.hskLastModeBySourceLevel.v1';
   const HSK_VOCAB_VIEW_STORAGE_KEY = 'hanziStroke.hskVocabViewMode.v1';
+  const HSK_FLASHCARD_SETTINGS_KEY = 'hanziStroke.hskFlashcardSettings.v1';
+  const HSK_FLASHCARD_RESULTS_KEY = 'hanziStroke.hskFlashcardResults.v1';
+  const HSK_FLASHCARD_ACTIVE_SESSION_KEY = 'hanziStroke.hskFlashcardActiveSession.v1';
+  const FLASHCARD_DB_NAME = 'hanziStrokeFlashcards';
+  const FLASHCARD_DB_VERSION = 1;
+  const FLASHCARD_DECK_STORE = 'decks';
+  let flashcardTouchStart = null;
+  let flashcardSuppressClickUntil = 0;
+  let tabFlashcards = null;
+  let flashcardLibraryView = null;
+  const flashcardLibraryState = { decks: [], editingDeck: null, message: '' };
+
+  function makeLocalId(prefix = 'id'){
+    if(window.crypto?.randomUUID) return `${prefix}-${window.crypto.randomUUID()}`;
+    return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+  }
+
+  function openFlashcardDb(){
+    return new Promise((resolve, reject) => {
+      if(!window.indexedDB){ reject(new Error('Trình duyệt không hỗ trợ IndexedDB.')); return; }
+      const request = window.indexedDB.open(FLASHCARD_DB_NAME, FLASHCARD_DB_VERSION);
+      request.onupgradeneeded = () => {
+        const db = request.result;
+        if(!db.objectStoreNames.contains(FLASHCARD_DECK_STORE)){
+          db.createObjectStore(FLASHCARD_DECK_STORE, { keyPath: 'id' });
+        }
+      };
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error || new Error('Không mở được IndexedDB.'));
+    });
+  }
+
+  async function withDeckStore(mode, callback){
+    const db = await openFlashcardDb();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(FLASHCARD_DECK_STORE, mode);
+      const store = tx.objectStore(FLASHCARD_DECK_STORE);
+      let value;
+      try{ value = callback(store); }catch(err){ db.close(); reject(err); return; }
+      tx.oncomplete = () => { db.close(); resolve(value); };
+      tx.onerror = () => { db.close(); reject(tx.error || new Error('Lỗi IndexedDB.')); };
+      tx.onabort = () => { db.close(); reject(tx.error || new Error('Giao dịch bị hủy.')); };
+    });
+  }
+
+  async function getAllCustomDecks(){
+    const db = await openFlashcardDb();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(FLASHCARD_DECK_STORE, 'readonly');
+      const request = tx.objectStore(FLASHCARD_DECK_STORE).getAll();
+      request.onsuccess = () => resolve((request.result || []).sort((a,b) => String(b.updatedAt || '').localeCompare(String(a.updatedAt || ''))));
+      request.onerror = () => reject(request.error || new Error('Không đọc được bộ thẻ.'));
+      tx.oncomplete = () => db.close();
+    });
+  }
+
+  async function saveCustomDeck(deck){
+    const now = new Date().toISOString();
+    const clean = {
+      id: String(deck.id || makeLocalId('deck')),
+      name: String(deck.name || '').trim() || 'Bộ thẻ chưa đặt tên',
+      description: String(deck.description || '').trim(),
+      createdAt: deck.createdAt || now,
+      updatedAt: now,
+      cards: (deck.cards || []).map(card => ({
+        id: String(card.id || makeLocalId('card')),
+        word: String(card.word || '').trim(),
+        pinyin: String(card.pinyin || '').trim(),
+        meaningVi: String(card.meaningVi || '').trim()
+      })).filter(card => card.word)
+    };
+    await withDeckStore('readwrite', store => store.put(clean));
+    return clean;
+  }
+
+  async function deleteCustomDeck(id){
+    await withDeckStore('readwrite', store => store.delete(id));
+  }
+
+  async function importCustomDecks(decks){
+    const db = await openFlashcardDb();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(FLASHCARD_DECK_STORE, 'readwrite');
+      const store = tx.objectStore(FLASHCARD_DECK_STORE);
+      for(const raw of decks || []){
+        const deck = {
+          id: String(raw.id || makeLocalId('deck')),
+          name: String(raw.name || 'Bộ thẻ đã nhập'),
+          description: String(raw.description || ''),
+          createdAt: raw.createdAt || new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+          cards: (raw.cards || []).map(card => ({
+            id: String(card.id || makeLocalId('card')),
+            word: String(card.word || '').trim(),
+            pinyin: String(card.pinyin || '').trim(),
+            meaningVi: String(card.meaningVi || '').trim()
+          })).filter(card => card.word)
+        };
+        store.put(deck);
+      }
+      tx.oncomplete = () => { db.close(); resolve(); };
+      tx.onerror = () => { db.close(); reject(tx.error || new Error('Không nhập được dữ liệu.')); };
+    });
+  }
+
+  function ensureFlashcardLibraryUi(){
+    if(tabFlashcards && flashcardLibraryView) return;
+    const tabHost = tabHsk.parentElement;
+    const viewHost = hskView.parentElement;
+    if(!tabHost || !viewHost) return;
+    tabFlashcards = document.createElement('button');
+    tabFlashcards.type = 'button';
+    tabFlashcards.id = 'studyTabFlashcards';
+    tabFlashcards.className = tabHsk.className;
+    tabFlashcards.setAttribute('role', 'tab');
+    tabFlashcards.setAttribute('aria-selected', 'false');
+    tabFlashcards.textContent = 'Thẻ';
+    tabHost.appendChild(tabFlashcards);
+    flashcardLibraryView = document.createElement('section');
+    flashcardLibraryView.id = 'flashcardLibraryView';
+    flashcardLibraryView.className = hskView.className;
+    flashcardLibraryView.hidden = true;
+    viewHost.appendChild(flashcardLibraryView);
+    tabFlashcards.addEventListener('click', () => setStudyTab('flashcards'));
+    flashcardLibraryView.addEventListener('click', event => { event.stopPropagation(); handleFlashcardLibraryClick(event); });
+    flashcardLibraryView.addEventListener('change', handleFlashcardLibraryChange);
+  }
+
+  async function renderFlashcardLibrary(){
+    ensureFlashcardLibraryUi();
+    if(!flashcardLibraryView) return;
+    if(flashcardLibraryState.editingDeck){
+      const deck = flashcardLibraryState.editingDeck;
+      flashcardLibraryView.innerHTML = `
+        <div class="flashcard-library-page">
+          <header class="flashcard-library-header">
+            <button type="button" class="flashcard-library-back" data-flashcard-library-cancel>← Thư viện</button>
+            <div><span>BỘ THẺ TỰ TẠO</span><h2>${escapeHtml(deck.isNew ? 'Tạo bộ thẻ mới' : 'Chỉnh sửa bộ thẻ')}</h2></div>
+          </header>
+          <section class="flashcard-deck-editor">
+            <label>Tên bộ<input type="text" data-flashcard-deck-name value="${escapeHtml(deck.name || '')}" placeholder="Ví dụ: Từ vựng du lịch"></label>
+            <label>Mô tả<textarea data-flashcard-deck-description rows="2" placeholder="Ghi chú ngắn về bộ thẻ">${escapeHtml(deck.description || '')}</textarea></label>
+            <div class="flashcard-card-entry">
+              <input type="text" data-flashcard-card-word placeholder="Hán tự, ví dụ 咖啡">
+              <input type="text" data-flashcard-card-pinyin placeholder="Pinyin, ví dụ kāfēi">
+              <input type="text" data-flashcard-card-meaning placeholder="Nghĩa Việt, ví dụ cà phê">
+              <button type="button" data-flashcard-card-add>+ Thêm thẻ</button>
+            </div>
+            <div class="flashcard-editor-card-list">
+              ${(deck.cards || []).length ? deck.cards.map((card,index) => `
+                <article>
+                  <div><b>${escapeHtml(card.word)}</b><span>${escapeHtml(card.pinyin || '')}</span><p>${escapeHtml(card.meaningVi || '')}</p></div>
+                  <button type="button" data-flashcard-card-remove="${index}" aria-label="Xóa thẻ">×</button>
+                </article>`).join('') : '<p class="flashcard-library-empty">Chưa có thẻ. Hãy nhập ít nhất một từ.</p>'}
+            </div>
+            <div class="flashcard-editor-actions">
+              <button type="button" class="hsk-flashcard-secondary" data-flashcard-library-cancel>Hủy</button>
+              <button type="button" class="hsk-flashcard-start" data-flashcard-deck-save>Lưu bộ thẻ · ${(deck.cards || []).length}</button>
+            </div>
+          </section>
+        </div>`;
+      return;
+    }
+    try{
+      flashcardLibraryState.decks = await getAllCustomDecks();
+      flashcardLibraryState.message = '';
+    }catch(err){
+      flashcardLibraryState.message = err.message || 'Không đọc được bộ thẻ tự tạo.';
+      flashcardLibraryState.decks = [];
+    }
+    const stats = getFlashcardStats();
+    flashcardLibraryView.innerHTML = `
+      <div class="flashcard-library-page">
+        <header class="flashcard-library-header">
+          <div><span>FLASHCARD</span><h2>Thư viện bộ thẻ</h2><p>Học lại thẻ HSK và quản lý bộ thẻ tự tạo.</p></div>
+          <button type="button" class="flashcard-library-primary" data-flashcard-deck-new>+ Tạo bộ</button>
+        </header>
+        ${flashcardLibraryState.message ? `<p class="flashcard-library-message">${escapeHtml(flashcardLibraryState.message)}</p>` : ''}
+        <section class="flashcard-library-tools">
+          <button type="button" data-flashcard-export>Xuất JSON</button>
+          <button type="button" data-flashcard-import-trigger>Nhập JSON</button>
+          <input type="file" accept="application/json,.json" data-flashcard-import-file hidden>
+          <button type="button" class="danger" data-flashcard-reset-history>Xóa lịch sử</button>
+          <button type="button" class="danger ghost" data-flashcard-reset-session>Đặt lại phiên dở</button>
+        </section>
+        <section class="flashcard-library-review">
+          <div class="flashcard-library-section-head"><div><h3>Ôn từ kết quả đã lưu</h3><p>${stats.total} thẻ đã học · ${stats.review} Ôn · ${stats.hard} Khó</p></div><button type="button" data-hsk-flashcard-stats>Xem thống kê</button></div>
+          <div class="flashcard-library-review-actions">
+            <button type="button" data-hsk-flashcard-study-group="review" ${stats.review ? '' : 'disabled'}>Ôn ${stats.review}</button>
+            <button type="button" data-hsk-flashcard-study-group="hard" ${stats.hard ? '' : 'disabled'}>Khó ${stats.hard}</button>
+            <button type="button" data-hsk-flashcard-study-group="review-hard" ${(stats.review + stats.hard) ? '' : 'disabled'}>Ôn + Khó ${stats.review + stats.hard}</button>
+          </div>
+        </section>
+        <section class="flashcard-library-decks">
+          <div class="flashcard-library-section-head"><div><h3>Bộ thẻ tự tạo</h3><p>Lưu trên trình duyệt bằng IndexedDB.</p></div><span>${flashcardLibraryState.decks.length} bộ</span></div>
+          <div class="flashcard-deck-grid">
+            ${flashcardLibraryState.decks.length ? flashcardLibraryState.decks.map(deck => `
+              <article class="flashcard-deck-card">
+                <div><h4>${escapeHtml(deck.name)}</h4><p>${escapeHtml(deck.description || 'Không có mô tả')}</p><span>${(deck.cards || []).length} thẻ</span></div>
+                <div class="flashcard-deck-card-actions">
+                  <button type="button" data-flashcard-deck-study="${escapeHtml(deck.id)}" ${(deck.cards || []).length ? '' : 'disabled'}>Học</button>
+                  <button type="button" data-flashcard-deck-edit="${escapeHtml(deck.id)}">Sửa</button>
+                  <button type="button" class="danger" data-flashcard-deck-delete="${escapeHtml(deck.id)}">Xóa</button>
+                </div>
+              </article>`).join('') : '<p class="flashcard-library-empty">Chưa có bộ thẻ tự tạo.</p>'}
+          </div>
+        </section>
+      </div>`;
+  }
+
+  async function exportFlashcardBackup(){
+    const decks = await getAllCustomDecks();
+    const payload = { version: 1, type: 'hanzi-flashcard-backup', exportedAt: new Date().toISOString(), decks, results: readFlashcardResults() };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `hanzi-flashcard-backup-${new Date().toISOString().slice(0,10)}.json`;
+    document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+  }
+
+  async function importFlashcardBackup(file){
+    const parsed = JSON.parse(await file.text());
+    const decks = Array.isArray(parsed) ? parsed : (Array.isArray(parsed.decks) ? parsed.decks : []);
+    if(!decks.length && !parsed.results) throw new Error('File JSON không có dữ liệu Flashcard hợp lệ.');
+    if(decks.length) await importCustomDecks(decks);
+    if(parsed.results && typeof parsed.results === 'object'){
+      const merged = { ...readFlashcardResults(), ...parsed.results };
+      window.localStorage?.setItem(HSK_FLASHCARD_RESULTS_KEY, JSON.stringify(merged));
+    }
+    await renderFlashcardLibrary();
+  }
+
+  function resetFlashcardHistory(){
+    if(!window.confirm('Xóa toàn bộ lịch sử Dễ / Ôn / Khó? Bộ thẻ tự tạo sẽ được giữ lại.')) return;
+    window.localStorage?.removeItem(HSK_FLASHCARD_RESULTS_KEY);
+    renderFlashcardLibrary();
+  }
+
+  function resetActiveFlashcardSession(){
+    if(!window.confirm('Xóa phiên Flashcard đang học dở?')) return;
+    clearPersistedFlashcardSession();
+    hskState.flashcardSession = null;
+    hskState.flashcardStatsOpen = false;
+    renderFlashcardLibrary();
+  }
+
+  async function handleFlashcardLibraryClick(event){
+    const target = event.target;
+    if(target.closest('[data-hsk-flashcard-stats]')){ openFlashcardStats(); return; }
+    const reviewGroup = target.closest('[data-hsk-flashcard-study-group]');
+    if(reviewGroup && !reviewGroup.disabled){ startFlashcardStatsGroup(reviewGroup.dataset.hskFlashcardStudyGroup || 'review-hard'); return; }
+    if(target.closest('[data-flashcard-deck-new]')){
+      flashcardLibraryState.editingDeck = { id: makeLocalId('deck'), name: '', description: '', cards: [], isNew: true };
+      renderFlashcardLibrary(); return;
+    }
+    if(target.closest('[data-flashcard-library-cancel]')){ flashcardLibraryState.editingDeck = null; renderFlashcardLibrary(); return; }
+    const edit = target.closest('[data-flashcard-deck-edit]');
+    if(edit){
+      const deck = flashcardLibraryState.decks.find(item => item.id === edit.dataset.flashcardDeckEdit);
+      if(deck){ flashcardLibraryState.editingDeck = JSON.parse(JSON.stringify({ ...deck, isNew: false })); renderFlashcardLibrary(); }
+      return;
+    }
+    const del = target.closest('[data-flashcard-deck-delete]');
+    if(del && window.confirm('Xóa bộ thẻ này?')){ await deleteCustomDeck(del.dataset.flashcardDeckDelete); await renderFlashcardLibrary(); return; }
+    const study = target.closest('[data-flashcard-deck-study]');
+    if(study){
+      const deck = flashcardLibraryState.decks.find(item => item.id === study.dataset.flashcardDeckStudy);
+      if(deck){ createFlashcardSessionFromCards((deck.cards || []).map(card => ({ id: `custom:${deck.id}:${card.id}`, word: card.word, pinyin: card.pinyin, meaningVi: card.meaningVi })), deck.name); }
+      return;
+    }
+    if(target.closest('[data-flashcard-card-add]')){
+      const word = flashcardLibraryView.querySelector('[data-flashcard-card-word]')?.value.trim() || '';
+      const pinyin = flashcardLibraryView.querySelector('[data-flashcard-card-pinyin]')?.value.trim() || '';
+      const meaningVi = flashcardLibraryView.querySelector('[data-flashcard-card-meaning]')?.value.trim() || '';
+      if(!word){ window.alert('Vui lòng nhập Hán tự.'); return; }
+      flashcardLibraryState.editingDeck.cards.push({ id: makeLocalId('card'), word, pinyin, meaningVi });
+      renderFlashcardLibrary(); return;
+    }
+    const remove = target.closest('[data-flashcard-card-remove]');
+    if(remove){ flashcardLibraryState.editingDeck.cards.splice(Number(remove.dataset.flashcardCardRemove), 1); renderFlashcardLibrary(); return; }
+    if(target.closest('[data-flashcard-deck-save]')){
+      const name = flashcardLibraryView.querySelector('[data-flashcard-deck-name]')?.value.trim() || '';
+      const description = flashcardLibraryView.querySelector('[data-flashcard-deck-description]')?.value.trim() || '';
+      if(!name){ window.alert('Vui lòng nhập tên bộ thẻ.'); return; }
+      flashcardLibraryState.editingDeck.name = name; flashcardLibraryState.editingDeck.description = description;
+      await saveCustomDeck(flashcardLibraryState.editingDeck); flashcardLibraryState.editingDeck = null; await renderFlashcardLibrary(); return;
+    }
+    if(target.closest('[data-flashcard-export]')){ try{ await exportFlashcardBackup(); }catch(err){ window.alert(err.message || 'Không xuất được JSON.'); } return; }
+    if(target.closest('[data-flashcard-import-trigger]')){ flashcardLibraryView.querySelector('[data-flashcard-import-file]')?.click(); return; }
+    if(target.closest('[data-flashcard-reset-history]')){ resetFlashcardHistory(); return; }
+    if(target.closest('[data-flashcard-reset-session]')){ resetActiveFlashcardSession(); return; }
+  }
+
+  async function handleFlashcardLibraryChange(event){
+    const input = event.target.closest('[data-flashcard-import-file]');
+    if(!input?.files?.[0]) return;
+    try{ await importFlashcardBackup(input.files[0]); window.alert('Đã nhập dữ liệu Flashcard.'); }
+    catch(err){ window.alert(err.message || 'Không nhập được file JSON.'); }
+    input.value = '';
+  }
 
   function readStoredVocabViewMode(){
     try{
@@ -1411,20 +1714,23 @@ if(window.HanziWriter){
   }
 
   function setStudyTab(tabName){
+    ensureFlashcardLibraryUi();
     const isLookup = tabName === 'lookup';
     const isHsk = tabName === 'hsk';
     const isRadicals = tabName === 'radicals';
+    const isFlashcards = tabName === 'flashcards';
     lookupView.hidden = !isLookup;
     hskView.hidden = !isHsk;
-    if(radicalsView){
-      radicalsView.hidden = !isRadicals;
-    }
+    if(radicalsView){ radicalsView.hidden = !isRadicals; }
+    if(flashcardLibraryView){ flashcardLibraryView.hidden = !isFlashcards; }
     tabLookup.classList.toggle('active', isLookup);
     tabHsk.classList.toggle('active', isHsk);
     tabRadicals?.classList.toggle('active', isRadicals);
+    tabFlashcards?.classList.toggle('active', isFlashcards);
     tabLookup.setAttribute('aria-selected', String(isLookup));
     tabHsk.setAttribute('aria-selected', String(isHsk));
     tabRadicals?.setAttribute('aria-selected', String(isRadicals));
+    tabFlashcards?.setAttribute('aria-selected', String(isFlashcards));
 
     if(isHsk){
       stopAutoplayLoop();
@@ -1434,6 +1740,9 @@ if(window.HanziWriter){
     }else if(isRadicals){
       stopAutoplayLoop();
       window.dispatchEvent(new CustomEvent('hanzi:radicals-tab-open'));
+    }else if(isFlashcards){
+      stopAutoplayLoop();
+      renderFlashcardLibrary();
     }else{
       window.setTimeout(() => els.input?.focus(), 80);
     }
@@ -3185,10 +3494,658 @@ if(window.HanziWriter){
     document.body.classList.add('hsk-popup-open');
   }
 
+
+
+  function readFlashcardResults(){
+    try{
+      const parsed = JSON.parse(window.localStorage?.getItem(HSK_FLASHCARD_RESULTS_KEY) || '{}');
+      return parsed && typeof parsed === 'object' ? parsed : {};
+    }catch(_err){
+      return {};
+    }
+  }
+
+
+  function getFlashcardResultEntries(){
+    return Object.values(readFlashcardResults())
+      .filter(entry => entry && entry.cardId && entry.word)
+      .sort((a, b) => String(b.lastStudiedAt || '').localeCompare(String(a.lastStudiedAt || '')));
+  }
+
+  function getFlashcardStats(){
+    const entries = getFlashcardResultEntries();
+    const groups = {
+      easy: entries.filter(entry => entry.lastRating === 'easy'),
+      review: entries.filter(entry => entry.lastRating === 'review'),
+      hard: entries.filter(entry => entry.lastRating === 'hard')
+    };
+    return {
+      entries,
+      groups,
+      total: entries.length,
+      easy: groups.easy.length,
+      review: groups.review.length,
+      hard: groups.hard.length
+    };
+  }
+
+  function flashcardResultEntryToCard(entry){
+    return {
+      id: String(entry.cardId || ''),
+      word: String(entry.word || ''),
+      pinyin: String(entry.pinyin || ''),
+      meaningVi: String(entry.meaningVi || '')
+    };
+  }
+
+  function createFlashcardSessionFromCards(cards, title){
+    const cleanCards = (cards || []).filter(card => card?.id && card?.word);
+    if(!cleanCards.length) return false;
+    hskState.flashcardStatsOpen = false;
+    hskState.flashcardSession = {
+      phase: 'setup',
+      title: String(title || 'Ôn Flashcard'),
+      cards: cleanCards,
+      settings: getFlashcardSettings(),
+      index: 0,
+      flipped: false,
+      ratings: {},
+      mixedTypes: []
+    };
+    renderFlashcardOverlay();
+    return true;
+  }
+
+  function openFlashcardStats(){
+    hskState.flashcardSession = null;
+    hskState.flashcardStatsOpen = true;
+    renderFlashcardOverlay();
+  }
+
+  function startFlashcardStatsGroup(group){
+    const stats = getFlashcardStats();
+    let entries = [];
+    let title = 'Ôn Flashcard';
+    if(group === 'review'){
+      entries = stats.groups.review;
+      title = 'Thẻ cần Ôn';
+    }else if(group === 'hard'){
+      entries = stats.groups.hard;
+      title = 'Thẻ Khó';
+    }else{
+      entries = [...stats.groups.review, ...stats.groups.hard];
+      title = 'Thẻ cần Ôn và Khó';
+    }
+    createFlashcardSessionFromCards(entries.map(flashcardResultEntryToCard), title);
+  }
+
+  function saveFlashcardRatingResult(card, rating, previousRating = ''){
+    if(!card?.id || !['easy', 'review', 'hard'].includes(rating)) return;
+    try{
+      const results = readFlashcardResults();
+      const previous = results[card.id] && typeof results[card.id] === 'object' ? results[card.id] : {};
+      const changedWithinSession = ['easy', 'review', 'hard'].includes(previousRating) && previousRating !== rating;
+      const sameWithinSession = previousRating === rating;
+      const counts = {
+        easy: Number(previous.easy || 0),
+        review: Number(previous.review || 0),
+        hard: Number(previous.hard || 0)
+      };
+      if(changedWithinSession){
+        counts[previousRating] = Math.max(0, counts[previousRating] - 1);
+      }
+      if(!sameWithinSession){
+        counts[rating] += 1;
+      }
+      results[card.id] = {
+        cardId: card.id,
+        word: card.word || '',
+        pinyin: card.pinyin || '',
+        meaningVi: card.meaningVi || '',
+        easy: counts.easy,
+        review: counts.review,
+        hard: counts.hard,
+        total: Number(previous.total || 0) + (previousRating ? 0 : 1),
+        lastRating: rating,
+        lastStudiedAt: new Date().toISOString()
+      };
+      window.localStorage?.setItem(HSK_FLASHCARD_RESULTS_KEY, JSON.stringify(results));
+    }catch(_err){
+      // localStorage có thể bị chặn; kết quả vẫn được giữ trong phiên hiện tại.
+    }
+  }
+
+  function serializeFlashcardSession(session){
+    if(!session || session.phase === 'complete') return null;
+    return {
+      version: 1,
+      savedAt: Date.now(),
+      phase: session.phase,
+      title: String(session.title || ''),
+      cards: (session.cards || []).map(card => ({
+        id: String(card.id || ''),
+        word: String(card.word || ''),
+        pinyin: String(card.pinyin || ''),
+        meaningVi: String(card.meaningVi || '')
+      })).filter(card => card.id && card.word),
+      settings: {
+        mode: session.settings?.mode || 'flashcard',
+        showPinyin: session.settings?.showPinyin !== false,
+        autoPlay: Boolean(session.settings?.autoPlay),
+        shuffle: Boolean(session.settings?.shuffle)
+      },
+      index: Number(session.index || 0),
+      flipped: Boolean(session.flipped),
+      ratings: session.ratings && typeof session.ratings === 'object' ? session.ratings : {},
+      mixedTypes: Array.isArray(session.mixedTypes) ? session.mixedTypes : []
+    };
+  }
+
+  function persistFlashcardSession(){
+    const payload = serializeFlashcardSession(hskState.flashcardSession);
+    try{
+      if(payload?.cards?.length){
+        window.localStorage?.setItem(HSK_FLASHCARD_ACTIVE_SESSION_KEY, JSON.stringify(payload));
+      }else{
+        window.localStorage?.removeItem(HSK_FLASHCARD_ACTIVE_SESSION_KEY);
+      }
+    }catch(_err){
+      // localStorage có thể bị chặn; phiên vẫn hoạt động cho đến khi reload.
+    }
+  }
+
+  function clearPersistedFlashcardSession(){
+    try{
+      window.localStorage?.removeItem(HSK_FLASHCARD_ACTIVE_SESSION_KEY);
+    }catch(_err){
+      // Không cần xử lý thêm.
+    }
+  }
+
+  function restorePersistedFlashcardSession(){
+    try{
+      const raw = window.localStorage?.getItem(HSK_FLASHCARD_ACTIVE_SESSION_KEY);
+      if(!raw) return false;
+      const saved = JSON.parse(raw);
+      const cards = Array.isArray(saved?.cards) ? saved.cards.filter(card => card?.id && card?.word) : [];
+      if(!cards.length){
+        clearPersistedFlashcardSession();
+        return false;
+      }
+      const settings = saved.settings && typeof saved.settings === 'object' ? saved.settings : getFlashcardSettings();
+      const index = Math.max(0, Math.min(Number(saved.index || 0), cards.length - 1));
+      hskState.flashcardSession = {
+        phase: saved.phase === 'setup' ? 'setup' : 'study',
+        title: String(saved.title || 'Phiên Flashcard'),
+        cards,
+        settings: {
+          mode: ['flashcard', 'reverse', 'listen', 'mixed'].includes(settings.mode) ? settings.mode : 'flashcard',
+          showPinyin: settings.showPinyin !== false,
+          autoPlay: Boolean(settings.autoPlay),
+          shuffle: Boolean(settings.shuffle)
+        },
+        index,
+        flipped: Boolean(saved.flipped),
+        ratings: saved.ratings && typeof saved.ratings === 'object' ? saved.ratings : {},
+        mixedTypes: Array.isArray(saved.mixedTypes) && saved.mixedTypes.length === cards.length
+          ? saved.mixedTypes
+          : cards.map((_, cardIndex) => ['flashcard', 'reverse', 'listen'][cardIndex % 3])
+      };
+      renderFlashcardOverlay();
+      if(hskState.flashcardSession.phase === 'study' && !hskState.flashcardSession.flipped){
+        maybeAutoPlayFlashcard();
+      }
+      return true;
+    }catch(_err){
+      clearPersistedFlashcardSession();
+      return false;
+    }
+  }
+
+
+  function getFlashcardSettings(){
+    const defaults = {
+      mode: 'flashcard',
+      showPinyin: true,
+      autoPlay: false,
+      shuffle: false
+    };
+    try{
+      const saved = JSON.parse(window.localStorage?.getItem(HSK_FLASHCARD_SETTINGS_KEY) || '{}');
+      return {
+        mode: ['flashcard', 'reverse', 'listen', 'mixed'].includes(saved.mode) ? saved.mode : defaults.mode,
+        showPinyin: saved.showPinyin !== false,
+        autoPlay: Boolean(saved.autoPlay),
+        shuffle: Boolean(saved.shuffle)
+      };
+    }catch(_err){
+      return defaults;
+    }
+  }
+
+  function saveFlashcardSettings(settings){
+    try{
+      window.localStorage?.setItem(HSK_FLASHCARD_SETTINGS_KEY, JSON.stringify(settings));
+    }catch(_err){
+      // localStorage có thể bị chặn; cài đặt vẫn dùng được trong phiên hiện tại.
+    }
+  }
+
+  function getSelectedFlashcardItems(){
+    if(!['lessons', 'topics'].includes(hskState.groupMode) || !hskState.topicKey || hskState.topicKey === 'all'){
+      return [];
+    }
+    const query = normalizeSearchText(hskState.query);
+    return getFilteredByMode(hskState.currentItems.filter(item => itemMatchesQuery(item, query)))
+      .map((item, index) => ({
+        id: `${hskState.sourceKey}:${hskState.currentLevel}:${hskState.topicKey}:${String(item?.word || item?.simplified || index)}`,
+        word: String(item?.word || item?.simplified || '').trim(),
+        pinyin: formatPinyin(item?.pinyin),
+        meaningVi: String(item?.meaningVi || '').trim(),
+        sourceItem: item
+      }))
+      .filter(card => card.word);
+  }
+
+  function ensureFlashcardLaunchButton(){
+    if(!hskStatus?.parentElement) return null;
+    let wrap = document.getElementById('hskFlashcardLaunchWrap');
+    if(wrap) return wrap;
+    wrap = document.createElement('div');
+    wrap.id = 'hskFlashcardLaunchWrap';
+    wrap.className = 'hsk-flashcard-launch-wrap';
+    hskStatus.insertAdjacentElement('afterend', wrap);
+    return wrap;
+  }
+
+  function renderFlashcardLaunchButton(cards = []){
+    const wrap = ensureFlashcardLaunchButton();
+    if(!wrap) return;
+    const canStudy = cards.length > 0 && ['lessons', 'topics'].includes(hskState.groupMode) && hskState.topicKey !== 'all';
+    const stats = getFlashcardStats();
+    const showStats = stats.total > 0;
+    wrap.hidden = !canStudy && !showStats;
+    wrap.innerHTML = `
+      ${canStudy ? `
+        <button type="button" class="hsk-flashcard-launch" data-hsk-flashcard-open>
+          <span aria-hidden="true">🎓</span>
+          <span>Học Flashcard</span>
+          <small>${cards.length.toLocaleString('vi-VN')} thẻ</small>
+        </button>
+      ` : ''}
+      ${showStats ? `
+        <button type="button" class="hsk-flashcard-launch hsk-flashcard-launch--stats" data-hsk-flashcard-stats>
+          <span aria-hidden="true">📊</span>
+          <span>Thống kê</span>
+          <small>${stats.review + stats.hard} cần ôn</small>
+        </button>
+      ` : ''}
+    `;
+  }
+
+  function getFlashcardSectionTitle(){
+    return getSelectedLearningLabel() || `${getHskSourceLabel()} · ${getHskLevelLabel(hskState.currentLevel)}`;
+  }
+
+  function ensureFlashcardOverlay(){
+    let overlay = document.getElementById('hskFlashcardOverlay');
+    if(overlay) return overlay;
+    overlay = document.createElement('div');
+    overlay.id = 'hskFlashcardOverlay';
+    overlay.className = 'hsk-flashcard-overlay';
+    overlay.hidden = true;
+    overlay.innerHTML = '<section class="hsk-flashcard-shell" role="dialog" aria-modal="true" aria-label="Học Flashcard"><div id="hskFlashcardBody"></div></section>';
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click', event => {
+      if(event.target === overlay) closeFlashcardOverlay();
+    });
+    overlay.addEventListener('touchstart', event => {
+      const card = event.target.closest('[data-hsk-flashcard-flip]');
+      if(!card || event.touches.length !== 1 || event.target.closest('button')){
+        flashcardTouchStart = null;
+        return;
+      }
+      const touch = event.touches[0];
+      flashcardTouchStart = { x: touch.clientX, y: touch.clientY, time: Date.now() };
+    }, { passive: true });
+    overlay.addEventListener('touchend', event => {
+      if(!flashcardTouchStart || event.changedTouches.length !== 1){
+        flashcardTouchStart = null;
+        return;
+      }
+      const touch = event.changedTouches[0];
+      const dx = touch.clientX - flashcardTouchStart.x;
+      const dy = touch.clientY - flashcardTouchStart.y;
+      const elapsed = Date.now() - flashcardTouchStart.time;
+      flashcardTouchStart = null;
+      if(elapsed > 900 || Math.abs(dx) < 55 || Math.abs(dx) < Math.abs(dy) * 1.25) return;
+      flashcardSuppressClickUntil = Date.now() + 400;
+      moveFlashcard(dx < 0 ? 1 : -1);
+    }, { passive: true });
+    return overlay;
+  }
+
+  function closeFlashcardOverlay(){
+    const overlay = document.getElementById('hskFlashcardOverlay');
+    if(!overlay) return;
+    overlay.hidden = true;
+    document.body.classList.remove('hsk-flashcard-open');
+    window.speechSynthesis?.cancel?.();
+    hskState.flashcardStatsOpen = false;
+    if(hskState.flashcardSession){
+      clearPersistedFlashcardSession();
+    }
+    const selectedCards = (hskState.topicKey && hskState.topicKey !== 'all') ? getSelectedFlashcardItems() : [];
+    renderFlashcardLaunchButton(selectedCards);
+  }
+
+  function openFlashcardSetup(){
+    hskState.flashcardStatsOpen = false;
+    const cards = getSelectedFlashcardItems();
+    if(!cards.length) return;
+    hskState.flashcardSession = {
+      phase: 'setup',
+      title: getFlashcardSectionTitle(),
+      cards,
+      settings: getFlashcardSettings(),
+      index: 0,
+      flipped: false,
+      ratings: {},
+      mixedTypes: []
+    };
+    renderFlashcardOverlay();
+  }
+
+  function getFlashcardModeLabel(mode){
+    return ({
+      flashcard: 'Flashcard',
+      reverse: 'Đảo ngược',
+      listen: 'Nghe',
+      mixed: 'Hỗn hợp'
+    })[mode] || 'Flashcard';
+  }
+
+  function renderFlashcardSetup(session){
+    const settings = session.settings;
+    const modes = [
+      ['flashcard', 'Flashcard', 'Hán tự → lật xem pinyin và nghĩa'],
+      ['reverse', 'Đảo ngược', 'Nghĩa Việt → đoán chữ Hán'],
+      ['listen', 'Nghe', 'Nghe phát âm → nhớ lại từ và nghĩa'],
+      ['mixed', 'Hỗn hợp', 'Flashcard → Đảo ngược → Nghe']
+    ];
+    return `
+      <header class="hsk-flashcard-header">
+        <button type="button" class="hsk-flashcard-back" data-hsk-flashcard-close>← Quay lại bài</button>
+        <button type="button" class="hsk-flashcard-close" data-hsk-flashcard-close aria-label="Đóng">×</button>
+      </header>
+      <div class="hsk-flashcard-setup">
+        <div class="hsk-flashcard-title-block">
+          <span>HỌC FLASHCARD</span>
+          <h2>${escapeHtml(session.title)}</h2>
+          <p>${session.cards.length.toLocaleString('vi-VN')} thẻ trong bài</p>
+        </div>
+        <section class="hsk-flashcard-panel">
+          <h3>Chọn cách học</h3>
+          <div class="hsk-flashcard-mode-grid">
+            ${modes.map(([key, title, desc]) => `
+              <button type="button" class="hsk-flashcard-mode ${settings.mode === key ? 'active' : ''}" data-hsk-flashcard-mode="${key}" aria-pressed="${settings.mode === key}">
+                <b>${title}</b><span>${desc}</span>
+              </button>
+            `).join('')}
+          </div>
+        </section>
+        <section class="hsk-flashcard-panel hsk-flashcard-options">
+          <label><span><b>Hiện pinyin</b><small>Hiển thị pinyin sau khi mở đáp án.</small></span><input type="checkbox" data-hsk-flashcard-option="showPinyin" ${settings.showPinyin ? 'checked' : ''}></label>
+          <label><span><b>Tự phát âm</b><small>Tự đọc theo chế độ học hiện tại.</small></span><input type="checkbox" data-hsk-flashcard-option="autoPlay" ${settings.autoPlay ? 'checked' : ''}></label>
+          <label><span><b>Xáo trộn thứ tự</b><small>Trộn bộ thẻ một lần khi bắt đầu.</small></span><input type="checkbox" data-hsk-flashcard-option="shuffle" ${settings.shuffle ? 'checked' : ''}></label>
+        </section>
+        <button type="button" class="hsk-flashcard-start" data-hsk-flashcard-start>Bắt đầu học · ${session.cards.length.toLocaleString('vi-VN')} thẻ</button>
+      </div>
+    `;
+  }
+
+  function shuffleCards(cards){
+    const copy = [...cards];
+    for(let i = copy.length - 1; i > 0; i -= 1){
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  }
+
+  function startFlashcardSession(){
+    const session = hskState.flashcardSession;
+    if(!session) return;
+    saveFlashcardSettings(session.settings);
+    session.phase = 'study';
+    session.cards = session.settings.shuffle ? shuffleCards(session.cards) : [...session.cards];
+    session.index = 0;
+    session.flipped = false;
+    session.ratings = {};
+    session.mixedTypes = session.cards.map((_, index) => ['flashcard', 'reverse', 'listen'][index % 3]);
+    persistFlashcardSession();
+    renderFlashcardOverlay();
+    maybeAutoPlayFlashcard();
+  }
+
+  function getCurrentFlashcardType(session){
+    if(session.settings.mode !== 'mixed') return session.settings.mode;
+    return session.mixedTypes[session.index] || 'flashcard';
+  }
+
+  function maybeAutoPlayFlashcard(){
+    const session = hskState.flashcardSession;
+    if(!session || session.phase !== 'study') return;
+    const card = session.cards[session.index];
+    const type = getCurrentFlashcardType(session);
+    if(type === 'listen' || session.settings.autoPlay){
+      window.setTimeout(() => speakChar(card?.word || ''), 100);
+    }
+  }
+
+  function renderFlashcardFace(session, card, type){
+    const answerVisible = session.flipped;
+    if(type === 'listen' && !answerVisible){
+      return `
+        <div class="hsk-flashcard-listen-front">
+          <button type="button" class="hsk-flashcard-listen-button" data-hsk-flashcard-speak aria-label="Phát âm">🔊</button>
+          <h3>Nghe và nhớ lại từ</h3>
+          <p>Bấm phát lại nếu cần, sau đó xem đáp án.</p>
+        </div>
+      `;
+    }
+    if(type === 'reverse' && !answerVisible){
+      return `
+        <div class="hsk-flashcard-front hsk-flashcard-front--reverse">
+          <small>NGHĨA TIẾNG VIỆT</small>
+          <strong>${escapeHtml(card.meaningVi || 'Chưa có nghĩa tiếng Việt')}</strong>
+          <p>Bấm để xem chữ Hán</p>
+        </div>
+      `;
+    }
+    if(!answerVisible){
+      return `
+        <div class="hsk-flashcard-front hsk-flashcard-front--hanzi">
+          <button type="button" class="hsk-flashcard-inline-speaker" data-hsk-flashcard-speak aria-label="Nghe ${escapeHtml(card.word)}">🔊</button>
+          <strong>${escapeHtml(card.word)}</strong>
+          <p>Bấm để lật thẻ</p>
+        </div>
+      `;
+    }
+    return `
+      <div class="hsk-flashcard-answer">
+        <button type="button" class="hsk-flashcard-inline-speaker" data-hsk-flashcard-speak aria-label="Nghe ${escapeHtml(card.word)}">🔊</button>
+        <strong>${escapeHtml(card.word)}</strong>
+        ${session.settings.showPinyin && card.pinyin ? `<span>${escapeHtml(card.pinyin)}</span>` : ''}
+        <p>${escapeHtml(card.meaningVi || 'Chưa có nghĩa tiếng Việt')}</p>
+      </div>
+    `;
+  }
+
+  function renderFlashcardStudy(session){
+    const card = session.cards[session.index];
+    const type = getCurrentFlashcardType(session);
+    const rating = session.ratings[card.id] || '';
+    return `
+      <header class="hsk-flashcard-header">
+        <button type="button" class="hsk-flashcard-back" data-hsk-flashcard-to-setup>← Thiết lập</button>
+        <span class="hsk-flashcard-progress">${session.index + 1} / ${session.cards.length}</span>
+        <button type="button" class="hsk-flashcard-close" data-hsk-flashcard-close aria-label="Đóng">×</button>
+      </header>
+      <div class="hsk-flashcard-study">
+        <div class="hsk-flashcard-study-meta"><b>${escapeHtml(getFlashcardModeLabel(type))}</b><span>${escapeHtml(session.title)}</span></div>
+        <div class="hsk-flashcard-card ${session.flipped ? 'is-flipped' : ''}" data-hsk-flashcard-flip role="button" tabindex="0" aria-label="Thẻ flashcard, bấm để lật">
+          ${renderFlashcardFace(session, card, type)}
+        </div>
+        ${session.flipped ? `
+          <div class="hsk-flashcard-rating" role="group" aria-label="Tự đánh giá">
+            ${[['easy','Dễ'],['review','Ôn'],['hard','Khó']].map(([key,label]) => `<button type="button" class="${rating === key ? 'active' : ''}" data-hsk-flashcard-rate="${key}">${label}</button>`).join('')}
+          </div>
+        ` : `<button type="button" class="hsk-flashcard-reveal" data-hsk-flashcard-flip>Xem đáp án</button>`}
+        <div class="hsk-flashcard-nav">
+          <button type="button" data-hsk-flashcard-prev ${session.index === 0 ? 'disabled' : ''}>← Trước</button>
+          <button type="button" data-hsk-flashcard-next>${session.index === session.cards.length - 1 ? 'Hoàn thành' : 'Tiếp →'}</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderFlashcardComplete(session){
+    const values = Object.values(session.ratings);
+    const counts = {
+      easy: values.filter(value => value === 'easy').length,
+      review: values.filter(value => value === 'review').length,
+      hard: values.filter(value => value === 'hard').length
+    };
+    return `
+      <header class="hsk-flashcard-header">
+        <button type="button" class="hsk-flashcard-back" data-hsk-flashcard-close>← Quay về bài</button>
+        <button type="button" class="hsk-flashcard-close" data-hsk-flashcard-close aria-label="Đóng">×</button>
+      </header>
+      <div class="hsk-flashcard-complete">
+        <span>HOÀN THÀNH</span>
+        <h2>${escapeHtml(session.title)}</h2>
+        <p>Đã xem ${session.cards.length.toLocaleString('vi-VN')} thẻ</p>
+        <div class="hsk-flashcard-result-grid">
+          <div><b>${counts.easy}</b><span>Dễ</span></div>
+          <div><b>${counts.review}</b><span>Ôn</span></div>
+          <div><b>${counts.hard}</b><span>Khó</span></div>
+        </div>
+        <button type="button" class="hsk-flashcard-start" data-hsk-flashcard-restart>Học lại toàn bộ</button>
+        ${(counts.review + counts.hard) > 0 ? `<button type="button" class="hsk-flashcard-secondary" data-hsk-flashcard-review>Ôn lại ${counts.review + counts.hard} thẻ</button>` : ''}
+        <button type="button" class="hsk-flashcard-secondary" data-hsk-flashcard-close>Quay về bài</button>
+      </div>
+    `;
+  }
+
+
+  function formatFlashcardStudyDate(value){
+    if(!value) return '';
+    const date = new Date(value);
+    if(Number.isNaN(date.getTime())) return '';
+    return date.toLocaleDateString('vi-VN');
+  }
+
+  function renderFlashcardStatsList(entries, emptyText){
+    if(!entries.length){
+      return `<p class="hsk-flashcard-stats-empty">${escapeHtml(emptyText)}</p>`;
+    }
+    return `
+      <div class="hsk-flashcard-stats-list">
+        ${entries.map(entry => `
+          <article class="hsk-flashcard-stats-card">
+            <div class="hsk-flashcard-stats-word">
+              <strong>${escapeHtml(entry.word)}</strong>
+              ${entry.pinyin ? `<span>${escapeHtml(entry.pinyin)}</span>` : ''}
+              ${entry.meaningVi ? `<p>${escapeHtml(entry.meaningVi)}</p>` : ''}
+            </div>
+            <div class="hsk-flashcard-stats-meta">
+              <small>${escapeHtml(formatFlashcardStudyDate(entry.lastStudiedAt))}</small>
+              <button type="button" data-hsk-flashcard-speak-word="${escapeHtml(entry.word)}" aria-label="Nghe ${escapeHtml(entry.word)}">🔊</button>
+            </div>
+          </article>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  function renderFlashcardStats(){
+    const stats = getFlashcardStats();
+    return `
+      <header class="hsk-flashcard-header">
+        <button type="button" class="hsk-flashcard-back" data-hsk-flashcard-close>← Quay về bài</button>
+        <button type="button" class="hsk-flashcard-close" data-hsk-flashcard-close aria-label="Đóng">×</button>
+      </header>
+      <div class="hsk-flashcard-stats">
+        <div class="hsk-flashcard-title-block">
+          <span>THỐNG KÊ FLASHCARD</span>
+          <h2>${stats.total.toLocaleString('vi-VN')} thẻ đã học</h2>
+          <p>Tính theo đánh giá gần nhất của mỗi thẻ.</p>
+        </div>
+        <div class="hsk-flashcard-result-grid hsk-flashcard-result-grid--stats">
+          <div><b>${stats.easy}</b><span>Dễ</span></div>
+          <div><b>${stats.review}</b><span>Ôn</span></div>
+          <div><b>${stats.hard}</b><span>Khó</span></div>
+        </div>
+        <div class="hsk-flashcard-stats-actions">
+          <button type="button" class="hsk-flashcard-secondary" data-hsk-flashcard-study-group="review" ${stats.review ? '' : 'disabled'}>Học ${stats.review} thẻ Ôn</button>
+          <button type="button" class="hsk-flashcard-secondary" data-hsk-flashcard-study-group="hard" ${stats.hard ? '' : 'disabled'}>Học ${stats.hard} thẻ Khó</button>
+          <button type="button" class="hsk-flashcard-start" data-hsk-flashcard-study-group="review-hard" ${(stats.review + stats.hard) ? '' : 'disabled'}>Học Ôn + Khó · ${stats.review + stats.hard} thẻ</button>
+          <button type="button" class="hsk-flashcard-secondary hsk-flashcard-danger" data-flashcard-reset-history>Xóa lịch sử</button>
+        </div>
+        <section class="hsk-flashcard-stats-section hsk-flashcard-stats-section--review">
+          <div class="hsk-flashcard-stats-section-head"><h3>Cần Ôn</h3><span>${stats.review} thẻ</span></div>
+          ${renderFlashcardStatsList(stats.groups.review, 'Chưa có thẻ nào được đánh dấu Ôn.')}
+        </section>
+        <section class="hsk-flashcard-stats-section hsk-flashcard-stats-section--hard">
+          <div class="hsk-flashcard-stats-section-head"><h3>Thẻ Khó</h3><span>${stats.hard} thẻ</span></div>
+          ${renderFlashcardStatsList(stats.groups.hard, 'Chưa có thẻ nào được đánh dấu Khó.')}
+        </section>
+      </div>
+    `;
+  }
+
+  function renderFlashcardOverlay(){
+    const overlay = ensureFlashcardOverlay();
+    const body = overlay.querySelector('#hskFlashcardBody');
+    if(!body) return;
+    if(hskState.flashcardStatsOpen){
+      body.innerHTML = renderFlashcardStats();
+      overlay.hidden = false;
+      document.body.classList.add('hsk-flashcard-open');
+      return;
+    }
+    const session = hskState.flashcardSession;
+    if(!session) return;
+    body.innerHTML = session.phase === 'setup'
+      ? renderFlashcardSetup(session)
+      : (session.phase === 'complete' ? renderFlashcardComplete(session) : renderFlashcardStudy(session));
+    overlay.hidden = false;
+    document.body.classList.add('hsk-flashcard-open');
+    persistFlashcardSession();
+  }
+
+  function moveFlashcard(step){
+    const session = hskState.flashcardSession;
+    if(!session || session.phase !== 'study') return;
+    const next = session.index + step;
+    if(next < 0) return;
+    if(next >= session.cards.length){
+      session.phase = 'complete';
+      renderFlashcardOverlay();
+      return;
+    }
+    session.index = next;
+    session.flipped = false;
+    renderFlashcardOverlay();
+    maybeAutoPlayFlashcard();
+  }
+
   function renderHskList(){
     renderHskFilters();
     hskList.classList.remove('hsk-list--vocab-list', 'hsk-list--vocab-grid');
     if(hskState.groupMode === 'grammar'){
+      renderFlashcardLaunchButton([]);
       renderHskVocabViewControls(false);
       renderGrammarList();
       return;
@@ -3197,6 +4154,7 @@ if(window.HanziWriter){
     const query = normalizeSearchText(hskState.query);
     const searched = hskState.currentItems.filter(item => itemMatchesQuery(item, query));
     const filtered = getFilteredByMode(searched);
+    renderFlashcardLaunchButton((hskState.topicKey && hskState.topicKey !== 'all') ? getSelectedFlashcardItems() : []);
     const level = Number(hskState.currentLevel) || 1;
     const groupLabel = getCharGroupLabel(hskState.groupMode);
     const selectedLearningLabel = hskState.topicKey && hskState.topicKey !== 'all' ? getSelectedLearningLabel() : '';
@@ -3246,6 +4204,7 @@ if(window.HanziWriter){
 
   window.openHanziLearningPopup = openHskPopup;
   window.openHanziLookupWord = openHskWord;
+  ensureFlashcardLibraryUi();
 
   tabLookup.addEventListener('click', () => setStudyTab('lookup'));
   tabHsk.addEventListener('click', () => setStudyTab('hsk'));
@@ -3402,6 +4361,128 @@ if(window.HanziWriter){
   });
 
   document.addEventListener('click', event => {
+    const flashOpen = event.target.closest('[data-hsk-flashcard-open]');
+    if(flashOpen){
+      event.preventDefault();
+      openFlashcardSetup();
+      return;
+    }
+    const flashStats = event.target.closest('[data-hsk-flashcard-stats]');
+    if(flashStats){
+      event.preventDefault();
+      openFlashcardStats();
+      return;
+    }
+    const statsSpeak = event.target.closest('[data-hsk-flashcard-speak-word]');
+    if(statsSpeak){
+      event.preventDefault();
+      event.stopPropagation();
+      speakChar(statsSpeak.dataset.hskFlashcardSpeakWord || '');
+      return;
+    }
+    const statsGroup = event.target.closest('[data-hsk-flashcard-study-group]');
+    if(statsGroup && !statsGroup.disabled){
+      event.preventDefault();
+      startFlashcardStatsGroup(statsGroup.dataset.hskFlashcardStudyGroup || 'review-hard');
+      return;
+    }
+    if(event.target.closest('[data-flashcard-reset-history]')){
+      event.preventDefault();
+      resetFlashcardHistory();
+      const overlay = document.getElementById('hskFlashcardOverlay');
+      if(overlay && !overlay.hidden && hskState.flashcardStatsOpen){ renderFlashcardOverlay(); }
+      return;
+    }
+    if(event.target.closest('[data-flashcard-reset-session]')){
+      event.preventDefault();
+      resetActiveFlashcardSession();
+      return;
+    }
+    const flashClose = event.target.closest('[data-hsk-flashcard-close]');
+    if(flashClose){
+      event.preventDefault();
+      closeFlashcardOverlay();
+      return;
+    }
+    const session = hskState.flashcardSession;
+    if(session){
+      const modeButton = event.target.closest('[data-hsk-flashcard-mode]');
+      if(modeButton && session.phase === 'setup'){
+        session.settings.mode = modeButton.dataset.hskFlashcardMode || 'flashcard';
+        renderFlashcardOverlay();
+        return;
+      }
+      const option = event.target.closest('[data-hsk-flashcard-option]');
+      if(option && session.phase === 'setup'){
+        session.settings[option.dataset.hskFlashcardOption] = Boolean(option.checked);
+        saveFlashcardSettings(session.settings);
+        return;
+      }
+      if(event.target.closest('[data-hsk-flashcard-start]')){
+        startFlashcardSession();
+        return;
+      }
+      if(event.target.closest('[data-hsk-flashcard-to-setup]')){
+        session.phase = 'setup';
+        renderFlashcardOverlay();
+        return;
+      }
+      if(event.target.closest('[data-hsk-flashcard-speak]')){
+        event.preventDefault();
+        event.stopPropagation();
+        speakChar(session.cards[session.index]?.word || '');
+        return;
+      }
+      if(event.target.closest('[data-hsk-flashcard-flip]')){
+        if(Date.now() < flashcardSuppressClickUntil) return;
+        session.flipped = !session.flipped;
+        renderFlashcardOverlay();
+        if(session.flipped && session.settings.autoPlay){
+          speakChar(session.cards[session.index]?.word || '');
+        }
+        return;
+      }
+      const rate = event.target.closest('[data-hsk-flashcard-rate]');
+      if(rate){
+        const rating = rate.dataset.hskFlashcardRate || '';
+        const activeCard = session.cards[session.index];
+        const previousRating = session.ratings[activeCard.id] || '';
+        session.ratings[activeCard.id] = rating;
+        saveFlashcardRatingResult(activeCard, rating, previousRating);
+        renderFlashcardOverlay();
+        return;
+      }
+      if(event.target.closest('[data-hsk-flashcard-prev]')){
+        moveFlashcard(-1);
+        return;
+      }
+      if(event.target.closest('[data-hsk-flashcard-next]')){
+        moveFlashcard(1);
+        return;
+      }
+      if(event.target.closest('[data-hsk-flashcard-restart]')){
+        session.phase = 'study';
+        session.index = 0;
+        session.flipped = false;
+        session.ratings = {};
+        renderFlashcardOverlay();
+        maybeAutoPlayFlashcard();
+        return;
+      }
+      if(event.target.closest('[data-hsk-flashcard-review]')){
+        const selected = session.cards.filter(card => ['review', 'hard'].includes(session.ratings[card.id]));
+        session.cards = selected;
+        session.phase = 'study';
+        session.index = 0;
+        session.flipped = false;
+        session.ratings = {};
+        session.mixedTypes = selected.map((_, index) => ['flashcard', 'reverse', 'listen'][index % 3]);
+        renderFlashcardOverlay();
+        maybeAutoPlayFlashcard();
+        return;
+      }
+    }
+
     const popup = document.getElementById('hskDetailOverlay');
     if(!popup || popup.hidden){
       return;
@@ -3480,11 +4561,42 @@ if(window.HanziWriter){
   });
 
   document.addEventListener('keydown', event => {
+    const flashOverlay = document.getElementById('hskFlashcardOverlay');
+    const session = hskState.flashcardSession;
+    if(flashOverlay && !flashOverlay.hidden && session?.phase === 'study'){
+      const flashCard = document.querySelector('[data-hsk-flashcard-flip]');
+      const active = document.activeElement;
+      const isInteractiveFocus = Boolean(active?.closest?.('button, input, textarea, select, a')) && active !== flashCard;
+      if((event.key === ' ' || event.key === 'Enter') && !isInteractiveFocus){
+        event.preventDefault();
+        session.flipped = !session.flipped;
+        renderFlashcardOverlay();
+        return;
+      }
+      if(event.key === 'ArrowLeft'){
+        event.preventDefault();
+        moveFlashcard(-1);
+        return;
+      }
+      if(event.key === 'ArrowRight'){
+        event.preventDefault();
+        moveFlashcard(1);
+        return;
+      }
+    }
+    if(event.key === 'Escape' && flashOverlay && !flashOverlay.hidden){
+      closeFlashcardOverlay();
+      return;
+    }
     const popup = document.getElementById('hskDetailOverlay');
     if(event.key === 'Escape' && popup && !popup.hidden){
       closeHskPopup();
     }
   });
+
+  window.setTimeout(() => {
+    restorePersistedFlashcardSession();
+  }, 0);
 })();
 
 
