@@ -193,16 +193,7 @@
 
 
     <section id="hskView" class="hsk-study-view" hidden aria-label="Học chữ theo HSK">
-      <div class="hsk-card hsk-card--intro">
-        <div>
-          <p class="panel-kicker">Học theo lộ trình</p>
-          <h2>HSK trong Tra chữ Hán</h2>
-          <p class="hsk-intro-text">Chọn nguồn học, cấp độ, rồi xem từ/chữ, bài học, chủ đề hoặc ngữ pháp. Bấm một mục để xem chi tiết. Dùng nút Tra & luyện để mở phần Tra chữ Hán và luyện viết.</p>
-        </div>
-        <span id="hskTotalBadge" class="learning-badge">Đang tải...</span>
-      </div>
-
-      <div class="hsk-card">
+      <div class="hsk-card hsk-card--route">
         <div class="hsk-toolbar hsk-toolbar--stacked">
           <div class="hsk-path-panel" aria-label="Chọn lộ trình HSK">
             <div class="hsk-path-row">
@@ -220,19 +211,10 @@
           </label>
         </div>
         <div class="hsk-filter-panel" aria-label="Lọc danh sách HSK">
-          <div class="hsk-filter-row">
-            <span class="hsk-filter-label">Nội dung</span>
-            <div id="hskGroupModes" class="hsk-group-modes" role="group" aria-label="Chia nhóm HSK">
-              <button type="button" class="active" data-hsk-group-mode="all">Tất cả</button>
-              <button type="button" data-hsk-group-mode="lessons">Bài học</button>
-              <button type="button" data-hsk-group-mode="topics">Chủ đề</button>
-              <button type="button" data-hsk-group-mode="grammar">Ngữ pháp</button>
-              <button type="button" data-hsk-group-mode="char1">1 chữ</button>
-              <button type="button" data-hsk-group-mode="char2">2 chữ</button>
-              <button type="button" data-hsk-group-mode="char3plus">3+ chữ</button>
-            </div>
+          <div class="hsk-filter-row hsk-route-mode-row">
+            <div id="hskGroupModes" class="hsk-group-modes hsk-route-tabs" role="group" aria-label="Chọn loại nội dung HSK"></div>
           </div>
-          <div id="hskTopicFilters" class="hsk-topic-filters" hidden aria-label="Chọn bài học hoặc chủ đề HSK"></div>
+          <div id="hskTopicFilters" class="hsk-topic-filters" hidden aria-label="Lọc trong bài học hoặc chủ đề"></div>
         </div>
         <p id="hskStatus" class="hsk-status">Đang tải dữ liệu HSK...</p>
         <div id="hskList" class="hsk-list" aria-live="polite"></div>

@@ -1267,8 +1267,9 @@ if(window.HanziWriter){
     popupReturnContext: null,
     popupSeed: null,
     popupRelatedExpanded: false,
-    groupMode: 'all',
+    groupMode: 'lessons',
     topicKey: 'all',
+    wordFilter: 'all',
     sourceKey: 'hsk'
   };
 
@@ -1481,12 +1482,12 @@ if(window.HanziWriter){
       const levelNo = Number(level.level);
       const active = levelNo === Number(hskState.currentLevel);
       const meta = getSourceLevelMeta(hskState.sourceKey, levelNo) || {};
-      const countText = level.count ? `${Number(level.count).toLocaleString('vi-VN')} từ` : (level.hasGrammar ? `${Number(level.grammarTotal || 0).toLocaleString('vi-VN')} ngữ pháp` : '0 mục');
-      const statusText = meta.status === 'PARTIAL' && meta.missingNote ? ` · thiếu ${meta.missingNote}` : '';
+      const countText = getHskLevelCountText(level, meta);
+      const partialClass = meta.status === 'PARTIAL' ? 'is-partial' : '';
       return `
-        <button type="button" class="hsk-level-btn ${active ? 'active' : ''} ${meta.status === 'PARTIAL' ? 'is-partial' : ''}" data-hsk-level="${escapeHtml(levelNo)}" aria-pressed="${active}">
+        <button type="button" class="hsk-level-btn ${active ? 'active' : ''} ${partialClass}" data-hsk-level="${escapeHtml(levelNo)}" aria-pressed="${active}" title="${escapeHtml(meta.status === 'PARTIAL' ? 'Dữ liệu chưa đủ' : '')}">
           <strong>${escapeHtml(getHskLevelLabel(levelNo))}</strong>
-          <small>${escapeHtml(countText + statusText)}</small>
+          <small>${escapeHtml(countText)}</small>
         </button>
       `;
     }).join('');
@@ -1496,6 +1497,7 @@ if(window.HanziWriter){
     const normalizedLevel = Number(level) || 1;
     hskState.currentLevel = normalizedLevel;
     hskState.topicKey = 'all';
+    hskState.wordFilter = 'all';
     normalizeHskSourceAndLevel();
     renderHskSourceTabs();
     renderHskLevelTabs();
@@ -1637,19 +1639,20 @@ if(window.HanziWriter){
     if(mode === 'grammar') return hasGrammarForCurrentSource();
     if(mode === 'lessons') return sourceHasSectionForCurrentLevel('lesson');
     if(mode === 'topics') return sourceHasSectionForCurrentLevel('topic');
-    if(mode === 'char1' || mode === 'char2' || mode === 'char3plus') return sourceHasVocabularyForCurrentLevel();
-    return sourceHasVocabularyForCurrentLevel() || hasGrammarForCurrentSource();
+    if(mode === 'all' || mode === 'char1' || mode === 'char2' || mode === 'char3plus') return sourceHasVocabularyForCurrentLevel();
+    return false;
   }
 
   function getFirstAvailableHskMode(){
-    const order = ['all', 'lessons', 'topics', 'grammar', 'char1', 'char2', 'char3plus'];
+    const order = ['lessons', 'topics', 'grammar', 'all'];
     return order.find(hskModeAvailable) || 'all';
   }
 
   function normalizeHskGroupMode(){
-    if(!hskModeAvailable(hskState.groupMode)){
+    if(['char1', 'char2', 'char3plus'].includes(hskState.groupMode) || !hskModeAvailable(hskState.groupMode)){
       hskState.groupMode = getFirstAvailableHskMode();
       hskState.topicKey = 'all';
+      hskState.wordFilter = 'all';
     }
   }
 
@@ -1719,10 +1722,12 @@ if(window.HanziWriter){
     if(levels.length && !levels.some(row => Number(row.level) === Number(hskState.currentLevel))){
       hskState.currentLevel = Number(levels[0].level) || 1;
       hskState.topicKey = 'all';
+      hskState.wordFilter = 'all';
     }
     if(hskState.groupMode === 'grammar' && hskState.grammarSummary && !hasGrammarForCurrentSource()){
-      hskState.groupMode = 'all';
+      hskState.groupMode = getFirstAvailableHskMode();
       hskState.topicKey = 'all';
+      hskState.wordFilter = 'all';
     }
   }
 
@@ -1737,17 +1742,39 @@ if(window.HanziWriter){
       const levelCount = levels.length;
       const grammarCount = levels.filter(row => row.hasGrammar).length;
       const partialCount = levels.filter(row => getSourceLevelMeta(key, row.level)?.status === 'PARTIAL').length;
+      const unit = getHskSourceLevelUnit(key);
       return `
-        <button type="button" class="hsk-source-btn ${active ? 'active' : ''}" data-hsk-source="${escapeHtml(key)}" aria-pressed="${active}">
+        <button type="button" class="hsk-source-btn ${active ? 'active' : ''} ${partialCount ? 'is-partial' : ''}" data-hsk-source="${escapeHtml(key)}" aria-pressed="${active}" title="${escapeHtml(partialCount ? 'Có cấp dữ liệu chưa đủ' : '')}">
           <strong>${escapeHtml(getHskSourceLabel(key))}</strong>
-          <small>${levelCount ? `${levelCount} cấp` : 'Đang tải'}${grammarCount ? ` · ${grammarCount} có ngữ pháp` : ''}${partialCount ? ` · ${partialCount} thiếu` : ''}</small>
+          <small>${levelCount ? `${levelCount} ${unit}` : 'Đang tải'}${grammarCount ? ` · ${grammarCount} có ngữ pháp` : ''}</small>
         </button>
       `;
     }).join('');
   }
 
+  function getHskSourceLevelUnit(sourceKey = hskState.sourceKey){
+    if(sourceKey === 'boya') return 'quyển';
+    return 'cấp';
+  }
+
+  function getHskLevelCountText(levelRow, meta = null){
+    const count = Number(levelRow?.count || meta?.uniqueItemCount || 0);
+    if(count > 0){
+      return `${count.toLocaleString('vi-VN')} từ`;
+    }
+    const grammarTotal = Number(levelRow?.grammarTotal || meta?.grammarTotal || 0);
+    if(grammarTotal > 0){
+      return `${grammarTotal.toLocaleString('vi-VN')} ngữ pháp`;
+    }
+    return '0 mục';
+  }
+
   function getHskLevelLabel(levelNo, sourceKey = hskState.sourceKey){
     const no = Number(levelNo) || 1;
+    const meta = getSourceLevelMeta(sourceKey, no);
+    if(meta?.label){
+      return String(meta.label);
+    }
     if(sourceKey === 'new_hsk' && no === 7){
       return 'HSK 7-9';
     }
@@ -1955,26 +1982,18 @@ if(window.HanziWriter){
   function getFilteredByMode(items){
     const mode = hskState.groupMode || 'all';
     const sourceItems = items.filter(itemBelongsToSelectedSource);
-    if(mode === 'char1'){
-      return sourceItems.filter(item => getItemCharCount(item) === 1);
-    }
-    if(mode === 'char2'){
-      return sourceItems.filter(item => getItemCharCount(item) === 2);
-    }
-    if(mode === 'char3plus'){
-      return sourceItems.filter(item => getItemCharCount(item) >= 3);
-    }
     if(mode === 'lessons' || mode === 'topics'){
-      const sectionItems = sourceItems.filter(itemHasSelectedSourceRoute);
-      if(hskState.topicKey && hskState.topicKey !== 'all'){
-        return sectionItems.filter(item => getItemTopic(item).key === hskState.topicKey);
-      }
-      return sectionItems;
+      const sectionType = mode === 'topics' ? 'topic' : 'lesson';
+      const sectionItems = sourceItems
+        .filter(item => itemInSelectedLearningSection(item, sectionType))
+        .filter(item => getRoutesForSelectedSource(item, sectionType).length > 0);
+      return hskState.topicKey === 'all' ? sectionItems : filterItemsByWordFilter(sectionItems);
     }
     if(mode === 'grammar'){
       return [];
     }
-    return sourceItems;
+    const scopedItems = sourceItems.filter(item => itemInSelectedLearningSection(item));
+    return filterItemsByWordFilter(scopedItems);
   }
 
   function getOrderInTopic(item, topicKey){
@@ -2016,82 +2035,253 @@ if(window.HanziWriter){
     });
   }
 
-  function renderHskFilters(){
-    normalizeHskGroupMode();
-
-    if(hskGroupModes){
-      Array.from(hskGroupModes.querySelectorAll('[data-hsk-group-mode]')).forEach(button => {
-        const mode = button.dataset.hskGroupMode || 'all';
-        const available = hskModeAvailable(mode);
-        const active = mode === hskState.groupMode;
-        button.hidden = !available && !active;
-        button.disabled = !available && !active;
-        button.classList.toggle('active', active);
-        button.setAttribute('aria-pressed', String(active));
+  function getLearningSectionGroups(items = hskState.currentItems, sectionType = ''){
+    const map = new Map();
+    items.filter(itemBelongsToSelectedSource).forEach(item => {
+      getRoutesForSelectedSource(item, sectionType).forEach(route => {
+        if(!route?.sectionType){
+          return;
+        }
+        const key = getTopicKeyFromRoute(route);
+        if(!map.has(key)){
+          map.set(key, { key, label: getTopicLabel(route), route, items: [] });
+        }
+        map.get(key).items.push(item);
       });
-    }
+    });
+    return Array.from(map.values()).map(group => ({
+      ...group,
+      items: group.items.slice().sort((a, b) => {
+        const ao = getOrderInTopic(a, group.key);
+        const bo = getOrderInTopic(b, group.key);
+        if(ao !== bo) return ao - bo;
+        return getHskWordKey(a).localeCompare(getHskWordKey(b), 'zh-Hans-CN');
+      })
+    })).sort((a, b) => {
+      const at = getRouteTypeRank(a.route);
+      const bt = getRouteTypeRank(b.route);
+      if(at !== bt) return at - bt;
+      const ao = getRouteSortOrder(a.route);
+      const bo = getRouteSortOrder(b.route);
+      if(ao !== bo) return ao - bo;
+      return String(a.label).localeCompare(String(b.label), 'vi');
+    });
+  }
 
-    if(!hskTopicFilters){
-      return;
-    }
-    const sectionMode = hskState.groupMode === 'lessons' || hskState.groupMode === 'topics';
-    const grammarMode = hskState.groupMode === 'grammar';
-    hskTopicFilters.hidden = !sectionMode && !grammarMode;
-    if(!sectionMode && !grammarMode){
-      hskTopicFilters.innerHTML = '';
-      return;
-    }
+  function getSelectedLearningSection(){
+    const key = hskState.topicKey || 'all';
+    if(key === 'all') return null;
+    return getLearningSectionGroups(hskState.currentItems).find(group => group.key === key) || null;
+  }
 
-    if(grammarMode){
-      const info = getCurrentGrammarInfo();
-      hskTopicFilters.innerHTML = `
-        <p class="hsk-topic-overview hsk-topic-overview--grammar">
-          ${info ? `${info.total.toLocaleString('vi-VN')} mục ngữ pháp trong ${escapeHtml(getHskLevelLabel(hskState.currentLevel))} · ${escapeHtml(getHskSourceLabel())}.` : 'Cấp này chưa có dữ liệu ngữ pháp.'}
-        </p>
-      `;
-      return;
-    }
+  function getSelectedLearningLabel(){
+    const selected = getSelectedLearningSection();
+    return selected?.label || `Tất cả ${getHskLevelLabel(hskState.currentLevel)}`;
+  }
 
-    const sectionLabel = getSectionModeLabel();
-    const sectionPlural = getSectionModePluralLabel();
-    const groups = getTopicGroups(hskState.currentItems);
-    if(hskState.topicKey !== 'all' && !groups.some(group => group.key === hskState.topicKey)){
-      hskState.topicKey = 'all';
-    }
+  function itemInSelectedLearningSection(item, sectionType = ''){
     const selectedKey = hskState.topicKey || 'all';
-    const sourceTotal = hskState.currentItems.filter(itemBelongsToSelectedSource).length;
-    hskTopicFilters.innerHTML = `
-      <div class="hsk-lesson-select-block">
-        <label class="hsk-topic-select-label" for="hskTopicSelect">${escapeHtml(sectionLabel)}</label>
-        <div class="hsk-topic-select-wrap">
-          <select id="hskTopicSelect" class="hsk-topic-select" aria-label="Chọn ${escapeHtml(sectionLabel.toLowerCase())}">
-            <option value="all" ${selectedKey === 'all' ? 'selected' : ''}>Tất cả ${escapeHtml(sectionPlural)} · ${sourceTotal.toLocaleString('vi-VN')} mục</option>
-            ${groups.map(group => `
-              <option value="${escapeHtml(group.key)}" ${selectedKey === group.key ? 'selected' : ''}>${escapeHtml(group.label)} · ${group.items.length.toLocaleString('vi-VN')} từ</option>
-            `).join('')}
-          </select>
-        </div>
+    if(selectedKey === 'all'){
+      return true;
+    }
+    return getRoutesForSelectedSource(item, sectionType).some(route => getTopicKeyFromRoute(route) === selectedKey);
+  }
+
+  function getSelectedLessonChapter(){
+    const selected = getSelectedLearningSection();
+    if(!selected || selected.route?.sectionType !== 'lesson'){
+      return null;
+    }
+    const order = Number(selected.route?.sectionOrder);
+    return Number.isFinite(order) ? order : null;
+  }
+
+  function getCurrentModeSections(sectionType = getCurrentSectionType(), items = hskState.currentItems){
+    if(!sectionType){
+      return [];
+    }
+    return getLearningSectionGroups(items, sectionType);
+  }
+
+  function getCurrentGrammarTotal(){
+    const info = getCurrentGrammarInfo();
+    return Number(info?.total || 0);
+  }
+
+  function getRouteModeRows(){
+    const rows = [];
+    const lessonCount = getLearningSectionGroups(hskState.currentItems, 'lesson').length;
+    const topicCount = getLearningSectionGroups(hskState.currentItems, 'topic').length;
+    const grammarCount = getCurrentGrammarTotal();
+    if(hskModeAvailable('lessons')){
+      rows.push({ mode: 'lessons', label: 'Bài học', count: lessonCount, tone: 'lesson' });
+    }
+    if(hskModeAvailable('topics')){
+      rows.push({ mode: 'topics', label: 'Chủ đề', count: topicCount, tone: 'topic' });
+    }
+    if(hskModeAvailable('grammar')){
+      rows.push({ mode: 'grammar', label: 'Ngữ pháp', count: grammarCount, tone: 'grammar' });
+    }
+    if(!rows.length && hskModeAvailable('all')){
+      rows.push({ mode: 'all', label: 'Từ vựng', count: hskState.currentItems.filter(itemBelongsToSelectedSource).length, tone: 'word' });
+    }
+    return rows;
+  }
+
+  function ensureHskModeMatchesAvailableRows(){
+    const rows = getRouteModeRows();
+    if(!rows.some(row => row.mode === hskState.groupMode)){
+      hskState.groupMode = rows[0]?.mode || getFirstAvailableHskMode();
+      hskState.topicKey = 'all';
+      hskState.wordFilter = 'all';
+    }
+  }
+
+  function renderHskRouteTabs(){
+    if(!hskGroupModes){
+      return;
+    }
+    ensureHskModeMatchesAvailableRows();
+    const rows = getRouteModeRows();
+    hskGroupModes.innerHTML = rows.map(row => {
+      const active = row.mode === hskState.groupMode;
+      return `
+        <button type="button" class="hsk-route-tab hsk-route-tab--${escapeHtml(row.tone)} ${active ? 'active' : ''}" data-hsk-group-mode="${escapeHtml(row.mode)}" aria-pressed="${active}">
+          <span>${escapeHtml(row.label)}</span>
+          <small>${Number(row.count || 0).toLocaleString('vi-VN')}</small>
+        </button>
+      `;
+    }).join('');
+  }
+
+  function filterItemsByWordFilter(items){
+    const filter = hskState.wordFilter || 'all';
+    if(filter === 'char1') return items.filter(item => getItemCharCount(item) === 1);
+    if(filter === 'char2') return items.filter(item => getItemCharCount(item) === 2);
+    if(filter === 'char3plus') return items.filter(item => getItemCharCount(item) >= 3);
+    return items;
+  }
+
+  function renderHskWordFilters(items = []){
+    const rows = [
+      ['all', 'Tất cả', items.length],
+      ['char1', '1 chữ', items.filter(item => getItemCharCount(item) === 1).length],
+      ['char2', '2 chữ', items.filter(item => getItemCharCount(item) === 2).length],
+      ['char3plus', '3+ chữ', items.filter(item => getItemCharCount(item) >= 3).length]
+    ];
+    return `
+      <div class="hsk-word-filter-row" role="group" aria-label="Lọc số chữ trong bài hoặc chủ đề">
+        ${rows.map(([key, label, count]) => `
+          <button type="button" class="${hskState.wordFilter === key ? 'active' : ''}" data-hsk-word-filter="${escapeHtml(key)}" aria-pressed="${hskState.wordFilter === key}">
+            ${escapeHtml(label)} <small>${Number(count || 0).toLocaleString('vi-VN')}</small>
+          </button>
+        `).join('')}
       </div>
-      <p class="hsk-topic-overview">${groups.length.toLocaleString('vi-VN')} ${escapeHtml(sectionPlural)} trong ${escapeHtml(getHskLevelLabel(hskState.currentLevel))} · ${escapeHtml(getHskSourceLabel())}.</p>
     `;
   }
 
-  function renderHskTopicSections(items){
-    const groups = getTopicGroups(items);
-    return groups.map(group => `
-      <section class="hsk-topic-section">
-        <div class="hsk-topic-heading">
-          <div>
-            <strong>${escapeHtml(group.label)}</strong>
-            ${group.route?.libraryName ? `<small>${escapeHtml(group.route.libraryName)}</small>` : ''}
-          </div>
-          <span>${group.items.length.toLocaleString('vi-VN')} mục</span>
+  function renderHskSelectedSectionControls(){
+    if(!hskTopicFilters){
+      return;
+    }
+    const selected = getSelectedLearningSection();
+    if(!selected || (hskState.groupMode !== 'lessons' && hskState.groupMode !== 'topics')){
+      hskTopicFilters.hidden = true;
+      hskTopicFilters.innerHTML = '';
+      return;
+    }
+    hskTopicFilters.hidden = false;
+    const sectionType = selected.route?.sectionType === 'topic' ? 'chủ đề' : 'bài học';
+    hskTopicFilters.innerHTML = `
+      <div class="hsk-selected-section-bar">
+        <button type="button" class="hsk-section-back" data-hsk-section-back>← Danh sách ${escapeHtml(sectionType)}</button>
+        <div class="hsk-selected-section-title">
+          <strong>${escapeHtml(selected.label)}</strong>
+          <span>${selected.items.length.toLocaleString('vi-VN')} từ</span>
         </div>
-        <div class="hsk-list hsk-topic-list">
-          ${group.items.map(renderHskItem).join('')}
+      </div>
+      ${renderHskWordFilters(selected.items)}
+    `;
+  }
+
+  function renderHskFilters(){
+    normalizeHskGroupMode();
+    renderHskRouteTabs();
+    renderHskSelectedSectionControls();
+  }
+
+  function getSectionCardNumber(group, index){
+    const order = Number(group?.route?.sectionOrder);
+    if(Number.isFinite(order) && order > 0){
+      return String(order).padStart(2, '0');
+    }
+    return String(index + 1).padStart(2, '0');
+  }
+
+  function getSectionEstimatedMinutes(count){
+    const min = Math.max(6, Math.round(Number(count || 0) * 0.7));
+    const max = Math.max(min + 4, Math.round(Number(count || 0) * 1.1));
+    return `${min}–${max} phút`;
+  }
+
+  function renderHskSectionCards(items, sectionType){
+    const groups = getLearningSectionGroups(items, sectionType);
+    const isTopic = sectionType === 'topic';
+    const totalGroups = getLearningSectionGroups(hskState.currentItems, sectionType).length;
+    const heading = isTopic ? 'Danh sách chủ đề' : 'Danh sách bài học';
+    const unit = isTopic ? 'chủ đề' : 'bài học';
+    const badge = isTopic ? 'CHỦ ĐỀ' : 'BÀI';
+    const modeClass = isTopic ? 'topic' : 'lesson';
+    if(!groups.length){
+      return `<p class="hsk-empty">Không tìm thấy ${escapeHtml(unit)} phù hợp.</p>`;
+    }
+    return `
+      <section class="hsk-section-library hsk-section-library--${modeClass}">
+        <div class="hsk-section-library-head">
+          <div>
+            <h3>${escapeHtml(heading)}</h3>
+            <p>${groups.length.toLocaleString('vi-VN')} / ${totalGroups.toLocaleString('vi-VN')} ${escapeHtml(unit)}</p>
+          </div>
+        </div>
+        <div class="hsk-section-card-list">
+          ${groups.map((group, index) => {
+            const no = getSectionCardNumber(group, index);
+            const label = `${badge} ${no}`;
+            return `
+              <button type="button" class="hsk-section-card hsk-section-card--${modeClass}" data-hsk-section-key="${escapeHtml(group.key)}">
+                <span class="hsk-section-card-badge">${escapeHtml(label)}</span>
+                <strong>${escapeHtml(group.label)}</strong>
+                ${group.route?.sectionTitle && group.route.sectionTitle !== group.label ? `<em>${escapeHtml(group.route.sectionTitle)}</em>` : ''}
+                <span class="hsk-section-card-meta">${group.items.length.toLocaleString('vi-VN')} từ${!isTopic ? ` · ${escapeHtml(getSectionEstimatedMinutes(group.items.length))}` : ''}</span>
+                <span class="hsk-section-practice">◎ Luyện tập</span>
+                <b aria-hidden="true">${escapeHtml(no)}</b>
+                <i aria-hidden="true">›</i>
+              </button>
+            `;
+          }).join('')}
         </div>
       </section>
-    `).join('');
+    `;
+  }
+
+  function renderSelectedSectionWordList(items){
+    const selected = getSelectedLearningSection();
+    const sectionType = getCurrentSectionType();
+    const filtered = filterItemsByWordFilter(items);
+    if(!selected){
+      return filtered.map(renderHskItem).join('');
+    }
+    if(!filtered.length){
+      return '<p class="hsk-empty">Không tìm thấy từ phù hợp trong mục này.</p>';
+    }
+    const modeClass = sectionType === 'topic' ? 'topic' : 'lesson';
+    return `
+      <section class="hsk-section-word-view hsk-section-word-view--${modeClass}">
+        <div class="hsk-section-word-list">
+          ${filtered.map(renderHskItem).join('')}
+        </div>
+      </section>
+    `;
   }
 
   function getItemRadicalHints(item){
@@ -2670,7 +2860,10 @@ if(window.HanziWriter){
   function renderGrammarListFromData(data){
     const info = getCurrentGrammarInfo();
     const query = normalizeSearchText(hskState.query);
-    const items = getGrammarItemsFromData(data).filter(item => {
+    const selectedChapter = getSelectedLessonChapter();
+    const rawItems = getGrammarItemsFromData(data);
+    const scopedItems = selectedChapter ? rawItems.filter(item => Number(item?.chapter || item?.from_book_chapter) === selectedChapter) : rawItems;
+    const items = scopedItems.filter(item => {
       if(!query) return true;
       const examples = Array.isArray(item?.examples) ? item.examples : (Array.isArray(item?.example) ? item.example : []);
       const haystack = [
@@ -2683,14 +2876,17 @@ if(window.HanziWriter){
       ].map(normalizeSearchText).join(' ');
       return haystack.includes(query);
     });
-    const total = getGrammarItemsFromData(data).length;
+    const total = scopedItems.length;
     const foundCount = items.length.toLocaleString('vi-VN');
     const baseCount = total.toLocaleString('vi-VN');
-    hskStatus.textContent = `${escapeHtml(getHskSourceLabel())} · ${escapeHtml(getHskLevelLabel(hskState.currentLevel))} · Ngữ pháp${query ? ` · tìm thấy ${foundCount} / ${baseCount}` : ` · ${foundCount} / ${baseCount}`} mục.`;
-    hskList.classList.remove('hsk-list--topics');
+    const scopeLabel = selectedChapter ? ` · ${escapeHtml(getSelectedLearningLabel())}` : '';
+    hskStatus.textContent = `${escapeHtml(getHskSourceLabel())} · ${escapeHtml(getHskLevelLabel(hskState.currentLevel))}${scopeLabel} · Ngữ pháp${query ? ` · tìm thấy ${foundCount} / ${baseCount}` : ` · ${foundCount} / ${baseCount}`} mục.`;
+    hskList.classList.remove('hsk-list--topics', 'hsk-list--section-cards');
     hskList.classList.add('hsk-list--grammar');
     if(!items.length){
-      hskList.innerHTML = '<p class="hsk-empty">Không tìm thấy mục ngữ pháp phù hợp.</p>';
+      hskList.innerHTML = selectedChapter
+        ? '<p class="hsk-empty">Bài này chưa có mục ngữ pháp khớp theo chapter.</p>'
+        : '<p class="hsk-empty">Không tìm thấy mục ngữ pháp phù hợp.</p>';
       return;
     }
     hskList.innerHTML = items.map(renderGrammarCard).join('');
@@ -2698,7 +2894,7 @@ if(window.HanziWriter){
 
   function renderGrammarList(){
     const info = getCurrentGrammarInfo();
-    hskList.classList.remove('hsk-list--topics');
+    hskList.classList.remove('hsk-list--topics', 'hsk-list--section-cards');
     hskList.classList.add('hsk-list--grammar');
     if(!info){
       hskStatus.textContent = `${escapeHtml(getHskSourceLabel())} · ${escapeHtml(getHskLevelLabel(hskState.currentLevel))} · chưa có dữ liệu ngữ pháp.`;
@@ -2783,6 +2979,7 @@ if(window.HanziWriter){
   }
 
   function renderHskList(){
+    renderHskFilters();
     if(hskState.groupMode === 'grammar'){
       renderGrammarList();
       return;
@@ -2793,27 +2990,30 @@ if(window.HanziWriter){
     const filtered = getFilteredByMode(searched);
     const level = Number(hskState.currentLevel) || 1;
     const groupLabel = getCharGroupLabel(hskState.groupMode);
-    const topicLabel = hskState.groupMode === 'topics' && hskState.topicKey !== 'all'
-      ? (getTopicGroups(hskState.currentItems).find(group => group.key === hskState.topicKey)?.label || 'Bài học')
-      : '';
-    const baseCount = hskState.currentItems.length.toLocaleString('vi-VN');
+    const selectedLearningLabel = hskState.topicKey && hskState.topicKey !== 'all' ? getSelectedLearningLabel() : '';
+    const baseCount = hskState.currentItems.filter(itemBelongsToSelectedSource).length.toLocaleString('vi-VN');
     const foundCount = filtered.length.toLocaleString('vi-VN');
     const searchText = query ? ` · tìm thấy ${foundCount} / ${baseCount}` : ` · ${foundCount} / ${baseCount}`;
-    hskStatus.textContent = `${escapeHtml(getHskSourceLabel())} · ${escapeHtml(getHskLevelLabel(level))} · ${topicLabel || groupLabel}${searchText} mục.`;
+    hskStatus.textContent = `${escapeHtml(getHskSourceLabel())} · ${escapeHtml(getHskLevelLabel(level))}${selectedLearningLabel ? ` · ${escapeHtml(selectedLearningLabel)}` : ''} · ${groupLabel}${searchText} mục.`;
 
+    if((hskState.groupMode === 'lessons' || hskState.groupMode === 'topics') && hskState.topicKey === 'all'){
+      const sectionType = hskState.groupMode === 'topics' ? 'topic' : 'lesson';
+      hskList.classList.add('hsk-list--topics', 'hsk-list--section-cards');
+      hskList.innerHTML = renderHskSectionCards(searched, sectionType);
+      return;
+    }
+
+    hskList.classList.remove('hsk-list--topics', 'hsk-list--section-cards');
     if(!filtered.length){
-      hskList.classList.remove('hsk-list--topics');
       hskList.innerHTML = '<p class="hsk-empty">Không tìm thấy mục phù hợp.</p>';
       return;
     }
 
-    if((hskState.groupMode === 'lessons' || hskState.groupMode === 'topics') && hskState.topicKey === 'all'){
-      hskList.classList.add('hsk-list--topics');
-      hskList.innerHTML = renderHskTopicSections(filtered);
+    if(hskState.groupMode === 'lessons' || hskState.groupMode === 'topics'){
+      hskList.innerHTML = renderSelectedSectionWordList(filtered);
       return;
     }
 
-    hskList.classList.remove('hsk-list--topics');
     hskList.innerHTML = filtered.map(renderHskItem).join('');
   }
 
@@ -2849,6 +3049,7 @@ if(window.HanziWriter){
     }
     hskState.sourceKey = nextSource;
     hskState.topicKey = 'all';
+    hskState.wordFilter = 'all';
     normalizeHskSourceAndLevel();
     renderHskSourceTabs();
     renderHskLevelTabs();
@@ -2874,12 +3075,13 @@ if(window.HanziWriter){
     if(!button){
       return;
     }
-    const nextMode = button.dataset.hskGroupMode || 'all';
+    const nextMode = button.dataset.hskGroupMode || 'lessons';
     if(button.hidden || button.disabled || !hskModeAvailable(nextMode)){
       return;
     }
     hskState.groupMode = nextMode;
     hskState.topicKey = 'all';
+    hskState.wordFilter = 'all';
     if(hskState.groupMode === 'grammar'){
       if(!hskState.grammarSummary){
         loadGrammarSummary().then(() => {
@@ -2895,17 +3097,35 @@ if(window.HanziWriter){
     renderHskList();
   });
 
-  hskTopicFilters?.addEventListener('change', event => {
-    const lessonSelect = event.target.closest('#hskTopicSelect');
-    if(!lessonSelect){
+  hskTopicFilters?.addEventListener('click', event => {
+    const backButton = event.target.closest('[data-hsk-section-back]');
+    if(backButton){
+      event.preventDefault();
+      hskState.topicKey = 'all';
+      hskState.wordFilter = 'all';
+      renderHskFilters();
+      renderHskList();
       return;
     }
-    hskState.topicKey = lessonSelect.value || 'all';
-    renderHskFilters();
-    renderHskList();
+    const filterButton = event.target.closest('[data-hsk-word-filter]');
+    if(filterButton){
+      event.preventDefault();
+      hskState.wordFilter = filterButton.dataset.hskWordFilter || 'all';
+      renderHskFilters();
+      renderHskList();
+    }
   });
 
   hskList.addEventListener('click', event => {
+    const sectionCard = event.target.closest('[data-hsk-section-key]');
+    if(sectionCard){
+      event.preventDefault();
+      hskState.topicKey = sectionCard.dataset.hskSectionKey || 'all';
+      hskState.wordFilter = 'all';
+      renderHskFilters();
+      renderHskList();
+      return;
+    }
     const speakButton = event.target.closest('[data-hsk-speak]');
     if(speakButton){
       event.preventDefault();

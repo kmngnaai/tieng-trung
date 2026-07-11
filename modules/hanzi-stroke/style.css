@@ -4234,3 +4234,382 @@ body.radical-popup-open{overflow:hidden;}
 .hsk-level-btn.is-partial small{
   color: #b45309;
 }
+
+/* Step 9.3.2 - HSK lesson/topic before content */
+.hsk-learning-select-block{
+  border:1px solid rgba(234,220,201,.82);
+  border-radius:18px;
+  background:linear-gradient(180deg, rgba(255,250,244,.96), rgba(255,253,249,.98));
+  padding:10px;
+}
+
+.hsk-learning-overview{
+  padding:0 2px;
+}
+
+.hsk-filter-panel .hsk-topic-filters:not([hidden]) + .hsk-filter-row{
+  padding-top:2px;
+}
+
+.hsk-topic-select optgroup{
+  color:#8b604a;
+  font-weight:900;
+}
+
+/* Step 9.3.3 - HSK lesson/topic/grammar library cards */
+.hsk-card--route{
+  padding-top:14px;
+}
+
+.hsk-route-mode-row{
+  gap:8px;
+}
+
+.hsk-route-tabs{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:6px;
+  border:1px solid rgba(234,220,201,.95);
+  border-radius:16px;
+  background:#fffaf4;
+  padding:4px;
+  overflow:visible;
+}
+
+.hsk-route-tabs .hsk-route-tab{
+  border:0;
+  border-radius:12px;
+  background:transparent;
+  color:#6f6258;
+  padding:9px 10px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:5px;
+  box-shadow:none;
+}
+
+.hsk-route-tabs .hsk-route-tab span{
+  font-weight:900;
+}
+
+.hsk-route-tabs .hsk-route-tab small{
+  color:#9a897b;
+  font-size:10px;
+  font-weight:900;
+}
+
+.hsk-route-tabs .hsk-route-tab.active{
+  background:#173f5f;
+  color:#fffaf4;
+  border-color:#173f5f;
+  box-shadow:0 10px 20px rgba(23,63,95,.16);
+}
+
+.hsk-route-tabs .hsk-route-tab.active small{
+  color:rgba(255,250,244,.78);
+}
+
+.hsk-route-tabs .hsk-route-tab--grammar.active{
+  background:#183d62;
+}
+
+.hsk-list--section-cards{
+  display:block;
+}
+
+.hsk-section-library{
+  display:grid;
+  gap:12px;
+}
+
+.hsk-section-library-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:10px;
+  padding:2px 2px 0;
+}
+
+.hsk-section-library-head h3{
+  margin:0;
+  font-size:18px;
+  line-height:1.25;
+  color:#1f1a16;
+}
+
+.hsk-section-library-head p{
+  margin:2px 0 0;
+  color:#7b6b5f;
+  font-size:12px;
+  font-weight:700;
+}
+
+.hsk-section-card-list{
+  display:grid;
+  gap:14px;
+}
+
+.hsk-section-card{
+  position:relative;
+  text-align:left;
+  width:100%;
+  min-height:112px;
+  border:1px solid rgba(220,199,172,.92);
+  border-radius:18px;
+  background:linear-gradient(180deg, #fffdf9 0%, #fff9f1 100%);
+  padding:16px 44px 14px 16px;
+  box-shadow:0 12px 26px rgba(69,48,27,.08);
+  cursor:pointer;
+  overflow:hidden;
+  transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+}
+
+.hsk-section-card:hover,
+.hsk-section-card:focus-visible{
+  transform:translateY(-1px);
+  border-color:rgba(23,63,95,.30);
+  box-shadow:0 16px 30px rgba(23,63,95,.10);
+  outline:none;
+}
+
+.hsk-section-card-badge{
+  display:inline-flex;
+  align-items:center;
+  border-radius:999px;
+  background:#eef6ff;
+  color:#245aa8;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.02em;
+  padding:4px 8px;
+  margin-bottom:8px;
+}
+
+.hsk-section-card--topic .hsk-section-card-badge{
+  background:#f0f3ff;
+  color:#3d55b8;
+}
+
+.hsk-section-card strong{
+  display:block;
+  color:#1f1a16;
+  font-size:15px;
+  line-height:1.35;
+  margin-bottom:4px;
+  max-width:94%;
+}
+
+.hsk-section-card em{
+  display:block;
+  color:#8a796b;
+  font-style:normal;
+  font-size:12px;
+  line-height:1.35;
+  margin-bottom:5px;
+}
+
+.hsk-section-card-meta{
+  display:block;
+  color:#75675d;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:9px;
+}
+
+.hsk-section-practice{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  border-radius:999px;
+  background:#eaf2fa;
+  color:#244763;
+  font-size:11px;
+  font-weight:900;
+  padding:5px 9px;
+}
+
+.hsk-section-card b{
+  position:absolute;
+  right:15px;
+  bottom:-7px;
+  font-size:54px;
+  line-height:1;
+  color:rgba(91,72,55,.08);
+  font-family:Georgia, serif;
+  font-weight:700;
+  pointer-events:none;
+}
+
+.hsk-section-card i{
+  position:absolute;
+  right:17px;
+  top:18px;
+  color:#6f6258;
+  font-size:26px;
+  font-style:normal;
+  line-height:1;
+}
+
+.hsk-selected-section-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  border:1px solid rgba(220,199,172,.88);
+  border-radius:16px;
+  background:linear-gradient(180deg, rgba(255,253,249,.98), rgba(255,250,244,.96));
+  padding:10px;
+}
+
+.hsk-section-back{
+  border:0;
+  border-radius:999px;
+  background:#173f5f;
+  color:#fffaf4;
+  padding:8px 11px;
+  font-size:12px;
+  font-weight:900;
+  cursor:pointer;
+  white-space:nowrap;
+}
+
+.hsk-selected-section-title{
+  min-width:0;
+  text-align:right;
+}
+
+.hsk-selected-section-title strong{
+  display:block;
+  color:#2f251d;
+  font-size:13px;
+  line-height:1.25;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width:180px;
+}
+
+.hsk-selected-section-title span{
+  display:block;
+  color:#8a796b;
+  font-size:11px;
+  font-weight:800;
+  margin-top:2px;
+}
+
+.hsk-word-filter-row{
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  padding:2px 0 4px;
+}
+
+.hsk-word-filter-row button{
+  border:1px solid rgba(234,220,201,.95);
+  border-radius:999px;
+  background:#fffaf4;
+  color:#6f6258;
+  padding:7px 10px;
+  font-size:12px;
+  font-weight:900;
+  white-space:nowrap;
+  cursor:pointer;
+}
+
+.hsk-word-filter-row button.active{
+  background:#fff3ed;
+  border-color:rgba(201,111,77,.42);
+  color:#b95f43;
+  box-shadow:0 8px 16px rgba(201,111,77,.10);
+}
+
+.hsk-word-filter-row small{
+  color:inherit;
+  opacity:.7;
+  font-size:10px;
+  font-weight:900;
+}
+
+.hsk-section-word-view{
+  display:grid;
+  gap:12px;
+}
+
+.hsk-section-word-list{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:12px;
+}
+
+@media (max-width:780px){
+  .hsk-section-word-list{
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width:520px){
+  .hsk-route-tabs{
+    border-radius:14px;
+    gap:4px;
+  }
+
+  .hsk-route-tabs .hsk-route-tab{
+    padding:8px 7px;
+    font-size:12px;
+  }
+
+  .hsk-route-tabs .hsk-route-tab small{
+    font-size:9.5px;
+  }
+
+  .hsk-section-card{
+    min-height:106px;
+    border-radius:16px;
+    padding:14px 39px 13px 14px;
+  }
+
+  .hsk-selected-section-bar{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .hsk-selected-section-title{
+    text-align:left;
+  }
+
+  .hsk-selected-section-title strong{
+    max-width:100%;
+    white-space:normal;
+  }
+}
+
+/* Step 9.3.5 - four-source UI + soft partial tint */
+.hsk-source-btn.is-partial,
+.hsk-level-btn.is-partial{
+  background:linear-gradient(180deg, #fff7f7 0%, #fffafa 100%);
+  border-color:rgba(248,113,113,.28);
+}
+
+.hsk-source-btn.is-partial small,
+.hsk-level-btn.is-partial small{
+  color:#9f5555;
+}
+
+.hsk-source-btn.is-partial.active,
+.hsk-level-btn.is-partial.active{
+  background:linear-gradient(180deg, #fff1f2 0%, #fff7f7 100%);
+  color:#7f1d1d;
+  border-color:rgba(248,113,113,.38);
+  box-shadow:0 10px 22px rgba(185,28,28,.08);
+}
+
+.hsk-source-btn.is-partial.active small,
+.hsk-level-btn.is-partial.active small{
+  color:#9f5555;
+}
+
+.hsk-source-btn[data-hsk-source="yct"] strong,
+.hsk-source-btn[data-hsk-source="boya"] strong{
+  letter-spacing:.01em;
+}
