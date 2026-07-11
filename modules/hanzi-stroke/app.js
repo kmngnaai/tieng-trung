@@ -1272,10 +1272,75 @@ if(window.HanziWriter){
     topicKey: 'all',
     wordFilter: 'all',
     sourceKey: 'hsk',
-    levelLoading: false
+    levelLoading: false,
+    vocabViewMode: 'list'
   };
 
   const HSK_MODE_STORAGE_KEY = 'hanziStroke.hskLastModeBySourceLevel.v1';
+  const HSK_VOCAB_VIEW_STORAGE_KEY = 'hanziStroke.hskVocabViewMode.v1';
+
+  function readStoredVocabViewMode(){
+    try{
+      const stored = window.localStorage?.getItem(HSK_VOCAB_VIEW_STORAGE_KEY);
+      return stored === 'grid' ? 'grid' : 'list';
+    }catch(_err){
+      return 'list';
+    }
+  }
+
+  function saveStoredVocabViewMode(mode){
+    const nextMode = mode === 'grid' ? 'grid' : 'list';
+    hskState.vocabViewMode = nextMode;
+    try{
+      window.localStorage?.setItem(HSK_VOCAB_VIEW_STORAGE_KEY, nextMode);
+    }catch(_err){
+      // localStorage có thể bị chặn; state trong phiên vẫn hoạt động bình thường.
+    }
+  }
+
+  hskState.vocabViewMode = readStoredVocabViewMode();
+
+  function ensureHskVocabViewControls(){
+    let controls = document.getElementById('hskVocabViewControls');
+    if(controls || !hskStatus?.parentElement){
+      return controls;
+    }
+    controls = document.createElement('div');
+    controls.id = 'hskVocabViewControls';
+    controls.className = 'hsk-vocab-view-controls';
+    controls.hidden = true;
+    hskStatus.parentElement.insertBefore(controls, hskStatus);
+    controls.addEventListener('click', event => {
+      const button = event.target.closest('[data-hsk-vocab-view]');
+      if(!button) return;
+      const nextMode = button.dataset.hskVocabView === 'grid' ? 'grid' : 'list';
+      if(nextMode === hskState.vocabViewMode) return;
+      saveStoredVocabViewMode(nextMode);
+      renderHskList();
+    });
+    return controls;
+  }
+
+  function renderHskVocabViewControls(show = false){
+    const controls = ensureHskVocabViewControls();
+    if(!controls) return;
+    controls.hidden = !show;
+    if(!show){
+      controls.innerHTML = '';
+      return;
+    }
+    controls.innerHTML = `
+      <span>Kiểu hiển thị</span>
+      <div class="hsk-vocab-view-switch" role="group" aria-label="Chọn kiểu hiển thị từ vựng">
+        <button type="button" class="${hskState.vocabViewMode === 'list' ? 'active' : ''}" data-hsk-vocab-view="list" aria-pressed="${hskState.vocabViewMode === 'list'}" title="Danh sách">
+          <span aria-hidden="true">☰</span><b>Danh sách</b>
+        </button>
+        <button type="button" class="${hskState.vocabViewMode === 'grid' ? 'active' : ''}" data-hsk-vocab-view="grid" aria-pressed="${hskState.vocabViewMode === 'grid'}" title="Lưới">
+          <span aria-hidden="true">▦</span><b>Lưới</b>
+        </button>
+      </div>
+    `;
+  }
 
   function getHskModeStorageId(sourceKey = hskState.sourceKey, level = hskState.currentLevel){
     return `${String(sourceKey || 'hsk')}:${Number(level) || 1}`;
@@ -2194,7 +2259,12 @@ if(window.HanziWriter){
     }
     ensureHskModeMatchesAvailableRows();
     const rows = getRouteModeRows();
-    hskGroupModes.innerHTML = rows.map(row => {
+    const selectedSection = getSelectedLearningSection();
+    const showingSelectedVocabulary = Boolean(
+      selectedSection &&
+      (hskState.groupMode === 'lessons' || hskState.groupMode === 'topics')
+    );
+    const routeTabs = rows.map(row => {
       const active = row.mode === hskState.groupMode;
       return `
         <button type="button" class="hsk-route-tab hsk-route-tab--${escapeHtml(row.tone)} ${active ? 'active' : ''}" data-hsk-group-mode="${escapeHtml(row.mode)}" aria-pressed="${active}">
@@ -2203,56 +2273,45 @@ if(window.HanziWriter){
         </button>
       `;
     }).join('');
+    const backTool = showingSelectedVocabulary ? `
+      <button type="button" class="hsk-route-icon-button hsk-route-back-button" data-hsk-section-back aria-label="Quay lại danh sách ${hskState.groupMode === 'topics' ? 'chủ đề' : 'bài học'}" title="Quay lại">←</button>
+    ` : '';
+    const viewTools = showingSelectedVocabulary ? `
+      <span class="hsk-route-inline-tools">
+        <button type="button" class="hsk-route-icon-button ${hskState.vocabViewMode === 'list' ? 'active' : ''}" data-hsk-vocab-view="list" aria-pressed="${hskState.vocabViewMode === 'list'}" aria-label="Hiển thị dạng danh sách" title="Danh sách">☰</button>
+        <button type="button" class="hsk-route-icon-button ${hskState.vocabViewMode === 'grid' ? 'active' : ''}" data-hsk-vocab-view="grid" aria-pressed="${hskState.vocabViewMode === 'grid'}" aria-label="Hiển thị dạng lưới" title="Lưới">▦</button>
+      </span>
+    ` : '';
+
+    hskGroupModes.classList.toggle('has-back', showingSelectedVocabulary);
+    hskGroupModes.classList.toggle('has-view-tools', showingSelectedVocabulary);
+    hskGroupModes.classList.remove(
+      'hsk-route-toolbar--1-tab',
+      'hsk-route-toolbar--2-tabs',
+      'hsk-route-toolbar--3-tabs'
+    );
+    hskGroupModes.classList.add(`hsk-route-toolbar--${Math.min(Math.max(rows.length, 1), 3)}-${rows.length === 1 ? 'tab' : 'tabs'}`);
+    hskGroupModes.innerHTML = `
+      <span class="hsk-route-toolbar-slot hsk-route-toolbar-left">${backTool}</span>
+      <span class="hsk-route-toolbar-main hsk-route-toolbar-main--${Math.min(Math.max(rows.length, 1), 3)}">${routeTabs}</span>
+      <span class="hsk-route-toolbar-slot hsk-route-toolbar-right">${viewTools}</span>
+    `;
   }
 
   function filterItemsByWordFilter(items){
-    const filter = hskState.wordFilter || 'all';
-    if(filter === 'char1') return items.filter(item => getItemCharCount(item) === 1);
-    if(filter === 'char2') return items.filter(item => getItemCharCount(item) === 2);
-    if(filter === 'char3plus') return items.filter(item => getItemCharCount(item) >= 3);
     return items;
   }
 
-  function renderHskWordFilters(items = []){
-    const rows = [
-      ['all', 'Tất cả', items.length],
-      ['char1', '1 chữ', items.filter(item => getItemCharCount(item) === 1).length],
-      ['char2', '2 chữ', items.filter(item => getItemCharCount(item) === 2).length],
-      ['char3plus', '3+ chữ', items.filter(item => getItemCharCount(item) >= 3).length]
-    ];
-    return `
-      <div class="hsk-word-filter-row" role="group" aria-label="Lọc số chữ trong bài hoặc chủ đề">
-        ${rows.map(([key, label, count]) => `
-          <button type="button" class="${hskState.wordFilter === key ? 'active' : ''}" data-hsk-word-filter="${escapeHtml(key)}" aria-pressed="${hskState.wordFilter === key}">
-            ${escapeHtml(label)} <small>${Number(count || 0).toLocaleString('vi-VN')}</small>
-          </button>
-        `).join('')}
-      </div>
-    `;
+  function renderHskWordFilters(){
+    return '';
   }
 
   function renderHskSelectedSectionControls(){
     if(!hskTopicFilters){
       return;
     }
-    const selected = getSelectedLearningSection();
-    if(!selected || (hskState.groupMode !== 'lessons' && hskState.groupMode !== 'topics')){
-      hskTopicFilters.hidden = true;
-      hskTopicFilters.innerHTML = '';
-      return;
-    }
-    hskTopicFilters.hidden = false;
-    const sectionType = selected.route?.sectionType === 'topic' ? 'chủ đề' : 'bài học';
-    hskTopicFilters.innerHTML = `
-      <div class="hsk-selected-section-bar">
-        <button type="button" class="hsk-section-back" data-hsk-section-back>← Danh sách ${escapeHtml(sectionType)}</button>
-        <div class="hsk-selected-section-title">
-          <strong>${escapeHtml(selected.label)}</strong>
-          <span>${selected.items.length.toLocaleString('vi-VN')} từ</span>
-        </div>
-      </div>
-      ${renderHskWordFilters(selected.items)}
-    `;
+    hskTopicFilters.hidden = true;
+    hskTopicFilters.innerHTML = '';
   }
 
   function renderHskFilters(){
@@ -2320,7 +2379,7 @@ if(window.HanziWriter){
     const sectionType = getCurrentSectionType();
     const filtered = filterItemsByWordFilter(items);
     if(!selected){
-      return filtered.map(renderHskItem).join('');
+      return filtered.map((item, index) => renderHskItem(item, index)).join('');
     }
     if(!filtered.length){
       return '<p class="hsk-empty">Không tìm thấy từ phù hợp trong mục này.</p>';
@@ -2329,7 +2388,7 @@ if(window.HanziWriter){
     return `
       <section class="hsk-section-word-view hsk-section-word-view--${modeClass}">
         <div class="hsk-section-word-list">
-          ${filtered.map(renderHskItem).join('')}
+          ${filtered.map((item, index) => renderHskItem(item, index)).join('')}
         </div>
       </section>
     `;
@@ -2506,7 +2565,7 @@ if(window.HanziWriter){
     const chars = normalizePopupCharRows(item);
     if(!chars.length) return '';
     return `
-      <section class="hsk-popup-section">
+      <section class="hsk-popup-section hsk-popup-character-section">
         <h4>Từng chữ trong từ</h4>
         <div class="hsk-popup-char-grid">
           ${chars.map(charInfo => `
@@ -2632,7 +2691,6 @@ if(window.HanziWriter){
       </section>
 
       ${renderPopupCharacters(item)}
-      ${renderPopupDictionaryInfo(item)}
       ${renderRelatedWords(item)}
       ${renderPopupSampleSentences(item)}
       ${renderPopupWriting(item)}
@@ -2886,15 +2944,28 @@ if(window.HanziWriter){
     }
   }
 
-  function renderHskItem(item){
+  const HSK_CARD_ACCENTS = [
+    '#6f9fe8',
+    '#68b982',
+    '#62b9c8',
+    '#9a7fd1',
+    '#e79a62',
+    '#df7fa8',
+    '#7f8fd8',
+    '#68a99f'
+  ];
+
+  function getHskCardAccent(index){
+    const safeIndex = Number.isFinite(Number(index)) ? Number(index) : 0;
+    return HSK_CARD_ACCENTS[Math.abs(safeIndex) % HSK_CARD_ACCENTS.length];
+  }
+
+  function renderHskItem(item, index = 0){
     const word = String(item?.word || item?.simplified || '').trim();
     const pinyin = formatPinyin(item?.pinyin);
     const meaning = String(item?.meaningVi || '').trim();
-    const route = getPrimarySection(item);
-    const charCount = Number(item?.charCount) || getHanziChars(word).length;
-
     return `
-      <article class="hsk-item hsk-item-compact" data-hsk-popup-word="${escapeHtml(word)}" data-copy-text="${escapeHtml(word)}" tabindex="0" role="button" aria-label="Mở chi tiết ${escapeHtml(word)}">
+      <article class="hsk-item hsk-item-compact hsk-vocab-item hsk-item--accented" style="--hsk-card-accent:${getHskCardAccent(index)}" data-hsk-popup-word="${escapeHtml(word)}" data-copy-text="${escapeHtml(word)}" tabindex="0" role="button" aria-label="Mở chi tiết ${escapeHtml(word)}">
         <div class="hsk-item-main">
           <div class="hsk-word-row">
             <strong class="hsk-word">${escapeHtml(word)}</strong>
@@ -2904,11 +2975,6 @@ if(window.HanziWriter){
             </span>
           </div>
           ${meaning ? `<p class="hsk-meaning">${escapeHtml(formatSlashMeaning(meaning, 3))}</p>` : '<p class="hsk-meaning is-muted">Chưa có nghĩa tiếng Việt.</p>'}
-          <div class="hsk-meta-line">
-            ${item?.hsk ? `<span>HSK ${escapeHtml(item.hsk)}</span>` : ''}
-            <span>${charCount} chữ</span>
-            ${route ? `<span>${escapeHtml(route)}</span>` : ''}
-          </div>
         </div>
       </article>
     `;
@@ -2951,14 +3017,14 @@ if(window.HanziWriter){
     };
   }
 
-  function renderGrammarCard(item){
+  function renderGrammarCard(item, index = 0){
     const grammar = normalizeGrammarItem(item);
     const chapterLabel = grammar.chapter
       ? `BÀI ${String(grammar.chapter).padStart(2, '0')}`
       : 'NGỮ PHÁP';
     const exampleLabel = `${grammar.examples.length.toLocaleString('vi-VN')} ví dụ`;
     return `
-      <article class="hsk-item hsk-grammar-item" tabindex="0" data-hsk-grammar-id="${escapeHtml(grammar.id)}" data-copy-text="${escapeHtml(grammar.topic)}">
+      <article class="hsk-item hsk-grammar-item hsk-item--accented" style="--hsk-card-accent:${getHskCardAccent(index)}" tabindex="0" data-hsk-grammar-id="${escapeHtml(grammar.id)}" data-copy-text="${escapeHtml(grammar.topic)}">
         <div class="hsk-item-main hsk-grammar-card-main">
           <div class="hsk-grammar-card-meta">
             <span class="hsk-grammar-chapter-badge">${escapeHtml(chapterLabel)}</span>
@@ -2973,6 +3039,7 @@ if(window.HanziWriter){
   }
 
   function renderGrammarListFromData(data){
+    renderHskVocabViewControls(false);
     const info = getCurrentGrammarInfo();
     const query = normalizeSearchText(hskState.query);
     const selectedChapter = getSelectedLessonChapter();
@@ -3004,10 +3071,11 @@ if(window.HanziWriter){
         : '<p class="hsk-empty">Không tìm thấy mục ngữ pháp phù hợp.</p>';
       return;
     }
-    hskList.innerHTML = items.map(renderGrammarCard).join('');
+    hskList.innerHTML = items.map((item, index) => renderGrammarCard(item, index)).join('');
   }
 
   function renderGrammarList(){
+    renderHskVocabViewControls(false);
     const info = getCurrentGrammarInfo();
     hskList.classList.remove('hsk-list--topics', 'hsk-list--section-cards');
     hskList.classList.add('hsk-list--grammar');
@@ -3119,7 +3187,9 @@ if(window.HanziWriter){
 
   function renderHskList(){
     renderHskFilters();
+    hskList.classList.remove('hsk-list--vocab-list', 'hsk-list--vocab-grid');
     if(hskState.groupMode === 'grammar'){
+      renderHskVocabViewControls(false);
       renderGrammarList();
       return;
     }
@@ -3133,9 +3203,11 @@ if(window.HanziWriter){
     const baseCount = hskState.currentItems.filter(itemBelongsToSelectedSource).length.toLocaleString('vi-VN');
     const foundCount = filtered.length.toLocaleString('vi-VN');
     const searchText = query ? ` · tìm thấy ${foundCount} / ${baseCount}` : ` · ${foundCount} / ${baseCount}`;
-    hskStatus.textContent = `${escapeHtml(getHskSourceLabel())} · ${escapeHtml(getHskLevelLabel(level))}${selectedLearningLabel ? ` · ${escapeHtml(selectedLearningLabel)}` : ''} · ${groupLabel}${searchText} mục.`;
+    const modeLabel = selectedLearningLabel ? '' : ` · ${groupLabel}`;
+    hskStatus.textContent = `${escapeHtml(getHskSourceLabel())} · ${escapeHtml(getHskLevelLabel(level))}${selectedLearningLabel ? ` · ${escapeHtml(selectedLearningLabel)}` : ''}${modeLabel}${searchText} mục.`;
 
     if((hskState.groupMode === 'lessons' || hskState.groupMode === 'topics') && hskState.topicKey === 'all'){
+      renderHskVocabViewControls(false);
       const sectionType = hskState.groupMode === 'topics' ? 'topic' : 'lesson';
       hskList.classList.add('hsk-list--topics', 'hsk-list--section-cards');
       hskList.innerHTML = renderHskSectionCards(searched, sectionType);
@@ -3143,6 +3215,8 @@ if(window.HanziWriter){
     }
 
     hskList.classList.remove('hsk-list--topics', 'hsk-list--section-cards');
+    renderHskVocabViewControls(false);
+    hskList.classList.add(hskState.vocabViewMode === 'grid' ? 'hsk-list--vocab-grid' : 'hsk-list--vocab-list');
     if(!filtered.length){
       hskList.innerHTML = '<p class="hsk-empty">Không tìm thấy mục phù hợp.</p>';
       return;
@@ -3153,7 +3227,7 @@ if(window.HanziWriter){
       return;
     }
 
-    hskList.innerHTML = filtered.map(renderHskItem).join('');
+    hskList.innerHTML = filtered.map((item, index) => renderHskItem(item, index)).join('');
   }
 
 
@@ -3210,6 +3284,26 @@ if(window.HanziWriter){
 
 
   hskGroupModes?.addEventListener('click', event => {
+    const backButton = event.target.closest('[data-hsk-section-back]');
+    if(backButton){
+      event.preventDefault();
+      hskState.topicKey = 'all';
+      hskState.wordFilter = 'all';
+      renderHskFilters();
+      renderHskList();
+      return;
+    }
+    const viewButton = event.target.closest('[data-hsk-vocab-view]');
+    if(viewButton){
+      event.preventDefault();
+      const nextMode = viewButton.dataset.hskVocabView === 'grid' ? 'grid' : 'list';
+      if(nextMode !== hskState.vocabViewMode){
+        saveStoredVocabViewMode(nextMode);
+        renderHskFilters();
+        renderHskList();
+      }
+      return;
+    }
     const button = event.target.closest('[data-hsk-group-mode]');
     if(!button){
       return;
