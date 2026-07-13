@@ -8435,16 +8435,43 @@ body.hsk-flashcard-open{
   font-weight:850;
   color:#695548;
 }
-.flashcard-meaning-options label{
-  display:flex;
-  align-items:flex-start;
+.flashcard-meaning-option-list{
+  display:grid;
   gap:7px;
-  margin-top:7px;
-  font-size:12px;
-  line-height:1.35;
+  margin-top:8px;
 }
-.flashcard-meaning-options input{
-  margin-top:2px;
+.flashcard-meaning-options label{
+  min-width:0;
+  display:grid;
+  grid-template-columns:20px minmax(0,1fr);
+  align-items:start;
+  gap:8px;
+  margin:0;
+  padding:7px 8px;
+  border:1px solid #eee5dc;
+  border-radius:9px;
+  background:#fff;
+  color:#4f463f;
+  font-size:12px;
+  font-weight:600;
+  line-height:1.4;
+  cursor:pointer;
+  box-sizing:border-box;
+}
+.flashcard-meaning-options input[type="checkbox"]{
+  width:18px !important;
+  min-width:18px;
+  height:18px;
+  margin:0 !important;
+  padding:0 !important;
+  border-radius:5px;
+  box-sizing:border-box;
+}
+.flashcard-meaning-options label > span{
+  min-width:0;
+  overflow-wrap:anywhere;
+  word-break:break-word;
+  white-space:normal;
 }
 .flashcard-quick-import code{
   padding:1px 4px;
@@ -9189,5 +9216,20 @@ body.hsk-flashcard-open{
   .flashcard-token-add button{
     min-height: 34px;
     padding: 6px 8px;
+  }
+}
+
+/* STEP 19A.3 — Fix mobile Dictionary meaning options */
+@media (max-width: 520px){
+  .flashcard-meaning-options{
+    padding:8px;
+    overflow:hidden;
+  }
+  .flashcard-meaning-options summary{
+    line-height:1.35;
+  }
+  .flashcard-meaning-options label{
+    width:100%;
+    padding:8px;
   }
 }

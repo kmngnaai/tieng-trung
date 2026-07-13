@@ -2396,7 +2396,7 @@ if(window.HanziWriter){
                   <option value="skip" ${row.action === 'skip' ? 'selected' : ''}>Bỏ qua</option>
                 </select>
               </label>` : ''}
-            ${(row.meaningOptions || []).length > 1 ? `<details class="flashcard-meaning-options"><summary>Chọn nhiều nghĩa Dictionary</summary>${row.meaningOptions.map(option => `<label><input type="checkbox" data-flashcard-meaning-option value="${escapeHtml(option)}" ${(row.selectedMeanings || []).includes(option) ? 'checked' : ''}> ${escapeHtml(option)}</label>`).join('')}</details>` : ''}
+            ${(row.meaningOptions || []).length > 1 ? `<details class="flashcard-meaning-options"><summary>Chọn nhiều nghĩa Dictionary</summary><div class="flashcard-meaning-option-list">${row.meaningOptions.map(option => `<label><input type="checkbox" data-flashcard-meaning-option value="${escapeHtml(option)}" ${(row.selectedMeanings || []).includes(option) ? 'checked' : ''}><span>${escapeHtml(option)}</span></label>`).join('')}</div></details>` : ''}
             ${row.source ? `<small>${escapeHtml(row.source)}</small>` : ''}
           </article>`;
         }).join('')}
