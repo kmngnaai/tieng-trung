@@ -169,6 +169,18 @@ async function loadCompoundWordInfo(wordText){
 
   return null;
 }
+async function loadCompoundWordCandidates(wordText){
+  const target = String(wordText || '').trim();
+  if(!target) return [];
+  const out = []; const seen = new Set();
+  for(const source of WORD_LOOKUP_SOURCES){
+    const bucket = await loadWordBucket(target, source); let rows = [];
+    if(Array.isArray(bucket)) rows = bucket.filter(row => String(row?.s || row?.word || '').trim() === target);
+    else if(bucket && bucket[target]) rows = Array.isArray(bucket[target]) ? bucket[target] : [bucket[target]];
+    rows.forEach(entry => { const normalized = normalizeWordDictionaryEntry(entry, target, source); if(!normalized) return; const key=[normalized.pinyin,normalized.meaningVi].join('|'); if(!key.trim()||seen.has(key)) return; seen.add(key); out.push(normalized); });
+  }
+  return out;
+}
 
 const colorPresets = {
   bright: {
@@ -1250,8 +1262,10 @@ if(window.HanziWriter){
   }
 
   const HSK_DATA_BASE = 'data/learning/hsk/';
+  const HSK_QUICK_LOOKUP_PATH = `${HSK_DATA_BASE}hsk_flashcard_lookup.json`;
   const GRAMMAR_DATA_BASE = 'data/learning/grammar/';
   const hskCache = new Map();
+  let hskQuickLookupPromise = null;
   const grammarCache = new Map();
   const hskState = {
     summary: null,
@@ -1283,18 +1297,187 @@ if(window.HanziWriter){
   const HSK_FLASHCARD_SETTINGS_KEY = 'hanziStroke.hskFlashcardSettings.v1';
   const HSK_FLASHCARD_RESULTS_KEY = 'hanziStroke.hskFlashcardResults.v1';
   const HSK_FLASHCARD_ACTIVE_SESSION_KEY = 'hanziStroke.hskFlashcardActiveSession.v1';
+  const FLASHCARD_LIBRARY_SORT_KEY = 'hanziStroke.flashcardLibrarySort.v1';
   const FLASHCARD_DB_NAME = 'hanziStrokeFlashcards';
   const FLASHCARD_DB_VERSION = 1;
   const FLASHCARD_DECK_STORE = 'decks';
   let flashcardTouchStart = null;
   let flashcardSuppressClickUntil = 0;
+  let flashcardStrokeWriters = [];
+  let flashcardStrokeRenderId = 0;
+  let flashcardStrokePlayId = 0;
   let tabFlashcards = null;
   let flashcardLibraryView = null;
-  const flashcardLibraryState = { decks: [], editingDeck: null, message: '' };
+  const flashcardLibraryState = { decks: [], editingDeck: null, detailDeckId: '', detailSearch: '', editingCardId: '', selectedCardIds: new Set(), message: '', quickImportBusy: false, searchQuery: '', sortMode: readFlashcardLibrarySort() };
 
   function makeLocalId(prefix = 'id'){
     if(window.crypto?.randomUUID) return `${prefix}-${window.crypto.randomUUID()}`;
     return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+  }
+
+
+  function readFlashcardLibrarySort(){
+    try{
+      const value = window.localStorage?.getItem(FLASHCARD_LIBRARY_SORT_KEY) || '';
+      return ['updated-desc', 'studied-desc', 'name-asc', 'cards-desc', 'hard-desc', 'review-desc'].includes(value) ? value : 'updated-desc';
+    }catch(_err){
+      return 'updated-desc';
+    }
+  }
+
+  function saveFlashcardLibrarySort(value){
+    try{ window.localStorage?.setItem(FLASHCARD_LIBRARY_SORT_KEY, value); }catch(_err){}
+  }
+
+  function normalizeLibrarySearch(value){
+    return String(value || '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/ü/g, 'u')
+      .toLowerCase()
+      .trim();
+  }
+
+  function getDeckLearningStats(deck, results){
+    const cards = Array.isArray(deck?.cards) ? deck.cards : [];
+    const counts = { easy: 0, review: 0, hard: 0, unseen: 0 };
+    let lastStudiedAt = '';
+    cards.forEach(card => {
+      const id = `custom:${deck.id}:${card.id}`;
+      const entry = results[id];
+      const rating = entry?.lastRating;
+      if(rating === 'easy') counts.easy += 1;
+      else if(rating === 'review') counts.review += 1;
+      else if(rating === 'hard') counts.hard += 1;
+      else counts.unseen += 1;
+      if(String(entry?.lastStudiedAt || '') > lastStudiedAt) lastStudiedAt = String(entry.lastStudiedAt);
+    });
+    return { ...counts, total: cards.length, lastStudiedAt };
+  }
+
+  function getDeckSearchText(deck){
+    const cardText = (deck.cards || []).map(card => `${card.word || ''} ${card.pinyin || ''} ${card.meaningVi || ''}`).join(' ');
+    return normalizeLibrarySearch(`${deck.name || ''} ${deck.description || ''} ${cardText}`);
+  }
+
+  function prepareFlashcardLibraryDecks(decks){
+    const results = readFlashcardResults();
+    const query = normalizeLibrarySearch(flashcardLibraryState.searchQuery);
+    const rows = (decks || []).map(deck => ({ deck, stats: getDeckLearningStats(deck, results) }));
+    const filtered = query ? rows.filter(row => getDeckSearchText(row.deck).includes(query)) : rows;
+    const compareText = (a, b) => String(a || '').localeCompare(String(b || ''), 'vi', { sensitivity: 'base' });
+    filtered.sort((a, b) => {
+      const mode = flashcardLibraryState.sortMode;
+      if(mode === 'studied-desc') return String(b.stats.lastStudiedAt || '').localeCompare(String(a.stats.lastStudiedAt || '')) || String(b.deck.updatedAt || '').localeCompare(String(a.deck.updatedAt || ''));
+      if(mode === 'name-asc') return compareText(a.deck.name, b.deck.name);
+      if(mode === 'cards-desc') return b.stats.total - a.stats.total || compareText(a.deck.name, b.deck.name);
+      if(mode === 'hard-desc') return b.stats.hard - a.stats.hard || b.stats.total - a.stats.total;
+      if(mode === 'review-desc') return b.stats.review - a.stats.review || b.stats.total - a.stats.total;
+      return String(b.deck.updatedAt || '').localeCompare(String(a.deck.updatedAt || ''));
+    });
+    return filtered;
+  }
+
+  function formatLibraryDate(value, emptyText = 'Chưa có'){
+    if(!value) return emptyText;
+    const date = new Date(value);
+    if(Number.isNaN(date.getTime())) return emptyText;
+    return date.toLocaleDateString('vi-VN');
+  }
+
+  function normalizeCardPart(value){
+    return normalizeLibrarySearch(value).replace(/\s+/g, ' ').trim();
+  }
+
+  function getCardExactKey(card){
+    return [card?.word, card?.pinyin, card?.meaningVi].map(normalizeCardPart).join('|');
+  }
+
+  function getCardWordPinyinKey(card){
+    return [card?.word, card?.pinyin].map(normalizeCardPart).join('|');
+  }
+
+  function findDeckDuplicateInfo(deck, candidate, ignoreCardId = ''){
+    const cards = Array.isArray(deck?.cards) ? deck.cards : [];
+    const exactKey = getCardExactKey(candidate);
+    const wordPinyinKey = getCardWordPinyinKey(candidate);
+    const exact = cards.find(card => card.id !== ignoreCardId && getCardExactKey(card) === exactKey);
+    const sameWordPinyin = cards.find(card => card.id !== ignoreCardId && getCardWordPinyinKey(card) === wordPinyinKey && getCardExactKey(card) !== exactKey);
+    return { exact, sameWordPinyin };
+  }
+
+  function getDuplicateCardIds(deck){
+    const seen = new Map();
+    const duplicates = new Set();
+    for(const card of deck?.cards || []){
+      const key = getCardExactKey(card);
+      if(!key.replace(/\|/g, '')) continue;
+      if(seen.has(key)){
+        duplicates.add(card.id);
+        duplicates.add(seen.get(key));
+      }else{
+        seen.set(key, card.id);
+      }
+    }
+    return duplicates;
+  }
+
+  function readFlashcardResultEntry(deckId, cardId){
+    return readFlashcardResults()[`custom:${deckId}:${cardId}`] || null;
+  }
+
+  function writeFlashcardResults(results){
+    try{ window.localStorage?.setItem(HSK_FLASHCARD_RESULTS_KEY, JSON.stringify(results)); }catch(_err){}
+  }
+
+  function moveCardLearningResult(sourceDeckId, targetDeckId, cardId){
+    const results = readFlashcardResults();
+    const oldKey = `custom:${sourceDeckId}:${cardId}`;
+    const newKey = `custom:${targetDeckId}:${cardId}`;
+    if(results[oldKey]){
+      results[newKey] = results[oldKey];
+      delete results[oldKey];
+      writeFlashcardResults(results);
+    }
+  }
+
+  function deleteCardLearningResults(deckId, cardIds){
+    const results = readFlashcardResults();
+    let changed = false;
+    for(const cardId of cardIds){
+      const key = `custom:${deckId}:${cardId}`;
+      if(results[key]){ delete results[key]; changed = true; }
+    }
+    if(changed) writeFlashcardResults(results);
+  }
+
+  function getCardRatingLabel(entry){
+    if(entry?.lastRating === 'easy') return 'Dễ';
+    if(entry?.lastRating === 'review') return 'Ôn';
+    if(entry?.lastRating === 'hard') return 'Khó';
+    return 'Chưa học';
+  }
+
+  function getDetailDeck(){
+    return flashcardLibraryState.decks.find(deck => deck.id === flashcardLibraryState.detailDeckId) || null;
+  }
+
+  function getFilteredDetailCards(deck){
+    const query = normalizeLibrarySearch(flashcardLibraryState.detailSearch);
+    if(!query) return deck?.cards || [];
+    return (deck?.cards || []).filter(card => normalizeLibrarySearch(`${card.word || ''} ${card.pinyin || ''} ${card.meaningVi || ''}`).includes(query));
+  }
+
+  function downloadJsonFile(payload, filename){
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
   }
 
   function openFlashcardDb(){
@@ -1406,13 +1589,446 @@ if(window.HanziWriter){
     tabFlashcards.addEventListener('click', () => setStudyTab('flashcards'));
     flashcardLibraryView.addEventListener('click', event => { event.stopPropagation(); handleFlashcardLibraryClick(event); });
     flashcardLibraryView.addEventListener('change', handleFlashcardLibraryChange);
+    flashcardLibraryView.addEventListener('input', handleFlashcardLibraryInput);
+  }
+
+  function ensureDeckEditorState(deck){
+    if(!deck) return null;
+    if(!Array.isArray(deck.cards)) deck.cards = [];
+    if(!['manual', 'quick'].includes(deck.entryMode)) deck.entryMode = 'manual';
+    if(typeof deck.quickImportText !== 'string') deck.quickImportText = '';
+    if(!Array.isArray(deck.quickImportRows)) deck.quickImportRows = [];
+    return deck;
+  }
+
+  function syncDeckEditorFields(){
+    const deck = ensureDeckEditorState(flashcardLibraryState.editingDeck);
+    if(!deck || !flashcardLibraryView) return deck;
+    const name = flashcardLibraryView.querySelector('[data-flashcard-deck-name]');
+    const description = flashcardLibraryView.querySelector('[data-flashcard-deck-description]');
+    const quickText = flashcardLibraryView.querySelector('[data-flashcard-quick-text]');
+    if(name) deck.name = name.value;
+    if(description) deck.description = description.value;
+    if(quickText) deck.quickImportText = quickText.value;
+    return deck;
+  }
+
+  function parseDelimitedQuickLine(line){
+    const raw = String(line || '').trim(); if(!raw) return null;
+    const delimiter = raw.includes('|') ? '|' : (raw.includes('\t') ? '\t' : null);
+    if(!delimiter) return { word:getHanziChars(raw).join('').trim(), pinyin:'', meaningVi:'', userProvided:false };
+    const parts = raw.split(delimiter).map(part => part.trim());
+    return { word:getHanziChars(parts[0]||'').join('').trim(), pinyin:parts[1]||'', meaningVi:parts.slice(2).join(' ').trim(), userProvided:true };
+  }
+
+  function splitQuickImportEntries(value){
+    const seen=new Set(), entries=[];
+    String(value||'').split(/\r?\n/).forEach(line=>{ const trimmed=line.trim(); if(!trimmed) return;
+      if(trimmed.includes('|')||trimmed.includes('\t')){ const entry=parseDelimitedQuickLine(trimmed); const key=`${entry?.word||''}|${normalizeSearchText(entry?.pinyin||'')}|${normalizeSearchText(entry?.meaningVi||'')}`; if(entry?.word&&!seen.has(key)){seen.add(key);entries.push(entry);} return; }
+      trimmed.split(/[,，;；、]+/).forEach(part=>{ const word=getHanziChars(part).join('').trim(); const key=`${word}||`; if(word&&!seen.has(key)){seen.add(key);entries.push({word,pinyin:'',meaningVi:'',userProvided:false});} });
+    }); return entries;
+  }
+
+  async function segmentChineseSentence(text){
+    const chars=getHanziChars(text), tokens=[], hskLookup=await loadHskQuickLookup(); let index=0;
+    while(index<chars.length){ let match=''; for(let len=Math.min(6,chars.length-index);len>=2;len-=1){ const candidate=chars.slice(index,index+len).join(''); if(hskLookup[candidate]||await loadCompoundWordInfo(candidate)){match=candidate;break;} } if(!match)match=chars[index]; tokens.push(match); index+=Array.from(match).length; }
+    return tokens;
+  }
+  async function segmentQuickImportText(value){ const seen=new Set(),entries=[]; for(const line of String(value||'').split(/\r?\n/)){ if(!line.trim())continue; for(const word of await segmentChineseSentence(line)){if(word&&!seen.has(word)){seen.add(word);entries.push({word,pinyin:'',meaningVi:'',userProvided:false,segmented:true});}} } return entries; }
+
+  function parseCsvText(text){
+    const rows=[]; let row=[],cell='',quoted=false; const input=String(text||'').replace(/^\uFEFF/,'');
+    const pushCell=()=>{row.push(cell);cell='';}, pushRow=()=>{pushCell();if(row.some(v=>String(v).trim()))rows.push(row);row=[];};
+    for(let i=0;i<input.length;i+=1){const ch=input[i];if(ch==='"'){if(quoted&&input[i+1]==='"'){cell+='"';i+=1;}else quoted=!quoted;}else if(ch===','&&!quoted)pushCell();else if((ch==='\n'||ch==='\r')&&!quoted){if(ch==='\r'&&input[i+1]==='\n')i+=1;pushRow();}else cell+=ch;} if(cell||row.length)pushRow(); return rows;
+  }
+  function mapCsvRowsToQuickEntries(rows){ if(!rows.length)return[]; const header=rows[0].map(v=>normalizeSearchText(v)); const wi=header.findIndex(v=>['word','hanzi','chinese','tu','tutiengtrung'].includes(v)),pi=header.findIndex(v=>v==='pinyin'),mi=header.findIndex(v=>['meaningvi','meaning_vi','meaning','nghia','nghiaviet'].includes(v)); const start=(wi>=0||pi>=0||mi>=0)?1:0; return rows.slice(start).map(cols=>({word:getHanziChars(cols[wi>=0?wi:0]||'').join('').trim(),pinyin:String(cols[pi>=0?pi:1]||'').trim(),meaningVi:String(cols[mi>=0?mi:2]||'').trim(),userProvided:true})).filter(e=>e.word); }
+
+  async function loadHskQuickLookup(){
+    if(!hskQuickLookupPromise){
+      hskQuickLookupPromise = fetch(HSK_QUICK_LOOKUP_PATH)
+        .then(response => {
+          if(!response.ok){
+            throw new Error(`${response.status} ${response.statusText}`);
+          }
+          return response.json();
+        })
+        .then(payload => payload?.items && typeof payload.items === 'object' ? payload.items : {})
+        .catch(err => {
+          console.warn('Cannot load HSK quick lookup index:', err);
+          return {};
+        });
+    }
+    return hskQuickLookupPromise;
+  }
+
+  const VERIFIED_QUICK_IMPORT_CORRECTIONS = Object.freeze({
+    '圆满': { meaningVi: 'viên mãn, trọn vẹn, hoàn thành tốt đẹp', note: 'Nghĩa tính từ/trạng thái đã xác minh' },
+    '哇': { meaningVi: 'oa, chà; thán từ biểu thị ngạc nhiên hoặc cảm thán', note: 'Nghĩa thán từ đã xác minh' },
+    '哎': { meaningVi: 'ôi, này; thán từ dùng để gọi, đáp hoặc biểu thị cảm xúc', note: 'Nghĩa thán từ đã xác minh' },
+    '嘛': { meaningVi: 'mà; trợ từ ngữ khí dùng để nhấn mạnh điều hiển nhiên hoặc giải thích', note: 'Nghĩa trợ từ ngữ khí đã xác minh' },
+    '肝': { meaningVi: 'gan', note: 'Nghĩa danh từ chỉ cơ quan cơ thể đã xác minh' },
+    '那': { meaningVi: 'kia, đó, ấy', note: 'Nghĩa đại từ chỉ định đã xác minh' }
+  });
+
+  function normalizeHskQuickLookupEntry(entry, target){
+    if(!entry) return null;
+    return {
+      word: entry.word || target,
+      pinyin: entry.pinyin || '',
+      meaningVi: entry.meaningVi || '',
+      source: entry.libraryId === 'hsk'
+        ? `HSK ${entry.levelNo || ''}`.trim()
+        : `New HSK ${entry.levelNo || ''}`.trim()
+    };
+  }
+
+  function normalizeLatinForMeaningCheck(value){
+    return String(value || '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/ü/g, 'u')
+      .replace(/[^a-z0-9]+/gi, '')
+      .toLowerCase();
+  }
+
+  function isPlaceholderMeaning(value){
+    const normalized = String(value || '').trim().toLowerCase();
+    return !normalized || ['-', '--', '—', '?', 'n/a', 'null', 'undefined', '...'].includes(normalized);
+  }
+
+  function isSuspiciousMeaning(target, pinyin, meaning){
+    const raw = String(meaning || '').trim();
+    if(isPlaceholderMeaning(raw)) return true;
+    if(raw === String(target || '').trim()) return true;
+    const comparableMeaning = normalizeLatinForMeaningCheck(raw);
+    const comparablePinyin = normalizeLatinForMeaningCheck(pinyin);
+    const asciiOnlyMeaning = /^[a-z0-9\s'-]+$/i.test(raw);
+    return Boolean(asciiOnlyMeaning && comparableMeaning && comparablePinyin && comparableMeaning === comparablePinyin);
+  }
+
+  function isUsableDictionaryMeaning(target, pinyin, meaning){
+    return !isSuspiciousMeaning(target, pinyin, meaning);
+  }
+
+  function formatDictionarySource(source){
+    const raw = String(source || '').trim();
+    if(!raw) return 'Dictionary';
+    return raw.startsWith('data/words/') ? `Dictionary (${raw.replace('data/words/', '')})` : raw;
+  }
+
+  function buildQuickImportSource(baseSource, usedDictionaryPinyin, usedDictionaryMeaning, dictionarySource){
+    if(!baseSource) return formatDictionarySource(dictionarySource);
+    if(usedDictionaryPinyin && usedDictionaryMeaning) return `${baseSource} · Pinyin + nghĩa: Dictionary`;
+    if(usedDictionaryPinyin) return `${baseSource} · Pinyin: Dictionary`;
+    if(usedDictionaryMeaning) return `${baseSource} · Nghĩa: Dictionary`;
+    return baseSource;
+  }
+
+  async function lookupQuickImportWord(word, seed = {}){
+    const target = getHanziChars(word).join('');
+    if(!target){
+      return { id: makeLocalId('preview'), word: '', pinyin: '', meaningVi: '', status: 'missing', source: '' };
+    }
+
+    const hskLookup = await loadHskQuickLookup();
+    const hskInfo = normalizeHskQuickLookupEntry(hskLookup[target], target);
+    const hskPinyin = String(hskInfo?.pinyin || '').trim();
+    const hskMeaning = String(hskInfo?.meaningVi || '').trim();
+    const hskMeaningSuspicious = Boolean(hskInfo && isSuspiciousMeaning(target, hskPinyin, hskMeaning));
+    const needsDictionary = !hskInfo || !hskPinyin || !hskMeaning || hskMeaningSuspicious;
+    const verifiedCorrection = VERIFIED_QUICK_IMPORT_CORRECTIONS[target] || null;
+    const dictionaryInfo = needsDictionary && !verifiedCorrection ? await loadCompoundWordInfo(target) : null;
+    const dictionaryPinyin = String(dictionaryInfo?.pinyin || '').trim();
+    const dictionaryMeaning = String(dictionaryInfo?.meaningVi || '').trim();
+    const dictionaryMeaningUsable = Boolean(dictionaryInfo && isUsableDictionaryMeaning(target, dictionaryPinyin, dictionaryMeaning));
+
+    let info = null;
+    if(hskInfo){
+      const usedDictionaryPinyin = !hskPinyin && Boolean(dictionaryPinyin);
+      const usedVerifiedMeaning = (!hskMeaning || hskMeaningSuspicious) && Boolean(verifiedCorrection?.meaningVi);
+      const usedDictionaryMeaning = !usedVerifiedMeaning && (!hskMeaning || hskMeaningSuspicious) && dictionaryMeaningUsable;
+      info = {
+        word: target,
+        pinyin: hskPinyin || dictionaryPinyin,
+        meaningVi: usedVerifiedMeaning
+          ? verifiedCorrection.meaningVi
+          : (usedDictionaryMeaning ? dictionaryMeaning : (hskMeaningSuspicious ? '' : hskMeaning)),
+        source: usedVerifiedMeaning
+          ? `${hskInfo.source} · Nghĩa: hiệu chỉnh đã xác minh`
+          : buildQuickImportSource(hskInfo.source, usedDictionaryPinyin, usedDictionaryMeaning, dictionaryInfo?.source)
+      };
+      if(hskMeaningSuspicious && !usedVerifiedMeaning && !usedDictionaryMeaning){
+        info.source = `${hskInfo.source} · Nghĩa HSK cần kiểm tra`;
+      }
+    }else if(verifiedCorrection){
+      info = {
+        word: target,
+        pinyin: dictionaryPinyin,
+        meaningVi: verifiedCorrection.meaningVi,
+        source: 'Hiệu chỉnh đã xác minh'
+      };
+    }else if(dictionaryInfo){
+      info = {
+        ...dictionaryInfo,
+        meaningVi: dictionaryMeaningUsable ? dictionaryMeaning : '',
+        source: formatDictionarySource(dictionaryInfo.source)
+      };
+    }
+
+    if((!info || (!String(info.pinyin || '').trim() && !String(info.meaningVi || '').trim())) && getHanziChars(target).length === 1){
+      const charInfo = await loadLocalCharInfo(target);
+      if(charInfo){
+        info = {
+          word: target,
+          pinyin: charInfo.pinyin || '',
+          meaningVi: charInfo.meaningVi || '',
+          source: 'data/chars'
+        };
+      }
+    }
+
+    const candidates = await loadCompoundWordCandidates(target);
+    const meaningOptions = [...new Set(candidates.flatMap(item => String(item.meaningVi || '').split(/[;；]/).map(v => v.trim()).filter(Boolean)))];
+    const pinyin = String(seed.pinyin || info?.pinyin || '').trim();
+    const meaningVi = String(seed.meaningVi || info?.meaningVi || '').trim();
+    const status = pinyin && meaningVi ? 'found' : (pinyin || meaningVi ? 'partial' : 'missing');
+    return { id:makeLocalId('preview'), word:target, pinyin, meaningVi, status, source:seed.userProvided?'Người dùng nhập':String(info?.source||''), meaningOptions, selectedMeanings:meaningVi?[meaningVi]:[] };
+  }
+
+  async function analyzeQuickImportEntries(entries){ const deck=syncDeckEditorFields(); if(!deck)return; if(!entries.length){window.alert('Hãy nhập ít nhất một từ tiếng Trung.');return;} flashcardLibraryState.quickImportBusy=true; deck.quickImportRows=[]; await renderFlashcardLibrary(); try{deck.quickImportRows=annotateQuickImportRows(deck,await Promise.all(entries.map(entry=>lookupQuickImportWord(entry.word,entry))));}finally{flashcardLibraryState.quickImportBusy=false;await renderFlashcardLibrary();} }
+  async function analyzeQuickImportWords(){const deck=syncDeckEditorFields();if(deck)await analyzeQuickImportEntries(splitQuickImportEntries(deck.quickImportText));}
+  async function analyzeQuickImportSentence(){const deck=syncDeckEditorFields();if(deck)await analyzeQuickImportEntries(await segmentQuickImportText(deck.quickImportText));}
+  async function importQuickCsvFile(file){await analyzeQuickImportEntries(mapCsvRowsToQuickEntries(parseCsvText(await file.text())));}
+
+  function annotateQuickImportRows(deck, rows){
+    const seenExact = new Map();
+    return (rows || []).map(row => {
+      const candidate = { word: row.word, pinyin: row.pinyin, meaningVi: row.meaningVi };
+      const duplicate = findDeckDuplicateInfo(deck, candidate);
+      const exactKey = getCardExactKey(candidate);
+      const inputDuplicateOf = exactKey.replace(/\|/g, '') && seenExact.has(exactKey) ? seenExact.get(exactKey) : '';
+      if(!inputDuplicateOf && exactKey.replace(/\|/g, '')) seenExact.set(exactKey, row.id);
+      let duplicateType = 'new';
+      let duplicateCardId = '';
+      let action = 'add';
+      let selected = true;
+      if(inputDuplicateOf){
+        duplicateType = 'input-exact';
+        duplicateCardId = inputDuplicateOf;
+        action = 'skip';
+        selected = false;
+      }else if(duplicate.exact){
+        duplicateType = 'deck-exact';
+        duplicateCardId = duplicate.exact.id;
+        action = 'skip';
+        selected = false;
+      }else if(duplicate.sameWordPinyin){
+        duplicateType = 'same-word-pinyin';
+        duplicateCardId = duplicate.sameWordPinyin.id;
+        action = 'keep';
+      }
+      return { ...row, selected, duplicateType, duplicateCardId, action };
+    });
+  }
+
+  function getQuickDuplicateLabel(row){
+    if(row.duplicateType === 'deck-exact') return 'Trùng hoàn toàn trong bộ';
+    if(row.duplicateType === 'input-exact') return 'Trùng trong danh sách nhập';
+    if(row.duplicateType === 'same-word-pinyin') return 'Cùng từ + pinyin, nghĩa khác';
+    return 'Thẻ mới';
+  }
+
+  function getQuickSelectedRows(rows){
+    return (rows || []).filter(row => row.selected && row.action !== 'skip' && row.word);
+  }
+
+  function readQuickPreviewRows(){
+    if(!flashcardLibraryView) return [];
+    return [...flashcardLibraryView.querySelectorAll('[data-flashcard-quick-row]')].map(row => ({
+      id: row.dataset.flashcardQuickRow || makeLocalId('preview'),
+      word: row.querySelector('[data-flashcard-quick-word]')?.value.trim() || '',
+      pinyin: row.querySelector('[data-flashcard-quick-pinyin]')?.value.trim() || '',
+      meaningVi: row.querySelector('[data-flashcard-quick-meaning]')?.value.trim() || '',
+      status: row.dataset.flashcardQuickStatus || 'missing',
+      source: row.dataset.flashcardQuickSource || '',
+      selected: Boolean(row.querySelector('[data-flashcard-quick-select]')?.checked),
+      duplicateType: row.dataset.flashcardQuickDuplicate || 'new',
+      duplicateCardId: row.dataset.flashcardQuickDuplicateCard || '',
+      action: row.querySelector('[data-flashcard-quick-action]')?.value || row.dataset.flashcardQuickAction || 'add',
+      meaningOptions:[...row.querySelectorAll('[data-flashcard-meaning-option]')].map(input=>input.value),
+      selectedMeanings:[...row.querySelectorAll('[data-flashcard-meaning-option]:checked')].map(input=>input.value)
+    })).map(row=>({...row,meaningVi:row.selectedMeanings?.length?row.selectedMeanings.join('; '):row.meaningVi})).filter(row => row.word);
+  }
+
+  function addQuickPreviewToDeck(){
+    const deck = syncDeckEditorFields();
+    if(!deck) return;
+    const rows = readQuickPreviewRows();
+    let added = 0;
+    let updated = 0;
+    let skipped = 0;
+    rows.forEach(row => {
+      if(!row.selected || row.action === 'skip' || !row.word){ skipped += 1; return; }
+      const candidate = { word: row.word, pinyin: row.pinyin, meaningVi: row.meaningVi };
+      const duplicate = findDeckDuplicateInfo(deck, candidate);
+      if(duplicate.exact){ skipped += 1; return; }
+      if(row.action === 'replace' && row.duplicateCardId){
+        const target = deck.cards.find(card => card.id === row.duplicateCardId);
+        if(target){ Object.assign(target, candidate); updated += 1; return; }
+      }
+      if(row.action === 'merge' && row.duplicateCardId){
+        const target = deck.cards.find(card => card.id === row.duplicateCardId);
+        if(target){
+          const parts = [target.meaningVi, row.meaningVi].map(value => String(value || '').trim()).filter(Boolean);
+          target.meaningVi = [...new Set(parts)].join('; ');
+          if(!target.pinyin && row.pinyin) target.pinyin = row.pinyin;
+          updated += 1;
+          return;
+        }
+      }
+      deck.cards.push({ id: makeLocalId('card'), ...candidate });
+      added += 1;
+    });
+    deck.quickImportRows = annotateQuickImportRows(deck, rows);
+    flashcardLibraryState.message = `Đã thêm ${added} · cập nhật ${updated} · bỏ qua ${skipped}.`;
+    renderFlashcardLibrary();
+  }
+
+  function renderQuickImportPreview(deck){
+    let rows = Array.isArray(deck.quickImportRows) ? deck.quickImportRows : [];
+    if(rows.some(row => typeof row.selected !== 'boolean' || !row.duplicateType)){
+      rows = annotateQuickImportRows(deck, rows);
+      deck.quickImportRows = rows;
+    }
+    if(flashcardLibraryState.quickImportBusy){
+      return '<div class="flashcard-quick-loading">Đang tra dữ liệu local…</div>';
+    }
+    if(!rows.length){
+      return '<p class="flashcard-library-empty">Chưa có kết quả xem trước.</p>';
+    }
+    const counts = rows.reduce((acc, row) => {
+      acc[row.status] = (acc[row.status] || 0) + 1;
+      acc[row.duplicateType || 'new'] = (acc[row.duplicateType || 'new'] || 0) + 1;
+      if(row.selected && row.action !== 'skip') acc.selected += 1;
+      return acc;
+    }, { selected: 0 });
+    const selectableRows = rows.filter(row => !['deck-exact','input-exact'].includes(row.duplicateType));
+    const allSelected = selectableRows.length && selectableRows.every(row => row.selected && row.action !== 'skip');
+    return `
+      <div class="flashcard-quick-summary">
+        <span class="is-found">Đầy đủ ${counts.found || 0}</span>
+        <span class="is-partial">Thiếu ${counts.partial || 0}</span>
+        <span class="is-missing">Không thấy ${counts.missing || 0}</span>
+        <span class="is-duplicate">Trùng ${(counts['deck-exact'] || 0) + (counts['input-exact'] || 0)}</span>
+      </div>
+      <div class="flashcard-quick-selectbar">
+        <label><input type="checkbox" data-flashcard-quick-select-all ${allSelected ? 'checked' : ''}> Chọn tất cả có thể thêm</label>
+        <span>${counts.selected} / ${rows.length} mục được chọn</span>
+      </div>
+      <div class="flashcard-quick-preview">
+        ${rows.map(row => {
+          const locked = ['deck-exact','input-exact'].includes(row.duplicateType);
+          const statusLabel = row.status === 'found' ? '✓ Tìm thấy' : (row.status === 'partial' ? '△ Thiếu dữ liệu' : '✕ Không tìm thấy');
+          return `
+          <article data-flashcard-quick-row="${escapeHtml(row.id)}" data-flashcard-quick-status="${escapeHtml(row.status)}" data-flashcard-quick-source="${escapeHtml(row.source || '')}" data-flashcard-quick-duplicate="${escapeHtml(row.duplicateType || 'new')}" data-flashcard-quick-duplicate-card="${escapeHtml(row.duplicateCardId || '')}" data-flashcard-quick-action="${escapeHtml(row.action || 'add')}" class="is-${escapeHtml(row.status)} duplicate-${escapeHtml(row.duplicateType || 'new')}">
+            <div class="flashcard-quick-row-head">
+              <label><input type="checkbox" data-flashcard-quick-select ${row.selected && !locked ? 'checked' : ''} ${locked ? 'disabled' : ''}> ${statusLabel}</label>
+              <span class="flashcard-quick-duplicate-label">${escapeHtml(getQuickDuplicateLabel(row))}</span>
+            </div>
+            <div class="flashcard-quick-fields">
+              <input type="text" data-flashcard-quick-word value="${escapeHtml(row.word)}" aria-label="Hán tự">
+              <input type="text" data-flashcard-quick-pinyin value="${escapeHtml(row.pinyin)}" placeholder="Pinyin" aria-label="Pinyin">
+              <input type="text" data-flashcard-quick-meaning value="${escapeHtml(row.meaningVi)}" placeholder="Nghĩa Việt" aria-label="Nghĩa Việt">
+            </div>
+            ${row.duplicateType === 'same-word-pinyin' ? `
+              <label class="flashcard-quick-action-label">Xử lý trùng
+                <select data-flashcard-quick-action>
+                  <option value="keep" ${row.action === 'keep' ? 'selected' : ''}>Giữ thêm một thẻ</option>
+                  <option value="merge" ${row.action === 'merge' ? 'selected' : ''}>Gộp nghĩa vào thẻ cũ</option>
+                  <option value="replace" ${row.action === 'replace' ? 'selected' : ''}>Thay thế thẻ cũ</option>
+                  <option value="skip" ${row.action === 'skip' ? 'selected' : ''}>Bỏ qua</option>
+                </select>
+              </label>` : ''}
+            ${(row.meaningOptions || []).length > 1 ? `<details class="flashcard-meaning-options"><summary>Chọn nhiều nghĩa Dictionary</summary>${row.meaningOptions.map(option => `<label><input type="checkbox" data-flashcard-meaning-option value="${escapeHtml(option)}" ${(row.selectedMeanings || []).includes(option) ? 'checked' : ''}> ${escapeHtml(option)}</label>`).join('')}</details>` : ''}
+            ${row.source ? `<small>${escapeHtml(row.source)}</small>` : ''}
+          </article>`;
+        }).join('')}
+      </div>
+      <button type="button" class="flashcard-quick-add-all" data-flashcard-quick-add-all ${counts.selected ? '' : 'disabled'}>+ Thêm ${counts.selected} mục đã chọn vào bộ</button>
+    `;
+  }
+
+  function renderFlashcardDeckDetail(deck){
+    const cards = getFilteredDetailCards(deck);
+    const duplicateIds = getDuplicateCardIds(deck);
+    const selected = flashcardLibraryState.selectedCardIds;
+    const editingCard = (deck.cards || []).find(card => card.id === flashcardLibraryState.editingCardId) || null;
+    const stats = getDeckLearningStats(deck, readFlashcardResults());
+    const otherDecks = flashcardLibraryState.decks.filter(item => item.id !== deck.id);
+    return `
+      <div class="flashcard-library-page flashcard-deck-detail-page">
+        <header class="flashcard-library-header">
+          <button type="button" class="flashcard-library-back flashcard-detail-back-compact" data-flashcard-detail-back aria-label="Về thư viện">←</button>
+          <div class="flashcard-detail-title"><span>CHI TIẾT BỘ THẺ</span><h2>${escapeHtml(deck.name)}</h2><p>${escapeHtml(deck.description || 'Không có mô tả')}</p></div>
+          <button type="button" class="flashcard-library-primary" data-flashcard-detail-study ${stats.total ? '' : 'disabled'}>Học bộ</button>
+        </header>
+        ${flashcardLibraryState.message ? `<p class="flashcard-library-message">${escapeHtml(flashcardLibraryState.message)}</p>` : ''}
+        <section class="flashcard-detail-summary">
+          <span>Tổng <b>${stats.total}</b></span><span class="easy">Dễ <b>${stats.easy}</b></span><span class="review">Ôn <b>${stats.review}</b></span><span class="hard">Khó <b>${stats.hard}</b></span><span>Chưa học <b>${stats.unseen}</b></span>
+        </section>
+        <section class="flashcard-detail-tools">
+          <label class="flashcard-detail-search"><span>🔎</span><input type="search" data-flashcard-detail-search value="${escapeHtml(flashcardLibraryState.detailSearch)}" placeholder="Tìm Hán tự, pinyin hoặc nghĩa..."></label>
+          <button type="button" data-flashcard-detail-edit-deck aria-label="Sửa thông tin hoặc thêm thẻ">✎ Sửa bộ</button>
+          <button type="button" data-flashcard-detail-export aria-label="Xuất riêng bộ này">⇩ Xuất</button>
+        </section>
+        ${editingCard ? `
+          <section class="flashcard-inline-card-editor" data-flashcard-inline-editor>
+            <h3>Sửa thẻ</h3>
+            <label>Hán tự<input type="text" data-flashcard-inline-word value="${escapeHtml(editingCard.word || '')}"></label>
+            <label>Pinyin<input type="text" data-flashcard-inline-pinyin value="${escapeHtml(editingCard.pinyin || '')}"></label>
+            <label>Nghĩa Việt<input type="text" data-flashcard-inline-meaning value="${escapeHtml(editingCard.meaningVi || '')}"></label>
+            <div><button type="button" data-flashcard-inline-cancel>Hủy</button><button type="button" class="flashcard-library-primary" data-flashcard-inline-save="${escapeHtml(editingCard.id)}">Lưu thẻ</button></div>
+          </section>` : ''}
+        ${selected.size ? `
+          <section class="flashcard-bulk-bar">
+            <b>Đã chọn ${selected.size} thẻ</b>
+            <button type="button" data-flashcard-selected-study>Học</button>
+            <label>Đến bộ<select data-flashcard-bulk-target><option value="">Chọn bộ đích</option>${otherDecks.map(item => `<option value="${escapeHtml(item.id)}">${escapeHtml(item.name)}</option>`).join('')}</select></label>
+            <button type="button" data-flashcard-selected-move ${otherDecks.length ? '' : 'disabled'}>Chuyển</button>
+            <button type="button" data-flashcard-selected-copy ${otherDecks.length ? '' : 'disabled'}>Sao chép</button>
+            <button type="button" class="danger" data-flashcard-selected-delete>Xóa</button>
+            <button type="button" class="ghost" data-flashcard-selected-clear>Bỏ chọn</button>
+          </section>` : ''}
+        <section class="flashcard-detail-list-wrap">
+          <div class="flashcard-detail-list-head">
+            <label><input type="checkbox" data-flashcard-select-all ${cards.length && cards.every(card => selected.has(card.id)) ? 'checked' : ''}> Chọn tất cả đang hiển thị</label>
+            <span>${cards.length}${flashcardLibraryState.detailSearch ? ` / ${deck.cards.length}` : ''} thẻ</span>
+          </div>
+          <div class="flashcard-detail-card-list">
+            ${cards.length ? cards.map(card => {
+              const entry = readFlashcardResultEntry(deck.id, card.id);
+              const rating = entry?.lastRating || 'unseen';
+              return `<article class="flashcard-detail-card ${duplicateIds.has(card.id) ? 'is-duplicate' : ''}">
+                <label class="flashcard-detail-check"><input type="checkbox" data-flashcard-card-select="${escapeHtml(card.id)}" ${selected.has(card.id) ? 'checked' : ''}></label>
+                <div class="flashcard-detail-card-main"><b>${escapeHtml(card.word)}</b><span>${escapeHtml(card.pinyin || '')}</span><p>${escapeHtml(card.meaningVi || '')}</p>${duplicateIds.has(card.id) ? '<small class="duplicate">Trùng hoàn toàn trong bộ</small>' : ''}</div>
+                <span class="flashcard-card-rating ${escapeHtml(rating)}">${escapeHtml(getCardRatingLabel(entry))}</span>
+                <div class="flashcard-detail-card-actions"><button type="button" data-flashcard-card-speak="${escapeHtml(card.word)}" aria-label="Nghe">🔊</button><button type="button" data-flashcard-inline-edit="${escapeHtml(card.id)}">Sửa</button><button type="button" class="danger" data-flashcard-detail-delete-card="${escapeHtml(card.id)}">Xóa</button></div>
+              </article>`;
+            }).join('') : '<p class="flashcard-library-empty">Không tìm thấy thẻ phù hợp.</p>'}
+          </div>
+        </section>
+      </div>`;
   }
 
   async function renderFlashcardLibrary(){
     ensureFlashcardLibraryUi();
     if(!flashcardLibraryView) return;
+    const restoreSearchFocus = document.activeElement?.matches?.('[data-flashcard-library-search]');
+    const restoreDetailSearchFocus = document.activeElement?.matches?.('[data-flashcard-detail-search]');
+    const restoreSearchStart = (restoreSearchFocus || restoreDetailSearchFocus) ? document.activeElement.selectionStart : null;
+    const restoreSearchEnd = (restoreSearchFocus || restoreDetailSearchFocus) ? document.activeElement.selectionEnd : null;
     if(flashcardLibraryState.editingDeck){
-      const deck = flashcardLibraryState.editingDeck;
+      const deck = ensureDeckEditorState(flashcardLibraryState.editingDeck);
       flashcardLibraryView.innerHTML = `
         <div class="flashcard-library-page">
           <header class="flashcard-library-header">
@@ -1422,12 +2038,31 @@ if(window.HanziWriter){
           <section class="flashcard-deck-editor">
             <label>Tên bộ<input type="text" data-flashcard-deck-name value="${escapeHtml(deck.name || '')}" placeholder="Ví dụ: Từ vựng du lịch"></label>
             <label>Mô tả<textarea data-flashcard-deck-description rows="2" placeholder="Ghi chú ngắn về bộ thẻ">${escapeHtml(deck.description || '')}</textarea></label>
-            <div class="flashcard-card-entry">
-              <input type="text" data-flashcard-card-word placeholder="Hán tự, ví dụ 咖啡">
-              <input type="text" data-flashcard-card-pinyin placeholder="Pinyin, ví dụ kāfēi">
-              <input type="text" data-flashcard-card-meaning placeholder="Nghĩa Việt, ví dụ cà phê">
-              <button type="button" data-flashcard-card-add>+ Thêm thẻ</button>
+            <div class="flashcard-entry-tabs" role="tablist" aria-label="Cách thêm thẻ">
+              <button type="button" class="${deck.entryMode === 'manual' ? 'active' : ''}" data-flashcard-entry-mode="manual">Nhập thủ công</button>
+              <button type="button" class="${deck.entryMode === 'quick' ? 'active' : ''}" data-flashcard-entry-mode="quick">Nhập nhanh từ tiếng Trung</button>
             </div>
+            ${deck.entryMode === 'quick' ? `
+              <section class="flashcard-quick-import">
+                <label>Dán từ, câu hoặc dữ liệu có cấu trúc
+                  <textarea rows="7" data-flashcard-quick-text placeholder="你好 | nǐ hǎo | xin chào&#10;谢谢&#10;我今天去学校学习中文">${escapeHtml(deck.quickImportText || '')}</textarea>
+                </label>
+                <p>Hỗ trợ mỗi từ một dòng, dấu phẩy/chấm phẩy/、, <code>word | pinyin | meaning</code> hoặc tab.</p>
+                <div class="flashcard-quick-actions">
+                  <button type="button" class="flashcard-quick-analyze" data-flashcard-quick-analyze ${flashcardLibraryState.quickImportBusy ? 'disabled' : ''}>${flashcardLibraryState.quickImportBusy ? 'Đang tra…' : 'Nhận diện từ'}</button>
+                  <button type="button" data-flashcard-quick-segment ${flashcardLibraryState.quickImportBusy ? 'disabled' : ''}>Tách câu</button>
+                  <button type="button" data-flashcard-csv-trigger>Nhập CSV</button>
+                  <input type="file" accept=".csv,text/csv" data-flashcard-csv-file hidden>
+                </div>
+                ${renderQuickImportPreview(deck)}
+              </section>` : `
+              <div class="flashcard-card-entry">
+                <input type="text" data-flashcard-card-word placeholder="Hán tự, ví dụ 咖啡">
+                <input type="text" data-flashcard-card-pinyin placeholder="Pinyin, ví dụ kāfēi">
+                <input type="text" data-flashcard-card-meaning placeholder="Nghĩa Việt, ví dụ cà phê">
+                <button type="button" data-flashcard-card-add>+ Thêm thẻ</button>
+              </div>`}
+            ${flashcardLibraryState.message ? `<p class="flashcard-library-message">${escapeHtml(flashcardLibraryState.message)}</p>` : ''}
             <div class="flashcard-editor-card-list">
               ${(deck.cards || []).length ? deck.cards.map((card,index) => `
                 <article>
@@ -1445,12 +2080,30 @@ if(window.HanziWriter){
     }
     try{
       flashcardLibraryState.decks = await getAllCustomDecks();
-      flashcardLibraryState.message = '';
     }catch(err){
       flashcardLibraryState.message = err.message || 'Không đọc được bộ thẻ tự tạo.';
       flashcardLibraryState.decks = [];
     }
+    if(flashcardLibraryState.detailDeckId){
+      const detailDeck = getDetailDeck();
+      if(detailDeck){
+        flashcardLibraryView.innerHTML = renderFlashcardDeckDetail(detailDeck);
+        if(restoreDetailSearchFocus){
+          const input = flashcardLibraryView.querySelector('[data-flashcard-detail-search]');
+          if(input){
+            input.focus({ preventScroll: true });
+            const end = input.value.length;
+            input.setSelectionRange(restoreSearchStart ?? end, restoreSearchEnd ?? end);
+          }
+        }
+        return;
+      }
+      flashcardLibraryState.detailDeckId = '';
+      flashcardLibraryState.selectedCardIds.clear();
+      flashcardLibraryState.editingCardId = '';
+    }
     const stats = getFlashcardStats();
+    const libraryRows = prepareFlashcardLibraryDecks(flashcardLibraryState.decks);
     flashcardLibraryView.innerHTML = `
       <div class="flashcard-library-page">
         <header class="flashcard-library-header">
@@ -1474,20 +2127,50 @@ if(window.HanziWriter){
           </div>
         </section>
         <section class="flashcard-library-decks">
-          <div class="flashcard-library-section-head"><div><h3>Bộ thẻ tự tạo</h3><p>Lưu trên trình duyệt bằng IndexedDB.</p></div><span>${flashcardLibraryState.decks.length} bộ</span></div>
+          <div class="flashcard-library-section-head"><div><h3>Bộ thẻ tự tạo</h3><p>Lưu trên trình duyệt bằng IndexedDB.</p></div><span>${libraryRows.length}${flashcardLibraryState.searchQuery ? ` / ${flashcardLibraryState.decks.length}` : ''} bộ</span></div>
+          <div class="flashcard-library-browser">
+            <label class="flashcard-library-search"><span>⌕</span><input type="search" data-flashcard-library-search value="${escapeHtml(flashcardLibraryState.searchQuery)}" placeholder="Tìm tên bộ, Hán tự, pinyin hoặc nghĩa..."></label>
+            <label class="flashcard-library-sort"><span>Sắp xếp</span><select data-flashcard-library-sort>
+              <option value="updated-desc" ${flashcardLibraryState.sortMode === 'updated-desc' ? 'selected' : ''}>Mới sửa gần nhất</option>
+              <option value="studied-desc" ${flashcardLibraryState.sortMode === 'studied-desc' ? 'selected' : ''}>Học gần nhất</option>
+              <option value="name-asc" ${flashcardLibraryState.sortMode === 'name-asc' ? 'selected' : ''}>Tên A–Z</option>
+              <option value="cards-desc" ${flashcardLibraryState.sortMode === 'cards-desc' ? 'selected' : ''}>Nhiều thẻ nhất</option>
+              <option value="hard-desc" ${flashcardLibraryState.sortMode === 'hard-desc' ? 'selected' : ''}>Nhiều thẻ Khó nhất</option>
+              <option value="review-desc" ${flashcardLibraryState.sortMode === 'review-desc' ? 'selected' : ''}>Nhiều thẻ Ôn nhất</option>
+            </select></label>
+          </div>
           <div class="flashcard-deck-grid">
-            ${flashcardLibraryState.decks.length ? flashcardLibraryState.decks.map(deck => `
+            ${libraryRows.length ? libraryRows.map(({ deck, stats: deckStats }) => `
               <article class="flashcard-deck-card">
-                <div><h4>${escapeHtml(deck.name)}</h4><p>${escapeHtml(deck.description || 'Không có mô tả')}</p><span>${(deck.cards || []).length} thẻ</span></div>
+                <div class="flashcard-deck-card-main">
+                  <div class="flashcard-deck-card-title"><h4>${escapeHtml(deck.name)}</h4><b>${deckStats.total} thẻ</b></div>
+                  <p>${escapeHtml(deck.description || 'Không có mô tả')}</p>
+                  <div class="flashcard-deck-stats" aria-label="Thống kê bộ thẻ">
+                    <span class="easy">Dễ <b>${deckStats.easy}</b></span>
+                    <span class="review">Ôn <b>${deckStats.review}</b></span>
+                    <span class="hard">Khó <b>${deckStats.hard}</b></span>
+                    <span class="unseen">Chưa học <b>${deckStats.unseen}</b></span>
+                  </div>
+                  <div class="flashcard-deck-dates"><small>Học gần nhất: ${escapeHtml(formatLibraryDate(deckStats.lastStudiedAt))}</small><small>Sửa: ${escapeHtml(formatLibraryDate(deck.updatedAt))}</small></div>
+                </div>
                 <div class="flashcard-deck-card-actions">
-                  <button type="button" data-flashcard-deck-study="${escapeHtml(deck.id)}" ${(deck.cards || []).length ? '' : 'disabled'}>Học</button>
+                  <button type="button" data-flashcard-deck-open="${escapeHtml(deck.id)}">Mở bộ</button>
+                  <button type="button" data-flashcard-deck-study="${escapeHtml(deck.id)}" ${deckStats.total ? '' : 'disabled'}>Học</button>
                   <button type="button" data-flashcard-deck-edit="${escapeHtml(deck.id)}">Sửa</button>
                   <button type="button" class="danger" data-flashcard-deck-delete="${escapeHtml(deck.id)}">Xóa</button>
                 </div>
-              </article>`).join('') : '<p class="flashcard-library-empty">Chưa có bộ thẻ tự tạo.</p>'}
+              </article>`).join('') : `<p class="flashcard-library-empty">${flashcardLibraryState.decks.length ? 'Không tìm thấy bộ thẻ phù hợp.' : 'Chưa có bộ thẻ tự tạo.'}</p>`}
           </div>
         </section>
       </div>`;
+    if(restoreSearchFocus){
+      const searchInput = flashcardLibraryView.querySelector('[data-flashcard-library-search]');
+      if(searchInput){
+        searchInput.focus({ preventScroll: true });
+        const end = searchInput.value.length;
+        searchInput.setSelectionRange(restoreSearchStart ?? end, restoreSearchEnd ?? end);
+      }
+    }
   }
 
   async function exportFlashcardBackup(){
@@ -1503,7 +2186,9 @@ if(window.HanziWriter){
 
   async function importFlashcardBackup(file){
     const parsed = JSON.parse(await file.text());
-    const decks = Array.isArray(parsed) ? parsed : (Array.isArray(parsed.decks) ? parsed.decks : []);
+    const decks = Array.isArray(parsed)
+      ? parsed
+      : (Array.isArray(parsed.decks) ? parsed.decks : (parsed.deck && typeof parsed.deck === 'object' ? [parsed.deck] : []));
     if(!decks.length && !parsed.results) throw new Error('File JSON không có dữ liệu Flashcard hợp lệ.');
     if(decks.length) await importCustomDecks(decks);
     if(parsed.results && typeof parsed.results === 'object'){
@@ -1527,20 +2212,155 @@ if(window.HanziWriter){
     renderFlashcardLibrary();
   }
 
+  async function saveInlineDeckCard(deck, cardId){
+    const word = flashcardLibraryView.querySelector('[data-flashcard-inline-word]')?.value.trim() || '';
+    const pinyin = flashcardLibraryView.querySelector('[data-flashcard-inline-pinyin]')?.value.trim() || '';
+    const meaningVi = flashcardLibraryView.querySelector('[data-flashcard-inline-meaning]')?.value.trim() || '';
+    if(!word){ window.alert('Hán tự không được để trống.'); return false; }
+    const candidate = { id: cardId, word, pinyin, meaningVi };
+    const duplicate = findDeckDuplicateInfo(deck, candidate, cardId);
+    if(duplicate.exact){ window.alert('Thẻ trùng hoàn toàn với một thẻ khác trong bộ.'); return false; }
+    if(duplicate.sameWordPinyin && !window.confirm('Đã có thẻ cùng Hán tự và pinyin nhưng nghĩa khác. Vẫn lưu thẻ này?')) return false;
+    const index = deck.cards.findIndex(card => card.id === cardId);
+    if(index < 0) return false;
+    deck.cards[index] = { ...deck.cards[index], word, pinyin, meaningVi };
+    await saveCustomDeck(deck);
+    flashcardLibraryState.editingCardId = '';
+    flashcardLibraryState.message = 'Đã lưu thay đổi của thẻ.';
+    await renderFlashcardLibrary();
+    return true;
+  }
+
+  async function runBulkDeckAction(action){
+    const sourceDeck = getDetailDeck();
+    if(!sourceDeck) return;
+    const selectedIds = [...flashcardLibraryState.selectedCardIds];
+    const selectedCards = sourceDeck.cards.filter(card => selectedIds.includes(card.id));
+    if(!selectedCards.length) return;
+    if(action === 'delete'){
+      if(!window.confirm(`Xóa ${selectedCards.length} thẻ đã chọn khỏi bộ?`)) return;
+      sourceDeck.cards = sourceDeck.cards.filter(card => !selectedIds.includes(card.id));
+      await saveCustomDeck(sourceDeck);
+      deleteCardLearningResults(sourceDeck.id, selectedIds);
+      flashcardLibraryState.selectedCardIds.clear();
+      flashcardLibraryState.message = `Đã xóa ${selectedCards.length} thẻ.`;
+      await renderFlashcardLibrary();
+      return;
+    }
+    const targetId = flashcardLibraryView.querySelector('[data-flashcard-bulk-target]')?.value || '';
+    const targetDeck = flashcardLibraryState.decks.find(deck => deck.id === targetId);
+    if(!targetDeck){ window.alert('Hãy chọn bộ đích.'); return; }
+    const targetKeys = new Set((targetDeck.cards || []).map(getCardExactKey));
+    const accepted = [];
+    let skipped = 0;
+    for(const card of selectedCards){
+      const key = getCardExactKey(card);
+      if(targetKeys.has(key)){ skipped += 1; continue; }
+      targetKeys.add(key);
+      accepted.push(card);
+    }
+    if(!accepted.length){ window.alert('Tất cả thẻ đã chọn đều trùng hoàn toàn trong bộ đích.'); return; }
+    if(action === 'copy'){
+      targetDeck.cards.push(...accepted.map(card => ({ ...card, id: makeLocalId('card') })));
+      await saveCustomDeck(targetDeck);
+      flashcardLibraryState.message = `Đã sao chép ${accepted.length} thẻ${skipped ? `, bỏ qua ${skipped} thẻ trùng` : ''}.`;
+    }else if(action === 'move'){
+      targetDeck.cards.push(...accepted.map(card => ({ ...card })));
+      sourceDeck.cards = sourceDeck.cards.filter(card => !accepted.some(item => item.id === card.id));
+      await saveCustomDeck(targetDeck);
+      await saveCustomDeck(sourceDeck);
+      accepted.forEach(card => moveCardLearningResult(sourceDeck.id, targetDeck.id, card.id));
+      flashcardLibraryState.message = `Đã chuyển ${accepted.length} thẻ${skipped ? `, giữ lại ${skipped} thẻ trùng ở bộ nguồn` : ''}.`;
+    }
+    flashcardLibraryState.selectedCardIds.clear();
+    await renderFlashcardLibrary();
+  }
+
+  function exportSingleDeck(deck){
+    const allResults = readFlashcardResults();
+    const results = {};
+    for(const card of deck.cards || []){
+      const key = `custom:${deck.id}:${card.id}`;
+      if(allResults[key]) results[key] = allResults[key];
+    }
+    downloadJsonFile({ version: 1, type: 'hanzi-flashcard-deck', exportedAt: new Date().toISOString(), deck, results }, `hanzi-deck-${String(deck.name || 'bo-the').replace(/[^a-z0-9\u00C0-\u024F\u4E00-\u9FFF]+/gi, '-').replace(/^-|-$/g, '') || 'bo-the'}.json`);
+  }
+
   async function handleFlashcardLibraryClick(event){
     const target = event.target;
+    const speakCard = target.closest('[data-flashcard-card-speak]');
+    if(speakCard){ event.preventDefault(); event.stopPropagation(); speakChar(speakCard.dataset.flashcardCardSpeak || ''); return; }
+    if(target.closest('[data-flashcard-detail-back]')){
+      flashcardLibraryState.detailDeckId = '';
+      flashcardLibraryState.detailSearch = '';
+      flashcardLibraryState.editingCardId = '';
+      flashcardLibraryState.selectedCardIds.clear();
+      flashcardLibraryState.message = '';
+      await renderFlashcardLibrary(); return;
+    }
+    const openDeck = target.closest('[data-flashcard-deck-open]');
+    if(openDeck){
+      flashcardLibraryState.detailDeckId = openDeck.dataset.flashcardDeckOpen || '';
+      flashcardLibraryState.detailSearch = '';
+      flashcardLibraryState.editingCardId = '';
+      flashcardLibraryState.selectedCardIds.clear();
+      flashcardLibraryState.message = '';
+      await renderFlashcardLibrary(); return;
+    }
+    if(target.closest('[data-flashcard-detail-study]')){
+      const deck = getDetailDeck();
+      if(deck) createFlashcardSessionFromCards((deck.cards || []).map(card => ({ id: `custom:${deck.id}:${card.id}`, word: card.word, pinyin: card.pinyin, meaningVi: card.meaningVi })), deck.name);
+      return;
+    }
+    if(target.closest('[data-flashcard-detail-edit-deck]')){
+      const deck = getDetailDeck();
+      if(deck){ flashcardLibraryState.editingDeck = ensureDeckEditorState(JSON.parse(JSON.stringify({ ...deck, isNew: false }))); renderFlashcardLibrary(); }
+      return;
+    }
+    if(target.closest('[data-flashcard-detail-export]')){ const deck = getDetailDeck(); if(deck) exportSingleDeck(deck); return; }
+    const inlineEdit = target.closest('[data-flashcard-inline-edit]');
+    if(inlineEdit){ flashcardLibraryState.editingCardId = inlineEdit.dataset.flashcardInlineEdit || ''; flashcardLibraryState.message = ''; renderFlashcardLibrary(); return; }
+    if(target.closest('[data-flashcard-inline-cancel]')){ flashcardLibraryState.editingCardId = ''; renderFlashcardLibrary(); return; }
+    const inlineSave = target.closest('[data-flashcard-inline-save]');
+    if(inlineSave){ const deck = getDetailDeck(); if(deck) await saveInlineDeckCard(deck, inlineSave.dataset.flashcardInlineSave || ''); return; }
+    const deleteCard = target.closest('[data-flashcard-detail-delete-card]');
+    if(deleteCard){
+      const deck = getDetailDeck(); const cardId = deleteCard.dataset.flashcardDetailDeleteCard || '';
+      if(deck && window.confirm('Xóa thẻ này khỏi bộ?')){ deck.cards = deck.cards.filter(card => card.id !== cardId); await saveCustomDeck(deck); deleteCardLearningResults(deck.id, [cardId]); flashcardLibraryState.selectedCardIds.delete(cardId); await renderFlashcardLibrary(); }
+      return;
+    }
+    if(target.closest('[data-flashcard-selected-clear]')){ flashcardLibraryState.selectedCardIds.clear(); renderFlashcardLibrary(); return; }
+    if(target.closest('[data-flashcard-selected-study]')){
+      const deck = getDetailDeck(); const ids = flashcardLibraryState.selectedCardIds;
+      if(deck){ const cards = deck.cards.filter(card => ids.has(card.id)).map(card => ({ id: `custom:${deck.id}:${card.id}`, word: card.word, pinyin: card.pinyin, meaningVi: card.meaningVi })); if(cards.length) createFlashcardSessionFromCards(cards, `${deck.name} · Đã chọn`); }
+      return;
+    }
+    if(target.closest('[data-flashcard-selected-move]')){ await runBulkDeckAction('move'); return; }
+    if(target.closest('[data-flashcard-selected-copy]')){ await runBulkDeckAction('copy'); return; }
+    if(target.closest('[data-flashcard-selected-delete]')){ await runBulkDeckAction('delete'); return; }
     if(target.closest('[data-hsk-flashcard-stats]')){ openFlashcardStats(); return; }
     const reviewGroup = target.closest('[data-hsk-flashcard-study-group]');
     if(reviewGroup && !reviewGroup.disabled){ startFlashcardStatsGroup(reviewGroup.dataset.hskFlashcardStudyGroup || 'review-hard'); return; }
     if(target.closest('[data-flashcard-deck-new]')){
-      flashcardLibraryState.editingDeck = { id: makeLocalId('deck'), name: '', description: '', cards: [], isNew: true };
+      flashcardLibraryState.editingDeck = { id: makeLocalId('deck'), name: '', description: '', cards: [], isNew: true, entryMode: 'manual', quickImportText: '', quickImportRows: [] };
       renderFlashcardLibrary(); return;
     }
-    if(target.closest('[data-flashcard-library-cancel]')){ flashcardLibraryState.editingDeck = null; renderFlashcardLibrary(); return; }
+    if(target.closest('[data-flashcard-library-cancel]')){ flashcardLibraryState.editingDeck = null; flashcardLibraryState.message = ''; renderFlashcardLibrary(); return; }
+    const entryMode = target.closest('[data-flashcard-entry-mode]');
+    if(entryMode && flashcardLibraryState.editingDeck){
+      const deck = syncDeckEditorFields();
+      deck.entryMode = entryMode.dataset.flashcardEntryMode === 'quick' ? 'quick' : 'manual';
+      flashcardLibraryState.message = '';
+      renderFlashcardLibrary(); return;
+    }
+    if(target.closest('[data-flashcard-quick-analyze]')){ await analyzeQuickImportWords(); return; }
+    if(target.closest('[data-flashcard-quick-segment]')){ await analyzeQuickImportSentence(); return; }
+    if(target.closest('[data-flashcard-csv-trigger]')){ flashcardLibraryView.querySelector('[data-flashcard-csv-file]')?.click(); return; }
+    if(target.closest('[data-flashcard-quick-add-all]')){ addQuickPreviewToDeck(); return; }
     const edit = target.closest('[data-flashcard-deck-edit]');
     if(edit){
       const deck = flashcardLibraryState.decks.find(item => item.id === edit.dataset.flashcardDeckEdit);
-      if(deck){ flashcardLibraryState.editingDeck = JSON.parse(JSON.stringify({ ...deck, isNew: false })); renderFlashcardLibrary(); }
+      if(deck){ flashcardLibraryState.editingDeck = ensureDeckEditorState(JSON.parse(JSON.stringify({ ...deck, isNew: false }))); renderFlashcardLibrary(); }
       return;
     }
     const del = target.closest('[data-flashcard-deck-delete]');
@@ -1552,18 +2372,25 @@ if(window.HanziWriter){
       return;
     }
     if(target.closest('[data-flashcard-card-add]')){
+      syncDeckEditorFields();
       const word = flashcardLibraryView.querySelector('[data-flashcard-card-word]')?.value.trim() || '';
       const pinyin = flashcardLibraryView.querySelector('[data-flashcard-card-pinyin]')?.value.trim() || '';
       const meaningVi = flashcardLibraryView.querySelector('[data-flashcard-card-meaning]')?.value.trim() || '';
       if(!word){ window.alert('Vui lòng nhập Hán tự.'); return; }
-      flashcardLibraryState.editingDeck.cards.push({ id: makeLocalId('card'), word, pinyin, meaningVi });
+      const candidate = { id: makeLocalId('card'), word, pinyin, meaningVi };
+      const duplicate = findDeckDuplicateInfo(flashcardLibraryState.editingDeck, candidate);
+      if(duplicate.exact){ window.alert('Thẻ trùng hoàn toàn đã có trong bộ.'); return; }
+      if(duplicate.sameWordPinyin && !window.confirm('Đã có thẻ cùng Hán tự và pinyin nhưng nghĩa khác. Vẫn thêm?')) return;
+      flashcardLibraryState.editingDeck.cards.push(candidate);
       renderFlashcardLibrary(); return;
     }
     const remove = target.closest('[data-flashcard-card-remove]');
-    if(remove){ flashcardLibraryState.editingDeck.cards.splice(Number(remove.dataset.flashcardCardRemove), 1); renderFlashcardLibrary(); return; }
+    if(remove){ syncDeckEditorFields(); flashcardLibraryState.editingDeck.cards.splice(Number(remove.dataset.flashcardCardRemove), 1); renderFlashcardLibrary(); return; }
     if(target.closest('[data-flashcard-deck-save]')){
-      const name = flashcardLibraryView.querySelector('[data-flashcard-deck-name]')?.value.trim() || '';
-      const description = flashcardLibraryView.querySelector('[data-flashcard-deck-description]')?.value.trim() || '';
+      const deckState = syncDeckEditorFields();
+      if(deckState?.entryMode === 'quick' && flashcardLibraryView.querySelector('[data-flashcard-quick-row]')) deckState.quickImportRows = readQuickPreviewRows();
+      const name = flashcardLibraryView.querySelector('[data-flashcard-deck-name]')?.value.trim() || deckState?.name.trim() || '';
+      const description = flashcardLibraryView.querySelector('[data-flashcard-deck-description]')?.value.trim() || deckState?.description.trim() || '';
       if(!name){ window.alert('Vui lòng nhập tên bộ thẻ.'); return; }
       flashcardLibraryState.editingDeck.name = name; flashcardLibraryState.editingDeck.description = description;
       await saveCustomDeck(flashcardLibraryState.editingDeck); flashcardLibraryState.editingDeck = null; await renderFlashcardLibrary(); return;
@@ -1575,11 +2402,70 @@ if(window.HanziWriter){
   }
 
   async function handleFlashcardLibraryChange(event){
+    const quickSelectAll = event.target.closest('[data-flashcard-quick-select-all]');
+    if(quickSelectAll && flashcardLibraryState.editingDeck){
+      const rows = readQuickPreviewRows().map(row => {
+        const locked = ['deck-exact','input-exact'].includes(row.duplicateType);
+        return { ...row, selected: locked ? false : quickSelectAll.checked, action: locked ? 'skip' : (row.action === 'skip' ? 'add' : row.action) };
+      });
+      flashcardLibraryState.editingDeck.quickImportRows = rows;
+      renderFlashcardLibrary();
+      return;
+    }
+    const quickSelect = event.target.closest('[data-flashcard-quick-select]');
+    const quickAction = event.target.closest('[data-flashcard-quick-action]');
+    const meaningOption = event.target.closest('[data-flashcard-meaning-option]');
+    if((quickSelect || quickAction || meaningOption) && flashcardLibraryState.editingDeck){
+      flashcardLibraryState.editingDeck.quickImportRows = readQuickPreviewRows();
+      renderFlashcardLibrary();
+      return;
+    }
+    const selectedCard = event.target.closest('[data-flashcard-card-select]');
+    if(selectedCard){
+      const id = selectedCard.dataset.flashcardCardSelect || '';
+      if(selectedCard.checked) flashcardLibraryState.selectedCardIds.add(id);
+      else flashcardLibraryState.selectedCardIds.delete(id);
+      renderFlashcardLibrary();
+      return;
+    }
+    const selectAll = event.target.closest('[data-flashcard-select-all]');
+    if(selectAll){
+      const deck = getDetailDeck();
+      const cards = getFilteredDetailCards(deck);
+      cards.forEach(card => selectAll.checked ? flashcardLibraryState.selectedCardIds.add(card.id) : flashcardLibraryState.selectedCardIds.delete(card.id));
+      renderFlashcardLibrary();
+      return;
+    }
+    const sort = event.target.closest('[data-flashcard-library-sort]');
+    if(sort){
+      flashcardLibraryState.sortMode = sort.value || 'updated-desc';
+      saveFlashcardLibrarySort(flashcardLibraryState.sortMode);
+      renderFlashcardLibrary();
+      return;
+    }
+    const csvInput = event.target.closest('[data-flashcard-csv-file]');
+    if(csvInput?.files?.[0]){try{await importQuickCsvFile(csvInput.files[0]);}catch(err){window.alert(err.message||'Không đọc được CSV.');}csvInput.value='';return;}
     const input = event.target.closest('[data-flashcard-import-file]');
     if(!input?.files?.[0]) return;
     try{ await importFlashcardBackup(input.files[0]); window.alert('Đã nhập dữ liệu Flashcard.'); }
     catch(err){ window.alert(err.message || 'Không nhập được file JSON.'); }
     input.value = '';
+  }
+
+  let flashcardLibrarySearchTimer = 0;
+  function handleFlashcardLibraryInput(event){
+    const detailInput = event.target.closest('[data-flashcard-detail-search]');
+    if(detailInput){
+      flashcardLibraryState.detailSearch = detailInput.value;
+      window.clearTimeout(flashcardLibrarySearchTimer);
+      flashcardLibrarySearchTimer = window.setTimeout(() => renderFlashcardLibrary(), 180);
+      return;
+    }
+    const input = event.target.closest('[data-flashcard-library-search]');
+    if(!input) return;
+    flashcardLibraryState.searchQuery = input.value;
+    window.clearTimeout(flashcardLibrarySearchTimer);
+    flashcardLibrarySearchTimer = window.setTimeout(() => renderFlashcardLibrary(), 180);
   }
 
   function readStoredVocabViewMode(){
@@ -3632,7 +4518,8 @@ if(window.HanziWriter){
         mode: session.settings?.mode || 'flashcard',
         showPinyin: session.settings?.showPinyin !== false,
         autoPlay: Boolean(session.settings?.autoPlay),
-        shuffle: Boolean(session.settings?.shuffle)
+        shuffle: Boolean(session.settings?.shuffle),
+        showStroke: Boolean(session.settings?.showStroke)
       },
       index: Number(session.index || 0),
       flipped: Boolean(session.flipped),
@@ -3682,7 +4569,8 @@ if(window.HanziWriter){
           mode: ['flashcard', 'reverse', 'listen', 'mixed'].includes(settings.mode) ? settings.mode : 'flashcard',
           showPinyin: settings.showPinyin !== false,
           autoPlay: Boolean(settings.autoPlay),
-          shuffle: Boolean(settings.shuffle)
+          shuffle: Boolean(settings.shuffle),
+          showStroke: Boolean(settings.showStroke)
         },
         index,
         flipped: Boolean(saved.flipped),
@@ -3708,7 +4596,8 @@ if(window.HanziWriter){
       mode: 'flashcard',
       showPinyin: true,
       autoPlay: false,
-      shuffle: false
+      shuffle: false,
+      showStroke: false
     };
     try{
       const saved = JSON.parse(window.localStorage?.getItem(HSK_FLASHCARD_SETTINGS_KEY) || '{}');
@@ -3716,7 +4605,8 @@ if(window.HanziWriter){
         mode: ['flashcard', 'reverse', 'listen', 'mixed'].includes(saved.mode) ? saved.mode : defaults.mode,
         showPinyin: saved.showPinyin !== false,
         autoPlay: Boolean(saved.autoPlay),
-        shuffle: Boolean(saved.shuffle)
+        shuffle: Boolean(saved.shuffle),
+        showStroke: Boolean(saved.showStroke)
       };
     }catch(_err){
       return defaults;
@@ -3801,7 +4691,7 @@ if(window.HanziWriter){
     });
     overlay.addEventListener('touchstart', event => {
       const card = event.target.closest('[data-hsk-flashcard-flip]');
-      if(!card || event.touches.length !== 1 || event.target.closest('button')){
+      if(!card || event.touches.length !== 1 || event.target.closest('button, .hsk-flashcard-stroke-section')){
         flashcardTouchStart = null;
         return;
       }
@@ -3831,6 +4721,7 @@ if(window.HanziWriter){
     overlay.hidden = true;
     document.body.classList.remove('hsk-flashcard-open');
     window.speechSynthesis?.cancel?.();
+    cleanupFlashcardStrokeWriters();
     hskState.flashcardStatsOpen = false;
     if(hskState.flashcardSession){
       clearPersistedFlashcardSession();
@@ -3898,6 +4789,7 @@ if(window.HanziWriter){
           <label><span><b>Hiện pinyin</b><small>Hiển thị pinyin sau khi mở đáp án.</small></span><input type="checkbox" data-hsk-flashcard-option="showPinyin" ${settings.showPinyin ? 'checked' : ''}></label>
           <label><span><b>Tự phát âm</b><small>Tự đọc theo chế độ học hiện tại.</small></span><input type="checkbox" data-hsk-flashcard-option="autoPlay" ${settings.autoPlay ? 'checked' : ''}></label>
           <label><span><b>Xáo trộn thứ tự</b><small>Trộn bộ thẻ một lần khi bắt đầu.</small></span><input type="checkbox" data-hsk-flashcard-option="shuffle" ${settings.shuffle ? 'checked' : ''}></label>
+          <label><span><b>Hiện cách viết từng chữ</b><small>Hiển thị ô thứ tự nét ở mặt đáp án.</small></span><input type="checkbox" data-hsk-flashcard-option="showStroke" ${settings.showStroke ? 'checked' : ''}></label>
         </section>
         <button type="button" class="hsk-flashcard-start" data-hsk-flashcard-start>Bắt đầu học · ${session.cards.length.toLocaleString('vi-VN')} thẻ</button>
       </div>
@@ -3921,6 +4813,7 @@ if(window.HanziWriter){
     session.cards = session.settings.shuffle ? shuffleCards(session.cards) : [...session.cards];
     session.index = 0;
     session.flipped = false;
+    session.strokeExpanded = false;
     session.ratings = {};
     session.mixedTypes = session.cards.map((_, index) => ['flashcard', 'reverse', 'listen'][index % 3]);
     persistFlashcardSession();
@@ -3941,6 +4834,225 @@ if(window.HanziWriter){
     if(type === 'listen' || session.settings.autoPlay){
       window.setTimeout(() => speakChar(card?.word || ''), 100);
     }
+  }
+
+  function cleanupFlashcardStrokeWriters(){
+    flashcardStrokeRenderId += 1;
+    flashcardStrokePlayId += 1;
+    flashcardStrokeWriters = [];
+  }
+
+  function getFlashcardStrokeChars(word){
+    return getHanziChars(String(word || ''));
+  }
+
+  function renderFlashcardStrokeSection(session, card){
+    if(!session.settings?.showStroke || !session.flipped) return '';
+    const chars = getFlashcardStrokeChars(card.word);
+    if(!chars.length){
+      return '<section class="hsk-flashcard-stroke-section" data-hsk-flashcard-stroke-area><p class="hsk-flashcard-stroke-empty">Chưa có chữ Hán để hiển thị cách viết.</p></section>';
+    }
+    const expanded = Boolean(session.strokeExpanded);
+    const visibleChars = expanded ? chars : chars.slice(0, 4);
+    const remaining = Math.max(0, chars.length - visibleChars.length);
+    return `
+      <section class="hsk-flashcard-stroke-section" data-hsk-flashcard-stroke-area aria-label="Cách viết từng chữ">
+        <div class="hsk-flashcard-stroke-header">
+          <b>Cách viết từng chữ</b>
+          <button type="button" data-hsk-flashcard-stroke-play-all>▶ Phát tất cả</button>
+        </div>
+        <div class="hsk-flashcard-stroke-grid">
+          ${visibleChars.map((char, index) => `
+            <article class="hsk-flashcard-stroke-item" data-stroke-index="${index}">
+              <div class="hsk-flashcard-stroke-canvas has-grid" id="hskFlashcardStroke-${flashcardStrokeRenderId}-${index}" data-stroke-char="${escapeHtml(char)}">
+                <span class="hsk-flashcard-stroke-placeholder">${escapeHtml(char)}</span>
+              </div>
+              <div class="hsk-flashcard-stroke-status" data-hsk-flashcard-stroke-status="${index}" aria-live="polite">Sẵn sàng</div>
+              <div class="hsk-flashcard-stroke-toolbar" role="group" aria-label="Công cụ chữ ${escapeHtml(char)}">
+                <button type="button" data-hsk-flashcard-stroke-play="${index}" aria-label="Phát nét chữ ${escapeHtml(char)}" title="Phát nét">▶</button>
+                <button type="button" data-hsk-flashcard-stroke-quiz="${index}" aria-label="Luyện viết chữ ${escapeHtml(char)}" title="Luyện viết">✍</button>
+                <button type="button" data-hsk-flashcard-stroke-outline="${index}" aria-label="Bật hoặc tắt viền chữ ${escapeHtml(char)}" title="Không viền">□</button>
+                <button type="button" data-hsk-flashcard-stroke-reset="${index}" aria-label="Viết lại chữ ${escapeHtml(char)}" title="Viết lại">↺</button>
+              </div>
+            </article>
+          `).join('')}
+        </div>
+        ${remaining ? `<button type="button" class="hsk-flashcard-stroke-more" data-hsk-flashcard-stroke-expand>Hiện thêm ${remaining} chữ</button>` : (expanded && chars.length > 4 ? '<button type="button" class="hsk-flashcard-stroke-more" data-hsk-flashcard-stroke-collapse>Thu gọn</button>' : '')}
+      </section>
+    `;
+  }
+
+  function mountFlashcardStrokeWriters(){
+    cleanupFlashcardStrokeWriters();
+    const session = hskState.flashcardSession;
+    if(!session || session.phase !== 'study' || !session.flipped || !session.settings?.showStroke) return;
+    if(!window.HanziWriter) {
+      document.querySelectorAll('.hsk-flashcard-stroke-canvas').forEach(target => {
+        target.innerHTML = '<span class="hsk-flashcard-stroke-error">Không thể tải trình hiển thị nét.</span>';
+      });
+      return;
+    }
+    const currentRender = flashcardStrokeRenderId;
+    const settings = getSettings();
+    const targets = [...document.querySelectorAll('.hsk-flashcard-stroke-canvas[data-stroke-char]')];
+    flashcardStrokeWriters = targets.map((target, index) => {
+      const char = target.dataset.strokeChar || '';
+      const size = Math.max(96, Math.min(132, Math.floor(target.getBoundingClientRect().width || 116)));
+      target.innerHTML = '';
+      try{
+        const writer = HanziWriter.create(target.id, char, {
+          ...createWriterOptions(size, settings),
+          width: size,
+          height: size,
+          padding: 8,
+          showCharacter: true,
+          onLoadCharDataError: () => {
+            if(currentRender !== flashcardStrokeRenderId) return;
+            target.innerHTML = `<span class="hsk-flashcard-stroke-error"><b>${escapeHtml(char)}</b><small>Chưa có dữ liệu nét</small></span>`;
+            const item = flashcardStrokeWriters[index];
+            if(item){
+              item.available = false;
+              item.mode = 'error';
+            }
+            setFlashcardStrokeControlsDisabled(index, true);
+            setFlashcardStrokeStatus(index, 'Thiếu dữ liệu nét', 'error');
+          }
+        });
+        return { char, writer, target, available: true, mode: 'view', outlineHidden: false };
+      }catch(err){
+        console.warn('Cannot create flashcard stroke writer:', char, err);
+        target.innerHTML = `<span class="hsk-flashcard-stroke-error"><b>${escapeHtml(char)}</b><small>Chưa có dữ liệu nét</small></span>`;
+        return { char, writer: null, target, available: false, mode: 'error', outlineHidden: false };
+      }
+    });
+  }
+
+  function getFlashcardStrokeItem(index){
+    return flashcardStrokeWriters[Number(index)] || null;
+  }
+
+  function setFlashcardStrokeStatus(index, message, tone = ''){
+    const status = document.querySelector(`[data-hsk-flashcard-stroke-status="${Number(index)}"]`);
+    if(!status) return;
+    status.textContent = message;
+    status.dataset.tone = tone;
+  }
+
+  function setFlashcardStrokeControlsDisabled(index, disabled){
+    document.querySelectorAll(`.hsk-flashcard-stroke-item[data-stroke-index="${Number(index)}"] .hsk-flashcard-stroke-toolbar button`).forEach(button => {
+      button.disabled = Boolean(disabled);
+    });
+  }
+
+  function updateFlashcardStrokeOutlineButton(index, hidden){
+    const button = document.querySelector(`[data-hsk-flashcard-stroke-outline="${Number(index)}"]`);
+    if(!button) return;
+    button.classList.toggle('active', Boolean(hidden));
+    button.setAttribute('aria-pressed', hidden ? 'true' : 'false');
+    button.title = hidden ? 'Hiện viền' : 'Không viền';
+  }
+
+  function playFlashcardStroke(index){
+    const item = getFlashcardStrokeItem(index);
+    if(!item?.writer || item.available === false) return;
+    try{
+      if(typeof item.writer.cancelQuiz === 'function') item.writer.cancelQuiz();
+      item.mode = 'view';
+      item.writer.hideCharacter();
+      if(item.outlineHidden) item.writer.hideOutline();
+      else item.writer.showOutline();
+      setFlashcardStrokeStatus(index, 'Đang phát nét…');
+      item.writer.animateCharacter({
+        onComplete: () => setFlashcardStrokeStatus(index, 'Sẵn sàng')
+      });
+    }catch(err){
+      console.warn('Cannot animate flashcard stroke:', err);
+      setFlashcardStrokeStatus(index, 'Không thể phát nét', 'error');
+    }
+  }
+
+  function startFlashcardStrokeQuiz(index, { reset = false } = {}){
+    const item = getFlashcardStrokeItem(index);
+    if(!item?.writer || item.available === false) return;
+    try{
+      if(typeof item.writer.cancelQuiz === 'function') item.writer.cancelQuiz();
+      item.mode = 'quiz';
+      item.writer.hideCharacter();
+      if(item.outlineHidden) item.writer.hideOutline();
+      else item.writer.showOutline();
+      setFlashcardStrokeStatus(index, reset ? 'Viết lại từ nét đầu' : 'Đang luyện viết');
+      item.writer.quiz({
+        showHintAfterMisses: getSettings().showHintAfterMisses,
+        onMistake: () => setFlashcardStrokeStatus(index, 'Chưa đúng, thử lại', 'error'),
+        onCorrectStroke: () => setFlashcardStrokeStatus(index, 'Đúng nét', 'success'),
+        onComplete: () => {
+          item.mode = 'complete';
+          setFlashcardStrokeStatus(index, '✓ Hoàn thành', 'success');
+        }
+      });
+    }catch(err){
+      console.warn('Cannot start flashcard stroke quiz:', err);
+      setFlashcardStrokeStatus(index, 'Không thể luyện viết', 'error');
+    }
+  }
+
+  function toggleFlashcardStrokeOutline(index){
+    const item = getFlashcardStrokeItem(index);
+    if(!item?.writer || item.available === false) return;
+    item.outlineHidden = !item.outlineHidden;
+    try{
+      if(typeof item.writer.cancelQuiz === 'function') item.writer.cancelQuiz();
+      item.writer.hideCharacter();
+      if(item.outlineHidden) item.writer.hideOutline();
+      else item.writer.showOutline();
+      updateFlashcardStrokeOutlineButton(index, item.outlineHidden);
+
+      // Nút Không viền là một chế độ luyện viết, không phải chế độ chỉ xem.
+      item.mode = 'quiz';
+      setFlashcardStrokeStatus(index, item.outlineHidden ? 'Luyện viết không viền' : 'Luyện viết có viền');
+      item.writer.quiz({
+        showHintAfterMisses: getSettings().showHintAfterMisses,
+        onMistake: () => setFlashcardStrokeStatus(index, 'Chưa đúng, thử lại', 'error'),
+        onCorrectStroke: () => setFlashcardStrokeStatus(index, 'Đúng nét', 'success'),
+        onComplete: () => {
+          item.mode = 'complete';
+          setFlashcardStrokeStatus(index, '✓ Hoàn thành', 'success');
+        }
+      });
+    }catch(err){
+      console.warn('Cannot toggle flashcard stroke outline:', err);
+      setFlashcardStrokeStatus(index, 'Không thể đổi chế độ viền', 'error');
+    }
+  }
+
+  function resetFlashcardStrokeQuiz(index){
+    startFlashcardStrokeQuiz(index, { reset: true });
+  }
+
+  function playAllFlashcardStrokes(){
+    const playId = ++flashcardStrokePlayId;
+    const available = flashcardStrokeWriters.filter(item => item?.writer && item.available !== false);
+    const button = document.querySelector('[data-hsk-flashcard-stroke-play-all]');
+    if(button){ button.disabled = true; button.textContent = 'Đang phát…'; }
+    const playNext = index => {
+      if(playId !== flashcardStrokePlayId) return;
+      const item = available[index];
+      if(!item){
+        if(button?.isConnected){ button.disabled = false; button.textContent = '▶ Phát tất cả'; }
+        return;
+      }
+      try{
+        if(typeof item.writer.cancelQuiz === 'function') item.writer.cancelQuiz();
+        item.mode = 'view';
+        item.writer.hideCharacter();
+        if(item.outlineHidden) item.writer.hideOutline();
+        else item.writer.showOutline();
+        item.writer.animateCharacter({ onComplete: () => playNext(index + 1) });
+      }catch(_err){
+        playNext(index + 1);
+      }
+    };
+    playNext(0);
   }
 
   function renderFlashcardFace(session, card, type){
@@ -3978,6 +5090,7 @@ if(window.HanziWriter){
         <strong>${escapeHtml(card.word)}</strong>
         ${session.settings.showPinyin && card.pinyin ? `<span>${escapeHtml(card.pinyin)}</span>` : ''}
         <p>${escapeHtml(card.meaningVi || 'Chưa có nghĩa tiếng Việt')}</p>
+        ${renderFlashcardStrokeSection(session, card)}
       </div>
     `;
   }
@@ -4106,6 +5219,7 @@ if(window.HanziWriter){
   }
 
   function renderFlashcardOverlay(){
+    cleanupFlashcardStrokeWriters();
     const overlay = ensureFlashcardOverlay();
     const body = overlay.querySelector('#hskFlashcardBody');
     if(!body) return;
@@ -4123,6 +5237,7 @@ if(window.HanziWriter){
     overlay.hidden = false;
     document.body.classList.add('hsk-flashcard-open');
     persistFlashcardSession();
+    window.requestAnimationFrame(() => mountFlashcardStrokeWriters());
   }
 
   function moveFlashcard(step){
@@ -4137,6 +5252,7 @@ if(window.HanziWriter){
     }
     session.index = next;
     session.flipped = false;
+    session.strokeExpanded = false;
     renderFlashcardOverlay();
     maybeAutoPlayFlashcard();
   }
@@ -4427,6 +5543,59 @@ if(window.HanziWriter){
         renderFlashcardOverlay();
         return;
       }
+      const strokePlay = event.target.closest('[data-hsk-flashcard-stroke-play]');
+      if(strokePlay){
+        event.preventDefault();
+        event.stopPropagation();
+        playFlashcardStroke(strokePlay.dataset.hskFlashcardStrokePlay);
+        return;
+      }
+      const strokeQuiz = event.target.closest('[data-hsk-flashcard-stroke-quiz]');
+      if(strokeQuiz){
+        event.preventDefault();
+        event.stopPropagation();
+        startFlashcardStrokeQuiz(strokeQuiz.dataset.hskFlashcardStrokeQuiz);
+        return;
+      }
+      const strokeOutline = event.target.closest('[data-hsk-flashcard-stroke-outline]');
+      if(strokeOutline){
+        event.preventDefault();
+        event.stopPropagation();
+        toggleFlashcardStrokeOutline(strokeOutline.dataset.hskFlashcardStrokeOutline);
+        return;
+      }
+      const strokeReset = event.target.closest('[data-hsk-flashcard-stroke-reset]');
+      if(strokeReset){
+        event.preventDefault();
+        event.stopPropagation();
+        resetFlashcardStrokeQuiz(strokeReset.dataset.hskFlashcardStrokeReset);
+        return;
+      }
+      if(event.target.closest('[data-hsk-flashcard-stroke-play-all]')){
+        event.preventDefault();
+        event.stopPropagation();
+        playAllFlashcardStrokes();
+        return;
+      }
+      if(event.target.closest('[data-hsk-flashcard-stroke-expand]')){
+        event.preventDefault();
+        event.stopPropagation();
+        session.strokeExpanded = true;
+        renderFlashcardOverlay();
+        return;
+      }
+      if(event.target.closest('[data-hsk-flashcard-stroke-collapse]')){
+        event.preventDefault();
+        event.stopPropagation();
+        session.strokeExpanded = false;
+        renderFlashcardOverlay();
+        return;
+      }
+      if(event.target.closest('[data-hsk-flashcard-stroke-area]')){
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+      }
       if(event.target.closest('[data-hsk-flashcard-speak]')){
         event.preventDefault();
         event.stopPropagation();
@@ -4436,6 +5605,7 @@ if(window.HanziWriter){
       if(event.target.closest('[data-hsk-flashcard-flip]')){
         if(Date.now() < flashcardSuppressClickUntil) return;
         session.flipped = !session.flipped;
+        if(!session.flipped) session.strokeExpanded = false;
         renderFlashcardOverlay();
         if(session.flipped && session.settings.autoPlay){
           speakChar(session.cards[session.index]?.word || '');
@@ -4464,6 +5634,7 @@ if(window.HanziWriter){
         session.phase = 'study';
         session.index = 0;
         session.flipped = false;
+        session.strokeExpanded = false;
         session.ratings = {};
         renderFlashcardOverlay();
         maybeAutoPlayFlashcard();
@@ -4475,6 +5646,7 @@ if(window.HanziWriter){
         session.phase = 'study';
         session.index = 0;
         session.flipped = false;
+        session.strokeExpanded = false;
         session.ratings = {};
         session.mixedTypes = selected.map((_, index) => ['flashcard', 'reverse', 'listen'][index % 3]);
         renderFlashcardOverlay();
@@ -4570,6 +5742,7 @@ if(window.HanziWriter){
       if((event.key === ' ' || event.key === 'Enter') && !isInteractiveFocus){
         event.preventDefault();
         session.flipped = !session.flipped;
+        if(!session.flipped) session.strokeExpanded = false;
         renderFlashcardOverlay();
         return;
       }
