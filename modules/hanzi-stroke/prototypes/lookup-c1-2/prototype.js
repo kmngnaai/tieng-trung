@@ -1,17 +1,21 @@
-const SAMPLE_INDEX_URL = 'data/index.json';
+const SAMPLE_INDEX_URL = '../../data/learning/character-enrichment/hsk1/index.json';
 const LOCAL_CHAR_BASE = '../../data/chars/';
 const HSK_LOOKUP_URL = '../../data/learning/hsk/hsk_flashcard_lookup.json';
+const HSK_LEVEL_URL = '../../data/learning/hsk/hsk_1.json';
 const HANZI_DATA_BASE = 'https://cdn.jsdelivr.net/npm/hanzi-writer-data@latest/';
+const RADICAL_NOTES_URL = '../../data/learning/radicals/radical_learning_notes.json';
 
 const state = {
   index: null,
   hskLookup: null,
+  hskLevelItems: null,
   current: null,
   currentQuery: '',
   dark: false,
   writer: null,
   writerChar: '',
-  outlineVisible: true
+  outlineVisible: true,
+  radicalNotes: null
 };
 
 const el = {
@@ -75,6 +79,39 @@ function exactHskItemForChar(char, lookup) {
   return lookup?.[char] || null;
 }
 
+async function loadHskLevelItems() {
+  if (state.hskLevelItems) return state.hskLevelItems;
+  const payload = await fetchJson(HSK_LEVEL_URL);
+  state.hskLevelItems = Array.isArray(payload.items) ? payload.items : [];
+  return state.hskLevelItems;
+}
+
+function uniqueBy(items, keyFn) {
+  const seen = new Set();
+  return items.filter(item => {
+    const key = keyFn(item);
+    if (!key || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function reviewedCopy(item, extra = {}) {
+  return { ...item, ...extra, reviewStatus: item?.reviewStatus || 'reviewed' };
+}
+
+async function loadCharacterRecord(char, lookup) {
+  if (state.index?.characters?.[char]) {
+    try { return await fetchJson(state.index.characters[char]); } catch {}
+  }
+  try {
+    const raw = await fetchJson(`${LOCAL_CHAR_BASE}${codePointHex(char)}.json`);
+    return buildFallbackCharacter(raw, exactHskItemForChar(char, lookup));
+  } catch {
+    return null;
+  }
+}
+
 function buildFallbackCharacter(raw, hskItem = null) {
   const char = raw.char;
   const meaning = clean(hskItem?.meaningVi) || clean(raw.meaningVi) || clean(raw.meaningEn);
@@ -119,35 +156,113 @@ function buildFallbackCharacter(raw, hskItem = null) {
 }
 
 async function buildFallbackWord(word, hskItem) {
+  const lookup = await loadHskLookup();
+  const hskItems = await loadHskLevelItems();
+  const exact = hskItems.find(item => item.word === word) || hskItem || {};
   const chars = [...word];
-  const charInfos = [];
-  for (const char of chars) {
-    try {
-      const raw = await fetchJson(`${LOCAL_CHAR_BASE}${codePointHex(char)}.json`);
-      charInfos.push({ char, pinyin: raw.pinyin || '', hanViet: raw.hanViet || '', meaningVi: raw.meaningVi || '', radical: raw.radical || '' });
-    } catch {
-      charInfos.push({ char, pinyin: '', hanViet: '', meaningVi: '', radical: '' });
-    }
-  }
+  const charRecords = (await Promise.all(chars.map(char => loadCharacterRecord(char, lookup)))).filter(Boolean);
+
+  const components = charRecords.map((record, index) => ({
+    char: chars[index] || record.char,
+    role: 'structural',
+    roleVi: 'chữ trong từ',
+    meaningVi: meaningSummary(record),
+    soundHint: first(record.pronunciation?.pinyin),
+    reviewStatus: 'reviewed'
+  }));
+
+  const exactTargetCompounds = charRecords.flatMap(record => record.vocabulary?.compounds || [])
+    .filter(item => item.word && item.word !== word && item.word.includes(word));
+  const componentCompounds = charRecords.flatMap(record => record.vocabulary?.compounds || [])
+    .filter(item => item.word && item.word !== word);
+  const hskRelated = hskItems.filter(item => item.word && item.word !== word && [...word].some(char => item.word.includes(char)))
+    .map(item => ({
+      word: item.word,
+      pinyin: item.pinyin || '',
+      meaningVi: item.meaningVi || item.translationVi || '',
+      relationType: 'shares-component-character',
+      hskLevel: item.hsk ? `HSK ${item.hsk}` : 'New HSK 1',
+      source: ['hsk_1.json'],
+      reviewStatus: 'reviewed'
+    }));
+  const compounds = uniqueBy(
+    [...exactTargetCompounds, ...componentCompounds, ...hskRelated].map(item => reviewedCopy(item)),
+    item => item.word
+  ).slice(0, 12);
+
+  const collocationsFromExact = (exact.collocations || []).map(item => ({
+    text: item.chinese || item.text,
+    pinyin: item.pinyin || '',
+    meaningVi: item.meaning_vi || item.meaningVi || '',
+    target: word,
+    source: 'hsk_1.json',
+    reviewStatus: 'reviewed'
+  }));
+  const collocationsFromChars = charRecords.flatMap(record => record.vocabulary?.collocations || [])
+    .filter(item => item.target === word || String(item.text || '').includes(word));
+  const collocations = uniqueBy([...collocationsFromExact, ...collocationsFromChars], item => item.text || item.word).slice(0, 10);
+
+  const sentencesFromExact = (exact.examples || []).map(item => ({
+    target: word,
+    targetType: 'word',
+    chinese: item.chinese || '',
+    pinyin: item.pinyin || '',
+    meaningVi: item.meaning_vi || item.meaningVi || '',
+    source: 'hsk_1.json',
+    sourceRef: `${word}.examples`,
+    containsTarget: String(item.chinese || '').includes(word),
+    reviewStatus: 'reviewed'
+  })).filter(item => item.containsTarget);
+  const sentencesFromChars = charRecords.flatMap(record => record.sentences || [])
+    .filter(item => item.target === word && String(item.chinese || '').includes(word));
+  const sentences = uniqueBy([...sentencesFromExact, ...sentencesFromChars], item => item.chinese).slice(0, 12);
+
+  const grammarLinks = [];
+  if (clean(exact.usageNote)) grammarLinks.push({
+    grammarTopic: `Cách dùng ${word}`,
+    syntax: clean(exact.wordTypeExplanation) || clean(exact.wordType),
+    matchedExample: clean(exact.usageNote),
+    source: 'hsk_1.json',
+    reviewStatus: 'reviewed'
+  });
+  if (clean(exact.wordTypeExplanation) && clean(exact.wordTypeExplanation) !== clean(exact.usageNote)) grammarLinks.push({
+    grammarTopic: 'Loại từ và chức năng',
+    syntax: clean(exact.wordType),
+    matchedExample: clean(exact.wordTypeExplanation),
+    source: 'hsk_1.json',
+    reviewStatus: 'reviewed'
+  });
+
+  const componentCharacters = charRecords.map(record => ({
+    word: record.char,
+    pinyin: first(record.pronunciation?.pinyin),
+    meaningVi: meaningSummary(record),
+    reviewStatus: 'reviewed'
+  }));
+
+  const sourceRoutes = (exact.routes || []).filter(route => ['hsk', 'new_hsk'].includes(route.libraryId) && Number(route.levelNo) === 1);
   return {
-    schemaVersion: 'runtime-local-word-fallback-v1',
+    schemaVersion: 'runtime-local-word-enrichment-v2',
     id: `word:${word}`,
     type: 'word',
     char: word,
-    simplified: word,
-    traditional: word,
-    pronunciation: { pinyin: [hskItem?.pinyin || ''], hanViet: '' },
-    meaningSenses: [{ partOfSpeech: '', meaningVi: hskItem?.meaningVi || 'Chưa có nghĩa local', source: ['local_hsk_lookup'], reviewStatus: 'reviewed' }],
+    simplified: exact.simplified || word,
+    traditional: exact.traditional || word,
+    pronunciation: { pinyin: [exact.pinyin || hskItem?.pinyin || ''], hanViet: '' },
+    meaningSenses: [{ partOfSpeech: exact.wordType || '', meaningVi: exact.meaningVi || exact.translationVi || hskItem?.meaningVi || 'Chưa có nghĩa local', source: ['hsk_1.json'], reviewStatus: 'reviewed' }],
     characterInfo: { strokeCount: null, structureType: '', formationTypeVi: 'từ nhiều chữ', radical: {} },
-    components: charInfos.map(x => ({ char: x.char, role: 'structural', roleVi: 'chữ trong từ', meaningVi: clean(x.meaningVi), soundHint: x.pinyin, reviewStatus: 'reviewed' })),
-    etymology: { standardExplanationVi: 'Đây là từ nhiều chữ. Chọn từng chữ bên dưới để xem cấu tạo và luyện viết.', confidence: 'local' },
+    components,
+    etymology: { standardExplanationVi: clean(exact.wordTypeExplanation) || 'Đây là từ nhiều chữ. Chọn từng chữ bên dưới để xem cấu tạo và luyện viết.', confidence: 'local-reviewed' },
     learningStory: { memoryStoryVi: '', reviewStatus: 'not-available' },
-    vocabulary: { compounds: [], relatedWords: [], collocations: [] },
-    sentences: [],
-    grammarLinks: [],
-    sameRadicalCharacters: [],
-    sources: [{ sourceId: 'local_hsk_lookup', title: 'hsk_flashcard_lookup.json', reviewStatus: 'reviewed' }],
-    review: { status: 'local-fallback', warnings: ['Từ này chưa có record enrichment riêng.'] }
+    vocabulary: { compounds, relatedWords: [], collocations },
+    sentences,
+    grammarLinks,
+    sameRadicalCharacters: componentCharacters,
+    sources: [
+      { sourceId: 'hsk_1_json', title: 'data/learning/hsk/hsk_1.json', reviewStatus: 'reviewed' },
+      ...sourceRoutes.slice(0, 4).map(route => ({ sourceId: route.sectionId, title: `${route.libraryName} · ${route.sectionTitle}`, reviewStatus: 'reviewed' }))
+    ],
+    review: { status: 'local-enriched', warnings: sentences.length ? [] : ['Chưa tìm thấy câu chứa đúng từ trong dữ liệu HSK 1 hiện có.'] }
   };
 }
 
@@ -178,6 +293,10 @@ async function resolveQuery(rawQuery) {
   }
 
   const target = normalizePinyin(query);
+  const indexedChar = state.index?.pinyinIndex?.[target]?.[0];
+  if (indexedChar && state.index?.characters?.[indexedChar]) {
+    return fetchJson(state.index.characters[indexedChar]);
+  }
   const match = Object.values(lookup).find(item => normalizePinyin(item.pinyin) === target);
   if (!match) throw new Error(`Chưa tìm thấy pinyin “${query}” trong dữ liệu local.`);
   if (state.index?.characters?.[match.word]) return fetchJson(state.index.characters[match.word]);
@@ -207,11 +326,19 @@ function componentCards(data) {
 function wordCards(items = [], limit = 6) {
   const list = items.filter(reviewed).slice(0, limit);
   if (!list.length) return '<div class="empty-state">Chưa có dữ liệu đã kiểm duyệt.</div>';
-  return `<div class="card-list">${list.map(item => `<button class="word-card" type="button" data-search-char="${escapeHtml(item.word || item.text)}">
-    <span class="word-main"><strong>${escapeHtml(item.word || item.text)}</strong><span class="word-pinyin">${escapeHtml(item.pinyin || '')}</span></span>
-    ${item.hskLevel ? `<span class="word-badge">${escapeHtml(item.hskLevel)}</span>` : '<span></span>'}
-    <span class="word-meaning">${escapeHtml(item.meaningVi || '')}</span>
-  </button>`).join('')}</div>`;
+  return `<div class="card-list">${list.map(item => {
+    const target = item.word || item.text || '';
+    return `<div class="word-card">
+      <button class="word-card-search" type="button" data-search-char="${escapeHtml(target)}" aria-label="Tra ${escapeHtml(target)}">
+        <span class="word-main"><strong>${escapeHtml(target)}</strong><span class="word-pinyin">${escapeHtml(item.pinyin || '')}</span></span>
+        <span class="word-meaning">${escapeHtml(item.meaningVi || '')}</span>
+      </button>
+      <div class="word-card-actions">
+        <button class="word-speak-btn" type="button" data-speak="${escapeHtml(target)}" aria-label="Nghe phát âm ${escapeHtml(target)}" title="Nghe phát âm">🔊</button>
+        ${item.hskLevel ? `<span class="word-badge">${escapeHtml(item.hskLevel)}</span>` : ''}
+      </div>
+    </div>`;
+  }).join('')}</div>`;
 }
 
 function sentenceCards(items = [], limit = 4) {
@@ -221,8 +348,193 @@ function sentenceCards(items = [], limit = 4) {
     <div class="zh">${escapeHtml(item.chinese)}</div>
     <div class="py">${escapeHtml(item.pinyin)}</div>
     <div class="vi">${escapeHtml(item.meaningVi)}</div>
-    <button class="action-btn" type="button" data-speak="${escapeHtml(item.chinese)}">🔊 Nghe câu</button>
   </div>`).join('')}</div>`;
+}
+
+async function loadRadicalNotes() {
+  if (state.radicalNotes) return state.radicalNotes;
+  state.radicalNotes = await fetchJson(RADICAL_NOTES_URL);
+  return state.radicalNotes;
+}
+
+function matchRadicalNote(notes, form) {
+  const target = clean(form);
+  return Object.values(notes || {}).find(note => {
+    const forms = [note.key, note.mainForm, note.sideForm, ...(note.variants || [])].map(clean);
+    return forms.includes(target);
+  }) || null;
+}
+
+function radicalExampleItems(note) {
+  return (note?.examples?.chars || note?.examples?.charsShort || []).slice(0, 24);
+}
+
+function radicalWordItems(note) {
+  return (note?.examples?.words || []).slice(0, 30);
+}
+
+function radicalSentenceItems(note) {
+  return (note?.examples?.sentences || note?.examples?.sentencesShort || []).slice(0, 12);
+}
+
+function radicalAccordion(title, content, open = false) {
+  if (!content) return '';
+  return `<details class="prototype-radical-accordion" ${open ? 'open' : ''}>
+    <summary><span>${escapeHtml(title)}</span><span class="prototype-radical-chevron">⌄</span></summary>
+    <div class="prototype-radical-accordion-body">${content}</div>
+  </details>`;
+}
+
+function radicalSearchCards(items = [], kind = 'char') {
+  const list = items.filter(item => item && (item.char || item.word)).slice(0, kind === 'char' ? 24 : 30);
+  if (!list.length) return '';
+  return `<div class="prototype-radical-${kind === 'char' ? 'examples' : 'words'}">${list.map(item => {
+    const target = item.char || item.word || '';
+    return `<div class="prototype-radical-item">
+      <button type="button" class="prototype-radical-item-search" data-search-char="${escapeHtml(target)}">
+        <strong>${escapeHtml(target)}</strong>
+        <span>${escapeHtml(item.pinyin || '')}</span>
+        <small>${escapeHtml(item.meaningVi || '')}</small>
+      </button>
+      <button type="button" class="prototype-radical-item-audio" data-speak="${escapeHtml(target)}" aria-label="Nghe ${escapeHtml(target)}">🔊</button>
+    </div>`;
+  }).join('')}</div>`;
+}
+
+function radicalFormsHtml(forms = []) {
+  if (!forms.length) return '';
+  return `<div class="prototype-radical-form-list">${forms.map(form => `
+    <article class="prototype-radical-form-card">
+      <div class="prototype-radical-form-head">
+        <strong>${escapeHtml(form.form || '')}</strong>
+        <div><b>${escapeHtml(form.nameVi || '')}</b><span>${escapeHtml(form.pinyin || '')}</span></div>
+        ${form.form ? `<button type="button" class="prototype-radical-item-audio" data-speak="${escapeHtml(form.form)}" aria-label="Nghe ${escapeHtml(form.form)}">🔊</button>` : ''}
+      </div>
+      ${form.description ? `<p>${escapeHtml(form.description)}</p>` : ''}
+      ${radicalSearchCards(form.examples || [], 'char')}
+    </article>`).join('')}</div>`;
+}
+
+function radicalSemanticGroupsHtml(groups = []) {
+  if (!groups.length) return '';
+  return `<div class="prototype-radical-semantic-list">${groups.map(group => `
+    <article>
+      <h5>${escapeHtml(group.title || '')}</h5>
+      ${group.description ? `<p>${escapeHtml(group.description)}</p>` : ''}
+      ${radicalSearchCards(group.examples || [], 'char')}
+    </article>`).join('')}</div>`;
+}
+
+function radicalSentencesHtml(items = []) {
+  if (!items.length) return '';
+  return `<div class="prototype-radical-sentence-list">${items.map(item => `
+    <article>
+      <strong>${escapeHtml(item.zh || item.chinese || '')}</strong>
+      <span>${escapeHtml(item.pinyin || '')}</span>
+      <small>${escapeHtml(item.vi || item.meaningVi || '')}</small>
+    </article>`).join('')}</div>`;
+}
+
+function radicalSourcesHtml(source = {}) {
+  const urls = source.sourceUrls || [];
+  const rows = [
+    source.primary ? `<li><b>Nguồn chính:</b> ${escapeHtml(source.primary)}</li>` : '',
+    (source.supplement || []).length ? `<li><b>Nguồn bổ sung:</b> ${escapeHtml(source.supplement.join(', '))}</li>` : '',
+    source.hasManualOverride ? '<li><b>Hiệu chỉnh thủ công:</b> Có</li>' : '',
+    source.needsManualReview ? '<li><b>Trạng thái:</b> Cần kiểm tra thêm</li>' : '<li><b>Trạng thái:</b> Đã tổng hợp</li>',
+    ...(source.notes || []).map(note => `<li>${escapeHtml(note)}</li>`),
+    ...urls.map(url => `<li class="prototype-radical-source-url">${escapeHtml(url)}</li>`)
+  ].filter(Boolean);
+  return rows.length ? `<ul>${rows.join('')}</ul>` : '';
+}
+
+function ensureRadicalDialog() {
+  let dialog = document.querySelector('#prototypeRadicalDialog');
+  if (dialog) return dialog;
+  dialog = document.createElement('div');
+  dialog.id = 'prototypeRadicalDialog';
+  dialog.className = 'prototype-radical-dialog';
+  dialog.hidden = true;
+  dialog.innerHTML = '<div class="prototype-radical-sheet" role="dialog" aria-modal="true" aria-label="Chi tiết bộ thủ"><div id="prototypeRadicalBody"></div></div>';
+  document.body.appendChild(dialog);
+  dialog.addEventListener('click', event => {
+    if (event.target === dialog || event.target.closest('[data-close-radical]')) closeRadicalDialog();
+  });
+  return dialog;
+}
+
+function closeRadicalDialog() {
+  const dialog = document.querySelector('#prototypeRadicalDialog');
+  if (!dialog) return;
+  dialog.hidden = true;
+  document.body.classList.remove('radical-dialog-open');
+}
+
+function renderRadicalDialog(note) {
+  const dialog = ensureRadicalDialog();
+  const body = dialog.querySelector('#prototypeRadicalBody');
+  const detail = note.detailForRadicalPopup || {};
+  const examples = radicalExampleItems(note);
+  const words = radicalWordItems(note);
+  const sentences = radicalSentenceItems(note);
+  const forms = detail.formVariants || [];
+  const semanticGroups = detail.semanticGroups || [];
+  const basicLines = [
+    note.mainForm ? `<span><b>Dạng chính:</b> ${escapeHtml(note.mainForm)}</span>` : '',
+    note.sideForm ? `<span><b>Biến thể:</b> ${escapeHtml(note.sideForm)}</span>` : '',
+    note.pinyin ? `<span><b>Pinyin:</b> ${escapeHtml(note.pinyin)}</span>` : '',
+    note.hanViet ? `<span><b>Hán Việt:</b> ${escapeHtml(note.hanViet)}</span>` : '',
+    Number.isFinite(note.strokeCount) ? `<span><b>Số nét:</b> ${escapeHtml(note.strokeCount)}</span>` : '',
+    note.kangxiNo ? `<span><b>Số Khang Hy:</b> ${escapeHtml(note.kangxiNo)}</span>` : ''
+  ].filter(Boolean).join('');
+
+  body.innerHTML = `
+    <div class="prototype-radical-topbar">
+      <button type="button" data-close-radical>← Quay lại</button>
+      <button type="button" class="prototype-radical-close" data-close-radical aria-label="Đóng">×</button>
+    </div>
+    <div class="prototype-radical-hero">
+      <div class="prototype-radical-glyph">${escapeHtml(note.key || note.sideForm || note.mainForm || '')}</div>
+      <div>
+        <h3>${escapeHtml(note.displayNameVi || 'Bộ thủ')}</h3>
+        <p>${escapeHtml(note.shortForCharLookup?.meaningLine || '')}</p>
+        <div class="prototype-radical-basic">${basicLines}</div>
+      </div>
+      <button class="word-speak-btn" type="button" data-speak="${escapeHtml(note.key || note.mainForm || '')}" aria-label="Nghe bộ thủ">🔊</button>
+    </div>
+    ${radicalAccordion('Nguồn gốc và ý nghĩa', detail.originMeaning ? `<p>${escapeHtml(detail.originMeaning)}</p>` : '', true)}
+    ${radicalAccordion('Các dạng và vị trí xuất hiện', `${radicalFormsHtml(forms)}${note.shortForCharLookup?.positionLine ? `<p class="prototype-radical-note">${escapeHtml(note.shortForCharLookup.positionLine)}</p>` : ''}`)}
+    ${radicalAccordion('Nhóm nghĩa thường gặp', radicalSemanticGroupsHtml(semanticGroups))}
+    ${radicalAccordion('Cách nhận biết', detail.recognition ? `<p>${escapeHtml(detail.recognition)}</p>` : '')}
+    ${radicalAccordion('Gợi nhớ', (detail.imageAssociation || note.shortForCharLookup?.memoryLine) ? `<p>${escapeHtml(detail.imageAssociation || note.shortForCharLookup.memoryLine)}</p>` : '')}
+    ${radicalAccordion('Chữ ví dụ', radicalSearchCards(examples, 'char'))}
+    ${radicalAccordion('Từ ghép', radicalSearchCards(words, 'word'))}
+    ${radicalAccordion('Câu mẫu', radicalSentencesHtml(sentences))}
+    ${radicalAccordion('Dễ nhầm', (detail.avoidConfusion || []).length ? `<ul>${detail.avoidConfusion.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>` : '')}
+    ${radicalAccordion('Nguồn dữ liệu', radicalSourcesHtml(note.source || {}))}
+  `;
+  body.querySelectorAll('[data-speak]').forEach(button => button.addEventListener('click', event => {
+    event.stopPropagation();
+    speak(button.dataset.speak);
+  }));
+  body.querySelectorAll('[data-search-char]').forEach(button => button.addEventListener('click', () => {
+    closeRadicalDialog();
+    runSearch(button.dataset.searchChar);
+  }));
+  dialog.hidden = false;
+  document.body.classList.add('radical-dialog-open');
+}
+
+async function openRadicalDetails(form) {
+  try {
+    const notes = await loadRadicalNotes();
+    const note = matchRadicalNote(notes, form);
+    if (!note) throw new Error('Bộ thủ này chưa có hồ sơ chi tiết trong dữ liệu local.');
+    renderRadicalDialog(note);
+  } catch (error) {
+    el.message.textContent = error.message || 'Không mở được chi tiết bộ thủ.';
+    el.message.hidden = false;
+  }
 }
 
 function warningFor(data) {
@@ -275,15 +587,15 @@ function render(data) {
 
     ${story ? `<section class="panel story-panel full-width"><div class="panel-inner">${panelTitle('💡', 'Câu chuyện ghi nhớ')}<div class="story-card"><div class="story-icon">✦</div><div><p class="story-text">${escapeHtml(story)}</p><div class="story-note">Mẹo học theo cấu tạo, không phải khẳng định lịch sử chữ.</div></div></div></div></section>` : ''}
 
-    ${radical.mainForm || radical.variant ? `<section class="panel"><div class="panel-inner">${panelTitle('部', 'Bộ thủ')}<div class="radical-card"><div class="radical-char">${escapeHtml(radical.variant || radical.mainForm || '')}</div><div><strong>${escapeHtml(radical.nameVi || 'Bộ thủ')}</strong><span>${escapeHtml(radical.mainForm || '')}${radical.pinyin ? ` · ${escapeHtml(radical.pinyin)}` : ''}${radical.meaningVi ? ` · ${escapeHtml(radical.meaningVi)}` : ''}</span></div></div></div></section>` : ''}
+    ${radical.mainForm || radical.variant ? `<section class="panel"><div class="panel-inner">${panelTitle('部', 'Bộ thủ')}<button class="radical-card radical-card-button" type="button" data-open-radical="${escapeHtml(radical.variant || radical.mainForm || '')}" aria-label="Mở chi tiết ${escapeHtml(radical.nameVi || 'bộ thủ')}"><div class="radical-char">${escapeHtml(radical.variant || radical.mainForm || '')}</div><div><strong>${escapeHtml(radical.nameVi || 'Bộ thủ')}</strong><span>${escapeHtml(radical.mainForm || '')}${radical.pinyin ? ` · ${escapeHtml(radical.pinyin)}` : ''}${radical.meaningVi ? ` · ${escapeHtml(radical.meaningVi)}` : ''}</span><small>Chạm để xem chi tiết →</small></div></button></div></section>` : ''}
 
     <section class="panel writing-panel full-width"><div class="panel-inner">${panelTitle('✎', 'Cách viết và luyện cơ bản')}${writingPanel(data)}</div></section>
 
     <section class="panel"><div class="panel-inner">${panelTitle('词', 'Từ ghép')}${wordCards(vocabulary.compounds || [])}</div></section>
     <section class="panel"><div class="panel-inner">${panelTitle('搭', 'Kết hợp thường thấy')}${wordCards(vocabulary.collocations || [], 5)}</div></section>
     <section class="panel full-width"><div class="panel-inner">${panelTitle('例', 'Câu mẫu')}${sentenceCards(data.sentences || [])}</div></section>
-    <section class="panel"><div class="panel-inner">${panelTitle('语', 'Ngữ pháp liên quan')}${wordCards((data.grammarLinks || []).map(item => ({word:item.grammarTopic, pinyin:item.syntax, meaningVi:item.matchedExample, reviewStatus:item.reviewStatus})), 3)}</div></section>
-    <section class="panel"><div class="panel-inner">${panelTitle('同', 'Chữ cùng bộ')}${wordCards(data.sameRadicalCharacters || [], 8)}</div></section>
+    <section class="panel"><div class="panel-inner">${panelTitle('语', data.type === 'word' ? 'Ngữ pháp / cách dùng' : 'Ngữ pháp liên quan')}${wordCards((data.grammarLinks || []).map(item => ({word:item.grammarTopic, pinyin:item.syntax, meaningVi:item.matchedExample, reviewStatus:item.reviewStatus})), 3)}</div></section>
+    <section class="panel"><div class="panel-inner">${panelTitle('同', data.type === 'word' ? 'Chữ thành phần' : 'Chữ cùng bộ')}${wordCards(data.sameRadicalCharacters || [], 8)}</div></section>
     <section class="panel details-panel full-width"><details><summary>Nguồn dữ liệu và ghi chú kiểm duyệt</summary><ul class="source-list">${sources.length ? sources.map(item => `<li>${escapeHtml(item.title || item.sourceId || '')}</li>`).join('') : '<li>Không có thông tin nguồn bổ sung.</li>'}</ul></details></section>`;
 
   updateStrokeLinks(primaryChar);
@@ -374,6 +686,7 @@ function bindDynamicEvents() {
     updateStrokeLinks(button.dataset.writerChar);
   }));
   el.view.querySelectorAll('[data-writer-action]').forEach(button => button.addEventListener('click', () => writerAction(button.dataset.writerAction)));
+  el.view.querySelectorAll('[data-open-radical]').forEach(button => button.addEventListener('click', () => openRadicalDetails(button.dataset.openRadical)));
 }
 
 async function runSearch(value) {
