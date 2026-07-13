@@ -1299,8 +1299,9 @@ if(window.HanziWriter){
   const HSK_FLASHCARD_ACTIVE_SESSION_KEY = 'hanziStroke.hskFlashcardActiveSession.v1';
   const FLASHCARD_LIBRARY_SORT_KEY = 'hanziStroke.flashcardLibrarySort.v1';
   const FLASHCARD_DB_NAME = 'hanziStrokeFlashcards';
-  const FLASHCARD_DB_VERSION = 1;
+  const FLASHCARD_DB_VERSION = 2;
   const FLASHCARD_DECK_STORE = 'decks';
+  const FLASHCARD_TRASH_STORE = 'trash';
   let flashcardTouchStart = null;
   let flashcardSuppressClickUntil = 0;
   let flashcardStrokeWriters = [];
@@ -1308,7 +1309,7 @@ if(window.HanziWriter){
   let flashcardStrokePlayId = 0;
   let tabFlashcards = null;
   let flashcardLibraryView = null;
-  const flashcardLibraryState = { decks: [], editingDeck: null, detailDeckId: '', detailSearch: '', editingCardId: '', selectedCardIds: new Set(), message: '', quickImportBusy: false, searchQuery: '', sortMode: readFlashcardLibrarySort() };
+  const flashcardLibraryState = { decks: [], editingDeck: null, detailDeckId: '', detailSearch: '', editingCardId: '', selectedCardIds: new Set(), message: '', quickImportBusy: false, searchQuery: '', sortMode: readFlashcardLibrarySort(), undoTrashId: '', undoTimer: null, trashOpen: false, trashItems: [] };
 
   function makeLocalId(prefix = 'id'){
     if(window.crypto?.randomUUID) return `${prefix}-${window.crypto.randomUUID()}`;
@@ -1489,6 +1490,11 @@ if(window.HanziWriter){
         if(!db.objectStoreNames.contains(FLASHCARD_DECK_STORE)){
           db.createObjectStore(FLASHCARD_DECK_STORE, { keyPath: 'id' });
         }
+        if(!db.objectStoreNames.contains(FLASHCARD_TRASH_STORE)){
+          const trashStore = db.createObjectStore(FLASHCARD_TRASH_STORE, { keyPath: 'id' });
+          trashStore.createIndex('deletedAt', 'deletedAt', { unique: false });
+          trashStore.createIndex('expiresAt', 'expiresAt', { unique: false });
+        }
       };
       request.onsuccess = () => resolve(request.result);
       request.onerror = () => reject(request.error || new Error('Không mở được IndexedDB.'));
@@ -1540,6 +1546,246 @@ if(window.HanziWriter){
 
   async function deleteCustomDeck(id){
     await withDeckStore('readwrite', store => store.delete(id));
+  }
+
+
+  function makeTrashExpiry(deletedAt){
+    return new Date(new Date(deletedAt).getTime() + 30 * 24 * 60 * 60 * 1000).toISOString();
+  }
+
+  async function getTrashItem(id){
+    const db = await openFlashcardDb();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(FLASHCARD_TRASH_STORE, 'readonly');
+      const request = tx.objectStore(FLASHCARD_TRASH_STORE).get(id);
+      request.onsuccess = () => resolve(request.result || null);
+      request.onerror = () => reject(request.error || new Error('Không đọc được Thùng rác.'));
+      tx.oncomplete = () => db.close();
+    });
+  }
+
+
+  async function getAllTrashItems(){
+    const db = await openFlashcardDb();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(FLASHCARD_TRASH_STORE, 'readonly');
+      const request = tx.objectStore(FLASHCARD_TRASH_STORE).getAll();
+      request.onsuccess = () => resolve((request.result || []).sort((a,b) => String(b.deletedAt || '').localeCompare(String(a.deletedAt || ''))));
+      request.onerror = () => reject(request.error || new Error('Không đọc được Thùng rác.'));
+      tx.oncomplete = () => db.close();
+    });
+  }
+
+  async function deleteTrashItemPermanently(id){
+    const db = await openFlashcardDb();
+    await new Promise((resolve, reject) => {
+      const tx = db.transaction(FLASHCARD_TRASH_STORE, 'readwrite');
+      tx.objectStore(FLASHCARD_TRASH_STORE).delete(id);
+      tx.oncomplete = resolve;
+      tx.onerror = () => reject(tx.error || new Error('Không thể xóa vĩnh viễn.'));
+      tx.onabort = () => reject(tx.error || new Error('Giao dịch bị hủy.'));
+    });
+    db.close();
+  }
+
+  async function clearTrashPermanently(){
+    const db = await openFlashcardDb();
+    await new Promise((resolve, reject) => {
+      const tx = db.transaction(FLASHCARD_TRASH_STORE, 'readwrite');
+      tx.objectStore(FLASHCARD_TRASH_STORE).clear();
+      tx.oncomplete = resolve;
+      tx.onerror = () => reject(tx.error || new Error('Không thể dọn sạch Thùng rác.'));
+      tx.onabort = () => reject(tx.error || new Error('Giao dịch bị hủy.'));
+    });
+    db.close();
+  }
+
+  async function cleanupExpiredTrash(){
+    const items = await getAllTrashItems();
+    const now = Date.now();
+    const expired = items.filter(item => {
+      const time = new Date(item.expiresAt || '').getTime();
+      return Number.isFinite(time) && time <= now;
+    });
+    if(!expired.length) return 0;
+    const db = await openFlashcardDb();
+    await new Promise((resolve, reject) => {
+      const tx = db.transaction(FLASHCARD_TRASH_STORE, 'readwrite');
+      const store = tx.objectStore(FLASHCARD_TRASH_STORE);
+      expired.forEach(item => store.delete(item.id));
+      tx.oncomplete = resolve;
+      tx.onerror = () => reject(tx.error || new Error('Không thể tự dọn Thùng rác.'));
+      tx.onabort = () => reject(tx.error || new Error('Giao dịch bị hủy.'));
+    });
+    db.close();
+    return expired.length;
+  }
+
+  function getTrashDaysLeft(item){
+    const expires = new Date(item?.expiresAt || '').getTime();
+    if(!Number.isFinite(expires)) return 30;
+    return Math.max(0, Math.ceil((expires - Date.now()) / (24 * 60 * 60 * 1000)));
+  }
+
+  function confirmFlashcardAction({ title = 'Xác nhận', message = '', confirmText = 'Xác nhận', danger = false } = {}){
+    return new Promise(resolve => {
+      document.getElementById('flashcardConfirmOverlay')?.remove();
+      const overlay = document.createElement('div');
+      overlay.id = 'flashcardConfirmOverlay';
+      overlay.className = 'flashcard-confirm-overlay';
+      overlay.innerHTML = `
+        <section class="flashcard-confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="flashcardConfirmTitle">
+          <button type="button" class="flashcard-confirm-x" data-flashcard-confirm-cancel aria-label="Đóng">×</button>
+          <div class="flashcard-confirm-icon">${danger ? '🗑' : '↺'}</div>
+          <h3 id="flashcardConfirmTitle">${escapeHtml(title)}</h3>
+          <p>${escapeHtml(message)}</p>
+          <div class="flashcard-confirm-actions">
+            <button type="button" data-flashcard-confirm-cancel>Hủy</button>
+            <button type="button" class="${danger ? 'danger' : 'primary'}" data-flashcard-confirm-ok>${escapeHtml(confirmText)}</button>
+          </div>
+        </section>`;
+      const finish = value => { overlay.remove(); resolve(value); };
+      overlay.addEventListener('click', event => {
+        if(event.target === overlay || event.target.closest('[data-flashcard-confirm-cancel]')) finish(false);
+        else if(event.target.closest('[data-flashcard-confirm-ok]')) finish(true);
+      });
+      document.body.appendChild(overlay);
+      overlay.querySelector('[data-flashcard-confirm-ok]')?.focus();
+    });
+  }
+
+  async function moveCardsToTrash(deck, cardIds){
+    const selected = new Set(cardIds || []);
+    const entries = (deck.cards || []).map((card, index) => ({ card, index })).filter(item => selected.has(item.card.id));
+    if(!entries.length) return null;
+    const deletedAt = new Date().toISOString();
+    const trashItem = {
+      id: makeLocalId('trash'),
+      type: 'cards',
+      deletedAt,
+      expiresAt: makeTrashExpiry(deletedAt),
+      sourceDeckId: deck.id,
+      sourceDeckName: deck.name,
+      entries: entries.map(item => ({ index: item.index, card: { ...item.card } }))
+    };
+    const updatedDeck = { ...deck, cards: (deck.cards || []).filter(card => !selected.has(card.id)), updatedAt: deletedAt };
+    const db = await openFlashcardDb();
+    await new Promise((resolve, reject) => {
+      const tx = db.transaction([FLASHCARD_DECK_STORE, FLASHCARD_TRASH_STORE], 'readwrite');
+      tx.objectStore(FLASHCARD_DECK_STORE).put(updatedDeck);
+      tx.objectStore(FLASHCARD_TRASH_STORE).put(trashItem);
+      tx.oncomplete = resolve;
+      tx.onerror = () => reject(tx.error || new Error('Không thể chuyển thẻ vào Thùng rác.'));
+      tx.onabort = () => reject(tx.error || new Error('Giao dịch bị hủy.'));
+    });
+    db.close();
+    return trashItem;
+  }
+
+  async function moveDeckToTrash(deckId){
+    const deck = flashcardLibraryState.decks.find(item => item.id === deckId);
+    if(!deck) return null;
+    const deletedAt = new Date().toISOString();
+    const trashItem = {
+      id: makeLocalId('trash'),
+      type: 'deck',
+      deletedAt,
+      expiresAt: makeTrashExpiry(deletedAt),
+      data: JSON.parse(JSON.stringify(deck))
+    };
+    const db = await openFlashcardDb();
+    await new Promise((resolve, reject) => {
+      const tx = db.transaction([FLASHCARD_DECK_STORE, FLASHCARD_TRASH_STORE], 'readwrite');
+      tx.objectStore(FLASHCARD_DECK_STORE).delete(deckId);
+      tx.objectStore(FLASHCARD_TRASH_STORE).put(trashItem);
+      tx.oncomplete = resolve;
+      tx.onerror = () => reject(tx.error || new Error('Không thể chuyển bộ vào Thùng rác.'));
+      tx.onabort = () => reject(tx.error || new Error('Giao dịch bị hủy.'));
+    });
+    db.close();
+    return trashItem;
+  }
+
+  async function restoreTrashItem(id){
+    const item = await getTrashItem(id);
+    if(!item) return false;
+    const db = await openFlashcardDb();
+    await new Promise((resolve, reject) => {
+      const tx = db.transaction([FLASHCARD_DECK_STORE, FLASHCARD_TRASH_STORE], 'readwrite');
+      const deckStore = tx.objectStore(FLASHCARD_DECK_STORE);
+      const trashStore = tx.objectStore(FLASHCARD_TRASH_STORE);
+      if(item.type === 'deck'){
+        deckStore.put({ ...item.data, updatedAt: new Date().toISOString() });
+        trashStore.delete(item.id);
+      }else if(item.type === 'cards'){
+        const request = deckStore.get(item.sourceDeckId);
+        request.onsuccess = () => {
+          const current = request.result || {
+            id: item.sourceDeckId || makeLocalId('deck'),
+            name: item.sourceDeckName || 'Đã khôi phục',
+            description: 'Bộ được tạo lại khi hoàn tác.',
+            createdAt: new Date().toISOString(),
+            cards: []
+          };
+          const cards = [...(current.cards || [])];
+          const existingIds = new Set(cards.map(card => card.id));
+          for(const entry of [...(item.entries || [])].sort((a,b) => a.index - b.index)){
+            if(existingIds.has(entry.card.id)) continue;
+            cards.splice(Math.max(0, Math.min(entry.index, cards.length)), 0, entry.card);
+            existingIds.add(entry.card.id);
+          }
+          deckStore.put({ ...current, cards, updatedAt: new Date().toISOString() });
+          trashStore.delete(item.id);
+        };
+        request.onerror = () => tx.abort();
+      }else{
+        trashStore.delete(item.id);
+      }
+      tx.oncomplete = resolve;
+      tx.onerror = () => reject(tx.error || new Error('Không thể hoàn tác.'));
+      tx.onabort = () => reject(tx.error || new Error('Hoàn tác bị hủy.'));
+    });
+    db.close();
+    return true;
+  }
+
+  function hideFlashcardUndoToast(){
+    document.getElementById('flashcardUndoToast')?.remove();
+    if(flashcardLibraryState.undoTimer){
+      window.clearTimeout(flashcardLibraryState.undoTimer);
+      flashcardLibraryState.undoTimer = null;
+    }
+  }
+
+  function showFlashcardUndoToast(message, trashId){
+    hideFlashcardUndoToast();
+    flashcardLibraryState.undoTrashId = trashId || '';
+    const toast = document.createElement('div');
+    toast.id = 'flashcardUndoToast';
+    toast.className = 'flashcard-undo-toast';
+    toast.innerHTML = `<span>${escapeHtml(message)}</span><button type="button" data-flashcard-undo-delete>Hoàn tác</button><button type="button" class="flashcard-undo-close" data-flashcard-undo-close aria-label="Đóng">×</button>`;
+    toast.addEventListener('click', async event => {
+      if(event.target.closest('[data-flashcard-undo-close]')){
+        hideFlashcardUndoToast();
+        return;
+      }
+      const undoButton = event.target.closest('[data-flashcard-undo-delete]');
+      if(!undoButton) return;
+      const currentTrashId = flashcardLibraryState.undoTrashId;
+      if(!currentTrashId) return;
+      undoButton.disabled = true;
+      try{
+        const restored = await restoreTrashItem(currentTrashId);
+        hideFlashcardUndoToast();
+        flashcardLibraryState.message = restored ? 'Đã hoàn tác thao tác xóa.' : 'Mục này không còn trong Thùng rác.';
+        await renderFlashcardLibrary();
+      }catch(err){
+        undoButton.disabled = false;
+        window.alert(err.message || 'Không thể hoàn tác.');
+      }
+    });
+    document.body.appendChild(toast);
+    flashcardLibraryState.undoTimer = window.setTimeout(() => hideFlashcardUndoToast(), 8000);
   }
 
   async function importCustomDecks(decks){
@@ -1598,6 +1844,8 @@ if(window.HanziWriter){
     if(!['manual', 'quick'].includes(deck.entryMode)) deck.entryMode = 'manual';
     if(typeof deck.quickImportText !== 'string') deck.quickImportText = '';
     if(!Array.isArray(deck.quickImportRows)) deck.quickImportRows = [];
+    if(!Array.isArray(deck.quickSegmentTokens)) deck.quickSegmentTokens = [];
+    if(typeof deck.quickNewToken !== 'string') deck.quickNewToken = '';
     return deck;
   }
 
@@ -1634,7 +1882,167 @@ if(window.HanziWriter){
     while(index<chars.length){ let match=''; for(let len=Math.min(6,chars.length-index);len>=2;len-=1){ const candidate=chars.slice(index,index+len).join(''); if(hskLookup[candidate]||await loadCompoundWordInfo(candidate)){match=candidate;break;} } if(!match)match=chars[index]; tokens.push(match); index+=Array.from(match).length; }
     return tokens;
   }
-  async function segmentQuickImportText(value){ const seen=new Set(),entries=[]; for(const line of String(value||'').split(/\r?\n/)){ if(!line.trim())continue; for(const word of await segmentChineseSentence(line)){if(word&&!seen.has(word)){seen.add(word);entries.push({word,pinyin:'',meaningVi:'',userProvided:false,segmented:true});}} } return entries; }
+  async function segmentQuickImportText(value){
+    const entries=[];
+    for(const line of String(value||'').split(/\r?\n/)){
+      if(!line.trim()) continue;
+      for(const word of await segmentChineseSentence(line)){
+        if(word) entries.push({ id:makeLocalId('token'), word, selected:false });
+      }
+    }
+    return entries;
+  }
+
+  async function prepareQuickImportTokens(){
+    const deck=syncDeckEditorFields();
+    if(!deck) return;
+    const source=String(deck.quickImportText||'').trim();
+    if(!source){ flashcardLibraryState.message='Hãy nhập một câu tiếng Trung trước khi tách.'; renderFlashcardLibrary(); return; }
+    flashcardLibraryState.quickImportBusy=true;
+    deck.quickSegmentTokens=[];
+    deck.quickImportRows=[];
+    await renderFlashcardLibrary();
+    try{
+      deck.quickSegmentTokens=await segmentQuickImportText(source);
+      flashcardLibraryState.message=deck.quickSegmentTokens.length ? 'Đã tạo gợi ý token. Hãy chỉnh, gộp hoặc tách trước khi tra.' : 'Không tìm thấy chữ Hán để tách.';
+    }finally{
+      flashcardLibraryState.quickImportBusy=false;
+      await renderFlashcardLibrary();
+    }
+  }
+
+  function getSelectedQuickTokens(deck){
+    return (deck?.quickSegmentTokens||[]).map((token,index)=>({token,index})).filter(item=>item.token.selected);
+  }
+
+  function mergeSelectedQuickTokens(){
+    const deck=ensureDeckEditorState(flashcardLibraryState.editingDeck);
+    const selected=getSelectedQuickTokens(deck);
+    if(selected.length<2){ flashcardLibraryState.message='Chọn ít nhất 2 token liền kề để gộp.'; renderFlashcardLibrary(); return; }
+    const indexes=selected.map(item=>item.index);
+    const contiguous=indexes.every((value,index)=>index===0||value===indexes[index-1]+1);
+    if(!contiguous){ flashcardLibraryState.message='Chỉ có thể gộp các token nằm liền nhau.'; renderFlashcardLibrary(); return; }
+    const merged=selected.map(item=>item.token.word).join('');
+    deck.quickSegmentTokens.splice(indexes[0],indexes.length,{id:makeLocalId('token'),word:merged,selected:false});
+    flashcardLibraryState.message=`Đã gộp thành “${merged}”.`;
+    renderFlashcardLibrary();
+  }
+
+  function applyQuickTokenSplit(tokenIndex, splitPosition){
+    const deck=ensureDeckEditorState(flashcardLibraryState.editingDeck);
+    const token=deck?.quickSegmentTokens?.[tokenIndex];
+    const chars=getHanziChars(token?.word || '');
+    const position=Number(splitPosition);
+    if(!token || chars.length<2 || !Number.isInteger(position) || position<=0 || position>=chars.length){
+      flashcardLibraryState.message='Vị trí tách không hợp lệ.';
+      renderFlashcardLibrary();
+      return false;
+    }
+    const left=chars.slice(0,position).join('');
+    const right=chars.slice(position).join('');
+    deck.quickSegmentTokens.splice(tokenIndex,1,
+      {id:makeLocalId('token'),word:left,selected:false},
+      {id:makeLocalId('token'),word:right,selected:false}
+    );
+    flashcardLibraryState.message=`Đã tách “${chars.join('')}” thành “${left}” và “${right}”.`;
+    renderFlashcardLibrary();
+    return true;
+  }
+
+  function openQuickTokenSplitDialog(){
+    const deck=ensureDeckEditorState(flashcardLibraryState.editingDeck);
+    const selected=getSelectedQuickTokens(deck);
+    if(selected.length!==1){
+      flashcardLibraryState.message='Chọn đúng 1 token để tách.';
+      renderFlashcardLibrary();
+      return;
+    }
+    const item=selected[0];
+    const chars=getHanziChars(item.token.word);
+    if(chars.length<2){
+      flashcardLibraryState.message='Token này chỉ có một chữ, không thể tách thêm.';
+      renderFlashcardLibrary();
+      return;
+    }
+
+    document.getElementById('flashcardTokenSplitOverlay')?.remove();
+    const overlay=document.createElement('div');
+    overlay.id='flashcardTokenSplitOverlay';
+    overlay.className='flashcard-token-split-overlay';
+    const defaultPosition=Math.max(1,Math.floor(chars.length/2));
+    const options=[];
+    for(let position=1;position<chars.length;position+=1){
+      const left=chars.slice(0,position).join('');
+      const right=chars.slice(position).join('');
+      options.push(`
+        <label class="flashcard-token-split-option">
+          <input type="radio" name="flashcard-token-split-position" value="${position}" ${position===defaultPosition?'checked':''}>
+          <span><b>${escapeHtml(left)}</b><i aria-hidden="true">|</i><b>${escapeHtml(right)}</b></span>
+        </label>`);
+    }
+    overlay.innerHTML=`
+      <section class="flashcard-token-split-dialog" role="dialog" aria-modal="true" aria-labelledby="flashcardTokenSplitTitle">
+        <header>
+          <div><small>TÁCH TOKEN</small><h3 id="flashcardTokenSplitTitle">Tách “${escapeHtml(chars.join(''))}”</h3></div>
+          <button type="button" data-flashcard-token-split-cancel aria-label="Đóng">×</button>
+        </header>
+        <p>Chọn vị trí tách. Dữ liệu chỉ được cập nhật trong danh sách token, chưa tự thêm vào bộ thẻ.</p>
+        <div class="flashcard-token-split-options">${options.join('')}</div>
+        <div class="flashcard-token-split-actions">
+          <button type="button" data-flashcard-token-split-cancel>Hủy</button>
+          <button type="button" class="primary" data-flashcard-token-split-confirm>Tách token</button>
+        </div>
+      </section>`;
+
+    const close=()=>{
+      document.removeEventListener('keydown',onKeydown);
+      overlay.remove();
+    };
+    const onKeydown=event=>{
+      if(event.key==='Escape') close();
+    };
+    overlay.addEventListener('click',event=>{
+      if(event.target===overlay || event.target.closest('[data-flashcard-token-split-cancel]')){
+        close();
+        return;
+      }
+      if(event.target.closest('[data-flashcard-token-split-confirm]')){
+        const checked=overlay.querySelector('input[name="flashcard-token-split-position"]:checked');
+        if(!checked) return;
+        const position=Number(checked.value);
+        close();
+        applyQuickTokenSplit(item.index,position);
+      }
+    });
+    document.body.appendChild(overlay);
+    document.addEventListener('keydown',onKeydown);
+    overlay.querySelector('input[name="flashcard-token-split-position"]:checked')?.focus();
+  }
+
+  function deleteSelectedQuickTokens(){
+    const deck=ensureDeckEditorState(flashcardLibraryState.editingDeck);
+    const before=deck.quickSegmentTokens.length;
+    deck.quickSegmentTokens=deck.quickSegmentTokens.filter(token=>!token.selected);
+    const removed=before-deck.quickSegmentTokens.length;
+    flashcardLibraryState.message=removed?`Đã bỏ ${removed} token.`:'Chưa chọn token nào.';
+    renderFlashcardLibrary();
+  }
+
+  function addQuickToken(){
+    const deck=ensureDeckEditorState(flashcardLibraryState.editingDeck);
+    const word=getHanziChars(deck.quickNewToken).join('');
+    if(!word){ flashcardLibraryState.message='Hãy nhập một token tiếng Trung hợp lệ.'; renderFlashcardLibrary(); return; }
+    deck.quickSegmentTokens.push({id:makeLocalId('token'),word,selected:false});
+    deck.quickNewToken='';
+    flashcardLibraryState.message=`Đã thêm token “${word}”.`;
+    renderFlashcardLibrary();
+  }
+
+  async function analyzeQuickImportTokens(){
+    const deck=ensureDeckEditorState(flashcardLibraryState.editingDeck);
+    const entries=(deck.quickSegmentTokens||[]).map(token=>({word:getHanziChars(token.word).join(''),pinyin:'',meaningVi:'',userProvided:false,segmented:true})).filter(entry=>entry.word);
+    await analyzeQuickImportEntries(entries);
+  }
 
   function parseCsvText(text){
     const rows=[]; let row=[],cell='',quoted=false; const input=String(text||'').replace(/^\uFEFF/,'');
@@ -1797,7 +2205,7 @@ if(window.HanziWriter){
 
   async function analyzeQuickImportEntries(entries){ const deck=syncDeckEditorFields(); if(!deck)return; if(!entries.length){window.alert('Hãy nhập ít nhất một từ tiếng Trung.');return;} flashcardLibraryState.quickImportBusy=true; deck.quickImportRows=[]; await renderFlashcardLibrary(); try{deck.quickImportRows=annotateQuickImportRows(deck,await Promise.all(entries.map(entry=>lookupQuickImportWord(entry.word,entry))));}finally{flashcardLibraryState.quickImportBusy=false;await renderFlashcardLibrary();} }
   async function analyzeQuickImportWords(){const deck=syncDeckEditorFields();if(deck)await analyzeQuickImportEntries(splitQuickImportEntries(deck.quickImportText));}
-  async function analyzeQuickImportSentence(){const deck=syncDeckEditorFields();if(deck)await analyzeQuickImportEntries(await segmentQuickImportText(deck.quickImportText));}
+  async function analyzeQuickImportSentence(){ await prepareQuickImportTokens(); }
   async function importQuickCsvFile(file){await analyzeQuickImportEntries(mapCsvRowsToQuickEntries(parseCsvText(await file.text())));}
 
   function annotateQuickImportRows(deck, rows){
@@ -1892,6 +2300,45 @@ if(window.HanziWriter){
     deck.quickImportRows = annotateQuickImportRows(deck, rows);
     flashcardLibraryState.message = `Đã thêm ${added} · cập nhật ${updated} · bỏ qua ${skipped}.`;
     renderFlashcardLibrary();
+  }
+
+  function renderQuickTokenEditor(deck){
+    const tokens=Array.isArray(deck.quickSegmentTokens)?deck.quickSegmentTokens:[];
+    if(!tokens.length) return '';
+    const selectedIndexes=tokens.map((token,index)=>token.selected?index:-1).filter(index=>index>=0);
+    const selected=selectedIndexes.length;
+    const contiguous=selected>1 && selectedIndexes.every((value,index)=>index===0 || value===selectedIndexes[index-1]+1);
+    const selectedToken=selected===1?tokens[selectedIndexes[0]]:null;
+    const canSplit=Boolean(selectedToken && Array.from(String(selectedToken.word||'').trim()).length>1);
+    const selectionText=selected ? `Đã chọn ${selected}` : 'Chưa chọn token';
+    return `
+      <section class="flashcard-token-editor" aria-label="Chỉnh token sau khi phân từ câu">
+        <div class="flashcard-token-editor-head">
+          <div>
+            <span class="flashcard-token-step">BƯỚC 2 · KIỂM TRA TOKEN</span>
+            <b>Chỉnh kết quả phân từ</b>
+            <small>Tất cả token sẽ được tra. Checkbox chỉ dùng để <strong>Gộp, Tách token hoặc Bỏ</strong>.</small>
+          </div>
+          <span>${tokens.length} token</span>
+        </div>
+        <p class="flashcard-token-selection-hint ${selected?'has-selection':''}">${selectionText}${selected===1?' · Có thể tách hoặc bỏ':selected>1?(contiguous?' · Có thể gộp hoặc bỏ':' · Chỉ gộp được token liền nhau'):''}</p>
+        <div class="flashcard-token-list">
+          ${tokens.map((token,index)=>`<label class="flashcard-token-chip ${token.selected?'is-selected':''}">
+            <input type="checkbox" data-flashcard-token-select="${index}" ${token.selected?'checked':''} aria-label="Chọn token ${escapeHtml(token.word)} để chỉnh">
+            <input type="text" data-flashcard-token-word="${index}" value="${escapeHtml(token.word)}" aria-label="Sửa token ${index+1}">
+          </label>`).join('')}
+        </div>
+        <div class="flashcard-token-actions" aria-label="Thao tác với token đã chọn">
+          <button type="button" data-flashcard-token-merge ${contiguous?'':'disabled'}>Gộp token</button>
+          <button type="button" data-flashcard-token-split ${canSplit?'':'disabled'}>Tách token</button>
+          <button type="button" class="danger" data-flashcard-token-delete ${selected?'':'disabled'}>Bỏ token</button>
+        </div>
+        <div class="flashcard-token-add">
+          <input type="text" data-flashcard-token-new value="${escapeHtml(deck.quickNewToken||'')}" placeholder="Nhập token muốn thêm">
+          <button type="button" data-flashcard-token-add>+ Thêm</button>
+        </div>
+        <button type="button" class="flashcard-quick-analyze" data-flashcard-token-analyze ${flashcardLibraryState.quickImportBusy?'disabled':''}>Tra dữ liệu cho ${tokens.length} token</button>
+      </section>`;
   }
 
   function renderQuickImportPreview(deck){
@@ -2020,6 +2467,27 @@ if(window.HanziWriter){
       </div>`;
   }
 
+  function renderFlashcardTrashPage(items){
+    const deckItems = items.filter(item => item.type === 'deck');
+    const cardItems = items.filter(item => item.type === 'cards');
+    const renderItem = item => {
+      const isDeck = item.type === 'deck';
+      const title = isDeck ? (item.data?.name || 'Bộ thẻ') : `${item.entries?.length || 0} thẻ từ ${item.sourceDeckName || 'bộ cũ'}`;
+      const detail = isDeck ? `${item.data?.cards?.length || 0} thẻ` : (item.entries || []).slice(0,3).map(entry => entry.card?.word || '').filter(Boolean).join(' · ');
+      return `<article class="flashcard-trash-card">
+        <div><span>${isDeck ? 'BỘ THẺ' : 'THẺ'}</span><h4>${escapeHtml(title)}</h4><p>${escapeHtml(detail || 'Không có mô tả')}</p><small>Đã xóa ${escapeHtml(formatLibraryDate(item.deletedAt))} · còn ${getTrashDaysLeft(item)} ngày</small></div>
+        <div class="flashcard-trash-actions"><button type="button" data-flashcard-trash-restore="${escapeHtml(item.id)}">Khôi phục</button><button type="button" class="danger" data-flashcard-trash-delete="${escapeHtml(item.id)}">Xóa vĩnh viễn</button></div>
+      </article>`;
+    };
+    return `<div class="flashcard-library-page flashcard-trash-page">
+      <header class="flashcard-library-header"><button type="button" class="flashcard-library-back" data-flashcard-trash-back>← Thư viện</button><div><span>THÙNG RÁC</span><h2>Khôi phục dữ liệu đã xóa</h2><p>Các mục tự động bị xóa vĩnh viễn sau 30 ngày.</p></div></header>
+      ${flashcardLibraryState.message ? `<p class="flashcard-library-message">${escapeHtml(flashcardLibraryState.message)}</p>` : ''}
+      <section class="flashcard-trash-toolbar"><b>${items.length} mục</b><div><button type="button" data-flashcard-trash-restore-all ${items.length ? '' : 'disabled'}>Khôi phục tất cả</button><button type="button" class="danger" data-flashcard-trash-clear ${items.length ? '' : 'disabled'}>Dọn sạch</button></div></section>
+      <section class="flashcard-trash-group"><h3>Bộ đã xóa <span>${deckItems.length}</span></h3>${deckItems.length ? deckItems.map(renderItem).join('') : '<p class="flashcard-library-empty">Không có bộ thẻ đã xóa.</p>'}</section>
+      <section class="flashcard-trash-group"><h3>Thẻ đã xóa <span>${cardItems.length}</span></h3>${cardItems.length ? cardItems.map(renderItem).join('') : '<p class="flashcard-library-empty">Không có thẻ đã xóa.</p>'}</section>
+    </div>`;
+  }
+
   async function renderFlashcardLibrary(){
     ensureFlashcardLibraryUi();
     if(!flashcardLibraryView) return;
@@ -2027,6 +2495,12 @@ if(window.HanziWriter){
     const restoreDetailSearchFocus = document.activeElement?.matches?.('[data-flashcard-detail-search]');
     const restoreSearchStart = (restoreSearchFocus || restoreDetailSearchFocus) ? document.activeElement.selectionStart : null;
     const restoreSearchEnd = (restoreSearchFocus || restoreDetailSearchFocus) ? document.activeElement.selectionEnd : null;
+    try{ await cleanupExpiredTrash(); }catch(_err){}
+    if(flashcardLibraryState.trashOpen){
+      try{ flashcardLibraryState.trashItems = await getAllTrashItems(); }catch(err){ flashcardLibraryState.message = err.message || 'Không đọc được Thùng rác.'; flashcardLibraryState.trashItems = []; }
+      flashcardLibraryView.innerHTML = renderFlashcardTrashPage(flashcardLibraryState.trashItems);
+      return;
+    }
     if(flashcardLibraryState.editingDeck){
       const deck = ensureDeckEditorState(flashcardLibraryState.editingDeck);
       flashcardLibraryView.innerHTML = `
@@ -2047,13 +2521,14 @@ if(window.HanziWriter){
                 <label>Dán từ, câu hoặc dữ liệu có cấu trúc
                   <textarea rows="7" data-flashcard-quick-text placeholder="你好 | nǐ hǎo | xin chào&#10;谢谢&#10;我今天去学校学习中文">${escapeHtml(deck.quickImportText || '')}</textarea>
                 </label>
-                <p>Hỗ trợ mỗi từ một dòng, dấu phẩy/chấm phẩy/、, <code>word | pinyin | meaning</code> hoặc tab.</p>
+                <p><b>Danh sách từ:</b> mỗi từ một dòng, dấu phẩy/chấm phẩy/、 hoặc <code>word | pinyin | meaning</code>. <b>Câu liền:</b> dùng “Phân từ câu”.</p>
                 <div class="flashcard-quick-actions">
-                  <button type="button" class="flashcard-quick-analyze" data-flashcard-quick-analyze ${flashcardLibraryState.quickImportBusy ? 'disabled' : ''}>${flashcardLibraryState.quickImportBusy ? 'Đang tra…' : 'Nhận diện từ'}</button>
-                  <button type="button" data-flashcard-quick-segment ${flashcardLibraryState.quickImportBusy ? 'disabled' : ''}>Tách câu</button>
+                  <button type="button" class="flashcard-quick-analyze" data-flashcard-quick-analyze ${flashcardLibraryState.quickImportBusy ? 'disabled' : ''}>${flashcardLibraryState.quickImportBusy ? 'Đang tra…' : 'Nhận diện danh sách từ'}</button>
+                  <button type="button" data-flashcard-quick-segment ${flashcardLibraryState.quickImportBusy ? 'disabled' : ''}>Phân từ câu</button>
                   <button type="button" data-flashcard-csv-trigger>Nhập CSV</button>
                   <input type="file" accept=".csv,text/csv" data-flashcard-csv-file hidden>
                 </div>
+                ${renderQuickTokenEditor(deck)}
                 ${renderQuickImportPreview(deck)}
               </section>` : `
               <div class="flashcard-card-entry">
@@ -2114,6 +2589,7 @@ if(window.HanziWriter){
         <section class="flashcard-library-tools">
           <button type="button" data-flashcard-export>Xuất JSON</button>
           <button type="button" data-flashcard-import-trigger>Nhập JSON</button>
+          <button type="button" data-flashcard-trash-open>🗑 Thùng rác</button>
           <input type="file" accept="application/json,.json" data-flashcard-import-file hidden>
           <button type="button" class="danger" data-flashcard-reset-history>Xóa lịch sử</button>
           <button type="button" class="danger ghost" data-flashcard-reset-session>Đặt lại phiên dở</button>
@@ -2238,13 +2714,12 @@ if(window.HanziWriter){
     const selectedCards = sourceDeck.cards.filter(card => selectedIds.includes(card.id));
     if(!selectedCards.length) return;
     if(action === 'delete'){
-      if(!window.confirm(`Xóa ${selectedCards.length} thẻ đã chọn khỏi bộ?`)) return;
-      sourceDeck.cards = sourceDeck.cards.filter(card => !selectedIds.includes(card.id));
-      await saveCustomDeck(sourceDeck);
-      deleteCardLearningResults(sourceDeck.id, selectedIds);
+      if(!await confirmFlashcardAction({ title: 'Chuyển vào Thùng rác?', message: `Bạn đang xóa ${selectedCards.length} thẻ đã chọn. Có thể khôi phục trong 30 ngày.`, confirmText: 'Chuyển vào Thùng rác', danger: true })) return;
+      const trashItem = await moveCardsToTrash(sourceDeck, selectedIds);
       flashcardLibraryState.selectedCardIds.clear();
-      flashcardLibraryState.message = `Đã xóa ${selectedCards.length} thẻ.`;
+      flashcardLibraryState.message = `Đã chuyển ${selectedCards.length} thẻ vào Thùng rác.`;
       await renderFlashcardLibrary();
+      if(trashItem) showFlashcardUndoToast(`Đã chuyển ${selectedCards.length} thẻ vào Thùng rác.`, trashItem.id);
       return;
     }
     const targetId = flashcardLibraryView.querySelector('[data-flashcard-bulk-target]')?.value || '';
@@ -2288,6 +2763,54 @@ if(window.HanziWriter){
 
   async function handleFlashcardLibraryClick(event){
     const target = event.target;
+    if(target.closest('[data-flashcard-undo-close]')){ hideFlashcardUndoToast(); return; }
+    if(target.closest('[data-flashcard-undo-delete]')){
+      const trashId = flashcardLibraryState.undoTrashId;
+      if(!trashId) return;
+      target.closest('[data-flashcard-undo-delete]').disabled = true;
+      try{
+        const restored = await restoreTrashItem(trashId);
+        hideFlashcardUndoToast();
+        flashcardLibraryState.message = restored ? 'Đã hoàn tác thao tác xóa.' : 'Mục này không còn trong Thùng rác.';
+        await renderFlashcardLibrary();
+      }catch(err){
+        target.closest('[data-flashcard-undo-delete]').disabled = false;
+        window.alert(err.message || 'Không thể hoàn tác.');
+      }
+      return;
+    }
+    if(target.closest('[data-flashcard-trash-open]')){ flashcardLibraryState.trashOpen = true; flashcardLibraryState.message = ''; await renderFlashcardLibrary(); return; }
+    if(target.closest('[data-flashcard-trash-back]')){ flashcardLibraryState.trashOpen = false; flashcardLibraryState.message = ''; await renderFlashcardLibrary(); return; }
+    const trashRestore = target.closest('[data-flashcard-trash-restore]');
+    if(trashRestore){
+      const restored = await restoreTrashItem(trashRestore.dataset.flashcardTrashRestore || '');
+      flashcardLibraryState.message = restored ? 'Đã khôi phục mục đã chọn.' : 'Mục này không còn trong Thùng rác.';
+      await renderFlashcardLibrary(); return;
+    }
+    const trashDelete = target.closest('[data-flashcard-trash-delete]');
+    if(trashDelete){
+      if(await confirmFlashcardAction({ title: 'Xóa vĩnh viễn?', message: 'Dữ liệu này sẽ không thể khôi phục. Lịch sử học vẫn được giữ lại.', confirmText: 'Xóa vĩnh viễn', danger: true })){
+        await deleteTrashItemPermanently(trashDelete.dataset.flashcardTrashDelete || '');
+        flashcardLibraryState.message = 'Đã xóa vĩnh viễn mục đã chọn.';
+        await renderFlashcardLibrary();
+      }
+      return;
+    }
+    if(target.closest('[data-flashcard-trash-restore-all]')){
+      const items = await getAllTrashItems();
+      for(const item of items) await restoreTrashItem(item.id);
+      flashcardLibraryState.message = `Đã khôi phục ${items.length} mục.`;
+      await renderFlashcardLibrary(); return;
+    }
+    if(target.closest('[data-flashcard-trash-clear]')){
+      const items = await getAllTrashItems();
+      if(items.length && await confirmFlashcardAction({ title: 'Dọn sạch Thùng rác?', message: `${items.length} mục sẽ bị xóa vĩnh viễn và không thể khôi phục.`, confirmText: 'Dọn sạch', danger: true })){
+        await clearTrashPermanently();
+        flashcardLibraryState.message = 'Đã dọn sạch Thùng rác.';
+        await renderFlashcardLibrary();
+      }
+      return;
+    }
     const speakCard = target.closest('[data-flashcard-card-speak]');
     if(speakCard){ event.preventDefault(); event.stopPropagation(); speakChar(speakCard.dataset.flashcardCardSpeak || ''); return; }
     if(target.closest('[data-flashcard-detail-back]')){
@@ -2326,7 +2849,14 @@ if(window.HanziWriter){
     const deleteCard = target.closest('[data-flashcard-detail-delete-card]');
     if(deleteCard){
       const deck = getDetailDeck(); const cardId = deleteCard.dataset.flashcardDetailDeleteCard || '';
-      if(deck && window.confirm('Xóa thẻ này khỏi bộ?')){ deck.cards = deck.cards.filter(card => card.id !== cardId); await saveCustomDeck(deck); deleteCardLearningResults(deck.id, [cardId]); flashcardLibraryState.selectedCardIds.delete(cardId); await renderFlashcardLibrary(); }
+      const card = deck?.cards?.find(item => item.id === cardId);
+      if(deck && card && await confirmFlashcardAction({ title: 'Chuyển thẻ vào Thùng rác?', message: `Thẻ “${card.word}” có thể khôi phục trong 30 ngày.`, confirmText: 'Chuyển vào Thùng rác', danger: true })){
+        const trashItem = await moveCardsToTrash(deck, [cardId]);
+        flashcardLibraryState.selectedCardIds.delete(cardId);
+        flashcardLibraryState.message = 'Đã chuyển thẻ vào Thùng rác.';
+        await renderFlashcardLibrary();
+        if(trashItem) showFlashcardUndoToast(`Đã chuyển “${card.word}” vào Thùng rác.`, trashItem.id);
+      }
       return;
     }
     if(target.closest('[data-flashcard-selected-clear]')){ flashcardLibraryState.selectedCardIds.clear(); renderFlashcardLibrary(); return; }
@@ -2342,7 +2872,7 @@ if(window.HanziWriter){
     const reviewGroup = target.closest('[data-hsk-flashcard-study-group]');
     if(reviewGroup && !reviewGroup.disabled){ startFlashcardStatsGroup(reviewGroup.dataset.hskFlashcardStudyGroup || 'review-hard'); return; }
     if(target.closest('[data-flashcard-deck-new]')){
-      flashcardLibraryState.editingDeck = { id: makeLocalId('deck'), name: '', description: '', cards: [], isNew: true, entryMode: 'manual', quickImportText: '', quickImportRows: [] };
+      flashcardLibraryState.editingDeck = { id: makeLocalId('deck'), name: '', description: '', cards: [], isNew: true, entryMode: 'manual', quickImportText: '', quickImportRows: [], quickSegmentTokens: [], quickNewToken: '' };
       renderFlashcardLibrary(); return;
     }
     if(target.closest('[data-flashcard-library-cancel]')){ flashcardLibraryState.editingDeck = null; flashcardLibraryState.message = ''; renderFlashcardLibrary(); return; }
@@ -2355,6 +2885,11 @@ if(window.HanziWriter){
     }
     if(target.closest('[data-flashcard-quick-analyze]')){ await analyzeQuickImportWords(); return; }
     if(target.closest('[data-flashcard-quick-segment]')){ await analyzeQuickImportSentence(); return; }
+    if(target.closest('[data-flashcard-token-merge]')){ mergeSelectedQuickTokens(); return; }
+    if(target.closest('[data-flashcard-token-split]')){ openQuickTokenSplitDialog(); return; }
+    if(target.closest('[data-flashcard-token-delete]')){ deleteSelectedQuickTokens(); return; }
+    if(target.closest('[data-flashcard-token-add]')){ addQuickToken(); return; }
+    if(target.closest('[data-flashcard-token-analyze]')){ await analyzeQuickImportTokens(); return; }
     if(target.closest('[data-flashcard-csv-trigger]')){ flashcardLibraryView.querySelector('[data-flashcard-csv-file]')?.click(); return; }
     if(target.closest('[data-flashcard-quick-add-all]')){ addQuickPreviewToDeck(); return; }
     const edit = target.closest('[data-flashcard-deck-edit]');
@@ -2364,7 +2899,16 @@ if(window.HanziWriter){
       return;
     }
     const del = target.closest('[data-flashcard-deck-delete]');
-    if(del && window.confirm('Xóa bộ thẻ này?')){ await deleteCustomDeck(del.dataset.flashcardDeckDelete); await renderFlashcardLibrary(); return; }
+    if(del){
+      const deckId = del.dataset.flashcardDeckDelete || '';
+      const deck = flashcardLibraryState.decks.find(item => item.id === deckId);
+      if(deck && await confirmFlashcardAction({ title: 'Chuyển bộ vào Thùng rác?', message: `Bộ “${deck.name}” và ${deck.cards?.length || 0} thẻ có thể khôi phục trong 30 ngày.`, confirmText: 'Chuyển vào Thùng rác', danger: true })){
+        const trashItem = await moveDeckToTrash(deckId);
+        await renderFlashcardLibrary();
+        if(trashItem) showFlashcardUndoToast(`Đã chuyển bộ “${deck.name}” vào Thùng rác.`, trashItem.id);
+      }
+      return;
+    }
     const study = target.closest('[data-flashcard-deck-study]');
     if(study){
       const deck = flashcardLibraryState.decks.find(item => item.id === study.dataset.flashcardDeckStudy);
@@ -2402,6 +2946,14 @@ if(window.HanziWriter){
   }
 
   async function handleFlashcardLibraryChange(event){
+    const tokenSelect=event.target.closest('[data-flashcard-token-select]');
+    if(tokenSelect && flashcardLibraryState.editingDeck){
+      const deck=ensureDeckEditorState(flashcardLibraryState.editingDeck);
+      const index=Number(tokenSelect.dataset.flashcardTokenSelect);
+      if(deck.quickSegmentTokens[index]) deck.quickSegmentTokens[index].selected=Boolean(tokenSelect.checked);
+      renderFlashcardLibrary();
+      return;
+    }
     const quickSelectAll = event.target.closest('[data-flashcard-quick-select-all]');
     if(quickSelectAll && flashcardLibraryState.editingDeck){
       const rows = readQuickPreviewRows().map(row => {
@@ -2454,6 +3006,15 @@ if(window.HanziWriter){
 
   let flashcardLibrarySearchTimer = 0;
   function handleFlashcardLibraryInput(event){
+    const tokenWord=event.target.closest('[data-flashcard-token-word]');
+    if(tokenWord && flashcardLibraryState.editingDeck){
+      const deck=ensureDeckEditorState(flashcardLibraryState.editingDeck);
+      const index=Number(tokenWord.dataset.flashcardTokenWord);
+      if(deck.quickSegmentTokens[index]) deck.quickSegmentTokens[index].word=getHanziChars(tokenWord.value).join('');
+      return;
+    }
+    const tokenNew=event.target.closest('[data-flashcard-token-new]');
+    if(tokenNew && flashcardLibraryState.editingDeck){ flashcardLibraryState.editingDeck.quickNewToken=tokenNew.value; return; }
     const detailInput = event.target.closest('[data-flashcard-detail-search]');
     if(detailInput){
       flashcardLibraryState.detailSearch = detailInput.value;

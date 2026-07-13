@@ -8518,3 +8518,676 @@ body.hsk-flashcard-open{
     font-size: 14px;
   }
 }
+
+/* Step 17A: undo toast for soft deletes */
+.flashcard-undo-toast{
+  position: fixed;
+  left: 50%;
+  bottom: calc(74px + env(safe-area-inset-bottom, 0px));
+  z-index: 12000;
+  width: min(92vw, 520px);
+  min-height: 52px;
+  padding: 10px 10px 10px 14px;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 8px;
+  transform: translateX(-50%);
+  border: 1px solid #d7c8b8;
+  border-radius: 16px;
+  background: #fffdf9;
+  color: #3f342c;
+  box-shadow: 0 14px 36px rgba(55, 42, 30, 0.18);
+  font-size: 14px;
+}
+
+.flashcard-undo-toast > span{
+  min-width: 0;
+  line-height: 1.35;
+}
+
+.flashcard-undo-toast button{
+  min-height: 34px;
+  padding: 6px 11px;
+  border: 1px solid #c9d9e7;
+  border-radius: 10px;
+  background: #eef6fc;
+  color: #214f74;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.flashcard-undo-toast button:disabled{
+  opacity: .55;
+  cursor: wait;
+}
+
+.flashcard-undo-toast .flashcard-undo-close{
+  width: 34px;
+  padding: 0;
+  border-color: transparent;
+  background: transparent;
+  color: #7b6b5e;
+  font-size: 20px;
+}
+
+@media (max-width: 480px){
+  .flashcard-undo-toast{
+    bottom: calc(68px + env(safe-area-inset-bottom, 0px));
+    grid-template-columns: 1fr auto;
+    padding: 9px 9px 9px 12px;
+  }
+  .flashcard-undo-toast .flashcard-undo-close{
+    display: none;
+  }
+}
+
+/* Step 17B-17C: custom confirmation dialog and trash page */
+.flashcard-confirm-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 13000;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(33, 28, 24, .42);
+  backdrop-filter: blur(5px);
+}
+
+.flashcard-confirm-dialog{
+  position: relative;
+  width: min(92vw, 390px);
+  padding: 22px;
+  border: 1px solid #ded1c3;
+  border-radius: 22px;
+  background: #fffdf9;
+  color: #3e332b;
+  box-shadow: 0 24px 60px rgba(48, 36, 27, .24);
+  text-align: center;
+}
+
+.flashcard-confirm-dialog h3{
+  margin: 6px 28px 8px;
+  font-size: 21px;
+}
+
+.flashcard-confirm-dialog p{
+  margin: 0;
+  color: #74675d;
+  line-height: 1.55;
+}
+
+.flashcard-confirm-icon{
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 8px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  background: #fff1ea;
+  font-size: 24px;
+}
+
+.flashcard-confirm-x{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #7c6e64;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.flashcard-confirm-actions{
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.flashcard-confirm-actions button{
+  min-height: 44px;
+  border: 1px solid #d9ccbf;
+  border-radius: 13px;
+  background: #fff;
+  color: #55473d;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.flashcard-confirm-actions .danger{
+  border-color: #e9bdb7;
+  background: #fff0ee;
+  color: #a43f39;
+}
+
+.flashcard-confirm-actions .primary{
+  border-color: #c8d9e8;
+  background: #214f74;
+  color: #fff;
+}
+
+.flashcard-trash-page{
+  display: grid;
+  gap: 14px;
+}
+
+.flashcard-trash-toolbar{
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border: 1px solid #e0d5c9;
+  border-radius: 16px;
+  background: #fffdf9;
+}
+
+.flashcard-trash-toolbar > div{
+  display: flex;
+  gap: 8px;
+}
+
+.flashcard-trash-toolbar button,
+.flashcard-trash-actions button{
+  min-height: 38px;
+  padding: 7px 12px;
+  border: 1px solid #d7cabb;
+  border-radius: 11px;
+  background: #fff;
+  color: #4f433a;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.flashcard-trash-toolbar button.danger,
+.flashcard-trash-actions button.danger{
+  border-color: #e8beb8;
+  background: #fff3f1;
+  color: #a2403a;
+}
+
+.flashcard-trash-group{
+  display: grid;
+  gap: 10px;
+}
+
+.flashcard-trash-group > h3{
+  margin: 2px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+}
+
+.flashcard-trash-group > h3 span{
+  min-width: 26px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: #efe8df;
+  color: #6b5c50;
+  font-size: 12px;
+  text-align: center;
+}
+
+.flashcard-trash-card{
+  padding: 14px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid #e0d5c9;
+  border-radius: 16px;
+  background: #fffdf9;
+}
+
+.flashcard-trash-card span{
+  display: inline-block;
+  margin-bottom: 3px;
+  color: #9b6747;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.flashcard-trash-card h4{
+  margin: 0;
+  font-size: 16px;
+}
+
+.flashcard-trash-card p{
+  margin: 4px 0;
+  color: #6f6258;
+}
+
+.flashcard-trash-card small{
+  color: #8b7d72;
+}
+
+.flashcard-trash-actions{
+  display: flex;
+  gap: 7px;
+}
+
+@media (max-width: 520px){
+  .flashcard-trash-toolbar{
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .flashcard-trash-toolbar > div{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .flashcard-trash-card{
+    grid-template-columns: 1fr;
+  }
+  .flashcard-trash-actions{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* STEP 19A — Chỉnh, gộp và tách token sau khi phân từ */
+.flashcard-token-editor{
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #dfd3c7;
+  border-radius: 16px;
+  background: #fffdf9;
+}
+
+.flashcard-token-editor-head{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.flashcard-token-editor-head > div{
+  display: grid;
+  gap: 2px;
+}
+
+.flashcard-token-editor-head b{
+  font-size: 14px;
+  color: #3f342d;
+}
+
+.flashcard-token-editor-head small,
+.flashcard-token-editor-head > span{
+  color: #796c63;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.flashcard-token-editor-head > span{
+  flex: 0 0 auto;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #f5eee6;
+  white-space: nowrap;
+}
+
+.flashcard-token-list{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding: 9px;
+  border: 1px dashed #ddcfc1;
+  border-radius: 13px;
+  background: #faf7f2;
+}
+
+.flashcard-token-chip{
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 36px;
+  padding: 4px 7px;
+  border: 1px solid #d9cbbd;
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.flashcard-token-chip.is-selected{
+  border-color: #37698f;
+  box-shadow: 0 0 0 2px rgba(55,105,143,.12);
+  background: #f3f8fc;
+}
+
+.flashcard-token-chip > input[type="checkbox"]{
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: #285d85;
+}
+
+.flashcard-token-chip > input[type="text"]{
+  width: auto;
+  min-width: 38px;
+  max-width: 128px;
+  padding: 2px 4px;
+  border: 0;
+  background: transparent;
+  color: #211b18;
+  font: 700 18px/1.2 "Noto Serif SC", "Songti SC", serif;
+  text-align: center;
+}
+
+.flashcard-token-chip > input[type="text"]:focus{
+  outline: 0;
+  box-shadow: inset 0 -2px #285d85;
+}
+
+.flashcard-token-actions,
+.flashcard-token-add{
+  display: flex;
+  gap: 7px;
+  margin-top: 9px;
+}
+
+.flashcard-token-actions button,
+.flashcard-token-add button{
+  min-height: 36px;
+  padding: 7px 11px;
+  border: 1px solid #d9cbbd;
+  border-radius: 10px;
+  background: #fff;
+  color: #4b3e35;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.flashcard-token-actions button.danger{
+  color: #a44848;
+  border-color: #e2bcbc;
+}
+
+.flashcard-token-add input{
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 36px;
+  padding: 7px 10px;
+  border: 1px solid #d9cbbd;
+  border-radius: 10px;
+  font: inherit;
+}
+
+.flashcard-token-editor > .flashcard-quick-analyze{
+  width: 100%;
+  margin-top: 9px;
+}
+
+@media (max-width: 480px){
+  .flashcard-token-editor{
+    padding: 10px;
+  }
+
+  .flashcard-token-editor-head{
+    display: grid;
+    gap: 6px;
+  }
+
+  .flashcard-token-editor-head > span{
+    justify-self: start;
+  }
+
+  .flashcard-token-list{
+    gap: 6px;
+    padding: 7px;
+  }
+
+  .flashcard-token-actions{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .flashcard-token-actions .danger{
+    grid-column: 1 / -1;
+  }
+}
+
+
+/* STEP 19A.1 — Popup chọn vị trí tách token */
+.flashcard-token-split-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 10050;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(35, 28, 23, .48);
+  backdrop-filter: blur(3px);
+}
+
+.flashcard-token-split-dialog{
+  width: min(440px, 100%);
+  max-height: min(680px, calc(100dvh - 36px));
+  overflow: auto;
+  padding: 18px;
+  border: 1px solid #dfd1c2;
+  border-radius: 22px;
+  background: #fffaf4;
+  box-shadow: 0 20px 55px rgba(45, 31, 21, .24);
+}
+
+.flashcard-token-split-dialog > header{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.flashcard-token-split-dialog > header > div{
+  display: grid;
+  gap: 3px;
+}
+
+.flashcard-token-split-dialog small{
+  color: #a05b3a;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.flashcard-token-split-dialog h3{
+  margin: 0;
+  color: #2d241f;
+  font-size: 20px;
+}
+
+.flashcard-token-split-dialog > header > button{
+  width: 36px;
+  height: 36px;
+  border: 1px solid #decfbe;
+  border-radius: 50%;
+  background: #fff;
+  color: #88533a;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.flashcard-token-split-dialog > p{
+  margin: 10px 0 14px;
+  color: #72645b;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.flashcard-token-split-options{
+  display: grid;
+  gap: 8px;
+}
+
+.flashcard-token-split-option{
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  align-items: center;
+  gap: 10px;
+  min-height: 50px;
+  padding: 9px 12px;
+  border: 1px solid #ddcfc0;
+  border-radius: 14px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.flashcard-token-split-option:has(input:checked){
+  border-color: #2b628b;
+  box-shadow: 0 0 0 2px rgba(43, 98, 139, .12);
+  background: #f4f9fd;
+}
+
+.flashcard-token-split-option input{
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: #285d85;
+}
+
+.flashcard-token-split-option > span{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 0;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+.flashcard-token-split-option b{
+  overflow-wrap: anywhere;
+}
+
+.flashcard-token-split-option i{
+  color: #cf6c43;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 900;
+}
+
+.flashcard-token-split-actions{
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 9px;
+  margin-top: 16px;
+}
+
+.flashcard-token-split-actions button{
+  min-height: 44px;
+  border: 1px solid #d9cbbc;
+  border-radius: 13px;
+  background: #fff;
+  color: #4c3e35;
+  font: inherit;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.flashcard-token-split-actions button.primary{
+  border-color: #245a82;
+  background: #245a82;
+  color: #fff;
+}
+
+@media (max-width: 600px){
+  .flashcard-token-split-overlay{
+    align-items: end;
+    padding: 0;
+  }
+
+  .flashcard-token-split-dialog{
+    width: 100%;
+    max-height: min(78dvh, 680px);
+    padding: 16px 14px calc(16px + env(safe-area-inset-bottom));
+    border-radius: 22px 22px 0 0;
+  }
+
+  .flashcard-token-split-option{
+    min-height: 54px;
+  }
+
+  .flashcard-token-split-option > span{
+    font-size: 22px;
+  }
+}
+
+/* STEP 19A.2 — Làm rõ luồng và thu gọn khu vực chỉnh token */
+.flashcard-token-step{
+  color: #b05a3c;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .06em;
+}
+
+.flashcard-token-editor-head small strong{
+  color: #4f4036;
+  font-weight: 850;
+}
+
+.flashcard-token-selection-hint{
+  margin: -2px 0 8px;
+  padding: 6px 8px;
+  border-radius: 9px;
+  background: #f6f1eb;
+  color: #786b61;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.flashcard-token-selection-hint.has-selection{
+  background: #eef6fb;
+  color: #285d85;
+}
+
+.flashcard-token-actions button:disabled{
+  opacity: .45;
+  cursor: not-allowed;
+  background: #f5f1ec;
+}
+
+@media (max-width: 480px){
+  .flashcard-token-editor{
+    margin-top: 10px;
+    border-radius: 14px;
+  }
+
+  .flashcard-token-editor-head{
+    margin-bottom: 7px;
+  }
+
+  .flashcard-token-editor-head > span{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+
+  .flashcard-token-editor{
+    position: relative;
+  }
+
+  .flashcard-token-editor-head > div{
+    padding-right: 66px;
+  }
+
+  .flashcard-token-actions button,
+  .flashcard-token-add button{
+    min-height: 34px;
+    padding: 6px 8px;
+  }
+}
