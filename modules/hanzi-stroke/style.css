@@ -9233,3 +9233,84 @@ body.hsk-flashcard-open{
     padding:8px;
   }
 }
+
+/* STEP C1.2.4 - Global 5-item navigation + Học menu */
+.hanzi-bottom-nav {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+.hanzi-bottom-nav-item {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  min-width: 0;
+}
+.global-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1190;
+  background: rgba(24, 31, 42, 0.38);
+  backdrop-filter: blur(2px);
+}
+.global-menu-sheet {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  z-index: 1200;
+  width: min(100%, 520px);
+  padding: 14px 16px calc(18px + env(safe-area-inset-bottom));
+  border: 1px solid var(--border, #eadaca);
+  border-bottom: 0;
+  border-radius: 24px 24px 0 0;
+  background: var(--surface, #fffaf4);
+  box-shadow: 0 -18px 44px rgba(65, 48, 34, 0.18);
+  transform: translate(-50%, 105%);
+  transition: transform 180ms ease;
+}
+.global-menu-sheet.is-open { transform: translate(-50%, 0); }
+.global-menu-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border, #eadaca);
+}
+.global-menu-head strong { font-size: 18px; }
+.global-menu-head button {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border, #eadaca);
+  border-radius: 50%;
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+}
+.global-menu-links {
+  display: grid;
+  gap: 8px;
+  padding-top: 12px;
+}
+.global-menu-links a {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  align-items: center;
+  min-height: 48px;
+  padding: 8px 12px;
+  border: 1px solid var(--border, #eadaca);
+  border-radius: 14px;
+  color: inherit;
+  text-decoration: none;
+  background: color-mix(in srgb, var(--surface, #fffaf4) 86%, #fff 14%);
+}
+.global-menu-links a[aria-current="page"] {
+  border-color: #edb39a;
+  background: #fff0e9;
+}
+body.global-menu-open { overflow: hidden; }
+@media (max-width: 430px) {
+  .hanzi-bottom-nav-item small { font-size: 10px; }
+  .hanzi-bottom-nav-item span { font-size: 16px; }
+}

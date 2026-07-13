@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tra chữ Hán</title>
+  <title>Học chữ Hán</title>
   <link rel="stylesheet" href="style.css?v=20260709-step8-radicals" />
 </head>
 <body>
@@ -11,19 +11,19 @@
     <header class="app-header">
       <a class="brand-link" href="../../index.html" aria-label="Về trang chủ">
         <span class="brand-mark" aria-hidden="true">字</span>
-        <span>Tra chữ Hán</span>
+        <span>Học chữ Hán</span>
       </a>
       <nav class="header-actions" aria-label="Điều hướng">
         <a class="header-icon" href="../../index.html" aria-label="Trang chủ">⌂</a>
         <button class="header-icon" id="themeBtn" type="button" aria-label="Đổi giao diện">◐</button>
-        <button class="header-icon" type="button" aria-label="Menu">☰</button>
+        <button class="header-icon" id="globalMenuBtn" type="button" aria-label="Mở menu" aria-expanded="false">☰</button>
       </nav>
     </header>
 
     <section class="study-hero" aria-labelledby="studyTitle">
       <div class="study-hero-copy">
-        <p class="eyebrow">Tra chữ · luyện viết</p>
-        <h1 id="studyTitle">Tra chữ Hán</h1>
+        <p class="eyebrow">Học chữ · luyện viết</p>
+        <h1 id="studyTitle">Học chữ Hán</h1>
         <p class="study-subtitle">Xem nghĩa, pinyin, Hán Việt, từng chữ trong cụm và luyện viết từng nét.</p>
       </div>
       <div class="study-hero-mark" aria-hidden="true">写</div>
@@ -32,7 +32,7 @@
     <nav class="study-tabs" aria-label="Khu học chữ Hán">
       <button id="studyTabLookup" class="study-tab active" type="button" data-study-tab="lookup" aria-selected="true">
         <span aria-hidden="true">🔎</span>
-        <b>Tra</b>
+        <b>Bút thuận</b>
       </button>
       <button id="studyTabHsk" class="study-tab" type="button" data-study-tab="hsk" aria-selected="false">
         <span aria-hidden="true">HSK</span>
@@ -264,24 +264,43 @@
   </dialog>
 
   <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.7/dist/hanzi-writer.min.js"></script>
-  <nav class="hanzi-bottom-nav" aria-label="Điều hướng nhanh">
+  <nav class="hanzi-bottom-nav" aria-label="Điều hướng chính">
     <a class="hanzi-bottom-nav-item" href="../../index.html">
       <span aria-hidden="true">⌂</span>
       <small>Trang chủ</small>
     </a>
-    <a class="hanzi-bottom-nav-item" href="../pinyin/index.html">
-      <span aria-hidden="true">拼</span>
-      <small>Pinyin</small>
+    <a class="hanzi-bottom-nav-item" href="prototypes/lookup-c1-2/index.html">
+      <span aria-hidden="true">⌕</span>
+      <small>Tra</small>
     </a>
     <a class="hanzi-bottom-nav-item active" href="index.html" aria-current="page">
-      <span aria-hidden="true">字</span>
-      <small>Tra chữ</small>
+      <span aria-hidden="true">✎</span>
+      <small>Học</small>
     </a>
     <a class="hanzi-bottom-nav-item" href="../../index.html#dialogue301">
       <span aria-hidden="true">☵</span>
       <small>301</small>
     </a>
+    <button class="hanzi-bottom-nav-item" id="globalMenuNavBtn" type="button" aria-label="Mở menu" aria-expanded="false">
+      <span aria-hidden="true">☰</span>
+      <small>Menu</small>
+    </button>
   </nav>
+
+  <div class="global-menu-backdrop" id="globalMenuBackdrop" hidden></div>
+  <aside class="global-menu-sheet" id="globalMenuSheet" aria-hidden="true" aria-label="Menu">
+    <div class="global-menu-head">
+      <strong>Menu</strong>
+      <button type="button" id="globalMenuCloseBtn" aria-label="Đóng menu">×</button>
+    </div>
+    <nav class="global-menu-links" aria-label="Liên kết menu">
+      <a href="../../index.html"><span>⌂</span><b>Trang chủ</b></a>
+      <a href="prototypes/lookup-c1-2/index.html"><span>⌕</span><b>Tra</b></a>
+      <a href="index.html" aria-current="page"><span>✎</span><b>Học</b></a>
+      <a href="../../index.html#dialogue301"><span>☵</span><b>301</b></a>
+      <a href="../pinyin/index.html"><span>拼</span><b>Pinyin</b></a>
+    </nav>
+  </aside>
 
   <script src="app.js?v=20260710-step8-radicals-popup-fix"></script>
 </body>

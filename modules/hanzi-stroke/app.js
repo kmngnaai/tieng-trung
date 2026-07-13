@@ -7093,3 +7093,31 @@ if(window.HanziWriter){
   });
 })();
 
+
+/* STEP C1.2.4 - Global Menu for Trang chủ | Tra | Học | 301 | Menu */
+(() => {
+  const sheet = document.getElementById('globalMenuSheet');
+  const backdrop = document.getElementById('globalMenuBackdrop');
+  const openButtons = [
+    document.getElementById('globalMenuBtn'),
+    document.getElementById('globalMenuNavBtn')
+  ].filter(Boolean);
+  const closeButton = document.getElementById('globalMenuCloseBtn');
+  if (!sheet || !backdrop || !openButtons.length) return;
+
+  const setMenuOpen = (isOpen) => {
+    sheet.classList.toggle('is-open', isOpen);
+    sheet.setAttribute('aria-hidden', String(!isOpen));
+    backdrop.hidden = !isOpen;
+    document.body.classList.toggle('global-menu-open', isOpen);
+    openButtons.forEach((button) => button.setAttribute('aria-expanded', String(isOpen)));
+    if (isOpen) closeButton?.focus();
+  };
+
+  openButtons.forEach((button) => button.addEventListener('click', () => setMenuOpen(true)));
+  closeButton?.addEventListener('click', () => setMenuOpen(false));
+  backdrop.addEventListener('click', () => setMenuOpen(false));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && sheet.classList.contains('is-open')) setMenuOpen(false);
+  });
+})();
