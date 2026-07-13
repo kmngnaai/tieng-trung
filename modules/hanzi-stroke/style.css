@@ -7452,10 +7452,17 @@ body.hsk-flashcard-open{
 }
 
 .hsk-flashcard-stroke-grid{
+  --stroke-grid-gap: 10px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(112px, 132px));
+  grid-template-columns: repeat(2, minmax(112px, 132px));
   justify-content: center;
-  gap: 10px;
+  gap: var(--stroke-grid-gap);
+}
+
+.hsk-flashcard-stroke-grid[data-last-row-single="true"] > .hsk-flashcard-stroke-item:last-child{
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 132px;
 }
 
 .hsk-flashcard-stroke-item{
@@ -7534,8 +7541,14 @@ body.hsk-flashcard-open{
   }
 
   .hsk-flashcard-stroke-grid{
+    --stroke-grid-gap: 8px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
+    gap: var(--stroke-grid-gap);
+  }
+
+  .hsk-flashcard-stroke-grid[data-last-row-single="true"] > .hsk-flashcard-stroke-item:last-child{
+    width: calc((100% - var(--stroke-grid-gap)) / 2);
+    max-width: 132px;
   }
 
   .hsk-flashcard-stroke-item{
@@ -8445,5 +8458,63 @@ body.hsk-flashcard-open{
   }
   .flashcard-quick-actions button:first-child{
     grid-column:1/-1;
+  }
+}
+
+/* STEP 18 — Ưu tiên diện tích ô chữ, thu gọn toolbar icon */
+.hsk-flashcard-stroke-grid{
+  grid-template-columns: repeat(2, minmax(132px, 152px));
+  gap: 8px;
+}
+
+.hsk-flashcard-stroke-grid[data-last-row-single="true"] > .hsk-flashcard-stroke-item:last-child{
+  width: 152px;
+}
+
+.hsk-flashcard-stroke-item{
+  padding: 5px;
+  border-radius: 12px;
+}
+
+.hsk-flashcard-stroke-canvas{
+  border-radius: 9px;
+}
+
+.hsk-flashcard-stroke-status{
+  min-height: 14px;
+  margin-top: 3px;
+  font-size: 9px;
+  line-height: 1.15;
+}
+
+.hsk-flashcard-stroke-toolbar{
+  margin-top: 3px;
+  gap: 3px;
+}
+
+.hsk-flashcard-stroke-toolbar button{
+  min-height: 30px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+@media (max-width: 480px){
+  .hsk-flashcard-stroke-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  .hsk-flashcard-stroke-grid[data-last-row-single="true"] > .hsk-flashcard-stroke-item:last-child{
+    width: calc((100% - 7px) / 2);
+    max-width: 152px;
+  }
+
+  .hsk-flashcard-stroke-item{
+    padding: 4px;
+  }
+
+  .hsk-flashcard-stroke-toolbar button{
+    min-height: 30px;
+    font-size: 14px;
   }
 }

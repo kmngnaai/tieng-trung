@@ -4861,7 +4861,7 @@ if(window.HanziWriter){
           <b>Cách viết từng chữ</b>
           <button type="button" data-hsk-flashcard-stroke-play-all>▶ Phát tất cả</button>
         </div>
-        <div class="hsk-flashcard-stroke-grid">
+        <div class="hsk-flashcard-stroke-grid" data-visible-count="${visibleChars.length}" data-last-row-single="${visibleChars.length % 2 === 1 ? 'true' : 'false'}">
           ${visibleChars.map((char, index) => `
             <article class="hsk-flashcard-stroke-item" data-stroke-index="${index}">
               <div class="hsk-flashcard-stroke-canvas has-grid" id="hskFlashcardStroke-${flashcardStrokeRenderId}-${index}" data-stroke-char="${escapeHtml(char)}">
