@@ -55,7 +55,9 @@
         "target": "铅笔",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "那个铅笔",
@@ -65,10 +67,13 @@
         "target": "铅笔",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -90,14 +95,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "铅笔",
+      "chinese": "她手里拿着铅笔。",
+      "pinyin": "tā shǒu lǐ ná zhe qiān bǐ",
+      "meaningVi": "Tay cô ấy đang cầm bút chì.",
+      "source": "hsk_2.json",
+      "grammarId": "hsk2_37",
+      "grammarTopic": "Cách dùng trợ từ 着",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:铅笔",
       "title": "Cách dùng 铅笔",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_37",
+      "title": "Cách dùng trợ từ 着",
+      "syntax": "Động từ + 着 (zhe)",
+      "explanationVi": "Trợ từ động thái 「着」 được đặt ngay sau động từ để biểu thị sự tồn tại hoặc duy trì của một trạng thái, hành động. Cấu trúc này thường dùng để mô tả khung cảnh hoặc tư thế, ví dụ như 「门开着」(cửa đang mở).",
+      "tipsVi": "Hãy tưởng tượng 「着」 giúp bạn 'đóng băng' khoảnh khắc đó lại để thấy trạng thái vẫn đang tiếp tục diễn ra.",
+      "attentionsVi": "Không dùng 「着」 để diễn tả hành động đang xảy ra (thì tiếp diễn của động từ chính), thay vào đó hãy dùng 「正在」 hoặc 「在」.",
+      "examples": [
+        {
+          "chinese": "她手里拿着铅笔。",
+          "pinyin": "tā shǒu lǐ ná zhe qiān bǐ",
+          "meaningVi": "Tay cô ấy đang cầm bút chì."
+        }
+      ],
+      "source": "hsk_2.json",
+      "curriculum": "hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -136,7 +175,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "bút chì",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

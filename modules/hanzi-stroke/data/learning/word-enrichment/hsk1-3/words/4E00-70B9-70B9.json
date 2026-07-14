@@ -55,7 +55,9 @@
         "target": "一点点",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "一点点东西",
@@ -65,10 +67,50 @@
         "target": "一点点",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "一点{儿}",
+        "pinyin": "yī diǎnr ",
+        "meaningVi": "một chút",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: một chút",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "一点儿",
+        "pinyin": "yì diǎnr",
+        "meaningVi": "một chút",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: một chút",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "有点{儿}",
+        "pinyin": "yǒu diǎnr ",
+        "meaningVi": "một chút",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: một chút",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "有一点{儿}",
+        "pinyin": "yǒu yī diǎnr ",
+        "meaningVi": "một chút",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: một chút",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -94,10 +136,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:一点点",
       "title": "Cách dùng 一点点",
       "partOfSpeech": "pronoun",
       "usageNoteVi": "重叠强调“少量、程度轻”。",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -131,7 +176,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 4
+    }
+  },
+  "meaningFullVi": "một chút, một xíu",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

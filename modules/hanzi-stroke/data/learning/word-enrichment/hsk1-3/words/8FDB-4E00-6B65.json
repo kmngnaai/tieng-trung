@@ -23,14 +23,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "hơn nữa",
+      "meaningShortVi": "tiếp tục",
       "meaningFullVi": "hơn nữa, tiếp tục, thêm một bước nữa",
       "partOfSpeech": "động từ / trạng ngữ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "hơn nữa",
+  "meaningShortVi": "tiếp tục",
   "wordType": "động từ / trạng ngữ",
   "wordTypes": [
     "động từ / trạng ngữ"
@@ -55,7 +55,20 @@
         "target": "进一步",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "进一步",
+            "chinese": "让我进一步了解一下情况。",
+            "pinyin": "Ràng wǒ jìnyībù liǎojiě yīxià qíngkuàng.",
+            "meaningVi": "Để tôi tìm hiểu thêm một chút về tình hình.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "进一步发展",
@@ -65,10 +78,41 @@
         "target": "进一步",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "继续",
+        "pinyin": "jì xù",
+        "meaningVi": "tiếp tục",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: tiếp tục",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "接着",
+        "pinyin": "jiē zhe",
+        "meaningVi": "tiếp tục",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: tiếp tục",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "持续",
+        "pinyin": "chí xù",
+        "meaningVi": "tiếp tục",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: tiếp tục",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -94,10 +138,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:进一步",
       "title": "Cách dùng 进一步",
       "partOfSpeech": "động từ / trạng ngữ",
       "usageNoteVi": "Đây là kết hợp của 进 (tiến) + 一 (một) + 步 (bước), nghĩa đen 'tiến thêm một bước'. Dùng như trạng ngữ hoặc động từ để chỉ việc đi sâu hơn, mở rộng hơn hoặc tiếp tục một hành động nào đó.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -131,7 +178,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 3
+    }
+  },
+  "meaningFullVi": "hơn nữa, tiếp tục, thêm một bước nữa",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

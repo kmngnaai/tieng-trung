@@ -52,7 +52,9 @@
         "target": "于是",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "因此于是",
@@ -62,10 +64,23 @@
         "target": "于是",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "然后",
+        "pinyin": "rán hòu",
+        "meaningVi": "sau đó",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: sau đó",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -91,10 +106,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:于是",
       "title": "Cách dùng 于是",
       "partOfSpeech": "liên từ",
       "usageNoteVi": "Liên từ chỉ kết quả hoặc sự tiếp nối sau một sự việc. Trang trọng hơn '所以', thường dùng trong văn viết hoặc kể chuyện.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -112,7 +130,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "sau đó, vì vậy, do đó",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

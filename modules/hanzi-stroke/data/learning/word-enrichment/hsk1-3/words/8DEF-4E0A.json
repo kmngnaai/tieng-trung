@@ -45,7 +45,18 @@
     ]
   },
   "vocabulary": {
-    "compounds": [],
+    "compounds": [
+      {
+        "word": "一路上",
+        "pinyin": "yī lù shàng",
+        "meaningVi": "trên đường",
+        "meaningFullVi": "trên đường",
+        "relationType": "contains-exact-target",
+        "hskLevel": 6,
+        "source": "hsk_6.json",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
     "collocations": [
       {
         "text": "在路上",
@@ -55,7 +66,20 @@
         "target": "路上",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "路上",
+            "chinese": "我们在路上吃饭。",
+            "pinyin": "Wǒmen zài lùshàng chīfàn.",
+            "meaningVi": "Chúng tôi ăn trên đường.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "回家的路上",
@@ -65,10 +89,13 @@
         "target": "路上",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -104,10 +131,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:路上",
       "title": "Cách dùng 路上",
       "partOfSpeech": "other",
       "usageNoteVi": "路上 chỉ vị trí trên con đường đang đi.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -161,7 +191,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "trên đường",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

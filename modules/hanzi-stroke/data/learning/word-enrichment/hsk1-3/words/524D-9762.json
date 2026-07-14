@@ -57,10 +57,23 @@
         "target": "前面",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "前边",
+        "pinyin": "qián bian",
+        "meaningVi": "phía trước",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: phía trước",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -82,14 +95,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "前面",
+      "chinese": "前面的人越来越多。",
+      "pinyin": "qián miàn de rén yuè lái yuè duō",
+      "meaningVi": "Người phía trước ngày càng đông.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_19",
+      "grammarTopic": "Diễn tả sự thay đổi tăng dần",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:前面",
       "title": "Cách dùng 前面",
       "partOfSpeech": "địa từ",
       "usageNoteVi": "前面 chỉ vị trí không gian phía trước hoặc vị trí trong tài liệu/nội dung. Cũng có thể dùng chỉ thời gian tương lai (ít phổ biến hơn).",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_19",
+      "title": "Diễn tả sự thay đổi tăng dần",
+      "syntax": "越来越 + tính từ / động từ tâm lý",
+      "explanationVi": "Cấu trúc 「越来越」 được dùng để diễn tả một trạng thái hoặc tính chất thay đổi dần dần theo thời gian. Nó thể hiện mức độ ngày càng tăng hoặc ngày càng mạnh hơn.",
+      "tipsVi": "Bạn có thể hiểu 「越来越」 tương đương với cụm từ \"càng ngày càng\" trong tiếng Việt.",
+      "attentionsVi": "Không được thêm các trạng từ chỉ mức độ như 「很」, 「非常」 vào ngay sau 「越来越」.",
+      "examples": [
+        {
+          "chinese": "前面的人越来越多。",
+          "pinyin": "qián miàn de rén yuè lái yuè duō",
+          "meaningVi": "Người phía trước ngày càng đông."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -163,7 +210,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "phía trước; phần đầu, phần trước; tương lai",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

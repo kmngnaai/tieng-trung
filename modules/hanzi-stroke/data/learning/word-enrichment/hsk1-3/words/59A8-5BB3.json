@@ -52,7 +52,20 @@
         "target": "妨害",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "妨害",
+            "chinese": "妨害健康",
+            "pinyin": "fánghài jiànkāng",
+            "meaningVi": "Gây hại sức khỏe",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "妨害公共秩序",
@@ -62,7 +75,20 @@
         "target": "妨害",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "妨害",
+            "chinese": "妨害公共秩序",
+            "pinyin": "fánghài gōnggòng zhìxù",
+            "meaningVi": "Gây hại trật tự công cộng",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "妨害交通",
@@ -72,10 +98,34 @@
         "target": "妨害",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "妨害",
+            "chinese": "妨害交通",
+            "pinyin": "fánghài jiāotōng",
+            "meaningVi": "Cản trở giao thông",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "危害",
+        "pinyin": "wēi hài",
+        "meaningVi": "gây hại",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: gây hại",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -111,10 +161,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:妨害",
       "title": "Cách dùng 妨害",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "妨害 là từ vựng HSK 7-9.",
       "explanationVi": "Ghép nghĩa: 妨害 là từ ghép.",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -132,7 +185,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "gây hại",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

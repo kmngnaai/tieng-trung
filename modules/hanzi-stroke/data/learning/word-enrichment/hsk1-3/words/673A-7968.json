@@ -55,7 +55,9 @@
         "target": "机票",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "机票价格",
@@ -65,10 +67,13 @@
         "target": "机票",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -104,10 +109,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:机票",
       "title": "Cách dùng 机票",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "机票 là vé đi máy bay, dùng khi đi du lịch hoặc công tác.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -161,7 +169,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "vé máy bay",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

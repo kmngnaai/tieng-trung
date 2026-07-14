@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "ngọ xan",
+      "meaningShortVi": "bữa trưa",
       "meaningFullVi": "ngọ xan",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "ngọ xan",
+  "meaningShortVi": "bữa trưa",
   "wordType": "noun",
   "wordTypes": [
     "noun"
@@ -54,7 +54,20 @@
         "target": "午餐",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "午餐",
+            "chinese": "我们在公司吃午餐",
+            "pinyin": "wǒ men zài gōng sī chī wǔ cān",
+            "meaningVi": "Chúng tôi ăn trưa ở công ty",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "午餐时间",
@@ -64,10 +77,23 @@
         "target": "午餐",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "午饭",
+        "pinyin": "wǔ fàn",
+        "meaningVi": "bữa trưa",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bữa trưa",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -93,10 +119,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:午餐",
       "title": "Cách dùng 午餐",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +159,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "ngọ xan",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

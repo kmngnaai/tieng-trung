@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "lái xe",
+      "meaningShortVi": "lái xe ô tô",
       "meaningFullVi": "lái xe",
       "partOfSpeech": "other",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "lái xe",
+  "meaningShortVi": "lái xe ô tô",
   "wordType": "other",
   "wordTypes": [
     "other"
@@ -54,7 +54,20 @@
         "target": "开车",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "开车",
+            "chinese": "我们开车去机场。",
+            "pinyin": "Wǒmen kāichē qù jīchǎng.",
+            "meaningVi": "Chúng tôi lái xe ra sân bay.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "会开车",
@@ -64,10 +77,24 @@
         "target": "开车",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "开车",
+            "chinese": "他会开车。",
+            "pinyin": "Tā huì kāichē.",
+            "meaningVi": "Anh ấy biết lái xe.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -99,14 +126,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "开车",
+      "chinese": "我没去过他家，所以让他开车来站接我。",
+      "pinyin": "wǒ méi qù guò tā jiā suǒ yǐ ràng tā kāi chē lái zhàn jiē wǒ",
+      "meaningVi": "Tôi chưa từng đến nhà anh ấy nên bảo anh ấy lái xe đến trạm đón tôi.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_11",
+      "grammarTopic": "Cấu trúc nhân quả vì... nên...",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:开车",
       "title": "Cách dùng 开车",
       "partOfSpeech": "other",
       "usageNoteVi": "开车 thường chỉ lái xe ô tô, không phải xe máy hay xe đạp.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_11",
+      "title": "Cấu trúc nhân quả vì... nên...",
+      "syntax": "因为 (nguyên nhân), 所以 (kết quả)",
+      "explanationVi": "Cấu trúc này dùng để diễn tả quan hệ nguyên nhân và kết quả. 「因为」 đứng trước vế nêu lý do, còn 「所以」 đứng trước vế nêu kết quả tương ứng.",
+      "tipsVi": "Bạn có thể chỉ dùng một trong hai từ 「因为」 hoặc 「所以」 trong câu mà vẫn giữ nguyên ý nghĩa.",
+      "attentionsVi": "Trong tiếng Trung, bạn không nên đặt chủ ngữ trước 「因为」 nếu chủ ngữ ở hai vế là giống nhau.",
+      "examples": [
+        {
+          "chinese": "我没去过他家，所以让他开车来站接我。",
+          "pinyin": "wǒ méi qù guò tā jiā suǒ yǐ ràng tā kāi chē lái zhàn jiē wǒ",
+          "meaningVi": "Tôi chưa từng đến nhà anh ấy nên bảo anh ấy lái xe đến trạm đón tôi."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -155,7 +216,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "lái xe",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

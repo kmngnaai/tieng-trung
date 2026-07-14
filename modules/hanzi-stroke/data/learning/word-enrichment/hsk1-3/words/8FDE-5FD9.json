@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Vội vàng",
+      "meaningShortVi": "vội vàng",
       "meaningFullVi": "Vội vàng, ngay lập tức",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Vội vàng",
+  "meaningShortVi": "vội vàng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -46,7 +46,27 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "急忙",
+        "pinyin": "jí máng",
+        "meaningVi": "vội vàng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: vội vàng",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "赶到",
+        "pinyin": "gǎn dào",
+        "meaningVi": "vội vàng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: vội vàng",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -82,10 +102,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:连忙",
       "title": "Cách dùng 连忙",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "连忙 là trạng từ chỉ hành động được thực hiện ngay lập tức, vội vàng sau khi có sự việc gì đó xảy ra. 连 nghĩa là nối liền, mang sắc thái liên tiếp; 忙 nghĩa là bận rộn.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -119,8 +142,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "Vội vàng, ngay lập tức",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

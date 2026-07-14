@@ -57,7 +57,9 @@
         "target": "旁边",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "旁边还有",
@@ -67,10 +69,32 @@
         "target": "旁边",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "隔壁",
+        "pinyin": "gé bì",
+        "meaningVi": "bên cạnh",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bên cạnh",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "身边",
+        "pinyin": "shēn biān",
+        "meaningVi": "bên cạnh",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bên cạnh",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -106,10 +130,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:旁边",
       "title": "Cách dùng 旁边",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Chỉ vị trí ngay bên cạnh, không xa không gần. Có thể dùng cho người hoặc vật.",
       "explanationVi": "Ghép nghĩa: 旁 (một bên) + 边 (bên, cạnh) = ngay bên cạnh.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -183,7 +210,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "bên cạnh",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

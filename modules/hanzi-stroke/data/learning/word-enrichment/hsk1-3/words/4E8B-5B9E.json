@@ -51,7 +51,8 @@
         "meaningVi": "trên thực tế",
         "meaningFullVi": "trên thực tế; thực ra là",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 3",
+        "hskLevel": 3,
+        "source": "hsk_3.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -64,10 +65,23 @@
         "target": "事实",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "实话",
+        "pinyin": "shí huà",
+        "meaningVi": "sự thật",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: sự thật",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -83,10 +97,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:事实",
       "title": "Cách dùng 事实",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "指事情的真实情况。多用于强调客观事实，与\"观点\"、\"想象\"相对。",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -119,6 +136,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 1,
+      "sentences": 1,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "sự thật",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

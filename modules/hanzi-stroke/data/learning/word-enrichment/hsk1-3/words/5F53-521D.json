@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Vào lúc đó",
+      "meaningShortVi": "ban đầu",
       "meaningFullVi": "Vào lúc đó, lúc đầu, trước đây",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Vào lúc đó",
+  "meaningShortVi": "ban đầu",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -54,7 +54,20 @@
         "target": "当初",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "当初",
+            "chinese": "当初的决定是对的。",
+            "pinyin": "Dāngchū de juédìng shì duì de.",
+            "meaningVi": "Quyết định lúc đầu là đúng.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "当初我们",
@@ -64,7 +77,20 @@
         "target": "当初",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "当初",
+            "chinese": "当初我们应该更努力。",
+            "pinyin": "Dāngchū wǒmen yīnggāi gèng nǔlì.",
+            "meaningVi": "Lúc đó chúng ta nên nỗ lực hơn.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "想当初",
@@ -74,10 +100,32 @@
         "target": "当初",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "原来",
+        "pinyin": "yuán lái",
+        "meaningVi": "ban đầu",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: ban đầu",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "初步",
+        "pinyin": "chū bù",
+        "meaningVi": "ban đầu",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: ban đầu",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -113,10 +161,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:当初",
       "title": "Cách dùng 当初",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "当初 dùng để chỉ thời điểm trong quá khứ khi một việc bắt đầu hoặc xảy ra. Mang sắc thái hồi tưởng về quá khứ.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -150,7 +201,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "Vào lúc đó, lúc đầu, trước đây",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "sinh ra",
+      "meaningShortVi": "sản xuất",
       "meaningFullVi": "sinh ra, sản sinh, tạo ra",
       "partOfSpeech": "động từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "sinh ra",
+  "meaningShortVi": "sản xuất",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
@@ -55,7 +55,9 @@
         "target": "产生",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "产生影响",
@@ -65,18 +67,75 @@
         "target": "产生",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "生产",
+        "pinyin": "shēng chǎn",
+        "meaningVi": "sản xuất",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: sản xuất",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "制造",
+        "pinyin": "zhì zào",
+        "meaningVi": "sản xuất",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: sản xuất",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
-  "sentences": [],
+  "sentences": [
+    {
+      "target": "产生",
+      "chinese": "从而也产生了很多关于泉的美丽传说。",
+      "pinyin": "cóng ér yě chǎn shēng le hěn duō guān yú quán de měi lì chuán shuō",
+      "meaningVi": "Do đó cũng nảy sinh nhiều truyền thuyết đẹp về suối.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_8",
+      "grammarTopic": "Cách dùng liên từ 从而",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "grammarLinks": [
     {
+      "grammarId": "usage:产生",
       "title": "Cách dùng 产生",
       "partOfSpeech": "động từ",
       "usageNoteVi": "指从无到有地出现。可用于具体事物、抽象概念、结果等。",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_8",
+      "title": "Cách dùng liên từ 从而",
+      "syntax": "[Vế câu 1], 从而 [Vế câu 2 (kết quả/mục đích)]",
+      "explanationVi": "Liên từ 「从而」 thường được dùng ở đầu vế câu thứ hai để chỉ ra kết quả hoặc mục đích được rút ra từ vế câu trước. Nó có nghĩa là \"do đó\", \"từ đó\" hoặc \"nhờ vậy mà\".",
+      "tipsVi": "Bạn có thể sử dụng 「从而」 để kết nối các hành động dẫn đến hệ quả tất yếu, giúp câu văn trở nên trang trọng và logic hơn trong văn viết.",
+      "attentionsVi": "「从而」 thường không đứng đầu câu đơn mà bắt buộc phải nối giữa hai vế câu có mối quan hệ nhân quả hoặc mục đích rõ ràng.",
+      "examples": [
+        {
+          "chinese": "从而也产生了很多关于泉的美丽传说。",
+          "pinyin": "cóng ér yě chǎn shēng le hěn duō guān yú quán de měi lì chuán shuō",
+          "meaningVi": "Do đó cũng nảy sinh nhiều truyền thuyết đẹp về suối."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -115,8 +174,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có câu mẫu đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 1,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "sinh ra, sản sinh, tạo ra",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -56,7 +56,20 @@
         "target": "经常",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "经常",
+            "chinese": "我经常去图书馆。",
+            "pinyin": "wǒ jīng cháng qù tú shū guǎn。",
+            "meaningVi": "Tôi thường xuyên đi thư viện.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "经常做",
@@ -66,7 +79,9 @@
         "target": "经常",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "很经常",
@@ -76,10 +91,41 @@
         "target": "经常",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "常常",
+        "pinyin": "cháng cháng",
+        "meaningVi": "thường xuyên",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: thường xuyên",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "往往",
+        "pinyin": "wǎng wǎng",
+        "meaningVi": "thường xuyên",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: thường xuyên",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "频繁",
+        "pinyin": "pín fán",
+        "meaningVi": "thường xuyên",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: thường xuyên",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -111,14 +157,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "经常",
+      "chinese": "她经常跑上来找我玩儿。",
+      "pinyin": "tā jīng cháng pǎo shàng lái zhǎo wǒ wán ér",
+      "meaningVi": "Cô ấy thường xuyên chạy lên đây tìm tôi chơi.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_42",
+      "grammarTopic": "Bổ ngữ xu hướng phức hợp",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:经常",
       "title": "Cách dùng 经常",
       "partOfSpeech": "adverb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_42",
+      "title": "Bổ ngữ xu hướng phức hợp",
+      "syntax": "Động từ + (上/下/进/出/回/过/起) + 来/去",
+      "explanationVi": "Bổ ngữ xu hướng phức hợp gồm một động từ chỉ phương hướng kết hợp với 「来」 (lại đây) hoặc 「去」 (đi tới đó). Cấu trúc này dùng để mô tả hướng di chuyển của hành động một cách chi tiết hơn. Ví dụ 「走进来」 nghĩa là đi vào đây, 「走进去」 nghĩa là đi vào đó.",
+      "tipsVi": "Nếu câu có tân ngữ là nơi chốn, hãy đặt tân ngữ vào giữa bổ ngữ xu hướng, ví dụ 「走进教室来」.",
+      "attentionsVi": "Chú ý phân biệt giữa 「来」 (hướng về phía người nói) và 「去」 (hướng xa khỏi người nói) để sử dụng chính xác.",
+      "examples": [
+        {
+          "chinese": "她经常跑上来找我玩儿。",
+          "pinyin": "tā jīng cháng pǎo shàng lái zhǎo wǒ wán ér",
+          "meaningVi": "Cô ấy thường xuyên chạy lên đây tìm tôi chơi."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -202,7 +282,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 3
+    }
+  },
+  "meaningFullVi": "thường xuyên",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

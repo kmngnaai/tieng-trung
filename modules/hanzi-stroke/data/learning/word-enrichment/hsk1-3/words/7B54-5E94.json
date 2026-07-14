@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "đồng ý",
+      "meaningShortVi": "trả lời",
       "meaningFullVi": "đồng ý",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "đồng ý",
+  "meaningShortVi": "trả lời",
   "wordType": "verb",
   "wordTypes": [
     "verb"
@@ -54,7 +54,9 @@
         "target": "答应",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "一口答应",
@@ -64,10 +66,23 @@
         "target": "答应",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "回答",
+        "pinyin": "huí dá",
+        "meaningVi": "trả lời",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: trả lời",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -79,14 +94,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "答应",
+      "chinese": "你刚答应我的事，转眼就改变主意了，难道你想反悔吗？",
+      "pinyin": "nǐ gāng dá yīng wǒ de shì zhuǎn yǎn jiù gǎi biàn zhǔ yì le nán dào nǐ xiǎng fǎn huǐ ma",
+      "meaningVi": "Việc bạn vừa hứa với tôi, chớp mắt đã đổi ý rồi, lẽ nào bạn muốn nuốt lời sao?",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_31",
+      "grammarTopic": "Cấu trúc 难道...吗",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:答应",
       "title": "Cách dùng 答应",
       "partOfSpeech": "verb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_31",
+      "title": "Cấu trúc 难道...吗",
+      "syntax": "难道 + Chủ ngữ + [V/Adj] + ... + 吗？",
+      "explanationVi": "Phó từ 「难道」 được dùng trong câu hỏi tu từ để nhấn mạnh sự hoài nghi hoặc ngạc nhiên của người nói, mang nghĩa là 「chẳng lẽ」 hoặc 「lẽ nào」. Cấu trúc này thường đi kèm với trợ từ nghi vấn 「吗」 ở cuối câu để tạo nên sắc thái mạnh mẽ.",
+      "tipsVi": "Nếu 「难道」 dùng trong câu khẳng định, nó thường mang hàm ý phủ định; ngược lại, nếu dùng trong câu phủ định, nó lại mang hàm ý khẳng định.",
+      "attentionsVi": "Đừng quên 「难道」 chỉ dùng trong câu hỏi phản vấn (câu hỏi tu từ), không dùng cho câu hỏi thông tin bình thường cần tìm kiếm câu trả lời.",
+      "examples": [
+        {
+          "chinese": "你刚答应我的事，转眼就改变主意了，难道你想反悔吗？",
+          "pinyin": "nǐ gāng dá yīng wǒ de shì zhuǎn yǎn jiù gǎi biàn zhǔ yì le nán dào nǐ xiǎng fǎn huǐ ma",
+          "meaningVi": "Việc bạn vừa hứa với tôi, chớp mắt đã đổi ý rồi, lẽ nào bạn muốn nuốt lời sao?"
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -120,7 +169,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "đồng ý",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -52,7 +52,20 @@
         "target": "舞蹈",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "舞蹈",
+            "chinese": "舞蹈表演令观众惊叹",
+            "pinyin": "Wǔdǎo biǎoyǎn lìng guānzhòng jīngtàn",
+            "meaningVi": "Màn trình diễn múa khiến khán giả kinh ngạc",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "民族舞蹈",
@@ -62,7 +75,20 @@
         "target": "舞蹈",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "舞蹈",
+            "chinese": "民族舞蹈展现了各地文化",
+            "pinyin": "Mínzú wǔdǎo zhǎnxiànle gèdì wénhuà",
+            "meaningVi": "Múa dân tộc thể hiện văn hóa của từng vùng",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "学舞蹈",
@@ -72,10 +98,23 @@
         "target": "舞蹈",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "跳舞",
+        "pinyin": "tiào wǔ",
+        "meaningVi": "nhảy múa",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: nhảy múa",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -121,10 +160,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:舞蹈",
       "title": "Cách dùng 舞蹈",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "舞蹈 là từ trang trọng/chính thức hơn 跳舞 (tiào wǔ — nhảy múa, hành động). 舞蹈 thường dùng như danh từ (nghệ thuật, loại hình). 跳舞 là động từ hành động.",
       "explanationVi": "舞 (vũ — múa) + 蹈 (đạo — giẫm chân, bước nhảy) ghép nghĩa: nghệ thuật chuyển động nhịp nhàng kết hợp động tác tay và bước chân.",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -142,7 +184,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 4,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "nhảy múa; điệu múa, vũ điệu (vũ đạo)",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

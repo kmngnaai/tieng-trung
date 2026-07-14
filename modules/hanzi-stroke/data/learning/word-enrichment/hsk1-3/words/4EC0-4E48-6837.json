@@ -23,14 +23,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "loại gì",
+      "meaningShortVi": "loại gì?",
       "meaningFullVi": "loại gì",
       "partOfSpeech": "pronoun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "loại gì",
+  "meaningShortVi": "loại gì?",
   "wordType": "pronoun",
   "wordTypes": [
     "pronoun"
@@ -55,7 +55,20 @@
         "target": "什么样",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "什么样",
+            "chinese": "那是什么样的人",
+            "pinyin": "nà shì shén me yàng de rén",
+            "meaningVi": "Đó là người như thế nào",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "什么样的车",
@@ -65,10 +78,13 @@
         "target": "什么样",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -90,14 +106,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "什么样",
+      "chinese": "你到底想买什么样的房子？",
+      "pinyin": "nǐ dào dǐ xiǎng mǎi shén me yàng de fáng zi",
+      "meaningVi": "Rốt cuộc bạn muốn mua căn nhà như thế nào?",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_38",
+      "grammarTopic": "Cách dùng phó từ 到底",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:什么样",
       "title": "Cách dùng 什么样",
       "partOfSpeech": "pronoun",
       "usageNoteVi": "Đại từ hỏi về loại, hình thức.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_38",
+      "title": "Cách dùng phó từ 到底",
+      "syntax": "Chủ ngữ + 到底 + Động từ/Tính từ (hoặc trước đại từ nghi vấn)",
+      "explanationVi": "Phó từ 「到底」 được dùng trong câu hỏi để nhấn mạnh ý muốn tìm ra chân tướng hoặc kết quả cuối cùng của sự việc, có nghĩa là \"rốt cuộc\". Cấu trúc này thường xuất hiện trong các câu có đại từ nghi vấn như 「什么」, 「哪里」, 「怎么」.",
+      "tipsVi": "Nếu chủ ngữ của câu là một đại từ nghi vấn, bạn có thể đặt 「到底」 ngay phía trước nó để nhấn mạnh thêm sự tò mò hoặc thúc giục.",
+      "attentionsVi": "Không dùng 「到底」 trong các câu hỏi dạng \"có/không\" (câu hỏi Có-Không) có chứa trợ từ nghi vấn 「吗」.",
+      "examples": [
+        {
+          "chinese": "你到底想买什么样的房子？",
+          "pinyin": "nǐ dào dǐ xiǎng mǎi shén me yàng de fáng zi",
+          "meaningVi": "Rốt cuộc bạn muốn mua căn nhà như thế nào?"
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -131,7 +181,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "loại gì",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "phát thanh",
+      "meaningShortVi": "phát sóng",
       "meaningFullVi": "phát thanh, phát sóng",
       "partOfSpeech": "danh từ / động từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "phát thanh",
+  "meaningShortVi": "phát sóng",
   "wordType": "danh từ / động từ",
   "wordTypes": [
     "danh từ / động từ"
@@ -55,7 +55,9 @@
         "target": "广播",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "广播电台",
@@ -65,10 +67,32 @@
         "target": "广播",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "播出",
+        "pinyin": "bō chū",
+        "meaningVi": "phát sóng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: phát sóng",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "播放",
+        "pinyin": "bō fàng",
+        "meaningVi": "phát sóng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: phát sóng",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -94,10 +118,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:广播",
       "title": "Cách dùng 广播",
       "partOfSpeech": "danh từ / động từ",
       "usageNoteVi": "可指广播节目（名词）或播送信号（动词）。也用于电视的\"广播电视\"。",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -136,7 +163,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "phát thanh, phát sóng",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

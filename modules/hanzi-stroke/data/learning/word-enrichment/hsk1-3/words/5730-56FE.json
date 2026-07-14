@@ -56,7 +56,20 @@
         "target": "地图",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "地图",
+            "chinese": "请看地图",
+            "pinyin": "Qǐng kàn dì tú",
+            "meaningVi": "Làm ơn xem bản đồ",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "电子地图",
@@ -66,7 +79,9 @@
         "target": "地图",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "地图上",
@@ -76,10 +91,13 @@
         "target": "地图",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -121,14 +139,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "地图",
+      "chinese": "手机、电脑、地图，一个也不能少。",
+      "pinyin": "shǒu jī diàn nǎo dì tú yī gè yě bù néng shǎo",
+      "meaningVi": "Điện thoại, máy tính, bản đồ, một cái cũng không thể thiếu.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_2",
+      "grammarTopic": "Cấu trúc phủ định hoàn toàn với 一",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:地图",
       "title": "Cách dùng 地图",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Dùng cho bản đồ giấy hoặc bản đồ số. Trong thời đại smartphone, '地图' thường ám chỉ ứng dụng bản đồ (như Google Maps).",
       "explanationVi": "Ghép nghĩa: 地 (đất, địa phương) + 图 (bản đồ, hình vẽ) → 'bản đồ chỉ đất, địa phương'.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_2",
+      "title": "Cấu trúc phủ định hoàn toàn với 一",
+      "syntax": "一 + [danh từ/lượng từ] + 也/都 + 不/没 + [động từ/tính từ]",
+      "explanationVi": "Cấu trúc này được dùng để nhấn mạnh sự phủ định hoàn toàn, tương đương với nghĩa “một chút cũng không” hoặc “hoàn toàn không”. Nó thường đi kèm với các danh từ chỉ số lượng ít (như 一点儿, 一杯, 一个) để biểu thị mức độ phủ định mạnh mẽ nhất.",
+      "tipsVi": "Bạn có thể thay thế 「也」 bằng 「都」 để nhấn mạnh hơn nữa ý nghĩa phủ định tuyệt đối của câu.",
+      "attentionsVi": "Cần chú ý đặt 「不」 hoặc 「没」 ngay trước động từ hoặc tính từ, tuyệt đối không đặt trước 「一」.",
+      "examples": [
+        {
+          "chinese": "手机、电脑、地图，一个也不能少。",
+          "pinyin": "shǒu jī diàn nǎo dì tú yī gè yě bù néng shǎo",
+          "meaningVi": "Điện thoại, máy tính, bản đồ, một cái cũng không thể thiếu."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -197,7 +249,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 5,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "bản đồ",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

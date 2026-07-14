@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "tận dụng",
+      "meaningShortVi": "sử dụng",
       "meaningFullVi": "tận dụng, sử dụng",
       "partOfSpeech": "động từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "tận dụng",
+  "meaningShortVi": "sử dụng",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
@@ -47,7 +47,27 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "使用",
+        "pinyin": "shǐ yòng",
+        "meaningVi": "sử dụng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: sử dụng",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "采用",
+        "pinyin": "cǎi yòng",
+        "meaningVi": "sử dụng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: sử dụng",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -63,10 +83,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:利用",
       "title": "Cách dùng 利用",
       "partOfSpeech": "động từ",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -105,8 +128,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 1,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "tận dụng, sử dụng",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

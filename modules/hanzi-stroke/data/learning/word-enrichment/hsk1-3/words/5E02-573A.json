@@ -54,7 +54,9 @@
         "target": "市场",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "股票市场",
@@ -64,10 +66,13 @@
         "target": "市场",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -89,14 +94,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "市场",
+      "chinese": "依据市场规则。",
+      "pinyin": "yī jù shì chǎng guī zé",
+      "meaningVi": "Căn cứ theo quy tắc thị trường.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_58",
+      "grammarTopic": "Cách dùng 依据",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:市场",
       "title": "Cách dùng 市场",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "thị trường có thể chỉ nơi mua bán vật lý (chợ) hoặc thị trường kinh doanh. Thường đi với stock (股票), big (很大), international (国际).",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_58",
+      "title": "Cách dùng 依据",
+      "syntax": "依据 + Danh từ/Cụm danh từ + (，) + V/Mệnh đề",
+      "explanationVi": "Giới từ 「依据」 dùng để chỉ căn cứ, cơ sở hoặc nguyên tắc để thực hiện một hành động hoặc đưa ra một nhận định nào đó. Trong câu, nó thường đứng ở đầu câu hoặc trước động từ chính để làm rõ tính xác thực của thông tin.",
+      "tipsVi": "Bạn có thể dùng 「依据」 làm danh từ với nghĩa là 'căn cứ' hoặc 'chứng cứ' trong các câu như 'Tìm kiếm căn cứ'.",
+      "attentionsVi": "「依据」 mang sắc thái trang trọng, thường xuất hiện trong văn viết, báo chí hoặc các văn bản pháp luật hơn là trong giao tiếp hàng ngày.",
+      "examples": [
+        {
+          "chinese": "依据市场规则。",
+          "pinyin": "yī jù shì chǎng guī zé",
+          "meaningVi": "Căn cứ theo quy tắc thị trường."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +169,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "chợ, thị trường",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

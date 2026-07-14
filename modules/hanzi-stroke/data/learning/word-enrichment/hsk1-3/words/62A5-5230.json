@@ -54,7 +54,9 @@
         "target": "报到",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "准时报到",
@@ -64,10 +66,33 @@
         "target": "报到",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
+      }
+    ],
+    "relatedWords": [
+      {
+        "targetWord": "报道",
+        "pinyin": "bào dào",
+        "meaningVi": "báo cáo",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_2.json",
         "reviewStatus": "reviewed-local"
       }
     ],
-    "relatedWords": []
+    "candidateRelations": [
+      {
+        "targetWord": "报名",
+        "pinyin": "bào míng",
+        "meaningVi": "đăng ký",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: đăng ký",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -93,10 +118,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:报到",
       "title": "Cách dùng 报到",
       "partOfSpeech": "động từ",
       "usageNoteVi": "报到 的第二个字读 第四声 (dào). 报道 的第二个字也读 第四声 (dào). Phân biệt bằng ngữ cảnh: 报到 thường với 到/去/来 (chuyển động), 报道 thường với 新闻/消息 (nội dung).",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +158,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 1,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "đăng ký, check-in, đến nơi báo danh",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

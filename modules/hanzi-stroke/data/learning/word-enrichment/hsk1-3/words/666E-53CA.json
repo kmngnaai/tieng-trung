@@ -54,7 +54,9 @@
         "target": "普及",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "普及教育",
@@ -64,10 +66,32 @@
         "target": "普及",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "流行",
+        "pinyin": "liú xíng",
+        "meaningVi": "phổ biến",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: phổ biến",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "常见",
+        "pinyin": "cháng jiàn",
+        "meaningVi": "phổ biến",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: phổ biến",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -93,10 +117,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:普及",
       "title": "Cách dùng 普及",
       "partOfSpeech": "động từ",
       "usageNoteVi": "指广泛传播，使大众都能接触到。多用于知识、教育、技术、文化等。",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +157,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "phổ biến",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

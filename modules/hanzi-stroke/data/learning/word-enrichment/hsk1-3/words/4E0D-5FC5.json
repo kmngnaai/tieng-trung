@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "không cần",
+      "meaningShortVi": "không nhất thiết",
       "meaningFullVi": "không cần, không nhất thiết",
       "partOfSpeech": "trợ từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "không cần",
+  "meaningShortVi": "không nhất thiết",
   "wordType": "trợ từ",
   "wordTypes": [
     "trợ từ"
@@ -46,15 +46,29 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "不一定",
+        "pinyin": "bù yī dìng",
+        "meaningVi": "không nhất thiết",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: không nhất thiết",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [],
   "grammarLinks": [
     {
+      "grammarId": "usage:不必",
       "title": "Cách dùng 不必",
       "partOfSpeech": "trợ từ",
       "usageNoteVi": "Phủ định sự cần thiết.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -88,9 +102,25 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có câu mẫu đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có câu nguồn đầy đủ chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 0,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "không cần, không nhất thiết",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

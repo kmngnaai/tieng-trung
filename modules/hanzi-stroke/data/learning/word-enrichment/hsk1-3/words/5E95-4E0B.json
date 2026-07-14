@@ -54,7 +54,9 @@
         "target": "底下",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "脚底下",
@@ -64,10 +66,32 @@
         "target": "底下",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "下面",
+        "pinyin": "xià miàn",
+        "meaningVi": "bên dưới",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bên dưới",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "下边",
+        "pinyin": "xià biān",
+        "meaningVi": "bên dưới",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bên dưới",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -93,10 +117,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:底下",
       "title": "Cách dùng 底下",
       "partOfSpeech": "địa từ",
       "usageNoteVi": "底下 là địa từ chỉ vị trí bên dưới, thường dùng chỉ ngay phía dưới một vật gì đó. Trong khẩu ngữ, dưới下面 thường được dùng thay 下面.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +157,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "bên dưới, phía dưới; dưới đáy",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

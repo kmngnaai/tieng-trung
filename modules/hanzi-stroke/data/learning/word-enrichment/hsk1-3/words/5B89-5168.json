@@ -54,7 +54,20 @@
         "target": "安全",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "安全",
+            "chinese": "这里很安全。",
+            "pinyin": "zhè li hěn ān quán。",
+            "meaningVi": "Ở đây rất an toàn.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "注意安全",
@@ -64,7 +77,20 @@
         "target": "安全",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "安全",
+            "chinese": "请注意安全。",
+            "pinyin": "qǐng zhù yì ān quán。",
+            "meaningVi": "Vui lòng chú ý an toàn.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "交通安全",
@@ -74,10 +100,13 @@
         "target": "安全",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -109,14 +138,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "安全",
+      "chinese": "为安全起见。",
+      "pinyin": "wèi ān quán qǐ jiàn",
+      "meaningVi": "Vì mục đích an toàn.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_57",
+      "grammarTopic": "Cấu trúc chỉ mục đích 为...起见",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:安全",
       "title": "Cách dùng 安全",
       "partOfSpeech": "adjective/noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_57",
+      "title": "Cấu trúc chỉ mục đích 为...起见",
+      "syntax": "为 + [đối tượng/mục đích] + 起见",
+      "explanationVi": "Cấu trúc này dùng để diễn đạt mục đích hoặc lý do khi thực hiện một hành động nào đó, thường mang nghĩa là 'vì mục đích...' hoặc 'để cho...'. Đây là cách diễn đạt trang trọng, chủ yếu xuất hiện trong văn viết.",
+      "tipsVi": "Cụm từ này thường được đặt ở đầu câu hoặc trước động từ chính để làm nổi bật mục đích của hành động.",
+      "attentionsVi": "Vì mang sắc thái trang trọng nên cấu trúc này ít khi được dùng trong giao tiếp khẩu ngữ hàng ngày.",
+      "examples": [
+        {
+          "chinese": "为安全起见。",
+          "pinyin": "wèi ān quán qǐ jiàn",
+          "meaningVi": "Vì mục đích an toàn."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -150,7 +213,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "an toàn",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

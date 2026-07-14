@@ -53,7 +53,31 @@
         "target": "似乎",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "似乎",
+            "chinese": "他似乎不太高兴。",
+            "pinyin": "Tā sìhū bù tài gāoxìng.",
+            "meaningVi": "Anh ấy dường như không quá vui.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "似乎",
+            "chinese": "他似乎不太同意这个计划。",
+            "pinyin": "tā shì hū bù tài tóng yì zhè gè jì huà",
+            "meaningVi": "Anh ấy dường như không đồng ý lắm với kế hoạch này.",
+            "source": "hsk_5.json",
+            "grammarId": "hsk5_14",
+            "grammarTopic": "Cách dùng \"似乎\" để phỏng đoán",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 2
       },
       {
         "text": "似乎可以",
@@ -63,10 +87,13 @@
         "target": "似乎",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -88,14 +115,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "似乎",
+      "chinese": "他似乎不太同意这个计划。",
+      "pinyin": "tā shì hū bù tài tóng yì zhè gè jì huà",
+      "meaningVi": "Anh ấy dường như không đồng ý lắm với kế hoạch này.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_14",
+      "grammarTopic": "Cách dùng \"似乎\" để phỏng đoán",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:似乎",
       "title": "Cách dùng 似乎",
       "partOfSpeech": "trợ từ",
       "usageNoteVi": "Dùng để phỏng đoán, nhận định không chắc chắn. Trang trọng hơn '好像', thường dùng trong văn viết.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_14",
+      "title": "Cách dùng \"似乎\" để phỏng đoán",
+      "syntax": "S + 似乎 + V/Adj / (cụm) V | Phỏng đoán",
+      "explanationVi": "Phó từ 「似乎」 dùng để diễn tả sự suy đoán, cảm giác hoặc nhận định chủ quan của người nói về một sự việc, với nghĩa là \"hình như\", \"dường như\". Từ này làm giảm mức độ khẳng định, giúp câu văn trở nên mềm mại và khách quan hơn.",
+      "tipsVi": "Bạn có thể dùng 「似乎」 ở đầu câu hoặc sau chủ ngữ đều được, nó thường mang sắc thái lịch sự và nhẹ nhàng hơn so với 「好像」.",
+      "attentionsVi": "「似乎」 là một phó từ chỉ trạng thái tâm lý hoặc phỏng đoán, vì vậy không nên dùng trong các câu khẳng định chắc chắn hoặc các sự thật hiển nhiên.",
+      "examples": [
+        {
+          "chinese": "他似乎不太同意这个计划。",
+          "pinyin": "tā shì hū bù tài tóng yì zhè gè jì huà",
+          "meaningVi": "Anh ấy dường như không đồng ý lắm với kế hoạch này."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -118,7 +179,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "hình như, dường như, có vẻ",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

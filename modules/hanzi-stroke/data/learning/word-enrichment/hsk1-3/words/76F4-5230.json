@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "cho đến khi",
+      "meaningShortVi": "đến",
       "meaningFullVi": "cho đến khi; mãi cho đến",
       "partOfSpeech": "liên từ / giới từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "cho đến khi",
+  "meaningShortVi": "đến",
   "wordType": "liên từ / giới từ",
   "wordTypes": [
     "liên từ / giới từ"
@@ -54,7 +54,9 @@
         "target": "直到",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "直到现在",
@@ -64,10 +66,32 @@
         "target": "直到",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "来到",
+        "pinyin": "lái dào",
+        "meaningVi": "đến",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: đến",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "传来",
+        "pinyin": "chuán lái",
+        "meaningVi": "đến",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: đến",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -83,10 +107,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:直到",
       "title": "Cách dùng 直到",
       "partOfSpeech": "liên từ / giới từ",
       "usageNoteVi": "Dùng để chỉ thời điểm kết thúc hoặc giới hạn thời gian. Thường đi kèm với '才' để nhấn mạnh sự trễ muộn.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -135,7 +162,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 1,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "cho đến khi; mãi cho đến",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

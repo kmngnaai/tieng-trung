@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "tiểu tâm",
+      "meaningShortVi": "cẩn thận",
       "meaningFullVi": "tiểu tâm",
       "partOfSpeech": "verb/adjective",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "tiểu tâm",
+  "meaningShortVi": "cẩn thận",
   "wordType": "verb/adjective",
   "wordTypes": [
     "verb/adjective"
@@ -46,7 +46,18 @@
     ]
   },
   "vocabulary": {
-    "compounds": [],
+    "compounds": [
+      {
+        "word": "小心翼翼",
+        "pinyin": "xiǎo xīn yì yì",
+        "meaningVi": "cẩn thận tỉ mỉ",
+        "meaningFullVi": "cẩn thận tỉ mỉ, thận trọng (tiểu tâm dực dực - Hán-Việt)",
+        "relationType": "contains-exact-target",
+        "hskLevel": 6,
+        "source": "hsk_6.json",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
     "collocations": [
       {
         "text": "小心一点",
@@ -56,7 +67,20 @@
         "target": "小心",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "小心",
+            "chinese": "小心一点",
+            "pinyin": "xiǎo xīn yī diǎn",
+            "meaningVi": "Cẩn thận một chút",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "很小心",
@@ -66,7 +90,9 @@
         "target": "小心",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "小心地",
@@ -76,10 +102,32 @@
         "target": "小心",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "仔细",
+        "pinyin": "zǐ xì",
+        "meaningVi": "cẩn thận",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: cẩn thận",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "好好",
+        "pinyin": "hǎo hào",
+        "meaningVi": "cẩn thận",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: cẩn thận",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -115,10 +163,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:小心",
       "title": "Cách dùng 小心",
       "partOfSpeech": "verb/adjective",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -187,7 +238,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 3,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "tiểu tâm",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

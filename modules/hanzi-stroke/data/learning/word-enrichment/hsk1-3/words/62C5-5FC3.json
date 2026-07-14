@@ -56,7 +56,20 @@
         "target": "担心",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "担心",
+            "chinese": "我很担心他的健康。",
+            "pinyin": "Wǒ hěn dānxīn tā de jiànkāng.",
+            "meaningVi": "Tôi rất lo lắng cho sức khỏe của anh ấy.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "不担心",
@@ -66,10 +79,32 @@
         "target": "担心",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "着急",
+        "pinyin": "zháo jí",
+        "meaningVi": "lo lắng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: lo lắng",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "操心",
+        "pinyin": "cāo xīn",
+        "meaningVi": "lo lắng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: lo lắng",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -91,14 +126,79 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "担心",
+      "chinese": "你的担心不是没有道理的，今天李阳果然没有通过面试。",
+      "pinyin": "nǐ de dān xīn bù shì méi yǒu dào lǐ de jīn tiān lǐ yáng guǒ rán méi yǒu tōng guò miàn shì",
+      "meaningVi": "Sự lo lắng của bạn không phải là không có lý, hôm nay Lý Dương quả nhiên đã không vượt qua phỏng vấn.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_34",
+      "grammarTopic": "Cách dùng phó từ 果然",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "担心",
+      "chinese": "不无担心。",
+      "pinyin": "bù wú dān xīn",
+      "meaningVi": "Không phải là không lo lắng.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_62",
+      "grammarTopic": "Cách dùng cấu trúc 不无",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:担心",
       "title": "Cách dùng 担心",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_34",
+      "title": "Cách dùng phó từ 果然",
+      "syntax": "Chủ ngữ + 果然 + (động từ/tính từ) + ...",
+      "explanationVi": "Phó từ 「果然」 dùng để khẳng định sự việc xảy ra đúng như dự đoán hoặc suy nghĩ trước đó của người nói, tương đương với nghĩa \"quả nhiên\" trong tiếng Việt. Từ này thường đứng trước động từ hoặc tính từ trong câu.",
+      "tipsVi": "Bạn có thể dùng 「果然」 để xác nhận một tin đồn hoặc một linh cảm mà bạn đã có từ trước.",
+      "attentionsVi": "Cần phân biệt 「果然」 với 「果真」; mặc dù nghĩa tương tự nhau nhưng 「果然」 thường dùng để nói về kết quả sự việc, trong khi 「果真」 mang sắc thái nghi vấn hoặc giả định cao hơn.",
+      "examples": [
+        {
+          "chinese": "你的担心不是没有道理的，今天李阳果然没有通过面试。",
+          "pinyin": "nǐ de dān xīn bù shì méi yǒu dào lǐ de jīn tiān lǐ yáng guǒ rán méi yǒu tōng guò miàn shì",
+          "meaningVi": "Sự lo lắng của bạn không phải là không có lý, hôm nay Lý Dương quả nhiên đã không vượt qua phỏng vấn."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_62",
+      "title": "Cách dùng cấu trúc 不无",
+      "syntax": "Subject + 不无 (bùwú) + V/Adj/Noun",
+      "explanationVi": "Cấu trúc 「不无」 mang nghĩa là 'không phải là không có', 'có phần', được dùng để khẳng định nhẹ nhàng về sự tồn tại của một cảm xúc hoặc trạng thái nào đó. Đây là cách diễn đạt trang trọng, thường xuất hiện trong văn viết để nhấn mạnh ý kiến của người nói.",
+      "tipsVi": "Bạn có thể hiểu đơn giản 「不无」 bằng cách dịch là 'có một chút' hoặc 'có phần' (ví dụ: 「不无道理」 - không phải là không có lý/có phần hợp lý).",
+      "attentionsVi": "Vì đây là từ ngữ mang phong cách trang trọng (văn viết), bạn nên hạn chế sử dụng trong giao tiếp khẩu ngữ hàng ngày để tránh gây cảm giác xa cách.",
+      "examples": [
+        {
+          "chinese": "不无担心。",
+          "pinyin": "bù wú dān xīn",
+          "meaningVi": "Không phải là không lo lắng."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -152,7 +252,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "lo lắng",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -56,7 +56,9 @@
         "target": "环境",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "工作环境",
@@ -66,10 +68,13 @@
         "target": "环境",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -91,14 +96,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "环境",
+      "chinese": "这个小区环境挺好的。",
+      "pinyin": "zhè gè xiǎo qū huán jìng tǐng hǎo de",
+      "meaningVi": "Môi trường của khu dân cư này rất tốt.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_7",
+      "grammarTopic": "Phó từ chỉ mức độ 挺",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:环境",
       "title": "Cách dùng 环境",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "环境 可指 tự nhiên (自然环境) hoặc nhân tạo (工作环境). 搭配动词: 改善环境 ( cải thiện môi trường), 保护环境 (bảo vệ môi trường), 破坏环境 (phá hoại môi trường).",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_7",
+      "title": "Phó từ chỉ mức độ 挺",
+      "syntax": "挺 + tính từ (tùy chọn: + 的)",
+      "explanationVi": "Phó từ 「挺」 được dùng trước tính từ để diễn tả mức độ khá cao, tương đương với nghĩa \"khá\" hoặc \"rất\" trong tiếng Việt. Trong giao tiếp, cuối câu thường thêm 「的」 để nhấn mạnh cảm xúc hoặc sắc thái của người nói.",
+      "tipsVi": "Bạn có thể dùng 「挺……的」 trong văn nói để câu văn nghe tự nhiên và biểu cảm hơn.",
+      "attentionsVi": "Không dùng 「挺」 trong các câu mang ý nghĩa phủ định hoặc so sánh đối chiếu.",
+      "examples": [
+        {
+          "chinese": "这个小区环境挺好的。",
+          "pinyin": "zhè gè xiǎo qū huán jìng tǐng hǎo de",
+          "meaningVi": "Môi trường của khu dân cư này rất tốt."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -167,7 +206,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "môi trường",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

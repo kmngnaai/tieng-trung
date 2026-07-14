@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "vội vàng đến nơi",
+      "meaningShortVi": "vội vàng",
       "meaningFullVi": "vội vàng đến nơi; kịp đến, đuổi kịp đến",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "vội vàng đến nơi",
+  "meaningShortVi": "vội vàng",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
@@ -54,10 +54,42 @@
         "target": "赶到",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
+      }
+    ],
+    "relatedWords": [
+      {
+        "targetWord": "感到",
+        "pinyin": "gǎn dào",
+        "meaningVi": "cảm thấy",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_2.json",
         "reviewStatus": "reviewed-local"
       }
     ],
-    "relatedWords": []
+    "candidateRelations": [
+      {
+        "targetWord": "急忙",
+        "pinyin": "jí máng",
+        "meaningVi": "vội vàng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: vội vàng",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "连忙",
+        "pinyin": "lián máng",
+        "meaningVi": "vội vàng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: vội vàng",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -73,10 +105,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:赶到",
       "title": "Cách dùng 赶到",
       "partOfSpeech": "động từ",
       "usageNoteVi": "赶到 nhấn mạnh hành động vội vã để đến nơi kịp thời. Thường dùng với cấu trúc 赶到 + nơi chốn.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -110,7 +145,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 1,
+      "grammar": 1,
+      "reviewedRelations": 1,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "vội vàng đến nơi; kịp đến, đuổi kịp đến",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

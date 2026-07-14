@@ -54,10 +54,23 @@
         "target": "正是",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
+      }
+    ],
+    "relatedWords": [
+      {
+        "targetWord": "正式",
+        "pinyin": "zhèng shì",
+        "meaningVi": "chính thức",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_3.json",
         "reviewStatus": "reviewed-local"
       }
     ],
-    "relatedWords": []
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -83,10 +96,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:正是",
       "title": "Cách dùng 正是",
       "partOfSpeech": "adverb",
       "usageNoteVi": "Phó từ khẳng định chính xác.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -120,7 +136,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 1,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "chính xác là",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

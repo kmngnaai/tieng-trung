@@ -54,7 +54,20 @@
         "target": "国外",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "国外",
+            "chinese": "很多中国学生去国外留学",
+            "pinyin": "Hěnduō Zhōngguó xuésheng qù guówài liúxué",
+            "meaningVi": "Nhiều sinh viên Trung Quốc đi du học ở nước ngoài",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "在国外",
@@ -64,7 +77,20 @@
         "target": "国外",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "国外",
+            "chinese": "我朋友在国外工作",
+            "pinyin": "Wǒ péngyǒu zài guówài gōngzuò",
+            "meaningVi": "Bạn tôi làm việc ở nước ngoài",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "国外市场",
@@ -74,10 +100,23 @@
         "target": "国外",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "外国",
+        "pinyin": "wài guó",
+        "meaningVi": "nước ngoài",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: nước ngoài",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -113,10 +152,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:国外",
       "title": "Cách dùng 国外",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Dùng để chỉ địa điểm ở bên ngoài biên giới quốc gia. Có thể dùng cho người hoặc hàng hóa.",
       "explanationVi": "Ghép nghĩa: 国 (quốc gia, nước) + 外 (bên ngoài) = ở bên ngoài quốc gia.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -150,7 +192,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "nước ngoài, ở nước ngoài",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

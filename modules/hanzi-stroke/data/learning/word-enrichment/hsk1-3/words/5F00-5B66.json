@@ -54,10 +54,45 @@
         "target": "开学",
         "source": "hsk_2.json",
         "pinyinMethod": "exact-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "开学",
+            "chinese": "九月一号开学",
+            "pinyin": "jiǔ yuè yī hào kāi xué",
+            "meaningVi": "Mùng một tháng chín khai giảng",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "开学",
+            "chinese": "开学了",
+            "pinyin": "kāi xué le",
+            "meaningVi": "Đã khai giảng",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "开学",
+            "chinese": "开学已经三个多星期了。",
+            "pinyin": "kāi xué yǐ jīng sān gè duō xīng qī le",
+            "meaningVi": "Khai giảng đã được hơn ba tuần rồi.",
+            "source": "new_hsk_3.json",
+            "grammarId": "hsk3_new_26",
+            "grammarTopic": "Bổ ngữ thời lượng biểu thị thời gian kéo dài",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 3
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -79,14 +114,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "开学",
+      "chinese": "开学已经三个多星期了。",
+      "pinyin": "kāi xué yǐ jīng sān gè duō xīng qī le",
+      "meaningVi": "Khai giảng đã được hơn ba tuần rồi.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_26",
+      "grammarTopic": "Bổ ngữ thời lượng biểu thị thời gian kéo dài",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:开学",
       "title": "Cách dùng 开学",
       "partOfSpeech": "verb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_26",
+      "title": "Bổ ngữ thời lượng biểu thị thời gian kéo dài",
+      "syntax": "Chủ ngữ + Động từ + (了) + Bổ ngữ thời lượng + (của tân ngữ)",
+      "explanationVi": "Bổ ngữ thời lượng dùng để diễn tả khoảng thời gian mà một hành động đã diễn ra hoặc kéo dài. Khi có tân ngữ đi kèm, bạn có thể đặt thời lượng ở giữa động từ và tân ngữ, hoặc thêm 「的」 sau bổ ngữ thời lượng.",
+      "tipsVi": "Nếu hành động đã kết thúc, bạn có thể thêm 「了」 ngay sau động từ.",
+      "attentionsVi": "Nếu tân ngữ là danh từ chỉ người hoặc đại từ (ví dụ: 我, 他), bổ ngữ thời lượng phải đặt sau tân ngữ.",
+      "examples": [
+        {
+          "chinese": "开学已经三个多星期了。",
+          "pinyin": "kāi xué yǐ jīng sān gè duō xīng qī le",
+          "meaningVi": "Khai giảng đã được hơn ba tuần rồi."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -135,7 +204,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "khai giảng",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

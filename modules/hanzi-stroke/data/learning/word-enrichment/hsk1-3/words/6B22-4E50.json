@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Vui vẻ",
+      "meaningShortVi": "vui vẻ",
       "meaningFullVi": "Vui vẻ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Vui vẻ",
+  "meaningShortVi": "vui vẻ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -46,7 +46,36 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "快乐",
+        "pinyin": "kuài lè",
+        "meaningVi": "vui vẻ",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: vui vẻ",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "开心",
+        "pinyin": "kāi xīn",
+        "meaningVi": "vui vẻ",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: vui vẻ",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "愉快",
+        "pinyin": "yú kuài",
+        "meaningVi": "vui vẻ",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: vui vẻ",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -82,10 +111,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:欢乐",
       "title": "Cách dùng 欢乐",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "欢乐 là tính từ chỉ sự vui vẻ, phấn khởi. 欢 (hoan) nghĩa là vui mừng; 乐 (lạc) nghĩa là vui sướng. Ghép lại tạo thành từ chỉ niềm vui mạnh mẽ, thường dùng trong bối cảnh lễ hội, tụ tập.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -119,8 +151,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 3
+    }
+  },
+  "meaningFullVi": "Vui vẻ",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

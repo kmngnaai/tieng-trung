@@ -55,10 +55,13 @@
         "target": "住院",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -80,14 +83,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "住院",
+      "chinese": "小林本来负责这次招聘，但他突然生病住院了。",
+      "pinyin": "xiǎo lín běn lái fù zé zhè cì zhāo pìn dàn tā tū rán shēng bìng zhù yuàn le",
+      "meaningVi": "Tiểu Lâm vốn phụ trách đợt tuyển dụng lần này, nhưng anh ấy đột nhiên bị bệnh phải nhập viện.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_12",
+      "grammarTopic": "Cách dùng phó từ 本来",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:住院",
       "title": "Cách dùng 住院",
       "partOfSpeech": "verb",
       "usageNoteVi": "Động từ chỉ việc điều trị nội trú.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_12",
+      "title": "Cách dùng phó từ 本来",
+      "syntax": "本来 + V/Adj (vốn dĩ/lẽ ra)",
+      "explanationVi": "Phó từ 「本来」 dùng để chỉ một tình huống, sự việc vốn dĩ là như vậy ngay từ đầu. Nó cũng diễn tả ý rằng sự việc đáng lẽ đã xảy ra theo một hướng khác nhưng thực tế lại thay đổi.",
+      "tipsVi": "Bạn có thể dùng 「本来」 đứng trước hoặc sau chủ ngữ đều được, ví dụ: 「我本来想去」 hoặc 「本来我想去」 đều đúng.",
+      "attentionsVi": "Cần phân biệt với 「原来」; 「本来」 thường đi kèm với các từ chỉ sự thay đổi (như 「但是」, 「可是」) để nhấn mạnh sự khác biệt giữa dự định ban đầu và thực tế.",
+      "examples": [
+        {
+          "chinese": "小林本来负责这次招聘，但他突然生病住院了。",
+          "pinyin": "xiǎo lín běn lái fù zé zhè cì zhāo pìn dàn tā tū rán shēng bìng zhù yuàn le",
+          "meaningVi": "Tiểu Lâm vốn phụ trách đợt tuyển dụng lần này, nhưng anh ấy đột nhiên bị bệnh phải nhập viện."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -141,7 +178,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "nằm viện",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

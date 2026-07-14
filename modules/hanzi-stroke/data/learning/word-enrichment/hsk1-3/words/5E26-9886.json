@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Dẫn dắt",
+      "meaningShortVi": "dẫn dắt",
       "meaningFullVi": "Dẫn dắt, chỉ đường, dẫn theo",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Dẫn dắt",
+  "meaningShortVi": "dẫn dắt",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
@@ -54,7 +54,20 @@
         "target": "带领",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "带领",
+            "chinese": "他带领团队赢得了比赛。",
+            "pinyin": "Tā dàilǐng tuánduì yíng dé le bǐsài.",
+            "meaningVi": "Anh ấy đã dẫn dắt đội nhóm giành chiến thắng.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "带领参观",
@@ -64,10 +77,32 @@
         "target": "带领",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "带动",
+        "pinyin": "dài dòng",
+        "meaningVi": "dẫn dắt",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: dẫn dắt",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "主导",
+        "pinyin": "zhǔ dǎo",
+        "meaningVi": "dẫn dắt",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: dẫn dắt",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -93,10 +128,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:带领",
       "title": "Cách dùng 带领",
       "partOfSpeech": "động từ",
       "usageNoteVi": "带领 mang hành động dẫn dắt, chỉ đường hoặc dẫn theo một nhóm người. Nó khác với 领导 ở chỗ: 领导 mang tính quản lý, chỉ đạo, còn 带领 mang tính đi cùng, dẫn đường. Trong giao tiếp, 带领 thường dùng cho các hoạt động cụ thể như tham quan, du lịch, hoặc làm việc nhóm.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +168,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "Dẫn dắt, chỉ đường, dẫn theo",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

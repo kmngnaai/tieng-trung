@@ -57,10 +57,32 @@
         "target": "下面",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "下边",
+        "pinyin": "xià biān",
+        "meaningVi": "bên dưới",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bên dưới",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "底下",
+        "pinyin": "dǐ xia",
+        "meaningVi": "bên dưới",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bên dưới",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -82,14 +104,79 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "下面",
+      "chinese": "小狗在椅子下面。",
+      "pinyin": "xiǎo gǒu zài yǐ zi xià miàn",
+      "meaningVi": "Con chó nhỏ ở dưới cái ghế.",
+      "source": "hsk_1.json",
+      "grammarId": "hsk1_22",
+      "grammarTopic": "Cách dùng 在 chỉ vị trí",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "下面",
+      "chinese": "我不上去了，就在下面等你。",
+      "pinyin": "wǒ bù shàng qù le jiù zài xià miàn děng nǐ",
+      "meaningVi": "Tôi không lên nữa, ở ngay dưới này đợi bạn.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_13",
+      "grammarTopic": "Bổ ngữ xu hướng đơn giản",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:下面",
       "title": "Cách dùng 下面",
       "partOfSpeech": "địa từ",
       "usageNoteVi": "下面 chỉ vị trí không gian phía dưới hoặc nội dung sau đó trong văn bản/tài liệu. Cũng có thể chỉ cấp bậc thấp hơn.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk1_22",
+      "title": "Cách dùng 在 chỉ vị trí",
+      "syntax": "Chủ ngữ + 在 + Địa điểm (nơi chốn/vị trí)",
+      "explanationVi": "Từ 「在」 đóng vai trò như động từ chỉ vị trí, mang nghĩa là \"ở\" hoặc \"tại\". Cấu trúc này dùng để xác định vị trí của người hoặc vật tại một nơi chốn cụ thể.",
+      "tipsVi": "Nếu muốn hỏi về vị trí, bạn có thể thay địa điểm bằng từ hỏi 「哪儿」(nǎr - ở đâu).",
+      "attentionsVi": "Cần phân biệt 「在」 dùng làm động từ chỉ vị trí (ở đâu) và 「在」 dùng trước động từ để diễn tả hành động đang xảy ra.",
+      "examples": [
+        {
+          "chinese": "小狗在椅子下面。",
+          "pinyin": "xiǎo gǒu zài yǐ zi xià miàn",
+          "meaningVi": "Con chó nhỏ ở dưới cái ghế."
+        }
+      ],
+      "source": "hsk_1.json",
+      "curriculum": "hsk",
+      "hskLevel": 1,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_13",
+      "title": "Bổ ngữ xu hướng đơn giản",
+      "syntax": "Động từ + 来 (lái) / 去 (qù)",
+      "explanationVi": "Bổ ngữ xu hướng đơn dùng để chỉ hướng di chuyển của hành động. Ta dùng 「来」 khi hành động tiến về phía người nói và 「去」 khi hành động rời xa phía người nói.",
+      "tipsVi": "Hãy ghi nhớ quy tắc đơn giản: 「来」 là 'đến đây', 「去」 là 'đi đó'.",
+      "attentionsVi": "Nếu tân ngữ chỉ nơi chốn, phải đặt giữa động từ và bổ ngữ (ví dụ: 回家去) hoặc sau bổ ngữ.",
+      "examples": [
+        {
+          "chinese": "我不上去了，就在下面等你。",
+          "pinyin": "wǒ bù shàng qù le jiù zài xià miàn děng nǐ",
+          "meaningVi": "Tôi không lên nữa, ở ngay dưới này đợi bạn."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -163,7 +250,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "bên dưới, phía dưới; phần dưới, cấp dưới",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

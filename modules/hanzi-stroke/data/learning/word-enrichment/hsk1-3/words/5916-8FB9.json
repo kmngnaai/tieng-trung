@@ -54,7 +54,9 @@
         "target": "外边",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "去外边",
@@ -64,10 +66,43 @@
         "target": "外边",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "外边",
+            "chinese": "请去外边等我",
+            "pinyin": "Qǐng qù wàibiān děng wǒ",
+            "meaningVi": "Xin hãy ra bên ngoài đợi tôi",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "外面",
+        "pinyin": "wài miàn",
+        "meaningVi": "bên ngoài",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bên ngoài",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "以外",
+        "pinyin": "yǐ wài",
+        "meaningVi": "bên ngoài",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bên ngoài",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -99,14 +134,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "外边",
+      "chinese": "外边下雪了，但是不太冷。",
+      "pinyin": "wài biān xià xuě le dàn shì bù tài lěng",
+      "meaningVi": "Bên ngoài tuyết rơi rồi nhưng không lạnh lắm.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_24",
+      "grammarTopic": "Cấu trúc câu nhượng bộ Tuy... nhưng",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:外边",
       "title": "Cách dùng 外边",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Khẩu ngữ miền Bắc chỉ không gian bên ngoài. Miền Nam dùng 外面.",
       "explanationVi": "Ghép nghĩa: 外 (bên ngoài) + 边 (bên, cạnh) = phía bên ngoài.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_24",
+      "title": "Cấu trúc câu nhượng bộ Tuy... nhưng",
+      "syntax": "虽然 (Sui rán) + [Mệnh đề 1], 但是 (dàn shì) + [Mệnh đề 2]",
+      "explanationVi": "Cấu trúc 「虽然……，但是……」 dùng để nối hai mệnh đề có ý nghĩa tương phản nhau. Bạn dùng nó để diễn đạt ý \"mặc dù... nhưng mà...\" trong tiếng Việt.",
+      "tipsVi": "Trong khẩu ngữ, bạn có thể lược bỏ 「虽然」 nhưng vẫn giữ lại 「但是」 để câu tự nhiên hơn.",
+      "attentionsVi": "Không được dùng đồng thời cả 「虽然」 và 「但是」 trong cùng một câu nếu ý nghĩa không có sự đối lập rõ ràng.",
+      "examples": [
+        {
+          "chinese": "外边下雪了，但是不太冷。",
+          "pinyin": "wài biān xià xuě le dàn shì bù tài lěng",
+          "meaningVi": "Bên ngoài tuyết rơi rồi nhưng không lạnh lắm."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -155,7 +224,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "bên ngoài",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

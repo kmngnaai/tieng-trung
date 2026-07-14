@@ -49,15 +49,17 @@
       {
         "word": "大学生",
         "pinyin": "dà xué shēng",
-        "meaningVi": "sinh viên",
+        "meaningVi": "sinh viên đại học",
         "meaningFullVi": "sinh viên",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 1",
+        "hskLevel": 1,
+        "source": "hsk_1.json",
         "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -89,14 +91,79 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "大学",
+      "chinese": "北京大学有四万多名学生呢！",
+      "pinyin": "běi jīng dà xué yǒu sì wàn duō míng xué shēng ne",
+      "meaningVi": "Đại học Bắc Kinh có hơn 40.000 sinh viên đấy!",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_5",
+      "grammarTopic": "Cách dùng 多 biểu thị số ước lượng",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "大学",
+      "chinese": "为了上大学，她每天努力学习。",
+      "pinyin": "wèi le shàng dà xué tā měi tiān nǔ lì xué xí",
+      "meaningVi": "Để được vào đại học, cô ấy nỗ lực học tập mỗi ngày.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_28",
+      "grammarTopic": "Câu phức chỉ mục đích",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:大学",
       "title": "Cách dùng 大学",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Danh từ chỉ trường đại học hoặc cấp học đại học. Ngược với '小学' (tiểu học).",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_5",
+      "title": "Cách dùng 多 biểu thị số ước lượng",
+      "syntax": "Số đếm + Lượng từ + 多 + Danh từ",
+      "explanationVi": "Trong tiếng Trung, để diễn tả một số lượng lớn hơn con số đã nêu, chúng ta đặt 「多」 ngay sau số đếm và lượng từ. Cấu trúc này giúp biểu thị ý nghĩa 'hơn' hoặc 'trên' một số lượng nhất định.",
+      "tipsVi": "Nếu số đếm là hàng chục (như 10, 20...), đặt 「多」 sau số đếm và trước lượng từ (ví dụ: 十多个人 - hơn 10 người).",
+      "attentionsVi": "Cần phân biệt với 「几」, vì 「多」 thường dùng cho số lượng lớn hơn, còn 「几」 dùng để hỏi hoặc ước lượng số lượng nhỏ hơn 10.",
+      "examples": [
+        {
+          "chinese": "北京大学有四万多名学生呢！",
+          "pinyin": "běi jīng dà xué yǒu sì wàn duō míng xué shēng ne",
+          "meaningVi": "Đại học Bắc Kinh có hơn 40.000 sinh viên đấy!"
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_28",
+      "title": "Câu phức chỉ mục đích",
+      "syntax": "为了 + Mục đích, + Hành động (S + V...)",
+      "explanationVi": "Cấu trúc 「为了」 được dùng để nêu lên mục đích của một hành động, mang nghĩa là \"để\" hoặc \"vì\". Vế đầu chứa mục đích cần đạt được, vế sau là hành động thực hiện để đạt được mục đích đó.",
+      "tipsVi": "Bạn có thể đặt 「为了」 ở ngay đầu câu hoặc sau chủ ngữ của mệnh đề chính.",
+      "attentionsVi": "Đừng nhầm lẫn 「为了」 (chỉ mục đích) với 「因为」 (chỉ lý do/nguyên nhân).",
+      "examples": [
+        {
+          "chinese": "为了上大学，她每天努力学习。",
+          "pinyin": "wèi le shàng dà xué tā měi tiān nǔ lì xué xí",
+          "meaningVi": "Để được vào đại học, cô ấy nỗ lực học tập mỗi ngày."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -160,7 +227,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng"
-    ]
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 0,
+      "sentences": 5,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "đại học, trường đại học",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

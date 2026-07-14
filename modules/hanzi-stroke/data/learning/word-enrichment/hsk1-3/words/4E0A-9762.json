@@ -55,10 +55,23 @@
         "target": "上面",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "上边",
+        "pinyin": "shàng biān",
+        "meaningVi": "bên trên",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bên trên",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -80,14 +93,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "上面",
+      "chinese": "上面写着320元。",
+      "pinyin": "shàng miàn xiě zhe yuán",
+      "meaningVi": "Trên đó có viết 320 tệ.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_8",
+      "grammarTopic": "Cấu trúc tồn tại với 着",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:上面",
       "title": "Cách dùng 上面",
       "partOfSpeech": "địa từ",
       "usageNoteVi": "上面 chỉ vị trí không gian bên trên hoặc cấp bậc cao hơn. Trong văn viết, có thể dùng để chỉ 'nói ở trên, đoạn trước'.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_8",
+      "title": "Cấu trúc tồn tại với 着",
+      "syntax": "Từ chỉ vị trí + Động từ + 着 + Cụm danh từ (Chỉ sự tồn tại)",
+      "explanationVi": "Cấu trúc này dùng để mô tả một sự vật đang tồn tại hoặc hiện diện tại một địa điểm nhất định. Trợ từ 「着」 được thêm vào sau động từ để chỉ trạng thái đang diễn ra hoặc duy trì của sự vật đó.",
+      "tipsVi": "Nên dùng danh từ chỉ sự vật chưa xác định (ví dụ: 「一本书」, 「几个人」) thay vì danh từ xác định (ví dụ: 「这本书」) trong cấu trúc này.",
+      "attentionsVi": "Trong câu phủ định, hãy sử dụng 「没」 trước động từ thay vì 「不」 để biểu thị sự vật không tồn tại ở địa điểm đó.",
+      "examples": [
+        {
+          "chinese": "上面写着320元。",
+          "pinyin": "shàng miàn xiě zhe yuán",
+          "meaningVi": "Trên đó có viết 320 tệ."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -141,7 +188,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "bên trên; phía trên; cấp trên; nói trên, ở trên",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

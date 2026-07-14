@@ -55,7 +55,9 @@
         "target": "电影院",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "电影院售票处",
@@ -65,7 +67,9 @@
         "target": "电影院",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "电影院座位",
@@ -75,10 +79,13 @@
         "target": "电影院",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -120,14 +127,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "电影院",
+      "chinese": "学校前边有一家电影院。",
+      "pinyin": "xué xiào qián biān yǒu yī jiā diàn yǐng yuàn",
+      "meaningVi": "Phía trước trường học có một rạp chiếu phim.",
+      "source": "new_hsk_1.json",
+      "grammarId": "hsk1_new_22",
+      "grammarTopic": "Câu tồn tại với 有 và 是",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:电影院",
       "title": "Cách dùng 电影院",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Danh từ, chỉ địa điểm chiếu phim. Lượng từ: 家 (一家电影院). Phân biệt 与 影院 (viết tắt của 电影院, chỉ rạp phim).",
       "explanationVi": "Ghép nghĩa: 电 (điện) + 影 (ảnh, bóng) + 院 (sân, nơi) → nơi chiếu phim điện ảnh.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk1_new_22",
+      "title": "Câu tồn tại với 有 và 是",
+      "syntax": "[Địa điểm] + 有/是 + [Danh từ]",
+      "explanationVi": "Cấu trúc này dùng để diễn tả sự tồn tại của người hoặc vật tại một địa điểm cụ thể. Khi dùng 「有」, câu mang nghĩa 'có cái gì ở đâu', còn dùng 「是」 thường mang nghĩa 'là' hoặc 'có sự hiện diện của'. Đây là dạng câu cơ bản để mô tả không gian trong tiếng Trung.",
+      "tipsVi": "Luôn đặt từ chỉ vị trí (nơi chốn) lên đầu câu để xác định phạm vi tồn tại trước khi nhắc đến đối tượng.",
+      "attentionsVi": "Khi chuyển sang phủ định với 「有」, bạn bắt buộc phải dùng 「没有」, không được dùng 「不有」.",
+      "examples": [
+        {
+          "chinese": "学校前边有一家电影院。",
+          "pinyin": "xué xiào qián biān yǒu yī jiā diàn yǐng yuàn",
+          "meaningVi": "Phía trước trường học có một rạp chiếu phim."
+        }
+      ],
+      "source": "new_hsk_1.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 1,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -176,7 +217,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 5,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "rạp chiếu phim, rạp phim",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

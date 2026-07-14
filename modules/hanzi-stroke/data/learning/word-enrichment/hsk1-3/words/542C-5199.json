@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "đánh vần nghe",
+      "meaningShortVi": "nghe viết",
       "meaningFullVi": "đánh vần nghe, kiểm tra nghe viết",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "đánh vần nghe",
+  "meaningShortVi": "nghe viết",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -54,7 +54,20 @@
         "target": "听写",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "听写",
+            "chinese": "老师让我们做听写",
+            "pinyin": "Lǎoshī ràng wǒmen zuò tīngxiě",
+            "meaningVi": "Thầy giáo cho chúng tôi làm bài nghe viết",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "听写考试",
@@ -64,10 +77,24 @@
         "target": "听写",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "听写",
+            "chinese": "明天有听写考试",
+            "pinyin": "Míngtiān yǒu tīngxiě kǎoshì",
+            "meaningVi": "Ngày mai có thi nghe viết",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -109,14 +136,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "听写",
+      "chinese": "今天的作业是复习生词，明天课上听写。",
+      "pinyin": "jīn tiān de zuò yè shì fù xí shēng cí míng tiān kè shàng tīng xiě",
+      "meaningVi": "Bài tập hôm nay là ôn từ mới, ngày mai trên lớp sẽ viết chính tả.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_5",
+      "grammarTopic": "Cấu trúc chỉ vị trí và khía cạnh (在)...上",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:听写",
       "title": "Cách dùng 听写",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Là bài kiểm tra kỹ năng nghe: giáo viên đọc, học sinh viết lại đúng chính tả. Rất phổ biến trong lớp học tiếng Trung.",
       "explanationVi": "Ghép nghĩa: 听 (nghe) + 写 (viết) → kỹ năng nghe và viết lại.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_5",
+      "title": "Cấu trúc chỉ vị trí và khía cạnh (在)...上",
+      "syntax": "(在) + Danh từ + 上",
+      "explanationVi": "Cấu trúc này dùng sau một danh từ để chỉ vị trí bề mặt vật thể (trên cái gì) hoặc phạm vi, khía cạnh của một vấn đề (về mặt nào đó). Nó giúp làm rõ vị trí không gian hoặc lĩnh vực đang được nhắc đến.",
+      "tipsVi": "Nếu muốn diễn tả vị trí vật lý cụ thể (ví dụ: trên bàn), bạn nên dùng đầy đủ 「在...上」 để câu văn rõ ràng hơn.",
+      "attentionsVi": "Cần phân biệt với cấu trúc chỉ phương hướng đơn thuần; khi dùng với nghĩa trừu tượng (phương diện), hãy chú ý ngữ cảnh để không dịch nhầm là 'phía trên' về không gian.",
+      "examples": [
+        {
+          "chinese": "今天的作业是复习生词，明天课上听写。",
+          "pinyin": "jīn tiān de zuò yè shì fù xí shēng cí míng tiān kè shàng tīng xiě",
+          "meaningVi": "Bài tập hôm nay là ôn từ mới, ngày mai trên lớp sẽ viết chính tả."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -150,7 +211,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 5,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "đánh vần nghe, kiểm tra nghe viết",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

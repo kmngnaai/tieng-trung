@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "biến thành",
+      "meaningShortVi": "trở thành",
       "meaningFullVi": "biến thành",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "biến thành",
+  "meaningShortVi": "trở thành",
   "wordType": "verb",
   "wordTypes": [
     "verb"
@@ -55,7 +55,9 @@
         "target": "变成",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "终于变成",
@@ -65,10 +67,23 @@
         "target": "变成",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "成为",
+        "pinyin": "chéng wéi",
+        "meaningVi": "trở thành",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: trở thành",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -90,14 +105,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "变成",
+      "chinese": "从那天起，我们就变成了好朋友。",
+      "pinyin": "cóng nà tiān qǐ wǒ men jiù biàn chéng le hǎo péng yǒu",
+      "meaningVi": "Từ ngày đó, chúng tôi đã trở thành bạn thân của nhau.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_63",
+      "grammarTopic": "Cấu trúc chỉ thời điểm bắt đầu",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:变成",
       "title": "Cách dùng 变成",
       "partOfSpeech": "verb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_63",
+      "title": "Cấu trúc chỉ thời điểm bắt đầu",
+      "syntax": "从 + [mốc thời gian] + 起",
+      "explanationVi": "Cấu trúc 「从……起」 được dùng để xác định thời điểm bắt đầu của một hành động hoặc trạng thái. Trong tiếng Việt, nó tương đương với cụm từ \"kể từ...\" hoặc \"bắt đầu từ...\".",
+      "tipsVi": "Bạn có thể thay thế 「起」 bằng 「开始」 mà nghĩa của câu vẫn không thay đổi.",
+      "attentionsVi": "Cấu trúc này thường đi kèm với các mốc thời gian cụ thể như 「今天」 (hôm nay), 「明年」 (năm sau) hoặc 「八点」 (8 giờ).",
+      "examples": [
+        {
+          "chinese": "从那天起，我们就变成了好朋友。",
+          "pinyin": "cóng nà tiān qǐ wǒ men jiù biàn chéng le hǎo péng yǒu",
+          "meaningVi": "Từ ngày đó, chúng tôi đã trở thành bạn thân của nhau."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -151,7 +200,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "biến thành",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "tiếp đáo",
+      "meaningShortVi": "nhận được",
       "meaningFullVi": "tiếp đáo",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "tiếp đáo",
+  "meaningShortVi": "nhận được",
   "wordType": "verb",
   "wordTypes": [
     "verb"
@@ -54,7 +54,9 @@
         "target": "接到",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "接到客人",
@@ -64,10 +66,53 @@
         "target": "接到",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "接到",
+            "chinese": "请接到客人",
+            "pinyin": "qǐng jiē dào kè rén",
+            "meaningVi": "Vui lòng tiếp đón khách",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
+      }
+    ],
+    "relatedWords": [
+      {
+        "targetWord": "街道",
+        "pinyin": "jiē dào",
+        "meaningVi": "đường phố",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_2.json",
         "reviewStatus": "reviewed-local"
       }
     ],
-    "relatedWords": []
+    "candidateRelations": [
+      {
+        "targetWord": "收到",
+        "pinyin": "shōu dào",
+        "meaningVi": "nhận được",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: nhận được",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "受到",
+        "pinyin": "shòu dào",
+        "meaningVi": "nhận được",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: nhận được",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -93,10 +138,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:接到",
       "title": "Cách dùng 接到",
       "partOfSpeech": "verb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +178,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 1,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "tiếp đáo",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

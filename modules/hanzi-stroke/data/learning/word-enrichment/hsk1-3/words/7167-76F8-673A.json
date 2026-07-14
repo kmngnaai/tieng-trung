@@ -23,14 +23,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Máy ảnh là thiết bị dùng để chụp ảnh",
+      "meaningShortVi": "máy ảnh",
       "meaningFullVi": "Máy ảnh là thiết bị dùng để chụp ảnh, ghi lại hình ảnh vật thể qua ống kính.",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Máy ảnh là thiết bị dùng để chụp ảnh",
+  "meaningShortVi": "máy ảnh",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -55,7 +55,9 @@
         "target": "照相机",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "老式照相机",
@@ -65,10 +67,23 @@
         "target": "照相机",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "相机",
+        "pinyin": "xiàng jī",
+        "meaningVi": "máy ảnh",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: máy ảnh",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -104,10 +119,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:照相机",
       "title": "Cách dùng 照相机",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "照相机 thường được gọi tắt là 相机 trong giao tiếp hàng ngày. Ngày nay nhiều người dùng điện thoại di động thay vì máy ảnh riêng.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -141,7 +159,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "Máy ảnh là thiết bị dùng để chụp ảnh, ghi lại hình ảnh vật thể qua ống kính.",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

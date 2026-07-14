@@ -55,7 +55,20 @@
         "target": "有些",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "有些",
+            "chinese": "有些人喜欢吃辣。",
+            "pinyin": "Yǒuxiē rén xǐhuan chī là.",
+            "meaningVi": "Một số người thích ăn cay.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "有些时候",
@@ -65,10 +78,23 @@
         "target": "有些",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "有的",
+        "pinyin": "yǒu de",
+        "meaningVi": "một số",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: một số",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -100,14 +126,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "有些",
+      "chinese": "未免有些过火。",
+      "pinyin": "wèi miǎn yǒu xiē guò huǒ",
+      "meaningVi": "Thật là có hơi quá đáng.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_10",
+      "grammarTopic": "Cách dùng phó từ 未免",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:有些",
       "title": "Cách dùng 有些",
       "partOfSpeech": "other",
       "usageNoteVi": "有些 dùng để chỉ một số lượng không xác định, ít hơn 一些.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_10",
+      "title": "Cách dùng phó từ 未免",
+      "syntax": "未免 + (tính từ/động từ)",
+      "explanationVi": "Phó từ 「未免」 dùng để diễn tả thái độ không đồng tình của người nói khi cảm thấy sự việc nào đó 'có hơi quá', 'hơi thái quá' hoặc 'chưa thực sự hợp lý'. Đây là cách nói mang sắc thái phê bình nhẹ nhàng nhưng rõ ràng về quan điểm cá nhân.",
+      "tipsVi": "Từ 「未免」 thường đi kèm với các từ chỉ mức độ hoặc các từ mang nghĩa tiêu cực như 「太」, 「过」 hoặc 「过分」 để nhấn mạnh sự phê bình.",
+      "attentionsVi": "Vì 「未免」 vốn dĩ đã mang ý nghĩa phê bình, nên bạn không nên dùng nó trong các trường hợp mang ý nghĩa khen ngợi hoặc tích cực.",
+      "examples": [
+        {
+          "chinese": "未免有些过火。",
+          "pinyin": "wèi miǎn yǒu xiē guò huǒ",
+          "meaningVi": "Thật là có hơi quá đáng."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -176,7 +236,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "một số",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

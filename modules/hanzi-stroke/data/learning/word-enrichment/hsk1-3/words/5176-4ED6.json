@@ -56,7 +56,9 @@
         "target": "其他",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "其他人",
@@ -66,10 +68,34 @@
         "target": "其他",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "其他",
+            "chinese": "其他人",
+            "pinyin": "qí tā rén",
+            "meaningVi": "những người khác",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "别的",
+        "pinyin": "bié de",
+        "meaningVi": "khác",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: khác",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -91,14 +117,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "其他",
+      "chinese": "和中国其他大城市相比。",
+      "pinyin": "hé zhōng guó qí tā dà chéng shì xiāng bǐ",
+      "meaningVi": "So với các thành phố lớn khác của Trung Quốc.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_33",
+      "grammarTopic": "Cấu trúc so sánh 和...相比",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:其他",
       "title": "Cách dùng 其他",
       "partOfSpeech": "adjective",
       "usageNoteVi": "Tính từ chỉ cái khác, còn lại.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_33",
+      "title": "Cấu trúc so sánh 和...相比",
+      "syntax": "和 + [Đối tượng A] + 相比, [Đối tượng B] + [nhận xét/kết quả]",
+      "explanationVi": "Cấu trúc 「和……相比」 được dùng để đưa ra sự so sánh giữa hai sự vật hoặc sự việc với nhau. Trong đó, 「和」 (cùng với) nối đối tượng được đem ra làm mốc so sánh, còn 「相比」 có nghĩa là so sánh.",
+      "tipsVi": "Bạn có thể thay thế 「和」 bằng 「跟」 trong văn nói mà ý nghĩa vẫn hoàn toàn không thay đổi.",
+      "attentionsVi": "Cấu trúc này thường dùng để so sánh các khía cạnh cụ thể, tránh dùng khi chỉ muốn nói một câu đơn giản về sự hơn kém giữa hai vật mà không có tiêu chí so sánh rõ ràng.",
+      "examples": [
+        {
+          "chinese": "和中国其他大城市相比。",
+          "pinyin": "hé zhōng guó qí tā dà chéng shì xiāng bǐ",
+          "meaningVi": "So với các thành phố lớn khác của Trung Quốc."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -167,7 +227,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "khác",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

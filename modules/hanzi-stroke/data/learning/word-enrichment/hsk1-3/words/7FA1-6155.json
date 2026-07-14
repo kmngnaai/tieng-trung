@@ -53,7 +53,9 @@
         "target": "羡慕",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "让人羡慕",
@@ -63,10 +65,23 @@
         "target": "羡慕",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "欣赏",
+        "pinyin": "xīn shǎng",
+        "meaningVi": "ngưỡng mộ",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: ngưỡng mộ",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -102,10 +117,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:羡慕",
       "title": "Cách dùng 羡慕",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Cảm xúc ngưỡng mộ hoặc ghê tị khi thấy người khác có điều gì tốt đẹp.",
       "explanationVi": "Ghép nghĩa: 羡 (thèm muốn/chảy nước miếng) + 慕 (ngưỡng mộ trong lòng) — cảm giác ngưỡng mộ, ghê tị",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -128,7 +146,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "ngưỡng mộ, ghê tị, thèm muốn",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

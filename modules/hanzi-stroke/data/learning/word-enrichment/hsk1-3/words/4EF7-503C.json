@@ -51,7 +51,8 @@
         "meaningVi": "giá trị",
         "meaningFullVi": "giá trị",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 3",
+        "hskLevel": 3,
+        "source": "hsk_3.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -64,7 +65,20 @@
         "target": "价值",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "价值",
+            "chinese": "这本书很有价值。",
+            "pinyin": "zhè běn shū hěn yǒu jià zhí。",
+            "meaningVi": "Quyển sách này rất có giá trị.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "价值观念",
@@ -74,10 +88,23 @@
         "target": "价值",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "价值观",
+        "pinyin": "jià zhí guān",
+        "meaningVi": "giá trị",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: giá trị",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -89,14 +116,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "价值",
+      "chinese": "培养人是教育的立足点, 是教育价值的根本所在。",
+      "pinyin": "péi yǎng rén shì jiào yù de lì zú diǎn shì jiào yù jià zhí de gēn běn suǒ zài",
+      "meaningVi": "Bồi dưỡng con người là điểm tựa của giáo dục, là nơi gốc rễ của giá trị giáo dục.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_25",
+      "grammarTopic": "Cách dùng 所在",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:价值",
       "title": "Cách dùng 价值",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_25",
+      "title": "Cách dùng 所在",
+      "syntax": "Danh từ/Đại từ + 所在 (suǒzài)",
+      "explanationVi": "「所在」 là danh từ dùng để chỉ vị trí, nơi chốn hoặc địa điểm cụ thể của một sự vật, sự việc nào đó. Trong văn viết, nó thường mang nghĩa trang trọng hoặc dùng để chỉ nơi tập trung của một vấn đề.",
+      "tipsVi": "Bạn có thể dùng cấu trúc 「所在 + 的地方」 để nhấn mạnh cụ thể hơn về địa điểm đó.",
+      "attentionsVi": "Đừng nhầm lẫn 「所在」 với các từ chỉ vị trí thông thường như 「地方」, vì 「所在」 mang tính trừu tượng hoặc trang trọng hơn, thường dùng để chỉ trụ sở, nơi công tác hoặc vị trí trọng yếu.",
+      "examples": [
+        {
+          "chinese": "培养人是教育的立足点, 是教育价值的根本所在。",
+          "pinyin": "péi yǎng rén shì jiào yù de lì zú diǎn shì jiào yù jià zhí de gēn běn suǒ zài",
+          "meaningVi": "Bồi dưỡng con người là điểm tựa của giáo dục, là nơi gốc rễ của giá trị giáo dục."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -129,6 +190,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "giá trị, ý nghĩa",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

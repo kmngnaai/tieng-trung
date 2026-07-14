@@ -51,20 +51,35 @@
         "meaningVi": "không sao đâu",
         "meaningFullVi": "không sao đâu, không có gì",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 1",
+        "hskLevel": 1,
+        "source": "hsk_1.json",
         "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "没关系",
+        "pinyin": "méi guān xi",
+        "meaningVi": "không sao",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: không sao",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [],
   "grammarLinks": [
     {
+      "grammarId": "usage:没事",
       "title": "Cách dùng 没事",
       "partOfSpeech": "động từ",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -113,8 +128,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có câu mẫu đạt cổng chất lượng"
-    ]
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có câu nguồn đầy đủ chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 0,
+      "sentences": 0,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "không sao, không có gì",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

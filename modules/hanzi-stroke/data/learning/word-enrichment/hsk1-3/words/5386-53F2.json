@@ -56,7 +56,9 @@
         "target": "历史",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "历史上",
@@ -66,10 +68,24 @@
         "target": "历史",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "历史",
+            "chinese": "这是历史上的重要事件。",
+            "pinyin": "Zhè shì lìshǐ shàng de zhòngyào shìjiàn.",
+            "meaningVi": "Đây là sự kiện quan trọng trong lịch sử.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -91,14 +107,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "历史",
+      "chinese": "数学比历史难多了。",
+      "pinyin": "shù xué bǐ lì shǐ nán duō le",
+      "meaningVi": "Môn Toán khó hơn môn Lịch sử nhiều.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_24",
+      "grammarTopic": "Cấu trúc so sánh hơn với 比",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:历史",
       "title": "Cách dùng 历史",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "Lịch sử (历史) là quá khứ của nhân sự, quốc gia, thế giới. Trong giao tiếp, 历史上 nói về 'trong quá khứ'. Lưu ý: 历史 mang nghĩa khách quan (sự việc đã xảy ra), còn 故事 mang nghĩa chủ quan (câu chuyện kể lại).",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_24",
+      "title": "Cấu trúc so sánh hơn với 比",
+      "syntax": "A + 比 + B + Tính từ + (一点儿/一些/得多/多了)",
+      "explanationVi": "Cấu trúc này được dùng để so sánh giữa hai đối tượng A và B. Khi muốn diễn tả mức độ chênh lệch cụ thể, chúng ta đặt các từ bổ ngữ như 「一点儿」, 「一些」 (hơn một chút) hoặc 「得多」, 「多了」 (hơn nhiều) ngay sau tính từ.",
+      "tipsVi": "Bạn có thể dùng 「一点儿」 hoặc 「一些」 để diễn tả sự chênh lệch ít, và dùng 「得多」 hoặc 「多了」 khi sự chênh lệch lớn.",
+      "attentionsVi": "Lưu ý tuyệt đối không được dùng phó từ chỉ mức độ như 「很」, 「非常」, 「太」 trước tính từ trong câu so sánh có dùng 「比」.",
+      "examples": [
+        {
+          "chinese": "数学比历史难多了。",
+          "pinyin": "shù xué bǐ lì shǐ nán duō le",
+          "meaningVi": "Môn Toán khó hơn môn Lịch sử nhiều."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -152,7 +202,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "lịch sử; quá khứ",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

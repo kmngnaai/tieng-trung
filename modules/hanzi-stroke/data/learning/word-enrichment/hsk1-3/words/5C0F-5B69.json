@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "đứa trẻ",
+      "meaningShortVi": "trẻ em",
       "meaningFullVi": "đứa trẻ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "đứa trẻ",
+  "meaningShortVi": "trẻ em",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -51,7 +51,8 @@
         "meaningVi": "trẻ con",
         "meaningFullVi": "trẻ con; đứa trẻ",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 2",
+        "hskLevel": 2,
+        "source": "hsk_2.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -64,7 +65,9 @@
         "target": "小孩",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "好小孩",
@@ -74,10 +77,23 @@
         "target": "小孩",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "孩子",
+        "pinyin": "hái zi",
+        "meaningVi": "trẻ em",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: trẻ em",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -103,10 +119,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:小孩",
       "title": "Cách dùng 小孩",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "小孩 nghĩa là đứa trẻ, em bé. Hán-Việt: tiểu (nhỏ) + hài (trẻ).",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -139,6 +158,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "đứa trẻ",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

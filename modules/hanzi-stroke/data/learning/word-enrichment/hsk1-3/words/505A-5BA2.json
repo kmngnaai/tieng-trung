@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Làm khách",
+      "meaningShortVi": "làm khách",
       "meaningFullVi": "Làm khách, đến chơi",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Làm khách",
+  "meaningShortVi": "làm khách",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -55,7 +55,20 @@
         "target": "做客",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "做客",
+            "chinese": "我们去朋友家做客。",
+            "pinyin": "Wǒmen qù péngyǒu jiā zuòkè.",
+            "meaningVi": "Chúng tôi đến nhà bạn làm khách.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "做客期间",
@@ -65,7 +78,9 @@
         "target": "做客",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "欢迎做客",
@@ -75,10 +90,13 @@
         "target": "做客",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -110,14 +128,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "做客",
+      "chinese": "你们有时间的话，就来我家做客。",
+      "pinyin": "nǐ men yǒu shí jiān de huà jiù lái wǒ jiā zuò kè",
+      "meaningVi": "Nếu các bạn có thời gian thì hãy đến nhà tôi chơi nhé.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_42",
+      "grammarTopic": "Câu điều kiện giả thiết với ...的話，就 ...",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:做客",
       "title": "Cách dùng 做客",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "做客 chỉ việc đến nhà người khác làm khách, khác với 在家(ở nhà) hoặc 请客(mời khách). Trong văn nói, có thể dùng 来我家玩(đến nhà tôi chơi) thay cho 来我家做客.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_42",
+      "title": "Câu điều kiện giả thiết với ...的話，就 ...",
+      "syntax": "(如果) + [Giả thiết] + 的話，(chủ ngữ) + 就 + [Kết quả]",
+      "explanationVi": "Cấu trúc này dùng để diễn tả một điều kiện giả định và kết quả tất yếu xảy ra. Trong đó, vế đầu là điều kiện giả thiết, vế sau dùng 「就」 để chỉ kết quả đi kèm.",
+      "tipsVi": "Bạn có thể lược bỏ 「如果」 trong văn nói, nhưng nên giữ lại 「的話」 ở cuối vế giả thiết để câu nghe tự nhiên hơn.",
+      "attentionsVi": "Trong cấu trúc này, vế sau bắt buộc phải có 「就」 để dẫn ra kết quả, không được bỏ quên.",
+      "examples": [
+        {
+          "chinese": "你们有时间的话，就来我家做客。",
+          "pinyin": "nǐ men yǒu shí jiān de huà jiù lái wǒ jiā zuò kè",
+          "meaningVi": "Nếu các bạn có thời gian thì hãy đến nhà tôi chơi nhé."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -171,7 +223,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "Làm khách, đến chơi",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

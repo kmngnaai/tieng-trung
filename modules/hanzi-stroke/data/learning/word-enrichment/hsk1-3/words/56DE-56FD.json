@@ -54,7 +54,9 @@
         "target": "回国",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "回国留学",
@@ -64,10 +66,13 @@
         "target": "回国",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -89,14 +94,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "回国",
+      "chinese": "我估计他这几天没来上课，是回国了。",
+      "pinyin": "wǒ gū jì tā zhè jǐ tiān méi lái shàng kè shì huí guó le",
+      "meaningVi": "Tôi đoán mấy ngày nay anh ấy không đến lớp là vì đã về nước rồi.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_27",
+      "grammarTopic": "Cách dùng từ 估计",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "回国",
+      "chinese": "你有一年没回国了吧？",
+      "pinyin": "nǐ yǒu yī nián méi huí guó le ba",
+      "meaningVi": "Bạn đã một năm rồi không về nước phải không?",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_45",
+      "grammarTopic": "Câu chữ 有 (Sở hữu và Tồn tại)",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:回国",
       "title": "Cách dùng 回国",
       "partOfSpeech": "verb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_27",
+      "title": "Cách dùng từ 估计",
+      "syntax": "S + 估计 + (câu/nội dung dự đoán)",
+      "explanationVi": "Từ 「估计」 là động từ dùng để diễn tả sự ước tính, dự đoán về một sự việc dựa trên những tình huống hoặc cơ sở thực tế cụ thể. Nó thường được dịch là 'ước chừng', 'phỏng đoán' hoặc 'đánh giá'.",
+      "tipsVi": "Bạn có thể dùng 「估计」 ở đầu câu để đưa ra nhận định cá nhân, ví dụ: 「估计今天会下雨」 (Tôi đoán là hôm nay trời sẽ mưa).",
+      "attentionsVi": "Vì 「估计」 là động từ, bạn không nên dùng nó để thay thế cho tính từ biểu đạt khả năng xảy ra trong các cấu trúc ngữ pháp yêu cầu tính từ.",
+      "examples": [
+        {
+          "chinese": "我估计他这几天没来上课，是回国了。",
+          "pinyin": "wǒ gū jì tā zhè jǐ tiān méi lái shàng kè shì huí guó le",
+          "meaningVi": "Tôi đoán mấy ngày nay anh ấy không đến lớp là vì đã về nước rồi."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_45",
+      "title": "Câu chữ 有 (Sở hữu và Tồn tại)",
+      "syntax": "S + 有 + O (Chủ ngữ + Có + Tân ngữ)",
+      "explanationVi": "Động từ 「有」 dùng để chỉ sự sở hữu (có cái gì đó) hoặc sự tồn tại (có sự xuất hiện của ai/cái gì). Trong câu phủ định, ta dùng 「没有」 thay cho 「不有」.",
+      "tipsVi": "Khi muốn nói 'không có', hãy luôn dùng 「没有」, không bao giờ nói 「不有」.",
+      "attentionsVi": "Đừng nhầm lẫn giữa 「有」 (sở hữu/tồn tại) và 「是」 (định danh/là).",
+      "examples": [
+        {
+          "chinese": "你有一年没回国了吧？",
+          "pinyin": "nǐ yǒu yī nián méi huí guó le ba",
+          "meaningVi": "Bạn đã một năm rồi không về nước phải không?"
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +200,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "về nước",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

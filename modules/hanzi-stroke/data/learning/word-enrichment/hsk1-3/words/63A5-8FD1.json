@@ -54,7 +54,9 @@
         "target": "接近",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "非常接近",
@@ -64,10 +66,13 @@
         "target": "接近",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -89,14 +94,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "接近",
+      "chinese": "他的成绩已经接近满分。",
+      "pinyin": "tā de chéng jì yǐ jīng jiē jìn mǎn fēn",
+      "meaningVi": "Thành tích của anh ấy đã gần đạt điểm tuyệt đối.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_78",
+      "grammarTopic": "Phân biệt 接近 và 靠近",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:接近",
       "title": "Cách dùng 接近",
       "partOfSpeech": "động từ",
       "usageNoteVi": "接近 là động từ chỉ việc lại gần hoặc tiếp cận. Là từ ghép Hán-Việt 'tiếp cận'. Có thể dùng cho không gian (lại gần) hoặc thời gian (sắp đến).",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_78",
+      "title": "Phân biệt 接近 và 靠近",
+      "syntax": "接近 (tiến gần mức độ/số lượng) vs. 靠近 (gần khoảng cách vật lý)",
+      "explanationVi": "「靠近」 dùng để chỉ vị trí, khoảng cách địa lý giữa người hoặc vật (ví dụ: lại gần một người). Ngược lại, 「接近」 mang nghĩa trừu tượng hơn, thường dùng để mô tả sự tiến gần về mức độ, trình độ, con số hoặc mối quan hệ giữa người với người.",
+      "tipsVi": "Khi muốn nói 'lại gần đây', hãy dùng 「靠近一点儿」 thay vì dùng 「接近」.",
+      "attentionsVi": "Đừng dùng 「接近」 cho khoảng cách vật lý vì sẽ gây khó hiểu; hãy ghi nhớ 「靠近」 là khoảng cách, 「接近」 là mức độ.",
+      "examples": [
+        {
+          "chinese": "他的成绩已经接近满分。",
+          "pinyin": "tā de chéng jì yǐ jīng jiē jìn mǎn fēn",
+          "meaningVi": "Thành tích của anh ấy đã gần đạt điểm tuyệt đối."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +169,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "tiếp cận, lại gần; gần bằng, sắp đến",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

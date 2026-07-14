@@ -52,7 +52,9 @@
         "target": "钥匙",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "那个钥匙",
@@ -62,10 +64,23 @@
         "target": "钥匙",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
+      }
+    ],
+    "relatedWords": [
+      {
+        "targetWord": "要是",
+        "pinyin": "yào shi",
+        "meaningVi": "nếu",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_2.json",
         "reviewStatus": "reviewed-local"
       }
     ],
-    "relatedWords": []
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -91,10 +106,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:钥匙",
       "title": "Cách dùng 钥匙",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -112,7 +130,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 1,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "chìa khóa",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

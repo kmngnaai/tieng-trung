@@ -47,7 +47,18 @@
     ]
   },
   "vocabulary": {
-    "compounds": [],
+    "compounds": [
+      {
+        "word": "西红柿炒鸡蛋",
+        "pinyin": "xī hóng shì chǎo jī dàn",
+        "meaningVi": "cà chua xào trứng",
+        "meaningFullVi": "cà chua xào trứng",
+        "relationType": "contains-exact-target",
+        "hskLevel": 5,
+        "source": "hsk_5.json",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
     "collocations": [
       {
         "text": "炒鸡蛋",
@@ -57,7 +68,20 @@
         "target": "鸡蛋",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "鸡蛋",
+            "chinese": "炒鸡蛋",
+            "pinyin": "chǎo jīdàn",
+            "meaningVi": "trứng chiên",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "煮鸡蛋",
@@ -67,7 +91,20 @@
         "target": "鸡蛋",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "鸡蛋",
+            "chinese": "煮鸡蛋",
+            "pinyin": "zhǔ jīdàn",
+            "meaningVi": "trứng luộc",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "吃鸡蛋",
@@ -77,10 +114,24 @@
         "target": "鸡蛋",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "鸡蛋",
+            "chinese": "我要吃鸡蛋",
+            "pinyin": "Wǒ yào chī jīdàn",
+            "meaningVi": "Tôi muốn ăn trứng",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -126,10 +177,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:鸡蛋",
       "title": "Cách dùng 鸡蛋",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Trứng gà. Đếm 用 个 (yī gè jīdàn). 炒 (chǎo) là chiên, 煮 (zhǔ) là luộc.",
       "explanationVi": "Ghép nghĩa: 鸡 (gà) + 蛋 (trứng) → trứng gà.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -203,7 +257,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 3,
+      "sentences": 4,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "trứng gà",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

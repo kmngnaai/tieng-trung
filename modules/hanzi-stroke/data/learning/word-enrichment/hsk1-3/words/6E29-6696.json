@@ -55,7 +55,9 @@
         "target": "温暖",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "温暖的阳光",
@@ -65,10 +67,23 @@
         "target": "温暖",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "暖和",
+        "pinyin": "nuǎn huo",
+        "meaningVi": "ấm áp",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: ấm áp",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -80,14 +95,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "温暖",
+      "chinese": "她的笑容像阳光般温暖。",
+      "pinyin": "tā de xiào róng xiàng yáng guāng bān wēn nuǎn",
+      "meaningVi": "Nụ cười của cô ấy ấm áp như ánh mặt trời.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_34",
+      "grammarTopic": "Cách dùng trợ từ 般",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:温暖",
       "title": "Cách dùng 温暖",
       "partOfSpeech": "tính từ",
       "usageNoteVi": "Wēn nuǎn vừa miêu tả nhiệt độ ấm vừa diễn tả tình cảm. Trang trọng hơn略 so với 暖和.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_34",
+      "title": "Cách dùng trợ từ 般",
+      "syntax": "Danh từ/Đại từ + 般 (bān)",
+      "explanationVi": "Trợ từ 「般」 được đặt sau danh từ hoặc đại từ để tạo ra sự so sánh, mang nghĩa là \"giống như\" hoặc \"tựa như\". Nó giúp câu văn trở nên sinh động, uyển chuyển và mang sắc thái văn chương hơn so với dùng 「像」.",
+      "tipsVi": "Bạn có thể hiểu 「般」 tương đương với 「一样」 hoặc 「似的」, thường dùng trong miêu tả văn học để ví von sự vật này với sự vật kia.",
+      "attentionsVi": "Cần chú ý 「般」 thường được dùng trong văn viết hoặc các câu miêu tả trang trọng, không nên lạm dụng trong văn nói suồng sã hàng ngày.",
+      "examples": [
+        {
+          "chinese": "她的笑容像阳光般温暖。",
+          "pinyin": "tā de xiào róng xiàng yáng guāng bān wēn nuǎn",
+          "meaningVi": "Nụ cười của cô ấy ấm áp như ánh mặt trời."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -126,7 +175,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "ấm áp; ấm áp, tình cảm; nhân hậu",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

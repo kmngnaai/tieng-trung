@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "tặng",
+      "meaningShortVi": "gửi",
       "meaningFullVi": "tặng, đưa cho",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "tặng",
+  "meaningShortVi": "gửi",
   "wordType": "verb",
   "wordTypes": [
     "verb"
@@ -54,7 +54,9 @@
         "target": "送给",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "送给别人",
@@ -64,10 +66,23 @@
         "target": "送给",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "发送",
+        "pinyin": "fā sòng",
+        "meaningVi": "gửi",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: gửi",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -89,14 +104,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "送给",
+      "chinese": "王老师喜欢花，就送给她花吧。",
+      "pinyin": "wáng lǎo shī xǐ huān huā jiù sòng gěi tā huā ba",
+      "meaningVi": "Thầy Vương thích hoa, vậy tặng hoa cho thầy ấy đi.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_37",
+      "grammarTopic": "Câu có hai tân ngữ",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:送给",
       "title": "Cách dùng 送给",
       "partOfSpeech": "verb",
       "usageNoteVi": "送给 = 送 + 给，强调“赠送给某人”的意思。",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_37",
+      "title": "Câu có hai tân ngữ",
+      "syntax": "Chủ ngữ + Động từ + Tân ngữ gián tiếp + Tân ngữ trực tiếp",
+      "explanationVi": "Trong tiếng Trung, một số động từ đặc biệt như 「送」(tặng), 「给」(đưa), 「教」(dạy) có thể kéo theo hai tân ngữ cùng lúc. Tân ngữ đầu tiên thường chỉ người (người nhận), tân ngữ thứ hai thường chỉ vật (vật được nhận). Cấu trúc này giúp câu diễn đạt đầy đủ thông tin về cả người và vật trong cùng một hành động.",
+      "tipsVi": "Hãy ghi nhớ các động từ hay gặp trong cấu trúc này như 「送」(tặng), 「借」(cho mượn), 「告诉」(nói với ai đó), 「教」(dạy ai đó).",
+      "attentionsVi": "Không phải động từ nào cũng có thể đi với hai tân ngữ, chỉ những động từ mang nghĩa trao đổi hoặc truyền đạt thông tin mới sử dụng được cấu trúc này.",
+      "examples": [
+        {
+          "chinese": "王老师喜欢花，就送给她花吧。",
+          "pinyin": "wáng lǎo shī xǐ huān huā jiù sòng gěi tā huā ba",
+          "meaningVi": "Thầy Vương thích hoa, vậy tặng hoa cho thầy ấy đi."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +179,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "tặng, đưa cho",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

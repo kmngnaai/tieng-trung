@@ -55,7 +55,20 @@
         "target": "门口",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "门口",
+            "chinese": "在门口等你",
+            "pinyin": "zài ménkǒu děng nǐ",
+            "meaningVi": "đợi bạn ở cửa",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "门口",
@@ -65,10 +78,54 @@
         "target": "门口",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "门口",
+            "chinese": "在门口等你",
+            "pinyin": "zài ménkǒu děng nǐ",
+            "meaningVi": "đợi bạn ở cửa",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "门口",
+            "chinese": "门口有人",
+            "pinyin": "Ménkǒu yǒu rén",
+            "meaningVi": "Có người ở cửa",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "门口",
+            "chinese": "从门口进来",
+            "pinyin": "cóng ménkǒu jìnlái",
+            "meaningVi": "vào từ cửa",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 3
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "入口",
+        "pinyin": "rù kǒu",
+        "meaningVi": "lối vào",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: lối vào",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -114,10 +171,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:门口",
       "title": "Cách dùng 门口",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Lối vào/cửa. Đợi ở cửa = 在门口等你. Hán-Việt: 'môn khẩu'.",
       "explanationVi": "Ghép nghĩa: 门 (cửa) + 口 (miệng/lối) -> lối vào cửa.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -171,7 +231,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "lối vào, cửa",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

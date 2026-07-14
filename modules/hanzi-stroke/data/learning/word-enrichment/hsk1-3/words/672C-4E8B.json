@@ -54,7 +54,20 @@
         "target": "本事",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "本事",
+            "chinese": "没有真本事,很难找到好工作。",
+            "pinyin": "méi yǒu zhēn běn shì, hěn nán zhǎo dào hǎo gōng zuò。",
+            "meaningVi": "Không có năng lực thật thì rất khó tìm được việc tốt.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "有大本事",
@@ -64,10 +77,41 @@
         "target": "本事",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "能力",
+        "pinyin": "néng lì",
+        "meaningVi": "khả năng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: khả năng",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "才能",
+        "pinyin": "cái néng",
+        "meaningVi": "khả năng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: khả năng",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "本领",
+        "pinyin": "běn lǐng",
+        "meaningVi": "khả năng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: khả năng",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -93,10 +137,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:本事",
       "title": "Cách dùng 本事",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "Běn shì dùng cho năng lực, tài năng thực tế của người nào đó. Trong văn nói có thể mang sắc thái 'thủ đoạn'.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +177,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 3
+    }
+  },
+  "meaningFullVi": "khả năng, tài năng, bản lĩnh; thủ đoạn",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

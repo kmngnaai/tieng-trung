@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "phát đạt",
+      "meaningShortVi": "phát triển",
       "meaningFullVi": "phát đạt, thịnh vượng, tiến bộ",
       "partOfSpeech": "tính từ / động từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "phát đạt",
+  "meaningShortVi": "phát triển",
   "wordType": "tính từ / động từ",
   "wordTypes": [
     "tính từ / động từ"
@@ -55,7 +55,20 @@
         "target": "发达",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "发达",
+            "chinese": "这是一个发达国家。",
+            "pinyin": "Zhè shì yīgè fādá guójiā.",
+            "meaningVi": "Đây là một nước phát triển.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "高度发达",
@@ -65,10 +78,50 @@
         "target": "发达",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "发展",
+        "pinyin": "fā zhǎn",
+        "meaningVi": "phát triển",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: phát triển",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "开展",
+        "pinyin": "kāi zhǎn",
+        "meaningVi": "phát triển",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: phát triển",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "开发",
+        "pinyin": "kāi fā",
+        "meaningVi": "phát triển",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: phát triển",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "生长",
+        "pinyin": "shēng zhǎng",
+        "meaningVi": "phát triển",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: phát triển",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -94,10 +147,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:发达",
       "title": "Cách dùng 发达",
       "partOfSpeech": "tính từ / động từ",
       "usageNoteVi": "发达 thường là tính từ mô tả mức độ phát triển cao của một quốc gia, vùng, ngành. Khác với 发展 (động từ), phát đạt chỉ trạng thái đã phát triển mạnh mẽ.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -136,7 +192,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 4
+    }
+  },
+  "meaningFullVi": "phát đạt, thịnh vượng, tiến bộ",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -55,7 +55,9 @@
         "target": "只能",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "只能走",
@@ -65,10 +67,25 @@
         "target": "只能",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "只能",
+            "chinese": "电梯坏了，看来咱们只能走下去了。",
+            "pinyin": "diàn tī huài le kàn lái zán men zhǐ néng zǒu xià qù le",
+            "meaningVi": "Thang máy hỏng rồi, xem ra chúng ta chỉ có thể đi bộ xuống thôi.",
+            "source": "new_hsk_3.json",
+            "grammarId": "hsk3_new_35",
+            "grammarTopic": "Cụm từ chỉ nhận định \"看来\"",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -90,14 +107,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "只能",
+      "chinese": "电梯坏了，看来咱们只能走下去了。",
+      "pinyin": "diàn tī huài le kàn lái zán men zhǐ néng zǒu xià qù le",
+      "meaningVi": "Thang máy hỏng rồi, xem ra chúng ta chỉ có thể đi bộ xuống thôi.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_35",
+      "grammarTopic": "Cụm từ chỉ nhận định \"看来\"",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:只能",
       "title": "Cách dùng 只能",
       "partOfSpeech": "verb",
       "usageNoteVi": "Giới hạn lựa chọn, chỉ làm được một việc.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_35",
+      "title": "Cụm từ chỉ nhận định \"看来\"",
+      "syntax": "看来 + [Câu/Mệnh đề]",
+      "explanationVi": "Cụm từ 「看来」 thường được đặt ở đầu câu để đưa ra nhận định hoặc suy đoán dựa trên tình hình thực tế. Trong tiếng Việt, nó tương ứng với nghĩa \"xem ra\" hoặc \"có vẻ như\".",
+      "tipsVi": "Bạn có thể dùng 「看来」 khi muốn đưa ra ý kiến cá nhân sau khi quan sát một sự việc nào đó.",
+      "attentionsVi": "「看来」 thường diễn đạt suy đoán chủ quan, không nên dùng khi bạn muốn khẳng định một sự thật hiển nhiên.",
+      "examples": [
+        {
+          "chinese": "电梯坏了，看来咱们只能走下去了。",
+          "pinyin": "diàn tī huài le kàn lái zán men zhǐ néng zǒu xià qù le",
+          "meaningVi": "Thang máy hỏng rồi, xem ra chúng ta chỉ có thể đi bộ xuống thôi."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -151,7 +202,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "chỉ có thể",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

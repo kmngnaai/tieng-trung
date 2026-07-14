@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "khám bệnh",
+      "meaningShortVi": "đi khám bác sĩ",
       "meaningFullVi": "khám bệnh, đi khám bác sĩ (cho bệnh nhân)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "khám bệnh",
+  "meaningShortVi": "đi khám bác sĩ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -54,7 +54,20 @@
         "target": "看病",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "看病",
+            "chinese": "我去看病",
+            "pinyin": "Wǒ qù kànbìng",
+            "meaningVi": "Tôi đi khám bác sĩ",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "医生看病",
@@ -64,7 +77,9 @@
         "target": "看病",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "看病挂号",
@@ -74,10 +89,13 @@
         "target": "看病",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -133,10 +151,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:看病",
       "title": "Cách dùng 看病",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "'看病' có thể là bệnh nhân đi khám bác sĩ hoặc bác sĩ khám bệnh tùy ngữ cảnh. '去看病' thường là bệnh nhân. '医生看病' bác sĩ khám.",
       "explanationVi": "Ghép nghĩa: 看 (xem, khám) + 病 (bệnh). Khám bệnh hoặc đi khám bác sĩ. Lưu ý: đối với bác sĩ thì là 'khám bệnh', đối với bệnh nhân thì là 'đi khám'.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -185,7 +206,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 5,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "khám bệnh, đi khám bác sĩ (cho bệnh nhân)",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

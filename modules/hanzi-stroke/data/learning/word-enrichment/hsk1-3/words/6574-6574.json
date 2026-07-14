@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "trọn vẹn",
+      "meaningShortVi": "toàn bộ",
       "meaningFullVi": "trọn vẹn, nguyên; trọn, cả (thời gian)",
       "partOfSpeech": "phó từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "trọn vẹn",
+  "meaningShortVi": "toàn bộ",
   "wordType": "phó từ",
   "wordTypes": [
     "phó từ"
@@ -55,7 +55,9 @@
         "target": "整整",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "整整一年",
@@ -65,10 +67,41 @@
         "target": "整整",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "全部",
+        "pinyin": "quán bù",
+        "meaningVi": "toàn bộ",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: toàn bộ",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "全体",
+        "pinyin": "quán tǐ",
+        "meaningVi": "toàn bộ",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: toàn bộ",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "整个",
+        "pinyin": "zhěng gè",
+        "meaningVi": "toàn bộ",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: toàn bộ",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -94,10 +127,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:整整",
       "title": "Cách dùng 整整",
       "partOfSpeech": "phó từ",
       "usageNoteVi": "Zhěng zhěng là phó từ nhấn mạnh tính trọn vẹn của thời gian hoặc số lượng. Phổ biến trong giao tiếp hàng ngày.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -136,7 +172,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 3
+    }
+  },
+  "meaningFullVi": "trọn vẹn, nguyên; trọn, cả (thời gian)",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

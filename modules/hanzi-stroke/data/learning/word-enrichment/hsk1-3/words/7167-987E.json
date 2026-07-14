@@ -56,7 +56,9 @@
         "target": "照顾",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "照顾老人",
@@ -66,7 +68,9 @@
         "target": "照顾",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "互相照顾",
@@ -76,10 +80,13 @@
         "target": "照顾",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -101,14 +108,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "照顾",
+      "chinese": "她这种人，连自己的父母都不照顾，更别说别人了。",
+      "pinyin": "tā zhè zhǒng rén lián zì jǐ de fù mǔ dōu bù zhào gù gèng bié shuō bié rén le",
+      "meaningVi": "Loại người như cô ấy, ngay cả bố mẹ mình cũng không chăm sóc, càng đừng nói đến người khác.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_40",
+      "grammarTopic": "Cấu trúc nhấn mạnh 连...也/都",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:照顾",
       "title": "Cách dùng 照顾",
       "partOfSpeech": "verb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_40",
+      "title": "Cấu trúc nhấn mạnh 连...也/都",
+      "syntax": "连 + [Đối tượng/Danh từ] + 也/都 + [Động từ/Tính từ]",
+      "explanationVi": "Cấu trúc này dùng để nhấn mạnh một ví dụ cực đoan nhằm khẳng định tính bao quát của vấn đề. Nó mang nghĩa là 「ngay cả... cũng...」 hoặc 「đến cả... cũng...」, giúp người nói thể hiện sự ngạc nhiên hoặc thái độ quyết liệt.",
+      "tipsVi": "Bạn có thể sử dụng 「都」 thay cho 「也」 để nhấn mạnh hơn mức độ của hành động hoặc trạng thái.",
+      "attentionsVi": "Nếu câu có phủ định (không/chưa), bạn phải đặt 「不」 hoặc 「没」 ngay trước động từ, tức là sau 「都/也」.",
+      "examples": [
+        {
+          "chinese": "她这种人，连自己的父母都不照顾，更别说别人了。",
+          "pinyin": "tā zhè zhǒng rén lián zì jǐ de fù mǔ dōu bù zhào gù gèng bié shuō bié rén le",
+          "meaningVi": "Loại người như cô ấy, ngay cả bố mẹ mình cũng không chăm sóc, càng đừng nói đến người khác."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -177,7 +218,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "chăm sóc",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

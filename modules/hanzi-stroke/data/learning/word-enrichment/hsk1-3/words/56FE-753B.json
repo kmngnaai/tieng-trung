@@ -46,15 +46,61 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "画儿",
+        "pinyin": "huàr ",
+        "meaningVi": "bức tranh",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bức tranh",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
-  "sentences": [],
+  "sentences": [
+    {
+      "target": "图画",
+      "chinese": "这么美丽的图画竟然是用绳子做的！",
+      "pinyin": "zhè me měi lì de tú huà jìng rán shì yòng shéng zi zuò de",
+      "meaningVi": "Bức tranh đẹp như vậy không ngờ lại được làm bằng dây!",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_25",
+      "grammarTopic": "Cách dùng phó từ 竟然",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "grammarLinks": [
     {
+      "grammarId": "usage:图画",
       "title": "Cách dùng 图画",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "Tranh vẽ minh họa, thường cho trẻ em.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_25",
+      "title": "Cách dùng phó từ 竟然",
+      "syntax": "Chủ ngữ + 竟然 + Động từ/Tính từ",
+      "explanationVi": "Phó từ 「竟然」 được dùng trước động từ hoặc tính từ để biểu thị sự ngạc nhiên, bất ngờ trước một sự việc nằm ngoài dự đoán của người nói. Nó tương đương với nghĩa tiếng Việt là \"không ngờ\" hoặc \"vậy mà\".",
+      "tipsVi": "Bạn có thể dùng 「竟然」 cả trong câu khẳng định và câu hỏi tu từ để nhấn mạnh sự ngạc nhiên.",
+      "attentionsVi": "Không nên nhầm lẫn 「竟然」 với 「居然」 vì chúng có cách dùng tương đương nhau, nhưng 「竟然」 thường mang sắc thái nhấn mạnh hơn về cảm xúc tiêu cực hoặc sự việc trái với mong đợi.",
+      "examples": [
+        {
+          "chinese": "这么美丽的图画竟然是用绳子做的！",
+          "pinyin": "zhè me měi lì de tú huà jìng rán shì yòng shéng zi zuò de",
+          "meaningVi": "Bức tranh đẹp như vậy không ngờ lại được làm bằng dây!"
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -88,9 +134,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có câu mẫu đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 1,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "bức tranh, hình vẽ",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

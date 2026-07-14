@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "sở thích",
+      "meaningShortVi": "thói quen",
       "meaningFullVi": "sở thích, thói quen (thường mang tính ham thích mạnh)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "sở thích",
+  "meaningShortVi": "thói quen",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -52,7 +52,20 @@
         "target": "嗜好",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "嗜好",
+            "chinese": "不良嗜好",
+            "pinyin": "Bùliáng shìhào",
+            "meaningVi": "Thói quen xấu (hút thuốc, rượu chè...)",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "个人嗜好",
@@ -62,7 +75,20 @@
         "target": "嗜好",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "嗜好",
+            "chinese": "个人嗜好",
+            "pinyin": "Gèrén shìhào",
+            "meaningVi": "Sở thích cá nhân",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "特殊嗜好",
@@ -72,10 +98,23 @@
         "target": "嗜好",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "习惯",
+        "pinyin": "xí guàn",
+        "meaningVi": "thói quen",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: thói quen",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -131,10 +170,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:嗜好",
       "title": "Cách dùng 嗜好",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Thường dùng cho sở thích/thói quen (có thể xấu hoặc tốt), thường mang tính ham thích mạnh.",
       "explanationVi": "Ghép nghĩa: 嗜 (ham thích, nghiện) + 好 (thích, tốt) → ham thích, sở thích mạnh.",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -152,7 +194,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 5,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "sở thích, thói quen (thường mang tính ham thích mạnh)",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -46,7 +46,8 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -98,14 +99,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "请坐",
+      "chinese": "请坐。",
+      "pinyin": "qǐng zuò",
+      "meaningVi": "Mời ngồi.",
+      "source": "hsk_1.json",
+      "grammarId": "hsk1_29",
+      "grammarTopic": "Cách dùng 请 để yêu cầu lịch sự",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:请坐",
       "title": "Cách dùng 请坐",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Cụm từ lịch sự khi mời khách ngồi. Thường đi sau 请进 (mời vào) và trước các lời mời khác như 请喝茶 (mời uống trà). Trong giao tiếp, nói 请坐 khi chỉ vào ghế hoặc sau khi khách đã vào. Khác với 坐下 (ngồi xuống) là mệnh lệnh, 请坐 thêm ý lịch sự.",
       "explanationVi": "Ghép nghĩa: 请 (mời) + 坐 (ngồi) → mời ai đó ngồi xuống. Cụm động từ lịch sự dùng khi tiếp khách.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk1_29",
+      "title": "Cách dùng 请 để yêu cầu lịch sự",
+      "syntax": "请 (qǐng) + Động từ + (Tân ngữ)",
+      "explanationVi": "Từ 「请」 dùng để mời, yêu cầu hoặc đưa ra đề nghị một cách lịch sự. Bạn chỉ cần đặt 「请」 ở ngay trước động từ để thể hiện thái độ tôn trọng với người nghe.",
+      "tipsVi": "Bạn có thể thêm từ 「吧」 ở cuối câu để lời mời hoặc yêu cầu nghe nhẹ nhàng, gần gũi hơn, ví dụ: 「请坐吧！」 (Mời bạn ngồi đi).",
+      "attentionsVi": "Không nên dùng 「请」 khi ra lệnh cho cấp dưới hoặc người thân trong gia đình một cách áp đặt vì từ này mang sắc thái trang trọng, lịch sự.",
+      "examples": [
+        {
+          "chinese": "请坐。",
+          "pinyin": "qǐng zuò",
+          "meaningVi": "Mời ngồi."
+        }
+      ],
+      "source": "hsk_1.json",
+      "curriculum": "hsk",
+      "hskLevel": 1,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -139,8 +174,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 6,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "mời ngồi",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

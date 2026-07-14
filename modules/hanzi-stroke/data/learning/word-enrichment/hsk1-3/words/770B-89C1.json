@@ -57,10 +57,13 @@
         "target": "看见",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -92,14 +95,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "看见",
+      "chinese": "我的书包你看见了吗？",
+      "pinyin": "wǒ de shū bāo nǐ kàn jiàn le ma",
+      "meaningVi": "Cái cặp sách của tôi bạn có nhìn thấy không?",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_28",
+      "grammarTopic": "Câu vị ngữ cụm chủ-vị",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:看见",
       "title": "Cách dùng 看见",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "'看见' là thấy được, trông thấy. Phủ định là '看不见' (không thấy, không nhìn thấy). '看得见' là có thể thấy được.",
       "explanationVi": "Ghép nghĩa: 看 (nhìn, xem) + 见 (thấy, gặp). Nhìn và thấy được một vật gì đó.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_28",
+      "title": "Câu vị ngữ cụm chủ-vị",
+      "syntax": "Chủ ngữ lớn + (Chủ ngữ nhỏ + Vị ngữ nhỏ)",
+      "explanationVi": "Trong loại câu này, toàn bộ một cụm chủ-vị đóng vai trò làm vị ngữ cho chủ ngữ lớn. Chủ ngữ nhỏ thường là một bộ phận hoặc đối tượng liên quan trực tiếp đến chủ ngữ lớn. Cấu trúc này giúp miêu tả đặc điểm hoặc trạng thái chi tiết của chủ ngữ lớn.",
+      "tipsVi": "Hãy xem cụm chủ-vị phía sau như một lời giải thích hoặc miêu tả kỹ hơn cho chủ ngữ đứng đầu câu.",
+      "attentionsVi": "Cần phân biệt rõ đâu là chủ ngữ lớn và đâu là chủ ngữ nhỏ để tránh dịch sai ý nghĩa của câu.",
+      "examples": [
+        {
+          "chinese": "我的书包你看见了吗？",
+          "pinyin": "wǒ de shū bāo nǐ kàn jiàn le ma",
+          "meaningVi": "Cái cặp sách của tôi bạn có nhìn thấy không?"
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -173,7 +210,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "thấy, trông thấy",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

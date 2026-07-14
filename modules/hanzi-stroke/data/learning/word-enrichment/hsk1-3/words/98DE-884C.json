@@ -44,7 +44,18 @@
     ]
   },
   "vocabulary": {
-    "compounds": [],
+    "compounds": [
+      {
+        "word": "飞行员",
+        "pinyin": "fēi xíng yuán",
+        "meaningVi": "phi công",
+        "meaningFullVi": "phi công",
+        "relationType": "contains-exact-target",
+        "hskLevel": 6,
+        "source": "hsk_6.json",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
     "collocations": [
       {
         "text": "飞行时间",
@@ -54,7 +65,9 @@
         "target": "飞行",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "安全飞行",
@@ -64,10 +77,13 @@
         "target": "飞行",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -93,10 +109,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:飞行",
       "title": "Cách dùng 飞行",
       "partOfSpeech": "danh từ / động từ",
       "usageNoteVi": "飞行 có thể là động từ (bay, phi hành) hoặc danh từ (chuyến bay). Là từ ghép Hán-Việt 'phi hành'. Trong ngữ cảnh hàng không, chỉ hành động bay của máy bay.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +149,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "bay, phi hành; chuyến bay",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

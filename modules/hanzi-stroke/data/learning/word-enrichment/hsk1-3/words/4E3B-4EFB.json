@@ -51,7 +51,8 @@
         "meaningVi": "giáo viên chủ nhiệm",
         "meaningFullVi": "giáo viên chủ nhiệm",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 2",
+        "hskLevel": 2,
+        "source": "hsk_2.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -64,7 +65,20 @@
         "target": "主任",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "主任",
+            "chinese": "办公室主任正在开会。",
+            "pinyin": "Bàngōngshì zhǔrèn zhèngzài kāihuì.",
+            "meaningVi": "Trưởng ban văn phòng đang họp.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "系主任",
@@ -74,10 +88,13 @@
         "target": "主任",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -103,10 +120,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:主任",
       "title": "Cách dùng 主任",
       "partOfSpeech": "danh từ chức vụ",
       "usageNoteVi": "主任 (trưởng ban) chỉ người đứng đầu một phòng, ban, hoặc đơn vị cấp cơ sở trong tổ chức.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -139,6 +159,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "trưởng ban, người phụ trách",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Vội vàng",
+      "meaningShortVi": "vội vàng",
       "meaningFullVi": "Vội vàng, hối hả, gấp gáp",
       "partOfSpeech": "tính từ / trạng từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Vội vàng",
+  "meaningShortVi": "vội vàng",
   "wordType": "tính từ / trạng từ",
   "wordTypes": [
     "tính từ / trạng từ"
@@ -52,7 +52,9 @@
         "target": "急忙",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "急忙离开",
@@ -62,10 +64,32 @@
         "target": "急忙",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "连忙",
+        "pinyin": "lián máng",
+        "meaningVi": "vội vàng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: vội vàng",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "赶到",
+        "pinyin": "gǎn dào",
+        "meaningVi": "vội vàng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: vội vàng",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -101,10 +125,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:急忙",
       "title": "Cách dùng 急忙",
       "partOfSpeech": "tính từ / trạng từ",
       "usageNoteVi": "Thường bổ nghĩa cho động từ, mô tả hành động được thực hiện một cách vội vàng vì lý do nào đó (thiếu thời gian, tình huống khẩn cấp).",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -122,7 +149,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "Vội vàng, hối hả, gấp gáp",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

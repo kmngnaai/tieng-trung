@@ -51,7 +51,8 @@
         "meaningVi": "phim truyền hình",
         "meaningFullVi": "phim truyền hình, phim bộ; phim hoặc kịch được phát sóng thành nhiều tập liên tiếp",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 3",
+        "hskLevel": 3,
+        "source": "hsk_3.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -64,7 +65,9 @@
         "target": "连续",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "连续几年",
@@ -74,10 +77,23 @@
         "target": "连续",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "不断",
+        "pinyin": "bù duàn",
+        "meaningVi": "liên tục",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: liên tục",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -103,10 +119,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:连续",
       "title": "Cách dùng 连续",
       "partOfSpeech": "tính từ / động từ",
       "usageNoteVi": "Nhấn mạnh tính liên tục, không bị gián đoạn. Có thể là tính từ hoặc động từ.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -139,6 +158,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "liên tục",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

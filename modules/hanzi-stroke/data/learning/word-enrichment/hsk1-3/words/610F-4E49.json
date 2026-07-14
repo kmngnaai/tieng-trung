@@ -51,7 +51,8 @@
         "meaningVi": "Có ý nghĩa",
         "meaningFullVi": "Có ý nghĩa",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 3",
+        "hskLevel": 3,
+        "source": "hsk_3.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -64,7 +65,20 @@
         "target": "意义",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "意义",
+            "chinese": "学习汉语对以后的工作很有意义。",
+            "pinyin": "Xuéxí Hànyǔ duì yǐhòu de gōngzuò hěn yǒu yìyì.",
+            "meaningVi": "Việc học tiếng Trung rất có ý nghĩa cho công việc sau này.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "意义深远",
@@ -74,10 +88,23 @@
         "target": "意义",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "意思",
+        "pinyin": "yì si",
+        "meaningVi": "ý nghĩa",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: ý nghĩa",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -103,10 +130,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:意义",
       "title": "Cách dùng 意义",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "Có thể dùng để đánh giá giá trị của một hành động, quyết định, hoặc sự vật. Trong văn cảnh học thuật, 用意 ngữ境, 用意 ngữ cảnh, 用意 ngữ cảnh, 用意 ngữ cảnh, 用意 ngữ cảnh. Từ liên quan: 价值 'giá trị', 作用 'vai trò'.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -139,6 +169,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "ý nghĩa, giá trị, tầm quan trọng; sự đáng để thực hiện hoặc lưu ý",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

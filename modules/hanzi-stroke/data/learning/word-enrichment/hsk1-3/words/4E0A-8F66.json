@@ -54,7 +54,9 @@
         "target": "上车",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "帮上车",
@@ -64,10 +66,13 @@
         "target": "上车",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -99,14 +104,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "上车",
+      "chinese": "别挤，大家排队上车。",
+      "pinyin": "bié jǐ dà jiā pái duì shàng chē",
+      "meaningVi": "Đừng chen lấn, mọi người xếp hàng lên xe.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_74",
+      "grammarTopic": "Phân biệt 挤 và 拥挤",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:上车",
       "title": "Cách dùng 上车",
       "partOfSpeech": "other",
       "usageNoteVi": "上车 là động từ ghép chỉ hành động bước lên phương tiện.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_74",
+      "title": "Phân biệt 挤 và 拥挤",
+      "syntax": "Action: 挤 (v.) | State: 拥挤 (adj.)",
+      "explanationVi": "「挤」 thường đóng vai trò là động từ, chỉ hành động chen lấn, ép hoặc bóp một vật gì đó. Trong khi đó, 「拥挤」 là tính từ dùng để miêu tả trạng thái đông đúc, chật chội của người hoặc phương tiện tại một địa điểm.",
+      "tipsVi": "Bạn có thể nhớ đơn giản: 「挤」 là hành động (động từ), còn 「拥挤」 là cảm giác về không gian (tính từ).",
+      "attentionsVi": "Đôi khi 「挤」 cũng có thể dùng như tính từ để chỉ sự chật chội, nhưng 「拥挤」 không bao giờ được dùng như động từ để chỉ hành động chen lấn.",
+      "examples": [
+        {
+          "chinese": "别挤，大家排队上车。",
+          "pinyin": "bié jǐ dà jiā pái duì shàng chē",
+          "meaningVi": "Đừng chen lấn, mọi người xếp hàng lên xe."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -140,7 +179,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "lên xe",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

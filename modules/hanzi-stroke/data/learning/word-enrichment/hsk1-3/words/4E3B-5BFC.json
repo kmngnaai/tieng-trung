@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Đóng vai trò chính",
+      "meaningShortVi": "dẫn dắt",
       "meaningFullVi": "Đóng vai trò chính, chi phối, định hướng; dẫn dắt",
       "partOfSpeech": "động từ / tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Đóng vai trò chính",
+  "meaningShortVi": "dẫn dắt",
   "wordType": "động từ / tính từ",
   "wordTypes": [
     "động từ / tính từ"
@@ -44,7 +44,37 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [
+      {
+        "targetWord": "指导",
+        "pinyin": "zhǐ dǎo",
+        "meaningVi": "hướng dẫn",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
+    "candidateRelations": [
+      {
+        "targetWord": "带动",
+        "pinyin": "dài dòng",
+        "meaningVi": "dẫn dắt",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: dẫn dắt",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "带领",
+        "pinyin": "dài lǐng",
+        "meaningVi": "dẫn dắt",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: dẫn dắt",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -80,10 +110,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:主导",
       "title": "Cách dùng 主导",
       "partOfSpeech": "động từ / tính từ",
       "usageNoteVi": "主 (chủ - người đứng đầu) + 导 (dẫn - dẫn dắt). 主导 mang nghĩa 'làm chủ và dẫn dắt', thường dùng cho vai trò, vị thế, hoặc yếu tố chi phối. Chỉ yếu tố quan trọng nhất chi phối hướng đi của một hệ thống.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -101,8 +134,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 1,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "Đóng vai trò chính, chi phối, định hướng; dẫn dắt",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

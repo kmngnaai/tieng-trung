@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Hát",
+      "meaningShortVi": "hát",
       "meaningFullVi": "Hát, biểu diễn âm nhạc",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Hát",
+  "meaningShortVi": "hát",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
@@ -48,10 +48,11 @@
       {
         "word": "演唱会",
         "pinyin": "yǎn chàng huì",
-        "meaningVi": "Buổi hòa nhạc",
+        "meaningVi": "buổi hòa nhạc",
         "meaningFullVi": "Buổi hòa nhạc, buổi biểu diễn nhạc",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 3",
+        "hskLevel": 3,
+        "source": "hsk_3.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -64,7 +65,9 @@
         "target": "演唱",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "现场演唱",
@@ -74,10 +77,23 @@
         "target": "演唱",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "唱歌",
+        "pinyin": "chàng gē",
+        "meaningVi": "hát",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: hát",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -103,10 +119,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:演唱",
       "title": "Cách dùng 演唱",
       "partOfSpeech": "động từ",
       "usageNoteVi": "演唱 mang hành động hát trước công chúng, thường trong các buổi biểu diễn. Nó trang trọng hơn 唱歌 (hát thông thường). Trong giao tiếp, người ta thường用 演唱 cho các hoạt động biểu diễn chuyên nghiệp, còn 唱歌 cho giao tiếp hàng ngày.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -139,6 +158,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "Hát, biểu diễn âm nhạc",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

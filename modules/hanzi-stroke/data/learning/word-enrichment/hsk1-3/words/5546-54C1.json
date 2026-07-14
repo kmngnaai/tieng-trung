@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "hàng hóa",
+      "meaningShortVi": "hàng hoá",
       "meaningFullVi": "hàng hóa, sản phẩm dùng để buôn bán",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "hàng hóa",
+  "meaningShortVi": "hàng hoá",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
@@ -54,7 +54,9 @@
         "target": "商品",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "商品质量",
@@ -64,10 +66,24 @@
         "target": "商品",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "商品",
+            "chinese": "这家商店的商品质量很好。",
+            "pinyin": "zhè jiā shāng diàn de shāng pǐn zhì liàng hěn hǎo。",
+            "meaningVi": "Hàng hóa của cửa hàng này có chất lượng rất tốt.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -83,10 +99,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:商品",
       "title": "Cách dùng 商品",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "商品 là danh từ chỉ hàng hóa, sản phẩm dùng để mua bán. Thường đi kèm với các từ như 价格 (giá cả), 质量 (chất lượng), 交换 (trao đổi).",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -120,7 +139,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 1,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "hàng hóa, sản phẩm dùng để buôn bán",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

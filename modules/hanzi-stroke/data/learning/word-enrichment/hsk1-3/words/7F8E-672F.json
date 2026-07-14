@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "mỹ thuật",
+      "meaningShortVi": "nghệ thuật",
       "meaningFullVi": "mỹ thuật; nghệ thuật tạo hình như hội họa, điêu khắc, kiến trúc, thiết kế",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "mỹ thuật",
+  "meaningShortVi": "nghệ thuật",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
@@ -52,7 +52,8 @@
         "meaningVi": "Bảo tàng mỹ thuật",
         "meaningFullVi": "Bảo tàng mỹ thuật, phòng trưng bày nghệ thuật",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 1",
+        "hskLevel": 1,
+        "source": "hsk_1.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -65,7 +66,20 @@
         "target": "美术",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "美术",
+            "chinese": "她在美术学院学习。",
+            "pinyin": "Tā zài měishù xuéyuàn xuéxí.",
+            "meaningVi": "Cô ấy học tại trường đại học mỹ thuật.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "美术老师",
@@ -75,10 +89,23 @@
         "target": "美术",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "艺术",
+        "pinyin": "yì shù",
+        "meaningVi": "nghệ thuật",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: nghệ thuật",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -104,10 +131,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:美术",
       "title": "Cách dùng 美术",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "Có thể bao gồm nhiều ngành như hội họa, điêu khắc, thiết kế đồ họa. Trong văn giáo dục, 美术 là một môn học trong trường. Đối với 艺术 'nghệ thuật', 美术 tập trung vào nghệ thuật thị giác. Từ liên quan: 艺术 'nghệ thuật', 设计 'thiết kế'.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -145,6 +175,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "mỹ thuật; nghệ thuật tạo hình như hội họa, điêu khắc, kiến trúc, thiết kế",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

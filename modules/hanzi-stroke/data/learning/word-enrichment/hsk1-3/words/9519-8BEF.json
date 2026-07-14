@@ -54,10 +54,13 @@
         "target": "错误",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -69,14 +72,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "错误",
+      "chinese": "请不要重复同样的错误。",
+      "pinyin": "qǐng bù yào zhòng fù tóng yàng de cuò wù",
+      "meaningVi": "Xin đừng lặp lại cùng một lỗi.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_93",
+      "grammarTopic": "Phân biệt 反复 và 重复",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:错误",
       "title": "Cách dùng 错误",
       "partOfSpeech": "danh từ / động từ",
       "usageNoteVi": "可作名词（错误本身）或动词（做错）。错误 vs. 失误：错误更重，失误多指不小心的疏忽。",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_93",
+      "title": "Phân biệt 反复 và 重复",
+      "syntax": "反复 (fǎnfù) / 重复 (chóngfù)",
+      "explanationVi": "「重复」 dùng khi làm lại một hành động y hệt hoặc nói lại một nội dung giống hệt lần trước. Trong khi đó, 「反复」 dùng để chỉ một hành động hoặc tình trạng xảy ra nhiều lần, kéo dài, hoặc thay đổi qua lại giữa các trạng thái khác nhau.",
+      "tipsVi": "Hãy nhớ rằng 「反复」 thường mang sắc thái tiêu cực hoặc trung tính khi chỉ một sự việc lặp lại gây phiền toái (như bệnh tình lặp đi lặp lại), còn 「重复」 đơn thuần mang nghĩa lặp lại về mặt kỹ thuật.",
+      "attentionsVi": "Không nên dùng 「反复」 để thay thế cho những việc lặp lại đơn giản mang tính chất sao chép hay tái lập (ví dụ: nhắc lại một câu nói, chép lại bài cũ).",
+      "examples": [
+        {
+          "chinese": "请不要重复同样的错误。",
+          "pinyin": "qǐng bù yào zhòng fù tóng yàng de cuò wù",
+          "meaningVi": "Xin đừng lặp lại cùng một lỗi."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -110,7 +147,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 2,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "sai lầm, lỗi; sai, nhầm",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

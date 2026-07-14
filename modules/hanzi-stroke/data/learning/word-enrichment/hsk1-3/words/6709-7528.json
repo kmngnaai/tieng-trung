@@ -55,7 +55,30 @@
         "target": "有用",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "有用",
+            "chinese": "这本书很有用。",
+            "pinyin": "Zhè běn shū hěn yǒuyòng.",
+            "meaningVi": "Quyển sách này rất hữu ích.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "有用",
+            "chinese": "中文在旅游时很有用。",
+            "pinyin": "Zhōngwén zài lǚyóu shí hěn yǒuyòng.",
+            "meaningVi": "Tiếng Trung rất hữu ích khi đi du lịch.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 2
       },
       {
         "text": "有用处",
@@ -65,10 +88,23 @@
         "target": "有用",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "实惠",
+        "pinyin": "shí huì",
+        "meaningVi": "hữu ích",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: hữu ích",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -104,10 +140,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:有用",
       "title": "Cách dùng 有用",
       "partOfSpeech": "other",
       "usageNoteVi": "有用 chỉ thứ gì đó mang lại lợi ích hoặc có tác dụng.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -161,7 +200,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "hữu ích, có ích",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -56,7 +56,9 @@
         "target": "卫生间",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "男/女卫生间",
@@ -66,10 +68,23 @@
         "target": "卫生间",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "洗手间",
+        "pinyin": "xǐ shǒu jiān",
+        "meaningVi": "nhà vệ sinh",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: nhà vệ sinh",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -95,10 +110,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:卫生间",
       "title": "Cách dùng 卫生间",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "卫生间 là từ lịch sự chỉ nhà vệ sinh, thường dùng trong nơi công cộng. Cũng có thể dùng 厕所 (cách suồng sã hơn) hoặc 洗手间 (nhà rửa tay).",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -152,7 +170,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "nhà vệ sinh, toilet; phòng tắm",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

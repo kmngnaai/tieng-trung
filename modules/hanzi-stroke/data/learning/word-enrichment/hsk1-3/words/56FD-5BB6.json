@@ -57,7 +57,9 @@
         "target": "国家",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "国家政策",
@@ -67,7 +69,9 @@
         "target": "国家",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "国家利益",
@@ -77,10 +81,13 @@
         "target": "国家",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -112,14 +119,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "国家",
+      "chinese": "我还没想好学什么，更没想好去哪个国家。",
+      "pinyin": "wǒ hái méi xiǎng hǎo xué shén me gèng méi xiǎng hǎo qù nǎ gè guó jiā",
+      "meaningVi": "Tôi còn chưa nghĩ xong sẽ học gì, càng chưa nghĩ xong sẽ đi nước nào.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_58",
+      "grammarTopic": "Cấu trúc tăng tiến với 「更」",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:国家",
       "title": "Cách dùng 国家",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Chỉ toàn bộ thể chế chính trị của một quốc gia. Trang trọng hơn 国 khi nói về cơ cấu nhà nước.",
       "explanationVi": "Ghép nghĩa: 国 (quốc gia, nước) + 家 (nhà, gia đình) — nhà nước như một gia đình lớn.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_58",
+      "title": "Cấu trúc tăng tiến với 「更」",
+      "syntax": "A，更 B (A, B hơn nữa/càng B hơn)",
+      "explanationVi": "Cấu trúc này dùng để biểu thị ý nghĩa tăng tiến, nhấn mạnh mức độ cao hơn của sự việc hoặc tính chất sau dấu phẩy. Từ 「更」 đóng vai trò là phó từ chỉ mức độ, giúp câu văn trở nên nhấn mạnh và giàu sắc thái hơn so với câu đơn.",
+      "tipsVi": "Bạn có thể hiểu 「更」 tương đương với từ \"hơn\" hoặc \"càng\" trong tiếng Việt khi so sánh hoặc nhấn mạnh mức độ.",
+      "attentionsVi": "Cần phân biệt với cấu trúc 「越A越B」 vì 「更」 dùng để nhấn mạnh mức độ còn 「越...越...」 diễn tả sự thay đổi song song theo thời gian.",
+      "examples": [
+        {
+          "chinese": "我还没想好学什么，更没想好去哪个国家。",
+          "pinyin": "wǒ hái méi xiǎng hǎo xué shén me gèng méi xiǎng hǎo qù nǎ gè guó jiā",
+          "meaningVi": "Tôi còn chưa nghĩ xong sẽ học gì, càng chưa nghĩ xong sẽ đi nước nào."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -193,7 +234,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "quốc gia, nhà nước",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

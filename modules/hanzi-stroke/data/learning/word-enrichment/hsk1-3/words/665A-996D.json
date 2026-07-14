@@ -54,7 +54,20 @@
         "target": "晚饭",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "晚饭",
+            "chinese": "我们晚上一起吃晚饭。",
+            "pinyin": "Wǒmen wǎnshang yīqǐ chī wǎnfàn.",
+            "meaningVi": "Chúng tôi cùng nhau ăn bữa tối vào buổi tối.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "晚饭后",
@@ -64,10 +77,23 @@
         "target": "晚饭",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "晚餐",
+        "pinyin": "wǎn cān",
+        "meaningVi": "bữa tối",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bữa tối",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -99,14 +125,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "晚饭",
+      "chinese": "晚饭你自己选，或者吃中国菜，或者吃日本菜。",
+      "pinyin": "wǎn fàn nǐ zì jǐ xuǎn huò zhě chī zhōng guó cài huò zhě chī rì běn cài",
+      "meaningVi": "Bữa tối bạn tự chọn đi, hoặc là ăn món Trung Quốc, hoặc là ăn món Nhật.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_38",
+      "grammarTopic": "Cấu trúc câu phức lựa chọn 「或者」",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:晚饭",
       "title": "Cách dùng 晚饭",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "晚饭 là bữa ăn vào buổi tối.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_38",
+      "title": "Cấu trúc câu phức lựa chọn 「或者」",
+      "syntax": "或者 A，或者 B (Diễn tả sự lựa chọn)",
+      "explanationVi": "Cấu trúc 「或者……，或者……」 được dùng trong câu trần thuật để liệt kê hai hoặc nhiều khả năng khác nhau. Nó mang ý nghĩa tương đương với \"hoặc là... hoặc là...\" trong tiếng Việt.",
+      "tipsVi": "Hãy nhớ rằng 「或者」 chỉ dùng trong câu trần thuật, không dùng trong câu hỏi.",
+      "attentionsVi": "Đừng nhầm lẫn với 「还是」, vì 「还是」 thường được dùng để đặt câu hỏi lựa chọn.",
+      "examples": [
+        {
+          "chinese": "晚饭你自己选，或者吃中国菜，或者吃日本菜。",
+          "pinyin": "wǎn fàn nǐ zì jǐ xuǎn huò zhě chī zhōng guó cài huò zhě chī rì běn cài",
+          "meaningVi": "Bữa tối bạn tự chọn đi, hoặc là ăn món Trung Quốc, hoặc là ăn món Nhật."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -155,7 +215,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "bữa tối",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

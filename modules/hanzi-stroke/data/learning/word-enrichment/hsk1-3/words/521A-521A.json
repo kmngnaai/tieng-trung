@@ -55,7 +55,9 @@
         "target": "刚刚",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "刚刚才",
@@ -65,10 +67,13 @@
         "target": "刚刚",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -90,14 +95,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "刚刚",
+      "chinese": "我刚刚看视频学会了包饺子。",
+      "pinyin": "wǒ gāng gāng kàn shì pín xué huì le bāo jiǎo zi",
+      "meaningVi": "Tôi vừa mới xem video và học được cách gói sủi cảo.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_61",
+      "grammarTopic": "Phân biệt 刚才 và 刚刚",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:刚刚",
       "title": "Cách dùng 刚刚",
       "partOfSpeech": "adverb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_61",
+      "title": "Phân biệt 刚才 và 刚刚",
+      "syntax": "S + 刚才 / 刚刚 + V hoặc 刚才 / 刚刚 + S + V",
+      "explanationVi": "Cả 「刚才」 và 「刚刚」 đều dùng để chỉ hành động vừa mới xảy ra trong quá khứ gần. 「刚才」 là danh từ chỉ thời gian, thường dùng để nhấn mạnh thời điểm vừa xảy ra tức thì. 「刚刚」 có thể là phó từ hoặc danh từ, linh hoạt hơn trong việc diễn tả hành động vừa mới hoàn thành.",
+      "tipsVi": "Bạn có thể dùng 「刚才」 ở trước hoặc sau chủ ngữ, nhưng 「刚刚」 thường đặt trước động từ.",
+      "attentionsVi": "「刚才」 không thể kết hợp với các từ chỉ khoảng thời gian (như 'hai phút'), trong khi 「刚刚」 thì có thể.",
+      "examples": [
+        {
+          "chinese": "我刚刚看视频学会了包饺子。",
+          "pinyin": "wǒ gāng gāng kàn shì pín xué huì le bāo jiǎo zi",
+          "meaningVi": "Tôi vừa mới xem video và học được cách gói sủi cảo."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -151,7 +190,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "vừa mới",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

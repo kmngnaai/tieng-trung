@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "mở ra",
+      "meaningShortVi": "mở",
       "meaningFullVi": "mở ra",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "mở ra",
+  "meaningShortVi": "mở",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -55,7 +55,9 @@
         "target": "打开",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "打开手机",
@@ -65,10 +67,23 @@
         "target": "打开",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "开放",
+        "pinyin": "kāi fàng",
+        "meaningVi": "mở",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: mở",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -110,14 +125,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "打开",
+      "chinese": "请把窗户打开。",
+      "pinyin": "qǐng bǎ chuāng hù dǎ kāi",
+      "meaningVi": "Xin hãy mở cửa sổ ra.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_92",
+      "grammarTopic": "Bổ ngữ xu hướng 开",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:打开",
       "title": "Cách dùng 打开",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Động từ phổ biến chỉ hành động mở. Trong giao tiếp, 打开 thường đi với vật cần mở: 打开门 (mở cửa), 打开窗户 (mở cửa sổ). Với thiết bị điện tử, 也 có nghĩa là bật: 打开手机 (bật điện thoại), 打开电脑 (bật máy tính). Trái nghĩa với 关上 (đóng lại) hoặc 关闭 (tắt).",
       "explanationVi": "Ghép nghĩa: 打 (làm, tác động) + 开 (mở) → tác động để mở ra. Chỉ hành động mở cửa, mở hộp, mở thiết bị, mở tập tin.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_92",
+      "title": "Bổ ngữ xu hướng 开",
+      "syntax": "Động từ + 开 (kāi)",
+      "explanationVi": "Bổ ngữ xu hướng 「开」 được thêm sau động từ để biểu thị hành động làm cho sự vật tách rời ra, mở ra hoặc lan tỏa ra. Ví dụ, 「打开」 có nghĩa là mở ra, còn 「分开」 có nghĩa là chia tách ra.",
+      "tipsVi": "Bạn có thể ghi nhớ cấu trúc này thông qua các hành động vật lý dễ hình dung như mở cửa 「打开门」 hay cắt rời cái gì đó 「切开」.",
+      "attentionsVi": "Lưu ý rằng 「开」 không phải lúc nào cũng chỉ sự mở ra vật lý, đôi khi nó dùng để biểu thị sự tách biệt về khoảng cách hoặc trạng thái.",
+      "examples": [
+        {
+          "chinese": "请把窗户打开。",
+          "pinyin": "qǐng bǎ chuāng hù dǎ kāi",
+          "meaningVi": "Xin hãy mở cửa sổ ra."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -171,7 +220,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 5,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "mở ra",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

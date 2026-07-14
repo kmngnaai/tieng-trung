@@ -55,7 +55,9 @@
         "target": "演出",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "观看演出",
@@ -65,10 +67,32 @@
         "target": "演出",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "表演",
+        "pinyin": "biǎo yǎn",
+        "meaningVi": "biểu diễn",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: biểu diễn",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "演奏",
+        "pinyin": "yǎn zòu",
+        "meaningVi": "biểu diễn",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: biểu diễn",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -94,10 +118,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:演出",
       "title": "Cách dùng 演出",
       "partOfSpeech": "động từ / danh từ",
       "usageNoteVi": "Có thể dùng làm động từ (biểu diễn ở khắp nơi) hoặc danh từ (buổi biểu diễn). Trong văn nghệ thuật, 有助于 nói về các loại hình như 戏剧演出, 音乐演出. Từ liên quan: 表演 'biểu diễn', 上演 'lên sân khấu'.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -136,7 +163,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "biểu diễn; trình diễn nghệ thuật trước công chúng như kịch, múa, nhạc",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

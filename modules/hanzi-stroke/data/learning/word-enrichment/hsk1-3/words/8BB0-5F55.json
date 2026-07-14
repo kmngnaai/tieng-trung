@@ -54,7 +54,20 @@
         "target": "记录",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "记录",
+            "chinese": "请把会议内容记录下来。",
+            "pinyin": "qǐng bǎ huì yì nèi róng jì lù xià lái。",
+            "meaningVi": "Hãy ghi lại nội dung cuộc họp.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "保持记录",
@@ -64,10 +77,23 @@
         "target": "记录",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
+      }
+    ],
+    "relatedWords": [
+      {
+        "targetWord": "纪录",
+        "pinyin": "jì lù",
+        "meaningVi": "kỷ lục",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_3.json",
         "reviewStatus": "reviewed-local"
       }
     ],
-    "relatedWords": []
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -93,10 +119,33 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:记录",
       "title": "Cách dùng 记录",
       "partOfSpeech": "động từ / danh từ",
       "usageNoteVi": "作动词指写下来保存；作名词指记载下来的文字或材料。注意：简体中文中\"记录\"更通用，\"纪录\"多指体育成绩。",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_41",
+      "title": "Phân biệt 记录 và 纪录",
+      "syntax": "记录 (Động từ/Danh từ: Ghi chép) vs. 纪录 (Danh từ: Kỷ lục)",
+      "explanationVi": "「记录」 thường được dùng làm động từ để chỉ việc ghi lại thông tin, hoặc là danh từ chỉ bản ghi chép. Ngược lại, 「纪录」 là danh từ chuyên dùng để chỉ các thành tích cao nhất hoặc các sự kiện lịch sử (kỷ lục) trong thể thao, đời sống.",
+      "tipsVi": "Hãy nhớ 「记录」 tập trung vào hành động ghi chép dữ liệu, còn 「纪录」 gắn liền với con số hoặc thành tích mang tính 'phá kỷ lục'.",
+      "attentionsVi": "Trong tiếng Trung hiện đại, người bản ngữ đôi khi dùng nhầm lẫn hai từ này trong văn viết, nhưng trong các kỳ thi HSK, bạn cần phân biệt rõ ngữ cảnh 'ghi chép' hay 'kỷ lục'.",
+      "examples": [
+        {
+          "chinese": "请把会议内容记录下来。",
+          "pinyin": "qǐng bǎ huì yì nèi róng jì lù xià lái",
+          "meaningVi": "Hãy ghi lại nội dung cuộc họp."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +179,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 2,
+      "reviewedRelations": 1,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "ghi lại",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

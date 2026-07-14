@@ -54,7 +54,20 @@
         "target": "进行",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "进行",
+            "chinese": "会议正在进行",
+            "pinyin": "huì yì zhèng zài jìn xíng",
+            "meaningVi": "Hội nghị đang tiến hành",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "进行调查",
@@ -64,10 +77,34 @@
         "target": "进行",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "进行",
+            "chinese": "我们进行调查",
+            "pinyin": "wǒ men jìn xíng diào chá",
+            "meaningVi": "Chúng tôi tiến hành điều tra",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "推进",
+        "pinyin": "tuī jìn",
+        "meaningVi": "tiến hành",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: tiến hành",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -89,14 +126,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "进行",
+      "chinese": "下雨了，活动照常进行。",
+      "pinyin": "xià yǔ le huó dòng zhào cháng jìn xíng",
+      "meaningVi": "Trời mưa rồi, hoạt động vẫn diễn ra như bình thường.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_86",
+      "grammarTopic": "Cách dùng phó từ 照常",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:进行",
       "title": "Cách dùng 进行",
       "partOfSpeech": "verb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_86",
+      "title": "Cách dùng phó từ 照常",
+      "syntax": "Chủ ngữ + 照常 + Động từ/Vị ngữ",
+      "explanationVi": "Phó từ 「照常」 dùng để diễn tả một hành động hoặc tình huống vẫn tiếp tục diễn ra như bình thường, không thay đổi so với trước đó. Bạn có thể hiểu nó tương đương với cụm từ \"như thường lệ\" trong tiếng Việt.",
+      "tipsVi": "Từ này thường đứng ngay trước động từ hoặc các cụm từ chỉ hoạt động để nhấn mạnh sự duy trì trạng thái cũ.",
+      "attentionsVi": "「照常」 nhấn mạnh vào việc 'vẫn như cũ' bất chấp hoàn cảnh có thể đã thay đổi, vì vậy hãy đảm bảo ngữ cảnh của câu thể hiện rõ sự ổn định này.",
+      "examples": [
+        {
+          "chinese": "下雨了，活动照常进行。",
+          "pinyin": "xià yǔ le huó dòng zhào cháng jìn xíng",
+          "meaningVi": "Trời mưa rồi, hoạt động vẫn diễn ra như bình thường."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +201,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "tiến hành",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

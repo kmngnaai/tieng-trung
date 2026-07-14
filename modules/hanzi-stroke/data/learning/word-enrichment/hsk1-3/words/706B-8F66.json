@@ -51,7 +51,8 @@
         "meaningVi": "ga xe lửa",
         "meaningFullVi": "ga xe lửa, nhà ga; nơi tàu hỏa dừng và đón trả khách",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 1",
+        "hskLevel": 1,
+        "source": "hsk_1.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -64,7 +65,20 @@
         "target": "火车",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "火车",
+            "chinese": "在火车站",
+            "pinyin": "zài huǒchēzhàn",
+            "meaningVi": "ở ga tàu",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "坐火车",
@@ -74,10 +88,35 @@
         "target": "火车",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "火车",
+            "chinese": "坐火车去北京",
+            "pinyin": "Zuò huǒchē qù Běijīng",
+            "meaningVi": "Đi tàu hỏa đến Bắc Kinh",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "火车",
+            "chinese": "坐飞机比坐火车快得多。",
+            "pinyin": "zuò fēi jī bǐ zuò huǒ chē kuài dé duō",
+            "meaningVi": "Đi máy bay nhanh hơn đi tàu hỏa rất nhiều.",
+            "source": "new_hsk_2.json",
+            "grammarId": "hsk2_new_34",
+            "grammarTopic": "Câu so sánh với bổ ngữ trạng thái",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 2
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -119,14 +158,79 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "火车",
+      "chinese": "火车快开了。",
+      "pinyin": "huǒ chē kuài kāi le",
+      "meaningVi": "Tàu hỏa sắp chạy rồi.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_30",
+      "grammarTopic": "Diễn tả hành động sắp xảy ra",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "火车",
+      "chinese": "坐飞机比坐火车快得多。",
+      "pinyin": "zuò fēi jī bǐ zuò huǒ chē kuài dé duō",
+      "meaningVi": "Đi máy bay nhanh hơn đi tàu hỏa rất nhiều.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_34",
+      "grammarTopic": "Câu so sánh với bổ ngữ trạng thái",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:火车",
       "title": "Cách dùng 火车",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Tàu hỏa/tàu lửa. Ngồi tàu = 坐火车. Ga tàu = 火车站. Hán-Việt: 'hoả xa'.",
       "explanationVi": "Ghép nghĩa: 火 (lửa) + 车 (xe) → xe chạy bằng lửa (tàu hoả).",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_30",
+      "title": "Diễn tả hành động sắp xảy ra",
+      "syntax": "Chủ ngữ + (要/快/快要/就要) + Vị ngữ + 了",
+      "explanationVi": "Cấu trúc này dùng để diễn tả một hành động hoặc trạng thái sắp sửa xảy ra trong tương lai gần. Bạn có thể sử dụng linh hoạt các từ 「要」, 「快」, 「快要」 hoặc 「就要」 trước vị ngữ và kết thúc câu bằng 「了」.",
+      "tipsVi": "Nếu trong câu có trạng ngữ chỉ thời gian cụ thể (ví dụ: 明天, 下星期), bạn bắt buộc phải dùng cấu trúc 「就要……了」.",
+      "attentionsVi": "Không nên nhầm lẫn cấu trúc này với 「了」 dùng để chỉ hành động đã hoàn thành trong quá khứ.",
+      "examples": [
+        {
+          "chinese": "火车快开了。",
+          "pinyin": "huǒ chē kuài kāi le",
+          "meaningVi": "Tàu hỏa sắp chạy rồi."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_34",
+      "title": "Câu so sánh với bổ ngữ trạng thái",
+      "syntax": "A 比 B + Động từ + 得 + Bổ ngữ (Tính từ)",
+      "explanationVi": "Cấu trúc này dùng để so sánh trình độ hoặc kết quả thực hiện một hành động giữa hai đối tượng. Bạn cần thêm 「得」 sau động từ để nối với tính từ miêu tả trạng thái hoặc mức độ.",
+      "tipsVi": "Hãy nhớ quy tắc 「A 比 B」 luôn đứng trước động từ, ví dụ: 「他比我跑得快」(Anh ấy chạy nhanh hơn tôi).",
+      "attentionsVi": "Đừng quên từ 「得」 giữa động từ và tính từ, đây là lỗi phổ biến nhất của người mới học.",
+      "examples": [
+        {
+          "chinese": "坐飞机比坐火车快得多。",
+          "pinyin": "zuò fēi jī bǐ zuò huǒ chē kuài dé duō",
+          "meaningVi": "Đi máy bay nhanh hơn đi tàu hỏa rất nhiều."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -174,6 +278,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 6,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "tàu hỏa, tàu lửa",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

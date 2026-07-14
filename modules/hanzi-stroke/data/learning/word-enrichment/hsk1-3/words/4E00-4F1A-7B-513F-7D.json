@@ -56,20 +56,54 @@
         "meaningVi": "trong chốc lát",
         "meaningFullVi": "trong chốc lát",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 2",
+        "hskLevel": 2,
+        "source": "hsk_2.json",
         "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [
+      {
+        "targetWord": "一会儿",
+        "pinyin": "yī huìr ",
+        "meaningVi": "một lát",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
+    "candidateRelations": [
+      {
+        "targetWord": "一下",
+        "pinyin": "yī xià",
+        "meaningVi": "một lát",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: một lát",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "一会儿",
+        "pinyin": "yī huìr ",
+        "meaningVi": "một lát",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: một lát",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [],
   "grammarLinks": [
     {
+      "grammarId": "usage:一会{儿}",
       "title": "Cách dùng 一会{儿}",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Dùng để chỉ thời gian ngắn. Có thể viết 一会儿 hoặc 一会儿, phổ biến nhất là 一会儿. Thường đi với động từ: 等一会, 来一会. Lưu ý thanh điệu: yī (thanh 1) + huǐr (thanh 3 + âm cuồi).",
       "explanationVi": "Ghép nghĩa: 一 (một) + 会 (gặp, tụ hội) + 儿 (hậu tỉnh âm Bắc Kinh). 'Một lần gặp' → một khoảng thời gian ngắn. Đây là ẩn dụ: gặp nhau trong thời gian ngắn. Phần {儿} là cách viết đặc biệt, không phải phần của từ.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -123,8 +157,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có câu mẫu đạt cổng chất lượng"
-    ]
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có câu nguồn đầy đủ chứa nguyên target"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 0,
+      "sentences": 0,
+      "grammar": 1,
+      "reviewedRelations": 1,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "một lát, một chút; trong chốc lát",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

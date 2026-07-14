@@ -46,15 +46,65 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
-  "sentences": [],
+  "sentences": [
+    {
+      "target": "你好",
+      "chinese": "他的中文不比你好。",
+      "pinyin": "tā de zhōng wén bù bǐ nǐ hǎo",
+      "meaningVi": "Tiếng Trung của anh ấy không giỏi hơn bạn đâu.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_21",
+      "grammarTopic": "Câu so sánh phủ định 「A 不比 B + Tính từ」",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "grammarLinks": [
     {
+      "grammarId": "usage:你好",
       "title": "Cách dùng 你好",
       "partOfSpeech": "thán từ",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk1_new_31",
+      "title": "Câu phi chủ vị",
+      "syntax": "Danh từ/Động từ/Tính từ (không cần chủ ngữ)",
+      "explanationVi": "Câu phi chủ vị là loại câu ngắn gọn không có chủ ngữ rõ ràng. Người ta thường dùng loại câu này để mô tả các hiện tượng tự nhiên như 「下雨了」(Trời mưa rồi) hoặc dùng trong các lời chào hỏi, cảm thán như 「你好」(Xin chào).",
+      "tipsVi": "Hãy tập trung ghi nhớ các cụm từ cố định trong giao tiếp vì chúng thường không cần chủ ngữ.",
+      "attentionsVi": "Đừng cố gắng thêm chủ ngữ vào các câu cảm thán hoặc câu miêu tả hiện tượng tự nhiên vì sẽ làm câu trở nên gượng gạo.",
+      "examples": [],
+      "source": "new_hsk_1.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 1,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_21",
+      "title": "Câu so sánh phủ định 「A 不比 B + Tính từ」",
+      "syntax": "A + 不比 + B + Tính từ",
+      "explanationVi": "Cấu trúc này dùng để phủ định việc A hơn B về một đặc điểm nào đó, mang nghĩa là A không bằng hoặc không vượt trội hơn B. Nó thường dùng khi người nói cảm thấy mức độ của A không cao hơn mức độ của B.",
+      "tipsVi": "Cách nói này khác với 「A 没有 B + tính từ」 vì nó nhấn mạnh vào việc phủ định sự so sánh hơn là chỉ đơn thuần nói A kém hơn B.",
+      "attentionsVi": "Không được thêm các từ chỉ mức độ như 「很」, 「非常」 sau tính từ trong cấu trúc so sánh này.",
+      "examples": [
+        {
+          "chinese": "他的中文不比你好。",
+          "pinyin": "tā de zhōng wén bù bǐ nǐ hǎo",
+          "meaningVi": "Tiếng Trung của anh ấy không giỏi hơn bạn đâu."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -103,9 +153,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có câu mẫu đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 1,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "xin chào",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

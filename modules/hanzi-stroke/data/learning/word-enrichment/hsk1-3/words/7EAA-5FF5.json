@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Kỷ niệm",
+      "meaningShortVi": "kỷ niệm",
       "meaningFullVi": "Kỷ niệm",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Kỷ niệm",
+  "meaningShortVi": "kỷ niệm",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -46,7 +46,18 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "周年",
+        "pinyin": "zhōu nián",
+        "meaningVi": "kỷ niệm",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: kỷ niệm",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -82,10 +93,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:纪念",
       "title": "Cách dùng 纪念",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "纪念 có thể là động từ (tưởng niệm) hoặc danh từ (sự kỷ niệm). 纪 (kỷ) nghĩa là ghi chép, kỷ cương; 念 (niệm) nghĩa là nhớ, nghĩ đến. Dùng cho các sự kiện, vật phẩm lưu giữ kỷ niệm.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -119,8 +133,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "Kỷ niệm",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -47,15 +47,51 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
-  "sentences": [],
+  "sentences": [
+    {
+      "target": "泰国",
+      "chinese": "陈天中是泰国人吧？",
+      "pinyin": "chén tiān zhōng shì tài guó rén ba",
+      "meaningVi": "Trần Thiên Trung là người Thái Lan phải không?",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_1",
+      "grammarTopic": "Trợ từ ngữ khí 吧",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "grammarLinks": [
     {
+      "grammarId": "usage:泰国",
       "title": "Cách dùng 泰国",
       "partOfSpeech": "danh từ riêng",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_1",
+      "title": "Trợ từ ngữ khí 吧",
+      "syntax": "Câu + 吧 (biểu thị yêu cầu, gợi ý, nghi vấn)",
+      "explanationVi": "Trợ từ ngữ khí 「吧」 được đặt cuối câu để làm mềm giọng điệu. Nó thường dùng để đưa ra lời đề nghị, thúc giục nhẹ nhàng hoặc dùng trong câu nghi vấn để phỏng đoán một sự việc.",
+      "tipsVi": "Dùng 「吧」 giúp câu nói của bạn nghe tự nhiên và lịch sự hơn như khi bạn nói 'nhỉ', 'nhé' hay 'được không' trong tiếng Việt.",
+      "attentionsVi": "Không dùng 「吧」 trong các câu hỏi trang trọng hoặc câu hỏi dùng từ để hỏi như 「什么」, 「谁」, 「哪里」.",
+      "examples": [
+        {
+          "chinese": "陈天中是泰国人吧？",
+          "pinyin": "chén tiān zhōng shì tài guó rén ba",
+          "meaningVi": "Trần Thiên Trung là người Thái Lan phải không?"
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -109,9 +145,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có câu mẫu đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 1,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "nước Thái Lan",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

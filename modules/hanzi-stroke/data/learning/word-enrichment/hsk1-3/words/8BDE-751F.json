@@ -52,10 +52,54 @@
         "target": "诞生",
         "source": "hsk_3.json",
         "pinyinMethod": "exact-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "诞生",
+            "chinese": "新中国诞生了",
+            "pinyin": "Xīn Zhōngguó dànshēng le",
+            "meaningVi": "Trung Quốc mới đã ra đời",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "诞生",
+            "chinese": "他是诞生在北京",
+            "pinyin": "tā shì dànshēng zài Běijīng",
+            "meaningVi": "Ông ấy sinh ra ở Bắc Kinh",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "诞生",
+            "chinese": "这个品牌诞生于1990年",
+            "pinyin": "zhège pǐnpái dànshēng yú 1990 nián",
+            "meaningVi": "Thương hiệu này ra đời năm 1990",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 3
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "出生",
+        "pinyin": "chū shēng",
+        "meaningVi": "sinh ra",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: sinh ra",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -101,10 +145,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:诞生",
       "title": "Cách dùng 诞生",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "đản (ngày sinh, khai sinh) + sinh (sống, sinh ra)",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -122,7 +169,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 4,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "sinh ra, xuất hiện, khai sinh",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

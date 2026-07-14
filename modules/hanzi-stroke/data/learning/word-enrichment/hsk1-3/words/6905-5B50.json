@@ -57,7 +57,9 @@
         "target": "椅子",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "坐在椅子上",
@@ -67,7 +69,9 @@
         "target": "椅子",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "舒服的椅子",
@@ -77,10 +81,13 @@
         "target": "椅子",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -112,14 +119,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "椅子",
+      "chinese": "小狗在椅子下面。",
+      "pinyin": "xiǎo gǒu zài yǐ zi xià miàn",
+      "meaningVi": "Con chó nhỏ ở dưới cái ghế.",
+      "source": "hsk_1.json",
+      "grammarId": "hsk1_22",
+      "grammarTopic": "Cách dùng 在 chỉ vị trí",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "椅子",
+      "chinese": "我们要不要买几个新的椅子？",
+      "pinyin": "wǒ men yào bù yào mǎi jǐ gè xīn de yǐ zi",
+      "meaningVi": "Chúng ta có cần mua mấy chiếc ghế mới không?",
+      "source": "hsk_2.json",
+      "grammarId": "hsk2_3",
+      "grammarTopic": "Cách dùng từ 几",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:椅子",
       "title": "Cách dùng 椅子",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk1_22",
+      "title": "Cách dùng 在 chỉ vị trí",
+      "syntax": "Chủ ngữ + 在 + Địa điểm (nơi chốn/vị trí)",
+      "explanationVi": "Từ 「在」 đóng vai trò như động từ chỉ vị trí, mang nghĩa là \"ở\" hoặc \"tại\". Cấu trúc này dùng để xác định vị trí của người hoặc vật tại một nơi chốn cụ thể.",
+      "tipsVi": "Nếu muốn hỏi về vị trí, bạn có thể thay địa điểm bằng từ hỏi 「哪儿」(nǎr - ở đâu).",
+      "attentionsVi": "Cần phân biệt 「在」 dùng làm động từ chỉ vị trí (ở đâu) và 「在」 dùng trước động từ để diễn tả hành động đang xảy ra.",
+      "examples": [
+        {
+          "chinese": "小狗在椅子下面。",
+          "pinyin": "xiǎo gǒu zài yǐ zi xià miàn",
+          "meaningVi": "Con chó nhỏ ở dưới cái ghế."
+        }
+      ],
+      "source": "hsk_1.json",
+      "curriculum": "hsk",
+      "hskLevel": 1,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_3",
+      "title": "Cách dùng từ 几",
+      "syntax": "Số từ (nhỏ hơn 10) + Lượng từ + Danh từ (ví dụ: 几 + Lượng từ + N)",
+      "explanationVi": "Từ 「几」 dùng để hỏi hoặc ước lượng một số lượng không xác định nhưng nhỏ hơn 10. Khi dùng trong câu trần thuật, nó biểu thị một số lượng ít, 'vài' hoặc 'mấy'.",
+      "tipsVi": "Luôn nhớ đặt lượng từ giữa 「几」 và danh từ, ví dụ: 「几本书」(vài quyển sách).",
+      "attentionsVi": "Không dùng 「几」 cho các số đếm lớn hơn 10; với số lượng lớn hơn hoặc xấp xỉ, bạn nên dùng 「多」 hoặc các từ khác.",
+      "examples": [
+        {
+          "chinese": "我们要不要买几个新的椅子？",
+          "pinyin": "wǒ men yào bù yào mǎi jǐ gè xīn de yǐ zi",
+          "meaningVi": "Chúng ta có cần mua mấy chiếc ghế mới không?"
+        }
+      ],
+      "source": "hsk_2.json",
+      "curriculum": "hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -193,7 +265,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 5,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "ghế",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

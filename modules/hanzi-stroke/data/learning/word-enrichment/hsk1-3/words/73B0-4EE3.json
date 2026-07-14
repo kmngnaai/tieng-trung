@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Hiện đại",
+      "meaningShortVi": "hiện đại",
       "meaningFullVi": "Hiện đại",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Hiện đại",
+  "meaningShortVi": "hiện đại",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -45,7 +45,18 @@
     ]
   },
   "vocabulary": {
-    "compounds": [],
+    "compounds": [
+      {
+        "word": "现代化",
+        "pinyin": "xiàn dài huà",
+        "meaningVi": "hiện đại hóa",
+        "meaningFullVi": "hiện đại hóa",
+        "relationType": "contains-exact-target",
+        "hskLevel": 6,
+        "source": "hsk_6.json",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
     "collocations": [
       {
         "text": "现代化",
@@ -55,7 +66,9 @@
         "target": "现代",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "现代社会",
@@ -65,10 +78,25 @@
         "target": "现代",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "现代",
+            "chinese": "即使在现代社会里，故事仍然是人们生活中不可缺少的一部分。",
+            "pinyin": "jí shǐ zài xiàn dài shè huì lǐ gù shì réng rán shì rén men shēng huó zhōng bù kě quē shǎo de yī bù fēn",
+            "meaningVi": "Cho dù trong xã hội hiện đại, câu chuyện vẫn là một phần không thể thiếu trong cuộc sống của con người.",
+            "source": "hsk_4.json",
+            "grammarId": "hsk4_4",
+            "grammarTopic": "Cấu trúc 即使……也……",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -100,14 +128,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "现代",
+      "chinese": "即使在现代社会里，故事仍然是人们生活中不可缺少的一部分。",
+      "pinyin": "jí shǐ zài xiàn dài shè huì lǐ gù shì réng rán shì rén men shēng huó zhōng bù kě quē shǎo de yī bù fēn",
+      "meaningVi": "Cho dù trong xã hội hiện đại, câu chuyện vẫn là một phần không thể thiếu trong cuộc sống của con người.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_4",
+      "grammarTopic": "Cấu trúc 即使……也……",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:现代",
       "title": "Cách dùng 现代",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Tính từ chỉ thời kỳ hoặc đặc điểm của thời hiện đại, đối lập với cổ đại/truyền thống.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_4",
+      "title": "Cấu trúc 即使……也……",
+      "syntax": "即使 + [giả thiết/sự việc], 也 + [kết quả không thay đổi]",
+      "explanationVi": "Cấu trúc 「即使……也……」 dùng để diễn tả quan hệ nhượng bộ, có nghĩa là \"cho dù... thì cũng...\". Nó chỉ ra rằng dù giả thiết hoặc sự việc ở vế đầu có xảy ra hay không, kết quả ở vế sau vẫn không thay đổi.",
+      "tipsVi": "Bạn có thể thay thế 「即使」 bằng 「就是」 hoặc 「哪怕」 trong văn nói để biểu đạt ý nghĩa tương tự.",
+      "attentionsVi": "Vế sau thường đi kèm với 「也」 hoặc 「还」 để nhấn mạnh việc kết quả không bị ảnh hưởng bởi điều kiện ở vế trước.",
+      "examples": [
+        {
+          "chinese": "即使在现代社会里，故事仍然是人们生活中不可缺少的一部分。",
+          "pinyin": "jí shǐ zài xiàn dài shè huì lǐ gù shì réng rán shì rén men shēng huó zhōng bù kě quē shǎo de yī bù fēn",
+          "meaningVi": "Cho dù trong xã hội hiện đại, câu chuyện vẫn là một phần không thể thiếu trong cuộc sống của con người."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -146,7 +208,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "Hiện đại",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

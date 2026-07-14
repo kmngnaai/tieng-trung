@@ -54,7 +54,9 @@
         "target": "部长",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "教育部长",
@@ -64,10 +66,24 @@
         "target": "部长",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "部长",
+            "chinese": "教育部长来我们学校参观了。",
+            "pinyin": "Jiàoyùbùzhǎng lái wǒmen xuéxiào cānguān le.",
+            "meaningVi": "Bộ trưởng Giáo dục đã đến thăm trường chúng tôi.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -93,10 +109,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:部长",
       "title": "Cách dùng 部长",
       "partOfSpeech": "danh từ chức vụ",
       "usageNoteVi": "部长 (bộ trưởng) chỉ người đứng đầu một bộ trong chính phủ, hoặc trưởng bộ phận trong công ty.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +149,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "bộ trưởng",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

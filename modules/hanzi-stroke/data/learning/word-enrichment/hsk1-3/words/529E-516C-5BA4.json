@@ -57,7 +57,9 @@
         "target": "办公室",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "教师办公室",
@@ -67,10 +69,13 @@
         "target": "办公室",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -92,14 +97,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "办公室",
+      "chinese": "他到了办公室我就告诉他。",
+      "pinyin": "tā dào le bàn gōng shì wǒ jiù gào sù tā",
+      "meaningVi": "Anh ấy đến văn phòng là tôi sẽ bảo anh ấy ngay.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_5",
+      "grammarTopic": "Diễn tả hai hành động liên tiếp",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "办公室",
+      "chinese": "老师，我把作业本放在您办公室了。",
+      "pinyin": "lǎo shī wǒ bǎ zuò yè běn fàng zài nín bàn gōng shì le",
+      "meaningVi": "Thưa thầy, em để vở bài tập ở văn phòng thầy rồi ạ.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_36",
+      "grammarTopic": "Câu chữ 把 (Sử dụng và mục đích)",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:办公室",
       "title": "Cách dùng 办公室",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_5",
+      "title": "Diễn tả hai hành động liên tiếp",
+      "syntax": "V1 + 了 + Tân ngữ + 就 + V2 (Diễn tả hai hành động liên tiếp)",
+      "explanationVi": "Cấu trúc này dùng để diễn tả hành động thứ hai xảy ra ngay sau khi hành động thứ nhất vừa hoàn thành. Nó mang nghĩa tương đương với \"sau khi... thì...\" hoặc \"vừa... xong đã...\" trong tiếng Việt.",
+      "tipsVi": "Bạn có thể hiểu đơn giản là hành động thứ hai nối tiếp hành động thứ nhất một cách rất nhanh chóng và thuận lợi.",
+      "attentionsVi": "Lưu ý không được bỏ qua trợ từ 「了」 ở sau động từ thứ nhất vì nó đóng vai trò nhấn mạnh việc hành động đó đã hoàn thành.",
+      "examples": [
+        {
+          "chinese": "他到了办公室我就告诉他。",
+          "pinyin": "tā dào le bàn gōng shì wǒ jiù gào sù tā",
+          "meaningVi": "Anh ấy đến văn phòng là tôi sẽ bảo anh ấy ngay."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_36",
+      "title": "Câu chữ 把 (Sử dụng và mục đích)",
+      "syntax": "Chủ ngữ (S) + 把 + Tân ngữ (O) + Động từ + Thành phần khác",
+      "explanationVi": "Câu chữ 「把」 dùng để nhấn mạnh sự tác động của chủ ngữ lên tân ngữ, khiến tân ngữ thay đổi vị trí hoặc trạng thái. Cấu trúc này thường đi kèm với các thành phần bổ sung sau động từ như bổ ngữ kết quả hoặc trợ từ 「了」.",
+      "tipsVi": "Luôn đảm bảo động từ trong câu 「把」 có đi kèm các thành phần khác (bổ ngữ, 「了」, v.v.), không dùng động từ đứng một mình.",
+      "attentionsVi": "Tân ngữ sau 「把」 phải là đối tượng xác định, đã được nhắc đến hoặc cụ thể hóa.",
+      "examples": [
+        {
+          "chinese": "老师，我把作业本放在您办公室了。",
+          "pinyin": "lǎo shī wǒ bǎ zuò yè běn fàng zài nín bàn gōng shì le",
+          "meaningVi": "Thưa thầy, em để vở bài tập ở văn phòng thầy rồi ạ."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -168,7 +238,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "văn phòng",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

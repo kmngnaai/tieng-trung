@@ -54,7 +54,9 @@
         "target": "看法",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "改变看法",
@@ -64,7 +66,9 @@
         "target": "看法",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "个人看法",
@@ -74,10 +78,32 @@
         "target": "看法",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "观点",
+        "pinyin": "guān diǎn",
+        "meaningVi": "quan điểm",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: quan điểm",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "主张",
+        "pinyin": "zhǔ zhāng",
+        "meaningVi": "quan điểm",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: quan điểm",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -109,14 +135,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "看法",
+      "chinese": "结婚前，我们要清楚自己想要的是什么，而不要被别人对幸福的看法影响。",
+      "pinyin": "jié hūn qián wǒ men yào qīng chǔ zì jǐ xiǎng yào de shì shén me ér bù yào bèi bié rén duì xìng fú de kàn fǎ yǐng xiǎng",
+      "meaningVi": "Trước khi kết hôn, chúng ta cần hiểu rõ bản thân muốn gì, chứ không nên bị quan điểm của người khác về hạnh phúc ảnh hưởng.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_10",
+      "grammarTopic": "Cách dùng liên từ 而",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "看法",
+      "chinese": "嗯，我同意你的看法。",
+      "pinyin": "ń wǒ tóng yì nǐ de kàn fǎ",
+      "meaningVi": "Ừm, tôi đồng ý với cách nhìn của bạn.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_79",
+      "grammarTopic": "Thán từ 嗯 biểu thị sự đồng ý",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:看法",
       "title": "Cách dùng 看法",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_10",
+      "title": "Cách dùng liên từ 而",
+      "syntax": "Vế câu 1 + 而 + Vế câu 2",
+      "explanationVi": "Liên từ 「而」 thường được dùng trong câu để nối hai vế câu có quan hệ song song hoặc tương phản. Nó giúp thể hiện ý nghĩa bổ sung, \"trong khi đó\" hoặc \"mà\" giữa hai sự vật, hiện tượng.",
+      "tipsVi": "Bạn có thể dùng 「而」 để kết nối hai tính từ đối lập nhau nhằm làm nổi bật sự khác biệt giữa hai đối tượng.",
+      "attentionsVi": "Cần phân biệt 「而」 với 「而且」, vì 「而且」 dùng để bổ sung thêm ý nghĩa (nghĩa là \"hơn nữa\"), trong khi 「而」 thiên về sự đối chiếu hoặc liệt kê.",
+      "examples": [
+        {
+          "chinese": "结婚前，我们要清楚自己想要的是什么，而不要被别人对幸福的看法影响。",
+          "pinyin": "jié hūn qián wǒ men yào qīng chǔ zì jǐ xiǎng yào de shì shén me ér bù yào bèi bié rén duì xìng fú de kàn fǎ yǐng xiǎng",
+          "meaningVi": "Trước khi kết hôn, chúng ta cần hiểu rõ bản thân muốn gì, chứ không nên bị quan điểm của người khác về hạnh phúc ảnh hưởng."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_79",
+      "title": "Thán từ 嗯 biểu thị sự đồng ý",
+      "syntax": "嗯 (ng) - Thán từ biểu thị sự đồng ý",
+      "explanationVi": "Thán từ 「嗯」 được dùng để phản hồi trong giao tiếp, biểu thị sự đồng ý, xác nhận hoặc tán thành một cách nhẹ nhàng. Đây là cách đáp lại tự nhiên và phổ biến khi bạn muốn cho người nghe biết mình đang lắng nghe hoặc đồng ý với ý kiến của họ.",
+      "tipsVi": "Cách phát âm 「嗯」 có thể thay đổi âm điệu tùy vào ngữ cảnh, nhưng nhìn chung trong hội thoại hàng ngày, nó đóng vai trò tương tự như từ 'vâng' hoặc 'ừ' trong tiếng Việt.",
+      "attentionsVi": "Không nên dùng 「嗯」 trong các văn bản trang trọng hoặc khi trả lời cấp trên vì có thể bị coi là thiếu sự tôn trọng; trong trường hợp đó, hãy dùng những từ như 「好的」 hoặc 「我知道了」.",
+      "examples": [
+        {
+          "chinese": "嗯，我同意你的看法。",
+          "pinyin": "ń wǒ tóng yì nǐ de kàn fǎ",
+          "meaningVi": "Ừm, tôi đồng ý với cách nhìn của bạn."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -150,7 +241,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 5,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "quan điểm, cách nhìn",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

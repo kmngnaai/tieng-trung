@@ -54,7 +54,20 @@
         "target": "重点",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "重点",
+            "chinese": "这是今天的重点内容。",
+            "pinyin": "zhè shì jīn tiān de zhòng diǎn nèi róng。",
+            "meaningVi": "Đây là nội dung trọng điểm hôm nay.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "抓住重点",
@@ -64,7 +77,20 @@
         "target": "重点",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "重点",
+            "chinese": "要抓住重点。",
+            "pinyin": "yào zhuā zhù zhòng diǎn。",
+            "meaningVi": "Phải nắm bắt trọng điểm.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "重点工作",
@@ -74,10 +100,13 @@
         "target": "重点",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -99,14 +128,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "重点",
+      "chinese": "老师把重点写下来了。",
+      "pinyin": "lǎo shī bǎ zhòng diǎn xiě xià lái le",
+      "meaningVi": "Giáo viên đã viết lại các trọng điểm.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_64",
+      "grammarTopic": "Bổ ngữ xu hướng 下来",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:重点",
       "title": "Cách dùng 重点",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_64",
+      "title": "Bổ ngữ xu hướng 下来",
+      "syntax": "Động từ + 下来 (xiàlái)",
+      "explanationVi": "Bổ ngữ xu hướng 「下来」 được đặt sau động từ để biểu thị hành động đã kết thúc hoặc trạng thái được duy trì, cố định lại sau khi xảy ra. Nó cũng có thể dùng để diễn tả việc một hành động đang tiếp diễn đột ngột dừng lại.",
+      "tipsVi": "Bạn có thể dùng 「下来」 với các từ như 「定下来」(đã quyết định xong) hoặc 「停下来」(dừng lại hẳn) để nhớ cấu trúc này dễ dàng hơn.",
+      "attentionsVi": "Cần phân biệt với 「下去」(xiàqù) - từ biểu thị sự tiếp diễn của một hành động đã đang diễn ra, còn 「下来」 nhấn mạnh vào sự hoàn thành hoặc dừng lại.",
+      "examples": [
+        {
+          "chinese": "老师把重点写下来了。",
+          "pinyin": "lǎo shī bǎ zhòng diǎn xiě xià lái le",
+          "meaningVi": "Giáo viên đã viết lại các trọng điểm."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -140,7 +203,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "trọng điểm",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

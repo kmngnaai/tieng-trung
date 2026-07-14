@@ -51,7 +51,8 @@
         "meaningVi": "Sức sản xuất",
         "meaningFullVi": "Sức sản xuất, năng suất lao động",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 3",
+        "hskLevel": 3,
+        "source": "hsk_3.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -64,7 +65,9 @@
         "target": "生产",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "生产厂家",
@@ -74,10 +77,32 @@
         "target": "生产",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "产生",
+        "pinyin": "chǎn shēng",
+        "meaningVi": "sản xuất",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: sản xuất",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "制造",
+        "pinyin": "zhì zào",
+        "meaningVi": "sản xuất",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: sản xuất",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -103,10 +128,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:生产",
       "title": "Cách dùng 生产",
       "partOfSpeech": "động từ / danh từ",
       "usageNoteVi": "生产 có thể là động từ (sản xuất) hoặc danh từ (sản xuất, ngành sản xuất). Thường đi kèm với các từ chỉ sản phẩm hoặc lĩnh vực: 生产汽车 (sản xuất ô tô), 农业生产 (sản xuất nông nghiệp).",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -139,6 +167,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "sản xuất, làm ra hàng hóa",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

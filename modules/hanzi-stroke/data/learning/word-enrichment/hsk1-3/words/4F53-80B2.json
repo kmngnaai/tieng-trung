@@ -53,16 +53,18 @@
         "meaningVi": "sân vận động",
         "meaningFullVi": "sân vận động",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 2",
+        "hskLevel": 2,
+        "source": "hsk_2.json",
         "reviewStatus": "reviewed-local"
       },
       {
         "word": "体育馆",
         "pinyin": "tǐ yù guǎn",
-        "meaningVi": "nhà thi đấu",
+        "meaningVi": "sân vận động",
         "meaningFullVi": "nhà thi đấu",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 2",
+        "hskLevel": 2,
+        "source": "hsk_2.json",
         "reviewStatus": "reviewed-local"
       },
       {
@@ -71,7 +73,8 @@
         "meaningVi": "người hâm mộ thể thao",
         "meaningFullVi": "người hâm mộ thể thao, fan thể thao",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 3",
+        "hskLevel": 3,
+        "source": "hsk_3.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -84,7 +87,20 @@
         "target": "体育",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "体育",
+            "chinese": "我们上体育课",
+            "pinyin": "wǒ men shàng tǐ yù kè",
+            "meaningVi": "Chúng tôi có lớp thể dục",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "体育活动",
@@ -94,10 +110,13 @@
         "target": "体育",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -133,10 +152,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:体育",
       "title": "Cách dùng 体育",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -204,6 +226,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 3,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "thể thao",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

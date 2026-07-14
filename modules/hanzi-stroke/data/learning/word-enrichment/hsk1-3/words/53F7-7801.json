@@ -55,7 +55,9 @@
         "target": "号码",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "那个号码",
@@ -65,10 +67,13 @@
         "target": "号码",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -90,14 +95,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "号码",
+      "chinese": "你的电话号码是多少？",
+      "pinyin": "nǐ de diàn huà hào mǎ shì duō shǎo",
+      "meaningVi": "Số điện thoại của bạn là bao nhiêu?",
+      "source": "hsk_1.json",
+      "grammarId": "hsk1_39",
+      "grammarTopic": "Cách đọc số điện thoại và mã số",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:号码",
       "title": "Cách dùng 号码",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk1_39",
+      "title": "Cách đọc số điện thoại và mã số",
+      "syntax": "Đọc từng chữ số: [Số 0-9] + [Số 0-9] + ...",
+      "explanationVi": "Khi đọc số điện thoại, số nhà hoặc mã số, bạn cần đọc lần lượt từng chữ số từ trái sang phải thay vì đọc theo đơn vị hàng chục hay hàng trăm. Riêng chữ số 「1」, trong ngữ cảnh này người ta thường đọc là 「yāo」 thay vì 「yī」 để tránh nhầm lẫn với các số khác.",
+      "tipsVi": "Cách đọc 「yāo」 giúp âm thanh rõ ràng hơn, tránh nghe nhầm với âm 「qī」(số 7) trong môi trường đàm thoại qua điện thoại.",
+      "attentionsVi": "Quy tắc đọc 「yāo」 chỉ áp dụng cho dãy số dài như số điện thoại hoặc mã số, không áp dụng khi đếm số lượng thông thường.",
+      "examples": [
+        {
+          "chinese": "你的电话号码是多少？",
+          "pinyin": "nǐ de diàn huà hào mǎ shì duō shǎo",
+          "meaningVi": "Số điện thoại của bạn là bao nhiêu?"
+        }
+      ],
+      "source": "hsk_1.json",
+      "curriculum": "hsk",
+      "hskLevel": 1,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -136,7 +175,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "Số",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

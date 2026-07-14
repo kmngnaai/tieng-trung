@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "vào bên trong",
+      "meaningShortVi": "đi vào",
       "meaningFullVi": "vào bên trong",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "vào bên trong",
+  "meaningShortVi": "đi vào",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -47,7 +47,18 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "走进",
+        "pinyin": "zǒu jìn",
+        "meaningVi": "đi vào",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: đi vào",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -69,14 +80,93 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "进去",
+      "chinese": "先把米饭做好，然后再把新鲜的水果放进去。",
+      "pinyin": "xiān bǎ mǐ fàn zuò hǎo rán hòu zài bǎ xīn xiān de shuǐ guǒ fàng jìn qù",
+      "meaningVi": "Trước tiên nấu cơm xong, sau đó mới cho trái cây tươi vào.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_33",
+      "grammarTopic": "Diễn tả trình tự hành động",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "进去",
+      "chinese": "他把球踢进去了吗？",
+      "pinyin": "tā bǎ qiú tī jìn qù le ma",
+      "meaningVi": "Anh ấy có đá bóng vào không?",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_43",
+      "grammarTopic": "Câu chữ 把 với bổ ngữ",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:进去",
       "title": "Cách dùng 进去",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Động từ kết hợp chỉ hành động đi vào bên trong. '进' là vào, '去' là đi (hướng động từ).",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_33",
+      "title": "Diễn tả trình tự hành động",
+      "syntax": "先 (xiān) + V1, 再/又 (zài/yòu) + V2, 然后 (ránhòu) + V3",
+      "explanationVi": "Cấu trúc này được dùng để liệt kê các hành động theo trình tự thời gian. 「先」 đứng đầu câu chỉ hành động đầu tiên, 「再/又」 chỉ hành động tiếp theo và 「然后」 giới thiệu hành động cuối cùng để câu văn mạch lạc hơn.",
+      "tipsVi": "Khi liệt kê chuỗi hành động, bạn có thể linh hoạt lược bỏ bớt hoặc thêm các từ nối như 「最后」(zuìhòu - cuối cùng) ở bước cuối để nhấn mạnh kết quả.",
+      "attentionsVi": "Cần phân biệt: 「再」 thường dùng cho hành động chưa xảy ra, trong khi 「又」 dùng cho hành động đã xảy ra hoặc lặp lại.",
+      "examples": [
+        {
+          "chinese": "先把米饭做好，然后再把新鲜的水果放进去。",
+          "pinyin": "xiān bǎ mǐ fàn zuò hǎo rán hòu zài bǎ xīn xiān de shuǐ guǒ fàng jìn qù",
+          "meaningVi": "Trước tiên nấu cơm xong, sau đó mới cho trái cây tươi vào."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_42",
+      "title": "Bổ ngữ xu hướng phức hợp",
+      "syntax": "Động từ + (上/下/进/出/回/过/起) + 来/去",
+      "explanationVi": "Bổ ngữ xu hướng phức hợp gồm một động từ chỉ phương hướng kết hợp với 「来」 (lại đây) hoặc 「去」 (đi tới đó). Cấu trúc này dùng để mô tả hướng di chuyển của hành động một cách chi tiết hơn. Ví dụ 「走进来」 nghĩa là đi vào đây, 「走进去」 nghĩa là đi vào đó.",
+      "tipsVi": "Nếu câu có tân ngữ là nơi chốn, hãy đặt tân ngữ vào giữa bổ ngữ xu hướng, ví dụ 「走进教室来」.",
+      "attentionsVi": "Chú ý phân biệt giữa 「来」 (hướng về phía người nói) và 「去」 (hướng xa khỏi người nói) để sử dụng chính xác.",
+      "examples": [],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_43",
+      "title": "Câu chữ 把 với bổ ngữ",
+      "syntax": "Chủ ngữ + 把 + Tân ngữ + Động từ + Bổ ngữ (Kết quả/Xu hướng/Mức độ)",
+      "explanationVi": "Trong câu chữ 「把」, động từ không bao giờ đứng một mình mà phải đi kèm bổ ngữ để chỉ kết quả, xu hướng hoặc mức độ. Cấu trúc này nhấn mạnh việc tân ngữ đã chịu tác động và thay đổi ra sao sau hành động. Bạn cần đặt bổ ngữ ngay sau động từ để hoàn thiện ý nghĩa.",
+      "tipsVi": "Hãy nhớ rằng bổ ngữ như 「了」, 「下来」, 「好」 hay 「清楚」 thường được thêm vào sau động từ để làm rõ kết quả của hành động đối với tân ngữ.",
+      "attentionsVi": "Không được để động từ đứng đơn độc mà không có các thành phần bổ sung phía sau trong câu chữ 「把」.",
+      "examples": [
+        {
+          "chinese": "他把球踢进去了吗？",
+          "pinyin": "tā bǎ qiú tī jìn qù le ma",
+          "meaningVi": "Anh ấy có đá bóng vào không?"
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,8 +220,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 4,
+      "grammar": 4,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "vào bên trong",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

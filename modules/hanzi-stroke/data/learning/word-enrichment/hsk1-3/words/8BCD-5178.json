@@ -57,10 +57,23 @@
         "target": "词典",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "字典",
+        "pinyin": "zì diǎn",
+        "meaningVi": "từ điển",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: từ điển",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -82,14 +95,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "词典",
+      "chinese": "帮我把这本词典还了。",
+      "pinyin": "bāng wǒ bǎ zhè běn cí diǎn hái le",
+      "meaningVi": "Giúp mình trả quyển từ điển này đi.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_26",
+      "grammarTopic": "Câu chữ 把",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:词典",
       "title": "Cách dùng 词典",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_26",
+      "title": "Câu chữ 把",
+      "syntax": "Chủ ngữ + 把 + Tân ngữ + Động từ + Thành phần khác (了/bổ ngữ/vị trí)",
+      "explanationVi": "Câu chữ 「把」 dùng để nhấn mạnh sự tác động của chủ ngữ lên một đối tượng cụ thể, làm thay đổi trạng thái hoặc vị trí của đối tượng đó. Sau động từ bắt buộc phải có thêm các thành phần khác như 「了」, bổ ngữ hoặc nơi chốn để hoàn thiện câu.",
+      "tipsVi": "Hãy nhớ rằng tân ngữ đứng sau 「把」 phải là đối tượng xác định, cụ thể mà người nói và người nghe đều biết rõ.",
+      "attentionsVi": "Động từ trong câu chữ 「把」 không bao giờ được đứng một mình, phải có thêm thành phần phụ phía sau như 「了」, bổ ngữ kết quả, bổ ngữ xu hướng hoặc nơi chốn.",
+      "examples": [
+        {
+          "chinese": "帮我把这本词典还了。",
+          "pinyin": "bāng wǒ bǎ zhè běn cí diǎn hái le",
+          "meaningVi": "Giúp mình trả quyển từ điển này đi."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -163,7 +210,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "từ điển",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

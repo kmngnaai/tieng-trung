@@ -56,7 +56,31 @@
         "target": "报纸",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "报纸",
+            "chinese": "我每天早上都看报纸。",
+            "pinyin": "wǒ měi tiān zǎo shang dōu kàn bào zhǐ。",
+            "meaningVi": "Tôi mỗi sáng đều đọc báo.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "报纸",
+            "chinese": "我丈夫喜欢一边吃早饭一边看报纸。",
+            "pinyin": "wǒ zhàng fū xǐ huān yī biān chī zǎo fàn yī biān kàn bào zhǐ",
+            "meaningVi": "Chồng tôi thích vừa ăn sáng vừa đọc báo.",
+            "source": "hsk_3.json",
+            "grammarId": "hsk3_31",
+            "grammarTopic": "Diễn tả hai hành động cùng lúc",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 2
       },
       {
         "text": "买报纸",
@@ -66,10 +90,23 @@
         "target": "报纸",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "告诉",
+        "pinyin": "gào su",
+        "meaningVi": "báo",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: báo",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -91,14 +128,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "报纸",
+      "chinese": "我丈夫喜欢一边吃早饭一边看报纸。",
+      "pinyin": "wǒ zhàng fū xǐ huān yī biān chī zǎo fàn yī biān kàn bào zhǐ",
+      "meaningVi": "Chồng tôi thích vừa ăn sáng vừa đọc báo.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_31",
+      "grammarTopic": "Diễn tả hai hành động cùng lúc",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "报纸",
+      "chinese": "他在报纸上发表了一篇文章。",
+      "pinyin": "tā zài bào zhǐ shàng fā biǎo le yī piān wén zhāng",
+      "meaningVi": "Anh ấy đã đăng một bài viết trên báo.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_56",
+      "grammarTopic": "Phân biệt 发言 và 发表",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:报纸",
       "title": "Cách dùng 报纸",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_31",
+      "title": "Diễn tả hai hành động cùng lúc",
+      "syntax": "一边 + [động từ 1] + (tân ngữ 1), 一边 + [động từ 2] + (tân ngữ 2)",
+      "explanationVi": "Cấu trúc này dùng để diễn tả hai hành động diễn ra cùng một lúc. Khi bạn muốn nói về việc mình đang làm song song hai việc, hãy đặt mỗi động từ sau mỗi chữ 「一边」.",
+      "tipsVi": "Bạn có thể dùng cấu trúc này để kể về thói quen hằng ngày, ví dụ: 「一边吃饭，一边看电视」(Vừa ăn cơm, vừa xem tivi).",
+      "attentionsVi": "Lưu ý rằng hai động từ này phải là những hành động có thể thực hiện được cùng một lúc, nếu không câu sẽ trở nên vô lý.",
+      "examples": [
+        {
+          "chinese": "我丈夫喜欢一边吃早饭一边看报纸。",
+          "pinyin": "wǒ zhàng fū xǐ huān yī biān chī zǎo fàn yī biān kàn bào zhǐ",
+          "meaningVi": "Chồng tôi thích vừa ăn sáng vừa đọc báo."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_56",
+      "title": "Phân biệt 发言 và 发表",
+      "syntax": "发言 (phát biểu ý kiến) vs. 发表 (công bố/đăng tải)",
+      "explanationVi": "「发言」 dùng để chỉ hành động trình bày ý kiến hoặc nói chuyện trong các buổi hội họp, thảo luận. Trong khi đó, 「发表」 thường dùng cho việc công bố rộng rãi các tác phẩm, quan điểm hoặc số liệu trên phương tiện truyền thông.",
+      "tipsVi": "Hãy nhớ 「发言」 giống như 'lên tiếng' trong cuộc họp, còn 「发表」 giống như 'xuất bản' hay 'đăng bài' để mọi người cùng xem.",
+      "attentionsVi": "Không nên dùng nhầm 「发表」 cho hành động nói chuyện trực tiếp tại chỗ, vì nó mang tính chất chính thức và đại chúng hơn.",
+      "examples": [
+        {
+          "chinese": "他在报纸上发表了一篇文章。",
+          "pinyin": "tā zài bào zhǐ shàng fā biǎo le yī piān wén zhāng",
+          "meaningVi": "Anh ấy đã đăng một bài viết trên báo."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -167,7 +269,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "báo",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

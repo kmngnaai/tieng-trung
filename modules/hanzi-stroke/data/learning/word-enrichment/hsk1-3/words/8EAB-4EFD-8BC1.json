@@ -23,14 +23,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Chứng minh thư",
+      "meaningShortVi": "chứng minh thư",
       "meaningFullVi": "Chứng minh thư, giấy tờ tùy thân",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Chứng minh thư",
+  "meaningShortVi": "chứng minh thư",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -55,7 +55,9 @@
         "target": "身份证",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "身份证号码",
@@ -65,7 +67,20 @@
         "target": "身份证",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "身份证",
+            "chinese": "身份证号码是多少?",
+            "pinyin": "Shēnfènzhèng hàomǎ shì duōshǎo?",
+            "meaningVi": "Số chứng minh thư là bao nhiêu?",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "用身份证",
@@ -75,10 +90,24 @@
         "target": "身份证",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "身份证",
+            "chinese": "我用身份证办了银行卡。",
+            "pinyin": "Wǒ yòng shēnfènzhèng bànle yínhángkǎ.",
+            "meaningVi": "Tôi dùng chứng minh thư để làm thẻ ngân hàng.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -114,10 +143,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:身份证",
       "title": "Cách dùng 身份证",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "身份证 chỉ giấy tờ tùy thân chính thức của công dân Trung Quốc. Trong giao tiếp hàng ngày, có thể được gọi tắt là 身份证.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -151,7 +183,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "Chứng minh thư, giấy tờ tùy thân",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

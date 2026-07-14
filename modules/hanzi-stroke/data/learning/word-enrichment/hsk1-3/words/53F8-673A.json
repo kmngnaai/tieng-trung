@@ -56,7 +56,20 @@
         "target": "司机",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "司机",
+            "chinese": "他是出租车司机",
+            "pinyin": "tā shì chū zū chē sī jī",
+            "meaningVi": "Anh ấy là tài xế taxi",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "公交车司机",
@@ -66,10 +79,13 @@
         "target": "司机",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -91,14 +107,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "司机",
+      "chinese": "司机把我送到机场了。",
+      "pinyin": "sī jī bǎ wǒ sòng dào jī chǎng le",
+      "meaningVi": "Tài xế đã đưa tôi đến sân bay.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_29",
+      "grammarTopic": "Câu chữ 把 với 在, 到, 给",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:司机",
       "title": "Cách dùng 司机",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_29",
+      "title": "Câu chữ 把 với 在, 到, 给",
+      "syntax": "S + 把 + O + V + 在/到/给 + [Địa điểm/Người]",
+      "explanationVi": "Cấu trúc này dùng để diễn tả việc thay đổi vị trí của vật hoặc chuyển quyền sở hữu. Trong đó, 「在/到」 chỉ vị trí mới của vật, còn 「给」 chỉ người nhận vật đó sau khi hành động kết thúc.",
+      "tipsVi": "Hãy chú ý sau động từ bắt buộc phải có bổ ngữ là 「在/到/给」, bạn không được để động từ đứng một mình khi dùng câu chữ 「把」 trong ngữ cảnh này.",
+      "attentionsVi": "Trong câu chữ 「把」, động từ không bao giờ đứng một mình mà phải đi kèm với các thành phần bổ sung như 「在/到/给」 hoặc trợ từ 「了」.",
+      "examples": [
+        {
+          "chinese": "司机把我送到机场了。",
+          "pinyin": "sī jī bǎ wǒ sòng dào jī chǎng le",
+          "meaningVi": "Tài xế đã đưa tôi đến sân bay."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -167,7 +217,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "tài xế",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

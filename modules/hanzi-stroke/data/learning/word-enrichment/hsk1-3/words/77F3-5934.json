@@ -54,7 +54,9 @@
         "target": "石头",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "一块石头",
@@ -64,10 +66,24 @@
         "target": "石头",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "石头",
+            "chinese": "他捡起一块石头扔进水里。",
+            "pinyin": "Tā jiǎnqǐ yí kuài shítou rēng jìn shuǐ lǐ.",
+            "meaningVi": "Anh ấy nhặt một hòn đá ném xuống nước.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -93,10 +109,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:石头",
       "title": "Cách dùng 石头",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "石头 是 口语说法. 书面语 用 石 (shí) 或 岩石 (yánshí - đá núi). 常用语: 石头剪刀布 (trò chơi kéo búa bao). 在建筑: 石头路 (đường đá), 石头桥 (cầu đá).",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +149,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "đá",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

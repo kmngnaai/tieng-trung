@@ -55,7 +55,9 @@
         "target": "连续剧",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "看连续剧",
@@ -65,10 +67,23 @@
         "target": "连续剧",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "电视剧",
+        "pinyin": "diàn shì jù",
+        "meaningVi": "phim truyền hình",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: phim truyền hình",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -94,10 +109,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:连续剧",
       "title": "Cách dùng 连续剧",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "Có thể dùng cho nhiều loại hình phim như phim tình cảm, phim hành động, phim cổ trang. Trong văn ngữ thông dụng, đôi khi được gọi tắt là 剧 hoặc 电视剧. Từ liên quan: 电影 'phim điện ảnh', 综艺节目 'chương trình giải trí'.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -131,7 +149,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "phim truyền hình, phim bộ; phim hoặc kịch được phát sóng thành nhiều tập liên tiếp",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

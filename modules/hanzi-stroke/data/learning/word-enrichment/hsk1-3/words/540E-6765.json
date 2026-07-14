@@ -56,10 +56,55 @@
         "target": "后来",
         "source": "hsk_2.json",
         "pinyinMethod": "exact-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "后来",
+            "chinese": "后来他来了",
+            "pinyin": "hòu lái tā lái le",
+            "meaningVi": "Sau đó anh ấy đến",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "后来",
+            "chinese": "后来怎么样",
+            "pinyin": "hòu lái zěn me yàng",
+            "meaningVi": "Sau đó thế nào",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "后来",
+            "chinese": "后来才发现，原来我认错人了，我以为他是我同学。",
+            "pinyin": "hòu lái cái fā xiàn yuán lái wǒ rèn cuò rén le wǒ yǐ wèi tā shì wǒ tóng xué",
+            "meaningVi": "Sau đó mới phát hiện ra hóa ra tôi nhận nhầm người, tôi cứ tưởng anh ấy là bạn học của tôi.",
+            "source": "hsk_4.json",
+            "grammarId": "hsk4_16",
+            "grammarTopic": "Cách dùng 以为",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 3
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "以后",
+        "pinyin": "yǐ hòu",
+        "meaningVi": "sau này",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: sau này",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -81,14 +126,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "后来",
+      "chinese": "后来才发现，原来我认错人了，我以为他是我同学。",
+      "pinyin": "hòu lái cái fā xiàn yuán lái wǒ rèn cuò rén le wǒ yǐ wèi tā shì wǒ tóng xué",
+      "meaningVi": "Sau đó mới phát hiện ra hóa ra tôi nhận nhầm người, tôi cứ tưởng anh ấy là bạn học của tôi.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_16",
+      "grammarTopic": "Cách dùng 以为",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:后来",
       "title": "Cách dùng 后来",
       "partOfSpeech": "noun/adverb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_16",
+      "title": "Cách dùng 以为",
+      "syntax": "Chủ ngữ + 以为 + [nội dung suy nghĩ sai lệch]",
+      "explanationVi": "Động từ 「以为」 được dùng để diễn tả việc chủ thể tin rằng điều gì đó là sự thật, nhưng thực tế lại hoàn toàn trái ngược hoặc sai lầm. Nó mang nghĩa tiếng Việt là 'tưởng rằng' hoặc 'ngỡ rằng'.",
+      "tipsVi": "Bạn có thể dùng 「还以为」 để nhấn mạnh hơn vào sự ngạc nhiên hoặc vỡ lẽ của bản thân sau khi phát hiện ra sự thật.",
+      "attentionsVi": "Không nên dùng 「以为」 để nói về nhận định của bản thân về một sự việc đúng đắn hoặc trung lập; khi đó hãy dùng 「认为」 (cho rằng/nghĩ rằng).",
+      "examples": [
+        {
+          "chinese": "后来才发现，原来我认错人了，我以为他是我同学。",
+          "pinyin": "hòu lái cái fā xiàn yuán lái wǒ rèn cuò rén le wǒ yǐ wèi tā shì wǒ tóng xué",
+          "meaningVi": "Sau đó mới phát hiện ra hóa ra tôi nhận nhầm người, tôi cứ tưởng anh ấy là bạn học của tôi."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -157,7 +236,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "sau này",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

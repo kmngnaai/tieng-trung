@@ -52,7 +52,20 @@
         "target": "缺乏",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "缺乏",
+            "chinese": "很多年轻人缺乏经验。",
+            "pinyin": "hěn duō nián qīng rén quē fá jīng yàn。",
+            "meaningVi": "Rất nhiều người trẻ thiếu kinh nghiệm.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "缺乏信心",
@@ -62,7 +75,20 @@
         "target": "缺乏",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "缺乏",
+            "chinese": "我们不能缺乏信心。",
+            "pinyin": "wǒ men bù néng quē fá xìn xīn。",
+            "meaningVi": "Chúng ta không thể thiếu lòng tin.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "缺乏资金",
@@ -72,10 +98,23 @@
         "target": "缺乏",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "缺少",
+        "pinyin": "quē shǎo",
+        "meaningVi": "thiếu",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: thiếu",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -97,14 +136,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "缺乏",
+      "chinese": "无论在哪个行业，最缺乏的永远都是专注的人。",
+      "pinyin": "wú lùn zài nǎ gè xíng yè zuì quē fá de yǒng yuǎn dōu shì zhuān zhù de rén",
+      "meaningVi": "Bất luận ở ngành nghề nào, thứ luôn thiếu nhất vẫn là những người chuyên tâm.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_35",
+      "grammarTopic": "Cấu trúc 无论……都/也……",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:缺乏",
       "title": "Cách dùng 缺乏",
       "partOfSpeech": "động từ",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_35",
+      "title": "Cấu trúc 无论……都/也……",
+      "syntax": "无论 + (A/không A / nghi vấn) + ， + chủ ngữ + 都/也 + kết quả",
+      "explanationVi": "Cấu trúc 「无论……都/也……」 dùng để diễn tả rằng dù điều kiện hoặc hoàn cảnh có thay đổi thế nào đi nữa, thì kết quả cuối cùng vẫn không thay đổi. Nó tương đương với nghĩa “bất luận, cho dù… đều/cũng” trong tiếng Việt.",
+      "tipsVi": "Sau 「无论」 thường là các từ ngữ mang tính chất lựa chọn hoặc nghi vấn như 「怎么」、「什么」、「是否」 hoặc cặp từ 「A还是B」.",
+      "attentionsVi": "Cần lưu ý không dùng nhầm lẫn với 「虽然」(mặc dù), vì 「无论」 nhấn mạnh vào việc kết quả không bị tác động bởi bất kỳ tình huống nào.",
+      "examples": [
+        {
+          "chinese": "无论在哪个行业，最缺乏的永远都是专注的人。",
+          "pinyin": "wú lùn zài nǎ gè xíng yè zuì quē fá de yǒng yuǎn dōu shì zhuān zhù de rén",
+          "meaningVi": "Bất luận ở ngành nghề nào, thứ luôn thiếu nhất vẫn là những người chuyên tâm."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -122,7 +195,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "thiếu",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

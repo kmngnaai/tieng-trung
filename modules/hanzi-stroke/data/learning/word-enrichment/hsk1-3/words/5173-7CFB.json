@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Quan hệ",
+      "meaningShortVi": "liên quan đến",
       "meaningFullVi": "Quan hệ, mối quan hệ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Quan hệ",
+  "meaningShortVi": "liên quan đến",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -53,7 +53,8 @@
         "meaningVi": "không sao",
         "meaningFullVi": "không sao, không có gì",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 1",
+        "hskLevel": 1,
+        "source": "hsk_1.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -66,7 +67,20 @@
         "target": "关系",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "关系",
+            "chinese": "这件事跟我不有关系。",
+            "pinyin": "Zhè jiàn shì gēn wǒ méiyǒu guānxì.",
+            "meaningVi": "Việc này không liên quan đến tôi.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "没关系",
@@ -76,7 +90,21 @@
         "target": "关系",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "关系",
+            "chinese": "打不好没关系。",
+            "pinyin": "dǎ bù hǎo méi guān xì",
+            "meaningVi": "Đánh không tốt cũng không sao.",
+            "source": "new_hsk_3.json",
+            "grammarId": "hsk3_new_29",
+            "grammarTopic": "Bổ ngữ khả năng (V + 得/不 + bổ ngữ)",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "人际关系",
@@ -86,10 +114,23 @@
         "target": "关系",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "有关",
+        "pinyin": "yǒu guān",
+        "meaningVi": "liên quan đến",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: liên quan đến",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -121,14 +162,110 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "关系",
+      "chinese": "建立合作伙伴关系，从而扭转了过去单打独斗的局面。",
+      "pinyin": "jiàn lì hé zuò huǒ bàn guān xì cóng ér niǔ zhuǎn le guò qù dān dǎ dú dòu de jú miàn",
+      "meaningVi": "Thiết lập quan hệ đối tác hợp tác, từ đó xoay chuyển cục diện trước đây chỉ đơn độc chiến đấu.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_39",
+      "grammarTopic": "Cách dùng liên từ 从而",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "关系",
+      "chinese": "这两个问题关系密切。",
+      "pinyin": "zhè liǎng gè wèn tí guān xì mì qiè",
+      "meaningVi": "Hai vấn đề này có quan hệ mật thiết.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_82",
+      "grammarTopic": "Cách dùng từ 密切",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "关系",
+      "chinese": "打不好没关系。",
+      "pinyin": "dǎ bù hǎo méi guān xì",
+      "meaningVi": "Đánh không tốt cũng không sao.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_29",
+      "grammarTopic": "Bổ ngữ khả năng (V + 得/不 + bổ ngữ)",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:关系",
       "title": "Cách dùng 关系",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "关系 có thể chỉ mối quan hệ giữa người với người, hoặc sự liên quan giữa các sự vật. Trong văn nói, 没关系 cũng được dùng để đáp lời khi cảm ơn.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_39",
+      "title": "Cách dùng liên từ 从而",
+      "syntax": "Vế câu 1, 从而 + Vế câu 2 (kết quả/mục đích)",
+      "explanationVi": "Liên từ 「从而」 thường đứng ở đầu vế câu thứ hai để nối tiếp vế trước. Nó diễn tả mối quan hệ nhân quả hoặc mục đích, giúp chỉ ra rằng vế sau là kết quả tất yếu rút ra từ hành động hoặc sự việc ở vế trước.",
+      "tipsVi": "「从而」 thường được dùng trong văn viết hoặc các bài luận trang trọng để làm cho câu văn mạch lạc và logic hơn.",
+      "attentionsVi": "Không nên nhầm lẫn 「从而」 với 「因此」; 「从而」 nhấn mạnh vào quá trình dẫn đến kết quả hoặc mục đích, trong khi 「因此」 tập trung vào nguyên nhân dẫn đến kết quả.",
+      "examples": [
+        {
+          "chinese": "建立合作伙伴关系，从而扭转了过去单打独斗的局面。",
+          "pinyin": "jiàn lì hé zuò huǒ bàn guān xì cóng ér niǔ zhuǎn le guò qù dān dǎ dú dòu de jú miàn",
+          "meaningVi": "Thiết lập quan hệ đối tác hợp tác, từ đó xoay chuyển cục diện trước đây chỉ đơn độc chiến đấu."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_82",
+      "title": "Cách dùng từ 密切",
+      "syntax": "[Chủ ngữ] + 密切 (tính từ/động từ) + [đối tượng]",
+      "explanationVi": "Từ 「密切」 mang nghĩa là 'mật thiết', dùng để chỉ mối quan hệ gần gũi, khăng khít hoặc sự quan sát kỹ lưỡng. Ngoài vai trò là tính từ, nó còn có thể làm động từ với ý nghĩa làm cho mối quan hệ trở nên gắn kết hơn.",
+      "tipsVi": "Bạn có thể dùng 「密切」 đi kèm với danh từ như 「密切关系」(quan hệ mật thiết) hoặc 「密切合作」(hợp tác chặt chẽ) để câu văn chuyên nghiệp hơn.",
+      "attentionsVi": "Cần phân biệt rõ với từ 「亲密」(qīnmì), vì 「亲密」 thường dùng cho tình cảm gia đình, bạn bè thân thiết, còn 「密切」 thường dùng cho công việc, hợp tác hoặc các sự việc mang tính chất khách quan.",
+      "examples": [
+        {
+          "chinese": "这两个问题关系密切。",
+          "pinyin": "zhè liǎng gè wèn tí guān xì mì qiè",
+          "meaningVi": "Hai vấn đề này có quan hệ mật thiết."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_29",
+      "title": "Bổ ngữ khả năng (V + 得/不 + bổ ngữ)",
+      "syntax": "V + 得/不 + bổ ngữ (kết quả/xu hướng)",
+      "explanationVi": "Cấu trúc này dùng để diễn đạt việc hành động có thể hoặc không thể thực hiện được do điều kiện khách quan hoặc năng lực. 「得」 dùng cho khẳng định (làm được), còn 「不」 dùng cho phủ định (không làm được). Ví dụ: 「听得懂」 (nghe hiểu) và 「听不懂」 (nghe không hiểu).",
+      "tipsVi": "Hãy ghi nhớ cặp đối lập này để nói về khả năng đạt được kết quả của một hành động, giúp câu văn tự nhiên hơn nhiều so với việc chỉ dùng 「能」.",
+      "attentionsVi": "Đừng nhầm lẫn với bổ ngữ trình độ (V + 得 + tính từ); bổ ngữ khả năng luôn dùng để nói về việc có hoàn thành được kết quả hay không.",
+      "examples": [
+        {
+          "chinese": "打不好没关系。",
+          "pinyin": "dǎ bù hǎo méi guān xì",
+          "meaningVi": "Đánh không tốt cũng không sao."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -196,6 +333,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 3,
+      "sentences": 6,
+      "grammar": 4,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "Quan hệ, mối quan hệ",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

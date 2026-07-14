@@ -56,10 +56,13 @@
         "target": "爬山",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -81,14 +84,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "爬山",
+      "chinese": "不管明天天气怎么样，我都要去爬山。",
+      "pinyin": "bù guǎn míng tiān tiān qì zěn me yàng wǒ dōu yào qù pá shān",
+      "meaningVi": "Bất kể thời tiết ngày mai thế nào, tôi đều muốn đi leo núi.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_15",
+      "grammarTopic": "Cấu trúc 不管 (Bất kể)",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "爬山",
+      "chinese": "明天天气好的话，我就去爬山。",
+      "pinyin": "míng tiān tiān qì hǎo de huà wǒ jiù qù pá shān",
+      "meaningVi": "Ngày mai nếu thời tiết đẹp thì tôi sẽ đi leo núi.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_42",
+      "grammarTopic": "Câu điều kiện giả thiết với ...的話，就 ...",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:爬山",
       "title": "Cách dùng 爬山",
       "partOfSpeech": "verb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_15",
+      "title": "Cấu trúc 不管 (Bất kể)",
+      "syntax": "不管 + [điều kiện/đại từ nghi vấn], [kết quả không đổi]",
+      "explanationVi": "Liên từ 「不管」 dùng để diễn tả rằng kết quả sẽ không thay đổi bất chấp điều kiện hay hoàn cảnh nào xảy ra. Bạn có thể dịch cấu trúc này là \"bất luận\", \"cho dù\" hay \"bất kể\".",
+      "tipsVi": "Trong vế câu chứa 「不管」, người ta rất hay kết hợp với các đại từ nghi vấn như 「什么」(cái gì), 「怎么」(như thế nào), 「谁」(ai) hoặc 「多」(bao nhiêu) để làm rõ ý nghĩa.",
+      "attentionsVi": "Cần phân biệt 「不管」 với 「尽管」; trong khi 「不管」 chỉ điều kiện không ảnh hưởng đến kết quả, thì 「尽管」 lại mang nghĩa \"mặc dù\" (thừa nhận một sự thật để đưa ra kết luận).",
+      "examples": [
+        {
+          "chinese": "不管明天天气怎么样，我都要去爬山。",
+          "pinyin": "bù guǎn míng tiān tiān qì zěn me yàng wǒ dōu yào qù pá shān",
+          "meaningVi": "Bất kể thời tiết ngày mai thế nào, tôi đều muốn đi leo núi."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_42",
+      "title": "Câu điều kiện giả thiết với ...的話，就 ...",
+      "syntax": "(如果) + [Giả thiết] + 的話，(chủ ngữ) + 就 + [Kết quả]",
+      "explanationVi": "Cấu trúc này dùng để diễn tả một điều kiện giả định và kết quả tất yếu xảy ra. Trong đó, vế đầu là điều kiện giả thiết, vế sau dùng 「就」 để chỉ kết quả đi kèm.",
+      "tipsVi": "Bạn có thể lược bỏ 「如果」 trong văn nói, nhưng nên giữ lại 「的話」 ở cuối vế giả thiết để câu nghe tự nhiên hơn.",
+      "attentionsVi": "Trong cấu trúc này, vế sau bắt buộc phải có 「就」 để dẫn ra kết quả, không được bỏ quên.",
+      "examples": [
+        {
+          "chinese": "明天天气好的话，我就去爬山。",
+          "pinyin": "míng tiān tiān qì hǎo de huà wǒ jiù qù pá shān",
+          "meaningVi": "Ngày mai nếu thời tiết đẹp thì tôi sẽ đi leo núi."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -142,7 +210,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "leo núi",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -55,7 +55,20 @@
         "target": "消息",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "消息",
+            "chinese": "这是个好消息！。",
+            "pinyin": "zhè shì gè hǎo xiāo xi！。",
+            "meaningVi": "Đây là một tin tốt lành!",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "新闻消息",
@@ -65,10 +78,23 @@
         "target": "消息",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "新闻",
+        "pinyin": "xīn wén",
+        "meaningVi": "tin tức",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: tin tức",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -90,14 +116,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "消息",
+      "chinese": "他对这个消息没有任何反应。",
+      "pinyin": "tā duì zhè gè xiāo xī méi yǒu rèn hé fǎn yīng",
+      "meaningVi": "Anh ấy không có bất kỳ phản ứng nào với tin này.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_70",
+      "grammarTopic": "Phân biệt 反应 và 反映",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "消息",
+      "chinese": "这个消息鼓舞了大家。",
+      "pinyin": "zhè gè xiāo xī gǔ wǔ le dà jiā",
+      "meaningVi": "Tin này đã cổ vũ tinh thần mọi người.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_85",
+      "grammarTopic": "Phân biệt 鼓励 và 鼓舞",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:消息",
       "title": "Cách dùng 消息",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "指关于某人或某事的报道、信息。消息 vs. 新闻：消息更口语化，新闻更正式、更媒体化。",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_70",
+      "title": "Phân biệt 反应 và 反映",
+      "syntax": "反应 (phản ứng) vs. 反映 (phản ánh)",
+      "explanationVi": "「反应」 dùng để chỉ phản ứng tự nhiên của cơ thể hoặc thái độ đối với một sự việc (ví dụ: dị ứng, phản xạ). Trong khi đó, 「反映」 dùng khi muốn trình bày, phản ánh lại tình hình hoặc sự thật cho cấp trên hoặc người khác biết.",
+      "tipsVi": "Hãy nhớ 「反应」 thường liên quan đến cảm giác hoặc phản xạ, còn 「反映」 thường liên quan đến việc báo cáo hoặc thể hiện bản chất của vấn đề.",
+      "attentionsVi": "Người học rất dễ nhầm lẫn vì hai từ này đọc giống hệt nhau (fǎnyìng), hãy chú ý vào ngữ cảnh: nếu là sinh lý hoặc thái độ thì dùng 「反应」.",
+      "examples": [
+        {
+          "chinese": "他对这个消息没有任何反应。",
+          "pinyin": "tā duì zhè gè xiāo xī méi yǒu rèn hé fǎn yīng",
+          "meaningVi": "Anh ấy không có bất kỳ phản ứng nào với tin này."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_85",
+      "title": "Phân biệt 鼓励 và 鼓舞",
+      "syntax": "S + 鼓励 + O (+ V); S + 鼓舞 + O (hoặc tinh thần/sĩ khí)",
+      "explanationVi": "「鼓励」 dùng để khuyến khích, động viên ai đó làm một việc cụ thể để họ tự tin hơn. Trong khi đó, 「鼓舞」 dùng để khơi dậy tinh thần, truyền cảm hứng hoặc làm cho sĩ khí, lòng nhiệt huyết của tập thể tăng cao.",
+      "tipsVi": "Hãy nhớ 「鼓励」 thường đi kèm với người và hành động, còn 「鼓舞」 thường đi kèm với các danh từ trừu tượng như 「士气」(sĩ khí) hay 「精神」(tinh thần).",
+      "attentionsVi": "Không nên dùng 「鼓舞」 trực tiếp để chỉ việc thúc ép ai đó làm một việc nhỏ nhặt, vì nó mang sắc thái trang trọng và bao quát hơn.",
+      "examples": [
+        {
+          "chinese": "这个消息鼓舞了大家。",
+          "pinyin": "zhè gè xiāo xī gǔ wǔ le dà jiā",
+          "meaningVi": "Tin này đã cổ vũ tinh thần mọi người."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -136,7 +227,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "tin tức",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

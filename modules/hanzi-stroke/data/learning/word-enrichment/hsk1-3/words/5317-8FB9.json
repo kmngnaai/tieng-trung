@@ -54,7 +54,30 @@
         "target": "北边",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "北边",
+            "chinese": "北边有山",
+            "pinyin": "Běibiān yǒu shān",
+            "meaningVi": "Phía bắc có núi",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "北边",
+            "chinese": "北边有风",
+            "pinyin": "Běibiān yǒu fēng",
+            "meaningVi": "Phía bắc có gió",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 2
       },
       {
         "text": "往北边走",
@@ -64,7 +87,9 @@
         "target": "北边",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "北边去",
@@ -74,10 +99,23 @@
         "target": "北边",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "北方",
+        "pinyin": "běi fāng",
+        "meaningVi": "phía bắc",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: phía bắc",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -123,10 +161,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:北边",
       "title": "Cách dùng 北边",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Chỉ vị trí phía bắc. Phân biệt 与 北方 (phương bắc, thiên về văn phong trang trọng), 北部 (vùng bắc, thiên về phân khu hành chính).",
       "explanationVi": "Ghép nghĩa: 北 (bắc) + 边 (bên, cạnh) → phía bắc, bên bắc.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -160,7 +201,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 4,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "phía bắc, bên bắc",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

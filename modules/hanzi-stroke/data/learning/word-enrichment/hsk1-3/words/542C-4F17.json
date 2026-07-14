@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "thính giả",
+      "meaningShortVi": "khán giả",
       "meaningFullVi": "thính giả; người nghe radio, podcast hoặc bài nói",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "thính giả",
+  "meaningShortVi": "khán giả",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
@@ -54,7 +54,9 @@
         "target": "听众",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "吸引听众",
@@ -64,10 +66,23 @@
         "target": "听众",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "观众",
+        "pinyin": "guān zhòng",
+        "meaningVi": "khán giả",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: khán giả",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -93,10 +108,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:听众",
       "title": "Cách dùng 听众",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "Đối với 观众, 听众 chỉ người nghe (không xem) như radio, podcast, bài giảng. Trong văn truyền thông, có thể nói 目标听众 để chỉ đối tượng mục tiêu. Từ liên quan: 受众 'đối tượng truyền thông', 粉丝 'fan'.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +148,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "thính giả; người nghe radio, podcast hoặc bài nói",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

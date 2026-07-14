@@ -56,7 +56,31 @@
         "target": "简单",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "简单",
+            "chinese": "这个问题很简单。",
+            "pinyin": "zhè ge wèn tí hěn jiǎn dān。",
+            "meaningVi": "Vấn đề này rất đơn giản.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "简单",
+            "chinese": "即使是很简单的事情，也要认真去做。",
+            "pinyin": "jí shǐ shì hěn jiǎn dān de shì qíng yě yào rèn zhēn qù zuò",
+            "meaningVi": "Cho dù là việc rất đơn giản thì cũng phải làm nghiêm túc.",
+            "source": "hsk_4.json",
+            "grammarId": "hsk4_4",
+            "grammarTopic": "Cấu trúc 即使……也……",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 2
       },
       {
         "text": "简单的生活",
@@ -66,10 +90,23 @@
         "target": "简单",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "干脆",
+        "pinyin": "gān cuì",
+        "meaningVi": "đơn giản",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: đơn giản",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -81,14 +118,62 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "简单",
+      "chinese": "即使是很简单的事情，也要认真去做。",
+      "pinyin": "jí shǐ shì hěn jiǎn dān de shì qíng yě yào rèn zhēn qù zuò",
+      "meaningVi": "Cho dù là việc rất đơn giản thì cũng phải làm nghiêm túc.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_4",
+      "grammarTopic": "Cấu trúc 即使……也……",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:简单",
       "title": "Cách dùng 简单",
       "partOfSpeech": "tính từ",
       "usageNoteVi": "Jiǎn dān rất phổ biến, có thể miêu tả việc dễ làm hoặc tính cách người không phức tạp. Phản nghĩa với phức tạp.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_4",
+      "title": "Cấu trúc 即使……也……",
+      "syntax": "即使 + [giả thiết/sự việc], 也 + [kết quả không thay đổi]",
+      "explanationVi": "Cấu trúc 「即使……也……」 dùng để diễn tả quan hệ nhượng bộ, có nghĩa là \"cho dù... thì cũng...\". Nó chỉ ra rằng dù giả thiết hoặc sự việc ở vế đầu có xảy ra hay không, kết quả ở vế sau vẫn không thay đổi.",
+      "tipsVi": "Bạn có thể thay thế 「即使」 bằng 「就是」 hoặc 「哪怕」 trong văn nói để biểu đạt ý nghĩa tương tự.",
+      "attentionsVi": "Vế sau thường đi kèm với 「也」 hoặc 「还」 để nhấn mạnh việc kết quả không bị ảnh hưởng bởi điều kiện ở vế trước.",
+      "examples": [
+        {
+          "chinese": "即使是很简单的事情，也要认真去做。",
+          "pinyin": "jí shǐ shì hěn jiǎn dān de shì qíng yě yào rèn zhēn qù zuò",
+          "meaningVi": "Cho dù là việc rất đơn giản thì cũng phải làm nghiêm túc."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_80",
+      "title": "Cách dùng từ 轻易",
+      "syntax": "轻易 + [động từ/tính từ] (phó từ) / [danh từ] + 轻易 (tính từ)",
+      "explanationVi": "Với vai trò phó từ, 「轻易」 diễn tả việc thực hiện hành động một cách tùy tiện, thiếu cân nhắc hoặc dễ dàng từ bỏ. Nếu là tính từ, nó mang nghĩa là đơn giản, dễ dàng đạt được một điều gì đó.",
+      "tipsVi": "Từ này thường xuyên xuất hiện trong các câu phủ định như 「轻易不…」 (không dễ dàng làm gì đó), dùng để nhấn mạnh thái độ cẩn trọng và kiên định.",
+      "attentionsVi": "Đừng nhầm lẫn với 「简单」 (jiǎndān), vì 「轻易」 tập trung vào thái độ làm việc hoặc sự dễ dàng trong việc từ bỏ, chứ không chỉ là mức độ khó của công việc.",
+      "examples": [],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -157,7 +242,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "đơn giản, giản dị; dễ dàng",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

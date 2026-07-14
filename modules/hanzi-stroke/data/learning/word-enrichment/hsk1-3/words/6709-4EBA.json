@@ -54,7 +54,9 @@
         "target": "有人",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "有人来",
@@ -64,10 +66,13 @@
         "target": "有人",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -89,14 +94,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "有人",
+      "chinese": "有人觉得有房子和汽车就是幸福，有人却认为找到真正的爱情才是幸福。",
+      "pinyin": "yǒu rén jué dé yǒu fáng zi hé qì chē jiù shì xìng fú yǒu rén què rèn wèi zhǎo dào zhēn zhèng de ài qíng cái shì xìng fú",
+      "meaningVi": "Có người cho rằng có nhà và xe là hạnh phúc, nhưng có người lại cho rằng tìm được tình yêu đích thực mới là hạnh phúc.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_9",
+      "grammarTopic": "Cách dùng phó từ 却",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:有人",
       "title": "Cách dùng 有人",
       "partOfSpeech": "pronoun",
       "usageNoteVi": "Đại từ chỉ người không xác định.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_9",
+      "title": "Cách dùng phó từ 却",
+      "syntax": "Chủ ngữ + 却 + Động từ/Tính từ",
+      "explanationVi": "Phó từ 「却」 được đặt sau chủ ngữ và trước động từ hoặc tính từ để biểu thị sự chuyển ý, đối lập với vế trước. Nó mang nghĩa là \"nhưng\" hoặc \"lại\", giúp câu văn chuyển tiếp tự nhiên với ngữ khí nhẹ nhàng.",
+      "tipsVi": "Bạn có thể sử dụng 「却」 kết hợp với các liên từ như 「虽然」 (mặc dù) ở vế trước để tạo thành cấu trúc đối lập rõ ràng.",
+      "attentionsVi": "Không nên nhầm lẫn 「却」 với 「但是」; 「但是」 là liên từ dùng để nối hai vế câu, còn 「却」 là phó từ nên phải đứng sau chủ ngữ.",
+      "examples": [
+        {
+          "chinese": "有人觉得有房子和汽车就是幸福，有人却认为找到真正的爱情才是幸福。",
+          "pinyin": "yǒu rén jué dé yǒu fáng zi hé qì chē jiù shì xìng fú yǒu rén què rèn wèi zhǎo dào zhēn zhèng de ài qíng cái shì xìng fú",
+          "meaningVi": "Có người cho rằng có nhà và xe là hạnh phúc, nhưng có người lại cho rằng tìm được tình yêu đích thực mới là hạnh phúc."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +169,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "ai đó",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

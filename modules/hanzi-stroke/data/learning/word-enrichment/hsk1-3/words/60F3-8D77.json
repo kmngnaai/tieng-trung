@@ -54,7 +54,9 @@
         "target": "想起",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "让我想起",
@@ -64,10 +66,32 @@
         "target": "想起",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "回忆",
+        "pinyin": "huí yì",
+        "meaningVi": "nhớ lại",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: nhớ lại",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "惦记",
+        "pinyin": "diàn jì",
+        "meaningVi": "nhớ lại",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: nhớ lại",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -89,14 +113,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "想起",
+      "chinese": "他忽然想起了一件重要的事。",
+      "pinyin": "tā hū rán xiǎng qǐ le yī jiàn zhòng yào de shì",
+      "meaningVi": "Anh ấy bỗng nhớ ra một việc quan trọng.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_13",
+      "grammarTopic": "Phân biệt 忽然 và 突然",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "想起",
+      "chinese": "不由得回想起和圆圆谈恋爱时的幸福和快乐。",
+      "pinyin": "bù yóu dé huí xiǎng qǐ hé yuán yuán tán liàn ài shí de xìng fú hé kuài lè",
+      "meaningVi": "Không kìm được nhớ lại sự hạnh phúc và vui vẻ khi yêu Viên Viên.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_4",
+      "grammarTopic": "Diễn tả hành động không tự chủ",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:想起",
       "title": "Cách dùng 想起",
       "partOfSpeech": "verb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_13",
+      "title": "Phân biệt 忽然 và 突然",
+      "syntax": "忽然 / 突然 + [Động từ/Tính từ]; [Tính từ] + 突然",
+      "explanationVi": "Cả 「忽然」 và 「突然」 đều có nghĩa là 'đột nhiên', khi làm phó từ bổ nghĩa cho động từ thì có thể thay thế cho nhau. Tuy nhiên, 「突然」 linh hoạt hơn vì còn là tính từ, có thể làm vị ngữ hoặc định ngữ, còn 「忽然」 chỉ làm phó từ.",
+      "tipsVi": "Vì 「突然」 là tính từ, bạn có thể kết hợp nó với phó từ chỉ mức độ như '很' (rất) hoặc '非常' (vô cùng), ví dụ: '这件事很突然' (Chuyện này rất đột ngột).",
+      "attentionsVi": "Bạn không thể dùng '很' hay '非常' đi kèm trước 「忽然」 vì nó chỉ đóng vai trò là phó từ.",
+      "examples": [
+        {
+          "chinese": "他忽然想起了一件重要的事。",
+          "pinyin": "tā hū rán xiǎng qǐ le yī jiàn zhòng yào de shì",
+          "meaningVi": "Anh ấy bỗng nhớ ra một việc quan trọng."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_4",
+      "title": "Diễn tả hành động không tự chủ",
+      "syntax": "Chủ ngữ + 不由得 + Động từ/Cụm động từ",
+      "explanationVi": "Cấu trúc 「不由得」 là phó từ dùng để diễn tả hành động hoặc cảm xúc nảy sinh một cách tự nhiên, khiến người nói không thể kiềm chế hay ngăn cản được. Nguyên nhân hoặc hoàn cảnh dẫn đến hành động này thường được nhắc đến ngay trước đó trong câu.",
+      "tipsVi": "Bạn có thể hiểu 「不由得」 tương đương với nghĩa 'không kìm được' hay 'không thể không' làm gì đó trong tiếng Việt.",
+      "attentionsVi": "Cần lưu ý 「不由得」 thường đi kèm với các động từ chỉ cảm xúc hoặc hành động bộc phát, không dùng cho những hành động mang tính chủ đích rõ ràng.",
+      "examples": [
+        {
+          "chinese": "不由得回想起和圆圆谈恋爱时的幸福和快乐。",
+          "pinyin": "bù yóu dé huí xiǎng qǐ hé yuán yuán tán liàn ài shí de xìng fú hé kuài lè",
+          "meaningVi": "Không kìm được nhớ lại sự hạnh phúc và vui vẻ khi yêu Viên Viên."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +219,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "nhớ lại",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

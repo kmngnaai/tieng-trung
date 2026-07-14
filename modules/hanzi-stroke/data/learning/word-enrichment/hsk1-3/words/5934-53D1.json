@@ -57,10 +57,13 @@
         "target": "头发",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -82,14 +85,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "头发",
+      "chinese": "他的头发长长的。",
+      "pinyin": "tā de tóu fā zhǎng zhǎng de",
+      "meaningVi": "Tóc của anh ấy dài dài.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_39",
+      "grammarTopic": "Lặp lại tính từ đơn âm tiết",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "头发",
+      "chinese": "李文是那个穿着黑衣服的短头发的年轻人吗？",
+      "pinyin": "lǐ wén shì nà gè chuān zhe hēi yī fú de duǎn tóu fā de nián qīng rén ma",
+      "meaningVi": "Lý Văn có phải là chàng thanh niên tóc ngắn mặc áo đen kia không?",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_3",
+      "grammarTopic": "Sắp xếp nhiều định ngữ trước danh từ",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:头发",
       "title": "Cách dùng 头发",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_39",
+      "title": "Lặp lại tính từ đơn âm tiết",
+      "syntax": "Tính từ đơn âm tiết + 「的」 (Ví dụ: 高高的, 慢慢的)",
+      "explanationVi": "Khi lặp lại tính từ đơn âm tiết theo dạng 「AA 的」, chúng ta đang nhấn mạnh vào đặc trưng hoặc trạng thái của sự vật, hiện tượng đó. Cấu trúc này thường gợi cảm giác miêu tả sinh động, gần gũi và giàu hình ảnh hơn so với tính từ đơn lẻ.",
+      "tipsVi": "Bạn có thể dùng cấu trúc này để miêu tả ngoại hình hoặc trạng thái một cách biểu cảm, ví dụ: 「大大的眼睛」(đôi mắt to tròn).",
+      "attentionsVi": "Không phải tất cả tính từ đơn âm tiết đều có thể lặp lại theo cách này, hãy tập trung vào các tính từ miêu tả đặc điểm ngoại hình hoặc trạng thái dễ thấy.",
+      "examples": [
+        {
+          "chinese": "他的头发长长的。",
+          "pinyin": "tā de tóu fā zhǎng zhǎng de",
+          "meaningVi": "Tóc của anh ấy dài dài."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_3",
+      "title": "Sắp xếp nhiều định ngữ trước danh từ",
+      "syntax": "Định ngữ 1 + 的 + Định ngữ 2 + 的 + Danh từ",
+      "explanationVi": "Trong tiếng Trung, bạn có thể dùng nhiều cụm từ để bổ nghĩa cho một danh từ. Nếu các định ngữ dài hoặc mang tính chất khác nhau, chúng ta thường thêm 「的」 sau mỗi định ngữ để làm rõ ý nghĩa. Cấu trúc này giúp miêu tả người hoặc vật một cách chi tiết và cụ thể hơn.",
+      "tipsVi": "Nếu định ngữ ngắn hoặc gần gũi với danh từ, bạn có thể lược bỏ 「的」 để câu văn tự nhiên hơn.",
+      "attentionsVi": "Cần chú ý thứ tự: định ngữ biểu thị phạm vi hoặc tính chất chung thường đứng xa danh từ hơn định ngữ biểu thị đặc điểm riêng biệt.",
+      "examples": [
+        {
+          "chinese": "李文是那个穿着黑衣服的短头发的年轻人吗？",
+          "pinyin": "lǐ wén shì nà gè chuān zhe hēi yī fú de duǎn tóu fā de nián qīng rén ma",
+          "meaningVi": "Lý Văn có phải là chàng thanh niên tóc ngắn mặc áo đen kia không?"
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -163,7 +231,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "tóc",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

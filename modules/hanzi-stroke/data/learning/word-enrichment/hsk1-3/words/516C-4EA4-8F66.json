@@ -55,7 +55,9 @@
         "target": "公交车",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "公交车站",
@@ -65,10 +67,32 @@
         "target": "公交车",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "公共汽车",
+        "pinyin": "gōng gòng qì chē",
+        "meaningVi": "xe buýt",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: xe buýt",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "大巴",
+        "pinyin": "dà bā",
+        "meaningVi": "xe buýt",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: xe buýt",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -90,14 +114,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "公交车",
+      "chinese": "与其在这儿等公交车，不如我们走过去吧，反正也没多远。",
+      "pinyin": "yǔ qí zài zhè ér děng gōng jiāo chē bù rú wǒ men zǒu guò qù ba fǎn zhèng yě méi duō yuǎn",
+      "meaningVi": "Thay vì đứng đây chờ xe buýt, chi bằng chúng ta đi bộ qua đó đi, dù sao cũng không xa lắm.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_36",
+      "grammarTopic": "Cấu trúc lựa chọn: Thay vì... chi bằng...",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:公交车",
       "title": "Cách dùng 公交车",
       "partOfSpeech": "noun",
       "usageNoteVi": "Từ khẩu ngữ phổ biến cho xe buýt ở Trung Quốc.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_36",
+      "title": "Cấu trúc lựa chọn: Thay vì... chi bằng...",
+      "syntax": "与其 A, 不如 B (Thay vì A, chi bằng B)",
+      "explanationVi": "Cấu trúc này dùng để so sánh hai sự việc, thể hiện việc lựa chọn phương án B thay vì phương án A vì B tốt hơn hoặc hợp lý hơn. Nó giúp người nói bộc lộ thái độ hoặc quan điểm cá nhân một cách dứt khoát.",
+      "tipsVi": "Bạn có thể dùng cấu trúc này để đưa ra lời khuyên hoặc bày tỏ sự lựa chọn của bản thân, ví dụ: 「与其在那儿坐着，不如出去走走。」(Thay vì ngồi đó, chi bằng ra ngoài đi dạo).",
+      "attentionsVi": "Lưu ý rằng vế sau 「不如」 thường là phương án mà người nói ưu tiên hơn, vì vậy hãy đảm bảo bạn đặt lựa chọn mình muốn làm lên sau từ 「不如」.",
+      "examples": [
+        {
+          "chinese": "与其在这儿等公交车，不如我们走过去吧，反正也没多远。",
+          "pinyin": "yǔ qí zài zhè ér děng gōng jiāo chē bù rú wǒ men zǒu guò qù ba fǎn zhèng yě méi duō yuǎn",
+          "meaningVi": "Thay vì đứng đây chờ xe buýt, chi bằng chúng ta đi bộ qua đó đi, dù sao cũng không xa lắm."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -146,7 +204,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "xe buýt",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

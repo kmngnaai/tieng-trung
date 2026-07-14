@@ -55,10 +55,32 @@
         "target": "不但",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "不光",
+        "pinyin": "bù guāng",
+        "meaningVi": "không chỉ",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: không chỉ",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "不仅",
+        "pinyin": "bù jǐn",
+        "meaningVi": "không chỉ",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: không chỉ",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -70,14 +92,64 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "不但",
+      "chinese": "现在的电视不但便宜，而且用着非常方便。",
+      "pinyin": "xiàn zài de diàn shì bù dàn biàn yí ér qiě yòng zhe fēi cháng fāng biàn",
+      "meaningVi": "Tivi bây giờ không những rẻ mà dùng còn rất tiện lợi.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_23",
+      "grammarTopic": "Cấu trúc tăng tiến",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "不但",
+      "chinese": "家月不但喜欢唱歌，而且唱得很好听。",
+      "pinyin": "jiā yuè bù dàn xǐ huān chàng gē ér qiě chàng dé hěn hǎo tīng",
+      "meaningVi": "Gia Nguyệt không những thích hát mà hát còn rất hay.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_23",
+      "grammarTopic": "Cấu trúc tăng tiến",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:不但",
       "title": "Cách dùng 不但",
       "partOfSpeech": "conjunction",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_23",
+      "title": "Cấu trúc tăng tiến",
+      "syntax": "不但 (búdàn) + A, 而且 (érqiě) + B",
+      "explanationVi": "Cấu trúc này dùng để diễn tả ý “không những… mà còn…”, biểu thị mức độ của sự việc sau cao hơn hoặc bổ sung cho sự việc trước. Đây là liên từ chỉ quan hệ tăng tiến phổ biến trong tiếng Trung.",
+      "tipsVi": "Nếu hai vế câu có cùng chủ ngữ, 「不但」 nên đặt trước chủ ngữ của vế thứ nhất.",
+      "attentionsVi": "Không nên nhầm lẫn 「而且」 với các từ nối khác, vì nó chuyên dùng để thể hiện sự bổ sung ý nghĩa mang tính tăng tiến.",
+      "examples": [
+        {
+          "chinese": "现在的电视不但便宜，而且用着非常方便。",
+          "pinyin": "xiàn zài de diàn shì bù dàn biàn yí ér qiě yòng zhe fēi cháng fāng biàn",
+          "meaningVi": "Tivi bây giờ không những rẻ mà dùng còn rất tiện lợi."
+        },
+        {
+          "chinese": "家月不但喜欢唱歌，而且唱得很好听。",
+          "pinyin": "jiā yuè bù dàn xǐ huān chàng gē ér qiě chàng dé hěn hǎo tīng",
+          "meaningVi": "Gia Nguyệt không những thích hát mà hát còn rất hay."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -131,7 +203,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "không chỉ",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

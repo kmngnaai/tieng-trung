@@ -57,10 +57,23 @@
         "target": "客人",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "顾客",
+        "pinyin": "gù kè",
+        "meaningVi": "khách hàng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: khách hàng",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -82,14 +95,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "客人",
+      "chinese": "她总是笑着跟客人说话。",
+      "pinyin": "tā zǒng shì xiào zhe gēn kè rén shuō huà",
+      "meaningVi": "Cô ấy luôn cười khi nói chuyện với khách.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_11",
+      "grammarTopic": "Cấu trúc V1 + 着 + V2",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "客人",
+      "chinese": "我们以热烈的掌声欢迎客人。",
+      "pinyin": "wǒ men yǐ rè liè de zhǎng shēng huān yíng kè rén",
+      "meaningVi": "Chúng tôi dùng tràng pháo tay nồng nhiệt để chào đón khách.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_30",
+      "grammarTopic": "Cách dùng giới từ 以",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:客人",
       "title": "Cách dùng 客人",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_11",
+      "title": "Cấu trúc V1 + 着 + V2",
+      "syntax": "Động từ 1 + 着 + (tân ngữ 1) + Động từ 2 + (tân ngữ 2)",
+      "explanationVi": "Cấu trúc này dùng để diễn tả hai hành động xảy ra cùng một lúc, trong đó hành động thứ nhất đóng vai trò là phương thức hoặc trạng thái đi kèm cho hành động thứ hai. Ví dụ, câu 「他们站着聊天儿」 có nghĩa là họ đang nói chuyện trong tư thế đứng.",
+      "tipsVi": "Hãy ghi nhớ rằng động từ đứng trước 「着」 thường chỉ trạng thái duy trì để làm nền cho hành động chính phía sau.",
+      "attentionsVi": "Cần phân biệt rõ với 「着」 dùng để chỉ trạng thái tĩnh (ví dụ: 「墙上挂着画」), trong cấu trúc này phải có ít nhất hai động từ diễn tả hành động.",
+      "examples": [
+        {
+          "chinese": "她总是笑着跟客人说话。",
+          "pinyin": "tā zǒng shì xiào zhe gēn kè rén shuō huà",
+          "meaningVi": "Cô ấy luôn cười khi nói chuyện với khách."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_30",
+      "title": "Cách dùng giới từ 以",
+      "syntax": "S + 以 + V/Cụm V (mục đích) hoặc S + 以 + N (phương tiện)",
+      "explanationVi": "Giới từ 「以」 thường xuất hiện trong văn viết với hai nghĩa chính: chỉ phương tiện (dùng, lấy, dựa vào) hoặc chỉ mục đích (để làm gì đó). Khi chỉ mục đích, nó đóng vai trò tương tự như 「为了」 nhưng mang sắc thái trang trọng hơn.",
+      "tipsVi": "Trong câu chỉ mục đích, cấu trúc 「以 + V」 thường được dùng để nối hai vế câu, trong đó vế sau là mục tiêu hướng tới của hành động ở vế trước.",
+      "attentionsVi": "Vì 「以」 là từ ngữ mang tính chất văn viết, bạn nên hạn chế dùng trong giao tiếp khẩu ngữ thông thường để tránh tạo cảm giác quá cứng nhắc.",
+      "examples": [
+        {
+          "chinese": "我们以热烈的掌声欢迎客人。",
+          "pinyin": "wǒ men yǐ rè liè de zhǎng shēng huān yíng kè rén",
+          "meaningVi": "Chúng tôi dùng tràng pháo tay nồng nhiệt để chào đón khách."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -163,7 +241,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "khách hàng",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

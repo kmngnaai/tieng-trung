@@ -54,7 +54,9 @@
         "target": "目标",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "达到目标",
@@ -64,10 +66,13 @@
         "target": "目标",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -89,14 +94,62 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "目标",
+      "chinese": "只要你努力学习，就一定能完成目标。",
+      "pinyin": "zhǐ yào nǐ nǔ lì xué xí jiù yī dìng néng wán chéng mù biāo",
+      "meaningVi": "Chỉ cần bạn nỗ lực học tập thì nhất định sẽ hoàn thành mục tiêu.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_62",
+      "grammarTopic": "Cấu trúc điều kiện Chỉ cần... thì...",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:目标",
       "title": "Cách dùng 目标",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "目标是 danh từ chỉ đích đến, mục đích phấn đấu. Thường đi kèm với các động từ như 制定 (thiết lập), 达到 (đạt được), 实现 (thực hiện).",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_50",
+      "title": "Cấu trúc diễn tả sự nhất trí",
+      "syntax": "A + 和/跟/同 + B + 一致 (A và B nhất trí/thống nhất với nhau)",
+      "explanationVi": "Tính từ 「一致」 dùng để diễn tả sự thống nhất, đồng lòng hoặc tương đồng về ý kiến, quan điểm giữa các đối tượng. Trong câu, nó thường đóng vai trò là vị ngữ hoặc bổ ngữ để chỉ trạng thái hòa hợp, không có mâu thuẫn.",
+      "tipsVi": "Bạn có thể dùng cấu trúc 「意见一致」 (ý kiến thống nhất) hoặc 「目标一致」 (mục tiêu đồng nhất) để diễn đạt sự đồng thuận trong công việc hoặc thảo luận.",
+      "attentionsVi": "Cần tránh nhầm lẫn giữa 「一致」 (nhất trí) với từ 「一直」 (yìzhí - luôn luôn/suốt từ đầu), đây là lỗi sai ngữ âm rất phổ biến của người học.",
+      "examples": [],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_62",
+      "title": "Cấu trúc điều kiện Chỉ cần... thì...",
+      "syntax": "只要 + [Điều kiện], 就 + [Kết quả]",
+      "explanationVi": "Cấu trúc 「只要……，就……」 dùng để biểu thị một điều kiện cần thiết, chỉ cần điều kiện đó xảy ra thì kết quả tương ứng sẽ xuất hiện. Đây là mẫu câu rất phổ biến trong tiếng Trung để khẳng định mối quan hệ nhân quả.",
+      "tipsVi": "Bạn có thể dịch là \"Chỉ cần... thì...\" hoặc \"Miễn là... thì...\" để câu văn nghe tự nhiên hơn trong tiếng Việt.",
+      "attentionsVi": "Cần chú ý đặt 「就」 ngay trước kết quả hoặc động từ chỉ kết quả để làm nổi bật sự chắc chắn của hành động.",
+      "examples": [
+        {
+          "chinese": "只要你努力学习，就一定能完成目标。",
+          "pinyin": "zhǐ yào nǐ nǔ lì xué xí jiù yī dìng néng wán chéng mù biāo",
+          "meaningVi": "Chỉ cần bạn nỗ lực học tập thì nhất định sẽ hoàn thành mục tiêu."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -145,7 +198,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "mục tiêu, đích đến",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -55,7 +55,9 @@
         "target": "春节",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "过春节",
@@ -65,10 +67,13 @@
         "target": "春节",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -100,14 +105,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "春节",
+      "chinese": "春节大概放七八天假。",
+      "pinyin": "chūn jié dà gài fàng qī bā tiān jiǎ",
+      "meaningVi": "Tết Nguyên Đán nghỉ khoảng 7, 8 ngày.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_60",
+      "grammarTopic": "Cách biểu đạt số ước lượng bằng số đếm",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:春节",
       "title": "Cách dùng 春节",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_60",
+      "title": "Cách biểu đạt số ước lượng bằng số đếm",
+      "syntax": "Số đếm A + Số đếm B (liên tiếp)",
+      "explanationVi": "Trong tiếng Trung, bạn có thể đặt hai số đếm liên tiếp nhau để diễn tả một con số ước chừng. Ví dụ: 「三四」 (ba bốn) có nghĩa là khoảng 3 hoặc 4.",
+      "tipsVi": "Cách dùng này rất phổ biến trong giao tiếp hàng ngày để nói về số lượng không chính xác.",
+      "attentionsVi": "Chỉ áp dụng với các số đếm đứng liền kề nhau trong dãy số tự nhiên, không được nhảy cóc.",
+      "examples": [
+        {
+          "chinese": "春节大概放七八天假。",
+          "pinyin": "chūn jié dà gài fàng qī bā tiān jiǎ",
+          "meaningVi": "Tết Nguyên Đán nghỉ khoảng 7, 8 ngày."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -146,7 +185,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "Tết Nguyên Đán",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

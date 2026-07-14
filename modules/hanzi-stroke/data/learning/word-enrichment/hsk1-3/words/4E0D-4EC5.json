@@ -44,7 +44,18 @@
     ]
   },
   "vocabulary": {
-    "compounds": [],
+    "compounds": [
+      {
+        "word": "不仅仅",
+        "pinyin": "bù jǐn jǐn",
+        "meaningVi": "không chỉ",
+        "meaningFullVi": "không chỉ, không chỉ là (bất cận cận — nhấn mạnh hơn 不仅)",
+        "relationType": "contains-exact-target",
+        "hskLevel": 6,
+        "source": "hsk_6.json",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
     "collocations": [
       {
         "text": "不仅...而且...",
@@ -54,7 +65,9 @@
         "target": "不仅",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "不仅...也...",
@@ -64,10 +77,32 @@
         "target": "不仅",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "不但",
+        "pinyin": "bù dàn",
+        "meaningVi": "không chỉ",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: không chỉ",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "不光",
+        "pinyin": "bù guāng",
+        "meaningVi": "không chỉ",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: không chỉ",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -89,14 +124,95 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "不仅",
+      "chinese": "他不仅足球踢得好，性格也很不错。",
+      "pinyin": "tā bù jǐn zú qiú tī dé hǎo xìng gé yě hěn bù cuò",
+      "meaningVi": "Anh ấy không những đá bóng giỏi mà tính cách cũng rất tốt.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_1",
+      "grammarTopic": "Cấu trúc Không những... mà còn...",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "不仅",
+      "chinese": "不仅我会去，而且我弟弟也要去。",
+      "pinyin": "bù jǐn wǒ huì qù ér qiě wǒ dì dì yě yào qù",
+      "meaningVi": "Không những tôi sẽ đi mà em trai tôi cũng muốn đi.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_1",
+      "grammarTopic": "Cấu trúc Không những... mà còn...",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "不仅",
+      "chinese": "两个人共同生活，不仅需要浪漫的爱情，更需要性格上互相吸引。",
+      "pinyin": "liǎng gè rén gòng tóng shēng huó bù jǐn xū yào làng màn de ài qíng gèng xū yào xìng gé shàng hù xiāng xī yǐn",
+      "meaningVi": "Hai người cùng chung sống không chỉ cần tình yêu lãng mạn, mà còn cần hấp dẫn nhau về mặt tính cách.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_5",
+      "grammarTopic": "Cấu trúc chỉ vị trí và khía cạnh (在)...上",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:不仅",
       "title": "Cách dùng 不仅",
       "partOfSpeech": "liên từ",
       "usageNoteVi": "Bù jǐn dùng để nối hai mệnh đề, mở rộng nội dung. Thường đi kèm với 而且 hoặc 也. Phổ biến trong giao tiếp hàng ngày.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_1",
+      "title": "Cấu trúc Không những... mà còn...",
+      "syntax": "不仅 (bùjǐn) A，也/还/而且 (yě/hái/érqiě) B",
+      "explanationVi": "Cấu trúc này dùng để diễn tả ý nghĩa tăng tiến, nghĩa là \"không những... mà còn...\". Nó kết nối hai vế câu nhằm bổ sung thông tin hoặc nhấn mạnh rằng không chỉ có sự việc A xảy ra mà sự việc B cũng xảy ra.",
+      "tipsVi": "Bạn có thể dùng 「也」, 「还」 hoặc 「而且」 ở vế sau, trong đó 「而且」 thường mang sắc thái nhấn mạnh hơn cả.",
+      "attentionsVi": "Nếu chủ ngữ của hai vế câu giống nhau, bạn nên đặt chủ ngữ lên trước 「不仅」; nếu chủ ngữ khác nhau, chủ ngữ của vế thứ hai nên đặt sau 「不仅」.",
+      "examples": [
+        {
+          "chinese": "他不仅足球踢得好，性格也很不错。",
+          "pinyin": "tā bù jǐn zú qiú tī dé hǎo xìng gé yě hěn bù cuò",
+          "meaningVi": "Anh ấy không những đá bóng giỏi mà tính cách cũng rất tốt."
+        },
+        {
+          "chinese": "不仅我会去，而且我弟弟也要去。",
+          "pinyin": "bù jǐn wǒ huì qù ér qiě wǒ dì dì yě yào qù",
+          "meaningVi": "Không những tôi sẽ đi mà em trai tôi cũng muốn đi."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_5",
+      "title": "Cấu trúc chỉ vị trí và khía cạnh (在)...上",
+      "syntax": "(在) + Danh từ + 上",
+      "explanationVi": "Cấu trúc này dùng sau một danh từ để chỉ vị trí bề mặt vật thể (trên cái gì) hoặc phạm vi, khía cạnh của một vấn đề (về mặt nào đó). Nó giúp làm rõ vị trí không gian hoặc lĩnh vực đang được nhắc đến.",
+      "tipsVi": "Nếu muốn diễn tả vị trí vật lý cụ thể (ví dụ: trên bàn), bạn nên dùng đầy đủ 「在...上」 để câu văn rõ ràng hơn.",
+      "attentionsVi": "Cần phân biệt với cấu trúc chỉ phương hướng đơn thuần; khi dùng với nghĩa trừu tượng (phương diện), hãy chú ý ngữ cảnh để không dịch nhầm là 'phía trên' về không gian.",
+      "examples": [
+        {
+          "chinese": "两个人共同生活，不仅需要浪漫的爱情，更需要性格上互相吸引。",
+          "pinyin": "liǎng gè rén gòng tóng shēng huó bù jǐn xū yào làng màn de ài qíng gèng xū yào xìng gé shàng hù xiāng xī yǐn",
+          "meaningVi": "Hai người cùng chung sống không chỉ cần tình yêu lãng mạn, mà còn cần hấp dẫn nhau về mặt tính cách."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +246,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 5,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "không chỉ, không những; không những... mà còn",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

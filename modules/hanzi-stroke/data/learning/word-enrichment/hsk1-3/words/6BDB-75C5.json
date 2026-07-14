@@ -55,7 +55,20 @@
         "target": "毛病",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "毛病",
+            "chinese": "他的最大毛病是不守时。",
+            "pinyin": "Tā de zuì dà máobìng shì bù shǒushí.",
+            "meaningVi": "Khuyết điểm lớn nhất của anh ấy là không đúng giờ.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "挑毛病",
@@ -65,10 +78,23 @@
         "target": "毛病",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "缺点",
+        "pinyin": "quē diǎn",
+        "meaningVi": "khuyết điểm",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: khuyết điểm",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -94,10 +120,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:毛病",
       "title": "Cách dùng 毛病",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "Chỉ lỗi, khuyết điểm hoặc trục trặc. Có thể dùng cho người (tật xấu) hoặc vật (lỗi máy).",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -136,7 +165,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "khuyết điểm; tật xấu; trục trặc",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

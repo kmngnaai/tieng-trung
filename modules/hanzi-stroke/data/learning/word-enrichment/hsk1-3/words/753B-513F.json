@@ -44,7 +44,28 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [
+      {
+        "targetWord": "画{儿}",
+        "pinyin": "huàr ",
+        "meaningVi": "tranh",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
+    "candidateRelations": [
+      {
+        "targetWord": "图画",
+        "pinyin": "tú huà",
+        "meaningVi": "bức tranh",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bức tranh",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -66,14 +87,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "画儿",
+      "chinese": "每个人都有自己特别感兴趣的东西，因此，作家爱写小说，画家爱画画儿。",
+      "pinyin": "měi gè rén dōu yǒu zì jǐ tè bié gǎn xīng qù de dōng xī yīn cǐ zuò jiā ài xiě xiǎo shuō huà jiā ài huà huà ér",
+      "meaningVi": "Mỗi người đều có thứ mình đặc biệt hứng thú, vì vậy nhà văn thích viết tiểu thuyết, họa sĩ thích vẽ tranh.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_30",
+      "grammarTopic": "Cách dùng liên từ 因此",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:画儿",
       "title": "Cách dùng 画儿",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_30",
+      "title": "Cách dùng liên từ 因此",
+      "syntax": "Nguyên nhân, 「因此」 + Kết quả",
+      "explanationVi": "Liên từ 「因此」 được dùng để nối hai vế câu, biểu thị quan hệ nhân quả với nghĩa là \"do đó\" hoặc \"vì vậy\". Nó thường xuất hiện ở đầu vế câu thứ hai để dẫn ra kết quả từ nguyên nhân đã nêu ở vế trước.",
+      "tipsVi": "「因此」 mang sắc thái trang trọng hơn 「所以」, thường được sử dụng trong văn viết hoặc các bài phát biểu, diễn thuyết.",
+      "attentionsVi": "Khác với 「因为...所以」, bạn không được dùng 「因为」 đi kèm với 「因此」 trong cùng một câu.",
+      "examples": [
+        {
+          "chinese": "每个人都有自己特别感兴趣的东西，因此，作家爱写小说，画家爱画画儿。",
+          "pinyin": "měi gè rén dōu yǒu zì jǐ tè bié gǎn xīng qù de dōng xī yīn cǐ zuò jiā ài xiě xiǎo shuō huà jiā ài huà huà ér",
+          "meaningVi": "Mỗi người đều có thứ mình đặc biệt hứng thú, vì vậy nhà văn thích viết tiểu thuyết, họa sĩ thích vẽ tranh."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -91,8 +146,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 1,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "bức tranh, bức vẽ",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

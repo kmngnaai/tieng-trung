@@ -47,15 +47,70 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "处理",
+        "pinyin": "chǔ lǐ",
+        "meaningVi": "sắp xếp",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: sắp xếp",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "整理",
+        "pinyin": "zhěng lǐ",
+        "meaningVi": "sắp xếp",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: sắp xếp",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
-  "sentences": [],
+  "sentences": [
+    {
+      "target": "安排",
+      "chinese": "至于明天的安排，我们晚上再说。",
+      "pinyin": "zhì yú míng tiān de ān pái wǒ men wǎn shàng zài shuō",
+      "meaningVi": "Còn về sắp xếp ngày mai, tối nay chúng ta nói tiếp.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_61",
+      "grammarTopic": "Cách dùng 至于",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "grammarLinks": [
     {
+      "grammarId": "usage:安排",
       "title": "Cách dùng 安排",
       "partOfSpeech": "động từ",
       "usageNoteVi": "Tổ chức, bố trí mọi thứ theo kế hoạch.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_61",
+      "title": "Cách dùng 至于",
+      "syntax": "至于 + (chủ ngữ) + vị ngữ",
+      "explanationVi": "Giới từ 「至于」 (zhìyú) được dùng để dẫn dắt một đề tài mới hoặc một khía cạnh khác trong cùng một chủ đề, có nghĩa tiếng Việt tương đương là “còn về”, “còn đối với”. Nó giúp người nói chuyển ý một cách tự nhiên khi muốn làm rõ thêm thông tin về một đối tượng cụ thể.",
+      "tipsVi": "Bạn có thể dùng 「至于」 ở đầu câu hoặc vế câu thứ hai để nhấn mạnh sự thay đổi trọng tâm trong câu chuyện.",
+      "attentionsVi": "Không nên nhầm lẫn 「至于」 với các từ nối đơn thuần, vì nó mang hàm ý tách biệt hoặc làm rõ chi tiết của một vấn đề đã được nhắc đến trước đó.",
+      "examples": [
+        {
+          "chinese": "至于明天的安排，我们晚上再说。",
+          "pinyin": "zhì yú míng tiān de ān pái wǒ men wǎn shàng zài shuō",
+          "meaningVi": "Còn về sắp xếp ngày mai, tối nay chúng ta nói tiếp."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -94,9 +149,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có câu mẫu đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 1,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "sắp xếp, bố trí, an bài",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

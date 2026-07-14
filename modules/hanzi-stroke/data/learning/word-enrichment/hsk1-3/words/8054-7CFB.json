@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Liên lạc",
+      "meaningShortVi": "liên lạc",
       "meaningFullVi": "Liên lạc, liên hệ",
       "partOfSpeech": "động từ / danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Liên lạc",
+  "meaningShortVi": "liên lạc",
   "wordType": "động từ / danh từ",
   "wordTypes": [
     "động từ / danh từ"
@@ -55,7 +55,9 @@
         "target": "联系",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "联系方式",
@@ -65,10 +67,32 @@
         "target": "联系",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "打交道",
+        "pinyin": "dǎ jiāo dao",
+        "meaningVi": "liên lạc",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: liên lạc",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "来往",
+        "pinyin": "lái wang",
+        "meaningVi": "liên lạc",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: liên lạc",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -90,14 +114,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "联系",
+      "chinese": "你们做计划应该联系实际。",
+      "pinyin": "nǐ men zuò jì huà yīng gāi lián xì shí jì",
+      "meaningVi": "Các bạn lập kế hoạch nên liên hệ với thực tế.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_22",
+      "grammarTopic": "Cách dùng từ 实际",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:联系",
       "title": "Cách dùng 联系",
       "partOfSpeech": "động từ / danh từ",
       "usageNoteVi": "联系 có thể là động từ (liên lạc) hoặc danh từ (mối quan hệ). Là động từ, nó mang hành động liên lạc qua điện thoại, email, tin nhắn. Là danh từ, nó chỉ mối quan hệ giữa người với người. Trong giao tiếp, người ta thường nói '保持联系' (giữ liên lạc) hoặc '联系我' (liên hệ tôi).",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_22",
+      "title": "Cách dùng từ 实际",
+      "syntax": "实际 (Danh từ: thực tế / Tính từ: thực tế, thiết thực)",
+      "explanationVi": "Từ 「实际」 được dùng như một danh từ để chỉ sự việc, tình huống khách quan trong đời sống. Khi đóng vai trò là tính từ, nó mang nghĩa là thực tế, không lý thuyết suông, mang tính ứng dụng cao.",
+      "tipsVi": "Bạn có thể ghi nhớ cụm từ phổ biến 「联系实际」 (liánxì shíjì) nghĩa là \"liên hệ với thực tế\" để áp dụng vào bài viết hoặc bài nói.",
+      "attentionsVi": "Cần phân biệt rõ khi 「实际」 làm danh từ (thường đứng sau giới từ hoặc làm tân ngữ) và khi làm tính từ (thường dùng để bổ nghĩa cho danh từ).",
+      "examples": [
+        {
+          "chinese": "你们做计划应该联系实际。",
+          "pinyin": "nǐ men zuò jì huà yīng gāi lián xì shí jì",
+          "meaningVi": "Các bạn lập kế hoạch nên liên hệ với thực tế."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -136,7 +194,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "Liên lạc, liên hệ",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

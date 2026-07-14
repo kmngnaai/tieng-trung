@@ -54,7 +54,9 @@
         "target": "管理",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "管理方法",
@@ -64,10 +66,23 @@
         "target": "管理",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "经营",
+        "pinyin": "jīng yíng",
+        "meaningVi": "quản lý",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: quản lý",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -93,10 +108,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:管理",
       "title": "Cách dùng 管理",
       "partOfSpeech": "động từ / danh từ",
       "usageNoteVi": "Có thể dùng làm động từ (quản lý công việc) hoặc danh từ (cải thiện quản lý). Trong văn kinh doanh, có thể nói 经营管理 để chỉ cả hoạt động lẫn quản lý. Từ liên quan: 负责 'chịu trách nhiệm', 监督 'giám sát'.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +148,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "quản lý; điều hành, giám sát và chịu trách nhiệm về một tổ chức, dự án hoặc nhóm người",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

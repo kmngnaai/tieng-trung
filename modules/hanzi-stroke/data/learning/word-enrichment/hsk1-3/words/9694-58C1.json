@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "cách vách",
+      "meaningShortVi": "bên cạnh",
       "meaningFullVi": "cách vách, kế bên, nhà hàng xóm",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "cách vách",
+  "meaningShortVi": "bên cạnh",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -52,7 +52,9 @@
         "target": "隔壁",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "隔壁房间",
@@ -62,7 +64,20 @@
         "target": "隔壁",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "隔壁",
+            "chinese": "我住在隔壁房间",
+            "pinyin": "Wǒ zhù zài gébì fángjiān",
+            "meaningVi": "Tôi ở trong phòng kế bên",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "隔壁班",
@@ -72,10 +87,32 @@
         "target": "隔壁",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "旁边",
+        "pinyin": "páng biān",
+        "meaningVi": "bên cạnh",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bên cạnh",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "身边",
+        "pinyin": "shēn biān",
+        "meaningVi": "bên cạnh",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bên cạnh",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -131,10 +168,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:隔壁",
       "title": "Cách dùng 隔壁",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "隔壁 chỉ vị trí ngay kề bên, cách một vách tường. Dùng cho nhà, phòng, hoặc người ở gần. Cũng dùng ẩn dụ cho 'bên cạnh' trong ngữ cảnh trừu tượng.",
       "explanationVi": "Ghép nghĩa: 隔 (ngăn cách) + 壁 (tường) → cách một bức tường, kế bên.",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -152,7 +192,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 5,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "cách vách, kế bên, nhà hàng xóm",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

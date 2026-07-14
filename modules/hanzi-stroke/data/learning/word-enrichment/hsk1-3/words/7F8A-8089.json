@@ -55,7 +55,31 @@
         "target": "羊肉",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "羊肉",
+            "chinese": "我不喜欢吃羊肉。",
+            "pinyin": "Wǒ bù xǐhuān chī yángròu.",
+            "meaningVi": "Tôi không thích ăn thịt cừu.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "羊肉",
+            "chinese": "这个星期我天天都吃羊肉。",
+            "pinyin": "zhè gè xīng qī wǒ tiān tiān dōu chī yáng ròu",
+            "meaningVi": "Tuần này ngày nào tôi cũng ăn thịt cừu.",
+            "source": "hsk_2.json",
+            "grammarId": "hsk2_17",
+            "grammarTopic": "Lặp lại lượng từ",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 2
       },
       {
         "text": "买羊肉",
@@ -65,10 +89,13 @@
         "target": "羊肉",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -90,14 +117,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "羊肉",
+      "chinese": "这个星期我天天都吃羊肉。",
+      "pinyin": "zhè gè xīng qī wǒ tiān tiān dōu chī yáng ròu",
+      "meaningVi": "Tuần này ngày nào tôi cũng ăn thịt cừu.",
+      "source": "hsk_2.json",
+      "grammarId": "hsk2_17",
+      "grammarTopic": "Lặp lại lượng từ",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:羊肉",
       "title": "Cách dùng 羊肉",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_17",
+      "title": "Lặp lại lượng từ",
+      "syntax": "Lượng từ + Lượng từ + Danh từ (ví dụ: 个个, 天天)",
+      "explanationVi": "Khi lặp lại lượng từ, chúng ta tạo ra nghĩa \"mỗi\" hoặc \"mọi\" cho danh từ đó. Cấu trúc này thường đi kèm với phó từ 「都」 ở vế sau để nhấn mạnh rằng không bỏ sót bất kỳ cá thể nào.",
+      "tipsVi": "Cách dùng này rất phổ biến trong giao tiếp hàng ngày để nhấn mạnh sự đều đặn hoặc tính bao quát, ví dụ 「天天」 có nghĩa là \"mỗi ngày\".",
+      "attentionsVi": "Cần lưu ý không phải lượng từ nào cũng có thể lặp lại, hãy ưu tiên sử dụng với các danh từ chỉ thời gian hoặc đơn vị đếm thông dụng.",
+      "examples": [
+        {
+          "chinese": "这个星期我天天都吃羊肉。",
+          "pinyin": "zhè gè xīng qī wǒ tiān tiān dōu chī yáng ròu",
+          "meaningVi": "Tuần này ngày nào tôi cũng ăn thịt cừu."
+        }
+      ],
+      "source": "hsk_2.json",
+      "curriculum": "hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -136,7 +197,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "thịt cừu",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

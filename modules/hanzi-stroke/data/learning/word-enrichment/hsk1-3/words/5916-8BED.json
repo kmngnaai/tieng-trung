@@ -56,7 +56,9 @@
         "target": "外语",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "外语教学",
@@ -66,10 +68,33 @@
         "target": "外语",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
+      }
+    ],
+    "relatedWords": [
+      {
+        "targetWord": "外衣",
+        "pinyin": "wài yī",
+        "meaningVi": "áo khoác",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_2.json",
         "reviewStatus": "reviewed-local"
       }
     ],
-    "relatedWords": []
+    "candidateRelations": [
+      {
+        "targetWord": "外文",
+        "pinyin": "wài wén",
+        "meaningVi": "ngoại ngữ",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: ngoại ngữ",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -101,14 +126,79 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "外语",
+      "chinese": "学外语固然有动力。",
+      "pinyin": "xué wài yǔ gù rán yǒu dòng lì",
+      "meaningVi": "Học ngoại ngữ tất nhiên là có động lực.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_12",
+      "grammarTopic": "Cấu trúc nhượng bộ 固然...但是...",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "外语",
+      "chinese": "一般来说，学习外语需要多练习。",
+      "pinyin": "yī bān lái shuō xué xí wài yǔ xū yào duō liàn xí",
+      "meaningVi": "Thông thường, học ngoại ngữ cần phải luyện tập nhiều.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_54",
+      "grammarTopic": "Cách dùng cụm từ 「一般来说」",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:外语",
       "title": "Cách dùng 外语",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "外语 chỉ ngôn ngữ nước ngoài, thường dùng trong bối cảnh giáo dục.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_12",
+      "title": "Cấu trúc nhượng bộ 固然...但是...",
+      "syntax": "固然...，但是/可是/却... (Liên từ biểu thị sự thừa nhận)",
+      "explanationVi": "Cấu trúc 「固然」 được dùng để thừa nhận một sự thật hoặc một lý lẽ nào đó là đúng, sau đó chuyển ý sang một vế đối lập phía sau. Nó mang nghĩa là \"tuy là... nhưng mà...\" hoặc \"dĩ nhiên là...\".",
+      "tipsVi": "Thường kết hợp với các từ chỉ sự tương phản như 「但是」, 「可是」, 「然而」 hoặc 「却」 ở vế câu thứ hai để làm rõ ý đối lập.",
+      "attentionsVi": "Đừng nhầm lẫn với 「当然」; 「固然」 nhấn mạnh vào việc thừa nhận thực tế để dẫn dắt chuyển ngoặt, trong khi 「当然」 chỉ mang nghĩa là \"đương nhiên\" để khẳng định.",
+      "examples": [
+        {
+          "chinese": "学外语固然有动力。",
+          "pinyin": "xué wài yǔ gù rán yǒu dòng lì",
+          "meaningVi": "Học ngoại ngữ tất nhiên là có động lực."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_54",
+      "title": "Cách dùng cụm từ 「一般来说」",
+      "syntax": "一般来说，+ câu nhận xét",
+      "explanationVi": "Cụm từ 「一般来说」 thường đứng đầu câu để nêu ra một nhận xét mang tính khái quát hoặc thông thường. Nó tương đương với nghĩa “nói chung là” hoặc “thông thường mà nói” trong tiếng Việt.",
+      "tipsVi": "Bạn có thể dùng 「一般来说」 để mở đầu câu khi muốn đưa ra một kết luận dựa trên đa số trường hợp.",
+      "attentionsVi": "Không nên dùng cụm từ này cho những sự việc mang tính chất cá nhân, riêng biệt hoặc quá cụ thể.",
+      "examples": [
+        {
+          "chinese": "一般来说，学习外语需要多练习。",
+          "pinyin": "yī bān lái shuō xué xí wài yǔ xū yào duō liàn xí",
+          "meaningVi": "Thông thường, học ngoại ngữ cần phải luyện tập nhiều."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -167,7 +257,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 5,
+      "grammar": 3,
+      "reviewedRelations": 1,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "ngoại ngữ",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

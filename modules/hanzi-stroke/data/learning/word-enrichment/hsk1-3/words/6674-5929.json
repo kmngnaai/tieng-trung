@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "tình thiên",
+      "meaningShortVi": "trời nắng",
       "meaningFullVi": "tình thiên",
       "partOfSpeech": "noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "tình thiên",
+  "meaningShortVi": "trời nắng",
   "wordType": "noun",
   "wordTypes": [
     "noun"
@@ -55,10 +55,25 @@
         "target": "晴天",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "晴天",
+            "chinese": "大晴天。",
+            "pinyin": "dà qíng tiān",
+            "meaningVi": "Trời nắng rực rỡ.",
+            "source": "hsk_6.json",
+            "grammarId": "hsk6_52",
+            "grammarTopic": "Phó từ 大 nhấn mạnh cảm xúc",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -90,14 +105,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "晴天",
+      "chinese": "明天是晴天还是阴天？",
+      "pinyin": "míng tiān shì qíng tiān hái shì yīn tiān",
+      "meaningVi": "Ngày mai là trời nắng hay trời âm u?",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_7",
+      "grammarTopic": "Phân biệt 还是 và 或者",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "晴天",
+      "chinese": "大晴天。",
+      "pinyin": "dà qíng tiān",
+      "meaningVi": "Trời nắng rực rỡ.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_52",
+      "grammarTopic": "Phó từ 大 nhấn mạnh cảm xúc",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:晴天",
       "title": "Cách dùng 晴天",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_7",
+      "title": "Phân biệt 还是 và 或者",
+      "syntax": "A 还是 B (câu hỏi) / A 或者 B (câu trần thuật)",
+      "explanationVi": "Cả 「还是」 và 「或者」 đều dùng để diễn tả sự lựa chọn giữa các phương án. 「还是」 chỉ dùng trong câu nghi vấn để đặt câu hỏi, trong khi 「或者」 chỉ dùng trong câu trần thuật để đưa ra lựa chọn.",
+      "tipsVi": "Hãy nhớ quy tắc đơn giản: thấy dấu chấm hỏi hãy chọn 「还是」, thấy dấu chấm câu hãy chọn 「或者」.",
+      "attentionsVi": "Không được dùng 「还是」 trong câu trần thuật để liệt kê lựa chọn, nếu dùng sẽ bị coi là sai ngữ pháp.",
+      "examples": [
+        {
+          "chinese": "明天是晴天还是阴天？",
+          "pinyin": "míng tiān shì qíng tiān hái shì yīn tiān",
+          "meaningVi": "Ngày mai là trời nắng hay trời âm u?"
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_52",
+      "title": "Phó từ 大 nhấn mạnh cảm xúc",
+      "syntax": "大 + (tính từ cảm xúc/trạng thái)",
+      "explanationVi": "Phó từ 「大」 dùng để nhấn mạnh mức độ cao của một trạng thái hoặc cảm xúc, thường đi kèm với các tính từ như 「高兴」, 「欢喜」, 「吃惊」. Cách dùng này thường mang sắc thái biểu cảm mạnh mẽ trong văn viết hoặc khẩu ngữ.",
+      "tipsVi": "Nên sử dụng 「大」 với các tính từ mang tính chất cảm xúc chủ quan để câu văn nghe tự nhiên hơn.",
+      "attentionsVi": "Không nên nhầm lẫn 「大」 với tư cách là phó từ nhấn mạnh mức độ với nghĩa thông thường là 'lớn' (kích thước).",
+      "examples": [
+        {
+          "chinese": "大晴天。",
+          "pinyin": "dà qíng tiān",
+          "meaningVi": "Trời nắng rực rỡ."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -136,7 +216,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 5,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "tình thiên",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

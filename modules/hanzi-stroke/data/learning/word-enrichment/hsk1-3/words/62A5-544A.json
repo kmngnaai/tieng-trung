@@ -55,7 +55,20 @@
         "target": "报告",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "报告",
+            "chinese": "经理让我做一个工作报告。",
+            "pinyin": "Jīnglǐ ràng wǒ zuò yíge gōngzuò bàogào.",
+            "meaningVi": "Giám đốc bảo tôi làm một báo cáo công việc.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "研究报告",
@@ -65,10 +78,23 @@
         "target": "报告",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "报道",
+        "pinyin": "bào dào",
+        "meaningVi": "báo cáo",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: báo cáo",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -90,14 +116,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "报告",
+      "chinese": "这份报告反映了真实情况。",
+      "pinyin": "zhè fèn bào gào fǎn yìng le zhēn shí qíng kuàng",
+      "meaningVi": "Bản báo cáo này phản ánh tình hình thực tế.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_70",
+      "grammarTopic": "Phân biệt 反应 và 反映",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:报告",
       "title": "Cách dùng 报告",
       "partOfSpeech": "động từ / danh từ",
       "usageNoteVi": "可以作动词也可以作名词. 作动词: 向经理报告 (báo cáo với giám đốc). 作名词: 读报告 (đọc báo cáo). Phân biệt 汇报 (huìbào - tổng hợp báo cáo lên cấp trên).",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_70",
+      "title": "Phân biệt 反应 và 反映",
+      "syntax": "反应 (phản ứng) vs. 反映 (phản ánh)",
+      "explanationVi": "「反应」 dùng để chỉ phản ứng tự nhiên của cơ thể hoặc thái độ đối với một sự việc (ví dụ: dị ứng, phản xạ). Trong khi đó, 「反映」 dùng khi muốn trình bày, phản ánh lại tình hình hoặc sự thật cho cấp trên hoặc người khác biết.",
+      "tipsVi": "Hãy nhớ 「反应」 thường liên quan đến cảm giác hoặc phản xạ, còn 「反映」 thường liên quan đến việc báo cáo hoặc thể hiện bản chất của vấn đề.",
+      "attentionsVi": "Người học rất dễ nhầm lẫn vì hai từ này đọc giống hệt nhau (fǎnyìng), hãy chú ý vào ngữ cảnh: nếu là sinh lý hoặc thái độ thì dùng 「反应」.",
+      "examples": [
+        {
+          "chinese": "这份报告反映了真实情况。",
+          "pinyin": "zhè fèn bào gào fǎn yìng le zhēn shí qíng kuàng",
+          "meaningVi": "Bản báo cáo này phản ánh tình hình thực tế."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -136,7 +196,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "báo cáo",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

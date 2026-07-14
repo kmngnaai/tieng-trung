@@ -55,10 +55,45 @@
         "target": "运动会",
         "source": "hsk_3.json",
         "pinyinMethod": "exact-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "运动会",
+            "chinese": "这个运动会很好。",
+            "pinyin": "zhè ge yùn dòng huì hěn hǎo。",
+            "meaningVi": "đại hội thể thao này rất tốt.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "运动会",
+            "chinese": "我喜欢这个运动会。",
+            "pinyin": "wǒ xǐ huan zhè ge yùn dòng huì。",
+            "meaningVi": "Tôi thích đại hội thể thao này.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "运动会",
+            "chinese": "听说为了准备运动会，你们几个男生每天都练球。",
+            "pinyin": "tīng shuō wèi le zhǔn bèi yùn dòng huì nǐ men jǐ gè nán shēng měi tiān dōu liàn qiú",
+            "meaningVi": "Nghe nói để chuẩn bị cho đại hội thể thao, mấy bạn nam các cậu ngày nào cũng luyện bóng.",
+            "source": "new_hsk_3.json",
+            "grammarId": "hsk3_new_28",
+            "grammarTopic": "Câu phức chỉ mục đích",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 3
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -80,14 +115,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "运动会",
+      "chinese": "听说为了准备运动会，你们几个男生每天都练球。",
+      "pinyin": "tīng shuō wèi le zhǔn bèi yùn dòng huì nǐ men jǐ gè nán shēng měi tiān dōu liàn qiú",
+      "meaningVi": "Nghe nói để chuẩn bị cho đại hội thể thao, mấy bạn nam các cậu ngày nào cũng luyện bóng.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_28",
+      "grammarTopic": "Câu phức chỉ mục đích",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:运动会",
       "title": "Cách dùng 运动会",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_28",
+      "title": "Câu phức chỉ mục đích",
+      "syntax": "为了 + Mục đích, + Hành động (S + V...)",
+      "explanationVi": "Cấu trúc 「为了」 được dùng để nêu lên mục đích của một hành động, mang nghĩa là \"để\" hoặc \"vì\". Vế đầu chứa mục đích cần đạt được, vế sau là hành động thực hiện để đạt được mục đích đó.",
+      "tipsVi": "Bạn có thể đặt 「为了」 ở ngay đầu câu hoặc sau chủ ngữ của mệnh đề chính.",
+      "attentionsVi": "Đừng nhầm lẫn 「为了」 (chỉ mục đích) với 「因为」 (chỉ lý do/nguyên nhân).",
+      "examples": [
+        {
+          "chinese": "听说为了准备运动会，你们几个男生每天都练球。",
+          "pinyin": "tīng shuō wèi le zhǔn bèi yùn dòng huì nǐ men jǐ gè nán shēng měi tiān dōu liàn qiú",
+          "meaningVi": "Nghe nói để chuẩn bị cho đại hội thể thao, mấy bạn nam các cậu ngày nào cũng luyện bóng."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -121,7 +190,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "đại hội thể thao",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

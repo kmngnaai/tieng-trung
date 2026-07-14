@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "trên người",
+      "meaningShortVi": "trên tay",
       "meaningFullVi": "trên người",
       "partOfSpeech": "other",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "trên người",
+  "meaningShortVi": "trên tay",
   "wordType": "other",
   "wordTypes": [
     "other"
@@ -55,7 +55,9 @@
         "target": "身上",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "身上有",
@@ -65,10 +67,24 @@
         "target": "身上",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "身上",
+            "chinese": "你身上有手机吗？",
+            "pinyin": "Nǐ shēnshang yǒu shǒujī ma?",
+            "meaningVi": "Bạn có mang điện thoại trên người không?",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -100,14 +116,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "身上",
+      "chinese": "它一会儿在你脚边睡觉，一会儿在你身上爬。",
+      "pinyin": "tā yī huì ér zài nǐ jiǎo biān shuì jué yī huì ér zài nǐ shēn shàng pá",
+      "meaningVi": "Nó lúc thì ngủ dưới chân bạn, lúc thì leo lên người bạn.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_52",
+      "grammarTopic": "Cấu trúc diễn tả hành động thay đổi luân phiên",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:身上",
       "title": "Cách dùng 身上",
       "partOfSpeech": "other",
       "usageNoteVi": "身上 chỉ vị trí trên cơ thể người.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_52",
+      "title": "Cấu trúc diễn tả hành động thay đổi luân phiên",
+      "syntax": "一会儿 + Động từ/Tính từ, 一会儿 + Động từ/Tính từ",
+      "explanationVi": "Cấu trúc này dùng để diễn tả hai hoặc nhiều hành động, trạng thái thay đổi qua lại liên tục. Trong tiếng Việt, ta dịch là \"lúc thì... lúc thì...\" để chỉ sự không ổn định hoặc thay đổi nhanh chóng.",
+      "tipsVi": "Cấu trúc này thường dùng để mô tả sự thay đổi mang tính tùy hứng, không theo quy luật hoặc tâm trạng không kiên định của người nói.",
+      "attentionsVi": "Cần phân biệt với 「一会儿」 mang nghĩa là \"một lát nữa\", trong cấu trúc này 「一会儿」 bắt buộc phải lặp lại hai lần.",
+      "examples": [
+        {
+          "chinese": "它一会儿在你脚边睡觉，一会儿在你身上爬。",
+          "pinyin": "tā yī huì ér zài nǐ jiǎo biān shuì jué yī huì ér zài nǐ shēn shàng pá",
+          "meaningVi": "Nó lúc thì ngủ dưới chân bạn, lúc thì leo lên người bạn."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -146,7 +196,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "trên người",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

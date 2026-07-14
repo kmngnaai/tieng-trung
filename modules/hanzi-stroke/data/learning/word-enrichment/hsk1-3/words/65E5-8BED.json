@@ -52,7 +52,9 @@
         "target": "日语",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "日语能力考试",
@@ -62,7 +64,9 @@
         "target": "日语",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "日语翻译",
@@ -72,10 +76,24 @@
         "target": "日语",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "日语",
+            "chinese": "她大学专业是日语翻译。",
+            "pinyin": "Tā dàxué zhuānyè shì Rìyǔ fānyì.",
+            "meaningVi": "Chuyên ngành đại học của cô ấy là dịch thuật tiếng Nhật.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -121,10 +139,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:日语",
       "title": "Cách dùng 日语",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "日语 viết hoa chữ đầu 日 khi chỉ tên riêng. Tương tự các cách đặt tên ngôn ngữ: 中文/汉语 (tiếng Trung), 韩语 (tiếng Hàn), 英语 (tiếng Anh).",
       "explanationVi": "日 (nhật — Nhật Bản, mặt trời) + 语 (ngữ — ngôn ngữ); ghép nghĩa 'ngôn ngữ của Nhật Bản'.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -142,7 +163,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 4,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "tiếng Nhật; ngôn ngữ Nhật Bản",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

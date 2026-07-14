@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Cẩn thận",
+      "meaningShortVi": "cẩn thận",
       "meaningFullVi": "Cẩn thận, thật tốt",
       "partOfSpeech": "reduplication",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Cẩn thận",
+  "meaningShortVi": "cẩn thận",
   "wordType": "reduplication",
   "wordTypes": [
     "reduplication"
@@ -51,12 +51,33 @@
         "meaningVi": "tử tế",
         "meaningFullVi": "tử tế, cẩn thận, cho tốt, đàng hoàng",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 1",
+        "hskLevel": 1,
+        "source": "hsk_1.json",
         "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "小心",
+        "pinyin": "xiǎo xīn",
+        "meaningVi": "cẩn thận",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: cẩn thận",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "仔细",
+        "pinyin": "zǐ xì",
+        "meaningVi": "cẩn thận",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: cẩn thận",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -92,10 +113,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:好好",
       "title": "Cách dùng 好好",
       "partOfSpeech": "reduplication",
       "usageNoteVi": "好好 là trạng từ được tạo bằng cách lặp lại từ 好, làm tăng sắc thái biểu cảm: thật tốt, cẩn thận, đàng hoàng, hoặc một cách đầy đủ. Dùng để nhấn mạnh việc làm gì đó một cách tử tế, nghiêm túc.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -129,7 +153,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng"
-    ]
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 0,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "Cẩn thận, thật tốt",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

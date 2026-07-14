@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Bố",
+      "meaningShortVi": "cha",
       "meaningFullVi": "Bố, cha, người cha",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Bố",
+  "meaningShortVi": "cha",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -55,10 +55,24 @@
         "target": "父亲",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "父亲",
+            "chinese": "父亲节快到了。",
+            "pinyin": "Fùqīnjié kuài dào le.",
+            "meaningVi": "Ngày của Cha sắp đến.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -90,14 +104,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "父亲",
+      "chinese": "临走那天，父亲从家乡赶来送我们。",
+      "pinyin": "lín zǒu nà tiān fù qīn cóng jiā xiāng gǎn lái sòng wǒ men",
+      "meaningVi": "Ngày sắp đi, cha từ quê nhà vội vàng đến tiễn chúng tôi.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_3",
+      "grammarTopic": "Cách dùng cấu trúc 临...时/前",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:父亲",
       "title": "Cách dùng 父亲",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Từ trang trọng hơn '爸爸', dùng trong văn viết hoặc khi nhấn mạnh vai trò người cha.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_3",
+      "title": "Cách dùng cấu trúc 临...时/前",
+      "syntax": "临 + [thời gian/sự việc] + (时/前)",
+      "explanationVi": "Giới từ 「临」 dùng để biểu thị thời điểm ngay trước khi một hành động hoặc sự việc xảy ra. Nó thường kết hợp với 「时」 (khi) hoặc 「前」 (trước) để nhấn mạnh khoảng thời gian sát nút đó, dịch nghĩa là \"sắp\", \"gần đến\" hoặc \"trước khi\".",
+      "tipsVi": "Bạn có thể hiểu 「临」 tương tự như cách dùng của 「临到」 để nhấn mạnh sự việc đang ở ngay trước mắt.",
+      "attentionsVi": "Cần lưu ý 「临」 thường kết hợp với các từ chỉ thời gian hoặc sự việc cụ thể, không nên dùng độc lập để chỉ thời gian chung chung.",
+      "examples": [
+        {
+          "chinese": "临走那天，父亲从家乡赶来送我们。",
+          "pinyin": "lín zǒu nà tiān fù qīn cóng jiā xiāng gǎn lái sòng wǒ men",
+          "meaningVi": "Ngày sắp đi, cha từ quê nhà vội vàng đến tiễn chúng tôi."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -136,7 +184,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "Bố, cha, người cha",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

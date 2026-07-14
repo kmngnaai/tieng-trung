@@ -46,15 +46,51 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
-  "sentences": [],
+  "sentences": [
+    {
+      "target": "西安",
+      "chinese": "我们坐出租车去西安饭店。",
+      "pinyin": "wǒ men zuò chū zū chē qù xī ān fàn diàn",
+      "meaningVi": "Chúng tôi đi taxi đến nhà hàng Tây An.",
+      "source": "new_hsk_1.json",
+      "grammarId": "hsk1_new_13",
+      "grammarTopic": "Câu liên động",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "grammarLinks": [
     {
+      "grammarId": "usage:西安",
       "title": "Cách dùng 西安",
       "partOfSpeech": "danh từ riêng",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk1_new_13",
+      "title": "Câu liên động",
+      "syntax": "S + V1 + O1 + V2 + O2",
+      "explanationVi": "Câu liên động là câu có từ hai động từ trở lên cùng làm vị ngữ. Cấu trúc này thường dùng để diễn tả mục đích hoặc trình tự của hành động, trong đó động từ thứ hai thường giải thích lý do thực hiện động từ thứ nhất.",
+      "tipsVi": "Hãy ghi nhớ quy tắc: hành động xảy ra trước đứng trước, hành động mục đích đứng sau.",
+      "attentionsVi": "Không được dùng các từ liên kết như 「和」(và) hay 「然后」(sau đó) giữa hai động từ.",
+      "examples": [
+        {
+          "chinese": "我们坐出租车去西安饭店。",
+          "pinyin": "wǒ men zuò chū zū chē qù xī ān fàn diàn",
+          "meaningVi": "Chúng tôi đi taxi đến nhà hàng Tây An."
+        }
+      ],
+      "source": "new_hsk_1.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 1,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -103,9 +139,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có câu mẫu đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 1,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "Tây An (thành phố)",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

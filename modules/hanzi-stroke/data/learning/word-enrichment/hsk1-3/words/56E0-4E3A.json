@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "nhân vi",
+      "meaningShortVi": "bởi vì",
       "meaningFullVi": "nhân vi",
       "partOfSpeech": "conjunction",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "nhân vi",
+  "meaningShortVi": "bởi vì",
   "wordType": "conjunction",
   "wordTypes": [
     "conjunction"
@@ -56,7 +56,9 @@
         "target": "因为",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "都是因为",
@@ -66,10 +68,23 @@
         "target": "因为",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "由于",
+        "pinyin": "yóu yú",
+        "meaningVi": "bởi vì",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bởi vì",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -91,14 +106,153 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "因为",
+      "chinese": "因为她生病了，所以没去学校。",
+      "pinyin": "yīn wèi tā shēng bìng le suǒ yǐ méi qù xué xiào",
+      "meaningVi": "Vì cô ấy bị bệnh nên không đi học.",
+      "source": "hsk_2.json",
+      "grammarId": "hsk2_18",
+      "grammarTopic": "Cấu trúc chỉ nguyên nhân - kết quả",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "因为",
+      "chinese": "因为昨天下雨，所以我们都没去。",
+      "pinyin": "yīn wèi zuó tiān xià yǔ suǒ yǐ wǒ men dōu méi qù",
+      "meaningVi": "Vì hôm qua trời mưa nên chúng tôi đều không đi.",
+      "source": "hsk_2.json",
+      "grammarId": "hsk2_18",
+      "grammarTopic": "Cấu trúc chỉ nguyên nhân - kết quả",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "因为",
+      "chinese": "就是因为没穿过，所以要试试啊！",
+      "pinyin": "jiù shì yīn wèi méi chuān guò suǒ yǐ yào shì shì a",
+      "meaningVi": "Chính vì chưa từng mặc nên mới phải thử chứ!",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_11",
+      "grammarTopic": "Cấu trúc nhân quả vì... nên...",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "因为",
+      "chinese": "因为我生病了，今天没去上班。",
+      "pinyin": "yīn wèi wǒ shēng bìng le jīn tiān méi qù shàng bān",
+      "meaningVi": "Vì tôi bị bệnh nên hôm nay không đi làm.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_11",
+      "grammarTopic": "Cấu trúc nhân quả vì... nên...",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:因为",
       "title": "Cách dùng 因为",
       "partOfSpeech": "conjunction",
       "usageNoteVi": "Liên từ chỉ nguyên nhân, lý do",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_18",
+      "title": "Cấu trúc chỉ nguyên nhân - kết quả",
+      "syntax": "因为 (yīnwèi) + nguyên nhân, 所以 (suǒyǐ) + kết quả",
+      "explanationVi": "Cấu trúc này dùng để nối hai mệnh đề nhằm diễn đạt quan hệ nguyên nhân - kết quả. 「因为」 mang nghĩa là 'bởi vì' dùng để nêu lý do, còn 「所以」 mang nghĩa là 'cho nên' dùng để nêu kết quả.",
+      "tipsVi": "Trong văn nói, bạn có thể lược bỏ 「因为」 và chỉ dùng 「所以」 ở vế sau để câu ngắn gọn hơn.",
+      "attentionsVi": "Trong tiếng Trung, bạn không nên dùng cả hai từ 「因为」 và 「所以」 cùng lúc với các từ nối khác như 「但是」 trong cùng một câu đơn giản.",
+      "examples": [
+        {
+          "chinese": "因为她生病了，所以没去学校。",
+          "pinyin": "yīn wèi tā shēng bìng le suǒ yǐ méi qù xué xiào",
+          "meaningVi": "Vì cô ấy bị bệnh nên không đi học."
+        },
+        {
+          "chinese": "因为昨天下雨，所以我们都没去。",
+          "pinyin": "yīn wèi zuó tiān xià yǔ suǒ yǐ wǒ men dōu méi qù",
+          "meaningVi": "Vì hôm qua trời mưa nên chúng tôi đều không đi."
+        }
+      ],
+      "source": "hsk_2.json",
+      "curriculum": "hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_30",
+      "title": "Cách dùng liên từ 因此",
+      "syntax": "Nguyên nhân, 「因此」 + Kết quả",
+      "explanationVi": "Liên từ 「因此」 được dùng để nối hai vế câu, biểu thị quan hệ nhân quả với nghĩa là \"do đó\" hoặc \"vì vậy\". Nó thường xuất hiện ở đầu vế câu thứ hai để dẫn ra kết quả từ nguyên nhân đã nêu ở vế trước.",
+      "tipsVi": "「因此」 mang sắc thái trang trọng hơn 「所以」, thường được sử dụng trong văn viết hoặc các bài phát biểu, diễn thuyết.",
+      "attentionsVi": "Khác với 「因为...所以」, bạn không được dùng 「因为」 đi kèm với 「因此」 trong cùng một câu.",
+      "examples": [],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_37",
+      "title": "Cấu trúc 既然 (Đã... thì)",
+      "syntax": "既然 + [Tiền đề], (thì) + [Kết luận/Hệ quả]",
+      "explanationVi": "Liên từ 「既然」 được dùng ở vế đầu để chỉ một sự thật đã xảy ra hoặc một tiền đề đã rõ ràng. Vế sau thường dùng kèm với 「就」, 「也」 hoặc 「还」 để đưa ra kết luận hoặc đề nghị dựa trên tiền đề đó, tương đương với nghĩa “đã... thì...”.",
+      "tipsVi": "Bạn có thể sử dụng cấu trúc 「既然...就...」 để nhấn mạnh việc đưa ra lựa chọn hoặc giải pháp hợp lý sau khi đã biết rõ tình hình.",
+      "attentionsVi": "Đừng nhầm lẫn 「既然」 với 「因为」; 「因为」 chỉ nguyên nhân khách quan, còn 「既然」 nhấn mạnh vào việc chấp nhận một thực tế đã rồi để đưa ra quyết định tiếp theo.",
+      "examples": [],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_11",
+      "title": "Cấu trúc nhân quả vì... nên...",
+      "syntax": "因为 (nguyên nhân), 所以 (kết quả)",
+      "explanationVi": "Cấu trúc này dùng để diễn tả quan hệ nguyên nhân và kết quả. 「因为」 đứng trước vế nêu lý do, còn 「所以」 đứng trước vế nêu kết quả tương ứng.",
+      "tipsVi": "Bạn có thể chỉ dùng một trong hai từ 「因为」 hoặc 「所以」 trong câu mà vẫn giữ nguyên ý nghĩa.",
+      "attentionsVi": "Trong tiếng Trung, bạn không nên đặt chủ ngữ trước 「因为」 nếu chủ ngữ ở hai vế là giống nhau.",
+      "examples": [
+        {
+          "chinese": "就是因为没穿过，所以要试试啊！",
+          "pinyin": "jiù shì yīn wèi méi chuān guò suǒ yǐ yào shì shì a",
+          "meaningVi": "Chính vì chưa từng mặc nên mới phải thử chứ!"
+        },
+        {
+          "chinese": "因为我生病了，今天没去上班。",
+          "pinyin": "yīn wèi wǒ shēng bìng le jīn tiān méi qù shàng bān",
+          "meaningVi": "Vì tôi bị bệnh nên hôm nay không đi làm."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_28",
+      "title": "Câu phức chỉ mục đích",
+      "syntax": "为了 + Mục đích, + Hành động (S + V...)",
+      "explanationVi": "Cấu trúc 「为了」 được dùng để nêu lên mục đích của một hành động, mang nghĩa là \"để\" hoặc \"vì\". Vế đầu chứa mục đích cần đạt được, vế sau là hành động thực hiện để đạt được mục đích đó.",
+      "tipsVi": "Bạn có thể đặt 「为了」 ở ngay đầu câu hoặc sau chủ ngữ của mệnh đề chính.",
+      "attentionsVi": "Đừng nhầm lẫn 「为了」 (chỉ mục đích) với 「因为」 (chỉ lý do/nguyên nhân).",
+      "examples": [],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -167,7 +321,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 6,
+      "grammar": 6,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "nhân vi",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Liên tục",
+      "meaningShortVi": "liên tục",
       "meaningFullVi": "Liên tục, không ngừng",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Liên tục",
+  "meaningShortVi": "liên tục",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -54,7 +54,20 @@
         "target": "不断",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "不断",
+            "chinese": "科技在不断发展。",
+            "pinyin": "Kējì zài bùduàn fāzhǎn.",
+            "meaningVi": "Khoa học công nghệ liên tục phát triển.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "不断努力",
@@ -64,7 +77,9 @@
         "target": "不断",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "不断学习",
@@ -74,10 +89,23 @@
         "target": "不断",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "连续",
+        "pinyin": "lián xù",
+        "meaningVi": "liên tục",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: liên tục",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -113,10 +141,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:不断",
       "title": "Cách dùng 不断",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "不断 là từ chỉ sự liên tục, không gián đoạn. Thường đứng trước động từ để nhấn mạnh tính liên tục của hành động. Phân biệt với 不停(không ngớt) và 连续(liên tiếp).",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -150,7 +181,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "Liên tục, không ngừng",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

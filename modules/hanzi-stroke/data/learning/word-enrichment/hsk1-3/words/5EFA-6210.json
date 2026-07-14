@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Xây dựng hoàn thành",
+      "meaningShortVi": "thiết lập",
       "meaningFullVi": "Xây dựng hoàn thành, xây xong",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Xây dựng hoàn thành",
+  "meaningShortVi": "thiết lập",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
@@ -54,7 +54,20 @@
         "target": "建成",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "建成",
+            "chinese": "这座大桥今年已经建成通车了。",
+            "pinyin": "Zhè zuò dàqiáo jīnnián yǐjīng jiànchéng tōngchē le.",
+            "meaningVi": "Cây cầu lớn này năm nay đã xây xong và thông xe rồi.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "建成投产",
@@ -64,10 +77,32 @@
         "target": "建成",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "制定",
+        "pinyin": "zhì dìng",
+        "meaningVi": "thiết lập",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: thiết lập",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "设立",
+        "pinyin": "shè lì",
+        "meaningVi": "thiết lập",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: thiết lập",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -93,10 +128,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:建成",
       "title": "Cách dùng 建成",
       "partOfSpeech": "động từ",
       "usageNoteVi": "建成 là kết quả của hành động xây dựng, mang nghĩa hoàn thành. Nó thường đi kèm với các công trình xây dựng như 桥梁 (cầu), 道路 (đường), 建筑 (tòa nhà). Trong câu, người ta thường nói '已建成' (đã xây xong) hoặc '即将建成' (sắp xây xong).",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +168,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "Xây dựng hoàn thành, xây xong",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

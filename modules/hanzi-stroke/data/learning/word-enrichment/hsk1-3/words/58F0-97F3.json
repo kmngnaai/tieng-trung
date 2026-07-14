@@ -56,7 +56,9 @@
         "target": "声音",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "声音很大",
@@ -66,10 +68,13 @@
         "target": "声音",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -101,14 +106,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "声音",
+      "chinese": "你把声音开得太大了。",
+      "pinyin": "nǐ bǎ shēng yīn kāi dé tài dà le",
+      "meaningVi": "Bạn mở tiếng to quá rồi đấy.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_43",
+      "grammarTopic": "Câu chữ 把 với bổ ngữ",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:声音",
       "title": "Cách dùng 声音",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_43",
+      "title": "Câu chữ 把 với bổ ngữ",
+      "syntax": "Chủ ngữ + 把 + Tân ngữ + Động từ + Bổ ngữ (Kết quả/Xu hướng/Mức độ)",
+      "explanationVi": "Trong câu chữ 「把」, động từ không bao giờ đứng một mình mà phải đi kèm bổ ngữ để chỉ kết quả, xu hướng hoặc mức độ. Cấu trúc này nhấn mạnh việc tân ngữ đã chịu tác động và thay đổi ra sao sau hành động. Bạn cần đặt bổ ngữ ngay sau động từ để hoàn thiện ý nghĩa.",
+      "tipsVi": "Hãy nhớ rằng bổ ngữ như 「了」, 「下来」, 「好」 hay 「清楚」 thường được thêm vào sau động từ để làm rõ kết quả của hành động đối với tân ngữ.",
+      "attentionsVi": "Không được để động từ đứng đơn độc mà không có các thành phần bổ sung phía sau trong câu chữ 「把」.",
+      "examples": [
+        {
+          "chinese": "你把声音开得太大了。",
+          "pinyin": "nǐ bǎ shēng yīn kāi dé tài dà le",
+          "meaningVi": "Bạn mở tiếng to quá rồi đấy."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -177,7 +216,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "âm thanh",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

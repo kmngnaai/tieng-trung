@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "dựa vào",
+      "meaningShortVi": "dựa trên",
       "meaningFullVi": "dựa vào, theo, căn cứ vào",
       "partOfSpeech": "giới từ/động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "dựa vào",
+  "meaningShortVi": "dựa trên",
   "wordType": "giới từ/động từ",
   "wordTypes": [
     "giới từ/động từ"
@@ -55,7 +55,9 @@
         "target": "根据",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "根据经验",
@@ -65,10 +67,13 @@
         "target": "根据",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -90,14 +95,64 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "根据",
+      "chinese": "这几年小区根据他们的需要，有了很多变化。",
+      "pinyin": "zhè jǐ nián xiǎo qū gēn jù tā men de xū yào yǒu le hěn duō biàn huà",
+      "meaningVi": "Mấy năm nay khu dân cư đã có nhiều thay đổi dựa theo nhu cầu của họ.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_48",
+      "grammarTopic": "Giới từ căn cứ: 根据",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "根据",
+      "chinese": "根据要求，我们必须参加明天的会议。",
+      "pinyin": "gēn jù yào qiú wǒ men bì xū cān jiā míng tiān de huì yì",
+      "meaningVi": "Theo yêu cầu, chúng tôi phải tham gia cuộc họp ngày mai.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_48",
+      "grammarTopic": "Giới từ căn cứ: 根据",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:根据",
       "title": "Cách dùng 根据",
       "partOfSpeech": "giới từ/động từ",
       "usageNoteVi": "Dùng để chỉ cơ sở, nền tảng của một quyết định hoặc nhận định. Có thể đi kèm với '来', '来说' để nhấn mạnh.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_48",
+      "title": "Giới từ căn cứ: 根据",
+      "syntax": "根据 + căn cứ/tài liệu + V + thành phần khác",
+      "explanationVi": "Giới từ 「根据」 được dùng để chỉ cơ sở, căn cứ hoặc nguồn thông tin cho một hành động hay phán đoán. Trong tiếng Việt, cấu trúc này tương ứng với các nghĩa như \"dựa theo\", \"căn cứ vào\" hoặc \"theo như\".",
+      "tipsVi": "Bạn có thể đặt cụm từ 「根据...」 ở đầu câu để nhấn mạnh nguồn tin hoặc căn cứ trước khi nêu ra hành động chính.",
+      "attentionsVi": "Cần phân biệt 「根据」 (dựa theo căn cứ) với 「跟」 (đi cùng với/theo sau ai đó), tránh nhầm lẫn về ý nghĩa.",
+      "examples": [
+        {
+          "chinese": "这几年小区根据他们的需要，有了很多变化。",
+          "pinyin": "zhè jǐ nián xiǎo qū gēn jù tā men de xū yào yǒu le hěn duō biàn huà",
+          "meaningVi": "Mấy năm nay khu dân cư đã có nhiều thay đổi dựa theo nhu cầu của họ."
+        },
+        {
+          "chinese": "根据要求，我们必须参加明天的会议。",
+          "pinyin": "gēn jù yào qiú wǒ men bì xū cān jiā míng tiān de huì yì",
+          "meaningVi": "Theo yêu cầu, chúng tôi phải tham gia cuộc họp ngày mai."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -146,7 +201,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "dựa vào, theo, căn cứ vào",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

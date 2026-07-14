@@ -52,7 +52,20 @@
         "target": "开张",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "开张",
+            "chinese": "恭喜开张大吉",
+            "pinyin": "Gōngxǐ kāizhāng dàjí",
+            "meaningVi": "Chúc mừng khai trương đại lợi",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "重新开张",
@@ -62,10 +75,13 @@
         "target": "开张",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -101,10 +117,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:开张",
       "title": "Cách dùng 开张",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Thường dùng cho cửa hàng/nhà hàng bắt đầu kinh doanh.",
       "explanationVi": "Ghép nghĩa: 开 (mở ra) + 张 (mở rộng, giương ra) → mở cửa kinh doanh.",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -122,7 +141,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "mở cửa kinh doanh, khai trương",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

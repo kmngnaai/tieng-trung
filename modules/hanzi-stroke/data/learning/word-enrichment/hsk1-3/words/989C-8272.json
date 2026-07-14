@@ -49,7 +49,18 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "色彩",
+        "pinyin": "sè cǎi",
+        "meaningVi": "màu sắc",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: màu sắc",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -61,14 +72,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "颜色",
+      "chinese": "这件衣服颜色不太好，你试试另外的那件吧。",
+      "pinyin": "zhè jiàn yī fú yán sè bù tài hǎo nǐ shì shì lìng wài de nà jiàn ba",
+      "meaningVi": "Màu của bộ quần áo này không đẹp lắm, bạn thử bộ khác kia đi.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_13",
+      "grammarTopic": "Cách dùng từ 另外",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:颜色",
       "title": "Cách dùng 颜色",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_13",
+      "title": "Cách dùng từ 另外",
+      "syntax": "另外 (+ 的) + (số lượng từ) + danh từ / 另外 + động từ",
+      "explanationVi": "「另外」 dùng để chỉ đối tượng hoặc sự việc nằm ngoài phạm vi đã đề cập trước đó, mang nghĩa là \"ngoài ra, thêm nữa, khác\". Nếu đóng vai trò đại từ, nó thường kết hợp với số lượng từ; nếu là phó từ, nó thường đứng trước động từ để biểu thị hành động bổ sung.",
+      "tipsVi": "Khi làm phó từ, bạn có thể kết hợp 「另外」 với 「还」, 「再」 hoặc 「又」 để nhấn mạnh việc thực hiện thêm một hành động khác.",
+      "attentionsVi": "Cần phân biệt kỹ: nếu dùng như đại từ, 「另外」 có thể đứng trước danh từ; nếu dùng như phó từ, nó chỉ bổ nghĩa cho hành động (động từ) và không đi trực tiếp với danh từ.",
+      "examples": [
+        {
+          "chinese": "这件衣服颜色不太好，你试试另外的那件吧。",
+          "pinyin": "zhè jiàn yī fú yán sè bù tài hǎo nǐ shì shì lìng wài de nà jiàn ba",
+          "meaningVi": "Màu của bộ quần áo này không đẹp lắm, bạn thử bộ khác kia đi."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -142,8 +187,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 2,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "màu sắc",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

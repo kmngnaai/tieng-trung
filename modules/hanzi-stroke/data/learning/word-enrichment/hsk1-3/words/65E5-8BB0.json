@@ -52,7 +52,20 @@
         "target": "日记",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "日记",
+            "chinese": "我每天睡觉前都写日记。",
+            "pinyin": "Wǒ měitiān shuìjiào qián dōu xiě rìjì.",
+            "meaningVi": "Tôi đều viết nhật ký trước khi đi ngủ mỗi ngày.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "日记本",
@@ -62,10 +75,13 @@
         "target": "日记",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -91,10 +107,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:日记",
       "title": "Cách dùng 日记",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "Danh từ chỉ bản ghi chép sự việc hàng ngày. 日 = ngày, 记 = ghi chép. Có thể là sổ sách vật lý hoặc blog/online journal hiện đại.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -112,7 +131,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "nhật ký, ghi chép hàng ngày",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

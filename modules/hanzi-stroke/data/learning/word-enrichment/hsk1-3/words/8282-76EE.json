@@ -57,7 +57,20 @@
         "target": "节目",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "节目",
+            "chinese": "我们看电视节目",
+            "pinyin": "wǒ men kàn diàn shì jié mù",
+            "meaningVi": "Chúng tôi xem chương trình truyền hình",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "表演节目",
@@ -67,10 +80,13 @@
         "target": "节目",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -102,14 +118,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "节目",
+      "chinese": "今天的晚会大伙准备了不少节目, 当然以学生为主, 老师为辅。",
+      "pinyin": "jīn tiān de wǎn huì dà huǒ zhǔn bèi le bù shǎo jié mù dāng rán yǐ xué shēng wèi zhǔ lǎo shī wèi fǔ",
+      "meaningVi": "Buổi tiệc tối nay mọi người chuẩn bị khá nhiều tiết mục, tất nhiên lấy sinh viên làm chính, giáo viên hỗ trợ.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_27",
+      "grammarTopic": "Cấu trúc 以 A 为 B",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:节目",
       "title": "Cách dùng 节目",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_27",
+      "title": "Cấu trúc 以 A 为 B",
+      "syntax": "以 + A + 为 + B (Coi A là B)",
+      "explanationVi": "Cấu trúc này dùng để biểu thị việc lấy một người hoặc sự vật nào đó làm tiêu chuẩn, mục tiêu hoặc đối tượng. Trong đó 「以」 đóng vai trò là 'lấy' và 「为」 đóng vai trò là 'làm/thành'.",
+      "tipsVi": "Cấu trúc này thường xuất hiện trong văn viết hoặc các tình huống trang trọng để thể hiện quan điểm hoặc định hướng hành động.",
+      "attentionsVi": "Cần lưu ý phân biệt với 「作为」(zuòwéi) vì 「作为」 thường dùng để chỉ tư cách hoặc vai trò của ai đó, trong khi 「以...为...」 tập trung vào việc xác định cái gì đó là cái gì.",
+      "examples": [
+        {
+          "chinese": "今天的晚会大伙准备了不少节目, 当然以学生为主, 老师为辅。",
+          "pinyin": "jīn tiān de wǎn huì dà huǒ zhǔn bèi le bù shǎo jié mù dāng rán yǐ xué shēng wèi zhǔ lǎo shī wèi fǔ",
+          "meaningVi": "Buổi tiệc tối nay mọi người chuẩn bị khá nhiều tiết mục, tất nhiên lấy sinh viên làm chính, giáo viên hỗ trợ."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -183,7 +233,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "chương trình",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

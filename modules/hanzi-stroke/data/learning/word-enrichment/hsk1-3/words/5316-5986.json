@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "trang điểm (làm đẹp cho khuôn mặt bằng mỹ phẩm)",
+      "meaningShortVi": "trang điểm",
       "meaningFullVi": "trang điểm (làm đẹp cho khuôn mặt bằng mỹ phẩm)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "trang điểm (làm đẹp cho khuôn mặt bằng mỹ phẩm)",
+  "meaningShortVi": "trang điểm",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -42,7 +42,18 @@
     "systems": []
   },
   "vocabulary": {
-    "compounds": [],
+    "compounds": [
+      {
+        "word": "化妆品",
+        "pinyin": "huà zhuāng pǐn",
+        "meaningVi": "Mỹ phẩm",
+        "meaningFullVi": "Mỹ phẩm",
+        "relationType": "contains-exact-target",
+        "hskLevel": 6,
+        "source": "hsk_6.json",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
     "collocations": [
       {
         "text": "化妆师",
@@ -52,7 +63,9 @@
         "target": "化妆",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "化妆品",
@@ -62,7 +75,20 @@
         "target": "化妆",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "化妆",
+            "chinese": "化妆包里有很多化妆品",
+            "pinyin": "Huàzhuāng bāo lǐ yǒu hěnduō huàzhuāngpǐn",
+            "meaningVi": "Trong túi trang điểm có nhiều mỹ phẩm",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "化妆包",
@@ -72,10 +98,24 @@
         "target": "化妆",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "化妆",
+            "chinese": "化妆包里有很多化妆品",
+            "pinyin": "Huàzhuāng bāo lǐ yǒu hěnduō huàzhuāngpǐn",
+            "meaningVi": "Trong túi trang điểm có nhiều mỹ phẩm",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -131,10 +171,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:化妆",
       "title": "Cách dùng 化妆",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Chỉ việc trang điểm cho khuôn nữ. Không nên nhầm với '装扮' (trang phục, hóa trang).",
       "explanationVi": "Ghép nghĩa: 化 (biến hóa, biến đổi) + 妆 (trang điểm, đồ trang sức) → biến đổi diện mạo bằng cách trang điểm.",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -152,7 +195,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 3,
+      "sentences": 5,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "trang điểm (làm đẹp cho khuôn mặt bằng mỹ phẩm)",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

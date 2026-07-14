@@ -51,7 +51,8 @@
         "meaningVi": "tiếng phổ thông",
         "meaningFullVi": "tiếng phổ thông",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 2",
+        "hskLevel": 2,
+        "source": "hsk_2.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -64,10 +65,23 @@
         "target": "普通",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "一般",
+        "pinyin": "yī bān",
+        "meaningVi": "thông thường",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: thông thường",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -93,10 +107,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:普通",
       "title": "Cách dùng 普通",
       "partOfSpeech": "adjective",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -129,6 +146,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 1,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "thông thường",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

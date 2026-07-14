@@ -58,7 +58,9 @@
         "target": "火车站",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "去火车站",
@@ -68,10 +70,24 @@
         "target": "火车站",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "火车站",
+            "chinese": "我们去火车站接朋友。",
+            "pinyin": "Wǒmen qù huǒchēzhàn jiē péngyǒu.",
+            "meaningVi": "Chúng tôi đi ga xe lửa đón bạn.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -107,10 +123,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:火车站",
       "title": "Cách dùng 火车站",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Hán-Việt: hoả (火) + xa (车) + trạm (站). Ghép nghĩa: 火 (lửa) + 车 (xe) = 火车 (tàu hỏa), thêm站 (trạm) =火车站 (ga tàu hỏa).",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -169,7 +188,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "ga xe lửa, nhà ga; nơi tàu hỏa dừng và đón trả khách",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

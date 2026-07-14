@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "nhị thả",
+      "meaningShortVi": "ngoài ra",
       "meaningFullVi": "nhị thả",
       "partOfSpeech": "conjunction",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "nhị thả",
+  "meaningShortVi": "ngoài ra",
   "wordType": "conjunction",
   "wordTypes": [
     "conjunction"
@@ -55,7 +55,9 @@
         "target": "而且",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "而且还有",
@@ -65,10 +67,32 @@
         "target": "而且",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "另外",
+        "pinyin": "lìng wài",
+        "meaningVi": "ngoài ra",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: ngoài ra",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "除了",
+        "pinyin": "chú le",
+        "meaningVi": "ngoài ra",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: ngoài ra",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -90,14 +114,109 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "而且",
+      "chinese": "不仅我会去，而且我弟弟也要去。",
+      "pinyin": "bù jǐn wǒ huì qù ér qiě wǒ dì dì yě yào qù",
+      "meaningVi": "Không những tôi sẽ đi mà em trai tôi cũng muốn đi.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_1",
+      "grammarTopic": "Cấu trúc Không những... mà còn...",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "而且",
+      "chinese": "现在的电视不但便宜，而且用着非常方便。",
+      "pinyin": "xiàn zài de diàn shì bù dàn biàn yí ér qiě yòng zhe fēi cháng fāng biàn",
+      "meaningVi": "Tivi bây giờ không những rẻ mà dùng còn rất tiện lợi.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_23",
+      "grammarTopic": "Cấu trúc tăng tiến",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "而且",
+      "chinese": "家月不但喜欢唱歌，而且唱得很好听。",
+      "pinyin": "jiā yuè bù dàn xǐ huān chàng gē ér qiě chàng dé hěn hǎo tīng",
+      "meaningVi": "Gia Nguyệt không những thích hát mà hát còn rất hay.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_23",
+      "grammarTopic": "Cấu trúc tăng tiến",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:而且",
       "title": "Cách dùng 而且",
       "partOfSpeech": "conjunction",
       "usageNoteVi": "Liên từ cộng thêm, dùng để bổ sung thông tin",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_1",
+      "title": "Cấu trúc Không những... mà còn...",
+      "syntax": "不仅 (bùjǐn) A，也/还/而且 (yě/hái/érqiě) B",
+      "explanationVi": "Cấu trúc này dùng để diễn tả ý nghĩa tăng tiến, nghĩa là \"không những... mà còn...\". Nó kết nối hai vế câu nhằm bổ sung thông tin hoặc nhấn mạnh rằng không chỉ có sự việc A xảy ra mà sự việc B cũng xảy ra.",
+      "tipsVi": "Bạn có thể dùng 「也」, 「还」 hoặc 「而且」 ở vế sau, trong đó 「而且」 thường mang sắc thái nhấn mạnh hơn cả.",
+      "attentionsVi": "Nếu chủ ngữ của hai vế câu giống nhau, bạn nên đặt chủ ngữ lên trước 「不仅」; nếu chủ ngữ khác nhau, chủ ngữ của vế thứ hai nên đặt sau 「不仅」.",
+      "examples": [
+        {
+          "chinese": "不仅我会去，而且我弟弟也要去。",
+          "pinyin": "bù jǐn wǒ huì qù ér qiě wǒ dì dì yě yào qù",
+          "meaningVi": "Không những tôi sẽ đi mà em trai tôi cũng muốn đi."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_10",
+      "title": "Cách dùng liên từ 而",
+      "syntax": "Vế câu 1 + 而 + Vế câu 2",
+      "explanationVi": "Liên từ 「而」 thường được dùng trong câu để nối hai vế câu có quan hệ song song hoặc tương phản. Nó giúp thể hiện ý nghĩa bổ sung, \"trong khi đó\" hoặc \"mà\" giữa hai sự vật, hiện tượng.",
+      "tipsVi": "Bạn có thể dùng 「而」 để kết nối hai tính từ đối lập nhau nhằm làm nổi bật sự khác biệt giữa hai đối tượng.",
+      "attentionsVi": "Cần phân biệt 「而」 với 「而且」, vì 「而且」 dùng để bổ sung thêm ý nghĩa (nghĩa là \"hơn nữa\"), trong khi 「而」 thiên về sự đối chiếu hoặc liệt kê.",
+      "examples": [],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_23",
+      "title": "Cấu trúc tăng tiến",
+      "syntax": "不但 (búdàn) + A, 而且 (érqiě) + B",
+      "explanationVi": "Cấu trúc này dùng để diễn tả ý “không những… mà còn…”, biểu thị mức độ của sự việc sau cao hơn hoặc bổ sung cho sự việc trước. Đây là liên từ chỉ quan hệ tăng tiến phổ biến trong tiếng Trung.",
+      "tipsVi": "Nếu hai vế câu có cùng chủ ngữ, 「不但」 nên đặt trước chủ ngữ của vế thứ nhất.",
+      "attentionsVi": "Không nên nhầm lẫn 「而且」 với các từ nối khác, vì nó chuyên dùng để thể hiện sự bổ sung ý nghĩa mang tính tăng tiến.",
+      "examples": [
+        {
+          "chinese": "现在的电视不但便宜，而且用着非常方便。",
+          "pinyin": "xiàn zài de diàn shì bù dàn biàn yí ér qiě yòng zhe fēi cháng fāng biàn",
+          "meaningVi": "Tivi bây giờ không những rẻ mà dùng còn rất tiện lợi."
+        },
+        {
+          "chinese": "家月不但喜欢唱歌，而且唱得很好听。",
+          "pinyin": "jiā yuè bù dàn xǐ huān chàng gē ér qiě chàng dé hěn hǎo tīng",
+          "meaningVi": "Gia Nguyệt không những thích hát mà hát còn rất hay."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -151,7 +270,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 5,
+      "grammar": 4,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "nhị thả",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

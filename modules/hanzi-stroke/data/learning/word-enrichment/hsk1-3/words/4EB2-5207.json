@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Thân thiện",
+      "meaningShortVi": "thân thiện",
       "meaningFullVi": "Thân thiện",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Thân thiện",
+  "meaningShortVi": "thân thiện",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -46,7 +46,18 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "友好",
+        "pinyin": "yǒu hǎo",
+        "meaningVi": "thân thiện",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: thân thiện",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -82,10 +93,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:亲切",
       "title": "Cách dùng 亲切",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "亲切 là tính từ chỉ sự thân thiện, gần gũi, ấm áp. 亲 nghĩa là thân cận, gần gũi; 切 nghĩa là sát, gần. Ghép lại: thân thiết, gần gũi.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -119,8 +133,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "Thân thiện",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

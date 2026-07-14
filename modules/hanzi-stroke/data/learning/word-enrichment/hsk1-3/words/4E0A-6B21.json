@@ -54,10 +54,44 @@
         "target": "上次",
         "source": "hsk_1.json",
         "pinyinMethod": "exact-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "上次",
+            "chinese": "上次我们在哪里见面？",
+            "pinyin": "Shàngcì wǒmen zài nǎli jiànmiàn?",
+            "meaningVi": "Lần trước chúng ta gặp nhau ở đâu?",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "上次",
+            "chinese": "上次你说什么？",
+            "pinyin": "Shàngcì nǐ shuō shénme?",
+            "meaningVi": "Lần trước bạn nói gì?",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "上次",
+            "chinese": "我上次去过中国。",
+            "pinyin": "Wǒ shàngcì qùguo Zhōngguó.",
+            "meaningVi": "Lần trước tôi đã đến Trung Quốc.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 3
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -89,14 +123,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "上次",
+      "chinese": "我上次来医院已经过去差不多两年了。",
+      "pinyin": "wǒ shàng cì lái yī yuàn yǐ jīng guò qù chà bù duō liǎng nián le",
+      "meaningVi": "Lần trước tôi đến bệnh viện đã cách đây gần hai năm rồi.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_26",
+      "grammarTopic": "Bổ ngữ thời lượng biểu thị thời gian kéo dài",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:上次",
       "title": "Cách dùng 上次",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Từ chỉ thời điểm lần trước. Ngược với '下次' (lần sau) và '这次' (lần này).",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_26",
+      "title": "Bổ ngữ thời lượng biểu thị thời gian kéo dài",
+      "syntax": "Chủ ngữ + Động từ + (了) + Bổ ngữ thời lượng + (của tân ngữ)",
+      "explanationVi": "Bổ ngữ thời lượng dùng để diễn tả khoảng thời gian mà một hành động đã diễn ra hoặc kéo dài. Khi có tân ngữ đi kèm, bạn có thể đặt thời lượng ở giữa động từ và tân ngữ, hoặc thêm 「的」 sau bổ ngữ thời lượng.",
+      "tipsVi": "Nếu hành động đã kết thúc, bạn có thể thêm 「了」 ngay sau động từ.",
+      "attentionsVi": "Nếu tân ngữ là danh từ chỉ người hoặc đại từ (ví dụ: 我, 他), bổ ngữ thời lượng phải đặt sau tân ngữ.",
+      "examples": [
+        {
+          "chinese": "我上次来医院已经过去差不多两年了。",
+          "pinyin": "wǒ shàng cì lái yī yuàn yǐ jīng guò qù chà bù duō liǎng nián le",
+          "meaningVi": "Lần trước tôi đến bệnh viện đã cách đây gần hai năm rồi."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +198,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "lần trước",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

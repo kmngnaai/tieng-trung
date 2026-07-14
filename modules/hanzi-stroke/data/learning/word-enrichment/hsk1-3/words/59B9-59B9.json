@@ -57,7 +57,9 @@
         "target": "妹妹",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "妹妹",
@@ -67,10 +69,44 @@
         "target": "妹妹",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "妹妹",
+            "chinese": "这是我妹妹",
+            "pinyin": "Zhè shì wǒ mèimei",
+            "meaningVi": "Đây là em gái tôi",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "妹妹",
+            "chinese": "妹妹很小",
+            "pinyin": "Mèimei hěn xiǎo",
+            "meaningVi": "Em gái còn nhỏ",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "妹妹",
+            "chinese": "我和妹妹一起玩",
+            "pinyin": "Wǒ hé mèimei yīqǐ wán",
+            "meaningVi": "Tôi chơi cùng em gái",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 3
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -112,14 +148,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "妹妹",
+      "chinese": "妹妹很高兴。",
+      "pinyin": "mèi mèi hěn gāo xīng",
+      "meaningVi": "Em gái rất vui.",
+      "source": "new_hsk_1.json",
+      "grammarId": "hsk1_new_17",
+      "grammarTopic": "Vị trí của trạng ngữ trong câu",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:妹妹",
       "title": "Cách dùng 妹妹",
       "partOfSpeech": "reduplication",
       "usageNoteVi": "Xưng hô em gái trong gia đình. 姐妹 (jiěmèi) chỉ chị em gái chung.",
       "explanationVi": "Từ láy: 妹 (em gái) lặp lại thành 妹妹, dùng để xưng hô thân mật.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk1_new_17",
+      "title": "Vị trí của trạng ngữ trong câu",
+      "syntax": "Trạng ngữ + Động từ/Tính từ",
+      "explanationVi": "Trong tiếng Trung, các từ chỉ thời gian hoặc phó từ thường đứng trước động từ hoặc tính từ để bổ nghĩa cho hành động. Bạn hãy nhớ quy tắc \"thời gian đứng trước hành động\" để đặt câu cho chính xác.",
+      "tipsVi": "Bạn có thể đặt trạng ngữ chỉ thời gian lên đầu câu trước chủ ngữ hoặc ngay sau chủ ngữ đều được.",
+      "attentionsVi": "Tuyệt đối không đặt trạng ngữ chỉ thời gian sau động từ như trong tiếng Việt.",
+      "examples": [
+        {
+          "chinese": "妹妹很高兴。",
+          "pinyin": "mèi mèi hěn gāo xīng",
+          "meaningVi": "Em gái rất vui."
+        }
+      ],
+      "source": "new_hsk_1.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 1,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -193,7 +263,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 5,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "em gái",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

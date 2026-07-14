@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "kéo dài thời gian hoặc khoảng cách",
+      "meaningShortVi": "kéo dài",
       "meaningFullVi": "kéo dài thời gian hoặc khoảng cách, làm dài thêm",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "kéo dài thời gian hoặc khoảng cách",
+  "meaningShortVi": "kéo dài",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -44,7 +44,27 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "延伸",
+        "pinyin": "yán shēn",
+        "meaningVi": "kéo dài",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: kéo dài",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "延续",
+        "pinyin": "yán xù",
+        "meaningVi": "kéo dài",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: kéo dài",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -80,10 +100,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:延长",
       "title": "Cách dùng 延长",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "延长 chỉ hành động làm dài thêm thời gian hoặc khoảng cách. Thường dùng cho hợp đồng, kỳ hạn, thời gian, đường đi. Hán-Việt 'diên' còn có trong 'diên trì' (trì hoãn).",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -101,8 +124,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "kéo dài thời gian hoặc khoảng cách, làm dài thêm",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -56,7 +56,9 @@
         "target": "饭店",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "在饭店",
@@ -66,10 +68,23 @@
         "target": "饭店",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "饭馆",
+        "pinyin": "fàn guǎn",
+        "meaningVi": "nhà hàng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: nhà hàng",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -91,14 +106,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "饭店",
+      "chinese": "我们坐出租车去西安饭店。",
+      "pinyin": "wǒ men zuò chū zū chē qù xī ān fàn diàn",
+      "meaningVi": "Chúng tôi đi taxi đến nhà hàng Tây An.",
+      "source": "new_hsk_1.json",
+      "grammarId": "hsk1_new_13",
+      "grammarTopic": "Câu liên động",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:饭店",
       "title": "Cách dùng 饭店",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "饭店 nghĩa là nhà hàng hoặc khách sạn. Hán-Việt: phạn (cơm) + điếm (quán).",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk1_new_13",
+      "title": "Câu liên động",
+      "syntax": "S + V1 + O1 + V2 + O2",
+      "explanationVi": "Câu liên động là câu có từ hai động từ trở lên cùng làm vị ngữ. Cấu trúc này thường dùng để diễn tả mục đích hoặc trình tự của hành động, trong đó động từ thứ hai thường giải thích lý do thực hiện động từ thứ nhất.",
+      "tipsVi": "Hãy ghi nhớ quy tắc: hành động xảy ra trước đứng trước, hành động mục đích đứng sau.",
+      "attentionsVi": "Không được dùng các từ liên kết như 「和」(và) hay 「然后」(sau đó) giữa hai động từ.",
+      "examples": [
+        {
+          "chinese": "我们坐出租车去西安饭店。",
+          "pinyin": "wǒ men zuò chū zū chē qù xī ān fàn diàn",
+          "meaningVi": "Chúng tôi đi taxi đến nhà hàng Tây An."
+        }
+      ],
+      "source": "new_hsk_1.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 1,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -167,7 +216,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "nhà hàng, khách sạn",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

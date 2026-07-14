@@ -54,7 +54,9 @@
         "target": "请问",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "想请问",
@@ -64,10 +66,13 @@
         "target": "请问",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -109,14 +114,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "请问",
+      "chinese": "喂，请问王老师在吗？",
+      "pinyin": "wèi qǐng wèn wáng lǎo shī zài ma",
+      "meaningVi": "A lô, xin hỏi thầy/cô Vương có ở đó không?",
+      "source": "hsk_1.json",
+      "grammarId": "hsk1_37",
+      "grammarTopic": "Cách dùng thán từ 喂",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:请问",
       "title": "Cách dùng 请问",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Cụm từ lịch sự rất phổ biến. Đặt đầu câu hỏi để tỏ rõ lịch sự: 请问...?. Có thể dùng trong giao tiếp hàng ngày với người lạ hoặc người có vị trí cao hơn.",
       "explanationVi": "Ghép nghĩa: 请 (mời, xin) + 问 (hỏi) → 'xin phép hỏi'. Cụm từ lịch sự để mở đầu câu hỏi.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk1_37",
+      "title": "Cách dùng thán từ 喂",
+      "syntax": "喂 (wèi) + [Nội dung câu nói]",
+      "explanationVi": "Từ 「喂」 đóng vai trò là thán từ dùng để bắt đầu cuộc trò chuyện hoặc thu hút sự chú ý của người khác. Trong giao tiếp hằng ngày, nó tương đương với \"A lô\" khi bạn nghe hoặc gọi điện thoại.",
+      "tipsVi": "Bạn có thể sử dụng 「喂」 khi muốn gọi người quen ở khoảng cách gần để thu hút sự chú ý của họ.",
+      "attentionsVi": "Tránh dùng 「喂」 với người lớn tuổi hoặc cấp trên vì nghe có phần hơi suồng sã, thiếu sự tôn trọng.",
+      "examples": [
+        {
+          "chinese": "喂，请问王老师在吗？",
+          "pinyin": "wèi qǐng wèn wáng lǎo shī zài ma",
+          "meaningVi": "A lô, xin hỏi thầy/cô Vương có ở đó không?"
+        }
+      ],
+      "source": "hsk_1.json",
+      "curriculum": "hsk",
+      "hskLevel": 1,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -165,7 +204,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 5,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "xin hỏi, cho tôi hỏi",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

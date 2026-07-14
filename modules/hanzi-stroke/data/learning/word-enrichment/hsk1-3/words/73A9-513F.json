@@ -49,12 +49,34 @@
         "meaningVi": "vui",
         "meaningFullVi": "vui, thú vị",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 1",
+        "hskLevel": 1,
+        "source": "hsk_1.json",
         "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [
+      {
+        "targetWord": "玩{儿}",
+        "pinyin": "wánr ",
+        "meaningVi": "Chơi",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
+    "candidateRelations": [
+      {
+        "targetWord": "玩{儿}",
+        "pinyin": "wánr ",
+        "meaningVi": "Chơi",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: chơi",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -76,14 +98,110 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "玩儿",
+      "chinese": "我早就复习好了。那也不能一直玩儿吧。",
+      "pinyin": "wǒ zǎo jiù fù xí hǎo le nà yě bù néng yī zhí wán ér ba",
+      "meaningVi": "Tôi đã ôn tập xong từ lâu rồi. Vậy cũng không thể chơi suốt được.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_3",
+      "grammarTopic": "Cách dùng từ 那 (vậy thì)",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "玩儿",
+      "chinese": "只不过是玩儿而已。",
+      "pinyin": "zhǐ bù guò shì wán ér ér yǐ",
+      "meaningVi": "Chẳng qua chỉ là chơi mà thôi.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_11",
+      "grammarTopic": "Cấu trúc 而已 (chỉ... mà thôi)",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "玩儿",
+      "chinese": "她经常跑上来找我玩儿。",
+      "pinyin": "tā jīng cháng pǎo shàng lái zhǎo wǒ wán ér",
+      "meaningVi": "Cô ấy thường xuyên chạy lên đây tìm tôi chơi.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_42",
+      "grammarTopic": "Bổ ngữ xu hướng phức hợp",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:玩儿",
       "title": "Cách dùng 玩儿",
       "partOfSpeech": "động từ",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_3",
+      "title": "Cách dùng từ 那 (vậy thì)",
+      "syntax": "那 + [Câu diễn đạt kết quả/nhận xét]",
+      "explanationVi": "Từ 「那」 thường đứng đầu câu để chỉ kết quả hoặc đưa ra nhận xét dựa trên nội dung mà người đối thoại vừa đề cập. Nó đóng vai trò như một từ nối, có nghĩa tương tự như \"vậy thì\" hoặc \"thế thì\" trong tiếng Việt.",
+      "tipsVi": "Bạn có thể hiểu 「那」 như một cách để chuyển ý hoặc đưa ra quyết định nhanh chóng dựa trên thông tin vừa nghe thấy.",
+      "attentionsVi": "Đừng nhầm lẫn với 「那」 trong 「那个」 (cái kia) dùng để chỉ vật; ở đây nó là một liên từ nối câu mang tính logic.",
+      "examples": [
+        {
+          "chinese": "我早就复习好了。那也不能一直玩儿吧。",
+          "pinyin": "wǒ zǎo jiù fù xí hǎo le nà yě bù néng yī zhí wán ér ba",
+          "meaningVi": "Tôi đã ôn tập xong từ lâu rồi. Vậy cũng không thể chơi suốt được."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_11",
+      "title": "Cấu trúc 而已 (chỉ... mà thôi)",
+      "syntax": "[Chủ ngữ] + (chỉ là) + V/Adj + mà thôi (而已)",
+      "explanationVi": "Trợ từ 「而已」 thường được đặt ở cuối câu để biểu thị ý nghĩa \"chỉ là... mà thôi\". Nó giúp câu văn nhẹ nhàng hơn, thường dùng để thể hiện sự khiêm tốn hoặc hạ thấp mức độ của sự việc.",
+      "tipsVi": "Bạn thường thấy 「而已」 đi kèm với 「只是」(chỉ là) ở đầu câu để tạo thành cấu trúc nhấn mạnh \"chỉ là... mà thôi\".",
+      "attentionsVi": "Không nên dùng 「而已」 trong các câu hỏi hoặc câu yêu cầu, nó chỉ dùng trong câu trần thuật để liệt kê hoặc giải thích sự việc.",
+      "examples": [
+        {
+          "chinese": "只不过是玩儿而已。",
+          "pinyin": "zhǐ bù guò shì wán ér ér yǐ",
+          "meaningVi": "Chẳng qua chỉ là chơi mà thôi."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_42",
+      "title": "Bổ ngữ xu hướng phức hợp",
+      "syntax": "Động từ + (上/下/进/出/回/过/起) + 来/去",
+      "explanationVi": "Bổ ngữ xu hướng phức hợp gồm một động từ chỉ phương hướng kết hợp với 「来」 (lại đây) hoặc 「去」 (đi tới đó). Cấu trúc này dùng để mô tả hướng di chuyển của hành động một cách chi tiết hơn. Ví dụ 「走进来」 nghĩa là đi vào đây, 「走进去」 nghĩa là đi vào đó.",
+      "tipsVi": "Nếu câu có tân ngữ là nơi chốn, hãy đặt tân ngữ vào giữa bổ ngữ xu hướng, ví dụ 「走进教室来」.",
+      "attentionsVi": "Chú ý phân biệt giữa 「来」 (hướng về phía người nói) và 「去」 (hướng xa khỏi người nói) để sử dụng chính xác.",
+      "examples": [
+        {
+          "chinese": "她经常跑上来找我玩儿。",
+          "pinyin": "tā jīng cháng pǎo shàng lái zhǎo wǒ wán ér",
+          "meaningVi": "Cô ấy thường xuyên chạy lên đây tìm tôi chơi."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -101,7 +219,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng"
-    ]
+      "Không có collocation đầy đủ và chứa nguyên target"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 0,
+      "sentences": 5,
+      "grammar": 4,
+      "reviewedRelations": 1,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "chơi, đi chơi, chơi đùa",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

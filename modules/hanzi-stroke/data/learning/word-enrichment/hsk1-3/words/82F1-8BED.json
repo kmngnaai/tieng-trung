@@ -54,7 +54,21 @@
         "target": "英语",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "英语",
+            "chinese": "除了汉语以外，我还会说英语。",
+            "pinyin": "chú le hàn yǔ yǐ wài wǒ hái huì shuō yīng yǔ",
+            "meaningVi": "Ngoài tiếng Trung ra, tôi còn biết nói tiếng Anh.",
+            "source": "hsk_3.json",
+            "grammarId": "hsk3_34",
+            "grammarTopic": "Cấu trúc Ngoài... ra (除了... 以外)",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "英语课",
@@ -64,10 +78,23 @@
         "target": "英语",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "英文",
+        "pinyin": "Yīng wén",
+        "meaningVi": "tiếng Anh",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: tiếng Anh",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -89,14 +116,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "英语",
+      "chinese": "王方要学习英语。",
+      "pinyin": "wáng fāng yào xué xí yīng yǔ",
+      "meaningVi": "Vương Phương muốn học tiếng Anh.",
+      "source": "hsk_2.json",
+      "grammarId": "hsk2_1",
+      "grammarTopic": "Cách dùng trợ động từ 要",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "英语",
+      "chinese": "除了汉语以外，我还会说英语。",
+      "pinyin": "chú le hàn yǔ yǐ wài wǒ hái huì shuō yīng yǔ",
+      "meaningVi": "Ngoài tiếng Trung ra, tôi còn biết nói tiếng Anh.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_34",
+      "grammarTopic": "Cấu trúc Ngoài... ra (除了... 以外)",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:英语",
       "title": "Cách dùng 英语",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_1",
+      "title": "Cách dùng trợ động từ 要",
+      "syntax": "Chủ ngữ + 要 + Động từ",
+      "explanationVi": "Trợ động từ 「要」 được đặt ngay trước động từ chính để diễn tả ý muốn, nguyện vọng hoặc quyết tâm thực hiện một hành động nào đó. Nó tương đương với nghĩa \"muốn\" hoặc \"cần phải\" trong tiếng Việt.",
+      "tipsVi": "Bạn có thể dùng 「想」 thay thế cho 「要」 khi muốn diễn đạt ý nguyện nhẹ nhàng hơn.",
+      "attentionsVi": "Khi muốn dùng hình thức phủ định, bạn phải dùng 「不想」 hoặc 「不要」, không được dùng 「不要」 thay cho từ phủ định thông thường nếu không muốn mang ý nghĩa ra lệnh hoặc ngăn cản.",
+      "examples": [
+        {
+          "chinese": "王方要学习英语。",
+          "pinyin": "wáng fāng yào xué xí yīng yǔ",
+          "meaningVi": "Vương Phương muốn học tiếng Anh."
+        }
+      ],
+      "source": "hsk_2.json",
+      "curriculum": "hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_34",
+      "title": "Cấu trúc Ngoài... ra (除了... 以外)",
+      "syntax": "除了 [A] (以外), [S] 都/还/也 [V/Adj]",
+      "explanationVi": "Cấu trúc này dùng để diễn tả sự ngoại trừ hoặc bổ sung. Nếu dùng với 「都」, nó mang nghĩa ngoại trừ [A] ra thì tất cả các đối tượng còn lại đều giống nhau; nếu dùng với 「还/也」, nó mang nghĩa ngoài [A] ra thì còn có thêm [B].",
+      "tipsVi": "Bạn có thể lược bỏ từ 「以外」 trong khẩu ngữ để câu văn trở nên tự nhiên và ngắn gọn hơn.",
+      "attentionsVi": "Cần chú ý phân biệt nghĩa của câu dựa vào từ đi kèm: 「都」 dùng để bao hàm tất cả (loại trừ A), trong khi 「还/也」 dùng để thêm vào (bổ sung A).",
+      "examples": [
+        {
+          "chinese": "除了汉语以外，我还会说英语。",
+          "pinyin": "chú le hàn yǔ yǐ wài wǒ hái huì shuō yīng yǔ",
+          "meaningVi": "Ngoài tiếng Trung ra, tôi còn biết nói tiếng Anh."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +222,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "tiếng Anh",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -54,7 +54,9 @@
         "target": "出门",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "刚出门",
@@ -64,7 +66,9 @@
         "target": "出门",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "出门旅行",
@@ -74,10 +78,13 @@
         "target": "出门",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -109,14 +116,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "出门",
+      "chinese": "我八点就出门了。",
+      "pinyin": "wǒ bā diǎn jiù chū mén le",
+      "meaningVi": "Tám giờ tôi đã ra khỏi nhà rồi.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_28",
+      "grammarTopic": "Phân biệt 就 và 才",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:出门",
       "title": "Cách dùng 出门",
       "partOfSpeech": "verb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_28",
+      "title": "Phân biệt 就 và 才",
+      "syntax": "Thời gian/Điều kiện + 就/才 + V",
+      "explanationVi": "「就」 được dùng khi hành động xảy ra sớm hoặc thuận lợi theo mong đợi của người nói. Ngược lại, 「才」 nhấn mạnh hành động xảy ra muộn, chậm trễ hoặc khó khăn hơn so với dự kiến.",
+      "tipsVi": "Hãy nhớ 「就」 mang nghĩa 'thì/là' (nhanh), còn 「才」 mang nghĩa 'mới' (muộn) để dễ phân biệt trong câu.",
+      "attentionsVi": "Cẩn thận không dùng 「才」 với trợ từ 「了」 ở cuối câu vì 「才」 biểu thị sự việc mới vừa xảy ra, không thể diễn tả trạng thái đã hoàn thành.",
+      "examples": [
+        {
+          "chinese": "我八点就出门了。",
+          "pinyin": "wǒ bā diǎn jiù chū mén le",
+          "meaningVi": "Tám giờ tôi đã ra khỏi nhà rồi."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -165,7 +206,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "ra khỏi nhà",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

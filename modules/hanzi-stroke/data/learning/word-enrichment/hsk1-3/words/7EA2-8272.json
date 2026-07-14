@@ -55,7 +55,9 @@
         "target": "红色",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "红色旗帜",
@@ -65,10 +67,13 @@
         "target": "红色",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -90,14 +95,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "红色",
+      "chinese": "左边那个红色的是我的。",
+      "pinyin": "zuǒ biān nà gè hóng sè de shì wǒ de",
+      "meaningVi": "Cái màu đỏ bên trái là của tôi.",
+      "source": "hsk_2.json",
+      "grammarId": "hsk2_7",
+      "grammarTopic": "Cấu trúc chữ 的",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "红色",
+      "chinese": "红色的、绿色的、黑色的，你想买哪个？",
+      "pinyin": "hóng sè de lǜ sè de hēi sè de nǐ xiǎng mǎi nǎ gè",
+      "meaningVi": "Cái màu đỏ, màu xanh lá hay màu đen, bạn muốn mua cái nào?",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_12",
+      "grammarTopic": "Cụm từ chữ 的 (Định ngữ)",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:红色",
       "title": "Cách dùng 红色",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_7",
+      "title": "Cấu trúc chữ 的",
+      "syntax": "Đại từ / Tính từ / Động từ + 的",
+      "explanationVi": "Khi muốn lược bỏ danh từ trung tâm ở phía sau để câu ngắn gọn hơn, ta thêm 「的」 vào sau các từ loại như đại từ, tính từ hoặc động từ. Cụm từ này lúc này đóng vai trò như một danh từ chỉ vật hoặc người mà người nói và người nghe đã ngầm hiểu từ trước.",
+      "tipsVi": "Hãy tưởng tượng 「的」 giống như từ \"cái\" hoặc \"người\" trong tiếng Việt để thay thế cho danh từ bị lược bỏ, ví dụ: \"của tôi\" thay vì \"cái bút của tôi\".",
+      "attentionsVi": "Cần đảm bảo ngữ cảnh của câu phải rõ ràng, nếu người nghe không hiểu đối tượng được nhắc đến là gì thì không nên lược bỏ danh từ trung tâm.",
+      "examples": [
+        {
+          "chinese": "左边那个红色的是我的。",
+          "pinyin": "zuǒ biān nà gè hóng sè de shì wǒ de",
+          "meaningVi": "Cái màu đỏ bên trái là của tôi."
+        }
+      ],
+      "source": "hsk_2.json",
+      "curriculum": "hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_12",
+      "title": "Cụm từ chữ 的 (Định ngữ)",
+      "syntax": "Định ngữ + 的 + Danh từ (Trung tâm ngữ)",
+      "explanationVi": "Cấu trúc này dùng để nối các thành phần bổ nghĩa (định ngữ) với danh từ chính. Trong đó, 「的」 đóng vai trò như một chiếc cầu nối, giúp người nghe hiểu rõ tính chất hoặc chủ sở hữu của danh từ đó. Đôi khi danh từ chính có thể được lược bỏ nếu ngữ cảnh đã rõ ràng.",
+      "tipsVi": "Nếu định ngữ là đại từ chỉ quan hệ thân thiết như 「我的妈妈」(mẹ tôi) hay 「我的老师」(thầy tôi), bạn có thể lược bỏ 「的」 để câu tự nhiên hơn.",
+      "attentionsVi": "Đừng quên dùng 「的」 khi định ngữ là tính từ đa âm tiết hoặc cụm động từ bổ nghĩa cho danh từ, ví dụ: 「漂亮的书」 (sách đẹp).",
+      "examples": [
+        {
+          "chinese": "红色的、绿色的、黑色的，你想买哪个？",
+          "pinyin": "hóng sè de lǜ sè de hēi sè de nǐ xiǎng mǎi nǎ gè",
+          "meaningVi": "Cái màu đỏ, màu xanh lá hay màu đen, bạn muốn mua cái nào?"
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -161,7 +231,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "màu đỏ",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

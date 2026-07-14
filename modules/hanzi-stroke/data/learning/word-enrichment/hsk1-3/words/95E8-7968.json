@@ -55,7 +55,31 @@
         "target": "门票",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "门票",
+            "chinese": "买门票多少钱",
+            "pinyin": "Mǎi mén piào duō shǎo qián",
+            "meaningVi": "Mua vé vào cửa bao nhiêu tiền",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "门票",
+            "chinese": "你先去买门票，再来这里找我。",
+            "pinyin": "nǐ xiān qù mǎi mén piào zài lái zhè lǐ zhǎo wǒ",
+            "meaningVi": "Bạn đi mua vé trước đi, rồi quay lại đây tìm tôi.",
+            "source": "new_hsk_3.json",
+            "grammarId": "hsk3_new_46",
+            "grammarTopic": "Diễn tả thứ tự hành động",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 2
       },
       {
         "text": "门票价格",
@@ -65,7 +89,9 @@
         "target": "门票",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "优惠门票",
@@ -75,10 +101,13 @@
         "target": "门票",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -120,14 +149,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "门票",
+      "chinese": "你先去买门票，再来这里找我。",
+      "pinyin": "nǐ xiān qù mǎi mén piào zài lái zhè lǐ zhǎo wǒ",
+      "meaningVi": "Bạn đi mua vé trước đi, rồi quay lại đây tìm tôi.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_46",
+      "grammarTopic": "Diễn tả thứ tự hành động",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:门票",
       "title": "Cách dùng 门票",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Dùng cho vé vào các điểm tham quan, vườn thú, bảo tàng, v.v. Trong giao tiếp hàng ngày có thể gọi tắt là '票' (vé) nếu ngữ cảnh rõ.",
       "explanationVi": "Ghép nghĩa: 门 (cửa, cổng) + 票 (vé, phiếu) → 'vé để qua cửa/vào cổng'.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_46",
+      "title": "Diễn tả thứ tự hành động",
+      "syntax": "先 + [Động từ 1], 再/然后 + [Động từ 2]",
+      "explanationVi": "Cấu trúc này dùng để liệt kê trình tự thực hiện các hành động theo thời gian. 「先」 có nghĩa là trước tiên, 「再」 hoặc 「然后」 có nghĩa là sau đó hoặc rồi làm gì tiếp theo.",
+      "tipsVi": "Bạn có thể kết hợp chuỗi hành động dài hơn bằng cách dùng 「先...，再...，然后...」.",
+      "attentionsVi": "Lưu ý 「再」 chỉ dùng cho hành động chưa xảy ra, không dùng thay thế cho 「又」 khi diễn tả hành động lặp lại đã xảy ra.",
+      "examples": [
+        {
+          "chinese": "你先去买门票，再来这里找我。",
+          "pinyin": "nǐ xiān qù mǎi mén piào zài lái zhè lǐ zhǎo wǒ",
+          "meaningVi": "Bạn đi mua vé trước đi, rồi quay lại đây tìm tôi."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -181,7 +244,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 5,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "vé vào cửa, vé tham quan",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

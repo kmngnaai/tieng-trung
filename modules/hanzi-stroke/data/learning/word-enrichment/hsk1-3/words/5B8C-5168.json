@@ -54,10 +54,64 @@
         "target": "完全",
         "source": "hsk_2.json",
         "pinyinMethod": "exact-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "完全",
+            "chinese": "我完全同意",
+            "pinyin": "wǒ wán quán tóng yì",
+            "meaningVi": "Tôi hoàn toàn đồng ý",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "完全",
+            "chinese": "完全正确",
+            "pinyin": "wán quán zhèng què",
+            "meaningVi": "Hoàn toàn đúng",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "完全",
+            "chinese": "大家的意见完全一致。",
+            "pinyin": "dà jiā de yì jiàn wán quán yī zhì",
+            "meaningVi": "Ý kiến của mọi người hoàn toàn thống nhất.",
+            "source": "hsk_5.json",
+            "grammarId": "hsk5_50",
+            "grammarTopic": "Cấu trúc diễn tả sự nhất trí",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 3
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "全都",
+        "pinyin": "quán dōu",
+        "meaningVi": "hoàn toàn",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: hoàn toàn",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "根本",
+        "pinyin": "gēn běn",
+        "meaningVi": "hoàn toàn",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: hoàn toàn",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -79,14 +133,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "完全",
+      "chinese": "大家的意见完全一致。",
+      "pinyin": "dà jiā de yì jiàn wán quán yī zhì",
+      "meaningVi": "Ý kiến của mọi người hoàn toàn thống nhất.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_50",
+      "grammarTopic": "Cấu trúc diễn tả sự nhất trí",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:完全",
       "title": "Cách dùng 完全",
       "partOfSpeech": "adverb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_50",
+      "title": "Cấu trúc diễn tả sự nhất trí",
+      "syntax": "A + 和/跟/同 + B + 一致 (A và B nhất trí/thống nhất với nhau)",
+      "explanationVi": "Tính từ 「一致」 dùng để diễn tả sự thống nhất, đồng lòng hoặc tương đồng về ý kiến, quan điểm giữa các đối tượng. Trong câu, nó thường đóng vai trò là vị ngữ hoặc bổ ngữ để chỉ trạng thái hòa hợp, không có mâu thuẫn.",
+      "tipsVi": "Bạn có thể dùng cấu trúc 「意见一致」 (ý kiến thống nhất) hoặc 「目标一致」 (mục tiêu đồng nhất) để diễn đạt sự đồng thuận trong công việc hoặc thảo luận.",
+      "attentionsVi": "Cần tránh nhầm lẫn giữa 「一致」 (nhất trí) với từ 「一直」 (yìzhí - luôn luôn/suốt từ đầu), đây là lỗi sai ngữ âm rất phổ biến của người học.",
+      "examples": [
+        {
+          "chinese": "大家的意见完全一致。",
+          "pinyin": "dà jiā de yì jiàn wán quán yī zhì",
+          "meaningVi": "Ý kiến của mọi người hoàn toàn thống nhất."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -120,7 +208,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "hoàn toàn",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

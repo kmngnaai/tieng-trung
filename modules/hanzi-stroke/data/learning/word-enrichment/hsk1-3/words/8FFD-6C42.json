@@ -52,10 +52,45 @@
         "target": "追求",
         "source": "hsk_2.json",
         "pinyinMethod": "exact-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "追求",
+            "chinese": "这个追求很好。",
+            "pinyin": "zhè ge zhuī qiú hěn hǎo。",
+            "meaningVi": "theo đuổi này rất tốt.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "追求",
+            "chinese": "我喜欢这个追求。",
+            "pinyin": "wǒ xǐ huan zhè ge zhuī qiú。",
+            "meaningVi": "Tôi thích theo đuổi này.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "追求",
+            "chinese": "生活上不要过于追求享受。",
+            "pinyin": "shēng huó shàng bù yào guò yú zhuī qiú xiǎng shòu",
+            "meaningVi": "Về mặt cuộc sống đừng quá theo đuổi sự hưởng thụ.",
+            "source": "hsk_6.json",
+            "grammarId": "hsk6_6",
+            "grammarTopic": "Cách dùng phó từ 过于",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 3
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -77,14 +112,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "追求",
+      "chinese": "生活上不要过于追求享受。",
+      "pinyin": "shēng huó shàng bù yào guò yú zhuī qiú xiǎng shòu",
+      "meaningVi": "Về mặt cuộc sống đừng quá theo đuổi sự hưởng thụ.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_6",
+      "grammarTopic": "Cách dùng phó từ 过于",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:追求",
       "title": "Cách dùng 追求",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_6",
+      "title": "Cách dùng phó từ 过于",
+      "syntax": "Chủ ngữ + 过于 + Tính từ/Động từ + (Kết quả)",
+      "explanationVi": "Phó từ 「过于」 dùng để chỉ một trạng thái, hành vi hoặc cảm xúc đã vượt quá mức độ cần thiết hoặc bình thường. Từ này thường mang sắc thái tiêu cực, biểu thị mức độ quá đà dẫn đến kết quả không mong muốn.",
+      "tipsVi": "Bạn có thể hiểu 「过于」 tương đương với từ 「太」 nhưng có sắc thái trang trọng hơn và thường đi kèm với các tính từ mang tính chất đánh giá hoặc phê phán.",
+      "attentionsVi": "Vì 「过于」 đã mang nghĩa 'quá mức', bạn không nên kết hợp nó với các phó từ chỉ mức độ khác như 「很」 hay 「非常」 ở ngay phía sau.",
+      "examples": [
+        {
+          "chinese": "生活上不要过于追求享受。",
+          "pinyin": "shēng huó shàng bù yào guò yú zhuī qiú xiǎng shòu",
+          "meaningVi": "Về mặt cuộc sống đừng quá theo đuổi sự hưởng thụ."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -102,7 +171,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "theo đuổi",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

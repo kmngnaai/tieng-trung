@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Phía sau",
+      "meaningShortVi": "phía sau",
       "meaningFullVi": "Phía sau, sau; sau này",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Phía sau",
+  "meaningShortVi": "phía sau",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -57,7 +57,9 @@
         "target": "后面",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "往后面",
@@ -67,10 +69,24 @@
         "target": "后面",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "后面",
+            "chinese": "请往后面走。",
+            "pinyin": "Qǐng wǎng hòumiàn zǒu.",
+            "meaningVi": "Vui lòng đi về phía sau.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -102,14 +118,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "后面",
+      "chinese": "她读完了第一个问题，后面的你读下去。",
+      "pinyin": "tā dú wán le dì yī gè wèn tí hòu miàn de nǐ dú xià qù",
+      "meaningVi": "Cô ấy đọc xong câu hỏi thứ nhất rồi, phần sau bạn đọc tiếp đi.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_24",
+      "grammarTopic": "Bổ ngữ xu hướng 「下去」: Sự tiếp tục",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:后面",
       "title": "Cách dùng 后面",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Có thể chỉ vị trí không gian hoặc thời gian sau này.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_24",
+      "title": "Bổ ngữ xu hướng 「下去」: Sự tiếp tục",
+      "syntax": "Động từ + 下去",
+      "explanationVi": "Cấu trúc 「下去」 được dùng sau động từ để diễn tả một hành động hoặc trạng thái đang diễn ra và cần được tiếp tục duy trì trong tương lai. Nó giúp nhấn mạnh tính liên tục của hành động đó, ví dụ: 「请说下去」 (Xin hãy nói tiếp đi).",
+      "tipsVi": "Hãy tưởng tượng 「下去」 như việc bạn đang 'tiếp tục đi xuống' con đường đang đi, giúp bạn ghi nhớ nghĩa của nó là kéo dài hành động.",
+      "attentionsVi": "Không nên nhầm lẫn với hướng đi vật lý (từ cao xuống thấp), ở đây 「下去」 chỉ mang nghĩa trừu tượng về thời gian và trạng thái.",
+      "examples": [
+        {
+          "chinese": "她读完了第一个问题，后面的你读下去。",
+          "pinyin": "tā dú wán le dì yī gè wèn tí hòu miàn de nǐ dú xià qù",
+          "meaningVi": "Cô ấy đọc xong câu hỏi thứ nhất rồi, phần sau bạn đọc tiếp đi."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -183,7 +233,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "Phía sau, sau; sau này",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

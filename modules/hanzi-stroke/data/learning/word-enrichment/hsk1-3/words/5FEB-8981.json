@@ -55,7 +55,9 @@
         "target": "快要",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "快要完成",
@@ -65,10 +67,23 @@
         "target": "快要",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "就要",
+        "pinyin": "jiù yào",
+        "meaningVi": "sắp",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: sắp",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -90,14 +105,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "快要",
+      "chinese": "快要下雨了。",
+      "pinyin": "kuài yào xià yǔ le",
+      "meaningVi": "Trời sắp mưa rồi.",
+      "source": "hsk_2.json",
+      "grammarId": "hsk2_43",
+      "grammarTopic": "Diễn tả hành động sắp xảy ra",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "快要",
+      "chinese": "饭菜快要做好了。",
+      "pinyin": "fàn cài kuài yào zuò hǎo le",
+      "meaningVi": "Cơm canh sắp nấu xong rồi.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_30",
+      "grammarTopic": "Diễn tả hành động sắp xảy ra",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:快要",
       "title": "Cách dùng 快要",
       "partOfSpeech": "adverb",
       "usageNoteVi": "Phó từ chỉ thời gian sắp tới.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_43",
+      "title": "Diễn tả hành động sắp xảy ra",
+      "syntax": "要 + [động từ/tính từ] + 了 (Dự đoán hành động sắp xảy ra)",
+      "explanationVi": "Cấu trúc 「要……了」 được dùng để biểu thị một sự việc hoặc hành động sắp sửa xảy ra trong tương lai gần. Bạn có thể sử dụng các biến thể như 「快要……了」, 「快……了」 hoặc 「就要……了」 để tăng thêm sắc thái nhấn mạnh thời gian ngắn.",
+      "tipsVi": "Khi muốn nhấn mạnh hành động sắp xảy ra ngay lập tức, bạn nên sử dụng cụm 「就要……了」 kết hợp với các từ chỉ thời gian cụ thể (ví dụ: 明天 - ngày mai, 五分钟后 - 5 phút nữa).",
+      "attentionsVi": "Đừng nhầm lẫn cấu trúc này với từ 「要」 mang nghĩa là 'muốn'. Trong 「要……了」, 「要」 chỉ đóng vai trò là phó từ chỉ thời gian sắp tới.",
+      "examples": [
+        {
+          "chinese": "快要下雨了。",
+          "pinyin": "kuài yào xià yǔ le",
+          "meaningVi": "Trời sắp mưa rồi."
+        }
+      ],
+      "source": "hsk_2.json",
+      "curriculum": "hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_30",
+      "title": "Diễn tả hành động sắp xảy ra",
+      "syntax": "Chủ ngữ + (要/快/快要/就要) + Vị ngữ + 了",
+      "explanationVi": "Cấu trúc này dùng để diễn tả một hành động hoặc trạng thái sắp sửa xảy ra trong tương lai gần. Bạn có thể sử dụng linh hoạt các từ 「要」, 「快」, 「快要」 hoặc 「就要」 trước vị ngữ và kết thúc câu bằng 「了」.",
+      "tipsVi": "Nếu trong câu có trạng ngữ chỉ thời gian cụ thể (ví dụ: 明天, 下星期), bạn bắt buộc phải dùng cấu trúc 「就要……了」.",
+      "attentionsVi": "Không nên nhầm lẫn cấu trúc này với 「了」 dùng để chỉ hành động đã hoàn thành trong quá khứ.",
+      "examples": [
+        {
+          "chinese": "饭菜快要做好了。",
+          "pinyin": "fàn cài kuài yào zuò hǎo le",
+          "meaningVi": "Cơm canh sắp nấu xong rồi."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -151,7 +231,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "sắp",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

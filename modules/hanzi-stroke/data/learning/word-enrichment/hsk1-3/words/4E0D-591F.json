@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "bất cú",
+      "meaningShortVi": "không đủ",
       "meaningFullVi": "bất cú",
       "partOfSpeech": "verb/adjective",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "bất cú",
+  "meaningShortVi": "không đủ",
   "wordType": "verb/adjective",
   "wordTypes": [
     "verb/adjective"
@@ -54,7 +54,20 @@
         "target": "不够",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "不够",
+            "chinese": "钱不够",
+            "pinyin": "qián bù gòu",
+            "meaningVi": "Tiền không đủ",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "时间不够",
@@ -64,7 +77,31 @@
         "target": "不够",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "不够",
+            "chinese": "时间不够",
+            "pinyin": "shí jiān bù gòu",
+            "meaningVi": "Thời gian không đủ",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "不够",
+            "chinese": "一来路远，二来时间不够。",
+            "pinyin": "yī lái lù yuǎn èr lái shí jiān bù gòu",
+            "meaningVi": "Một là đường xa, hai là thời gian không đủ.",
+            "source": "hsk_5.json",
+            "grammarId": "hsk5_60",
+            "grammarTopic": "Cách dùng \"来\" ước lượng và liệt kê",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 2
       },
       {
         "text": "还不够",
@@ -74,10 +111,24 @@
         "target": "不够",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "不够",
+            "chinese": "还不够",
+            "pinyin": "hái bù gòu",
+            "meaningVi": "Vẫn chưa đủ",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -109,14 +160,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "不够",
+      "chinese": "一来路远，二来时间不够。",
+      "pinyin": "yī lái lù yuǎn èr lái shí jiān bù gòu",
+      "meaningVi": "Một là đường xa, hai là thời gian không đủ.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_60",
+      "grammarTopic": "Cách dùng \"来\" ước lượng và liệt kê",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:不够",
       "title": "Cách dùng 不够",
       "partOfSpeech": "verb/adjective",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_60",
+      "title": "Cách dùng \"来\" ước lượng và liệt kê",
+      "syntax": "Số từ + 来 (chỉ ước lượng) hoặc 一来...二来... (liệt kê lý do)",
+      "explanationVi": "Trợ từ 「来」 thường được đặt sau số từ tròn chục, trăm, nghìn để biểu thị con số ước lượng (khoảng chừng). Ngoài ra, cấu trúc 「一来...二来...」 dùng để liệt kê các nguyên nhân hoặc lý do cho một sự việc.",
+      "tipsVi": "Khi dùng để ước lượng, 「来」 thường đặt sau các số như 「十、百、千」 (ví dụ: 「十来个人」 - khoảng hơn 10 người).",
+      "attentionsVi": "Cần phân biệt với 「来」 là động từ (đến), khi là trợ từ chỉ ước lượng nó không mang nghĩa di chuyển.",
+      "examples": [
+        {
+          "chinese": "一来路远，二来时间不够。",
+          "pinyin": "yī lái lù yuǎn èr lái shí jiān bù gòu",
+          "meaningVi": "Một là đường xa, hai là thời gian không đủ."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -150,7 +235,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "bất cú",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

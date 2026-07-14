@@ -44,7 +44,18 @@
     ]
   },
   "vocabulary": {
-    "compounds": [],
+    "compounds": [
+      {
+        "word": "没想到",
+        "pinyin": "méi xiǎng dào",
+        "meaningVi": "bất ngờ",
+        "meaningFullVi": "bất ngờ",
+        "relationType": "contains-exact-target",
+        "hskLevel": 4,
+        "source": "hsk_4.json",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
     "collocations": [
       {
         "text": "突然想到",
@@ -54,7 +65,9 @@
         "target": "想到",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "难以想到",
@@ -64,10 +77,13 @@
         "target": "想到",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -89,14 +105,62 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "想到",
+      "chinese": "没想到居然在这儿碰到你！",
+      "pinyin": "méi xiǎng dào jū rán zài zhè ér pèng dào nǐ",
+      "meaningVi": "Không ngờ lại gặp được bạn ở đây!",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_1",
+      "grammarTopic": "Cách dùng phó từ 居然",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:想到",
       "title": "Cách dùng 想到",
       "partOfSpeech": "verb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_1",
+      "title": "Cách dùng phó từ 居然",
+      "syntax": "Chủ ngữ + 居然 + Động từ/Tính từ (Diễn tả sự ngạc nhiên)",
+      "explanationVi": "Phó từ 「居然」 được dùng để diễn tả sự ngạc nhiên, bất ngờ khi một sự việc xảy ra trái ngược với dự đoán hoặc lẽ thường. Trong tiếng Việt, nó tương đương với các từ như \"lại\", \"thế mà\" hay \"không ngờ\".",
+      "tipsVi": "Bạn có thể sử dụng 「居然」 trong cả văn nói và văn viết để nhấn mạnh thái độ ngạc nhiên của người nói về sự việc đó.",
+      "attentionsVi": "Không nên nhầm lẫn 「居然」 với các từ chỉ sự việc bình thường, vì 「居然」 luôn mang sắc thái cảm xúc ngạc nhiên, sửng sốt.",
+      "examples": [
+        {
+          "chinese": "没想到居然在这儿碰到你！",
+          "pinyin": "méi xiǎng dào jū rán zài zhè ér pèng dào nǐ",
+          "meaningVi": "Không ngờ lại gặp được bạn ở đây!"
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_9",
+      "title": "Cách dùng liên từ 不料",
+      "syntax": "S + V1, 不料 + (S) + V2 (diễn tả sự việc trái ngược)",
+      "explanationVi": "Liên từ 「不料」 dùng để diễn tả một tình huống xảy ra nằm ngoài dự tính, thường mang sắc thái bất ngờ, thất vọng hoặc trái ngược với kết quả mong đợi. Từ này chủ yếu xuất hiện trong văn viết hoặc các tình huống trang trọng, tương đương với nghĩa \"không ngờ\", \"chẳng dè\".",
+      "tipsVi": "Trong văn nói hàng ngày, bạn có thể sử dụng 「没想到」 thay cho 「不料」 để câu văn nghe tự nhiên và gần gũi hơn.",
+      "attentionsVi": "Không nên dùng 「不料」 ở đầu câu đơn lẻ; nó thường dùng để nối hai vế câu nhằm chỉ sự thay đổi bất ngờ của tình tiết.",
+      "examples": [],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +194,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "nghĩ đến",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

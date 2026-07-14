@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Chú ý",
+      "meaningShortVi": "chú ý",
       "meaningFullVi": "Chú ý, để ý, quan tâm",
       "partOfSpeech": "động từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Chú ý",
+  "meaningShortVi": "chú ý",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
@@ -56,7 +56,9 @@
         "target": "注意",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "引起注意",
@@ -66,10 +68,23 @@
         "target": "注意",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "关注",
+        "pinyin": "guān zhù",
+        "meaningVi": "chú ý",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: chú ý",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -91,14 +106,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "注意",
+      "chinese": "很多以前我没有注意到的问题，现在通过它了解了不少。",
+      "pinyin": "hěn duō yǐ qián wǒ méi yǒu zhù yì dào de wèn tí xiàn zài tōng guò tā le jiě le bù shǎo",
+      "meaningVi": "Nhiều vấn đề trước đây tôi không chú ý đến, bây giờ thông qua nó tôi đã hiểu thêm không ít.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_32",
+      "grammarTopic": "Cách dùng từ 通过",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:注意",
       "title": "Cách dùng 注意",
       "partOfSpeech": "động từ",
       "usageNoteVi": "注意 mang hành động chú ý, quan tâm, hoặc cảnh báo. Nó có thể đi với 对象 (đối tượng cần chú ý) hoặc mang nghĩa cảnh báo. Trong giao tiếp, người ta thường nói '请注意' (vui lòng chú ý) hoặc '要注意' (cần chú ý).",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_32",
+      "title": "Cách dùng từ 通过",
+      "syntax": "通过 + [phương thức/cách thức] + [động từ]",
+      "explanationVi": "Từ 「通过」 dùng để diễn tả phương thức hoặc con đường giúp bạn đạt được một mục đích nào đó, có nghĩa là \"thông qua\" hoặc \"bằng cách\". Ngoài ra, nó còn dùng để diễn tả hành động đi xuyên qua một không gian vật lý, ví dụ như đi qua đường hoặc đi qua cửa.",
+      "tipsVi": "Bạn có thể dịch 「通过」 là \"nhờ vào\" khi nói về việc đạt được kết quả, ví dụ: \"Nhờ vào sự nỗ lực mà tôi đã đỗ HSK\".",
+      "attentionsVi": "Cần phân biệt rõ ngữ cảnh: Nếu dùng để chỉ phương thức thì thường theo sau là một hành động, còn nếu dùng để chỉ không gian thì thường theo sau là địa điểm cụ thể.",
+      "examples": [
+        {
+          "chinese": "很多以前我没有注意到的问题，现在通过它了解了不少。",
+          "pinyin": "hěn duō yǐ qián wǒ méi yǒu zhù yì dào de wèn tí xiàn zài tōng guò tā le jiě le bù shǎo",
+          "meaningVi": "Nhiều vấn đề trước đây tôi không chú ý đến, bây giờ thông qua nó tôi đã hiểu thêm không ít."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -167,7 +216,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "Chú ý, để ý, quan tâm",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

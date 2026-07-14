@@ -54,7 +54,9 @@
         "target": "文章",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "好文章",
@@ -64,10 +66,13 @@
         "target": "文章",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -93,10 +98,33 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:文章",
       "title": "Cách dùng 文章",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "Chỉ bài báo, bài viết hoặc văn chương nói chung.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_56",
+      "title": "Phân biệt 发言 và 发表",
+      "syntax": "发言 (phát biểu ý kiến) vs. 发表 (công bố/đăng tải)",
+      "explanationVi": "「发言」 dùng để chỉ hành động trình bày ý kiến hoặc nói chuyện trong các buổi hội họp, thảo luận. Trong khi đó, 「发表」 thường dùng cho việc công bố rộng rãi các tác phẩm, quan điểm hoặc số liệu trên phương tiện truyền thông.",
+      "tipsVi": "Hãy nhớ 「发言」 giống như 'lên tiếng' trong cuộc họp, còn 「发表」 giống như 'xuất bản' hay 'đăng bài' để mọi người cùng xem.",
+      "attentionsVi": "Không nên dùng nhầm 「发表」 cho hành động nói chuyện trực tiếp tại chỗ, vì nó mang tính chất chính thức và đại chúng hơn.",
+      "examples": [
+        {
+          "chinese": "他在报纸上发表了一篇文章。",
+          "pinyin": "tā zài bào zhǐ shàng fā biǎo le yī piān wén zhāng",
+          "meaningVi": "Anh ấy đã đăng một bài viết trên báo."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +158,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "bài báo, bài viết, văn chương",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

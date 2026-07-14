@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "một thời gian dài (nghĩa bóng)",
+      "meaningShortVi": "một thời gian dài",
       "meaningFullVi": "một thời gian dài (nghĩa bóng), nửa ngày (nghĩa đen)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "một thời gian dài (nghĩa bóng)",
+  "meaningShortVi": "một thời gian dài",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -55,7 +55,21 @@
         "target": "半天",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "半天",
+            "chinese": "等了半天，车总算来了。",
+            "pinyin": "děng le bàn tiān chē zǒng suàn lái le",
+            "meaningVi": "Đợi cả buổi, xe cuối cùng cũng đến.",
+            "source": "hsk_5.json",
+            "grammarId": "hsk5_62",
+            "grammarTopic": "Cách dùng phó từ 总算",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "想了半天",
@@ -65,10 +79,24 @@
         "target": "半天",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "半天",
+            "chinese": "你想了半天也想不出来",
+            "pinyin": "Nǐ xiǎng le bàntiān yě xiǎng bù chūlái",
+            "meaningVi": "Bạn nghĩ mãi cũng không nghĩ ra",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -120,14 +148,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "半天",
+      "chinese": "等了半天，车总算来了。",
+      "pinyin": "děng le bàn tiān chē zǒng suàn lái le",
+      "meaningVi": "Đợi cả buổi, xe cuối cùng cũng đến.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_62",
+      "grammarTopic": "Cách dùng phó từ 总算",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:半天",
       "title": "Cách dùng 半天",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Trong văn nói, '半天' thường dùng chỉ một khoảng thời gian dài theo cảm giác, không thực sự là nửa ngày. Diễn tả sự số ruột hoặc cảm giác thời gian trôi lâu.",
       "explanationVi": "Ghép nghĩa: 半 (một nửa) + 天 (ngày). Nghĩa đen là nửa ngày, nhưng trong văn nói thường dùng để chỉ một thời gian dài dài đằng đẵng.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_62",
+      "title": "Cách dùng phó từ 总算",
+      "syntax": "S + 总算 + V/Adj (Cuối cùng cũng...)",
+      "explanationVi": "Phó từ 「总算」 dùng để diễn tả một nguyện vọng hoặc kết quả cuối cùng cũng đã đạt được sau một quá trình nỗ lực, chờ đợi hoặc khó khăn kéo dài. Nó mang sắc thái nhẹ nhõm hoặc hài lòng vì mọi việc cuối cùng đã có kết quả như ý.",
+      "tipsVi": "Bạn có thể dùng 「总算」 khi muốn nhấn mạnh sự thở phào nhẹ nhõm sau khi hoàn thành một công việc khó khăn, ví dụ: 「工作总算做完了」(Công việc cuối cùng cũng làm xong rồi).",
+      "attentionsVi": "Đừng nhầm lẫn 「总算」 với 「终于」; mặc dù cả hai đều có nghĩa là 'cuối cùng', nhưng 「总算」 nhấn mạnh nhiều hơn đến cảm giác nhẹ nhõm sau khi vượt qua khó khăn hoặc áp lực.",
+      "examples": [
+        {
+          "chinese": "等了半天，车总算来了。",
+          "pinyin": "děng le bàn tiān chē zǒng suàn lái le",
+          "meaningVi": "Đợi cả buổi, xe cuối cùng cũng đến."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -181,7 +243,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 6,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "một thời gian dài (nghĩa bóng), nửa ngày (nghĩa đen)",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

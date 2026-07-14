@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Chế độ",
+      "meaningShortVi": "hệ thống",
       "meaningFullVi": "Chế độ, hệ thống quy định",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Chế độ",
+  "meaningShortVi": "hệ thống",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -47,7 +47,18 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "体系",
+        "pinyin": "tǐ xì",
+        "meaningVi": "hệ thống",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: hệ thống",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -83,10 +94,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:制度",
       "title": "Cách dùng 制度",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "制度 dùng để chỉ hệ thống các quy định, nguyên tắc được áp dụng trong một tổ chức, xã hội hoặc lĩnh vực cụ thể. Từ này kết hợp 制 (chế tạo, định ra) + 度 (mức độ, quy chuẩn).",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -125,8 +139,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "Chế độ, hệ thống quy định",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -23,14 +23,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Phim truyền hình",
+      "meaningShortVi": "phim truyền hình",
       "meaningFullVi": "Phim truyền hình",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Phim truyền hình",
+  "meaningShortVi": "phim truyền hình",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
@@ -56,10 +56,23 @@
         "target": "电视剧",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "连续剧",
+        "pinyin": "lián xù jù",
+        "meaningVi": "phim truyền hình",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: phim truyền hình",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -85,10 +98,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:电视剧",
       "title": "Cách dùng 电视剧",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "电视剧 là phim truyền hình, phim bộ chiếu trên TV. Nó khác với 电影 (phim chiếu rạp) — 电影 chiếu ở rạp, 电视剧 chiếu trên TV. Trong giao tiếp, người ta thường gọi 网剧 (phim mạng) cho phim chiếu online, còn 电视剧 cho phim chiếu truyền hình.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -127,7 +143,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "Phim truyền hình",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

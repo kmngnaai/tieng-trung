@@ -55,7 +55,9 @@
         "target": "外国",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "外国朋友",
@@ -65,7 +67,20 @@
         "target": "外国",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "外国",
+            "chinese": "这个外国朋友很友善",
+            "pinyin": "Zhège wàiguó péngyǒu hěn yǒushàn",
+            "meaningVi": "Người bạn nước ngoài này rất thân thiện",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "外国学生",
@@ -75,7 +90,20 @@
         "target": "外国",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "外国",
+            "chinese": "我们学校有很多外国学生",
+            "pinyin": "Wǒmen xuéxiào yǒu hěnduō wàiguó xuéshēng",
+            "meaningVi": "Trường chúng tôi có rất nhiều sinh viên nước ngoài",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "去外国",
@@ -85,10 +113,23 @@
         "target": "外国",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "国外",
+        "pinyin": "guó wài",
+        "meaningVi": "nước ngoài",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: nước ngoài",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -134,10 +175,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:外国",
       "title": "Cách dùng 外国",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Danh từ, chỉ nước khác, không phân biệt đông tây. Phân biệt với 国外 (ở nước ngoài, chỉ vị trí, không tính đến nước nào).",
       "explanationVi": "Ghép nghĩa: 外 (bên ngoài) + 国 (nước) → nước bên ngoài, nước khác nước mình.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -191,7 +235,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 4,
+      "sentences": 4,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "nước ngoài, nước khác",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

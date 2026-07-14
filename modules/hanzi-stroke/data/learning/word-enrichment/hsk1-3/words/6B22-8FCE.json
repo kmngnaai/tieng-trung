@@ -57,7 +57,20 @@
         "target": "欢迎",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "欢迎",
+            "chinese": "欢迎来到中国！",
+            "pinyin": "huān yíng lái dào Zhōng guó！",
+            "meaningVi": "Hoan nghênh đến Trung Quốc!",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "表示欢迎",
@@ -67,7 +80,9 @@
         "target": "欢迎",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "受到欢迎",
@@ -77,10 +92,13 @@
         "target": "欢迎",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -102,14 +120,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "欢迎",
+      "chinese": "我们以热烈的掌声欢迎客人。",
+      "pinyin": "wǒ men yǐ rè liè de zhǎng shēng huān yíng kè rén",
+      "meaningVi": "Chúng tôi dùng tràng pháo tay nồng nhiệt để chào đón khách.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_30",
+      "grammarTopic": "Cách dùng giới từ 以",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:欢迎",
       "title": "Cách dùng 欢迎",
       "partOfSpeech": "verb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_30",
+      "title": "Cách dùng giới từ 以",
+      "syntax": "S + 以 + V/Cụm V (mục đích) hoặc S + 以 + N (phương tiện)",
+      "explanationVi": "Giới từ 「以」 thường xuất hiện trong văn viết với hai nghĩa chính: chỉ phương tiện (dùng, lấy, dựa vào) hoặc chỉ mục đích (để làm gì đó). Khi chỉ mục đích, nó đóng vai trò tương tự như 「为了」 nhưng mang sắc thái trang trọng hơn.",
+      "tipsVi": "Trong câu chỉ mục đích, cấu trúc 「以 + V」 thường được dùng để nối hai vế câu, trong đó vế sau là mục tiêu hướng tới của hành động ở vế trước.",
+      "attentionsVi": "Vì 「以」 là từ ngữ mang tính chất văn viết, bạn nên hạn chế dùng trong giao tiếp khẩu ngữ thông thường để tránh tạo cảm giác quá cứng nhắc.",
+      "examples": [
+        {
+          "chinese": "我们以热烈的掌声欢迎客人。",
+          "pinyin": "wǒ men yǐ rè liè de zhǎng shēng huān yíng kè rén",
+          "meaningVi": "Chúng tôi dùng tràng pháo tay nồng nhiệt để chào đón khách."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -198,7 +250,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "hoan nghênh",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -55,7 +55,9 @@
         "target": "要是",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "要是...就",
@@ -65,10 +67,42 @@
         "target": "要是",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
+      }
+    ],
+    "relatedWords": [
+      {
+        "targetWord": "钥匙",
+        "pinyin": "yào shi",
+        "meaningVi": "chìa khóa",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_1.json",
         "reviewStatus": "reviewed-local"
       }
     ],
-    "relatedWords": []
+    "candidateRelations": [
+      {
+        "targetWord": "如果",
+        "pinyin": "rú guǒ",
+        "meaningVi": "nếu",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: nếu",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "的话",
+        "pinyin": "de huà",
+        "meaningVi": "nếu",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: nếu",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -94,10 +128,27 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:要是",
       "title": "Cách dùng 要是",
       "partOfSpeech": "liên từ giả định",
       "usageNoteVi": "Dùng trong câu điều kiện, thường đi kèm với '就'. Trong khẩu ngữ, '要是' có thể thay bằng '要是...的话'.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_16",
+      "title": "Cách dùng liên từ 要不",
+      "syntax": "A，要不 B (Câu 1, nếu không thì/hay là câu 2)",
+      "explanationVi": "Liên từ 「要不」 được dùng để đưa ra một phương án thay thế hoặc một giả thiết khác cho tình huống đã nêu trước đó. Nó có hai nghĩa chính là \"hay là\" (khi đưa ra gợi ý) hoặc \"nếu không thì\" (khi đưa ra kết quả không mong muốn nếu không làm theo vế trước).",
+      "tipsVi": "Bạn có thể dùng 「要不」 đứng đầu câu hoặc ở giữa câu để nối hai mệnh đề, mang sắc thái giao tiếp thân thiện, tự nhiên.",
+      "attentionsVi": "Cần tránh nhầm lẫn với 「要是」(yàoshi - nếu), vì 「要不」 nhấn mạnh vào sự lựa chọn hoặc hệ quả thay thế chứ không chỉ đơn thuần là giả thiết.",
+      "examples": [],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -136,7 +187,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 2,
+      "reviewedRelations": 1,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "nếu; nếu như",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

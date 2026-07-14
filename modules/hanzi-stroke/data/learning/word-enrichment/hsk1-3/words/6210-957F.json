@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "lớn lên",
+      "meaningShortVi": "trưởng thành",
       "meaningFullVi": "lớn lên, trưởng thành",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "lớn lên",
+  "meaningShortVi": "trưởng thành",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
@@ -54,7 +54,9 @@
         "target": "成长",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "成长经历",
@@ -64,10 +66,32 @@
         "target": "成长",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "长大",
+        "pinyin": "zhǎng dà",
+        "meaningVi": "trưởng thành",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: trưởng thành",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "成熟",
+        "pinyin": "chéng shú",
+        "meaningVi": "trưởng thành",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: trưởng thành",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -89,14 +113,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "成长",
+      "chinese": "我不畏惧付出和失败, 勇于承担责任, 这就是成长。",
+      "pinyin": "wǒ bù wèi jù fù chū hé shī bài yǒng yú chéng dān zé rèn zhè jiù shì chéng zhǎng",
+      "meaningVi": "Tôi không sợ sự hy sinh hay thất bại, dũng cảm gánh vác trách nhiệm, đó chính là trưởng thành.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_17",
+      "grammarTopic": "Cách dùng giới từ 于",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:成长",
       "title": "Cách dùng 成长",
       "partOfSpeech": "động từ",
       "usageNoteVi": "成长 dùng cho con người (trẻ em, thanh niên) hoặc tổ chức. Không dùng cho cây cối (dùng 生长). Thường đi với healthily (健康), fast (快速).",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_17",
+      "title": "Cách dùng giới từ 于",
+      "syntax": "S + 于 + [Địa điểm/Thời gian/Phương diện]",
+      "explanationVi": "Giới từ 「于」 mang nghĩa là 'ở', 'tại' hoặc 'vào', thường dùng trong văn viết hoặc các văn bản trang trọng để chỉ thời gian, địa điểm hoặc phương diện cụ thể. Nó đóng vai trò tương tự như 「在」 trong khẩu ngữ nhưng mang sắc thái trang trọng và chuyên nghiệp hơn.",
+      "tipsVi": "Bạn nên ưu tiên sử dụng 「于」 trong các bài viết nghị luận, văn bản chính thống hoặc tiêu đề báo chí để câu văn nghe chuyên nghiệp hơn.",
+      "attentionsVi": "Không nên dùng 「于」 trong văn nói hàng ngày vì nó sẽ khiến câu nói trở nên quá cứng nhắc và không tự nhiên.",
+      "examples": [
+        {
+          "chinese": "我不畏惧付出和失败, 勇于承担责任, 这就是成长。",
+          "pinyin": "wǒ bù wèi jù fù chū hé shī bài yǒng yú chéng dān zé rèn zhè jiù shì chéng zhǎng",
+          "meaningVi": "Tôi không sợ sự hy sinh hay thất bại, dũng cảm gánh vác trách nhiệm, đó chính là trưởng thành."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +188,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "lớn lên, trưởng thành",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -57,10 +57,23 @@
         "target": "没关系",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "没事",
+        "pinyin": "méi shì",
+        "meaningVi": "không sao",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: không sao",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -112,14 +125,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "没关系",
+      "chinese": "打不好没关系。",
+      "pinyin": "dǎ bù hǎo méi guān xì",
+      "meaningVi": "Đánh không tốt cũng không sao.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_29",
+      "grammarTopic": "Bổ ngữ khả năng (V + 得/不 + bổ ngữ)",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:没关系",
       "title": "Cách dùng 没关系",
       "partOfSpeech": "idiom",
       "usageNoteVi": "Câu trả lời phổ biến khi ai đó nói 对不起 (xin lỗi) hoặc 谢谢 (cảm ơn). Tương đương với không có gì, không sao. Trong giao tiếp thân mật, có thể rút ngắn thành 没事. Phân biệt với 没问题 (không vấn đề, có thể làm được).",
       "explanationVi": "Thành ngữ dùng để trả lời khi ai đó xin lỗi hoặc cảm ơn. Ghép từ 没 (không) + 关 (quan hệ) + 系 (liên kết) → không có vấn đề gì, không cần bận tâm.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_29",
+      "title": "Bổ ngữ khả năng (V + 得/不 + bổ ngữ)",
+      "syntax": "V + 得/不 + bổ ngữ (kết quả/xu hướng)",
+      "explanationVi": "Cấu trúc này dùng để diễn đạt việc hành động có thể hoặc không thể thực hiện được do điều kiện khách quan hoặc năng lực. 「得」 dùng cho khẳng định (làm được), còn 「不」 dùng cho phủ định (không làm được). Ví dụ: 「听得懂」 (nghe hiểu) và 「听不懂」 (nghe không hiểu).",
+      "tipsVi": "Hãy ghi nhớ cặp đối lập này để nói về khả năng đạt được kết quả của một hành động, giúp câu văn tự nhiên hơn nhiều so với việc chỉ dùng 「能」.",
+      "attentionsVi": "Đừng nhầm lẫn với bổ ngữ trình độ (V + 得 + tính từ); bổ ngữ khả năng luôn dùng để nói về việc có hoàn thành được kết quả hay không.",
+      "examples": [
+        {
+          "chinese": "打不好没关系。",
+          "pinyin": "dǎ bù hǎo méi guān xì",
+          "meaningVi": "Đánh không tốt cũng không sao."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -188,7 +235,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 6,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "không sao, không có gì",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

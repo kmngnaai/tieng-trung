@@ -46,15 +46,38 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [
+      {
+        "targetWord": "医生",
+        "pinyin": "yī shēng",
+        "meaningVi": "bác sĩ",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed-local"
+      },
+      {
+        "targetWord": "一生",
+        "pinyin": "yī shēng",
+        "meaningVi": "cả đời",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
+    "candidateRelations": []
   },
   "sentences": [],
   "grammarLinks": [
     {
+      "grammarId": "usage:野生",
       "title": "Cách dùng 野生",
       "partOfSpeech": "compound",
       "usageNoteVi": "Từ vựng Hán 野生 (yě*shēng). Hán-Việt: dã sinh.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -88,9 +111,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có câu mẫu đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có câu nguồn đầy đủ chứa nguyên target"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 0,
+      "grammar": 1,
+      "reviewedRelations": 2,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "hoang dã",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

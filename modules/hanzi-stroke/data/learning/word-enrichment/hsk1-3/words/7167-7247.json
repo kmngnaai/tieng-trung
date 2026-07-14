@@ -57,7 +57,9 @@
         "target": "照片",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "照片墙",
@@ -67,10 +69,13 @@
         "target": "照片",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -92,14 +97,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "照片",
+      "chinese": "我把照片放在你包里了。",
+      "pinyin": "wǒ bǎ zhào piàn fàng zài nǐ bāo lǐ le",
+      "meaningVi": "Mình đã để ảnh vào trong túi của bạn rồi.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_29",
+      "grammarTopic": "Câu chữ 把 với 在, 到, 给",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "照片",
+      "chinese": "这些照片张张都非常好看。",
+      "pinyin": "zhè xiē zhào piàn zhāng zhāng dōu fēi cháng hǎo kàn",
+      "meaningVi": "Những bức ảnh này tấm nào cũng đều rất đẹp.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_14",
+      "grammarTopic": "Lặp lại lượng từ",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:照片",
       "title": "Cách dùng 照片",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_29",
+      "title": "Câu chữ 把 với 在, 到, 给",
+      "syntax": "S + 把 + O + V + 在/到/给 + [Địa điểm/Người]",
+      "explanationVi": "Cấu trúc này dùng để diễn tả việc thay đổi vị trí của vật hoặc chuyển quyền sở hữu. Trong đó, 「在/到」 chỉ vị trí mới của vật, còn 「给」 chỉ người nhận vật đó sau khi hành động kết thúc.",
+      "tipsVi": "Hãy chú ý sau động từ bắt buộc phải có bổ ngữ là 「在/到/给」, bạn không được để động từ đứng một mình khi dùng câu chữ 「把」 trong ngữ cảnh này.",
+      "attentionsVi": "Trong câu chữ 「把」, động từ không bao giờ đứng một mình mà phải đi kèm với các thành phần bổ sung như 「在/到/给」 hoặc trợ từ 「了」.",
+      "examples": [
+        {
+          "chinese": "我把照片放在你包里了。",
+          "pinyin": "wǒ bǎ zhào piàn fàng zài nǐ bāo lǐ le",
+          "meaningVi": "Mình đã để ảnh vào trong túi của bạn rồi."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_14",
+      "title": "Lặp lại lượng từ",
+      "syntax": "Lượng từ + Lượng từ (ví dụ: 个个, 天天)",
+      "explanationVi": "Khi lặp lại lượng từ, câu văn nhấn mạnh rằng tất cả các cá thể trong nhóm đều mang cùng một đặc điểm hoặc thực hiện cùng một hành động. Cấu trúc này thường đứng trước động từ để bổ nghĩa cho chủ ngữ hoặc tân ngữ.",
+      "tipsVi": "Cách dùng này giúp câu văn trở nên tự nhiên và nhấn mạnh sự đồng nhất của đối tượng được nhắc đến.",
+      "attentionsVi": "Không phải lượng từ nào cũng có thể lặp lại, hãy ưu tiên các từ thông dụng như 「个个」, 「天天」, 「年年」.",
+      "examples": [
+        {
+          "chinese": "这些照片张张都非常好看。",
+          "pinyin": "zhè xiē zhào piàn zhāng zhāng dōu fēi cháng hǎo kàn",
+          "meaningVi": "Những bức ảnh này tấm nào cũng đều rất đẹp."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -173,7 +243,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "bức ảnh",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

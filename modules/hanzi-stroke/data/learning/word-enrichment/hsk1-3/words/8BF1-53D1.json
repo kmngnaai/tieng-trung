@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "khởi phát",
+      "meaningShortVi": "gây ra",
       "meaningFullVi": "khởi phát, gợi ra (gây ra điều gì)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "khởi phát",
+  "meaningShortVi": "gây ra",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -52,7 +52,20 @@
         "target": "诱发",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "诱发",
+            "chinese": "疲劳诱发疾病",
+            "pinyin": "Pí láo yòu fā jí bìng",
+            "meaningVi": "Mệt mỏi khởi phát bệnh tật",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "诱发因素",
@@ -62,10 +75,23 @@
         "target": "诱发",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "造成",
+        "pinyin": "zào chéng",
+        "meaningVi": "gây ra",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: gây ra",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -101,10 +127,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:诱发",
       "title": "Cách dùng 诱发",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Dùng trong y học (gây bệnh) hoặc đời sống (kích động xung đột, vấn đề).",
       "explanationVi": "Ghép nghĩa: 诱 (dụ - dụ dỗ) + 发 (phát - phát sinh) -> dụ dỗ phát sinh, gợi ra.",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -122,7 +151,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "khởi phát, gợi ra (gây ra điều gì)",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

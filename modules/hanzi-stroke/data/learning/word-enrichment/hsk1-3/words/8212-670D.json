@@ -57,7 +57,9 @@
         "target": "舒服",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "舒服的衣服",
@@ -67,10 +69,23 @@
         "target": "舒服",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
+      }
+    ],
+    "relatedWords": [
+      {
+        "targetWord": "师傅",
+        "pinyin": "shī fu",
+        "meaningVi": "thầy",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_1.json",
         "reviewStatus": "reviewed-local"
       }
     ],
-    "relatedWords": []
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -102,14 +117,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "舒服",
+      "chinese": "喝杯热茶会很舒服。",
+      "pinyin": "hē bēi rè chá huì hěn shū fú",
+      "meaningVi": "Uống một ly trà nóng sẽ rất dễ chịu.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_9",
+      "grammarTopic": "Cách dùng 会 chỉ khả năng tương lai",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "舒服",
+      "chinese": "心里舒服——无非是这两点。",
+      "pinyin": "xīn lǐ shū fú wú fēi shì zhè liǎng diǎn",
+      "meaningVi": "Trong lòng thấy thoải mái – chẳng qua là vì hai điểm này.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_13",
+      "grammarTopic": "Cách dùng phó từ 无非",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:舒服",
       "title": "Cách dùng 舒服",
       "partOfSpeech": "adjective",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_9",
+      "title": "Cách dùng 会 chỉ khả năng tương lai",
+      "syntax": "S + 会 + V + O (Trợ động từ chỉ khả năng tương lai)",
+      "explanationVi": "Trợ động từ 「会」 được dùng trước động từ để diễn tả một sự việc có khả năng hoặc có thể xảy ra trong tương lai. Nó thể hiện dự đoán của người nói về tình huống sắp tới.",
+      "tipsVi": "Bạn có thể dùng thêm các trạng từ chỉ thời gian như 「明天」(ngày mai) hoặc 「下周」(tuần sau) để làm rõ hơn ý nghĩa về tương lai.",
+      "attentionsVi": "Đừng nhầm lẫn với ý nghĩa 'biết làm gì nhờ học tập' (kỹ năng); trong ngữ cảnh tương lai, 「会」 nhấn mạnh vào sự dự đoán, khả năng sự việc sẽ diễn ra.",
+      "examples": [
+        {
+          "chinese": "喝杯热茶会很舒服。",
+          "pinyin": "hē bēi rè chá huì hěn shū fú",
+          "meaningVi": "Uống một ly trà nóng sẽ rất dễ chịu."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_13",
+      "title": "Cách dùng phó từ 无非",
+      "syntax": "无非 (wúfēi) + 是/就是 + [nội dung/danh từ/động từ]",
+      "explanationVi": "Phó từ 「无非」 có nghĩa là \"chẳng qua chỉ là\", dùng để nhấn mạnh sự việc hoặc lý do chỉ đơn giản, không có gì khác hơn thế. Nó thường mang sắc thái coi thường hoặc làm giảm nhẹ mức độ quan trọng của sự việc.",
+      "tipsVi": "Bạn có thể hiểu 「无非」 tương đương với cụm từ \"không ngoài việc gì đó\" trong tiếng Việt để dễ ghi nhớ hơn.",
+      "attentionsVi": "Cần lưu ý 「无非」 thường dùng để thể hiện sự đánh giá chủ quan của người nói rằng sự việc đó rất đơn giản, không nên dùng khi muốn biểu đạt sự trang trọng.",
+      "examples": [
+        {
+          "chinese": "心里舒服——无非是这两点。",
+          "pinyin": "xīn lǐ shū fú wú fēi shì zhè liǎng diǎn",
+          "meaningVi": "Trong lòng thấy thoải mái – chẳng qua là vì hai điểm này."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -183,7 +263,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 5,
+      "grammar": 3,
+      "reviewedRelations": 1,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "thoải mái",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

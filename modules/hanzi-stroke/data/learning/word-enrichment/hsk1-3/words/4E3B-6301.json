@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "chủ trì",
+      "meaningShortVi": "dẫn chương trình",
       "meaningFullVi": "chủ trì, dẫn chương trình; quản lý",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "chủ trì",
+  "meaningShortVi": "dẫn chương trình",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
@@ -44,7 +44,18 @@
     ]
   },
   "vocabulary": {
-    "compounds": [],
+    "compounds": [
+      {
+        "word": "主持人",
+        "pinyin": "zhǔ chí rén",
+        "meaningVi": "người dẫn chương trình",
+        "meaningFullVi": "người dẫn chương trình",
+        "relationType": "contains-exact-target",
+        "hskLevel": 6,
+        "source": "hsk_6.json",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
     "collocations": [
       {
         "text": "主持人",
@@ -54,7 +65,20 @@
         "target": "主持",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "主持",
+            "chinese": "他是这个电视节目的主持人。",
+            "pinyin": "Tā shì zhège diànshì jiémù de zhǔchírén.",
+            "meaningVi": "Anh ấy là người dẫn chương trình TV này.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "主持会议",
@@ -64,10 +88,23 @@
         "target": "主持",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
+      }
+    ],
+    "relatedWords": [
+      {
+        "targetWord": "支持",
+        "pinyin": "zhī chí",
+        "meaningVi": "hỗ trợ",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_3.json",
         "reviewStatus": "reviewed-local"
       }
     ],
-    "relatedWords": []
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -93,10 +130,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:主持",
       "title": "Cách dùng 主持",
       "partOfSpeech": "động từ",
       "usageNoteVi": "主持 及物动词: 主持节目 (dẫn chương trình), 主持工作 (chủ trì công việc). 搞 (gǎo) + 主持 là slang搞笑. Phân biệt 控制 (kòngzhì - kiểm soát) 强调 quyền lực.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -129,8 +169,21 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+    "warnings": [],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 1,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "chủ trì, dẫn chương trình; quản lý",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

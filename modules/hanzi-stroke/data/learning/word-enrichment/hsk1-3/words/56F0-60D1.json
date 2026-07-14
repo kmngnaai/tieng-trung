@@ -52,7 +52,20 @@
         "target": "困惑",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "困惑",
+            "chinese": "他对未来感到困惑",
+            "pinyin": "Tā duì wèi lái gǎn dào kùn huò",
+            "meaningVi": "Anh ấy cảm thấy lúng túng về tương lai",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "令人困惑",
@@ -62,7 +75,9 @@
         "target": "困惑",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "十分困惑",
@@ -72,10 +87,23 @@
         "target": "困惑",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "莫名其妙",
+        "pinyin": "mò míng qí miào",
+        "meaningVi": "bối rối",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bối rối",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -121,10 +149,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:困惑",
       "title": "Cách dùng 困惑",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Thường dùng để diễn tả tâm trạng lúng túng, khó hiểu trước vấn đề, tình huống.",
       "explanationVi": "Ghép nghĩa: 困 (vây hãm, khó khăn) + 惑 (nghi hoặc, không rõ) → bị vây trong nghi hoặc, lúng túng.",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -142,7 +173,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 4,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "bối rối, khó hiểu; lúng túng, không biết phải làm gì",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

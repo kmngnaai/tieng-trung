@@ -52,7 +52,8 @@
         "meaningVi": "Gấu trúc lớn",
         "meaningFullVi": "Gấu trúc lớn",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 3",
+        "hskLevel": 3,
+        "source": "hsk_3.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -65,7 +66,9 @@
         "target": "熊猫",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "那个熊猫",
@@ -75,10 +78,13 @@
         "target": "熊猫",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -100,14 +106,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "熊猫",
+      "chinese": "一般来说，熊猫每天要睡很多次觉。",
+      "pinyin": "yī bān lái shuō xióng māo měi tiān yào shuì hěn duō cì jué",
+      "meaningVi": "Thông thường mà nói, gấu trúc mỗi ngày phải ngủ rất nhiều lần.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_54",
+      "grammarTopic": "Cách dùng cụm từ 「一般来说」",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:熊猫",
       "title": "Cách dùng 熊猫",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_54",
+      "title": "Cách dùng cụm từ 「一般来说」",
+      "syntax": "一般来说，+ câu nhận xét",
+      "explanationVi": "Cụm từ 「一般来说」 thường đứng đầu câu để nêu ra một nhận xét mang tính khái quát hoặc thông thường. Nó tương đương với nghĩa “nói chung là” hoặc “thông thường mà nói” trong tiếng Việt.",
+      "tipsVi": "Bạn có thể dùng 「一般来说」 để mở đầu câu khi muốn đưa ra một kết luận dựa trên đa số trường hợp.",
+      "attentionsVi": "Không nên dùng cụm từ này cho những sự việc mang tính chất cá nhân, riêng biệt hoặc quá cụ thể.",
+      "examples": [
+        {
+          "chinese": "一般来说，熊猫每天要睡很多次觉。",
+          "pinyin": "yī bān lái shuō xióng māo měi tiān yào shuì hěn duō cì jué",
+          "meaningVi": "Thông thường mà nói, gấu trúc mỗi ngày phải ngủ rất nhiều lần."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -145,6 +185,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "gấu trúc",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

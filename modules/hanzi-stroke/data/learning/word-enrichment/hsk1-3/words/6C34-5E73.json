@@ -56,10 +56,55 @@
         "target": "水平",
         "source": "hsk_2.json",
         "pinyinMethod": "exact-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "水平",
+            "chinese": "英语水平很高",
+            "pinyin": "Yīng yǔ shuǐ píng hěn gāo",
+            "meaningVi": "Trình độ tiếng Anh rất cao",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "水平",
+            "chinese": "达到这个水平",
+            "pinyin": "dá dào zhè ge shuǐ píng",
+            "meaningVi": "Đạt đến trình độ này",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "水平",
+            "chinese": "学生们的汉语水平一天一天地提高了。",
+            "pinyin": "xué shēng men de hàn yǔ shuǐ píng yī tiān yī tiān dì tí gāo le",
+            "meaningVi": "Trình độ tiếng Trung của học sinh tiến bộ lên từng ngày.",
+            "source": "new_hsk_3.json",
+            "grammarId": "hsk3_new_49",
+            "grammarTopic": "Lặp lại cụm số lượng diễn tả sự thay đổi",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 3
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "程度",
+        "pinyin": "chéng dù",
+        "meaningVi": "mức độ",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: mức độ",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -81,14 +126,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "水平",
+      "chinese": "学生们的汉语水平一天一天地提高了。",
+      "pinyin": "xué shēng men de hàn yǔ shuǐ píng yī tiān yī tiān dì tí gāo le",
+      "meaningVi": "Trình độ tiếng Trung của học sinh tiến bộ lên từng ngày.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_49",
+      "grammarTopic": "Lặp lại cụm số lượng diễn tả sự thay đổi",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:水平",
       "title": "Cách dùng 水平",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_49",
+      "title": "Lặp lại cụm số lượng diễn tả sự thay đổi",
+      "syntax": "Số từ + Lượng từ + Số từ + Lượng từ (ví dụ: 一点儿一点儿)",
+      "explanationVi": "Cấu trúc lặp lại này được dùng để mô tả một hành động hoặc sự thay đổi diễn ra từng chút một hoặc từng bước một. Nó giúp nhấn mạnh quá trình tích lũy dần dần của sự việc trong câu.",
+      "tipsVi": "Bạn có thể dùng cấu trúc này với các cụm như 「一点儿一点儿」 (từng chút một) hoặc 「一步一步」 (từng bước một).",
+      "attentionsVi": "Lưu ý rằng cấu trúc này không phải là phép nhân số học mà là cách diễn đạt trạng thái tăng dần hoặc chậm rãi.",
+      "examples": [
+        {
+          "chinese": "学生们的汉语水平一天一天地提高了。",
+          "pinyin": "xué shēng men de hàn yǔ shuǐ píng yī tiān yī tiān dì tí gāo le",
+          "meaningVi": "Trình độ tiếng Trung của học sinh tiến bộ lên từng ngày."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -157,7 +236,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "mức độ; tiêu chuẩn",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

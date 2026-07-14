@@ -56,10 +56,32 @@
         "target": "外面",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "外边",
+        "pinyin": "wài biān",
+        "meaningVi": "bên ngoài",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bên ngoài",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "以外",
+        "pinyin": "yǐ wài",
+        "meaningVi": "bên ngoài",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bên ngoài",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -81,14 +103,79 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "外面",
+      "chinese": "虽然外面很冷，但是房间里很热。",
+      "pinyin": "suī rán wài miàn hěn lěng dàn shì fáng jiān lǐ hěn rè",
+      "meaningVi": "Mặc dù bên ngoài rất lạnh nhưng trong phòng rất ấm.",
+      "source": "hsk_2.json",
+      "grammarId": "hsk2_41",
+      "grammarTopic": "Cấu trúc tuy... nhưng...",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "外面",
+      "chinese": "我在外面呢，你出来吧。",
+      "pinyin": "wǒ zài wài miàn ne nǐ chū lái ba",
+      "meaningVi": "Tôi đang ở bên ngoài này, bạn ra ngoài đi.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_13",
+      "grammarTopic": "Bổ ngữ xu hướng đơn giản",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:外面",
       "title": "Cách dùng 外面",
       "partOfSpeech": "địa từ",
       "usageNoteVi": "外面 thường chỉ không gian bên ngoài phòng/nhà hoặc ngoài trời. Khi nói về quốc gia, dùng 国外 (nước ngoài).",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_41",
+      "title": "Cấu trúc tuy... nhưng...",
+      "syntax": "虽然 (suīrán) + Mệnh đề 1, 但是 (dànshì) + Mệnh đề 2",
+      "explanationVi": "Cấu trúc này dùng để nối hai vế câu có quan hệ đối lập hoặc nhượng bộ, tương ứng với nghĩa \"tuy... nhưng...\" trong tiếng Việt. Nó giúp người nói nhấn mạnh sự khác biệt giữa hai tình huống hoặc thực tế trái ngược nhau.",
+      "tipsVi": "Trong văn nói, bạn có thể lược bỏ từ 「虽然」 và chỉ dùng 「但是」, hoặc ngược lại, nhưng dùng cả cặp 「虽然……但是……」 sẽ giúp câu văn rõ ràng và nhấn mạnh hơn.",
+      "attentionsVi": "Lưu ý rằng trong tiếng Trung, khi đã dùng 「虽然」 ở vế đầu thì vế sau thường phải có 「但是」 đi kèm, không nên lược bỏ cả hai khiến câu bị mất tính liên kết.",
+      "examples": [
+        {
+          "chinese": "虽然外面很冷，但是房间里很热。",
+          "pinyin": "suī rán wài miàn hěn lěng dàn shì fáng jiān lǐ hěn rè",
+          "meaningVi": "Mặc dù bên ngoài rất lạnh nhưng trong phòng rất ấm."
+        }
+      ],
+      "source": "hsk_2.json",
+      "curriculum": "hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_13",
+      "title": "Bổ ngữ xu hướng đơn giản",
+      "syntax": "Động từ + 来 (lái) / 去 (qù)",
+      "explanationVi": "Bổ ngữ xu hướng đơn dùng để chỉ hướng di chuyển của hành động. Ta dùng 「来」 khi hành động tiến về phía người nói và 「去」 khi hành động rời xa phía người nói.",
+      "tipsVi": "Hãy ghi nhớ quy tắc đơn giản: 「来」 là 'đến đây', 「去」 là 'đi đó'.",
+      "attentionsVi": "Nếu tân ngữ chỉ nơi chốn, phải đặt giữa động từ và bổ ngữ (ví dụ: 回家去) hoặc sau bổ ngữ.",
+      "examples": [
+        {
+          "chinese": "我在外面呢，你出来吧。",
+          "pinyin": "wǒ zài wài miàn ne nǐ chū lái ba",
+          "meaningVi": "Tôi đang ở bên ngoài này, bạn ra ngoài đi."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -157,7 +244,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "bên ngoài, ngoài trời; nước ngoài",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -57,10 +57,44 @@
         "target": "聊天{儿}",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "聊天{儿}",
+            "chinese": "关于聊天{儿}",
+            "pinyin": "Guānyú 聊天{儿}",
+            "meaningVi": "Về trò chuyện",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
+      }
+    ],
+    "relatedWords": [
+      {
+        "targetWord": "聊天儿",
+        "pinyin": "liáo tiānr ",
+        "meaningVi": "Trò chuyện",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_1.json",
         "reviewStatus": "reviewed-local"
       }
     ],
-    "relatedWords": []
+    "candidateRelations": [
+      {
+        "targetWord": "聊天儿",
+        "pinyin": "liáo tiānr ",
+        "meaningVi": "Trò chuyện",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: trò chuyện",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -96,10 +130,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:聊天{儿}",
       "title": "Cách dùng 聊天{儿}",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Dùng để chỉ trò chuyện.",
       "explanationVi": "trò chuyện — từ ghép mang nghĩa này.",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -133,7 +170,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 1,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "trò chuyện",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

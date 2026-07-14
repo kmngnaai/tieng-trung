@@ -54,10 +54,23 @@
         "target": "公平",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "公道",
+        "pinyin": "gōng dao",
+        "meaningVi": "công bằng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: công bằng",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -79,14 +92,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "公平",
+      "chinese": "老师对每个学生都很公平。",
+      "pinyin": "lǎo shī duì měi gè xué shēng dōu hěn gōng píng",
+      "meaningVi": "Giáo viên đối xử rất công bằng với mỗi học sinh.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_49",
+      "grammarTopic": "Phân biệt 平等 và 公平",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "公平",
+      "chinese": "本着公平、公正的原则。",
+      "pinyin": "běn zhe gōng píng gōng zhèng de yuán zé",
+      "meaningVi": "Dựa trên nguyên tắc công bằng, công chính.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_56",
+      "grammarTopic": "Cách dùng 本着",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:公平",
       "title": "Cách dùng 公平",
       "partOfSpeech": "adjective",
       "usageNoteVi": "Tính từ chỉ sự công minh, đúng đắn.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_49",
+      "title": "Phân biệt 平等 và 公平",
+      "syntax": "平等 (Bình đẳng - Vị thế/Quyền lợi) vs. 公平 (Công bằng - Cách đối xử)",
+      "explanationVi": "「平等」 thường dùng để chỉ sự ngang hàng về địa vị, quyền lợi hoặc cơ hội giữa các đối tượng. Trong khi đó, 「公平」 nhấn mạnh vào sự không thiên vị, hợp lý trong cách phân chia lợi ích hoặc giải quyết vấn đề dựa trên đạo đức và nguyên tắc.",
+      "tipsVi": "Hãy nhớ đơn giản: 「平等」 là 'không phân biệt cao thấp', còn 「公平」 là 'không thiên vị, không bất công'.",
+      "attentionsVi": "Đừng nhầm lẫn giữa hai từ này khi nói về luật pháp hoặc đối xử; dùng 「平等」 cho quyền lợi chung và 「公平」 cho sự minh bạch, công tâm trong xử lý tình huống.",
+      "examples": [
+        {
+          "chinese": "老师对每个学生都很公平。",
+          "pinyin": "lǎo shī duì měi gè xué shēng dōu hěn gōng píng",
+          "meaningVi": "Giáo viên đối xử rất công bằng với mỗi học sinh."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_56",
+      "title": "Cách dùng 本着",
+      "syntax": "本着 (běnzhe) + Danh từ (nguyên tắc, tinh thần, thái độ)",
+      "explanationVi": "Cấu trúc 「本着」 được dùng như một giới từ để diễn tả việc hành động dựa trên một nguyên tắc, tinh thần hoặc thái độ cụ thể nào đó. Nó thường xuất hiện trong các văn bản mang tính trang trọng hoặc thông báo.",
+      "tipsVi": "Bạn có thể hiểu 「本着」 tương đương với 「抱着」 (ôm lấy/giữ lấy) khi kết hợp với các từ chỉ tinh thần hoặc thái độ.",
+      "attentionsVi": "Cấu trúc này chủ yếu dùng trong ngữ cảnh trang trọng, không nên dùng trong giao tiếp đời thường hàng ngày.",
+      "examples": [
+        {
+          "chinese": "本着公平、公正的原则。",
+          "pinyin": "běn zhe gōng píng gōng zhèng de yuán zé",
+          "meaningVi": "Dựa trên nguyên tắc công bằng, công chính."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -120,7 +198,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "công bằng",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

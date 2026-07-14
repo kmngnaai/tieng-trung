@@ -54,7 +54,9 @@
         "target": "下边",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "下边一层",
@@ -64,10 +66,32 @@
         "target": "下边",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "下面",
+        "pinyin": "xià miàn",
+        "meaningVi": "bên dưới",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bên dưới",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "底下",
+        "pinyin": "dǐ xia",
+        "meaningVi": "bên dưới",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bên dưới",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -99,14 +123,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "下边",
+      "chinese": "家月到下边了，你下去接她吧。",
+      "pinyin": "jiā yuè dào xià biān le nǐ xià qù jiē tā ba",
+      "meaningVi": "Gia Nguyệt đến phía dưới rồi, bạn xuống đón cô ấy đi.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_13",
+      "grammarTopic": "Bổ ngữ xu hướng đơn giản",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:下边",
       "title": "Cách dùng 下边",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Khẩu ngữ miền Bắc chỉ vị trí thấp hơn. Miền Nam dùng 下面.",
       "explanationVi": "Ghép nghĩa: 下 (dưới) + 边 (bên, cạnh) = phía bên dưới.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_13",
+      "title": "Bổ ngữ xu hướng đơn giản",
+      "syntax": "Động từ + 来 (lái) / 去 (qù)",
+      "explanationVi": "Bổ ngữ xu hướng đơn dùng để chỉ hướng di chuyển của hành động. Ta dùng 「来」 khi hành động tiến về phía người nói và 「去」 khi hành động rời xa phía người nói.",
+      "tipsVi": "Hãy ghi nhớ quy tắc đơn giản: 「来」 là 'đến đây', 「去」 là 'đi đó'.",
+      "attentionsVi": "Nếu tân ngữ chỉ nơi chốn, phải đặt giữa động từ và bổ ngữ (ví dụ: 回家去) hoặc sau bổ ngữ.",
+      "examples": [
+        {
+          "chinese": "家月到下边了，你下去接她吧。",
+          "pinyin": "jiā yuè dào xià biān le nǐ xià qù jiē tā ba",
+          "meaningVi": "Gia Nguyệt đến phía dưới rồi, bạn xuống đón cô ấy đi."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -140,7 +198,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "bên dưới",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -44,7 +44,8 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -66,14 +67,79 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "五十",
+      "chinese": "李老师今年五十岁了。",
+      "pinyin": "lǐ lǎo shī jīn nián wǔ shí suì le",
+      "meaningVi": "Cô Lý năm nay 50 tuổi rồi.",
+      "source": "hsk_1.json",
+      "grammarId": "hsk1_10",
+      "grammarTopic": "Trợ từ 了 chỉ sự thay đổi",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "五十",
+      "chinese": "为了健康，我们应该每年都去医院做检查，尤其是那些四五十岁的人。",
+      "pinyin": "wèi le jiàn kāng wǒ men yīng gāi měi nián dōu qù yī yuàn zuò jiǎn chá yóu qí shì nà xiē sì wǔ shí suì de rén",
+      "meaningVi": "Vì sức khỏe, chúng ta nên đi bệnh viện kiểm tra hằng năm, đặc biệt là những người ở độ tuổi bốn, năm mươi.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_24",
+      "grammarTopic": "Cách dùng phó từ 尤其",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:五十",
       "title": "Cách dùng 五十",
       "partOfSpeech": "số từ",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk1_10",
+      "title": "Trợ từ 了 chỉ sự thay đổi",
+      "syntax": "S + [tính từ/động từ] + 了",
+      "explanationVi": "Trợ từ 「了」 đặt cuối câu để chỉ sự thay đổi trạng thái hoặc một tình huống mới so với trước đây. Nó giúp người nghe hiểu rằng sự vật, hiện tượng đã có bước chuyển biến hoặc không còn như cũ.",
+      "tipsVi": "Hãy tưởng tượng 「了」 như từ \"rồi\" trong tiếng Việt, dùng để nhấn mạnh sự việc đã thay đổi hoặc đã đạt đến một con số, trạng thái mới.",
+      "attentionsVi": "Đừng nhầm lẫn 「了」 chỉ sự thay đổi với 「了」 dùng sau động từ để chỉ hành động đã hoàn thành; ở đây 「了」 chủ yếu nhấn mạnh tính mới của tình huống.",
+      "examples": [
+        {
+          "chinese": "李老师今年五十岁了。",
+          "pinyin": "lǐ lǎo shī jīn nián wǔ shí suì le",
+          "meaningVi": "Cô Lý năm nay 50 tuổi rồi."
+        }
+      ],
+      "source": "hsk_1.json",
+      "curriculum": "hsk",
+      "hskLevel": 1,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_24",
+      "title": "Cách dùng phó từ 尤其",
+      "syntax": "Chủ ngữ + [尤其] + là/động từ/tính từ",
+      "explanationVi": "Phó từ 「尤其」 dùng để nhấn mạnh một khía cạnh hoặc đối tượng nổi bật nhất trong một nhóm. Nó có nghĩa tương đương với 'đặc biệt là' hoặc 'nhất là' trong tiếng Việt.",
+      "tipsVi": "Bạn có thể dùng 「尤其是」 để nhấn mạnh rõ ràng hơn về đối tượng được nhắc đến sau đó.",
+      "attentionsVi": "「尤其」 là phó từ, vì vậy nó thường đứng trước động từ hoặc tính từ, không đứng đầu câu để nối hai vế câu hoàn chỉnh như liên từ.",
+      "examples": [
+        {
+          "chinese": "为了健康，我们应该每年都去医院做检查，尤其是那些四五十岁的人。",
+          "pinyin": "wèi le jiàn kāng wǒ men yīng gāi měi nián dōu qù yī yuàn zuò jiǎn chá yóu qí shì nà xiē sì wǔ shí suì de rén",
+          "meaningVi": "Vì sức khỏe, chúng ta nên đi bệnh viện kiểm tra hằng năm, đặc biệt là những người ở độ tuổi bốn, năm mươi."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -91,8 +157,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "năm mươi",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

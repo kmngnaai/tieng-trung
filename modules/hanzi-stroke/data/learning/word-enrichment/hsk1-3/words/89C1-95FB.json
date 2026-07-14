@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "kiến văn — những điều đã thấy và nghe",
+      "meaningShortVi": "kiến thức",
       "meaningFullVi": "kiến văn — những điều đã thấy và nghe, kinh nghiệm thực tế thu thập được; vốn hiểu biết qua trải nghiệm",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "kiến văn — những điều đã thấy và nghe",
+  "meaningShortVi": "kiến thức",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -52,7 +52,9 @@
         "target": "见闻",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "丰富见闻",
@@ -62,7 +64,9 @@
         "target": "见闻",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "见闻广博",
@@ -72,7 +76,20 @@
         "target": "见闻",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "见闻",
+            "chinese": "他的见闻广博，知道很多奇闻异事。",
+            "pinyin": "Tā de jiànwén guǎngbó, zhīdào hěnduō qíwén yìshì.",
+            "meaningVi": "Vốn hiểu biết của anh ấy rộng rãi, biết nhiều chuyện lạ kỳ.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "旅途见闻",
@@ -82,10 +99,23 @@
         "target": "见闻",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "知识",
+        "pinyin": "zhī shi",
+        "meaningVi": "kiến thức",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: kiến thức",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -131,10 +161,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:见闻",
       "title": "Cách dùng 见闻",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "见闻 thiên về vốn hiểu biết thực tế qua trải nghiệm (thấy + nghe), khác với 知识 (kiến thức học thuật) hay 常识 (thường thức). Thường dùng với 增长, 丰富, 广博.",
       "explanationVi": "见 (kiến — thấy, gặp) + 闻 (văn — nghe, tin tức) — những gì đã thấy và nghe, tổng hợp thành vốn hiểu biết thực tế.",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -152,7 +185,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 4,
+      "sentences": 4,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "kiến văn — những điều đã thấy và nghe, kinh nghiệm thực tế thu thập được; vốn hiểu biết qua trải nghiệm",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

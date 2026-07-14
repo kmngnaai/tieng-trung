@@ -56,10 +56,64 @@
         "target": "好像",
         "source": "hsk_1.json",
         "pinyinMethod": "exact-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "好像",
+            "chinese": "好像下雨了",
+            "pinyin": "hǎo xiàng xià yǔ le",
+            "meaningVi": "Hình như trời mưa rồi",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "好像",
+            "chinese": "他好像不高兴",
+            "pinyin": "tā hǎo xiàng bù gāo xìng",
+            "meaningVi": "Anh ấy dường như không vui",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "好像",
+            "chinese": "我好像在哪儿看到过这个箱子。",
+            "pinyin": "wǒ hǎo xiàng zài nǎ ér kàn dào guò zhè gè xiāng zi",
+            "meaningVi": "Tôi hình như đã thấy cái vali này ở đâu đó rồi.",
+            "source": "new_hsk_3.json",
+            "grammarId": "hsk3_new_2",
+            "grammarTopic": "Đại từ nghi vấn chỉ đối tượng không xác định",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 3
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "看来",
+        "pinyin": "kàn lái",
+        "meaningVi": "dường như",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: dường như",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "仿佛",
+        "pinyin": "fǎng fú",
+        "meaningVi": "dường như",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: dường như",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -81,14 +135,62 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "好像",
+      "chinese": "我好像在哪儿看到过这个箱子。",
+      "pinyin": "wǒ hǎo xiàng zài nǎ ér kàn dào guò zhè gè xiāng zi",
+      "meaningVi": "Tôi hình như đã thấy cái vali này ở đâu đó rồi.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_2",
+      "grammarTopic": "Đại từ nghi vấn chỉ đối tượng không xác định",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:好像",
       "title": "Cách dùng 好像",
       "partOfSpeech": "verb",
       "usageNoteVi": "Biểu thị sự phỏng đoán, không chắc chắn",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_14",
+      "title": "Cách dùng \"似乎\" để phỏng đoán",
+      "syntax": "S + 似乎 + V/Adj / (cụm) V | Phỏng đoán",
+      "explanationVi": "Phó từ 「似乎」 dùng để diễn tả sự suy đoán, cảm giác hoặc nhận định chủ quan của người nói về một sự việc, với nghĩa là \"hình như\", \"dường như\". Từ này làm giảm mức độ khẳng định, giúp câu văn trở nên mềm mại và khách quan hơn.",
+      "tipsVi": "Bạn có thể dùng 「似乎」 ở đầu câu hoặc sau chủ ngữ đều được, nó thường mang sắc thái lịch sự và nhẹ nhàng hơn so với 「好像」.",
+      "attentionsVi": "「似乎」 là một phó từ chỉ trạng thái tâm lý hoặc phỏng đoán, vì vậy không nên dùng trong các câu khẳng định chắc chắn hoặc các sự thật hiển nhiên.",
+      "examples": [],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_2",
+      "title": "Đại từ nghi vấn chỉ đối tượng không xác định",
+      "syntax": "Đại từ nghi vấn (谁, 什么, 哪儿, 怎么) + ...",
+      "explanationVi": "Trong tiếng Trung, các đại từ nghi vấn không chỉ dùng để hỏi mà còn có thể chỉ một đối tượng, địa điểm hoặc cách thức không xác định. Cách dùng này mang nghĩa tương đương với các từ như \"ai đó\", \"cái gì đó\" hoặc \"đâu đó\" trong tiếng Việt.",
+      "tipsVi": "Hãy chú ý ngữ cảnh của câu để phân biệt giữa câu hỏi nghi vấn và cách dùng chỉ đối tượng không xác định này.",
+      "attentionsVi": "Cấu trúc này thường xuất hiện trong các câu trần thuật, không mang ngữ điệu hỏi hoặc cuối câu không có dấu hỏi chấm.",
+      "examples": [
+        {
+          "chinese": "我好像在哪儿看到过这个箱子。",
+          "pinyin": "wǒ hǎo xiàng zài nǎ ér kàn dào guò zhè gè xiāng zi",
+          "meaningVi": "Tôi hình như đã thấy cái vali này ở đâu đó rồi."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -177,7 +279,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 3,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "dường như; hình như",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

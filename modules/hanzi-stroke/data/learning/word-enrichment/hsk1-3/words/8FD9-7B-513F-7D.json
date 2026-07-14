@@ -24,14 +24,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Ở đây",
+      "meaningShortVi": "ở đây",
       "meaningFullVi": "Ở đây, nơi này; chỗ này (phương ngữ Bắc Kinh với erhua 儿化)",
       "partOfSpeech": "other",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Ở đây",
+  "meaningShortVi": "ở đây",
   "wordType": "other",
   "wordTypes": [
     "other"
@@ -58,7 +58,40 @@
         "target": "这{儿}",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "这{儿}",
+            "chinese": "我这{儿}有好吃的。",
+            "pinyin": "Wǒ zhèr yǒu hǎochī de.",
+            "meaningVi": "Ở đây tôi có đồ ăn ngon.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "这{儿}",
+            "chinese": "你坐在这{儿}等我。",
+            "pinyin": "Nǐ zuò zài zhèr děng wǒ.",
+            "meaningVi": "Bạn ngồi ở đây đợi tôi.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "这{儿}",
+            "chinese": "这{儿}很漂亮。",
+            "pinyin": "Zhèr hěn piàoliang.",
+            "meaningVi": "Nơi này rất đẹp.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 3
       },
       {
         "text": "坐这{儿}",
@@ -68,7 +101,9 @@
         "target": "这{儿}",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "来这{儿}",
@@ -78,10 +113,51 @@
         "target": "这{儿}",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
+      }
+    ],
+    "relatedWords": [
+      {
+        "targetWord": "这儿",
+        "pinyin": "zhèr",
+        "meaningVi": "ở đây",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_1.json",
         "reviewStatus": "reviewed-local"
       }
     ],
-    "relatedWords": []
+    "candidateRelations": [
+      {
+        "targetWord": "这儿",
+        "pinyin": "zhèr",
+        "meaningVi": "ở đây",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: ở đây",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "这边",
+        "pinyin": "zhè biān",
+        "meaningVi": "ở đây",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: ở đây",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "这里",
+        "pinyin": "zhè li",
+        "meaningVi": "ở đây",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: ở đây",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -117,10 +193,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:这{儿}",
       "title": "Cách dùng 这{儿}",
       "partOfSpeech": "other",
       "usageNoteVi": "这 (này/đây) + 儿 (hậu tố erhua Bắc Kinh) — 'nơi này, ở đây'. 这儿 là dạng khẩu ngữ thường dùng hơn 这里 trong văn nói Bắc Kinh. Đối nghĩa: 那儿 (nàr) = ở đó. Erhua {儿} là đặc trưng phương ngữ Bắc, biến 'zhè' thành 'zhèr'.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -164,7 +243,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 1,
+      "candidateRelations": 3
+    }
+  },
+  "meaningFullVi": "Ở đây, nơi này; chỗ này (phương ngữ Bắc Kinh với erhua 儿化)",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

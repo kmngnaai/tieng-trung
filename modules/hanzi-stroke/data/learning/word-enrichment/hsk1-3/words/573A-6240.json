@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "nơi chốn",
+      "meaningShortVi": "nơi",
       "meaningFullVi": "nơi chốn; địa điểm; không gian dành cho mục đích nào đó",
       "partOfSpeech": "danh từ (Noun - Place)",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "nơi chốn",
+  "meaningShortVi": "nơi",
   "wordType": "danh từ (Noun - Place)",
   "wordTypes": [
     "danh từ (Noun - Place)"
@@ -54,7 +54,20 @@
         "target": "场所",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "场所",
+            "chinese": "这是一个公共场所。",
+            "pinyin": "Zhè shì yī gè gōnggòng chǎngsuǒ.",
+            "meaningVi": "Đây là một nơi công cộng.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "活动场所",
@@ -64,10 +77,23 @@
         "target": "场所",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "地方",
+        "pinyin": "dì fang",
+        "meaningVi": "nơi",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: nơi",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -93,10 +119,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:场所",
       "title": "Cách dùng 场所",
       "partOfSpeech": "danh từ (Noun - Place)",
       "usageNoteVi": "Chỉ một nơi được chỉ định cho hoạt động cụ thể. Trang trọng hơn 地方. Thường đi với: 公共 (công cộng), 娱乐 (giải trí), 聚会 (họp mặt). Synonym: 地点 (vị trí), 场地 (sân bãi).",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +159,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "nơi chốn; địa điểm; không gian dành cho mục đích nào đó",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

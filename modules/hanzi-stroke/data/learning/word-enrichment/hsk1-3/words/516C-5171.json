@@ -51,7 +51,8 @@
         "meaningVi": "xe buýt",
         "meaningFullVi": "xe buýt",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 1",
+        "hskLevel": 1,
+        "source": "hsk_1.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -64,7 +65,20 @@
         "target": "公共",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "公共",
+            "chinese": "公共场所不能吸烟。",
+            "pinyin": "Gōnggòng chǎngsuǒ bùnéng xīyān.",
+            "meaningVi": "Không được hút thuốc ở nơi công cộng.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "公共交通",
@@ -74,10 +88,23 @@
         "target": "公共",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "共同",
+        "pinyin": "gòng tóng",
+        "meaningVi": "chung",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: chung",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -89,14 +116,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "公共",
+      "chinese": "这个房子离公司也不远，你可以坐公共汽车，甚至可以骑自行车上班。",
+      "pinyin": "zhè gè fáng zi lí gōng sī yě bù yuǎn nǐ kě yǐ zuò gōng gòng qì chē shèn zhì kě yǐ qí zì xíng chē shàng bān",
+      "meaningVi": "Căn nhà này cách công ty cũng không xa, bạn có thể đi xe buýt, thậm chí có thể đạp xe đi làm.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_20",
+      "grammarTopic": "Cách dùng 甚至 (thậm chí)",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:公共",
       "title": "Cách dùng 公共",
       "partOfSpeech": "tính từ",
       "usageNoteVi": "公共 chỉ những gì thuộc về mọi người, không riêng tư. Đối lập với 私人 (cá nhân). Thường đi với place (场所), transport (交通), service (服务).",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_20",
+      "title": "Cách dùng 甚至 (thậm chí)",
+      "syntax": "S + (也/都) + 甚至 + [Danh từ/Động từ/Vế câu]",
+      "explanationVi": "Phó từ 「甚至」 được dùng để nhấn mạnh một ví dụ cực đoan hoặc nổi bật nhất trong một chuỗi liệt kê. Nó có nghĩa là \"thậm chí\" hoặc \"ngay cả\", thường được đặt trước thành phần cuối cùng để làm nổi bật mức độ cao của sự việc.",
+      "tipsVi": "Để tăng cường sắc thái nhấn mạnh, 「甚至」 thường được dùng kết hợp với 「也」 hoặc 「都」 ở vế sau của câu.",
+      "attentionsVi": "Không nên nhầm lẫn 「甚至」 với các liên từ nối đơn thuần; cần đảm bảo thành phần đứng sau nó thực sự mang tính chất nhấn mạnh hoặc gây ngạc nhiên.",
+      "examples": [
+        {
+          "chinese": "这个房子离公司也不远，你可以坐公共汽车，甚至可以骑自行车上班。",
+          "pinyin": "zhè gè fáng zi lí gōng sī yě bù yuǎn nǐ kě yǐ zuò gōng gòng qì chē shèn zhì kě yǐ qí zì xíng chē shàng bān",
+          "meaningVi": "Căn nhà này cách công ty cũng không xa, bạn có thể đi xe buýt, thậm chí có thể đạp xe đi làm."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -129,6 +190,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "chung, công cộng",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

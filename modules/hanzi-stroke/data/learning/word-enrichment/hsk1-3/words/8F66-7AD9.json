@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "trạm xe (buýt",
+      "meaningShortVi": "trạm xe buýt",
       "meaningFullVi": "trạm xe (buýt/tàu)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "trạm xe (buýt",
+  "meaningShortVi": "trạm xe buýt",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -53,7 +53,8 @@
         "meaningVi": "ga xe lửa",
         "meaningFullVi": "ga xe lửa, nhà ga; nơi tàu hỏa dừng và đón trả khách",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 1",
+        "hskLevel": 1,
+        "source": "hsk_1.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -66,7 +67,20 @@
         "target": "车站",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "车站",
+            "chinese": "火车站很大",
+            "pinyin": "Huǒchēzhàn hěn dà",
+            "meaningVi": "Ga tàu rất lớn",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "汽车站",
@@ -76,7 +90,20 @@
         "target": "车站",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "车站",
+            "chinese": "公共汽车站",
+            "pinyin": "Gōnggòng qìchēzhàn",
+            "meaningVi": "Trạm xe buýt",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "公共汽车站",
@@ -86,10 +113,24 @@
         "target": "车站",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "车站",
+            "chinese": "公共汽车站",
+            "pinyin": "Gōnggòng qìchēzhàn",
+            "meaningVi": "Trạm xe buýt",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -131,14 +172,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "车站",
+      "chinese": "附近有三四个车站。",
+      "pinyin": "fù jìn yǒu sān sì gè chē zhàn",
+      "meaningVi": "Gần đây có khoảng ba bốn trạm xe.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_25",
+      "grammarTopic": "Biểu thị số lượng ước chừng",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:车站",
       "title": "Cách dùng 车站",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Dùng cho mọi loại trạm xe: buýt, tàu, ô tô. Trong tiếng Việt phân biệt 'trạm' (nhỏ) và 'ga' (lớn, tàu hỏa).",
       "explanationVi": "Ghép nghĩa: 车 (xe) + 站 (trạm dừng) → nơi xe dừng đón/tiễn khách.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_25",
+      "title": "Biểu thị số lượng ước chừng",
+      "syntax": "Số từ A + Số từ B (ví dụ: 三四, 五六)",
+      "explanationVi": "Trong tiếng Trung, bạn có thể đặt hai số đếm liên tiếp cạnh nhau để chỉ một số lượng ước chừng. Cách dùng này tương đương với cách nói \"khoảng... hoặc...\" trong tiếng Việt.",
+      "tipsVi": "Cách dùng này rất phổ biến trong giao tiếp hàng ngày để diễn tả sự không chính xác tuyệt đối, ví dụ 「三四个人」 có nghĩa là \"khoảng 3 hoặc 4 người\".",
+      "attentionsVi": "Lưu ý không nên dùng các số cách quãng quá xa, chỉ dùng hai số liền kề nhau để tạo sắc thái ước lượng tự nhiên.",
+      "examples": [
+        {
+          "chinese": "附近有三四个车站。",
+          "pinyin": "fù jìn yǒu sān sì gè chē zhàn",
+          "meaningVi": "Gần đây có khoảng ba bốn trạm xe."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -196,6 +271,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 3,
+      "sentences": 5,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "trạm xe (buýt/tàu)",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

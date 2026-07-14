@@ -52,7 +52,20 @@
         "target": "差异",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "差异",
+            "chinese": "文化差异影响人们的思维方式",
+            "pinyin": "Wénhuà chāyì yǐngxiǎng rénmen de sīwéi fāngshì",
+            "meaningVi": "Sự khác biệt văn hóa ảnh hưởng đến cách tư duy của mọi người",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "个体差异",
@@ -62,7 +75,20 @@
         "target": "差异",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "差异",
+            "chinese": "个体差异在教育中很重要",
+            "pinyin": "Gètǐ chāyì zài jiàoyù zhōng hěn zhòngyào",
+            "meaningVi": "Sự khác biệt cá nhân rất quan trọng trong giáo dục",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "存在差异",
@@ -72,10 +98,32 @@
         "target": "差异",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "差别",
+        "pinyin": "chā bié",
+        "meaningVi": "sự khác biệt",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: sự khác biệt",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "分别",
+        "pinyin": "fēn bié",
+        "meaningVi": "sự khác biệt",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: sự khác biệt",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -121,10 +169,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:差异",
       "title": "Cách dùng 差异",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "差异 mang tính trung lập và học thuật hơn 不同 (bùtóng — khác nhau). Thường dùng trong bối cảnh phân tích, nghiên cứu. 差异化 (chāyìhuà) = sự khác biệt hóa (trong kinh doanh).",
       "explanationVi": "差 (sai — sai khác, không đồng nhất) + 异 (dị — khác nhau, dị thường) ghép nghĩa: sự chênh lệch, không giống nhau giữa hai hay nhiều thứ.",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -142,7 +193,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 4,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "sự khác biệt, sự sai lệch (sai dị)",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -23,14 +23,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Chủ nhật (ngày thứ bảy trong tuần)",
+      "meaningShortVi": "Chủ nhật",
       "meaningFullVi": "Chủ nhật (ngày thứ bảy trong tuần)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Chủ nhật (ngày thứ bảy trong tuần)",
+  "meaningShortVi": "Chủ nhật",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -55,7 +55,20 @@
         "target": "星期日",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "星期日",
+            "chinese": "这个星期日你有空吗?",
+            "pinyin": "Zhège xīngqīrì nǐ yǒukòng ma?",
+            "meaningVi": "Chủ nhật này bạn rảnh không?",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "每个星期日",
@@ -65,7 +78,9 @@
         "target": "星期日",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "星期日早上",
@@ -75,10 +90,23 @@
         "target": "星期日",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "星期天",
+        "pinyin": "xīng qī tiān",
+        "meaningVi": "Chủ nhật",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: Chủ nhật",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -124,10 +152,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:星期日",
       "title": "Cách dùng 星期日",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Danh từ thời gian, chỉ ngày Chủ nhật. Nghĩa giống 星期天, 星期日 thiên về văn viết, 星期天 thiên về văn nói. Phân biệt với 礼拜日 (cũng nghĩa Chủ nhật nhưng 口语 hơn).",
       "explanationVi": "Ghép nghĩa: 星期 (thứ) + 日 (ngày) → ngày thứ bảy trong tuần, ngày nghỉ.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -176,7 +207,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 4,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "Chủ nhật (ngày thứ bảy trong tuần)",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

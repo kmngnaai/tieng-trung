@@ -52,10 +52,45 @@
         "target": "的确",
         "source": "hsk_3.json",
         "pinyinMethod": "exact-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "的确",
+            "chinese": "这个的确很好。",
+            "pinyin": "zhè ge dí què hěn hǎo。",
+            "meaningVi": "thật vậy này rất tốt.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "的确",
+            "chinese": "我喜欢这个的确。",
+            "pinyin": "wǒ xǐ huan zhè ge dí què。",
+            "meaningVi": "Tôi thích thật vậy này.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "的确",
+            "chinese": "他的中文的确进步很快。",
+            "pinyin": "tā de zhōng wén de què jìn bù hěn kuài",
+            "meaningVi": "Tiếng Trung của anh ấy quả thực tiến bộ rất nhanh.",
+            "source": "hsk_5.json",
+            "grammarId": "hsk5_77",
+            "grammarTopic": "Cách dùng phó từ 的确",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 3
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -77,14 +112,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "的确",
+      "chinese": "他的中文的确进步很快。",
+      "pinyin": "tā de zhōng wén de què jìn bù hěn kuài",
+      "meaningVi": "Tiếng Trung của anh ấy quả thực tiến bộ rất nhanh.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_77",
+      "grammarTopic": "Cách dùng phó từ 的确",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:的确",
       "title": "Cách dùng 的确",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_77",
+      "title": "Cách dùng phó từ 的确",
+      "syntax": "Chủ ngữ + 的确 (díquè) + tính từ/động từ",
+      "explanationVi": "Phó từ 「的确」 được dùng để khẳng định tính xác thực của một sự việc hoặc đặc điểm nào đó, tương đương với nghĩa “quả thực”, “thật sự là”. Từ này thường được đặt trước tính từ hoặc động từ để nhấn mạnh sự đồng tình hoặc xác nhận thông tin.",
+      "tipsVi": "Bạn có thể sử dụng 「的确」 để trả lời khi muốn khẳng định ý kiến của người đối diện là đúng.",
+      "attentionsVi": "Không nên nhầm lẫn 「的确」 với 「确实」, dù chúng có nghĩa tương đồng nhưng 「的确」 thường thiên về khẳng định tính khách quan của sự việc.",
+      "examples": [
+        {
+          "chinese": "他的中文的确进步很快。",
+          "pinyin": "tā de zhōng wén de què jìn bù hěn kuài",
+          "meaningVi": "Tiếng Trung của anh ấy quả thực tiến bộ rất nhanh."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -102,7 +171,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "thật vậy",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

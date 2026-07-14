@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "hảo đa",
+      "meaningShortVi": "nhiều lắm",
       "meaningFullVi": "hảo đa",
       "partOfSpeech": "adjective",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "hảo đa",
+  "meaningShortVi": "nhiều lắm",
   "wordType": "adjective",
   "wordTypes": [
     "adjective"
@@ -55,7 +55,20 @@
         "target": "好多",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "好多",
+            "chinese": "好多人",
+            "pinyin": "hǎo duō rén",
+            "meaningVi": "Nhiều người",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "好多事",
@@ -65,7 +78,9 @@
         "target": "好多",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "好多东西",
@@ -75,10 +90,24 @@
         "target": "好多",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "好多",
+            "chinese": "我们吃了好多东西",
+            "pinyin": "wǒ men chī le hǎo duō dōng xi",
+            "meaningVi": "Chúng tôi ăn nhiều đồ",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -110,14 +139,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "好多",
+      "chinese": "前几天有点儿发烧，现在好多了。",
+      "pinyin": "qián jǐ tiān yǒu diǎn ér fā shāo xiàn zài hǎo duō le",
+      "meaningVi": "Mấy hôm trước hơi sốt, bây giờ đã đỡ hơn nhiều rồi.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_12",
+      "grammarTopic": "Trợ từ 了 biểu thị sự thay đổi",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:好多",
       "title": "Cách dùng 好多",
       "partOfSpeech": "adjective",
       "usageNoteVi": "Khẩu ngữ, nghĩa 'nhiều' nhẹ nhàng hơn 很多",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_12",
+      "title": "Trợ từ 了 biểu thị sự thay đổi",
+      "syntax": "S + V/Adj + 了 (Biểu thị sự thay đổi trạng thái)",
+      "explanationVi": "Trợ từ 「了」 đặt ở cuối câu để thông báo rằng tình hình đã thay đổi hoặc xuất hiện một trạng thái mới so với trước đây. Nó giúp người nghe hiểu rằng sự việc hiện tại đã khác với quá khứ.",
+      "tipsVi": "Hãy tưởng tượng 「了」 giống như từ \"rồi\" trong tiếng Việt, dùng để nhấn mạnh sự thay đổi từ \"không\" sang \"có\" hoặc từ \"chưa\" sang \"đã\".",
+      "attentionsVi": "Cần phân biệt với 「了」 đi sau động từ (biểu thị hoàn thành), 「了」 cuối câu nhấn mạnh vào kết quả hoặc tình trạng hiện tại đã thay đổi.",
+      "examples": [
+        {
+          "chinese": "前几天有点儿发烧，现在好多了。",
+          "pinyin": "qián jǐ tiān yǒu diǎn ér fā shāo xiàn zài hǎo duō le",
+          "meaningVi": "Mấy hôm trước hơi sốt, bây giờ đã đỡ hơn nhiều rồi."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -171,7 +234,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "hảo đa",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

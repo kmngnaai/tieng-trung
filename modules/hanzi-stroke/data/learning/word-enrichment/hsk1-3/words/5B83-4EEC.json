@@ -55,7 +55,20 @@
         "target": "它们",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "它们",
+            "chinese": "这些书是它们的",
+            "pinyin": "zhè xiē shū shì tā men de",
+            "meaningVi": "Những cuốn sách này là của chúng",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "那些它们",
@@ -65,10 +78,32 @@
         "target": "它们",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
+      }
+    ],
+    "relatedWords": [
+      {
+        "targetWord": "他们",
+        "pinyin": "tā men",
+        "meaningVi": "họ",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed-local"
+      },
+      {
+        "targetWord": "她们",
+        "pinyin": "tā men",
+        "meaningVi": "họ (nữ)",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_1.json",
         "reviewStatus": "reviewed-local"
       }
     ],
-    "relatedWords": []
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -94,10 +129,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:它们",
       "title": "Cách dùng 它们",
       "partOfSpeech": "pronoun",
       "usageNoteVi": "Đại từ ngôi thứ ba số nhiều chỉ vật.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -151,7 +189,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 2,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "chúng",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

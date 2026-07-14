@@ -57,10 +57,13 @@
         "target": "热情",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -82,14 +85,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "热情",
+      "chinese": "她又聪明又热情。",
+      "pinyin": "tā yòu cōng míng yòu rè qíng",
+      "meaningVi": "Cô ấy vừa thông minh vừa nhiệt tình.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_10",
+      "grammarTopic": "Cấu trúc 又...又... (Vừa... vừa...)",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "热情",
+      "chinese": "看到女儿对伙伴热情无私, 我和老公别提多高兴了。",
+      "pinyin": "kàn dào nǚ ér duì huǒ bàn rè qíng wú sī wǒ hé lǎo gōng bié tí duō gāo xīng le",
+      "meaningVi": "Thấy con gái nhiệt tình không vụ lợi với bạn bè, tôi và chồng vui mừng khôn xiết.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_2",
+      "grammarTopic": "Cấu trúc 别提多...了",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:热情",
       "title": "Cách dùng 热情",
       "partOfSpeech": "adjective",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_10",
+      "title": "Cấu trúc 又...又... (Vừa... vừa...)",
+      "syntax": "Subject + 又 + Adj/Verb 1 + 又 + Adj/Verb 2",
+      "explanationVi": "Cấu trúc 「又……又……」 dùng để diễn tả một người hoặc vật đồng thời có hai đặc điểm, trạng thái hoặc cùng thực hiện hai hành động. Đây là cách nói phổ biến để liệt kê các tính chất cùng tồn tại song song, ví dụ như 「又高又帅」 (vừa cao vừa đẹp trai).",
+      "tipsVi": "Cấu trúc này thường đi kèm với các tính từ mang cùng sắc thái ý nghĩa (cùng tốt hoặc cùng xấu) để nhấn mạnh đặc điểm của sự vật.",
+      "attentionsVi": "Lưu ý rằng 「又……又……」 chủ yếu kết hợp với tính từ hoặc động từ mang tính chất trạng thái, không dùng với các động từ chỉ hành động mang tính thời điểm.",
+      "examples": [
+        {
+          "chinese": "她又聪明又热情。",
+          "pinyin": "tā yòu cōng míng yòu rè qíng",
+          "meaningVi": "Cô ấy vừa thông minh vừa nhiệt tình."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_2",
+      "title": "Cấu trúc 别提多...了",
+      "syntax": "别提多 + tính từ + 了",
+      "explanationVi": "Cấu trúc này dùng để nhấn mạnh mức độ cực kỳ cao của một tính chất, tương đương với nghĩa \"không cần phải nói cũng biết là rất...\" hoặc \"vô cùng...\". Nó thường được dùng trong văn nói để biểu đạt cảm xúc mạnh mẽ của người nói về một sự vật hoặc sự việc nào đó.",
+      "tipsVi": "Bạn có thể hiểu đơn giản đây là cách nói cường điệu hóa thay cho các phó từ chỉ mức độ thông thường như 「很」 hay 「非常」.",
+      "attentionsVi": "Cấu trúc này mang tính khẩu ngữ mạnh, vì vậy cần tránh sử dụng trong các văn bản viết trang trọng hoặc các bài luận chính quy.",
+      "examples": [
+        {
+          "chinese": "看到女儿对伙伴热情无私, 我和老公别提多高兴了。",
+          "pinyin": "kàn dào nǚ ér duì huǒ bàn rè qíng wú sī wǒ hé lǎo gōng bié tí duō gāo xīng le",
+          "meaningVi": "Thấy con gái nhiệt tình không vụ lợi với bạn bè, tôi và chồng vui mừng khôn xiết."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -163,7 +231,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "nhiệt tình",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

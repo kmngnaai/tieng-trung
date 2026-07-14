@@ -57,7 +57,20 @@
         "target": "然后",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "然后",
+            "chinese": "然后呢",
+            "pinyin": "rán hòu ne",
+            "meaningVi": "Sau đó thì sao",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "先然后",
@@ -67,10 +80,23 @@
         "target": "然后",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "于是",
+        "pinyin": "yú shì",
+        "meaningVi": "sau đó",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: sau đó",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -92,14 +118,109 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "然后",
+      "chinese": "先把米饭做好，然后再把新鲜的水果放进去。",
+      "pinyin": "xiān bǎ mǐ fàn zuò hǎo rán hòu zài bǎ xīn xiān de shuǐ guǒ fàng jìn qù",
+      "meaningVi": "Trước tiên nấu cơm xong, sau đó mới cho trái cây tươi vào.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_33",
+      "grammarTopic": "Diễn tả trình tự hành động",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "然后",
+      "chinese": "先洗手，再吃饭，然后休息一会儿。",
+      "pinyin": "xiān xǐ shǒu zài chī fàn rán hòu xiū xī yī huì ér",
+      "meaningVi": "Trước tiên rửa tay, rồi ăn cơm, sau đó nghỉ ngơi một lát.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_33",
+      "grammarTopic": "Diễn tả trình tự hành động",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "然后",
+      "chinese": "我要先去图书馆借书，然后去游泳。",
+      "pinyin": "wǒ yào xiān qù tú shū guǎn jiè shū rán hòu qù yóu yǒng",
+      "meaningVi": "Tôi phải đi thư viện mượn sách trước, sau đó mới đi bơi.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_46",
+      "grammarTopic": "Diễn tả thứ tự hành động",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:然后",
       "title": "Cách dùng 然后",
       "partOfSpeech": "conjunction",
       "usageNoteVi": "Liên từ chỉ thứ tự thời gian.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_33",
+      "title": "Diễn tả trình tự hành động",
+      "syntax": "先 (xiān) + V1, 再/又 (zài/yòu) + V2, 然后 (ránhòu) + V3",
+      "explanationVi": "Cấu trúc này được dùng để liệt kê các hành động theo trình tự thời gian. 「先」 đứng đầu câu chỉ hành động đầu tiên, 「再/又」 chỉ hành động tiếp theo và 「然后」 giới thiệu hành động cuối cùng để câu văn mạch lạc hơn.",
+      "tipsVi": "Khi liệt kê chuỗi hành động, bạn có thể linh hoạt lược bỏ bớt hoặc thêm các từ nối như 「最后」(zuìhòu - cuối cùng) ở bước cuối để nhấn mạnh kết quả.",
+      "attentionsVi": "Cần phân biệt: 「再」 thường dùng cho hành động chưa xảy ra, trong khi 「又」 dùng cho hành động đã xảy ra hoặc lặp lại.",
+      "examples": [
+        {
+          "chinese": "先把米饭做好，然后再把新鲜的水果放进去。",
+          "pinyin": "xiān bǎ mǐ fàn zuò hǎo rán hòu zài bǎ xīn xiān de shuǐ guǒ fàng jìn qù",
+          "meaningVi": "Trước tiên nấu cơm xong, sau đó mới cho trái cây tươi vào."
+        },
+        {
+          "chinese": "先洗手，再吃饭，然后休息一会儿。",
+          "pinyin": "xiān xǐ shǒu zài chī fàn rán hòu xiū xī yī huì ér",
+          "meaningVi": "Trước tiên rửa tay, rồi ăn cơm, sau đó nghỉ ngơi một lát."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk1_new_13",
+      "title": "Câu liên động",
+      "syntax": "S + V1 + O1 + V2 + O2",
+      "explanationVi": "Câu liên động là câu có từ hai động từ trở lên cùng làm vị ngữ. Cấu trúc này thường dùng để diễn tả mục đích hoặc trình tự của hành động, trong đó động từ thứ hai thường giải thích lý do thực hiện động từ thứ nhất.",
+      "tipsVi": "Hãy ghi nhớ quy tắc: hành động xảy ra trước đứng trước, hành động mục đích đứng sau.",
+      "attentionsVi": "Không được dùng các từ liên kết như 「和」(và) hay 「然后」(sau đó) giữa hai động từ.",
+      "examples": [],
+      "source": "new_hsk_1.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 1,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_46",
+      "title": "Diễn tả thứ tự hành động",
+      "syntax": "先 + [Động từ 1], 再/然后 + [Động từ 2]",
+      "explanationVi": "Cấu trúc này dùng để liệt kê trình tự thực hiện các hành động theo thời gian. 「先」 có nghĩa là trước tiên, 「再」 hoặc 「然后」 có nghĩa là sau đó hoặc rồi làm gì tiếp theo.",
+      "tipsVi": "Bạn có thể kết hợp chuỗi hành động dài hơn bằng cách dùng 「先...，再...，然后...」.",
+      "attentionsVi": "Lưu ý 「再」 chỉ dùng cho hành động chưa xảy ra, không dùng thay thế cho 「又」 khi diễn tả hành động lặp lại đã xảy ra.",
+      "examples": [
+        {
+          "chinese": "我要先去图书馆借书，然后去游泳。",
+          "pinyin": "wǒ yào xiān qù tú shū guǎn jiè shū rán hòu qù yóu yǒng",
+          "meaningVi": "Tôi phải đi thư viện mượn sách trước, sau đó mới đi bơi."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -173,7 +294,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 5,
+      "grammar": 4,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "sau đó",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

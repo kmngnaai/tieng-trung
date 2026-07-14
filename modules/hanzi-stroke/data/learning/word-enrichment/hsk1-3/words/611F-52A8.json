@@ -54,10 +54,23 @@
         "target": "感动",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "动人",
+        "pinyin": "dòng rén",
+        "meaningVi": "cảm động",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: cảm động",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -79,14 +92,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "感动",
+      "chinese": "不为电影中的人物所感动。",
+      "pinyin": "bù wèi diàn yǐng zhōng de rén wù suǒ gǎn dòng",
+      "meaningVi": "Không ai là không bị cảm động bởi nhân vật trong phim.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_40",
+      "grammarTopic": "Cấu trúc bị động 为...所...",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:感动",
       "title": "Cách dùng 感动",
       "partOfSpeech": "verb/adjective",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_40",
+      "title": "Cấu trúc bị động 为...所...",
+      "syntax": "为 + [tác nhân] + 所 + [động từ] (Cấu trúc bị động trang trọng)",
+      "explanationVi": "Đây là cấu trúc bị động mang sắc thái văn viết trang trọng trong tiếng Trung. Trong đó, 「为」 chỉ đối tượng thực hiện hành động, còn 「所」 đứng trước động từ để làm nổi bật tác động lên chủ ngữ.",
+      "tipsVi": "Cấu trúc này thường xuất hiện trong văn chương, báo chí hoặc các văn bản mang tính học thuật để diễn tả sự việc bị chi phối bởi một tác nhân nào đó.",
+      "attentionsVi": "Vì đây là ngữ pháp HSK 6 thiên về văn viết, bạn nên tránh dùng trong giao tiếp khẩu ngữ hàng ngày vì sẽ nghe rất cứng nhắc và không tự nhiên.",
+      "examples": [
+        {
+          "chinese": "不为电影中的人物所感动。",
+          "pinyin": "bù wèi diàn yǐng zhōng de rén wù suǒ gǎn dòng",
+          "meaningVi": "Không ai là không bị cảm động bởi nhân vật trong phim."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -120,7 +167,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "cảm động",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

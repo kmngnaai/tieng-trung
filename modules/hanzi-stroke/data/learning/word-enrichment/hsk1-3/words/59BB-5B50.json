@@ -56,7 +56,9 @@
         "target": "妻子",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "那个妻子",
@@ -66,10 +68,23 @@
         "target": "妻子",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "老婆",
+        "pinyin": "lǎo po",
+        "meaningVi": "vợ",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: vợ",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -91,14 +106,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "妻子",
+      "chinese": "我妻子比我做得好。",
+      "pinyin": "wǒ qī zi bǐ wǒ zuò dé hǎo",
+      "meaningVi": "Vợ tôi làm tốt hơn tôi.",
+      "source": "hsk_2.json",
+      "grammarId": "hsk2_36",
+      "grammarTopic": "So sánh mức độ bằng 比 và 得",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:妻子",
       "title": "Cách dùng 妻子",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_36",
+      "title": "So sánh mức độ bằng 比 và 得",
+      "syntax": "A + 比 + B + Động từ + 得 + Tính từ",
+      "explanationVi": "Cấu trúc này dùng để so sánh mức độ thực hiện một hành động giữa hai người hoặc sự vật. Trong đó, 「得」 đứng sau động từ để dẫn dắt tính từ mô tả kết quả hoặc trạng thái của hành động đó.",
+      "tipsVi": "Hãy nhớ rằng tính từ sau 「得」 thường đi kèm các từ chỉ mức độ như 「很」, 「更」 hoặc 「最」 để làm rõ thêm sự so sánh.",
+      "attentionsVi": "Lưu ý không được bỏ qua trợ từ 「得」 khi dùng cấu trúc so sánh với động từ, vì đây là thành phần bắt buộc trong bổ ngữ trạng thái.",
+      "examples": [
+        {
+          "chinese": "我妻子比我做得好。",
+          "pinyin": "wǒ qī zi bǐ wǒ zuò dé hǎo",
+          "meaningVi": "Vợ tôi làm tốt hơn tôi."
+        }
+      ],
+      "source": "hsk_2.json",
+      "curriculum": "hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -152,7 +201,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "vợ",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

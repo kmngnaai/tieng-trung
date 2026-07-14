@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "tỷ như",
+      "meaningShortVi": "ví dụ",
       "meaningFullVi": "tỷ như",
       "partOfSpeech": "verb",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "tỷ như",
+  "meaningShortVi": "ví dụ",
   "wordType": "verb",
   "wordTypes": [
     "verb"
@@ -50,10 +50,11 @@
       {
         "word": "比如说",
         "pinyin": "bǐ rú shuō",
-        "meaningVi": "tỷ như thuyết",
+        "meaningVi": "ví dụ như",
         "meaningFullVi": "tỷ như thuyết",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 2",
+        "hskLevel": 2,
+        "source": "hsk_2.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -66,7 +67,9 @@
         "target": "比如",
         "source": "hsk_1.json",
         "pinyinMethod": "exact-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "比如说...和...",
@@ -76,10 +79,41 @@
         "target": "比如",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "例子",
+        "pinyin": "lì zi",
+        "meaningVi": "ví dụ",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: ví dụ",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "例如",
+        "pinyin": "lì rú",
+        "meaningVi": "ví dụ",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: ví dụ",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "比方说",
+        "pinyin": "bǐ fang shuō",
+        "meaningVi": "Ví dụ",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: ví dụ",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -105,10 +139,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:比如",
       "title": "Cách dùng 比如",
       "partOfSpeech": "verb",
       "usageNoteVi": "Dùng để đưa ra ví dụ minh họa",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -166,6 +203,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 3
+    }
+  },
+  "meaningFullVi": "tỷ như",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

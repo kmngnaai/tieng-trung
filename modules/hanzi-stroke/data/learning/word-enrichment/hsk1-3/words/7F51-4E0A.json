@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "trên mạng",
+      "meaningShortVi": "trực tuyến",
       "meaningFullVi": "trên mạng, trực tuyến (trên Internet)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "trên mạng",
+  "meaningShortVi": "trực tuyến",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -55,7 +55,9 @@
         "target": "网上",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "网上聊天",
@@ -65,7 +67,20 @@
         "target": "网上",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "网上",
+            "chinese": "我们在网上聊天",
+            "pinyin": "Wǒmen zài wǎngshàng liáotiān",
+            "meaningVi": "Chúng ta trò chuyện trên mạng",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "网上交友",
@@ -75,7 +90,9 @@
         "target": "网上",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "网上银行",
@@ -85,10 +102,13 @@
         "target": "网上",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -130,14 +150,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "网上",
+      "chinese": "我看网上说这个电影比那个爱情片更有意思。",
+      "pinyin": "wǒ kàn wǎng shàng shuō zhè gè diàn yǐng bǐ nà gè ài qíng piàn gèng yǒu yì sī",
+      "meaningVi": "Tôi thấy trên mạng nói bộ phim này thú vị hơn bộ phim tình cảm kia.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_23",
+      "grammarTopic": "Câu so sánh với 比",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:网上",
       "title": "Cách dùng 网上",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Chỉ hoạt động/trạng thái trên Internet. Phân biệt với 在线 (trực tuyến, dùng trong kỹ thuật). 网上 thiên về người dùng终, 在线 thiên về kỹ thuật.",
       "explanationVi": "Ghép nghĩa: 网 (mạng, lưới) + 上 (trên) → trên mạng Internet.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_23",
+      "title": "Câu so sánh với 比",
+      "syntax": "A 比 B + [Tính từ] + [Số lượng/Đơn vị]",
+      "explanationVi": "Cấu trúc này được dùng để so sánh sự chênh lệch cụ thể giữa hai đối tượng. Sau tính từ, bạn cần thêm số lượng và đơn vị đo lường để làm rõ mức độ chênh lệch là bao nhiêu.",
+      "tipsVi": "Luôn đặt số lượng (cụ thể hóa) ngay sau tính từ để câu văn trở nên rõ ràng và đầy đủ ý nghĩa.",
+      "attentionsVi": "Không được thêm các từ chỉ mức độ như 「很」, 「非常」 vào trước tính từ trong câu so sánh có 「比」.",
+      "examples": [
+        {
+          "chinese": "我看网上说这个电影比那个爱情片更有意思。",
+          "pinyin": "wǒ kàn wǎng shàng shuō zhè gè diàn yǐng bǐ nà gè ài qíng piàn gèng yǒu yì sī",
+          "meaningVi": "Tôi thấy trên mạng nói bộ phim này thú vị hơn bộ phim tình cảm kia."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -191,7 +245,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 4,
+      "sentences": 5,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "trên mạng, trực tuyến (trên Internet)",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

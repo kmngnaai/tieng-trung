@@ -44,7 +44,27 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "延长",
+        "pinyin": "yán cháng",
+        "meaningVi": "kéo dài",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: kéo dài",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "延续",
+        "pinyin": "yán xù",
+        "meaningVi": "kéo dài",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: kéo dài",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -80,10 +100,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:延伸",
       "title": "Cách dùng 延伸",
       "partOfSpeech": "động từ",
       "usageNoteVi": "延伸 là động từ chỉ việc kéo dài hoặc mở rộng. Hán-Việt 'diên' (延 - kéo dài) + 'thân' (伸 - vươn/duỗi) = vươn dài ra. Dùng cho vật lý (đường, dây kéo dài), khái niệm (thời gian, không gian mở rộng), hoặc kinh doanh (mở rộng chuỗi giá trị).",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -101,8 +124,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "kéo dài, vươn dài; mở rộng, phát triển",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

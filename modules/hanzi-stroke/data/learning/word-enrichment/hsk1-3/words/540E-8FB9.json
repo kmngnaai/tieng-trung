@@ -54,7 +54,9 @@
         "target": "后边",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "后边还有",
@@ -64,10 +66,13 @@
         "target": "后边",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -99,14 +104,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "后边",
+      "chinese": "后边走过去两个人。",
+      "pinyin": "hòu biān zǒu guò qù liǎng gè rén",
+      "meaningVi": "Phía sau có hai người vừa đi qua.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_15",
+      "grammarTopic": "Câu tồn tại diễn tả sự xuất hiện/biến mất",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:后边",
       "title": "Cách dùng 后边",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Khẩu ngữ miền Bắc. Miền Nam thích用 后面. Chỉ vị trí đằng sau.",
       "explanationVi": "Ghép nghĩa: 后 (sau) + 边 (bên, cạnh) = phía bên sau.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_15",
+      "title": "Câu tồn tại diễn tả sự xuất hiện/biến mất",
+      "syntax": "[Địa điểm] + [Động từ] + [Bổ ngữ xu hướng] + [Danh từ]",
+      "explanationVi": "Cấu trúc này dùng để diễn tả sự xuất hiện hoặc biến mất của người/vật tại một địa điểm cụ thể. Động từ thường đi kèm với các bổ ngữ như 「来」, 「去」, 「出来」, 「掉」 để chỉ hướng của hành động.",
+      "tipsVi": "Hãy chú ý danh từ chỉ người hoặc vật thường đứng sau động từ để làm rõ sự tồn tại hoặc thay đổi trạng thái tại đó.",
+      "attentionsVi": "Đừng nhầm lẫn với câu tồn tại trạng thái (thường dùng 「着」), câu tồn tại loại này nhấn mạnh vào hành động di chuyển hoặc xuất hiện.",
+      "examples": [
+        {
+          "chinese": "后边走过去两个人。",
+          "pinyin": "hòu biān zǒu guò qù liǎng gè rén",
+          "meaningVi": "Phía sau có hai người vừa đi qua."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -140,7 +179,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "đằng sau, phía sau",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

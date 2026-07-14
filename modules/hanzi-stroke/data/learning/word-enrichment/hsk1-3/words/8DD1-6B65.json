@@ -57,7 +57,9 @@
         "target": "跑步",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "喜欢跑步",
@@ -67,10 +69,13 @@
         "target": "跑步",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -92,14 +97,79 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "跑步",
+      "chinese": "跑步对身体很好。",
+      "pinyin": "pǎo bù duì shēn tǐ hěn hǎo",
+      "meaningVi": "Chạy bộ rất tốt cho sức khỏe.",
+      "source": "hsk_2.json",
+      "grammarId": "hsk2_31",
+      "grammarTopic": "Cách dùng giới từ 对",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "跑步",
+      "chinese": "我喜欢一边跑步，一边听音乐。",
+      "pinyin": "wǒ xǐ huān yī biān pǎo bù yī biān tīng yīn lè",
+      "meaningVi": "Tôi thích vừa chạy bộ vừa nghe nhạc.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_44",
+      "grammarTopic": "Diễn tả hai hành động đồng thời",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:跑步",
       "title": "Cách dùng 跑步",
       "partOfSpeech": "động từ",
       "usageNoteVi": "跑步 (chạy bộ) chỉ hoạt động chạy thể thao, tập thể dục. Khác với跑 (chạy) nói chung.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_31",
+      "title": "Cách dùng giới từ 对",
+      "syntax": "Chủ ngữ + 对 + [Đối tượng] + (Động từ/Tính từ)",
+      "explanationVi": "Giới từ 「对」 được dùng để chỉ đối tượng mà hành động hoặc thái độ hướng đến. Cấu trúc này giúp làm rõ ai hoặc cái gì là mục tiêu của sự việc.",
+      "tipsVi": "Bạn có thể dùng 「对...很好」 (tốt với ai) hoặc 「对...感兴趣」 (có hứng thú với cái gì) để diễn đạt cảm nhận của mình.",
+      "attentionsVi": "Đừng nhầm lẫn 「对」 với giới từ 「跟」(cùng với). 「对」 nhấn mạnh vào hướng của hành động hoặc mối quan hệ đối với đối tượng, trong khi 「跟」 thường mang nghĩa đồng hành hoặc làm gì đó cùng nhau.",
+      "examples": [
+        {
+          "chinese": "跑步对身体很好。",
+          "pinyin": "pǎo bù duì shēn tǐ hěn hǎo",
+          "meaningVi": "Chạy bộ rất tốt cho sức khỏe."
+        }
+      ],
+      "source": "hsk_2.json",
+      "curriculum": "hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_44",
+      "title": "Diễn tả hai hành động đồng thời",
+      "syntax": "一边 + V1 + ，一边 + V2",
+      "explanationVi": "Cấu trúc 「一边……，一边……」 được dùng để diễn tả hai hành động diễn ra cùng một lúc. Bạn có thể dịch là \"vừa... vừa...\" để mô tả việc làm song song hai việc trong cùng một khoảng thời gian.",
+      "tipsVi": "Chủ ngữ có thể đặt ở trước cấu trúc hoặc giữa hai vế 「一边」 nếu cần nhấn mạnh.",
+      "attentionsVi": "Cấu trúc này chỉ dùng cho hai hành động diễn ra đồng thời, không dùng để liệt kê tính chất (khi đó hãy dùng 「又...又...」).",
+      "examples": [
+        {
+          "chinese": "我喜欢一边跑步，一边听音乐。",
+          "pinyin": "wǒ xǐ huān yī biān pǎo bù yī biān tīng yīn lè",
+          "meaningVi": "Tôi thích vừa chạy bộ vừa nghe nhạc."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -173,7 +243,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "chạy bộ",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

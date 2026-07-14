@@ -54,10 +54,54 @@
         "target": "西边",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "西边",
+            "chinese": "太阳在西边落下",
+            "pinyin": "Tàiyáng zài xībiān luò xià",
+            "meaningVi": "Mặt trời lặn ở phía tây",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "西边",
+            "chinese": "我家在西边",
+            "pinyin": "Wǒ jiā zài xībiān",
+            "meaningVi": "Nhà tôi ở phía tây",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "西边",
+            "chinese": "向西边走",
+            "pinyin": "xiàng xībiān zǒu",
+            "meaningVi": "đi về phía tây",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 3
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "西方",
+        "pinyin": "xī fāng",
+        "meaningVi": "phía tây",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: phía tây",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -113,10 +157,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:西边",
       "title": "Cách dùng 西边",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Chỉ vị trí phía tây. Có thể nói 西边 hoặc 看边. Trong giao tiếp, thường chỉ hướng: 向西边走 (đi về phía tây). Trong văn viết trang trọng, có thể dùng 西方 (phương tây). Phân biệt với 西 (chỉ phương chung) và 西边 (rõ hơn là vị trí).",
       "explanationVi": "Ghép nghĩa: 西 (tây) + 边 (bên, phía) → phía tây, bên tây. Chỉ vị trí hướng tây trong không gian.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -150,7 +197,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 5,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "phía tây",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -56,7 +56,20 @@
         "target": "西瓜",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "西瓜",
+            "chinese": "夏天吃西瓜很解渴。",
+            "pinyin": "Xiàtiān chī xīguā hěn jiěkě.",
+            "meaningVi": "Mùa hè ăn dưa hấu rất giải khát.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "买西瓜",
@@ -66,10 +79,13 @@
         "target": "西瓜",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -91,14 +107,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "西瓜",
+      "chinese": "这块西瓜甜极了。",
+      "pinyin": "zhè kuài xī guā tián jí le",
+      "meaningVi": "Miếng dưa hấu này ngọt cực kỳ.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_22",
+      "grammarTopic": "Bổ ngữ chỉ mức độ cực độ 「极了」",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:西瓜",
       "title": "Cách dùng 西瓜",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_22",
+      "title": "Bổ ngữ chỉ mức độ cực độ 「极了」",
+      "syntax": "Tính từ + 极了 (Cực kỳ/Vô cùng)",
+      "explanationVi": "Cấu trúc 「极了」 được đặt sau tính từ để nhấn mạnh mức độ ở cấp độ cao nhất. Nó tương đương với nghĩa \"cực kỳ\" hoặc \"vô cùng\" trong tiếng Việt.",
+      "tipsVi": "Thường dùng để biểu đạt cảm xúc mạnh hoặc mô tả trạng thái một cách nhấn mạnh, ví dụ: 「太好了」(tốt quá/cực kỳ tốt).",
+      "attentionsVi": "Cần lưu ý 「极了」 thường đi với các tính từ mang ý nghĩa tích cực hoặc mô tả trạng thái cực hạn.",
+      "examples": [
+        {
+          "chinese": "这块西瓜甜极了。",
+          "pinyin": "zhè kuài xī guā tián jí le",
+          "meaningVi": "Miếng dưa hấu này ngọt cực kỳ."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -152,7 +202,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "dưa hấu",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

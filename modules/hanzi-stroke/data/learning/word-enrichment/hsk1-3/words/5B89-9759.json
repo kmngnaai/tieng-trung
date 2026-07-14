@@ -56,7 +56,20 @@
         "target": "安静",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "安静",
+            "chinese": "图书馆里很安静。",
+            "pinyin": "tú shū guǎn lǐ hěn ān jìng。",
+            "meaningVi": "Trong thư viện rất yên tĩnh.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "保持安静",
@@ -66,7 +79,20 @@
         "target": "安静",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "安静",
+            "chinese": "请保持安静。",
+            "pinyin": "qǐng bǎo chí ān jìng。",
+            "meaningVi": "Vui lòng giữ yên tĩnh.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "安静的环境",
@@ -76,10 +102,13 @@
         "target": "安静",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -111,14 +140,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "安静",
+      "chinese": "这个地方既安静，交通也方便。",
+      "pinyin": "zhè gè dì fāng jì ān jìng jiāo tōng yě fāng biàn",
+      "meaningVi": "Nơi này vừa yên tĩnh, giao thông cũng thuận tiện.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_29",
+      "grammarTopic": "Cấu trúc 既...又... (vừa... vừa...)",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:安静",
       "title": "Cách dùng 安静",
       "partOfSpeech": "adjective",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_29",
+      "title": "Cấu trúc 既...又... (vừa... vừa...)",
+      "syntax": "既 [tính từ/động từ 1], 又/也/还 [tính từ/động từ 2]",
+      "explanationVi": "Cấu trúc 「既……又/也/还……」 dùng để liệt kê hai đặc điểm hoặc trạng thái cùng tồn tại trên một đối tượng, mang nghĩa là \"vừa... vừa...\". Các từ ngữ đứng sau 「既」 và 「又/也/还」 thường phải có cùng tính chất hoặc sắc thái biểu cảm (cùng tốt hoặc cùng xấu).",
+      "tipsVi": "Hãy chú ý chọn các từ loại giống nhau (ví dụ: cả hai vế đều là tính từ hoặc cả hai vế đều là động từ) để câu văn được cân xứng và tự nhiên hơn.",
+      "attentionsVi": "Không nên dùng cấu trúc này để kết nối hai tình huống trái ngược nhau (ví dụ: một cái tốt và một cái xấu) vì nó chỉ dùng để nhấn mạnh sự song song của các đặc điểm tương đồng.",
+      "examples": [
+        {
+          "chinese": "这个地方既安静，交通也方便。",
+          "pinyin": "zhè gè dì fāng jì ān jìng jiāo tōng yě fāng biàn",
+          "meaningVi": "Nơi này vừa yên tĩnh, giao thông cũng thuận tiện."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -187,7 +250,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "yên tĩnh",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -44,7 +44,18 @@
     ]
   },
   "vocabulary": {
-    "compounds": [],
+    "compounds": [
+      {
+        "word": "教育部",
+        "pinyin": "jiào yù bù",
+        "meaningVi": "Bộ Giáo dục",
+        "meaningFullVi": "Bộ Giáo dục",
+        "relationType": "contains-exact-target",
+        "hskLevel": 6,
+        "source": "hsk_6.json",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
     "collocations": [
       {
         "text": "接受教育",
@@ -54,7 +65,9 @@
         "target": "教育",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "高等教育",
@@ -64,10 +77,13 @@
         "target": "教育",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -89,14 +105,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "教育",
+      "chinese": "培养人是教育的立足点, 是教育价值的根本所在。",
+      "pinyin": "péi yǎng rén shì jiào yù de lì zú diǎn shì jiào yù jià zhí de gēn běn suǒ zài",
+      "meaningVi": "Bồi dưỡng con người là điểm tựa của giáo dục, là nơi gốc rễ của giá trị giáo dục.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_25",
+      "grammarTopic": "Cách dùng 所在",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:教育",
       "title": "Cách dùng 教育",
       "partOfSpeech": "noun/verb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_25",
+      "title": "Cách dùng 所在",
+      "syntax": "Danh từ/Đại từ + 所在 (suǒzài)",
+      "explanationVi": "「所在」 là danh từ dùng để chỉ vị trí, nơi chốn hoặc địa điểm cụ thể của một sự vật, sự việc nào đó. Trong văn viết, nó thường mang nghĩa trang trọng hoặc dùng để chỉ nơi tập trung của một vấn đề.",
+      "tipsVi": "Bạn có thể dùng cấu trúc 「所在 + 的地方」 để nhấn mạnh cụ thể hơn về địa điểm đó.",
+      "attentionsVi": "Đừng nhầm lẫn 「所在」 với các từ chỉ vị trí thông thường như 「地方」, vì 「所在」 mang tính trừu tượng hoặc trang trọng hơn, thường dùng để chỉ trụ sở, nơi công tác hoặc vị trí trọng yếu.",
+      "examples": [
+        {
+          "chinese": "培养人是教育的立足点, 是教育价值的根本所在。",
+          "pinyin": "péi yǎng rén shì jiào yù de lì zú diǎn shì jiào yù jià zhí de gēn běn suǒ zài",
+          "meaningVi": "Bồi dưỡng con người là điểm tựa của giáo dục, là nơi gốc rễ của giá trị giáo dục."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +180,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "giáo dục",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

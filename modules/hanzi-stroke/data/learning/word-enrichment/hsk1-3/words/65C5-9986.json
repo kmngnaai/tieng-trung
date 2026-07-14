@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "nhà trọ",
+      "meaningShortVi": "khách sạn",
       "meaningFullVi": "nhà trọ, khách sạn (cỡ vừa)",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "nhà trọ",
+  "meaningShortVi": "khách sạn",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
@@ -54,7 +54,9 @@
         "target": "旅馆",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "小旅馆",
@@ -64,10 +66,32 @@
         "target": "旅馆",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "酒店",
+        "pinyin": "jiǔ diàn",
+        "meaningVi": "khách sạn",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: khách sạn",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "宾馆",
+        "pinyin": "bīn guǎn",
+        "meaningVi": "khách sạn",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: khách sạn",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -93,10 +117,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:旅馆",
       "title": "Cách dùng 旅馆",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "旅馆 vs 酒店 (jiǔdiàn): 旅馆 thường nhỏ hơn, rẻ hơn. 酒店 (hotel) thường cao cấp hơn, có nhà hàng. 宾馆 (bīnguǎn) ở giữa, có thể 2-3 sao.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +157,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "nhà trọ, khách sạn (cỡ vừa)",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

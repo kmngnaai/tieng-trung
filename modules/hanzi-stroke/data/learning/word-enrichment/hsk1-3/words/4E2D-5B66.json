@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "trung học",
+      "meaningShortVi": "trường trung học cơ sở",
       "meaningFullVi": "trung học",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "trung học",
+  "meaningShortVi": "trường trung học cơ sở",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -51,7 +51,18 @@
         "meaningVi": "học sinh trung học",
         "meaningFullVi": "học sinh trung học",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 1",
+        "hskLevel": 1,
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed-local"
+      },
+      {
+        "word": "初级中学",
+        "pinyin": "chū jí zhōng xué",
+        "meaningVi": "trường trung học cơ sở",
+        "meaningFullVi": "trường trung học cơ sở",
+        "relationType": "contains-exact-target",
+        "hskLevel": 5,
+        "source": "hsk_5.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -64,7 +75,20 @@
         "target": "中学",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "中学",
+            "chinese": "他在中学读书。",
+            "pinyin": "Tā zài zhōngxué dúshū.",
+            "meaningVi": "Anh ấy học trung học.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "中学生",
@@ -74,10 +98,23 @@
         "target": "中学",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "初中",
+        "pinyin": "chū zhōng",
+        "meaningVi": "trường trung học cơ sở",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: trường trung học cơ sở",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -103,10 +140,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:中学",
       "title": "Cách dùng 中学",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "中学 nghĩa là trường trung học. Hán-Việt: trung (giữa) + học (học hành).",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -154,6 +194,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 2,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "trung học",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -57,7 +57,9 @@
         "target": "周末",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "周末休息",
@@ -67,10 +69,13 @@
         "target": "周末",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -92,14 +97,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "周末",
+      "chinese": "尽管工作很忙，可到了周末他还是会跟朋友去打球。",
+      "pinyin": "jǐn guǎn gōng zuò hěn máng kě dào le zhōu mò tā hái shì huì gēn péng yǒu qù dǎ qiú",
+      "meaningVi": "Mặc dù công việc rất bận, nhưng đến cuối tuần anh ấy vẫn đi chơi bóng với bạn bè.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_8",
+      "grammarTopic": "Cấu trúc 尽管 (mặc dù)",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:周末",
       "title": "Cách dùng 周末",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_8",
+      "title": "Cấu trúc 尽管 (mặc dù)",
+      "syntax": "尽管 + [vế câu 1], [vế câu 2]",
+      "explanationVi": "Liên từ 「尽管」 được đặt ở vế đầu của câu phức để biểu thị sự nhượng bộ, có nghĩa là \"mặc dù\" hoặc \"tuy rằng\". Vế thứ hai thường đưa ra một kết quả ngược lại với dự đoán thông thường dựa trên thực tế ở vế thứ nhất.",
+      "tipsVi": "Trong khẩu ngữ, 「尽管」 thường được dùng kết hợp với 「但是」 hoặc 「可是」 ở vế câu thứ hai để nhấn mạnh sự đối lập.",
+      "attentionsVi": "Cần phân biệt 「尽管」 với 「不管」; trong khi 「尽管」 dùng để thừa nhận một sự thật đã xảy ra, 「不管」 lại dùng để diễn tả ý chí \"bất kể/cho dù\" trong mọi điều kiện.",
+      "examples": [
+        {
+          "chinese": "尽管工作很忙，可到了周末他还是会跟朋友去打球。",
+          "pinyin": "jǐn guǎn gōng zuò hěn máng kě dào le zhōu mò tā hái shì huì gēn péng yǒu qù dǎ qiú",
+          "meaningVi": "Mặc dù công việc rất bận, nhưng đến cuối tuần anh ấy vẫn đi chơi bóng với bạn bè."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -173,7 +212,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "cuối tuần",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

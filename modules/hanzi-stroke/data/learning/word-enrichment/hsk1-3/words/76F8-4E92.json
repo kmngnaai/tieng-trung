@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Lẫn nhau",
+      "meaningShortVi": "lẫn nhau",
       "meaningFullVi": "Lẫn nhau, qua lại",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Lẫn nhau",
+  "meaningShortVi": "lẫn nhau",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -54,7 +54,9 @@
         "target": "相互",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "相互理解",
@@ -64,7 +66,20 @@
         "target": "相互",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "相互",
+            "chinese": "我们应该相互理解，相互尊重。",
+            "pinyin": "Wǒmen yīnggāi xiānghù lǐjiě, xiānghù zūnzhòng.",
+            "meaningVi": "Chúng ta nên thấu hiểu lẫn nhau, tôn trọng lẫn nhau.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "相互信任",
@@ -74,7 +89,9 @@
         "target": "相互",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "相互作用",
@@ -84,10 +101,23 @@
         "target": "相互",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "互相",
+        "pinyin": "hù xiāng",
+        "meaningVi": "lẫn nhau",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: lẫn nhau",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -123,10 +153,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:相互",
       "title": "Cách dùng 相互",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "相互 (xiānghù) và 互相 (hùxiāng) đều có nghĩa 'lẫn nhau, qua lại', nhưng 相互 thường dùng trong văn viết hoặc ngữ cảnh trang trọng hơn, còn 互相 phổ biến trong văn nói. 相互 cũng thường dùng trong các từ ghép như 相互关系, 相互作用.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -160,7 +193,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 4,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "Lẫn nhau, qua lại",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

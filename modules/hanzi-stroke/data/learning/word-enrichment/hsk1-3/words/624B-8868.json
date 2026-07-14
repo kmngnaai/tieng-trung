@@ -56,7 +56,9 @@
         "target": "手表",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "新手表",
@@ -66,10 +68,24 @@
         "target": "手表",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "手表",
+            "chinese": "我有一块新手表",
+            "pinyin": "wǒ yǒu yī kuài xīn shǒu biǎo",
+            "meaningVi": "Tôi có một chiếc đồng hồ đeo tay mới",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -91,14 +107,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "手表",
+      "chinese": "这块手表没有那块好看。",
+      "pinyin": "zhè kuài shǒu biǎo méi yǒu nà kuài hǎo kàn",
+      "meaningVi": "Chiếc đồng hồ này không đẹp bằng chiếc kia.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_25",
+      "grammarTopic": "So sánh bằng",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:手表",
       "title": "Cách dùng 手表",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_25",
+      "title": "So sánh bằng",
+      "syntax": "A 跟 B (不) 一样 (+ [Tính từ])",
+      "explanationVi": "Cấu trúc này dùng để so sánh sự tương đồng giữa hai đối tượng. Nếu thêm tính từ phía sau 「一样」, nó giúp xác định rõ khía cạnh đang được so sánh (ví dụ: kích thước, độ dài, màu sắc).",
+      "tipsVi": "Nếu muốn nói 'không giống nhau', bạn chỉ cần thêm 「不」 trước 「一样」 là được.",
+      "attentionsVi": "Lưu ý rằng sau 「一样」 thường không cần thêm các từ chỉ mức độ như 「很」 hay 「非常」.",
+      "examples": [
+        {
+          "chinese": "这块手表没有那块好看。",
+          "pinyin": "zhè kuài shǒu biǎo méi yǒu nà kuài hǎo kàn",
+          "meaningVi": "Chiếc đồng hồ này không đẹp bằng chiếc kia."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -167,7 +217,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "đồng hồ đeo tay",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

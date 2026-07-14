@@ -54,7 +54,9 @@
         "target": "天空",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "天空明亮",
@@ -64,10 +66,13 @@
         "target": "天空",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -89,14 +94,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "天空",
+      "chinese": "天空中飘着一片云。",
+      "pinyin": "tiān kōng zhōng piāo zhe yī piàn yún",
+      "meaningVi": "Trên bầu trời đang trôi một đám mây.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_95",
+      "grammarTopic": "Cách dùng lượng từ 片",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:天空",
       "title": "Cách dùng 天空",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "Thường dùng 形容词 + 的 + 天空 hoặc 天空 + 很/非常 + 形容词. Không nói 天空很美丽 (kiểu Việt), dùng 天空很美 或 天空很漂亮.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_95",
+      "title": "Cách dùng lượng từ 片",
+      "syntax": "Số từ + 片 + Danh từ",
+      "explanationVi": "Lượng từ 「片」 dùng để chỉ những vật có hình dáng mỏng, dẹt hoặc thành tấm nhỏ. Ngoài ra, nó còn được dùng cho các vùng không gian rộng lớn (như cánh đồng) hoặc các hiện tượng tự nhiên, âm thanh mang tính bao quát (như mây, tiếng cười).",
+      "tipsVi": "Bạn có thể dùng 「片」 để mô tả các món ăn được cắt lát mỏng như 「一片面包」 (một lát bánh mì) hay 「一片肉」 (một miếng thịt).",
+      "attentionsVi": "Đừng nhầm lẫn 「片」 với 「张」; 「片」 nhấn mạnh vào độ mỏng và hình dạng phiến, trong khi 「张」 thường dùng cho các vật phẳng có bề mặt rộng như giấy hoặc bàn.",
+      "examples": [
+        {
+          "chinese": "天空中飘着一片云。",
+          "pinyin": "tiān kōng zhōng piāo zhe yī piàn yún",
+          "meaningVi": "Trên bầu trời đang trôi một đám mây."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +169,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "bầu trời",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

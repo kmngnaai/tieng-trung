@@ -54,10 +54,13 @@
         "target": "实力",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -69,14 +72,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "实力",
+      "chinese": "这次比赛显示了他的实力。",
+      "pinyin": "zhè cì bǐ sài xiǎn shì le tā de shí lì",
+      "meaningVi": "Cuộc thi lần này thể hiện thực lực của anh ấy.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_21",
+      "grammarTopic": "Phân biệt 显示 và 显得",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:实力",
       "title": "Cách dùng 实力",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "Shí lì dùng cho sức mạnh, năng lực thực tế của tổ chức, cá nhân. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_21",
+      "title": "Phân biệt 显示 và 显得",
+      "syntax": "显示 (V/N) / 显得 (V)",
+      "explanationVi": "「显示」 thường dùng để chỉ việc biểu hiện, chứng tỏ ra năng lực, tính chất hoặc dữ liệu cụ thể. Trong khi đó, 「显得」 dùng để miêu tả trạng thái hoặc ấn tượng bên ngoài của người hay vật khiến người khác cảm thấy như thế nào.",
+      "tipsVi": "Nếu bạn muốn nói về cảm giác hoặc ấn tượng bề ngoài (như 'trông có vẻ'), hãy ưu tiên dùng 「显得」.",
+      "attentionsVi": "「显示」 thường kết hợp với tân ngữ là các thông số hoặc kết quả, còn 「显得」 thường đi kèm với tính từ phía sau (ví dụ: 「显得很高兴」 - trông có vẻ rất vui).",
+      "examples": [
+        {
+          "chinese": "这次比赛显示了他的实力。",
+          "pinyin": "zhè cì bǐ sài xiǎn shì le tā de shí lì",
+          "meaningVi": "Cuộc thi lần này thể hiện thực lực của anh ấy."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -110,7 +147,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 2,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "sức mạnh thực tế; thực lực",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

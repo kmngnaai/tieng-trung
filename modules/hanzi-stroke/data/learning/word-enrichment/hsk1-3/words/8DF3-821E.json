@@ -57,7 +57,9 @@
         "target": "跳舞",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "学跳舞",
@@ -67,10 +69,23 @@
         "target": "跳舞",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "舞蹈",
+        "pinyin": "wǔ dǎo",
+        "meaningVi": "nhảy múa",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: nhảy múa",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -92,14 +107,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "跳舞",
+      "chinese": "除了唱歌以外，他也喜欢跳舞。",
+      "pinyin": "chú le chàng gē yǐ wài tā yě xǐ huān tiào wǔ",
+      "meaningVi": "Ngoài ca hát ra, anh ấy cũng thích khiêu vũ.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_12",
+      "grammarTopic": "Cấu trúc 'Ngoài ra' với 除了",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:跳舞",
       "title": "Cách dùng 跳舞",
       "partOfSpeech": "động từ",
       "usageNoteVi": "Có thể dùng cho nhiều loại múa như ballet, hip-hop, khiêu vũ xã giao. Trong văn trang trọng, 可以用 舞蹈 'vũ đạo' thay 跳舞. Từ liên quan: 舞蹈 'vũ đạo', 舞者 'vũ công'.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_12",
+      "title": "Cấu trúc 'Ngoài ra' với 除了",
+      "syntax": "除了 + A + (以外)， + (B) + 都/还/也 + V/Adj",
+      "explanationVi": "Cấu trúc này dùng để diễn tả ý 'ngoài... ra'. Nếu dùng với 「都」, nó mang nghĩa loại trừ tất cả đều như thế; nếu dùng với 「还/也」, nó mang nghĩa ngoài cái đó ra còn có thêm cái khác.",
+      "tipsVi": "Bạn có thể lược bỏ 「以外」 trong khẩu ngữ để câu nói tự nhiên và nhanh gọn hơn.",
+      "attentionsVi": "Chú ý phân biệt: dùng 「都」 là phủ định hoặc bao hàm toàn bộ, còn dùng 「还/也」 là bổ sung thêm đối tượng mới.",
+      "examples": [
+        {
+          "chinese": "除了唱歌以外，他也喜欢跳舞。",
+          "pinyin": "chú le chàng gē yǐ wài tā yě xǐ huān tiào wǔ",
+          "meaningVi": "Ngoài ca hát ra, anh ấy cũng thích khiêu vũ."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -173,7 +222,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "nhảy múa, khiêu vũ; di chuyển cơ thể theo nhịp điệu âm nhạc",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

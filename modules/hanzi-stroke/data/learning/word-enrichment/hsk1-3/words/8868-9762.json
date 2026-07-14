@@ -44,7 +44,18 @@
     ]
   },
   "vocabulary": {
-    "compounds": [],
+    "compounds": [
+      {
+        "word": "表面上",
+        "pinyin": "biǎo miàn shàng",
+        "meaningVi": "bề ngoài",
+        "meaningFullVi": "bề ngoài",
+        "relationType": "contains-exact-target",
+        "hskLevel": 6,
+        "source": "hsk_6.json",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
     "collocations": [
       {
         "text": "表面功夫",
@@ -54,7 +65,9 @@
         "target": "表面",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "表面现象",
@@ -64,10 +77,24 @@
         "target": "表面",
         "source": "hsk_3.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "表面",
+            "chinese": "这只是表面现象。",
+            "pinyin": "zhè zhǐ shì biǎo miàn xiàn xiàng。",
+            "meaningVi": "Đây chỉ là hiện tượng bề mặt.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -93,10 +120,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:表面",
       "title": "Cách dùng 表面",
       "partOfSpeech": "danh từ / tính từ",
       "usageNoteVi": "Biǎo miàn dùng cho mặt ngoài hoặc sự hời hợt, thiếu sâu sắc. Phản nghĩa với bản chất, bên trong. Phổ biến trong giao tiếp hàng ngày.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +160,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "bề mặt, mặt ngoài; bên ngoài, hời hợt",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

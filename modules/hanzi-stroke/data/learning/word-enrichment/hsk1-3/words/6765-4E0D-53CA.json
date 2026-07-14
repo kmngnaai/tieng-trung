@@ -23,14 +23,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "không kịp",
+      "meaningShortVi": "không đủ thời gian",
       "meaningFullVi": "không kịp",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "không kịp",
+  "meaningShortVi": "không đủ thời gian",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -45,7 +45,8 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -77,14 +78,64 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "来不及",
+      "chinese": "发现少了一个，又来不及改了。",
+      "pinyin": "fā xiàn shǎo le yī gè yòu lái bù jí gǎi le",
+      "meaningVi": "Phát hiện thiếu một cái, nhưng lại không kịp sửa nữa rồi.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_28",
+      "grammarTopic": "Cách dùng 来不及",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "来不及",
+      "chinese": "今天来不及开会了，明天我们再找时间说这个问题吧。",
+      "pinyin": "jīn tiān lái bù jí kāi huì le míng tiān wǒ men zài zhǎo shí jiān shuō zhè gè wèn tí ba",
+      "meaningVi": "Hôm nay không kịp họp rồi, ngày mai chúng ta tìm thời gian khác nói về vấn đề này nhé.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_28",
+      "grammarTopic": "Cách dùng 来不及",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:来不及",
       "title": "Cách dùng 来不及",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Động từ kết quả, chỉ việc không kịp thời điểm. 'Lai' = đến, 'Bất' = không, 'Kịp' = kịp.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_28",
+      "title": "Cách dùng 来不及",
+      "syntax": "Chủ ngữ + 来不及 + (động từ/tân ngữ)",
+      "explanationVi": "Cấu trúc 「来不及」 được dùng để diễn tả việc không kịp làm gì đó vì thời gian quá gấp hoặc không còn đủ thời gian. Bạn có thể dùng 「来不及」 đứng độc lập hoặc kết hợp với một động từ phía sau để chỉ rõ hành động không kịp thực hiện.",
+      "tipsVi": "Nếu bạn muốn nói 'không kịp làm gì đó', hãy đặt động từ ngay sau 「来不及」, ví dụ: 「来不及吃饭」 (không kịp ăn cơm).",
+      "attentionsVi": "Cần phân biệt với 「来得及」 (kịp làm gì), hãy chú ý ngữ cảnh để tránh sử dụng nhầm lẫn giữa hai từ trái nghĩa này.",
+      "examples": [
+        {
+          "chinese": "发现少了一个，又来不及改了。",
+          "pinyin": "fā xiàn shǎo le yī gè yòu lái bù jí gǎi le",
+          "meaningVi": "Phát hiện thiếu một cái, nhưng lại không kịp sửa nữa rồi."
+        },
+        {
+          "chinese": "今天来不及开会了，明天我们再找时间说这个问题吧。",
+          "pinyin": "jīn tiān lái bù jí kāi huì le míng tiān wǒ men zài zhǎo shí jiān shuō zhè gè wèn tí ba",
+          "meaningVi": "Hôm nay không kịp họp rồi, ngày mai chúng ta tìm thời gian khác nói về vấn đề này nhé."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -102,8 +153,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 5,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "không kịp",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -54,7 +54,9 @@
         "target": "显而易见",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "显而易见的结果",
@@ -64,10 +66,50 @@
         "target": "显而易见",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "清楚",
+        "pinyin": "qīng chu",
+        "meaningVi": "rõ ràng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: rõ ràng",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "显然",
+        "pinyin": "xiǎn rán",
+        "meaningVi": "rõ ràng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: rõ ràng",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "可见",
+        "pinyin": "kě jiàn",
+        "meaningVi": "rõ ràng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: rõ ràng",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "明显",
+        "pinyin": "míng xiǎn",
+        "meaningVi": "rõ ràng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: rõ ràng",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -113,10 +155,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:显而易见",
       "title": "Cách dùng 显而易见",
       "partOfSpeech": "idiom",
       "usageNoteVi": "Dùng để nhấn mạnh một điều rất rõ ràng, không cần tranh luận. Thường đi sau '是' (là) hoặc bổ ngữ cho danh từ.",
       "explanationVi": "Thành ngữ: 显 (rõ ràng) + 而 (mà) + 易 (dễ) + 见 (thấy) → 'rõ ràng mà dễ thấy' — điều hiển nhiên, ai cũng nhận ra.",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -134,7 +179,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 4
+    }
+  },
+  "meaningFullVi": "rõ ràng, hiển nhiên, dễ thấy, không thể chối cãi",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

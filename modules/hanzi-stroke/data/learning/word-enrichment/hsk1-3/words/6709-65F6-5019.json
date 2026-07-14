@@ -55,7 +55,9 @@
         "target": "有时候",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "只是有时候",
@@ -65,10 +67,23 @@
         "target": "有时候",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "有时",
+        "pinyin": "yǒu shí",
+        "meaningVi": "Đôi khi",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: đôi khi",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -124,10 +139,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:有时候",
       "title": "Cách dùng 有时候",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Dùng để chỉ hành động xảy ra thỉnh thoảng, không phải lúc nào cũng. Có thể lặp đôi khi...đôi khi... để chỉ hai tình huống khác nhau. Lưu ý thanh điệu: yǒu (thanh 3) + shí (thanh 2) + hou (thanh nhẹ).",
       "explanationVi": "Ghép nghĩa: 有 (có) + 时 (thời điểm) + 候 (thời kỳ, tình trạng). 'Có thời điểm' → đôi khi có lúc. Đây là ghép nghĩa chỉ thời điểm thỉnh thoảng xảy ra.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -161,7 +179,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 5,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "đôi khi, thỉnh thoảng, có lúc",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

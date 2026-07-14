@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Nghĩa của 海滨",
+      "meaningShortVi": "bờ biển",
       "meaningFullVi": "Nghĩa của 海滨",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Nghĩa của 海滨",
+  "meaningShortVi": "bờ biển",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -44,7 +44,28 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [
+      {
+        "targetWord": "黑板",
+        "pinyin": "hēi bǎn",
+        "meaningVi": "bảng đen",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
+    "candidateRelations": [
+      {
+        "targetWord": "海边",
+        "pinyin": "hǎi biān",
+        "meaningVi": "bờ biển",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bờ biển",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -80,10 +101,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:海滨",
       "title": "Cách dùng 海滨",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "",
       "explanationVi": "Ghép nghĩa từng chữ",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -101,8 +125,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 1,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "Nghĩa của 海滨",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

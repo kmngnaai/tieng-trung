@@ -54,7 +54,9 @@
         "target": "实在",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "实在不行",
@@ -64,10 +66,32 @@
         "target": "实在",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "确实",
+        "pinyin": "què shí",
+        "meaningVi": "thực sự",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: thực sự",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "真正",
+        "pinyin": "zhēn zhèng",
+        "meaningVi": "thực sự",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: thực sự",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -93,10 +117,27 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:实在",
       "title": "Cách dùng 实在",
       "partOfSpeech": "adverb",
       "usageNoteVi": "Phó từ/tính từ: thực sự, chân thật.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk1_new_33",
+      "title": "Cấu trúc cảm thán quá mức với 「太...了」",
+      "syntax": "太 + [tính từ/động từ tâm lý] + 了",
+      "explanationVi": "Cấu trúc này dùng để biểu thị mức độ cao, vượt quá mức bình thường hoặc dùng để cảm thán. Nó mang nghĩa tiếng Việt tương đương với \"quá\", \"lắm\" hoặc \"thật là...\". Ví dụ: 「太好了」(Tài hǎo le - Tốt quá rồi).",
+      "tipsVi": "Bạn có thể thêm các từ như 「真」(zhēn - thật) hoặc 「实在」(shízài - thật sự) vào trước 「太」 để tăng thêm sắc thái biểu cảm mạnh mẽ hơn.",
+      "attentionsVi": "Trong câu khẳng định với 「太...了」, nhất định phải có trợ từ ngữ khí 「了」 ở cuối câu thì mới hoàn chỉnh.",
+      "examples": [],
+      "source": "new_hsk_1.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 1,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +171,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "thực sự",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

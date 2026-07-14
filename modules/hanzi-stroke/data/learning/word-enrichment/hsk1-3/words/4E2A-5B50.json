@@ -57,7 +57,21 @@
         "target": "个子",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "个子",
+            "chinese": "他个子高高的。",
+            "pinyin": "tā gè zi gāo gāo de",
+            "meaningVi": "Anh ấy có dáng người cao cao.",
+            "source": "hsk_3.json",
+            "grammarId": "hsk3_39",
+            "grammarTopic": "Lặp lại tính từ đơn âm tiết",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "个子矮",
@@ -67,10 +81,34 @@
         "target": "个子",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "个子",
+            "chinese": "个子矮",
+            "pinyin": "gè zi ǎi",
+            "meaningVi": "chiều cao thấp",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "身高",
+        "pinyin": "shēn gāo",
+        "meaningVi": "chiều cao",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: chiều cao",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -92,14 +130,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "个子",
+      "chinese": "他个子高高的。",
+      "pinyin": "tā gè zi gāo gāo de",
+      "meaningVi": "Anh ấy có dáng người cao cao.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_39",
+      "grammarTopic": "Lặp lại tính từ đơn âm tiết",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "个子",
+      "chinese": "儿子的个子没有他那么高。",
+      "pinyin": "ér zi de gè zi méi yǒu tā nà me gāo",
+      "meaningVi": "Vóc dáng của đứa con trai không cao bằng anh ấy.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_25",
+      "grammarTopic": "So sánh bằng",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:个子",
       "title": "Cách dùng 个子",
       "partOfSpeech": "noun",
       "usageNoteVi": "个子经常和形容词高/矮连用，表示人的身高。",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_39",
+      "title": "Lặp lại tính từ đơn âm tiết",
+      "syntax": "Tính từ đơn âm tiết + 「的」 (Ví dụ: 高高的, 慢慢的)",
+      "explanationVi": "Khi lặp lại tính từ đơn âm tiết theo dạng 「AA 的」, chúng ta đang nhấn mạnh vào đặc trưng hoặc trạng thái của sự vật, hiện tượng đó. Cấu trúc này thường gợi cảm giác miêu tả sinh động, gần gũi và giàu hình ảnh hơn so với tính từ đơn lẻ.",
+      "tipsVi": "Bạn có thể dùng cấu trúc này để miêu tả ngoại hình hoặc trạng thái một cách biểu cảm, ví dụ: 「大大的眼睛」(đôi mắt to tròn).",
+      "attentionsVi": "Không phải tất cả tính từ đơn âm tiết đều có thể lặp lại theo cách này, hãy tập trung vào các tính từ miêu tả đặc điểm ngoại hình hoặc trạng thái dễ thấy.",
+      "examples": [
+        {
+          "chinese": "他个子高高的。",
+          "pinyin": "tā gè zi gāo gāo de",
+          "meaningVi": "Anh ấy có dáng người cao cao."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_25",
+      "title": "So sánh bằng",
+      "syntax": "A 跟 B (不) 一样 (+ [Tính từ])",
+      "explanationVi": "Cấu trúc này dùng để so sánh sự tương đồng giữa hai đối tượng. Nếu thêm tính từ phía sau 「一样」, nó giúp xác định rõ khía cạnh đang được so sánh (ví dụ: kích thước, độ dài, màu sắc).",
+      "tipsVi": "Nếu muốn nói 'không giống nhau', bạn chỉ cần thêm 「不」 trước 「一样」 là được.",
+      "attentionsVi": "Lưu ý rằng sau 「一样」 thường không cần thêm các từ chỉ mức độ như 「很」 hay 「非常」.",
+      "examples": [
+        {
+          "chinese": "儿子的个子没有他那么高。",
+          "pinyin": "ér zi de gè zi méi yǒu tā nà me gāo",
+          "meaningVi": "Vóc dáng của đứa con trai không cao bằng anh ấy."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -173,7 +276,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "chiều cao",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

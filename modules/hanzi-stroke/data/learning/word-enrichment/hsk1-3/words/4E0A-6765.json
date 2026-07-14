@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "lên đây",
+      "meaningShortVi": "đi lên",
       "meaningFullVi": "lên đây, đến đây",
       "partOfSpeech": "động từ hướng",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "lên đây",
+  "meaningShortVi": "đi lên",
   "wordType": "động từ hướng",
   "wordTypes": [
     "động từ hướng"
@@ -55,7 +55,9 @@
         "target": "上来",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "跑上来",
@@ -65,10 +67,35 @@
         "target": "上来",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "上来",
+            "chinese": "他从楼下跑上来了。",
+            "pinyin": "Tā cóng lóu xià pǎo shànglái le.",
+            "meaningVi": "Anh ấy chạy lên đây từ dưới tầng.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "上来",
+            "chinese": "她经常跑上来找我玩儿。",
+            "pinyin": "tā jīng cháng pǎo shàng lái zhǎo wǒ wán ér",
+            "meaningVi": "Cô ấy thường xuyên chạy lên đây tìm tôi chơi.",
+            "source": "new_hsk_2.json",
+            "grammarId": "hsk2_new_42",
+            "grammarTopic": "Bổ ngữ xu hướng phức hợp",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 2
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -90,14 +117,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "上来",
+      "chinese": "她经常跑上来找我玩儿。",
+      "pinyin": "tā jīng cháng pǎo shàng lái zhǎo wǒ wán ér",
+      "meaningVi": "Cô ấy thường xuyên chạy lên đây tìm tôi chơi.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_42",
+      "grammarTopic": "Bổ ngữ xu hướng phức hợp",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:上来",
       "title": "Cách dùng 上来",
       "partOfSpeech": "động từ hướng",
       "usageNoteVi": "上来 (lên đây) chỉ hành động di chuyển từ thấp đến cao theo hướng về phía người nói. Lai là neutral tone khi dùng là hướng.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_42",
+      "title": "Bổ ngữ xu hướng phức hợp",
+      "syntax": "Động từ + (上/下/进/出/回/过/起) + 来/去",
+      "explanationVi": "Bổ ngữ xu hướng phức hợp gồm một động từ chỉ phương hướng kết hợp với 「来」 (lại đây) hoặc 「去」 (đi tới đó). Cấu trúc này dùng để mô tả hướng di chuyển của hành động một cách chi tiết hơn. Ví dụ 「走进来」 nghĩa là đi vào đây, 「走进去」 nghĩa là đi vào đó.",
+      "tipsVi": "Nếu câu có tân ngữ là nơi chốn, hãy đặt tân ngữ vào giữa bổ ngữ xu hướng, ví dụ 「走进教室来」.",
+      "attentionsVi": "Chú ý phân biệt giữa 「来」 (hướng về phía người nói) và 「去」 (hướng xa khỏi người nói) để sử dụng chính xác.",
+      "examples": [
+        {
+          "chinese": "她经常跑上来找我玩儿。",
+          "pinyin": "tā jīng cháng pǎo shàng lái zhǎo wǒ wán ér",
+          "meaningVi": "Cô ấy thường xuyên chạy lên đây tìm tôi chơi."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -151,7 +212,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "lên đây, đến đây",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

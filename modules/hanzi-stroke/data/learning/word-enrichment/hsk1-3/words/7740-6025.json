@@ -48,7 +48,27 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "担心",
+        "pinyin": "dān xīn",
+        "meaningVi": "lo lắng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: lo lắng",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "操心",
+        "pinyin": "cāo xīn",
+        "meaningVi": "lo lắng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: lo lắng",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -80,14 +100,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "着急",
+      "chinese": "今天的足球比赛我越看越着急。",
+      "pinyin": "jīn tiān de zú qiú bǐ sài wǒ yuè kàn yuè zhe jí",
+      "meaningVi": "Trận bóng đá hôm nay tôi càng xem càng thấy sốt ruột.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_30",
+      "grammarTopic": "Cấu trúc càng... càng...",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:着急",
       "title": "Cách dùng 着急",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "着急 diễn tả tâm trạng nôn nóng, lo lắng. Hán-Việt 'trước' là bám vào; 'cấp' là khẩn cấp. Khi bám vào việc gấp thì ta nôn nóng, sốt ruột.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_30",
+      "title": "Cấu trúc càng... càng...",
+      "syntax": "越 + A + 越 + B",
+      "explanationVi": "Cấu trúc 「越 A 越 B」 dùng để diễn tả sự thay đổi song song của hai yếu tố, khi mức độ của A tăng lên thì B cũng thay đổi theo tương ứng. Bạn có thể dịch là \"càng A càng B\" để nắm bắt ý nghĩa của cấu trúc này.",
+      "tipsVi": "Thông thường A và B thường là các động từ chỉ tâm lý hoặc tính từ chỉ trạng thái.",
+      "attentionsVi": "Cấu trúc này không dùng các từ chỉ trạng thái cố định mà chỉ dùng cho những thứ có tính chất thay đổi, tăng tiến.",
+      "examples": [
+        {
+          "chinese": "今天的足球比赛我越看越着急。",
+          "pinyin": "jīn tiān de zú qiú bǐ sài wǒ yuè kàn yuè zhe jí",
+          "meaningVi": "Trận bóng đá hôm nay tôi càng xem càng thấy sốt ruột."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -141,8 +195,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "lo lắng, sốt ruột, nôn nóng",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

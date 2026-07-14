@@ -53,7 +53,8 @@
         "meaningVi": "Bảng điểm",
         "meaningFullVi": "Bảng điểm, phiếu báo kết quả học tập.",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 2",
+        "hskLevel": 2,
+        "source": "hsk_2.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -66,7 +67,9 @@
         "target": "成绩",
         "source": "hsk_2.json",
         "pinyinMethod": "exact-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "成绩",
@@ -76,10 +79,45 @@
         "target": "成绩",
         "source": "hsk_2.json",
         "pinyinMethod": "exact-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "成绩",
+            "chinese": "考试成绩很好",
+            "pinyin": "kǎo shì chéng jì hěn hǎo",
+            "meaningVi": "Điểm thi rất tốt",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "成绩",
+            "chinese": "取得了好成绩",
+            "pinyin": "qǔ dé le hǎo chéng jì",
+            "meaningVi": "Đạt được thành tích tốt",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "成绩",
+            "chinese": "他的成绩已经接近满分。",
+            "pinyin": "tā de chéng jì yǐ jīng jiē jìn mǎn fēn",
+            "meaningVi": "Thành tích của anh ấy đã gần đạt điểm tuyệt đối.",
+            "source": "hsk_5.json",
+            "grammarId": "hsk5_78",
+            "grammarTopic": "Phân biệt 接近 và 靠近",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 3
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -101,14 +139,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "成绩",
+      "chinese": "他的成绩已经接近满分。",
+      "pinyin": "tā de chéng jì yǐ jīng jiē jìn mǎn fēn",
+      "meaningVi": "Thành tích của anh ấy đã gần đạt điểm tuyệt đối.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_78",
+      "grammarTopic": "Phân biệt 接近 và 靠近",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "成绩",
+      "chinese": "在老师的帮助下，我的成绩提高很快。",
+      "pinyin": "zài lǎo shī de bāng zhù xià wǒ de chéng jì tí gāo hěn kuài",
+      "meaningVi": "Dưới sự giúp đỡ của thầy giáo, thành tích của tôi tiến bộ rất nhanh.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_32",
+      "grammarTopic": "Cấu trúc phạm vi 在……上/中/下",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:成绩",
       "title": "Cách dùng 成绩",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_78",
+      "title": "Phân biệt 接近 và 靠近",
+      "syntax": "接近 (tiến gần mức độ/số lượng) vs. 靠近 (gần khoảng cách vật lý)",
+      "explanationVi": "「靠近」 dùng để chỉ vị trí, khoảng cách địa lý giữa người hoặc vật (ví dụ: lại gần một người). Ngược lại, 「接近」 mang nghĩa trừu tượng hơn, thường dùng để mô tả sự tiến gần về mức độ, trình độ, con số hoặc mối quan hệ giữa người với người.",
+      "tipsVi": "Khi muốn nói 'lại gần đây', hãy dùng 「靠近一点儿」 thay vì dùng 「接近」.",
+      "attentionsVi": "Đừng dùng 「接近」 cho khoảng cách vật lý vì sẽ gây khó hiểu; hãy ghi nhớ 「靠近」 là khoảng cách, 「接近」 là mức độ.",
+      "examples": [
+        {
+          "chinese": "他的成绩已经接近满分。",
+          "pinyin": "tā de chéng jì yǐ jīng jiē jìn mǎn fēn",
+          "meaningVi": "Thành tích của anh ấy đã gần đạt điểm tuyệt đối."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_32",
+      "title": "Cấu trúc phạm vi 在……上/中/下",
+      "syntax": "在 + [Danh từ/Khái cạnh] + 上/中/下",
+      "explanationVi": "Cấu trúc này dùng để xác định phạm vi, hoàn cảnh hoặc khía cạnh mà hành động hay sự việc xảy ra. Trong đó, 「上」 thường chỉ khía cạnh (lý thuyết), 「中」 chỉ quá trình (đang diễn ra) và 「下」 chỉ điều kiện (dưới sự tác động).",
+      "tipsVi": "Hãy ghi nhớ các cụm từ cố định như 「在工作上」 (trong công việc) hay 「在学习中」 (trong quá trình học) để vận dụng linh hoạt.",
+      "attentionsVi": "Cần chú ý không dịch máy móc theo nghĩa đen (trên/trong/dưới) vì đây là các từ chỉ phạm vi trừu tượng.",
+      "examples": [
+        {
+          "chinese": "在老师的帮助下，我的成绩提高很快。",
+          "pinyin": "zài lǎo shī de bāng zhù xià wǒ de chéng jì tí gāo hěn kuài",
+          "meaningVi": "Dưới sự giúp đỡ của thầy giáo, thành tích của tôi tiến bộ rất nhanh."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -176,6 +279,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "thành tích; điểm số",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -56,10 +56,13 @@
         "target": "月亮",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -71,14 +74,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "月亮",
+      "chinese": "“明”字，左边的“日”意思是太阳，而右边的“月”意思是月亮。",
+      "pinyin": "míng zì zuǒ biān de rì yì sī shì tài yáng ér yòu biān de yuè yì sī shì yuè liàng",
+      "meaningVi": "Chữ “明”, bên trái là “日” nghĩa là mặt trời, còn bên phải là “月” nghĩa là mặt trăng.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_10",
+      "grammarTopic": "Cách dùng liên từ 而",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:月亮",
       "title": "Cách dùng 月亮",
       "partOfSpeech": "noun",
       "usageNoteVi": "Danh từ chỉ mặt trăng.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_10",
+      "title": "Cách dùng liên từ 而",
+      "syntax": "Vế câu 1 + 而 + Vế câu 2",
+      "explanationVi": "Liên từ 「而」 thường được dùng trong câu để nối hai vế câu có quan hệ song song hoặc tương phản. Nó giúp thể hiện ý nghĩa bổ sung, \"trong khi đó\" hoặc \"mà\" giữa hai sự vật, hiện tượng.",
+      "tipsVi": "Bạn có thể dùng 「而」 để kết nối hai tính từ đối lập nhau nhằm làm nổi bật sự khác biệt giữa hai đối tượng.",
+      "attentionsVi": "Cần phân biệt 「而」 với 「而且」, vì 「而且」 dùng để bổ sung thêm ý nghĩa (nghĩa là \"hơn nữa\"), trong khi 「而」 thiên về sự đối chiếu hoặc liệt kê.",
+      "examples": [
+        {
+          "chinese": "“明”字，左边的“日”意思是太阳，而右边的“月”意思是月亮。",
+          "pinyin": "míng zì zuǒ biān de rì yì sī shì tài yáng ér yòu biān de yuè yì sī shì yuè liàng",
+          "meaningVi": "Chữ “明”, bên trái là “日” nghĩa là mặt trời, còn bên phải là “月” nghĩa là mặt trăng."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -147,7 +184,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 2,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "mặt trăng",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

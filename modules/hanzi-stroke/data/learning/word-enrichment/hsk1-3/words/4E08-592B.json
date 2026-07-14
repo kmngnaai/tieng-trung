@@ -48,15 +48,51 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
-  "sentences": [],
+  "sentences": [
+    {
+      "target": "丈夫",
+      "chinese": "我丈夫喜欢一边吃早饭一边看报纸。",
+      "pinyin": "wǒ zhàng fū xǐ huān yī biān chī zǎo fàn yī biān kàn bào zhǐ",
+      "meaningVi": "Chồng tôi thích vừa ăn sáng vừa đọc báo.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_31",
+      "grammarTopic": "Diễn tả hai hành động cùng lúc",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "grammarLinks": [
     {
+      "grammarId": "usage:丈夫",
       "title": "Cách dùng 丈夫",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "Từ chỉ chồng trong ngôn ngữ trang trọng. Trong giao tiếp hàng ngày, người ta thường 用 老公 (lão công – chồng thân mật) hoặc 先生 (thiên sinh – chồng lịch sự).",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_31",
+      "title": "Diễn tả hai hành động cùng lúc",
+      "syntax": "一边 + [động từ 1] + (tân ngữ 1), 一边 + [động từ 2] + (tân ngữ 2)",
+      "explanationVi": "Cấu trúc này dùng để diễn tả hai hành động diễn ra cùng một lúc. Khi bạn muốn nói về việc mình đang làm song song hai việc, hãy đặt mỗi động từ sau mỗi chữ 「一边」.",
+      "tipsVi": "Bạn có thể dùng cấu trúc này để kể về thói quen hằng ngày, ví dụ: 「一边吃饭，一边看电视」(Vừa ăn cơm, vừa xem tivi).",
+      "attentionsVi": "Lưu ý rằng hai động từ này phải là những hành động có thể thực hiện được cùng một lúc, nếu không câu sẽ trở nên vô lý.",
+      "examples": [
+        {
+          "chinese": "我丈夫喜欢一边吃早饭一边看报纸。",
+          "pinyin": "wǒ zhàng fū xǐ huān yī biān chī zǎo fàn yī biān kàn bào zhǐ",
+          "meaningVi": "Chồng tôi thích vừa ăn sáng vừa đọc báo."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -110,9 +146,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có câu mẫu đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 1,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "chồng",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

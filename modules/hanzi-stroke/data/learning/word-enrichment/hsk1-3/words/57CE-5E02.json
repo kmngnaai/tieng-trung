@@ -55,7 +55,31 @@
         "target": "城市",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "城市",
+            "chinese": "大城市生活很方便。",
+            "pinyin": "Dà chéngshì shēnghuó hěn fāngbiàn.",
+            "meaningVi": "Cuộc sống ở thành phố lớn rất tiện lợi.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "城市",
+            "chinese": "和中国其他大城市相比。",
+            "pinyin": "hé zhōng guó qí tā dà chéng shì xiāng bǐ",
+            "meaningVi": "So với các thành phố lớn khác của Trung Quốc.",
+            "source": "hsk_6.json",
+            "grammarId": "hsk6_33",
+            "grammarTopic": "Cấu trúc so sánh 和...相比",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 2
       },
       {
         "text": "城市发展",
@@ -65,10 +89,13 @@
         "target": "城市",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -90,14 +117,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "城市",
+      "chinese": "和中国其他大城市相比。",
+      "pinyin": "hé zhōng guó qí tā dà chéng shì xiāng bǐ",
+      "meaningVi": "So với các thành phố lớn khác của Trung Quốc.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_33",
+      "grammarTopic": "Cấu trúc so sánh 和...相比",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:城市",
       "title": "Cách dùng 城市",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "城市 (thành phố) chỉ khu vực đô thị đông đúc, phát triển, đối lập với农村 (nông thôn).",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_33",
+      "title": "Cấu trúc so sánh 和...相比",
+      "syntax": "和 + [Đối tượng A] + 相比, [Đối tượng B] + [nhận xét/kết quả]",
+      "explanationVi": "Cấu trúc 「和……相比」 được dùng để đưa ra sự so sánh giữa hai sự vật hoặc sự việc với nhau. Trong đó, 「和」 (cùng với) nối đối tượng được đem ra làm mốc so sánh, còn 「相比」 có nghĩa là so sánh.",
+      "tipsVi": "Bạn có thể thay thế 「和」 bằng 「跟」 trong văn nói mà ý nghĩa vẫn hoàn toàn không thay đổi.",
+      "attentionsVi": "Cấu trúc này thường dùng để so sánh các khía cạnh cụ thể, tránh dùng khi chỉ muốn nói một câu đơn giản về sự hơn kém giữa hai vật mà không có tiêu chí so sánh rõ ràng.",
+      "examples": [
+        {
+          "chinese": "和中国其他大城市相比。",
+          "pinyin": "hé zhōng guó qí tā dà chéng shì xiāng bǐ",
+          "meaningVi": "So với các thành phố lớn khác của Trung Quốc."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -161,7 +222,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "thành phố",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

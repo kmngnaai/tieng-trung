@@ -52,7 +52,9 @@
         "target": "大巴",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "旅游大巴",
@@ -62,7 +64,9 @@
         "target": "大巴",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "坐大巴",
@@ -72,10 +76,43 @@
         "target": "大巴",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "大巴",
+            "chinese": "我们坐大巴去机场",
+            "pinyin": "Wǒmen zuò dàbā qù jīchǎng",
+            "meaningVi": "Chúng tôi đi xe buýt ra sân bay",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "公共汽车",
+        "pinyin": "gōng gòng qì chē",
+        "meaningVi": "xe buýt",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: xe buýt",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "公交车",
+        "pinyin": "gōng jiāo chē",
+        "meaningVi": "xe buýt",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: xe buýt",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -121,10 +158,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:大巴",
       "title": "Cách dùng 大巴",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Dùng chỉ xe buýt lớn hoặc xe khách đường dài. Trong tiếng Trung, '大巴' thường dùng cho xe buýt đường dài và xe buýt nhanh.",
       "explanationVi": "Ghép nghĩa: 大 (lớn, to) + 巴 (mượn âm từ 'bus' tiếng Anh, hoặc từ 'bá' trong tiếng Hán) = xe buýt lớn. '巴' ở đây là phiên âm của 'bus' trong tiếng Anh.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -142,7 +182,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 4,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "xe buýt, xe khách",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

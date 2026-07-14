@@ -55,7 +55,9 @@
         "target": "下班",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "下班后",
@@ -65,10 +67,13 @@
         "target": "下班",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -120,14 +125,79 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "下班",
+      "chinese": "附近那家银行5点就下班了！那我不去了，我本来想去取点儿钱。",
+      "pinyin": "fù jìn nà jiā yín xíng diǎn jiù xià bān le nà wǒ bù qù le wǒ běn lái xiǎng qù qǔ diǎn ér qián",
+      "meaningVi": "Ngân hàng gần đây 5 giờ đã tan làm rồi! Vậy tôi không đi nữa, vốn dĩ tôi định đi rút ít tiền.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_12",
+      "grammarTopic": "Cách dùng phó từ 本来",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "下班",
+      "chinese": "我晚上六点半下班。",
+      "pinyin": "wǒ wǎn shàng liù diǎn bàn xià bān",
+      "meaningVi": "Tôi tan làm lúc 6 giờ rưỡi tối.",
+      "source": "new_hsk_1.json",
+      "grammarId": "hsk1_new_15",
+      "grammarTopic": "Cách nói giờ giấc cụ thể",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:下班",
       "title": "Cách dùng 下班",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "'下班' là tan làm, trái với '上班' (đi làm). '下班后' là sau giờ làm. '等下班' đợi đến khi tan làm.",
       "explanationVi": "Ghép nghĩa: 下 (xuống, kết thúc) + 班 (ca làm việc). Kết thúc ca làm việc, tan làm.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_12",
+      "title": "Cách dùng phó từ 本来",
+      "syntax": "本来 + V/Adj (vốn dĩ/lẽ ra)",
+      "explanationVi": "Phó từ 「本来」 dùng để chỉ một tình huống, sự việc vốn dĩ là như vậy ngay từ đầu. Nó cũng diễn tả ý rằng sự việc đáng lẽ đã xảy ra theo một hướng khác nhưng thực tế lại thay đổi.",
+      "tipsVi": "Bạn có thể dùng 「本来」 đứng trước hoặc sau chủ ngữ đều được, ví dụ: 「我本来想去」 hoặc 「本来我想去」 đều đúng.",
+      "attentionsVi": "Cần phân biệt với 「原来」; 「本来」 thường đi kèm với các từ chỉ sự thay đổi (như 「但是」, 「可是」) để nhấn mạnh sự khác biệt giữa dự định ban đầu và thực tế.",
+      "examples": [
+        {
+          "chinese": "附近那家银行5点就下班了！那我不去了，我本来想去取点儿钱。",
+          "pinyin": "fù jìn nà jiā yín xíng diǎn jiù xià bān le nà wǒ bù qù le wǒ běn lái xiǎng qù qǔ diǎn ér qián",
+          "meaningVi": "Ngân hàng gần đây 5 giờ đã tan làm rồi! Vậy tôi không đi nữa, vốn dĩ tôi định đi rút ít tiền."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk1_new_15",
+      "title": "Cách nói giờ giấc cụ thể",
+      "syntax": "Số đếm + 点 (giờ) + Số đếm + 分 (phút)",
+      "explanationVi": "Trong tiếng Trung, để nói giờ giấc, bạn đặt số đếm trước từ 「点」 (giờ) và 「分」 (phút). Thứ tự thời gian luôn đi từ đơn vị lớn đến đơn vị nhỏ, ví dụ: 8 giờ 30 phút là 「八点三十分」.",
+      "tipsVi": "Khi nói giờ kém hoặc 30 phút, bạn có thể dùng 「半」 thay cho 30 phút, ví dụ: 8 giờ rưỡi là 「八点半」.",
+      "attentionsVi": "Đừng quên dùng 「两」 (liǎng) thay vì 「二」 (èr) khi nói \"2 giờ\" (「两点」), không dùng 「二点」.",
+      "examples": [
+        {
+          "chinese": "我晚上六点半下班。",
+          "pinyin": "wǒ wǎn shàng liù diǎn bàn xià bān",
+          "meaningVi": "Tôi tan làm lúc 6 giờ rưỡi tối."
+        }
+      ],
+      "source": "new_hsk_1.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 1,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -181,7 +251,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 7,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "tan làm, kết thúc ca làm việc",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

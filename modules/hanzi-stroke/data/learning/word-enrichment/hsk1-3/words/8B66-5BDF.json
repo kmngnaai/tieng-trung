@@ -54,7 +54,9 @@
         "target": "警察",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "交通警察",
@@ -64,10 +66,13 @@
         "target": "警察",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -89,14 +94,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "警察",
+      "chinese": "那个坏人被警察抓到了。",
+      "pinyin": "nà gè huài rén bèi jǐng chá zhuā dào le",
+      "meaningVi": "Kẻ xấu đó đã bị cảnh sát bắt được rồi.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_46",
+      "grammarTopic": "Câu bị động chữ 被",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:警察",
       "title": "Cách dùng 警察",
       "partOfSpeech": "danh từ nghề nghiệp",
       "usageNoteVi": "警察 (cảnh sát) là người làm nhiệm vụ bảo vệ trật tự an toàn xã hội, thực thi pháp luật.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_46",
+      "title": "Câu bị động chữ 被",
+      "syntax": "Chủ ngữ (bị tác động) + 被 / 叫 / 让 + Tân ngữ (người/vật thực hiện) + Động từ + thành phần khác",
+      "explanationVi": "Câu chữ 「被」 được dùng để tạo thành câu bị động, nhấn mạnh vào đối tượng chịu tác động của hành động thay vì người thực hiện. Cấu trúc này thường dùng để diễn tả các sự việc xảy ra ngoài ý muốn hoặc mang tính tiêu cực.",
+      "tipsVi": "Trong câu có 「被」, động từ không bao giờ đứng một mình mà phải đi kèm các thành phần khác như 「了」, 「过」, bổ ngữ hoặc tân ngữ.",
+      "attentionsVi": "Không nên dùng 「被」 cho những hành động tích cực hoặc bình thường, vì nó thường mang hàm ý không hay hoặc chịu sự ảnh hưởng không mong muốn.",
+      "examples": [
+        {
+          "chinese": "那个坏人被警察抓到了。",
+          "pinyin": "nà gè huài rén bèi jǐng chá zhuā dào le",
+          "meaningVi": "Kẻ xấu đó đã bị cảnh sát bắt được rồi."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +169,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "cảnh sát",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

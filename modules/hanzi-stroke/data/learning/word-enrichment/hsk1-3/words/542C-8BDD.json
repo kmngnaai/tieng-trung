@@ -52,7 +52,9 @@
         "target": "听话",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "不听话",
@@ -62,7 +64,20 @@
         "target": "听话",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "听话",
+            "chinese": "不听话",
+            "pinyin": "bù tīnghuà",
+            "meaningVi": "Không ngoan, không vâng lời",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "听话照做",
@@ -72,10 +87,24 @@
         "target": "听话",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "听话",
+            "chinese": "听话照做",
+            "pinyin": "tīnghuà zhàozuò",
+            "meaningVi": "Vâng lời và làm theo",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -121,10 +150,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:听话",
       "title": "Cách dùng 听话",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Dùng cho trẻ em, học sinh, hoặc người phục tùng. Mang sắc thái tích cực (ngoan) hoặc trung tính.",
       "explanationVi": "Ghép nghĩa: 听 (nghe) + 话 (lời) → 'nghe lời' — vâng lời.",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -142,7 +174,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 4,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "vâng lời, ngoan ngoãn",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

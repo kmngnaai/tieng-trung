@@ -44,7 +44,8 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -76,14 +77,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "赚钱",
+      "chinese": "在我看来，赚钱多少不是最重要的，兴趣才是关键。",
+      "pinyin": "zài wǒ kàn lái zhuàn qián duō shǎo bù shì zuì zhòng yào de xīng qù cái shì guān jiàn",
+      "meaningVi": "Theo tôi thấy, kiếm được bao nhiêu tiền không phải là quan trọng nhất, hứng thú mới là mấu chốt.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_33",
+      "grammarTopic": "Đưa ra quan điểm",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:赚钱",
       "title": "Cách dùng 赚钱",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Động từ chỉ việc kiếm tiền, thu lợi nhuận. Dùng trong kinh doanh.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_33",
+      "title": "Đưa ra quan điểm",
+      "syntax": "在 [đối tượng] 看来，[quan điểm/ý kiến]",
+      "explanationVi": "Cấu trúc 「在……看来」 được dùng để đưa ra nhận định, quan điểm cá nhân của một người hoặc một nhóm người về một vấn đề nào đó. Nó có nghĩa tương đương với \"theo cái nhìn của...\" hoặc \"đối với... mà nói\".",
+      "tipsVi": "Bạn có thể thay thế phần \"đối tượng\" bằng danh từ chỉ người như 「在我看来」(theo tôi), 「在他看来」(theo anh ấy) hoặc tên riêng.",
+      "attentionsVi": "Cấu trúc này thường đứng ở đầu câu để dẫn dắt ý kiến, sau đó phải dùng dấu phẩy 「，」 để ngăn cách với mệnh đề chính.",
+      "examples": [
+        {
+          "chinese": "在我看来，赚钱多少不是最重要的，兴趣才是关键。",
+          "pinyin": "zài wǒ kàn lái zhuàn qián duō shǎo bù shì zuì zhòng yào de xīng qù cái shì guān jiàn",
+          "meaningVi": "Theo tôi thấy, kiếm được bao nhiêu tiền không phải là quan trọng nhất, hứng thú mới là mấu chốt."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -101,8 +136,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "kiếm tiền",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

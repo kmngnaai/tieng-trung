@@ -56,7 +56,9 @@
         "target": "校长",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "大学校长",
@@ -66,10 +68,23 @@
         "target": "校长",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "院长",
+        "pinyin": "yuàn zhǎng",
+        "meaningVi": "hiệu trưởng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: hiệu trưởng",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -91,14 +106,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "校长",
+      "chinese": "校长亲自给获奖学生颁奖。",
+      "pinyin": "xiào zhǎng qīn zì gěi huò jiǎng xué shēng bān jiǎng",
+      "meaningVi": "Hiệu trưởng đích thân trao giải cho học sinh đạt giải.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_19",
+      "grammarTopic": "Phân biệt 亲自 và 自己",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "校长",
+      "chinese": "不一会儿，张校长就来了。",
+      "pinyin": "bù yī huì ér zhāng xiào zhǎng jiù lái le",
+      "meaningVi": "Chẳng mấy chốc mà hiệu trưởng Trương đã đến rồi.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_51",
+      "grammarTopic": "Cách dùng cụm từ chỉ thời gian '不一会儿'",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:校长",
       "title": "Cách dùng 校长",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_19",
+      "title": "Phân biệt 亲自 và 自己",
+      "syntax": "S + 亲自 + V (Phó từ); S + 自己 + V (Đại từ/Phó từ)",
+      "explanationVi": "「亲自」 là phó từ dùng để nhấn mạnh việc đích thân chủ thể thực hiện hành động, thường mang sắc thái trang trọng. 「自己」 là đại từ chỉ bản thân hoặc phó từ chỉ việc tự mình làm mà không cần người khác giúp, dùng trong ngữ cảnh rộng hơn.",
+      "tipsVi": "Hãy nhớ rằng 「亲自」 chỉ dùng cho chính chủ thể thực hiện hành động, còn 「自己」 có thể dùng làm đại từ làm tân ngữ (ví dụ: yêu bản thân - 爱自己).",
+      "attentionsVi": "Không dùng 「亲自」 để nói về việc tự làm những thói quen sinh hoạt cá nhân (như ăn, ngủ, tắm), hãy dùng 「自己」 trong những trường hợp đó.",
+      "examples": [
+        {
+          "chinese": "校长亲自给获奖学生颁奖。",
+          "pinyin": "xiào zhǎng qīn zì gěi huò jiǎng xué shēng bān jiǎng",
+          "meaningVi": "Hiệu trưởng đích thân trao giải cho học sinh đạt giải."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_51",
+      "title": "Cách dùng cụm từ chỉ thời gian '不一会儿'",
+      "syntax": "不一会儿 + V/Cụm câu",
+      "explanationVi": "Cụm từ 「不一会儿」 dùng để diễn tả một khoảng thời gian trôi qua rất nhanh chóng, ngắn ngủi. Bạn có thể dùng nó ở đầu câu để làm trạng ngữ chỉ thời gian, mang nghĩa là “chẳng mấy chốc” hay “chốc lát sau”.",
+      "tipsVi": "Bạn có thể dùng cấu trúc này để kể về các sự việc xảy ra nối tiếp nhau một cách nhanh chóng trong một câu chuyện.",
+      "attentionsVi": "「不一会儿」 là một cụm từ cố định, không nên thay thế các thành phần bên trong nó bằng các từ khác.",
+      "examples": [
+        {
+          "chinese": "不一会儿，张校长就来了。",
+          "pinyin": "bù yī huì ér zhāng xiào zhǎng jiù lái le",
+          "meaningVi": "Chẳng mấy chốc mà hiệu trưởng Trương đã đến rồi."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -167,7 +247,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "hiệu trưởng",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

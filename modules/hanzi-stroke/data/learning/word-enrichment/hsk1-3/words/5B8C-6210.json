@@ -56,7 +56,9 @@
         "target": "完成",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "顺利完成",
@@ -66,10 +68,13 @@
         "target": "完成",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -91,14 +96,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "完成",
+      "chinese": "我们今年的工作都已经按照计划完成了。",
+      "pinyin": "wǒ men jīn nián de gōng zuò dōu yǐ jīng àn zhào jì huà wán chéng le",
+      "meaningVi": "Công việc năm nay của chúng tôi đều đã hoàn thành theo kế hoạch.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_19",
+      "grammarTopic": "Cách dùng giới từ 按照",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "完成",
+      "chinese": "只要你努力学习，就一定能完成目标。",
+      "pinyin": "zhǐ yào nǐ nǔ lì xué xí jiù yī dìng néng wán chéng mù biāo",
+      "meaningVi": "Chỉ cần bạn nỗ lực học tập thì nhất định sẽ hoàn thành mục tiêu.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_62",
+      "grammarTopic": "Cấu trúc điều kiện Chỉ cần... thì...",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:完成",
       "title": "Cách dùng 完成",
       "partOfSpeech": "verb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_19",
+      "title": "Cách dùng giới từ 按照",
+      "syntax": "按照 + danh từ/cụm danh từ + động từ",
+      "explanationVi": "Giới từ 「按照」 được dùng để chỉ căn cứ hoặc cơ sở để thực hiện một hành động nào đó. Nó thường được dịch sang tiếng Việt là “theo”, “dựa vào” hoặc “căn cứ vào”.",
+      "tipsVi": "Cụm từ bắt đầu bằng 「按照」 thường đứng ở đầu câu hoặc trước động từ để bổ sung ý nghĩa cho hành động phía sau.",
+      "attentionsVi": "Không nên nhầm lẫn 「按照」 với 「照」; mặc dù có nghĩa tương tự nhưng 「按照」 mang tính trang trọng và thường dùng trong văn viết hoặc các quy tắc, quy định cụ thể.",
+      "examples": [
+        {
+          "chinese": "我们今年的工作都已经按照计划完成了。",
+          "pinyin": "wǒ men jīn nián de gōng zuò dōu yǐ jīng àn zhào jì huà wán chéng le",
+          "meaningVi": "Công việc năm nay của chúng tôi đều đã hoàn thành theo kế hoạch."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_62",
+      "title": "Cấu trúc điều kiện Chỉ cần... thì...",
+      "syntax": "只要 + [Điều kiện], 就 + [Kết quả]",
+      "explanationVi": "Cấu trúc 「只要……，就……」 dùng để biểu thị một điều kiện cần thiết, chỉ cần điều kiện đó xảy ra thì kết quả tương ứng sẽ xuất hiện. Đây là mẫu câu rất phổ biến trong tiếng Trung để khẳng định mối quan hệ nhân quả.",
+      "tipsVi": "Bạn có thể dịch là \"Chỉ cần... thì...\" hoặc \"Miễn là... thì...\" để câu văn nghe tự nhiên hơn trong tiếng Việt.",
+      "attentionsVi": "Cần chú ý đặt 「就」 ngay trước kết quả hoặc động từ chỉ kết quả để làm nổi bật sự chắc chắn của hành động.",
+      "examples": [
+        {
+          "chinese": "只要你努力学习，就一定能完成目标。",
+          "pinyin": "zhǐ yào nǐ nǔ lì xué xí jiù yī dìng néng wán chéng mù biāo",
+          "meaningVi": "Chỉ cần bạn nỗ lực học tập thì nhất định sẽ hoàn thành mục tiêu."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -167,7 +237,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "hoàn thành",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

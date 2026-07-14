@@ -53,7 +53,8 @@
         "meaningVi": "sở thú",
         "meaningFullVi": "sở thú",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 2",
+        "hskLevel": 2,
+        "source": "hsk_2.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -66,7 +67,20 @@
         "target": "动物",
         "source": "hsk_2.json",
         "pinyinMethod": "exact-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "动物",
+            "chinese": "动物园",
+            "pinyin": "dòng wù yuán",
+            "meaningVi": "Sở thú",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "exact-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "小动物",
@@ -76,7 +90,9 @@
         "target": "动物",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "野生动物",
@@ -86,10 +102,13 @@
         "target": "动物",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -121,14 +140,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "动物",
+      "chinese": "换句话说, 我们很可能再也见不到这种动物。",
+      "pinyin": "huàn jù huà shuō wǒ men hěn kě néng zài yě jiàn bù dào zhè zhǒng dòng wù",
+      "meaningVi": "Nói cách khác, chúng ta rất có khả năng không bao giờ nhìn thấy loài vật này nữa.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_39",
+      "grammarTopic": "Cách dùng 换句话说 (Nói cách khác)",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:动物",
       "title": "Cách dùng 动物",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_39",
+      "title": "Cách dùng 换句话说 (Nói cách khác)",
+      "syntax": "换句话说 + [Mệnh đề]",
+      "explanationVi": "「换句话说」 là một cụm từ chèn dùng để diễn đạt lại nội dung vừa nói bằng một cách diễn đạt khác dễ hiểu hơn. Nó thường xuất hiện ở đầu câu hoặc giữa câu để tóm tắt hoặc giải thích rõ ràng hơn cho ý phía trước.",
+      "tipsVi": "Bạn có thể dùng cụm từ này khi muốn giải thích kỹ hơn cho người nghe bằng cách dùng từ ngữ đơn giản hoặc trực diện hơn.",
+      "attentionsVi": "Đây là một cụm từ mang tính chất giải thích, hãy cẩn thận tránh dùng quá nhiều lần trong một đoạn văn ngắn để không làm nội dung bị lặp lại không cần thiết.",
+      "examples": [
+        {
+          "chinese": "换句话说, 我们很可能再也见不到这种动物。",
+          "pinyin": "huàn jù huà shuō wǒ men hěn kě néng zài yě jiàn bù dào zhè zhǒng dòng wù",
+          "meaningVi": "Nói cách khác, chúng ta rất có khả năng không bao giờ nhìn thấy loài vật này nữa."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -196,6 +249,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 3,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "động vật",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "cho rằng",
+      "meaningShortVi": "nghĩ rằng",
       "meaningFullVi": "cho rằng, nhận định",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "cho rằng",
+  "meaningShortVi": "nghĩ rằng",
   "wordType": "verb",
   "wordTypes": [
     "verb"
@@ -56,7 +56,9 @@
         "target": "认为",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "认真认为",
@@ -66,10 +68,23 @@
         "target": "认为",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "以为",
+        "pinyin": "yǐ wéi",
+        "meaningVi": "nghĩ rằng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: nghĩ rằng",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -101,14 +116,93 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "认为",
+      "chinese": "有人觉得有房子和汽车就是幸福，有人却认为找到真正的爱情才是幸福。",
+      "pinyin": "yǒu rén jué dé yǒu fáng zi hé qì chē jiù shì xìng fú yǒu rén què rèn wèi zhǎo dào zhēn zhèng de ài qíng cái shì xìng fú",
+      "meaningVi": "Có người cho rằng có nhà và xe là hạnh phúc, nhưng có người lại cho rằng tìm được tình yêu đích thực mới là hạnh phúc.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_9",
+      "grammarTopic": "Cách dùng phó từ 却",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "认为",
+      "chinese": "我认为不会，实际工作能让我更理解书本上的知识。",
+      "pinyin": "wǒ rèn wèi bù huì shí jì gōng zuò néng ràng wǒ gèng lǐ jiě shū běn shàng de zhī shí",
+      "meaningVi": "Tôi cho rằng sẽ không như vậy, công việc thực tế có thể giúp tôi hiểu kiến thức trong sách hơn.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_22",
+      "grammarTopic": "Cách dùng từ 实际",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:认为",
       "title": "Cách dùng 认为",
       "partOfSpeech": "verb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_9",
+      "title": "Cách dùng phó từ 却",
+      "syntax": "Chủ ngữ + 却 + Động từ/Tính từ",
+      "explanationVi": "Phó từ 「却」 được đặt sau chủ ngữ và trước động từ hoặc tính từ để biểu thị sự chuyển ý, đối lập với vế trước. Nó mang nghĩa là \"nhưng\" hoặc \"lại\", giúp câu văn chuyển tiếp tự nhiên với ngữ khí nhẹ nhàng.",
+      "tipsVi": "Bạn có thể sử dụng 「却」 kết hợp với các liên từ như 「虽然」 (mặc dù) ở vế trước để tạo thành cấu trúc đối lập rõ ràng.",
+      "attentionsVi": "Không nên nhầm lẫn 「却」 với 「但是」; 「但是」 là liên từ dùng để nối hai vế câu, còn 「却」 là phó từ nên phải đứng sau chủ ngữ.",
+      "examples": [
+        {
+          "chinese": "有人觉得有房子和汽车就是幸福，有人却认为找到真正的爱情才是幸福。",
+          "pinyin": "yǒu rén jué dé yǒu fáng zi hé qì chē jiù shì xìng fú yǒu rén què rèn wèi zhǎo dào zhēn zhèng de ài qíng cái shì xìng fú",
+          "meaningVi": "Có người cho rằng có nhà và xe là hạnh phúc, nhưng có người lại cho rằng tìm được tình yêu đích thực mới là hạnh phúc."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_16",
+      "title": "Cách dùng 以为",
+      "syntax": "Chủ ngữ + 以为 + [nội dung suy nghĩ sai lệch]",
+      "explanationVi": "Động từ 「以为」 được dùng để diễn tả việc chủ thể tin rằng điều gì đó là sự thật, nhưng thực tế lại hoàn toàn trái ngược hoặc sai lầm. Nó mang nghĩa tiếng Việt là 'tưởng rằng' hoặc 'ngỡ rằng'.",
+      "tipsVi": "Bạn có thể dùng 「还以为」 để nhấn mạnh hơn vào sự ngạc nhiên hoặc vỡ lẽ của bản thân sau khi phát hiện ra sự thật.",
+      "attentionsVi": "Không nên dùng 「以为」 để nói về nhận định của bản thân về một sự việc đúng đắn hoặc trung lập; khi đó hãy dùng 「认为」 (cho rằng/nghĩ rằng).",
+      "examples": [],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_22",
+      "title": "Cách dùng từ 实际",
+      "syntax": "实际 (Danh từ: thực tế / Tính từ: thực tế, thiết thực)",
+      "explanationVi": "Từ 「实际」 được dùng như một danh từ để chỉ sự việc, tình huống khách quan trong đời sống. Khi đóng vai trò là tính từ, nó mang nghĩa là thực tế, không lý thuyết suông, mang tính ứng dụng cao.",
+      "tipsVi": "Bạn có thể ghi nhớ cụm từ phổ biến 「联系实际」 (liánxì shíjì) nghĩa là \"liên hệ với thực tế\" để áp dụng vào bài viết hoặc bài nói.",
+      "attentionsVi": "Cần phân biệt rõ khi 「实际」 làm danh từ (thường đứng sau giới từ hoặc làm tân ngữ) và khi làm tính từ (thường dùng để bổ nghĩa cho danh từ).",
+      "examples": [
+        {
+          "chinese": "我认为不会，实际工作能让我更理解书本上的知识。",
+          "pinyin": "wǒ rèn wèi bù huì shí jì gōng zuò néng ràng wǒ gèng lǐ jiě shū běn shàng de zhī shí",
+          "meaningVi": "Tôi cho rằng sẽ không như vậy, công việc thực tế có thể giúp tôi hiểu kiến thức trong sách hơn."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -177,7 +271,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 5,
+      "grammar": 4,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "cho rằng, nhận định",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -57,7 +57,20 @@
         "target": "机场",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "机场",
+            "chinese": "我们去机场送朋友。",
+            "pinyin": "Wǒmen qù jīchǎng sòng péngyǒu.",
+            "meaningVi": "Chúng tôi ra sân bay tiễn bạn.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "国际机场",
@@ -67,10 +80,24 @@
         "target": "机场",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "机场",
+            "chinese": "国际机场很大。",
+            "pinyin": "Guójì jīchǎng hěn dà.",
+            "meaningVi": "Sân bay quốc tế rất lớn.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -102,14 +129,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "机场",
+      "chinese": "司机把我送到机场了。",
+      "pinyin": "sī jī bǎ wǒ sòng dào jī chǎng le",
+      "meaningVi": "Tài xế đã đưa tôi đến sân bay.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_29",
+      "grammarTopic": "Câu chữ 把 với 在, 到, 给",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:机场",
       "title": "Cách dùng 机场",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "机场 là nơi máy bay cất và hạ cánh.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_29",
+      "title": "Câu chữ 把 với 在, 到, 给",
+      "syntax": "S + 把 + O + V + 在/到/给 + [Địa điểm/Người]",
+      "explanationVi": "Cấu trúc này dùng để diễn tả việc thay đổi vị trí của vật hoặc chuyển quyền sở hữu. Trong đó, 「在/到」 chỉ vị trí mới của vật, còn 「给」 chỉ người nhận vật đó sau khi hành động kết thúc.",
+      "tipsVi": "Hãy chú ý sau động từ bắt buộc phải có bổ ngữ là 「在/到/给」, bạn không được để động từ đứng một mình khi dùng câu chữ 「把」 trong ngữ cảnh này.",
+      "attentionsVi": "Trong câu chữ 「把」, động từ không bao giờ đứng một mình mà phải đi kèm với các thành phần bổ sung như 「在/到/给」 hoặc trợ từ 「了」.",
+      "examples": [
+        {
+          "chinese": "司机把我送到机场了。",
+          "pinyin": "sī jī bǎ wǒ sòng dào jī chǎng le",
+          "meaningVi": "Tài xế đã đưa tôi đến sân bay."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -198,7 +259,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "sân bay",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

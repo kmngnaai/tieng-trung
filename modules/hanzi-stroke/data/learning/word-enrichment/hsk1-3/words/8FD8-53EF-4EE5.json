@@ -45,7 +45,8 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -67,14 +68,79 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "还可以",
+      "chinese": "我觉得听和说还可以，读和写不好。",
+      "pinyin": "wǒ jué dé tīng hé shuō hái kě yǐ dú hé xiě bù hǎo",
+      "meaningVi": "Mình thấy nghe và nói cũng tạm được, đọc và viết thì không tốt.",
+      "source": "hsk_2.json",
+      "grammarId": "hsk2_14",
+      "grammarTopic": "Phó từ 还 chỉ mức độ tàm tạm",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "还可以",
+      "chinese": "我踢得还可以。",
+      "pinyin": "wǒ tī dé hái kě yǐ",
+      "meaningVi": "Tôi đá bóng cũng được.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_20",
+      "grammarTopic": "Bổ ngữ trạng thái với 得",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:还可以",
       "title": "Cách dùng 还可以",
       "partOfSpeech": "cụm từ",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_14",
+      "title": "Phó từ 还 chỉ mức độ tàm tạm",
+      "syntax": "S + 还 + tính từ (hái)",
+      "explanationVi": "Phó từ 「还」 đặt trước tính từ để biểu thị mức độ ở mức 'tàm tạm', 'cũng được' hoặc 'không tệ lắm'. Nó thường dùng để đưa ra một nhận xét nhẹ nhàng, không quá khen ngợi nhưng cũng không chê bai.",
+      "tipsVi": "Bạn có thể dịch 「还」 trong cấu trúc này là 'cũng... đó' hoặc 'cũng khá...', ví dụ 「这件衣服还漂亮」 nghĩa là 'chiếc áo này mặc cũng đẹp đó'.",
+      "attentionsVi": "Cần phân biệt với nghĩa 'vẫn' (trạng thái tiếp diễn) của 「还」. Khi dùng với tính từ mang nghĩa mức độ, ngữ điệu người nói thường nhẹ nhàng, không mang tính so sánh.",
+      "examples": [
+        {
+          "chinese": "我觉得听和说还可以，读和写不好。",
+          "pinyin": "wǒ jué dé tīng hé shuō hái kě yǐ dú hé xiě bù hǎo",
+          "meaningVi": "Mình thấy nghe và nói cũng tạm được, đọc và viết thì không tốt."
+        }
+      ],
+      "source": "hsk_2.json",
+      "curriculum": "hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_20",
+      "title": "Bổ ngữ trạng thái với 得",
+      "syntax": "Động từ + 得 + Hình dung từ (Tính từ)",
+      "explanationVi": "Bổ ngữ trạng thái dùng để miêu tả, đánh giá kết quả hoặc tính chất của một hành động. Trợ từ 「得」 được đặt sau động từ để nối kết với phần nhận xét phía sau.",
+      "tipsVi": "Bạn có thể dùng cấu trúc này để khen ngợi, ví dụ: 「你说得很好」 (Bạn nói rất tốt).",
+      "attentionsVi": "Luôn nhớ đặt 「得」 ngay sau động từ trước khi đưa ra nhận xét.",
+      "examples": [
+        {
+          "chinese": "我踢得还可以。",
+          "pinyin": "wǒ tī dé hái kě yǐ",
+          "meaningVi": "Tôi đá bóng cũng được."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -92,8 +158,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "tạm được, cũng được, vẫn được",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

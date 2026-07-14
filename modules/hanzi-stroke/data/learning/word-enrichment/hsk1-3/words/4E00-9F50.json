@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "đồng loạt",
+      "meaningShortVi": "cùng nhau",
       "meaningFullVi": "đồng loạt, đồng thời, một lúc (tất cả cùng hành động vào một thời điểm)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "đồng loạt",
+  "meaningShortVi": "cùng nhau",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -52,7 +52,9 @@
         "target": "一齐",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "一齐行动",
@@ -62,10 +64,32 @@
         "target": "一齐",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "一起",
+        "pinyin": "yī qǐ",
+        "meaningVi": "cùng nhau",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: cùng nhau",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "一块儿",
+        "pinyin": "yī kuàir ",
+        "meaningVi": "Cùng nhau",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: cùng nhau",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -111,10 +135,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:一齐",
       "title": "Cách dùng 一齐",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "一齐 và 一起 đều có nghĩa 'cùng nhau' nhưng khác sắc thái: 一起 nhấn mạnh sự đồng hành (together), 一齐 nhấn mạnh tính đồng thời/đồng loạt (simultaneously, all at once). 一齐 thường dùng trong văn viết trang trọng hơn.",
       "explanationVi": "一 (nhất — một) + 齐 (tề — đều, cùng bằng nhau) → tất cả cùng làm đồng thời, không ai trước sau.",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -132,7 +159,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "đồng loạt, đồng thời, một lúc (tất cả cùng hành động vào một thời điểm)",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

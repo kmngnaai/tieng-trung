@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "nghe thấy",
+      "meaningShortVi": "nghe",
       "meaningFullVi": "nghe thấy, nghe được",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "nghe thấy",
+  "meaningShortVi": "nghe",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -46,7 +46,8 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -88,14 +89,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "听到",
+      "chinese": "一听到老师叫他的名字，他就站起来了。",
+      "pinyin": "yī tīng dào lǎo shī jiào tā de míng zì tā jiù zhàn qǐ lái le",
+      "meaningVi": "Vừa nghe thấy thầy giáo gọi tên mình, anh ấy liền đứng dậy.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_42",
+      "grammarTopic": "Bổ ngữ xu hướng phức hợp",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:听到",
       "title": "Cách dùng 听到",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Kết quả nghe thành công. Khác với 听 (chỉ hành động nghe), 听到 diễn tả đã nghe thấy nội dung gì đó. Trong giao tiếp, 你听到了吗 (bạn đã nghe thấy chưa?) dùng để kiểm tra xem người khác có nhận được thông tin không. Cũng có thể dùng 听见 với nghĩa tương tự.",
       "explanationVi": "Ghép nghĩa: 听 (nghe) + 到 (đến nơi) → nghe và đạt được kết quả. Chỉ hành động nghe thành công, đã nghe thấy.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_42",
+      "title": "Bổ ngữ xu hướng phức hợp",
+      "syntax": "Động từ + (上/下/进/出/回/过/起) + 来/去",
+      "explanationVi": "Bổ ngữ xu hướng phức hợp gồm một động từ chỉ phương hướng kết hợp với 「来」 (lại đây) hoặc 「去」 (đi tới đó). Cấu trúc này dùng để mô tả hướng di chuyển của hành động một cách chi tiết hơn. Ví dụ 「走进来」 nghĩa là đi vào đây, 「走进去」 nghĩa là đi vào đó.",
+      "tipsVi": "Nếu câu có tân ngữ là nơi chốn, hãy đặt tân ngữ vào giữa bổ ngữ xu hướng, ví dụ 「走进教室来」.",
+      "attentionsVi": "Chú ý phân biệt giữa 「来」 (hướng về phía người nói) và 「去」 (hướng xa khỏi người nói) để sử dụng chính xác.",
+      "examples": [
+        {
+          "chinese": "一听到老师叫他的名字，他就站起来了。",
+          "pinyin": "yī tīng dào lǎo shī jiào tā de míng zì tā jiù zhàn qǐ lái le",
+          "meaningVi": "Vừa nghe thấy thầy giáo gọi tên mình, anh ấy liền đứng dậy."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -129,8 +164,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 5,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "nghe thấy, nghe được",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

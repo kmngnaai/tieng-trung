@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "hồi tưởng",
+      "meaningShortVi": "nhớ lại",
       "meaningFullVi": "hồi tưởng, nhớ lại, kỷ niệm",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "hồi tưởng",
+  "meaningShortVi": "nhớ lại",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -52,7 +52,9 @@
         "target": "回忆",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "回忆过去",
@@ -62,7 +64,9 @@
         "target": "回忆",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "童年回忆",
@@ -72,10 +76,32 @@
         "target": "回忆",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "想起",
+        "pinyin": "xiǎng qǐ",
+        "meaningVi": "nhớ lại",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: nhớ lại",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "惦记",
+        "pinyin": "diàn jì",
+        "meaningVi": "nhớ lại",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: nhớ lại",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -131,10 +157,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:回忆",
       "title": "Cách dùng 回忆",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "回忆 là động từ (hồi tưởng) hoặc danh từ (kỷ niệm). Dùng cho việc nhớ lại quá khứ - thường mang sắc thái cảm xúc.",
       "explanationVi": "Ghép nghĩa: 回 (quay về) + 忆 (nhớ) → quay lại nhớ, hồi tưởng quá khứ.",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -152,7 +181,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 5,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "hồi tưởng, nhớ lại, kỷ niệm",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

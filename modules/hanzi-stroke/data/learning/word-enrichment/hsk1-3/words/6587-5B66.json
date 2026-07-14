@@ -45,7 +45,18 @@
     ]
   },
   "vocabulary": {
-    "compounds": [],
+    "compounds": [
+      {
+        "word": "文学家",
+        "pinyin": "wén xué jiā",
+        "meaningVi": "nhà văn học",
+        "meaningFullVi": "nhà văn học",
+        "relationType": "contains-exact-target",
+        "hskLevel": 5,
+        "source": "hsk_5.json",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
     "collocations": [
       {
         "text": "文学作品",
@@ -55,7 +66,9 @@
         "target": "文学",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "现代文学",
@@ -65,10 +78,13 @@
         "target": "文学",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -84,10 +100,27 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:文学",
       "title": "Cách dùng 文学",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "Chỉ ngành văn học, tác phẩm văn chương. Khác với '文字' (chữ viết).",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_27",
+      "title": "Bổ ngữ thời lượng (Diễn tả khoảng thời gian)",
+      "syntax": "Động từ + (tân ngữ) + Động từ + bổ ngữ thời lượng",
+      "explanationVi": "Bổ ngữ thời lượng dùng để chỉ khoảng thời gian kéo dài của một hành động. Khi câu có tân ngữ, bạn cần lặp lại động từ trước khi thêm khoảng thời gian, ví dụ 「我学中文学了两年」 (Tôi đã học tiếng Trung được hai năm).",
+      "tipsVi": "Nếu không muốn lặp lại động từ, bạn có thể đưa tân ngữ ra sau bổ ngữ thời lượng (chỉ áp dụng với tân ngữ chỉ người hoặc vật cụ thể).",
+      "attentionsVi": "Đừng quên thêm trợ từ 「了」 sau bổ ngữ thời lượng để thể hiện hành động đã xảy ra hoặc kéo dài đến hiện tại.",
+      "examples": [],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -126,7 +159,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 1,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "văn học",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

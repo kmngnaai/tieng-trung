@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "phương tiện truyền thông",
+      "meaningShortVi": "truyền thông đại chúng",
       "meaningFullVi": "phương tiện truyền thông; báo chí, truyền thông",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "phương tiện truyền thông",
+  "meaningShortVi": "truyền thông đại chúng",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
@@ -44,7 +44,18 @@
     ]
   },
   "vocabulary": {
-    "compounds": [],
+    "compounds": [
+      {
+        "word": "多媒体",
+        "pinyin": "duō méi tǐ",
+        "meaningVi": "đa phương tiện",
+        "meaningFullVi": "đa phương tiện; công nghệ tích hợp nhiều loại nội dung (văn bản, hình ảnh, âm thanh, video)",
+        "relationType": "contains-exact-target",
+        "hskLevel": 6,
+        "source": "hsk_6.json",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
     "collocations": [
       {
         "text": "社交媒体",
@@ -54,7 +65,20 @@
         "target": "媒体",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "媒体",
+            "chinese": "社交媒体很重要。",
+            "pinyin": "Shèjiāo méitǐ hěn zhòngyào.",
+            "meaningVi": "Mạng xã hội rất quan trọng.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "大众媒体",
@@ -64,10 +88,13 @@
         "target": "媒体",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -93,10 +120,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:媒体",
       "title": "Cách dùng 媒体",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "媒体 là danh từ chỉ phương tiện truyền thông, bao gồm báo chí, TV, radio, mạng xã hội. Là từ ghép Hán-Việt 'môi thể' (phương tiện truyền tải).",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +160,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "phương tiện truyền thông; báo chí, truyền thông",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

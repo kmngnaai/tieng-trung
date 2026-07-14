@@ -50,10 +50,11 @@
       {
         "word": "世界杯",
         "pinyin": "Shì jiè bēi",
-        "meaningVi": "World Cup",
+        "meaningVi": "Cúp thế giới",
         "meaningFullVi": "World Cup; giải đấu thể thao quy mô toàn cầu, thường chỉ Giải vô địch bóng đá thế giới",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 3",
+        "hskLevel": 3,
+        "source": "hsk_3.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -66,7 +67,20 @@
         "target": "世界",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "世界",
+            "chinese": "我想去世界各地旅游。",
+            "pinyin": "Wǒ xiǎng qù shìjiè gèdì lǚyóu.",
+            "meaningVi": "Tôi muốn du lịch khắp thế giới.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "世界和平",
@@ -76,10 +90,13 @@
         "target": "世界",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -101,14 +118,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "世界",
+      "chinese": "姑且称之为慢世界。",
+      "pinyin": "gū qiě chēng zhī wèi màn shì jiè",
+      "meaningVi": "Tạm thời gọi đó là thế giới chậm.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_44",
+      "grammarTopic": "Cách dùng phó từ 姑且",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:世界",
       "title": "Cách dùng 世界",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "世界 也作 'vòng đời/đời': 一生 (cả một đời), 第三世界 (Thế giới thứ ba). 世界上 (trên thế giới) = 全世界. 注意: 世界大会 (hội nghị thế giới), 世界杯 (World Cup).",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_44",
+      "title": "Cách dùng phó từ 姑且",
+      "syntax": "Subject + 姑且 + Verb/Verb Phrase",
+      "explanationVi": "Phó từ 「姑且」 mang nghĩa là 'tạm thời', 'tạm thời chấp nhận' hoặc 'trước mắt cứ làm vậy đã'. Nó được dùng để biểu thị việc thực hiện một hành động nào đó như một giải pháp tạm thời trong khi chờ đợi một quyết định khác hoặc giải quyết vấn đề sau.",
+      "tipsVi": "Bạn có thể dùng 「姑且」 kết hợp với cấu trúc 「姑且 + [động từ] + 吧/的话」 để thể hiện sự nhượng bộ hoặc ý định làm tạm việc gì đó.",
+      "attentionsVi": "「姑且」 thường mang sắc thái trang trọng và chủ yếu xuất hiện trong văn viết hoặc các tình huống giao tiếp nghiêm túc.",
+      "examples": [
+        {
+          "chinese": "姑且称之为慢世界。",
+          "pinyin": "gū qiě chēng zhī wèi màn shì jiè",
+          "meaningVi": "Tạm thời gọi đó là thế giới chậm."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -176,6 +227,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "thế giới",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

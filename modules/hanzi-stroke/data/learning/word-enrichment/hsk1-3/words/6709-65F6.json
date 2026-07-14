@@ -51,12 +51,24 @@
         "meaningVi": "đôi khi",
         "meaningFullVi": "đôi khi, thỉnh thoảng, có lúc",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 1",
+        "hskLevel": 1,
+        "source": "hsk_1.json",
         "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "有时候",
+        "pinyin": "yǒu shí hou",
+        "meaningVi": "đôi khi",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: Đôi khi",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -78,14 +90,93 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "有时",
+      "chinese": "只要我有时间，就一定跟你去旅游。",
+      "pinyin": "zhǐ yào wǒ yǒu shí jiān jiù yī dìng gēn nǐ qù lǚ yóu",
+      "meaningVi": "Chỉ cần tôi có thời gian, nhất định sẽ đi du lịch cùng bạn.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_42",
+      "grammarTopic": "Cấu trúc chỉ cần... thì...",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "有时",
+      "chinese": "你们有时间的话，就来我家做客。",
+      "pinyin": "nǐ men yǒu shí jiān de huà jiù lái wǒ jiā zuò kè",
+      "meaningVi": "Nếu các bạn có thời gian thì hãy đến nhà tôi chơi nhé.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_42",
+      "grammarTopic": "Câu điều kiện giả thiết với ...的話，就 ...",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:有时",
       "title": "Cách dùng 有时",
       "partOfSpeech": "Phó từ",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_42",
+      "title": "Cấu trúc chỉ cần... thì...",
+      "syntax": "只要 + [Điều kiện] + 就 + [Kết quả]",
+      "explanationVi": "Cấu trúc này diễn tả một điều kiện đủ để dẫn đến một kết quả tương ứng. Nó mang nghĩa là \"chỉ cần làm việc này thì sẽ có kết quả kia\".",
+      "tipsVi": "Bạn có thể hiểu đơn giản là nếu điều kiện ở 「只要」 được thỏa mãn, thì kết quả ở 「就」 chắc chắn sẽ xảy ra.",
+      "attentionsVi": "Đừng nhầm lẫn với 「只有...才...」 (chỉ khi... mới...), vì 「只要...就...」 nhấn mạnh điều kiện đủ, còn 「只有...才...」 nhấn mạnh điều kiện cần duy nhất.",
+      "examples": [
+        {
+          "chinese": "只要我有时间，就一定跟你去旅游。",
+          "pinyin": "zhǐ yào wǒ yǒu shí jiān jiù yī dìng gēn nǐ qù lǚ yóu",
+          "meaningVi": "Chỉ cần tôi có thời gian, nhất định sẽ đi du lịch cùng bạn."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_36",
+      "title": "Diễn tả sự luân phiên",
+      "syntax": "时而 A，时而 B (Lúc thì A, lúc thì B)",
+      "explanationVi": "Phó từ 「时而」 dùng để diễn tả các hành động hoặc trạng thái thay đổi liên tục, không ổn định. Cấu trúc 「时而...时而...」 thường được dùng để liệt kê hai hoặc nhiều trạng thái luân phiên nhau.",
+      "tipsVi": "Bạn có thể lặp lại 「时而」 nhiều lần để nhấn mạnh sự thay đổi không ngừng của sự vật, sự việc.",
+      "attentionsVi": "Không nên nhầm lẫn với 「有时...有时...」 (đôi khi... đôi khi...), vì 「时而」 thường mang sắc thái thay đổi nhanh và liên tục hơn.",
+      "examples": [],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_42",
+      "title": "Câu điều kiện giả thiết với ...的話，就 ...",
+      "syntax": "(如果) + [Giả thiết] + 的話，(chủ ngữ) + 就 + [Kết quả]",
+      "explanationVi": "Cấu trúc này dùng để diễn tả một điều kiện giả định và kết quả tất yếu xảy ra. Trong đó, vế đầu là điều kiện giả thiết, vế sau dùng 「就」 để chỉ kết quả đi kèm.",
+      "tipsVi": "Bạn có thể lược bỏ 「如果」 trong văn nói, nhưng nên giữ lại 「的話」 ở cuối vế giả thiết để câu nghe tự nhiên hơn.",
+      "attentionsVi": "Trong cấu trúc này, vế sau bắt buộc phải có 「就」 để dẫn ra kết quả, không được bỏ quên.",
+      "examples": [
+        {
+          "chinese": "你们有时间的话，就来我家做客。",
+          "pinyin": "nǐ men yǒu shí jiān de huà jiù lái wǒ jiā zuò kè",
+          "meaningVi": "Nếu các bạn có thời gian thì hãy đến nhà tôi chơi nhé."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -119,7 +210,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng"
-    ]
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 0,
+      "sentences": 4,
+      "grammar": 4,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "Đôi khi, có lúc",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

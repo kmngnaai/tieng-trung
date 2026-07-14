@@ -56,10 +56,13 @@
         "target": "发烧",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -91,14 +94,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "发烧",
+      "chinese": "前几天有点儿发烧，现在好多了。",
+      "pinyin": "qián jǐ tiān yǒu diǎn ér fā shāo xiàn zài hǎo duō le",
+      "meaningVi": "Mấy hôm trước hơi sốt, bây giờ đã đỡ hơn nhiều rồi.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_12",
+      "grammarTopic": "Trợ từ 了 biểu thị sự thay đổi",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:发烧",
       "title": "Cách dùng 发烧",
       "partOfSpeech": "động từ (verb)",
       "usageNoteVi": "发 (phát) nghĩa là phát ra, bùng lên; 烧 (thiêu) nghĩa là nóng, cháy. 发烧 là thân thể nóng lên, biểu hiện của bệnh.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_12",
+      "title": "Trợ từ 了 biểu thị sự thay đổi",
+      "syntax": "S + V/Adj + 了 (Biểu thị sự thay đổi trạng thái)",
+      "explanationVi": "Trợ từ 「了」 đặt ở cuối câu để thông báo rằng tình hình đã thay đổi hoặc xuất hiện một trạng thái mới so với trước đây. Nó giúp người nghe hiểu rằng sự việc hiện tại đã khác với quá khứ.",
+      "tipsVi": "Hãy tưởng tượng 「了」 giống như từ \"rồi\" trong tiếng Việt, dùng để nhấn mạnh sự thay đổi từ \"không\" sang \"có\" hoặc từ \"chưa\" sang \"đã\".",
+      "attentionsVi": "Cần phân biệt với 「了」 đi sau động từ (biểu thị hoàn thành), 「了」 cuối câu nhấn mạnh vào kết quả hoặc tình trạng hiện tại đã thay đổi.",
+      "examples": [
+        {
+          "chinese": "前几天有点儿发烧，现在好多了。",
+          "pinyin": "qián jǐ tiān yǒu diǎn ér fā shāo xiàn zài hǎo duō le",
+          "meaningVi": "Mấy hôm trước hơi sốt, bây giờ đã đỡ hơn nhiều rồi."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -152,7 +189,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "sốt, bị sốt",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

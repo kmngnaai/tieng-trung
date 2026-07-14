@@ -56,7 +56,9 @@
         "target": "变化",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "巨大变化",
@@ -66,10 +68,32 @@
         "target": "变化",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "改变",
+        "pinyin": "gǎi biàn",
+        "meaningVi": "thay đổi",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: thay đổi",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "转变",
+        "pinyin": "zhuǎn biàn",
+        "meaningVi": "thay đổi",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: thay đổi",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -91,14 +115,79 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "变化",
+      "chinese": "这几年小区根据他们的需要，有了很多变化。",
+      "pinyin": "zhè jǐ nián xiǎo qū gēn jù tā men de xū yào yǒu le hěn duō biàn huà",
+      "meaningVi": "Mấy năm nay khu dân cư đã có nhiều thay đổi dựa theo nhu cầu của họ.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_48",
+      "grammarTopic": "Giới từ căn cứ: 根据",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "变化",
+      "chinese": "最近天气变化很快，一会儿冷，一会儿热。",
+      "pinyin": "zuì jìn tiān qì biàn huà hěn kuài yī huì ér lěng yī huì ér rè",
+      "meaningVi": "Dạo này thời tiết thay đổi rất nhanh, lúc thì lạnh, lúc thì nóng.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_52",
+      "grammarTopic": "Cấu trúc diễn tả hành động thay đổi luân phiên",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:变化",
       "title": "Cách dùng 变化",
       "partOfSpeech": "động từ / danh từ",
       "usageNoteVi": "变化 có thể làm động từ (thay đổi) hoặc danh từ (sự thay đổi). Thường đi với great (很大), huge (巨大), sudden (突然).",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_48",
+      "title": "Giới từ căn cứ: 根据",
+      "syntax": "根据 + căn cứ/tài liệu + V + thành phần khác",
+      "explanationVi": "Giới từ 「根据」 được dùng để chỉ cơ sở, căn cứ hoặc nguồn thông tin cho một hành động hay phán đoán. Trong tiếng Việt, cấu trúc này tương ứng với các nghĩa như \"dựa theo\", \"căn cứ vào\" hoặc \"theo như\".",
+      "tipsVi": "Bạn có thể đặt cụm từ 「根据...」 ở đầu câu để nhấn mạnh nguồn tin hoặc căn cứ trước khi nêu ra hành động chính.",
+      "attentionsVi": "Cần phân biệt 「根据」 (dựa theo căn cứ) với 「跟」 (đi cùng với/theo sau ai đó), tránh nhầm lẫn về ý nghĩa.",
+      "examples": [
+        {
+          "chinese": "这几年小区根据他们的需要，有了很多变化。",
+          "pinyin": "zhè jǐ nián xiǎo qū gēn jù tā men de xū yào yǒu le hěn duō biàn huà",
+          "meaningVi": "Mấy năm nay khu dân cư đã có nhiều thay đổi dựa theo nhu cầu của họ."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_52",
+      "title": "Cấu trúc diễn tả hành động thay đổi luân phiên",
+      "syntax": "一会儿 + Động từ/Tính từ, 一会儿 + Động từ/Tính từ",
+      "explanationVi": "Cấu trúc này dùng để diễn tả hai hoặc nhiều hành động, trạng thái thay đổi qua lại liên tục. Trong tiếng Việt, ta dịch là \"lúc thì... lúc thì...\" để chỉ sự không ổn định hoặc thay đổi nhanh chóng.",
+      "tipsVi": "Cấu trúc này thường dùng để mô tả sự thay đổi mang tính tùy hứng, không theo quy luật hoặc tâm trạng không kiên định của người nói.",
+      "attentionsVi": "Cần phân biệt với 「一会儿」 mang nghĩa là \"một lát nữa\", trong cấu trúc này 「一会儿」 bắt buộc phải lặp lại hai lần.",
+      "examples": [
+        {
+          "chinese": "最近天气变化很快，一会儿冷，一会儿热。",
+          "pinyin": "zuì jìn tiān qì biàn huà hěn kuài yī huì ér lěng yī huì ér rè",
+          "meaningVi": "Dạo này thời tiết thay đổi rất nhanh, lúc thì lạnh, lúc thì nóng."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -167,7 +256,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "thay đổi, biến đổi",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

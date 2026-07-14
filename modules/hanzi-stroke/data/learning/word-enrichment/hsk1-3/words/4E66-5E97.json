@@ -54,7 +54,9 @@
         "target": "书店",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "书店老板",
@@ -64,10 +66,13 @@
         "target": "书店",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -99,14 +104,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "书店",
+      "chinese": "我们上午十点在书店见吧。",
+      "pinyin": "wǒ men shàng wǔ shí diǎn zài shū diàn jiàn ba",
+      "meaningVi": "Mười giờ sáng chúng ta gặp nhau ở nhà sách nhé.",
+      "source": "new_hsk_1.json",
+      "grammarId": "hsk1_new_23",
+      "grammarTopic": "Thứ tự trạng ngữ thời gian và địa điểm",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:书店",
       "title": "Cách dùng 书店",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "书店 là nơi bán sách, tạp chí và các tài liệu in ấn.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk1_new_23",
+      "title": "Thứ tự trạng ngữ thời gian và địa điểm",
+      "syntax": "Chủ ngữ + Trạng ngữ thời gian + Trạng ngữ địa điểm + Động từ",
+      "explanationVi": "Trong câu tiếng Trung, khi muốn nói về cả thời gian và địa điểm, bạn cần đặt trạng ngữ chỉ thời gian lên trước trạng ngữ chỉ địa điểm. Cấu trúc này giúp câu văn nghe tự nhiên và đúng quy tắc diễn đạt của người bản xứ.",
+      "tipsVi": "Bạn có thể nhớ mẹo là \"Thời gian đi trước, nơi chốn theo sau\" để không bị nhầm lẫn.",
+      "attentionsVi": "Lưu ý không đặt trạng ngữ thời gian ở cuối câu như trong tiếng Việt.",
+      "examples": [
+        {
+          "chinese": "我们上午十点在书店见吧。",
+          "pinyin": "wǒ men shàng wǔ shí diǎn zài shū diàn jiàn ba",
+          "meaningVi": "Mười giờ sáng chúng ta gặp nhau ở nhà sách nhé."
+        }
+      ],
+      "source": "new_hsk_1.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 1,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -155,7 +194,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "hiệu sách",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

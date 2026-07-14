@@ -47,15 +47,40 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
-  "sentences": [],
+  "sentences": [
+    {
+      "target": "邻居",
+      "chinese": "我的邻居很友好。",
+      "pinyin": "Wǒ de línjū hěn yǒuhǎo.",
+      "meaningVi": "Hàng xóm của tôi rất thân thiện.",
+      "source": "hsk_4.json",
+      "sourceLevel": 4,
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "邻居",
+      "chinese": "我和邻居关系很好。",
+      "pinyin": "Wǒ hé línjū guānxì hěn hǎo.",
+      "meaningVi": "Tôi và hàng xóm có quan hệ rất tốt.",
+      "source": "hsk_4.json",
+      "sourceLevel": 4,
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "grammarLinks": [
     {
+      "grammarId": "usage:邻居",
       "title": "Cách dùng 邻居",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -104,9 +129,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có câu mẫu đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "hàng xóm",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -52,10 +52,45 @@
         "target": "地址",
         "source": "hsk_2.json",
         "pinyinMethod": "exact-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "地址",
+            "chinese": "这个地址很好。",
+            "pinyin": "zhè ge dì zhǐ hěn hǎo。",
+            "meaningVi": "địa chỉ này rất tốt.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "地址",
+            "chinese": "我喜欢这个地址。",
+            "pinyin": "wǒ xǐ huan zhè ge dì zhǐ。",
+            "meaningVi": "Tôi thích địa chỉ này.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "地址",
+            "chinese": "况且你又不知道地址。",
+            "pinyin": "kuàng qiě nǐ yòu bù zhī dào dì zhǐ",
+            "meaningVi": "Hơn nữa bạn lại không biết địa chỉ.",
+            "source": "hsk_6.json",
+            "grammarId": "hsk6_51",
+            "grammarTopic": "Cách dùng 况且",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 3
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -77,14 +112,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "地址",
+      "chinese": "况且你又不知道地址。",
+      "pinyin": "kuàng qiě nǐ yòu bù zhī dào dì zhǐ",
+      "meaningVi": "Hơn nữa bạn lại không biết địa chỉ.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_51",
+      "grammarTopic": "Cách dùng 况且",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:地址",
       "title": "Cách dùng 地址",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_51",
+      "title": "Cách dùng 况且",
+      "syntax": "Mệnh đề 1, 况且 + Mệnh đề 2 (diễn tả thêm lý do)",
+      "explanationVi": "「况且」 là liên từ dùng để bổ sung thêm một lý do hoặc hoàn cảnh khác, nhằm củng cố thêm cho ý kiến hoặc quan điểm đã nêu trước đó. Bạn có thể dịch là \"hơn nữa\", \"vả lại\" hoặc \"vả chăng\".",
+      "tipsVi": "「况且」 thường được dùng trong cả văn viết và khẩu ngữ để làm rõ hơn mức độ của sự việc.",
+      "attentionsVi": "Cần tránh nhầm lẫn với 「何况」; 「何况」 thường dùng để nhấn mạnh sự so sánh (huống chi là), còn 「况且」 thiên về việc liệt kê thêm thông tin bổ sung.",
+      "examples": [
+        {
+          "chinese": "况且你又不知道地址。",
+          "pinyin": "kuàng qiě nǐ yòu bù zhī dào dì zhǐ",
+          "meaningVi": "Hơn nữa bạn lại không biết địa chỉ."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -102,7 +171,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "địa chỉ",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

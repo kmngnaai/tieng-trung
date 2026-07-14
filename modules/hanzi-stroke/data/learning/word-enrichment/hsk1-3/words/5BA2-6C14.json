@@ -52,7 +52,8 @@
         "meaningVi": "không có chi",
         "meaningFullVi": "không có chi, đừng khách sáo",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 1",
+        "hskLevel": 1,
+        "source": "hsk_1.json",
         "reviewStatus": "reviewed-local"
       },
       {
@@ -61,7 +62,8 @@
         "meaningVi": "Đừng khách sáo",
         "meaningFullVi": "Đừng khách sáo, đừng ngại",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 1",
+        "hskLevel": 1,
+        "source": "hsk_1.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -74,10 +76,13 @@
         "target": "客气",
         "source": "hsk_1.json",
         "pinyinMethod": "exact-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -109,14 +114,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "客气",
+      "chinese": "你们太客气了，还拿这么多礼物来！",
+      "pinyin": "nǐ men tài kè qì le hái ná zhè me duō lǐ wù lái",
+      "meaningVi": "Các bạn khách sáo quá, còn mang nhiều quà đến thế này!",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_14",
+      "grammarTopic": "Bổ ngữ xu hướng đơn: Lái và Qù",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:客气",
       "title": "Cách dùng 客气",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "'客气' kết hợp '客' (khách) = người khách và '气' (khí) = thái độ. Chỉ thái độ đối xử khách quan, lễ phép, tôn trọng. '不客气' có nghĩa là 'không cần khách sáo' (khi mời) hoặc 'không tha thứ' (khi đe dọa).",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_14",
+      "title": "Bổ ngữ xu hướng đơn: Lái và Qù",
+      "syntax": "Động từ + 来 (lái) / 去 (qù)",
+      "explanationVi": "Bổ ngữ xu hướng đơn được dùng sau động từ để chỉ hướng di chuyển của hành động. 「来」 dùng khi hướng về phía người nói (đến đây), còn 「去」 dùng khi hướng rời xa người nói (đi đó).",
+      "tipsVi": "Hãy tưởng tượng bạn là tâm điểm; nếu hành động tiến về phía bạn, hãy dùng 「来」, nếu hành động tiến xa bạn, hãy dùng 「去」.",
+      "attentionsVi": "Nếu có tân ngữ chỉ nơi chốn, tân ngữ đó bắt buộc phải đặt giữa động từ và bổ ngữ xu hướng (Ví dụ: 回家去 - về nhà đi).",
+      "examples": [
+        {
+          "chinese": "你们太客气了，还拿这么多礼物来！",
+          "pinyin": "nǐ men tài kè qì le hái ná zhè me duō lǐ wù lái",
+          "meaningVi": "Các bạn khách sáo quá, còn mang nhiều quà đến thế này!"
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -154,6 +193,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 2,
+      "collocations": 1,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "lịch sự, khách sáo, xa lạ",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

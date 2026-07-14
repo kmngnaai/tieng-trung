@@ -46,7 +46,18 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "早餐",
+        "pinyin": "zǎo cān",
+        "meaningVi": "bữa sáng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bữa sáng",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -78,14 +89,110 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "早饭",
+      "chinese": "我丈夫喜欢一边吃早饭一边看报纸。",
+      "pinyin": "wǒ zhàng fū xǐ huān yī biān chī zǎo fàn yī biān kàn bào zhǐ",
+      "meaningVi": "Chồng tôi thích vừa ăn sáng vừa đọc báo.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_31",
+      "grammarTopic": "Diễn tả hai hành động cùng lúc",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "早饭",
+      "chinese": "爸爸很快地吃完早饭，就去上班了。",
+      "pinyin": "bà bà hěn kuài dì chī wán zǎo fàn jiù qù shàng bān le",
+      "meaningVi": "Bố ăn xong bữa sáng rất nhanh rồi đi làm luôn.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_18",
+      "grammarTopic": "Trợ từ kết cấu 地",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "早饭",
+      "chinese": "我吃了早饭就去学校了。",
+      "pinyin": "wǒ chī le zǎo fàn jiù qù xué xiào le",
+      "meaningVi": "Tôi ăn sáng xong là đi học ngay.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_16",
+      "grammarTopic": "Diễn tả hành động nối tiếp ngay lập tức",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:早饭",
       "title": "Cách dùng 早饭",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Danh từ chỉ bữa ăn buổi sáng. '早饭' (bữa sớm), '早餐' (bữa điểm tâm) - tương đương nhau.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_31",
+      "title": "Diễn tả hai hành động cùng lúc",
+      "syntax": "一边 + [động từ 1] + (tân ngữ 1), 一边 + [động từ 2] + (tân ngữ 2)",
+      "explanationVi": "Cấu trúc này dùng để diễn tả hai hành động diễn ra cùng một lúc. Khi bạn muốn nói về việc mình đang làm song song hai việc, hãy đặt mỗi động từ sau mỗi chữ 「一边」.",
+      "tipsVi": "Bạn có thể dùng cấu trúc này để kể về thói quen hằng ngày, ví dụ: 「一边吃饭，一边看电视」(Vừa ăn cơm, vừa xem tivi).",
+      "attentionsVi": "Lưu ý rằng hai động từ này phải là những hành động có thể thực hiện được cùng một lúc, nếu không câu sẽ trở nên vô lý.",
+      "examples": [
+        {
+          "chinese": "我丈夫喜欢一边吃早饭一边看报纸。",
+          "pinyin": "wǒ zhàng fū xǐ huān yī biān chī zǎo fàn yī biān kàn bào zhǐ",
+          "meaningVi": "Chồng tôi thích vừa ăn sáng vừa đọc báo."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_18",
+      "title": "Trợ từ kết cấu 地",
+      "syntax": "Trạng ngữ + 地 + Động từ",
+      "explanationVi": "Trợ từ kết cấu 「地」 được đặt sau trạng ngữ (thường là tính từ) để bổ nghĩa cho động từ đứng sau nó. Nó giúp diễn tả cách thức hoặc trạng thái của một hành động đang diễn ra.",
+      "tipsVi": "Hãy nhớ quy tắc: 「的」 đi với danh từ, 「地」 đi với động từ, còn 「得」 đi với bổ ngữ.",
+      "attentionsVi": "Đừng nhầm lẫn với 「的」; trong khẩu ngữ, cả ba trợ từ này đều phát âm giống nhau là 'de', nhưng cách dùng trong văn viết thì hoàn toàn khác biệt.",
+      "examples": [
+        {
+          "chinese": "爸爸很快地吃完早饭，就去上班了。",
+          "pinyin": "bà bà hěn kuài dì chī wán zǎo fàn jiù qù shàng bān le",
+          "meaningVi": "Bố ăn xong bữa sáng rất nhanh rồi đi làm luôn."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_16",
+      "title": "Diễn tả hành động nối tiếp ngay lập tức",
+      "syntax": "V1 + 了 + (O), + 就 + V2",
+      "explanationVi": "Cấu trúc này dùng để nhấn mạnh trình tự thời gian giữa hai hành động. Hành động thứ hai sẽ xảy ra ngay sau khi hành động thứ nhất hoàn thành.",
+      "tipsVi": "Bạn có thể hiểu đơn giản là: làm xong việc A thì làm ngay việc B.",
+      "attentionsVi": "Không được dùng cấu trúc này để diễn tả hai hành động diễn ra cùng lúc.",
+      "examples": [
+        {
+          "chinese": "我吃了早饭就去学校了。",
+          "pinyin": "wǒ chī le zǎo fàn jiù qù xué xiào le",
+          "meaningVi": "Tôi ăn sáng xong là đi học ngay."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -134,8 +241,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 6,
+      "grammar": 4,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "bữa sáng",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

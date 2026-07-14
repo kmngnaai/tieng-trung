@@ -57,7 +57,9 @@
         "target": "爷爷",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "爷爷",
@@ -67,10 +69,44 @@
         "target": "爷爷",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "爷爷",
+            "chinese": "这是我爷爷",
+            "pinyin": "Zhè shì wǒ yéye",
+            "meaningVi": "Đây là ông nội tôi",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "爷爷",
+            "chinese": "爷爷很老了",
+            "pinyin": "Yéye hěn lǎo le",
+            "meaningVi": "Ông nội đã rất già",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "爷爷",
+            "chinese": "和爷爷住",
+            "pinyin": "hé yéye zhù",
+            "meaningVi": "sống cùng ông nội",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 3
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -116,10 +152,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:爷爷",
       "title": "Cách dùng 爷爷",
       "partOfSpeech": "reduplication",
       "usageNoteVi": "Xưng hô ông nội (bên nội họ). Ông ngoại 是 外公 (wàigōng) hoặc 姥爷 (lǎoyé).",
       "explanationVi": "Từ láy: 爷 (ông/cha) lặp lại thành 爷爷, xưng hô ông nội.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -193,7 +232,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "ông nội",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

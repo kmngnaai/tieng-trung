@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "ở giữa",
+      "meaningShortVi": "giữa",
       "meaningFullVi": "ở giữa, trung gian",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "ở giữa",
+  "meaningShortVi": "giữa",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -56,7 +56,9 @@
         "target": "中间",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "中间层",
@@ -66,7 +68,9 @@
         "target": "中间",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "空气中间",
@@ -76,10 +80,23 @@
         "target": "中间",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "当中",
+        "pinyin": "dāng zhōng",
+        "meaningVi": "giữa",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: giữa",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -115,10 +132,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:中间",
       "title": "Cách dùng 中间",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Chỉ vị trí hoặc thời gian ở giữa hai điểm. Có thể dùng cho không gian vật lý hoặc trừu tượng.",
       "explanationVi": "Ghép nghĩa: 中 (giữa, trung tâm) + 间 (khoảng, khoảng cách) = ở khoảng giữa hai thứ.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -187,7 +207,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "ở giữa, trung gian",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

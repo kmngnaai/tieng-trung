@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Mẹ (ngôn ngữ trang trọng)",
+      "meaningShortVi": "mẹ",
       "meaningFullVi": "Mẹ (ngôn ngữ trang trọng)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Mẹ (ngôn ngữ trang trọng)",
+  "meaningShortVi": "mẹ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -55,7 +55,9 @@
         "target": "母亲",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "母亲节",
@@ -65,7 +67,20 @@
         "target": "母亲",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "母亲",
+            "chinese": "母亲节快到了。",
+            "pinyin": "Mǔqīnjié kuài dào le.",
+            "meaningVi": "Ngày của Mẹ sắp đến rồi.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "父母母亲",
@@ -75,10 +90,23 @@
         "target": "母亲",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "妈妈",
+        "pinyin": "mā ma",
+        "meaningVi": "mẹ",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: mẹ",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -114,10 +142,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:母亲",
       "title": "Cách dùng 母亲",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "母亲 là cách gọi mẹ trang trọng hơn so với 妈妈 trong giao tiếp hàng ngày. Thường dùng trong văn viết, ngữ cảnh trang trọng hoặc khi nhấn mạnh quan hệ gia đình.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -156,7 +187,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "Mẹ (ngôn ngữ trang trọng)",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

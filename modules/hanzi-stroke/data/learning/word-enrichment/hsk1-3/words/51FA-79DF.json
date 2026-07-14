@@ -52,7 +52,8 @@
         "meaningVi": "taxi",
         "meaningFullVi": "taxi",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 1",
+        "hskLevel": 1,
+        "source": "hsk_1.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -65,7 +66,20 @@
         "target": "出租",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "出租",
+            "chinese": "这房子出租",
+            "pinyin": "zhè fáng zi chū zū",
+            "meaningVi": "Nhà này cho thuê",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "出租车",
@@ -75,10 +89,36 @@
         "target": "出租",
         "source": "hsk_2.json",
         "pinyinMethod": "exact-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "出租",
+            "chinese": "我们是坐出租车来的。",
+            "pinyin": "wǒ men shì zuò chū zū chē lái de",
+            "meaningVi": "Chúng tôi đến bằng taxi.",
+            "source": "hsk_1.json",
+            "grammarId": "hsk1_45",
+            "grammarTopic": "Cấu trúc nhấn mạnh 是...的",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "出租",
+            "chinese": "我们坐出租车去西安饭店。",
+            "pinyin": "wǒ men zuò chū zū chē qù xī ān fàn diàn",
+            "meaningVi": "Chúng tôi đi taxi đến nhà hàng Tây An.",
+            "source": "new_hsk_1.json",
+            "grammarId": "hsk1_new_13",
+            "grammarTopic": "Câu liên động",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 2
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -90,14 +130,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "出租",
+      "chinese": "我们是坐出租车来的。",
+      "pinyin": "wǒ men shì zuò chū zū chē lái de",
+      "meaningVi": "Chúng tôi đến bằng taxi.",
+      "source": "hsk_1.json",
+      "grammarId": "hsk1_45",
+      "grammarTopic": "Cấu trúc nhấn mạnh 是...的",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "出租",
+      "chinese": "我们坐出租车去西安饭店。",
+      "pinyin": "wǒ men zuò chū zū chē qù xī ān fàn diàn",
+      "meaningVi": "Chúng tôi đi taxi đến nhà hàng Tây An.",
+      "source": "new_hsk_1.json",
+      "grammarId": "hsk1_new_13",
+      "grammarTopic": "Câu liên động",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:出租",
       "title": "Cách dùng 出租",
       "partOfSpeech": "verb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk1_45",
+      "title": "Cấu trúc nhấn mạnh 是...的",
+      "syntax": "Chủ ngữ + 是 + [thời gian/địa điểm/cách thức] + Động từ + 的",
+      "explanationVi": "Cấu trúc 「是……的」 dùng để nhấn mạnh các thông tin như thời gian, địa điểm hoặc phương thức của một sự việc đã xảy ra trong quá khứ. Bạn chỉ cần đặt thành phần muốn nhấn mạnh vào giữa 「是」 và động từ, sau đó thêm 「的」 vào cuối câu.",
+      "tipsVi": "Hãy nhớ rằng sự việc này bắt buộc phải là chuyện đã xảy ra rồi, không dùng cấu trúc này cho các hành động ở tương lai.",
+      "attentionsVi": "Đừng quên thêm 「的」 ở cuối câu, vì thiếu nó câu sẽ mất đi ý nghĩa nhấn mạnh và trở thành câu trần thuật thông thường.",
+      "examples": [
+        {
+          "chinese": "我们是坐出租车来的。",
+          "pinyin": "wǒ men shì zuò chū zū chē lái de",
+          "meaningVi": "Chúng tôi đến bằng taxi."
+        }
+      ],
+      "source": "hsk_1.json",
+      "curriculum": "hsk",
+      "hskLevel": 1,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk1_new_13",
+      "title": "Câu liên động",
+      "syntax": "S + V1 + O1 + V2 + O2",
+      "explanationVi": "Câu liên động là câu có từ hai động từ trở lên cùng làm vị ngữ. Cấu trúc này thường dùng để diễn tả mục đích hoặc trình tự của hành động, trong đó động từ thứ hai thường giải thích lý do thực hiện động từ thứ nhất.",
+      "tipsVi": "Hãy ghi nhớ quy tắc: hành động xảy ra trước đứng trước, hành động mục đích đứng sau.",
+      "attentionsVi": "Không được dùng các từ liên kết như 「和」(và) hay 「然后」(sau đó) giữa hai động từ.",
+      "examples": [
+        {
+          "chinese": "我们坐出租车去西安饭店。",
+          "pinyin": "wǒ men zuò chū zū chē qù xī ān fàn diàn",
+          "meaningVi": "Chúng tôi đi taxi đến nhà hàng Tây An."
+        }
+      ],
+      "source": "new_hsk_1.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 1,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -135,6 +240,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "cho thuê",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

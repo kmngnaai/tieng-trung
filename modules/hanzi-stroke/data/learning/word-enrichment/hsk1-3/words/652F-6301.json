@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Hỗ trợ",
+      "meaningShortVi": "hỗ trợ",
       "meaningFullVi": "Hỗ trợ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Hỗ trợ",
+  "meaningShortVi": "hỗ trợ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -46,7 +46,18 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [
+      {
+        "targetWord": "主持",
+        "pinyin": "zhǔ chí",
+        "meaningVi": "dẫn chương trình",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -82,10 +93,27 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:支持",
       "title": "Cách dùng 支持",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "支持 là động từ chỉ việc ủng hộ, giúp đỡ, tiếp sức. 支 (chi) nghĩa là cành, nhánh (chỗ dựa); 持 (trì) nghĩa là cầm, giữ. Ghép lại: giữ đỡ, ủng hộ.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_39",
+      "title": "Cách dùng động từ 支",
+      "syntax": "Chủ ngữ + 支 + Tân ngữ (vật chống đỡ/đơn vị tiền tệ/công việc)",
+      "explanationVi": "Động từ 「支」 có nghĩa cơ bản là chống hoặc đỡ vật gì đó bằng tay hoặc dụng cụ. Ngoài ra, trong ngữ cảnh HSK 5, nó còn được dùng để chỉ việc chi trả tiền bạc hoặc đảm đương, chống đỡ một công việc, gánh nặng nào đó.",
+      "tipsVi": "Bạn có thể nhớ 「支」 qua hình ảnh bàn tay chống đỡ, giống như bộ thủ 「支」 (chi) trong các từ như 「支持」 (ủng hộ/hỗ trợ).",
+      "attentionsVi": "Cần tránh nhầm lẫn giữa nghĩa vật lý (chống đỡ) với nghĩa trừu tượng (chi trả/đảm đương) để sử dụng từ trong câu sao cho hợp lý.",
+      "examples": [],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -119,8 +147,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 1,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "Hỗ trợ",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

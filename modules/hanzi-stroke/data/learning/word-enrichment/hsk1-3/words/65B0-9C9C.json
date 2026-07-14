@@ -48,15 +48,51 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
-  "sentences": [],
+  "sentences": [
+    {
+      "target": "新鲜",
+      "chinese": "先把米饭做好，然后再把新鲜的水果放进去。",
+      "pinyin": "xiān bǎ mǐ fàn zuò hǎo rán hòu zài bǎ xīn xiān de shuǐ guǒ fàng jìn qù",
+      "meaningVi": "Trước tiên nấu cơm xong, sau đó mới cho trái cây tươi vào.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_33",
+      "grammarTopic": "Diễn tả trình tự hành động",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "grammarLinks": [
     {
+      "grammarId": "usage:新鲜",
       "title": "Cách dùng 新鲜",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_33",
+      "title": "Diễn tả trình tự hành động",
+      "syntax": "先 (xiān) + V1, 再/又 (zài/yòu) + V2, 然后 (ránhòu) + V3",
+      "explanationVi": "Cấu trúc này được dùng để liệt kê các hành động theo trình tự thời gian. 「先」 đứng đầu câu chỉ hành động đầu tiên, 「再/又」 chỉ hành động tiếp theo và 「然后」 giới thiệu hành động cuối cùng để câu văn mạch lạc hơn.",
+      "tipsVi": "Khi liệt kê chuỗi hành động, bạn có thể linh hoạt lược bỏ bớt hoặc thêm các từ nối như 「最后」(zuìhòu - cuối cùng) ở bước cuối để nhấn mạnh kết quả.",
+      "attentionsVi": "Cần phân biệt: 「再」 thường dùng cho hành động chưa xảy ra, trong khi 「又」 dùng cho hành động đã xảy ra hoặc lặp lại.",
+      "examples": [
+        {
+          "chinese": "先把米饭做好，然后再把新鲜的水果放进去。",
+          "pinyin": "xiān bǎ mǐ fàn zuò hǎo rán hòu zài bǎ xīn xiān de shuǐ guǒ fàng jìn qù",
+          "meaningVi": "Trước tiên nấu cơm xong, sau đó mới cho trái cây tươi vào."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -110,9 +146,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có câu mẫu đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 1,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "tươi",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -57,7 +57,9 @@
         "target": "帮助",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "寻求帮助",
@@ -67,7 +69,9 @@
         "target": "帮助",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "帮助别人",
@@ -77,10 +81,23 @@
         "target": "帮助",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "帮忙",
+        "pinyin": "bāng máng",
+        "meaningVi": "giúp đỡ",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: giúp đỡ",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -112,14 +129,93 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "帮助",
+      "chinese": "看电视对学汉语有帮助。",
+      "pinyin": "kàn diàn shì duì xué hàn yǔ yǒu bāng zhù",
+      "meaningVi": "Xem tivi có ích cho việc học tiếng Hán.",
+      "source": "hsk_2.json",
+      "grammarId": "hsk2_31",
+      "grammarTopic": "Cách dùng giới từ 对",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "帮助",
+      "chinese": "在老师的帮助下，我的成绩提高很快。",
+      "pinyin": "zài lǎo shī de bāng zhù xià wǒ de chéng jì tí gāo hěn kuài",
+      "meaningVi": "Dưới sự giúp đỡ của thầy giáo, thành tích của tôi tiến bộ rất nhanh.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_32",
+      "grammarTopic": "Cấu trúc phạm vi 在……上/中/下",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:帮助",
       "title": "Cách dùng 帮助",
       "partOfSpeech": "verb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_31",
+      "title": "Cách dùng giới từ 对",
+      "syntax": "Chủ ngữ + 对 + [Đối tượng] + (Động từ/Tính từ)",
+      "explanationVi": "Giới từ 「对」 được dùng để chỉ đối tượng mà hành động hoặc thái độ hướng đến. Cấu trúc này giúp làm rõ ai hoặc cái gì là mục tiêu của sự việc.",
+      "tipsVi": "Bạn có thể dùng 「对...很好」 (tốt với ai) hoặc 「对...感兴趣」 (có hứng thú với cái gì) để diễn đạt cảm nhận của mình.",
+      "attentionsVi": "Đừng nhầm lẫn 「对」 với giới từ 「跟」(cùng với). 「对」 nhấn mạnh vào hướng của hành động hoặc mối quan hệ đối với đối tượng, trong khi 「跟」 thường mang nghĩa đồng hành hoặc làm gì đó cùng nhau.",
+      "examples": [
+        {
+          "chinese": "看电视对学汉语有帮助。",
+          "pinyin": "kàn diàn shì duì xué hàn yǔ yǒu bāng zhù",
+          "meaningVi": "Xem tivi có ích cho việc học tiếng Hán."
+        }
+      ],
+      "source": "hsk_2.json",
+      "curriculum": "hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_76",
+      "title": "Cấu trúc 对...有利 (Có lợi cho)",
+      "syntax": "S + 对 + N + 有利 (tính từ: có lợi)",
+      "explanationVi": "Từ 「有利」 là một tính từ dùng để diễn tả một điều gì đó mang lại lợi ích hoặc thuận lợi cho đối tượng được nhắc đến. Cấu trúc thường gặp nhất là sử dụng với giới từ 「对」 để chỉ rõ đối tượng nhận lợi ích.",
+      "tipsVi": "Bạn có thể kết hợp thêm các trạng từ chỉ mức độ như 「很有利」 (rất có lợi) hoặc 「非常有帮助」 để nhấn mạnh ý nghĩa của câu.",
+      "attentionsVi": "Cần phân biệt 「有利」 với 「有好处」; dù gần nghĩa nhưng 「有利」 thường mang sắc thái trang trọng hơn và hay dùng trong ngữ cảnh công việc, chính sách hoặc sức khỏe.",
+      "examples": [],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_32",
+      "title": "Cấu trúc phạm vi 在……上/中/下",
+      "syntax": "在 + [Danh từ/Khái cạnh] + 上/中/下",
+      "explanationVi": "Cấu trúc này dùng để xác định phạm vi, hoàn cảnh hoặc khía cạnh mà hành động hay sự việc xảy ra. Trong đó, 「上」 thường chỉ khía cạnh (lý thuyết), 「中」 chỉ quá trình (đang diễn ra) và 「下」 chỉ điều kiện (dưới sự tác động).",
+      "tipsVi": "Hãy ghi nhớ các cụm từ cố định như 「在工作上」 (trong công việc) hay 「在学习中」 (trong quá trình học) để vận dụng linh hoạt.",
+      "attentionsVi": "Cần chú ý không dịch máy móc theo nghĩa đen (trên/trong/dưới) vì đây là các từ chỉ phạm vi trừu tượng.",
+      "examples": [
+        {
+          "chinese": "在老师的帮助下，我的成绩提高很快。",
+          "pinyin": "zài lǎo shī de bāng zhù xià wǒ de chéng jì tí gāo hěn kuài",
+          "meaningVi": "Dưới sự giúp đỡ của thầy giáo, thành tích của tôi tiến bộ rất nhanh."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -193,7 +289,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 5,
+      "grammar": 4,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "giúp đỡ, tương trợ",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

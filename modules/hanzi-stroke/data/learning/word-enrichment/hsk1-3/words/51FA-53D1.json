@@ -56,7 +56,9 @@
         "target": "出发",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "准备出发",
@@ -66,10 +68,13 @@
         "target": "出发",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -91,14 +96,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "出发",
+      "chinese": "出发的时间还说不定。",
+      "pinyin": "chū fā de shí jiān hái shuō bù dìng",
+      "meaningVi": "Thời gian xuất phát vẫn chưa thể nói chắc chắn được.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_12",
+      "grammarTopic": "Cách dùng phó từ 说不定",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "出发",
+      "chinese": "假设明天下雨，我们就改天出发。",
+      "pinyin": "jiǎ shè míng tiān xià yǔ wǒ men jiù gǎi tiān chū fā",
+      "meaningVi": "Giả sử ngày mai trời mưa, chúng ta sẽ đổi ngày xuất phát.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_68",
+      "grammarTopic": "Cấu trúc giả định 假设",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:出发",
       "title": "Cách dùng 出发",
       "partOfSpeech": "verb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_12",
+      "title": "Cách dùng phó từ 说不定",
+      "syntax": "S + 说不定 + (sẽ/có thể) + V/Adj",
+      "explanationVi": "Từ 「说不定」 dùng để diễn tả một khả năng không chắc chắn, có thể xảy ra nhưng chưa khẳng định được. Trong tiếng Việt, nó thường được dịch là \"biết đâu\", \"chưa chắc\" hoặc \"có thể\".",
+      "tipsVi": "Bạn có thể đặt 「说不定」 ở đầu câu hoặc ngay trước động từ để dự đoán một tình huống nào đó.",
+      "attentionsVi": "Đừng nhầm lẫn 「说不定」 với 「可能」; 「说不定」 mang tính chất phỏng đoán cá nhân nhiều hơn và thường dùng trong khẩu ngữ.",
+      "examples": [
+        {
+          "chinese": "出发的时间还说不定。",
+          "pinyin": "chū fā de shí jiān hái shuō bù dìng",
+          "meaningVi": "Thời gian xuất phát vẫn chưa thể nói chắc chắn được."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_68",
+      "title": "Cấu trúc giả định 假设",
+      "syntax": "假设 + (S) + V/Adj, (S) + V/Adj",
+      "explanationVi": "「假设」 dùng để diễn tả một giả thiết, có nghĩa là \"giả sử\" hoặc \"nếu như\". Cấu trúc này thường đứng đầu câu để đặt ra một tình huống giả định, vế sau sẽ nêu lên kết quả hoặc cách giải quyết tương ứng.",
+      "tipsVi": "Bạn có thể thêm 「的话」 vào cuối vế giả thiết để làm câu văn nghe tự nhiên hơn, ví dụ: 「假设他没来的话，我们就先走。」",
+      "attentionsVi": "Đừng nhầm lẫn 「假设」 với 「假装」(giả vờ). 「假设」 là từ dùng để đặt điều kiện giả thuyết, còn 「假装」 dùng để chỉ hành động cố ý làm ra vẻ không thật.",
+      "examples": [
+        {
+          "chinese": "假设明天下雨，我们就改天出发。",
+          "pinyin": "jiǎ shè míng tiān xià yǔ wǒ men jiù gǎi tiān chū fā",
+          "meaningVi": "Giả sử ngày mai trời mưa, chúng ta sẽ đổi ngày xuất phát."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -157,7 +227,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "khởi hành, xuất phát",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -49,10 +49,11 @@
       {
         "word": "笔记本",
         "pinyin": "bǐ jì běn",
-        "meaningVi": "sổ tay",
+        "meaningVi": "máy tính xách tay",
         "meaningFullVi": "sổ tay",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 2",
+        "hskLevel": 2,
+        "source": "hsk_2.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -65,10 +66,45 @@
         "target": "笔记",
         "source": "hsk_2.json",
         "pinyinMethod": "exact-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "笔记",
+            "chinese": "做笔记",
+            "pinyin": "zuò bǐ jì",
+            "meaningVi": "Ghi chép",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "笔记",
+            "chinese": "课堂笔记",
+            "pinyin": "kè táng bǐ jì",
+            "meaningVi": "Ghi chép trong lớp",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "笔记",
+            "chinese": "我们用会议室的电脑还是自己的笔记本电脑？",
+            "pinyin": "wǒ men yòng huì yì shì de diàn nǎo hái shì zì jǐ de bǐ jì běn diàn nǎo",
+            "meaningVi": "Chúng ta dùng máy tính của phòng họp hay máy tính xách tay của mình?",
+            "source": "new_hsk_3.json",
+            "grammarId": "hsk3_new_34",
+            "grammarTopic": "Phân biệt 还是 và 或者",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 3
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -90,14 +126,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "笔记",
+      "chinese": "我们用会议室的电脑还是自己的笔记本电脑？",
+      "pinyin": "wǒ men yòng huì yì shì de diàn nǎo hái shì zì jǐ de bǐ jì běn diàn nǎo",
+      "meaningVi": "Chúng ta dùng máy tính của phòng họp hay máy tính xách tay của mình?",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_34",
+      "grammarTopic": "Phân biệt 还是 và 或者",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:笔记",
       "title": "Cách dùng 笔记",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_34",
+      "title": "Phân biệt 还是 và 或者",
+      "syntax": "A 还是 B? (Câu hỏi) / A 或者 B (Câu trần thuật)",
+      "explanationVi": "Cả 「还是」 và 「或者」 đều dùng để diễn tả sự lựa chọn. Điểm khác biệt là 「还是」 thường dùng trong câu nghi vấn để đặt câu hỏi lựa chọn, trong khi 「或者」 dùng trong câu trần thuật để liệt kê các phương án.",
+      "tipsVi": "Hãy nhớ quy tắc đơn giản: thấy dấu chấm hỏi thì chọn 「还是」, câu kể bình thường thì chọn 「或者」.",
+      "attentionsVi": "Không dùng 「还是」 trong câu trần thuật vì nó sẽ làm câu trở thành dạng câu hỏi, gây khó hiểu cho người nghe.",
+      "examples": [
+        {
+          "chinese": "我们用会议室的电脑还是自己的笔记本电脑？",
+          "pinyin": "wǒ men yòng huì yì shì de diàn nǎo hái shì zì jǐ de bǐ jì běn diàn nǎo",
+          "meaningVi": "Chúng ta dùng máy tính của phòng họp hay máy tính xách tay của mình?"
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -150,6 +220,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 1,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "ghi chép",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

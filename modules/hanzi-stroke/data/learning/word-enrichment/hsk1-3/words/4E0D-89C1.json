@@ -44,7 +44,18 @@
     ]
   },
   "vocabulary": {
-    "compounds": [],
+    "compounds": [
+      {
+        "word": "不见得",
+        "pinyin": "bù jiàn de",
+        "meaningVi": "không chắc",
+        "meaningFullVi": "không chắc, không nhất thiết",
+        "relationType": "contains-exact-target",
+        "hskLevel": 5,
+        "source": "hsk_5.json",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
     "collocations": [
       {
         "text": "关于不见",
@@ -54,10 +65,34 @@
         "target": "不见",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "不见",
+            "chinese": "关于不见",
+            "pinyin": "Guānyú 不见",
+            "meaningVi": "Về biến mất",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "消失",
+        "pinyin": "xiāo shī",
+        "meaningVi": "biến mất",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: biến mất",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -93,10 +128,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:不见",
       "title": "Cách dùng 不见",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Dùng để chỉ biến mất.",
       "explanationVi": "biến mất — từ ghép mang nghĩa này.",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +168,22 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 1,
+      "sentences": 3,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "biến mất",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

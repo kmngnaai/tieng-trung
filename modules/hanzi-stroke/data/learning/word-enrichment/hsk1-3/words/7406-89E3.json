@@ -46,15 +46,88 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "明白",
+        "pinyin": "míng bai",
+        "meaningVi": "hiểu",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: hiểu",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "懂得",
+        "pinyin": "dǒng dé",
+        "meaningVi": "hiểu",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: hiểu",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "领悟",
+        "pinyin": "lǐng wù",
+        "meaningVi": "hiểu",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: hiểu",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "体会",
+        "pinyin": "tǐ huì",
+        "meaningVi": "hiểu",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: hiểu",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
-  "sentences": [],
+  "sentences": [
+    {
+      "target": "理解",
+      "chinese": "我认为不会，实际工作能让我更理解书本上的知识。",
+      "pinyin": "wǒ rèn wèi bù huì shí jì gōng zuò néng ràng wǒ gèng lǐ jiě shū běn shàng de zhī shí",
+      "meaningVi": "Tôi cho rằng sẽ không như vậy, công việc thực tế có thể giúp tôi hiểu kiến thức trong sách hơn.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_22",
+      "grammarTopic": "Cách dùng từ 实际",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "grammarLinks": [
     {
+      "grammarId": "usage:理解",
       "title": "Cách dùng 理解",
       "partOfSpeech": "động từ",
       "usageNoteVi": "Nắm bắt được ý nghĩa hoặc cảm xúc của người khác.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_22",
+      "title": "Cách dùng từ 实际",
+      "syntax": "实际 (Danh từ: thực tế / Tính từ: thực tế, thiết thực)",
+      "explanationVi": "Từ 「实际」 được dùng như một danh từ để chỉ sự việc, tình huống khách quan trong đời sống. Khi đóng vai trò là tính từ, nó mang nghĩa là thực tế, không lý thuyết suông, mang tính ứng dụng cao.",
+      "tipsVi": "Bạn có thể ghi nhớ cụm từ phổ biến 「联系实际」 (liánxì shíjì) nghĩa là \"liên hệ với thực tế\" để áp dụng vào bài viết hoặc bài nói.",
+      "attentionsVi": "Cần phân biệt rõ khi 「实际」 làm danh từ (thường đứng sau giới từ hoặc làm tân ngữ) và khi làm tính từ (thường dùng để bổ nghĩa cho danh từ).",
+      "examples": [
+        {
+          "chinese": "我认为不会，实际工作能让我更理解书本上的知识。",
+          "pinyin": "wǒ rèn wèi bù huì shí jì gōng zuò néng ràng wǒ gèng lǐ jiě shū běn shàng de zhī shí",
+          "meaningVi": "Tôi cho rằng sẽ không như vậy, công việc thực tế có thể giúp tôi hiểu kiến thức trong sách hơn."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -88,9 +161,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có câu mẫu đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 1,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 4
+    }
+  },
+  "meaningFullVi": "hiểu, thấu hiểu",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -54,7 +54,20 @@
         "target": "不大",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "不大",
+            "chinese": "不大不小的房间正好。",
+            "pinyin": "Bù dà bù xiǎo de fángjiān zhènghǎo.",
+            "meaningVi": "Căn phòng không lớn không nhỏ vừa phải.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "不大好",
@@ -64,10 +77,13 @@
         "target": "不大",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -89,14 +105,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "不大",
+      "chinese": "我的房间不大。",
+      "pinyin": "wǒ de fáng jiān bù dà",
+      "meaningVi": "Phòng của tôi không lớn.",
+      "source": "new_hsk_1.json",
+      "grammarId": "hsk1_new_26",
+      "grammarTopic": "Câu vị ngữ tính từ",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:不大",
       "title": "Cách dùng 不大",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "不大 là hình thức phủ định của 大 (lớn), nghĩa là không lớn. Hán-Việt: bất + đại.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk1_new_26",
+      "title": "Câu vị ngữ tính từ",
+      "syntax": "Chủ ngữ + (phó từ chỉ mức độ) + Tính từ",
+      "explanationVi": "Trong câu vị ngữ tính từ, tính từ đóng vai trò làm vị ngữ thay cho động từ. Khi dùng cấu trúc này, ta thường thêm phó từ chỉ mức độ như 「很」 (rất) vào trước tính từ để câu tự nhiên hơn.",
+      "tipsVi": "Dù trong tiếng Việt không dịch 「很」, nhưng trong tiếng Trung bạn nên thêm nó vào để tránh câu bị cụt.",
+      "attentionsVi": "Không được thêm động từ 「是」 trước tính từ trong câu vị ngữ tính từ.",
+      "examples": [
+        {
+          "chinese": "我的房间不大。",
+          "pinyin": "wǒ de fáng jiān bù dà",
+          "meaningVi": "Phòng của tôi không lớn."
+        }
+      ],
+      "source": "new_hsk_1.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 1,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +180,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "không lớn, hơi nhỏ",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

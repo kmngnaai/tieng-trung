@@ -55,7 +55,9 @@
         "target": "听见",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "听见声音",
@@ -65,10 +67,24 @@
         "target": "听见",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "听见",
+            "chinese": "我听见声音了",
+            "pinyin": "Wǒ tīng jiàn shēng yīn le",
+            "meaningVi": "Tôi nghe thấy tiếng rồi",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -114,10 +130,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:听见",
       "title": "Cách dùng 听见",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Dùng để chỉ việc 'nghe thấy' (cả hai hành động nghe và nhận thức). Phủ định là '听不见'. Trong văn nói, có thể chỉ dùng '听' thay cho '听见'.",
       "explanationVi": "Ghép nghĩa: 听 (nghe) + 见 (thấy, gặp) → 'nghe và thấy', 即 'nghe thấy'.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -171,7 +190,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "nghe thấy",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

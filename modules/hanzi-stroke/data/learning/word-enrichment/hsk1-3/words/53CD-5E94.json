@@ -55,7 +55,9 @@
         "target": "反应",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "化学反应",
@@ -65,10 +67,13 @@
         "target": "反应",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -80,14 +85,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "反应",
+      "chinese": "他对这个消息没有任何反应。",
+      "pinyin": "tā duì zhè gè xiāo xī méi yǒu rèn hé fǎn yīng",
+      "meaningVi": "Anh ấy không có bất kỳ phản ứng nào với tin này.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_70",
+      "grammarTopic": "Phân biệt 反应 và 反映",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:反应",
       "title": "Cách dùng 反应",
       "partOfSpeech": "động từ / danh từ",
       "usageNoteVi": "指生物体受到刺激后产生的活动，或事物受影响后发生的变化。也可指态度、意见。",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_70",
+      "title": "Phân biệt 反应 và 反映",
+      "syntax": "反应 (phản ứng) vs. 反映 (phản ánh)",
+      "explanationVi": "「反应」 dùng để chỉ phản ứng tự nhiên của cơ thể hoặc thái độ đối với một sự việc (ví dụ: dị ứng, phản xạ). Trong khi đó, 「反映」 dùng khi muốn trình bày, phản ánh lại tình hình hoặc sự thật cho cấp trên hoặc người khác biết.",
+      "tipsVi": "Hãy nhớ 「反应」 thường liên quan đến cảm giác hoặc phản xạ, còn 「反映」 thường liên quan đến việc báo cáo hoặc thể hiện bản chất của vấn đề.",
+      "attentionsVi": "Người học rất dễ nhầm lẫn vì hai từ này đọc giống hệt nhau (fǎnyìng), hãy chú ý vào ngữ cảnh: nếu là sinh lý hoặc thái độ thì dùng 「反应」.",
+      "examples": [
+        {
+          "chinese": "他对这个消息没有任何反应。",
+          "pinyin": "tā duì zhè gè xiāo xī méi yǒu rèn hé fǎn yīng",
+          "meaningVi": "Anh ấy không có bất kỳ phản ứng nào với tin này."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -126,7 +165,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "phản ứng",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -56,10 +56,45 @@
         "target": "遇到",
         "source": "hsk_2.json",
         "pinyinMethod": "exact-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "遇到",
+            "chinese": "这个遇到很好。",
+            "pinyin": "zhè ge yù dào hěn hǎo。",
+            "meaningVi": "gặp phải này rất tốt.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "遇到",
+            "chinese": "我喜欢这个遇到。",
+            "pinyin": "wǒ xǐ huan zhè ge yù dào。",
+            "meaningVi": "Tôi thích gặp phải này.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "遇到",
+            "chinese": "在学习上，遇到什么问题都可以问我。",
+            "pinyin": "zài xué xí shàng yù dào shén me wèn tí dōu kě yǐ wèn wǒ",
+            "meaningVi": "Trong học tập, gặp vấn đề gì bạn cũng có thể hỏi tôi.",
+            "source": "new_hsk_3.json",
+            "grammarId": "hsk3_new_32",
+            "grammarTopic": "Cấu trúc phạm vi 在……上/中/下",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 3
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -81,14 +116,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "遇到",
+      "chinese": "在学习上，遇到什么问题都可以问我。",
+      "pinyin": "zài xué xí shàng yù dào shén me wèn tí dōu kě yǐ wèn wǒ",
+      "meaningVi": "Trong học tập, gặp vấn đề gì bạn cũng có thể hỏi tôi.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_32",
+      "grammarTopic": "Cấu trúc phạm vi 在……上/中/下",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:遇到",
       "title": "Cách dùng 遇到",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_32",
+      "title": "Cấu trúc phạm vi 在……上/中/下",
+      "syntax": "在 + [Danh từ/Khái cạnh] + 上/中/下",
+      "explanationVi": "Cấu trúc này dùng để xác định phạm vi, hoàn cảnh hoặc khía cạnh mà hành động hay sự việc xảy ra. Trong đó, 「上」 thường chỉ khía cạnh (lý thuyết), 「中」 chỉ quá trình (đang diễn ra) và 「下」 chỉ điều kiện (dưới sự tác động).",
+      "tipsVi": "Hãy ghi nhớ các cụm từ cố định như 「在工作上」 (trong công việc) hay 「在学习中」 (trong quá trình học) để vận dụng linh hoạt.",
+      "attentionsVi": "Cần chú ý không dịch máy móc theo nghĩa đen (trên/trong/dưới) vì đây là các từ chỉ phạm vi trừu tượng.",
+      "examples": [
+        {
+          "chinese": "在学习上，遇到什么问题都可以问我。",
+          "pinyin": "zài xué xí shàng yù dào shén me wèn tí dōu kě yǐ wèn wǒ",
+          "meaningVi": "Trong học tập, gặp vấn đề gì bạn cũng có thể hỏi tôi."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -142,7 +211,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "gặp phải",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

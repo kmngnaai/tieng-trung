@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Xây dựng",
+      "meaningShortVi": "xây dựng",
       "meaningFullVi": "Xây dựng, phát triển",
       "partOfSpeech": "động từ / danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Xây dựng",
+  "meaningShortVi": "xây dựng",
   "wordType": "động từ / danh từ",
   "wordTypes": [
     "động từ / danh từ"
@@ -54,7 +54,20 @@
         "target": "建设",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "建设",
+            "chinese": "国家正在大力发展基础设施建设。",
+            "pinyin": "Guójiā zhèngzài dàlì fāzhǎn jīchǔ shèshī jiànshè.",
+            "meaningVi": "Nhà nước đang phát triển mạnh mẽ xây dựng cơ sở hạ tầng.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "城市建设",
@@ -64,10 +77,34 @@
         "target": "建设",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "建设",
+            "chinese": "城市建设越来越现代化。",
+            "pinyin": "Chéngshì jiànshè yuè lái yuè xiàndàihuà.",
+            "meaningVi": "Xây dựng đô thị ngày càng hiện đại.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "建立",
+        "pinyin": "jiàn lì",
+        "meaningVi": "xây dựng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: xây dựng",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -93,10 +130,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:建设",
       "title": "Cách dùng 建设",
       "partOfSpeech": "động từ / danh từ",
       "usageNoteVi": "建设 mang hành động xây dựng hoặc phát triển một lĩnh vực. Nó thường dùng cho các dự án lớn như 基础设施 (cơ sở hạ tầng), 城市 (đô thị), 国家 (nhà nước). Trong giao tiếp, người ta thường用 进行建设 (đang xây dựng) 或 完成建设 (hoàn thành xây dựng).",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +170,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "Xây dựng, phát triển",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

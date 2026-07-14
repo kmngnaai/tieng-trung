@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Cảm lạnh",
+      "meaningShortVi": "cảm",
       "meaningFullVi": "Cảm lạnh, cảm cúm",
       "partOfSpeech": "loanword",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Cảm lạnh",
+  "meaningShortVi": "cảm",
   "wordType": "loanword",
   "wordTypes": [
     "loanword"
@@ -56,7 +56,9 @@
         "target": "感冒",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "重感冒",
@@ -66,10 +68,13 @@
         "target": "感冒",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -101,14 +106,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "感冒",
+      "chinese": "你穿得那么少，会感冒的。",
+      "pinyin": "nǐ chuān dé nà me shǎo huì gǎn mào de",
+      "meaningVi": "Bạn mặc ít như vậy sẽ bị cảm đấy.",
+      "source": "hsk_3.json",
+      "grammarId": "hsk3_9",
+      "grammarTopic": "Cách dùng 会 chỉ khả năng tương lai",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:感冒",
       "title": "Cách dùng 感冒",
       "partOfSpeech": "loanword",
       "usageNoteVi": "Có thể là động từ (bị cảm) hoặc danh từ (bệnh cảm).",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_9",
+      "title": "Cách dùng 会 chỉ khả năng tương lai",
+      "syntax": "S + 会 + V + O (Trợ động từ chỉ khả năng tương lai)",
+      "explanationVi": "Trợ động từ 「会」 được dùng trước động từ để diễn tả một sự việc có khả năng hoặc có thể xảy ra trong tương lai. Nó thể hiện dự đoán của người nói về tình huống sắp tới.",
+      "tipsVi": "Bạn có thể dùng thêm các trạng từ chỉ thời gian như 「明天」(ngày mai) hoặc 「下周」(tuần sau) để làm rõ hơn ý nghĩa về tương lai.",
+      "attentionsVi": "Đừng nhầm lẫn với ý nghĩa 'biết làm gì nhờ học tập' (kỹ năng); trong ngữ cảnh tương lai, 「会」 nhấn mạnh vào sự dự đoán, khả năng sự việc sẽ diễn ra.",
+      "examples": [
+        {
+          "chinese": "你穿得那么少，会感冒的。",
+          "pinyin": "nǐ chuān dé nà me shǎo huì gǎn mào de",
+          "meaningVi": "Bạn mặc ít như vậy sẽ bị cảm đấy."
+        }
+      ],
+      "source": "hsk_3.json",
+      "curriculum": "hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -177,7 +216,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "Cảm lạnh, cảm cúm",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

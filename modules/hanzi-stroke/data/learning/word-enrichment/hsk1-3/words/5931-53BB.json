@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "mất mát",
+      "meaningShortVi": "mất",
       "meaningFullVi": "mất mát, không còn nữa",
       "partOfSpeech": "động từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "mất mát",
+  "meaningShortVi": "mất",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
@@ -55,7 +55,20 @@
         "target": "失去",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "失去",
+            "chinese": "不要失去信心。",
+            "pinyin": "bù yào shī qù xìn xīn。",
+            "meaningVi": "Đừng mất lòng tin.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "失去联系",
@@ -65,10 +78,13 @@
         "target": "失去",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -90,14 +106,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "失去",
+      "chinese": "他失去了最好的朋友。",
+      "pinyin": "tā shī qù le zuì hǎo de péng yǒu",
+      "meaningVi": "Anh ấy đã mất đi người bạn tốt nhất.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_66",
+      "grammarTopic": "Phân biệt 损失 và 失去",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:失去",
       "title": "Cách dùng 失去",
       "partOfSpeech": "động từ",
       "usageNoteVi": "失去 là động từ chỉ việc mất mát cái gì đó (công việc, hy vọng, lòng tin...). Thường kết hợp với các danh từ trừu tượng như 信心 (lòng tin), 联系 (liên lạc), 机会 (cơ hội).",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_66",
+      "title": "Phân biệt 损失 và 失去",
+      "syntax": "损失 (sǔnshī) vs. 失去 (shīqù)",
+      "explanationVi": "「损失」 thường dùng để chỉ việc bị thiệt hại, tổn thất về mặt giá trị, vật chất hoặc tiền bạc, có thể là mất một phần. 「失去」 dùng khi mất đi hoàn toàn một thứ gì đó, thường là những thứ trừu tượng như cơ hội, tình cảm hoặc quyền sở hữu.",
+      "tipsVi": "Hãy nhớ 「损失」 thường dùng cho tài sản, kinh tế, còn 「失去」 dùng cho những thứ không thể cầm nắm được hoặc đã mất đi vĩnh viễn.",
+      "attentionsVi": "「损失」 có thể đóng vai trò là danh từ (tổn thất), còn 「失去」 chỉ đóng vai trò là động từ.",
+      "examples": [
+        {
+          "chinese": "他失去了最好的朋友。",
+          "pinyin": "tā shī qù le zuì hǎo de péng yǒu",
+          "meaningVi": "Anh ấy đã mất đi người bạn tốt nhất."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -136,7 +186,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "mất mát, không còn nữa",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

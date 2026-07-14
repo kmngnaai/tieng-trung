@@ -57,7 +57,9 @@
         "target": "记得",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "不记得",
@@ -67,7 +69,20 @@
         "target": "记得",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "记得",
+            "chinese": "我不记得了",
+            "pinyin": "Wǒ bú jì de le",
+            "meaningVi": "Tôi không nhớ rồi",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "还记得",
@@ -77,10 +92,44 @@
         "target": "记得",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "记得",
+            "chinese": "虽然你忘了，但是我还记得。",
+            "pinyin": "suī rán nǐ wàng le dàn shì wǒ hái jì dé",
+            "meaningVi": "Mặc dù bạn đã quên nhưng tôi vẫn còn nhớ.",
+            "source": "new_hsk_2.json",
+            "grammarId": "hsk2_new_24",
+            "grammarTopic": "Cấu trúc câu nhượng bộ Tuy... nhưng",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "想念",
+        "pinyin": "xiǎng niàn",
+        "meaningVi": "nhớ",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: nhớ",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "怀念",
+        "pinyin": "huái niàn",
+        "meaningVi": "nhớ",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: nhớ",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -122,14 +171,79 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "记得",
+      "chinese": "万一下雨，记得带伞。",
+      "pinyin": "wàn yī xià yǔ jì dé dài sǎn",
+      "meaningVi": "Ngộ nhỡ trời mưa, nhớ mang ô.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_73",
+      "grammarTopic": "Cấu trúc 万一 (ngộ nhỡ)",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "记得",
+      "chinese": "虽然你忘了，但是我还记得。",
+      "pinyin": "suī rán nǐ wàng le dàn shì wǒ hái jì dé",
+      "meaningVi": "Mặc dù bạn đã quên nhưng tôi vẫn còn nhớ.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_24",
+      "grammarTopic": "Cấu trúc câu nhượng bộ Tuy... nhưng",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:记得",
       "title": "Cách dùng 记得",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Dùng phổ biến để chỉ việc 'nhớ'. Phủ định là '不记得'. Trong văn nói, '得' phát âm nhẹ 'de'.",
       "explanationVi": "Ghép nghĩa: 记 (ghi, nhớ) + 得 (đạt được, hậu từ). Nghĩa là 'có thể ghi nhớ, nhớ được'.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_73",
+      "title": "Cấu trúc 万一 (ngộ nhỡ)",
+      "syntax": "万一 + [mệnh đề/tình huống xấu] + (thì) + [kết quả/hành động đối phó]",
+      "explanationVi": "Liên từ 「万一」 dùng để diễn tả một khả năng rủi ro có xác suất rất nhỏ xảy ra, tương đương với nghĩa là \"ngộ nhỡ\" hoặc \"nếu chẳng may\". Nó thường được dùng để dự phòng trước cho các tình huống không mong muốn.",
+      "tipsVi": "Vế sau của câu thường đi kèm với các từ chỉ cách giải quyết như 「就」, 「得」 hoặc 「准备」 để chuẩn bị cho tình huống xấu đó.",
+      "attentionsVi": "「万一」 chỉ dùng cho các tình huống mang tính tiêu cực hoặc không mong đợi, tuyệt đối không dùng cho các sự việc tốt đẹp.",
+      "examples": [
+        {
+          "chinese": "万一下雨，记得带伞。",
+          "pinyin": "wàn yī xià yǔ jì dé dài sǎn",
+          "meaningVi": "Ngộ nhỡ trời mưa, nhớ mang ô."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_24",
+      "title": "Cấu trúc câu nhượng bộ Tuy... nhưng",
+      "syntax": "虽然 (Sui rán) + [Mệnh đề 1], 但是 (dàn shì) + [Mệnh đề 2]",
+      "explanationVi": "Cấu trúc 「虽然……，但是……」 dùng để nối hai mệnh đề có ý nghĩa tương phản nhau. Bạn dùng nó để diễn đạt ý \"mặc dù... nhưng mà...\" trong tiếng Việt.",
+      "tipsVi": "Trong khẩu ngữ, bạn có thể lược bỏ 「虽然」 nhưng vẫn giữ lại 「但是」 để câu tự nhiên hơn.",
+      "attentionsVi": "Không được dùng đồng thời cả 「虽然」 và 「但是」 trong cùng một câu nếu ý nghĩa không có sự đối lập rõ ràng.",
+      "examples": [
+        {
+          "chinese": "虽然你忘了，但是我还记得。",
+          "pinyin": "suī rán nǐ wàng le dàn shì wǒ hái jì dé",
+          "meaningVi": "Mặc dù bạn đã quên nhưng tôi vẫn còn nhớ."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -203,7 +317,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 6,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "nhớ, không quên",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -23,14 +23,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "phát tỳ khí — nổi giận",
+      "meaningShortVi": "nổi giận",
       "meaningFullVi": "phát tỳ khí — nổi giận, bùng phát cơn giận; thường chỉ sự bộc phát cảm xúc ra bên ngoài không kiềm được.",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "phát tỳ khí — nổi giận",
+  "meaningShortVi": "nổi giận",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -53,7 +53,9 @@
         "target": "发脾气",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "爱发脾气",
@@ -63,7 +65,20 @@
         "target": "发脾气",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "发脾气",
+            "chinese": "他一遇到挫折就爱发脾气",
+            "pinyin": "Tā yī yùdào cuòzhé jiù ài fā píqì",
+            "meaningVi": "Anh ấy hễ gặp thất bại là hay nổi giận",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "对某人发脾气",
@@ -73,10 +88,23 @@
         "target": "发脾气",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "生气",
+        "pinyin": "shēng qì",
+        "meaningVi": "nổi giận",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: nổi giận",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -122,10 +150,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:发脾气",
       "title": "Cách dùng 发脾气",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "发脾气 là cụm động từ ly hợp (có thể tách: 发了脾气, 发什么脾气) — nhưng khi enrich dùng dạng không tách để giữ từ hoàn chỉnh; phân biệt với 生气 (sinh khí — tức giận, trạng thái bên trong) nhẹ hơn và không nhất thiết bộc lộ ra ngoài.",
       "explanationVi": "发 (phát — phát ra, bùng) + 脾气 (tỳ khí — tính khí, tính nóng) → bộc phát tính nóng.",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -143,7 +174,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 4,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "phát tỳ khí — nổi giận, bùng phát cơn giận; thường chỉ sự bộc phát cảm xúc ra bên ngoài không kiềm được.",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

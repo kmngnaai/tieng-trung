@@ -54,7 +54,8 @@
         "meaningVi": "buổi hòa nhạc",
         "meaningFullVi": "buổi hòa nhạc",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 1",
+        "hskLevel": 1,
+        "source": "hsk_1.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -67,7 +68,31 @@
         "target": "音乐",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "音乐",
+            "chinese": "我喜欢听音乐",
+            "pinyin": "wǒ xǐ huan tīng yīn yuè",
+            "meaningVi": "Tôi thích nghe nhạc",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "音乐",
+            "chinese": "我喜欢一边跑步，一边听音乐。",
+            "pinyin": "wǒ xǐ huān yī biān pǎo bù yī biān tīng yīn lè",
+            "meaningVi": "Tôi thích vừa chạy bộ vừa nghe nhạc.",
+            "source": "new_hsk_3.json",
+            "grammarId": "hsk3_new_44",
+            "grammarTopic": "Diễn tả hai hành động đồng thời",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 2
       },
       {
         "text": "流行音乐",
@@ -77,10 +102,13 @@
         "target": "音乐",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -102,14 +130,79 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "音乐",
+      "chinese": "你听完了音乐会就来我家吃饭。",
+      "pinyin": "nǐ tīng wán le yīn lè huì jiù lái wǒ jiā chī fàn",
+      "meaningVi": "Bạn nghe xong buổi hòa nhạc thì đến nhà tôi ăn cơm nhé.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_16",
+      "grammarTopic": "Diễn tả hành động nối tiếp ngay lập tức",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "音乐",
+      "chinese": "我喜欢一边跑步，一边听音乐。",
+      "pinyin": "wǒ xǐ huān yī biān pǎo bù yī biān tīng yīn lè",
+      "meaningVi": "Tôi thích vừa chạy bộ vừa nghe nhạc.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_44",
+      "grammarTopic": "Diễn tả hai hành động đồng thời",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:音乐",
       "title": "Cách dùng 音乐",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_16",
+      "title": "Diễn tả hành động nối tiếp ngay lập tức",
+      "syntax": "V1 + 了 + (O), + 就 + V2",
+      "explanationVi": "Cấu trúc này dùng để nhấn mạnh trình tự thời gian giữa hai hành động. Hành động thứ hai sẽ xảy ra ngay sau khi hành động thứ nhất hoàn thành.",
+      "tipsVi": "Bạn có thể hiểu đơn giản là: làm xong việc A thì làm ngay việc B.",
+      "attentionsVi": "Không được dùng cấu trúc này để diễn tả hai hành động diễn ra cùng lúc.",
+      "examples": [
+        {
+          "chinese": "你听完了音乐会就来我家吃饭。",
+          "pinyin": "nǐ tīng wán le yīn lè huì jiù lái wǒ jiā chī fàn",
+          "meaningVi": "Bạn nghe xong buổi hòa nhạc thì đến nhà tôi ăn cơm nhé."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_44",
+      "title": "Diễn tả hai hành động đồng thời",
+      "syntax": "一边 + V1 + ，一边 + V2",
+      "explanationVi": "Cấu trúc 「一边……，一边……」 được dùng để diễn tả hai hành động diễn ra cùng một lúc. Bạn có thể dịch là \"vừa... vừa...\" để mô tả việc làm song song hai việc trong cùng một khoảng thời gian.",
+      "tipsVi": "Chủ ngữ có thể đặt ở trước cấu trúc hoặc giữa hai vế 「一边」 nếu cần nhấn mạnh.",
+      "attentionsVi": "Cấu trúc này chỉ dùng cho hai hành động diễn ra đồng thời, không dùng để liệt kê tính chất (khi đó hãy dùng 「又...又...」).",
+      "examples": [
+        {
+          "chinese": "我喜欢一边跑步，一边听音乐。",
+          "pinyin": "wǒ xǐ huān yī biān pǎo bù yī biān tīng yīn lè",
+          "meaningVi": "Tôi thích vừa chạy bộ vừa nghe nhạc."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -182,6 +275,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "âm nhạc",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

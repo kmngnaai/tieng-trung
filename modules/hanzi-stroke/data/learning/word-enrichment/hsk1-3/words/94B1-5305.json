@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "ví tiền",
+      "meaningShortVi": "ví",
       "meaningFullVi": "ví tiền, cái ví",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "ví tiền",
+  "meaningShortVi": "ví",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -54,7 +54,20 @@
         "target": "钱包",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "钱包",
+            "chinese": "钱包里没钱了",
+            "pinyin": "Qiánbāo lǐ méiqián le",
+            "meaningVi": "Trong ví không còn tiền",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "新钱包",
@@ -64,7 +77,20 @@
         "target": "钱包",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "钱包",
+            "chinese": "买一个新钱包",
+            "pinyin": "Mǎi yī gè xīn qiánbāo",
+            "meaningVi": "Mua một cái ví mới",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "皮钱包",
@@ -74,10 +100,13 @@
         "target": "钱包",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -133,10 +162,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:钱包",
       "title": "Cách dùng 钱包",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "'钱包' là ví tiền. Có thể là ví da hoặc ví giấy tùy loại. Đơn vị đếm là '个' (一个钱包) hoặc '只' ở một số phương ngữ.",
       "explanationVi": "Ghép nghĩa: 钱 (tiền) + 包 (túi, bao đựng). Túi đựng tiền, ví.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -170,7 +202,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 5,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "ví tiền, cái ví",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

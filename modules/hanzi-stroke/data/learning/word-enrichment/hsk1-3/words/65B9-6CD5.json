@@ -56,7 +56,20 @@
         "target": "方法",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "方法",
+            "chinese": "这是一个好方法。",
+            "pinyin": "zhè shì yī gè hǎo fāng fǎ。",
+            "meaningVi": "Đây là một phương pháp tốt.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "新方法",
@@ -66,7 +79,9 @@
         "target": "方法",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "学习方法",
@@ -76,10 +91,13 @@
         "target": "方法",
         "source": "hsk_1.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -111,14 +129,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "方法",
+      "chinese": "这个方法好是好, 可实施起来太难了。",
+      "pinyin": "zhè gè fāng fǎ hǎo shì hǎo kě shí shī qǐ lái tài nán le",
+      "meaningVi": "Phương pháp này tốt thì tốt thật, nhưng triển khai thực hiện thì quá khó.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_12",
+      "grammarTopic": "Cấu trúc nhượng bộ 固然...但是...",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:方法",
       "title": "Cách dùng 方法",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_12",
+      "title": "Cấu trúc nhượng bộ 固然...但是...",
+      "syntax": "固然...，但是/可是/却... (Liên từ biểu thị sự thừa nhận)",
+      "explanationVi": "Cấu trúc 「固然」 được dùng để thừa nhận một sự thật hoặc một lý lẽ nào đó là đúng, sau đó chuyển ý sang một vế đối lập phía sau. Nó mang nghĩa là \"tuy là... nhưng mà...\" hoặc \"dĩ nhiên là...\".",
+      "tipsVi": "Thường kết hợp với các từ chỉ sự tương phản như 「但是」, 「可是」, 「然而」 hoặc 「却」 ở vế câu thứ hai để làm rõ ý đối lập.",
+      "attentionsVi": "Đừng nhầm lẫn với 「当然」; 「固然」 nhấn mạnh vào việc thừa nhận thực tế để dẫn dắt chuyển ngoặt, trong khi 「当然」 chỉ mang nghĩa là \"đương nhiên\" để khẳng định.",
+      "examples": [
+        {
+          "chinese": "这个方法好是好, 可实施起来太难了。",
+          "pinyin": "zhè gè fāng fǎ hǎo shì hǎo kě shí shī qǐ lái tài nán le",
+          "meaningVi": "Phương pháp này tốt thì tốt thật, nhưng triển khai thực hiện thì quá khó."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -177,7 +229,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "phương pháp",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

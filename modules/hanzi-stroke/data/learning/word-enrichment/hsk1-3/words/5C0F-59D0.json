@@ -56,7 +56,9 @@
         "target": "小姐",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "大小姐",
@@ -66,7 +68,9 @@
         "target": "小姐",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "小姐们",
@@ -76,10 +80,13 @@
         "target": "小姐",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -131,14 +138,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "小姐",
+      "chinese": "喂，你是张小姐吗？",
+      "pinyin": "wèi nǐ shì zhāng xiǎo jiě ma",
+      "meaningVi": "A lô, cô có phải là cô Trương không?",
+      "source": "hsk_1.json",
+      "grammarId": "hsk1_37",
+      "grammarTopic": "Cách dùng thán từ 喂",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:小姐",
       "title": "Cách dùng 小姐",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Xưng hô lịch sự với phụ nữ trẻ, chưa chồng. Trong giao tiếp thương mại, dùng với nhân viên phục vụ nữ. Cần cẩn thận: trong một số ngữ cảnh, 小姐 có thể ám chỉ nghề mại dâm (đặc biệt ở Hồng Kông, Đài Loan trước đây). Nên dùng 女士 (nữ sĩ) cho trang trọng hơn hoặc an toàn hơn.",
       "explanationVi": "Ghép nghĩa: 小 (nhỏ) + 姐 (chị gái) → chỉ người phụ nữ trẻ, chưa chồng. Dùng làm xưng hô tôn trọng với phụ nữ trẻ.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk1_37",
+      "title": "Cách dùng thán từ 喂",
+      "syntax": "喂 (wèi) + [Nội dung câu nói]",
+      "explanationVi": "Từ 「喂」 đóng vai trò là thán từ dùng để bắt đầu cuộc trò chuyện hoặc thu hút sự chú ý của người khác. Trong giao tiếp hằng ngày, nó tương đương với \"A lô\" khi bạn nghe hoặc gọi điện thoại.",
+      "tipsVi": "Bạn có thể sử dụng 「喂」 khi muốn gọi người quen ở khoảng cách gần để thu hút sự chú ý của họ.",
+      "attentionsVi": "Tránh dùng 「喂」 với người lớn tuổi hoặc cấp trên vì nghe có phần hơi suồng sã, thiếu sự tôn trọng.",
+      "examples": [
+        {
+          "chinese": "喂，你是张小姐吗？",
+          "pinyin": "wèi nǐ shì zhāng xiǎo jiě ma",
+          "meaningVi": "A lô, cô có phải là cô Trương không?"
+        }
+      ],
+      "source": "hsk_1.json",
+      "curriculum": "hsk",
+      "hskLevel": 1,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -192,7 +233,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 6,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "cô, tiểu thư",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

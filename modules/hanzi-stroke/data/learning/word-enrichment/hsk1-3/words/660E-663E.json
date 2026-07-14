@@ -54,7 +54,20 @@
         "target": "明显",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "明显",
+            "chinese": "这个进步很明显。",
+            "pinyin": "Zhège jìnbù hěn míngxiǎn.",
+            "meaningVi": "Sự tiến bộ này rất rõ ràng.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "明显的变化",
@@ -64,10 +77,50 @@
         "target": "明显",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "清楚",
+        "pinyin": "qīng chu",
+        "meaningVi": "rõ ràng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: rõ ràng",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "显然",
+        "pinyin": "xiǎn rán",
+        "meaningVi": "rõ ràng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: rõ ràng",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "可见",
+        "pinyin": "kě jiàn",
+        "meaningVi": "rõ ràng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: rõ ràng",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "显而易见",
+        "pinyin": "xiǎn ér yì jiàn",
+        "meaningVi": "rõ ràng",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: rõ ràng",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -93,10 +146,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:明显",
       "title": "Cách dùng 明显",
       "partOfSpeech": "tính từ",
       "usageNoteVi": "Có thể dùng để so sánh 或 描述 sự thay đổi. Trong văn trang trọng, 显著 'nổi bật' cũng là từ đồng nghĩa. Đối với 反义词: 不明显, 隐约 'nhạt nhòa'. Từ liên quan: 显然 'hiển nhiên', 清楚 'rõ ràng'.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +186,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 4
+    }
+  },
+  "meaningFullVi": "rõ ràng, hiển nhiên; dễ thấy, không thể phủ nhận được",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -55,7 +55,9 @@
         "target": "精彩",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "非常精彩",
@@ -65,10 +67,43 @@
         "target": "精彩",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "精彩",
+            "chinese": "昨天的比赛非常精彩。",
+            "pinyin": "zuó tiān de bǐ sài fēi cháng jīng cǎi。",
+            "meaningVi": "Trận đấu hôm qua rất tuyệt vời.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "了不起",
+        "pinyin": "liǎo bu qǐ",
+        "meaningVi": "tuyệt vời",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: tuyệt vời",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "好样儿的",
+        "pinyin": "hǎo yàngr  de",
+        "meaningVi": "Tuyệt vời",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: tuyệt vời",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -94,10 +129,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:精彩",
       "title": "Cách dùng 精彩",
       "partOfSpeech": "tính từ",
       "usageNoteVi": "Jīng cǎi dùng cho sự xuất sắc, rực rỡ của biểu diễn, văn viết, sự kiện. Phổ biến trong giao tiếp hàng ngày và văn viết.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -136,7 +174,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "tuyệt vời, xuất sắc; rực rỡ",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

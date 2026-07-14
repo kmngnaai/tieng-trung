@@ -54,7 +54,9 @@
         "target": "上升",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "水平上升",
@@ -64,10 +66,24 @@
         "target": "上升",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "上升",
+            "chinese": "这几年，他的汉语水平上升很快。",
+            "pinyin": "Zhè jǐ nián, tā de Hànyǔ shuǐpíng shàngshēng hěn kuài.",
+            "meaningVi": "Những năm gần đây, trình độ tiếng Trung của anh ấy tăng lên rất nhanh.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -89,14 +105,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "上升",
+      "chinese": "“旦”是象形字，即太阳从地平线上升起。",
+      "pinyin": "dàn shì xiàng xíng zì jí tài yáng cóng dì píng xiàn shàng shēng qǐ",
+      "meaningVi": "Chữ “Đán” là chữ tượng hình, tức là mặt trời mọc lên từ đường chân trời.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_28",
+      "grammarTopic": "Cách dùng động từ 即",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:上升",
       "title": "Cách dùng 上升",
       "partOfSpeech": "động từ",
       "usageNoteVi": "上升 (tăng lên) dùng cho các chỉ số, mức độ, nhiệt độ, vị trí... đi lên cao hơn.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_28",
+      "title": "Cách dùng động từ 即",
+      "syntax": "A 即 B (Động từ: A chính là B)",
+      "explanationVi": "Trong văn viết, 「即」 được dùng như một động từ mang nghĩa là 「就是」 (chính là). Từ này giúp câu văn trở nên trang trọng, súc tích và thường xuất hiện trong các văn bản nghị luận hoặc tài liệu học thuật.",
+      "tipsVi": "Bạn có thể thay thế 「即」 bằng 「就是」 để câu văn trở nên gần gũi và dễ hiểu hơn trong giao tiếp hàng ngày.",
+      "attentionsVi": "「即」 thường chỉ dùng trong văn viết, tránh sử dụng từ này trong các cuộc hội thoại thân mật hoặc đời thường.",
+      "examples": [
+        {
+          "chinese": "“旦”是象形字，即太阳从地平线上升起。",
+          "pinyin": "dàn shì xiàng xíng zì jí tài yáng cóng dì píng xiàn shàng shēng qǐ",
+          "meaningVi": "Chữ “Đán” là chữ tượng hình, tức là mặt trời mọc lên từ đường chân trời."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -130,7 +180,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "tăng lên, đi lên",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

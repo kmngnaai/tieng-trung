@@ -23,14 +23,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "ước ao đến mức bực bội vì không làm được — 'giá mà có thể'",
+      "meaningShortVi": "mong muốn",
       "meaningFullVi": "ước ao đến mức bực bội vì không làm được — 'giá mà có thể', 'chỉ muốn', diễn đạt mong muốn cháy bỏng kèm sự tiếc nuối hoặc bất lực",
       "partOfSpeech": "other",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "ước ao đến mức bực bội vì không làm được — 'giá mà có thể'",
+  "meaningShortVi": "mong muốn",
   "wordType": "other",
   "wordTypes": [
     "other"
@@ -53,7 +53,20 @@
         "target": "恨不得",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "恨不得",
+            "chinese": "我恨不得马上飞回家。",
+            "pinyin": "Wǒ hèn bu dé mǎshàng fēi huí jiā.",
+            "meaningVi": "Tôi chỉ ước gì có thể bay về nhà ngay lập tức.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "恨不得一步",
@@ -63,10 +76,23 @@
         "target": "恨不得",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "愿望",
+        "pinyin": "yuàn wàng",
+        "meaningVi": "mong muốn",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: mong muốn",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -112,10 +138,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:恨不得",
       "title": "Cách dùng 恨不得",
       "partOfSpeech": "other",
       "usageNoteVi": "恨不得 mang sắc thái khao khát mãnh liệt, thường kèm cảm giác bất lực hoặc tiếc nuối vì không thực hiện được. Sau 恨不得 thường là một mệnh đề hoặc động từ chỉ hành động mong muốn.",
       "explanationVi": "Cụm cố định gồm 恨 (hận — tiếc, bực) + 不得 (không thể làm được). Toàn cụm diễn đạt 'tiếc không làm được X', nghĩa bóng là 'chỉ muốn / ước gì'. Không phải idiom thuần tuý vì vẫn có cấu trúc ngữ pháp rõ ràng.",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -133,7 +162,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "ước ao đến mức bực bội vì không làm được — 'giá mà có thể', 'chỉ muốn', diễn đạt mong muốn cháy bỏng kèm sự tiếc nuối hoặc bất lực",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

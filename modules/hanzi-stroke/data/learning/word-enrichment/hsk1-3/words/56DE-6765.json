@@ -56,10 +56,23 @@
         "target": "回来",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "转身",
+        "pinyin": "zhuǎn shēn",
+        "meaningVi": "quay lại",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: quay lại",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -91,14 +104,79 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "回来",
+      "chinese": "四十分钟后回来。",
+      "pinyin": "sì shí fēn zhōng hòu huí lái",
+      "meaningVi": "40 phút sau sẽ quay lại.",
+      "source": "hsk_1.json",
+      "grammarId": "hsk1_42",
+      "grammarTopic": "Cách dùng '后' sau thời gian",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "回来",
+      "chinese": "我下午要去医院，很晚才能回来。",
+      "pinyin": "wǒ xià wǔ yào qù yī yuàn hěn wǎn cái néng huí lái",
+      "meaningVi": "Chiều nay tôi phải đi bệnh viện, tối muộn mới có thể về.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_9",
+      "grammarTopic": "So sánh 就 và 才",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:回来",
       "title": "Cách dùng 回来",
       "partOfSpeech": "other",
       "usageNoteVi": "回来 chỉ hành động quay về nơi ban đầu hoặc nơi đang có người nói.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk1_42",
+      "title": "Cách dùng '后' sau thời gian",
+      "syntax": "Thời gian/Sự kiện + 后",
+      "explanationVi": "Danh từ 「后」 mang nghĩa là 'sau', dùng để chỉ khoảng thời gian hoặc thời điểm diễn ra sau một mốc nhất định. Bạn chỉ cần đặt 「后」 ngay sau danh từ chỉ thời gian hoặc sự kiện để diễn đạt ý nghĩa này.",
+      "tipsVi": "Hãy nhớ quy tắc 'cái gì trước thì đặt trước', ví dụ 「三点后」 (sau 3 giờ) hoặc 「吃饭后」 (sau khi ăn).",
+      "attentionsVi": "Đừng nhầm lẫn với 「以后」 (sau này/về sau) dùng trong ngữ cảnh rộng hơn, 「后」 thường đi kèm trực tiếp sau một mốc thời gian cụ thể.",
+      "examples": [
+        {
+          "chinese": "四十分钟后回来。",
+          "pinyin": "sì shí fēn zhōng hòu huí lái",
+          "meaningVi": "40 phút sau sẽ quay lại."
+        }
+      ],
+      "source": "hsk_1.json",
+      "curriculum": "hsk",
+      "hskLevel": 1,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_9",
+      "title": "So sánh 就 và 才",
+      "syntax": "S + 就/才 + V",
+      "explanationVi": "「就」 diễn tả hành động xảy ra sớm, nhanh hoặc thuận lợi hơn mong đợi. Ngược lại, 「才」 nhấn mạnh hành động xảy ra muộn, chậm hoặc mất nhiều thời gian hơn dự kiến của người nói.",
+      "tipsVi": "Hãy nhớ 「就」 mang cảm giác 'sớm/nhanh', còn 「才」 mang cảm giác 'muộn/chậm'.",
+      "attentionsVi": "Không nên nhầm lẫn giữa hai từ này khi nói về thời gian thực tế, vì sự khác biệt nằm ở thái độ chủ quan của người nói.",
+      "examples": [
+        {
+          "chinese": "我下午要去医院，很晚才能回来。",
+          "pinyin": "wǒ xià wǔ yào qù yī yuàn hěn wǎn cái néng huí lái",
+          "meaningVi": "Chiều nay tôi phải đi bệnh viện, tối muộn mới có thể về."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -167,7 +245,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 5,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "quay lại, trở về",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

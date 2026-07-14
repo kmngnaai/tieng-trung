@@ -52,7 +52,20 @@
         "target": "来源",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "来源",
+            "chinese": "这个消息来源可靠",
+            "pinyin": "Zhège xiāoxi láiyuán kěkào",
+            "meaningVi": "Nguồn tin này đáng tin cậy",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "资金来源",
@@ -62,7 +75,9 @@
         "target": "来源",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "收入来源",
@@ -72,10 +87,34 @@
         "target": "来源",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "来源",
+            "chinese": "这部电影的收入来源多样",
+            "pinyin": "Zhè bù diànyǐng de shōurù láiyuán duōyàng",
+            "meaningVi": "Nguồn thu nhập của bộ phim này đa dạng",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "源头",
+        "pinyin": "yuán tóu",
+        "meaningVi": "nguồn gốc",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: nguồn gốc",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -121,10 +160,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:来源",
       "title": "Cách dùng 来源",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Dùng khi nói về nơi bắt nguồn hoặc xuất xứ của cái gì đó. Có thể dùng cho thông tin, tiền bạc, từ ngữ.",
       "explanationVi": "Ghép nghĩa: 来 (đến) + 源 (nguồn) = cái đến từ nguồn.",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -142,7 +184,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 4,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "nguồn gốc, xuất xứ",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

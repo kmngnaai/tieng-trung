@@ -24,14 +24,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "chơi",
+      "meaningShortVi": "Chơi",
       "meaningFullVi": "chơi, giải trí (儿 là hậu khuynh Bắc Kinh, thêm 'r' vào cuối)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "chơi",
+  "meaningShortVi": "Chơi",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -52,23 +52,48 @@
       {
         "word": "好玩{儿}",
         "pinyin": "hǎo wánr ",
-        "meaningVi": "Vui",
+        "meaningVi": "vui",
         "meaningFullVi": "Vui, thú vị; thích chơi (phương ngữ Bắc Kinh với erhua 儿化)",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 1",
+        "hskLevel": 1,
+        "source": "hsk_1.json",
         "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [
+      {
+        "targetWord": "玩儿",
+        "pinyin": "wánr ",
+        "meaningVi": "chơi",
+        "relationType": "homophone",
+        "evidence": "exact normalized pinyin match in local HSK data",
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
+    "candidateRelations": [
+      {
+        "targetWord": "玩儿",
+        "pinyin": "wánr ",
+        "meaningVi": "chơi",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: Chơi",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [],
   "grammarLinks": [
     {
+      "grammarId": "usage:玩{儿}",
       "title": "Cách dùng 玩{儿}",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Động từ, 儿 (er) là hậu âm Bắc Kinh (儿化音), khi phát âm hợp nhất với 玩 thành wánr. Ở miền Nam Trung Quốc thường dùng 玩 不 带儿.",
       "explanationVi": "Ghép nghĩa: 玩 (chơi đùa) + 儿 (hậu khuynh Bắc Kinh) → chơi (với giọng Bắc Kinh). {儿} không phải là một thành phần ngữ nghĩa, chỉ là biến thể ngữ âm.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -122,8 +147,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có câu mẫu đạt cổng chất lượng"
-    ]
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có câu nguồn đầy đủ chứa nguyên target"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 0,
+      "sentences": 0,
+      "grammar": 1,
+      "reviewedRelations": 1,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "chơi, giải trí (儿 là hậu khuynh Bắc Kinh, thêm 'r' vào cuối)",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

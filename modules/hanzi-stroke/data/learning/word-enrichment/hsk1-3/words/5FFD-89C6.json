@@ -52,10 +52,64 @@
         "target": "忽视",
         "source": "hsk_3.json",
         "pinyinMethod": "exact-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "忽视",
+            "chinese": "这个忽视很好。",
+            "pinyin": "zhè ge hū shì hěn hǎo。",
+            "meaningVi": "bỏ qua này rất tốt.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "忽视",
+            "chinese": "我喜欢这个忽视。",
+            "pinyin": "wǒ xǐ huan zhè ge hū shì。",
+            "meaningVi": "Tôi thích bỏ qua này.",
+            "source": "hsk_3.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "忽视",
+            "chinese": "我们不能忽视这个问题。",
+            "pinyin": "wǒ men bù néng hū shì zhè gè wèn tí",
+            "meaningVi": "Chúng ta không thể bỏ qua vấn đề này.",
+            "source": "hsk_5.json",
+            "grammarId": "hsk5_32",
+            "grammarTopic": "Phân biệt 忽视 và 轻视",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 3
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "算了",
+        "pinyin": "suàn le",
+        "meaningVi": "bỏ qua",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bỏ qua",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      },
+      {
+        "targetWord": "忽略",
+        "pinyin": "hū lüè",
+        "meaningVi": "bỏ qua",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: bỏ qua",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -77,14 +131,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "忽视",
+      "chinese": "我们不能忽视这个问题。",
+      "pinyin": "wǒ men bù néng hū shì zhè gè wèn tí",
+      "meaningVi": "Chúng ta không thể bỏ qua vấn đề này.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_32",
+      "grammarTopic": "Phân biệt 忽视 và 轻视",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:忽视",
       "title": "Cách dùng 忽视",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_32",
+      "title": "Phân biệt 忽视 và 轻视",
+      "syntax": "A + 忽视/轻视 + B",
+      "explanationVi": "「忽视」 nghĩa là lơ là, xem nhẹ hoặc vô ý bỏ quên một sự vật/vấn đề nào đó do thiếu chú ý. Trong khi đó, 「轻视」 mang sắc thái chủ quan là coi thường, xem nhẹ đối phương hoặc một việc gì đó vì cảm thấy nó không quan trọng.",
+      "tipsVi": "Dùng 「忽视」 khi bạn quên hoặc không để ý đến kết quả/chi tiết; dùng 「轻视」 khi bạn có thái độ coi thường, không đánh giá cao năng lực của người khác.",
+      "attentionsVi": "Đừng nhầm lẫn 「忽视」 với việc cố ý hạ thấp người khác, đó là nghĩa đặc trưng của 「轻视」.",
+      "examples": [
+        {
+          "chinese": "我们不能忽视这个问题。",
+          "pinyin": "wǒ men bù néng hū shì zhè gè wèn tí",
+          "meaningVi": "Chúng ta không thể bỏ qua vấn đề này."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -102,7 +190,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 3,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 2
+    }
+  },
+  "meaningFullVi": "bỏ qua",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

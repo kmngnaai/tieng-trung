@@ -55,7 +55,9 @@
         "target": "别的",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "别的人",
@@ -65,10 +67,23 @@
         "target": "别的",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "其他",
+        "pinyin": "qí tā",
+        "meaningVi": "khác",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: khác",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -100,14 +115,79 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "别的",
+      "chinese": "宁愿用别的比喻。",
+      "pinyin": "níng yuàn yòng bié de bǐ yù",
+      "meaningVi": "Thà rằng dùng cách ví von khác.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_46",
+      "grammarTopic": "Cấu trúc 宁愿",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "别的",
+      "chinese": "这家宾馆跟别的不一样。",
+      "pinyin": "zhè jiā bīn guǎn gēn bié de bù yī yàng",
+      "meaningVi": "Khách sạn này không giống những cái khác.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_11",
+      "grammarTopic": "So sánh bằng",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:别的",
       "title": "Cách dùng 别的",
       "partOfSpeech": "other",
       "usageNoteVi": "别的 dùng để chỉ người hoặc vật khác.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_46",
+      "title": "Cấu trúc 宁愿",
+      "syntax": "宁愿 (A) 也不 (B) / 宁愿 (A) 也要 (B)",
+      "explanationVi": "Phó từ 「宁愿」 dùng để biểu thị sự lựa chọn, thà chấp nhận một điều gì đó còn hơn là làm điều khác hoặc chịu kết quả xấu hơn. Cấu trúc này nhấn mạnh quyết tâm hoặc thái độ kiên quyết của người nói trước các phương án.",
+      "tipsVi": "Trong văn nói, bạn có thể thêm 「与其」 ở vế trước để tạo thành cấu trúc so sánh 「与其...不如...」 tương đương.",
+      "attentionsVi": "Cần chú ý 「宁愿」 thường đi kèm với các từ phủ định như 「不」 hoặc 「也」 ở vế sau để thể hiện rõ ý chí quyết tâm.",
+      "examples": [
+        {
+          "chinese": "宁愿用别的比喻。",
+          "pinyin": "níng yuàn yòng bié de bǐ yù",
+          "meaningVi": "Thà rằng dùng cách ví von khác."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_11",
+      "title": "So sánh bằng",
+      "syntax": "A 跟 B 一样 (adj/v)",
+      "explanationVi": "Cấu trúc 「A 跟 B 一样」 dùng để so sánh hai đối tượng có tính chất hoặc mức độ tương đồng nhau. Nếu muốn nhấn mạnh phương diện giống nhau, ta thêm tính từ hoặc động từ phía sau cụm 「一样」.",
+      "tipsVi": "Bạn có thể dùng 「和」 thay cho 「跟」 mà ý nghĩa không hề thay đổi.",
+      "attentionsVi": "Khi muốn nói phủ định (không giống), hãy thêm 「不」 vào trước 「一样」, thành 「A 跟 B 不一样」.",
+      "examples": [
+        {
+          "chinese": "这家宾馆跟别的不一样。",
+          "pinyin": "zhè jiā bīn guǎn gēn bié de bù yī yàng",
+          "meaningVi": "Khách sạn này không giống những cái khác."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -161,7 +241,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 5,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "khác",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

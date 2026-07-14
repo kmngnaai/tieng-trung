@@ -56,7 +56,9 @@
         "target": "裤子",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "一条裤子",
@@ -66,10 +68,13 @@
         "target": "裤子",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -101,14 +106,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "裤子",
+      "chinese": "她穿着白色的裤子。",
+      "pinyin": "tā chuān zhe bái sè de kù zi",
+      "meaningVi": "Cô ấy đang mặc cái quần màu trắng.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_32",
+      "grammarTopic": "Trợ từ động thái 着 (zhe)",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:裤子",
       "title": "Cách dùng 裤子",
       "partOfSpeech": "noun",
       "usageNoteVi": "Lượng từ: 条 (tiáo) cho quần dài",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_32",
+      "title": "Trợ từ động thái 着 (zhe)",
+      "syntax": "Động từ + 着 + (Tân ngữ)",
+      "explanationVi": "Trợ từ 「着」 đặt sau động từ để biểu thị hành động hoặc trạng thái đang tiếp diễn. Nó cho thấy sự vật, sự việc vẫn đang duy trì ở thời điểm nói. Ví dụ: 「他站着」(Anh ấy đang đứng).",
+      "tipsVi": "Hãy nhớ 「着」 thường dùng để mô tả trạng thái hiện tại của chủ thể thay vì hành động đang chuyển động mạnh.",
+      "attentionsVi": "Không nhầm lẫn 「着」 với cấu trúc 「正在」, vì 「着」 tập trung vào trạng thái kéo dài hơn là nhấn mạnh hành động đang diễn ra.",
+      "examples": [
+        {
+          "chinese": "她穿着白色的裤子。",
+          "pinyin": "tā chuān zhe bái sè de kù zi",
+          "meaningVi": "Cô ấy đang mặc cái quần màu trắng."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -177,7 +216,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "quần",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

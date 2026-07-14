@@ -54,7 +54,9 @@
         "target": "永远",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "永远的朋友",
@@ -64,7 +66,9 @@
         "target": "永远",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "永远记住",
@@ -74,10 +78,24 @@
         "target": "永远",
         "source": "hsk_2.json",
         "pinyinMethod": "segmented-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "永远",
+            "chinese": "我们要永远记住这一天。",
+            "pinyin": "wǒ men yào yǒng yuǎn jì zhù zhè yī tiān。",
+            "meaningVi": "Chúng ta phải mãi mãi nhớ ngày này.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -109,14 +127,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "永远",
+      "chinese": "无论在哪个行业，最缺乏的永远都是专注的人。",
+      "pinyin": "wú lùn zài nǎ gè xíng yè zuì quē fá de yǒng yuǎn dōu shì zhuān zhù de rén",
+      "meaningVi": "Bất luận ở ngành nghề nào, thứ luôn thiếu nhất vẫn là những người chuyên tâm.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_35",
+      "grammarTopic": "Cấu trúc 无论……都/也……",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:永远",
       "title": "Cách dùng 永远",
       "partOfSpeech": "adverb",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_35",
+      "title": "Cấu trúc 无论……都/也……",
+      "syntax": "无论 + (A/không A / nghi vấn) + ， + chủ ngữ + 都/也 + kết quả",
+      "explanationVi": "Cấu trúc 「无论……都/也……」 dùng để diễn tả rằng dù điều kiện hoặc hoàn cảnh có thay đổi thế nào đi nữa, thì kết quả cuối cùng vẫn không thay đổi. Nó tương đương với nghĩa “bất luận, cho dù… đều/cũng” trong tiếng Việt.",
+      "tipsVi": "Sau 「无论」 thường là các từ ngữ mang tính chất lựa chọn hoặc nghi vấn như 「怎么」、「什么」、「是否」 hoặc cặp từ 「A还是B」.",
+      "attentionsVi": "Cần lưu ý không dùng nhầm lẫn với 「虽然」(mặc dù), vì 「无论」 nhấn mạnh vào việc kết quả không bị tác động bởi bất kỳ tình huống nào.",
+      "examples": [
+        {
+          "chinese": "无论在哪个行业，最缺乏的永远都是专注的人。",
+          "pinyin": "wú lùn zài nǎ gè xíng yè zuì quē fá de yǒng yuǎn dōu shì zhuān zhù de rén",
+          "meaningVi": "Bất luận ở ngành nghề nào, thứ luôn thiếu nhất vẫn là những người chuyên tâm."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -150,7 +202,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 3,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "mãi mãi",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

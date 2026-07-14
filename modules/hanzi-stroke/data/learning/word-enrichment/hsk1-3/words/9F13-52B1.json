@@ -44,7 +44,8 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -76,14 +77,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "鼓励",
+      "chinese": "老师鼓励我们多说汉语。",
+      "pinyin": "lǎo shī gǔ lì wǒ men duō shuō hàn yǔ",
+      "meaningVi": "Giáo viên khuyến khích chúng tôi nói tiếng Trung nhiều hơn.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_85",
+      "grammarTopic": "Phân biệt 鼓励 và 鼓舞",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:鼓励",
       "title": "Cách dùng 鼓励",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "鼓励 ghép 鼓 (gõ, vỗ — vỗ về) + 励 (tấn, động viên — 力量). Chỉ việc khích lệ, động viên người khác làm việc gì đó.",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_85",
+      "title": "Phân biệt 鼓励 và 鼓舞",
+      "syntax": "S + 鼓励 + O (+ V); S + 鼓舞 + O (hoặc tinh thần/sĩ khí)",
+      "explanationVi": "「鼓励」 dùng để khuyến khích, động viên ai đó làm một việc cụ thể để họ tự tin hơn. Trong khi đó, 「鼓舞」 dùng để khơi dậy tinh thần, truyền cảm hứng hoặc làm cho sĩ khí, lòng nhiệt huyết của tập thể tăng cao.",
+      "tipsVi": "Hãy nhớ 「鼓励」 thường đi kèm với người và hành động, còn 「鼓舞」 thường đi kèm với các danh từ trừu tượng như 「士气」(sĩ khí) hay 「精神」(tinh thần).",
+      "attentionsVi": "Không nên dùng 「鼓舞」 trực tiếp để chỉ việc thúc ép ai đó làm một việc nhỏ nhặt, vì nó mang sắc thái trang trọng và bao quát hơn.",
+      "examples": [
+        {
+          "chinese": "老师鼓励我们多说汉语。",
+          "pinyin": "lǎo shī gǔ lì wǒ men duō shuō hàn yǔ",
+          "meaningVi": "Giáo viên khuyến khích chúng tôi nói tiếng Trung nhiều hơn."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -101,8 +136,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "khuyến khích, động viên, cổ vũ",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

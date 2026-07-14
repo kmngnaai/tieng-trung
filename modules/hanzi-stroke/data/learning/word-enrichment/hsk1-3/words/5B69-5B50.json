@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "đứa trẻ",
+      "meaningShortVi": "trẻ em",
       "meaningFullVi": "đứa trẻ, trẻ em",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "đứa trẻ",
+  "meaningShortVi": "trẻ em",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -54,7 +54,8 @@
         "meaningVi": "cậu bé",
         "meaningFullVi": "cậu bé, đứa con trai",
         "relationType": "contains-exact-target",
-        "hskLevel": "HSK 1",
+        "hskLevel": 1,
+        "source": "hsk_1.json",
         "reviewStatus": "reviewed-local"
       }
     ],
@@ -67,7 +68,9 @@
         "target": "孩子",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "男孩子",
@@ -77,7 +80,9 @@
         "target": "孩子",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "女孩子",
@@ -87,10 +92,35 @@
         "target": "孩子",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "孩子",
+            "chinese": "那个女孩子斯文着呢。",
+            "pinyin": "nà gè nǚ hái zi sī wén zhe ne",
+            "meaningVi": "Cô bé đó nhã nhặn lắm.",
+            "source": "hsk_6.json",
+            "grammarId": "hsk6_7",
+            "grammarTopic": "Nhấn mạnh mức độ với 着呢",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "小孩",
+        "pinyin": "xiǎo hái",
+        "meaningVi": "trẻ em",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: trẻ em",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -132,14 +162,110 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "孩子",
+      "chinese": "孩子朝妈妈跑过去。",
+      "pinyin": "hái zi cháo mā mā pǎo guò qù",
+      "meaningVi": "Đứa trẻ chạy về phía mẹ.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_57",
+      "grammarTopic": "Giới từ chỉ phương hướng 朝",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "孩子",
+      "chinese": "那个女孩子斯文着呢。",
+      "pinyin": "nà gè nǚ hái zi sī wén zhe ne",
+      "meaningVi": "Cô bé đó nhã nhặn lắm.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_7",
+      "grammarTopic": "Nhấn mạnh mức độ với 着呢",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "孩子",
+      "chinese": "妈妈叫孩子们回家。",
+      "pinyin": "mā mā jiào hái zi men huí jiā",
+      "meaningVi": "Mẹ gọi bọn trẻ về nhà.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_3",
+      "grammarTopic": "Câu kiêm ngữ (Pivotal Sentences)",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:孩子",
       "title": "Cách dùng 孩子",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Chỉ đứa trẻ/trẻ em. 小孩子 (xiǎo háizi) là đứa trẻ nhỏ. Đếm 用 个 (yī gè háizi).",
       "explanationVi": "Ghép nghĩa: 孩 (đứa trẻ) + 子 (hậu từ danh từ) → đứa trẻ.",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_57",
+      "title": "Giới từ chỉ phương hướng 朝",
+      "syntax": "Chủ ngữ + 朝 + [Phương hướng/Vị trí] + Động từ",
+      "explanationVi": "Giới từ 「朝」 được dùng để chỉ phương hướng của một hành động. Nó thường kết hợp với các động từ chỉ sự di chuyển để làm rõ hướng thực hiện hành động đó.",
+      "tipsVi": "Bạn có thể dùng 「向」 thay thế cho 「朝」 trong hầu hết các trường hợp để chỉ phương hướng.",
+      "attentionsVi": "Không được dùng 「朝」 để chỉ hướng của những hành động không có sự di chuyển hoặc tác động vật lý rõ ràng.",
+      "examples": [
+        {
+          "chinese": "孩子朝妈妈跑过去。",
+          "pinyin": "hái zi cháo mā mā pǎo guò qù",
+          "meaningVi": "Đứa trẻ chạy về phía mẹ."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_7",
+      "title": "Nhấn mạnh mức độ với 着呢",
+      "syntax": "Tính từ/Động từ + 着呢",
+      "explanationVi": "Trợ từ 「着呢」 đứng cuối câu dùng để nhấn mạnh mức độ cao của tính từ hoặc cảm xúc. Nó mang sắc thái khoa trương, tương đương với nghĩa 'rất', 'lắm' hoặc 'quá chừng' trong tiếng Việt.",
+      "tipsVi": "Cách dùng này thường xuất hiện trong khẩu ngữ để biểu đạt cảm xúc một cách tự nhiên và sinh động hơn.",
+      "attentionsVi": "Không nên nhầm lẫn 「着呢」 với trợ từ 「呢」 dùng để hỏi hoặc dùng trong câu hỏi lựa chọn; ở đây nó chỉ mang tính chất nhấn mạnh.",
+      "examples": [
+        {
+          "chinese": "那个女孩子斯文着呢。",
+          "pinyin": "nà gè nǚ hái zi sī wén zhe ne",
+          "meaningVi": "Cô bé đó nhã nhặn lắm."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_3",
+      "title": "Câu kiêm ngữ (Pivotal Sentences)",
+      "syntax": "Chủ ngữ 1 + Động từ (請/叫/讓) + Tân ngữ/Chủ ngữ 2 + Động từ",
+      "explanationVi": "Câu kiêm ngữ là loại câu có hai vế, trong đó tân ngữ của động từ thứ nhất đồng thời đóng vai trò là chủ ngữ của động từ thứ hai. Cấu trúc này thường dùng để sai khiến, nhờ vả hoặc cho phép ai đó làm một việc gì đó.",
+      "tipsVi": "Hãy ghi nhớ các động từ phổ biến trong cấu trúc này là 「請」 (mời/xin), 「叫」 (bảo/gọi) và 「讓」 (cho phép/để cho).",
+      "attentionsVi": "Đừng thêm chủ ngữ thứ hai vào giữa câu, vì tân ngữ của động từ đầu tiên đã đảm nhận vị trí đó rồi.",
+      "examples": [
+        {
+          "chinese": "妈妈叫孩子们回家。",
+          "pinyin": "mā mā jiào hái zi men huí jiā",
+          "meaningVi": "Mẹ gọi bọn trẻ về nhà."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -212,6 +338,23 @@
   ],
   "review": {
     "status": "PASS",
-    "warnings": []
+    "warnings": [
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 1,
+      "collocations": 3,
+      "sentences": 7,
+      "grammar": 4,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "đứa trẻ, trẻ em",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

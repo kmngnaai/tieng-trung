@@ -54,10 +54,35 @@
         "target": "小说",
         "source": "hsk_2.json",
         "pinyinMethod": "exact-local",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "小说",
+            "chinese": "写小说",
+            "pinyin": "xiě xiǎo shuō",
+            "meaningVi": "Viết tiểu thuyết",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "segmented-local",
+            "reviewStatus": "reviewed-local"
+          },
+          {
+            "target": "小说",
+            "chinese": "每个人都有自己特别感兴趣的东西，因此，作家爱写小说，画家爱画画儿。",
+            "pinyin": "měi gè rén dōu yǒu zì jǐ tè bié gǎn xīng qù de dōng xī yīn cǐ zuò jiā ài xiě xiǎo shuō huà jiā ài huà huà ér",
+            "meaningVi": "Mỗi người đều có thứ mình đặc biệt hứng thú, vì vậy nhà văn thích viết tiểu thuyết, họa sĩ thích vẽ tranh.",
+            "source": "hsk_4.json",
+            "grammarId": "hsk4_30",
+            "grammarTopic": "Cách dùng liên từ 因此",
+            "containsTarget": true,
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 2
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -69,14 +94,48 @@
       "containsTarget": true,
       "pinyinMethod": "segmented-local",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "小说",
+      "chinese": "每个人都有自己特别感兴趣的东西，因此，作家爱写小说，画家爱画画儿。",
+      "pinyin": "měi gè rén dōu yǒu zì jǐ tè bié gǎn xīng qù de dōng xī yīn cǐ zuò jiā ài xiě xiǎo shuō huà jiā ài huà huà ér",
+      "meaningVi": "Mỗi người đều có thứ mình đặc biệt hứng thú, vì vậy nhà văn thích viết tiểu thuyết, họa sĩ thích vẽ tranh.",
+      "source": "hsk_4.json",
+      "grammarId": "hsk4_30",
+      "grammarTopic": "Cách dùng liên từ 因此",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:小说",
       "title": "Cách dùng 小说",
       "partOfSpeech": "noun",
       "usageNoteVi": "",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk4_30",
+      "title": "Cách dùng liên từ 因此",
+      "syntax": "Nguyên nhân, 「因此」 + Kết quả",
+      "explanationVi": "Liên từ 「因此」 được dùng để nối hai vế câu, biểu thị quan hệ nhân quả với nghĩa là \"do đó\" hoặc \"vì vậy\". Nó thường xuất hiện ở đầu vế câu thứ hai để dẫn ra kết quả từ nguyên nhân đã nêu ở vế trước.",
+      "tipsVi": "「因此」 mang sắc thái trang trọng hơn 「所以」, thường được sử dụng trong văn viết hoặc các bài phát biểu, diễn thuyết.",
+      "attentionsVi": "Khác với 「因为...所以」, bạn không được dùng 「因为」 đi kèm với 「因此」 trong cùng một câu.",
+      "examples": [
+        {
+          "chinese": "每个人都有自己特别感兴趣的东西，因此，作家爱写小说，画家爱画画儿。",
+          "pinyin": "měi gè rén dōu yǒu zì jǐ tè bié gǎn xīng qù de dōng xī yīn cǐ zuò jiā ài xiě xiǎo shuō huà jiā ài huà huà ér",
+          "meaningVi": "Mỗi người đều có thứ mình đặc biệt hứng thú, vì vậy nhà văn thích viết tiểu thuyết, họa sĩ thích vẽ tranh."
+        }
+      ],
+      "source": "hsk_4.json",
+      "curriculum": "hsk",
+      "hskLevel": 4,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -110,7 +169,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 1,
+      "sentences": 2,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "tiểu thuyết; câu chuyện",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

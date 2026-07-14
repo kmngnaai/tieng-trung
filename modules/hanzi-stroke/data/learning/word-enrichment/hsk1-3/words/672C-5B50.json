@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "cuốn vở",
+      "meaningShortVi": "vở bài tập",
       "meaningFullVi": "cuốn vở, vở",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "cuốn vở",
+  "meaningShortVi": "vở bài tập",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
@@ -47,7 +47,8 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -79,14 +80,79 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "本子",
+      "chinese": "比我们一起买那个本子贵一点儿。",
+      "pinyin": "bǐ wǒ men yī qǐ mǎi nà gè běn zi guì yī diǎn ér",
+      "meaningVi": "Đắt hơn một chút so với quyển vở mà chúng ta cùng mua.",
+      "source": "new_hsk_2.json",
+      "grammarId": "hsk2_new_39",
+      "grammarTopic": "Câu so sánh với 比",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "本子",
+      "chinese": "我会把这些题都记在本子上。",
+      "pinyin": "wǒ huì bǎ zhè xiē tí dōu jì zài běn zi shàng",
+      "meaningVi": "Tôi sẽ ghi lại tất cả những câu này vào vở.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_31",
+      "grammarTopic": "Câu chữ 把 trong tiếng Trung",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:本子",
       "title": "Cách dùng 本子",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Danh từ chỉ cuốn vở dùng để viết. '笔记本' là vở ghi chép hoặc laptop.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk2_new_39",
+      "title": "Câu so sánh với 比",
+      "syntax": "A + 比 + B + [tính từ]",
+      "explanationVi": "Cấu trúc này dùng để so sánh sự chênh lệch giữa hai đối tượng A và B. Trong đó, 「比」 đóng vai trò là giới từ chỉ sự so sánh, đặt giữa hai đối tượng cần so sánh.",
+      "tipsVi": "Bạn có thể thêm các phó từ như 「更」 hoặc 「还」 trước tính từ để nhấn mạnh thêm mức độ so sánh.",
+      "attentionsVi": "Tuyệt đối không dùng 「很」, 「非常」 trước tính từ trong câu so sánh với 「比」.",
+      "examples": [
+        {
+          "chinese": "比我们一起买那个本子贵一点儿。",
+          "pinyin": "bǐ wǒ men yī qǐ mǎi nà gè běn zi guì yī diǎn ér",
+          "meaningVi": "Đắt hơn một chút so với quyển vở mà chúng ta cùng mua."
+        }
+      ],
+      "source": "new_hsk_2.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 2,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_31",
+      "title": "Câu chữ 把 trong tiếng Trung",
+      "syntax": "Chủ ngữ + 把 + Tân ngữ + Động từ + Thành phần khác",
+      "explanationVi": "Câu chữ 「把」 được dùng để nhấn mạnh sự tác động của chủ ngữ lên tân ngữ, khiến tân ngữ thay đổi trạng thái hoặc bị xử lý. Động từ trong câu này không bao giờ đứng một mình mà thường đi kèm với bổ ngữ hoặc các thành phần khác như 「了」.",
+      "tipsVi": "Hãy nhớ rằng các phó từ như 「不」, 「没」 hay động từ năng nguyện phải đặt ngay trước chữ 「把」, không đặt trước động từ chính.",
+      "attentionsVi": "Động từ trong câu 「把」 phải có kèm thành phần phụ phía sau như bổ ngữ kết quả, bổ ngữ xu hướng hoặc trợ từ 「了」 để chỉ kết quả của hành động.",
+      "examples": [
+        {
+          "chinese": "我会把这些题都记在本子上。",
+          "pinyin": "wǒ huì bǎ zhè xiē tí dōu jì zài běn zi shàng",
+          "meaningVi": "Tôi sẽ ghi lại tất cả những câu này vào vở."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -140,8 +206,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 5,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "cuốn vở, vở",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

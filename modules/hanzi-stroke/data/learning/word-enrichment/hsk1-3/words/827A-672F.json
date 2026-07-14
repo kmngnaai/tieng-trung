@@ -22,14 +22,14 @@
   },
   "meaningSenses": [
     {
-      "meaningShortVi": "Nghệ thuật",
+      "meaningShortVi": "nghệ thuật",
       "meaningFullVi": "Nghệ thuật",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
-  "meaningShortVi": "Nghệ thuật",
+  "meaningShortVi": "nghệ thuật",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
@@ -55,7 +55,20 @@
         "target": "艺术",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "艺术",
+            "chinese": "她对音乐和表演艺术很有兴趣。",
+            "pinyin": "Tā duì yīnyuè hé biǎoyǎn yìshù hěn yǒu xìngqù.",
+            "meaningVi": "Cô ấy rất thích âm nhạc và nghệ thuật biểu diễn.",
+            "source": "hsk_2.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "艺术作品",
@@ -65,10 +78,23 @@
         "target": "艺术",
         "source": "hsk_2.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "美术",
+        "pinyin": "měi shù",
+        "meaningVi": "nghệ thuật",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: nghệ thuật",
+        "source": "hsk_2.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -94,10 +120,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:艺术",
       "title": "Cách dùng 艺术",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "艺术 là từ chỉ các hoạt động sáng tạo như âm nhạc, hội họa, điêu khắc, nhiếp ảnh, điện ảnh, v.v. Trong giao tiếp, người ta thường dùng 艺术 để chỉ 'nghệ thuật' nói chung. Người làm nghệ thuật gọi là 艺术家 (nghệ sĩ).",
       "explanationVi": "",
+      "source": "hsk_2.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -136,7 +165,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "Nghệ thuật",
+  "meaningNormalization": {
+    "shortSource": "hsk_2.json",
+    "fullSource": "hsk_2.json",
+    "reviewStatus": "reviewed-local"
   }
 }

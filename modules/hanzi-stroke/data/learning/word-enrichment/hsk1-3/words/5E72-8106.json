@@ -52,7 +52,9 @@
         "target": "干脆",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "非常干脆",
@@ -62,10 +64,23 @@
         "target": "干脆",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "简单",
+        "pinyin": "jiǎn dān",
+        "meaningVi": "đơn giản",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: đơn giản",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -107,14 +122,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "干脆",
+      "chinese": "天气不好，我们干脆不去了。",
+      "pinyin": "tiān qì bù hǎo wǒ men gàn cuì bù qù le",
+      "meaningVi": "Thời tiết không tốt, chúng ta dứt khoát không đi nữa.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_72",
+      "grammarTopic": "Cách dùng phó từ 干脆",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:干脆",
       "title": "Cách dùng 干脆",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Từ vựng HSK 5: đơn giản, trực tiếp",
       "explanationVi": "Từ ghép nghĩa",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_72",
+      "title": "Cách dùng phó từ 干脆",
+      "syntax": "Chủ ngữ + (phó từ) + 干脆 + động từ/tính từ",
+      "explanationVi": "Phó từ 「干脆」 dùng để diễn tả thái độ dứt khoát, thẳng thắn khi thực hiện hành động hoặc đưa ra quyết định mà không do dự. Nó thường mang ý nghĩa khuyên nhủ hoặc phản ánh sự quyết đoán trong cách giải quyết vấn đề.",
+      "tipsVi": "Bạn có thể thêm 「一点儿」 sau 「干脆」 (thành 「干脆点儿」) để câu nói trở nên tự nhiên và mang tính thúc giục nhẹ nhàng hơn.",
+      "attentionsVi": "「干脆」 có thể đứng đầu câu làm trạng ngữ để đưa ra một giải pháp cuối cùng, nhưng cần tránh nhầm lẫn với tính từ chỉ tính cách, vì nó chủ yếu bổ nghĩa cho hành động.",
+      "examples": [
+        {
+          "chinese": "天气不好，我们干脆不去了。",
+          "pinyin": "tiān qì bù hǎo wǒ men gàn cuì bù qù le",
+          "meaningVi": "Thời tiết không tốt, chúng ta dứt khoát không đi nữa."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -132,7 +181,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 5,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "đơn giản, trực tiếp",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

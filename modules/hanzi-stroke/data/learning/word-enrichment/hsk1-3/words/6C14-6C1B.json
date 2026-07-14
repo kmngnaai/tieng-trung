@@ -52,7 +52,9 @@
         "target": "气氛",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       },
       {
         "text": "非常气氛",
@@ -62,10 +64,23 @@
         "target": "气氛",
         "source": "hsk_3.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "空气",
+        "pinyin": "kōng qì",
+        "meaningVi": "không khí",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: không khí",
+        "source": "hsk_1.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -107,14 +122,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "气氛",
+      "chinese": "会议的气氛很严肃。",
+      "pinyin": "huì yì de qì fēn hěn yán sù",
+      "meaningVi": "Không khí cuộc họp rất nghiêm túc.",
+      "source": "hsk_5.json",
+      "grammarId": "hsk5_59",
+      "grammarTopic": "Phân biệt 严肃 và 严格",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:气氛",
       "title": "Cách dùng 气氛",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Từ vựng HSK 5: không khí",
       "explanationVi": "Từ ghép nghĩa",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk5_59",
+      "title": "Phân biệt 严肃 và 严格",
+      "syntax": "严肃 (thái độ/không khí) vs. 严格 (quy định/tiêu chuẩn)",
+      "explanationVi": "「严肃」 thường dùng để chỉ thái độ nghiêm túc hoặc không khí trang trọng, ít tiếng cười. Trong khi đó, 「严格」 dùng để chỉ việc tuân thủ quy định, tiêu chuẩn khắt khe hoặc yêu cầu cao đối với ai đó.",
+      "tipsVi": "Hãy nhớ: 「严肃」 thường đi với khuôn mặt hoặc không khí, còn 「严格」 thường đi với thầy cô, gia đình hoặc các quy tắc, kỷ luật.",
+      "attentionsVi": "Đừng nhầm lẫn giữa hai từ này; bạn có thể có một người thầy 「严格」 (nghiêm khắc) nhưng lại rất ít khi thấy thầy có vẻ mặt 「严肃」 (nghiêm túc).",
+      "examples": [
+        {
+          "chinese": "会议的气氛很严肃。",
+          "pinyin": "huì yì de qì fēn hěn yán sù",
+          "meaningVi": "Không khí cuộc họp rất nghiêm túc."
+        }
+      ],
+      "source": "hsk_5.json",
+      "curriculum": "hsk",
+      "hskLevel": 5,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -132,7 +181,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 5,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "không khí",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }

@@ -52,7 +52,20 @@
         "target": "邮局",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [
+          {
+            "target": "邮局",
+            "chinese": "我去邮局寄信。",
+            "pinyin": "Wǒ qù yóujú jì xìn.",
+            "meaningVi": "Tôi đi bưu điện gửi thư.",
+            "source": "hsk_1.json",
+            "containsTarget": true,
+            "pinyinMethod": "source",
+            "reviewStatus": "reviewed-local"
+          }
+        ],
+        "sentenceCount": 1
       },
       {
         "text": "附近邮局",
@@ -62,10 +75,13 @@
         "target": "邮局",
         "source": "hsk_1.json",
         "pinyinMethod": "source",
-        "reviewStatus": "reviewed-local"
+        "reviewStatus": "reviewed-local",
+        "sentences": [],
+        "sentenceCount": 0
       }
     ],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -91,10 +107,13 @@
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:邮局",
       "title": "Cách dùng 邮局",
       "partOfSpeech": "danh từ",
       "usageNoteVi": "Danh từ chỉ bưu điện, nơi gửi thư và bưu phẩm. 邮 = thư/bưu phẩm, 局 = cơ quan. Trong tiếng Việt thường gọi bưu cục hoặc bưu điện.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -112,7 +131,23 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 2,
+      "sentences": 2,
+      "grammar": 1,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "bưu điện, bưu cục",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

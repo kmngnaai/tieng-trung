@@ -46,7 +46,18 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": [
+      {
+        "targetWord": "真实",
+        "pinyin": "zhēn shí",
+        "meaningVi": "thật",
+        "relationType": "same-short-meaning-candidate",
+        "evidence": "exact normalized Vietnamese short meaning: thật",
+        "source": "hsk_3.json",
+        "reviewStatus": "needs-review"
+      }
+    ]
   },
   "sentences": [
     {
@@ -78,14 +89,79 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "真的",
+      "chinese": "我巴不得他们能真的和好。",
+      "pinyin": "wǒ bā bù dé tā men néng zhēn de hé hǎo",
+      "meaningVi": "Tôi rất mong họ có thể thực sự làm hòa.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_1",
+      "grammarTopic": "Cấu trúc 巴不得 diễn tả mong muốn",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "真的",
+      "chinese": "我以后要多向认真的人学习。",
+      "pinyin": "wǒ yǐ hòu yào duō xiàng rèn zhēn de rén xué xí",
+      "meaningVi": "Sau này tôi phải học hỏi nhiều hơn ở những người nghiêm túc.",
+      "source": "new_hsk_3.json",
+      "grammarId": "hsk3_new_56",
+      "grammarTopic": "Giới từ chỉ hướng hành động 「向」",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:真的",
       "title": "Cách dùng 真的",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Trạng từ dùng để nhấn mạnh tính xác thực hoặc mức độ. Có thể dùng ở cuối câu như cảm thán.",
       "explanationVi": "",
+      "source": "hsk_1.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_1",
+      "title": "Cấu trúc 巴不得 diễn tả mong muốn",
+      "syntax": "Chủ ngữ + 巴不得 + (cái gì đó/động từ) + (lắm/nhé)",
+      "explanationVi": "Cấu trúc 「巴不得」 được dùng để diễn tả mong muốn tha thiết, khao khát một việc gì đó xảy ra ngay lập tức. Đây là một cụm từ thường dùng trong khẩu ngữ để nhấn mạnh sự háo hức hoặc tâm trạng muốn đạt được kết quả ngay của người nói.",
+      "tipsVi": "Bạn có thể hiểu 「巴不得」 tương đương với cụm từ \"chỉ mong sao\" hoặc \"rất muốn\" trong tiếng Việt.",
+      "attentionsVi": "Vì mang nghĩa mong đợi mạnh mẽ nên cấu trúc này thường diễn tả những sự việc mà người nói cực kỳ kỳ vọng, không dùng cho những việc mang ý nghĩa tiêu cực hoặc không mong muốn.",
+      "examples": [
+        {
+          "chinese": "我巴不得他们能真的和好。",
+          "pinyin": "wǒ bā bù dé tā men néng zhēn de hé hǎo",
+          "meaningVi": "Tôi rất mong họ có thể thực sự làm hòa."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk3_new_56",
+      "title": "Giới từ chỉ hướng hành động 「向」",
+      "syntax": "Chủ ngữ + 向 + đối tượng + Động từ",
+      "explanationVi": "Giới từ 「向」 dùng để chỉ hướng hoặc đối tượng mà hành động nhắm tới. Nó thường đi kèm với các động từ như 「学习」(học hỏi), 「问」(hỏi), hoặc 「借」(mượn) để xác định rõ bạn đang thực hiện hành động đó với ai.",
+      "tipsVi": "Hãy tưởng tượng 「向」 như một mũi tên chỉ hướng từ chủ ngữ đến đối tượng tiếp nhận hành động.",
+      "attentionsVi": "Đừng nhầm lẫn 「向」 với 「向」(hướng về) và 「跟」(với ai đó cùng làm gì). 「向」 nhấn mạnh vào phía tiếp nhận hành động, không phải là cùng làm.",
+      "examples": [
+        {
+          "chinese": "我以后要多向认真的人学习。",
+          "pinyin": "wǒ yǐ hòu yào duō xiàng rèn zhēn de rén xué xí",
+          "meaningVi": "Sau này tôi phải học hỏi nhiều hơn ở những người nghiêm túc."
+        }
+      ],
+      "source": "new_hsk_3.json",
+      "curriculum": "new-hsk",
+      "hskLevel": 3,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -119,8 +195,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 5,
+      "grammar": 3,
+      "reviewedRelations": 0,
+      "candidateRelations": 1
+    }
+  },
+  "meaningFullVi": "thật, thật sự",
+  "meaningNormalization": {
+    "shortSource": "hsk_1.json",
+    "fullSource": "hsk_1.json",
+    "reviewStatus": "reviewed-local"
   }
 }

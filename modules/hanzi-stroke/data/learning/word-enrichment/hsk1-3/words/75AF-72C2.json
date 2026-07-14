@@ -44,7 +44,8 @@
   "vocabulary": {
     "compounds": [],
     "collocations": [],
-    "relatedWords": []
+    "relatedWords": [],
+    "candidateRelations": []
   },
   "sentences": [
     {
@@ -76,14 +77,48 @@
       "containsTarget": true,
       "pinyinMethod": "source",
       "reviewStatus": "reviewed-local"
+    },
+    {
+      "target": "疯狂",
+      "chinese": "足以使人疯狂。",
+      "pinyin": "zú yǐ shǐ rén fēng kuáng",
+      "meaningVi": "Đủ để khiến người ta phát điên.",
+      "source": "hsk_6.json",
+      "grammarId": "hsk6_41",
+      "grammarTopic": "Cách dùng cấu trúc 足以",
+      "containsTarget": true,
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
+      "grammarId": "usage:疯狂",
       "title": "Cách dùng 疯狂",
       "partOfSpeech": "compound-semantic",
       "usageNoteVi": "Mô tả hành vi mất kiểm soát hoặc nhiệt tình quá mức.",
       "explanationVi": "",
+      "source": "hsk_3.json",
+      "matchMethod": "exact-word-record",
+      "reviewStatus": "reviewed-local"
+    },
+    {
+      "grammarId": "hsk6_41",
+      "title": "Cách dùng cấu trúc 足以",
+      "syntax": "Chủ ngữ + 足以 + động từ/cụm động từ",
+      "explanationVi": "Từ 「足以」 (zúyǐ) được dùng để diễn tả một sự vật hoặc năng lực nào đó đã đạt đến mức độ 'đủ để' làm việc gì. Nó thường xuất hiện trong văn viết hoặc các tình huống trang trọng để khẳng định khả năng giải quyết một vấn đề.",
+      "tipsVi": "Bạn có thể hiểu 「足」 là 'đủ' và 「以」 là 'dùng để', kết hợp lại mang ý nghĩa nhấn mạnh sự đảm bảo về mức độ hoặc điều kiện.",
+      "attentionsVi": "Cần lưu ý 「足以」 thường đi kèm với các động từ chỉ khả năng hoặc trạng thái, tránh nhầm lẫn với các từ chỉ số lượng đơn thuần.",
+      "examples": [
+        {
+          "chinese": "足以使人疯狂。",
+          "pinyin": "zú yǐ shǐ rén fēng kuáng",
+          "meaningVi": "Đủ để khiến người ta phát điên."
+        }
+      ],
+      "source": "hsk_6.json",
+      "curriculum": "hsk",
+      "hskLevel": 6,
+      "matchMethod": "exact-word-occurrence",
       "reviewStatus": "reviewed-local"
     }
   ],
@@ -101,8 +136,24 @@
   "review": {
     "status": "PASS",
     "warnings": [
-      "Không có collocation đạt cổng chất lượng",
-      "Không có compound chứa nguyên target"
-    ]
+      "Không có compound chứa nguyên target trong dữ liệu HSK 1-6",
+      "Không có collocation đầy đủ và chứa nguyên target",
+      "Không có quan hệ đã xác minh; candidate nếu có không tự xuất bản"
+    ],
+    "previousStatus": "PASS",
+    "evidenceCounts": {
+      "compounds": 0,
+      "collocations": 0,
+      "sentences": 4,
+      "grammar": 2,
+      "reviewedRelations": 0,
+      "candidateRelations": 0
+    }
+  },
+  "meaningFullVi": "điên rồ, điên cuồng, cuồng nhiệt",
+  "meaningNormalization": {
+    "shortSource": "hsk_3.json",
+    "fullSource": "hsk_3.json",
+    "reviewStatus": "reviewed-local"
   }
 }
