@@ -6829,7 +6829,7 @@ if(window.HanziWriter){
   }
 
   function getExampleLabel(row){
-    return row?.char || row?.word || row?.zh || '';
+    return row?.char || row?.word || row?.zh || row?.chinese || '';
   }
 
   function formatRadicalMeaningSnippet(value, limit = 3){
@@ -6848,7 +6848,7 @@ if(window.HanziWriter){
     const rows = note?.examples?.sentences || [];
     return (Array.isArray(rows) ? rows : [])
       .map(row => ({
-        zh: String(row?.zh || '').trim(),
+        zh: String(row?.zh || row?.chinese || '').trim(),
         pinyin: String(row?.pinyin || '').trim(),
         vi: String(row?.vi || row?.meaningVi || '').trim()
       }))
@@ -6895,13 +6895,14 @@ if(window.HanziWriter){
           const pinyin = row?.pinyin || '';
           const meaning = row?.meaningVi || row?.vi || '';
           if(kind === 'sentence'){
+            const sentenceText = row?.zh || row?.chinese || label;
             return `
-              <button type="button" class="radical-sentence-item" data-radical-speak="${escapeHtml(row.zh || label)}" data-copy-text="${escapeHtml(row.zh || label)}">
-                <strong>${escapeHtml(row.zh || label)}</strong>
+              <article class="radical-sentence-item" data-copy-text="${escapeHtml(sentenceText)}">
+                <strong>${escapeHtml(sentenceText)}</strong>
+                <b type="button" role="button" tabindex="0" data-radical-speak="${escapeHtml(sentenceText)}" aria-label="Nghe câu ${escapeHtml(sentenceText)}" title="Nghe câu">🔊</b>
                 ${pinyin ? `<em>${escapeHtml(formatPinyin(pinyin))}</em>` : ''}
                 ${meaning ? `<span>${escapeHtml(meaning)}</span>` : ''}
-                <b aria-hidden="true">🔊</b>
-              </button>
+              </article>
             `;
           }
           return `
