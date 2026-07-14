@@ -1,7 +1,8 @@
 const SAMPLE_INDEX_URL = '../../data/learning/character-enrichment/hsk1/index.json';
 const LOCAL_CHAR_BASE = '../../data/chars/';
 const HSK_LOOKUP_URL = '../../data/learning/hsk/hsk_flashcard_lookup.json';
-const HSK_LEVEL_URL = '../../data/learning/hsk/hsk_1.json';
+const HSK_LEVEL_URLS = [1, 2, 3].map(level => `../../data/learning/hsk/hsk_${level}.json`);
+const WORD_INDEX_URL = '../../data/learning/word-enrichment/hsk1-3/index.json';
 const HANZI_DATA_BASE = 'https://cdn.jsdelivr.net/npm/hanzi-writer-data@latest/';
 const RADICAL_NOTES_URL = '../../data/learning/radicals/radical_learning_notes.json';
 
@@ -9,6 +10,7 @@ const state = {
   index: null,
   hskLookup: null,
   hskLevelItems: null,
+  wordIndex: null,
   current: null,
   currentQuery: '',
   dark: false,
@@ -86,9 +88,59 @@ function exactHskItemForChar(char, lookup) {
 
 async function loadHskLevelItems() {
   if (state.hskLevelItems) return state.hskLevelItems;
-  const payload = await safeFetchJson(HSK_LEVEL_URL, { items: [] });
-  state.hskLevelItems = Array.isArray(payload?.items) ? payload.items : [];
+  const payloads = await Promise.all(HSK_LEVEL_URLS.map(url => safeFetchJson(url, { items: [] })));
+  state.hskLevelItems = payloads.flatMap((payload, index) =>
+    (Array.isArray(payload?.items) ? payload.items : []).map(item => ({ ...item, __hskFileLevel: index + 1 }))
+  );
   return state.hskLevelItems;
+}
+
+async function loadWordIndex() {
+  if (state.wordIndex) return state.wordIndex;
+  const payload = await safeFetchJson(WORD_INDEX_URL, { words: {} });
+  state.wordIndex = payload?.words || {};
+  return state.wordIndex;
+}
+
+async function loadNormalizedWordRecord(word) {
+  const index = await loadWordIndex();
+  const path = index?.[word];
+  if (!path) return null;
+  const raw = await safeFetchJson(`../../data/learning/word-enrichment/hsk1-3/${path}`, null);
+  if (!raw) return null;
+  const pinyin = raw.pronunciation?.primary || raw.pronunciation?.readings?.[0]?.pinyin || '';
+  const meaningSenses = (raw.meaningSenses || []).map(item => ({ ...item, reviewStatus: item.reviewStatus || 'reviewed' }));
+  const primaryLevel = raw.hsk?.primaryLevel;
+  const compounds = (raw.vocabulary?.compounds || []).map(item => ({
+    ...item,
+    hskLevel: item.hskLevel || (item.hskLevels?.length ? `HSK ${Math.min(...item.hskLevels)}` : ''),
+    reviewStatus: item.reviewStatus || 'reviewed'
+  }));
+  const collocations = (raw.vocabulary?.collocations || []).map(item => ({
+    ...item,
+    word: item.word || item.text,
+    reviewStatus: item.reviewStatus || 'reviewed'
+  }));
+  return {
+    ...raw,
+    char: raw.word,
+    pronunciation: { pinyin: [pinyin], hanViet: '' },
+    meaningSenses,
+    characterInfo: { strokeCount: null, structureType: '', formationTypeVi: 'từ nhiều chữ', radical: {} },
+    components: (raw.characters || [...raw.word]).map(char => ({ char, role: 'structural', roleVi: 'chữ trong từ', meaningVi: '', reviewStatus: 'reviewed' })),
+    etymology: {
+      standardExplanationVi: raw.wordTypeExplanations?.[0] || 'Đây là từ nhiều chữ. Chọn từng chữ bên dưới để xem cấu tạo và luyện viết.',
+      confidence: 'local-normalized'
+    },
+    learningStory: { memoryStoryVi: '', reviewStatus: 'not-available' },
+    vocabulary: { compounds, relatedWords: [], collocations },
+    sameRadicalCharacters: (raw.characters || [...raw.word]).map(char => ({ word: char, pinyin: '', meaningVi: '', reviewStatus: 'reviewed' })),
+    grammarLinks: raw.grammarLinks || [],
+    sentences: raw.sentences || [],
+    review: raw.review || { status: 'local-normalized', warnings: [] },
+    sources: raw.sources || [],
+    hskLevel: primaryLevel ? `HSK ${primaryLevel}` : ''
+  };
 }
 
 function uniqueBy(items, keyFn) {
@@ -161,6 +213,27 @@ function buildFallbackCharacter(raw, hskItem = null) {
 }
 
 async function buildFallbackWord(word, hskItem) {
+  const normalized = await loadNormalizedWordRecord(word);
+  if (normalized) {
+    const lookup = await loadHskLookup();
+    const chars = [...word];
+    const charRecords = (await Promise.all(chars.map(char => loadCharacterRecord(char, lookup)))).filter(Boolean);
+    normalized.components = charRecords.map((record, index) => ({
+      char: chars[index] || record.char,
+      role: 'structural',
+      roleVi: 'chữ trong từ',
+      meaningVi: meaningSummary(record),
+      soundHint: first(record.pronunciation?.pinyin),
+      reviewStatus: 'reviewed'
+    }));
+    normalized.sameRadicalCharacters = charRecords.map(record => ({
+      word: record.char,
+      pinyin: first(record.pronunciation?.pinyin),
+      meaningVi: meaningSummary(record),
+      reviewStatus: 'reviewed'
+    }));
+    return normalized;
+  }
   const lookup = await loadHskLookup();
   const hskItems = await loadHskLevelItems();
   const exact = hskItems.find(item => item.word === word) || hskItem || {};
@@ -186,8 +259,8 @@ async function buildFallbackWord(word, hskItem) {
       pinyin: item.pinyin || '',
       meaningVi: item.meaningVi || item.translationVi || '',
       relationType: 'shares-component-character',
-      hskLevel: item.hsk ? `HSK ${item.hsk}` : 'New HSK 1',
-      source: ['hsk_1.json'],
+      hskLevel: item.hsk ? `HSK ${item.hsk}` : (item.__hskFileLevel ? `HSK ${item.__hskFileLevel}` : 'HSK local'),
+      source: [`hsk_${item.__hskFileLevel || 1}.json`],
       reviewStatus: 'reviewed'
     }));
   const compounds = uniqueBy(
@@ -200,7 +273,7 @@ async function buildFallbackWord(word, hskItem) {
     pinyin: item.pinyin || '',
     meaningVi: item.meaning_vi || item.meaningVi || '',
     target: word,
-    source: 'hsk_1.json',
+    source: `hsk_${exact.__hskFileLevel || 1}.json`,
     reviewStatus: 'reviewed'
   }));
   const collocationsFromChars = charRecords.flatMap(record => record.vocabulary?.collocations || [])
@@ -213,8 +286,8 @@ async function buildFallbackWord(word, hskItem) {
     chinese: item.chinese || '',
     pinyin: item.pinyin || '',
     meaningVi: item.meaning_vi || item.meaningVi || '',
-    source: 'hsk_1.json',
-    sourceRef: `${word}.examples`,
+    source: `hsk_${exact.__hskFileLevel || 1}.json`,
+    sourceRef: `hsk_${exact.__hskFileLevel || 1}.json:${word}.examples`,
     containsTarget: String(item.chinese || '').includes(word),
     reviewStatus: 'reviewed'
   })).filter(item => item.containsTarget);
@@ -227,14 +300,14 @@ async function buildFallbackWord(word, hskItem) {
     grammarTopic: `Cách dùng ${word}`,
     syntax: clean(exact.wordTypeExplanation) || clean(exact.wordType),
     matchedExample: clean(exact.usageNote),
-    source: 'hsk_1.json',
+    source: `hsk_${exact.__hskFileLevel || 1}.json`,
     reviewStatus: 'reviewed'
   });
   if (clean(exact.wordTypeExplanation) && clean(exact.wordTypeExplanation) !== clean(exact.usageNote)) grammarLinks.push({
     grammarTopic: 'Loại từ và chức năng',
     syntax: clean(exact.wordType),
     matchedExample: clean(exact.wordTypeExplanation),
-    source: 'hsk_1.json',
+    source: `hsk_${exact.__hskFileLevel || 1}.json`,
     reviewStatus: 'reviewed'
   });
 
@@ -245,7 +318,7 @@ async function buildFallbackWord(word, hskItem) {
     reviewStatus: 'reviewed'
   }));
 
-  const sourceRoutes = (exact.routes || []).filter(route => ['hsk', 'new_hsk'].includes(route.libraryId) && Number(route.levelNo) === 1);
+  const sourceRoutes = (exact.routes || []).filter(route => ['hsk', 'new_hsk'].includes(route.libraryId) && Number(route.levelNo) <= 3);
   return {
     schemaVersion: 'runtime-local-word-enrichment-v2',
     id: `word:${word}`,
@@ -254,7 +327,7 @@ async function buildFallbackWord(word, hskItem) {
     simplified: exact.simplified || word,
     traditional: exact.traditional || word,
     pronunciation: { pinyin: [exact.pinyin || hskItem?.pinyin || ''], hanViet: '' },
-    meaningSenses: [{ partOfSpeech: exact.wordType || '', meaningVi: exact.meaningVi || exact.translationVi || hskItem?.meaningVi || 'Chưa có nghĩa local', source: ['hsk_1.json'], reviewStatus: 'reviewed' }],
+    meaningSenses: [{ partOfSpeech: exact.wordType || '', meaningVi: exact.meaningVi || exact.translationVi || hskItem?.meaningVi || 'Chưa có nghĩa local', source: [`hsk_${item.__hskFileLevel || 1}.json`], reviewStatus: 'reviewed' }],
     characterInfo: { strokeCount: null, structureType: '', formationTypeVi: 'từ nhiều chữ', radical: {} },
     components,
     etymology: { standardExplanationVi: clean(exact.wordTypeExplanation) || 'Đây là từ nhiều chữ. Chọn từng chữ bên dưới để xem cấu tạo và luyện viết.', confidence: 'local-reviewed' },
@@ -264,10 +337,10 @@ async function buildFallbackWord(word, hskItem) {
     grammarLinks,
     sameRadicalCharacters: componentCharacters,
     sources: [
-      { sourceId: 'hsk_1_json', title: 'data/learning/hsk/hsk_1.json', reviewStatus: 'reviewed' },
+      { sourceId: `hsk_${exact.__hskFileLevel || 1}_json`, title: `data/learning/hsk/hsk_${exact.__hskFileLevel || 1}.json`, reviewStatus: 'reviewed' },
       ...sourceRoutes.slice(0, 4).map(route => ({ sourceId: route.sectionId, title: `${route.libraryName} · ${route.sectionTitle}`, reviewStatus: 'reviewed' }))
     ],
-    review: { status: 'local-enriched', warnings: sentences.length ? [] : ['Chưa tìm thấy câu chứa đúng từ trong dữ liệu HSK 1 hiện có.'] }
+    review: { status: 'local-enriched', warnings: sentences.length ? [] : ['Chưa tìm thấy câu chứa đúng từ trong dữ liệu HSK 1–3 hiện có.'] }
   };
 }
 
@@ -374,6 +447,8 @@ async function resolveQuery(rawQuery) {
   }
 
   if (isHanText(query)) {
+    const normalizedWord = await loadNormalizedWordRecord(query);
+    if (normalizedWord) return buildFallbackWord(query, lookup[query] || null);
     const hsk = lookup[query];
     if (hsk) return buildFallbackWord(query, hsk);
     const results = await searchExistingData(query);
