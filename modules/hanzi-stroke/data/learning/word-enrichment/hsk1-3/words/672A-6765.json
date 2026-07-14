@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:未来",
   "type": "word",
   "word": "未来",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wèi lái",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tương lai",
+      "meaningShortVi": "tương lai",
+      "meaningFullVi": "tương lai",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tương lai",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Danh từ chỉ thời gian tới, tương lai. Phổ biến trong văn nói và viết."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,32 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "未来社会",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "未来",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "展望未来",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "未来",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "未来计划",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "未来",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +54,8 @@
       "meaningVi": "Tương lai đầy ắp hy vọng.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "未来",
@@ -88,7 +64,8 @@
       "meaningVi": "Tôi rất lạc quan về tương lai.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "未来",
@@ -97,16 +74,17 @@
       "meaningVi": "Tương lai thuộc về người trẻ.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 未来",
-      "syntax": "compound-semantic",
-      "matchedExample": "Danh từ chỉ thời gian tới, tương lai. Phổ biến trong văn nói và viết.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 未来",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Danh từ chỉ thời gian tới, tương lai. Phổ biến trong văn nói và viết.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -121,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

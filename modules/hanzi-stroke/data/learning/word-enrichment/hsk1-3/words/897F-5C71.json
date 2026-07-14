@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:西山",
   "type": "word",
   "word": "西山",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "Xī shān",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Tây Sơn (tên địa danh)",
+      "meaningShortVi": "Tây Sơn (tên địa danh)",
+      "meaningFullVi": "Tây Sơn (tên địa danh)",
       "partOfSpeech": "danh từ riêng",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Tây Sơn (tên địa danh)",
   "wordType": "danh từ riêng",
   "wordTypes": [
     "danh từ riêng"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -42,7 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -52,7 +54,8 @@
       "meaningVi": "Cuối tuần chúng tôi đi Tây Sơn leo núi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "西山",
@@ -61,10 +64,19 @@
       "meaningVi": "Phong cảnh Tây Sơn rất đẹp.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 西山",
+      "partOfSpeech": "danh từ riêng",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/西山.mp3"
   ],
@@ -77,7 +89,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:赶快",
   "type": "word",
   "word": "赶快",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gǎn kuài",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Nhanh lên, nhanh chóng",
+      "meaningShortVi": "Nhanh lên",
+      "meaningFullVi": "Nhanh lên, nhanh chóng",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Nhanh lên",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Trạng ngữ chỉ sự cấp bách, thường đi cùng động từ hành động."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,7 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -56,7 +56,8 @@
       "meaningVi": "Nhanh lên đi, không thì trễ giờ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "赶快",
@@ -65,7 +66,8 @@
       "meaningVi": "Bác sĩ nhanh chóng chữa trị cho anh ấy.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "赶快",
@@ -74,16 +76,17 @@
       "meaningVi": "Trời sắp mưa rồi, nhanh về nhà đi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 赶快",
-      "syntax": "compound-semantic",
-      "matchedExample": "Trạng ngữ chỉ sự cấp bách, thường đi cùng động từ hành động.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 赶快",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Trạng ngữ chỉ sự cấp bách, thường đi cùng động từ hành động.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -94,11 +97,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__3__topic__1__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/pho-tu/",
+      "orderInSection": 26
     }
   ],
   "sources": [
@@ -109,7 +117,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

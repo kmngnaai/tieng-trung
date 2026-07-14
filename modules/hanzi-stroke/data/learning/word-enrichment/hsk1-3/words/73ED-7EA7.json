@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:班级",
   "type": "word",
   "word": "班级",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "bān jí",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lớp, lớp học",
+      "meaningShortVi": "lớp",
+      "meaningFullVi": "lớp, lớp học",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lớp",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Chỉ lớp học hoặc tổ chức trong trường."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,40 +48,35 @@
     "collocations": [
       {
         "text": "班级活动",
-        "pinyin": "",
+        "pinyin": "bān jí huó dòng",
         "meaningVi": "hoạt động lớp",
+        "meaningFullVi": "hoạt động lớp",
         "target": "班级",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "班级管理",
-        "pinyin": "",
+        "pinyin": "bān jí guǎn lǐ",
         "meaningVi": "quản lý lớp",
+        "meaningFullVi": "quản lý lớp",
         "target": "班级",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "班级",
-      "chinese": "她是班级里最优秀的学生。",
-      "pinyin": "",
-      "meaningVi": "Cô ấy là học sinh xuất sắc nhất trong lớp.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 班级",
-      "syntax": "danh từ",
-      "matchedExample": "Chỉ lớp học hoặc tổ chức trong trường.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 班级",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Chỉ lớp học hoặc tổ chức trong trường.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -93,21 +87,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__3__lesson__14__bai-14-this-book-is-checked-out",
+      "sectionSlug": "bai-14-this-book-is-checked-out",
       "sectionTitle": "Cuốn sách này bị người khác mượn mất rồi",
       "sectionTitleZh": "这本书被别人借走了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-14-this-book-is-checked-out/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-14-this-book-is-checked-out/",
+      "orderInSection": 21
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 26,
+      "sectionId": "new_hsk__3__topic__26__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/",
+      "orderInSection": 22
     }
   ],
   "sources": [
@@ -118,7 +122,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

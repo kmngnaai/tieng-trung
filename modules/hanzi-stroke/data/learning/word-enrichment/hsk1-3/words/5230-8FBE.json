@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:到达",
   "type": "word",
   "word": "到达",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "dào dá",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đến nơi, tới nơi; đạt được, đạt tới",
+      "meaningShortVi": "đến nơi",
+      "meaningFullVi": "đến nơi, tới nơi; đạt được, đạt tới",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đến nơi",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "到达 là động từ chỉ hành động đi đến một nơi nào đó. Thường dùng trong ngữ cảnh di chuyển (đi máy bay, tàu xe, du lịch)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "到达时间",
         "pinyin": "dàodá shíjiān",
         "meaningVi": "thời gian đến nơi",
+        "meaningFullVi": "thời gian đến nơi",
         "target": "到达",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "到达目的地",
         "pinyin": "dàodá mùdìdì",
         "meaningVi": "đến nơi đích",
+        "meaningFullVi": "đến nơi đích",
         "target": "到达",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Ngày mai chúng tôi đến nơi ở Bắc Kinh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "到达",
@@ -82,16 +87,17 @@
       "meaningVi": "Máy bay đến nơi đúng giờ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 到达",
-      "syntax": "động từ",
-      "matchedExample": "到达 là động từ chỉ hành động đi đến một nơi nào đó. Thường dùng trong ngữ cảnh di chuyển (đi máy bay, tàu xe, du lịch).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 到达",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "到达 là động từ chỉ hành động đi đến một nơi nào đó. Thường dùng trong ngữ cảnh di chuyển (đi máy bay, tàu xe, du lịch).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__3__topic__14__van-chuyen-va-di-chuyen",
+      "sectionSlug": "van-chuyen-va-di-chuyen",
       "sectionTitle": "Vận chuyển và di chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/van-chuyen-va-di-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/van-chuyen-va-di-chuyen/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

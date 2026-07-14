@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:屠场",
   "type": "word",
   "word": "屠场",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "tú chǎng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Lò mổ, lò sát sinh",
+      "meaningShortVi": "Lò mổ",
+      "meaningFullVi": "Lò mổ, lò sát sinh",
       "partOfSpeech": "Danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Lò mổ",
   "wordType": "Danh từ",
   "wordTypes": [
     "Danh từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -42,7 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -52,7 +54,8 @@
       "meaningVi": "Những con vật này bị đưa đến lò mổ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "屠场",
@@ -61,10 +64,19 @@
       "meaningVi": "Môi trường làm việc ở lò mổ thường rất khắc nghiệt.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 屠场",
+      "partOfSpeech": "Danh từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/屠场.mp3"
   ],
@@ -77,7 +89,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

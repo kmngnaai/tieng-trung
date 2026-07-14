@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:顺利",
   "type": "word",
   "word": "顺利",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "shùn lì",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "suôn sẻ",
+      "meaningShortVi": "suôn sẻ",
+      "meaningFullVi": "suôn sẻ",
       "partOfSpeech": "adjective",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "suôn sẻ",
   "wordType": "adjective",
   "wordTypes": [
     "adjective"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -48,43 +49,58 @@
     "collocations": [
       {
         "text": "非常顺利",
-        "pinyin": "",
+        "pinyin": "fēi cháng shùn lì",
         "meaningVi": "rất suôn sẻ",
+        "meaningFullVi": "rất suôn sẻ",
         "target": "顺利",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "顺利完成",
-        "pinyin": "",
+        "pinyin": "shùn lì wán chéng",
         "meaningVi": "hoàn thành suôn sẻ",
+        "meaningFullVi": "hoàn thành suôn sẻ",
         "target": "顺利",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "顺利",
       "chinese": "祝你工作顺利",
-      "pinyin": "",
+      "pinyin": "zhù nǐ gōng zuò shùn lì",
       "meaningVi": "Chúc công việc suôn sẻ",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "顺利",
       "chinese": "一切顺利",
-      "pinyin": "",
+      "pinyin": "yī qiè shùn lì",
       "meaningVi": "Mọi việc suôn sẻ",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 顺利",
+      "partOfSpeech": "adjective",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/顺利.mp3"
   ],
@@ -93,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__2__topic__13__cong-viec",
+      "sectionSlug": "cong-viec",
       "sectionTitle": "Công việc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/cong-viec/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/cong-viec/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -113,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

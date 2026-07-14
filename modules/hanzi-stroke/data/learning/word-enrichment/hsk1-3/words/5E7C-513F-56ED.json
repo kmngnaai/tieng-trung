@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:幼儿园",
   "type": "word",
   "word": "幼儿园",
@@ -16,27 +16,24 @@
     "readings": [
       {
         "pinyin": "yòu'ér yuán",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nhà trẻ, mầm non",
+      "meaningShortVi": "nhà trẻ",
+      "meaningFullVi": "nhà trẻ, mầm non",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nhà trẻ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng chỉ trường dạy trẻ nhỏ (thường 3-6 tuổi). Trong hệ thống giáo dục Trung Quốc, '幼儿园' là cấp học trước khi vào tiểu học."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 幼 (trẻ nhỏ) + 儿 (đứa trẻ) + 园 (vườn) = vườn trẻ em, nơi nuôi dạy trẻ nhỏ."
   ],
   "hsk": {
     "levels": [
@@ -52,27 +49,34 @@
         "text": "公立幼儿园",
         "pinyin": "gōnglì yòu'éryuán",
         "meaningVi": "trường mầm non công",
+        "meaningFullVi": "trường mầm non công",
         "target": "幼儿园",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "私立幼儿园",
         "pinyin": "sīlì yòu'éryuán",
         "meaningVi": "trường mầm non tư",
+        "meaningFullVi": "trường mầm non tư",
         "target": "幼儿园",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "幼儿园小朋友",
         "pinyin": "yòu'éryuán xiǎopéngyǒu",
         "meaningVi": "trẻ mầm non",
+        "meaningFullVi": "trẻ mầm non",
         "target": "幼儿园",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -82,7 +86,8 @@
       "meaningVi": "Con tôi học tại trường mầm non",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "幼儿园",
@@ -91,7 +96,8 @@
       "meaningVi": "Trường mầm non này có môi trường rất tốt",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "幼儿园",
@@ -100,7 +106,8 @@
       "meaningVi": "Cô giáo mầm non rất kiên nhẫn",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "幼儿园",
@@ -109,23 +116,17 @@
       "meaningVi": "Anh ấy hàng ngày đưa con đến trường mầm non",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 幼儿园",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng chỉ trường dạy trẻ nhỏ (thường 3-6 tuổi). Trong hệ thống giáo dục Trung Quốc, '幼儿园' là cấp học trước khi vào tiểu học.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 幼 (trẻ nhỏ) + 儿 (đứa trẻ) + 园 (vườn) = vườn trẻ em, nơi nuôi dạy trẻ nhỏ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 幼儿园",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng chỉ trường dạy trẻ nhỏ (thường 3-6 tuổi). Trong hệ thống giáo dục Trung Quốc, '幼儿园' là cấp học trước khi vào tiểu học.",
+      "explanationVi": "Ghép nghĩa: 幼 (trẻ nhỏ) + 儿 (đứa trẻ) + 园 (vườn) = vườn trẻ em, nơi nuôi dạy trẻ nhỏ.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -140,7 +141,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

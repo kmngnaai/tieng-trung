@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:只能",
   "type": "word",
   "word": "只能",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhǐ néng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chỉ có thể",
+      "meaningShortVi": "chỉ có thể",
+      "meaningFullVi": "chỉ có thể",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chỉ có thể",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [
-    "Giới hạn lựa chọn, chỉ làm được một việc."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -50,49 +49,56 @@
     "collocations": [
       {
         "text": "只能看",
-        "pinyin": "",
+        "pinyin": "zhǐ néng kàn",
         "meaningVi": "chỉ có thể xem",
+        "meaningFullVi": "chỉ có thể xem",
         "target": "只能",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "只能走",
-        "pinyin": "",
+        "pinyin": "zhǐ néng zǒu",
         "meaningVi": "chỉ có thể đi",
+        "meaningFullVi": "chỉ có thể đi",
         "target": "只能",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "只能",
       "chinese": "我只能这样做",
-      "pinyin": "",
+      "pinyin": "wǒ zhǐ néng zhè yàng zuò",
       "meaningVi": "Tôi chỉ có thể làm như vậy",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "只能",
       "chinese": "这儿只能停车",
-      "pinyin": "",
+      "pinyin": "zhèr zhǐ néng tíng chē",
       "meaningVi": "Ở đây chỉ có thể đỗ xe",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 只能",
-      "syntax": "verb",
-      "matchedExample": "Giới hạn lựa chọn, chỉ làm được một việc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 只能",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "Giới hạn lựa chọn, chỉ làm được một việc.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,21 +109,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__2__topic__4__khac",
+      "sectionSlug": "khac",
       "sectionTitle": "Khác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/khac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/khac/",
+      "orderInSection": 18
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__3__lesson__11__bai-11-it-seems-i-can-t-solve-this-problem",
+      "sectionSlug": "bai-11-it-seems-i-can-t-solve-this-problem",
       "sectionTitle": "Xem ra tôi không có cách giải quyết vấn đề này",
       "sectionTitleZh": "看来我没办法解决这个问题",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-11-it-seems-i-can-t-solve-this-problem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-11-it-seems-i-can-t-solve-this-problem/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -133,7 +149,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

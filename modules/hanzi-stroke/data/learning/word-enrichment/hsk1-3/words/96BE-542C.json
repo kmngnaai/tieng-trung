@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:难听",
   "type": "word",
   "word": "难听",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "nán tīng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Khó nghe; xấu nghiệp (âm thanh); nói khó ưa",
+      "meaningShortVi": "Khó nghe",
+      "meaningFullVi": "Khó nghe; xấu nghiệp (âm thanh); nói khó ưa",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Khó nghe",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "难 (khó khăn) + 听 (nghe) — thứ khó mà tai chịu nổi. 1/ Chỉ âm thanh xấu: nhạc nántīng, tiếng nántīng. 2/ Chỉ lời nói khó ưa, thô lỗ: nói nántīng là nói chuyện không hay, đâm thẳng. Antonym: 好听 (hảo thính) = hay."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -50,28 +49,35 @@
       {
         "text": "很难听",
         "pinyin": "hěn nántīng",
-        "meaningVi": "rất khó nghe/rất khó ưa",
+        "meaningVi": "rất khó nghe",
+        "meaningFullVi": "rất khó nghe/rất khó ưa",
         "target": "难听",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "难听的话",
         "pinyin": "nántīng de huà",
         "meaningVi": "lời khó ưa",
+        "meaningFullVi": "lời khó ưa",
         "target": "难听",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "声音难听",
         "pinyin": "shēngyīn nántīng",
         "meaningVi": "âm thanh xấu",
+        "meaningFullVi": "âm thanh xấu",
         "target": "难听",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +87,8 @@
       "meaningVi": "Bài hát này quá khó nghe, tôi đổi bài khác.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "难听",
@@ -90,7 +97,8 @@
       "meaningVi": "Anh ấy nói chuyện rất khó ưa.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "难听",
@@ -99,16 +107,17 @@
       "meaningVi": "Âm thanh đó thật khó nghe!",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 难听",
-      "syntax": "compound-semantic",
-      "matchedExample": "难 (khó khăn) + 听 (nghe) — thứ khó mà tai chịu nổi. 1/ Chỉ âm thanh xấu: nhạc nántīng, tiếng nántīng. 2/ Chỉ lời nói khó ưa, thô lỗ: nói nántīng là nói chuyện không hay, đâm thẳng. Antonym: 好听 (hảo thính) = hay.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 难听",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "难 (khó khăn) + 听 (nghe) — thứ khó mà tai chịu nổi. 1/ Chỉ âm thanh xấu: nhạc nántīng, tiếng nántīng. 2/ Chỉ lời nói khó ưa, thô lỗ: nói nántīng là nói chuyện không hay, đâm thẳng. Antonym: 好听 (hảo thính) = hay.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -119,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__2__topic__18__tinh-tu",
+      "sectionSlug": "tinh-tu",
       "sectionTitle": "Tính từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-tu/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -134,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

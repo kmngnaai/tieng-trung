@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:爱心",
   "type": "word",
   "word": "爱心",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "ài xīn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Lòng nhân ái, sự cảm thông, yêu thương",
+      "meaningShortVi": "Lòng nhân ái",
+      "meaningFullVi": "Lòng nhân ái, sự cảm thông, yêu thương",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Lòng nhân ái",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "爱心 chỉ lòng yêu thương, cảm thông đối với người khác. Thường dùng trong ngữ cảnh từ thiện, giúp đỡ người khác. Có thể kết hợp với động từ như 献(cho đi), 有(có)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,27 +50,34 @@
         "text": "献爱心",
         "pinyin": "xiàn àixīn",
         "meaningVi": "cho đi lòng nhân ái",
+        "meaningFullVi": "cho đi lòng nhân ái",
         "target": "爱心",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "有爱心",
         "pinyin": "yǒu àixīn",
         "meaningVi": "có lòng nhân ái",
+        "meaningFullVi": "có lòng nhân ái",
         "target": "爱心",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "爱心活动",
         "pinyin": "àixīn huódòng",
         "meaningVi": "hoạt động từ thiện",
+        "meaningFullVi": "hoạt động từ thiện",
         "target": "爱心",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +87,8 @@
       "meaningVi": "Cô ấy rất có lòng nhân ái, thường xuyên giúp đỡ người khác.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "爱心",
@@ -90,7 +97,8 @@
       "meaningVi": "Hãy cùng nhau cho đi lòng nhân ái.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "爱心",
@@ -99,16 +107,17 @@
       "meaningVi": "Lòng nhân ái có thể giúp đỡ rất nhiều người.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 爱心",
-      "syntax": "compound-semantic",
-      "matchedExample": "爱心 chỉ lòng yêu thương, cảm thông đối với người khác. Thường dùng trong ngữ cảnh từ thiện, giúp đỡ người khác. Có thể kết hợp với động từ như 献(cho đi), 有(có).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 爱心",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "爱心 chỉ lòng yêu thương, cảm thông đối với người khác. Thường dùng trong ngữ cảnh từ thiện, giúp đỡ người khác. Có thể kết hợp với động từ như 献(cho đi), 有(có).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -119,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__3__topic__8__nhung-cam-xuc-va-cam-giac",
+      "sectionSlug": "nhung-cam-xuc-va-cam-giac",
       "sectionTitle": "Những cảm xúc và cảm giác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-cam-xuc-va-cam-giac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-cam-xuc-va-cam-giac/",
+      "orderInSection": 20
     }
   ],
   "sources": [
@@ -134,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

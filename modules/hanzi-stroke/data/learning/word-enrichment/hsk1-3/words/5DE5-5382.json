@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:工厂",
   "type": "word",
   "word": "工厂",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gōng chǎng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nhà máy; xí nghiệp sản xuất; xưởng",
+      "meaningShortVi": "nhà máy",
+      "meaningFullVi": "nhà máy; xí nghiệp sản xuất; xưởng",
       "partOfSpeech": "danh từ (Noun - Workplace)",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nhà máy",
   "wordType": "danh từ (Noun - Workplace)",
   "wordTypes": [
     "danh từ (Noun - Workplace)"
   ],
-  "usageNotes": [
-    "Nơi sản xuất công nghiệp quy mô vừa/lớn. Trang trọng hơn 厂. Thường kết hợp với loại hình sản xuất: 钢铁厂 (thép), 纺织厂 (dệt), 食品厂 (thực phẩm). Synonym: 厂 (xưởng), 公司 (công ty)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,19 +51,24 @@
         "text": "工厂工人",
         "pinyin": "gōngchǎng gōngrén",
         "meaningVi": "công nhân nhà máy",
+        "meaningFullVi": "công nhân nhà máy",
         "target": "工厂",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "化工厂",
         "pinyin": "huàgōngchǎng",
         "meaningVi": "nhà máy hóa chất",
+        "meaningFullVi": "nhà máy hóa chất",
         "target": "工厂",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Bố tôi làm việc trong nhà máy.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "工厂",
@@ -83,16 +88,17 @@
       "meaningVi": "Nhà máy này sản xuất ô tô.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 工厂",
-      "syntax": "danh từ (Noun - Workplace)",
-      "matchedExample": "Nơi sản xuất công nghiệp quy mô vừa/lớn. Trang trọng hơn 厂. Thường kết hợp với loại hình sản xuất: 钢铁厂 (thép), 纺织厂 (dệt), 食品厂 (thực phẩm). Synonym: 厂 (xưởng), 公司 (công ty).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 工厂",
+      "partOfSpeech": "danh từ (Noun - Workplace)",
+      "usageNoteVi": "Nơi sản xuất công nghiệp quy mô vừa/lớn. Trang trọng hơn 厂. Thường kết hợp với loại hình sản xuất: 钢铁厂 (thép), 纺织厂 (dệt), 食品厂 (thực phẩm). Synonym: 厂 (xưởng), 公司 (công ty).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__3__topic__13__cong-viec-ii",
+      "sectionSlug": "cong-viec-ii",
       "sectionTitle": "Công việc II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cong-viec-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cong-viec-ii/",
+      "orderInSection": 23
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

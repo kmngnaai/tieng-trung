@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:银行卡",
   "type": "word",
   "word": "银行卡",
@@ -16,24 +16,25 @@
     "readings": [
       {
         "pinyin": "yín háng kǎ",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thẻ ngân hàng",
+      "meaningShortVi": "thẻ ngân hàng",
+      "meaningFullVi": "thẻ ngân hàng",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thẻ ngân hàng",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,44 +48,49 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "借记卡",
-        "pinyin": "",
-        "meaningVi": "thẻ ghi nợ",
-        "target": "银行卡",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "银行卡号",
-        "pinyin": "",
+        "pinyin": "yín háng kǎ hào",
         "meaningVi": "số thẻ ngân hàng",
+        "meaningFullVi": "số thẻ ngân hàng",
         "target": "银行卡",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "银行卡",
       "chinese": "我有一张银行卡",
-      "pinyin": "",
+      "pinyin": "wǒ yǒu yī zhāng yín háng kǎ",
       "meaningVi": "Tôi có một thẻ ngân hàng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "银行卡",
       "chinese": "用银行卡取钱",
-      "pinyin": "",
+      "pinyin": "yòng yín háng kǎ qǔ qián",
       "meaningVi": "Dùng thẻ ngân hàng rút tiền",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 银行卡",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/银行卡.mp3"
   ],
@@ -93,11 +99,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 22,
+      "sectionId": "new_hsk__2__topic__22__du-lich",
+      "sectionSlug": "du-lich",
       "sectionTitle": "Du lịch",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/du-lich/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/du-lich/",
+      "orderInSection": 23
     }
   ],
   "sources": [
@@ -108,7 +119,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

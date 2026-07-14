@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:酱油",
   "type": "word",
   "word": "酱油",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiàng yóu",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nước tương",
+      "meaningShortVi": "nước tương",
+      "meaningFullVi": "nước tương",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nước tương",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "tương (đậu lên men) + dầu (chất lỏng) — nước đậu lên men"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -45,32 +44,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "打酱油",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "酱油",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "生抽酱油",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "酱油",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "老抽酱油",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "酱油",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -80,7 +55,8 @@
       "meaningVi": "mua nước tương (vui: không liên quan)",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "酱油",
@@ -89,7 +65,8 @@
       "meaningVi": "nước tương nhẹ",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "酱油",
@@ -98,7 +75,8 @@
       "meaningVi": "nước tương đậm",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "酱油",
@@ -107,16 +85,17 @@
       "meaningVi": "thêm nước tương",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 酱油",
-      "syntax": "compound-semantic",
-      "matchedExample": "tương (đậu lên men) + dầu (chất lỏng) — nước đậu lên men",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 酱油",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "tương (đậu lên men) + dầu (chất lỏng) — nước đậu lên men",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -136,7 +115,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

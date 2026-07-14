@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:华人",
   "type": "word",
   "word": "华人",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "Huá rén",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Người Hoa, người Trung Quốc",
+      "meaningShortVi": "Người Hoa",
+      "meaningFullVi": "Người Hoa, người Trung Quốc",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Người Hoa",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "华人 chỉ người có nguồn gốc Trung Hoa, bao gồm cả công dân Trung Quốc và người gốc Hoa sinh sống ở nước ngoài."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,27 +50,34 @@
         "text": "海外华人",
         "pinyin": "hǎiwài Huárén",
         "meaningVi": "người Hoa ở nước ngoài",
+        "meaningFullVi": "người Hoa ở nước ngoài",
         "target": "华人",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "新加坡华人",
         "pinyin": "Xīnjiāpō Huárén",
         "meaningVi": "người Hoa Singapore",
+        "meaningFullVi": "người Hoa Singapore",
         "target": "华人",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "华人社区",
         "pinyin": "Huárén shèqū",
         "meaningVi": "cộng đồng người Hoa",
+        "meaningFullVi": "cộng đồng người Hoa",
         "target": "华人",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +87,8 @@
       "meaningVi": "Rất nhiều người Hoa sống ở nước ngoài.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "华人",
@@ -90,7 +97,8 @@
       "meaningVi": "Cô ấy là người Hoa Singapore.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "华人",
@@ -99,16 +107,17 @@
       "meaningVi": "Người Hoa ở nước ngoài cũng ăn mừng Tết Nguyên Đán.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 华人",
-      "syntax": "compound-semantic",
-      "matchedExample": "华人 chỉ người có nguồn gốc Trung Hoa, bao gồm cả công dân Trung Quốc và người gốc Hoa sinh sống ở nước ngoài.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 华人",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "华人 chỉ người có nguồn gốc Trung Hoa, bao gồm cả công dân Trung Quốc và người gốc Hoa sinh sống ở nước ngoài.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -119,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__3__topic__4__nhung-nguoi",
+      "sectionSlug": "nhung-nguoi",
       "sectionTitle": "Những người",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -134,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

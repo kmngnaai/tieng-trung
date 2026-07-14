@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:婴儿",
   "type": "word",
   "word": "婴儿",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "yīng'ér",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trẻ sơ sinh, trẻ nhỏ",
+      "meaningShortVi": "trẻ sơ sinh",
+      "meaningFullVi": "trẻ sơ sinh, trẻ nhỏ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trẻ sơ sinh",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Thường dùng cho trẻ sơ sinh đến khoảng 1 tuổi."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 婴 (anh) = trẻ con, thêm vào + 儿 (nhân/nhi) = đứa trẻ. Nghĩa là trẻ sơ sinh, trẻ nhỏ."
   ],
   "hsk": {
     "levels": [
@@ -51,19 +48,24 @@
         "text": "婴儿车",
         "pinyin": "yīng'ér chē",
         "meaningVi": "xe đẩy em bé",
+        "meaningFullVi": "xe đẩy em bé",
         "target": "婴儿",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "婴儿奶粉",
         "pinyin": "yīng'ér nǎifěn",
         "meaningVi": "sữa bột em bé",
+        "meaningFullVi": "sữa bột em bé",
         "target": "婴儿",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +75,8 @@
       "meaningVi": "Em bé này rất dễ thương",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "婴儿",
@@ -82,7 +85,8 @@
       "meaningVi": "Trong bệnh viện có nhiều em bé",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "婴儿",
@@ -91,7 +95,8 @@
       "meaningVi": "Chăm sóc em bé cần sự kiên nhẫn",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "婴儿",
@@ -100,23 +105,17 @@
       "meaningVi": "Em bé khi sinh rất nhẹ",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 婴儿",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường dùng cho trẻ sơ sinh đến khoảng 1 tuổi.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 婴 (anh) = trẻ con, thêm vào + 儿 (nhân/nhi) = đứa trẻ. Nghĩa là trẻ sơ sinh, trẻ nhỏ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 婴儿",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường dùng cho trẻ sơ sinh đến khoảng 1 tuổi.",
+      "explanationVi": "Ghép nghĩa: 婴 (anh) = trẻ con, thêm vào + 儿 (nhân/nhi) = đứa trẻ. Nghĩa là trẻ sơ sinh, trẻ nhỏ.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -131,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

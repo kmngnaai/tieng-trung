@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:上车",
   "type": "word",
   "word": "上车",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shàng chē",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lên xe",
+      "meaningShortVi": "lên xe",
+      "meaningFullVi": "lên xe",
       "partOfSpeech": "other",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lên xe",
   "wordType": "other",
   "wordTypes": [
     "other"
   ],
-  "usageNotes": [
-    "上车 là động từ ghép chỉ hành động bước lên phương tiện."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -51,19 +50,24 @@
         "text": "上车后",
         "pinyin": "shàngchē hòu",
         "meaningVi": "sau khi lên xe",
+        "meaningFullVi": "sau khi lên xe",
         "target": "上车",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "帮上车",
         "pinyin": "bāng shàngchē",
         "meaningVi": "giúp lên xe",
+        "meaningFullVi": "giúp lên xe",
         "target": "上车",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Mời lên xe đi ạ.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "上车",
@@ -82,7 +87,8 @@
       "meaningVi": "Chúng tôi lên xe ở đâu?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "上车",
@@ -91,16 +97,17 @@
       "meaningVi": "Lên xe xin hãy mua vé.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 上车",
-      "syntax": "other",
-      "matchedExample": "上车 là động từ ghép chỉ hành động bước lên phương tiện.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 上车",
+      "partOfSpeech": "other",
+      "usageNoteVi": "上车 là động từ ghép chỉ hành động bước lên phương tiện.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -111,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__1__topic__8__van-chuyen",
+      "sectionSlug": "van-chuyen",
       "sectionTitle": "Vận chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/van-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/van-chuyen/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -126,7 +138,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

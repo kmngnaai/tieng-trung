@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:T恤",
   "type": "word",
   "word": "T恤",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "<tì>xù",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "áo phông, áo thun",
+      "meaningShortVi": "áo phông",
+      "meaningFullVi": "áo phông, áo thun",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "áo phông",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -42,7 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -52,7 +54,8 @@
       "meaningVi": "Hôm nay anh ấy mặc một chiếc áo phông màu trắng.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "T恤",
@@ -61,10 +64,19 @@
       "meaningVi": "Tôi thích mặc áo phông thoải mái.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng T恤",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/T恤.mp3"
   ],
@@ -77,7 +89,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

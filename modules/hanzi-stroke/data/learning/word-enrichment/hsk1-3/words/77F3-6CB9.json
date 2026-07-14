@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:石油",
   "type": "word",
   "word": "石油",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shí yóu",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "dầu mỏ, dầu khoáng",
+      "meaningShortVi": "dầu mỏ",
+      "meaningFullVi": "dầu mỏ, dầu khoáng",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "dầu mỏ",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "石油 dùng cho dầu mỏ/dầu khoáng (chất lỏng khai thác từ lòng đất). Dầu ăn/đậu nành là 食用油 (shíyòngyóu), dầu ô liu là 橄榄油 (gǎnlǎnyóu)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "石油公司",
         "pinyin": "shíyóu gōngsī",
         "meaningVi": "công ty dầu mỏ",
+        "meaningFullVi": "công ty dầu mỏ",
         "target": "石油",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "石油价格",
         "pinyin": "shíyóu jiàgé",
         "meaningVi": "giá dầu mỏ",
+        "meaningFullVi": "giá dầu mỏ",
         "target": "石油",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Trung Đông là khu vực có nhiều dầu mỏ nhất thế giới.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "石油",
@@ -82,16 +87,17 @@
       "meaningVi": "Xe ô tô cần dầu mỏ mới có thể chạy được.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 石油",
-      "syntax": "danh từ",
-      "matchedExample": "石油 dùng cho dầu mỏ/dầu khoáng (chất lỏng khai thác từ lòng đất). Dầu ăn/đậu nành là 食用油 (shíyòngyóu), dầu ô liu là 橄榄油 (gǎnlǎnyóu).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 石油",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "石油 dùng cho dầu mỏ/dầu khoáng (chất lỏng khai thác từ lòng đất). Dầu ăn/đậu nành là 食用油 (shíyòngyóu), dầu ô liu là 橄榄油 (gǎnlǎnyóu).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__3__topic__9__thien-nhien",
+      "sectionSlug": "thien-nhien",
       "sectionTitle": "Thiên nhiên",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thien-nhien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thien-nhien/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

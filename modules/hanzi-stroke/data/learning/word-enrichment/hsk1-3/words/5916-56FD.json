@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:外国",
   "type": "word",
   "word": "外国",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "wài guó",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nước ngoài, nước khác",
+      "meaningShortVi": "nước ngoài",
+      "meaningFullVi": "nước ngoài, nước khác",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nước ngoài",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Danh từ, chỉ nước khác, không phân biệt đông tây. Phân biệt với 国外 (ở nước ngoài, chỉ vị trí, không tính đến nước nào)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 外 (bên ngoài) + 国 (nước) → nước bên ngoài, nước khác nước mình."
   ],
   "hsk": {
     "levels": [
@@ -54,35 +51,44 @@
         "text": "外国人",
         "pinyin": "wàiguórén",
         "meaningVi": "người nước ngoài",
+        "meaningFullVi": "người nước ngoài",
         "target": "外国",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "外国朋友",
         "pinyin": "wàiguó péngyǒu",
         "meaningVi": "bạn nước ngoài",
+        "meaningFullVi": "bạn nước ngoài",
         "target": "外国",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "外国学生",
         "pinyin": "wàiguó xuéshēng",
         "meaningVi": "sinh viên nước ngoài",
+        "meaningFullVi": "sinh viên nước ngoài",
         "target": "外国",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "去外国",
         "pinyin": "qù wàiguó",
         "meaningVi": "đi nước ngoài",
+        "meaningFullVi": "đi nước ngoài",
         "target": "外国",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -92,7 +98,8 @@
       "meaningVi": "Anh ấy đã đi rất nhiều nước ngoài",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "外国",
@@ -101,7 +108,8 @@
       "meaningVi": "Người bạn nước ngoài này rất thân thiện",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "外国",
@@ -110,7 +118,8 @@
       "meaningVi": "Đồ nước ngoài rất đắt",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "外国",
@@ -119,23 +128,17 @@
       "meaningVi": "Trường chúng tôi có rất nhiều sinh viên nước ngoài",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 外国",
-      "syntax": "compound-semantic",
-      "matchedExample": "Danh từ, chỉ nước khác, không phân biệt đông tây. Phân biệt với 国外 (ở nước ngoài, chỉ vị trí, không tính đến nước nào).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 外 (bên ngoài) + 国 (nước) → nước bên ngoài, nước khác nước mình.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 外国",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Danh từ, chỉ nước khác, không phân biệt đông tây. Phân biệt với 国外 (ở nước ngoài, chỉ vị trí, không tính đến nước nào).",
+      "explanationVi": "Ghép nghĩa: 外 (bên ngoài) + 国 (nước) → nước bên ngoài, nước khác nước mình.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -146,21 +149,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__1__topic__18__dia-ly",
+      "sectionSlug": "dia-ly",
       "sectionTitle": "Địa lý",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dia-ly/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dia-ly/",
+      "orderInSection": 3
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 2,
+      "sectionId": "new_hsk__2__lesson__2__bai-2-let-s-take-a-taxi-to-peking-university-instead",
+      "sectionSlug": "bai-2-let-s-take-a-taxi-to-peking-university-instead",
       "sectionTitle": "Hay là bắt taxi đến Đại học Bắc Kinh đi",
       "sectionTitleZh": "还是打车去北大吧",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-2-let-s-take-a-taxi-to-peking-university-instead/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-2-let-s-take-a-taxi-to-peking-university-instead/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -176,7 +189,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

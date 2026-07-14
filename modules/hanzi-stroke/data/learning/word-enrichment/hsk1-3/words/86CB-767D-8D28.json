@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:蛋白质",
   "type": "word",
   "word": "蛋白质",
@@ -16,27 +16,24 @@
     "readings": [
       {
         "pinyin": "dàn bái zhì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "protein, chất đạm (đại phân tử sinh học cấu tạo từ axit amin, thiết yếu cho cơ thể)",
+      "meaningShortVi": "protein",
+      "meaningFullVi": "protein, chất đạm (đại phân tử sinh học cấu tạo từ axit amin, thiết yếu cho cơ thể)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "protein",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "蛋白质 là thuật ngữ sinh hóa, tương đương 'protein'. Phân biệt với 蛋白 (dànbái — lòng trắng trứng; cũng là tiền tố trong 蛋白质). Trong dinh dưỡng, cũng nói 蛋白质 = 'chất đạm'."
-  ],
-  "wordTypeExplanations": [
-    "蛋白 (đản bạch — lòng trắng trứng, 'bạch đản') + 质 (chất — chất, bản chất) ghép nghĩa: chất giống lòng trắng trứng — đây là cách người Trung Quốc đặt tên cho protein khi tiếp thu khoa học phương Tây."
   ],
   "hsk": {
     "levels": [
@@ -52,35 +49,44 @@
         "text": "植物蛋白质",
         "pinyin": "zhíwù dànbáizhì",
         "meaningVi": "protein thực vật",
+        "meaningFullVi": "protein thực vật",
         "target": "蛋白质",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "动物蛋白质",
         "pinyin": "dòngwù dànbáizhì",
         "meaningVi": "protein động vật",
+        "meaningFullVi": "protein động vật",
         "target": "蛋白质",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "补充蛋白质",
         "pinyin": "bǔchōng dànbáizhì",
         "meaningVi": "bổ sung protein",
+        "meaningFullVi": "bổ sung protein",
         "target": "蛋白质",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "富含蛋白质",
         "pinyin": "fùhán dànbáizhì",
         "meaningVi": "giàu protein",
+        "meaningFullVi": "giàu protein",
         "target": "蛋白质",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -90,7 +96,8 @@
       "meaningVi": "Trứng gà là nguồn protein chất lượng cao.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "蛋白质",
@@ -99,7 +106,8 @@
       "meaningVi": "Sau khi tập thể dục cần bổ sung đủ protein.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "蛋白质",
@@ -108,7 +116,8 @@
       "meaningVi": "Protein thực vật và protein động vật đều có ưu nhược điểm riêng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "蛋白质",
@@ -117,23 +126,17 @@
       "meaningVi": "Loại thực phẩm này giàu protein, phù hợp cho người tập gym.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 蛋白质",
-      "syntax": "compound-semantic",
-      "matchedExample": "蛋白质 là thuật ngữ sinh hóa, tương đương 'protein'. Phân biệt với 蛋白 (dànbái — lòng trắng trứng; cũng là tiền tố trong 蛋白质). Trong dinh dưỡng, cũng nói 蛋白质 = 'chất đạm'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "蛋白 (đản bạch — lòng trắng trứng, 'bạch đản') + 质 (chất — chất, bản chất) ghép nghĩa: chất giống lòng trắng trứng — đây là cách người Trung Quốc đặt tên cho protein khi tiếp thu khoa học phương Tây.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 蛋白质",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "蛋白质 là thuật ngữ sinh hóa, tương đương 'protein'. Phân biệt với 蛋白 (dànbái — lòng trắng trứng; cũng là tiền tố trong 蛋白质). Trong dinh dưỡng, cũng nói 蛋白质 = 'chất đạm'.",
+      "explanationVi": "蛋白 (đản bạch — lòng trắng trứng, 'bạch đản') + 质 (chất — chất, bản chất) ghép nghĩa: chất giống lòng trắng trứng — đây là cách người Trung Quốc đặt tên cho protein khi tiếp thu khoa học phương Tây.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -148,7 +151,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

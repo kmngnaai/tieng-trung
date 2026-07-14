@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:台词",
   "type": "word",
   "word": "台词",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "tái cí",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Lời thoại (trong kịch, phim)",
+      "meaningShortVi": "Lời thoại (trong kịch",
+      "meaningFullVi": "Lời thoại (trong kịch, phim)",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Lời thoại (trong kịch",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -42,7 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -52,7 +54,8 @@
       "meaningVi": "Anh ấy không nhớ hết được tất cả các lời thoại.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "台词",
@@ -61,10 +64,19 @@
       "meaningVi": "Lời thoại của bộ phim này rất kinh điển.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 台词",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/台词.mp3"
   ],
@@ -77,7 +89,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

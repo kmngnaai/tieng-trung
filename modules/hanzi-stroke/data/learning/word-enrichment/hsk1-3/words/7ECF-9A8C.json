@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:经验",
   "type": "word",
   "word": "经验",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jīng yàn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "kinh nghiệm",
+      "meaningShortVi": "kinh nghiệm",
+      "meaningFullVi": "kinh nghiệm",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "kinh nghiệm",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Chỉ kinh nghiệm tích lũy được. Có thể dùng cho cả kỹ năng và bài học."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -50,49 +49,56 @@
     "collocations": [
       {
         "text": "工作经验",
-        "pinyin": "",
+        "pinyin": "gōng zuò jīng yàn",
         "meaningVi": "kinh nghiệm làm việc",
+        "meaningFullVi": "kinh nghiệm làm việc",
         "target": "经验",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "没有经验",
-        "pinyin": "",
+        "pinyin": "méi yǒu jīng yàn",
         "meaningVi": "chưa có kinh nghiệm",
+        "meaningFullVi": "chưa có kinh nghiệm",
         "target": "经验",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "经验",
       "chinese": "他有很多教学经验。",
-      "pinyin": "",
+      "pinyin": "tā yǒu hěn duō jiào xué jīng yàn。",
       "meaningVi": "Anh ấy có nhiều kinh nghiệm giảng dạy.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "经验",
       "chinese": "我从这次失败中学到了很多经验。",
-      "pinyin": "",
+      "pinyin": "wǒ cóng zhè cì shī bài zhōng xué dào le hěn duō jīng yàn。",
       "meaningVi": "Tôi học được nhiều kinh nghiệm từ thất bại lần này.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 经验",
-      "syntax": "danh từ",
-      "matchedExample": "Chỉ kinh nghiệm tích lũy được. Có thể dùng cho cả kỹ năng và bài học.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 经验",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Chỉ kinh nghiệm tích lũy được. Có thể dùng cho cả kỹ năng và bài học.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 26,
+      "sectionId": "new_hsk__3__topic__26__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

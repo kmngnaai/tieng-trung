@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:青少年",
   "type": "word",
   "word": "青少年",
@@ -16,24 +16,25 @@
     "readings": [
       {
         "pinyin": "qīng shào nián",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thanh thiếu niên",
+      "meaningShortVi": "thanh thiếu niên",
+      "meaningFullVi": "thanh thiếu niên",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thanh thiếu niên",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -48,43 +49,58 @@
     "collocations": [
       {
         "text": "青少年时期",
-        "pinyin": "",
+        "pinyin": "qīng shào nián shí qī",
         "meaningVi": "giai đoạn thanh thiếu niên",
+        "meaningFullVi": "giai đoạn thanh thiếu niên",
         "target": "青少年",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "青少年教育",
-        "pinyin": "",
+        "pinyin": "qīng shào nián jiào yù",
         "meaningVi": "giáo dục thanh thiếu niên",
+        "meaningFullVi": "giáo dục thanh thiếu niên",
         "target": "青少年",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "青少年",
       "chinese": "青少年是未来的希望",
-      "pinyin": "",
+      "pinyin": "qīng shào nián shì wèi lái de xī wàng",
       "meaningVi": "Thanh thiếu niên là tương lai",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "青少年",
       "chinese": "很多青少年喜欢运动",
-      "pinyin": "",
+      "pinyin": "hěn duō qīng shào nián xǐ huan yùn dòng",
       "meaningVi": "Rất nhiều thanh thiếu niên thích thể thao",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 青少年",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/青少年.mp3"
   ],
@@ -93,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 21,
+      "sectionId": "new_hsk__2__topic__21__thong-tin-ca-nhan",
+      "sectionSlug": "thong-tin-ca-nhan",
       "sectionTitle": "Thông tin cá nhân",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin-ca-nhan/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin-ca-nhan/",
+      "orderInSection": 6
     }
   ],
   "sources": [
@@ -108,7 +129,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

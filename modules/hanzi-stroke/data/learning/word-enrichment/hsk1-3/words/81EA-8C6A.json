@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:自豪",
   "type": "word",
   "word": "自豪",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "zì háo",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tự hào",
+      "meaningShortVi": "tự hào",
+      "meaningFullVi": "tự hào",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tự hào",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Từ vựng HSK 5: tự hào"
-  ],
-  "wordTypeExplanations": [
-    "Từ ghép nghĩa"
   ],
   "hsk": {
     "levels": [
@@ -51,19 +48,24 @@
         "text": "很自豪",
         "pinyin": "很 自豪",
         "meaningVi": "很 自豪",
+        "meaningFullVi": "很 自豪",
         "target": "自豪",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "非常自豪",
         "pinyin": "非常 自豪",
         "meaningVi": "非常 自豪",
+        "meaningFullVi": "非常 自豪",
         "target": "自豪",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +75,8 @@
       "meaningVi": "Đây là tự hào",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "自豪",
@@ -82,7 +85,8 @@
       "meaningVi": "Tôi thích 自豪",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "自豪",
@@ -91,7 +95,8 @@
       "meaningVi": "Có 自豪",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "自豪",
@@ -100,23 +105,17 @@
       "meaningVi": "Không có 自豪",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 自豪",
-      "syntax": "compound-semantic",
-      "matchedExample": "Từ vựng HSK 5: tự hào",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Từ ghép nghĩa",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 自豪",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Từ vựng HSK 5: tự hào",
+      "explanationVi": "Từ ghép nghĩa",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -131,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:孩子",
   "type": "word",
   "word": "孩子",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "hái zi",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đứa trẻ, trẻ em",
+      "meaningShortVi": "đứa trẻ",
+      "meaningFullVi": "đứa trẻ, trẻ em",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đứa trẻ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Chỉ đứa trẻ/trẻ em. 小孩子 (xiǎo háizi) là đứa trẻ nhỏ. Đếm 用 个 (yī gè háizi)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 孩 (đứa trẻ) + 子 (hậu từ danh từ) → đứa trẻ."
   ],
   "hsk": {
     "levels": [
@@ -54,13 +51,11 @@
       {
         "word": "男孩子",
         "pinyin": "nán hái zi",
-        "meaningVi": "cậu bé, đứa con trai",
+        "meaningVi": "cậu bé",
+        "meaningFullVi": "cậu bé, đứa con trai",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
@@ -68,27 +63,34 @@
         "text": "小孩子",
         "pinyin": "xiǎo háizi",
         "meaningVi": "đứa trẻ nhỏ",
+        "meaningFullVi": "đứa trẻ nhỏ",
         "target": "孩子",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "男孩子",
         "pinyin": "nán háizi",
         "meaningVi": "đứa bé trai",
+        "meaningFullVi": "đứa bé trai",
         "target": "孩子",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "女孩子",
         "pinyin": "nǚ háizi",
         "meaningVi": "đứa bé gái",
+        "meaningFullVi": "đứa bé gái",
         "target": "孩子",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -98,7 +100,8 @@
       "meaningVi": "Họ có một đứa con",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "孩子",
@@ -107,7 +110,8 @@
       "meaningVi": "Đứa trẻ đang chơi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "孩子",
@@ -116,7 +120,8 @@
       "meaningVi": "Đứa trẻ rất đáng yêu",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "孩子",
@@ -125,23 +130,17 @@
       "meaningVi": "Bao nhiêu đứa con?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 孩子",
-      "syntax": "compound-semantic",
-      "matchedExample": "Chỉ đứa trẻ/trẻ em. 小孩子 (xiǎo háizi) là đứa trẻ nhỏ. Đếm 用 个 (yī gè háizi).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 孩 (đứa trẻ) + 子 (hậu từ danh từ) → đứa trẻ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 孩子",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Chỉ đứa trẻ/trẻ em. 小孩子 (xiǎo háizi) là đứa trẻ nhỏ. Đếm 用 个 (yī gè háizi).",
+      "explanationVi": "Ghép nghĩa: 孩 (đứa trẻ) + 子 (hậu từ danh từ) → đứa trẻ.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -152,31 +151,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__1__lesson__4__bai-4-i-have-two-children",
+      "sectionSlug": "bai-4-i-have-two-children",
       "sectionTitle": "Tôi có hai đứa con",
       "sectionTitleZh": "我有两个孩子",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-4-i-have-two-children/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-4-i-have-two-children/",
+      "orderInSection": 9
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__1__topic__3__gia-dinh",
+      "sectionSlug": "gia-dinh",
       "sectionTitle": "Gia đình",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/gia-dinh/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/gia-dinh/",
+      "orderInSection": 18
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 11,
+      "sectionId": "hsk__2__lesson__11__bai-11-anh-ay-hon-toi-3-tuoi",
+      "sectionSlug": "bai-11-anh-ay-hon-toi-3-tuoi",
       "sectionTitle": "Anh ấy hơn tôi 3 tuổi",
       "sectionTitleZh": "他比我大三岁",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-11-anh-ay-hon-toi-3-tuoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-11-anh-ay-hon-toi-3-tuoi/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -197,7 +211,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

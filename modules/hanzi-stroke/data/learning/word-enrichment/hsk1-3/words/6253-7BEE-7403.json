@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:打篮球",
   "type": "word",
   "word": "打篮球",
@@ -16,27 +16,24 @@
     "readings": [
       {
         "pinyin": "dǎ lánqiú",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chơi bóng rổ",
+      "meaningShortVi": "chơi bóng rổ",
+      "meaningFullVi": "chơi bóng rổ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chơi bóng rổ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Thường dùng khi nói về hoạt động thể thao - chơi bóng rổ."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 打 (đánh, chơi) + 篮球 (bóng rổ) → chơi bóng rổ."
   ],
   "hsk": {
     "levels": [
@@ -50,16 +47,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "篮球",
-        "pinyin": "lánqiú",
-        "meaningVi": "bóng rổ",
-        "target": "打篮球",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -69,7 +58,8 @@
       "meaningVi": "Tôi thích chơi bóng rổ",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "打篮球",
@@ -78,7 +68,8 @@
       "meaningVi": "Họ mỗi ngày chơi bóng rổ",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "打篮球",
@@ -87,23 +78,17 @@
       "meaningVi": "Xin hãy cùng đi chơi bóng rổ",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 打篮球",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường dùng khi nói về hoạt động thể thao - chơi bóng rổ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 打 (đánh, chơi) + 篮球 (bóng rổ) → chơi bóng rổ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 打篮球",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường dùng khi nói về hoạt động thể thao - chơi bóng rổ.",
+      "explanationVi": "Ghép nghĩa: 打 (đánh, chơi) + 篮球 (bóng rổ) → chơi bóng rổ.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,11 +99,16 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 6,
+      "sectionId": "hsk__2__lesson__6__bai-6-sao-ban-khong-an-nua",
+      "sectionSlug": "bai-6-sao-ban-khong-an-nua",
       "sectionTitle": "Sao bạn không ăn nữa?",
       "sectionTitleZh": "你怎么不吃了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-6-sao-ban-khong-an-nua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-6-sao-ban-khong-an-nua/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -134,7 +124,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

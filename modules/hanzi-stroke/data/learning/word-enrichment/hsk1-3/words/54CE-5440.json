@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:哎呀",
   "type": "word",
   "word": "哎呀",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "āi yā",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ôi chao; tiếng than thán hoặc ngạc nhiên",
+      "meaningShortVi": "ôi chao",
+      "meaningFullVi": "ôi chao; tiếng than thán hoặc ngạc nhiên",
       "partOfSpeech": "other",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ôi chao",
   "wordType": "other",
   "wordTypes": [
     "other"
-  ],
-  "usageNotes": [
-    "Thanh từ dùng trong văn nói, biểu thị nhiều cảm xúc: ngạc nhiên, hối hận, đau đớn, vui sướng. Tương đương 'ôi chao', 'ui da' trong tiếng Việt."
-  ],
-  "wordTypeExplanations": [
-    "Thanh từ (感叹词) biểu thị ngạc nhiên, than thán, hối hận. Không ghép nghĩa."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "哎呀一声",
         "pinyin": "āiyā yī shēng",
         "meaningVi": "than 'ôi' một tiếng",
+        "meaningFullVi": "than 'ôi' một tiếng",
         "target": "哎呀",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "哎呀呀",
         "pinyin": "āiyāyā",
         "meaningVi": "ôi ôi (nhấn mạnh)",
+        "meaningFullVi": "ôi ôi (nhấn mạnh)",
         "target": "哎呀",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "哎呀！不对",
         "pinyin": "āiyā! Bùduì",
         "meaningVi": "ôi! không đúng",
+        "meaningFullVi": "ôi! không đúng",
         "target": "哎呀",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Ôi, tôi quên mang chìa khóa",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "哎呀",
@@ -90,7 +95,8 @@
       "meaningVi": "Ôi sao, làm sao bây giờ",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "哎呀",
@@ -99,7 +105,8 @@
       "meaningVi": "Ui da, đau quá",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "哎呀",
@@ -108,7 +115,8 @@
       "meaningVi": "Ôi! Tốt quá",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "哎呀",
@@ -117,23 +125,17 @@
       "meaningVi": "Ôi, thật ngại quá",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 哎呀",
-      "syntax": "other",
-      "matchedExample": "Thanh từ dùng trong văn nói, biểu thị nhiều cảm xúc: ngạc nhiên, hối hận, đau đớn, vui sướng. Tương đương 'ôi chao', 'ui da' trong tiếng Việt.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "other",
-      "matchedExample": "Thanh từ (感叹词) biểu thị ngạc nhiên, than thán, hối hận. Không ghép nghĩa.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 哎呀",
+      "partOfSpeech": "other",
+      "usageNoteVi": "Thanh từ dùng trong văn nói, biểu thị nhiều cảm xúc: ngạc nhiên, hối hận, đau đớn, vui sướng. Tương đương 'ôi chao', 'ui da' trong tiếng Việt.",
+      "explanationVi": "Thanh từ (感叹词) biểu thị ngạc nhiên, than thán, hối hận. Không ghép nghĩa.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -148,7 +150,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

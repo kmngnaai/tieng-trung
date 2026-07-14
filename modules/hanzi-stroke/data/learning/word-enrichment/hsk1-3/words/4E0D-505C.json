@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:不停",
   "type": "word",
   "word": "不停",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "bù tíng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "không ngừng, không ngớt, liên tục",
+      "meaningShortVi": "không ngừng",
+      "meaningFullVi": "không ngừng, không ngớt, liên tục",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "không ngừng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "不停 dùng để nhấn mạnh tính liên tục, không ngừng nghỉ. Có thể là trạng từ (không ngừng làm gì đó) hoặc động từ (không dừng lại)."
-  ],
-  "wordTypeExplanations": [
-    "Từ ghép: 不(không) + 停(dừng lại) → không dừng lại, liên tục"
   ],
   "hsk": {
     "levels": [
@@ -50,28 +47,35 @@
       {
         "text": "不停地",
         "pinyin": "bùtíng de",
-        "meaningVi": "không ngừng, liên tục",
+        "meaningVi": "không ngừng",
+        "meaningFullVi": "không ngừng, liên tục",
         "target": "不停",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "忙不停",
         "pinyin": "máng bùtíng",
         "meaningVi": "bận rộn không ngừng",
+        "meaningFullVi": "bận rộn không ngừng",
         "target": "不停",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "说不停",
         "pinyin": "shuō bùtíng",
         "meaningVi": "nói không ngớt",
+        "meaningFullVi": "nói không ngớt",
         "target": "不停",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Mưa không ngừng rơi.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不停",
@@ -90,7 +95,8 @@
       "meaningVi": "Anh ấy nói chuyện không ngừng.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不停",
@@ -99,23 +105,17 @@
       "meaningVi": "Bọn trẻ不停地 cười.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 不停",
-      "syntax": "compound-semantic",
-      "matchedExample": "不停 dùng để nhấn mạnh tính liên tục, không ngừng nghỉ. Có thể là trạng từ (không ngừng làm gì đó) hoặc động từ (không dừng lại).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Từ ghép: 不(không) + 停(dừng lại) → không dừng lại, liên tục",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 不停",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "不停 dùng để nhấn mạnh tính liên tục, không ngừng nghỉ. Có thể là trạng từ (không ngừng làm gì đó) hoặc động từ (không dừng lại).",
+      "explanationVi": "Từ ghép: 不(không) + 停(dừng lại) → không dừng lại, liên tục",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -130,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

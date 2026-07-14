@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:安装",
   "type": "word",
   "word": "安装",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "ān zhuāng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lắp đặt, cài đặt",
+      "meaningShortVi": "lắp đặt",
+      "meaningFullVi": "lắp đặt, cài đặt",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lắp đặt",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "安装 (lắp đặt) dùng cho thiết bị phần cứng, còn dùng cho cài đặt phần mềm trên máy tính/điện thoại."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "安装软件",
         "pinyin": "ānzhuāng ruǎnjiàn",
         "meaningVi": "cài đặt phần mềm",
+        "meaningFullVi": "cài đặt phần mềm",
         "target": "安装",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "安装空调",
         "pinyin": "ānzhuāng kōngtiáo",
         "meaningVi": "lắp điều hòa",
+        "meaningFullVi": "lắp điều hòa",
         "target": "安装",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Làm ơn giúp tôi lắp điều hòa.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "安装",
@@ -82,16 +87,17 @@
       "meaningVi": "Tôi đã cài phần mềm này lên máy tính.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 安装",
-      "syntax": "động từ",
-      "matchedExample": "安装 (lắp đặt) dùng cho thiết bị phần cứng, còn dùng cho cài đặt phần mềm trên máy tính/điện thoại.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 安装",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "安装 (lắp đặt) dùng cho thiết bị phần cứng, còn dùng cho cài đặt phần mềm trên máy tính/điện thoại.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 27,
+      "sectionId": "new_hsk__3__topic__27__can-nha",
+      "sectionSlug": "can-nha",
       "sectionTitle": "Căn nhà",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/can-nha/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/can-nha/",
+      "orderInSection": 6
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:增长",
   "type": "word",
   "word": "增长",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zēng zhǎng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tăng trưởng; gia tăng về số lượng, kích thước hoặc mức độ",
+      "meaningShortVi": "tăng trưởng",
+      "meaningFullVi": "tăng trưởng; gia tăng về số lượng, kích thước hoặc mức độ",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tăng trưởng",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Thường dùng cho kinh tế, dân số, doanh thu, dữ liệu. Có thể đi với bổ ngữ như 持续, 快速, 稳定. Từ liên quan: 增加 'tăng thêm', 提高 'nâng cao', 发展 'phát triển'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "经济增长",
         "pinyin": "jīngjì zēngzhǎng",
         "meaningVi": "tăng trưởng kinh tế",
+        "meaningFullVi": "tăng trưởng kinh tế",
         "target": "增长",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "快速增长",
         "pinyin": "kuàisù zēngzhǎng",
         "meaningVi": "tăng trưởng nhanh",
+        "meaningFullVi": "tăng trưởng nhanh",
         "target": "增长",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Những năm gần đây, kinh tế Trung Quốc tiếp tục tăng trưởng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "增长",
@@ -82,16 +87,17 @@
       "meaningVi": "Tăng trưởng dân số là một vấn đề quan trọng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 增长",
-      "syntax": "động từ",
-      "matchedExample": "Thường dùng cho kinh tế, dân số, doanh thu, dữ liệu. Có thể đi với bổ ngữ như 持续, 快速, 稳定. Từ liên quan: 增加 'tăng thêm', 提高 'nâng cao', 发展 'phát triển'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 增长",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Thường dùng cho kinh tế, dân số, doanh thu, dữ liệu. Có thể đi với bổ ngữ như 持续, 快速, 稳定. Từ liên quan: 增加 'tăng thêm', 提高 'nâng cao', 发展 'phát triển'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__topic__17__nhung-thay-doi",
+      "sectionSlug": "nhung-thay-doi",
       "sectionTitle": "Những thay đổi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/",
+      "orderInSection": 26
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

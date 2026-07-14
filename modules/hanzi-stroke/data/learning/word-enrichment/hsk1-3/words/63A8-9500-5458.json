@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:推销员",
   "type": "word",
   "word": "推销员",
@@ -16,24 +16,25 @@
     "readings": [
       {
         "pinyin": "tuī xiāo yuán",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Nhân viên tiếp thị, nhân viên bán hàng, người bán dạo.",
+      "meaningShortVi": "Nhân viên tiếp thị",
+      "meaningFullVi": "Nhân viên tiếp thị, nhân viên bán hàng, người bán dạo.",
       "partOfSpeech": "Danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Nhân viên tiếp thị",
   "wordType": "Danh từ",
   "wordTypes": [
     "Danh từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -43,7 +44,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -53,7 +55,8 @@
       "meaningVi": "Anh ấy là một nhân viên bán hàng thành công.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "推销员",
@@ -62,10 +65,19 @@
       "meaningVi": "Nhân viên tiếp thị đang giới thiệu sản phẩm với khách hàng.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 推销员",
+      "partOfSpeech": "Danh từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/推销员.mp3"
   ],
@@ -78,7 +90,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

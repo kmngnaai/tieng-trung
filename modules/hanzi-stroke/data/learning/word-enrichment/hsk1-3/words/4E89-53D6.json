@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:争取",
   "type": "word",
   "word": "争取",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhēng qǔ",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phấn đấu",
+      "meaningShortVi": "phấn đấu",
+      "meaningFullVi": "phấn đấu",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phấn đấu",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "指努力争取、力求获得。多用于机会、权利、胜利等。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "争取时间",
-        "pinyin": "",
+        "pinyin": "zhēng qǔ shí jiān",
         "meaningVi": "giành thời gian",
+        "meaningFullVi": "giành thời gian",
         "target": "争取",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "争取胜利",
-        "pinyin": "",
+        "pinyin": "zhēng qǔ shèng lì",
         "meaningVi": "phấn đấu giành thắng lợi",
+        "meaningFullVi": "phấn đấu giành thắng lợi",
         "target": "争取",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "争取",
       "chinese": "我们要争取更好的成绩。",
-      "pinyin": "",
+      "pinyin": "wǒ men yào zhēng qǔ gèng hǎo de chéng jì。",
       "meaningVi": "Chúng ta phải phấn đấu để đạt thành tích tốt hơn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "争取",
       "chinese": "他正在争取这个机会。",
-      "pinyin": "",
+      "pinyin": "tā zhèng zài zhēng qǔ zhè ge jī huì。",
       "meaningVi": "Anh ấy đang phấn đấu giành lấy cơ hội này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 争取",
-      "syntax": "động từ",
-      "matchedExample": "指努力争取、力求获得。多用于机会、权利、胜利等。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 争取",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "指努力争取、力求获得。多用于机会、权利、胜利等。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__3__topic__19__thanh-tuu-va-ket-qua",
+      "sectionSlug": "thanh-tuu-va-ket-qua",
       "sectionTitle": "Thành tựu và kết quả",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

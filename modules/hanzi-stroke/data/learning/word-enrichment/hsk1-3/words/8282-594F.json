@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:节奏",
   "type": "word",
   "word": "节奏",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jié zòu",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Tiết tấu — nhịp điệu; nhịp; tiết tấu.",
+      "meaningShortVi": "Tiết tấu — nhịp điệu",
+      "meaningFullVi": "Tiết tấu — nhịp điệu; nhịp; tiết tấu.",
       "partOfSpeech": "loanword",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Tiết tấu — nhịp điệu",
   "wordType": "loanword",
   "wordTypes": [
     "loanword"
   ],
-  "usageNotes": [
-    "Dùng cho âm nhạc hoặc mô tả tiết tấu hoạt động hàng ngày."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,32 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "音乐节奏",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "节奏",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "生活节奏",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "节奏",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "加快节奏",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "节奏",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +54,8 @@
       "meaningVi": "Nhịp điệu âm nhạc rất nhanh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "节奏",
@@ -88,7 +64,8 @@
       "meaningVi": "Cuộc sống cần có nhịp điệu.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "节奏",
@@ -97,16 +74,17 @@
       "meaningVi": "Theo kịp nhịp điệu rất quan trọng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 节奏",
-      "syntax": "loanword",
-      "matchedExample": "Dùng cho âm nhạc hoặc mô tả tiết tấu hoạt động hàng ngày.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 节奏",
+      "partOfSpeech": "loanword",
+      "usageNoteVi": "Dùng cho âm nhạc hoặc mô tả tiết tấu hoạt động hàng ngày.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -121,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

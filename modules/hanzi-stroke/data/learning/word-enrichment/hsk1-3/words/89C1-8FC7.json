@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:见过",
   "type": "word",
   "word": "见过",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "jiàn guò",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "kiện quá",
+      "meaningShortVi": "kiện quá",
+      "meaningFullVi": "kiện quá",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "kiện quá",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,43 +48,58 @@
     "collocations": [
       {
         "text": "见过面",
-        "pinyin": "",
+        "pinyin": "jiàn guò miàn",
         "meaningVi": "đã gặp nhau",
+        "meaningFullVi": "đã gặp nhau",
         "target": "见过",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "曾经见过",
-        "pinyin": "",
+        "pinyin": "céng jīng jiàn guò",
         "meaningVi": "đã từng gặp",
+        "meaningFullVi": "đã từng gặp",
         "target": "见过",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "见过",
       "chinese": "我见过他",
-      "pinyin": "",
+      "pinyin": "wǒ jiàn guò tā",
       "meaningVi": "Tôi đã gặp anh ấy",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "见过",
       "chinese": "你没见过吗",
-      "pinyin": "",
+      "pinyin": "nǐ méi jiàn guò ma",
       "meaningVi": "Bạn chưa gặp sao",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 见过",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/见过.mp3"
   ],
@@ -92,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 26,
+      "sectionId": "new_hsk__2__topic__26__dong-tu",
+      "sectionSlug": "dong-tu",
       "sectionTitle": "Động từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dong-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dong-tu/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -107,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

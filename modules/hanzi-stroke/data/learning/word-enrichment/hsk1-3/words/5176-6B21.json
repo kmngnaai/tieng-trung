@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:其次",
   "type": "word",
   "word": "其次",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "qí cì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "kế tiếp; thứ hai; tiếp theo",
+      "meaningShortVi": "kế tiếp",
+      "meaningFullVi": "kế tiếp; thứ hai; tiếp theo",
       "partOfSpeech": "lượng từ / trạng từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "kế tiếp",
   "wordType": "lượng từ / trạng từ",
   "wordTypes": [
     "lượng từ / trạng từ"
   ],
-  "usageNotes": [
-    "Dùng để liệt kê theo thứ tự quan trọng. Thường đi sau '首先' (trước hết)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "其次就是",
         "pinyin": "qícì jiùshì",
         "meaningVi": "kế tiếp là",
+        "meaningFullVi": "kế tiếp là",
         "target": "其次",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "首先...其次",
         "pinyin": "shǒuxiān... qícì",
-        "meaningVi": "trước hết... kế tiếp",
+        "meaningVi": "trước hết",
+        "meaningFullVi": "trước hết... kế tiếp",
         "target": "其次",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Trước hết, tôi muốn cảm ơn cha mẹ. Kế tiếp, cảm ơn thầy cô.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "其次",
@@ -82,16 +87,17 @@
       "meaningVi": "Anh ấy là bạn tốt nhất của tôi, rồi mới là bạn học.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 其次",
-      "syntax": "lượng từ / trạng từ",
-      "matchedExample": "Dùng để liệt kê theo thứ tự quan trọng. Thường đi sau '首先' (trước hết).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 其次",
+      "partOfSpeech": "lượng từ / trạng từ",
+      "usageNoteVi": "Dùng để liệt kê theo thứ tự quan trọng. Thường đi sau '首先' (trước hết).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 36,
+      "sectionId": "new_hsk__3__topic__36__tu-chuc-nang-ii",
+      "sectionSlug": "tu-chuc-nang-ii",
       "sectionTitle": "Từ chức năng II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-ii/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

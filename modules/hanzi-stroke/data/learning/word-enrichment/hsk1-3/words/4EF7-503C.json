@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:价值",
   "type": "word",
   "word": "价值",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "jià zhí",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "giá trị, ý nghĩa",
+      "meaningShortVi": "giá trị",
+      "meaningFullVi": "giá trị, ý nghĩa",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "giá trị",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -48,54 +49,57 @@
         "word": "价值观",
         "pinyin": "jià zhí guān",
         "meaningVi": "giá trị",
+        "meaningFullVi": "giá trị",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          3
-        ],
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 3",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
       {
         "text": "有价值",
-        "pinyin": "",
+        "pinyin": "yǒu jià zhí",
         "meaningVi": "có giá trị",
+        "meaningFullVi": "có giá trị",
         "target": "价值",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "价值观念",
-        "pinyin": "",
+        "pinyin": "jià zhí guān niàn",
         "meaningVi": "quan niệm giá trị",
+        "meaningFullVi": "quan niệm giá trị",
         "target": "价值",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "价值",
       "chinese": "这本书很有价值。",
-      "pinyin": "",
+      "pinyin": "zhè běn shū hěn yǒu jià zhí。",
       "meaningVi": "Quyển sách này rất có giá trị.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "价值",
-      "chinese": "我们应该珍惜时间的时间价值。",
-      "pinyin": "",
-      "meaningVi": "Chúng ta nên trân trọng giá trị thời gian.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 价值",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/价值.mp3"
   ],
@@ -104,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 22,
+      "sectionId": "new_hsk__3__topic__22__kinh-te-va-tai-chinh",
+      "sectionSlug": "kinh-te-va-tai-chinh",
       "sectionTitle": "Kinh tế và tài chính",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/kinh-te-va-tai-chinh/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/kinh-te-va-tai-chinh/",
+      "orderInSection": 24
     }
   ],
   "sources": [
@@ -119,7 +128,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

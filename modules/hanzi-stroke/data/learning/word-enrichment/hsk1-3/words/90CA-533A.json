@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:郊区",
   "type": "word",
   "word": "郊区",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "jiāo qū",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ngoại ô",
+      "meaningShortVi": "ngoại ô",
+      "meaningFullVi": "ngoại ô",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ngoại ô",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Từ vựng HSK 5: ngoại ô"
-  ],
-  "wordTypeExplanations": [
-    "Từ ghép nghĩa"
   ],
   "hsk": {
     "levels": [
@@ -51,19 +48,24 @@
         "text": "很郊区",
         "pinyin": "很 郊区",
         "meaningVi": "很 郊区",
+        "meaningFullVi": "很 郊区",
         "target": "郊区",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "非常郊区",
         "pinyin": "非常 郊区",
         "meaningVi": "非常 郊区",
+        "meaningFullVi": "非常 郊区",
         "target": "郊区",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +75,8 @@
       "meaningVi": "Đây là ngoại ô",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "郊区",
@@ -82,7 +85,8 @@
       "meaningVi": "Tôi thích 郊区",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "郊区",
@@ -91,7 +95,8 @@
       "meaningVi": "Có 郊区",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "郊区",
@@ -100,23 +105,17 @@
       "meaningVi": "Không có 郊区",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 郊区",
-      "syntax": "compound-semantic",
-      "matchedExample": "Từ vựng HSK 5: ngoại ô",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Từ ghép nghĩa",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 郊区",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Từ vựng HSK 5: ngoại ô",
+      "explanationVi": "Từ ghép nghĩa",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -131,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

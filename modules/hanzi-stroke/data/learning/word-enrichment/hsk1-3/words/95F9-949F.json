@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:闹钟",
   "type": "word",
   "word": "闹钟",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "nào zhōng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "náo + chung (đồng hồ báo thức)",
+      "meaningShortVi": "náo + chung (đồng hồ báo thức)",
+      "meaningFullVi": "náo + chung (đồng hồ báo thức)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "náo + chung (đồng hồ báo thức)",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -42,7 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -52,7 +54,8 @@
       "meaningVi": "Làm ơn cho tôi đồng hồ báo thức。",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "闹钟",
@@ -61,7 +64,8 @@
       "meaningVi": "闹钟 này thế nào?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "闹钟",
@@ -70,10 +74,19 @@
       "meaningVi": "Tôi đã mua đồng hồ báo thức。",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 闹钟",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/闹钟.mp3"
   ],
@@ -86,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

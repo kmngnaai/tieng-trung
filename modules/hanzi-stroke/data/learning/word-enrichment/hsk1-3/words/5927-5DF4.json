@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:大巴",
   "type": "word",
   "word": "大巴",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "dà bā",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "xe buýt, xe khách",
+      "meaningShortVi": "xe buýt",
+      "meaningFullVi": "xe buýt, xe khách",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "xe buýt",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng chỉ xe buýt lớn hoặc xe khách đường dài. Trong tiếng Trung, '大巴' thường dùng cho xe buýt đường dài và xe buýt nhanh."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 大 (lớn, to) + 巴 (mượn âm từ 'bus' tiếng Anh, hoặc từ 'bá' trong tiếng Hán) = xe buýt lớn. '巴' ở đây là phiên âm của 'bus' trong tiếng Anh."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "机场大巴",
         "pinyin": "jīchǎng dàbā",
         "meaningVi": "xe buýt sân bay",
+        "meaningFullVi": "xe buýt sân bay",
         "target": "大巴",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "旅游大巴",
         "pinyin": "lǚyóu dàbā",
         "meaningVi": "xe du lịch",
+        "meaningFullVi": "xe du lịch",
         "target": "大巴",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "坐大巴",
         "pinyin": "zuò dàbā",
         "meaningVi": "đi xe buýt",
+        "meaningFullVi": "đi xe buýt",
         "target": "大巴",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Chúng tôi đi xe buýt ra sân bay",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "大巴",
@@ -90,7 +95,8 @@
       "meaningVi": "Xe buýt một chuyến mười phút",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "大巴",
@@ -99,7 +105,8 @@
       "meaningVi": "Đợi xe buýt rất lâu",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "大巴",
@@ -108,23 +115,17 @@
       "meaningVi": "Chuyến xe buýt này rất đông",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 大巴",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng chỉ xe buýt lớn hoặc xe khách đường dài. Trong tiếng Trung, '大巴' thường dùng cho xe buýt đường dài và xe buýt nhanh.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 大 (lớn, to) + 巴 (mượn âm từ 'bus' tiếng Anh, hoặc từ 'bá' trong tiếng Hán) = xe buýt lớn. '巴' ở đây là phiên âm của 'bus' trong tiếng Anh.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 大巴",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng chỉ xe buýt lớn hoặc xe khách đường dài. Trong tiếng Trung, '大巴' thường dùng cho xe buýt đường dài và xe buýt nhanh.",
+      "explanationVi": "Ghép nghĩa: 大 (lớn, to) + 巴 (mượn âm từ 'bus' tiếng Anh, hoặc từ 'bá' trong tiếng Hán) = xe buýt lớn. '巴' ở đây là phiên âm của 'bus' trong tiếng Anh.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

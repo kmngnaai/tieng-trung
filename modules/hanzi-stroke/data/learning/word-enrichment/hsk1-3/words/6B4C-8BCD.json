@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:歌词",
   "type": "word",
   "word": "歌词",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "gē cí",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lời bài hát, ca từ (ca-từ: lời trong bài ca)",
+      "meaningShortVi": "lời bài hát",
+      "meaningFullVi": "lời bài hát, ca từ (ca-từ: lời trong bài ca)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lời bài hát",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "歌词 (ca-từ) chỉ lời bài hát đã hoàn chỉnh. 填词 là hành động viết lời bài hát. Trong bối cảnh học tiếng Trung qua âm nhạc, 看歌词 (xem lời bài hát) là cụm rất phổ biến."
-  ],
-  "wordTypeExplanations": [
-    "歌 (ca — bài hát) + 词 (từ — lời văn, từ ngữ) → lời văn trong bài hát."
   ],
   "hsk": {
     "levels": [
@@ -48,30 +45,27 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "填词",
-        "pinyin": "tiáncí",
-        "meaningVi": "viết lời bài hát",
-        "target": "歌词",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "歌词作者",
         "pinyin": "gēcí zuòzhě",
         "meaningVi": "tác giả ca từ",
+        "meaningFullVi": "tác giả ca từ",
         "target": "歌词",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "歌词翻译",
         "pinyin": "gēcí fānyì",
         "meaningVi": "dịch lời bài hát",
+        "meaningFullVi": "dịch lời bài hát",
         "target": "歌词",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +75,8 @@
       "meaningVi": "Lời bài hát này được viết rất đẹp",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "歌词",
@@ -90,7 +85,8 @@
       "meaningVi": "Anh ấy đã thuộc lòng tất cả lời bài hát",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "歌词",
@@ -99,7 +95,8 @@
       "meaningVi": "Dịch lời bài hát sang tiếng Việt rất khó",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "歌词",
@@ -108,23 +105,17 @@
       "meaningVi": "Cô ấy thích vừa nghe nhạc vừa đọc lời bài hát",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 歌词",
-      "syntax": "compound-semantic",
-      "matchedExample": "歌词 (ca-từ) chỉ lời bài hát đã hoàn chỉnh. 填词 là hành động viết lời bài hát. Trong bối cảnh học tiếng Trung qua âm nhạc, 看歌词 (xem lời bài hát) là cụm rất phổ biến.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "歌 (ca — bài hát) + 词 (từ — lời văn, từ ngữ) → lời văn trong bài hát.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 歌词",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "歌词 (ca-từ) chỉ lời bài hát đã hoàn chỉnh. 填词 là hành động viết lời bài hát. Trong bối cảnh học tiếng Trung qua âm nhạc, 看歌词 (xem lời bài hát) là cụm rất phổ biến.",
+      "explanationVi": "歌 (ca — bài hát) + 词 (từ — lời văn, từ ngữ) → lời văn trong bài hát.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

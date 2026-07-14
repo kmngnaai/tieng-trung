@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:凡是",
   "type": "word",
   "word": "凡是",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "fán shì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "mọi thứ",
+      "meaningShortVi": "mọi thứ",
+      "meaningFullVi": "mọi thứ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "mọi thứ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Từ vựng HSK 5: mọi thứ"
-  ],
-  "wordTypeExplanations": [
-    "Từ ghép nghĩa"
   ],
   "hsk": {
     "levels": [
@@ -51,19 +48,24 @@
         "text": "很凡是",
         "pinyin": "很 凡是",
         "meaningVi": "很 凡是",
+        "meaningFullVi": "很 凡是",
         "target": "凡是",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "非常凡是",
         "pinyin": "非常 凡是",
         "meaningVi": "非常 凡是",
+        "meaningFullVi": "非常 凡是",
         "target": "凡是",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +75,8 @@
       "meaningVi": "Đây là mọi thứ",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "凡是",
@@ -82,7 +85,8 @@
       "meaningVi": "Tôi thích 凡是",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "凡是",
@@ -91,7 +95,8 @@
       "meaningVi": "Có 凡是",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "凡是",
@@ -100,23 +105,17 @@
       "meaningVi": "Không có 凡是",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 凡是",
-      "syntax": "compound-semantic",
-      "matchedExample": "Từ vựng HSK 5: mọi thứ",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Từ ghép nghĩa",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 凡是",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Từ vựng HSK 5: mọi thứ",
+      "explanationVi": "Từ ghép nghĩa",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -131,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:启发",
   "type": "word",
   "word": "启发",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "qǐ fā",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "truyền cảm hứng; khơi gợi, gợi mở",
+      "meaningShortVi": "truyền cảm hứng",
+      "meaningFullVi": "truyền cảm hứng; khơi gợi, gợi mở",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "truyền cảm hứng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Hán-Việt 'Khởi phát' — 启 (khởi, mở) + 发 (phát, phát ra); mở ra phát triển."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,27 +48,34 @@
         "text": "深受启发",
         "pinyin": "shēnshòu qǐfā",
         "meaningVi": "được truyền cảm hứng sâu sắc",
+        "meaningFullVi": "được truyền cảm hứng sâu sắc",
         "target": "启发",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "启发式教学",
         "pinyin": "qǐfā shì jiàoxué",
         "meaningVi": "phương pháp giáo dục gợi mở",
+        "meaningFullVi": "phương pháp giáo dục gợi mở",
         "target": "启发",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "得到启发",
         "pinyin": "dédào qǐfā",
         "meaningVi": "nhận được cảm hứng",
+        "meaningFullVi": "nhận được cảm hứng",
         "target": "启发",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +85,8 @@
       "meaningVi": "điều này truyền cảm hứng cho tôi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "启发",
@@ -88,7 +95,8 @@
       "meaningVi": "gợi mở học sinh tư duy",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "启发",
@@ -97,16 +105,17 @@
       "meaningVi": "được truyền cảm hứng sâu sắc",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 启发",
-      "syntax": "compound-semantic",
-      "matchedExample": "Hán-Việt 'Khởi phát' — 启 (khởi, mở) + 发 (phát, phát ra); mở ra phát triển.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 启发",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Hán-Việt 'Khởi phát' — 启 (khởi, mở) + 发 (phát, phát ra); mở ra phát triển.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -121,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

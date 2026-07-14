@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:拍照",
   "type": "word",
   "word": "拍照",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "pāi zhào",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chụp ảnh",
+      "meaningShortVi": "chụp ảnh",
+      "meaningFullVi": "chụp ảnh",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chụp ảnh",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,29 +45,51 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [
+      {
+        "text": "拍照",
+        "pinyin": "pāi zhào",
+        "meaningVi": "chụp ảnh",
+        "meaningFullVi": "chụp ảnh",
+        "target": "拍照",
+        "source": "hsk_3.json",
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "拍照",
       "chinese": "这个拍照很好。",
-      "pinyin": "",
+      "pinyin": "zhè ge pāi zhào hěn hǎo。",
       "meaningVi": "chụp ảnh này rất tốt.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "拍照",
       "chinese": "我喜欢这个拍照。",
-      "pinyin": "",
+      "pinyin": "wǒ xǐ huan zhè ge pāi zhào。",
       "meaningVi": "Tôi thích chụp ảnh này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 拍照",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/拍照.mp3"
   ],
@@ -75,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__3__lesson__5__bai-5-photos-like-these-are-the-best",
+      "sectionSlug": "bai-5-photos-like-these-are-the-best",
       "sectionTitle": "Ảnh như thế này mới đẹp",
       "sectionTitleZh": "这样的照片才好看",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-5-photos-like-these-are-the-best/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-5-photos-like-these-are-the-best/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -90,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

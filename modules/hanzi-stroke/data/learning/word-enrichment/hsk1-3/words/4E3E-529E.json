@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:举办",
   "type": "word",
   "word": "举办",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jǔ bàn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Tổ chức (hoạt động, sự kiện)",
+      "meaningShortVi": "Tổ chức (hoạt động",
+      "meaningFullVi": "Tổ chức (hoạt động, sự kiện)",
       "partOfSpeech": "động từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Tổ chức (hoạt động",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "举办 mang hành động tổ chức một sự kiện hoặc hoạt động có quy mô. Nó gần同义词 với 组织, nhưng 举办 mang tính trang trọng hơn và thường dùng cho các sự kiện như hội nghị, triển lãm,竞赛. Trong giao tiếp, người ta thường nói '举办活动' (tổ chức hoạt động) hoặc '举办比赛' (tổ chức thi đấu)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,19 +51,24 @@
         "text": "举办会议",
         "pinyin": "jǔbàn huìyì",
         "meaningVi": "tổ chức cuộc họp",
+        "meaningFullVi": "tổ chức cuộc họp",
         "target": "举办",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "举办活动",
         "pinyin": "jǔbàn huódòng",
         "meaningVi": "tổ chức hoạt động",
+        "meaningFullVi": "tổ chức hoạt động",
         "target": "举办",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Tuần sau trường sẽ tổ chức đại hội thể thao.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "举办",
@@ -83,16 +88,17 @@
       "meaningVi": "Công ty chúng tôi hàng năm đều tổ chức lễ tổng kết.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 举办",
-      "syntax": "động từ",
-      "matchedExample": "举办 mang hành động tổ chức một sự kiện hoặc hoạt động có quy mô. Nó gần同义词 với 组织, nhưng 举办 mang tính trang trọng hơn và thường dùng cho các sự kiện như hội nghị, triển lãm,竞赛. Trong giao tiếp, người ta thường nói '举办活动' (tổ chức hoạt động) hoặc '举办比赛' (tổ chức thi đấu).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 举办",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "举办 mang hành động tổ chức một sự kiện hoặc hoạt động có quy mô. Nó gần同义词 với 组织, nhưng 举办 mang tính trang trọng hơn và thường dùng cho các sự kiện như hội nghị, triển lãm,竞赛. Trong giao tiếp, người ta thường nói '举办活动' (tổ chức hoạt động) hoặc '举办比赛' (tổ chức thi đấu).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__3__topic__12__lam-viec-toi",
+      "sectionSlug": "lam-viec-toi",
       "sectionTitle": "Làm việc tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:熊猫",
   "type": "word",
   "word": "熊猫",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "xióng māo",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "gấu trúc",
+      "meaningShortVi": "gấu trúc",
+      "meaningFullVi": "gấu trúc",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "gấu trúc",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -49,32 +50,35 @@
         "word": "大熊猫",
         "pinyin": "dà xióng māo",
         "meaningVi": "Gấu trúc lớn",
+        "meaningFullVi": "Gấu trúc lớn",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          3
-        ],
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 3",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
       {
         "text": "这个熊猫",
-        "pinyin": "",
+        "pinyin": "zhè ge xióng māo",
         "meaningVi": "cái gấu trúc này",
+        "meaningFullVi": "cái gấu trúc này",
         "target": "熊猫",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "那个熊猫",
-        "pinyin": "",
+        "pinyin": "nà ge xióng māo",
         "meaningVi": "cái gấu trúc kia",
+        "meaningFullVi": "cái gấu trúc kia",
         "target": "熊猫",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -84,7 +88,8 @@
       "meaningVi": "Gấu trúc là quốc bảo của Trung Quốc.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "熊猫",
@@ -93,10 +98,19 @@
       "meaningVi": "Tôi thích nhìn gấu trúc ăn tre.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 熊猫",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/熊猫.mp3"
   ],
@@ -105,11 +119,16 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 8,
+      "sectionId": "hsk__3__lesson__8__bai-8-ban-di-dau-toi-di-do",
+      "sectionSlug": "bai-8-ban-di-dau-toi-di-do",
       "sectionTitle": "Bạn đi đâu tôi đi đó.",
       "sectionTitleZh": "你去哪儿我就去哪儿",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-8-ban-di-dau-toi-di-do/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-8-ban-di-dau-toi-di-do/",
+      "orderInSection": 6
     }
   ],
   "sources": [
@@ -125,7 +144,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

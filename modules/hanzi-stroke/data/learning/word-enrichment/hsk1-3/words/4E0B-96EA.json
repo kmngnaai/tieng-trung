@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:下雪",
   "type": "word",
   "word": "下雪",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "xià xuě",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hạ tuyết",
+      "meaningShortVi": "hạ tuyết",
+      "meaningFullVi": "hạ tuyết",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hạ tuyết",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -48,52 +49,68 @@
     "collocations": [
       {
         "text": "开始下雪",
-        "pinyin": "",
+        "pinyin": "kāi shǐ xià xuě",
         "meaningVi": "bắt đầu có tuyết",
+        "meaningFullVi": "bắt đầu có tuyết",
         "target": "下雪",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "正在下雪",
-        "pinyin": "",
+        "pinyin": "zhèng zài xià xuě",
         "meaningVi": "đang có tuyết rơi",
+        "meaningFullVi": "đang có tuyết rơi",
         "target": "下雪",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "下雪",
       "chinese": "外面下雪了",
-      "pinyin": "",
+      "pinyin": "wài miàn xià xuě le",
       "meaningVi": "Bên ngoài đang có tuyết rơi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "下雪",
       "chinese": "喜欢下雪",
-      "pinyin": "",
+      "pinyin": "xǐ huan xià xuě",
       "meaningVi": "Thích tuyết rơi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "下雪",
       "chinese": "下雪的时候",
-      "pinyin": "",
+      "pinyin": "xià xuě de shí hou",
       "meaningVi": "Khi có tuyết rơi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 下雪",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/下雪.mp3"
   ],
@@ -102,11 +119,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__2__topic__16__thien-nhien",
+      "sectionSlug": "thien-nhien",
       "sectionTitle": "Thiên nhiên",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thien-nhien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thien-nhien/",
+      "orderInSection": 20
     }
   ],
   "sources": [
@@ -122,7 +144,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

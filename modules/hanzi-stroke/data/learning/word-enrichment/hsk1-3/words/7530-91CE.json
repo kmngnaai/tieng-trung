@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:田野",
   "type": "word",
   "word": "田野",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "tián yě",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cánh đồng",
+      "meaningShortVi": "cánh đồng",
+      "meaningFullVi": "cánh đồng",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cánh đồng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Từ vựng HSK 5: cánh đồng"
-  ],
-  "wordTypeExplanations": [
-    "Từ ghép nghĩa"
   ],
   "hsk": {
     "levels": [
@@ -51,19 +48,24 @@
         "text": "很田野",
         "pinyin": "很 田野",
         "meaningVi": "很 田野",
+        "meaningFullVi": "很 田野",
         "target": "田野",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "非常田野",
         "pinyin": "非常 田野",
         "meaningVi": "非常 田野",
+        "meaningFullVi": "非常 田野",
         "target": "田野",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +75,8 @@
       "meaningVi": "Đây là cánh đồng",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "田野",
@@ -82,7 +85,8 @@
       "meaningVi": "Tôi thích 田野",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "田野",
@@ -91,7 +95,8 @@
       "meaningVi": "Có 田野",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "田野",
@@ -100,23 +105,17 @@
       "meaningVi": "Không có 田野",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 田野",
-      "syntax": "compound-semantic",
-      "matchedExample": "Từ vựng HSK 5: cánh đồng",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Từ ghép nghĩa",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 田野",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Từ vựng HSK 5: cánh đồng",
+      "explanationVi": "Từ ghép nghĩa",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -131,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

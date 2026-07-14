@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:演出",
   "type": "word",
   "word": "演出",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yǎn chū",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "biểu diễn; trình diễn nghệ thuật trước công chúng như kịch, múa, nhạc",
+      "meaningShortVi": "biểu diễn",
+      "meaningFullVi": "biểu diễn; trình diễn nghệ thuật trước công chúng như kịch, múa, nhạc",
       "partOfSpeech": "động từ / danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "biểu diễn",
   "wordType": "động từ / danh từ",
   "wordTypes": [
     "động từ / danh từ"
   ],
-  "usageNotes": [
-    "Có thể dùng làm động từ (biểu diễn ở khắp nơi) hoặc danh từ (buổi biểu diễn). Trong văn nghệ thuật, 有助于 nói về các loại hình như 戏剧演出, 音乐演出. Từ liên quan: 表演 'biểu diễn', 上演 'lên sân khấu'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,19 +51,24 @@
         "text": "演出节目",
         "pinyin": "yǎnchū jiémù",
         "meaningVi": "chương trình biểu diễn",
+        "meaningFullVi": "chương trình biểu diễn",
         "target": "演出",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "观看演出",
         "pinyin": "guānkàn yǎnchū",
         "meaningVi": "xem biểu diễn",
+        "meaningFullVi": "xem biểu diễn",
         "target": "演出",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Buổi biểu diễn này rất xuất sắc.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "演出",
@@ -83,16 +88,17 @@
       "meaningVi": "Họ biểu diễn khắp cả nước.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 演出",
-      "syntax": "động từ / danh từ",
-      "matchedExample": "Có thể dùng làm động từ (biểu diễn ở khắp nơi) hoặc danh từ (buổi biểu diễn). Trong văn nghệ thuật, 有助于 nói về các loại hình như 戏剧演出, 音乐演出. Từ liên quan: 表演 'biểu diễn', 上演 'lên sân khấu'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 演出",
+      "partOfSpeech": "động từ / danh từ",
+      "usageNoteVi": "Có thể dùng làm động từ (biểu diễn ở khắp nơi) hoặc danh từ (buổi biểu diễn). Trong văn nghệ thuật, 有助于 nói về các loại hình như 戏剧演出, 音乐演出. Từ liên quan: 表演 'biểu diễn', 上演 'lên sân khấu'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__3__topic__10__giai-tri-toi",
+      "sectionSlug": "giai-tri-toi",
       "sectionTitle": "Giải trí tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

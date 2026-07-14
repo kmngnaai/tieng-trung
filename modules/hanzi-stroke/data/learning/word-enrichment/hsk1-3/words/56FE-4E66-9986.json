@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:图书馆",
   "type": "word",
   "word": "图书馆",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "tú shū guǎn",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thư viện",
+      "meaningShortVi": "thư viện",
+      "meaningFullVi": "thư viện",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thư viện",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "图书馆 là nơi lưu trữ và cho mượn sách, báo, tạp chí."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -54,19 +53,24 @@
         "text": "图书馆里",
         "pinyin": "túshūguǎn lǐ",
         "meaningVi": "trong thư viện",
+        "meaningFullVi": "trong thư viện",
         "target": "图书馆",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "公共图书馆",
         "pinyin": "gōnggòng túshūguǎn",
         "meaningVi": "thư viện công cộng",
+        "meaningFullVi": "thư viện công cộng",
         "target": "图书馆",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -76,7 +80,8 @@
       "meaningVi": "Tôi đi thư viện đọc sách.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "图书馆",
@@ -85,7 +90,8 @@
       "meaningVi": "Thư viện rất yên tĩnh.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "图书馆",
@@ -94,16 +100,17 @@
       "meaningVi": "Thư viện thành phố nằm ở trung tâm.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 图书馆",
-      "syntax": "compound-semantic",
-      "matchedExample": "图书馆 là nơi lưu trữ và cho mượn sách, báo, tạp chí.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 图书馆",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "图书馆 là nơi lưu trữ và cho mượn sách, báo, tạp chí.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,31 +121,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__1__topic__7__cac-toa-nha",
+      "sectionSlug": "cac-toa-nha",
       "sectionTitle": "Các tòa nhà",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cac-toa-nha/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cac-toa-nha/",
+      "orderInSection": 4
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 11,
+      "sectionId": "hsk__3__lesson__11__bai-11-dung-quen-tat-dieu-hoa",
+      "sectionSlug": "bai-11-dung-quen-tat-dieu-hoa",
       "sectionTitle": "Đừng quên tắt điều hòa.",
       "sectionTitleZh": "别忘了把空调关了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-11-dung-quen-tat-dieu-hoa/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-11-dung-quen-tat-dieu-hoa/",
+      "orderInSection": 1
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__3__lesson__14__bai-14-this-book-is-checked-out",
+      "sectionSlug": "bai-14-this-book-is-checked-out",
       "sectionTitle": "Cuốn sách này bị người khác mượn mất rồi",
       "sectionTitleZh": "这本书被别人借走了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-14-this-book-is-checked-out/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-14-this-book-is-checked-out/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -154,7 +176,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:的确",
   "type": "word",
   "word": "的确",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "dí què",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thật vậy",
+      "meaningShortVi": "thật vậy",
+      "meaningFullVi": "thật vậy",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thật vậy",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -42,29 +43,51 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [
+      {
+        "text": "的确",
+        "pinyin": "dí què",
+        "meaningVi": "thật vậy",
+        "meaningFullVi": "thật vậy",
+        "target": "的确",
+        "source": "hsk_3.json",
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "的确",
       "chinese": "这个的确很好。",
-      "pinyin": "",
+      "pinyin": "zhè ge dí què hěn hǎo。",
       "meaningVi": "thật vậy này rất tốt.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "的确",
       "chinese": "我喜欢这个的确。",
-      "pinyin": "",
+      "pinyin": "wǒ xǐ huan zhè ge dí què。",
       "meaningVi": "Tôi thích thật vậy này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 的确",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/的确.mp3"
   ],
@@ -77,7 +100,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

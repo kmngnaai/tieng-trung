@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:坐下",
   "type": "word",
   "word": "坐下",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "zuò xià",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ngồi xuống",
+      "meaningShortVi": "ngồi xuống",
+      "meaningFullVi": "ngồi xuống",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ngồi xuống",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Diễn tả hành động ngồi xuống, thường dùng khi mời ai đó nghỉ hoặc khi chuyển từ tư thế đứng. Trong giao tiếp, 请坐下 là lời mời lịch sự. Phân biệt với 坐 (ngồi) là trạng thái, 坐下 là hành động chuyển đổi. Trái nghĩa với 站起来 (đứng dậy)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 坐 (ngồi) + 下 (xuống) → hành động ngồi xuống. Chỉ việc chuyển từ tư thế đứng hoặc đi sang tư thế ngồi."
   ],
   "hsk": {
     "levels": [
@@ -50,22 +47,17 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "坐",
-        "pinyin": "zuò",
-        "meaningVi": "ngồi",
+        "text": "坐下",
+        "pinyin": "zuò xià",
+        "meaningVi": "ngồi xuống",
+        "meaningFullVi": "ngồi xuống",
         "target": "坐下",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "站起来",
-        "pinyin": "zhàn qǐlái",
-        "meaningVi": "đứng dậy (trái nghĩa)",
-        "target": "坐下",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -75,7 +67,8 @@
       "meaningVi": "Xin hãy ngồi xuống",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "坐下",
@@ -84,7 +77,8 @@
       "meaningVi": "Tôi đã ngồi xuống rồi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "坐下",
@@ -93,7 +87,8 @@
       "meaningVi": "ngồi xuống nghỉ ngơi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "坐下",
@@ -102,7 +97,8 @@
       "meaningVi": "Ngồi xuống nhanh đi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "坐下",
@@ -111,23 +107,17 @@
       "meaningVi": "Để anh ấy ngồi xuống",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 坐下",
-      "syntax": "compound-semantic",
-      "matchedExample": "Diễn tả hành động ngồi xuống, thường dùng khi mời ai đó nghỉ hoặc khi chuyển từ tư thế đứng. Trong giao tiếp, 请坐下 là lời mời lịch sự. Phân biệt với 坐 (ngồi) là trạng thái, 坐下 là hành động chuyển đổi. Trái nghĩa với 站起来 (đứng dậy).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 坐 (ngồi) + 下 (xuống) → hành động ngồi xuống. Chỉ việc chuyển từ tư thế đứng hoặc đi sang tư thế ngồi.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 坐下",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Diễn tả hành động ngồi xuống, thường dùng khi mời ai đó nghỉ hoặc khi chuyển từ tư thế đứng. Trong giao tiếp, 请坐下 là lời mời lịch sự. Phân biệt với 坐 (ngồi) là trạng thái, 坐下 là hành động chuyển đổi. Trái nghĩa với 站起来 (đứng dậy).",
+      "explanationVi": "Ghép nghĩa: 坐 (ngồi) + 下 (xuống) → hành động ngồi xuống. Chỉ việc chuyển từ tư thế đứng hoặc đi sang tư thế ngồi.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -138,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 21,
+      "sectionId": "new_hsk__1__topic__21__dong-tu-thuong-le",
+      "sectionSlug": "dong-tu-thuong-le",
       "sectionTitle": "Động từ thường lệ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dong-tu-thuong-le/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dong-tu-thuong-le/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -153,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

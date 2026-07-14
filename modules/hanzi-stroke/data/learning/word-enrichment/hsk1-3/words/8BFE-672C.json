@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:课本",
   "type": "word",
   "word": "课本",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "kè běn",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sách giáo khoa",
+      "meaningShortVi": "sách giáo khoa",
+      "meaningFullVi": "sách giáo khoa",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sách giáo khoa",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "课本 là sách giáo khoa, sách dùng để học trong lớp. Ghép từ Hán-Việt: khoá (bài học) + bản (sách)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -51,19 +50,24 @@
         "text": "新课本",
         "pinyin": "xīn kèběn",
         "meaningVi": "sách giáo khoa mới",
+        "meaningFullVi": "sách giáo khoa mới",
         "target": "课本",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "语文课本",
         "pinyin": "yǔwén kèběn",
         "meaningVi": "sách giáo khoa tiếng Trung",
+        "meaningFullVi": "sách giáo khoa tiếng Trung",
         "target": "课本",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Mời mở sách giáo khoa.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "课本",
@@ -82,16 +87,17 @@
       "meaningVi": "Sách giáo khoa của tôi ở đâu?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 课本",
-      "syntax": "compound-semantic",
-      "matchedExample": "课本 là sách giáo khoa, sách dùng để học trong lớp. Ghép từ Hán-Việt: khoá (bài học) + bản (sách).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 课本",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "课本 là sách giáo khoa, sách dùng để học trong lớp. Ghép từ Hán-Việt: khoá (bài học) + bản (sách).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__1__topic__6__trong-lop",
+      "sectionSlug": "trong-lop",
       "sectionTitle": "Trong lớp",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/trong-lop/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/trong-lop/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

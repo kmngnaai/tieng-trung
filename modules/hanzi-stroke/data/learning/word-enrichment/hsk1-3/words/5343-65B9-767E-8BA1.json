@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:千方百计",
   "type": "word",
   "word": "千方百计",
@@ -17,26 +17,25 @@
     "readings": [
       {
         "pinyin": "qiān fāng bǎi jì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "mọi cách, mọi thủ đoạn",
+      "meaningShortVi": "mọi cách",
+      "meaningFullVi": "mọi cách, mọi thủ đoạn",
       "partOfSpeech": "idiom",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "mọi cách",
   "wordType": "idiom",
   "wordTypes": [
     "idiom"
   ],
-  "usageNotes": [
-    "Thành ngữ chỉ mọi cách, mọi thủ đoạn để đạt mục đích. Dùng cho nỗ lực."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,24 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "千方百计地",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "千方百计",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "千方百计想办法",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "千方百计",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +56,8 @@
       "meaningVi": "Mọi cách tìm giải pháp",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "千方百计",
@@ -82,7 +66,8 @@
       "meaningVi": "Mọi cách mời",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "千方百计",
@@ -91,16 +76,17 @@
       "meaningVi": "Dùng mọi cách",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 千方百计",
-      "syntax": "idiom",
-      "matchedExample": "Thành ngữ chỉ mọi cách, mọi thủ đoạn để đạt mục đích. Dùng cho nỗ lực.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 千方百计",
+      "partOfSpeech": "idiom",
+      "usageNoteVi": "Thành ngữ chỉ mọi cách, mọi thủ đoạn để đạt mục đích. Dùng cho nỗ lực.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -115,7 +101,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

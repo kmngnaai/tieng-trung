@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:汽车",
   "type": "word",
   "word": "汽车",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "qì chē",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "xe ô tô",
+      "meaningShortVi": "xe ô tô",
+      "meaningFullVi": "xe ô tô",
       "partOfSpeech": "noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "xe ô tô",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Danh từ chỉ xe ô tô, xe hơi."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -51,60 +50,65 @@
         "word": "公共汽车",
         "pinyin": "gōng gòng qì chē",
         "meaningVi": "xe buýt",
+        "meaningFullVi": "xe buýt",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
       {
         "text": "坐汽车",
-        "pinyin": "",
+        "pinyin": "zuò qì chē",
         "meaningVi": "ngồi xe ô tô",
+        "meaningFullVi": "ngồi xe ô tô",
         "target": "汽车",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "汽车公司",
-        "pinyin": "",
+        "pinyin": "qì chē gōng sī",
         "meaningVi": "công ty ô tô",
+        "meaningFullVi": "công ty ô tô",
         "target": "汽车",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "汽车",
       "chinese": "我买了汽车",
-      "pinyin": "",
+      "pinyin": "wǒ mǎi le qì chē",
       "meaningVi": "Tôi mua xe ô tô",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "汽车",
       "chinese": "汽车站",
-      "pinyin": "",
+      "pinyin": "qì chē zhàn",
       "meaningVi": "trạm xe ô tô",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 汽车",
-      "syntax": "noun",
-      "matchedExample": "Danh từ chỉ xe ô tô, xe hơi.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 汽车",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Danh từ chỉ xe ô tô, xe hơi.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -115,21 +119,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__1__topic__8__van-chuyen",
+      "sectionSlug": "van-chuyen",
       "sectionTitle": "Vận chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/van-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/van-chuyen/",
+      "orderInSection": 7
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__2__topic__5__van-chuyen",
+      "sectionSlug": "van-chuyen",
       "sectionTitle": "Vận chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/van-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/van-chuyen/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -145,7 +159,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

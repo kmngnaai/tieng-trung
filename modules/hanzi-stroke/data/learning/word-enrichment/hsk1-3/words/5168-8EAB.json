@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:全身",
   "type": "word",
   "word": "全身",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "quán shēn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "toàn thân",
+      "meaningShortVi": "toàn thân",
+      "meaningFullVi": "toàn thân",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "toàn thân",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Danh từ chỉ cả cơ thể."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,49 +48,36 @@
     "collocations": [
       {
         "text": "全身心",
-        "pinyin": "",
+        "pinyin": "quán shēn xīn",
         "meaningVi": "toàn tâm toàn ý",
+        "meaningFullVi": "toàn tâm toàn ý",
         "target": "全身",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "全身无力",
-        "pinyin": "",
-        "meaningVi": "toàn thân không sức",
-        "target": "全身",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "全身",
       "chinese": "全身都很舒服",
-      "pinyin": "",
+      "pinyin": "quán shēn dōu hěn shū fu",
       "meaningVi": "Toàn thân rất thoải mái",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "全身",
-      "chinese": "淋湿全身",
-      "pinyin": "",
-      "meaningVi": "ướt đẫm toàn thân",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 全身",
-      "syntax": "noun",
-      "matchedExample": "Danh từ chỉ cả cơ thể.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 全身",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Danh từ chỉ cả cơ thể.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__2__topic__14__co-the-va-suc-khoe",
+      "sectionSlug": "co-the-va-suc-khoe",
       "sectionTitle": "Cơ thể và sức khỏe",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/co-the-va-suc-khoe/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/co-the-va-suc-khoe/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -117,7 +108,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

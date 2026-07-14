@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:尽量",
   "type": "word",
   "word": "尽量",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jǐn liàng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Cố gắng hết sức, càng nhiều càng tốt",
+      "meaningShortVi": "Cố gắng hết sức",
+      "meaningFullVi": "Cố gắng hết sức, càng nhiều càng tốt",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Cố gắng hết sức",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Trạng ngữ trước động từ, nhấn mạnh nỗ lực tối đa hoặc mức độ cao nhất."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,11 +50,14 @@
         "text": "尽量帮助",
         "pinyin": "jǐnliàng bāngzhù",
         "meaningVi": "cố gắng giúp đỡ",
+        "meaningFullVi": "cố gắng giúp đỡ",
         "target": "尽量",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -65,7 +67,8 @@
       "meaningVi": "Tôi sẽ cố gắng hết sức để hoàn thành nhiệm vụ này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "尽量",
@@ -74,7 +77,8 @@
       "meaningVi": "Bạn hãy đến sớm càng tốt nhé.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "尽量",
@@ -83,16 +87,17 @@
       "meaningVi": "Chúng ta cần cố gắng tiết kiệm nước.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 尽量",
-      "syntax": "compound-semantic",
-      "matchedExample": "Trạng ngữ trước động từ, nhấn mạnh nỗ lực tối đa hoặc mức độ cao nhất.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 尽量",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Trạng ngữ trước động từ, nhấn mạnh nỗ lực tối đa hoặc mức độ cao nhất.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__3__topic__1__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/pho-tu/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -118,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

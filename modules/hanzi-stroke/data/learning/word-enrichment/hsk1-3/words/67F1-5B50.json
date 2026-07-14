@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:柱子",
   "type": "word",
   "word": "柱子",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhù zi",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cột, trụ",
+      "meaningShortVi": "cột",
+      "meaningFullVi": "cột, trụ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cột",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "trụ (cột gỗ) + tử (hậu tố) — cột chống đỡ"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -46,22 +45,17 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "支撑柱子",
-        "pinyin": "",
-        "meaningVi": "",
+        "text": "柱子",
+        "pinyin": "zhù zi",
+        "meaningVi": "cột",
+        "meaningFullVi": "cột, trụ",
         "target": "柱子",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "柱子很粗",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "柱子",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +65,8 @@
       "meaningVi": "cột chống đỡ",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "柱子",
@@ -80,7 +75,8 @@
       "meaningVi": "cột này",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "柱子",
@@ -89,7 +85,8 @@
       "meaningVi": "cột rất to",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "柱子",
@@ -98,16 +95,17 @@
       "meaningVi": "cột đá cẩm thạch",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 柱子",
-      "syntax": "compound-semantic",
-      "matchedExample": "trụ (cột gỗ) + tử (hậu tố) — cột chống đỡ",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 柱子",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "trụ (cột gỗ) + tử (hậu tố) — cột chống đỡ",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -122,7 +120,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

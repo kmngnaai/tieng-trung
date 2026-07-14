@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:等到",
   "type": "word",
   "word": "等到",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "děng dào",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đẳng đáo",
+      "meaningShortVi": "đẳng đáo",
+      "meaningFullVi": "đẳng đáo",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đẳng đáo",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,43 +48,58 @@
     "collocations": [
       {
         "text": "等到什么时候",
-        "pinyin": "",
+        "pinyin": "děng dào shén me shí hou",
         "meaningVi": "đợi đến khi nào",
+        "meaningFullVi": "đợi đến khi nào",
         "target": "等到",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "终于等到",
-        "pinyin": "",
+        "pinyin": "zhōng yú děng dào",
         "meaningVi": "cuối cùng cũng đợi được",
+        "meaningFullVi": "cuối cùng cũng đợi được",
         "target": "等到",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "等到",
       "chinese": "请等到我来",
-      "pinyin": "",
+      "pinyin": "qǐng děng dào wǒ lái",
       "meaningVi": "Vui lòng đợi tôi đến",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "等到",
       "chinese": "等到明天",
-      "pinyin": "",
+      "pinyin": "děng dào míng tiān",
       "meaningVi": "Đợi đến ngày mai",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 等到",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/等到.mp3"
   ],
@@ -92,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 26,
+      "sectionId": "new_hsk__2__topic__26__dong-tu",
+      "sectionSlug": "dong-tu",
       "sectionTitle": "Động từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dong-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dong-tu/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -107,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

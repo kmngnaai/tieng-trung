@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:作用",
   "type": "word",
   "word": "作用",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "zuò yòng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tác dụng",
+      "meaningShortVi": "tác dụng",
+      "meaningFullVi": "tác dụng",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tác dụng",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,60 +48,78 @@
     "collocations": [
       {
         "text": "发挥作用",
-        "pinyin": "",
+        "pinyin": "fā huī zuò yòng",
         "meaningVi": "phát huy tác dụng",
+        "meaningFullVi": "phát huy tác dụng",
         "target": "作用",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "起作用",
-        "pinyin": "",
+        "pinyin": "qǐ zuò yòng",
         "meaningVi": "có tác dụng",
+        "meaningFullVi": "có tác dụng",
         "target": "作用",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "积极作用",
-        "pinyin": "",
+        "pinyin": "jī jí zuò yòng",
         "meaningVi": "tác động tích cực",
+        "meaningFullVi": "tác động tích cực",
         "target": "作用",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "作用",
       "chinese": "这个药有很好的作用。",
-      "pinyin": "",
+      "pinyin": "zhè ge yào yǒu hěn hǎo de zuò yòng。",
       "meaningVi": "Thuốc này có tác dụng rất tốt.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "作用",
       "chinese": "他的话对我有很大作用。",
-      "pinyin": "",
+      "pinyin": "tā de huà duì wǒ yǒu hěn dà zuò yòng。",
       "meaningVi": "Lời nói của anh ấy có tác dụng lớn với tôi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "作用",
       "chinese": "发挥作用。",
-      "pinyin": "",
+      "pinyin": "fā huī zuò yòng。",
       "meaningVi": "Phát huy tác dụng.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 作用",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/作用.mp3"
   ],
@@ -109,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 28,
+      "sectionId": "new_hsk__2__topic__28__danh-tu",
+      "sectionSlug": "danh-tu",
       "sectionTitle": "Danh từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/danh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/danh-tu/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -124,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

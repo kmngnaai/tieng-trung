@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:报名",
   "type": "word",
   "word": "报名",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "bào míng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đăng ký",
+      "meaningShortVi": "đăng ký",
+      "meaningFullVi": "đăng ký",
       "partOfSpeech": "verb",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đăng ký",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -48,43 +49,48 @@
     "collocations": [
       {
         "text": "报名表",
-        "pinyin": "",
+        "pinyin": "bào míng biǎo",
         "meaningVi": "phiếu đăng ký",
+        "meaningFullVi": "phiếu đăng ký",
         "target": "报名",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "报名截止",
-        "pinyin": "",
-        "meaningVi": "hết hạn đăng ký",
-        "target": "报名",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "报名",
       "chinese": "我想报名参加",
-      "pinyin": "",
+      "pinyin": "wǒ xiǎng bào míng cān jiā",
       "meaningVi": "Tôi muốn đăng ký tham gia",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "报名",
       "chinese": "报名开始了",
-      "pinyin": "",
+      "pinyin": "bào míng kāi shǐ le",
       "meaningVi": "Đăng ký đã bắt đầu",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 报名",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/报名.mp3"
   ],
@@ -93,11 +99,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__2__topic__12__giai-tri",
+      "sectionSlug": "giai-tri",
       "sectionTitle": "Giải trí",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/",
+      "orderInSection": 26
     }
   ],
   "sources": [
@@ -113,7 +124,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

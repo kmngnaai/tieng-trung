@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:老虎",
   "type": "word",
   "word": "老虎",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "lǎohǔ",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "con hổ, hổ",
+      "meaningShortVi": "con hổ",
+      "meaningFullVi": "con hổ, hổ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "con hổ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Thường dùng khi nói về con hổ. '老' ở đây là tiền tố, không phải già."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 老 (lão, tiền tố) + 虎 (hổ) → con hổ."
   ],
   "hsk": {
     "levels": [
@@ -46,16 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "虎",
-        "pinyin": "hǔ",
-        "meaningVi": "hổ",
-        "target": "老虎",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -65,7 +54,8 @@
       "meaningVi": "Sở thú có hổ",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "老虎",
@@ -74,7 +64,8 @@
       "meaningVi": "Hổ rất dữ",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "老虎",
@@ -83,23 +74,17 @@
       "meaningVi": "Đừng đến nơi có hổ",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 老虎",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường dùng khi nói về con hổ. '老' ở đây là tiền tố, không phải già.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 老 (lão, tiền tố) + 虎 (hổ) → con hổ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 老虎",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường dùng khi nói về con hổ. '老' ở đây là tiền tố, không phải già.",
+      "explanationVi": "Ghép nghĩa: 老 (lão, tiền tố) + 虎 (hổ) → con hổ.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

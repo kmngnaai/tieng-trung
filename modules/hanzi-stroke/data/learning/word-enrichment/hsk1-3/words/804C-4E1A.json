@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:职业",
   "type": "word",
   "word": "职业",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhí yè",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Nghề nghiệp, công việc chuyên môn",
+      "meaningShortVi": "Nghề nghiệp",
+      "meaningFullVi": "Nghề nghiệp, công việc chuyên môn",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Nghề nghiệp",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Chỉ công việc mang tính chuyên môn hoặc nghề nghiệp dài hạn, trang trọng hơn '工作'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "找职业",
         "pinyin": "zhǎo zhíyè",
         "meaningVi": "tìm nghề",
+        "meaningFullVi": "tìm nghề",
         "target": "职业",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "职业中学",
         "pinyin": "zhíyè zhōngxué",
         "meaningVi": "trung học nghề",
+        "meaningFullVi": "trung học nghề",
         "target": "职业",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Nghề nghiệp của anh ấy là bác sĩ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "职业",
@@ -82,7 +87,8 @@
       "meaningVi": "Bạn cần lên kế hoạch phát triển nghề nghiệp của mình.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "职业",
@@ -91,16 +97,17 @@
       "meaningVi": "Nghề nghiệp khác nhau có yêu cầu khác nhau.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 职业",
-      "syntax": "compound-semantic",
-      "matchedExample": "Chỉ công việc mang tính chuyên môn hoặc nghề nghiệp dài hạn, trang trọng hơn '工作'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 职业",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Chỉ công việc mang tính chuyên môn hoặc nghề nghiệp dài hạn, trang trọng hơn '工作'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -111,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__topic__16__cac-hoat-dong",
+      "sectionSlug": "cac-hoat-dong",
       "sectionTitle": "Các hoạt động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/",
+      "orderInSection": 29
     }
   ],
   "sources": [
@@ -126,7 +138,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

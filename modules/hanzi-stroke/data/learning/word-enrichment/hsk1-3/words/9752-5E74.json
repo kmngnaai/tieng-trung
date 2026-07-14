@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:青年",
   "type": "word",
   "word": "青年",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "qīng nián",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thanh niên",
+      "meaningShortVi": "thanh niên",
+      "meaningFullVi": "thanh niên",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thanh niên",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,43 +48,48 @@
     "collocations": [
       {
         "text": "青年教师",
-        "pinyin": "",
+        "pinyin": "qīng nián jiào shī",
         "meaningVi": "giáo viên trẻ",
+        "meaningFullVi": "giáo viên trẻ",
         "target": "青年",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "优秀青年",
-        "pinyin": "",
-        "meaningVi": "thanh niên xuất sắc",
-        "target": "青年",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "青年",
       "chinese": "很多青年喜欢音乐",
-      "pinyin": "",
+      "pinyin": "hěn duō qīng nián xǐ huan yīn yuè",
       "meaningVi": "Rất nhiều thanh niên thích âm nhạc",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "青年",
       "chinese": "青年是国家的未来",
-      "pinyin": "",
+      "pinyin": "qīng nián shì guó jiā de wèi lái",
       "meaningVi": "Thanh niên là tương lai của đất nước",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 青年",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/青年.mp3"
   ],
@@ -92,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 21,
+      "sectionId": "new_hsk__2__topic__21__thong-tin-ca-nhan",
+      "sectionSlug": "thong-tin-ca-nhan",
       "sectionTitle": "Thông tin cá nhân",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin-ca-nhan/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin-ca-nhan/",
+      "orderInSection": 18
     }
   ],
   "sources": [
@@ -107,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

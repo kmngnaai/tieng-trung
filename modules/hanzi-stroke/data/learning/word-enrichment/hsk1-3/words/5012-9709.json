@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:倒霉",
   "type": "word",
   "word": "倒霉",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "dǎo méi",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "vận rủi; không may",
+      "meaningShortVi": "vận rủi",
+      "meaningFullVi": "vận rủi; không may",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "vận rủi",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Từ vựng HSK 5: vận rủi; không may"
-  ],
-  "wordTypeExplanations": [
-    "Từ ghép nghĩa"
   ],
   "hsk": {
     "levels": [
@@ -52,19 +49,24 @@
         "text": "很倒霉",
         "pinyin": "很 倒霉",
         "meaningVi": "很 倒霉",
+        "meaningFullVi": "很 倒霉",
         "target": "倒霉",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "非常倒霉",
         "pinyin": "非常 倒霉",
         "meaningVi": "非常 倒霉",
+        "meaningFullVi": "非常 倒霉",
         "target": "倒霉",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +76,8 @@
       "meaningVi": "Đây là vận rủi; không may",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "倒霉",
@@ -83,7 +86,8 @@
       "meaningVi": "Tôi thích 倒霉",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "倒霉",
@@ -92,7 +96,8 @@
       "meaningVi": "Có 倒霉",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "倒霉",
@@ -101,23 +106,17 @@
       "meaningVi": "Không có 倒霉",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 倒霉",
-      "syntax": "compound-semantic",
-      "matchedExample": "Từ vựng HSK 5: vận rủi; không may",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Từ ghép nghĩa",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 倒霉",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Từ vựng HSK 5: vận rủi; không may",
+      "explanationVi": "Từ ghép nghĩa",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -137,7 +136,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

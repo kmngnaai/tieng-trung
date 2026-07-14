@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:着急",
   "type": "word",
   "word": "着急",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zháo jí",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lo lắng, sốt ruột, nôn nóng",
+      "meaningShortVi": "lo lắng",
+      "meaningFullVi": "lo lắng, sốt ruột, nôn nóng",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lo lắng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "着急 diễn tả tâm trạng nôn nóng, lo lắng. Hán-Việt 'trước' là bám vào; 'cấp' là khẩn cấp. Khi bám vào việc gấp thì ta nôn nóng, sốt ruột."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -48,40 +47,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "别着急",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "着急",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "很着急",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "着急",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "着急地说",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "着急",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "着急等待",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "着急",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -91,7 +58,8 @@
       "meaningVi": "Đừng nôn nóng, từ từ.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "着急",
@@ -100,7 +68,8 @@
       "meaningVi": "Tôi lo lắng chờ tin tức.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "着急",
@@ -109,16 +78,17 @@
       "meaningVi": "Mẹ lo lắng cho con.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 着急",
-      "syntax": "compound-semantic",
-      "matchedExample": "着急 diễn tả tâm trạng nôn nóng, lo lắng. Hán-Việt 'trước' là bám vào; 'cấp' là khẩn cấp. Khi bám vào việc gấp thì ta nôn nóng, sốt ruột.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 着急",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "着急 diễn tả tâm trạng nôn nóng, lo lắng. Hán-Việt 'trước' là bám vào; 'cấp' là khẩn cấp. Khi bám vào việc gấp thì ta nôn nóng, sốt ruột.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -129,21 +99,31 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 1,
+      "sectionId": "hsk__3__lesson__1__bai-1-cuoi-tuan-ban-co-du-dinh-gi",
+      "sectionSlug": "bai-1-cuoi-tuan-ban-co-du-dinh-gi",
       "sectionTitle": "Cuối tuần bạn có dự định gì?",
       "sectionTitleZh": "周末你有什么打算",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-1-cuoi-tuan-ban-co-du-dinh-gi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-1-cuoi-tuan-ban-co-du-dinh-gi/",
+      "orderInSection": 8
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__3__lesson__1__bai-1-we-will-pick-you-up-at-the-airport",
+      "sectionSlug": "bai-1-we-will-pick-you-up-at-the-airport",
       "sectionTitle": "Chúng tôi ra sân bay đón các bạn",
       "sectionTitleZh": "我们去机场接你们",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-1-we-will-pick-you-up-at-the-airport/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-1-we-will-pick-you-up-at-the-airport/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -159,7 +139,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

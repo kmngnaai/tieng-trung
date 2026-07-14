@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:体会",
   "type": "word",
   "word": "体会",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "tǐ huì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trải nghiệm, cảm nhận, thấu hiểu; nắm bắt một vấn đề thông qua trải nghiệm cá nhân",
+      "meaningShortVi": "trải nghiệm",
+      "meaningFullVi": "trải nghiệm, cảm nhận, thấu hiểu; nắm bắt một vấn đề thông qua trải nghiệm cá nhân",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trải nghiệm",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Thường đi kèm với 了 hoặc 到 để chỉ đã đạt được sự thấu hiểu. Có thể dùng cho cả trải nghiệm tích cực và tiêu cực. Trong văn trang trọng, 有助于 để体会 có thể thay cho 帮助理解. Từ liên quan: 经验 'kinh nghiệm', 感受 'cảm nhận'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "深刻体会",
         "pinyin": "shēnkè tǐhuì",
         "meaningVi": "cảm nhận sâu sắc",
+        "meaningFullVi": "cảm nhận sâu sắc",
         "target": "体会",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "体会到",
         "pinyin": "tǐhuì dào",
-        "meaningVi": "cảm nhận được, nhận ra",
+        "meaningVi": "cảm nhận được",
+        "meaningFullVi": "cảm nhận được, nhận ra",
         "target": "体会",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Thông qua chuyến đi này, tôi đã cảm nhận được sự quan trọng của văn hóa Trung Quốc.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "体会",
@@ -82,16 +87,17 @@
       "meaningVi": "Bạn có thể thấu hiểu tâm tình của cha mẹ không?",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 体会",
-      "syntax": "động từ",
-      "matchedExample": "Thường đi kèm với 了 hoặc 到 để chỉ đã đạt được sự thấu hiểu. Có thể dùng cho cả trải nghiệm tích cực và tiêu cực. Trong văn trang trọng, 有助于 để体会 có thể thay cho 帮助理解. Từ liên quan: 经验 'kinh nghiệm', 感受 'cảm nhận'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 体会",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Thường đi kèm với 了 hoặc 到 để chỉ đã đạt được sự thấu hiểu. Có thể dùng cho cả trải nghiệm tích cực và tiêu cực. Trong văn trang trọng, 有助于 để体会 có thể thay cho 帮助理解. Từ liên quan: 经验 'kinh nghiệm', 感受 'cảm nhận'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 28,
+      "sectionId": "new_hsk__3__topic__28__tu-duy",
+      "sectionSlug": "tu-duy",
       "sectionTitle": "tư duy",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-duy/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-duy/",
+      "orderInSection": 31
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

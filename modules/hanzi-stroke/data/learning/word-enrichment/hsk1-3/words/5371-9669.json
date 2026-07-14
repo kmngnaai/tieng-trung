@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:危险",
   "type": "word",
   "word": "危险",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wēi xiǎn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nguy hiểm",
+      "meaningShortVi": "nguy hiểm",
+      "meaningFullVi": "nguy hiểm",
       "partOfSpeech": "tính từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nguy hiểm",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "Chỉ tình trạng có thể gây hại. Trái nghĩa với '安全' (an toàn)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -49,50 +48,47 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "危险品",
-        "pinyin": "",
-        "meaningVi": "hàng hóa nguy hiểm",
-        "target": "危险",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "非常危险",
-        "pinyin": "",
+        "pinyin": "fēi cháng wēi xiǎn",
         "meaningVi": "cực kỳ nguy hiểm",
+        "meaningFullVi": "cực kỳ nguy hiểm",
         "target": "危险",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "危险",
       "chinese": "这里很危险，不要靠近。",
-      "pinyin": "",
+      "pinyin": "zhè li hěn wēi xiǎn， bù yào kào jìn。",
       "meaningVi": "Nơi này rất nguy hiểm, đừng lại gần.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "危险",
       "chinese": "这种行为很危险。",
-      "pinyin": "",
+      "pinyin": "zhè zhǒng xíng wéi hěn wēi xiǎn。",
       "meaningVi": "Hành vi này rất nguy hiểm.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 危险",
-      "syntax": "tính từ",
-      "matchedExample": "Chỉ tình trạng có thể gây hại. Trái nghĩa với '安全' (an toàn).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 危险",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "Chỉ tình trạng có thể gây hại. Trái nghĩa với '安全' (an toàn).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +99,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 25,
+      "sectionId": "new_hsk__3__topic__25__truong-hop",
+      "sectionSlug": "truong-hop",
       "sectionTitle": "Trường hợp",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/truong-hop/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/truong-hop/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -123,7 +124,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

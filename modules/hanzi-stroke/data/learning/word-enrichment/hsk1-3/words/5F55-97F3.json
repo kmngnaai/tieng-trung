@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:录音",
   "type": "word",
   "word": "录音",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "lù yīn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ghi âm",
+      "meaningShortVi": "ghi âm",
+      "meaningFullVi": "ghi âm",
       "partOfSpeech": "động từ / danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ghi âm",
   "wordType": "động từ / danh từ",
   "wordTypes": [
     "động từ / danh từ"
   ],
-  "usageNotes": [
-    "既可指动作（录制声音），也可指录制成的音频文件。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -48,41 +47,37 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "录音机",
-        "pinyin": "",
-        "meaningVi": "máy thu âm",
-        "target": "录音",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "录音室",
-        "pinyin": "",
+        "pinyin": "lù yīn shì",
         "meaningVi": "phòng thu âm",
+        "meaningFullVi": "phòng thu âm",
         "target": "录音",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "录音",
       "chinese": "这个录音质量很好。",
-      "pinyin": "",
+      "pinyin": "zhè ge lù yīn zhì liàng hěn hǎo。",
       "meaningVi": "Bản thu âm này có chất lượng rất tốt.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 录音",
-      "syntax": "động từ / danh từ",
-      "matchedExample": "既可指动作（录制声音），也可指录制成的音频文件。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 录音",
+      "partOfSpeech": "động từ / danh từ",
+      "usageNoteVi": "既可指动作（录制声音），也可指录制成的音频文件。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -93,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__3__topic__18__thong-tin-va-phuong-tien",
+      "sectionSlug": "thong-tin-va-phuong-tien",
       "sectionTitle": "Thông tin và phương tiện",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/",
+      "orderInSection": 19
     }
   ],
   "sources": [
@@ -108,7 +108,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

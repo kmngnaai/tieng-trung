@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:谈话",
   "type": "word",
   "word": "谈话",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "tán huà",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nói chuyện; cuộc trò chuyện; buổi trao đổi",
+      "meaningShortVi": "nói chuyện",
+      "meaningFullVi": "nói chuyện; cuộc trò chuyện; buổi trao đổi",
       "partOfSpeech": "động từ / danh từ (Verb / Noun)",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nói chuyện",
   "wordType": "động từ / danh từ (Verb / Noun)",
   "wordTypes": [
     "động từ / danh từ (Verb / Noun)"
   ],
-  "usageNotes": [
-    "Có thể là động từ (nói chuyện với ai) hoặc danh từ (cuộc trò chuyện). Trang trọng hơn 聊天 (tám chuyện), nhưng tự nhiên hơn 讨论 (thảo luận). Synonym: 交流 (giao lưu), 对话 (đối thoại), 聊天 (tám chuyện)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,19 +51,24 @@
         "text": "找谈话",
         "pinyin": "zhǎo tánhuà",
         "meaningVi": "tìm để nói chuyện (thường gặp khi sếp gọi nhân viên)",
+        "meaningFullVi": "tìm để nói chuyện (thường gặp khi sếp gọi nhân viên)",
         "target": "谈话",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "愉快地谈话",
         "pinyin": "yúkuài de tánhuà",
         "meaningVi": "trò chuyện vui vẻ",
+        "meaningFullVi": "trò chuyện vui vẻ",
         "target": "谈话",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Chúng tôi nói chuyện được một tiếng.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "谈话",
@@ -83,16 +88,17 @@
       "meaningVi": "Thầy giáo tìm bạn để nói chuyện.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 谈话",
-      "syntax": "động từ / danh từ (Verb / Noun)",
-      "matchedExample": "Có thể là động từ (nói chuyện với ai) hoặc danh từ (cuộc trò chuyện). Trang trọng hơn 聊天 (tám chuyện), nhưng tự nhiên hơn 讨论 (thảo luận). Synonym: 交流 (giao lưu), 对话 (đối thoại), 聊天 (tám chuyện).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 谈话",
+      "partOfSpeech": "động từ / danh từ (Verb / Noun)",
+      "usageNoteVi": "Có thể là động từ (nói chuyện với ai) hoặc danh từ (cuộc trò chuyện). Trang trọng hơn 聊天 (tám chuyện), nhưng tự nhiên hơn 讨论 (thảo luận). Synonym: 交流 (giao lưu), 对话 (đối thoại), 聊天 (tám chuyện).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 29,
+      "sectionId": "new_hsk__3__topic__29__lien-lac",
+      "sectionSlug": "lien-lac",
       "sectionTitle": "Liên lạc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

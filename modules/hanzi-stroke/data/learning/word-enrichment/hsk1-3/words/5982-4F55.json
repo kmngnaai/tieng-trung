@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:如何",
   "type": "word",
   "word": "如何",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "rú hé",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "như thế nào; bằng cách nào",
+      "meaningShortVi": "như thế nào",
+      "meaningFullVi": "như thế nào; bằng cách nào",
       "partOfSpeech": "cụm từ hỏi",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "như thế nào",
   "wordType": "cụm từ hỏi",
   "wordTypes": [
     "cụm từ hỏi"
   ],
-  "usageNotes": [
-    "Dùng trong văn viết hoặc trang trọng hơn '怎么'. Hỏi về phương pháp hoặc cách thức."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "如何做",
         "pinyin": "rúhé zuò",
         "meaningVi": "làm như thế nào",
+        "meaningFullVi": "làm như thế nào",
         "target": "如何",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "如何看待",
         "pinyin": "rúhé kàndài",
         "meaningVi": "nhìn nhận như thế nào",
+        "meaningFullVi": "nhìn nhận như thế nào",
         "target": "如何",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Tôi nên giải quyết vấn đề này như thế nào?",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "如何",
@@ -82,16 +87,17 @@
       "meaningVi": "Bạn có biết cách làm món này không?",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 如何",
-      "syntax": "cụm từ hỏi",
-      "matchedExample": "Dùng trong văn viết hoặc trang trọng hơn '怎么'. Hỏi về phương pháp hoặc cách thức.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 如何",
+      "partOfSpeech": "cụm từ hỏi",
+      "usageNoteVi": "Dùng trong văn viết hoặc trang trọng hơn '怎么'. Hỏi về phương pháp hoặc cách thức.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 36,
+      "sectionId": "new_hsk__3__topic__36__tu-chuc-nang-ii",
+      "sectionSlug": "tu-chuc-nang-ii",
       "sectionTitle": "Từ chức năng II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-ii/",
+      "orderInSection": 24
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

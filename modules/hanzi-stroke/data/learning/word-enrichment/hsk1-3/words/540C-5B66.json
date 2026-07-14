@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:同学",
   "type": "word",
   "word": "同学",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "tóng xué",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bạn học",
+      "meaningShortVi": "bạn học",
+      "meaningFullVi": "bạn học",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bạn học",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "同学 chỉ người cùng học cùng một lớp hoặc trường."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -54,19 +53,24 @@
         "text": "老同学",
         "pinyin": "lǎo tóngxué",
         "meaningVi": "bạn học cũ",
+        "meaningFullVi": "bạn học cũ",
         "target": "同学",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "男同学",
         "pinyin": "nán tóngxué",
         "meaningVi": "bạn học nam",
+        "meaningFullVi": "bạn học nam",
         "target": "同学",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -76,7 +80,8 @@
       "meaningVi": "Cô ấy là bạn học của tôi.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "同学",
@@ -85,7 +90,8 @@
       "meaningVi": "Chúng tôi cùng một lớp, là bạn học.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "同学",
@@ -94,16 +100,17 @@
       "meaningVi": "Giữa bạn học cần giúp đỡ lẫn nhau.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 同学",
-      "syntax": "compound-semantic",
-      "matchedExample": "同学 chỉ người cùng học cùng một lớp hoặc trường.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 同学",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "同学 chỉ người cùng học cùng một lớp hoặc trường.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,31 +121,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 4,
+      "sectionId": "hsk__1__lesson__4__bai-4-co-ay-la-giao-vien-tieng-han-cua-toi",
+      "sectionSlug": "bai-4-co-ay-la-giao-vien-tieng-han-cua-toi",
       "sectionTitle": "Cô ấy là giáo viên tiếng Hán của tôi",
       "sectionTitleZh": "她是我的汉语老师",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-4-co-ay-la-giao-vien-tieng-han-cua-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-4-co-ay-la-giao-vien-tieng-han-cua-toi/",
+      "orderInSection": 8
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__1__lesson__1__bai-1-hello-ai-xiaoyu",
+      "sectionSlug": "bai-1-hello-ai-xiaoyu",
       "sectionTitle": "AI Tiểu Ngữ, xin chào!",
       "sectionTitleZh": "AI小语，你好！",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-1-hello-ai-xiaoyu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-1-hello-ai-xiaoyu/",
+      "orderInSection": 9
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__1__topic__5__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nghien-cuu/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -159,7 +181,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

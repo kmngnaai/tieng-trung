@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:显然",
   "type": "word",
   "word": "显然",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xiǎn rán",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hien nhien",
+      "meaningShortVi": "hien nhien",
+      "meaningFullVi": "hien nhien",
       "partOfSpeech": "adverb",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hien nhien",
   "wordType": "adverb",
   "wordTypes": [
     "adverb"
   ],
-  "usageNotes": [
-    "Dung de nhan manh mot su that rang ai cung thay ro."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,66 +48,66 @@
     "collocations": [
       {
         "text": ">显然不是",
-        "pinyin": "",
+        "pinyin": "> xiǎn rán bù shì",
         "meaningVi": "hien nhien khong phai",
+        "meaningFullVi": "hien nhien khong phai",
         "target": "显然",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": ">显然可见",
-        "pinyin": "",
+        "pinyin": "> xiǎn rán kě jiàn",
         "meaningVi": "hien nhien thay duoc",
+        "meaningFullVi": "hien nhien thay duoc",
         "target": "显然",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": ">很明显",
-        "pinyin": "",
-        "meaningVi": "rat ro",
-        "target": "显然",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "显然",
       "chinese": "他显然不知道这件事。",
-      "pinyin": "",
+      "pinyin": "tā xiǎn rán bù zhī dào zhè jiàn shì。",
       "meaningVi": "Hien nhien anh ay khong biet vu nay.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "显然",
       "chinese": ">这里显然有人来过。",
-      "pinyin": "",
+      "pinyin": "> zhè li xiǎn rán yǒu rén lái guò。",
       "meaningVi": "Hien nhien da co nguoi den day.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "显然",
       "chinese": "这显然是个错误的决定。",
-      "pinyin": "",
+      "pinyin": "zhè xiǎn rán shì gè cuò wù de jué dìng。",
       "meaningVi": "Hien nhien day la mot quyet dinh sai lam.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 显然",
-      "syntax": "adverb",
-      "matchedExample": "Dung de nhan manh mot su that rang ai cung thay ro.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 显然",
+      "partOfSpeech": "adverb",
+      "usageNoteVi": "Dung de nhan manh mot su that rang ai cung thay ro.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -119,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__3__topic__1__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/pho-tu/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -134,7 +138,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

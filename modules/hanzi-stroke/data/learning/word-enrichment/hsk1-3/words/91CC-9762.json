@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:里面",
   "type": "word",
   "word": "里面",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "lǐ miàn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Bên trong",
+      "meaningShortVi": "Bên trong",
+      "meaningFullVi": "Bên trong",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Bên trong",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "里面 chỉ vị trí bên trong một không gian hoặc vật. Có thể viết thành 里 trong văn nói thân mật."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,27 +51,34 @@
         "text": "房间里面",
         "pinyin": "fángjiān lǐmiàn",
         "meaningVi": "trong phòng",
+        "meaningFullVi": "trong phòng",
         "target": "里面",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "书包里面",
         "pinyin": "shūbāo lǐmiàn",
         "meaningVi": "trong cặp sách",
+        "meaningFullVi": "trong cặp sách",
         "target": "里面",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "在里面",
         "pinyin": "zài lǐmiàn",
         "meaningVi": "ở trong bên",
+        "meaningFullVi": "ở trong bên",
         "target": "里面",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -82,7 +88,8 @@
       "meaningVi": "Trong phòng có ba người.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "里面",
@@ -91,7 +98,8 @@
       "meaningVi": "Xin hãy cho sách vào trong cặp sách.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "里面",
@@ -100,16 +108,17 @@
       "meaningVi": "Trong áo có một túi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 里面",
-      "syntax": "compound-semantic",
-      "matchedExample": "里面 chỉ vị trí bên trong một không gian hoặc vật. Có thể viết thành 里 trong văn nói thân mật.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 里面",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "里面 chỉ vị trí bên trong một không gian hoặc vật. Có thể viết thành 里 trong văn nói thân mật.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -120,21 +129,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__2__lesson__13__bai-13-we-love-attending-chinese-class",
+      "sectionSlug": "bai-13-we-love-attending-chinese-class",
       "sectionTitle": "Chúng tôi thích giờ học tiếng Trung",
       "sectionTitleZh": "我们爱上中文课",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-13-we-love-attending-chinese-class/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-13-we-love-attending-chinese-class/",
+      "orderInSection": 7
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 15,
+      "sectionId": "new_hsk__3__topic__15__noi",
+      "sectionSlug": "noi",
       "sectionTitle": "Nơi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/noi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/noi/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -150,7 +169,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

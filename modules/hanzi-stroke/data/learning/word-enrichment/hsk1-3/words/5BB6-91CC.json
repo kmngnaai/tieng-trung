@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:家里",
   "type": "word",
   "word": "家里",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "jiā li",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ở nhà, trong nhà (chỉ vị trí trong ngôi nhà)",
+      "meaningShortVi": "ở nhà",
+      "meaningFullVi": "ở nhà, trong nhà (chỉ vị trí trong ngôi nhà)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ở nhà",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Chỉ vị trí trong ngôi nhà hoặc thành viên gia đình. Phân biệt với 在家: 在家 thiên về trạng thái người có mặt tại nhà, 家里 thiên về không gian trong nhà hoặc chỉ gia đình (成員)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 家 (nhà) + 里 (bên trong) → bên trong nhà."
   ],
   "hsk": {
     "levels": [
@@ -53,27 +50,34 @@
         "text": "在家里",
         "pinyin": "zài jiālǐ",
         "meaningVi": "ở trong nhà",
+        "meaningFullVi": "ở trong nhà",
         "target": "家里",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "家里人",
         "pinyin": "jiālǐ rén",
         "meaningVi": "người trong gia đình",
+        "meaningFullVi": "người trong gia đình",
         "target": "家里",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "家里家外",
         "pinyin": "jiālǐ jiāwài",
         "meaningVi": "trong nhà ngoài ngõ",
+        "meaningFullVi": "trong nhà ngoài ngõ",
         "target": "家里",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -83,7 +87,8 @@
       "meaningVi": "Trong nhà không có ai",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "家里",
@@ -92,7 +97,8 @@
       "meaningVi": "Tôi đang ở trong nhà",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "家里",
@@ -101,7 +107,8 @@
       "meaningVi": "Trong nhà có ba người (gia đình có 3 thành viên)",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "家里",
@@ -110,23 +117,17 @@
       "meaningVi": "Mời vào nhà ngồi một chút",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 家里",
-      "syntax": "compound-semantic",
-      "matchedExample": "Chỉ vị trí trong ngôi nhà hoặc thành viên gia đình. Phân biệt với 在家: 在家 thiên về trạng thái người có mặt tại nhà, 家里 thiên về không gian trong nhà hoặc chỉ gia đình (成員).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 家 (nhà) + 里 (bên trong) → bên trong nhà.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 家里",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Chỉ vị trí trong ngôi nhà hoặc thành viên gia đình. Phân biệt với 在家: 在家 thiên về trạng thái người có mặt tại nhà, 家里 thiên về không gian trong nhà hoặc chỉ gia đình (成員).",
+      "explanationVi": "Ghép nghĩa: 家 (nhà) + 里 (bên trong) → bên trong nhà.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -137,11 +138,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__1__topic__16__thoi-gian-ranh-roi",
+      "sectionSlug": "thoi-gian-ranh-roi",
       "sectionTitle": "Thời gian rảnh rỗi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian-ranh-roi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian-ranh-roi/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -152,7 +158,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:推动",
   "type": "word",
   "word": "推动",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "tuī dòng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thúc đẩy; làm cho di chuyển; cổ vũ, động viên",
+      "meaningShortVi": "thúc đẩy",
+      "meaningFullVi": "thúc đẩy; làm cho di chuyển; cổ vũ, động viên",
       "partOfSpeech": "động từ (Action Verb)",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thúc đẩy",
   "wordType": "động từ (Action Verb)",
   "wordTypes": [
     "động từ (Action Verb)"
   ],
-  "usageNotes": [
-    "Dùng rộng rãi trong văn cảnh trừu tượng: phát triển, tiến bộ, cải cách. Cũng có thể dùng vật lý: đẩy di chuyển vật nặng. Synonym: 促进 (cổ thúc), 促使 (thúc khiến)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "推动经济发展",
         "pinyin": "tuīdòng jīngjì fāzhǎn",
         "meaningVi": "thúc đẩy phát triển kinh tế",
+        "meaningFullVi": "thúc đẩy phát triển kinh tế",
         "target": "推动",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "推动和平",
         "pinyin": "tuīdòng hépíng",
         "meaningVi": "thúc đẩy hòa bình",
+        "meaningFullVi": "thúc đẩy hòa bình",
         "target": "推动",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Thầy giáo khuyến khích tôi thúc đẩy tiến bộ học tập.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "推动",
@@ -82,16 +87,17 @@
       "meaningVi": "Công nghệ thúc đẩy xã hội tiến bộ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 推动",
-      "syntax": "động từ (Action Verb)",
-      "matchedExample": "Dùng rộng rãi trong văn cảnh trừu tượng: phát triển, tiến bộ, cải cách. Cũng có thể dùng vật lý: đẩy di chuyển vật nặng. Synonym: 促进 (cổ thúc), 促使 (thúc khiến).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 推动",
+      "partOfSpeech": "động từ (Action Verb)",
+      "usageNoteVi": "Dùng rộng rãi trong văn cảnh trừu tượng: phát triển, tiến bộ, cải cách. Cũng có thể dùng vật lý: đẩy di chuyển vật nặng. Synonym: 促进 (cổ thúc), 促使 (thúc khiến).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__3__topic__14__van-chuyen-va-di-chuyen",
+      "sectionSlug": "van-chuyen-va-di-chuyen",
       "sectionTitle": "Vận chuyển và di chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/van-chuyen-va-di-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/van-chuyen-va-di-chuyen/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

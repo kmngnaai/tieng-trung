@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:方向",
   "type": "word",
   "word": "方向",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fāng xiàng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hướng",
+      "meaningShortVi": "hướng",
+      "meaningFullVi": "hướng",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hướng",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Chỉ phương hướng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -50,49 +49,56 @@
     "collocations": [
       {
         "text": "相反方向",
-        "pinyin": "",
+        "pinyin": "xiāng fǎn fāng xiàng",
         "meaningVi": "hướng ngược lại",
+        "meaningFullVi": "hướng ngược lại",
         "target": "方向",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "正确方向",
-        "pinyin": "",
+        "pinyin": "zhèng què fāng xiàng",
         "meaningVi": "hướng đúng",
+        "meaningFullVi": "hướng đúng",
         "target": "方向",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "方向",
       "chinese": "你走错方向了",
-      "pinyin": "",
+      "pinyin": "nǐ zǒu cuò fāng xiàng le",
       "meaningVi": "Bạn đi nhầm hướng rồi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "方向",
       "chinese": "这个方向是对的",
-      "pinyin": "",
+      "pinyin": "zhè ge fāng xiàng shì duì de",
       "meaningVi": "Hướng này là đúng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 方向",
-      "syntax": "noun",
-      "matchedExample": "Chỉ phương hướng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 方向",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Chỉ phương hướng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,21 +109,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__2__topic__6__huong",
+      "sectionSlug": "huong",
       "sectionTitle": "Hướng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/huong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/huong/",
+      "orderInSection": 6
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__lesson__17__bai-17-i-will-learn-from-people-who-are-careful",
+      "sectionSlug": "bai-17-i-will-learn-from-people-who-are-careful",
       "sectionTitle": "Tôi phải học hỏi nhiều từ những người nghiêm túc",
       "sectionTitleZh": "我要多向认真的人学习",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-17-i-will-learn-from-people-who-are-careful/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-17-i-will-learn-from-people-who-are-careful/",
+      "orderInSection": 24
     }
   ],
   "sources": [
@@ -133,7 +149,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

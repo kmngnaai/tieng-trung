@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:工作",
   "type": "word",
   "word": "工作",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "gōng zuò",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "công việc, làm việc",
+      "meaningShortVi": "công việc",
+      "meaningFullVi": "công việc, làm việc",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "công việc",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "'工作' có thể là danh từ (công việc) hoặc động từ (làm việc). '在工作' đang làm việc. Trái với '休息' (nghỉ ngơi)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 工 (công việc, thợ) + 作 (làm, tạo nên). Hoạt động lao động để sinh kế hoặc tạo ra sản phẩm."
   ],
   "hsk": {
     "levels": [
@@ -54,12 +51,10 @@
         "word": "工作日",
         "pinyin": "gōng zuò rì",
         "meaningVi": "ngày làm việc",
+        "meaningFullVi": "ngày làm việc",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          3
-        ],
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 3",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
@@ -67,35 +62,44 @@
         "text": "找工作",
         "pinyin": "zhǎo gōngzuò",
         "meaningVi": "tìm việc",
+        "meaningFullVi": "tìm việc",
         "target": "工作",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "好工作",
         "pinyin": "hǎo gōngzuò",
         "meaningVi": "công việc tốt",
+        "meaningFullVi": "công việc tốt",
         "target": "工作",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "工作地点",
         "pinyin": "gōngzuò dìdiǎn",
         "meaningVi": "địa điểm làm việc",
+        "meaningFullVi": "địa điểm làm việc",
         "target": "工作",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "工作时间",
         "pinyin": "gōngzuò shíjiān",
         "meaningVi": "thời gian làm việc",
+        "meaningFullVi": "thời gian làm việc",
         "target": "工作",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -105,7 +109,8 @@
       "meaningVi": "Tôi đang làm việc",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "工作",
@@ -114,7 +119,8 @@
       "meaningVi": "Đây là công việc của tôi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "工作",
@@ -123,7 +129,8 @@
       "meaningVi": "Công việc rất bận",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "工作",
@@ -132,7 +139,8 @@
       "meaningVi": "Tôi thích công việc này",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "工作",
@@ -141,23 +149,17 @@
       "meaningVi": "Tìm việc không dễ",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 工作",
-      "syntax": "compound-semantic",
-      "matchedExample": "'工作' có thể là danh từ (công việc) hoặc động từ (làm việc). '在工作' đang làm việc. Trái với '休息' (nghỉ ngơi).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 工 (công việc, thợ) + 作 (làm, tạo nên). Hoạt động lao động để sinh kế hoặc tạo ra sản phẩm.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 工作",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "'工作' có thể là danh từ (công việc) hoặc động từ (làm việc). '在工作' đang làm việc. Trái với '休息' (nghỉ ngơi).",
+      "explanationVi": "Ghép nghĩa: 工 (công việc, thợ) + 作 (làm, tạo nên). Hoạt động lao động để sinh kế hoặc tạo ra sản phẩm.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -168,41 +170,61 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 9,
+      "sectionId": "hsk__1__lesson__9__bai-9-con-trai-ban-lam-viec-o-dau",
+      "sectionSlug": "bai-9-con-trai-ban-lam-viec-o-dau",
       "sectionTitle": "Con trai bạn làm việc ở đâu?",
       "sectionTitleZh": "你儿子在哪儿工作",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-9-con-trai-ban-lam-viec-o-dau/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-9-con-trai-ban-lam-viec-o-dau/",
+      "orderInSection": 9
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__1__lesson__3__bai-3-i-m-chinese",
+      "sectionSlug": "bai-3-i-m-chinese",
       "sectionTitle": "Tôi là người Trung Quốc",
       "sectionTitleZh": "我是中国人",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-3-i-m-chinese/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-3-i-m-chinese/",
+      "orderInSection": 5
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__1__lesson__8__bai-8-my-father-also-works-at-a-hospital",
+      "sectionSlug": "bai-8-my-father-also-works-at-a-hospital",
       "sectionTitle": "Bố tôi cũng làm việc ở bệnh viện",
       "sectionTitleZh": "我爸爸也在医院工作",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-8-my-father-also-works-at-a-hospital/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-8-my-father-also-works-at-a-hospital/",
+      "orderInSection": 7
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 22,
+      "sectionId": "new_hsk__1__topic__22__cong-viec",
+      "sectionSlug": "cong-viec",
       "sectionTitle": "Công việc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cong-viec/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cong-viec/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -218,7 +240,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

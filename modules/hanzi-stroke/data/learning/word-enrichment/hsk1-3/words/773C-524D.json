@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:眼前",
   "type": "word",
   "word": "眼前",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yǎn qián",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ngay trước mắt, tại chỗ; sắp xảy ra, gần đến",
+      "meaningShortVi": "ngay trước mắt",
+      "meaningFullVi": "ngay trước mắt, tại chỗ; sắp xảy ra, gần đến",
       "partOfSpeech": "loc từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ngay trước mắt",
   "wordType": "loc từ",
   "wordTypes": [
     "loc từ"
   ],
-  "usageNotes": [
-    "眼前 có thể dùng chỉ vị trí thực sự (ngay trước mắt) hoặc trừu tượng (sắp xảy ra, gần đạt được). Khi nói về thời gian/cơ hội, mang nghĩa 'sắp đến, gần kề'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "出现在眼前",
         "pinyin": "chūxiàn zài yǎnqián",
         "meaningVi": "xuất hiện trước mắt",
+        "meaningFullVi": "xuất hiện trước mắt",
         "target": "眼前",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "眼前一亮",
         "pinyin": "yǎnqián yī liàng",
-        "meaningVi": "mắt sáng lên (vì thấy điều gì đó hay đẹp/đáng chú ý)",
+        "meaningVi": "mắt sáng lên (vì thấy điều gì đó hay đẹp",
+        "meaningFullVi": "mắt sáng lên (vì thấy điều gì đó hay đẹp/đáng chú ý)",
         "target": "眼前",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Ngọn núi này nằm ngay trước mắt.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "眼前",
@@ -82,16 +87,17 @@
       "meaningVi": "Thành công đang ở ngay trước mắt (sắp đạt được).",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 眼前",
-      "syntax": "loc từ",
-      "matchedExample": "眼前 có thể dùng chỉ vị trí thực sự (ngay trước mắt) hoặc trừu tượng (sắp xảy ra, gần đạt được). Khi nói về thời gian/cơ hội, mang nghĩa 'sắp đến, gần kề'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 眼前",
+      "partOfSpeech": "loc từ",
+      "usageNoteVi": "眼前 có thể dùng chỉ vị trí thực sự (ngay trước mắt) hoặc trừu tượng (sắp xảy ra, gần đạt được). Khi nói về thời gian/cơ hội, mang nghĩa 'sắp đến, gần kề'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 15,
+      "sectionId": "new_hsk__3__topic__15__noi",
+      "sectionSlug": "noi",
       "sectionTitle": "Nơi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/noi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/noi/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

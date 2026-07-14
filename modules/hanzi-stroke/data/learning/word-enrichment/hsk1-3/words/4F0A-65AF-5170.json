@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:伊斯兰",
   "type": "word",
   "word": "伊斯兰",
@@ -16,24 +16,25 @@
     "readings": [
       {
         "pinyin": "Yī sī lán",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Hồi giáo",
+      "meaningShortVi": "Hồi giáo",
+      "meaningFullVi": "Hồi giáo",
       "partOfSpeech": "danh từ riêng",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Hồi giáo",
   "wordType": "danh từ riêng",
   "wordTypes": [
     "danh từ riêng"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -43,7 +44,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -53,7 +55,8 @@
       "meaningVi": "Hồi giáo là một trong những tôn giáo lớn trên thế giới.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "伊斯兰",
@@ -62,10 +65,19 @@
       "meaningVi": "Nhiều quốc gia có số lượng lớn tín đồ Hồi giáo.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 伊斯兰",
+      "partOfSpeech": "danh từ riêng",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/伊斯兰.mp3"
   ],
@@ -78,7 +90,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:全能",
   "type": "word",
   "word": "全能",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "quán néng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "toàn năng, giỏi mọi việc, có khả năng làm tất cả",
+      "meaningShortVi": "toàn năng",
+      "meaningFullVi": "toàn năng, giỏi mọi việc, có khả năng làm tất cả",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "toàn năng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Thường dùng trong thể thao (toàn năng), giáo dục (người đa năng), hoặc miêu tả người giỏi nhiều mặt."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 全 (toàn bộ, tất cả) + 能 (khả năng, có thể) → 'có khả năng làm mọi việc'."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "全能运动",
         "pinyin": "quánnéng yùndòng",
         "meaningVi": "thể thao toàn năng (decathlon)",
+        "meaningFullVi": "thể thao toàn năng (decathlon)",
         "target": "全能",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "全能选手",
         "pinyin": "quánnéng xuǎnshǒu",
         "meaningVi": "vận động viên toàn năng",
+        "meaningFullVi": "vận động viên toàn năng",
         "target": "全能",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "全能型人才",
         "pinyin": "quánnéng xíng rényuán",
         "meaningVi": "người đa năng",
+        "meaningFullVi": "người đa năng",
         "target": "全能",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Anh ấy là vận động viên toàn năng",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "全能",
@@ -90,7 +95,8 @@
       "meaningVi": "người có khả năng toàn diện",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "全能",
@@ -99,7 +105,8 @@
       "meaningVi": "quán quân toàn năng",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "全能",
@@ -108,23 +115,17 @@
       "meaningVi": "giáo viên toàn năng",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 全能",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường dùng trong thể thao (toàn năng), giáo dục (người đa năng), hoặc miêu tả người giỏi nhiều mặt.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 全 (toàn bộ, tất cả) + 能 (khả năng, có thể) → 'có khả năng làm mọi việc'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 全能",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường dùng trong thể thao (toàn năng), giáo dục (người đa năng), hoặc miêu tả người giỏi nhiều mặt.",
+      "explanationVi": "Ghép nghĩa: 全 (toàn bộ, tất cả) + 能 (khả năng, có thể) → 'có khả năng làm mọi việc'.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

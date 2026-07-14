@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:写作",
   "type": "word",
   "word": "写作",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xiě zuò",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "viết lách, sáng tác",
+      "meaningShortVi": "viết lách",
+      "meaningFullVi": "viết lách, sáng tác",
       "partOfSpeech": "động từ/danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "viết lách",
   "wordType": "động từ/danh từ",
   "wordTypes": [
     "động từ/danh từ"
   ],
-  "usageNotes": [
-    "Dùng cho hoạt động viết văn, sáng tác."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "写作能力",
-        "pinyin": "",
+        "pinyin": "xiě zuò néng lì",
         "meaningVi": "khả năng viết",
+        "meaningFullVi": "khả năng viết",
         "target": "写作",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "从事写作",
-        "pinyin": "",
+        "pinyin": "cóng shì xiě zuò",
         "meaningVi": "làm nghề viết",
+        "meaningFullVi": "làm nghề viết",
         "target": "写作",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "写作",
       "chinese": "他很喜欢写作。",
-      "pinyin": "",
+      "pinyin": "tā hěn xǐ huan xiě zuò。",
       "meaningVi": "Anh ấy rất thích viết lách.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "写作",
       "chinese": "老师教我们如何提高写作能力。",
-      "pinyin": "",
+      "pinyin": "lǎo shī jiāo wǒ men rú hé tí gāo xiě zuò néng lì。",
       "meaningVi": "Thầy giáo dạy chúng tôi cách nâng cao khả năng viết.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 写作",
-      "syntax": "động từ/danh từ",
-      "matchedExample": "Dùng cho hoạt động viết văn, sáng tác.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 写作",
+      "partOfSpeech": "động từ/danh từ",
+      "usageNoteVi": "Dùng cho hoạt động viết văn, sáng tác.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 26,
+      "sectionId": "new_hsk__3__topic__26__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/",
+      "orderInSection": 17
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

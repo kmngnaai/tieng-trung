@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:放假",
   "type": "word",
   "word": "放假",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fàng jià",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nghỉ phép",
+      "meaningShortVi": "nghỉ phép",
+      "meaningFullVi": "nghỉ phép",
       "partOfSpeech": "other",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nghỉ phép",
   "wordType": "other",
   "wordTypes": [
     "other"
   ],
-  "usageNotes": [
-    "Chỉ thời gian nghỉ làm việc, nghỉ học."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -52,19 +51,14 @@
         "text": "放假时间",
         "pinyin": "fàngjià shíjiān",
         "meaningVi": "thời gian nghỉ",
+        "meaningFullVi": "thời gian nghỉ",
         "target": "放假",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "不放时",
-        "pinyin": "bù fàngjià",
-        "meaningVi": "không nghỉ",
-        "target": "放假",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +68,8 @@
       "meaningVi": "Ngày mai chúng tôi được nghỉ.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "放假",
@@ -83,7 +78,8 @@
       "meaningVi": "Trường học什么时候 nghỉ?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "放假",
@@ -92,16 +88,17 @@
       "meaningVi": "Tết Nguyên đán nghỉ bảy ngày.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 放假",
-      "syntax": "other",
-      "matchedExample": "Chỉ thời gian nghỉ làm việc, nghỉ học.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 放假",
+      "partOfSpeech": "other",
+      "usageNoteVi": "Chỉ thời gian nghỉ làm việc, nghỉ học.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -112,21 +109,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__1__topic__5__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nghien-cuu/",
+      "orderInSection": 11
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__3__lesson__6__bai-6-you-can-even-order-takeout-on-a-high-speed-train",
+      "sectionSlug": "bai-6-you-can-even-order-takeout-on-a-high-speed-train",
       "sectionTitle": "Trên tàu cao tốc còn có thể đặt đồ ăn ngoài",
       "sectionTitleZh": "高铁上还可以点外卖",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-6-you-can-even-order-takeout-on-a-high-speed-train/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-6-you-can-even-order-takeout-on-a-high-speed-train/",
+      "orderInSection": 22
     }
   ],
   "sources": [
@@ -142,7 +149,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

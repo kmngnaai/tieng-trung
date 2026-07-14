@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:初中",
   "type": "word",
   "word": "初中",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "chū zhōng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trường trung học cơ sở, cấp 2",
+      "meaningShortVi": "trường trung học cơ sở",
+      "meaningFullVi": "trường trung học cơ sở, cấp 2",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trường trung học cơ sở",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Chỉ cấp học trung học cơ sở (grades 7-9 ở Trung Quốc). Khác với '高中' (cấp 3)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,49 +49,56 @@
     "collocations": [
       {
         "text": "初中生",
-        "pinyin": "",
+        "pinyin": "chū zhōng shēng",
         "meaningVi": "học sinh cấp 2",
+        "meaningFullVi": "học sinh cấp 2",
         "target": "初中",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "初中毕业",
-        "pinyin": "",
+        "pinyin": "chū zhōng bì yè",
         "meaningVi": "tốt nghiệp cấp 2",
+        "meaningFullVi": "tốt nghiệp cấp 2",
         "target": "初中",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "初中",
       "chinese": "我在初中学习三年。",
-      "pinyin": "",
+      "pinyin": "wǒ zài chū zhōng xué xí sān nián。",
       "meaningVi": "Tôi học ở cấp 2 ba năm.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "初中",
       "chinese": "这所初中的教学质量很好。",
-      "pinyin": "",
+      "pinyin": "zhè suǒ chū zhōng de jiào xué zhì liàng hěn hǎo。",
       "meaningVi": "Chất lượng giảng dạy của trường cấp 2 này rất tốt.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 初中",
-      "syntax": "danh từ",
-      "matchedExample": "Chỉ cấp học trung học cơ sở (grades 7-9 ở Trung Quốc). Khác với '高中' (cấp 3).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 初中",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Chỉ cấp học trung học cơ sở (grades 7-9 ở Trung Quốc). Khác với '高中' (cấp 3).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,21 +109,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__3__lesson__3__bai-3-this-neighborhood-is-pretty-nice",
+      "sectionSlug": "bai-3-this-neighborhood-is-pretty-nice",
       "sectionTitle": "Khu chung cư này khá đẹp",
       "sectionTitleZh": "这个小区挺好的",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-3-this-neighborhood-is-pretty-nice/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-3-this-neighborhood-is-pretty-nice/",
+      "orderInSection": 1
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 26,
+      "sectionId": "new_hsk__3__topic__26__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -133,7 +149,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:感到",
   "type": "word",
   "word": "感到",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "gǎn dào",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cảm thấy",
+      "meaningShortVi": "cảm thấy",
+      "meaningFullVi": "cảm thấy",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cảm thấy",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -48,60 +49,68 @@
     "collocations": [
       {
         "text": "感到高兴",
-        "pinyin": "",
+        "pinyin": "gǎn dào gāo xìng",
         "meaningVi": "cảm thấy vui",
+        "meaningFullVi": "cảm thấy vui",
         "target": "感到",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "感到遗憾",
-        "pinyin": "",
+        "pinyin": "gǎn dào yí hàn",
         "meaningVi": "cảm thấy tiếc",
+        "meaningFullVi": "cảm thấy tiếc",
         "target": "感到",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "感到不安",
-        "pinyin": "",
+        "pinyin": "gǎn dào bù'ān",
         "meaningVi": "cảm thấy bất an",
+        "meaningFullVi": "cảm thấy bất an",
         "target": "感到",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "感到",
-      "chinese": "我感到很荣幸。",
-      "pinyin": "",
-      "meaningVi": "Tôi cảm thấy rất vinh dự.",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "感到",
       "chinese": "他感到很累。",
-      "pinyin": "",
+      "pinyin": "tā gǎn dào hěn lèi。",
       "meaningVi": "Anh ấy cảm thấy rất mệt.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "感到",
       "chinese": "大家都感到很高兴。",
-      "pinyin": "",
+      "pinyin": "dà jiā dōu gǎn dào hěn gāo xìng。",
       "meaningVi": "Mọi người đều cảm thấy rất vui.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 感到",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/感到.mp3"
   ],
@@ -110,21 +119,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 20,
+      "sectionId": "new_hsk__2__topic__20__tinh-cam-va-cam-xuc",
+      "sectionSlug": "tinh-cam-va-cam-xuc",
       "sectionTitle": "Tình cảm và cảm xúc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-cam-va-cam-xuc/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-cam-va-cam-xuc/",
+      "orderInSection": 8
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__3__lesson__13__bai-13-my-new-neighbors-come-from-the-uk",
+      "sectionSlug": "bai-13-my-new-neighbors-come-from-the-uk",
       "sectionTitle": "Hàng xóm mới của tôi đến từ Anh",
       "sectionTitleZh": "我的新邻居来自英国",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-13-my-new-neighbors-come-from-the-uk/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-13-my-new-neighbors-come-from-the-uk/",
+      "orderInSection": 25
     }
   ],
   "sources": [
@@ -140,7 +159,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

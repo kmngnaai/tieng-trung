@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:今后",
   "type": "word",
   "word": "今后",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "jīn hòu",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "từ nay",
+      "meaningShortVi": "từ nay",
+      "meaningFullVi": "từ nay",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "từ nay",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -46,44 +47,49 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "从今以后",
-        "pinyin": "",
-        "meaningVi": "từ nay về sau",
-        "target": "今后",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "今后的发展",
-        "pinyin": "",
+        "pinyin": "jīn hòu de fā zhǎn",
         "meaningVi": "sự phát triển từ nay",
+        "meaningFullVi": "sự phát triển từ nay",
         "target": "今后",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "今后",
       "chinese": "今后我会更加努力",
-      "pinyin": "",
+      "pinyin": "jīn hòu wǒ huì gèng jiā nǔ lì",
       "meaningVi": "Từ nay tôi sẽ nỗ lực hơn",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "今后",
       "chinese": "今后怎么办",
-      "pinyin": "",
+      "pinyin": "jīn hòu zěn me bàn",
       "meaningVi": "Từ nay phải làm sao",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 今后",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/今后.mp3"
   ],
@@ -92,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__2__topic__3__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thoi-gian/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -107,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

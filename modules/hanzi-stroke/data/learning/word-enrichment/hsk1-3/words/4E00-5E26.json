@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:一带",
   "type": "word",
   "word": "一带",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yī dài",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Khu vực lân cận, vùng, dải đất",
+      "meaningShortVi": "Khu vực lân cận",
+      "meaningFullVi": "Khu vực lân cận, vùng, dải đất",
       "partOfSpeech": "danh từ / hậu trí từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Khu vực lân cận",
   "wordType": "danh từ / hậu trí từ",
   "wordTypes": [
     "danh từ / hậu trí từ"
   ],
-  "usageNotes": [
-    "一 (một) + 带 (dải/vùng). 一带 chỉ một khu vực, vùng đất lân cận, thường kết hợp với chỉ từ: 这一带, 那一带, 长城一带. Vùng 一带 cũng là tên chiến lược 'Một vành đai, một con đường' của Trung Quốc."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,48 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "这一带",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "一带",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "那一带",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "一带",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "长城一带",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "一带",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "沿海一带",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "一带",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "附近一带",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "一带",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -95,7 +54,8 @@
       "meaningVi": "Khu vực này rất yên tĩnh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "一带",
@@ -104,7 +64,8 @@
       "meaningVi": "Khu vực Vạn Lý Trường Thành có nhiều du khách.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "一带",
@@ -113,16 +74,17 @@
       "meaningVi": "Chúng ta đi xem khu vực này nhé.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 一带",
-      "syntax": "danh từ / hậu trí từ",
-      "matchedExample": "一 (một) + 带 (dải/vùng). 一带 chỉ một khu vực, vùng đất lân cận, thường kết hợp với chỉ từ: 这一带, 那一带, 长城一带. Vùng 一带 cũng là tên chiến lược 'Một vành đai, một con đường' của Trung Quốc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 一带",
+      "partOfSpeech": "danh từ / hậu trí từ",
+      "usageNoteVi": "一 (một) + 带 (dải/vùng). 一带 chỉ một khu vực, vùng đất lân cận, thường kết hợp với chỉ từ: 这一带, 那一带, 长城一带. Vùng 一带 cũng là tên chiến lược 'Một vành đai, một con đường' của Trung Quốc.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -137,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

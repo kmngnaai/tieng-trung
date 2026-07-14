@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:翻译",
   "type": "word",
   "word": "翻译",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fān yì",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phiên dịch, dịch thuật",
+      "meaningShortVi": "phiên dịch",
+      "meaningFullVi": "phiên dịch, dịch thuật",
       "partOfSpeech": "động từ / danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phiên dịch",
   "wordType": "động từ / danh từ",
   "wordTypes": [
     "động từ / danh từ"
   ],
-  "usageNotes": [
-    "Động từ chỉ việc dịch ngôn ngữ hoặc danh từ chỉ người dịch. phiên = lật/đổi, dịch = chuyển. Thường đi với giới từ thành (sang) hoặc làm bổ ngữ."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -49,19 +48,24 @@
         "text": "翻译成中文",
         "pinyin": "fānyì chéng zhōngwén",
         "meaningVi": "dịch sang tiếng Trung",
+        "meaningFullVi": "dịch sang tiếng Trung",
         "target": "翻译",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "翻译软件",
         "pinyin": "fānyì ruǎnjiàn",
         "meaningVi": "phần mềm dịch",
+        "meaningFullVi": "phần mềm dịch",
         "target": "翻译",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +75,8 @@
       "meaningVi": "Làm ơn giúp tôi dịch bức thư này.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "翻译",
@@ -80,16 +85,17 @@
       "meaningVi": "Anh ấy là một phiên dịch viên.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 翻译",
-      "syntax": "động từ / danh từ",
-      "matchedExample": "Động từ chỉ việc dịch ngôn ngữ hoặc danh từ chỉ người dịch. phiên = lật/đổi, dịch = chuyển. Thường đi với giới từ thành (sang) hoặc làm bổ ngữ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 翻译",
+      "partOfSpeech": "động từ / danh từ",
+      "usageNoteVi": "Động từ chỉ việc dịch ngôn ngữ hoặc danh từ chỉ người dịch. phiên = lật/đổi, dịch = chuyển. Thường đi với giới từ thành (sang) hoặc làm bổ ngữ.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

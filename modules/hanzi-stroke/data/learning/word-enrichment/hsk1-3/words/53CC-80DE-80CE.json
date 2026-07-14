@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:双胞胎",
   "type": "word",
   "word": "双胞胎",
@@ -16,25 +16,24 @@
     "readings": [
       {
         "pinyin": "shuāng bāo tāi",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Nghĩa của 双胞胎",
+      "meaningShortVi": "Nghĩa của 双胞胎",
+      "meaningFullVi": "Nghĩa của 双胞胎",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Nghĩa của 双胞胎",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [],
-  "wordTypeExplanations": [
-    "Ghép nghĩa từng chữ"
   ],
   "hsk": {
     "levels": [
@@ -45,7 +44,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -55,7 +55,8 @@
       "meaningVi": "双胞胎 này rất tốt.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "双胞胎",
@@ -64,7 +65,8 @@
       "meaningVi": "Tôi rất thích 双胞胎.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "双胞胎",
@@ -73,16 +75,17 @@
       "meaningVi": "Bạn biết 双胞胎 không?",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa từng chữ",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 双胞胎",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "",
+      "explanationVi": "Ghép nghĩa từng chữ",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -97,7 +100,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

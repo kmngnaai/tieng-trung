@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:轮胎",
   "type": "word",
   "word": "轮胎",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "lún tāi",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lốp xe, săm xe",
+      "meaningShortVi": "lốp xe",
+      "meaningFullVi": "lốp xe, săm xe",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lốp xe",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Banh cao su của xe."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -44,40 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "汽车轮胎",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "轮胎",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "轮胎爆裂",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "轮胎",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "更换轮胎",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "轮胎",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "轮胎气压",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "轮胎",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -87,7 +54,8 @@
       "meaningVi": "Lốp xe ô tô bị mòn, cần thay thế.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "轮胎",
@@ -96,7 +64,8 @@
       "meaningVi": "Vào mùa đông nên sử dụng lốp xe địa hình trơn.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "轮胎",
@@ -105,16 +74,17 @@
       "meaningVi": "Kiểm tra áp suất lốp rất quan trọng cho an toàn lái xe.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 轮胎",
-      "syntax": "compound-semantic",
-      "matchedExample": "Banh cao su của xe.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 轮胎",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Banh cao su của xe.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -129,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

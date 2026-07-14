@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:零下",
   "type": "word",
   "word": "零下",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "líng xià",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "linh hạ",
+      "meaningShortVi": "linh hạ",
+      "meaningFullVi": "linh hạ",
       "partOfSpeech": "adjective",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "linh hạ",
   "wordType": "adjective",
   "wordTypes": [
     "adjective"
   ],
-  "usageNotes": [
-    "Dùng để chỉ nhiệt độ âm (dưới 0 độ C)"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,58 +49,66 @@
     "collocations": [
       {
         "text": "零下X度",
-        "pinyin": "",
+        "pinyin": "líng xià X dù",
         "meaningVi": "âm X độ",
+        "meaningFullVi": "âm X độ",
         "target": "零下",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "温度零下",
-        "pinyin": "",
+        "pinyin": "wēn dù líng xià",
         "meaningVi": "nhiệt độ dưới không",
+        "meaningFullVi": "nhiệt độ dưới không",
         "target": "零下",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "零下",
       "chinese": "今天零下十度",
-      "pinyin": "",
+      "pinyin": "jīn tiān líng xià shí dù",
       "meaningVi": "Hôm nay âm 10 độ",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "零下",
       "chinese": "零下五度",
-      "pinyin": "",
+      "pinyin": "líng xià wǔ dù",
       "meaningVi": "Âm 5 độ",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "零下",
       "chinese": "温度零下",
-      "pinyin": "",
+      "pinyin": "wēn dù líng xià",
       "meaningVi": "Nhiệt độ dưới không",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 零下",
-      "syntax": "adjective",
-      "matchedExample": "Dùng để chỉ nhiệt độ âm (dưới 0 độ C)",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 零下",
+      "partOfSpeech": "adjective",
+      "usageNoteVi": "Dùng để chỉ nhiệt độ âm (dưới 0 độ C)",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -112,11 +119,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__2__topic__16__thien-nhien",
+      "sectionSlug": "thien-nhien",
       "sectionTitle": "Thiên nhiên",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thien-nhien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thien-nhien/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -132,7 +144,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:女朋友",
   "type": "word",
   "word": "女朋友",
@@ -16,27 +16,24 @@
     "readings": [
       {
         "pinyin": "nǚ péng you",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bạn gái",
+      "meaningShortVi": "bạn gái",
+      "meaningFullVi": "bạn gái",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bạn gái",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng phổ biến để chỉ người yêu nữ. Trong một số ngữ cảnh trang trọng hơn, dùng '女友' (nǚ yǒu)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 女 (nữ, con gái) + 朋友 (bạn) → 'bạn là nữ'."
   ],
   "hsk": {
     "levels": [
@@ -54,27 +51,34 @@
         "text": "好女朋友",
         "pinyin": "hǎo nǚ péng you",
         "meaningVi": "bạn gái tốt",
+        "meaningFullVi": "bạn gái tốt",
         "target": "女朋友",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "前女朋友",
         "pinyin": "qián nǚ péng you",
         "meaningVi": "bạn gái cũ",
+        "meaningFullVi": "bạn gái cũ",
         "target": "女朋友",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "找女朋友",
         "pinyin": "zhǎo nǚ péng you",
         "meaningVi": "tìm bạn gái",
+        "meaningFullVi": "tìm bạn gái",
         "target": "女朋友",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -84,7 +88,8 @@
       "meaningVi": "Đây là bạn gái của tôi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "女朋友",
@@ -93,7 +98,8 @@
       "meaningVi": "Anh ấy muốn tìm một bạn gái",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "女朋友",
@@ -102,7 +108,8 @@
       "meaningVi": "Bạn gái anh ấy rất xinh đẹp",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "女朋友",
@@ -111,23 +118,17 @@
       "meaningVi": "Tôi và bạn gái chia tay rồi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 女朋友",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng phổ biến để chỉ người yêu nữ. Trong một số ngữ cảnh trang trọng hơn, dùng '女友' (nǚ yǒu).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 女 (nữ, con gái) + 朋友 (bạn) → 'bạn là nữ'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 女朋友",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng phổ biến để chỉ người yêu nữ. Trong một số ngữ cảnh trang trọng hơn, dùng '女友' (nǚ yǒu).",
+      "explanationVi": "Ghép nghĩa: 女 (nữ, con gái) + 朋友 (bạn) → 'bạn là nữ'.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -138,21 +139,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__1__lesson__3__bai-3-i-m-chinese",
+      "sectionSlug": "bai-3-i-m-chinese",
       "sectionTitle": "Tôi là người Trung Quốc",
       "sectionTitleZh": "我是中国人",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-3-i-m-chinese/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-3-i-m-chinese/",
+      "orderInSection": 11
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 24,
+      "sectionId": "new_hsk__1__topic__24__nhung-nguoi",
+      "sectionSlug": "nhung-nguoi",
       "sectionTitle": "Những người",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nhung-nguoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nhung-nguoi/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -163,7 +174,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

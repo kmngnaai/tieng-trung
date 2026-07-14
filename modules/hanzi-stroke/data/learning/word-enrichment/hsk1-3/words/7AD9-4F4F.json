@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:站住",
   "type": "word",
   "word": "站住",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhàn zhu",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "dừng lại",
+      "meaningShortVi": "dừng lại",
+      "meaningFullVi": "dừng lại",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "dừng lại",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [
-    "Động từ chỉ hành động dừng chân."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "站住脚",
-        "pinyin": "",
-        "meaningVi": "đứng vững, lập luận được",
+        "pinyin": "zhàn zhu jiǎo",
+        "meaningVi": "đứng vững",
+        "meaningFullVi": "đứng vững, lập luận được",
         "target": "站住",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "叫住站住",
-        "pinyin": "",
+        "pinyin": "jiào zhù zhàn zhu",
         "meaningVi": "bảo dừng lại",
+        "meaningFullVi": "bảo dừng lại",
         "target": "站住",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "站住",
       "chinese": "请站住",
-      "pinyin": "",
+      "pinyin": "qǐng zhàn zhu",
       "meaningVi": "Vui lòng dừng lại",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "站住",
       "chinese": "他突然站住",
-      "pinyin": "",
+      "pinyin": "tā tū rán zhàn zhu",
       "meaningVi": "Anh ấy đột ngứng dừng lại",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 站住",
-      "syntax": "verb",
-      "matchedExample": "Động từ chỉ hành động dừng chân.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 站住",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "Động từ chỉ hành động dừng chân.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__2__topic__6__huong",
+      "sectionSlug": "huong",
       "sectionTitle": "Hướng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/huong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/huong/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

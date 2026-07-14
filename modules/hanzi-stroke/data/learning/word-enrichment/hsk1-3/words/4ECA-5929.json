@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:今天",
   "type": "word",
   "word": "今天",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "jīn tiān",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hôm nay; ngày hôm nay",
+      "meaningShortVi": "hôm nay",
+      "meaningFullVi": "hôm nay; ngày hôm nay",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hôm nay",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Là từ chỉ thời gian phổ biến nhất. Có thể ghép với các từ chỉ thời gian trong ngày: 下午, 早上, 晚上. Lưu ý thanh điệu: jīn (thanh 1) + tiān (thanh 1). Trong khẩu ngữ có thể đọc nhanh thành 'jintian'."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 今 (nay, bây giờ) + 天 (ngày, trời). 'Nay' + 'ngày' = ngày hôm nay. Đây là ghép nghĩa trực tiếp, chỉ ngày hiện tại."
   ],
   "hsk": {
     "levels": [
@@ -54,35 +51,44 @@
         "text": "今天下午",
         "pinyin": "jīntiān xiàwǔ",
         "meaningVi": "chiều hôm nay",
+        "meaningFullVi": "chiều hôm nay",
         "target": "今天",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "今天早上",
         "pinyin": "jīntiān zǎoshang",
         "meaningVi": "sáng hôm nay",
+        "meaningFullVi": "sáng hôm nay",
         "target": "今天",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "今天晚上",
         "pinyin": "jīntiān wǎnshang",
         "meaningVi": "tối hôm nay",
+        "meaningFullVi": "tối hôm nay",
         "target": "今天",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "在今天",
         "pinyin": "zài jīntiān",
         "meaningVi": "vào hôm nay",
+        "meaningFullVi": "vào hôm nay",
         "target": "今天",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -92,7 +98,8 @@
       "meaningVi": "Hôm nay thời tiết rất tốt",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "今天",
@@ -101,7 +108,8 @@
       "meaningVi": "Hôm nay bạn làm gì?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "今天",
@@ -110,7 +118,8 @@
       "meaningVi": "Hôm nay tôi rất bận",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "今天",
@@ -119,7 +128,8 @@
       "meaningVi": "Hôm nay là thứ hai",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "今天",
@@ -128,23 +138,17 @@
       "meaningVi": "chiều hôm nay",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 今天",
-      "syntax": "compound-semantic",
-      "matchedExample": "Là từ chỉ thời gian phổ biến nhất. Có thể ghép với các từ chỉ thời gian trong ngày: 下午, 早上, 晚上. Lưu ý thanh điệu: jīn (thanh 1) + tiān (thanh 1). Trong khẩu ngữ có thể đọc nhanh thành 'jintian'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 今 (nay, bây giờ) + 天 (ngày, trời). 'Nay' + 'ngày' = ngày hôm nay. Đây là ghép nghĩa trực tiếp, chỉ ngày hiện tại.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 今天",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Là từ chỉ thời gian phổ biến nhất. Có thể ghép với các từ chỉ thời gian trong ngày: 下午, 早上, 晚上. Lưu ý thanh điệu: jīn (thanh 1) + tiān (thanh 1). Trong khẩu ngữ có thể đọc nhanh thành 'jintian'.",
+      "explanationVi": "Ghép nghĩa: 今 (nay, bây giờ) + 天 (ngày, trời). 'Nay' + 'ngày' = ngày hôm nay. Đây là ghép nghĩa trực tiếp, chỉ ngày hiện tại.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -155,31 +159,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 7,
+      "sectionId": "hsk__1__lesson__7__bai-7-hom-nay-la-ngay-may",
+      "sectionSlug": "bai-7-hom-nay-la-ngay-may",
       "sectionTitle": "Hôm nay là ngày mấy?",
       "sectionTitleZh": "今天几号",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-7-hom-nay-la-ngay-may/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-7-hom-nay-la-ngay-may/",
+      "orderInSection": 3
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__1__lesson__5__bai-5-i-m-off-today",
+      "sectionSlug": "bai-5-i-m-off-today",
       "sectionTitle": "Hôm nay tôi nghỉ",
       "sectionTitleZh": "今天我休息",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-5-i-m-off-today/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-5-i-m-off-today/",
+      "orderInSection": 7
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 15,
+      "sectionId": "new_hsk__1__topic__15__lich",
+      "sectionSlug": "lich",
       "sectionTitle": "Lịch",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/lich/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/lich/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -190,7 +209,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

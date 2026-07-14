@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:部长",
   "type": "word",
   "word": "部长",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "bù zhǎng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bộ trưởng",
+      "meaningShortVi": "bộ trưởng",
+      "meaningFullVi": "bộ trưởng",
       "partOfSpeech": "danh từ chức vụ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bộ trưởng",
   "wordType": "danh từ chức vụ",
   "wordTypes": [
     "danh từ chức vụ"
   ],
-  "usageNotes": [
-    "部长 (bộ trưởng) chỉ người đứng đầu một bộ trong chính phủ, hoặc trưởng bộ phận trong công ty."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "外交部长",
         "pinyin": "wàijiāo bùzhǎng",
         "meaningVi": "Bộ trưởng Ngoại giao",
+        "meaningFullVi": "Bộ trưởng Ngoại giao",
         "target": "部长",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "教育部长",
         "pinyin": "jiàoyù bùzhǎng",
         "meaningVi": "Bộ trưởng Giáo dục",
+        "meaningFullVi": "Bộ trưởng Giáo dục",
         "target": "部长",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Bộ trưởng Giáo dục đã đến thăm trường chúng tôi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "部长",
@@ -82,16 +87,17 @@
       "meaningVi": "Anh ấy là trưởng bộ phận công ty.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 部长",
-      "syntax": "danh từ chức vụ",
-      "matchedExample": "部长 (bộ trưởng) chỉ người đứng đầu một bộ trong chính phủ, hoặc trưởng bộ phận trong công ty.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 部长",
+      "partOfSpeech": "danh từ chức vụ",
+      "usageNoteVi": "部长 (bộ trưởng) chỉ người đứng đầu một bộ trong chính phủ, hoặc trưởng bộ phận trong công ty.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__topic__16__cac-hoat-dong",
+      "sectionSlug": "cac-hoat-dong",
       "sectionTitle": "Các hoạt động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

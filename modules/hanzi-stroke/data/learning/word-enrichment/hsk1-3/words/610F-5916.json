@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:意外",
   "type": "word",
   "word": "意外",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yì wài",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bất ngờ, ngoài dự kiến",
+      "meaningShortVi": "bất ngờ",
+      "meaningFullVi": "bất ngờ, ngoài dự kiến",
       "partOfSpeech": "tính từ/danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bất ngờ",
   "wordType": "tính từ/danh từ",
   "wordTypes": [
     "tính từ/danh từ"
   ],
-  "usageNotes": [
-    "Chỉ điều gì đó xảy ra không dự kiến. Có thể là tính từ (bất ngờ) hoặc danh từ (sự cố)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,36 @@
     "collocations": [
       {
         "text": "意外发生",
-        "pinyin": "",
+        "pinyin": "yì wài fā shēng",
         "meaningVi": "xảy ra bất ngờ",
+        "meaningFullVi": "xảy ra bất ngờ",
         "target": "意外",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "意外惊喜",
-        "pinyin": "",
-        "meaningVi": "niềm vui bất ngờ",
-        "target": "意外",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "意外",
       "chinese": "这个消息太意外了。",
-      "pinyin": "",
+      "pinyin": "zhè ge xiāo xi tài yì wài le。",
       "meaningVi": "Tin này thật bất ngờ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "意外",
-      "chinese": "他在事故中没有受到意外伤害。",
-      "pinyin": "",
-      "meaningVi": "Anh ấy không bị thương bất ngờ trong tai nạn.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 意外",
-      "syntax": "tính từ/danh từ",
-      "matchedExample": "Chỉ điều gì đó xảy ra không dự kiến. Có thể là tính từ (bất ngờ) hoặc danh từ (sự cố).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 意外",
+      "partOfSpeech": "tính từ/danh từ",
+      "usageNoteVi": "Chỉ điều gì đó xảy ra không dự kiến. Có thể là tính từ (bất ngờ) hoặc danh từ (sự cố).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 25,
+      "sectionId": "new_hsk__3__topic__25__truong-hop",
+      "sectionSlug": "truong-hop",
       "sectionTitle": "Trường hợp",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/truong-hop/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/truong-hop/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -117,7 +108,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

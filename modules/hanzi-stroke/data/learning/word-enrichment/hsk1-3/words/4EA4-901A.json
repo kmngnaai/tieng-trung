@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:交通",
   "type": "word",
   "word": "交通",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "jiāo tōng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "giao thông",
+      "meaningShortVi": "giao thông",
+      "meaningFullVi": "giao thông",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "giao thông",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,60 +48,68 @@
     "collocations": [
       {
         "text": "交通方便",
-        "pinyin": "",
+        "pinyin": "jiāo tōng fāng biàn",
         "meaningVi": "giao thông thuận tiện",
+        "meaningFullVi": "giao thông thuận tiện",
         "target": "交通",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "交通堵塞",
-        "pinyin": "",
+        "pinyin": "jiāo tōng dǔ sāi",
         "meaningVi": "ùn tắc giao thông",
+        "meaningFullVi": "ùn tắc giao thông",
         "target": "交通",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "公共交通",
-        "pinyin": "",
+        "pinyin": "gōng gòng jiāo tōng",
         "meaningVi": "giao thông công cộng",
+        "meaningFullVi": "giao thông công cộng",
         "target": "交通",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "交通",
       "chinese": "交通很方便",
-      "pinyin": "",
+      "pinyin": "jiāo tōng hěn fāng biàn",
       "meaningVi": "Giao thông rất thuận tiện",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "交通",
       "chinese": "堵车，交通不好",
-      "pinyin": "",
+      "pinyin": "dǔ chē， jiāo tōng bù hǎo",
       "meaningVi": "Tắc đường, giao thông không tốt",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "交通",
-      "chinese": "改善交通",
-      "pinyin": "",
-      "meaningVi": "Cải thiện giao thông",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 交通",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/交通.mp3"
   ],
@@ -109,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__2__topic__5__van-chuyen",
+      "sectionSlug": "van-chuyen",
       "sectionTitle": "Vận chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/van-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/van-chuyen/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -124,7 +138,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

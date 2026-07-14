@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:民歌",
   "type": "word",
   "word": "民歌",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "mín gē",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "dân ca",
+      "meaningShortVi": "dân ca",
+      "meaningFullVi": "dân ca",
       "partOfSpeech": "noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "dân ca",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Dùng với nghĩa \"dân ca\". Thuộc New HSK 6."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -44,16 +43,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 民歌",
-      "syntax": "noun",
-      "matchedExample": "Dùng với nghĩa \"dân ca\". Thuộc New HSK 6.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 民歌",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Dùng với nghĩa \"dân ca\". Thuộc New HSK 6.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -68,9 +68,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": [
-      "Chưa có câu chứa nguyên từ"
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
     ]
   }
 }

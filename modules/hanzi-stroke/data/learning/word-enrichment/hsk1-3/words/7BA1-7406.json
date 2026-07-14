@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:管理",
   "type": "word",
   "word": "管理",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "guǎn lǐ",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "quản lý; điều hành, giám sát và chịu trách nhiệm về một tổ chức, dự án hoặc nhóm người",
+      "meaningShortVi": "quản lý",
+      "meaningFullVi": "quản lý; điều hành, giám sát và chịu trách nhiệm về một tổ chức, dự án hoặc nhóm người",
       "partOfSpeech": "động từ / danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "quản lý",
   "wordType": "động từ / danh từ",
   "wordTypes": [
     "động từ / danh từ"
   ],
-  "usageNotes": [
-    "Có thể dùng làm động từ (quản lý công việc) hoặc danh từ (cải thiện quản lý). Trong văn kinh doanh, có thể nói 经营管理 để chỉ cả hoạt động lẫn quản lý. Từ liên quan: 负责 'chịu trách nhiệm', 监督 'giám sát'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "管理人员",
         "pinyin": "guǎnlǐ rényuán",
         "meaningVi": "nhân sự quản lý",
+        "meaningFullVi": "nhân sự quản lý",
         "target": "管理",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "管理方法",
         "pinyin": "guǎnlǐ fāngfǎ",
         "meaningVi": "phương pháp quản lý",
+        "meaningFullVi": "phương pháp quản lý",
         "target": "管理",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Anh ấy chịu trách nhiệm quản lý bộ phận này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "管理",
@@ -82,16 +87,17 @@
       "meaningVi": "Việc quản lý công ty cần được cải thiện.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 管理",
-      "syntax": "động từ / danh từ",
-      "matchedExample": "Có thể dùng làm động từ (quản lý công việc) hoặc danh từ (cải thiện quản lý). Trong văn kinh doanh, có thể nói 经营管理 để chỉ cả hoạt động lẫn quản lý. Từ liên quan: 负责 'chịu trách nhiệm', 监督 'giám sát'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 管理",
+      "partOfSpeech": "động từ / danh từ",
+      "usageNoteVi": "Có thể dùng làm động từ (quản lý công việc) hoặc danh từ (cải thiện quản lý). Trong văn kinh doanh, có thể nói 经营管理 để chỉ cả hoạt động lẫn quản lý. Từ liên quan: 负责 'chịu trách nhiệm', 监督 'giám sát'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__3__topic__13__cong-viec-ii",
+      "sectionSlug": "cong-viec-ii",
       "sectionTitle": "Công việc II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cong-viec-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cong-viec-ii/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:上班",
   "type": "word",
   "word": "上班",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "shàng bān",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đi làm, bắt đầu ca làm việc",
+      "meaningShortVi": "đi làm",
+      "meaningFullVi": "đi làm, bắt đầu ca làm việc",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đi làm",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Trái với '下班' (tan làm). Có thể dùng '去上班' (đi làm) hoặc chỉ nói '上班' (làm việc). Câu '我在上班' có thể hiểu là tôi đang đi làm trên đường hoặc tôi đang trong giờ làm việc tùy ngữ cảnh."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 上 (lên, bắt đầu) + 班 (ca làm việc). Bắt đầu đi làm hoặc bắt đầu ca làm việc."
   ],
   "hsk": {
     "levels": [
@@ -52,30 +49,27 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "下班",
-        "pinyin": "xiàbān",
-        "meaningVi": "tan làm (trái nghĩa)",
-        "target": "上班",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "上班时间",
         "pinyin": "shàngbān shíjiān",
         "meaningVi": "giờ làm việc",
+        "meaningFullVi": "giờ làm việc",
         "target": "上班",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "去上班",
         "pinyin": "qù shàngbān",
         "meaningVi": "đi làm",
+        "meaningFullVi": "đi làm",
         "target": "上班",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -85,7 +79,8 @@
       "meaningVi": "Tôi mỗi ngày tám giờ đi làm",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "上班",
@@ -94,7 +89,8 @@
       "meaningVi": "Bạn mấy giờ đi làm?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "上班",
@@ -103,7 +99,8 @@
       "meaningVi": "Đi làm đừng đi muộn",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "上班",
@@ -112,7 +109,8 @@
       "meaningVi": "Tôi sắp đi làm rồi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "上班",
@@ -121,23 +119,17 @@
       "meaningVi": "Đường đi làm rất xa",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 上班",
-      "syntax": "compound-semantic",
-      "matchedExample": "Trái với '下班' (tan làm). Có thể dùng '去上班' (đi làm) hoặc chỉ nói '上班' (làm việc). Câu '我在上班' có thể hiểu là tôi đang đi làm trên đường hoặc tôi đang trong giờ làm việc tùy ngữ cảnh.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 上 (lên, bắt đầu) + 班 (ca làm việc). Bắt đầu đi làm hoặc bắt đầu ca làm việc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 上班",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Trái với '下班' (tan làm). Có thể dùng '去上班' (đi làm) hoặc chỉ nói '上班' (làm việc). Câu '我在上班' có thể hiểu là tôi đang đi làm trên đường hoặc tôi đang trong giờ làm việc tùy ngữ cảnh.",
+      "explanationVi": "Ghép nghĩa: 上 (lên, bắt đầu) + 班 (ca làm việc). Bắt đầu đi làm hoặc bắt đầu ca làm việc.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -148,31 +140,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__1__lesson__7__bai-7-i-ll-finish-work-at-6-30-in-the-evening",
+      "sectionSlug": "bai-7-i-ll-finish-work-at-6-30-in-the-evening",
       "sectionTitle": "Tôi tan làm lúc 6 giờ rưỡi tối",
       "sectionTitleZh": "我晚上六点半下班",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-7-i-ll-finish-work-at-6-30-in-the-evening/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-7-i-ll-finish-work-at-6-30-in-the-evening/",
+      "orderInSection": 17
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 22,
+      "sectionId": "new_hsk__1__topic__22__cong-viec",
+      "sectionSlug": "cong-viec",
       "sectionTitle": "Công việc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cong-viec/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cong-viec/",
+      "orderInSection": 4
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 9,
+      "sectionId": "hsk__2__lesson__9__bai-9-bai-tap-nhieu-qua-toi-chua-lam-xong",
+      "sectionSlug": "bai-9-bai-tap-nhieu-qua-toi-chua-lam-xong",
       "sectionTitle": "Bài tập nhiều quá, tôi chưa làm xong",
       "sectionTitleZh": "题太多，我没做完",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-9-bai-tap-nhieu-qua-toi-chua-lam-xong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-9-bai-tap-nhieu-qua-toi-chua-lam-xong/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -188,7 +195,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:味道",
   "type": "word",
   "word": "味道",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "wèi dao",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "vị đạo",
+      "meaningShortVi": "vị đạo",
+      "meaningFullVi": "vị đạo",
       "partOfSpeech": "noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "vị đạo",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -48,43 +49,58 @@
     "collocations": [
       {
         "text": "味道好",
-        "pinyin": "",
-        "meaningVi": "ngon/vị tốt",
+        "pinyin": "wèi dao hǎo",
+        "meaningVi": "ngon",
+        "meaningFullVi": "ngon/vị tốt",
         "target": "味道",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "闻味道",
-        "pinyin": "",
+        "pinyin": "wén wèi dao",
         "meaningVi": "ngửi mùi",
+        "meaningFullVi": "ngửi mùi",
         "target": "味道",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "味道",
       "chinese": "这个菜味道很好",
-      "pinyin": "",
+      "pinyin": "zhè ge cài wèi dao hěn hǎo",
       "meaningVi": "Món ăn này rất ngon",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "味道",
       "chinese": "什么味道",
-      "pinyin": "",
+      "pinyin": "shén me wèi dao",
       "meaningVi": "Mùi vị gì",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 味道",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/味道.mp3"
   ],
@@ -93,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__2__topic__1__thuc-an-va-do-uong",
+      "sectionSlug": "thuc-an-va-do-uong",
       "sectionTitle": "Thức ăn và đồ uống",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thuc-an-va-do-uong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thuc-an-va-do-uong/",
+      "orderInSection": 17
     }
   ],
   "sources": [
@@ -113,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

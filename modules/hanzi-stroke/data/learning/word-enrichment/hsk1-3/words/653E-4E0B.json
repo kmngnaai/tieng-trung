@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:放下",
   "type": "word",
   "word": "放下",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "fàng xià",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đặt xuống",
+      "meaningShortVi": "đặt xuống",
+      "meaningFullVi": "đặt xuống",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đặt xuống",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,29 +45,51 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [
+      {
+        "text": "放下",
+        "pinyin": "fàng xià",
+        "meaningVi": "đặt xuống",
+        "meaningFullVi": "đặt xuống",
+        "target": "放下",
+        "source": "hsk_2.json",
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "放下",
       "chinese": "放下书包",
-      "pinyin": "",
+      "pinyin": "fàng xià shū bāo",
       "meaningVi": "Đặt cặp sách xuống",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "放下",
       "chinese": "放下手机",
-      "pinyin": "",
+      "pinyin": "fàng xià shǒu jī",
       "meaningVi": "Đặt điện thoại xuống",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 放下",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/放下.mp3"
   ],
@@ -75,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 27,
+      "sectionId": "new_hsk__2__topic__27__dong-tu-tuong-tac",
+      "sectionSlug": "dong-tu-tuong-tac",
       "sectionTitle": "Động từ tương tác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dong-tu-tuong-tac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dong-tu-tuong-tac/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -90,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

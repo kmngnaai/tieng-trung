@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:成就",
   "type": "word",
   "word": "成就",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "chéng jiù",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thành tựu",
+      "meaningShortVi": "thành tựu",
+      "meaningFullVi": "thành tựu",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thành tựu",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "指事业上取得的优异成绩。成就 vs. 成果：成就更强调个人或集体的功绩。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "伟大成就",
-        "pinyin": "",
+        "pinyin": "wěi dà chéng jiù",
         "meaningVi": "thành tựu vĩ đại",
+        "meaningFullVi": "thành tựu vĩ đại",
         "target": "成就",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "取得成就",
-        "pinyin": "",
+        "pinyin": "qǔ dé chéng jiù",
         "meaningVi": "đạt được thành tựu",
+        "meaningFullVi": "đạt được thành tựu",
         "target": "成就",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "成就",
       "chinese": "他为科学事业做出了巨大成就。",
-      "pinyin": "",
+      "pinyin": "tā wèi kē xué shì yè zuò chū le jù dà chéng jiù。",
       "meaningVi": "Anh ấy đã tạo ra thành tựu to lớn cho sự nghiệp khoa học.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "成就",
       "chinese": "这是他一生的成就。",
-      "pinyin": "",
+      "pinyin": "zhè shì tā yī shēng de chéng jiù。",
       "meaningVi": "Đây là thành tựu cả đời của anh ấy.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 成就",
-      "syntax": "danh từ",
-      "matchedExample": "指事业上取得的优异成绩。成就 vs. 成果：成就更强调个人或集体的功绩。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 成就",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "指事业上取得的优异成绩。成就 vs. 成果：成就更强调个人或集体的功绩。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__3__topic__19__thanh-tuu-va-ket-qua",
+      "sectionSlug": "thanh-tuu-va-ket-qua",
       "sectionTitle": "Thành tựu và kết quả",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

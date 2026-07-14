@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:就业",
   "type": "word",
   "word": "就业",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiù yè",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "việc làm; có việc làm; tìm được việc",
+      "meaningShortVi": "việc làm",
+      "meaningFullVi": "việc làm; có việc làm; tìm được việc",
       "partOfSpeech": "động từ / danh từ (Verb / Noun)",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "việc làm",
   "wordType": "động từ / danh từ (Verb / Noun)",
   "wordTypes": [
     "động từ / danh từ (Verb / Noun)"
   ],
-  "usageNotes": [
-    "Dùng trong bối cảnh kinh tế, lao động: finding jobs, employment rate, job opportunities. Ngược nghĩa: 失业 (thất nghiệp), 待业 (đang tìm việc). Thường kết hợp: 就业指导 (hướng dẫn nghề nghiệp)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "就业机会",
         "pinyin": "jiùyè jīhuì",
         "meaningVi": "cơ hội việc làm",
+        "meaningFullVi": "cơ hội việc làm",
         "target": "就业",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "就业率",
         "pinyin": "jiùyè lǜ",
         "meaningVi": "tỷ lệ việc làm",
+        "meaningFullVi": "tỷ lệ việc làm",
         "target": "就业",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Vấn đề việc làm của sinh viên đại học rất quan trọng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "就业",
@@ -82,16 +87,17 @@
       "meaningVi": "Anh ấy đã có việc làm ngay sau khi tốt nghiệp.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 就业",
-      "syntax": "động từ / danh từ (Verb / Noun)",
-      "matchedExample": "Dùng trong bối cảnh kinh tế, lao động: finding jobs, employment rate, job opportunities. Ngược nghĩa: 失业 (thất nghiệp), 待业 (đang tìm việc). Thường kết hợp: 就业指导 (hướng dẫn nghề nghiệp).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 就业",
+      "partOfSpeech": "động từ / danh từ (Verb / Noun)",
+      "usageNoteVi": "Dùng trong bối cảnh kinh tế, lao động: finding jobs, employment rate, job opportunities. Ngược nghĩa: 失业 (thất nghiệp), 待业 (đang tìm việc). Thường kết hợp: 就业指导 (hướng dẫn nghề nghiệp).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__3__topic__13__cong-viec-ii",
+      "sectionSlug": "cong-viec-ii",
       "sectionTitle": "Công việc II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cong-viec-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cong-viec-ii/",
+      "orderInSection": 18
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

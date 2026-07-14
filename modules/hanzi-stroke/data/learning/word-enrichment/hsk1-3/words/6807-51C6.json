@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:标准",
   "type": "word",
   "word": "标准",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "biāo zhǔn",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tiêu chuẩn, chuẩn mực; mức độ",
+      "meaningShortVi": "tiêu chuẩn",
+      "meaningFullVi": "tiêu chuẩn, chuẩn mực; mức độ",
       "partOfSpeech": "danh từ / tính từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tiêu chuẩn",
   "wordType": "danh từ / tính từ",
   "wordTypes": [
     "danh từ / tính từ"
   ],
-  "usageNotes": [
-    "标准 là danh từ chỉ tiêu chuẩn, chuẩn mực. Là từ ghép Hán-Việt 'tiêu chuẩn'. Có thể dùng như tính từ khi diễn tả mức độ."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -52,19 +51,24 @@
         "text": "国家标准",
         "pinyin": "guójiā biāozhǔn",
         "meaningVi": "tiêu chuẩn quốc gia",
+        "meaningFullVi": "tiêu chuẩn quốc gia",
         "target": "标准",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "高标准",
         "pinyin": "gāo biāozhǔn",
         "meaningVi": "tiêu chuẩn cao",
+        "meaningFullVi": "tiêu chuẩn cao",
         "target": "标准",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Đây là tiêu chuẩn rất cao.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "标准",
@@ -83,16 +88,17 @@
       "meaningVi": "Chúng ta phải làm việc theo tiêu chuẩn.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 标准",
-      "syntax": "danh từ / tính từ",
-      "matchedExample": "标准 là danh từ chỉ tiêu chuẩn, chuẩn mực. Là từ ghép Hán-Việt 'tiêu chuẩn'. Có thể dùng như tính từ khi diễn tả mức độ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 标准",
+      "partOfSpeech": "danh từ / tính từ",
+      "usageNoteVi": "标准 là danh từ chỉ tiêu chuẩn, chuẩn mực. Là từ ghép Hán-Việt 'tiêu chuẩn'. Có thể dùng như tính từ khi diễn tả mức độ.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 20,
+      "sectionId": "new_hsk__3__topic__20__so-sanh-va-tuan-thu",
+      "sectionSlug": "so-sanh-va-tuan-thu",
       "sectionTitle": "So sánh và Tuân thủ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/so-sanh-va-tuan-thu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/so-sanh-va-tuan-thu/",
+      "orderInSection": 6
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

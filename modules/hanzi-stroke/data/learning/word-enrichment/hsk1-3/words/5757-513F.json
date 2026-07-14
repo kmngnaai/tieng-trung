@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:块儿",
   "type": "word",
   "word": "块儿",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "kuàir ",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "miếng, cục, mẩu",
+      "meaningShortVi": "miếng",
+      "meaningFullVi": "miếng, cục, mẩu",
       "partOfSpeech": "lượng từ/danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "miếng",
   "wordType": "lượng từ/danh từ",
   "wordTypes": [
     "lượng từ/danh từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -45,16 +46,15 @@
       {
         "word": "一块儿",
         "pinyin": "yī kuàir ",
-        "meaningVi": "Cùng nhau, cùng một chỗ",
+        "meaningVi": "Cùng nhau",
+        "meaningFullVi": "Cùng nhau, cùng một chỗ",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          2
-        ],
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 2",
+        "reviewStatus": "reviewed-local"
       }
     ],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -64,7 +64,8 @@
       "meaningVi": "Cho tôi một miếng bánh gato.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "块儿",
@@ -73,10 +74,19 @@
       "meaningVi": "Mảnh đất này rất lớn.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 块儿",
+      "partOfSpeech": "lượng từ/danh từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/块儿.mp3"
   ],
@@ -89,7 +99,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng"
+    ]
   }
 }

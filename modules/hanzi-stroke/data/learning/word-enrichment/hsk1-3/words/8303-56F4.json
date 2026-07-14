@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:范围",
   "type": "word",
   "word": "范围",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fàn wéi",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phạm vi, giới hạn; khu vực",
+      "meaningShortVi": "phạm vi",
+      "meaningFullVi": "phạm vi, giới hạn; khu vực",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phạm vi",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Fàn wéi dùng để chỉ giới hạn, khu vực hoặc lĩnh vực hoạt động. Rất phổ biến trong văn viết và văn nói trang trọng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -48,50 +47,26 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "扩大范围",
-        "pinyin": "",
-        "meaningVi": "mở rộng phạm vi",
-        "target": "范围",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "在一定范围内",
-        "pinyin": "",
+        "pinyin": "zài yī dìng fàn wéi nèi",
         "meaningVi": "trong phạm vi nhất định",
+        "meaningFullVi": "trong phạm vi nhất định",
         "target": "范围",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "范围",
-      "chinese": "这个问题超出了我的知识范围。",
-      "pinyin": "",
-      "meaningVi": "Vấn đề này nằm ngoài phạm vi kiến thức của tôi.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "范围",
-      "chinese": "我们要扩大合作范围。",
-      "pinyin": "",
-      "meaningVi": "Chúng ta cần mở rộng phạm vi hợp tác.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 范围",
-      "syntax": "danh từ",
-      "matchedExample": "Fàn wéi dùng để chỉ giới hạn, khu vực hoặc lĩnh vực hoạt động. Rất phổ biến trong văn viết và văn nói trang trọng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 范围",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Fàn wéi dùng để chỉ giới hạn, khu vực hoặc lĩnh vực hoạt động. Rất phổ biến trong văn viết và văn nói trang trọng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +77,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 32,
+      "sectionId": "new_hsk__3__topic__32__dac-diem",
+      "sectionSlug": "dac-diem",
       "sectionTitle": "Đặc điểm",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/",
+      "orderInSection": 24
     }
   ],
   "sources": [
@@ -117,7 +97,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

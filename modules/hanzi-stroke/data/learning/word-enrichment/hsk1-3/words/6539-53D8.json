@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:改变",
   "type": "word",
   "word": "改变",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "gǎi biàn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thay đổi",
+      "meaningShortVi": "thay đổi",
+      "meaningFullVi": "thay đổi",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thay đổi",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -46,36 +47,49 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "转变",
-        "pinyin": "",
-        "meaningVi": "chuyển biến",
+        "text": "改变",
+        "pinyin": "gǎi biàn",
+        "meaningVi": "thay đổi",
+        "meaningFullVi": "thay đổi",
         "target": "改变",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "改变",
       "chinese": "世界在改变",
-      "pinyin": "",
+      "pinyin": "shì jiè zài gǎi biàn",
       "meaningVi": "Thế giới đang thay đổi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "改变",
       "chinese": "改变主意",
-      "pinyin": "",
+      "pinyin": "gǎi biàn zhǔ yì",
       "meaningVi": "Đổi ý",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 改变",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/改变.mp3"
   ],
@@ -84,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 27,
+      "sectionId": "new_hsk__2__topic__27__dong-tu-tuong-tac",
+      "sectionSlug": "dong-tu-tuong-tac",
       "sectionTitle": "Động từ tương tác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dong-tu-tuong-tac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dong-tu-tuong-tac/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -99,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

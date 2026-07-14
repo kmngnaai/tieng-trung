@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:好处",
   "type": "word",
   "word": "好处",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "hǎo chù",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lợi ích; điểm tốt",
+      "meaningShortVi": "lợi ích",
+      "meaningFullVi": "lợi ích; điểm tốt",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lợi ích",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Đối lập với 坏处 (điểm xấu/hại)"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "有好处",
-        "pinyin": "",
+        "pinyin": "yǒu hǎo chù",
         "meaningVi": "có lợi",
+        "meaningFullVi": "có lợi",
         "target": "好处",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "坏处",
-        "pinyin": "",
-        "meaningVi": "điểm xấu, điều xấu",
-        "target": "好处",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "好处",
       "chinese": "运动有很多好处",
-      "pinyin": "",
+      "pinyin": "yùn dòng yǒu hěn duō hǎo chù",
       "meaningVi": "Vận động có nhiều lợi ích",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "好处",
       "chinese": "这对身体有好处",
-      "pinyin": "",
+      "pinyin": "zhè duì shēn tǐ yǒu hǎo chù",
       "meaningVi": "Điều này có lợi cho sức khỏe",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 好处",
-      "syntax": "noun",
-      "matchedExample": "Đối lập với 坏处 (điểm xấu/hại)",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 好处",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Đối lập với 坏处 (điểm xấu/hại)",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__2__topic__17__dac-trung",
+      "sectionSlug": "dac-trung",
       "sectionTitle": "Đặc trưng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dac-trung/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dac-trung/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

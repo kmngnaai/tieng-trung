@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:加油",
   "type": "word",
   "word": "加油",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiā yóu",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cố lên",
+      "meaningShortVi": "cố lên",
+      "meaningFullVi": "cố lên",
       "partOfSpeech": "cheering phrase",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cố lên",
   "wordType": "cheering phrase",
   "wordTypes": [
     "cheering phrase"
   ],
-  "usageNotes": [
-    "Giai nghĩa gốc là 'thêm dầu' (cho đèn), nay dùng để động viên ai đó."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,58 +48,66 @@
     "collocations": [
       {
         "text": "为自己加油",
-        "pinyin": "",
+        "pinyin": "wèi zì jǐ jiā yóu",
         "meaningVi": "cố lên cho bản thân",
+        "meaningFullVi": "cố lên cho bản thân",
         "target": "加油",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "给...加油",
-        "pinyin": "",
-        "meaningVi": "cổ vũ cho...",
+        "pinyin": "gěi... jiā yóu",
+        "meaningVi": "cổ vũ cho",
+        "meaningFullVi": "cổ vũ cho...",
         "target": "加油",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "加油",
       "chinese": "加油！你能行的！",
-      "pinyin": "",
+      "pinyin": "jiā yóu！ nǐ néng xíng de！",
       "meaningVi": "Cố lên! Bạn làm được!",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "加油",
       "chinese": "考试加油！",
-      "pinyin": "",
+      "pinyin": "kǎo shì jiā yóu！",
       "meaningVi": "Cố lên trong kỳ thi!",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "加油",
       "chinese": "中国队加油！",
-      "pinyin": "",
+      "pinyin": "Zhōng guó duì jiā yóu！",
       "meaningVi": "Đội Trung Quốc cố lên!",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 加油",
-      "syntax": "cheering phrase",
-      "matchedExample": "Giai nghĩa gốc là 'thêm dầu' (cho đèn), nay dùng để động viên ai đó.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 加油",
+      "partOfSpeech": "cheering phrase",
+      "usageNoteVi": "Giai nghĩa gốc là 'thêm dầu' (cho đèn), nay dùng để động viên ai đó.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -111,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__2__topic__4__khac",
+      "sectionSlug": "khac",
       "sectionTitle": "Khác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/khac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/khac/",
+      "orderInSection": 6
     }
   ],
   "sources": [
@@ -126,7 +138,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

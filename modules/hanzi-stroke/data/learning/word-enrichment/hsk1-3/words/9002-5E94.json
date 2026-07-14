@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:适应",
   "type": "word",
   "word": "适应",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shì yìng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thích nghi, thích ứng; quen, quen với",
+      "meaningShortVi": "thích nghi",
+      "meaningFullVi": "thích nghi, thích ứng; quen, quen với",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thích nghi",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "适应 là động từ chỉ sự thích nghi, thích ứng với điều kiện mới. Là từ ghép Hán-Việt 'thích ưng'. Thường đi kèm với: 环境 (môi trường), 生活 (cuộc sống), 气候 (khí hậu)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "适应环境",
         "pinyin": "shìyìng huánjìng",
         "meaningVi": "thích nghi môi trường",
+        "meaningFullVi": "thích nghi môi trường",
         "target": "适应",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不适应",
         "pinyin": "bù shìyìng",
         "meaningVi": "không thích nghi",
+        "meaningFullVi": "không thích nghi",
         "target": "适应",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Tôi rất nhanh đã thích nghi với môi trường mới.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "适应",
@@ -82,16 +87,17 @@
       "meaningVi": "Trẻ em có khả năng thích nghi rất mạnh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 适应",
-      "syntax": "động từ",
-      "matchedExample": "适应 là động từ chỉ sự thích nghi, thích ứng với điều kiện mới. Là từ ghép Hán-Việt 'thích ưng'. Thường đi kèm với: 环境 (môi trường), 生活 (cuộc sống), 气候 (khí hậu).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 适应",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "适应 là động từ chỉ sự thích nghi, thích ứng với điều kiện mới. Là từ ghép Hán-Việt 'thích ưng'. Thường đi kèm với: 环境 (môi trường), 生活 (cuộc sống), 气候 (khí hậu).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 20,
+      "sectionId": "new_hsk__3__topic__20__so-sanh-va-tuan-thu",
+      "sectionSlug": "so-sanh-va-tuan-thu",
       "sectionTitle": "So sánh và Tuân thủ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/so-sanh-va-tuan-thu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/so-sanh-va-tuan-thu/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:关注",
   "type": "word",
   "word": "关注",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "guān zhù",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chú ý, quan tâm, theo dõi",
+      "meaningShortVi": "chú ý",
+      "meaningFullVi": "chú ý, quan tâm, theo dõi",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chú ý",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Dùng khi quan tâm, chú ý hoặc theo dõi một vấn đề. Trong mạng xã hội, '关注' nghĩa là 'follow'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "关注新闻",
-        "pinyin": "",
+        "pinyin": "guān zhù xīn wén",
         "meaningVi": "theo dõi tin tức",
+        "meaningFullVi": "theo dõi tin tức",
         "target": "关注",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "受到关注",
-        "pinyin": "",
+        "pinyin": "shòu dào guān zhù",
         "meaningVi": "được quan tâm",
+        "meaningFullVi": "được quan tâm",
         "target": "关注",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "关注",
       "chinese": "很多人关注这个新闻。",
-      "pinyin": "",
+      "pinyin": "hěn duō rén guān zhù zhè ge xīn wén。",
       "meaningVi": "Nhiều người quan tâm đến tin tức này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "关注",
-      "chinese": "请关注我们的最新动态。",
-      "pinyin": "",
-      "meaningVi": "Hãy chú ý đến những cập nhật mới nhất của chúng tôi.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 关注",
-      "syntax": "động từ",
-      "matchedExample": "Dùng khi quan tâm, chú ý hoặc theo dõi một vấn đề. Trong mạng xã hội, '关注' nghĩa là 'follow'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 关注",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Dùng khi quan tâm, chú ý hoặc theo dõi một vấn đề. Trong mạng xã hội, '关注' nghĩa là 'follow'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,21 +98,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__3__lesson__12__bai-12-the-weather-changes-rapidly-in-this-season",
+      "sectionSlug": "bai-12-the-weather-changes-rapidly-in-this-season",
       "sectionTitle": "Mùa này thời tiết thay đổi rất nhanh",
       "sectionTitleZh": "这个季节天气变化很快",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-12-the-weather-changes-rapidly-in-this-season/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-12-the-weather-changes-rapidly-in-this-season/",
+      "orderInSection": 20
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 26,
+      "sectionId": "new_hsk__3__topic__26__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -127,7 +133,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

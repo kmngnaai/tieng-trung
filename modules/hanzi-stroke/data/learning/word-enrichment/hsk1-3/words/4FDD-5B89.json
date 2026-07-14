@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:保安",
   "type": "word",
   "word": "保安",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "bǎo'ān",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Bảo vệ, an ninh",
+      "meaningShortVi": "Bảo vệ",
+      "meaningFullVi": "Bảo vệ, an ninh",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Bảo vệ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "保安 có thể chỉ người làm công việc bảo vệ (danh từ) hoặc hành động bảo vệ an ninh. Trong môi trường hiện đại, thường chỉ bảo vệ tại các tòa nhà, công ty."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,27 +50,34 @@
         "text": "保安人员",
         "pinyin": "bǎo'ān rényuán",
         "meaningVi": "nhân viên bảo vệ",
+        "meaningFullVi": "nhân viên bảo vệ",
         "target": "保安",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "保安工作",
         "pinyin": "bǎo'ān gōngzuò",
         "meaningVi": "công việc bảo vệ",
+        "meaningFullVi": "công việc bảo vệ",
         "target": "保安",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "当保安",
         "pinyin": "dāng bǎo'ān",
         "meaningVi": "làm bảo vệ",
+        "meaningFullVi": "làm bảo vệ",
         "target": "保安",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +87,8 @@
       "meaningVi": "Anh ấy là bảo vệ của công ty.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "保安",
@@ -90,7 +97,8 @@
       "meaningVi": "Xin nhờ bảo vệ giúp đỡ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "保安",
@@ -99,16 +107,17 @@
       "meaningVi": "Bảo vệ đang đứng ở cửa.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 保安",
-      "syntax": "compound-semantic",
-      "matchedExample": "保安 có thể chỉ người làm công việc bảo vệ (danh từ) hoặc hành động bảo vệ an ninh. Trong môi trường hiện đại, thường chỉ bảo vệ tại các tòa nhà, công ty.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 保安",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "保安 có thể chỉ người làm công việc bảo vệ (danh từ) hoặc hành động bảo vệ an ninh. Trong môi trường hiện đại, thường chỉ bảo vệ tại các tòa nhà, công ty.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -119,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__3__topic__6__bao-hanh-va-bao-ve",
+      "sectionSlug": "bao-hanh-va-bao-ve",
       "sectionTitle": "Bảo hành và bảo vệ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bao-hanh-va-bao-ve/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bao-hanh-va-bao-ve/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -134,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

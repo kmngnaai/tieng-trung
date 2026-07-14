@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:难以",
   "type": "word",
   "word": "难以",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "nán yǐ",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "khó; khó có thể; khó mà",
+      "meaningShortVi": "khó",
+      "meaningFullVi": "khó; khó có thể; khó mà",
       "partOfSpeech": "phó từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "khó",
   "wordType": "phó từ",
   "wordTypes": [
     "phó từ"
   ],
-  "usageNotes": [
-    "难以 đứng trước động từ để chỉ việc làm đó khó thực hiện. Tương đương với \"khó có thể\" hoặc \"khó mà\"."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,40 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "难以置信",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "难以",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "难以想象",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "难以",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "难以忘怀",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "难以",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "难以忍受",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "难以",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -87,7 +54,8 @@
       "meaningVi": "Vấn đề này khó giải quyết.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "难以",
@@ -96,16 +64,17 @@
       "meaningVi": "Tôi khó mà tin đây là sự thật.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 难以",
-      "syntax": "phó từ",
-      "matchedExample": "难以 đứng trước động từ để chỉ việc làm đó khó thực hiện. Tương đương với \"khó có thể\" hoặc \"khó mà\".",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 难以",
+      "partOfSpeech": "phó từ",
+      "usageNoteVi": "难以 đứng trước động từ để chỉ việc làm đó khó thực hiện. Tương đương với \"khó có thể\" hoặc \"khó mà\".",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -120,7 +89,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

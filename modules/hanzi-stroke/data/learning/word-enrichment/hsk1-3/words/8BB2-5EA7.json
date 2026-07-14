@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:讲座",
   "type": "word",
   "word": "讲座",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiǎng zuò",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bài giảng, buổi giảng",
+      "meaningShortVi": "bài giảng",
+      "meaningFullVi": "bài giảng, buổi giảng",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bài giảng",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Buổi trình bày kiến thức chuyên môn, thường tại trường học, cơ quan."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -44,32 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "学术讲座",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "讲座",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "举办讲座",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "讲座",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "讲座内容",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "讲座",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +54,8 @@
       "meaningVi": "Ngày mai có một bài giảng học thuật.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "讲座",
@@ -88,16 +64,17 @@
       "meaningVi": "Nhiều người tham dự bài giảng.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 讲座",
-      "syntax": "danh từ",
-      "matchedExample": "Buổi trình bày kiến thức chuyên môn, thường tại trường học, cơ quan.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 讲座",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Buổi trình bày kiến thức chuyên môn, thường tại trường học, cơ quan.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -112,7 +89,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

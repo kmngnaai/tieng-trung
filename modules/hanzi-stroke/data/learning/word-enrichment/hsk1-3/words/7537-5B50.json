@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:男子",
   "type": "word",
   "word": "男子",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "nán zi",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Người đàn ông, nam giới",
+      "meaningShortVi": "Người đàn ông",
+      "meaningFullVi": "Người đàn ông, nam giới",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Người đàn ông",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "男子 (nánzǐ) là từ dùng để chỉ người đàn ông, nam giới, mang sắc thái trung tính và trang trọng hơn so với 男的 (nán de - người đàn ông) trong văn nói. Thường dùng trong văn viết, báo chí, hoặc các ngữ cảnh trang trọng như thể thao (男子项目 - môn thi đấu nam)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -50,36 +49,45 @@
       {
         "text": "男子汉",
         "pinyin": "nánzǐhàn",
-        "meaningVi": "đàn ông, người đàn ông (mang sắc thái mạnh mẽ)",
+        "meaningVi": "đàn ông",
+        "meaningFullVi": "đàn ông, người đàn ông (mang sắc thái mạnh mẽ)",
         "target": "男子",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "男子项目",
         "pinyin": "nánzǐ xiàngmù",
         "meaningVi": "môn thi đấu nam",
+        "meaningFullVi": "môn thi đấu nam",
         "target": "男子",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "男子单打",
         "pinyin": "nánzǐ dāndǎ",
         "meaningVi": "đơn nam (thể thao)",
+        "meaningFullVi": "đơn nam (thể thao)",
         "target": "男子",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "男子气概",
         "pinyin": "nánzǐ qìgài",
         "meaningVi": "tính khí nam giới",
+        "meaningFullVi": "tính khí nam giới",
         "target": "男子",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -89,7 +97,8 @@
       "meaningVi": "Trận bóng rổ này thu hút nhiều người đàn ông tham gia.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "男子",
@@ -98,7 +107,8 @@
       "meaningVi": "Anh ấy là một người đàn ông rất có trách nhiệm.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "男子",
@@ -107,16 +117,17 @@
       "meaningVi": "Câu lạc bộ thể hình này được thiết kế riêng cho nam giới.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 男子",
-      "syntax": "compound-semantic",
-      "matchedExample": "男子 (nánzǐ) là từ dùng để chỉ người đàn ông, nam giới, mang sắc thái trung tính và trang trọng hơn so với 男的 (nán de - người đàn ông) trong văn nói. Thường dùng trong văn viết, báo chí, hoặc các ngữ cảnh trang trọng như thể thao (男子项目 - môn thi đấu nam).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 男子",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "男子 (nánzǐ) là từ dùng để chỉ người đàn ông, nam giới, mang sắc thái trung tính và trang trọng hơn so với 男的 (nán de - người đàn ông) trong văn nói. Thường dùng trong văn viết, báo chí, hoặc các ngữ cảnh trang trọng như thể thao (男子项目 - môn thi đấu nam).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -127,11 +138,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__3__topic__4__nhung-nguoi",
+      "sectionSlug": "nhung-nguoi",
       "sectionTitle": "Những người",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/",
+      "orderInSection": 18
     }
   ],
   "sources": [
@@ -142,7 +158,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

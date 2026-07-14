@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:悲伤",
   "type": "word",
   "word": "悲伤",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "bēi shāng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "buồn bã, đau buồn",
+      "meaningShortVi": "buồn bã",
+      "meaningFullVi": "buồn bã, đau buồn",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "buồn bã",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "悲伤 là nỗi buồn sâu sắc hơn 普通 buồn, thường do mất mát, chia ly, hoặc chuyện buồn lớn."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 悲 (buồn, thương cảm) + 伤 (đau đớn) → nỗi buồn sâu sắc, đau buồn."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "感到悲伤",
         "pinyin": "gǎndào bēishāng",
         "meaningVi": "cảm thấy đau buồn",
+        "meaningFullVi": "cảm thấy đau buồn",
         "target": "悲伤",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "悲伤的泪水",
         "pinyin": "bēishāng de lèishuǐ",
         "meaningVi": "nước mắt đau buồn",
+        "meaningFullVi": "nước mắt đau buồn",
         "target": "悲伤",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "非常悲伤",
         "pinyin": "fēicháng bēishāng",
         "meaningVi": "rất đau buồn",
+        "meaningFullVi": "rất đau buồn",
         "target": "悲伤",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Nghe tin này, cô ấy cảm thấy rất đau buồn",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "悲伤",
@@ -90,7 +95,8 @@
       "meaningVi": "Bộ phim này kết thúc quá đau buồn",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "悲伤",
@@ -99,7 +105,8 @@
       "meaningVi": "Anh ấy không giấu được nỗi đau buồn trong lòng",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "悲伤",
@@ -108,7 +115,8 @@
       "meaningVi": "Câu chuyện đau buồn luôn khiến người ta xúc động",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "悲伤",
@@ -117,23 +125,17 @@
       "meaningVi": "Thời gian có thể chữa lành mọi nỗi đau buồn",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 悲伤",
-      "syntax": "compound-semantic",
-      "matchedExample": "悲伤 là nỗi buồn sâu sắc hơn 普通 buồn, thường do mất mát, chia ly, hoặc chuyện buồn lớn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 悲 (buồn, thương cảm) + 伤 (đau đớn) → nỗi buồn sâu sắc, đau buồn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 悲伤",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "悲伤 là nỗi buồn sâu sắc hơn 普通 buồn, thường do mất mát, chia ly, hoặc chuyện buồn lớn.",
+      "explanationVi": "Ghép nghĩa: 悲 (buồn, thương cảm) + 伤 (đau đớn) → nỗi buồn sâu sắc, đau buồn.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -148,7 +150,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

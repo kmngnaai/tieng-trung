@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:出国",
   "type": "word",
   "word": "出国",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "chū guó",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ra nước ngoài",
+      "meaningShortVi": "ra nước ngoài",
+      "meaningFullVi": "ra nước ngoài",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ra nước ngoài",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,43 +48,58 @@
     "collocations": [
       {
         "text": "出国旅游",
-        "pinyin": "",
+        "pinyin": "chū guó lǚ yóu",
         "meaningVi": "du lịch nước ngoài",
+        "meaningFullVi": "du lịch nước ngoài",
         "target": "出国",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "第一次出国",
-        "pinyin": "",
+        "pinyin": "dì yī cì chū guó",
         "meaningVi": "lần đầu ra nước ngoài",
+        "meaningFullVi": "lần đầu ra nước ngoài",
         "target": "出国",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "出国",
       "chinese": "我想出国留学",
-      "pinyin": "",
+      "pinyin": "wǒ xiǎng chū guó liú xué",
       "meaningVi": "Tôi muốn đi du học nước ngoài",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "出国",
       "chinese": "出国手续",
-      "pinyin": "",
+      "pinyin": "chū guó shǒu xù",
       "meaningVi": "thủ tục ra nước ngoài",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 出国",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/出国.mp3"
   ],
@@ -92,21 +108,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 15,
+      "sectionId": "new_hsk__2__lesson__15__bai-15-i-want-to-go-to-china-again",
+      "sectionSlug": "bai-15-i-want-to-go-to-china-again",
       "sectionTitle": "Tôi muốn đến Trung Quốc thêm một lần nữa",
       "sectionTitleZh": "我想再去一次中国",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-15-i-want-to-go-to-china-again/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-15-i-want-to-go-to-china-again/",
+      "orderInSection": 2
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 22,
+      "sectionId": "new_hsk__2__topic__22__du-lich",
+      "sectionSlug": "du-lich",
       "sectionTitle": "Du lịch",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/du-lich/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/du-lich/",
+      "orderInSection": 30
     }
   ],
   "sources": [
@@ -117,7 +143,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:难得",
   "type": "word",
   "word": "难得",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "nán dé",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hiếm có, khó có được, quý giá",
+      "meaningShortVi": "hiếm có",
+      "meaningFullVi": "hiếm có, khó có được, quý giá",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hiếm có",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "'难得' kết hợp '难' (nan) = khó và '得' (đắc) = được, đạt được. Nghĩa đen là 'khó đạt được', dùng để chỉ những thứ hiếm gặp, giá trị. Có thể dùng để khen ngợi (quý vì ai đó làm điều gì đó tốt)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -45,40 +44,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "难得的机会",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "难得",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "难得一见",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "难得",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "难得的好天气",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "难得",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "人难得",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "难得",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -88,7 +55,8 @@
       "meaningVi": "Đây là cơ hội hiếm có.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "难得",
@@ -97,7 +65,8 @@
       "meaningVi": "Chúng tôi hiếm khi gặp nhau một lần.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "难得",
@@ -106,16 +75,17 @@
       "meaningVi": "Quý vì chị ấy tỉ mỉ như vậy.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 难得",
-      "syntax": "compound-semantic",
-      "matchedExample": "'难得' kết hợp '难' (nan) = khó và '得' (đắc) = được, đạt được. Nghĩa đen là 'khó đạt được', dùng để chỉ những thứ hiếm gặp, giá trị. Có thể dùng để khen ngợi (quý vì ai đó làm điều gì đó tốt).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 难得",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "'难得' kết hợp '难' (nan) = khó và '得' (đắc) = được, đạt được. Nghĩa đen là 'khó đạt được', dùng để chỉ những thứ hiếm gặp, giá trị. Có thể dùng để khen ngợi (quý vì ai đó làm điều gì đó tốt).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -135,7 +105,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

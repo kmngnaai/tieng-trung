@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:交朋友",
   "type": "word",
   "word": "交朋友",
@@ -16,24 +16,25 @@
     "readings": [
       {
         "pinyin": "jiāo péng yǒu",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "kết bạn",
+      "meaningShortVi": "kết bạn",
+      "meaningFullVi": "kết bạn",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "kết bạn",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -45,37 +46,30 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "和朋友",
-        "pinyin": "",
-        "meaningVi": "với bạn bè",
-        "target": "交朋友",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "交新朋友",
-        "pinyin": "",
-        "meaningVi": "kết bạn mới",
-        "target": "交朋友",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "交朋友",
       "chinese": "我喜欢交朋友",
-      "pinyin": "",
+      "pinyin": "wǒ xǐ huan jiāo péng yǒu",
       "meaningVi": "Tôi thích kết bạn",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 交朋友",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/交朋友.mp3"
   ],
@@ -84,11 +78,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 24,
+      "sectionId": "new_hsk__2__topic__24__giao-tiep-va-cac-moi-quan-he",
+      "sectionSlug": "giao-tiep-va-cac-moi-quan-he",
       "sectionTitle": "Giao tiếp và các mối quan hệ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giao-tiep-va-cac-moi-quan-he/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giao-tiep-va-cac-moi-quan-he/",
+      "orderInSection": 35
     }
   ],
   "sources": [
@@ -99,7 +98,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

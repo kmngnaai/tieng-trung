@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:重大",
   "type": "word",
   "word": "重大",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhòng dà",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "quan trọng, to lớn, hệ trọng",
+      "meaningShortVi": "quan trọng",
+      "meaningFullVi": "quan trọng, to lớn, hệ trọng",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "quan trọng",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "Zhòng dà dùng cho sự kiện, quyết định hoặc vấn đề có tầm ảnh hưởng lớn. Trang trọng hơn略 nhiều so với 重要."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "重大的意义",
-        "pinyin": "",
+        "pinyin": "zhòng dà de yì yì",
         "meaningVi": "ý nghĩa quan trọng",
+        "meaningFullVi": "ý nghĩa quan trọng",
         "target": "重大",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "重大问题",
-        "pinyin": "",
+        "pinyin": "zhòng dà wèn tí",
         "meaningVi": "vấn đề quan trọng",
+        "meaningFullVi": "vấn đề quan trọng",
         "target": "重大",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "重大",
       "chinese": "这是一个重大的决定。",
-      "pinyin": "",
+      "pinyin": "zhè shì yī gè zhòng dà de jué dìng。",
       "meaningVi": "Đây là một quyết định quan trọng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "重大",
       "chinese": "这次会议对双方都很重大。",
-      "pinyin": "",
+      "pinyin": "zhè cì huì yì duì shuāng fāng dōu hěn zhòng dà。",
       "meaningVi": "Cuộc họp này rất quan trọng đối với cả hai bên.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 重大",
-      "syntax": "tính từ",
-      "matchedExample": "Zhòng dà dùng cho sự kiện, quyết định hoặc vấn đề có tầm ảnh hưởng lớn. Trang trọng hơn略 nhiều so với 重要.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 重大",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "Zhòng dà dùng cho sự kiện, quyết định hoặc vấn đề có tầm ảnh hưởng lớn. Trang trọng hơn略 nhiều so với 重要.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 33,
+      "sectionId": "new_hsk__3__topic__33__tinh-tu",
+      "sectionSlug": "tinh-tu",
       "sectionTitle": "Tính từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

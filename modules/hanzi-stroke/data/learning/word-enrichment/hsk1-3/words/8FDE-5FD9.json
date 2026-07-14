@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:连忙",
   "type": "word",
   "word": "连忙",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "lián máng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Vội vàng, ngay lập tức",
+      "meaningShortVi": "Vội vàng",
+      "meaningFullVi": "Vội vàng, ngay lập tức",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Vội vàng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "连忙 là trạng từ chỉ hành động được thực hiện ngay lập tức, vội vàng sau khi có sự việc gì đó xảy ra. 连 nghĩa là nối liền, mang sắc thái liên tiếp; 忙 nghĩa là bận rộn."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,40 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "连忙道歉",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "连忙",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "连忙解释",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "连忙",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "连忙站起来",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "连忙",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "连忙答应",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "连忙",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -89,7 +56,8 @@
       "meaningVi": "Nghe thấy tiếng động, anh ấy vội vàng đứng dậy.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "连忙",
@@ -98,7 +66,8 @@
       "meaningVi": "Thấy giáo viên bước vào, các học sinh vội vàng chào hỏi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "连忙",
@@ -107,16 +76,17 @@
       "meaningVi": "Trời mưa rồi, chúng tôi vội vàng chạy về nhà.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 连忙",
-      "syntax": "compound-semantic",
-      "matchedExample": "连忙 là trạng từ chỉ hành động được thực hiện ngay lập tức, vội vàng sau khi có sự việc gì đó xảy ra. 连 nghĩa là nối liền, mang sắc thái liên tiếp; 忙 nghĩa là bận rộn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 连忙",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "连忙 là trạng từ chỉ hành động được thực hiện ngay lập tức, vội vàng sau khi có sự việc gì đó xảy ra. 连 nghĩa là nối liền, mang sắc thái liên tiếp; 忙 nghĩa là bận rộn.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -127,11 +97,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__3__topic__7__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/",
+      "orderInSection": 31
     }
   ],
   "sources": [
@@ -142,7 +117,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

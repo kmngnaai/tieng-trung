@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:簇拥",
   "type": "word",
   "word": "簇拥",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "cù yōng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "vây quanh, xúm lại",
+      "meaningShortVi": "vây quanh",
+      "meaningFullVi": "vây quanh, xúm lại",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "vây quanh",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Thường mô tả đám đông vây quanh người nổi tiếng."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 簇 (cụm, sum họp) + 拥 (vây quanh, ủng hộ) → vây quanh đông đảo."
   ],
   "hsk": {
     "levels": [
@@ -51,35 +48,44 @@
         "text": "被粉丝簇拥",
         "pinyin": "bèi fěnsī cùyōng",
         "meaningVi": "bị fan vây quanh",
+        "meaningFullVi": "bị fan vây quanh",
         "target": "簇拥",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "人群簇拥",
         "pinyin": "rénqún cùyōng",
         "meaningVi": "đám đông vây quanh",
+        "meaningFullVi": "đám đông vây quanh",
         "target": "簇拥",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "簇拥而至",
         "pinyin": "cùyōng ér zhì",
         "meaningVi": "tụ đến đông đảo",
+        "meaningFullVi": "tụ đến đông đảo",
         "target": "簇拥",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "簇拥着",
         "pinyin": "cùyōngzhe",
         "meaningVi": "vây quanh",
+        "meaningFullVi": "vây quanh",
         "target": "簇拥",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -89,7 +95,8 @@
       "meaningVi": "bị fan vây quanh",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "簇拥",
@@ -98,7 +105,8 @@
       "meaningVi": "nhà báo vây quanh anh",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "簇拥",
@@ -107,7 +115,8 @@
       "meaningVi": "đám đông vây quanh",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "簇拥",
@@ -116,23 +125,17 @@
       "meaningVi": "xúm lại tiến lên",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 簇拥",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường mô tả đám đông vây quanh người nổi tiếng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 簇 (cụm, sum họp) + 拥 (vây quanh, ủng hộ) → vây quanh đông đảo.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 簇拥",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường mô tả đám đông vây quanh người nổi tiếng.",
+      "explanationVi": "Ghép nghĩa: 簇 (cụm, sum họp) + 拥 (vây quanh, ủng hộ) → vây quanh đông đảo.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -147,7 +150,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

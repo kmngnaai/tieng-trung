@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:想念",
   "type": "word",
   "word": "想念",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "xiǎng niàn",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nhớ, hoài niệm",
+      "meaningShortVi": "nhớ",
+      "meaningFullVi": "nhớ, hoài niệm",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nhớ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng khi nói về cảm xúc nhớ mong người thân, nơi chốn. '想念' mang sắc thái tình cảm, nhẹ nhàng hơn '挂念' (lo lắng nhớ)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 想 (nghĩ, nhớ) + 念 (nhớ, niệm) = nhớ mong, nghĩ về."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,24 @@
         "text": "想念家人",
         "pinyin": "xiǎngniàn jiārén",
         "meaningVi": "nhớ gia đình",
+        "meaningFullVi": "nhớ gia đình",
         "target": "想念",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "想念家乡",
         "pinyin": "xiǎngniàn jiāxiāng",
         "meaningVi": "nhớ quê hương",
+        "meaningFullVi": "nhớ quê hương",
         "target": "想念",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "怀念",
-        "pinyin": "huáiniàn",
-        "meaningVi": "hoài niệm",
-        "target": "想念",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +75,8 @@
       "meaningVi": "Tôi rất nhớ gia đình của mình",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "想念",
@@ -90,7 +85,8 @@
       "meaningVi": "Cô ấy nhớ bạn bè ở quê hương",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "想念",
@@ -99,7 +95,8 @@
       "meaningVi": "Tôi thường nhớ thầy giáo của mình",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "想念",
@@ -108,23 +105,17 @@
       "meaningVi": "Bạn không nhớ tôi sao",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 想念",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng khi nói về cảm xúc nhớ mong người thân, nơi chốn. '想念' mang sắc thái tình cảm, nhẹ nhàng hơn '挂念' (lo lắng nhớ).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 想 (nghĩ, nhớ) + 念 (nhớ, niệm) = nhớ mong, nghĩ về.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 想念",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng khi nói về cảm xúc nhớ mong người thân, nơi chốn. '想念' mang sắc thái tình cảm, nhẹ nhàng hơn '挂念' (lo lắng nhớ).",
+      "explanationVi": "Ghép nghĩa: 想 (nghĩ, nhớ) + 念 (nhớ, niệm) = nhớ mong, nghĩ về.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:难度",
   "type": "word",
   "word": "难度",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "nán dù",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "mức độ khó khăn; độ khó",
+      "meaningShortVi": "mức độ khó khăn",
+      "meaningFullVi": "mức độ khó khăn; độ khó",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "mức độ khó khăn",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Nán dù dùng để chỉ mức độ khó khăn của việc, bài tập, vấn đề. Phổ biến trong giao tiếp hàng ngày và văn viết."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "增加难度",
-        "pinyin": "",
+        "pinyin": "zēng jiā nán dù",
         "meaningVi": "tăng độ khó",
+        "meaningFullVi": "tăng độ khó",
         "target": "难度",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "难度很大",
-        "pinyin": "",
+        "pinyin": "nán dù hěn dà",
         "meaningVi": "rất khó khăn",
+        "meaningFullVi": "rất khó khăn",
         "target": "难度",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "难度",
       "chinese": "这次考试的难度很大。",
-      "pinyin": "",
+      "pinyin": "zhè cì kǎo shì de nán dù hěn dà。",
       "meaningVi": "Độ khó của kỳ thi này rất lớn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "难度",
       "chinese": "这个问题的难度不高。",
-      "pinyin": "",
+      "pinyin": "zhè ge wèn tí de nán dù bù gāo。",
       "meaningVi": "Mức độ khó của vấn đề này không cao.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 难度",
-      "syntax": "danh từ",
-      "matchedExample": "Nán dù dùng để chỉ mức độ khó khăn của việc, bài tập, vấn đề. Phổ biến trong giao tiếp hàng ngày và văn viết.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 难度",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Nán dù dùng để chỉ mức độ khó khăn của việc, bài tập, vấn đề. Phổ biến trong giao tiếp hàng ngày và văn viết.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 32,
+      "sectionId": "new_hsk__3__topic__32__dac-diem",
+      "sectionSlug": "dac-diem",
       "sectionTitle": "Đặc điểm",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

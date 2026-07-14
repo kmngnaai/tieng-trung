@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:家庭",
   "type": "word",
   "word": "家庭",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "jiā tíng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "gia đình",
+      "meaningShortVi": "gia đình",
+      "meaningFullVi": "gia đình",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "gia đình",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,43 +48,58 @@
     "collocations": [
       {
         "text": "家庭地址",
-        "pinyin": "",
+        "pinyin": "jiā tíng dì zhǐ",
         "meaningVi": "địa chỉ gia đình",
+        "meaningFullVi": "địa chỉ gia đình",
         "target": "家庭",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "家庭教师",
-        "pinyin": "",
+        "pinyin": "jiā tíng jiào shī",
         "meaningVi": "gia sư",
+        "meaningFullVi": "gia sư",
         "target": "家庭",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "家庭",
       "chinese": "我有一个幸福的家庭",
-      "pinyin": "",
+      "pinyin": "wǒ yǒu yī gè xìng fú de jiā tíng",
       "meaningVi": "Tôi có một gia đình hạnh phúc",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "家庭",
       "chinese": "家庭很重要",
-      "pinyin": "",
+      "pinyin": "jiā tíng hěn zhòng yào",
       "meaningVi": "Gia đình rất quan trọng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 家庭",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/家庭.mp3"
   ],
@@ -92,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 21,
+      "sectionId": "new_hsk__2__topic__21__thong-tin-ca-nhan",
+      "sectionSlug": "thong-tin-ca-nhan",
       "sectionTitle": "Thông tin cá nhân",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin-ca-nhan/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin-ca-nhan/",
+      "orderInSection": 25
     }
   ],
   "sources": [
@@ -107,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

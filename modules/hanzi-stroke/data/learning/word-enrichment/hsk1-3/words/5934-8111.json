@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:头脑",
   "type": "word",
   "word": "头脑",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "tóu nǎo",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Bộ não, tư duy",
+      "meaningShortVi": "Bộ não",
+      "meaningFullVi": "Bộ não, tư duy",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Bộ não",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "头脑 là danh từ chỉ bộ não hoặc năng lực tư duy. 头 (đầu) nghĩa là cái đầu; 脑 (não) nghĩa là não. Từ này vừa mang nghĩa đen (bộ não) vừa mang nghĩa ẩn dụ (tư duy)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,48 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "头脑灵活",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "头脑",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "头脑冷静",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "头脑",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "清楚头脑",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "头脑",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "用头脑",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "头脑",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "头脑风暴",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "头脑",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -97,7 +56,8 @@
       "meaningVi": "Bạn cần dùng bộ não để suy nghĩ vấn đề.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "头脑",
@@ -106,7 +66,8 @@
       "meaningVi": "Anh ấy rất thông minh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "头脑",
@@ -115,16 +76,17 @@
       "meaningVi": "Bình tĩnh lại, dùng tư duy của bạn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 头脑",
-      "syntax": "compound-semantic",
-      "matchedExample": "头脑 là danh từ chỉ bộ não hoặc năng lực tư duy. 头 (đầu) nghĩa là cái đầu; 脑 (não) nghĩa là não. Từ này vừa mang nghĩa đen (bộ não) vừa mang nghĩa ẩn dụ (tư duy).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 头脑",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "头脑 là danh từ chỉ bộ não hoặc năng lực tư duy. 头 (đầu) nghĩa là cái đầu; 脑 (não) nghĩa là não. Từ này vừa mang nghĩa đen (bộ não) vừa mang nghĩa ẩn dụ (tư duy).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -135,11 +97,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__3__topic__3__co-the-va-suc-khoe",
+      "sectionSlug": "co-the-va-suc-khoe",
       "sectionTitle": "Cơ thể và sức khỏe",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/co-the-va-suc-khoe/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/co-the-va-suc-khoe/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -150,7 +117,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

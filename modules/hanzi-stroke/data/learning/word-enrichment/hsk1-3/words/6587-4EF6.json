@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:文件",
   "type": "word",
   "word": "文件",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wén jiàn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Tài liệu, văn kiện, văn bản",
+      "meaningShortVi": "Tài liệu",
+      "meaningFullVi": "Tài liệu, văn kiện, văn bản",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Tài liệu",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "文件 có thể là tài liệu giấy hoặc tài liệu điện tử. Trong máy tính, 'file' dịch là 文件. Khi nói 'một份文件' dùng 量 từ 份, còn khi nói 'nhiều văn kiện' có thể dùng 个."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "电子文件",
         "pinyin": "diànzǐ wénjiàn",
         "meaningVi": "tài liệu điện tử",
+        "meaningFullVi": "tài liệu điện tử",
         "target": "文件",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "保存文件",
         "pinyin": "bǎocún wénjiàn",
         "meaningVi": "lưu tài liệu",
+        "meaningFullVi": "lưu tài liệu",
         "target": "文件",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Vui lòng sắp xếp những tài liệu này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "文件",
@@ -82,16 +87,17 @@
       "meaningVi": "Tài liệu này quá lớn, không thể gửi được.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 文件",
-      "syntax": "danh từ",
-      "matchedExample": "文件 có thể là tài liệu giấy hoặc tài liệu điện tử. Trong máy tính, 'file' dịch là 文件. Khi nói 'một份文件' dùng 量 từ 份, còn khi nói 'nhiều văn kiện' có thể dùng 个.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 文件",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "文件 có thể là tài liệu giấy hoặc tài liệu điện tử. Trong máy tính, 'file' dịch là 文件. Khi nói 'một份文件' dùng 量 từ 份, còn khi nói 'nhiều văn kiện' có thể dùng 个.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__3__topic__13__cong-viec-ii",
+      "sectionSlug": "cong-viec-ii",
       "sectionTitle": "Công việc II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cong-viec-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cong-viec-ii/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

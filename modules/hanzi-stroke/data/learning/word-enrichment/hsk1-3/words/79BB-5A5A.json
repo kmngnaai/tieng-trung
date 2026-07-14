@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:离婚",
   "type": "word",
   "word": "离婚",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "lí hūn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Ly hôn",
+      "meaningShortVi": "Ly hôn",
+      "meaningFullVi": "Ly hôn",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Ly hôn",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Động từ hoặc danh từ, chỉ việc chấm dứt quan hệ hôn nhân hợp pháp."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,11 +50,14 @@
         "text": "离婚手续",
         "pinyin": "líhūn shǒuxù",
         "meaningVi": "thủ tục ly hôn",
+        "meaningFullVi": "thủ tục ly hôn",
         "target": "离婚",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -65,7 +67,8 @@
       "meaningVi": "Họ quyết định ly hôn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "离婚",
@@ -74,7 +77,8 @@
       "meaningVi": "Ly hôn ảnh hưởng lớn đến trẻ con.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "离婚",
@@ -83,16 +87,17 @@
       "meaningVi": "Thủ tục ly hôn cần thời gian.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 离婚",
-      "syntax": "compound-semantic",
-      "matchedExample": "Động từ hoặc danh từ, chỉ việc chấm dứt quan hệ hôn nhân hợp pháp.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 离婚",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Động từ hoặc danh từ, chỉ việc chấm dứt quan hệ hôn nhân hợp pháp.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__3__topic__5__cac-moi-quan-he",
+      "sectionSlug": "cac-moi-quan-he",
       "sectionTitle": "Các mối quan hệ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-moi-quan-he/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-moi-quan-he/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -118,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

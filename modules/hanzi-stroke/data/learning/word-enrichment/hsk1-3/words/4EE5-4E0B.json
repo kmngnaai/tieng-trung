@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:以下",
   "type": "word",
   "word": "以下",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yǐ xià",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "dĩ hạ",
+      "meaningShortVi": "dĩ hạ",
+      "meaningFullVi": "dĩ hạ",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "dĩ hạ",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Chỉ mức độ hoặc số lượng từ điểm xác định trở xuống"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "以下内容",
-        "pinyin": "",
+        "pinyin": "yǐ xià nèi róng",
         "meaningVi": "nội dung dưới đây",
+        "meaningFullVi": "nội dung dưới đây",
         "target": "以下",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "以下地区",
-        "pinyin": "",
+        "pinyin": "yǐ xià dì qū",
         "meaningVi": "khu vực dưới đây",
+        "meaningFullVi": "khu vực dưới đây",
         "target": "以下",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "以下",
       "chinese": "以下人员请注意",
-      "pinyin": "",
+      "pinyin": "yǐ xià rén yuán qǐng zhù yì",
       "meaningVi": "Những người dưới đây vui lòng chú ý",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "以下",
       "chinese": "十八岁以下",
-      "pinyin": "",
+      "pinyin": "shí bā suì yǐ xià",
       "meaningVi": "Dưới mười tám tuổi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 以下",
-      "syntax": "noun",
-      "matchedExample": "Chỉ mức độ hoặc số lượng từ điểm xác định trở xuống",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 以下",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Chỉ mức độ hoặc số lượng từ điểm xác định trở xuống",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__2__topic__11__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/pho-tu/",
+      "orderInSection": 30
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

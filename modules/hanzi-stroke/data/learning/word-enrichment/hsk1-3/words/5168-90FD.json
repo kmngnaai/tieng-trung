@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:全都",
   "type": "word",
   "word": "全都",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "quán dōu",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hoàn toàn",
+      "meaningShortVi": "hoàn toàn",
+      "meaningFullVi": "hoàn toàn",
       "partOfSpeech": "adverb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hoàn toàn",
   "wordType": "adverb",
   "wordTypes": [
     "adverb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,46 +45,40 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "全",
-        "pinyin": "",
-        "meaningVi": "toàn bộ",
-        "target": "全都",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "都",
-        "pinyin": "",
-        "meaningVi": "đều",
-        "target": "全都",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "全都",
       "chinese": "我全都懂了",
-      "pinyin": "",
+      "pinyin": "wǒ quán dōu dǒng le",
       "meaningVi": "Tôi hiểu hết rồi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "全都",
       "chinese": "全都来了",
-      "pinyin": "",
+      "pinyin": "quán dōu lái le",
       "meaningVi": "Đến tất cả",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 全都",
+      "partOfSpeech": "adverb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/全都.mp3"
   ],
@@ -92,11 +87,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__2__topic__11__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/pho-tu/",
+      "orderInSection": 23
     }
   ],
   "sources": [
@@ -107,7 +107,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

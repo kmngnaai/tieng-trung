@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:祭祀",
   "type": "word",
   "word": "祭祀",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "jì sì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tế lễ, cúng bái",
+      "meaningShortVi": "tế lễ",
+      "meaningFullVi": "tế lễ, cúng bái",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tế lễ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Thường dùng trong ngữ cảnh tôn giáo, văn hóa — cúng bái thần linh, tổ tiên."
-  ],
-  "wordTypeExplanations": [
-    "祭 (tế) + 祀 (cúng) — tế lễ, cúng bái."
   ],
   "hsk": {
     "levels": [
@@ -51,19 +48,24 @@
         "text": "祭祀祖先",
         "pinyin": "jìsì zǔxiān",
         "meaningVi": "cúng tổ tiên",
+        "meaningFullVi": "cúng tổ tiên",
         "target": "祭祀",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "祭祀仪式",
         "pinyin": "jìsì yíshì",
         "meaningVi": "lễ tế",
+        "meaningFullVi": "lễ tế",
         "target": "祭祀",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +75,8 @@
       "meaningVi": "Ngày Tết Thanh Minh cúng tổ tiên",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "祭祀",
@@ -82,7 +85,8 @@
       "meaningVi": "Thực hiện lễ tế",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "祭祀",
@@ -91,23 +95,17 @@
       "meaningVi": "hoạt động tế lễ",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 祭祀",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường dùng trong ngữ cảnh tôn giáo, văn hóa — cúng bái thần linh, tổ tiên.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "祭 (tế) + 祀 (cúng) — tế lễ, cúng bái.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 祭祀",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường dùng trong ngữ cảnh tôn giáo, văn hóa — cúng bái thần linh, tổ tiên.",
+      "explanationVi": "祭 (tế) + 祀 (cúng) — tế lễ, cúng bái.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -122,7 +120,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

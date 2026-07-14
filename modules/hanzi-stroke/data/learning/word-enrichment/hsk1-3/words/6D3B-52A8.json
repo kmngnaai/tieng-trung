@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:活动",
   "type": "word",
   "word": "活动",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "huó dòng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hoạt động",
+      "meaningShortVi": "hoạt động",
+      "meaningFullVi": "hoạt động",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hoạt động",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Cũng có thể là động từ: di chuyển, vận động"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,58 +48,56 @@
     "collocations": [
       {
         "text": "参加活动",
-        "pinyin": "",
+        "pinyin": "cān jiā huó dòng",
         "meaningVi": "tham gia hoạt động",
+        "meaningFullVi": "tham gia hoạt động",
         "target": "活动",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "体育活动",
-        "pinyin": "",
+        "pinyin": "tǐ yù huó dòng",
         "meaningVi": "hoạt động thể thao",
+        "meaningFullVi": "hoạt động thể thao",
         "target": "活动",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "活动",
       "chinese": "我们参加很多活动",
-      "pinyin": "",
+      "pinyin": "wǒ men cān jiā hěn duō huó dòng",
       "meaningVi": "Chúng tôi tham gia nhiều hoạt động",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "活动",
-      "chinese": "这个活动很有趣",
-      "pinyin": "",
-      "meaningVi": "Hoạt động này rất thú vị",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "活动",
       "chinese": "学校组织了活动",
-      "pinyin": "",
+      "pinyin": "xué xiào zǔ zhī le huó dòng",
       "meaningVi": "Nhà trường tổ chức hoạt động",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 活动",
-      "syntax": "noun",
-      "matchedExample": "Cũng có thể là động từ: di chuyển, vận động",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 活动",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Cũng có thể là động từ: di chuyển, vận động",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -111,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__2__topic__12__giai-tri",
+      "sectionSlug": "giai-tri",
       "sectionTitle": "Giải trí",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -126,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

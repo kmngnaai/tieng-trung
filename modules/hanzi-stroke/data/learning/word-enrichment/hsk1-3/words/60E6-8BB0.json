@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:惦记",
   "type": "word",
   "word": "惦记",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "diàn jì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nhớ nhung, canh cánh trong lòng (luôn nghĩ đến ai/điều gì với tình cảm lo lắng hoặc quan tâm)",
+      "meaningShortVi": "nhớ nhung",
+      "meaningFullVi": "nhớ nhung, canh cánh trong lòng (luôn nghĩ đến ai/điều gì với tình cảm lo lắng hoặc quan tâm)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nhớ nhung",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "惦记 mang sắc thái tình cảm ấm áp — lo lắng quan tâm đến người thân hoặc việc chưa giải quyết. existingMeaning 'nhớ lại' chưa đúng — 惦记 là nhớ nhung liên tục, không phải nhớ lại sự kiện quá khứ. Khác với 想念 (chỉ nhớ da diết, không hàm ý lo lắng)."
-  ],
-  "wordTypeExplanations": [
-    "惦 (điếm — canh cánh nhớ nhung trong lòng) + 记 (ký — ghi nhớ) → ghi nhớ và canh cánh trong lòng, tức nhớ nhung với tình cảm lo lắng."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "惦记家人",
         "pinyin": "diànjì jiārén",
         "meaningVi": "nhớ nhung người thân",
+        "meaningFullVi": "nhớ nhung người thân",
         "target": "惦记",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "一直惦记",
         "pinyin": "yīzhí diànjì",
         "meaningVi": "luôn canh cánh nhớ",
+        "meaningFullVi": "luôn canh cánh nhớ",
         "target": "惦记",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "惦记着",
         "pinyin": "diànjì zhe",
         "meaningVi": "đang canh cánh nhớ đến",
+        "meaningFullVi": "đang canh cánh nhớ đến",
         "target": "惦记",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Mẹ luôn canh cánh nhớ đến đứa con đang làm việc xa nhà",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "惦记",
@@ -90,7 +95,8 @@
       "meaningVi": "Trên đường đi anh ấy luôn nhớ nhung người già ở nhà",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "惦记",
@@ -99,7 +105,8 @@
       "meaningVi": "Thôi đừng canh cánh chuyện này nữa, hãy thư thái đi",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "惦记",
@@ -108,23 +115,17 @@
       "meaningVi": "Cô ấy luôn nhớ và muốn đi thăm người bạn cũ",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 惦记",
-      "syntax": "compound-semantic",
-      "matchedExample": "惦记 mang sắc thái tình cảm ấm áp — lo lắng quan tâm đến người thân hoặc việc chưa giải quyết. existingMeaning 'nhớ lại' chưa đúng — 惦记 là nhớ nhung liên tục, không phải nhớ lại sự kiện quá khứ. Khác với 想念 (chỉ nhớ da diết, không hàm ý lo lắng).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "惦 (điếm — canh cánh nhớ nhung trong lòng) + 记 (ký — ghi nhớ) → ghi nhớ và canh cánh trong lòng, tức nhớ nhung với tình cảm lo lắng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 惦记",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "惦记 mang sắc thái tình cảm ấm áp — lo lắng quan tâm đến người thân hoặc việc chưa giải quyết. existingMeaning 'nhớ lại' chưa đúng — 惦记 là nhớ nhung liên tục, không phải nhớ lại sự kiện quá khứ. Khác với 想念 (chỉ nhớ da diết, không hàm ý lo lắng).",
+      "explanationVi": "惦 (điếm — canh cánh nhớ nhung trong lòng) + 记 (ký — ghi nhớ) → ghi nhớ và canh cánh trong lòng, tức nhớ nhung với tình cảm lo lắng.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:看来",
   "type": "word",
   "word": "看来",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "kàn lái",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "dường như, có vẻ, trông có vẻ",
+      "meaningShortVi": "dường như",
+      "meaningFullVi": "dường như, có vẻ, trông có vẻ",
       "partOfSpeech": "động từ/trợ từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "dường như",
   "wordType": "động từ/trợ từ",
   "wordTypes": [
     "động từ/trợ từ"
   ],
-  "usageNotes": [
-    "Dùng để đưa ra nhận định dựa trên quan sát hoặc suy luận. Có thể đứng đầu câu hoặc đi với '看起来'. Thường mang sắc thái phỏng đoán."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -49,22 +48,17 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "看起来",
-        "pinyin": "kànqǐlái",
-        "meaningVi": "trông có vẻ, dường như",
-        "target": "看来",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "看来是",
         "pinyin": "kànlái shì",
         "meaningVi": "hình như là",
+        "meaningFullVi": "hình như là",
         "target": "看来",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,16 +68,17 @@
       "meaningVi": "Trông có vẻ ngày mai sẽ mưa.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 看来",
-      "syntax": "động từ/trợ từ",
-      "matchedExample": "Dùng để đưa ra nhận định dựa trên quan sát hoặc suy luận. Có thể đứng đầu câu hoặc đi với '看起来'. Thường mang sắc thái phỏng đoán.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 看来",
+      "partOfSpeech": "động từ/trợ từ",
+      "usageNoteVi": "Dùng để đưa ra nhận định dựa trên quan sát hoặc suy luận. Có thể đứng đầu câu hoặc đi với '看起来'. Thường mang sắc thái phỏng đoán.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -94,11 +89,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__3__lesson__11__bai-11-it-seems-i-can-t-solve-this-problem",
+      "sectionSlug": "bai-11-it-seems-i-can-t-solve-this-problem",
       "sectionTitle": "Xem ra tôi không có cách giải quyết vấn đề này",
       "sectionTitleZh": "看来我没办法解决这个问题",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-11-it-seems-i-can-t-solve-this-problem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-11-it-seems-i-can-t-solve-this-problem/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -114,7 +114,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:秘书",
   "type": "word",
   "word": "秘书",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "mì shū",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thư ký, người phụ trợ",
+      "meaningShortVi": "thư ký",
+      "meaningFullVi": "thư ký, người phụ trợ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thư ký",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "秘书 nghĩa là người giữ việc bí mật, thư ký. Hán-Việt 'bí' là bí mật; 'thư' là sách, văn bản. Người giữ sách bí mật là thư ký."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,7 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -56,7 +56,8 @@
       "meaningVi": "Cô ấy là thư ký của tôi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "秘书",
@@ -65,7 +66,8 @@
       "meaningVi": "Thư ký giúp tôi sắp xếp cuộc họp.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "秘书",
@@ -74,16 +76,17 @@
       "meaningVi": "Công ty tuyển thư ký mới.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 秘书",
-      "syntax": "compound-semantic",
-      "matchedExample": "秘书 nghĩa là người giữ việc bí mật, thư ký. Hán-Việt 'bí' là bí mật; 'thư' là sách, văn bản. Người giữ sách bí mật là thư ký.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 秘书",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "秘书 nghĩa là người giữ việc bí mật, thư ký. Hán-Việt 'bí' là bí mật; 'thư' là sách, văn bản. Người giữ sách bí mật là thư ký.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -94,11 +97,16 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 2,
+      "sectionId": "hsk__3__lesson__2__bai-2-khi-nao-anh-ay-ve",
+      "sectionSlug": "bai-2-khi-nao-anh-ay-ve",
       "sectionTitle": "Khi nào anh ấy về?",
       "sectionTitleZh": "他什么时候回来",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-2-khi-nao-anh-ay-ve/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-2-khi-nao-anh-ay-ve/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -109,7 +117,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

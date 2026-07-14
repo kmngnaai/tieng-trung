@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:经济",
   "type": "word",
   "word": "经济",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jīng jì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "kinh tế; điều kiện tài chính, tình hình tiền bạc",
+      "meaningShortVi": "kinh tế",
+      "meaningFullVi": "kinh tế; điều kiện tài chính, tình hình tiền bạc",
       "partOfSpeech": "danh từ / tính từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "kinh tế",
   "wordType": "danh từ / tính từ",
   "wordTypes": [
     "danh từ / tính từ"
   ],
-  "usageNotes": [
-    "经济 là từ ghép Hán-Việt 'kinh tế'. Có thể chỉ lĩnh vực kinh tế hoặc điều kiện tài chính cá nhân. Trong khẩu ngữ, '经济' thường chỉ tình hình tiền bạc."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,19 +51,24 @@
         "text": "经济危机",
         "pinyin": "jīngjì wēijī",
         "meaningVi": "khủng hoảng kinh tế",
+        "meaningFullVi": "khủng hoảng kinh tế",
         "target": "经济",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "经济条件",
         "pinyin": "jīngjì tiáojiàn",
         "meaningVi": "điều kiện kinh tế",
+        "meaningFullVi": "điều kiện kinh tế",
         "target": "经济",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Kinh tế phát triển rất nhanh.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "经济",
@@ -83,16 +88,17 @@
       "meaningVi": "Tình hình tài chính của tôi không quá tốt.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 经济",
-      "syntax": "danh từ / tính từ",
-      "matchedExample": "经济 là từ ghép Hán-Việt 'kinh tế'. Có thể chỉ lĩnh vực kinh tế hoặc điều kiện tài chính cá nhân. Trong khẩu ngữ, '经济' thường chỉ tình hình tiền bạc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 经济",
+      "partOfSpeech": "danh từ / tính từ",
+      "usageNoteVi": "经济 là từ ghép Hán-Việt 'kinh tế'. Có thể chỉ lĩnh vực kinh tế hoặc điều kiện tài chính cá nhân. Trong khẩu ngữ, '经济' thường chỉ tình hình tiền bạc.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 22,
+      "sectionId": "new_hsk__3__topic__22__kinh-te-va-tai-chinh",
+      "sectionSlug": "kinh-te-va-tai-chinh",
       "sectionTitle": "Kinh tế và tài chính",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/kinh-te-va-tai-chinh/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/kinh-te-va-tai-chinh/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:空调",
   "type": "word",
   "word": "空调",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "kōng tiáo",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "máy điều hòa không khí; điều chỉnh nhiệt độ",
+      "meaningShortVi": "máy điều hòa không khí",
+      "meaningFullVi": "máy điều hòa không khí; điều chỉnh nhiệt độ",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "máy điều hòa không khí",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "空调 là danh từ chỉ máy điều hòa không khí. Trong khẩu ngữ, người ta thường gọi tắt là 空调 hoặc 开空调/关空调 (bật/tắt điều hòa)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -53,19 +52,24 @@
         "text": "开空调",
         "pinyin": "kāi kōngtiáo",
         "meaningVi": "bật điều hòa",
+        "meaningFullVi": "bật điều hòa",
         "target": "空调",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "关空调",
         "pinyin": "guān kōngtiáo",
         "meaningVi": "tắt điều hòa",
+        "meaningFullVi": "tắt điều hòa",
         "target": "空调",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -75,7 +79,8 @@
       "meaningVi": "Mùa hè cần bật điều hòa.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "空调",
@@ -84,16 +89,17 @@
       "meaningVi": "Máy điều hòa bị hỏng.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 空调",
-      "syntax": "danh từ",
-      "matchedExample": "空调 là danh từ chỉ máy điều hòa không khí. Trong khẩu ngữ, người ta thường gọi tắt là 空调 hoặc 开空调/关空调 (bật/tắt điều hòa).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 空调",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "空调 là danh từ chỉ máy điều hòa không khí. Trong khẩu ngữ, người ta thường gọi tắt là 空调 hoặc 开空调/关空调 (bật/tắt điều hòa).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,31 +110,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 11,
+      "sectionId": "hsk__3__lesson__11__bai-11-dung-quen-tat-dieu-hoa",
+      "sectionSlug": "bai-11-dung-quen-tat-dieu-hoa",
       "sectionTitle": "Đừng quên tắt điều hòa.",
       "sectionTitleZh": "别忘了把空调关了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-11-dung-quen-tat-dieu-hoa/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-11-dung-quen-tat-dieu-hoa/",
+      "orderInSection": 9
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__3__lesson__3__bai-3-this-neighborhood-is-pretty-nice",
+      "sectionSlug": "bai-3-this-neighborhood-is-pretty-nice",
       "sectionTitle": "Khu chung cư này khá đẹp",
       "sectionTitleZh": "这个小区挺好的",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-3-this-neighborhood-is-pretty-nice/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-3-this-neighborhood-is-pretty-nice/",
+      "orderInSection": 8
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 27,
+      "sectionId": "new_hsk__3__topic__27__can-nha",
+      "sectionSlug": "can-nha",
       "sectionTitle": "Căn nhà",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/can-nha/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/can-nha/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -144,7 +165,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

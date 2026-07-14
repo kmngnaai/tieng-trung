@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:特别",
   "type": "word",
   "word": "特别",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "tè bié",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đặc biệt",
+      "meaningShortVi": "đặc biệt",
+      "meaningFullVi": "đặc biệt",
       "partOfSpeech": "adjective",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đặc biệt",
   "wordType": "adjective",
   "wordTypes": [
     "adjective"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -46,46 +47,40 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "特点",
-        "pinyin": "",
-        "meaningVi": "đặc điểm",
-        "target": "特别",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "特殊性",
-        "pinyin": "",
-        "meaningVi": "tính chất đặc biệt",
-        "target": "特别",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "特别",
       "chinese": "今天特别冷",
-      "pinyin": "",
+      "pinyin": "jīn tiān tè bié lěng",
       "meaningVi": "Hôm nay đặc biệt lạnh",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "特别",
       "chinese": "他特别喜欢中国菜",
-      "pinyin": "",
+      "pinyin": "tā tè bié xǐ huan Zhōng guó cài",
       "meaningVi": "Anh ấy đặc biệt thích món Trung Quốc",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 特别",
+      "partOfSpeech": "adjective",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/特别.mp3"
   ],
@@ -94,31 +89,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__2__topic__11__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/pho-tu/",
+      "orderInSection": 15
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 6,
+      "sectionId": "hsk__3__lesson__6__bai-6-sao-dot-nhien-khong-tim-thay",
+      "sectionSlug": "bai-6-sao-dot-nhien-khong-tim-thay",
       "sectionTitle": "Sao đột nhiên không tìm thấy?",
       "sectionTitleZh": "怎么突然找不到了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-6-sao-dot-nhien-khong-tim-thay/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-6-sao-dot-nhien-khong-tim-thay/",
+      "orderInSection": 7
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__3__lesson__4__bai-4-this-hotel-is-unlike-any-other",
+      "sectionSlug": "bai-4-this-hotel-is-unlike-any-other",
       "sectionTitle": "Khách sạn này khác hẳn những nơi khác",
       "sectionTitleZh": "这家宾馆跟别的都不一样",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-4-this-hotel-is-unlike-any-other/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-4-this-hotel-is-unlike-any-other/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -134,7 +144,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

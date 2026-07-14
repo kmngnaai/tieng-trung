@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:形式",
   "type": "word",
   "word": "形式",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xíng shì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hình thức; dạng thức; phương thức",
+      "meaningShortVi": "hình thức",
+      "meaningFullVi": "hình thức; dạng thức; phương thức",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hình thức",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Xíng shì dùng cho cách thức, dạng thức của sự vật hoặc hoạt động. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "艺术形式",
-        "pinyin": "",
+        "pinyin": "yì shù xíng shì",
         "meaningVi": "hình thức nghệ thuật",
+        "meaningFullVi": "hình thức nghệ thuật",
         "target": "形式",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "形式主义",
-        "pinyin": "",
-        "meaningVi": "chủ nghĩa hình thức",
-        "target": "形式",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "形式",
       "chinese": "我们不仅要重视内容,还要重视形式。",
-      "pinyin": "",
+      "pinyin": "wǒ men bù jǐn yào zhòng shì nèi róng, hái yào zhòng shì xíng shì。",
       "meaningVi": "Chúng ta không chỉ coi trọng nội dung, mà còn phải coi trọng hình thức.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "形式",
       "chinese": "这两种形式都可以。",
-      "pinyin": "",
+      "pinyin": "zhè liǎng zhǒng xíng shì dōu kě yǐ。",
       "meaningVi": "Cả hai hình thức này đều được.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 形式",
-      "syntax": "danh từ",
-      "matchedExample": "Xíng shì dùng cho cách thức, dạng thức của sự vật hoặc hoạt động. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 形式",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Xíng shì dùng cho cách thức, dạng thức của sự vật hoặc hoạt động. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 32,
+      "sectionId": "new_hsk__3__topic__32__dac-diem",
+      "sectionSlug": "dac-diem",
       "sectionTitle": "Đặc điểm",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

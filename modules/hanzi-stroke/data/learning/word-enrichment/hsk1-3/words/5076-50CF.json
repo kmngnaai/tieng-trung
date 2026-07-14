@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:偶像",
   "type": "word",
   "word": "偶像",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "ǒu xiàng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thần tượng, người mẫu",
+      "meaningShortVi": "thần tượng",
+      "meaningFullVi": "thần tượng, người mẫu",
       "partOfSpeech": "danh từ / noun",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thần tượng",
   "wordType": "danh từ / noun",
   "wordTypes": [
     "danh từ / noun"
   ],
-  "usageNotes": [
-    "Danh từ chỉ người được ngưỡng mộ và coi làm gương."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,32 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "青春偶像",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "偶像",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "偶像剧",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "偶像",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "崇拜偶像",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "偶像",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +54,8 @@
       "meaningVi": "Anh ấy là thần tượng của tôi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "偶像",
@@ -88,16 +64,17 @@
       "meaningVi": "Thần tượng nổi tiếng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 偶像",
-      "syntax": "danh từ / noun",
-      "matchedExample": "Danh từ chỉ người được ngưỡng mộ và coi làm gương.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 偶像",
+      "partOfSpeech": "danh từ / noun",
+      "usageNoteVi": "Danh từ chỉ người được ngưỡng mộ và coi làm gương.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -112,7 +89,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:地球",
   "type": "word",
   "word": "地球",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "Dì qiú",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trái đất",
+      "meaningShortVi": "trái đất",
+      "meaningFullVi": "trái đất",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trái đất",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Danh từ chỉ trái đất."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "地球上",
-        "pinyin": "",
+        "pinyin": "Dì qiú shàng",
         "meaningVi": "trên trái đất",
+        "meaningFullVi": "trên trái đất",
         "target": "地球",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "地球人",
-        "pinyin": "",
+        "pinyin": "Dì qiú rén",
         "meaningVi": "người trái đất",
+        "meaningFullVi": "người trái đất",
         "target": "地球",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "地球",
       "chinese": "地球是圆的",
-      "pinyin": "",
+      "pinyin": "Dì qiú shì yuán de",
       "meaningVi": "Trái đất là tròn",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "地球",
       "chinese": "保护地球",
-      "pinyin": "",
+      "pinyin": "bǎo hù Dì qiú",
       "meaningVi": "Bảo vệ trái đất",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 地球",
-      "syntax": "noun",
-      "matchedExample": "Danh từ chỉ trái đất.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 地球",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Danh từ chỉ trái đất.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__2__topic__16__thien-nhien",
+      "sectionSlug": "thien-nhien",
       "sectionTitle": "Thiên nhiên",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thien-nhien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thien-nhien/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

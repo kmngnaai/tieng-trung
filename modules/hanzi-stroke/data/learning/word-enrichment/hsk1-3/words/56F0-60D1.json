@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:困惑",
   "type": "word",
   "word": "困惑",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "kùn huò",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bối rối, khó hiểu; lúng túng, không biết phải làm gì",
+      "meaningShortVi": "bối rối",
+      "meaningFullVi": "bối rối, khó hiểu; lúng túng, không biết phải làm gì",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bối rối",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Thường dùng để diễn tả tâm trạng lúng túng, khó hiểu trước vấn đề, tình huống."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 困 (vây hãm, khó khăn) + 惑 (nghi hoặc, không rõ) → bị vây trong nghi hoặc, lúng túng."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "感到困惑",
         "pinyin": "gǎn dào kùn huò",
         "meaningVi": "cảm thấy bối rối",
+        "meaningFullVi": "cảm thấy bối rối",
         "target": "困惑",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "令人困惑",
         "pinyin": "lìng rén kùn huò",
         "meaningVi": "khiến người ta bối rối",
+        "meaningFullVi": "khiến người ta bối rối",
         "target": "困惑",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "十分困惑",
         "pinyin": "shí fēn kùn huò",
         "meaningVi": "rất bối rối",
+        "meaningFullVi": "rất bối rối",
         "target": "困惑",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Vấn đề này khiến tôi rất bối rối",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "困惑",
@@ -90,7 +95,8 @@
       "meaningVi": "Anh ấy cảm thấy lúng túng về tương lai",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "困惑",
@@ -99,7 +105,8 @@
       "meaningVi": "Đừng vì chuyện này mà bối rối",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "困惑",
@@ -108,23 +115,17 @@
       "meaningVi": "Cô ấy nhìn bài toán khó với vẻ bối rối",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 困惑",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường dùng để diễn tả tâm trạng lúng túng, khó hiểu trước vấn đề, tình huống.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 困 (vây hãm, khó khăn) + 惑 (nghi hoặc, không rõ) → bị vây trong nghi hoặc, lúng túng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 困惑",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường dùng để diễn tả tâm trạng lúng túng, khó hiểu trước vấn đề, tình huống.",
+      "explanationVi": "Ghép nghĩa: 困 (vây hãm, khó khăn) + 惑 (nghi hoặc, không rõ) → bị vây trong nghi hoặc, lúng túng.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

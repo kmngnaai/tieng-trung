@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:理发",
   "type": "word",
   "word": "理发",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "lǐ fà",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cắt tóc; làm tóc",
+      "meaningShortVi": "cắt tóc",
+      "meaningFullVi": "cắt tóc; làm tóc",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cắt tóc",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Động từ chỉ việc cắt, tạo kiểu tóc. Thường dùng với cấu trúc '理发店' (tiệm tóc)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -50,20 +49,25 @@
       {
         "text": "理发店",
         "pinyin": "lǐfàdiàn",
-        "meaningVi": "tiệm cắt tóc, hiệu cắt tóc",
+        "meaningVi": "tiệm cắt tóc",
+        "meaningFullVi": "tiệm cắt tóc, hiệu cắt tóc",
         "target": "理发",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "理发师",
         "pinyin": "lǐfàshī",
         "meaningVi": "thợ cắt tóc",
+        "meaningFullVi": "thợ cắt tóc",
         "target": "理发",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,16 +77,17 @@
       "meaningVi": "Gần đây có một tiệm cắt tóc.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 理发",
-      "syntax": "động từ",
-      "matchedExample": "Động từ chỉ việc cắt, tạo kiểu tóc. Thường dùng với cấu trúc '理发店' (tiệm tóc).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 理发",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Động từ chỉ việc cắt, tạo kiểu tóc. Thường dùng với cấu trúc '理发店' (tiệm tóc).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -93,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 34,
+      "sectionId": "new_hsk__3__topic__34__quan-ao-va-phu-kien",
+      "sectionSlug": "quan-ao-va-phu-kien",
       "sectionTitle": "Quần áo và phụ kiện",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/quan-ao-va-phu-kien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/quan-ao-va-phu-kien/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -108,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

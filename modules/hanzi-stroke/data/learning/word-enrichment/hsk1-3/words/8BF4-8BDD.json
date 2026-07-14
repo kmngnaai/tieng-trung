@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:说话",
   "type": "word",
   "word": "说话",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "shuō huà",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nói chuyện, phát biểu (hoạt động dùng lời nói)",
+      "meaningShortVi": "nói chuyện",
+      "meaningFullVi": "nói chuyện, phát biểu (hoạt động dùng lời nói)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nói chuyện",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Động từ ghép, chỉ hoạt động nói chuyện liên tục, không phải một câu đơn lẻ. Phân biệt với 说 (nói một câu) 和 话 (lời nói)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 说 (nói, giảng) + 话 (lời nói) → hoạt động nói lời, nói chuyện với ai đó."
   ],
   "hsk": {
     "levels": [
@@ -55,35 +52,44 @@
         "text": "说说话",
         "pinyin": "shuōshuo huà",
         "meaningVi": "trò chuyện một chút",
+        "meaningFullVi": "trò chuyện một chút",
         "target": "说话",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "会说话",
         "pinyin": "huì shuōhuà",
         "meaningVi": "biết cách nói chuyện khéo léo",
+        "meaningFullVi": "biết cách nói chuyện khéo léo",
         "target": "说话",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "说话声音",
         "pinyin": "shuōhuà shēngyīn",
         "meaningVi": "giọng nói",
+        "meaningFullVi": "giọng nói",
         "target": "说话",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "没大没小说话",
         "pinyin": "méi dà méi xiǎo shuōhuà",
         "meaningVi": "nói chuyện không biết lễ phép",
+        "meaningFullVi": "nói chuyện không biết lễ phép",
         "target": "说话",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -93,7 +99,8 @@
       "meaningVi": "Thầy giáo đang phát biểu",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "说话",
@@ -102,7 +109,8 @@
       "meaningVi": "Đừng nói nữa",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "说话",
@@ -111,7 +119,8 @@
       "meaningVi": "Tôi muốn nói chuyện với bạn",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "说话",
@@ -120,23 +129,17 @@
       "meaningVi": "Anh ấy đang nói chuyện qua điện thoại",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 说话",
-      "syntax": "compound-semantic",
-      "matchedExample": "Động từ ghép, chỉ hoạt động nói chuyện liên tục, không phải một câu đơn lẻ. Phân biệt với 说 (nói một câu) 和 话 (lời nói).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 说 (nói, giảng) + 话 (lời nói) → hoạt động nói lời, nói chuyện với ai đó.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 说话",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Động từ ghép, chỉ hoạt động nói chuyện liên tục, không phải một câu đơn lẻ. Phân biệt với 说 (nói một câu) 和 话 (lời nói).",
+      "explanationVi": "Ghép nghĩa: 说 (nói, giảng) + 话 (lời nói) → hoạt động nói lời, nói chuyện với ai đó.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -147,31 +150,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__1__lesson__14__bai-14-i-watched-a-movie",
+      "sectionSlug": "bai-14-i-watched-a-movie",
       "sectionTitle": "Tôi đã xem một bộ phim",
       "sectionTitleZh": "我看了一个电影",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-14-i-watched-a-movie/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-14-i-watched-a-movie/",
+      "orderInSection": 10
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 21,
+      "sectionId": "new_hsk__1__topic__21__dong-tu-thuong-le",
+      "sectionSlug": "dong-tu-thuong-le",
       "sectionTitle": "Động từ thường lệ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dong-tu-thuong-le/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dong-tu-thuong-le/",
+      "orderInSection": 23
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 11,
+      "sectionId": "hsk__2__lesson__11__bai-11-anh-ay-hon-toi-3-tuoi",
+      "sectionSlug": "bai-11-anh-ay-hon-toi-3-tuoi",
       "sectionTitle": "Anh ấy hơn tôi 3 tuổi",
       "sectionTitleZh": "他比我大三岁",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-11-anh-ay-hon-toi-3-tuoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-11-anh-ay-hon-toi-3-tuoi/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -187,7 +205,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

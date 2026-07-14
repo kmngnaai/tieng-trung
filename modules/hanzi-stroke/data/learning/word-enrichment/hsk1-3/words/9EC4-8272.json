@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:黄色",
   "type": "word",
   "word": "黄色",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "huáng sè",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hoàng sắc",
+      "meaningShortVi": "hoàng sắc",
+      "meaningFullVi": "hoàng sắc",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hoàng sắc",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -48,43 +49,58 @@
     "collocations": [
       {
         "text": "金黄色",
-        "pinyin": "",
+        "pinyin": "jīn huáng sè",
         "meaningVi": "màu vàng kim",
+        "meaningFullVi": "màu vàng kim",
         "target": "黄色",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "淡黄色",
-        "pinyin": "",
+        "pinyin": "dàn huáng sè",
         "meaningVi": "màu vàng nhạt",
+        "meaningFullVi": "màu vàng nhạt",
         "target": "黄色",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "黄色",
       "chinese": "我喜欢黄色",
-      "pinyin": "",
+      "pinyin": "wǒ xǐ huan huáng sè",
       "meaningVi": "Tôi thích màu vàng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "黄色",
       "chinese": "黄色的花很美",
-      "pinyin": "",
+      "pinyin": "huáng sè de huā hěn měi",
       "meaningVi": "Hoa màu vàng rất đẹp",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 黄色",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/黄色.mp3"
   ],
@@ -93,21 +109,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 25,
+      "sectionId": "new_hsk__2__topic__25__ve-be-ngoai",
+      "sectionSlug": "ve-be-ngoai",
       "sectionTitle": "Vẻ bề ngoài",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/ve-be-ngoai/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/ve-be-ngoai/",
+      "orderInSection": 21
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__3__lesson__7__bai-7-that-skirt-looks-better-than-the-shorts",
+      "sectionSlug": "bai-7-that-skirt-looks-better-than-the-shorts",
       "sectionTitle": "Cái váy đó đẹp hơn quần soóc",
       "sectionTitleZh": "那条裙子比短裤更好看",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-7-that-skirt-looks-better-than-the-shorts/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-7-that-skirt-looks-better-than-the-shorts/",
+      "orderInSection": 6
     }
   ],
   "sources": [
@@ -123,7 +149,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

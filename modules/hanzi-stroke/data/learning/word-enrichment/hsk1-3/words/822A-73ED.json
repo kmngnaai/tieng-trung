@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:航班",
   "type": "word",
   "word": "航班",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "háng bān",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chuyến bay, chuyến bay định kỳ",
+      "meaningShortVi": "chuyến bay",
+      "meaningFullVi": "chuyến bay, chuyến bay định kỳ",
       "partOfSpeech": "danh từ (noun)",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chuyến bay",
   "wordType": "danh từ (noun)",
   "wordTypes": [
     "danh từ (noun)"
   ],
-  "usageNotes": [
-    "航 (hàng) nghĩa là hàng không, bay; 班 (ban) nghĩa là lịch trình định kỳ. 航班 là chuyến bay theo lịch trình cố định của hãng hàng không."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,27 +48,34 @@
         "text": "国际航班",
         "pinyin": "guójì hángbān",
         "meaningVi": "chuyến bay quốc tế",
+        "meaningFullVi": "chuyến bay quốc tế",
         "target": "航班",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "航班号",
         "pinyin": "hángbān hào",
         "meaningVi": "số hiệu chuyến bay",
+        "meaningFullVi": "số hiệu chuyến bay",
         "target": "航班",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "延误航班",
         "pinyin": "yánwù hángbān",
         "meaningVi": "chuyến bay bị chậm",
+        "meaningFullVi": "chuyến bay bị chậm",
         "target": "航班",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +85,8 @@
       "meaningVi": "Tôi lỡ chuyến bay.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "航班",
@@ -88,7 +95,8 @@
       "meaningVi": "Chuyến bay này đến đúng giờ.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "航班",
@@ -97,16 +105,17 @@
       "meaningVi": "Vui lòng xác nhận thông tin chuyến bay.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 航班",
-      "syntax": "danh từ (noun)",
-      "matchedExample": "航 (hàng) nghĩa là hàng không, bay; 班 (ban) nghĩa là lịch trình định kỳ. 航班 là chuyến bay theo lịch trình cố định của hãng hàng không.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 航班",
+      "partOfSpeech": "danh từ (noun)",
+      "usageNoteVi": "航 (hàng) nghĩa là hàng không, bay; 班 (ban) nghĩa là lịch trình định kỳ. 航班 là chuyến bay theo lịch trình cố định của hãng hàng không.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -121,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

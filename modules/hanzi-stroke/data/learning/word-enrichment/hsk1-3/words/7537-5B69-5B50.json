@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:男孩子",
   "type": "word",
   "word": "男孩子",
@@ -16,27 +16,24 @@
     "readings": [
       {
         "pinyin": "nán hái zi",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cậu bé, đứa con trai",
+      "meaningShortVi": "cậu bé",
+      "meaningFullVi": "cậu bé, đứa con trai",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cậu bé",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng cho trẻ em nam. Có thể rút ngắn thành '男孩'. Đối với người lớn tuổi hơn, dùng '男生' hoặc '男人'."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 男 (nam, con trai) + 孩 (trẻ em) + 子 (hậu từ danh từ). Nghĩa là 'đứa trẻ là con trai'. '子' ở đây làm tròn danh từ, tương đương '儿' trong 女孩儿."
   ],
   "hsk": {
     "levels": [
@@ -54,27 +51,34 @@
         "text": "小男孩子",
         "pinyin": "xiǎo nán hái zi",
         "meaningVi": "cậu bé nhỏ",
+        "meaningFullVi": "cậu bé nhỏ",
         "target": "男孩子",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "大男孩子",
         "pinyin": "dà nán hái zi",
         "meaningVi": "thanh niên nam",
+        "meaningFullVi": "thanh niên nam",
         "target": "男孩子",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "男孩子气",
         "pinyin": "nán hái zi qì",
         "meaningVi": "phẩm chất con trai",
+        "meaningFullVi": "phẩm chất con trai",
         "target": "男孩子",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -84,7 +88,8 @@
       "meaningVi": "Anh ấy có một cậu bé đáng yêu",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "男孩子",
@@ -93,7 +98,8 @@
       "meaningVi": "Cậu bé đang đá bóng trên sân vận động",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "男孩子",
@@ -102,7 +108,8 @@
       "meaningVi": "Cậu bé đó mười tuổi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "男孩子",
@@ -111,23 +118,17 @@
       "meaningVi": "Cậu bé thông minh",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 男孩子",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng cho trẻ em nam. Có thể rút ngắn thành '男孩'. Đối với người lớn tuổi hơn, dùng '男生' hoặc '男人'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 男 (nam, con trai) + 孩 (trẻ em) + 子 (hậu từ danh từ). Nghĩa là 'đứa trẻ là con trai'. '子' ở đây làm tròn danh từ, tương đương '儿' trong 女孩儿.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 男孩子",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng cho trẻ em nam. Có thể rút ngắn thành '男孩'. Đối với người lớn tuổi hơn, dùng '男生' hoặc '男人'.",
+      "explanationVi": "Ghép nghĩa: 男 (nam, con trai) + 孩 (trẻ em) + 子 (hậu từ danh từ). Nghĩa là 'đứa trẻ là con trai'. '子' ở đây làm tròn danh từ, tương đương '儿' trong 女孩儿.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -138,11 +139,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 24,
+      "sectionId": "new_hsk__1__topic__24__nhung-nguoi",
+      "sectionSlug": "nhung-nguoi",
       "sectionTitle": "Những người",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nhung-nguoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nhung-nguoi/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -153,7 +159,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

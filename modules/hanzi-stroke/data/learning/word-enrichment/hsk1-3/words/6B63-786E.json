@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:正确",
   "type": "word",
   "word": "正确",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "zhèng què",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chính xác, đúng đắn",
+      "meaningShortVi": "chính xác",
+      "meaningFullVi": "chính xác, đúng đắn",
       "partOfSpeech": "adjective",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chính xác",
   "wordType": "adjective",
   "wordTypes": [
     "adjective"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -46,61 +47,59 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "正确的答案",
-        "pinyin": "",
-        "meaningVi": "câu trả lời đúng",
-        "target": "正确",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "正确的方法",
-        "pinyin": "",
+        "pinyin": "zhèng què de fāng fǎ",
         "meaningVi": "phương pháp đúng",
+        "meaningFullVi": "phương pháp đúng",
         "target": "正确",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不正确",
-        "pinyin": "",
+        "pinyin": "bù zhèng què",
         "meaningVi": "không đúng",
+        "meaningFullVi": "không đúng",
         "target": "正确",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "正确",
-      "chinese": "你的答案正确",
-      "pinyin": "",
-      "meaningVi": "Câu trả lời của bạn đúng",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "正确",
       "chinese": "这是正确的方法",
-      "pinyin": "",
+      "pinyin": "zhè shì zhèng què de fāng fǎ",
       "meaningVi": "Đây là phương pháp đúng đắn",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "正确",
       "chinese": "请做正确的选择",
-      "pinyin": "",
+      "pinyin": "qǐng zuò zhèng què de xuǎn zé",
       "meaningVi": "Hãy chọn lựa đúng đắn",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 正确",
+      "partOfSpeech": "adjective",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/正确.mp3"
   ],
@@ -109,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__2__topic__18__tinh-tu",
+      "sectionSlug": "tinh-tu",
       "sectionTitle": "Tính từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-tu/",
+      "orderInSection": 29
     }
   ],
   "sources": [
@@ -124,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

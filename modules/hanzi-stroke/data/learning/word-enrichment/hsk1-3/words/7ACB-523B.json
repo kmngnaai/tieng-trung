@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:立刻",
   "type": "word",
   "word": "立刻",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "lì kè",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Ngay lập tức",
+      "meaningShortVi": "Ngay lập tức",
+      "meaningFullVi": "Ngay lập tức",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Ngay lập tức",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "立刻 là trạng từ chỉ ngay tức thì, không chậm trễ. 立 (lập) nghĩa là đứng, lập tức; 刻 (khắc) nghĩa là khắc, thời khắc. Ghép lại: ngay lúc đó."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -47,48 +46,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "立刻开始",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "立刻",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "立刻离开",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "立刻",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "立刻到达",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "立刻",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "立刻行动",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "立刻",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "立刻通知",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "立刻",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -98,7 +57,8 @@
       "meaningVi": "Hãy trả lời email của tôi ngay lập tức.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "立刻",
@@ -107,7 +67,8 @@
       "meaningVi": "Nghe tin tức, anh ấy khởi hành ngay lập tức.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "立刻",
@@ -116,16 +77,17 @@
       "meaningVi": "Chúng ta cần giải quyết vấn đề này ngay lập tức.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 立刻",
-      "syntax": "compound-semantic",
-      "matchedExample": "立刻 là trạng từ chỉ ngay tức thì, không chậm trễ. 立 (lập) nghĩa là đứng, lập tức; 刻 (khắc) nghĩa là khắc, thời khắc. Ghép lại: ngay lúc đó.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 立刻",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "立刻 là trạng từ chỉ ngay tức thì, không chậm trễ. 立 (lập) nghĩa là đứng, lập tức; 刻 (khắc) nghĩa là khắc, thời khắc. Ghép lại: ngay lúc đó.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -136,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__3__topic__7__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -156,7 +123,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:至今",
   "type": "word",
   "word": "至今",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhì jīn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Cho đến nay",
+      "meaningShortVi": "Cho đến nay",
+      "meaningFullVi": "Cho đến nay",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Cho đến nay",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "至今 là trạng từ chỉ khoảng thời gian từ quá khứ đến hiện tại. 至 (chí) nghĩa là đến; 今 (kim) nghĩa là nay, bây giờ. Dùng trong câu kể về sự việc kéo dài từ quá khứ."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,40 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "至今为止",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "至今",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "至今还没",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "至今",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "至今仍然",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "至今",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "想起至今",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "至今",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -89,7 +56,8 @@
       "meaningVi": "Tôi vẫn nhớ việc đó cho đến nay.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "至今",
@@ -98,7 +66,8 @@
       "meaningVi": "Vấn đề này vẫn chưa được giải quyết cho đến nay.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "至今",
@@ -107,16 +76,17 @@
       "meaningVi": "Đã mười năm trôi qua cho đến nay.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 至今",
-      "syntax": "compound-semantic",
-      "matchedExample": "至今 là trạng từ chỉ khoảng thời gian từ quá khứ đến hiện tại. 至 (chí) nghĩa là đến; 今 (kim) nghĩa là nay, bây giờ. Dùng trong câu kể về sự việc kéo dài từ quá khứ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 至今",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "至今 là trạng từ chỉ khoảng thời gian từ quá khứ đến hiện tại. 至 (chí) nghĩa là đến; 今 (kim) nghĩa là nay, bây giờ. Dùng trong câu kể về sự việc kéo dài từ quá khứ.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -127,11 +97,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__3__topic__7__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/",
+      "orderInSection": 38
     }
   ],
   "sources": [
@@ -142,7 +117,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

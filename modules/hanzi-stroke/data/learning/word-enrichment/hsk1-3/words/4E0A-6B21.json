@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:上次",
   "type": "word",
   "word": "上次",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shàng cì",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lần trước",
+      "meaningShortVi": "lần trước",
+      "meaningFullVi": "lần trước",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lần trước",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Từ chỉ thời điểm lần trước. Ngược với '下次' (lần sau) và '这次' (lần này)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -48,30 +47,17 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "上次见",
-        "pinyin": "",
-        "meaningVi": "",
+        "text": "上次",
+        "pinyin": "shàng cì",
+        "meaningVi": "lần trước",
+        "meaningFullVi": "lần trước",
         "target": "上次",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "上次说",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "上次",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "上次去",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "上次",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +67,8 @@
       "meaningVi": "Lần trước chúng ta gặp nhau ở đâu?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "上次",
@@ -90,7 +77,8 @@
       "meaningVi": "Lần trước bạn nói gì?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "上次",
@@ -99,16 +87,17 @@
       "meaningVi": "Lần trước tôi đã đến Trung Quốc.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 上次",
-      "syntax": "compound-semantic",
-      "matchedExample": "Từ chỉ thời điểm lần trước. Ngược với '下次' (lần sau) và '这次' (lần này).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 上次",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Từ chỉ thời điểm lần trước. Ngược với '下次' (lần sau) và '这次' (lần này).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -119,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__1__topic__1__dat-cau-hoi-va-do-luong-tu-ngu",
+      "sectionSlug": "dat-cau-hoi-va-do-luong-tu-ngu",
       "sectionTitle": "Đặt câu hỏi và đo lường từ ngữ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dat-cau-hoi-va-do-luong-tu-ngu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dat-cau-hoi-va-do-luong-tu-ngu/",
+      "orderInSection": 23
     }
   ],
   "sources": [
@@ -134,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

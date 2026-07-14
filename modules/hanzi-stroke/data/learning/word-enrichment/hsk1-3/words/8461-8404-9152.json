@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:葡萄酒",
   "type": "word",
   "word": "葡萄酒",
@@ -16,22 +16,23 @@
     "readings": [
       {
         "pinyin": "pú tao jiǔ",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "rượu nho",
+      "meaningShortVi": "rượu nho",
+      "meaningFullVi": "rượu nho",
       "partOfSpeech": "",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "rượu nho",
   "wordType": "",
   "wordTypes": [],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -41,7 +42,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [],
   "grammarLinks": [],
@@ -57,9 +59,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PARTIAL",
     "warnings": [
-      "Chưa có câu chứa nguyên từ"
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
     ]
   }
 }

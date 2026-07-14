@@ -3,6 +3,7 @@ const LOCAL_CHAR_BASE = '../../data/chars/';
 const HSK_LOOKUP_URL = '../../data/learning/hsk/hsk_flashcard_lookup.json';
 const HSK_LEVEL_URLS = [1, 2, 3].map(level => `../../data/learning/hsk/hsk_${level}.json`);
 const WORD_INDEX_URL = '../../data/learning/word-enrichment/hsk1-3/index.json';
+const WORD_SEARCH_INDEX_URL = '../../data/learning/word-enrichment/hsk1-3/search_index.json';
 const HANZI_DATA_BASE = 'https://cdn.jsdelivr.net/npm/hanzi-writer-data@latest/';
 const RADICAL_NOTES_URL = '../../data/learning/radicals/radical_learning_notes.json';
 
@@ -11,6 +12,7 @@ const state = {
   hskLookup: null,
   hskLevelItems: null,
   wordIndex: null,
+  wordSearchIndex: null,
   current: null,
   currentQuery: '',
   dark: false,
@@ -40,6 +42,7 @@ const isHanText = value => /^[\p{Script=Han}]+$/u.test(value);
 const isSingleHan = value => [...value].length === 1 && isHanText(value);
 const codePointHex = char => char.codePointAt(0).toString(16).toUpperCase();
 const normalizePinyin = value => String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
+const normalizeViText = value => String(value || '').toLowerCase().replace(/[^a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ0-9\u3400-\u9fff]+/g, ' ').replace(/\s+/g, ' ').trim();
 const normalizeSearchText = value => String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/\s+/g, ' ').trim();
 
 async function safeFetchJson(url, fallback = null) {
@@ -47,12 +50,13 @@ async function safeFetchJson(url, fallback = null) {
 }
 
 function reviewed(item) {
-  return !item?.reviewStatus || item.reviewStatus === 'reviewed';
+  const status = item?.reviewStatus || '';
+  return !status || status === 'reviewed' || status === 'reviewed-local';
 }
 
 function meaningSummary(data) {
   const senses = data.meaningSenses || data.meanings || [];
-  const values = senses.filter(reviewed).map(x => x.meaningVi || x.value).filter(Boolean);
+  const values = senses.filter(reviewed).map(x => x.meaningShortVi || x.meaningVi || x.meaningFullVi || x.value).filter(Boolean);
   return values.length ? values.slice(0, 3).join('; ') : clean(data.meaningVi) || 'Chưa có nghĩa phù hợp';
 }
 
@@ -102,6 +106,14 @@ async function loadWordIndex() {
   return state.wordIndex;
 }
 
+
+async function loadWordSearchIndex() {
+  if (state.wordSearchIndex) return state.wordSearchIndex;
+  const payload = await safeFetchJson(WORD_SEARCH_INDEX_URL, { items: [] });
+  state.wordSearchIndex = Array.isArray(payload?.items) ? payload.items : [];
+  return state.wordSearchIndex;
+}
+
 async function loadNormalizedWordRecord(word) {
   const index = await loadWordIndex();
   const path = index?.[word];
@@ -109,17 +121,17 @@ async function loadNormalizedWordRecord(word) {
   const raw = await safeFetchJson(`../../data/learning/word-enrichment/hsk1-3/${path}`, null);
   if (!raw) return null;
   const pinyin = raw.pronunciation?.primary || raw.pronunciation?.readings?.[0]?.pinyin || '';
-  const meaningSenses = (raw.meaningSenses || []).map(item => ({ ...item, reviewStatus: item.reviewStatus || 'reviewed' }));
+  const meaningSenses = (raw.meaningSenses || []).map(item => ({ ...item, meaningVi: item.meaningShortVi || item.meaningVi || item.meaningFullVi || '', reviewStatus: item.reviewStatus || 'reviewed-local' }));
   const primaryLevel = raw.hsk?.primaryLevel;
   const compounds = (raw.vocabulary?.compounds || []).map(item => ({
     ...item,
     hskLevel: item.hskLevel || (item.hskLevels?.length ? `HSK ${Math.min(...item.hskLevels)}` : ''),
-    reviewStatus: item.reviewStatus || 'reviewed'
+    reviewStatus: item.reviewStatus || 'reviewed-local'
   }));
   const collocations = (raw.vocabulary?.collocations || []).map(item => ({
     ...item,
     word: item.word || item.text,
-    reviewStatus: item.reviewStatus || 'reviewed'
+    reviewStatus: item.reviewStatus || 'reviewed-local'
   }));
   return {
     ...raw,
@@ -260,7 +272,7 @@ async function buildFallbackWord(word, hskItem) {
       meaningVi: item.meaningVi || item.translationVi || '',
       relationType: 'shares-component-character',
       hskLevel: item.hsk ? `HSK ${item.hsk}` : (item.__hskFileLevel ? `HSK ${item.__hskFileLevel}` : 'HSK local'),
-      source: [`hsk_${item.__hskFileLevel || 1}.json`],
+      source: [`hsk_${exact.__hskFileLevel || 1}.json`],
       reviewStatus: 'reviewed'
     }));
   const compounds = uniqueBy(
@@ -327,7 +339,7 @@ async function buildFallbackWord(word, hskItem) {
     simplified: exact.simplified || word,
     traditional: exact.traditional || word,
     pronunciation: { pinyin: [exact.pinyin || hskItem?.pinyin || ''], hanViet: '' },
-    meaningSenses: [{ partOfSpeech: exact.wordType || '', meaningVi: exact.meaningVi || exact.translationVi || hskItem?.meaningVi || 'Chưa có nghĩa local', source: [`hsk_${item.__hskFileLevel || 1}.json`], reviewStatus: 'reviewed' }],
+    meaningSenses: [{ partOfSpeech: exact.wordType || '', meaningVi: exact.meaningVi || exact.translationVi || hskItem?.meaningVi || 'Chưa có nghĩa local', source: [`hsk_${exact.__hskFileLevel || 1}.json`], reviewStatus: 'reviewed' }],
     characterInfo: { strokeCount: null, structureType: '', formationTypeVi: 'từ nhiều chữ', radical: {} },
     components,
     etymology: { standardExplanationVi: clean(exact.wordTypeExplanation) || 'Đây là từ nhiều chữ. Chọn từng chữ bên dưới để xem cấu tạo và luyện viết.', confidence: 'local-reviewed' },
@@ -360,48 +372,61 @@ function radicalSearchText(note = {}) {
 }
 
 async function searchExistingData(query) {
+  const qVi = normalizeViText(query);
   const q = normalizeSearchText(query);
   if (!q) return [];
-  const lookup = await loadHskLookup();
-  const hskItems = await loadHskLevelItems();
   const results = [];
+  const searchItems = await loadWordSearchIndex();
 
-  const allWords = uniqueBy([
-    ...Object.values(lookup || {}),
-    ...hskItems
-  ].filter(Boolean), item => item.word || item.simplified);
+  const scoreItem = item => {
+    const word = normalizeSearchText(item.word);
+    const py = normalizeSearchText(item.pinyinNormalized || item.pinyin);
+    const meaningVi = normalizeViText(item.meaningShortVi || '');
+    const meaning = normalizeSearchText(item.meaningNormalized || item.meaningShortVi);
+    const fullVi = normalizeViText(item.meaningFullVi || item.meaningShortVi || '');
+    const full = normalizeSearchText(item.meaningFullNormalized || '');
+    if (word === q) return 1000;
+    if (py === q) return 950;
+    if (meaningVi === qVi) return 920;
+    if (meaningVi.startsWith(`${qVi} `) || meaningVi.startsWith(qVi)) return 850;
+    if (meaning === q) return 780;
+    if (meaning.startsWith(`${q} `) || meaning.startsWith(q)) return 700;
+    if (word.startsWith(q)) return 780;
+    if (py.startsWith(q)) return 740;
+    if (` ${meaningVi} `.includes(` ${qVi} `)) return 680;
+    if (fullVi.includes(qVi)) return 520;
+    if (` ${meaning} `.includes(` ${q} `)) return 400;
+    if (full.includes(q)) return 250;
+    return 0;
+  };
 
-  for (const item of allWords) {
-    const word = item.word || item.simplified || '';
-    const haystack = normalizeSearchText([word, item.pinyin, item.meaningVi, item.meaning_vi, item.translationVi, item.wordType].filter(Boolean).join(' '));
-    if (!haystack.includes(q)) continue;
+  for (const item of searchItems) {
+    const score = scoreItem(item);
+    if (!score || item.qualityStatus === 'BLOCKED') continue;
     results.push({
-      kind: 'word',
-      target: word,
-      title: word,
-      pinyin: item.pinyin || '',
-      meaningVi: item.meaningVi || item.meaning_vi || item.translationVi || '',
-      meta: item.hsk ? `HSK ${item.hsk}` : 'Dữ liệu HSK local'
+      kind: 'word', target: item.word, title: item.word,
+      pinyin: item.pinyin || '', meaningVi: item.meaningShortVi || '',
+      meta: item.hskLevel ? `HSK ${item.hskLevel}` : 'Dữ liệu HSK local', score
     });
-    if (results.length >= 18) break;
   }
 
   const notes = await safeFetchJson(RADICAL_NOTES_URL, {});
   for (const note of Object.values(notes || {})) {
-    if (!note || !radicalSearchText(note).includes(q)) continue;
+    if (!note) continue;
+    const text = radicalSearchText(note);
+    let score = 0;
     const form = note.sideForm || note.mainForm || first(note.variants) || '';
-    results.push({
-      kind: 'radical',
-      target: form,
-      title: form,
-      pinyin: note.pinyin || '',
-      meaningVi: note.displayNameVi || note.shortMeaningVi || note.meaningVi || 'Bộ thủ',
-      meta: note.kangxiNo ? `Bộ Khang Hy số ${note.kangxiNo}` : 'Bộ thủ'
-    });
-    if (results.length >= 24) break;
+    const title = normalizeSearchText(note.displayNameVi || '');
+    const meaning = normalizeSearchText(note.shortMeaningVi || note.meaningVi || '');
+    const py = normalizeSearchText(note.pinyin || '');
+    if (normalizeSearchText(form) === q || title === q || meaning === q || py === q) score = 880;
+    else if (title.startsWith(q) || meaning.startsWith(q)) score = 620;
+    else if (text.includes(q)) score = 300;
+    if (!score) continue;
+    results.push({kind:'radical',target:form,title:form,pinyin:note.pinyin || '',meaningVi:note.displayNameVi || note.shortMeaningVi || note.meaningVi || 'Bộ thủ',meta:note.kangxiNo ? `Bộ Khang Hy số ${note.kangxiNo}` : 'Bộ thủ',score});
   }
 
-  return uniqueBy(results, item => `${item.kind}:${item.target}`).slice(0, 24);
+  return uniqueBy(results.sort((a,b) => b.score-a.score || (a.meta||'').localeCompare(b.meta||'') || a.title.localeCompare(b.title)), item => `${item.kind}:${item.target}`).slice(0,24);
 }
 
 function renderSearchResults(payload) {
@@ -491,32 +516,46 @@ function componentCards(data) {
   }).join('');
 }
 
-function wordCards(items = [], limit = 6) {
-  const list = items.filter(reviewed).slice(0, limit);
-  if (!list.length) return '<div class="empty-state">Chưa có dữ liệu đã kiểm duyệt.</div>';
+function audioIcon() {
+  return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"></path><path d="M16 9.5c1.2 1.4 1.2 3.6 0 5M18.5 7c2.6 2.8 2.6 7.2 0 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>`;
+}
+
+function vocabularyCards(items = [], limit = 6, kind = 'compound') {
+  const list = items.filter(item => reviewed(item) && (item.word || item.text) && item.pinyin && item.meaningVi).slice(0, limit);
+  if (!list.length) return `<div class="empty-state">Chưa có ${kind === 'collocation' ? 'kết hợp' : 'từ ghép'} đạt cổng chất lượng.</div>`;
   return `<div class="card-list">${list.map(item => {
     const target = item.word || item.text || '';
-    return `<div class="word-card">
-      <button class="word-card-search" type="button" data-search-char="${escapeHtml(target)}" aria-label="Tra ${escapeHtml(target)}">
-        <span class="word-main"><strong>${escapeHtml(target)}</strong><span class="word-pinyin">${escapeHtml(item.pinyin || '')}</span></span>
-        <span class="word-meaning">${escapeHtml(item.meaningVi || '')}</span>
-      </button>
-      <div class="word-card-actions">
-        <button class="word-speak-btn" type="button" data-speak="${escapeHtml(target)}" aria-label="Nghe phát âm ${escapeHtml(target)}" title="Nghe phát âm">🔊</button>
-        ${item.hskLevel ? `<span class="word-badge">${escapeHtml(item.hskLevel)}</span>` : ''}
-      </div>
+    const canOpen = kind === 'compound';
+    return `<div class="word-card quality-card">
+      ${canOpen ? `<button class="word-card-search" type="button" data-search-char="${escapeHtml(target)}" aria-label="Tra ${escapeHtml(target)}">` : `<div class="word-card-search">`}
+        <span class="word-main"><strong>${escapeHtml(target)}</strong><span class="word-pinyin">${escapeHtml(item.pinyin)}</span></span>
+        <span class="word-meaning">${escapeHtml(item.meaningVi)}</span>
+      ${canOpen ? '</button>' : '</div>'}
+      <div class="word-card-actions"><button class="word-speak-btn icon-audio-btn" type="button" data-speak="${escapeHtml(target)}" aria-label="Nghe phát âm ${escapeHtml(target)}">${audioIcon()}</button>${item.hskLevel ? `<span class="word-badge">${escapeHtml(item.hskLevel)}</span>` : ''}</div>
     </div>`;
   }).join('')}</div>`;
 }
 
+function componentWordCards(items = [], limit = 8) {
+  const list = items.filter(item => reviewed(item) && item.word).slice(0, limit);
+  if (!list.length) return '<div class="empty-state">Chưa có dữ liệu thành phần.</div>';
+  return `<div class="card-list">${list.map(item => `<div class="word-card"><button class="word-card-search" type="button" data-search-char="${escapeHtml(item.word)}"><span class="word-main"><strong>${escapeHtml(item.word)}</strong><span class="word-pinyin">${escapeHtml(item.pinyin || '')}</span></span><span class="word-meaning">${escapeHtml(item.meaningVi || '')}</span></button>${item.pinyin ? `<div class="word-card-actions"><button class="word-speak-btn icon-audio-btn" type="button" data-speak="${escapeHtml(item.word)}">${audioIcon()}</button></div>` : ''}</div>`).join('')}</div>`;
+}
+
 function sentenceCards(items = [], limit = 4) {
-  const list = items.filter(item => reviewed(item) && item.containsTarget !== false).slice(0, limit);
-  if (!list.length) return '<div class="empty-state">Chưa có câu mẫu đã kiểm duyệt cho mục này.</div>';
-  return `<div class="card-list">${list.map(item => `<div class="sentence-card">
-    <div class="zh">${escapeHtml(item.chinese)}</div>
+  const list = items.filter(item => reviewed(item) && item.containsTarget !== false && item.chinese && item.pinyin && item.meaningVi).slice(0, limit);
+  if (!list.length) return '<div class="empty-state">Chưa có câu mẫu đạt cổng chất lượng cho mục này.</div>';
+  return `<div class="card-list">${list.map(item => `<div class="sentence-card quality-card">
+    <div class="sentence-top"><div class="zh">${escapeHtml(item.chinese)}</div><button class="word-speak-btn icon-audio-btn" type="button" data-speak="${escapeHtml(item.chinese)}" aria-label="Nghe câu">${audioIcon()}</button></div>
     <div class="py">${escapeHtml(item.pinyin)}</div>
     <div class="vi">${escapeHtml(item.meaningVi)}</div>
   </div>`).join('')}</div>`;
+}
+
+function grammarCards(items = [], limit = 4) {
+  const list = items.filter(item => reviewed(item) && (item.title || item.grammarTopic || item.partOfSpeech || item.usageNoteVi || item.explanationVi || item.matchedExample)).slice(0,limit);
+  if (!list.length) return '<div class="empty-state">Chưa có ghi chú ngữ pháp hoặc cách dùng đã kiểm duyệt.</div>';
+  return `<div class="grammar-list">${list.map(item => `<article class="grammar-card"><h3>${escapeHtml(item.title || item.grammarTopic || 'Cách dùng')}</h3>${item.partOfSpeech || item.syntax ? `<p><strong>Loại từ:</strong> ${escapeHtml(item.partOfSpeech || item.syntax)}</p>` : ''}${item.usageNoteVi || item.matchedExample ? `<p>${escapeHtml(item.usageNoteVi || item.matchedExample)}</p>` : ''}${item.explanationVi ? `<p class="grammar-note">${escapeHtml(item.explanationVi)}</p>` : ''}</article>`).join('')}</div>`;
 }
 
 async function loadRadicalNotes() {
@@ -761,7 +800,7 @@ function render(data) {
 
   el.view.innerHTML = `
     <section class="panel hero-card full-width"><div class="panel-inner">
-      <div class="hero-grid"><div class="main-char">${escapeHtml(data.char)}</div><div><div class="pinyin">${escapeHtml(pinyin)}</div><div class="hanviet">${data.pronunciation?.hanViet ? `Hán Việt: ${escapeHtml(data.pronunciation.hanViet)}` : ''}</div><p class="primary-meaning">${escapeHtml(meaningSummary(data))}</p></div><button class="speak-btn" type="button" data-speak="${escapeHtml(data.char)}" aria-label="Nghe phát âm">🔊</button></div>
+      <div class="hero-grid"><div class="main-char">${escapeHtml(data.char)}</div><div><div class="pinyin">${escapeHtml(pinyin)}</div><div class="hanviet">${data.pronunciation?.hanViet ? `Hán Việt: ${escapeHtml(data.pronunciation.hanViet)}` : ''}</div><p class="primary-meaning">${escapeHtml(meaningSummary(data))}</p></div><button class="speak-btn icon-audio-btn" type="button" data-speak="${escapeHtml(data.char)}" aria-label="Nghe phát âm">${audioIcon()}</button></div>
       <div class="meta-row">${formation ? `<span class="meta-chip">${escapeHtml(formation)}</span>` : ''}${structure ? `<span class="meta-chip">${escapeHtml(structure)}</span>` : ''}${data.characterInfo?.strokeCount ? `<span class="meta-chip">${escapeHtml(data.characterInfo.strokeCount)} nét</span>` : ''}${radical.nameVi ? `<span class="meta-chip">${escapeHtml(radical.nameVi)}</span>` : ''}</div>
     </div></section>
 
@@ -773,11 +812,11 @@ function render(data) {
 
     <section class="panel writing-panel full-width"><div class="panel-inner">${panelTitle('✎', 'Cách viết và luyện cơ bản')}${writingPanel(data)}</div></section>
 
-    <section class="panel"><div class="panel-inner">${panelTitle('词', 'Từ ghép')}${wordCards(vocabulary.compounds || [])}</div></section>
-    <section class="panel"><div class="panel-inner">${panelTitle('搭', 'Kết hợp thường thấy')}${wordCards(vocabulary.collocations || [], 5)}</div></section>
+    <section class="panel"><div class="panel-inner">${panelTitle('词', 'Từ ghép')}${vocabularyCards(vocabulary.compounds || [], 6, 'compound')}</div></section>
+    <section class="panel"><div class="panel-inner">${panelTitle('搭', 'Kết hợp thường thấy')}${vocabularyCards(vocabulary.collocations || [], 5, 'collocation')}</div></section>
     <section class="panel full-width"><div class="panel-inner">${panelTitle('例', 'Câu mẫu')}${sentenceCards(data.sentences || [])}</div></section>
-    <section class="panel"><div class="panel-inner">${panelTitle('语', data.type === 'word' ? 'Ngữ pháp / cách dùng' : 'Ngữ pháp liên quan')}${wordCards((data.grammarLinks || []).map(item => ({word:item.grammarTopic, pinyin:item.syntax, meaningVi:item.matchedExample, reviewStatus:item.reviewStatus})), 3)}</div></section>
-    <section class="panel"><div class="panel-inner">${panelTitle('同', data.type === 'word' ? 'Chữ thành phần' : 'Chữ cùng bộ')}${wordCards(data.sameRadicalCharacters || [], 8)}</div></section>
+    <section class="panel"><div class="panel-inner">${panelTitle('语', data.type === 'word' ? 'Ngữ pháp / cách dùng' : 'Ngữ pháp liên quan')}${grammarCards(data.grammarLinks || [], 4)}</div></section>
+    <section class="panel"><div class="panel-inner">${panelTitle('同', data.type === 'word' ? 'Chữ thành phần' : 'Chữ cùng bộ')}${componentWordCards(data.sameRadicalCharacters || [], 8)}</div></section>
     <section class="panel details-panel full-width"><details><summary>Nguồn dữ liệu và ghi chú kiểm duyệt</summary><ul class="source-list">${sources.length ? sources.map(item => `<li>${escapeHtml(item.title || item.sourceId || '')}</li>`).join('') : '<li>Không có thông tin nguồn bổ sung.</li>'}</ul></details></section>`;
 
   updateStrokeLinks(primaryChar);

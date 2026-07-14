@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:姐姐",
   "type": "word",
   "word": "姐姐",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "jiě jie",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chị gái",
+      "meaningShortVi": "chị gái",
+      "meaningFullVi": "chị gái",
       "partOfSpeech": "reduplication",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chị gái",
   "wordType": "reduplication",
   "wordTypes": [
     "reduplication"
-  ],
-  "usageNotes": [
-    "Xưng hô chị gái trong gia đình. Hán-Việt: 'tỷ'. 姐妹 (jiěmèi) chỉ chị em gái."
-  ],
-  "wordTypeExplanations": [
-    "Từ láy: 姐 (chị gái) lặp lại thành 姐姐, dùng xưng hô thân mật."
   ],
   "hsk": {
     "levels": [
@@ -56,11 +53,24 @@
         "text": "姐姐妹妹",
         "pinyin": "jiějie mèimei",
         "meaningVi": "chị em gái",
+        "meaningFullVi": "chị em gái",
         "target": "姐姐",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
+      },
+      {
+        "text": "姐姐",
+        "pinyin": "jiějie",
+        "meaningVi": "chị gái",
+        "meaningFullVi": "chị gái",
+        "target": "姐姐",
+        "source": "hsk_1.json",
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -70,7 +80,8 @@
       "meaningVi": "Đây là chị gái tôi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "姐姐",
@@ -79,7 +90,8 @@
       "meaningVi": "Chị gái rất xinh đẹp",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "姐姐",
@@ -88,7 +100,8 @@
       "meaningVi": "Tôi sống cùng chị gái",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "姐姐",
@@ -97,23 +110,17 @@
       "meaningVi": "Chị gái đang làm việc",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 姐姐",
-      "syntax": "reduplication",
-      "matchedExample": "Xưng hô chị gái trong gia đình. Hán-Việt: 'tỷ'. 姐妹 (jiěmèi) chỉ chị em gái.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "reduplication",
-      "matchedExample": "Từ láy: 姐 (chị gái) lặp lại thành 姐姐, dùng xưng hô thân mật.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 姐姐",
+      "partOfSpeech": "reduplication",
+      "usageNoteVi": "Xưng hô chị gái trong gia đình. Hán-Việt: 'tỷ'. 姐妹 (jiěmèi) chỉ chị em gái.",
+      "explanationVi": "Từ láy: 姐 (chị gái) lặp lại thành 姐姐, dùng xưng hô thân mật.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -124,31 +131,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__1__lesson__3__bai-3-i-m-chinese",
+      "sectionSlug": "bai-3-i-m-chinese",
       "sectionTitle": "Tôi là người Trung Quốc",
       "sectionTitleZh": "我是中国人",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-3-i-m-chinese/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-3-i-m-chinese/",
+      "orderInSection": 7
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__1__topic__3__gia-dinh",
+      "sectionSlug": "gia-dinh",
       "sectionTitle": "Gia đình",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/gia-dinh/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/gia-dinh/",
+      "orderInSection": 12
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 6,
+      "sectionId": "hsk__2__lesson__6__bai-6-sao-ban-khong-an-nua",
+      "sectionSlug": "bai-6-sao-ban-khong-an-nua",
       "sectionTitle": "Sao bạn không ăn nữa?",
       "sectionTitleZh": "你怎么不吃了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-6-sao-ban-khong-an-nua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-6-sao-ban-khong-an-nua/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -169,7 +191,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

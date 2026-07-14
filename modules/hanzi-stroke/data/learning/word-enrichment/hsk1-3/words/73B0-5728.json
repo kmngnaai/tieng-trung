@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:现在",
   "type": "word",
   "word": "现在",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "xiàn zài",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bây giờ, hiện tại; ngay bây giờ",
+      "meaningShortVi": "bây giờ",
+      "meaningFullVi": "bây giờ, hiện tại; ngay bây giờ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bây giờ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Là từ chỉ thời gian phổ biến nhất chỉ thời điểm hiện tại. Có thể dùng độc lập hoặc ghép với động từ. Lưu ý thanh điệu: xiàn (thanh 4) + zài (thanh 4)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 现 (hiện ra, lộ ra) + 在 (ở, tại). 'Đang hiện ra ở đây' → bây giờ. Đây là ghép nghĩa chỉ thời điểm hiện tại."
   ],
   "hsk": {
     "levels": [
@@ -51,22 +48,37 @@
     "compounds": [],
     "collocations": [
       {
+        "text": "现在",
+        "pinyin": "xiànzài",
+        "meaningVi": "bây giờ",
+        "meaningFullVi": "bây giờ",
+        "target": "现在",
+        "source": "hsk_1.json",
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
+      },
+      {
         "text": "现在开始",
         "pinyin": "xiànzài kāishǐ",
         "meaningVi": "bắt đầu ngay",
+        "meaningFullVi": "bắt đầu ngay",
         "target": "现在",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "就是现在",
         "pinyin": "jiùshì xiànzài",
         "meaningVi": "chính là bây giờ",
+        "meaningFullVi": "chính là bây giờ",
         "target": "现在",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -76,7 +88,8 @@
       "meaningVi": "Tôi bây giờ rất bận",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "现在",
@@ -85,7 +98,8 @@
       "meaningVi": "Bây giờ mấy giờ?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "现在",
@@ -94,7 +108,8 @@
       "meaningVi": "Tôi đi ngay bây giờ",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "现在",
@@ -103,7 +118,8 @@
       "meaningVi": "bắt đầu từ bây giờ",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "现在",
@@ -112,23 +128,17 @@
       "meaningVi": "chính là bây giờ",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 现在",
-      "syntax": "compound-semantic",
-      "matchedExample": "Là từ chỉ thời gian phổ biến nhất chỉ thời điểm hiện tại. Có thể dùng độc lập hoặc ghép với động từ. Lưu ý thanh điệu: xiàn (thanh 4) + zài (thanh 4).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 现 (hiện ra, lộ ra) + 在 (ở, tại). 'Đang hiện ra ở đây' → bây giờ. Đây là ghép nghĩa chỉ thời điểm hiện tại.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 现在",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Là từ chỉ thời gian phổ biến nhất chỉ thời điểm hiện tại. Có thể dùng độc lập hoặc ghép với động từ. Lưu ý thanh điệu: xiàn (thanh 4) + zài (thanh 4).",
+      "explanationVi": "Ghép nghĩa: 现 (hiện ra, lộ ra) + 在 (ở, tại). 'Đang hiện ra ở đây' → bây giờ. Đây là ghép nghĩa chỉ thời điểm hiện tại.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,31 +149,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 11,
+      "sectionId": "hsk__1__lesson__11__bai-11-bay-gio-may-gio-roi",
+      "sectionSlug": "bai-11-bay-gio-may-gio-roi",
       "sectionTitle": "Bây giờ mấy giờ rồi?",
       "sectionTitleZh": "现在几点",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-11-bay-gio-may-gio-roi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-11-bay-gio-may-gio-roi/",
+      "orderInSection": 1
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__1__lesson__7__bai-7-i-ll-finish-work-at-6-30-in-the-evening",
+      "sectionSlug": "bai-7-i-ll-finish-work-at-6-30-in-the-evening",
       "sectionTitle": "Tôi tan làm lúc 6 giờ rưỡi tối",
       "sectionTitleZh": "我晚上六点半下班",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-7-i-ll-finish-work-at-6-30-in-the-evening/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-7-i-ll-finish-work-at-6-30-in-the-evening/",
+      "orderInSection": 23
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__1__topic__14__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -174,7 +199,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

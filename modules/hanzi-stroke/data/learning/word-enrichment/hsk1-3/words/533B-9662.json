@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:医院",
   "type": "word",
   "word": "医院",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "yī yuàn",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bệnh viện",
+      "meaningShortVi": "bệnh viện",
+      "meaningFullVi": "bệnh viện",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bệnh viện",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Đi khám bệnh thì 说 去医院 或 去看病. Bác sĩ 是 医生, y tá 是 护士."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 医 (bác sĩ/chữa bệnh) + 院 (nơi/cơ quan) → nơi chữa bệnh."
   ],
   "hsk": {
     "levels": [
@@ -51,32 +48,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "看病",
-        "pinyin": "kànbìng",
-        "meaningVi": "khám bệnh",
-        "target": "医院",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "医生",
-        "pinyin": "yīshēng",
-        "meaningVi": "bác sĩ",
-        "target": "医院",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "护士",
-        "pinyin": "hùshi",
-        "meaningVi": "y tá",
-        "target": "医院",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -86,7 +59,8 @@
       "meaningVi": "Tôi đã đến bệnh viện",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "医院",
@@ -95,7 +69,8 @@
       "meaningVi": "Anh ấy làm việc ở bệnh viện",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "医院",
@@ -104,7 +79,8 @@
       "meaningVi": "Gần đây có bệnh viện không?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "医院",
@@ -113,23 +89,17 @@
       "meaningVi": "đi bệnh viện khám bệnh",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 医院",
-      "syntax": "compound-semantic",
-      "matchedExample": "Đi khám bệnh thì 说 去医院 或 去看病. Bác sĩ 是 医生, y tá 是 护士.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 医 (bác sĩ/chữa bệnh) + 院 (nơi/cơ quan) → nơi chữa bệnh.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 医院",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Đi khám bệnh thì 说 去医院 或 去看病. Bác sĩ 是 医生, y tá 是 护士.",
+      "explanationVi": "Ghép nghĩa: 医 (bác sĩ/chữa bệnh) + 院 (nơi/cơ quan) → nơi chữa bệnh.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -140,31 +110,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 9,
+      "sectionId": "hsk__1__lesson__9__bai-9-con-trai-ban-lam-viec-o-dau",
+      "sectionSlug": "bai-9-con-trai-ban-lam-viec-o-dau",
       "sectionTitle": "Con trai bạn làm việc ở đâu?",
       "sectionTitleZh": "你儿子在哪儿工作",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-9-con-trai-ban-lam-viec-o-dau/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-9-con-trai-ban-lam-viec-o-dau/",
+      "orderInSection": 11
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__1__lesson__7__bai-7-i-ll-finish-work-at-6-30-in-the-evening",
+      "sectionSlug": "bai-7-i-ll-finish-work-at-6-30-in-the-evening",
       "sectionTitle": "Tôi tan làm lúc 6 giờ rưỡi tối",
       "sectionTitleZh": "我晚上六点半下班",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-7-i-ll-finish-work-at-6-30-in-the-evening/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-7-i-ll-finish-work-at-6-30-in-the-evening/",
+      "orderInSection": 25
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__1__topic__7__cac-toa-nha",
+      "sectionSlug": "cac-toa-nha",
       "sectionTitle": "Các tòa nhà",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cac-toa-nha/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cac-toa-nha/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -185,7 +170,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

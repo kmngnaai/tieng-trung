@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:街道",
   "type": "word",
   "word": "街道",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "jiē dào",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đường phố",
+      "meaningShortVi": "đường phố",
+      "meaningFullVi": "đường phố",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đường phố",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -48,21 +49,26 @@
     "collocations": [
       {
         "text": "这个街道",
-        "pinyin": "",
+        "pinyin": "zhè ge jiē dào",
         "meaningVi": "cái đường phố này",
+        "meaningFullVi": "cái đường phố này",
         "target": "街道",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "那个街道",
-        "pinyin": "",
+        "pinyin": "nà ge jiē dào",
         "meaningVi": "cái đường phố kia",
+        "meaningFullVi": "cái đường phố kia",
         "target": "街道",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -72,7 +78,8 @@
       "meaningVi": "Con phố này rất nhộn nhịp.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "街道",
@@ -81,10 +88,19 @@
       "meaningVi": "Nhà tôi ở đối diện đường phố.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 街道",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/街道.mp3"
   ],
@@ -93,11 +109,16 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 15,
+      "sectionId": "hsk__3__lesson__15__bai-15-nhung-cai-khac-deu-khong-co-van-de-gi",
+      "sectionSlug": "bai-15-nhung-cai-khac-deu-khong-co-van-de-gi",
       "sectionTitle": "Những cái khác đều không có vấn đề gì.",
       "sectionTitleZh": "其他都没什么问题",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-15-nhung-cai-khac-deu-khong-co-van-de-gi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-15-nhung-cai-khac-deu-khong-co-van-de-gi/",
+      "orderInSection": 19
     }
   ],
   "sources": [
@@ -113,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

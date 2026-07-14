@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:老家",
   "type": "word",
   "word": "老家",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "lǎo jiā",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Quê hương, nơi gốc. 老 (lão) = già/cũ + 家 (gia) = nhà. Nơi sinh ra và lớn lên.",
+      "meaningShortVi": "Quê hương",
+      "meaningFullVi": "Quê hương, nơi gốc. 老 (lão) = già/cũ + 家 (gia) = nhà. Nơi sinh ra và lớn lên.",
       "partOfSpeech": "danh_từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Quê hương",
   "wordType": "danh_từ",
   "wordTypes": [
     "danh_từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -42,7 +43,19 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [
+      {
+        "text": "老家",
+        "pinyin": "lǎo jiā",
+        "meaningVi": "Quê hương",
+        "meaningFullVi": "Quê hương, nơi gốc. 老 (lão) = già/cũ + 家 (gia) = nhà. Nơi sinh ra và lớn lên.",
+        "target": "老家",
+        "source": "hsk_2.json",
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -52,10 +65,19 @@
       "meaningVi": "Tết về quê.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 老家",
+      "partOfSpeech": "danh_từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/老家.mp3"
   ],
@@ -68,7 +90,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

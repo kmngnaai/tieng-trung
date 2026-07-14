@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:看见",
   "type": "word",
   "word": "看见",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "kàn jiàn",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thấy, trông thấy",
+      "meaningShortVi": "thấy",
+      "meaningFullVi": "thấy, trông thấy",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thấy",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "'看见' là thấy được, trông thấy. Phủ định là '看不见' (không thấy, không nhìn thấy). '看得见' là có thể thấy được."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 看 (nhìn, xem) + 见 (thấy, gặp). Nhìn và thấy được một vật gì đó."
   ],
   "hsk": {
     "levels": [
@@ -53,30 +50,17 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "看不见",
-        "pinyin": "kàn bù jiàn",
-        "meaningVi": "không thấy",
-        "target": "看见",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "看得见",
-        "pinyin": "kàn de jiàn",
-        "meaningVi": "thấy được",
-        "target": "看见",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "让人看见",
         "pinyin": "ràng rén kànjiàn",
         "meaningVi": "để người khác thấy",
+        "meaningFullVi": "để người khác thấy",
         "target": "看见",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -86,7 +70,8 @@
       "meaningVi": "Tôi thấy anh ấy rồi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "看见",
@@ -95,7 +80,8 @@
       "meaningVi": "Bạn thấy chìa khóa của tôi chưa?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "看见",
@@ -104,23 +90,17 @@
       "meaningVi": "Tôi thấy một con mèo",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 看见",
-      "syntax": "compound-semantic",
-      "matchedExample": "'看见' là thấy được, trông thấy. Phủ định là '看不见' (không thấy, không nhìn thấy). '看得见' là có thể thấy được.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 看 (nhìn, xem) + 见 (thấy, gặp). Nhìn và thấy được một vật gì đó.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 看见",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "'看见' là thấy được, trông thấy. Phủ định là '看不见' (không thấy, không nhìn thấy). '看得见' là có thể thấy được.",
+      "explanationVi": "Ghép nghĩa: 看 (nhìn, xem) + 见 (thấy, gặp). Nhìn và thấy được một vật gì đó.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -131,31 +111,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 14,
+      "sectionId": "hsk__1__lesson__14__bai-14-co-ay-da-mua-kha-nhieu-quan-ao",
+      "sectionSlug": "bai-14-co-ay-da-mua-kha-nhieu-quan-ao",
       "sectionTitle": "Cô ấy đã mua khá nhiều quần áo",
       "sectionTitleZh": "她买了不少衣服",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-14-co-ay-da-mua-kha-nhieu-quan-ao/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-14-co-ay-da-mua-kha-nhieu-quan-ao/",
+      "orderInSection": 4
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__1__lesson__8__bai-8-my-father-also-works-at-a-hospital",
+      "sectionSlug": "bai-8-my-father-also-works-at-a-hospital",
       "sectionTitle": "Bố tôi cũng làm việc ở bệnh viện",
       "sectionTitleZh": "我爸爸也在医院工作",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-8-my-father-also-works-at-a-hospital/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-8-my-father-also-works-at-a-hospital/",
+      "orderInSection": 8
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 20,
+      "sectionId": "new_hsk__1__topic__20__dong-tu",
+      "sectionSlug": "dong-tu",
       "sectionTitle": "Động từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dong-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dong-tu/",
+      "orderInSection": 28
     }
   ],
   "sources": [
@@ -176,7 +171,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

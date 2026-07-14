@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:影片",
   "type": "word",
   "word": "影片",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "yǐng piàn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phim",
+      "meaningShortVi": "phim",
+      "meaningFullVi": "phim",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phim",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,52 +48,58 @@
     "collocations": [
       {
         "text": "看电影片",
-        "pinyin": "",
+        "pinyin": "kàn diàn yǐng piàn",
         "meaningVi": "xem phim",
+        "meaningFullVi": "xem phim",
         "target": "影片",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "新影片",
-        "pinyin": "",
+        "pinyin": "xīn yǐng piàn",
         "meaningVi": "phim mới",
+        "meaningFullVi": "phim mới",
         "target": "影片",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "影片",
       "chinese": "这部影片很好看",
-      "pinyin": "",
+      "pinyin": "zhè bù yǐng piàn hěn hǎo kàn",
       "meaningVi": "Bộ phim này rất hay",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "影片",
-      "chinese": "电影院上映新影片",
-      "pinyin": "",
-      "meaningVi": "Rạp chiếu phim chiếu phim mới",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "影片",
       "chinese": "她喜欢看影片",
-      "pinyin": "",
+      "pinyin": "tā xǐ huan kàn yǐng piàn",
       "meaningVi": "Cô ấy thích xem phim",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 影片",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/影片.mp3"
   ],
@@ -101,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__2__topic__12__giai-tri",
+      "sectionSlug": "giai-tri",
       "sectionTitle": "Giải trí",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/",
+      "orderInSection": 17
     }
   ],
   "sources": [
@@ -116,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

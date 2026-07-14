@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:外号",
   "type": "word",
   "word": "外号",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "wài hào",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "biệt danh, tên hiệu",
+      "meaningShortVi": "biệt danh",
+      "meaningFullVi": "biệt danh, tên hiệu",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "biệt danh",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng khi nói về tên hiệu, biệt danh do người khác đặt (thường thân mật hoặc trêu đùa)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 外 (ngoại - ngoài) + 号 (hiệu - danh hiệu) -> danh hiệu bên ngoài tên thật."
   ],
   "hsk": {
     "levels": [
@@ -51,11 +48,24 @@
         "text": "起外号",
         "pinyin": "qǐ wài hào",
         "meaningVi": "đặt biệt danh",
+        "meaningFullVi": "đặt biệt danh",
         "target": "外号",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
+      },
+      {
+        "text": "外号",
+        "pinyin": "wài hào",
+        "meaningVi": "biệt danh",
+        "meaningFullVi": "biệt danh",
+        "target": "外号",
+        "source": "hsk_2.json",
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -65,7 +75,8 @@
       "meaningVi": "Hắn có một biệt danh",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "外号",
@@ -74,7 +85,8 @@
       "meaningVi": "Bạn bè đặt cho hắn biệt danh",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "外号",
@@ -83,23 +95,17 @@
       "meaningVi": "Biệt danh này rất phù hợp",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 外号",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng khi nói về tên hiệu, biệt danh do người khác đặt (thường thân mật hoặc trêu đùa).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 外 (ngoại - ngoài) + 号 (hiệu - danh hiệu) -> danh hiệu bên ngoài tên thật.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 外号",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng khi nói về tên hiệu, biệt danh do người khác đặt (thường thân mật hoặc trêu đùa).",
+      "explanationVi": "Ghép nghĩa: 外 (ngoại - ngoài) + 号 (hiệu - danh hiệu) -> danh hiệu bên ngoài tên thật.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,7 +120,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

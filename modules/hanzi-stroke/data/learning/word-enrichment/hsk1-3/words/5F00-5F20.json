@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:开张",
   "type": "word",
   "word": "开张",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "kāi zhāng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "mở cửa kinh doanh, khai trương",
+      "meaningShortVi": "mở cửa kinh doanh",
+      "meaningFullVi": "mở cửa kinh doanh, khai trương",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "mở cửa kinh doanh",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Thường dùng cho cửa hàng/nhà hàng bắt đầu kinh doanh."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 开 (mở ra) + 张 (mở rộng, giương ra) → mở cửa kinh doanh."
   ],
   "hsk": {
     "levels": [
@@ -51,19 +48,24 @@
         "text": "开张大吉",
         "pinyin": "kāizhāng dàjí",
         "meaningVi": "khai trương đại lợi",
+        "meaningFullVi": "khai trương đại lợi",
         "target": "开张",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "重新开张",
         "pinyin": "chóngxīn kāizhāng",
         "meaningVi": "tái khai trương",
+        "meaningFullVi": "tái khai trương",
         "target": "开张",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +75,8 @@
       "meaningVi": "Cửa hàng này ngày mai khai trương",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "开张",
@@ -82,7 +85,8 @@
       "meaningVi": "Chúc mừng khai trương đại lợi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "开张",
@@ -91,23 +95,17 @@
       "meaningVi": "Nhà hàng vừa khai trương, làm ăn rất tốt",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 开张",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường dùng cho cửa hàng/nhà hàng bắt đầu kinh doanh.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 开 (mở ra) + 张 (mở rộng, giương ra) → mở cửa kinh doanh.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 开张",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường dùng cho cửa hàng/nhà hàng bắt đầu kinh doanh.",
+      "explanationVi": "Ghép nghĩa: 开 (mở ra) + 张 (mở rộng, giương ra) → mở cửa kinh doanh.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -122,7 +120,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

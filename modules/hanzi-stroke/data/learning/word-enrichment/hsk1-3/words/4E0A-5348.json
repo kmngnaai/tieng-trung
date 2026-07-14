@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:上午",
   "type": "word",
   "word": "上午",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "shàng wǔ",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "buổi sáng",
+      "meaningShortVi": "buổi sáng",
+      "meaningFullVi": "buổi sáng",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "buổi sáng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng để chỉ buổi sáng. Trong lời chào dùng 上午好 (nhưng 早上好 phổ biến hơn). Có thể ghép với ngày cụ thể hoặc giờ. Lưu ý thanh điệu: shàng (thanh 4) + wǔ (thanh 3)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 上 (trên, trước) + 午 (trưa). 'Trước trưa' → buổi sáng. Đây là ghép nghĩa trực tiếp chỉ thời gian trước trưa."
   ],
   "hsk": {
     "levels": [
@@ -55,27 +52,44 @@
         "text": "上午好",
         "pinyin": "shàngwǔ hǎo",
         "meaningVi": "chào buổi sáng",
+        "meaningFullVi": "chào buổi sáng",
         "target": "上午",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "今天上午",
         "pinyin": "jīntiān shàngwǔ",
         "meaningVi": "sáng hôm nay",
+        "meaningFullVi": "sáng hôm nay",
         "target": "上午",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "上午见",
         "pinyin": "shàngwǔ jiàn",
         "meaningVi": "hẹn gặp sáng",
+        "meaningFullVi": "hẹn gặp sáng",
         "target": "上午",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
+      },
+      {
+        "text": "上午",
+        "pinyin": "shàngwǔ",
+        "meaningVi": "buổi sáng",
+        "meaningFullVi": "buổi sáng",
+        "target": "上午",
+        "source": "hsk_1.json",
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -85,7 +99,8 @@
       "meaningVi": "Sáng tôi đi làm",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "上午",
@@ -94,7 +109,8 @@
       "meaningVi": "Chào buổi sáng",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "上午",
@@ -103,7 +119,8 @@
       "meaningVi": "sáng hôm nay",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "上午",
@@ -112,7 +129,8 @@
       "meaningVi": "Sáng làm gì?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "上午",
@@ -121,23 +139,17 @@
       "meaningVi": "9 giờ sáng",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 上午",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng để chỉ buổi sáng. Trong lời chào dùng 上午好 (nhưng 早上好 phổ biến hơn). Có thể ghép với ngày cụ thể hoặc giờ. Lưu ý thanh điệu: shàng (thanh 4) + wǔ (thanh 3).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 上 (trên, trước) + 午 (trưa). 'Trước trưa' → buổi sáng. Đây là ghép nghĩa trực tiếp chỉ thời gian trước trưa.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 上午",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng để chỉ buổi sáng. Trong lời chào dùng 上午好 (nhưng 早上好 phổ biến hơn). Có thể ghép với ngày cụ thể hoặc giờ. Lưu ý thanh điệu: shàng (thanh 4) + wǔ (thanh 3).",
+      "explanationVi": "Ghép nghĩa: 上 (trên, trước) + 午 (trưa). 'Trước trưa' → buổi sáng. Đây là ghép nghĩa trực tiếp chỉ thời gian trước trưa.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -148,31 +160,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 13,
+      "sectionId": "hsk__1__lesson__13__bai-13-anh-ay-dang-hoc-nau-mon-trung-quoc",
+      "sectionSlug": "bai-13-anh-ay-dang-hoc-nau-mon-trung-quoc",
       "sectionTitle": "Anh ấy đang học nấu món Trung Quốc",
       "sectionTitleZh": "他在学做中国菜呢",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-13-anh-ay-dang-hoc-nau-mon-trung-quoc/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-13-anh-ay-dang-hoc-nau-mon-trung-quoc/",
+      "orderInSection": 4
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__1__lesson__7__bai-7-i-ll-finish-work-at-6-30-in-the-evening",
+      "sectionSlug": "bai-7-i-ll-finish-work-at-6-30-in-the-evening",
       "sectionTitle": "Tôi tan làm lúc 6 giờ rưỡi tối",
       "sectionTitleZh": "我晚上六点半下班",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-7-i-ll-finish-work-at-6-30-in-the-evening/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-7-i-ll-finish-work-at-6-30-in-the-evening/",
+      "orderInSection": 19
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__1__topic__14__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -188,7 +215,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

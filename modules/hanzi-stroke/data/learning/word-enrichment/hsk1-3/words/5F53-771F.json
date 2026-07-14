@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:当真",
   "type": "word",
   "word": "当真",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "dàng zhēn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nghiêm túc, coi là thật; thật sao",
+      "meaningShortVi": "nghiêm túc",
+      "meaningFullVi": "nghiêm túc, coi là thật; thật sao",
       "partOfSpeech": "động từ / 副 từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nghiêm túc",
   "wordType": "động từ / 副 từ",
   "wordTypes": [
     "động từ / 副 từ"
   ],
-  "usageNotes": [
-    "Coi là thật hoặc nghiêm túc."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,32 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "别当真",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "当真",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "不当真",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "当真",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "当真起来",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "当真",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,16 +54,17 @@
       "meaningVi": "Chắc bạn không coi là thật đấy?",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 当真",
-      "syntax": "động từ / 副 từ",
-      "matchedExample": "Coi là thật hoặc nghiêm túc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 当真",
+      "partOfSpeech": "động từ / 副 từ",
+      "usageNoteVi": "Coi là thật hoặc nghiêm túc.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,7 +79,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

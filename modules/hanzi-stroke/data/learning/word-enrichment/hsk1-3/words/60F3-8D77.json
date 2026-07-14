@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:想起",
   "type": "word",
   "word": "想起",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "xiǎng qǐ",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nhớ lại",
+      "meaningShortVi": "nhớ lại",
+      "meaningFullVi": "nhớ lại",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nhớ lại",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,43 +48,58 @@
     "collocations": [
       {
         "text": "突然想起",
-        "pinyin": "",
+        "pinyin": "tū rán xiǎng qǐ",
         "meaningVi": "bỗng nhiên nhớ lại",
+        "meaningFullVi": "bỗng nhiên nhớ lại",
         "target": "想起",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "让我想起",
-        "pinyin": "",
+        "pinyin": "ràng wǒ xiǎng qǐ",
         "meaningVi": "khiến tôi nhớ lại",
+        "meaningFullVi": "khiến tôi nhớ lại",
         "target": "想起",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "想起",
       "chinese": "我想起了小时候的事",
-      "pinyin": "",
+      "pinyin": "wǒ xiǎng qǐ le xiǎo shí hou de shì",
       "meaningVi": "Tôi nhớ lại chuyện lúc nhỏ",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "想起",
       "chinese": "我想起了一个朋友",
-      "pinyin": "",
+      "pinyin": "wǒ xiǎng qǐ le yī gè péng you",
       "meaningVi": "Tôi nhớ lại một người bạn",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 想起",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/想起.mp3"
   ],
@@ -92,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 23,
+      "sectionId": "new_hsk__2__topic__23__suy-nghi",
+      "sectionSlug": "suy-nghi",
       "sectionTitle": "Suy nghĩ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/suy-nghi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/suy-nghi/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -107,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

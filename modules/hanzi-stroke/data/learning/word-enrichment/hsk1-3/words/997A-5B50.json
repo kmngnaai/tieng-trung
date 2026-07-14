@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:饺子",
   "type": "word",
   "word": "饺子",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "jiǎo zi",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cảo tử",
+      "meaningShortVi": "cảo tử",
+      "meaningFullVi": "cảo tử",
       "partOfSpeech": "noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cảo tử",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -49,43 +50,58 @@
     "collocations": [
       {
         "text": "吃饺子",
-        "pinyin": "",
+        "pinyin": "chī jiǎo zi",
         "meaningVi": "ăn sủi cảo",
+        "meaningFullVi": "ăn sủi cảo",
         "target": "饺子",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "包饺子",
-        "pinyin": "",
+        "pinyin": "bāo jiǎo zi",
         "meaningVi": "gói sủi cảo",
+        "meaningFullVi": "gói sủi cảo",
         "target": "饺子",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "饺子",
       "chinese": "饺子很好吃",
-      "pinyin": "",
+      "pinyin": "jiǎo zi hěn hǎo chī",
       "meaningVi": "Sủi cảo rất ngon",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "饺子",
       "chinese": "妈妈包饺子",
-      "pinyin": "",
+      "pinyin": "mā ma bāo jiǎo zi",
       "meaningVi": "Mẹ gói sủi cảo",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 饺子",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/饺子.mp3"
   ],
@@ -94,21 +110,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__1__lesson__5__bai-5-i-m-off-today",
+      "sectionSlug": "bai-5-i-m-off-today",
       "sectionTitle": "Hôm nay tôi nghỉ",
       "sectionTitleZh": "今天我休息",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-5-i-m-off-today/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-5-i-m-off-today/",
+      "orderInSection": 6
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__2__topic__1__thuc-an-va-do-uong",
+      "sectionSlug": "thuc-an-va-do-uong",
       "sectionTitle": "Thức ăn và đồ uống",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thuc-an-va-do-uong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thuc-an-va-do-uong/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -129,7 +155,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

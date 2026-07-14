@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:负责",
   "type": "word",
   "word": "负责",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fù zé",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chịu trách nhiệm,负责",
+      "meaningShortVi": "chịu trách nhiệm",
+      "meaningFullVi": "chịu trách nhiệm,负责",
       "partOfSpeech": "động từ / tính từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chịu trách nhiệm",
   "wordType": "động từ / tính từ",
   "wordTypes": [
     "động từ / tính từ"
   ],
-  "usageNotes": [
-    "负责 có thể là động từ (chịu trách nhiệm cái gì, lo liệu việc gì) hoặc tính từ (người có trách nhiệm, đáng tin cậy). Rất phổ biến trong công việc và đời sống để chỉ trách nhiệm và sự tin cậy."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,19 +51,24 @@
         "text": "负责到底",
         "pinyin": "fùzé dàodǐ",
         "meaningVi": "chịu trách nhiệm đến cùng",
+        "meaningFullVi": "chịu trách nhiệm đến cùng",
         "target": "负责",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "主管负责",
         "pinyin": "zhǔguǎn fùzé",
         "meaningVi": "người đứng đầu chịu trách nhiệm",
+        "meaningFullVi": "người đứng đầu chịu trách nhiệm",
         "target": "负责",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Ai chịu trách nhiệm dự án này?",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "负责",
@@ -83,16 +88,17 @@
       "meaningVi": "Anh ấy là người rất có trách nhiệm.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 负责",
-      "syntax": "động từ / tính từ",
-      "matchedExample": "负责 có thể là động từ (chịu trách nhiệm cái gì, lo liệu việc gì) hoặc tính từ (người có trách nhiệm, đáng tin cậy). Rất phổ biến trong công việc và đời sống để chỉ trách nhiệm và sự tin cậy.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 负责",
+      "partOfSpeech": "động từ / tính từ",
+      "usageNoteVi": "负责 có thể là động từ (chịu trách nhiệm cái gì, lo liệu việc gì) hoặc tính từ (người có trách nhiệm, đáng tin cậy). Rất phổ biến trong công việc và đời sống để chỉ trách nhiệm và sự tin cậy.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__3__topic__13__cong-viec-ii",
+      "sectionSlug": "cong-viec-ii",
       "sectionTitle": "Công việc II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cong-viec-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cong-viec-ii/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

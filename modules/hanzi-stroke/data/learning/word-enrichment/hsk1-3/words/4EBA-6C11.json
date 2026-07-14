@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:人民",
   "type": "word",
   "word": "人民",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "rén mín",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Nhân dân",
+      "meaningShortVi": "Nhân dân",
+      "meaningFullVi": "Nhân dân",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Nhân dân",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "人民 là danh từ chỉ quần chúng nhân dân, thường mang tính chính trị hoặc trang trọng. 人 (nhân) nghĩa là người; 民 (dân) nghĩa là người dân. Khác với 老百姓 - dùng trong giao tiếp thường."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -50,56 +49,14 @@
         "word": "人民币",
         "pinyin": "rén mín bì",
         "meaningVi": "đồng tiền Nhân dân tệ (tiền Trung Quốc)",
+        "meaningFullVi": "đồng tiền Nhân dân tệ (tiền Trung Quốc)",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          3
-        ],
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 3",
+        "reviewStatus": "reviewed-local"
       }
     ],
-    "collocations": [
-      {
-        "text": "为人民",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "人民",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "中国人民",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "人民",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "人民生活",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "人民",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "人民大会",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "人民",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "劳动人民",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "人民",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -109,7 +66,8 @@
       "meaningVi": "Phục vụ nhân dân.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "人民",
@@ -118,7 +76,8 @@
       "meaningVi": "Cuộc sống của nhân dân ngày càng tốt hơn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "人民",
@@ -127,16 +86,17 @@
       "meaningVi": "Chính phủ này rất quan tâm đến nhân dân.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 人民",
-      "syntax": "compound-semantic",
-      "matchedExample": "人民 là danh từ chỉ quần chúng nhân dân, thường mang tính chính trị hoặc trang trọng. 人 (nhân) nghĩa là người; 民 (dân) nghĩa là người dân. Khác với 老百姓 - dùng trong giao tiếp thường.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 人民",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "人民 là danh từ chỉ quần chúng nhân dân, thường mang tính chính trị hoặc trang trọng. 人 (nhân) nghĩa là người; 民 (dân) nghĩa là người dân. Khác với 老百姓 - dùng trong giao tiếp thường.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -147,11 +107,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__3__topic__4__nhung-nguoi",
+      "sectionSlug": "nhung-nguoi",
       "sectionTitle": "Những người",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -162,7 +127,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng"
+    ]
   }
 }

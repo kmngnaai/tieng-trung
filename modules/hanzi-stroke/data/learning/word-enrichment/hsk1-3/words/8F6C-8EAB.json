@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:转身",
   "type": "word",
   "word": "转身",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "zhuǎn shēn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Quay người, ngoái lại. 转 (chuyển) = quay/vong + 身 (thân) = người. Đổi hướng cơ thể.",
+      "meaningShortVi": "Quay người",
+      "meaningFullVi": "Quay người, ngoái lại. 转 (chuyển) = quay/vong + 身 (thân) = người. Đổi hướng cơ thể.",
       "partOfSpeech": "động_từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Quay người",
   "wordType": "động_từ",
   "wordTypes": [
     "động_từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -42,7 +43,19 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [
+      {
+        "text": "转身",
+        "pinyin": "zhuǎn shēn",
+        "meaningVi": "Quay người",
+        "meaningFullVi": "Quay người, ngoái lại. 转 (chuyển) = quay/vong + 身 (thân) = người. Đổi hướng cơ thể.",
+        "target": "转身",
+        "source": "hsk_2.json",
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -52,10 +65,19 @@
       "meaningVi": "Anh ấy quay người đi rồi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 转身",
+      "partOfSpeech": "động_từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/转身.mp3"
   ],
@@ -68,7 +90,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

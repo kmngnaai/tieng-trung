@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:心情",
   "type": "word",
   "word": "心情",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "xīn qíng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tâm trạng",
+      "meaningShortVi": "tâm trạng",
+      "meaningFullVi": "tâm trạng",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tâm trạng",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,43 +48,58 @@
     "collocations": [
       {
         "text": "好心情",
-        "pinyin": "",
+        "pinyin": "hǎo xīn qíng",
         "meaningVi": "tâm trạng tốt",
+        "meaningFullVi": "tâm trạng tốt",
         "target": "心情",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "心情不好",
-        "pinyin": "",
+        "pinyin": "xīn qíng bù hǎo",
         "meaningVi": "tâm trạng không tốt",
+        "meaningFullVi": "tâm trạng không tốt",
         "target": "心情",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "心情",
       "chinese": "我今天心情很好",
-      "pinyin": "",
+      "pinyin": "wǒ jīn tiān xīn qíng hěn hǎo",
       "meaningVi": "Hôm nay tâm trạng tôi rất tốt",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "心情",
       "chinese": "不要影响心情",
-      "pinyin": "",
+      "pinyin": "bù yào yǐng xiǎng xīn qíng",
       "meaningVi": "Đừng ảnh hưởng tâm trạng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 心情",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/心情.mp3"
   ],
@@ -92,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 20,
+      "sectionId": "new_hsk__2__topic__20__tinh-cam-va-cam-xuc",
+      "sectionSlug": "tinh-cam-va-cam-xuc",
       "sectionTitle": "Tình cảm và cảm xúc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-cam-va-cam-xuc/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-cam-va-cam-xuc/",
+      "orderInSection": 18
     }
   ],
   "sources": [
@@ -107,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

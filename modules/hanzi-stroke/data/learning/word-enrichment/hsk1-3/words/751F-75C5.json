@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:生病",
   "type": "word",
   "word": "生病",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "shēng bìng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bị ốm, mắc bệnh",
+      "meaningShortVi": "bị ốm",
+      "meaningFullVi": "bị ốm, mắc bệnh",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bị ốm",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "'生病' là bị ốm. Có thể dùng '生病了' (đã bị ốm) hoặc '会生病' (sẽ bị ốm). Khi ốm thường '休息' (nghỉ ngơi) hoặc '看医生' (khám bác sĩ)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 生 (sinh ra, xuất hiện) + 病 (bệnh). Sinh ra bệnh, bị ốm."
   ],
   "hsk": {
     "levels": [
@@ -56,27 +53,34 @@
         "text": "生病住院",
         "pinyin": "shēngbìng zhùyuàn",
         "meaningVi": "ốm nhập viện",
+        "meaningFullVi": "ốm nhập viện",
         "target": "生病",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "生病请假",
         "pinyin": "shēngbìng qǐngjià",
         "meaningVi": "xin nghỉ vì ốm",
+        "meaningFullVi": "xin nghỉ vì ốm",
         "target": "生病",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "经常生病",
         "pinyin": "jīngcháng shēngbìng",
         "meaningVi": "thường xuyên ốm đau",
+        "meaningFullVi": "thường xuyên ốm đau",
         "target": "生病",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -86,7 +90,8 @@
       "meaningVi": "Anh ấy bị ốm rồi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "生病",
@@ -95,7 +100,8 @@
       "meaningVi": "Mẹ tôi bị ốm nhập viện",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "生病",
@@ -104,7 +110,8 @@
       "meaningVi": "Tại sao lại bị ốm?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "生病",
@@ -113,7 +120,8 @@
       "meaningVi": "Ốm thì phải nghỉ ngơi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "生病",
@@ -122,23 +130,17 @@
       "meaningVi": "Đừng lo, tôi sẽ không bị ốm",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 生病",
-      "syntax": "compound-semantic",
-      "matchedExample": "'生病' là bị ốm. Có thể dùng '生病了' (đã bị ốm) hoặc '会生病' (sẽ bị ốm). Khi ốm thường '休息' (nghỉ ngơi) hoặc '看医生' (khám bác sĩ).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 生 (sinh ra, xuất hiện) + 病 (bệnh). Sinh ra bệnh, bị ốm.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 生病",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "'生病' là bị ốm. Có thể dùng '生病了' (đã bị ốm) hoặc '会生病' (sẽ bị ốm). Khi ốm thường '休息' (nghỉ ngơi) hoặc '看医生' (khám bác sĩ).",
+      "explanationVi": "Ghép nghĩa: 生 (sinh ra, xuất hiện) + 病 (bệnh). Sinh ra bệnh, bị ốm.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -149,31 +151,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__1__lesson__12__bai-12-it-snowed-yesterday",
+      "sectionSlug": "bai-12-it-snowed-yesterday",
       "sectionTitle": "Hôm qua tuyết rơi",
       "sectionTitleZh": "昨天下雪了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-12-it-snowed-yesterday/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-12-it-snowed-yesterday/",
+      "orderInSection": 12
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 23,
+      "sectionId": "new_hsk__1__topic__23__danh-tu",
+      "sectionSlug": "danh-tu",
       "sectionTitle": "Danh từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/danh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/danh-tu/",
+      "orderInSection": 20
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 2,
+      "sectionId": "hsk__2__lesson__2__bai-2-toi-day-luc-6-gio-moi-ngay",
+      "sectionSlug": "bai-2-toi-day-luc-6-gio-moi-ngay",
       "sectionTitle": "Tôi dậy lúc 6 giờ mỗi ngày",
       "sectionTitleZh": "我每天六点起床",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-2-toi-day-luc-6-gio-moi-ngay/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-2-toi-day-luc-6-gio-moi-ngay/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -194,7 +211,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

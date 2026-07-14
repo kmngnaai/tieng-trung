@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:学校",
   "type": "word",
   "word": "学校",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xué xiào",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Trường học, nơi dạy và học; trường (như tổ chức giáo dục)",
+      "meaningShortVi": "Trường học",
+      "meaningFullVi": "Trường học, nơi dạy và học; trường (như tổ chức giáo dục)",
       "partOfSpeech": "Danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Trường học",
   "wordType": "Danh từ",
   "wordTypes": [
     "Danh từ"
   ],
-  "usageNotes": [
-    "\"学校\" là từ cơ bản chỉ tổ chức giáo dục. Trong giao tiếp, thường dùng đơn giản là \"学校\" hoặc \"校\" (trong văn viết). Không nên nhầm với \"班\" (lớp học)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -49,40 +48,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "学校教育",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "学校",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "校长",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "学校",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "老师",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "学校",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "学生",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "学校",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -92,7 +59,8 @@
       "meaningVi": "Anh ấy là giáo viên của trường.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "学校",
@@ -101,7 +69,8 @@
       "meaningVi": "Trường chúng tôi rất lớn.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "学校",
@@ -110,16 +79,17 @@
       "meaningVi": "Trường nằm ở phía đông thành phố.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 学校",
-      "syntax": "Danh từ",
-      "matchedExample": "\"学校\" là từ cơ bản chỉ tổ chức giáo dục. Trong giao tiếp, thường dùng đơn giản là \"学校\" hoặc \"校\" (trong văn viết). Không nên nhầm với \"班\" (lớp học).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 学校",
+      "partOfSpeech": "Danh từ",
+      "usageNoteVi": "\"学校\" là từ cơ bản chỉ tổ chức giáo dục. Trong giao tiếp, thường dùng đơn giản là \"学校\" hoặc \"校\" (trong văn viết). Không nên nhầm với \"班\" (lớp học).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -130,31 +100,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 7,
+      "sectionId": "hsk__1__lesson__7__bai-7-hom-nay-la-ngay-may",
+      "sectionSlug": "bai-7-hom-nay-la-ngay-may",
       "sectionTitle": "Hôm nay là ngày mấy?",
       "sectionTitleZh": "今天几号",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-7-hom-nay-la-ngay-may/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-7-hom-nay-la-ngay-may/",
+      "orderInSection": 10
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__1__lesson__8__bai-8-my-father-also-works-at-a-hospital",
+      "sectionSlug": "bai-8-my-father-also-works-at-a-hospital",
       "sectionTitle": "Bố tôi cũng làm việc ở bệnh viện",
       "sectionTitleZh": "我爸爸也在医院工作",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-8-my-father-also-works-at-a-hospital/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-8-my-father-also-works-at-a-hospital/",
+      "orderInSection": 19
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__1__topic__5__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nghien-cuu/",
+      "orderInSection": 22
     }
   ],
   "sources": [
@@ -175,7 +160,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

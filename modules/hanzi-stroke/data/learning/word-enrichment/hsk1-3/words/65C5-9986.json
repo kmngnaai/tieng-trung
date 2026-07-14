@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:旅馆",
   "type": "word",
   "word": "旅馆",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "lǚ guǎn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nhà trọ, khách sạn (cỡ vừa)",
+      "meaningShortVi": "nhà trọ",
+      "meaningFullVi": "nhà trọ, khách sạn (cỡ vừa)",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nhà trọ",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "旅馆 vs 酒店 (jiǔdiàn): 旅馆 thường nhỏ hơn, rẻ hơn. 酒店 (hotel) thường cao cấp hơn, có nhà hàng. 宾馆 (bīnguǎn) ở giữa, có thể 2-3 sao."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -50,20 +49,25 @@
       {
         "text": "住旅馆",
         "pinyin": "zhù lǚguǎn",
-        "meaningVi": "ở khách sạn/nhà trọ",
+        "meaningVi": "ở khách sạn",
+        "meaningFullVi": "ở khách sạn/nhà trọ",
         "target": "旅馆",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "小旅馆",
         "pinyin": "xiǎo lǚguǎn",
         "meaningVi": "nhà trọ nhỏ",
+        "meaningFullVi": "nhà trọ nhỏ",
         "target": "旅馆",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Chúng tôi ở nhà trọ một đêm.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "旅馆",
@@ -82,16 +87,17 @@
       "meaningVi": "Nhà trọ này rất rẻ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 旅馆",
-      "syntax": "danh từ",
-      "matchedExample": "旅馆 vs 酒店 (jiǔdiàn): 旅馆 thường nhỏ hơn, rẻ hơn. 酒店 (hotel) thường cao cấp hơn, có nhà hàng. 宾馆 (bīnguǎn) ở giữa, có thể 2-3 sao.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 旅馆",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "旅馆 vs 酒店 (jiǔdiàn): 旅馆 thường nhỏ hơn, rẻ hơn. 酒店 (hotel) thường cao cấp hơn, có nhà hàng. 宾馆 (bīnguǎn) ở giữa, có thể 2-3 sao.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__3__topic__10__giai-tri-toi",
+      "sectionSlug": "giai-tri-toi",
       "sectionTitle": "Giải trí tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/",
+      "orderInSection": 20
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

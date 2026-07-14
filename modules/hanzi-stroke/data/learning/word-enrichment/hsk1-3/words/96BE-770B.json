@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:难看",
   "type": "word",
   "word": "难看",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "nán kàn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "xấu, khó coi",
+      "meaningShortVi": "xấu",
+      "meaningFullVi": "xấu, khó coi",
       "partOfSpeech": "adjective",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "xấu",
   "wordType": "adjective",
   "wordTypes": [
     "adjective"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -48,60 +49,68 @@
     "collocations": [
       {
         "text": "长得难看",
-        "pinyin": "",
+        "pinyin": "cháng děi nán kàn",
         "meaningVi": "ngoại hình xấu",
+        "meaningFullVi": "ngoại hình xấu",
         "target": "难看",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "非常难看",
-        "pinyin": "",
+        "pinyin": "fēi cháng nán kàn",
         "meaningVi": "rất xấu",
+        "meaningFullVi": "rất xấu",
         "target": "难看",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "难看的颜色",
-        "pinyin": "",
+        "pinyin": "nán kàn de yán sè",
         "meaningVi": "màu sắc xấu",
+        "meaningFullVi": "màu sắc xấu",
         "target": "难看",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "难看",
       "chinese": "这件衣服太难看了",
-      "pinyin": "",
+      "pinyin": "zhè jiàn yī fu tài nán kàn le",
       "meaningVi": "Cái quần áo này quá xấu",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "难看",
       "chinese": "伤口很难看",
-      "pinyin": "",
+      "pinyin": "shāng kǒu hěn nán kàn",
       "meaningVi": "Vết thương rất khó coi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "难看",
-      "chinese": "别做难看的表情",
-      "pinyin": "",
-      "meaningVi": "Đừng làm mặt khó nhìn",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 难看",
+      "partOfSpeech": "adjective",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/难看.mp3"
   ],
@@ -110,21 +119,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 25,
+      "sectionId": "new_hsk__2__topic__25__ve-be-ngoai",
+      "sectionSlug": "ve-be-ngoai",
       "sectionTitle": "Vẻ bề ngoài",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/ve-be-ngoai/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/ve-be-ngoai/",
+      "orderInSection": 19
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__3__lesson__5__bai-5-photos-like-these-are-the-best",
+      "sectionSlug": "bai-5-photos-like-these-are-the-best",
       "sectionTitle": "Ảnh như thế này mới đẹp",
       "sectionTitleZh": "这样的照片才好看",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-5-photos-like-these-are-the-best/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-5-photos-like-these-are-the-best/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -140,7 +159,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

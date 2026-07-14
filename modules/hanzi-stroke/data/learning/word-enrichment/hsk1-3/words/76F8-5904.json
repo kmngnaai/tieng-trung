@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:相处",
   "type": "word",
   "word": "相处",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "xiāng chǔ",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hoà thuận",
+      "meaningShortVi": "hoà thuận",
+      "meaningFullVi": "hoà thuận",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hoà thuận",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -42,29 +43,51 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [
+      {
+        "text": "相处",
+        "pinyin": "xiāng chǔ",
+        "meaningVi": "hoà thuận",
+        "meaningFullVi": "hoà thuận",
+        "target": "相处",
+        "source": "hsk_2.json",
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "相处",
       "chinese": "这个相处很好。",
-      "pinyin": "",
+      "pinyin": "zhè ge xiāng chǔ hěn hǎo。",
       "meaningVi": "hoà thuận này rất tốt.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "相处",
       "chinese": "我喜欢这个相处。",
-      "pinyin": "",
+      "pinyin": "wǒ xǐ huan zhè ge xiāng chǔ。",
       "meaningVi": "Tôi thích hoà thuận này.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 相处",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/相处.mp3"
   ],
@@ -77,7 +100,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:设计",
   "type": "word",
   "word": "设计",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shè jì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thiết kế, phác thảo; tạo ra bản vẽ, kế hoạch hoặc ý tưởng cho một sản phẩm, công trình hoặc hoạt động",
+      "meaningShortVi": "thiết kế",
+      "meaningFullVi": "thiết kế, phác thảo; tạo ra bản vẽ, kế hoạch hoặc ý tưởng cho một sản phẩm, công trình hoặc hoạt động",
       "partOfSpeech": "động từ / danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thiết kế",
   "wordType": "động từ / danh từ",
   "wordTypes": [
     "động từ / danh từ"
   ],
-  "usageNotes": [
-    "Có thể dùng cho nhiều lĩnh vực như đồ họa, kiến trúc, thời trang, phần mềm. Đối với 计划, thiết kế nhấn mạnh 'chi tiết kỹ thuật' hơn là 'kế hoạch tổng thể'. Từ liên quan: 方案 'phương án', 构思 'ý tưởng'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "服装设计",
         "pinyin": "fúzhuāng shèjì",
         "meaningVi": "thiết kế thời trang",
+        "meaningFullVi": "thiết kế thời trang",
         "target": "设计",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "建筑设计",
         "pinyin": "jiànzhù shèjì",
         "meaningVi": "thiết kế kiến trúc",
+        "meaningFullVi": "thiết kế kiến trúc",
         "target": "设计",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Hãy nhờ nhà thiết kế phác thảo một logo mới.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "设计",
@@ -82,16 +87,17 @@
       "meaningVi": "Thiết kế này rất sáng tạo.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 设计",
-      "syntax": "động từ / danh từ",
-      "matchedExample": "Có thể dùng cho nhiều lĩnh vực như đồ họa, kiến trúc, thời trang, phần mềm. Đối với 计划, thiết kế nhấn mạnh 'chi tiết kỹ thuật' hơn là 'kế hoạch tổng thể'. Từ liên quan: 方案 'phương án', 构思 'ý tưởng'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 设计",
+      "partOfSpeech": "động từ / danh từ",
+      "usageNoteVi": "Có thể dùng cho nhiều lĩnh vực như đồ họa, kiến trúc, thời trang, phần mềm. Đối với 计划, thiết kế nhấn mạnh 'chi tiết kỹ thuật' hơn là 'kế hoạch tổng thể'. Từ liên quan: 方案 'phương án', 构思 'ý tưởng'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__3__topic__10__giai-tri-toi",
+      "sectionSlug": "giai-tri-toi",
       "sectionTitle": "Giải trí tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

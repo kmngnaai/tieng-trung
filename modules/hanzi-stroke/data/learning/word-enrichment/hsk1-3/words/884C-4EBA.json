@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:行人",
   "type": "word",
   "word": "行人",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "xíng rén",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "người đi bộ",
+      "meaningShortVi": "người đi bộ",
+      "meaningFullVi": "người đi bộ",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "người đi bộ",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,43 +48,58 @@
     "collocations": [
       {
         "text": "行人过马路",
-        "pinyin": "",
+        "pinyin": "xíng rén guò mǎ lù",
         "meaningVi": "người đi bộ qua đường",
+        "meaningFullVi": "người đi bộ qua đường",
         "target": "行人",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "行人道",
-        "pinyin": "",
+        "pinyin": "xíng rén dào",
         "meaningVi": "vỉa hè",
+        "meaningFullVi": "vỉa hè",
         "target": "行人",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "行人",
       "chinese": "马路上有很多行人",
-      "pinyin": "",
+      "pinyin": "mǎ lù shàng yǒu hěn duō xíng rén",
       "meaningVi": "Trên đường có nhiều người đi bộ",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "行人",
       "chinese": "注意行人",
-      "pinyin": "",
+      "pinyin": "zhù yì xíng rén",
       "meaningVi": "Chú ý người đi bộ",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 行人",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/行人.mp3"
   ],
@@ -92,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__2__topic__5__van-chuyen",
+      "sectionSlug": "van-chuyen",
       "sectionTitle": "Vận chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/van-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/van-chuyen/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -107,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

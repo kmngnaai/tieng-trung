@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:运动员",
   "type": "word",
   "word": "运动员",
@@ -16,24 +16,25 @@
     "readings": [
       {
         "pinyin": "yùn dòng yuán",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "vận động viên",
+      "meaningShortVi": "vận động viên",
+      "meaningFullVi": "vận động viên",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "vận động viên",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -45,29 +46,51 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [
+      {
+        "text": "运动员",
+        "pinyin": "yùn dòng yuán",
+        "meaningVi": "vận động viên",
+        "meaningFullVi": "vận động viên",
+        "target": "运动员",
+        "source": "hsk_3.json",
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "运动员",
       "chinese": "这个运动员很好。",
-      "pinyin": "",
+      "pinyin": "zhè ge yùn dòng yuán hěn hǎo。",
       "meaningVi": "vận động viên này rất tốt.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "运动员",
       "chinese": "我喜欢这个运动员。",
-      "pinyin": "",
+      "pinyin": "wǒ xǐ huan zhè ge yùn dòng yuán。",
       "meaningVi": "Tôi thích vận động viên này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 运动员",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/运动员.mp3"
   ],
@@ -76,11 +99,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__3__lesson__9__bai-9-it-doesn-t-matter-if-you-don-t-play-well",
+      "sectionSlug": "bai-9-it-doesn-t-matter-if-you-don-t-play-well",
       "sectionTitle": "Chơi không giỏi cũng không sao",
       "sectionTitleZh": "打不好没关系",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-9-it-doesn-t-matter-if-you-don-t-play-well/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-9-it-doesn-t-matter-if-you-don-t-play-well/",
+      "orderInSection": 24
     }
   ],
   "sources": [
@@ -91,7 +119,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

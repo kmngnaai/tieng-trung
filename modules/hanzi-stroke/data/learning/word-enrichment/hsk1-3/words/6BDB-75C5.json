@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:毛病",
   "type": "word",
   "word": "毛病",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "máo bing",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "khuyết điểm; tật xấu; trục trặc",
+      "meaningShortVi": "khuyết điểm",
+      "meaningFullVi": "khuyết điểm; tật xấu; trục trặc",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "khuyết điểm",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Chỉ lỗi, khuyết điểm hoặc trục trặc. Có thể dùng cho người (tật xấu) hoặc vật (lỗi máy)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -51,20 +50,25 @@
       {
         "text": "大毛病",
         "pinyin": "dà máobìng",
-        "meaningVi": "khuyết điểm lớn, vấn đề lớn",
+        "meaningVi": "khuyết điểm lớn",
+        "meaningFullVi": "khuyết điểm lớn, vấn đề lớn",
         "target": "毛病",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "挑毛病",
         "pinyin": "tiāo máobìng",
-        "meaningVi": "khắc khao, tìm khuyết điểm",
+        "meaningVi": "khắc khao",
+        "meaningFullVi": "khắc khao, tìm khuyết điểm",
         "target": "毛病",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Cái máy này có trục trặc gì không?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "毛病",
@@ -83,16 +88,17 @@
       "meaningVi": "Khuyết điểm lớn nhất của anh ấy là không đúng giờ.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 毛病",
-      "syntax": "danh từ",
-      "matchedExample": "Chỉ lỗi, khuyết điểm hoặc trục trặc. Có thể dùng cho người (tật xấu) hoặc vật (lỗi máy).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 毛病",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Chỉ lỗi, khuyết điểm hoặc trục trặc. Có thể dùng cho người (tật xấu) hoặc vật (lỗi máy).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 31,
+      "sectionId": "new_hsk__3__topic__31__ban-tinh",
+      "sectionSlug": "ban-tinh",
       "sectionTitle": "Bản tính",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/ban-tinh/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/ban-tinh/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:受到",
   "type": "word",
   "word": "受到",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "shòu dào",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thụ đáo",
+      "meaningShortVi": "thụ đáo",
+      "meaningFullVi": "thụ đáo",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thụ đáo",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -48,43 +49,58 @@
     "collocations": [
       {
         "text": "受到重视",
-        "pinyin": "",
+        "pinyin": "shòu dào zhòng shì",
         "meaningVi": "được coi trọng",
+        "meaningFullVi": "được coi trọng",
         "target": "受到",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "受到批评",
-        "pinyin": "",
+        "pinyin": "shòu dào pī píng",
         "meaningVi": "bị phê bình",
+        "meaningFullVi": "bị phê bình",
         "target": "受到",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "受到",
       "chinese": "受到表扬",
-      "pinyin": "",
+      "pinyin": "shòu dào biǎo yáng",
       "meaningVi": "Được khen ngợi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "受到",
       "chinese": "受到欢迎",
-      "pinyin": "",
+      "pinyin": "shòu dào huān yíng",
       "meaningVi": "Được chào đón",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 受到",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/受到.mp3"
   ],
@@ -93,21 +109,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 26,
+      "sectionId": "new_hsk__2__topic__26__dong-tu",
+      "sectionSlug": "dong-tu",
       "sectionTitle": "Động từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dong-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dong-tu/",
+      "orderInSection": 10
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__3__lesson__9__bai-9-it-doesn-t-matter-if-you-don-t-play-well",
+      "sectionSlug": "bai-9-it-doesn-t-matter-if-you-don-t-play-well",
       "sectionTitle": "Chơi không giỏi cũng không sao",
       "sectionTitleZh": "打不好没关系",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-9-it-doesn-t-matter-if-you-don-t-play-well/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-9-it-doesn-t-matter-if-you-don-t-play-well/",
+      "orderInSection": 19
     }
   ],
   "sources": [
@@ -123,7 +149,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

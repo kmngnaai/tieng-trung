@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:偶尔",
   "type": "word",
   "word": "偶尔",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "ǒu ěr",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thỉnh thoảng, đôi khi, ngẫu nhiên",
+      "meaningShortVi": "thỉnh thoảng",
+      "meaningFullVi": "thỉnh thoảng, đôi khi, ngẫu nhiên",
       "partOfSpeech": "phó từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thỉnh thoảng",
   "wordType": "phó từ",
   "wordTypes": [
     "phó từ"
   ],
-  "usageNotes": [
-    "Phó từ chỉ một việc gì đó diễn ra thỉnh thoảng, đôi khi, không thường xuyên. Mang nghĩa 'đôi khi', 'thỉnh thoảng', 'bất ngờ thỉnh thoảng'. Cận nghĩa với 有时 (đôi khi) nhưng 偶尔 nhấn mạnh tính chất hiếm hoi, bất ngờ hơn."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,37 +46,46 @@
     "collocations": [
       {
         "text": "偶尔去",
-        "pinyin": "",
+        "pinyin": "ǒu ěr qù",
         "meaningVi": "thỉnh thoảng đi",
+        "meaningFullVi": "thỉnh thoảng đi",
         "target": "偶尔",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "偶尔想起",
-        "pinyin": "",
+        "pinyin": "ǒu ěr xiǎng qǐ",
         "meaningVi": "thỉnh thoảng nhớ đến",
+        "meaningFullVi": "thỉnh thoảng nhớ đến",
         "target": "偶尔",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "偶尔见面",
-        "pinyin": "",
+        "pinyin": "ǒu ěr jiàn miàn",
         "meaningVi": "thỉnh thoảng gặp mặt",
+        "meaningFullVi": "thỉnh thoảng gặp mặt",
         "target": "偶尔",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "只是偶尔",
-        "pinyin": "",
+        "pinyin": "zhǐ shì ǒu ěr",
         "meaningVi": "chỉ thỉnh thoảng",
+        "meaningFullVi": "chỉ thỉnh thoảng",
         "target": "偶尔",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -87,7 +95,8 @@
       "meaningVi": "Tôi thỉnh thoảng đi rạp chiếu phim xem phim",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "偶尔",
@@ -96,16 +105,17 @@
       "meaningVi": "Cuối tuần thỉnh thoảng ăn tối cùng bạn bè",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 偶尔",
-      "syntax": "phó từ",
-      "matchedExample": "Phó từ chỉ một việc gì đó diễn ra thỉnh thoảng, đôi khi, không thường xuyên. Mang nghĩa 'đôi khi', 'thỉnh thoảng', 'bất ngờ thỉnh thoảng'. Cận nghĩa với 有时 (đôi khi) nhưng 偶尔 nhấn mạnh tính chất hiếm hoi, bất ngờ hơn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 偶尔",
+      "partOfSpeech": "phó từ",
+      "usageNoteVi": "Phó từ chỉ một việc gì đó diễn ra thỉnh thoảng, đôi khi, không thường xuyên. Mang nghĩa 'đôi khi', 'thỉnh thoảng', 'bất ngờ thỉnh thoảng'. Cận nghĩa với 有时 (đôi khi) nhưng 偶尔 nhấn mạnh tính chất hiếm hoi, bất ngờ hơn.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -120,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

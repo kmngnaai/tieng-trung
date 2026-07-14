@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:世界杯",
   "type": "word",
   "word": "世界杯",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "Shì jiè bēi",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "World Cup; giải đấu thể thao quy mô toàn cầu, thường chỉ Giải vô địch bóng đá thế giới",
+      "meaningShortVi": "World Cup",
+      "meaningFullVi": "World Cup; giải đấu thể thao quy mô toàn cầu, thường chỉ Giải vô địch bóng đá thế giới",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "World Cup",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Mặc dù có thể dùng cho nhiều môn thể thao, khi không nói rõ thì 世界杯 thường chỉ bóng đá. Trong văn thể thao, có thể nói 世界杯决赛 'trận chung kết World Cup'. Từ liên quan: 奥运会 'Thế vận hội', 锦标赛 'giải vô địch'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -52,19 +51,24 @@
         "text": "足球世界杯",
         "pinyin": "zúqiú shìjièbēi",
         "meaningVi": "World Cup bóng đá",
+        "meaningFullVi": "World Cup bóng đá",
         "target": "世界杯",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "赢得世界杯",
         "pinyin": "yíngdé shìjièbēi",
         "meaningVi": "giành chiến thắng World Cup",
+        "meaningFullVi": "giành chiến thắng World Cup",
         "target": "世界杯",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "World Cup được tổ chức mỗi bốn năm một lần.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "世界杯",
@@ -83,16 +88,17 @@
       "meaningVi": "Rất nhiều quốc gia tham gia World Cup.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 世界杯",
-      "syntax": "danh từ",
-      "matchedExample": "Mặc dù có thể dùng cho nhiều môn thể thao, khi không nói rõ thì 世界杯 thường chỉ bóng đá. Trong văn thể thao, có thể nói 世界杯决赛 'trận chung kết World Cup'. Từ liên quan: 奥运会 'Thế vận hội', 锦标赛 'giải vô địch'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 世界杯",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Mặc dù có thể dùng cho nhiều môn thể thao, khi không nói rõ thì 世界杯 thường chỉ bóng đá. Trong văn thể thao, có thể nói 世界杯决赛 'trận chung kết World Cup'. Từ liên quan: 奥运会 'Thế vận hội', 锦标赛 'giải vô địch'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__3__topic__10__giai-tri-toi",
+      "sectionSlug": "giai-tri-toi",
       "sectionTitle": "Giải trí tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -118,7 +129,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

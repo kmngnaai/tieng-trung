@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:及格",
   "type": "word",
   "word": "及格",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jí gé",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đạt yêu cầu, qua môn, đủ điều kiện",
+      "meaningShortVi": "đạt yêu cầu",
+      "meaningFullVi": "đạt yêu cầu, qua môn, đủ điều kiện",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đạt yêu cầu",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "及格 nghĩa là đạt chuẩn, đạt yêu cầu. Hán-Việt 'cập' là đuổi kịp, đạt được; 'cách' là khuôn mẫu, chuẩn mực. Đạt được chuẩn mực là qua môn."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,40 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "考试及格",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "及格",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "成绩及格",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "及格",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "不及格",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "及格",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "勉强及格",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "及格",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -87,7 +54,8 @@
       "meaningVi": "Kỳ thi đã qua môn.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "及格",
@@ -96,7 +64,8 @@
       "meaningVi": "Anh ấy qua môn nhưng điểm không cao.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "及格",
@@ -105,16 +74,17 @@
       "meaningVi": "Sáu mươi điểm mới được tính là qua môn.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 及格",
-      "syntax": "compound-semantic",
-      "matchedExample": "及格 nghĩa là đạt chuẩn, đạt yêu cầu. Hán-Việt 'cập' là đuổi kịp, đạt được; 'cách' là khuôn mẫu, chuẩn mực. Đạt được chuẩn mực là qua môn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 及格",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "及格 nghĩa là đạt chuẩn, đạt yêu cầu. Hán-Việt 'cập' là đuổi kịp, đạt được; 'cách' là khuôn mẫu, chuẩn mực. Đạt được chuẩn mực là qua môn.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -129,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

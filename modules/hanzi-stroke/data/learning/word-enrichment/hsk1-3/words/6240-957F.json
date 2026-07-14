@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:所长",
   "type": "word",
   "word": "所长",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "suǒ zhǎng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trưởng sở, viện trưởng",
+      "meaningShortVi": "trưởng sở",
+      "meaningFullVi": "trưởng sở, viện trưởng",
       "partOfSpeech": "danh từ chức vụ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trưởng sở",
   "wordType": "danh từ chức vụ",
   "wordTypes": [
     "danh từ chức vụ"
   ],
-  "usageNotes": [
-    "所长 (trưởng sở) chỉ người đứng đầu một sở, viện, hoặc cơ quan nghiên cứu."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "研究所所长",
         "pinyin": "yánjiūsuǒ suǒzhǎng",
         "meaningVi": "viện trưởng viện nghiên cứu",
+        "meaningFullVi": "viện trưởng viện nghiên cứu",
         "target": "所长",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "派出所所长",
         "pinyin": "pàichūsuǒ suǒzhǎng",
         "meaningVi": "trưởng công an phường",
+        "meaningFullVi": "trưởng công an phường",
         "target": "所长",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Anh ấy là viện trưởng của viện nghiên cứu này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "所长",
@@ -82,16 +87,17 @@
       "meaningVi": "Trưởng sở đang họp.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 所长",
-      "syntax": "danh từ chức vụ",
-      "matchedExample": "所长 (trưởng sở) chỉ người đứng đầu một sở, viện, hoặc cơ quan nghiên cứu.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 所长",
+      "partOfSpeech": "danh từ chức vụ",
+      "usageNoteVi": "所长 (trưởng sở) chỉ người đứng đầu một sở, viện, hoặc cơ quan nghiên cứu.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__topic__16__cac-hoat-dong",
+      "sectionSlug": "cac-hoat-dong",
       "sectionTitle": "Các hoạt động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/",
+      "orderInSection": 20
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:广告栏",
   "type": "word",
   "word": "广告栏",
@@ -16,24 +16,25 @@
     "readings": [
       {
         "pinyin": "guǎng gào lán",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Bảng quảng cáo, cột quảng cáo",
+      "meaningShortVi": "Bảng quảng cáo",
+      "meaningFullVi": "Bảng quảng cáo, cột quảng cáo",
       "partOfSpeech": "Danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Bảng quảng cáo",
   "wordType": "Danh từ",
   "wordTypes": [
     "Danh từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -43,7 +44,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -53,7 +55,8 @@
       "meaningVi": "Xin hãy dán thông báo lên bảng quảng cáo.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "广告栏",
@@ -62,10 +65,19 @@
       "meaningVi": "Bảng quảng cáo của trường dán đầy các loại thông tin.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 广告栏",
+      "partOfSpeech": "Danh từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/广告栏.mp3"
   ],
@@ -78,7 +90,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

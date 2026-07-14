@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:日语",
   "type": "word",
   "word": "日语",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "Rì yǔ",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tiếng Nhật; ngôn ngữ Nhật Bản",
+      "meaningShortVi": "tiếng Nhật",
+      "meaningFullVi": "tiếng Nhật; ngôn ngữ Nhật Bản",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tiếng Nhật",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "日语 viết hoa chữ đầu 日 khi chỉ tên riêng. Tương tự các cách đặt tên ngôn ngữ: 中文/汉语 (tiếng Trung), 韩语 (tiếng Hàn), 英语 (tiếng Anh)."
-  ],
-  "wordTypeExplanations": [
-    "日 (nhật — Nhật Bản, mặt trời) + 语 (ngữ — ngôn ngữ); ghép nghĩa 'ngôn ngữ của Nhật Bản'."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "学日语",
         "pinyin": "xué Rìyǔ",
         "meaningVi": "học tiếng Nhật",
+        "meaningFullVi": "học tiếng Nhật",
         "target": "日语",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "日语能力考试",
         "pinyin": "Rìyǔ nénglì kǎoshì",
         "meaningVi": "kỳ thi năng lực tiếng Nhật (JLPT)",
+        "meaningFullVi": "kỳ thi năng lực tiếng Nhật (JLPT)",
         "target": "日语",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "日语翻译",
         "pinyin": "Rìyǔ fānyì",
         "meaningVi": "dịch thuật tiếng Nhật",
+        "meaningFullVi": "dịch thuật tiếng Nhật",
         "target": "日语",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Chuyên ngành đại học của cô ấy là dịch thuật tiếng Nhật.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "日语",
@@ -90,7 +95,8 @@
       "meaningVi": "Học tiếng Nhật tốt cần nắm vững kana và kanji.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "日语",
@@ -99,7 +105,8 @@
       "meaningVi": "Anh ấy đã giao tiếp với khách hàng bằng tiếng Nhật.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "日语",
@@ -108,23 +115,17 @@
       "meaningVi": "Tiếng Nhật và tiếng Trung có rất nhiều chữ Hán giống nhau.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 日语",
-      "syntax": "compound-semantic",
-      "matchedExample": "日语 viết hoa chữ đầu 日 khi chỉ tên riêng. Tương tự các cách đặt tên ngôn ngữ: 中文/汉语 (tiếng Trung), 韩语 (tiếng Hàn), 英语 (tiếng Anh).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "日 (nhật — Nhật Bản, mặt trời) + 语 (ngữ — ngôn ngữ); ghép nghĩa 'ngôn ngữ của Nhật Bản'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 日语",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "日语 viết hoa chữ đầu 日 khi chỉ tên riêng. Tương tự các cách đặt tên ngôn ngữ: 中文/汉语 (tiếng Trung), 韩语 (tiếng Hàn), 英语 (tiếng Anh).",
+      "explanationVi": "日 (nhật — Nhật Bản, mặt trời) + 语 (ngữ — ngôn ngữ); ghép nghĩa 'ngôn ngữ của Nhật Bản'.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

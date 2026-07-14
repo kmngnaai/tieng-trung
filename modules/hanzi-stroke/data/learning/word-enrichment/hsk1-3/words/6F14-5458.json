@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:演员",
   "type": "word",
   "word": "演员",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yǎn yuán",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "diễn viên",
+      "meaningShortVi": "diễn viên",
+      "meaningFullVi": "diễn viên",
       "partOfSpeech": "danh từ nghề nghiệp",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "diễn viên",
   "wordType": "danh từ nghề nghiệp",
   "wordTypes": [
     "danh từ nghề nghiệp"
   ],
-  "usageNotes": [
-    "演员 (diễn viên) chỉ người có chuyên môn diễn xuất trong phim, kịch, chương trình nghệ thuật."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,19 +51,24 @@
         "text": "电影演员",
         "pinyin": "diànyǐng yǎnyuán",
         "meaningVi": "diễn viên điện ảnh",
+        "meaningFullVi": "diễn viên điện ảnh",
         "target": "演员",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "著名演员",
         "pinyin": "zhùmíng yǎnyuán",
         "meaningVi": "diễn viên nổi tiếng",
+        "meaningFullVi": "diễn viên nổi tiếng",
         "target": "演员",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Anh ấy muốn làm diễn viên điện ảnh.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "演员",
@@ -83,16 +88,17 @@
       "meaningVi": "Diễn viên này diễn rất tốt.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 演员",
-      "syntax": "danh từ nghề nghiệp",
-      "matchedExample": "演员 (diễn viên) chỉ người có chuyên môn diễn xuất trong phim, kịch, chương trình nghệ thuật.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 演员",
+      "partOfSpeech": "danh từ nghề nghiệp",
+      "usageNoteVi": "演员 (diễn viên) chỉ người có chuyên môn diễn xuất trong phim, kịch, chương trình nghệ thuật.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__topic__16__cac-hoat-dong",
+      "sectionSlug": "cac-hoat-dong",
       "sectionTitle": "Các hoạt động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/",
+      "orderInSection": 22
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

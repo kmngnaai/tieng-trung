@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:门票",
   "type": "word",
   "word": "门票",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "mén piào",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "vé vào cửa, vé tham quan",
+      "meaningShortVi": "vé vào cửa",
+      "meaningFullVi": "vé vào cửa, vé tham quan",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "vé vào cửa",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng cho vé vào các điểm tham quan, vườn thú, bảo tàng, v.v. Trong giao tiếp hàng ngày có thể gọi tắt là '票' (vé) nếu ngữ cảnh rõ."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 门 (cửa, cổng) + 票 (vé, phiếu) → 'vé để qua cửa/vào cổng'."
   ],
   "hsk": {
     "levels": [
@@ -54,27 +51,34 @@
         "text": "买门票",
         "pinyin": "mǎi mén piào",
         "meaningVi": "mua vé vào cửa",
+        "meaningFullVi": "mua vé vào cửa",
         "target": "门票",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "门票价格",
         "pinyin": "mén piào jià gé",
         "meaningVi": "giá vé",
+        "meaningFullVi": "giá vé",
         "target": "门票",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "优惠门票",
         "pinyin": "yōu huì mén piào",
         "meaningVi": "vé ưu đãi",
+        "meaningFullVi": "vé ưu đãi",
         "target": "门票",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -84,7 +88,8 @@
       "meaningVi": "Mua vé vào cửa bao nhiêu tiền",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "门票",
@@ -93,7 +98,8 @@
       "meaningVi": "Điểm tham quan này cần vé",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "门票",
@@ -102,7 +108,8 @@
       "meaningVi": "Vé đã bán hết rồi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "门票",
@@ -111,23 +118,17 @@
       "meaningVi": "Miễn phí vào cửa, không cần vé",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 门票",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng cho vé vào các điểm tham quan, vườn thú, bảo tàng, v.v. Trong giao tiếp hàng ngày có thể gọi tắt là '票' (vé) nếu ngữ cảnh rõ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 门 (cửa, cổng) + 票 (vé, phiếu) → 'vé để qua cửa/vào cổng'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 门票",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng cho vé vào các điểm tham quan, vườn thú, bảo tàng, v.v. Trong giao tiếp hàng ngày có thể gọi tắt là '票' (vé) nếu ngữ cảnh rõ.",
+      "explanationVi": "Ghép nghĩa: 门 (cửa, cổng) + 票 (vé, phiếu) → 'vé để qua cửa/vào cổng'.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -138,21 +139,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 23,
+      "sectionId": "new_hsk__1__topic__23__danh-tu",
+      "sectionSlug": "danh-tu",
       "sectionTitle": "Danh từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/danh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/danh-tu/",
+      "orderInSection": 5
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 15,
+      "sectionId": "new_hsk__2__lesson__15__bai-15-i-want-to-go-to-china-again",
+      "sectionSlug": "bai-15-i-want-to-go-to-china-again",
       "sectionTitle": "Tôi muốn đến Trung Quốc thêm một lần nữa",
       "sectionTitleZh": "我想再去一次中国",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-15-i-want-to-go-to-china-again/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-15-i-want-to-go-to-china-again/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -168,7 +179,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

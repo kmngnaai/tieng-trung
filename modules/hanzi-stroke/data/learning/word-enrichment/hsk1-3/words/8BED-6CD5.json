@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:语法",
   "type": "word",
   "word": "语法",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yǔ fǎ",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ngữ pháp, quy tắc ngôn ngữ",
+      "meaningShortVi": "ngữ pháp",
+      "meaningFullVi": "ngữ pháp, quy tắc ngôn ngữ",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ngữ pháp",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Danh từ chỉ quy tắc, cấu trúc của một ngôn ngữ. 语 = ngôn ngữ, 法 = pháp/phép tắc. Là thuật ngữ cơ bản trong học ngoại ngữ."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -49,19 +48,24 @@
         "text": "语法书",
         "pinyin": "yǔfǎ shū",
         "meaningVi": "sách ngữ pháp",
+        "meaningFullVi": "sách ngữ pháp",
         "target": "语法",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "语法错误",
         "pinyin": "yǔfǎ cuòwù",
         "meaningVi": "lỗi ngữ pháp",
+        "meaningFullVi": "lỗi ngữ pháp",
         "target": "语法",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +75,8 @@
       "meaningVi": "Học ngữ pháp rất quan trọng để nắm vững ngôn ngữ.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "语法",
@@ -80,16 +85,17 @@
       "meaningVi": "Cuốn sách này giải thích ngữ pháp rất rõ ràng.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 语法",
-      "syntax": "danh từ",
-      "matchedExample": "Danh từ chỉ quy tắc, cấu trúc của một ngôn ngữ. 语 = ngôn ngữ, 法 = pháp/phép tắc. Là thuật ngữ cơ bản trong học ngoại ngữ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 语法",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Danh từ chỉ quy tắc, cấu trúc của một ngôn ngữ. 语 = ngôn ngữ, 法 = pháp/phép tắc. Là thuật ngữ cơ bản trong học ngoại ngữ.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:提问",
   "type": "word",
   "word": "提问",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "tí wèn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đặt câu hỏi, hỏi; đưa ra câu hỏi để được giải đáp",
+      "meaningShortVi": "đặt câu hỏi",
+      "meaningFullVi": "đặt câu hỏi, hỏi; đưa ra câu hỏi để được giải đáp",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đặt câu hỏi",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Thường dùng trong ngữ cảnh lớp học, họp báo, hoặc thảo luận. Có thể nói 请允许我提问 để tăng tính lễ phép. Từ liên quan: 回答 'trả lời', 解答 'giải đáp', 质疑 'phản biện'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,14 @@
         "text": "举手提问",
         "pinyin": "jǔshǒu tíwèn",
         "meaningVi": "giơ tay đặt câu hỏi",
+        "meaningFullVi": "giơ tay đặt câu hỏi",
         "target": "提问",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "回答问题",
-        "pinyin": "huídá wèntí",
-        "meaningVi": "trả lời câu hỏi",
-        "target": "提问",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +67,8 @@
       "meaningVi": "Các sinh viên tích cực đặt câu hỏi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "提问",
@@ -82,16 +77,17 @@
       "meaningVi": "Có vấn đề có thể đặt câu hỏi bất cứ lúc nào.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 提问",
-      "syntax": "động từ",
-      "matchedExample": "Thường dùng trong ngữ cảnh lớp học, họp báo, hoặc thảo luận. Có thể nói 请允许我提问 để tăng tính lễ phép. Từ liên quan: 回答 'trả lời', 解答 'giải đáp', 质疑 'phản biện'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 提问",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Thường dùng trong ngữ cảnh lớp học, họp báo, hoặc thảo luận. Có thể nói 请允许我提问 để tăng tính lễ phép. Từ liên quan: 回答 'trả lời', 解答 'giải đáp', 质疑 'phản biện'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 29,
+      "sectionId": "new_hsk__3__topic__29__lien-lac",
+      "sectionSlug": "lien-lac",
       "sectionTitle": "Liên lạc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

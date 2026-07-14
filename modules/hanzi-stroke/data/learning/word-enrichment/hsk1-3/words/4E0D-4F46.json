@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:不但",
   "type": "word",
   "word": "不但",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "bù dàn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "không chỉ",
+      "meaningShortVi": "không chỉ",
+      "meaningFullVi": "không chỉ",
       "partOfSpeech": "conjunction",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "không chỉ",
   "wordType": "conjunction",
   "wordTypes": [
     "conjunction"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -48,43 +49,38 @@
     "collocations": [
       {
         "text": "不但...而且...",
-        "pinyin": "",
-        "meaningVi": "không chỉ... mà còn...",
+        "pinyin": "bù dàn... ér qiě...",
+        "meaningVi": "không chỉ",
+        "meaningFullVi": "không chỉ... mà còn...",
         "target": "不但",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "不仅",
-        "pinyin": "",
-        "meaningVi": "không những",
-        "target": "不但",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "不但",
       "chinese": "不但聪明，而且努力",
-      "pinyin": "",
+      "pinyin": "bù dàn cōng ming， ér qiě nǔ lì",
       "meaningVi": "Không chỉ thông minh mà còn chăm chỉ",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "不但",
-      "chinese": "不但如此",
-      "pinyin": "",
-      "meaningVi": "Không chỉ thế",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 不但",
+      "partOfSpeech": "conjunction",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/不但.mp3"
   ],
@@ -93,21 +89,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__2__topic__10__tu-noi",
+      "sectionSlug": "tu-noi",
       "sectionTitle": "Từ nối",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-noi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-noi/",
+      "orderInSection": 5
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__3__lesson__7__bai-7-that-skirt-looks-better-than-the-shorts",
+      "sectionSlug": "bai-7-that-skirt-looks-better-than-the-shorts",
       "sectionTitle": "Cái váy đó đẹp hơn quần soóc",
       "sectionTitleZh": "那条裙子比短裤更好看",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-7-that-skirt-looks-better-than-the-shorts/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-7-that-skirt-looks-better-than-the-shorts/",
+      "orderInSection": 24
     }
   ],
   "sources": [
@@ -123,7 +129,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

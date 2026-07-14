@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:哥哥",
   "type": "word",
   "word": "哥哥",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gē ge",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "anh trai",
+      "meaningShortVi": "anh trai",
+      "meaningFullVi": "anh trai",
       "partOfSpeech": "reduplication",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "anh trai",
   "wordType": "reduplication",
   "wordTypes": [
     "reduplication"
   ],
-  "usageNotes": [
-    "哥哥 là cách gọi anh trai thân mật."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -54,19 +53,24 @@
         "text": "我哥哥",
         "pinyin": "wǒ gēge",
         "meaningVi": "anh trai tôi",
+        "meaningFullVi": "anh trai tôi",
         "target": "哥哥",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "大哥哥",
         "pinyin": "dà gēge",
         "meaningVi": "anh trai lớn",
+        "meaningFullVi": "anh trai lớn",
         "target": "哥哥",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -76,7 +80,8 @@
       "meaningVi": "Anh trai tôi lớn hơn tôi năm tuổi.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "哥哥",
@@ -85,7 +90,8 @@
       "meaningVi": "Anh trai đang học đại học.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "哥哥",
@@ -94,16 +100,17 @@
       "meaningVi": "Đây là anh trai tôi.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 哥哥",
-      "syntax": "reduplication",
-      "matchedExample": "哥哥 là cách gọi anh trai thân mật.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 哥哥",
+      "partOfSpeech": "reduplication",
+      "usageNoteVi": "哥哥 là cách gọi anh trai thân mật.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,31 +121,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__1__lesson__4__bai-4-i-have-two-children",
+      "sectionSlug": "bai-4-i-have-two-children",
       "sectionTitle": "Tôi có hai đứa con",
       "sectionTitleZh": "我有两个孩子",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-4-i-have-two-children/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-4-i-have-two-children/",
+      "orderInSection": 8
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__1__topic__3__gia-dinh",
+      "sectionSlug": "gia-dinh",
       "sectionTitle": "Gia đình",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/gia-dinh/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/gia-dinh/",
+      "orderInSection": 15
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 10,
+      "sectionId": "hsk__2__lesson__10__bai-10-dung-tim-nua-dien-thoai-o-tren-ban-kia",
+      "sectionSlug": "bai-10-dung-tim-nua-dien-thoai-o-tren-ban-kia",
       "sectionTitle": "Đừng tìm nữa, điện thoại ở trên bàn kìa",
       "sectionTitleZh": "别找了，手机在桌子上呢",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-10-dung-tim-nua-dien-thoai-o-tren-ban-kia/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-10-dung-tim-nua-dien-thoai-o-tren-ban-kia/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -159,7 +181,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

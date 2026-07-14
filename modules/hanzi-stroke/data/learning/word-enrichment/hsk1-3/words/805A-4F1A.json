@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:聚会",
   "type": "word",
   "word": "聚会",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "jù huì",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tụ họp; bữa tiệc",
+      "meaningShortVi": "tụ họp",
+      "meaningFullVi": "tụ họp; bữa tiệc",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tụ họp",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -42,29 +43,51 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [
+      {
+        "text": "聚会",
+        "pinyin": "jù huì",
+        "meaningVi": "tụ họp",
+        "meaningFullVi": "tụ họp; bữa tiệc",
+        "target": "聚会",
+        "source": "hsk_1.json",
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "聚会",
       "chinese": "这个聚会很好。",
-      "pinyin": "",
+      "pinyin": "zhè ge jù huì hěn hǎo。",
       "meaningVi": "tụ họp; bữa tiệc này rất tốt.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "聚会",
       "chinese": "我喜欢这个聚会。",
-      "pinyin": "",
+      "pinyin": "wǒ xǐ huan zhè ge jù huì。",
       "meaningVi": "Tôi thích tụ họp; bữa tiệc này.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 聚会",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/聚会.mp3"
   ],
@@ -77,7 +100,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

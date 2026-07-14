@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:事实上",
   "type": "word",
   "word": "事实上",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "shì shí shàng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trên thực tế; thực ra là",
+      "meaningShortVi": "trên thực tế",
+      "meaningFullVi": "trên thực tế; thực ra là",
       "partOfSpeech": "cụm từ chỉ sự thật",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trên thực tế",
   "wordType": "cụm từ chỉ sự thật",
   "wordTypes": [
     "cụm từ chỉ sự thật"
   ],
-  "usageNotes": [
-    "Dùng để trình bày sự thật, thường đối lập với vẻ ngoài hoặc suy nghĩ ban đầu. Có thể đặt đầu câu hoặc giữa câu."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -52,19 +51,24 @@
         "text": "事实上来说",
         "pinyin": "shìshí shàng lái shuō",
         "meaningVi": "nói trên thực tế",
+        "meaningFullVi": "nói trên thực tế",
         "target": "事实上",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "事实上并非",
         "pinyin": "shìshí shàng bìngfēi",
         "meaningVi": "thực tế không phải",
+        "meaningFullVi": "thực tế không phải",
         "target": "事实上",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Thực ra là tôi không quen biết anh ấy.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "事实上",
@@ -83,16 +88,17 @@
       "meaningVi": "Trên vẻ ngoài trông có vẻ khó, nhưng trên thực tế rất đơn giản.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 事实上",
-      "syntax": "cụm từ chỉ sự thật",
-      "matchedExample": "Dùng để trình bày sự thật, thường đối lập với vẻ ngoài hoặc suy nghĩ ban đầu. Có thể đặt đầu câu hoặc giữa câu.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 事实上",
+      "partOfSpeech": "cụm từ chỉ sự thật",
+      "usageNoteVi": "Dùng để trình bày sự thật, thường đối lập với vẻ ngoài hoặc suy nghĩ ban đầu. Có thể đặt đầu câu hoặc giữa câu.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 36,
+      "sectionId": "new_hsk__3__topic__36__tu-chuc-nang-ii",
+      "sectionSlug": "tu-chuc-nang-ii",
       "sectionTitle": "Từ chức năng II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-ii/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -118,7 +129,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

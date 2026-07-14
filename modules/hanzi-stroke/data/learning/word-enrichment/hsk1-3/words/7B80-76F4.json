@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:简直",
   "type": "word",
   "word": "简直",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiǎn zhí",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "giản trọc (thực sự,简直 không thể tin được)",
+      "meaningShortVi": "giản trọc (thực sự",
+      "meaningFullVi": "giản trọc (thực sự,简直 không thể tin được)",
       "partOfSpeech": "phó từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "giản trọc (thực sự",
   "wordType": "phó từ",
   "wordTypes": [
     "phó từ"
   ],
-  "usageNotes": [
-    "Dùng để nhấn mạnh, thường đi với tính từ hoặc động từ. Đọc Hán-Việt là 'giản trọc'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,66 +48,76 @@
     "collocations": [
       {
         "text": "简直不敢相信",
-        "pinyin": "",
+        "pinyin": "jiǎn zhí bù gǎn xiāng xìn",
         "meaningVi": "giản trọc không dám tin",
+        "meaningFullVi": "giản trọc không dám tin",
         "target": "简直",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "简直太...了",
-        "pinyin": "",
-        "meaningVi": "giản trọc quá...",
+        "pinyin": "jiǎn zhí tài... le",
+        "meaningVi": "giản trọc quá",
+        "meaningFullVi": "giản trọc quá...",
         "target": "简直",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "简直就像",
-        "pinyin": "",
+        "pinyin": "jiǎn zhí jiù xiàng",
         "meaningVi": "giản trọc như",
+        "meaningFullVi": "giản trọc như",
         "target": "简直",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "简直",
       "chinese": "这里简直太美了！",
-      "pinyin": "",
+      "pinyin": "zhè li jiǎn zhí tài měi le！",
       "meaningVi": "Nơi này thực sự quá đẹp!",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "简直",
       "chinese": "我简直不敢相信我的眼睛。",
-      "pinyin": "",
+      "pinyin": "wǒ jiǎn zhí bù gǎn xiāng xìn wǒ de yǎn jing。",
       "meaningVi": "Tôi简直 không thể tin vào mắt mình.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "简直",
       "chinese": "你说的话简直没有道理。",
-      "pinyin": "",
+      "pinyin": "nǐ shuō de huà jiǎn zhí méi yǒu dào li。",
       "meaningVi": "Những lời bạn nói简直 không có lý.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 简直",
-      "syntax": "phó từ",
-      "matchedExample": "Dùng để nhấn mạnh, thường đi với tính từ hoặc động từ. Đọc Hán-Việt là 'giản trọc'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 简直",
+      "partOfSpeech": "phó từ",
+      "usageNoteVi": "Dùng để nhấn mạnh, thường đi với tính từ hoặc động từ. Đọc Hán-Việt là 'giản trọc'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -119,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__3__topic__1__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/pho-tu/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -134,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

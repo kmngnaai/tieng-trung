@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:区别",
   "type": "word",
   "word": "区别",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "qū bié",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sự khác biệt, sự khác nhau; phân biệt, phân loại",
+      "meaningShortVi": "sự khác biệt",
+      "meaningFullVi": "sự khác biệt, sự khác nhau; phân biệt, phân loại",
       "partOfSpeech": "danh từ / động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sự khác biệt",
   "wordType": "danh từ / động từ",
   "wordTypes": [
     "danh từ / động từ"
   ],
-  "usageNotes": [
-    "区别 có thể là danh từ (sự khác biệt) hoặc động từ (phân biệt). Là từ ghép Hán-Việt 'khu biệt' (khu vực khác biệt)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "没有区别",
         "pinyin": "méiyǒu qūbié",
         "meaningVi": "không có khác biệt",
+        "meaningFullVi": "không có khác biệt",
         "target": "区别",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "区别对待",
         "pinyin": "qūbié duìdài",
         "meaningVi": "đối xử khác biệt",
+        "meaningFullVi": "đối xử khác biệt",
         "target": "区别",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Hai từ này có gì khác biệt?",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "区别",
@@ -82,16 +87,17 @@
       "meaningVi": "Bạn có thể phân biệt chúng không?",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 区别",
-      "syntax": "danh từ / động từ",
-      "matchedExample": "区别 có thể là danh từ (sự khác biệt) hoặc động từ (phân biệt). Là từ ghép Hán-Việt 'khu biệt' (khu vực khác biệt).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 区别",
+      "partOfSpeech": "danh từ / động từ",
+      "usageNoteVi": "区别 có thể là danh từ (sự khác biệt) hoặc động từ (phân biệt). Là từ ghép Hán-Việt 'khu biệt' (khu vực khác biệt).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 20,
+      "sectionId": "new_hsk__3__topic__20__so-sanh-va-tuan-thu",
+      "sectionSlug": "so-sanh-va-tuan-thu",
       "sectionTitle": "So sánh và Tuân thủ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/so-sanh-va-tuan-thu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/so-sanh-va-tuan-thu/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

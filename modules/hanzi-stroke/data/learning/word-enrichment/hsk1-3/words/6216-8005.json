@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:或者",
   "type": "word",
   "word": "或者",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "huò zhě",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hoặc giả",
+      "meaningShortVi": "hoặc giả",
+      "meaningFullVi": "hoặc giả",
       "partOfSpeech": "conjunction",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hoặc giả",
   "wordType": "conjunction",
   "wordTypes": [
     "conjunction"
   ],
-  "usageNotes": [
-    "Liên từ chọn lựa, chỉ một trong hai khả năng"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -51,49 +50,56 @@
     "collocations": [
       {
         "text": "或者...或者...",
-        "pinyin": "",
-        "meaningVi": "hoặc là... hoặc là...",
+        "pinyin": "huò zhě... huò zhě...",
+        "meaningVi": "hoặc là",
+        "meaningFullVi": "hoặc là... hoặc là...",
         "target": "或者",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "还是或者",
-        "pinyin": "",
+        "pinyin": "hái shi huò zhě",
         "meaningVi": "hay hoặc",
+        "meaningFullVi": "hay hoặc",
         "target": "或者",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "或者",
       "chinese": "你可以喝茶或者咖啡",
-      "pinyin": "",
+      "pinyin": "nǐ kě yǐ hē chá huò zhě kā fēi",
       "meaningVi": "Bạn có thể uống trà hoặc cà phê",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "或者",
       "chinese": "明天或者后天去",
-      "pinyin": "",
+      "pinyin": "míng tiān huò zhě hòu tiān qù",
       "meaningVi": "Đi mai hoặc ngày mai",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 或者",
-      "syntax": "conjunction",
-      "matchedExample": "Liên từ chọn lựa, chỉ một trong hai khả năng",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 或者",
+      "partOfSpeech": "conjunction",
+      "usageNoteVi": "Liên từ chọn lựa, chỉ một trong hai khả năng",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,31 +110,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__2__topic__10__tu-noi",
+      "sectionSlug": "tu-noi",
       "sectionTitle": "Từ nối",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-noi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-noi/",
+      "orderInSection": 19
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 3,
+      "sectionId": "hsk__3__lesson__3__bai-3-tren-ban-de-nhieu-do-uong",
+      "sectionSlug": "bai-3-tren-ban-de-nhieu-do-uong",
       "sectionTitle": "Trên bàn để nhiều đồ uống.",
       "sectionTitleZh": "桌子上放着很多饮料",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-3-tren-ban-de-nhieu-do-uong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-3-tren-ban-de-nhieu-do-uong/",
+      "orderInSection": 14
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__3__lesson__11__bai-11-it-seems-i-can-t-solve-this-problem",
+      "sectionSlug": "bai-11-it-seems-i-can-t-solve-this-problem",
       "sectionTitle": "Xem ra tôi không có cách giải quyết vấn đề này",
       "sectionTitleZh": "看来我没办法解决这个问题",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-11-it-seems-i-can-t-solve-this-problem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-11-it-seems-i-can-t-solve-this-problem/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -144,7 +165,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

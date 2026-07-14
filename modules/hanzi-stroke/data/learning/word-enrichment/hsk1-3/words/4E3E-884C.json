@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:举行",
   "type": "word",
   "word": "举行",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "jǔ xíng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tổ chức",
+      "meaningShortVi": "tổ chức",
+      "meaningFullVi": "tổ chức",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tổ chức",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -49,52 +50,48 @@
     "collocations": [
       {
         "text": "举行会议",
-        "pinyin": "",
+        "pinyin": "jǔ xíng huì yì",
         "meaningVi": "tổ chức cuộc họp",
+        "meaningFullVi": "tổ chức cuộc họp",
         "target": "举行",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "举行婚礼",
-        "pinyin": "",
-        "meaningVi": "tổ chức đám cưới",
-        "target": "举行",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "举行",
       "chinese": "我们在学校举行会议",
-      "pinyin": "",
+      "pinyin": "wǒ men zài xué xiào jǔ xíng huì yì",
       "meaningVi": "Chúng tôi tổ chức cuộc họp ở trường",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "举行",
       "chinese": "明天举行运动会",
-      "pinyin": "",
+      "pinyin": "míng tiān jǔ xíng yùn dòng huì",
       "meaningVi": "Ngày mai tổ chức đại hội thể thao",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "举行",
-      "chinese": "婚礼在酒店举行",
-      "pinyin": "",
-      "meaningVi": "Đám cưới được tổ chức ở khách sạn",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 举行",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/举行.mp3"
   ],
@@ -103,21 +100,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__2__topic__12__giai-tri",
+      "sectionSlug": "giai-tri",
       "sectionTitle": "Giải trí",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/",
+      "orderInSection": 23
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 15,
+      "sectionId": "hsk__3__lesson__15__bai-15-nhung-cai-khac-deu-khong-co-van-de-gi",
+      "sectionSlug": "bai-15-nhung-cai-khac-deu-khong-co-van-de-gi",
       "sectionTitle": "Những cái khác đều không có vấn đề gì.",
       "sectionTitleZh": "其他都没什么问题",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-15-nhung-cai-khac-deu-khong-co-van-de-gi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-15-nhung-cai-khac-deu-khong-co-van-de-gi/",
+      "orderInSection": 17
     }
   ],
   "sources": [
@@ -133,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

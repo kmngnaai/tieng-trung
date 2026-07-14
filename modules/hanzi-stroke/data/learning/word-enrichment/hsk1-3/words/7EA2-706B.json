@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:红火",
   "type": "word",
   "word": "红火",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "hóng huo",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sôi nổi, phồn vinh, đang phát triển tốt",
+      "meaningShortVi": "sôi nổi",
+      "meaningFullVi": "sôi nổi, phồn vinh, đang phát triển tốt",
       "partOfSpeech": "other",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sôi nổi",
   "wordType": "other",
   "wordTypes": [
     "other"
-  ],
-  "usageNotes": [
-    "Dùng cho buôn bán, sự nghiệp đang phát triển tốt, hoặc cuộc sống khá giả."
-  ],
-  "wordTypeExplanations": [
-    "Hỏa (lửa) màu đỏ + Hồng (màu đỏ) → màu đỏ lửa → tượng trưng cho sự sôi nổi, may mắn, phồn vinh."
   ],
   "hsk": {
     "levels": [
@@ -51,19 +48,24 @@
         "text": "生意红火",
         "pinyin": "shēngyì hónghuo",
         "meaningVi": "buôn bán sôi nổi",
+        "meaningFullVi": "buôn bán sôi nổi",
         "target": "红火",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "日子红火",
         "pinyin": "rìzi hónghuo",
         "meaningVi": "cuộc sống khá giả",
+        "meaningFullVi": "cuộc sống khá giả",
         "target": "红火",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +75,8 @@
       "meaningVi": "Buôn bán rất sôi nổi",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "红火",
@@ -82,7 +85,8 @@
       "meaningVi": "Cuộc sống过得 khá giả",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "红火",
@@ -91,23 +95,17 @@
       "meaningVi": "Sự nghiệp phát triển tốt",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 红火",
-      "syntax": "other",
-      "matchedExample": "Dùng cho buôn bán, sự nghiệp đang phát triển tốt, hoặc cuộc sống khá giả.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "other",
-      "matchedExample": "Hỏa (lửa) màu đỏ + Hồng (màu đỏ) → màu đỏ lửa → tượng trưng cho sự sôi nổi, may mắn, phồn vinh.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 红火",
+      "partOfSpeech": "other",
+      "usageNoteVi": "Dùng cho buôn bán, sự nghiệp đang phát triển tốt, hoặc cuộc sống khá giả.",
+      "explanationVi": "Hỏa (lửa) màu đỏ + Hồng (màu đỏ) → màu đỏ lửa → tượng trưng cho sự sôi nổi, may mắn, phồn vinh.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -122,7 +120,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

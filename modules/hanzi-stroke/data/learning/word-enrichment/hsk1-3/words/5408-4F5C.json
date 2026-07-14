@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:合作",
   "type": "word",
   "word": "合作",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "hé zuò",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hợp tác, cộng tác",
+      "meaningShortVi": "hợp tác",
+      "meaningFullVi": "hợp tác, cộng tác",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hợp tác",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "合作 + 与/跟/和 + 对象: 与朋友合作 (hợp tác với bạn bè). 也可用 在...方面合作 (hợp tác trong lĩnh vực...). Phân biệt 配合 (pèihé - phối hợp hành động) thường dùng trong công việc/bổn phận."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "合作伙伴",
         "pinyin": "hézuò huǒbàn",
         "meaningVi": "đối tác hợp tác",
+        "meaningFullVi": "đối tác hợp tác",
         "target": "合作",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "密切合作",
         "pinyin": "mìqiè hézuò",
         "meaningVi": "hợp tác chặt chẽ",
+        "meaningFullVi": "hợp tác chặt chẽ",
         "target": "合作",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Chúng ta cần hợp tác để hoàn thành dự án này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "合作",
@@ -82,16 +87,17 @@
       "meaningVi": "Trung Quốc hợp tác kinh tế với rất nhiều nước.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 合作",
-      "syntax": "động từ",
-      "matchedExample": "合作 + 与/跟/和 + 对象: 与朋友合作 (hợp tác với bạn bè). 也可用 在...方面合作 (hợp tác trong lĩnh vực...). Phân biệt 配合 (pèihé - phối hợp hành động) thường dùng trong công việc/bổn phận.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 合作",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "合作 + 与/跟/和 + 对象: 与朋友合作 (hợp tác với bạn bè). 也可用 在...方面合作 (hợp tác trong lĩnh vực...). Phân biệt 配合 (pèihé - phối hợp hành động) thường dùng trong công việc/bổn phận.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__3__topic__12__lam-viec-toi",
+      "sectionSlug": "lam-viec-toi",
       "sectionTitle": "Làm việc tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/",
+      "orderInSection": 19
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

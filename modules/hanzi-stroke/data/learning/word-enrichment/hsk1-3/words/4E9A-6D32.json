@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:亚洲",
   "type": "word",
   "word": "亚洲",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "Yà zhōu",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "châu Á",
+      "meaningShortVi": "châu Á",
+      "meaningFullVi": "châu Á",
       "partOfSpeech": "proper-noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "châu Á",
   "wordType": "proper-noun",
   "wordTypes": [
     "proper-noun"
   ],
-  "usageNotes": [
-    "Danh từ chỉ châu Á. Tên lục địa."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,32 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "亚洲国家",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "亚洲",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "亚洲地图",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "亚洲",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "东南亚",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "亚洲",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +54,8 @@
       "meaningVi": "Đến từ châu Á",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "亚洲",
@@ -88,7 +64,8 @@
       "meaningVi": "Quốc gia châu Á",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "亚洲",
@@ -97,16 +74,17 @@
       "meaningVi": "Bản đồ châu Á",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 亚洲",
-      "syntax": "proper-noun",
-      "matchedExample": "Danh từ chỉ châu Á. Tên lục địa.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 亚洲",
+      "partOfSpeech": "proper-noun",
+      "usageNoteVi": "Danh từ chỉ châu Á. Tên lục địa.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -121,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

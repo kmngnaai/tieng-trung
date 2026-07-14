@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:猴子",
   "type": "word",
   "word": "猴子",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "hóu zi",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "khỉ",
+      "meaningShortVi": "khỉ",
+      "meaningFullVi": "khỉ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "khỉ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -45,21 +46,26 @@
     "collocations": [
       {
         "text": "这个猴子",
-        "pinyin": "",
+        "pinyin": "zhè ge hóu zi",
         "meaningVi": "cái khỉ này",
+        "meaningFullVi": "cái khỉ này",
         "target": "猴子",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "那个猴子",
-        "pinyin": "",
+        "pinyin": "nà ge hóu zi",
         "meaningVi": "cái khỉ kia",
+        "meaningFullVi": "cái khỉ kia",
         "target": "猴子",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -69,7 +75,8 @@
       "meaningVi": "Khỉ đang nhảy qua nhảy lại trên cây.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "猴子",
@@ -78,10 +85,19 @@
       "meaningVi": "Trẻ em thích xem khỉ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 猴子",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/猴子.mp3"
   ],
@@ -94,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

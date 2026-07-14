@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:不同",
   "type": "word",
   "word": "不同",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "bù tóng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "khác biệt",
+      "meaningShortVi": "khác biệt",
+      "meaningFullVi": "khác biệt",
       "partOfSpeech": "adjective",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "khác biệt",
   "wordType": "adjective",
   "wordTypes": [
     "adjective"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -48,36 +49,49 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "相同",
-        "pinyin": "",
-        "meaningVi": "giống nhau",
+        "text": "不同",
+        "pinyin": "bù tóng",
+        "meaningVi": "khác nhau",
+        "meaningFullVi": "khác nhau",
         "target": "不同",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "不同",
       "chinese": "我们有很多不同",
-      "pinyin": "",
+      "pinyin": "wǒ men yǒu hěn duō bù tóng",
       "meaningVi": "Chúng tôi có nhiều khác biệt",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不同",
       "chinese": "不同的文化",
-      "pinyin": "",
+      "pinyin": "bù tóng de wén huà",
       "meaningVi": "Văn hóa khác nhau",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 不同",
+      "partOfSpeech": "adjective",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/不同.mp3"
   ],
@@ -86,21 +100,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__2__topic__17__dac-trung",
+      "sectionSlug": "dac-trung",
       "sectionTitle": "Đặc trưng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dac-trung/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dac-trung/",
+      "orderInSection": 19
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__3__lesson__13__bai-13-my-new-neighbors-come-from-the-uk",
+      "sectionSlug": "bai-13-my-new-neighbors-come-from-the-uk",
       "sectionTitle": "Hàng xóm mới của tôi đến từ Anh",
       "sectionTitleZh": "我的新邻居来自英国",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-13-my-new-neighbors-come-from-the-uk/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-13-my-new-neighbors-come-from-the-uk/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -121,7 +145,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

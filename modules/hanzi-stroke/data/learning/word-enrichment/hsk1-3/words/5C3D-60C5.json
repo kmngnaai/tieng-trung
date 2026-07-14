@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:尽情",
   "type": "word",
   "word": "尽情",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "jìn qíng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Tận tình — làm hết lòng, thỏa sức, không kìm nén cảm xúc hay ham muốn.",
+      "meaningShortVi": "Tận tình — làm hết lòng",
+      "meaningFullVi": "Tận tình — làm hết lòng, thỏa sức, không kìm nén cảm xúc hay ham muốn.",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Tận tình — làm hết lòng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Trạng từ, đứng trước động từ để nhấn mạnh mức độ trọn vẹn, không kìm giữ; mang sắc thái tích cực, phóng khoáng."
-  ],
-  "wordTypeExplanations": [
-    "尽 (tận — hết, đầy đủ) + 情 (tình — tình cảm, cảm xúc): dốc hết tình cảm, thỏa mãn hoàn toàn."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "尽情享受",
         "pinyin": "jìnqíng xiǎngshòu",
         "meaningVi": "tận hưởng thỏa thích",
+        "meaningFullVi": "tận hưởng thỏa thích",
         "target": "尽情",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "尽情歌唱",
         "pinyin": "jìnqíng gēchàng",
         "meaningVi": "ca hát hết mình",
+        "meaningFullVi": "ca hát hết mình",
         "target": "尽情",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "尽情玩乐",
         "pinyin": "jìnqíng wánlè",
         "meaningVi": "vui chơi thỏa sức",
+        "meaningFullVi": "vui chơi thỏa sức",
         "target": "尽情",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Mọi người hãy thỏa sức tận hưởng bữa tiệc nào!",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "尽情",
@@ -90,7 +95,8 @@
       "meaningVi": "Cô ấy hết mình ca hát trên sân khấu.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "尽情",
@@ -99,7 +105,8 @@
       "meaningVi": "Bọn trẻ thỏa sức chạy nhảy trên bãi cỏ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "尽情",
@@ -108,23 +115,17 @@
       "meaningVi": "Khi du lịch hãy hết lòng cảm nhận văn hóa địa phương.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 尽情",
-      "syntax": "compound-semantic",
-      "matchedExample": "Trạng từ, đứng trước động từ để nhấn mạnh mức độ trọn vẹn, không kìm giữ; mang sắc thái tích cực, phóng khoáng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "尽 (tận — hết, đầy đủ) + 情 (tình — tình cảm, cảm xúc): dốc hết tình cảm, thỏa mãn hoàn toàn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 尽情",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Trạng từ, đứng trước động từ để nhấn mạnh mức độ trọn vẹn, không kìm giữ; mang sắc thái tích cực, phóng khoáng.",
+      "explanationVi": "尽 (tận — hết, đầy đủ) + 情 (tình — tình cảm, cảm xúc): dốc hết tình cảm, thỏa mãn hoàn toàn.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

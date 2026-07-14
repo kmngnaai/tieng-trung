@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:接待",
   "type": "word",
   "word": "接待",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiē dài",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Tiếp đón",
+      "meaningShortVi": "Tiếp đón",
+      "meaningFullVi": "Tiếp đón",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Tiếp đón",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "接待 là động từ chỉ việc đón tiếp khách đến, bao gồm các hành động chào mừng, hướng dẫn, chăm sóc. 接 nghĩa là đón, tiếp; 待 nghĩa là đối xử, đãi."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,48 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "接待客人",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "接待",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "接待外宾",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "接待",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "接待工作",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "接待",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "负责接待",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "接待",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "热情接待",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "接待",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -97,7 +56,8 @@
       "meaningVi": "Sân bay có nhân viên chuyên trách tiếp đón khách nước ngoài.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "接待",
@@ -106,7 +66,8 @@
       "meaningVi": "Cô ấy phụ trách tiếp đón khách đến thăm.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "接待",
@@ -115,16 +76,17 @@
       "meaningVi": "Chúng ta cần chuẩn bị tốt công tác tiếp đón.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 接待",
-      "syntax": "compound-semantic",
-      "matchedExample": "接待 là động từ chỉ việc đón tiếp khách đến, bao gồm các hành động chào mừng, hướng dẫn, chăm sóc. 接 nghĩa là đón, tiếp; 待 nghĩa là đối xử, đãi.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 接待",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "接待 là động từ chỉ việc đón tiếp khách đến, bao gồm các hành động chào mừng, hướng dẫn, chăm sóc. 接 nghĩa là đón, tiếp; 待 nghĩa là đối xử, đãi.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -135,11 +97,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__3__topic__5__cac-moi-quan-he",
+      "sectionSlug": "cac-moi-quan-he",
       "sectionTitle": "Các mối quan hệ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-moi-quan-he/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-moi-quan-he/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -150,7 +117,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

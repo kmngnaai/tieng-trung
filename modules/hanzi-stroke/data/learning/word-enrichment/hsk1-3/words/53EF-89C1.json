@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:可见",
   "type": "word",
   "word": "可见",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "kě jiàn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "có thể thấy được; rõ ràng là",
+      "meaningShortVi": "có thể thấy được",
+      "meaningFullVi": "có thể thấy được; rõ ràng là",
       "partOfSpeech": "động từ / từ nối",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "có thể thấy được",
   "wordType": "động từ / từ nối",
   "wordTypes": [
     "động từ / từ nối"
   ],
-  "usageNotes": [
-    "可见 là ghép của 可 (có thể) + 见 (thấy) nghĩa là \"có thể thấy\". Trong văn viết, 可见 còn dùng để bắt đầu kết luận: 可见他是个好人 (Rõ ràng anh ta là người tốt). Thành ngữ phổ biến: 显而易见 (hiển nhiên), 由此可见 (từ đó thấy rõ)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,22 +45,17 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "显而易见",
-        "pinyin": "xiǎn'éryìjiàn",
-        "meaningVi": "hiển nhiên, rõ ràng",
-        "target": "可见",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "可见度",
         "pinyin": "kějiàndù",
-        "meaningVi": "độ nhìn thấy được, tầm nhìn",
+        "meaningVi": "độ nhìn thấy được",
+        "meaningFullVi": "độ nhìn thấy được, tầm nhìn",
         "target": "可见",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,16 +65,17 @@
       "meaningVi": "Từ đó có thể thấy rõ rằng...",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 可见",
-      "syntax": "động từ / từ nối",
-      "matchedExample": "可见 là ghép của 可 (có thể) + 见 (thấy) nghĩa là \"có thể thấy\". Trong văn viết, 可见 còn dùng để bắt đầu kết luận: 可见他是个好人 (Rõ ràng anh ta là người tốt). Thành ngữ phổ biến: 显而易见 (hiển nhiên), 由此可见 (từ đó thấy rõ).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 可见",
+      "partOfSpeech": "động từ / từ nối",
+      "usageNoteVi": "可见 là ghép của 可 (có thể) + 见 (thấy) nghĩa là \"có thể thấy\". Trong văn viết, 可见 còn dùng để bắt đầu kết luận: 可见他是个好人 (Rõ ràng anh ta là người tốt). Thành ngữ phổ biến: 显而易见 (hiển nhiên), 由此可见 (từ đó thấy rõ).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -95,7 +90,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

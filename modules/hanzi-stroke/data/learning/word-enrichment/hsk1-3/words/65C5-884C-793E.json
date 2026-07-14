@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:旅行社",
   "type": "word",
   "word": "旅行社",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "lǚ xíng shè",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "công ty du lịch",
+      "meaningShortVi": "công ty du lịch",
+      "meaningFullVi": "công ty du lịch",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "công ty du lịch",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Kết hợp 跟/通过 旅行社 : 跟旅行社去 (đi cùng công ty du lịch), 通过旅行社订 (đặt qua công ty du lịch)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -53,19 +52,24 @@
         "text": "中国国际旅行社",
         "pinyin": "Zhōngguó Guójì Lǚxíngshè",
         "meaningVi": "Công ty Du lịch Quốc tế Trung Quốc",
+        "meaningFullVi": "Công ty Du lịch Quốc tế Trung Quốc",
         "target": "旅行社",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "旅行社服务",
         "pinyin": "lǚxíngshè fúwù",
         "meaningVi": "dịch vụ công ty du lịch",
+        "meaningFullVi": "dịch vụ công ty du lịch",
         "target": "旅行社",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -75,7 +79,8 @@
       "meaningVi": "Tôi đặt vé máy bay qua công ty du lịch.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "旅行社",
@@ -84,16 +89,17 @@
       "meaningVi": "Công ty du lịch này có nhiều tuyến du lịch.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 旅行社",
-      "syntax": "danh từ",
-      "matchedExample": "Kết hợp 跟/通过 旅行社 : 跟旅行社去 (đi cùng công ty du lịch), 通过旅行社订 (đặt qua công ty du lịch).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 旅行社",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Kết hợp 跟/通过 旅行社 : 跟旅行社去 (đi cùng công ty du lịch), 通过旅行社订 (đặt qua công ty du lịch).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,11 +110,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__3__topic__10__giai-tri-toi",
+      "sectionSlug": "giai-tri-toi",
       "sectionTitle": "Giải trí tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/",
+      "orderInSection": 19
     }
   ],
   "sources": [
@@ -124,7 +135,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

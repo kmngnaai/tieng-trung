@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:应当",
   "type": "word",
   "word": "应当",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yīng dāng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nên, phải; xứng đáng",
+      "meaningShortVi": "nên",
+      "meaningFullVi": "nên, phải; xứng đáng",
       "partOfSpeech": "trợ từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nên",
   "wordType": "trợ từ",
   "wordTypes": [
     "trợ từ"
   ],
-  "usageNotes": [
-    "应当 là trợ từ chỉ trách nhiệm, nghĩa vụ (nên, phải). Là từ ghép Hán-Việt 'ứng đương'. Trang trọng hơn nên trong khẩu ngữ."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,14 @@
         "text": "应当如何",
         "pinyin": "yīngdāng rúhé",
         "meaningVi": "nên làm như thế nào",
+        "meaningFullVi": "nên làm như thế nào",
         "target": "应当",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "理所当然",
-        "pinyin": "lǐsuǒdāngrán",
-        "meaningVi": "đương nhiên, điều đương nhiên",
-        "target": "应当",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +67,8 @@
       "meaningVi": "Bạn nên giúp anh ấy.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "应当",
@@ -82,16 +77,17 @@
       "meaningVi": "Đây là điều bạn nên làm.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 应当",
-      "syntax": "trợ từ",
-      "matchedExample": "应当 là trợ từ chỉ trách nhiệm, nghĩa vụ (nên, phải). Là từ ghép Hán-Việt 'ứng đương'. Trang trọng hơn nên trong khẩu ngữ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 应当",
+      "partOfSpeech": "trợ từ",
+      "usageNoteVi": "应当 là trợ từ chỉ trách nhiệm, nghĩa vụ (nên, phải). Là từ ghép Hán-Việt 'ứng đương'. Trang trọng hơn nên trong khẩu ngữ.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 20,
+      "sectionId": "new_hsk__3__topic__20__so-sanh-va-tuan-thu",
+      "sectionSlug": "so-sanh-va-tuan-thu",
       "sectionTitle": "So sánh và Tuân thủ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/so-sanh-va-tuan-thu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/so-sanh-va-tuan-thu/",
+      "orderInSection": 17
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

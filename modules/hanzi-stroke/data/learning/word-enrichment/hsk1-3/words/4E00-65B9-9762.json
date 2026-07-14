@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:一方面",
   "type": "word",
   "word": "一方面",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "yī fāng miàn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "một mặt; một khía cạnh; xét về một phương diện",
+      "meaningShortVi": "một mặt",
+      "meaningFullVi": "một mặt; một khía cạnh; xét về một phương diện",
       "partOfSpeech": "cụm từ (Phrase - Perspective)",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "một mặt",
   "wordType": "cụm từ (Phrase - Perspective)",
   "wordTypes": [
     "cụm từ (Phrase - Perspective)"
   ],
-  "usageNotes": [
-    "Dùng để giới thiệu một khía cạnh hoặc quan điểm. Thường đi kèm 另一方面 (mặt khác) để tạo cấu trúc song song. Cấu trúc: 一方面...另一方面... (vừa...vừa...). Synonym: 从...角度 (từ góc độ...)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -50,13 +49,11 @@
       {
         "word": "另一方面",
         "pinyin": "lìng yī fāng miàn",
-        "meaningVi": "mặt khác; một khía cạnh khác; bên cạnh đó",
+        "meaningVi": "mặt khác",
+        "meaningFullVi": "mặt khác; một khía cạnh khác; bên cạnh đó",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          3
-        ],
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 3",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
@@ -64,19 +61,24 @@
         "text": "一方面来说",
         "pinyin": "yī fāngmiàn lái shuō",
         "meaningVi": "nói về một khía cạnh",
+        "meaningFullVi": "nói về một khía cạnh",
         "target": "一方面",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "只考虑一方面",
         "pinyin": "zhǐ kǎolǜ yī fāngmiàn",
         "meaningVi": "chỉ xét một khía cạnh",
+        "meaningFullVi": "chỉ xét một khía cạnh",
         "target": "一方面",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -86,7 +88,8 @@
       "meaningVi": "Một mặt, công việc rất quan trọng; mặt khác, sức khỏe quan trọng hơn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "一方面",
@@ -95,16 +98,17 @@
       "meaningVi": "Xét từ một khía cạnh, đây là chuyện tốt.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 一方面",
-      "syntax": "cụm từ (Phrase - Perspective)",
-      "matchedExample": "Dùng để giới thiệu một khía cạnh hoặc quan điểm. Thường đi kèm 另一方面 (mặt khác) để tạo cấu trúc song song. Cấu trúc: 一方面...另一方面... (vừa...vừa...). Synonym: 从...角度 (từ góc độ...).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 一方面",
+      "partOfSpeech": "cụm từ (Phrase - Perspective)",
+      "usageNoteVi": "Dùng để giới thiệu một khía cạnh hoặc quan điểm. Thường đi kèm 另一方面 (mặt khác) để tạo cấu trúc song song. Cấu trúc: 一方面...另一方面... (vừa...vừa...). Synonym: 从...角度 (từ góc độ...).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -115,11 +119,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 29,
+      "sectionId": "new_hsk__3__topic__29__lien-lac",
+      "sectionSlug": "lien-lac",
       "sectionTitle": "Liên lạc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/",
+      "orderInSection": 24
     }
   ],
   "sources": [
@@ -130,7 +139,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

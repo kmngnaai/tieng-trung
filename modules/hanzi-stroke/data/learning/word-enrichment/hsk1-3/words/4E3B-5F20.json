@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:主张",
   "type": "word",
   "word": "主张",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhǔ zhāng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chủ trương, quan điểm",
+      "meaningShortVi": "chủ trương",
+      "meaningFullVi": "chủ trương, quan điểm",
       "partOfSpeech": "động từ / danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chủ trương",
   "wordType": "động từ / danh từ",
   "wordTypes": [
     "động từ / danh từ"
   ],
-  "usageNotes": [
-    "Điểm kiến hoặc quan điểm đề xuất."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,60 +45,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "提出主张",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "主张",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "主张和平",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "主张",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "主要主张",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "主张",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "主张",
-      "chinese": "我主张这样处理。",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "主张",
-      "chinese": "坚持自己的主张",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 主张",
-      "syntax": "động từ / danh từ",
-      "matchedExample": "Điểm kiến hoặc quan điểm đề xuất.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 主张",
+      "partOfSpeech": "động từ / danh từ",
+      "usageNoteVi": "Điểm kiến hoặc quan điểm đề xuất.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -110,11 +66,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 28,
+      "sectionId": "new_hsk__3__topic__28__tu-duy",
+      "sectionSlug": "tu-duy",
       "sectionTitle": "tư duy",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-duy/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-duy/",
+      "orderInSection": 20
     }
   ],
   "sources": [
@@ -125,7 +86,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

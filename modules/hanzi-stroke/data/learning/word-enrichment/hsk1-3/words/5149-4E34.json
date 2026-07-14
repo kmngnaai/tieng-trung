@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:光临",
   "type": "word",
   "word": "光临",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "guāng lín",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "có mặt, đến thăm (lịch sự, trang trọng)",
+      "meaningShortVi": "có mặt",
+      "meaningFullVi": "có mặt, đến thăm (lịch sự, trang trọng)",
       "partOfSpeech": "động từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "có mặt",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Động từ trang trọng chỉ việc \"đến thăm, có mặt\" trong các bối cảnh lễ phép (光 = sáng,临 = đến). Thường dùng trong cửa hàng, sự kiện (欢迎光临 - chào mừng quý khách). Đối tượng thường là khách (您光临 - quí khách đến). Trong văn nói thông thường, người ta thường用 到, 来 或 来参加. 光临 mang sắc thái trang trọng, lịch sự."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,19 +48,24 @@
         "text": "欢迎光临",
         "pinyin": "huānyíng guānglín",
         "meaningVi": "chào mừng quý khách",
+        "meaningFullVi": "chào mừng quý khách",
         "target": "光临",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "光临指导",
         "pinyin": "guānglín zhǐdǎo",
         "meaningVi": "đến chỉ dẫn (trang trọng)",
+        "meaningFullVi": "đến chỉ dẫn (trang trọng)",
         "target": "光临",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +75,8 @@
       "meaningVi": "Chào mừng quý khách đến với cửa hàng chúng tôi!",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "光临",
@@ -80,16 +85,17 @@
       "meaningVi": "Cảm ơn quí khách đã đến tham gia hoạt động của chúng tôi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 光临",
-      "syntax": "động từ",
-      "matchedExample": "Động từ trang trọng chỉ việc \"đến thăm, có mặt\" trong các bối cảnh lễ phép (光 = sáng,临 = đến). Thường dùng trong cửa hàng, sự kiện (欢迎光临 - chào mừng quý khách). Đối tượng thường là khách (您光临 - quí khách đến). Trong văn nói thông thường, người ta thường用 到, 来 或 来参加. 光临 mang sắc thái trang trọng, lịch sự.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 光临",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Động từ trang trọng chỉ việc \"đến thăm, có mặt\" trong các bối cảnh lễ phép (光 = sáng,临 = đến). Thường dùng trong cửa hàng, sự kiện (欢迎光临 - chào mừng quý khách). Đối tượng thường là khách (您光临 - quí khách đến). Trong văn nói thông thường, người ta thường用 到, 来 或 来参加. 光临 mang sắc thái trang trọng, lịch sự.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

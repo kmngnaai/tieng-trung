@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:征服",
   "type": "word",
   "word": "征服",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "zhēng fú",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chinh phục",
+      "meaningShortVi": "chinh phục",
+      "meaningFullVi": "chinh phục",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chinh phục",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -42,29 +43,51 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [
+      {
+        "text": "征服",
+        "pinyin": "zhēng fú",
+        "meaningVi": "chinh phục",
+        "meaningFullVi": "chinh phục",
+        "target": "征服",
+        "source": "hsk_3.json",
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "征服",
       "chinese": "这个征服很好。",
-      "pinyin": "",
+      "pinyin": "zhè ge zhēng fú hěn hǎo。",
       "meaningVi": "chinh phục này rất tốt.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "征服",
       "chinese": "我喜欢这个征服。",
-      "pinyin": "",
+      "pinyin": "wǒ xǐ huan zhè ge zhēng fú。",
       "meaningVi": "Tôi thích chinh phục này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 征服",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/征服.mp3"
   ],
@@ -77,7 +100,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

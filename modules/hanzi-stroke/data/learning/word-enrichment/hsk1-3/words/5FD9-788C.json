@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:忙碌",
   "type": "word",
   "word": "忙碌",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "máng lù",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bận rộn, bề bộn",
+      "meaningShortVi": "bận rộn",
+      "meaningFullVi": "bận rộn, bề bộn",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bận rộn",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "忙碌 chỉ trạng thái bận rộn với nhiều việc, thường dùng miêu tả công việc hoặc cuộc sống hàng ngày."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 忙 (bận) + 碌 (bận rộn, lăn xả). Hán-Việt 'mang lựu' → bận rộn không ngơi nghỉ."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "忙碌的生活",
         "pinyin": "mánglù de shēnghuó",
         "meaningVi": "cuộc sống bận rộn",
+        "meaningFullVi": "cuộc sống bận rộn",
         "target": "忙碌",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "忙碌不堪",
         "pinyin": "mánglù bùkān",
         "meaningVi": "bận rộn quá mức",
+        "meaningFullVi": "bận rộn quá mức",
         "target": "忙碌",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "终日忙碌",
         "pinyin": "zhōngrì mánglù",
         "meaningVi": "bận rộn suốt ngày",
+        "meaningFullVi": "bận rộn suốt ngày",
         "target": "忙碌",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Công việc rất bận rộn",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "忙碌",
@@ -90,7 +95,8 @@
       "meaningVi": "Bận rộn cả ngày",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "忙碌",
@@ -99,23 +105,17 @@
       "meaningVi": "Bận rộn vì cuộc sống",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 忙碌",
-      "syntax": "compound-semantic",
-      "matchedExample": "忙碌 chỉ trạng thái bận rộn với nhiều việc, thường dùng miêu tả công việc hoặc cuộc sống hàng ngày.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 忙 (bận) + 碌 (bận rộn, lăn xả). Hán-Việt 'mang lựu' → bận rộn không ngơi nghỉ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 忙碌",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "忙碌 chỉ trạng thái bận rộn với nhiều việc, thường dùng miêu tả công việc hoặc cuộc sống hàng ngày.",
+      "explanationVi": "Ghép nghĩa: 忙 (bận) + 碌 (bận rộn, lăn xả). Hán-Việt 'mang lựu' → bận rộn không ngơi nghỉ.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -130,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

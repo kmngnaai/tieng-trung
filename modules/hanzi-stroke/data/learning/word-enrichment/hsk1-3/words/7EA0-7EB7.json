@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:纠纷",
   "type": "word",
   "word": "纠纷",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "jiū fēn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tranh chấp",
+      "meaningShortVi": "tranh chấp",
+      "meaningFullVi": "tranh chấp",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tranh chấp",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng để chỉ tranh chấp."
-  ],
-  "wordTypeExplanations": [
-    "tranh chấp — từ ghép mang nghĩa này."
   ],
   "hsk": {
     "levels": [
@@ -51,11 +48,14 @@
         "text": "关于纠纷",
         "pinyin": "guānyú 纠纷",
         "meaningVi": "về tranh chấp",
+        "meaningFullVi": "về tranh chấp",
         "target": "纠纷",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -65,7 +65,8 @@
       "meaningVi": "Tranh chấp này rất quan trọng",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "纠纷",
@@ -74,7 +75,8 @@
       "meaningVi": "Họ đã tranh chấp",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "纠纷",
@@ -83,23 +85,17 @@
       "meaningVi": "Về tranh chấp",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 纠纷",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng để chỉ tranh chấp.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "tranh chấp — từ ghép mang nghĩa này.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 纠纷",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng để chỉ tranh chấp.",
+      "explanationVi": "tranh chấp — từ ghép mang nghĩa này.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

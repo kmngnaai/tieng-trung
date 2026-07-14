@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:预计",
   "type": "word",
   "word": "预计",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yù jì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "dự tính, dự kiến trước",
+      "meaningShortVi": "dự tính",
+      "meaningFullVi": "dự tính, dự kiến trước",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "dự tính",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "预计 là động từ chỉ việc tính toán, ước lượng trước về một sự việc trong tương lai. Thường dùng với thời gian hoặc dự án."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "预计时间",
-        "pinyin": "",
+        "pinyin": "yù jì shí jiān",
         "meaningVi": "thời gian dự kiến",
+        "meaningFullVi": "thời gian dự kiến",
         "target": "预计",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "预计到达",
-        "pinyin": "",
+        "pinyin": "yù jì dào dá",
         "meaningVi": "dự kiến đến nơi",
+        "meaningFullVi": "dự kiến đến nơi",
         "target": "预计",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "预计",
       "chinese": "预计明天会下雨。",
-      "pinyin": "",
+      "pinyin": "yù jì míng tiān huì xià yǔ。",
       "meaningVi": "Dự kiến ngày mai sẽ có mưa.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "预计",
       "chinese": "这个项目预计年底完成。",
-      "pinyin": "",
+      "pinyin": "zhè ge xiàng mù yù jì nián dǐ wán chéng。",
       "meaningVi": "Dự án này dự kiến hoàn thành vào cuối năm.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 预计",
-      "syntax": "động từ",
-      "matchedExample": "预计 là động từ chỉ việc tính toán, ước lượng trước về một sự việc trong tương lai. Thường dùng với thời gian hoặc dự án.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 预计",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "预计 là động từ chỉ việc tính toán, ước lượng trước về một sự việc trong tương lai. Thường dùng với thời gian hoặc dự án.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 22,
+      "sectionId": "new_hsk__3__topic__22__kinh-te-va-tai-chinh",
+      "sectionSlug": "kinh-te-va-tai-chinh",
       "sectionTitle": "Kinh tế và tài chính",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/kinh-te-va-tai-chinh/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/kinh-te-va-tai-chinh/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

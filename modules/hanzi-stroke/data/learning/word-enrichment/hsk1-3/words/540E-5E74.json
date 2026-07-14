@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:后年",
   "type": "word",
   "word": "后年",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "hòu nián",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Năm sau nữa, năm kia",
+      "meaningShortVi": "Năm sau nữa",
+      "meaningFullVi": "Năm sau nữa, năm kia",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Năm sau nữa",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Chỉ thời điểm 'năm sau nữa', tính từ hiện tại, đối lập với '前年' (năm trước nữa)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,7 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -56,7 +56,8 @@
       "meaningVi": "Năm sau nữa tôi sẽ tốt nghiệp đại học.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "后年",
@@ -65,7 +66,8 @@
       "meaningVi": "Chúng tôi dự định năm sau nữa mua nhà.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "后年",
@@ -74,16 +76,17 @@
       "meaningVi": "Năm sau nữa ngày hôm nay bạn sẽ làm gì?",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 后年",
-      "syntax": "compound-semantic",
-      "matchedExample": "Chỉ thời điểm 'năm sau nữa', tính từ hiện tại, đối lập với '前年' (năm trước nữa).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 后年",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Chỉ thời điểm 'năm sau nữa', tính từ hiện tại, đối lập với '前年' (năm trước nữa).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -94,21 +97,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__3__lesson__10__bai-10-you-can-return-the-book-to-me-tomorrow",
+      "sectionSlug": "bai-10-you-can-return-the-book-to-me-tomorrow",
       "sectionTitle": "Mai bạn trả sách cho tôi cũng được",
       "sectionTitleZh": "你明天再把书还给我",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-10-you-can-return-the-book-to-me-tomorrow/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-10-you-can-return-the-book-to-me-tomorrow/",
+      "orderInSection": 26
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__3__topic__7__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -119,7 +132,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

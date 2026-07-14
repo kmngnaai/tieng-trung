@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:巧克力",
   "type": "word",
   "word": "巧克力",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "qiǎo kè lì",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sô cô la",
+      "meaningShortVi": "sô cô la",
+      "meaningFullVi": "sô cô la",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sô cô la",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Từ mượn (chocolate) qua âm. Phổ biến trong văn hóa phương Tây và hiện đại Trung Quốc."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -45,60 +44,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "巧克力蛋糕",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "巧克力",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "巧克力色",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "巧克力",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "牛奶巧克力",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "巧克力",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "巧克力",
-      "chinese": "我喜欢吃黑巧克力。",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_1.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "巧克力",
-      "chinese": "情人节送巧克力很有意义。",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_1.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 巧克力",
-      "syntax": "danh từ",
-      "matchedExample": "Từ mượn (chocolate) qua âm. Phổ biến trong văn hóa phương Tây và hiện đại Trung Quốc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 巧克力",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Từ mượn (chocolate) qua âm. Phổ biến trong văn hóa phương Tây và hiện đại Trung Quốc.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -113,7 +69,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:消息",
   "type": "word",
   "word": "消息",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xiāo xi",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tin tức",
+      "meaningShortVi": "tin tức",
+      "meaningFullVi": "tin tức",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tin tức",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "指关于某人或某事的报道、信息。消息 vs. 新闻：消息更口语化，新闻更正式、更媒体化。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -50,49 +49,56 @@
     "collocations": [
       {
         "text": "好消息",
-        "pinyin": "",
+        "pinyin": "hǎo xiāo xi",
         "meaningVi": "tin tốt",
+        "meaningFullVi": "tin tốt",
         "target": "消息",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "新闻消息",
-        "pinyin": "",
+        "pinyin": "xīn wén xiāo xi",
         "meaningVi": "tin tức báo chí",
+        "meaningFullVi": "tin tức báo chí",
         "target": "消息",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "消息",
       "chinese": "你听到什么消息了吗？",
-      "pinyin": "",
+      "pinyin": "nǐ tīng dào shén me xiāo xi le ma？",
       "meaningVi": "Bạn nghe được tin tức gì chưa?",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "消息",
       "chinese": "这是个好消息！。",
-      "pinyin": "",
+      "pinyin": "zhè shì gè hǎo xiāo xi！。",
       "meaningVi": "Đây là một tin tốt lành!",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 消息",
-      "syntax": "danh từ",
-      "matchedExample": "指关于某人或某事的报道、信息。消息 vs. 新闻：消息更口语化，新闻更正式、更媒体化。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 消息",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "指关于某人或某事的报道、信息。消息 vs. 新闻：消息更口语化，新闻更正式、更媒体化。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__3__topic__18__thong-tin-va-phuong-tien",
+      "sectionSlug": "thong-tin-va-phuong-tien",
       "sectionTitle": "Thông tin và phương tiện",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/",
+      "orderInSection": 28
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:顺序",
   "type": "word",
   "word": "顺序",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shùn xù",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thứ tự, trình tự",
+      "meaningShortVi": "thứ tự",
+      "meaningFullVi": "thứ tự, trình tự",
       "partOfSpeech": "danh từ (noun)",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thứ tự",
   "wordType": "danh từ (noun)",
   "wordTypes": [
     "danh từ (noun)"
   ],
-  "usageNotes": [
-    "顺 (thuận) nghĩa là thuận lợi, theo; 序 (tự) nghĩa là thứ tự. 顺序 là trật tự, trình tự của các vật hoặc sự việc."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,27 +48,34 @@
         "text": "按顺序",
         "pinyin": "àn shùnxù",
         "meaningVi": "theo thứ tự",
+        "meaningFullVi": "theo thứ tự",
         "target": "顺序",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "顺序正确",
         "pinyin": "shùnxù zhèngquè",
         "meaningVi": "thứ tự đúng",
+        "meaningFullVi": "thứ tự đúng",
         "target": "顺序",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "时间顺序",
         "pinyin": "shíjiān shùnxù",
         "meaningVi": "thứ tự thời gian",
+        "meaningFullVi": "thứ tự thời gian",
         "target": "顺序",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +85,8 @@
       "meaningVi": "Vui lòng xếp hàng theo thứ tự.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "顺序",
@@ -88,7 +95,8 @@
       "meaningVi": "Đừng làm lộn xộn thứ tự.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "顺序",
@@ -97,16 +105,17 @@
       "meaningVi": "Số được sắp xếp theo thứ tự kích thước.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 顺序",
-      "syntax": "danh từ (noun)",
-      "matchedExample": "顺 (thuận) nghĩa là thuận lợi, theo; 序 (tự) nghĩa là thứ tự. 顺序 là trật tự, trình tự của các vật hoặc sự việc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 顺序",
+      "partOfSpeech": "danh từ (noun)",
+      "usageNoteVi": "顺 (thuận) nghĩa là thuận lợi, theo; 序 (tự) nghĩa là thứ tự. 顺序 là trật tự, trình tự của các vật hoặc sự việc.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -121,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

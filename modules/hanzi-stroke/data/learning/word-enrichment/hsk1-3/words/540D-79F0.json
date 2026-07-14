@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:名称",
   "type": "word",
   "word": "名称",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "míng chēng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tên gọi",
+      "meaningShortVi": "tên gọi",
+      "meaningFullVi": "tên gọi",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tên gọi",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,60 +48,58 @@
     "collocations": [
       {
         "text": "名称叫",
-        "pinyin": "",
+        "pinyin": "míng chēng jiào",
         "meaningVi": "tên gọi là",
+        "meaningFullVi": "tên gọi là",
         "target": "名称",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "更改名称",
-        "pinyin": "",
+        "pinyin": "gèng gǎi míng chēng",
         "meaningVi": "đổi tên",
+        "meaningFullVi": "đổi tên",
         "target": "名称",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "品牌名称",
-        "pinyin": "",
-        "meaningVi": "tên thương hiệu",
-        "target": "名称",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "名称",
       "chinese": "这家公司的名称是什么？",
-      "pinyin": "",
+      "pinyin": "zhè jiā gōng sī de míng chēng shì shén me？",
       "meaningVi": "Tên công ty này là gì?",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "名称",
-      "chinese": "产品的名称印在包装上。",
-      "pinyin": "",
-      "meaningVi": "Tên sản phẩm in trên bao bì.",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "名称",
       "chinese": "这个城市的名称很有历史。",
-      "pinyin": "",
+      "pinyin": "zhè ge chéng shì de míng chēng hěn yǒu lì shǐ。",
       "meaningVi": "Tên thành phố này rất có lịch sử.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 名称",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/名称.mp3"
   ],
@@ -109,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__2__topic__19__thong-tin",
+      "sectionSlug": "thong-tin",
       "sectionTitle": "Thông tin",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin/",
+      "orderInSection": 20
     }
   ],
   "sources": [
@@ -124,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

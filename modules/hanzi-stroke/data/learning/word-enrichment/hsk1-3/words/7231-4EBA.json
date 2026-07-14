@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:爱人",
   "type": "word",
   "word": "爱人",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "ài rén",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "vợ chồng",
+      "meaningShortVi": "vợ chồng",
+      "meaningFullVi": "vợ chồng",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "vợ chồng",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Thường dùng để chỉ vợ hoặc chồng, lịch sự hơn 老婆/老公"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -48,50 +47,47 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "爱人之间",
-        "pinyin": "",
-        "meaningVi": "giữa vợ chồng",
-        "target": "爱人",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "我的爱人",
-        "pinyin": "",
-        "meaningVi": "vợ/chồng của tôi",
+        "pinyin": "wǒ de ài rén",
+        "meaningVi": "vợ",
+        "meaningFullVi": "vợ/chồng của tôi",
         "target": "爱人",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "爱人",
       "chinese": "这是我爱人",
-      "pinyin": "",
+      "pinyin": "zhè shì wǒ ài rén",
       "meaningVi": "Đây là vợ/chồng tôi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "爱人",
       "chinese": "爱人和孩子在家等我",
-      "pinyin": "",
+      "pinyin": "ài rén hé hái zi zài jiā děng wǒ",
       "meaningVi": "Vợ/chồng và con đang ở nhà đợi tôi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 爱人",
-      "syntax": "noun",
-      "matchedExample": "Thường dùng để chỉ vợ hoặc chồng, lịch sự hơn 老婆/老公",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 爱人",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Thường dùng để chỉ vợ hoặc chồng, lịch sự hơn 老婆/老公",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 21,
+      "sectionId": "new_hsk__2__topic__21__thong-tin-ca-nhan",
+      "sectionSlug": "thong-tin-ca-nhan",
       "sectionTitle": "Thông tin cá nhân",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin-ca-nhan/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin-ca-nhan/",
+      "orderInSection": 24
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

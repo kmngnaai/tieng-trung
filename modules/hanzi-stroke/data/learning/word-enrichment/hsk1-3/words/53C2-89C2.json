@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:参观",
   "type": "word",
   "word": "参观",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "cān guān",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tham quan",
+      "meaningShortVi": "tham quan",
+      "meaningFullVi": "tham quan",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tham quan",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -46,53 +47,49 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "参观博物馆",
-        "pinyin": "",
-        "meaningVi": "tham quan bảo tàng",
-        "target": "参观",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "参观团",
-        "pinyin": "",
+        "pinyin": "cān guān tuán",
         "meaningVi": "đoàn tham quan",
+        "meaningFullVi": "đoàn tham quan",
         "target": "参观",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "参观",
-      "chinese": "我们去参观博物馆",
-      "pinyin": "",
-      "meaningVi": "Chúng tôi đi tham quan bảo tàng",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "参观",
       "chinese": "欢迎来参观",
-      "pinyin": "",
+      "pinyin": "huān yíng lái cān guān",
       "meaningVi": "Chào mừng đến tham quan",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "参观",
       "chinese": "他们参观了这个工厂",
-      "pinyin": "",
+      "pinyin": "tā men cān guān le zhè ge gōng chǎng",
       "meaningVi": "Họ đã tham quan nhà máy này",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 参观",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/参观.mp3"
   ],
@@ -101,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__2__topic__12__giai-tri",
+      "sectionSlug": "giai-tri",
       "sectionTitle": "Giải trí",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -116,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

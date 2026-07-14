@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:信号",
   "type": "word",
   "word": "信号",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "xìn hào",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tín hiệu",
+      "meaningShortVi": "tín hiệu",
+      "meaningFullVi": "tín hiệu",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tín hiệu",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,60 +48,78 @@
     "collocations": [
       {
         "text": "手机信号",
-        "pinyin": "",
+        "pinyin": "shǒu jī xìn hào",
         "meaningVi": "tín hiệu điện thoại",
+        "meaningFullVi": "tín hiệu điện thoại",
         "target": "信号",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "交通信号",
-        "pinyin": "",
+        "pinyin": "jiāo tōng xìn hào",
         "meaningVi": "tín hiệu giao thông",
+        "meaningFullVi": "tín hiệu giao thông",
         "target": "信号",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "信号灯",
-        "pinyin": "",
+        "pinyin": "xìn hào dēng",
         "meaningVi": "đèn tín hiệu",
+        "meaningFullVi": "đèn tín hiệu",
         "target": "信号",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "信号",
       "chinese": "手机没有信号",
-      "pinyin": "",
+      "pinyin": "shǒu jī méi yǒu xìn hào",
       "meaningVi": "Điện thoại không có tín hiệu",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "信号",
       "chinese": "这是一个重要的信号",
-      "pinyin": "",
+      "pinyin": "zhè shì yī gè zhòng yào de xìn hào",
       "meaningVi": "Đây là một tín hiệu quan trọng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "信号",
       "chinese": "请等待信号",
-      "pinyin": "",
+      "pinyin": "qǐng děng dài xìn hào",
       "meaningVi": "Vui lòng đợi tín hiệu",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 信号",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/信号.mp3"
   ],
@@ -109,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__2__topic__19__thong-tin",
+      "sectionSlug": "thong-tin",
       "sectionTitle": "Thông tin",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -124,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

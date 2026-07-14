@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:皱纹",
   "type": "word",
   "word": "皱纹",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "zhòu wén",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Trứu văn (trứu-văn): nếp nhăn trên da người, thường ở mặt và tay; biểu tượng của tuổi tác.",
+      "meaningShortVi": "Trứu văn (trứu-văn): nếp nhăn trên da người",
+      "meaningFullVi": "Trứu văn (trứu-văn): nếp nhăn trên da người, thường ở mặt và tay; biểu tượng của tuổi tác.",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Trứu văn (trứu-văn): nếp nhăn trên da người",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "皱纹 chỉ nếp nhăn da, còn 折痕 (zhéhén) chỉ vết gấp trên vải hoặc giấy; không nhầm lẫn hai từ."
-  ],
-  "wordTypeExplanations": [
-    "Ghép 皱 (trứu — nhăn, nếp nhăn trên da) + 纹 (văn — đường vân, vết): nếp nhăn theo đường vân trên da."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,24 @@
         "text": "消除皱纹",
         "pinyin": "xiāochú zhòuwén",
         "meaningVi": "xóa nếp nhăn",
+        "meaningFullVi": "xóa nếp nhăn",
         "target": "皱纹",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "眼角皱纹",
         "pinyin": "yǎnjiǎo zhòuwén",
         "meaningVi": "nếp nhăn đuôi mắt",
+        "meaningFullVi": "nếp nhăn đuôi mắt",
         "target": "皱纹",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "抗皱护肤",
-        "pinyin": "kàng zhòu hùfū",
-        "meaningVi": "chăm sóc da chống nhăn",
-        "target": "皱纹",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +75,8 @@
       "meaningVi": "Bà nội có những nếp nhăn sâu trên mặt.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "皱纹",
@@ -90,7 +85,8 @@
       "meaningVi": "Chống nắng giúp giảm bớt sự hình thành nếp nhăn.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "皱纹",
@@ -99,7 +95,8 @@
       "meaningVi": "Cô ấy lo lắng khi xuất hiện nếp nhăn đuôi mắt.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "皱纹",
@@ -108,23 +105,17 @@
       "meaningVi": "Loại kem dưỡng này được quảng cáo có thể xóa nếp nhăn.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 皱纹",
-      "syntax": "compound-semantic",
-      "matchedExample": "皱纹 chỉ nếp nhăn da, còn 折痕 (zhéhén) chỉ vết gấp trên vải hoặc giấy; không nhầm lẫn hai từ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép 皱 (trứu — nhăn, nếp nhăn trên da) + 纹 (văn — đường vân, vết): nếp nhăn theo đường vân trên da.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 皱纹",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "皱纹 chỉ nếp nhăn da, còn 折痕 (zhéhén) chỉ vết gấp trên vải hoặc giấy; không nhầm lẫn hai từ.",
+      "explanationVi": "Ghép 皱 (trứu — nhăn, nếp nhăn trên da) + 纹 (văn — đường vân, vết): nếp nhăn theo đường vân trên da.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

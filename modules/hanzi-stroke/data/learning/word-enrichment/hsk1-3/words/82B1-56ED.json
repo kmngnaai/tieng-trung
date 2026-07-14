@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:花园",
   "type": "word",
   "word": "花园",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "huā yuán",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "vườn hoa",
+      "meaningShortVi": "vườn hoa",
+      "meaningFullVi": "vườn hoa",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "vườn hoa",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -47,36 +48,59 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "花园城市",
-        "pinyin": "",
-        "meaningVi": "thành phố vườn",
+        "text": "花园",
+        "pinyin": "huā yuán",
+        "meaningVi": "vườn hoa",
+        "meaningFullVi": "vườn hoa",
         "target": "花园",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
+      },
+      {
+        "text": "花园城市",
+        "pinyin": "huā yuán chéng shì",
+        "meaningVi": "thành phố vườn",
+        "meaningFullVi": "thành phố vườn",
+        "target": "花园",
+        "source": "hsk_2.json",
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "花园",
       "chinese": "我喜欢在花园里喝茶",
-      "pinyin": "",
+      "pinyin": "wǒ xǐ huan zài huā yuán lǐ hē chá",
       "meaningVi": "Tôi thích uống trà trong vườn hoa",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "花园",
       "chinese": "花园里有很多花",
-      "pinyin": "",
+      "pinyin": "huā yuán lǐ yǒu hěn duō huā",
       "meaningVi": "Trong vườn hoa có nhiều hoa",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 花园",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/花园.mp3"
   ],
@@ -85,21 +109,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 22,
+      "sectionId": "new_hsk__2__topic__22__du-lich",
+      "sectionSlug": "du-lich",
       "sectionTitle": "Du lịch",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/du-lich/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/du-lich/",
+      "orderInSection": 12
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__3__lesson__3__bai-3-this-neighborhood-is-pretty-nice",
+      "sectionSlug": "bai-3-this-neighborhood-is-pretty-nice",
       "sectionTitle": "Khu chung cư này khá đẹp",
       "sectionTitleZh": "这个小区挺好的",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-3-this-neighborhood-is-pretty-nice/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-3-this-neighborhood-is-pretty-nice/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -115,7 +149,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

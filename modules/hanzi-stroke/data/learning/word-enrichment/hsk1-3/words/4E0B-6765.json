@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:下来",
   "type": "word",
   "word": "下来",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xià lái",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "xuống đây, xuống",
+      "meaningShortVi": "xuống đây",
+      "meaningFullVi": "xuống đây, xuống",
       "partOfSpeech": "động từ hướng",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "xuống đây",
   "wordType": "động từ hướng",
   "wordTypes": [
     "động từ hướng"
   ],
-  "usageNotes": [
-    "下来 (xuống đây) chỉ hành động di chuyển từ cao xuống thấp theo hướng về phía người nói."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -51,12 +50,10 @@
         "word": "接下来",
         "pinyin": "jiē xià lái",
         "meaningVi": "tiếp hạ lai",
+        "meaningFullVi": "tiếp hạ lai",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          2
-        ],
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 2",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
@@ -64,19 +61,24 @@
         "text": "走下来",
         "pinyin": "zǒu xiàlái",
         "meaningVi": "đi xuống đây",
+        "meaningFullVi": "đi xuống đây",
         "target": "下来",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "跑下来",
         "pinyin": "pǎo xiàlái",
         "meaningVi": "chạy xuống đây",
+        "meaningFullVi": "chạy xuống đây",
         "target": "下来",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -86,7 +88,8 @@
       "meaningVi": "Làm ơn xuống đây đi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "下来",
@@ -95,16 +98,17 @@
       "meaningVi": "Anh ấy đi xuống đây từ trên tầng.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 下来",
-      "syntax": "động từ hướng",
-      "matchedExample": "下来 (xuống đây) chỉ hành động di chuyển từ cao xuống thấp theo hướng về phía người nói.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 下来",
+      "partOfSpeech": "động từ hướng",
+      "usageNoteVi": "下来 (xuống đây) chỉ hành động di chuyển từ cao xuống thấp theo hướng về phía người nói.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -115,21 +119,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__2__lesson__5__bai-5-visiting-a-chinese-friend-s-home-for-the-first-time",
+      "sectionSlug": "bai-5-visiting-a-chinese-friend-s-home-for-the-first-time",
       "sectionTitle": "Lần đầu đến nhà bạn người Trung Quốc",
       "sectionTitleZh": "第一次去中国朋友家",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-5-visiting-a-chinese-friend-s-home-for-the-first-time/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-5-visiting-a-chinese-friend-s-home-for-the-first-time/",
+      "orderInSection": 2
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__3__topic__14__van-chuyen-va-di-chuyen",
+      "sectionSlug": "van-chuyen-va-di-chuyen",
       "sectionTitle": "Vận chuyển và di chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/van-chuyen-va-di-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/van-chuyen-va-di-chuyen/",
+      "orderInSection": 32
     }
   ],
   "sources": [
@@ -145,7 +159,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

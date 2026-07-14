@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:路口",
   "type": "word",
   "word": "路口",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "lù kǒu",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ngã tư, ngã ba",
+      "meaningShortVi": "ngã tư",
+      "meaningFullVi": "ngã tư, ngã ba",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ngã tư",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "路口 chỉ nơi hai hoặc nhiều con đường giao nhau."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -54,19 +53,24 @@
         "text": "十字路口",
         "pinyin": "shízì lùkǒu",
         "meaningVi": "ngã tư",
+        "meaningFullVi": "ngã tư",
         "target": "路口",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "路口处",
         "pinyin": "lùkǒu chù",
         "meaningVi": "tại ngã tư",
+        "meaningFullVi": "tại ngã tư",
         "target": "路口",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -76,7 +80,8 @@
       "meaningVi": "Chúng tôi gặp nhau ở ngã tư.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "路口",
@@ -85,7 +90,8 @@
       "meaningVi": "Phía trước có một ngã tư.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "路口",
@@ -94,16 +100,17 @@
       "meaningVi": "Rẽ phải ở ngã tư.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 路口",
-      "syntax": "compound-semantic",
-      "matchedExample": "路口 chỉ nơi hai hoặc nhiều con đường giao nhau.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 路口",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "路口 chỉ nơi hai hoặc nhiều con đường giao nhau.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,31 +121,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__1__topic__8__van-chuyen",
+      "sectionSlug": "van-chuyen",
       "sectionTitle": "Vận chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/van-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/van-chuyen/",
+      "orderInSection": 15
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 13,
+      "sectionId": "hsk__2__lesson__13__bai-13-cua-dang-mo",
+      "sectionSlug": "bai-13-cua-dang-mo",
       "sectionTitle": "Cửa đang mở",
       "sectionTitleZh": "门开着呢",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-13-cua-dang-mo/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-13-cua-dang-mo/",
+      "orderInSection": 11
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__3__lesson__6__bai-6-you-can-even-order-takeout-on-a-high-speed-train",
+      "sectionSlug": "bai-6-you-can-even-order-takeout-on-a-high-speed-train",
       "sectionTitle": "Trên tàu cao tốc còn có thể đặt đồ ăn ngoài",
       "sectionTitleZh": "高铁上还可以点外卖",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-6-you-can-even-order-takeout-on-a-high-speed-train/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-6-you-can-even-order-takeout-on-a-high-speed-train/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -159,7 +181,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:银行",
   "type": "word",
   "word": "银行",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yín háng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Ngân hàng là tổ chức tài chính cung cấp các dịch vụ như gửi tiết kiệm, cho vay, chuyển tiền và các giao dịch tài chính khác.",
+      "meaningShortVi": "Ngân hàng là tổ chức tài chính cung cấp các dịch vụ như gửi tiết kiệm",
+      "meaningFullVi": "Ngân hàng là tổ chức tài chính cung cấp các dịch vụ như gửi tiết kiệm, cho vay, chuyển tiền và các giao dịch tài chính khác.",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Ngân hàng là tổ chức tài chính cung cấp các dịch vụ như gửi tiết kiệm",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "银行 là địa điểm phổ biến trong cuộc sống hàng ngày. Trong tiếng Trung, 取钱 (rút tiền) 和 存钱 (gửi tiền) là các từ thông dụng khi đi ngân hàng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -52,12 +51,10 @@
         "word": "银行卡",
         "pinyin": "yín háng kǎ",
         "meaningVi": "thẻ ngân hàng",
+        "meaningFullVi": "thẻ ngân hàng",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          2
-        ],
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 2",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
@@ -65,35 +62,34 @@
         "text": "中国银行",
         "pinyin": "Zhōngguó Yínháng",
         "meaningVi": "Ngân hàng Trung Quốc",
+        "meaningFullVi": "Ngân hàng Trung Quốc",
         "target": "银行",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "在银行工作",
         "pinyin": "zài yínháng gōngzuò",
         "meaningVi": "làm việc ở ngân hàng",
+        "meaningFullVi": "làm việc ở ngân hàng",
         "target": "银行",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "银行卡",
         "pinyin": "yínhángkǎ",
         "meaningVi": "thẻ ngân hàng",
+        "meaningFullVi": "thẻ ngân hàng",
         "target": "银行",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "存钱",
-        "pinyin": "cún qián",
-        "meaningVi": "gửi tiền tiết kiệm",
-        "target": "银行",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -103,7 +99,8 @@
       "meaningVi": "Ngân hàng ở đâu?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "银行",
@@ -112,7 +109,8 @@
       "meaningVi": "Tôi đi ngân hàng rút tiền",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "银行",
@@ -121,16 +119,17 @@
       "meaningVi": "Ngân hàng này rất lớn",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 银行",
-      "syntax": "compound-semantic",
-      "matchedExample": "银行 là địa điểm phổ biến trong cuộc sống hàng ngày. Trong tiếng Trung, 取钱 (rút tiền) 和 存钱 (gửi tiền) là các từ thông dụng khi đi ngân hàng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 银行",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "银行 là địa điểm phổ biến trong cuộc sống hàng ngày. Trong tiếng Trung, 取钱 (rút tiền) 和 存钱 (gửi tiền) là các từ thông dụng khi đi ngân hàng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -141,21 +140,31 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 7,
+      "sectionId": "hsk__3__lesson__7__bai-7-toi-va-co-ay-quen-nhau-5-nam-roi",
+      "sectionSlug": "bai-7-toi-va-co-ay-quen-nhau-5-nam-roi",
       "sectionTitle": "Tôi và cô ấy quen nhau 5 năm rồi.",
       "sectionTitleZh": "我跟她都认识五年了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-7-toi-va-co-ay-quen-nhau-5-nam-roi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-7-toi-va-co-ay-quen-nhau-5-nam-roi/",
+      "orderInSection": 3
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__3__lesson__3__bai-3-this-neighborhood-is-pretty-nice",
+      "sectionSlug": "bai-3-this-neighborhood-is-pretty-nice",
       "sectionTitle": "Khu chung cư này khá đẹp",
       "sectionTitleZh": "这个小区挺好的",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-3-this-neighborhood-is-pretty-nice/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-3-this-neighborhood-is-pretty-nice/",
+      "orderInSection": 22
     }
   ],
   "sources": [
@@ -171,7 +180,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

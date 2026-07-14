@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:燃烧",
   "type": "word",
   "word": "燃烧",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "rán shāo",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đốt cháy, cháy bùng lên",
+      "meaningShortVi": "đốt cháy",
+      "meaningFullVi": "đốt cháy, cháy bùng lên",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đốt cháy",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "燃烧 nghĩa là cháy, đốt cháy. Hán-Việt 'nhiên' là nhiên, cháy; 'thiêu' là đốt. Nhiên thiêu là cháy bùng lên."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,40 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "燃烧激情",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "燃烧",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "开始燃烧",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "燃烧",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "熊熊燃烧",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "燃烧",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "燃烧的火焰",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "燃烧",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -87,7 +54,8 @@
       "meaningVi": "Lửa đang cháy.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "燃烧",
@@ -96,7 +64,8 @@
       "meaningVi": "Ngọn nến đang cháy.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "燃烧",
@@ -105,16 +74,17 @@
       "meaningVi": "Niềm đam mê cháy trong lòng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 燃烧",
-      "syntax": "compound-semantic",
-      "matchedExample": "燃烧 nghĩa là cháy, đốt cháy. Hán-Việt 'nhiên' là nhiên, cháy; 'thiêu' là đốt. Nhiên thiêu là cháy bùng lên.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 燃烧",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "燃烧 nghĩa là cháy, đốt cháy. Hán-Việt 'nhiên' là nhiên, cháy; 'thiêu' là đốt. Nhiên thiêu là cháy bùng lên.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -129,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

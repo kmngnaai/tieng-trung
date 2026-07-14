@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:那{儿}",
   "type": "word",
   "word": "那{儿}",
@@ -17,26 +17,25 @@
     "readings": [
       {
         "pinyin": "nàr ",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ở đó, chỗ đó; đại từ chỉ nơi ở xa người nói",
+      "meaningShortVi": "ở đó",
+      "meaningFullVi": "ở đó, chỗ đó; đại từ chỉ nơi ở xa người nói",
       "partOfSpeech": "other",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ở đó",
   "wordType": "other",
   "wordTypes": [
     "other"
   ],
-  "usageNotes": [
-    "儿化音: 那{儿} = 那 + er后缀. 与这{儿} (zhèr - đây) 相对, 是远指代词."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,32 +49,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "在那儿",
-        "pinyin": "zài nàr",
-        "meaningVi": "ở đó",
-        "target": "那{儿}",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "去那儿",
-        "pinyin": "qù nàr",
-        "meaningVi": "đi đó",
-        "target": "那{儿}",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "这儿，那儿",
-        "pinyin": "zhèr, nàr",
-        "meaningVi": "ở đây, ở đó",
-        "target": "那{儿}",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -85,7 +60,8 @@
       "meaningVi": "Quyển sách ở đó.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "那{儿}",
@@ -94,7 +70,8 @@
       "meaningVi": "Bạn đi đó làm gì?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "那{儿}",
@@ -103,16 +80,17 @@
       "meaningVi": "Ở đó có rất nhiều cửa hàng.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 那{儿}",
-      "syntax": "other",
-      "matchedExample": "儿化音: 那{儿} = 那 + er后缀. 与这{儿} (zhèr - đây) 相对, 是远指代词.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 那{儿}",
+      "partOfSpeech": "other",
+      "usageNoteVi": "儿化音: 那{儿} = 那 + er后缀. 与这{儿} (zhèr - đây) 相对, 是远指代词.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -123,11 +101,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__1__topic__10__dai-tu",
+      "sectionSlug": "dai-tu",
       "sectionTitle": "Đại từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dai-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dai-tu/",
+      "orderInSection": 17
     }
   ],
   "sources": [
@@ -148,7 +131,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

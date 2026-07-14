@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:成员",
   "type": "word",
   "word": "成员",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "chéng yuán",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thành viên",
+      "meaningShortVi": "thành viên",
+      "meaningFullVi": "thành viên",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thành viên",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "成 (thành) + 员 (viên) = người đã hoàn thành/gia nhập, chỉ người thuộc về một tổ chức, tập thể."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "家庭成员",
         "pinyin": "jiātíng chéngyuán",
         "meaningVi": "thành viên gia đình",
+        "meaningFullVi": "thành viên gia đình",
         "target": "成员",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "团队成员",
         "pinyin": "tuánduì chéngyuán",
         "meaningVi": "thành viên đội nhóm",
+        "meaningFullVi": "thành viên đội nhóm",
         "target": "成员",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Thành viên gia đình chúng tôi không nhiều.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "成员",
@@ -82,16 +87,17 @@
       "meaningVi": "Anh ấy là thành viên quan trọng của đội.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 成员",
-      "syntax": "danh từ",
-      "matchedExample": "成 (thành) + 员 (viên) = người đã hoàn thành/gia nhập, chỉ người thuộc về một tổ chức, tập thể.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 成员",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "成 (thành) + 员 (viên) = người đã hoàn thành/gia nhập, chỉ người thuộc về một tổ chức, tập thể.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__topic__16__cac-hoat-dong",
+      "sectionSlug": "cac-hoat-dong",
       "sectionTitle": "Các hoạt động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

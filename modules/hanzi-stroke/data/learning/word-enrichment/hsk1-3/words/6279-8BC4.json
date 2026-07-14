@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:批评",
   "type": "word",
   "word": "批评",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "pī píng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phê bình; chỉ trích; nhận xét",
+      "meaningShortVi": "phê bình",
+      "meaningFullVi": "phê bình; chỉ trích; nhận xét",
       "partOfSpeech": "động từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phê bình",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Có thể là chỉ trích tiêu cực hoặc nhận xét mang tính xây dựng. Trong văn phong chính thức, '批评' mang sắc thái trung tính hơn."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,19 +51,24 @@
         "text": "自我批评",
         "pinyin": "zìwǒ pīpíng",
         "meaningVi": "tự phê bình",
+        "meaningFullVi": "tự phê bình",
         "target": "批评",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "批评意见",
         "pinyin": "pīpíng yìjiàn",
         "meaningVi": "ý kiến phê bình",
+        "meaningFullVi": "ý kiến phê bình",
         "target": "批评",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Thầy cô phê bình em ấy vì không hoàn thành bài tập.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "批评",
@@ -83,16 +88,17 @@
       "meaningVi": "Chúng ta cần khiêm tốn tiếp nhận sự phê bình của người khác.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 批评",
-      "syntax": "động từ",
-      "matchedExample": "Có thể là chỉ trích tiêu cực hoặc nhận xét mang tính xây dựng. Trong văn phong chính thức, '批评' mang sắc thái trung tính hơn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 批评",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Có thể là chỉ trích tiêu cực hoặc nhận xét mang tính xây dựng. Trong văn phong chính thức, '批评' mang sắc thái trung tính hơn.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 29,
+      "sectionId": "new_hsk__3__topic__29__lien-lac",
+      "sectionSlug": "lien-lac",
       "sectionTitle": "Liên lạc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/",
+      "orderInSection": 32
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

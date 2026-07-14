@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:节约",
   "type": "word",
   "word": "节约",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jié yuē",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tiết kiệm",
+      "meaningShortVi": "tiết kiệm",
+      "meaningFullVi": "tiết kiệm",
       "partOfSpeech": "động từ/tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tiết kiệm",
   "wordType": "động từ/tính từ",
   "wordTypes": [
     "động từ/tính từ"
   ],
-  "usageNotes": [
-    "Dùng cho việc tiết kiệm tài nguyên, tiền bạc. Khác với '便宜' (rẻ) — '节约' là hành động tiết kiệm."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "节约用水",
-        "pinyin": "",
+        "pinyin": "jié yuē yòng shuǐ",
         "meaningVi": "tiết kiệm nước",
+        "meaningFullVi": "tiết kiệm nước",
         "target": "节约",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "节约时间",
-        "pinyin": "",
+        "pinyin": "jié yuē shí jiān",
         "meaningVi": "tiết kiệm thời gian",
+        "meaningFullVi": "tiết kiệm thời gian",
         "target": "节约",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "节约",
       "chinese": "我们要节约用水。",
-      "pinyin": "",
+      "pinyin": "wǒ men yào jié yuē yòng shuǐ。",
       "meaningVi": "Chúng ta phải tiết kiệm nước.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "节约",
       "chinese": "他生活很节约。",
-      "pinyin": "",
+      "pinyin": "tā shēng huó hěn jié yuē。",
       "meaningVi": "Anh ấy sống rất tiết kiệm.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 节约",
-      "syntax": "động từ/tính từ",
-      "matchedExample": "Dùng cho việc tiết kiệm tài nguyên, tiền bạc. Khác với '便宜' (rẻ) — '节约' là hành động tiết kiệm.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 节约",
+      "partOfSpeech": "động từ/tính từ",
+      "usageNoteVi": "Dùng cho việc tiết kiệm tài nguyên, tiền bạc. Khác với '便宜' (rẻ) — '节约' là hành động tiết kiệm.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 22,
+      "sectionId": "new_hsk__3__topic__22__kinh-te-va-tai-chinh",
+      "sectionSlug": "kinh-te-va-tai-chinh",
       "sectionTitle": "Kinh tế và tài chính",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/kinh-te-va-tai-chinh/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/kinh-te-va-tai-chinh/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

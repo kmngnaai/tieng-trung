@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:快点{儿}",
   "type": "word",
   "word": "快点{儿}",
@@ -18,26 +18,25 @@
     "readings": [
       {
         "pinyin": "kuài diǎnr ",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "khoái điếm nhĩ",
+      "meaningShortVi": "khoái điếm nhĩ",
+      "meaningFullVi": "khoái điếm nhĩ",
       "partOfSpeech": "phrase",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "khoái điếm nhĩ",
   "wordType": "phrase",
   "wordTypes": [
     "phrase"
   ],
-  "usageNotes": [
-    "{儿} là hậu tố ér hóa âm miêu Bắc, có thể bỏ trong miêu Nam"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,33 +48,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "快点吧",
-        "pinyin": "",
-        "meaningVi": "nhanh lên đi",
-        "target": "快点{儿}",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "快点的",
-        "pinyin": "",
-        "meaningVi": "nhanh lên",
-        "target": "快点{儿}",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 快点{儿}",
-      "syntax": "phrase",
-      "matchedExample": "{儿} là hậu tố ér hóa âm miêu Bắc, có thể bỏ trong miêu Nam",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 快点{儿}",
+      "partOfSpeech": "phrase",
+      "usageNoteVi": "{儿} là hậu tố ér hóa âm miêu Bắc, có thể bỏ trong miêu Nam",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -86,11 +69,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__2__topic__4__khac",
+      "sectionSlug": "khac",
       "sectionTitle": "Khác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/khac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/khac/",
+      "orderInSection": 31
     }
   ],
   "sources": [
@@ -101,9 +89,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": [
-      "Chưa có câu chứa nguyên từ"
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
     ]
   }
 }

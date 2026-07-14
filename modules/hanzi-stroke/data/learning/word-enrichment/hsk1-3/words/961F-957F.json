@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:队长",
   "type": "word",
   "word": "队长",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "duì zhǎng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đội trưởng",
+      "meaningShortVi": "đội trưởng",
+      "meaningFullVi": "đội trưởng",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đội trưởng",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,52 +48,68 @@
     "collocations": [
       {
         "text": "当队长",
-        "pinyin": "",
+        "pinyin": "dāng duì zhǎng",
         "meaningVi": "làm đội trưởng",
+        "meaningFullVi": "làm đội trưởng",
         "target": "队长",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "副队长",
-        "pinyin": "",
+        "pinyin": "fù duì zhǎng",
         "meaningVi": "đội phó",
+        "meaningFullVi": "đội phó",
         "target": "队长",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "队长",
       "chinese": "他是我们队的队长",
-      "pinyin": "",
+      "pinyin": "tā shì wǒ men duì de duì zhǎng",
       "meaningVi": "Anh ấy là đội trưởng của đội chúng tôi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "队长",
       "chinese": "队长带领大家训练",
-      "pinyin": "",
+      "pinyin": "duì zhǎng dài lǐng dà jiā xùn liàn",
       "meaningVi": "Đội trưởng dẫn dắt mọi người tập luyện",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "队长",
       "chinese": "选队长",
-      "pinyin": "",
+      "pinyin": "xuǎn duì zhǎng",
       "meaningVi": "Bầu đội trưởng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 队长",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/队长.mp3"
   ],
@@ -101,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__2__topic__14__co-the-va-suc-khoe",
+      "sectionSlug": "co-the-va-suc-khoe",
       "sectionTitle": "Cơ thể và sức khỏe",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/co-the-va-suc-khoe/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/co-the-va-suc-khoe/",
+      "orderInSection": 23
     }
   ],
   "sources": [
@@ -116,7 +138,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

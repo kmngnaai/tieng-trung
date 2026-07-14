@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:怎么",
   "type": "word",
   "word": "怎么",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "zěn me",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thế nào, như thế nào",
+      "meaningShortVi": "thế nào",
+      "meaningFullVi": "thế nào, như thế nào",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thế nào",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Trợ từ hỏi cách thức: thế nào, như thế nào. 怎么了? (có chuyện gì?)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 怎 (thế nào) + 么 (trợ từ) -> thế nào."
   ],
   "hsk": {
     "levels": [
@@ -55,34 +52,28 @@
         "word": "怎么样",
         "pinyin": "zěn me yàng",
         "meaningVi": "Thế nào",
+        "meaningFullVi": "Thế nào",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       },
       {
         "word": "怎么了",
         "pinyin": "zěn me le",
-        "meaningVi": "bị làm sao; sao thế",
+        "meaningVi": "bị làm sao",
+        "meaningFullVi": "bị làm sao; sao thế",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          2
-        ],
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 2",
+        "reviewStatus": "reviewed-local"
       },
       {
         "word": "怎么办",
         "pinyin": "zěn me bàn",
         "meaningVi": "làm thế nào",
+        "meaningFullVi": "làm thế nào",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          2
-        ],
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 2",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
@@ -90,19 +81,34 @@
         "text": "怎么去",
         "pinyin": "zěnme qù",
         "meaningVi": "đi thế nào",
+        "meaningFullVi": "đi thế nào",
         "target": "怎么",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "怎么了",
         "pinyin": "zěnme le",
         "meaningVi": "có chuyện gì",
+        "meaningFullVi": "có chuyện gì",
         "target": "怎么",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
+      },
+      {
+        "text": "怎么",
+        "pinyin": "zěnme",
+        "meaningVi": "thế nào",
+        "meaningFullVi": "thế nào",
+        "target": "怎么",
+        "source": "hsk_1.json",
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -112,7 +118,8 @@
       "meaningVi": "Bạn đi thế nào?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "怎么",
@@ -121,7 +128,8 @@
       "meaningVi": "Đây làm như thế nào?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "怎么",
@@ -130,7 +138,8 @@
       "meaningVi": "Tôi không biết đi thế nào",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "怎么",
@@ -139,23 +148,17 @@
       "meaningVi": "Có chuyện gì?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 怎么",
-      "syntax": "compound-semantic",
-      "matchedExample": "Trợ từ hỏi cách thức: thế nào, như thế nào. 怎么了? (có chuyện gì?).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 怎 (thế nào) + 么 (trợ từ) -> thế nào.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 怎么",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Trợ từ hỏi cách thức: thế nào, như thế nào. 怎么了? (có chuyện gì?).",
+      "explanationVi": "Ghép nghĩa: 怎 (thế nào) + 么 (trợ từ) -> thế nào.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -166,31 +169,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 6,
+      "sectionId": "hsk__1__lesson__6__bai-6-toi-biet-noi-tieng-han",
+      "sectionSlug": "bai-6-toi-biet-noi-tieng-han",
       "sectionTitle": "Tôi biết nói tiếng Hán",
       "sectionTitleZh": "我会说汉语",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-6-toi-biet-noi-tieng-han/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-6-toi-biet-noi-tieng-han/",
+      "orderInSection": 11
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__1__lesson__6__bai-6-what-s-your-cell-phone-number",
+      "sectionSlug": "bai-6-what-s-your-cell-phone-number",
       "sectionTitle": "Số điện thoại của bạn là bao nhiêu?",
       "sectionTitleZh": "你的手机号是多少？",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-6-what-s-your-cell-phone-number/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-6-what-s-your-cell-phone-number/",
+      "orderInSection": 22
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__1__topic__1__dat-cau-hoi-va-do-luong-tu-ngu",
+      "sectionSlug": "dat-cau-hoi-va-do-luong-tu-ngu",
       "sectionTitle": "Đặt câu hỏi và đo lường từ ngữ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dat-cau-hoi-va-do-luong-tu-ngu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dat-cau-hoi-va-do-luong-tu-ngu/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -211,7 +229,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

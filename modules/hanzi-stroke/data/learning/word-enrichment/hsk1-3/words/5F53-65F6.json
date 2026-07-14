@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:当时",
   "type": "word",
   "word": "当时",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "dāng shí",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lúc đó",
+      "meaningShortVi": "lúc đó",
+      "meaningFullVi": "lúc đó",
       "partOfSpeech": "noun/time word",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lúc đó",
   "wordType": "noun/time word",
   "wordTypes": [
     "noun/time word"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,52 +48,68 @@
     "collocations": [
       {
         "text": "在当时",
-        "pinyin": "",
+        "pinyin": "zài dāng shí",
         "meaningVi": "vào lúc đó",
+        "meaningFullVi": "vào lúc đó",
         "target": "当时",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "当时的",
-        "pinyin": "",
+        "pinyin": "dāng shí de",
         "meaningVi": "của lúc đó",
+        "meaningFullVi": "của lúc đó",
         "target": "当时",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "当时",
       "chinese": "当时我在家。",
-      "pinyin": "",
+      "pinyin": "dāng shí wǒ zài jiā。",
       "meaningVi": "Lúc đó tôi ở nhà.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "当时",
       "chinese": "当时的情况很紧急。",
-      "pinyin": "",
+      "pinyin": "dāng shí de qíng kuàng hěn jǐn jí。",
       "meaningVi": "Tình hình lúc đó rất khẩn cấp.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "当时",
       "chinese": "我当时不知道该怎么办。",
-      "pinyin": "",
+      "pinyin": "wǒ dāng shí bù zhī dào gāi zěn me bàn。",
       "meaningVi": "Lúc đó tôi không biết nên làm thế nào.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 当时",
+      "partOfSpeech": "noun/time word",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/当时.mp3"
   ],
@@ -101,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__2__topic__3__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thoi-gian/",
+      "orderInSection": 32
     }
   ],
   "sources": [
@@ -116,7 +138,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

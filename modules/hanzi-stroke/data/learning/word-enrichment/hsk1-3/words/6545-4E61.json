@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:故乡",
   "type": "word",
   "word": "故乡",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gù xiāng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "quê hương",
+      "meaningShortVi": "quê hương",
+      "meaningFullVi": "quê hương",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "quê hương",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "故乡 (quê hương) chỉ nơi sinh ra, lớn lên, đầy kỷ niệm. Đúng nghĩa hơn là家乡, mang sắc thái văn chương."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "回到故乡",
         "pinyin": "huí dào gùxiāng",
         "meaningVi": "về quê hương",
+        "meaningFullVi": "về quê hương",
         "target": "故乡",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "故乡人",
         "pinyin": "gùxiāngrén",
         "meaningVi": "người cùng quê",
+        "meaningFullVi": "người cùng quê",
         "target": "故乡",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Tôi rất nhớ quê hương của mình.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "故乡",
@@ -82,16 +87,17 @@
       "meaningVi": "Dịp Tết rất nhiều người về quê hương.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 故乡",
-      "syntax": "danh từ",
-      "matchedExample": "故乡 (quê hương) chỉ nơi sinh ra, lớn lên, đầy kỷ niệm. Đúng nghĩa hơn là家乡, mang sắc thái văn chương.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 故乡",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "故乡 (quê hương) chỉ nơi sinh ra, lớn lên, đầy kỷ niệm. Đúng nghĩa hơn là家乡, mang sắc thái văn chương.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 15,
+      "sectionId": "new_hsk__3__topic__15__noi",
+      "sectionSlug": "noi",
       "sectionTitle": "Nơi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/noi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/noi/",
+      "orderInSection": 28
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

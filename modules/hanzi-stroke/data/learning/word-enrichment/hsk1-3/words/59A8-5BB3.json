@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:妨害",
   "type": "word",
   "word": "妨害",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "fáng hài",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "gây hại",
+      "meaningShortVi": "gây hại",
+      "meaningFullVi": "gây hại",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "gây hại",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "妨害 là từ vựng HSK 7-9."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 妨害 là từ ghép."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "妨害健康",
         "pinyin": "fánghài jiànkāng",
         "meaningVi": "Gây hại sức khỏe",
+        "meaningFullVi": "Gây hại sức khỏe",
         "target": "妨害",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "妨害公共秩序",
         "pinyin": "fánghài gōnggòng zhìxù",
         "meaningVi": "Gây hại trật tự công cộng",
+        "meaningFullVi": "Gây hại trật tự công cộng",
         "target": "妨害",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "妨害交通",
         "pinyin": "fánghài jiāotōng",
         "meaningVi": "Cản trở giao thông",
+        "meaningFullVi": "Cản trở giao thông",
         "target": "妨害",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Gây hại sức khỏe",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "妨害",
@@ -90,7 +95,8 @@
       "meaningVi": "Gây hại trật tự công cộng",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "妨害",
@@ -99,23 +105,17 @@
       "meaningVi": "Cản trở giao thông",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 妨害",
-      "syntax": "compound-semantic",
-      "matchedExample": "妨害 là từ vựng HSK 7-9.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 妨害 là từ ghép.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 妨害",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "妨害 là từ vựng HSK 7-9.",
+      "explanationVi": "Ghép nghĩa: 妨害 là từ ghép.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -130,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

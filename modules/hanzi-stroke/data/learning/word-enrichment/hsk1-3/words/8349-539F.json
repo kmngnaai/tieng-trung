@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:草原",
   "type": "word",
   "word": "草原",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "cǎo yuán",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Thảo nguyên, đồng cỏ",
+      "meaningShortVi": "Thảo nguyên",
+      "meaningFullVi": "Thảo nguyên, đồng cỏ",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Thảo nguyên",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Chỉ vùng đất rộng lớn phủ đầy cỏ, thường là đồng cỏ tự nhiên."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -47,32 +46,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "大草原",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "草原",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "草原风光",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "草原",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "内蒙古草原",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "草原",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -82,7 +57,8 @@
       "meaningVi": "Nội Mông có những vùng thảo nguyên rộng lớn.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "草原",
@@ -91,16 +67,17 @@
       "meaningVi": "Chúng tôi cưỡi ngựa trên thảo nguyên.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 草原",
-      "syntax": "danh từ",
-      "matchedExample": "Chỉ vùng đất rộng lớn phủ đầy cỏ, thường là đồng cỏ tự nhiên.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 草原",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Chỉ vùng đất rộng lớn phủ đầy cỏ, thường là đồng cỏ tự nhiên.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -111,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__3__lesson__4__bai-4-this-hotel-is-unlike-any-other",
+      "sectionSlug": "bai-4-this-hotel-is-unlike-any-other",
       "sectionTitle": "Khách sạn này khác hẳn những nơi khác",
       "sectionTitleZh": "这家宾馆跟别的都不一样",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-4-this-hotel-is-unlike-any-other/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-4-this-hotel-is-unlike-any-other/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -131,7 +113,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

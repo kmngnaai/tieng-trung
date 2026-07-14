@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:售货员",
   "type": "word",
   "word": "售货员",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "shòu huò yuán",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nhân viên bán hàng",
+      "meaningShortVi": "nhân viên bán hàng",
+      "meaningFullVi": "nhân viên bán hàng",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nhân viên bán hàng",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Người làm việc bán hàng tại cửa hàng, siêu thị."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -47,32 +46,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "商店售货员",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "售货员",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "超市售货员",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "售货员",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "售货员小姐",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "售货员",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -82,7 +57,8 @@
       "meaningVi": "Nhân viên bán hàng thái độ rất tốt.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "售货员",
@@ -91,16 +67,17 @@
       "meaningVi": "Cô ấy là nhân viên bán hàng.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 售货员",
-      "syntax": "danh từ",
-      "matchedExample": "Người làm việc bán hàng tại cửa hàng, siêu thị.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 售货员",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Người làm việc bán hàng tại cửa hàng, siêu thị.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -111,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__1__lesson__10__bai-10-the-apples-here-are-really-affordable",
+      "sectionSlug": "bai-10-the-apples-here-are-really-affordable",
       "sectionTitle": "Táo ở đây rẻ thật!",
       "sectionTitleZh": "这儿的苹果真便宜！",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-10-the-apples-here-are-really-affordable/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-10-the-apples-here-are-really-affordable/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -126,7 +108,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

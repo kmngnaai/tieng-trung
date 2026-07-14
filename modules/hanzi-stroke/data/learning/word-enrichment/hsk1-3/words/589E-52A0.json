@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:增加",
   "type": "word",
   "word": "增加",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zēng jiā",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tăng thêm",
+      "meaningShortVi": "tăng thêm",
+      "meaningFullVi": "tăng thêm",
       "partOfSpeech": "động từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tăng thêm",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Động từ chỉ việc làm cho cái gì đó trở nên nhiều hơn, lớn hơn. Tân ngữ có thể là số lượng, mức độ, hoặc vật phẩm. Khác với 加强 (làm mạnh hơn - về chất), tăng (tăng - thường dùng cho số liệu đơn)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,19 +51,24 @@
         "text": "增加收入",
         "pinyin": "zēngjiā shōurù",
         "meaningVi": "tăng thu nhập",
+        "meaningFullVi": "tăng thu nhập",
         "target": "增加",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不断增加",
         "pinyin": "búduàn zēngjiā",
         "meaningVi": "liên tục tăng thêm",
+        "meaningFullVi": "liên tục tăng thêm",
         "target": "增加",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Chúng ta cần thêm các khóa học mới.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "增加",
@@ -83,16 +88,17 @@
       "meaningVi": "Tiền lương tăng 10%.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 增加",
-      "syntax": "động từ",
-      "matchedExample": "Động từ chỉ việc làm cho cái gì đó trở nên nhiều hơn, lớn hơn. Tân ngữ có thể là số lượng, mức độ, hoặc vật phẩm. Khác với 加强 (làm mạnh hơn - về chất), tăng (tăng - thường dùng cho số liệu đơn).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 增加",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Động từ chỉ việc làm cho cái gì đó trở nên nhiều hơn, lớn hơn. Tân ngữ có thể là số lượng, mức độ, hoặc vật phẩm. Khác với 加强 (làm mạnh hơn - về chất), tăng (tăng - thường dùng cho số liệu đơn).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__topic__17__nhung-thay-doi",
+      "sectionSlug": "nhung-thay-doi",
       "sectionTitle": "Những thay đổi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

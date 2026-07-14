@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:对待",
   "type": "word",
   "word": "对待",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "duì dài",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Đối xử, ứng xử",
+      "meaningShortVi": "Đối xử",
+      "meaningFullVi": "Đối xử, ứng xử",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Đối xử",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Luôn đi với '对' (对...对待) hoặc ở giữa chủ ngữ và đối tượng (主语+对待+宾语)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "对待方式",
         "pinyin": "duìdài fāngshì",
         "meaningVi": "cách đối xử",
+        "meaningFullVi": "cách đối xử",
         "target": "对待",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "平等对待",
         "pinyin": "píngděng duìdài",
         "meaningVi": "đối xử bình đẳng",
+        "meaningFullVi": "đối xử bình đẳng",
         "target": "对待",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Anh ấy rất tốt với bạn bè, luôn nhiệt tình đối xử.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "对待",
@@ -82,7 +87,8 @@
       "meaningVi": "Chúng ta nên đối xử công bằng với mỗi người.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "对待",
@@ -91,16 +97,17 @@
       "meaningVi": "Anh ấy rất nghiêm túc với công việc.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 对待",
-      "syntax": "compound-semantic",
-      "matchedExample": "Luôn đi với '对' (对...对待) hoặc ở giữa chủ ngữ và đối tượng (主语+对待+宾语).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 对待",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Luôn đi với '对' (对...对待) hoặc ở giữa chủ ngữ và đối tượng (主语+对待+宾语).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -111,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__3__topic__5__cac-moi-quan-he",
+      "sectionSlug": "cac-moi-quan-he",
       "sectionTitle": "Các mối quan hệ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-moi-quan-he/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-moi-quan-he/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -126,7 +138,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

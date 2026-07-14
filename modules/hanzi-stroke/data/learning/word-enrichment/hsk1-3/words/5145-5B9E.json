@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:充实",
   "type": "word",
   "word": "充实",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "chōng shí",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phong phú, đầy đủ",
+      "meaningShortVi": "phong phú",
+      "meaningFullVi": "phong phú, đầy đủ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phong phú",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Tính từ chỉ đầy đủ, phong phú. Dùng cho cuộc sống, nội dung, lịch trình."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,32 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "生活充实",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "充实",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "内容充实",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "充实",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "过得很充实",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "充实",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +54,8 @@
       "meaningVi": "Cuộc sống phong phú",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "充实",
@@ -88,7 +64,8 @@
       "meaningVi": "Nội dung phong phú",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "充实",
@@ -97,16 +74,17 @@
       "meaningVi": "Sống rất phong phú",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 充实",
-      "syntax": "compound-semantic",
-      "matchedExample": "Tính từ chỉ đầy đủ, phong phú. Dùng cho cuộc sống, nội dung, lịch trình.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 充实",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Tính từ chỉ đầy đủ, phong phú. Dùng cho cuộc sống, nội dung, lịch trình.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -121,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

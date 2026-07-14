@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:模范",
   "type": "word",
   "word": "模范",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "mó fàn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Mẫu mực, gương mẫu, tấm gương; người hoặc việc làm tốt để người khác noi theo",
+      "meaningShortVi": "Mẫu mực",
+      "meaningFullVi": "Mẫu mực, gương mẫu, tấm gương; người hoặc việc làm tốt để người khác noi theo",
       "partOfSpeech": "danh từ / tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Mẫu mực",
   "wordType": "danh từ / tính từ",
   "wordTypes": [
     "danh từ / tính từ"
   ],
-  "usageNotes": [
-    "模范 (mófàn) nghĩa là mẫu mực, gương tốt để noi theo. Ghép từ 模 (khuôn mẫu, mô hình) + 范 (khuôn khổ, phép tắc). Nhớ: có 'khuôn' (模) và 'khổ' (范) thì thành mẫu mực."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,40 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "模范生",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "模范",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "劳动模范",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "模范",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "模范丈夫",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "模范",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "模范作用",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "模范",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -87,7 +54,8 @@
       "meaningVi": "Anh ấy là học sinh gương mẫu của lớp chúng tôi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "模范",
@@ -96,7 +64,8 @@
       "meaningVi": "Chúng ta phải học tập tưần lao động mẫu mực.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "模范",
@@ -105,16 +74,17 @@
       "meaningVi": "Nhà máy này được đánh giá là nhà máy mẫu mực.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 模范",
-      "syntax": "danh từ / tính từ",
-      "matchedExample": "模范 (mófàn) nghĩa là mẫu mực, gương tốt để noi theo. Ghép từ 模 (khuôn mẫu, mô hình) + 范 (khuôn khổ, phép tắc). Nhớ: có 'khuôn' (模) và 'khổ' (范) thì thành mẫu mực.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 模范",
+      "partOfSpeech": "danh từ / tính từ",
+      "usageNoteVi": "模范 (mófàn) nghĩa là mẫu mực, gương tốt để noi theo. Ghép từ 模 (khuôn mẫu, mô hình) + 范 (khuôn khổ, phép tắc). Nhớ: có 'khuôn' (模) và 'khổ' (范) thì thành mẫu mực.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -129,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

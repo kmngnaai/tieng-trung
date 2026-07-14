@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:同样",
   "type": "word",
   "word": "同样",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "tóng yàng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tương tự; giống nhau",
+      "meaningShortVi": "tương tự",
+      "meaningFullVi": "tương tự; giống nhau",
       "partOfSpeech": "adjective",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tương tự",
   "wordType": "adjective",
   "wordTypes": [
     "adjective"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -46,36 +47,49 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "不一样",
-        "pinyin": "",
-        "meaningVi": "không giống nhau",
+        "text": "同样",
+        "pinyin": "tóng yàng",
+        "meaningVi": "giống hệt",
+        "meaningFullVi": "giống hệt",
         "target": "同样",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "同样",
       "chinese": "我们有同样的问题",
-      "pinyin": "",
+      "pinyin": "wǒ men yǒu tóng yàng de wèn tí",
       "meaningVi": "Chúng tôi có vấn đề tương tự",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "同样",
       "chinese": "同样的方法",
-      "pinyin": "",
+      "pinyin": "tóng yàng de fāng fǎ",
       "meaningVi": "Phương pháp giống nhau",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 同样",
+      "partOfSpeech": "adjective",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/同样.mp3"
   ],
@@ -84,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__2__topic__17__dac-trung",
+      "sectionSlug": "dac-trung",
       "sectionTitle": "Đặc trưng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dac-trung/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dac-trung/",
+      "orderInSection": 20
     }
   ],
   "sources": [
@@ -99,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

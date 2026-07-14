@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:研究生",
   "type": "word",
   "word": "研究生",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "yán jiū shēng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nghiên cứu sinh",
+      "meaningShortVi": "nghiên cứu sinh",
+      "meaningFullVi": "nghiên cứu sinh",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nghiên cứu sinh",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Sinh viên sau đại học. Gồm thạc sĩ (硕士) và tiến sĩ (博士) nghiên cứu sinh."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -45,32 +44,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "硕士研究生",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "研究生",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "博士研究生",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "研究生",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "读研究生",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "研究生",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -80,7 +55,8 @@
       "meaningVi": "Em gái tôi là nghiên cứu sinh.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "研究生",
@@ -89,7 +65,8 @@
       "meaningVi": "Anh ấy đang học nghiên cứu sinh.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "研究生",
@@ -98,16 +75,17 @@
       "meaningVi": "Chương trình nghiên cứu sinh là ba năm.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 研究生",
-      "syntax": "compound-semantic",
-      "matchedExample": "Sinh viên sau đại học. Gồm thạc sĩ (硕士) và tiến sĩ (博士) nghiên cứu sinh.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 研究生",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Sinh viên sau đại học. Gồm thạc sĩ (硕士) và tiến sĩ (博士) nghiên cứu sinh.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -122,7 +100,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

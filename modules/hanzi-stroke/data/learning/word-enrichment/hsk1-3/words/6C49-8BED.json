@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:汉语",
   "type": "word",
   "word": "汉语",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "hàn yǔ",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tiếng Trung (ngôn ngữ)",
+      "meaningShortVi": "tiếng Trung (ngôn ngữ)",
+      "meaningFullVi": "tiếng Trung (ngôn ngữ)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tiếng Trung (ngôn ngữ)",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Tên gọi tiếng Trung. Có thể dùng 听懂汉语 (nghe hiểu) hoặc 会说汉语 (biết nói)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 汉 (người Hán/nước Hán) + 语 (ngôn ngữ) → tiếng nói của người Hán."
   ],
   "hsk": {
     "levels": [
@@ -55,27 +52,34 @@
         "text": "学习汉语",
         "pinyin": "xuéxí Hànyǔ",
         "meaningVi": "học tiếng Trung",
+        "meaningFullVi": "học tiếng Trung",
         "target": "汉语",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "说汉语",
         "pinyin": "shuō Hànyǔ",
         "meaningVi": "nói tiếng Trung",
+        "meaningFullVi": "nói tiếng Trung",
         "target": "汉语",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "汉语老师",
         "pinyin": "Hànyǔ lǎoshī",
         "meaningVi": "giáo viên tiếng Trung",
+        "meaningFullVi": "giáo viên tiếng Trung",
         "target": "汉语",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -85,7 +89,8 @@
       "meaningVi": "Tôi đang học tiếng Trung",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "汉语",
@@ -94,7 +99,8 @@
       "meaningVi": "Tiếng Trung rất khó",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "汉语",
@@ -103,7 +109,8 @@
       "meaningVi": "Bạn có biết nói tiếng Trung không?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "汉语",
@@ -112,23 +119,17 @@
       "meaningVi": "Tôi thích tiếng Trung",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 汉语",
-      "syntax": "compound-semantic",
-      "matchedExample": "Tên gọi tiếng Trung. Có thể dùng 听懂汉语 (nghe hiểu) hoặc 会说汉语 (biết nói).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 汉 (người Hán/nước Hán) + 语 (ngôn ngữ) → tiếng nói của người Hán.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 汉语",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Tên gọi tiếng Trung. Có thể dùng 听懂汉语 (nghe hiểu) hoặc 会说汉语 (biết nói).",
+      "explanationVi": "Ghép nghĩa: 汉 (người Hán/nước Hán) + 语 (ngôn ngữ) → tiếng nói của người Hán.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,21 +140,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__1__lesson__14__bai-14-i-watched-a-movie",
+      "sectionSlug": "bai-14-i-watched-a-movie",
       "sectionTitle": "Tôi đã xem một bộ phim",
       "sectionTitleZh": "我看了一个电影",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-14-i-watched-a-movie/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-14-i-watched-a-movie/",
+      "orderInSection": 4
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__1__topic__6__trong-lop",
+      "sectionSlug": "trong-lop",
       "sectionTitle": "Trong lớp",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/trong-lop/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/trong-lop/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -174,7 +185,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

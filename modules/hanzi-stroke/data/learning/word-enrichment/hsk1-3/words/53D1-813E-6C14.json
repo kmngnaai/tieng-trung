@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:发脾气",
   "type": "word",
   "word": "发脾气",
@@ -16,27 +16,24 @@
     "readings": [
       {
         "pinyin": "fā pí qì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phát tỳ khí — nổi giận, bùng phát cơn giận; thường chỉ sự bộc phát cảm xúc ra bên ngoài không kiềm được.",
+      "meaningShortVi": "phát tỳ khí — nổi giận",
+      "meaningFullVi": "phát tỳ khí — nổi giận, bùng phát cơn giận; thường chỉ sự bộc phát cảm xúc ra bên ngoài không kiềm được.",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phát tỳ khí — nổi giận",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "发脾气 là cụm động từ ly hợp (có thể tách: 发了脾气, 发什么脾气) — nhưng khi enrich dùng dạng không tách để giữ từ hoàn chỉnh; phân biệt với 生气 (sinh khí — tức giận, trạng thái bên trong) nhẹ hơn và không nhất thiết bộc lộ ra ngoài."
-  ],
-  "wordTypeExplanations": [
-    "发 (phát — phát ra, bùng) + 脾气 (tỳ khí — tính khí, tính nóng) → bộc phát tính nóng."
   ],
   "hsk": {
     "levels": [
@@ -52,27 +49,34 @@
         "text": "乱发脾气",
         "pinyin": "luàn fā píqì",
         "meaningVi": "nổi giận bừa bãi",
+        "meaningFullVi": "nổi giận bừa bãi",
         "target": "发脾气",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "爱发脾气",
         "pinyin": "ài fā píqì",
-        "meaningVi": "hay nổi giận, thường hay cáu",
+        "meaningVi": "hay nổi giận",
+        "meaningFullVi": "hay nổi giận, thường hay cáu",
         "target": "发脾气",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "对某人发脾气",
         "pinyin": "duì mǒu rén fā píqì",
         "meaningVi": "nổi giận với ai đó",
+        "meaningFullVi": "nổi giận với ai đó",
         "target": "发脾气",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -82,7 +86,8 @@
       "meaningVi": "Anh ấy hễ gặp thất bại là hay nổi giận",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "发脾气",
@@ -91,7 +96,8 @@
       "meaningVi": "Hôm nay mẹ đã nổi giận với con",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "发脾气",
@@ -100,7 +106,8 @@
       "meaningVi": "Đừng nổi giận nơi công cộng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "发脾气",
@@ -109,23 +116,17 @@
       "meaningVi": "Cô ấy nổi giận vì quá mệt mỏi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 发脾气",
-      "syntax": "compound-semantic",
-      "matchedExample": "发脾气 là cụm động từ ly hợp (có thể tách: 发了脾气, 发什么脾气) — nhưng khi enrich dùng dạng không tách để giữ từ hoàn chỉnh; phân biệt với 生气 (sinh khí — tức giận, trạng thái bên trong) nhẹ hơn và không nhất thiết bộc lộ ra ngoài.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "发 (phát — phát ra, bùng) + 脾气 (tỳ khí — tính khí, tính nóng) → bộc phát tính nóng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 发脾气",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "发脾气 là cụm động từ ly hợp (có thể tách: 发了脾气, 发什么脾气) — nhưng khi enrich dùng dạng không tách để giữ từ hoàn chỉnh; phân biệt với 生气 (sinh khí — tức giận, trạng thái bên trong) nhẹ hơn và không nhất thiết bộc lộ ra ngoài.",
+      "explanationVi": "发 (phát — phát ra, bùng) + 脾气 (tỳ khí — tính khí, tính nóng) → bộc phát tính nóng.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -140,7 +141,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

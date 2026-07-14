@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:日记",
   "type": "word",
   "word": "日记",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "rì jì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nhật ký, ghi chép hàng ngày",
+      "meaningShortVi": "nhật ký",
+      "meaningFullVi": "nhật ký, ghi chép hàng ngày",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nhật ký",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Danh từ chỉ bản ghi chép sự việc hàng ngày. 日 = ngày, 记 = ghi chép. Có thể là sổ sách vật lý hoặc blog/online journal hiện đại."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,19 +48,24 @@
         "text": "写日记",
         "pinyin": "xiě rìjì",
         "meaningVi": "viết nhật ký",
+        "meaningFullVi": "viết nhật ký",
         "target": "日记",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "日记本",
         "pinyin": "rìjìběn",
         "meaningVi": "sổ tay nhật ký",
+        "meaningFullVi": "sổ tay nhật ký",
         "target": "日记",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +75,8 @@
       "meaningVi": "Tôi đều viết nhật ký trước khi đi ngủ mỗi ngày.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "日记",
@@ -80,16 +85,17 @@
       "meaningVi": "Cuốn nhật ký này ghi lại的经历 đi du lịch của cô ấy.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 日记",
-      "syntax": "danh từ",
-      "matchedExample": "Danh từ chỉ bản ghi chép sự việc hàng ngày. 日 = ngày, 记 = ghi chép. Có thể là sổ sách vật lý hoặc blog/online journal hiện đại.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 日记",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Danh từ chỉ bản ghi chép sự việc hàng ngày. 日 = ngày, 记 = ghi chép. Có thể là sổ sách vật lý hoặc blog/online journal hiện đại.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

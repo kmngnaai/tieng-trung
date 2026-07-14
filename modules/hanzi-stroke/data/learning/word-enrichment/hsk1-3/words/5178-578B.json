@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:典型",
   "type": "word",
   "word": "典型",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "diǎn xíng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "điển hình, tiêu biểu; mẫu mực",
+      "meaningShortVi": "điển hình",
+      "meaningFullVi": "điển hình, tiêu biểu; mẫu mực",
       "partOfSpeech": "danh từ / tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "điển hình",
   "wordType": "danh từ / tính từ",
   "wordTypes": [
     "danh từ / tính từ"
   ],
-  "usageNotes": [
-    "Điển hình (典型) chỉ người/vật 'phổ quát nhất, tiêu biểu nhất' cho một nhóm. Trong giao tiếp, 这是一个典型的... (Đây là một ví dụ điển hình của...) thường dùng để minh họa. Phân biệt với 标准 (tiêu chuẩn) — 典型 thiên về 'phổ quát', 标准 thiên về 'chuẩn mực'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,19 +48,24 @@
         "text": "典型例子",
         "pinyin": "diǎnxíng lìzi",
         "meaningVi": "ví dụ điển hình",
+        "meaningFullVi": "ví dụ điển hình",
         "target": "典型",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "典型代表",
         "pinyin": "diǎnxíng dàibiǎo",
         "meaningVi": "đại diện điển hình",
+        "meaningFullVi": "đại diện điển hình",
         "target": "典型",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +75,8 @@
       "meaningVi": "Đây là vấn đề điển hình.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "典型",
@@ -80,16 +85,17 @@
       "meaningVi": "Anh ấy là người có tính cách điển hình của người miền Nam.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 典型",
-      "syntax": "danh từ / tính từ",
-      "matchedExample": "Điển hình (典型) chỉ người/vật 'phổ quát nhất, tiêu biểu nhất' cho một nhóm. Trong giao tiếp, 这是一个典型的... (Đây là một ví dụ điển hình của...) thường dùng để minh họa. Phân biệt với 标准 (tiêu chuẩn) — 典型 thiên về 'phổ quát', 标准 thiên về 'chuẩn mực'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 典型",
+      "partOfSpeech": "danh từ / tính từ",
+      "usageNoteVi": "Điển hình (典型) chỉ người/vật 'phổ quát nhất, tiêu biểu nhất' cho một nhóm. Trong giao tiếp, 这是一个典型的... (Đây là một ví dụ điển hình của...) thường dùng để minh họa. Phân biệt với 标准 (tiêu chuẩn) — 典型 thiên về 'phổ quát', 标准 thiên về 'chuẩn mực'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

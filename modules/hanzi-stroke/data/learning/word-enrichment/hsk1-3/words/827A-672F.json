@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:艺术",
   "type": "word",
   "word": "艺术",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yì shù",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Nghệ thuật",
+      "meaningShortVi": "Nghệ thuật",
+      "meaningFullVi": "Nghệ thuật",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Nghệ thuật",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "艺术 là từ chỉ các hoạt động sáng tạo như âm nhạc, hội họa, điêu khắc, nhiếp ảnh, điện ảnh, v.v. Trong giao tiếp, người ta thường dùng 艺术 để chỉ 'nghệ thuật' nói chung. Người làm nghệ thuật gọi là 艺术家 (nghệ sĩ)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,19 +51,24 @@
         "text": "表演艺术",
         "pinyin": "biǎoyǎn yìshù",
         "meaningVi": "nghệ thuật biểu diễn",
+        "meaningFullVi": "nghệ thuật biểu diễn",
         "target": "艺术",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "艺术作品",
         "pinyin": "yìshù zuòpǐn",
         "meaningVi": "tác phẩm nghệ thuật",
+        "meaningFullVi": "tác phẩm nghệ thuật",
         "target": "艺术",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Cô ấy rất thích âm nhạc và nghệ thuật biểu diễn.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "艺术",
@@ -83,16 +88,17 @@
       "meaningVi": "Bắc Kinh có nhiều bảo tàng nghệ thuật.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 艺术",
-      "syntax": "danh từ",
-      "matchedExample": "艺术 là từ chỉ các hoạt động sáng tạo như âm nhạc, hội họa, điêu khắc, nhiếp ảnh, điện ảnh, v.v. Trong giao tiếp, người ta thường dùng 艺术 để chỉ 'nghệ thuật' nói chung. Người làm nghệ thuật gọi là 艺术家 (nghệ sĩ).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 艺术",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "艺术 là từ chỉ các hoạt động sáng tạo như âm nhạc, hội họa, điêu khắc, nhiếp ảnh, điện ảnh, v.v. Trong giao tiếp, người ta thường dùng 艺术 để chỉ 'nghệ thuật' nói chung. Người làm nghệ thuật gọi là 艺术家 (nghệ sĩ).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__3__topic__11__giai-tri-ii",
+      "sectionSlug": "giai-tri-ii",
       "sectionTitle": "Giải trí II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-ii/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

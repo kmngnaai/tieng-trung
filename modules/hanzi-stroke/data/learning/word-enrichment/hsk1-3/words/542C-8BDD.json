@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:听话",
   "type": "word",
   "word": "听话",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "tīng huà",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "vâng lời, ngoan ngoãn",
+      "meaningShortVi": "vâng lời",
+      "meaningFullVi": "vâng lời, ngoan ngoãn",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "vâng lời",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng cho trẻ em, học sinh, hoặc người phục tùng. Mang sắc thái tích cực (ngoan) hoặc trung tính."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 听 (nghe) + 话 (lời) → 'nghe lời' — vâng lời."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "听话的孩子",
         "pinyin": "tīnghuà de háizi",
         "meaningVi": "đứa trẻ ngoan",
+        "meaningFullVi": "đứa trẻ ngoan",
         "target": "听话",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不听话",
         "pinyin": "bù tīnghuà",
         "meaningVi": "không ngoan",
+        "meaningFullVi": "không ngoan",
         "target": "听话",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "听话照做",
         "pinyin": "tīnghuà zhàozuò",
         "meaningVi": "vâng lời và làm theo",
+        "meaningFullVi": "vâng lời và làm theo",
         "target": "听话",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Đứa trẻ rất ngoan",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "听话",
@@ -90,7 +95,8 @@
       "meaningVi": "Học sinh ngoan ngoãn",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "听话",
@@ -99,7 +105,8 @@
       "meaningVi": "Không ngoan, không vâng lời",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "听话",
@@ -108,23 +115,17 @@
       "meaningVi": "Vâng lời và làm theo",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 听话",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng cho trẻ em, học sinh, hoặc người phục tùng. Mang sắc thái tích cực (ngoan) hoặc trung tính.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 听 (nghe) + 话 (lời) → 'nghe lời' — vâng lời.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 听话",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng cho trẻ em, học sinh, hoặc người phục tùng. Mang sắc thái tích cực (ngoan) hoặc trung tính.",
+      "explanationVi": "Ghép nghĩa: 听 (nghe) + 话 (lời) → 'nghe lời' — vâng lời.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

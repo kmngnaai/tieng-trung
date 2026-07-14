@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:价钱",
   "type": "word",
   "word": "价钱",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "jià qian",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "giá cả",
+      "meaningShortVi": "giá cả",
+      "meaningFullVi": "giá cả",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "giá cả",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -48,43 +49,58 @@
     "collocations": [
       {
         "text": "价钱合理",
-        "pinyin": "",
+        "pinyin": "jià qian hé lǐ",
         "meaningVi": "giá hợp lý",
+        "meaningFullVi": "giá hợp lý",
         "target": "价钱",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "价钱便宜",
-        "pinyin": "",
+        "pinyin": "jià qian pián yi",
         "meaningVi": "giá rẻ",
+        "meaningFullVi": "giá rẻ",
         "target": "价钱",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "价钱",
       "chinese": "这件衣服的价钱很便宜。",
-      "pinyin": "",
+      "pinyin": "zhè jiàn yī fu de jià qian hěn pián yi。",
       "meaningVi": "Cái áo này giá rất rẻ.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "价钱",
       "chinese": "你问一下价钱。",
-      "pinyin": "",
+      "pinyin": "nǐ wèn yī xià jià qian。",
       "meaningVi": "Bạn hỏi thử giá xem.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 价钱",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/价钱.mp3"
   ],
@@ -93,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 22,
+      "sectionId": "new_hsk__3__topic__22__kinh-te-va-tai-chinh",
+      "sectionSlug": "kinh-te-va-tai-chinh",
       "sectionTitle": "Kinh tế và tài chính",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/kinh-te-va-tai-chinh/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/kinh-te-va-tai-chinh/",
+      "orderInSection": 22
     }
   ],
   "sources": [
@@ -113,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

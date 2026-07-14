@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:下班",
   "type": "word",
   "word": "下班",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "xià bān",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tan làm, kết thúc ca làm việc",
+      "meaningShortVi": "tan làm",
+      "meaningFullVi": "tan làm, kết thúc ca làm việc",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tan làm",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "'下班' là tan làm, trái với '上班' (đi làm). '下班后' là sau giờ làm. '等下班' đợi đến khi tan làm."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 下 (xuống, kết thúc) + 班 (ca làm việc). Kết thúc ca làm việc, tan làm."
   ],
   "hsk": {
     "levels": [
@@ -51,30 +48,27 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "上班",
-        "pinyin": "shàngbān",
-        "meaningVi": "đi làm (trái nghĩa)",
-        "target": "下班",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "下班时间",
         "pinyin": "xiàbān shíjiān",
         "meaningVi": "giờ tan làm",
+        "meaningFullVi": "giờ tan làm",
         "target": "下班",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "下班后",
         "pinyin": "xiàbān hòu",
         "meaningVi": "sau khi tan làm",
+        "meaningFullVi": "sau khi tan làm",
         "target": "下班",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -84,7 +78,8 @@
       "meaningVi": "Tôi sáu giờ tan làm",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "下班",
@@ -93,7 +88,8 @@
       "meaningVi": "Đã tan làm chưa?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "下班",
@@ -102,7 +98,8 @@
       "meaningVi": "Tan làm đi ăn",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "下班",
@@ -111,7 +108,8 @@
       "meaningVi": "Hôm nay tan làm rất muộn",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "下班",
@@ -120,23 +118,17 @@
       "meaningVi": "Đợi tôi tan làm",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 下班",
-      "syntax": "compound-semantic",
-      "matchedExample": "'下班' là tan làm, trái với '上班' (đi làm). '下班后' là sau giờ làm. '等下班' đợi đến khi tan làm.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 下 (xuống, kết thúc) + 班 (ca làm việc). Kết thúc ca làm việc, tan làm.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 下班",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "'下班' là tan làm, trái với '上班' (đi làm). '下班后' là sau giờ làm. '等下班' đợi đến khi tan làm.",
+      "explanationVi": "Ghép nghĩa: 下 (xuống, kết thúc) + 班 (ca làm việc). Kết thúc ca làm việc, tan làm.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -147,21 +139,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__1__lesson__5__bai-5-i-m-off-today",
+      "sectionSlug": "bai-5-i-m-off-today",
       "sectionTitle": "Hôm nay tôi nghỉ",
       "sectionTitleZh": "今天我休息",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-5-i-m-off-today/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-5-i-m-off-today/",
+      "orderInSection": 11
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 22,
+      "sectionId": "new_hsk__1__topic__22__cong-viec",
+      "sectionSlug": "cong-viec",
       "sectionTitle": "Công việc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cong-viec/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cong-viec/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -177,7 +179,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

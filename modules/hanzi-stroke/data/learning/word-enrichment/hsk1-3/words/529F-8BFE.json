@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:功课",
   "type": "word",
   "word": "功课",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gōng kè",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bài tập, môn học",
+      "meaningShortVi": "bài tập",
+      "meaningFullVi": "bài tập, môn học",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bài tập",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Chỉ bài tập hoặc môn học. Trong tiếng Trung hiện đại, thường dùng '作业' hơn '功课' cho bài tập về nhà."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,49 +49,46 @@
     "collocations": [
       {
         "text": "家庭功课",
-        "pinyin": "",
+        "pinyin": "jiā tíng gōng kè",
         "meaningVi": "bài tập về nhà",
+        "meaningFullVi": "bài tập về nhà",
         "target": "功课",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "做功课",
-        "pinyin": "",
+        "pinyin": "zuò gōng kè",
         "meaningVi": "làm bài tập",
+        "meaningFullVi": "làm bài tập",
         "target": "功课",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "功课",
       "chinese": "我还没做完功课。",
-      "pinyin": "",
+      "pinyin": "wǒ hái méi zuò wán gōng kè。",
       "meaningVi": "Tôi vẫn chưa làm xong bài tập.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "功课",
-      "chinese": "老师布置了很多功课。",
-      "pinyin": "",
-      "meaningVi": "Thầy giáo giao nhiều bài tập.",
-      "source": "hsk_1.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 功课",
-      "syntax": "danh từ",
-      "matchedExample": "Chỉ bài tập hoặc môn học. Trong tiếng Trung hiện đại, thường dùng '作业' hơn '功课' cho bài tập về nhà.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 功课",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Chỉ bài tập hoặc môn học. Trong tiếng Trung hiện đại, thường dùng '作业' hơn '功课' cho bài tập về nhà.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +99,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 26,
+      "sectionId": "new_hsk__3__topic__26__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -123,7 +124,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

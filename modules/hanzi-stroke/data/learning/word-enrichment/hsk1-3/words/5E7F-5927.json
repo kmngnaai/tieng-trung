@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:广大",
   "type": "word",
   "word": "广大",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "guǎng dà",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "rộng lớn, bao la; đông đảo",
+      "meaningShortVi": "rộng lớn",
+      "meaningFullVi": "rộng lớn, bao la; đông đảo",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "rộng lớn",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "Guǎng dà trang trọng, thường dùng trong văn viết hoặc diễn đạt để nhấn mạnh quy mô lớn hoặc số lượng nhiều."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,36 @@
     "collocations": [
       {
         "text": "广大地区",
-        "pinyin": "",
+        "pinyin": "guǎng dà dì qū",
         "meaningVi": "khu vực rộng lớn",
+        "meaningFullVi": "khu vực rộng lớn",
         "target": "广大",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "广大群众",
-        "pinyin": "",
-        "meaningVi": "đại chúng quần chúng",
-        "target": "广大",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "广大",
       "chinese": "广大的农村地区",
-      "pinyin": "",
+      "pinyin": "guǎng dà de nóng cūn dì qū",
       "meaningVi": "Khu vực nông thôn rộng lớn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "广大",
-      "chinese": "广大的人民群众",
-      "pinyin": "",
-      "meaningVi": "Đại chúng quần chúng đông đảo.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 广大",
-      "syntax": "tính từ",
-      "matchedExample": "Guǎng dà trang trọng, thường dùng trong văn viết hoặc diễn đạt để nhấn mạnh quy mô lớn hoặc số lượng nhiều.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 广大",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "Guǎng dà trang trọng, thường dùng trong văn viết hoặc diễn đạt để nhấn mạnh quy mô lớn hoặc số lượng nhiều.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 33,
+      "sectionId": "new_hsk__3__topic__33__tinh-tu",
+      "sectionSlug": "tinh-tu",
       "sectionTitle": "Tính từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -117,7 +108,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

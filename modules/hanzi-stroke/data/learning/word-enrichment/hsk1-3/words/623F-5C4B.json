@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:房屋",
   "type": "word",
   "word": "房屋",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fáng wū",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ngôi nhà, nhà cửa",
+      "meaningShortVi": "ngôi nhà",
+      "meaningFullVi": "ngôi nhà, nhà cửa",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ngôi nhà",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Nhà ở nói chung, bao gồm các phòng ốc."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,60 +45,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "房屋面积",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "房屋",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "房屋租赁",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "房屋",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "房屋买卖",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "房屋",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "房屋",
-      "chinese": "这片房屋很新。",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "房屋",
-      "chinese": "购买房屋",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 房屋",
-      "syntax": "danh từ",
-      "matchedExample": "Nhà ở nói chung, bao gồm các phòng ốc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 房屋",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Nhà ở nói chung, bao gồm các phòng ốc.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -110,11 +66,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 27,
+      "sectionId": "new_hsk__3__topic__27__can-nha",
+      "sectionSlug": "can-nha",
       "sectionTitle": "Căn nhà",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/can-nha/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/can-nha/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -125,7 +86,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

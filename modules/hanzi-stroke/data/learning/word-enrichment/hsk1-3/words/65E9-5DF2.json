@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:早已",
   "type": "word",
   "word": "早已",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zǎo yǐ",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Đã sớm, đã từ lâu",
+      "meaningShortVi": "Đã sớm",
+      "meaningFullVi": "Đã sớm, đã từ lâu",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Đã sớm",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "早已 dùng để nhấn mạnh một việc đã xảy ra từ rất lâu trước đó. 早(sớm) + 已(đã rồi) = đã từ lâu. Thường đứng trước động từ trong quá khứ."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,27 +50,34 @@
         "text": "早已知道",
         "pinyin": "zǎoyǐ zhīdào",
         "meaningVi": "đã biết từ lâu",
+        "meaningFullVi": "đã biết từ lâu",
         "target": "早已",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "早已决定",
         "pinyin": "zǎoyǐ juédìng",
         "meaningVi": "đã quyết định từ trước",
+        "meaningFullVi": "đã quyết định từ trước",
         "target": "早已",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "早已完成",
         "pinyin": "zǎoyǐ wánchéng",
         "meaningVi": "đã hoàn thành từ lâu",
+        "meaningFullVi": "đã hoàn thành từ lâu",
         "target": "早已",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +87,8 @@
       "meaningVi": "Tôi đã biết từ lâu rồi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "早已",
@@ -90,7 +97,8 @@
       "meaningVi": "Anh ấy đã rời khỏi đây từ lâu rồi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "早已",
@@ -99,16 +107,17 @@
       "meaningVi": "Vấn đề này chúng tôi đã giải quyết từ lâu rồi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 早已",
-      "syntax": "compound-semantic",
-      "matchedExample": "早已 dùng để nhấn mạnh một việc đã xảy ra từ rất lâu trước đó. 早(sớm) + 已(đã rồi) = đã từ lâu. Thường đứng trước động từ trong quá khứ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 早已",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "早已 dùng để nhấn mạnh một việc đã xảy ra từ rất lâu trước đó. 早(sớm) + 已(đã rồi) = đã từ lâu. Thường đứng trước động từ trong quá khứ.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -119,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__3__topic__7__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/",
+      "orderInSection": 36
     }
   ],
   "sources": [
@@ -134,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

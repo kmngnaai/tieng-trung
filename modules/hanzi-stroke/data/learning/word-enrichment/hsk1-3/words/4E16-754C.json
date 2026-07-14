@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:世界",
   "type": "word",
   "word": "世界",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shì jiè",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thế giới",
+      "meaningShortVi": "thế giới",
+      "meaningFullVi": "thế giới",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thế giới",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "世界 也作 'vòng đời/đời': 一生 (cả một đời), 第三世界 (Thế giới thứ ba). 世界上 (trên thế giới) = 全世界. 注意: 世界大会 (hội nghị thế giới), 世界杯 (World Cup)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -51,13 +50,11 @@
       {
         "word": "世界杯",
         "pinyin": "Shì jiè bēi",
-        "meaningVi": "World Cup; giải đấu thể thao quy mô toàn cầu, thường chỉ Giải vô địch bóng đá thế giới",
+        "meaningVi": "World Cup",
+        "meaningFullVi": "World Cup; giải đấu thể thao quy mô toàn cầu, thường chỉ Giải vô địch bóng đá thế giới",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          3
-        ],
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 3",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
@@ -65,19 +62,24 @@
         "text": "世界各地",
         "pinyin": "shìjiè gèdì",
         "meaningVi": "khắp nơi trên thế giới",
+        "meaningFullVi": "khắp nơi trên thế giới",
         "target": "世界",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "世界和平",
         "pinyin": "shìjiè hépíng",
         "meaningVi": "hòa bình thế giới",
+        "meaningFullVi": "hòa bình thế giới",
         "target": "世界",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -87,7 +89,8 @@
       "meaningVi": "Tôi muốn du lịch khắp thế giới.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "世界",
@@ -96,16 +99,17 @@
       "meaningVi": "Trên thế giới có nhiều nền văn hóa khác nhau.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 世界",
-      "syntax": "danh từ",
-      "matchedExample": "世界 也作 'vòng đời/đời': 一生 (cả một đời), 第三世界 (Thế giới thứ ba). 世界上 (trên thế giới) = 全世界. 注意: 世界大会 (hội nghị thế giới), 世界杯 (World Cup).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 世界",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "世界 也作 'vòng đời/đời': 一生 (cả một đời), 第三世界 (Thế giới thứ ba). 世界上 (trên thế giới) = 全世界. 注意: 世界大会 (hội nghị thế giới), 世界杯 (World Cup).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -116,31 +120,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 15,
+      "sectionId": "hsk__3__lesson__15__bai-15-nhung-cai-khac-deu-khong-co-van-de-gi",
+      "sectionSlug": "bai-15-nhung-cai-khac-deu-khong-co-van-de-gi",
       "sectionTitle": "Những cái khác đều không có vấn đề gì.",
       "sectionTitleZh": "其他都没什么问题",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-15-nhung-cai-khac-deu-khong-co-van-de-gi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-15-nhung-cai-khac-deu-khong-co-van-de-gi/",
+      "orderInSection": 18
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__3__lesson__9__bai-9-it-doesn-t-matter-if-you-don-t-play-well",
+      "sectionSlug": "bai-9-it-doesn-t-matter-if-you-don-t-play-well",
       "sectionTitle": "Chơi không giỏi cũng không sao",
       "sectionTitleZh": "打不好没关系",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-9-it-doesn-t-matter-if-you-don-t-play-well/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-9-it-doesn-t-matter-if-you-don-t-play-well/",
+      "orderInSection": 23
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__3__topic__9__thien-nhien",
+      "sectionSlug": "thien-nhien",
       "sectionTitle": "Thiên nhiên",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thien-nhien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thien-nhien/",
+      "orderInSection": 23
     }
   ],
   "sources": [
@@ -156,7 +175,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

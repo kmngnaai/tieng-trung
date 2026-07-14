@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:有的是",
   "type": "word",
   "word": "有的是",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "yǒu de shì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "có rất nhiều; ẩn dư; còn nhiều lắm",
+      "meaningShortVi": "có rất nhiều",
+      "meaningFullVi": "có rất nhiều; ẩn dư; còn nhiều lắm",
       "partOfSpeech": "cụm từ (Phrase - Abundance)",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "có rất nhiều",
   "wordType": "cụm từ (Phrase - Abundance)",
   "wordTypes": [
     "cụm từ (Phrase - Abundance)"
   ],
-  "usageNotes": [
-    "Cụm từ nhấn mạnh sự ẩn dư, thỏa mái. Thường đi sau danh từ: 时间有的是, 人有的是, 钱有的是. Mang sắc thái tự tin, an tâm. Không nên dùng trong văn cảnh trang trọng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -52,19 +51,24 @@
         "text": "有的是钱",
         "pinyin": "yǒudeside qián",
         "meaningVi": "có rất nhiều tiền",
+        "meaningFullVi": "có rất nhiều tiền",
         "target": "有的是",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "有的是机会",
         "pinyin": "yǒudeside jīhuì",
         "meaningVi": "có rất nhiều cơ hội",
+        "meaningFullVi": "có rất nhiều cơ hội",
         "target": "有的是",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Thời gian còn nhiều lắm, đừng vội.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "有的是",
@@ -83,16 +88,17 @@
       "meaningVi": "Ở đây có nhiều đồ ngon lắm.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 有的是",
-      "syntax": "cụm từ (Phrase - Abundance)",
-      "matchedExample": "Cụm từ nhấn mạnh sự ẩn dư, thỏa mái. Thường đi sau danh từ: 时间有的是, 人有的是, 钱有的是. Mang sắc thái tự tin, an tâm. Không nên dùng trong văn cảnh trang trọng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 有的是",
+      "partOfSpeech": "cụm từ (Phrase - Abundance)",
+      "usageNoteVi": "Cụm từ nhấn mạnh sự ẩn dư, thỏa mái. Thường đi sau danh từ: 时间有的是, 人有的是, 钱有的是. Mang sắc thái tự tin, an tâm. Không nên dùng trong văn cảnh trang trọng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 29,
+      "sectionId": "new_hsk__3__topic__29__lien-lac",
+      "sectionSlug": "lien-lac",
       "sectionTitle": "Liên lạc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -118,7 +129,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

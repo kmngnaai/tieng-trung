@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:展现",
   "type": "word",
   "word": "展现",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhǎn xiàn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trưng bày, bày ra; thể hiện, biểu hiện",
+      "meaningShortVi": "trưng bày",
+      "meaningFullVi": "trưng bày, bày ra; thể hiện, biểu hiện",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trưng bày",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Hán-Việt 'Triển hiện' — 展 (triển, mở ra) + 现 (hiện, xuất hiện); mở ra để cho thấy, thể hiện."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,27 +48,34 @@
         "text": "展现自我",
         "pinyin": "zhǎnxiàn zìwǒ",
         "meaningVi": "thể hiện bản thân",
+        "meaningFullVi": "thể hiện bản thân",
         "target": "展现",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "展现魅力",
         "pinyin": "zhǎnxiàn mèilì",
         "meaningVi": "biểu hiện sức hút",
+        "meaningFullVi": "biểu hiện sức hút",
         "target": "展现",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "艺术展现",
         "pinyin": "yìshù zhǎnxiàn",
         "meaningVi": "trưng bày nghệ thuật",
+        "meaningFullVi": "trưng bày nghệ thuật",
         "target": "展现",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +85,8 @@
       "meaningVi": "thể hiện thực lực",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "展现",
@@ -88,7 +95,8 @@
       "meaningVi": "bày tỏ tài năng",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "展现",
@@ -97,16 +105,17 @@
       "meaningVi": "Bộ phim này thể hiện cuộc sống hiện đại",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 展现",
-      "syntax": "compound-semantic",
-      "matchedExample": "Hán-Việt 'Triển hiện' — 展 (triển, mở ra) + 现 (hiện, xuất hiện); mở ra để cho thấy, thể hiện.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 展现",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Hán-Việt 'Triển hiện' — 展 (triển, mở ra) + 现 (hiện, xuất hiện); mở ra để cho thấy, thể hiện.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -121,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

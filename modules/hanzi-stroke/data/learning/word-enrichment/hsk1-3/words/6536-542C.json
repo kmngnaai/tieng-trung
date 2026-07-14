@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:收听",
   "type": "word",
   "word": "收听",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shōu tīng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nghe đài phát thanh, nghe",
+      "meaningShortVi": "nghe đài phát thanh",
+      "meaningFullVi": "nghe đài phát thanh, nghe",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nghe đài phát thanh",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "特指收听广播节目。比\"听\"更正式，常用于广播节目用语。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "收听广播",
-        "pinyin": "",
+        "pinyin": "shōu tīng guǎng bō",
         "meaningVi": "nghe đài phát thanh",
+        "meaningFullVi": "nghe đài phát thanh",
         "target": "收听",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "收听率",
-        "pinyin": "",
-        "meaningVi": "tỷ lệ người nghe",
-        "target": "收听",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "收听",
       "chinese": "请收听我们的广播节目。",
-      "pinyin": "",
+      "pinyin": "qǐng shōu tīng wǒ men de guǎng bō jié mù。",
       "meaningVi": "Mời các bạn nghe chương trình phát thanh của chúng tôi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "收听",
       "chinese": "我每天早上都收听新闻。",
-      "pinyin": "",
+      "pinyin": "wǒ měi tiān zǎo shang dōu shōu tīng xīn wén。",
       "meaningVi": "Mình đều nghe bản tin mỗi buổi sáng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 收听",
-      "syntax": "động từ",
-      "matchedExample": "特指收听广播节目。比\"听\"更正式，常用于广播节目用语。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 收听",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "特指收听广播节目。比\"听\"更正式，常用于广播节目用语。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__3__topic__18__thong-tin-va-phuong-tien",
+      "sectionSlug": "thong-tin-va-phuong-tien",
       "sectionTitle": "Thông tin và phương tiện",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/",
+      "orderInSection": 22
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

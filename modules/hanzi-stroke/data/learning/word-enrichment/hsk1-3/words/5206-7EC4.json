@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:分组",
   "type": "word",
   "word": "分组",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fēn zǔ",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chia nhóm, phân nhóm",
+      "meaningShortVi": "chia nhóm",
+      "meaningFullVi": "chia nhóm, phân nhóm",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chia nhóm",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "分组 thường dùng trong classroom, workshop, activity. Có thể chia thành 2人一组 (nhóm 2 người), 3人一组 (nhóm 3 người)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -48,22 +47,17 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "小组讨论",
-        "pinyin": "xiǎozǔ tǎolùn",
-        "meaningVi": "thảo luận nhóm",
-        "target": "分组",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "分组进行",
         "pinyin": "fēnzǔ jìnxíng",
         "meaningVi": "thực hiện theo nhóm",
+        "meaningFullVi": "thực hiện theo nhóm",
         "target": "分组",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +67,8 @@
       "meaningVi": "Chúng tôi chia nhóm thảo luận vấn đề này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "分组",
@@ -82,16 +77,17 @@
       "meaningVi": "Thầy giáo cho học sinh chia nhóm làm bài tập.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 分组",
-      "syntax": "động từ",
-      "matchedExample": "分组 thường dùng trong classroom, workshop, activity. Có thể chia thành 2人一组 (nhóm 2 người), 3人一组 (nhóm 3 người).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 分组",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "分组 thường dùng trong classroom, workshop, activity. Có thể chia thành 2人一组 (nhóm 2 người), 3人一组 (nhóm 3 người).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 21,
+      "sectionId": "new_hsk__3__topic__21__phan-bo",
+      "sectionSlug": "phan-bo",
       "sectionTitle": "Phân bổ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/phan-bo/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/phan-bo/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

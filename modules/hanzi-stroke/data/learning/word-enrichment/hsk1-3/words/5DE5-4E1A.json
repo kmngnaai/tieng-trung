@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:工业",
   "type": "word",
   "word": "工业",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gōng yè",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "công nghiệp",
+      "meaningShortVi": "công nghiệp",
+      "meaningFullVi": "công nghiệp",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "công nghiệp",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "工业 (công nghiệp) chỉ ngành sản xuất, chế tạo, kinh doanh quy mô lớn, đối lập với农业 (nông nghiệp)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "工业发展",
         "pinyin": "gōngyè fāzhǎn",
         "meaningVi": "phát triển công nghiệp",
+        "meaningFullVi": "phát triển công nghiệp",
         "target": "工业",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "工业公司",
         "pinyin": "gōngyè gōngsī",
         "meaningVi": "công ty công nghiệp",
+        "meaningFullVi": "công ty công nghiệp",
         "target": "工业",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Công nghiệp Trung Quốc phát triển rất nhanh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "工业",
@@ -82,16 +87,17 @@
       "meaningVi": "Công ty này làm về công nghiệp.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 工业",
-      "syntax": "danh từ",
-      "matchedExample": "工业 (công nghiệp) chỉ ngành sản xuất, chế tạo, kinh doanh quy mô lớn, đối lập với农业 (nông nghiệp).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 工业",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "工业 (công nghiệp) chỉ ngành sản xuất, chế tạo, kinh doanh quy mô lớn, đối lập với农业 (nông nghiệp).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__topic__16__cac-hoat-dong",
+      "sectionSlug": "cac-hoat-dong",
       "sectionTitle": "Các hoạt động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

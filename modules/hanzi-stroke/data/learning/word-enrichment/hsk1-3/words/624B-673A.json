@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:手机",
   "type": "word",
   "word": "手机",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "shǒu jī",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "điện thoại di động, điện thoại cầm tay",
+      "meaningShortVi": "điện thoại di động",
+      "meaningFullVi": "điện thoại di động, điện thoại cầm tay",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "điện thoại di động",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Chỉ điện thoại di động, cầm tay. Lượng từ: 部, 台 (一部手机). Phân biệt với 电话 (có thể chỉ điện thoại cố định hoặc chung chung)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 手 (tay) + 机 (máy) → máy cầm tay."
   ],
   "hsk": {
     "levels": [
@@ -56,35 +53,44 @@
         "text": "手机号",
         "pinyin": "shǒujīhào",
         "meaningVi": "số điện thoại",
+        "meaningFullVi": "số điện thoại",
         "target": "手机",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "手机充电",
         "pinyin": "shǒujī chōngdiàn",
         "meaningVi": "sạc điện thoại",
+        "meaningFullVi": "sạc điện thoại",
         "target": "手机",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "智能手机",
         "pinyin": "zhìnéng shǒujī",
         "meaningVi": "điện thoại thông minh",
+        "meaningFullVi": "điện thoại thông minh",
         "target": "手机",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "手机壳",
         "pinyin": "shǒujīké",
         "meaningVi": "ốp lưng điện thoại",
+        "meaningFullVi": "ốp lưng điện thoại",
         "target": "手机",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -94,7 +100,8 @@
       "meaningVi": "Điện thoại của tôi hết pin rồi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "手机",
@@ -103,7 +110,8 @@
       "meaningVi": "Làm ơn cho tôi số điện thoại của bạn",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "手机",
@@ -112,7 +120,8 @@
       "meaningVi": "Tôi dùng điện thoại lướt web",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "手机",
@@ -121,23 +130,17 @@
       "meaningVi": "Điện thoại đổ chuông",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 手机",
-      "syntax": "compound-semantic",
-      "matchedExample": "Chỉ điện thoại di động, cầm tay. Lượng từ: 部, 台 (一部手机). Phân biệt với 电话 (có thể chỉ điện thoại cố định hoặc chung chung).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 手 (tay) + 机 (máy) → máy cầm tay.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 手机",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Chỉ điện thoại di động, cầm tay. Lượng từ: 部, 台 (一部手机). Phân biệt với 电话 (có thể chỉ điện thoại cố định hoặc chung chung).",
+      "explanationVi": "Ghép nghĩa: 手 (tay) + 机 (máy) → máy cầm tay.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -148,31 +151,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__1__lesson__6__bai-6-what-s-your-cell-phone-number",
+      "sectionSlug": "bai-6-what-s-your-cell-phone-number",
       "sectionTitle": "Số điện thoại của bạn là bao nhiêu?",
       "sectionTitleZh": "你的手机号是多少？",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-6-what-s-your-cell-phone-number/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-6-what-s-your-cell-phone-number/",
+      "orderInSection": 17
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 23,
+      "sectionId": "new_hsk__1__topic__23__danh-tu",
+      "sectionSlug": "danh-tu",
       "sectionTitle": "Danh từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/danh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/danh-tu/",
+      "orderInSection": 22
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 10,
+      "sectionId": "hsk__2__lesson__10__bai-10-dung-tim-nua-dien-thoai-o-tren-ban-kia",
+      "sectionSlug": "bai-10-dung-tim-nua-dien-thoai-o-tren-ban-kia",
       "sectionTitle": "Đừng tìm nữa, điện thoại ở trên bàn kìa",
       "sectionTitleZh": "别找了，手机在桌子上呢",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-10-dung-tim-nua-dien-thoai-o-tren-ban-kia/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-10-dung-tim-nua-dien-thoai-o-tren-ban-kia/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -193,7 +211,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

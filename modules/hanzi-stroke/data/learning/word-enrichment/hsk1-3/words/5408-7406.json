@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:合理",
   "type": "word",
   "word": "合理",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "hé lǐ",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hợp lý, hợp lý, đúng đắn; phù hợp với lý lẽ hoặc lẽ thường",
+      "meaningShortVi": "hợp lý",
+      "meaningFullVi": "hợp lý, hợp lý, đúng đắn; phù hợp với lý lẽ hoặc lẽ thường",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hợp lý",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "Có thể dùng để đánh giá giá cả, yêu cầu, thời gian, phương án等. Trong văn cảnh thương lượng, 合理 là từ tông trọng hơn 对. Đối với 反义词: 不合理. Có thể dùng làm trạng từ trong một số cụm như 合理安排 'sắp xếp hợp lý'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "合理的时间",
         "pinyin": "hélǐ de shíjiān",
         "meaningVi": "thời gian hợp lý",
+        "meaningFullVi": "thời gian hợp lý",
         "target": "合理",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "合理建议",
         "pinyin": "hélǐ jiànyì",
         "meaningVi": "đề xuất hợp lý",
+        "meaningFullVi": "đề xuất hợp lý",
         "target": "合理",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Giá này rất hợp lý.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "合理",
@@ -82,16 +87,17 @@
       "meaningVi": "Yêu cầu của bạn là hợp lý.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 合理",
-      "syntax": "tính từ",
-      "matchedExample": "Có thể dùng để đánh giá giá cả, yêu cầu, thời gian, phương án等. Trong văn cảnh thương lượng, 合理 là từ tông trọng hơn 对. Đối với 反义词: 不合理. Có thể dùng làm trạng từ trong một số cụm như 合理安排 'sắp xếp hợp lý'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 合理",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "Có thể dùng để đánh giá giá cả, yêu cầu, thời gian, phương án等. Trong văn cảnh thương lượng, 合理 là từ tông trọng hơn 对. Đối với 反义词: 不合理. Có thể dùng làm trạng từ trong một số cụm như 合理安排 'sắp xếp hợp lý'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 28,
+      "sectionId": "new_hsk__3__topic__28__tu-duy",
+      "sectionSlug": "tu-duy",
       "sectionTitle": "tư duy",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-duy/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-duy/",
+      "orderInSection": 30
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

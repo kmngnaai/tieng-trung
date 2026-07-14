@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:恶劣",
   "type": "word",
   "word": "恶劣",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "è liè",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tồi tệ",
+      "meaningShortVi": "tồi tệ",
+      "meaningFullVi": "tồi tệ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tồi tệ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Tính từ chỉ tồi tệ. Dùng cho điều kiện, môi trường, hành vi."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,32 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "环境恶劣",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "恶劣",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "恶劣天气",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "恶劣",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "手段恶劣",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "恶劣",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +54,8 @@
       "meaningVi": "Môi trường tồi tệ",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "恶劣",
@@ -88,7 +64,8 @@
       "meaningVi": "Thời tiết xấu",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "恶劣",
@@ -97,16 +74,17 @@
       "meaningVi": "Thủ đoạn tồi tệ",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 恶劣",
-      "syntax": "compound-semantic",
-      "matchedExample": "Tính từ chỉ tồi tệ. Dùng cho điều kiện, môi trường, hành vi.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 恶劣",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Tính từ chỉ tồi tệ. Dùng cho điều kiện, môi trường, hành vi.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -121,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

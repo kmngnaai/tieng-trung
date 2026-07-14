@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:身边",
   "type": "word",
   "word": "身边",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "shēn biān",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bên cạnh",
+      "meaningShortVi": "bên cạnh",
+      "meaningFullVi": "bên cạnh",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bên cạnh",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -47,36 +48,49 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "随身",
-        "pinyin": "",
-        "meaningVi": "theo người",
+        "text": "身边",
+        "pinyin": "shēn biān",
+        "meaningVi": "bên người",
+        "meaningFullVi": "bên người",
         "target": "身边",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "身边",
       "chinese": "我身边没有钱",
-      "pinyin": "",
+      "pinyin": "wǒ shēn biān méi yǒu qián",
       "meaningVi": "Tôi không có tiền bên người",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "身边",
       "chinese": "在你身边",
-      "pinyin": "",
+      "pinyin": "zài nǐ shēn biān",
       "meaningVi": "Bên cạnh bạn",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 身边",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/身边.mp3"
   ],
@@ -85,21 +99,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__2__topic__11__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/pho-tu/",
+      "orderInSection": 7
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__lesson__16__bai-16-i-heard-that-some-pandas-have-gone-abroad",
+      "sectionSlug": "bai-16-i-heard-that-some-pandas-have-gone-abroad",
       "sectionTitle": "Tôi nghe nói có vài con gấu trúc đã ra nước ngoài",
       "sectionTitleZh": "我听说有的熊猫出国了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-16-i-heard-that-some-pandas-have-gone-abroad/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-16-i-heard-that-some-pandas-have-gone-abroad/",
+      "orderInSection": 22
     }
   ],
   "sources": [
@@ -115,7 +139,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

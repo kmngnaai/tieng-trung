@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:杂志",
   "type": "word",
   "word": "杂志",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zá zhì",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tạp chí; ấn phẩm định kỳ chứa nhiều bài viết, hình ảnh về các chủ đề khác nhau",
+      "meaningShortVi": "tạp chí",
+      "meaningFullVi": "tạp chí; ấn phẩm định kỳ chứa nhiều bài viết, hình ảnh về các chủ đề khác nhau",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tạp chí",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Có thể dùng cho nhiều lĩnh vực như thời trang, du lịch, khoa học, tin tức. Đối với 报纸 'báo giấy', tạp chí thường có chất lượng giấy tốt hơn và phát hành ít thường xuyên hơn. Từ liên quan: 期刊 'tạp chí học thuật', 刊物 'ấn phẩm'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -52,19 +51,24 @@
         "text": "时尚杂志",
         "pinyin": "shíshàng zázhì",
         "meaningVi": "tạp chí thời trang",
+        "meaningFullVi": "tạp chí thời trang",
         "target": "杂志",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "新闻杂志",
         "pinyin": "xīnwén zázhì",
         "meaningVi": "tạp chí tin tức",
+        "meaningFullVi": "tạp chí tin tức",
         "target": "杂志",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Tôi thích đọc tạp chí thời trang.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "杂志",
@@ -83,16 +88,17 @@
       "meaningVi": "Tạp chí này nói về du lịch.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 杂志",
-      "syntax": "danh từ",
-      "matchedExample": "Có thể dùng cho nhiều lĩnh vực như thời trang, du lịch, khoa học, tin tức. Đối với 报纸 'báo giấy', tạp chí thường có chất lượng giấy tốt hơn và phát hành ít thường xuyên hơn. Từ liên quan: 期刊 'tạp chí học thuật', 刊物 'ấn phẩm'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 杂志",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Có thể dùng cho nhiều lĩnh vực như thời trang, du lịch, khoa học, tin tức. Đối với 报纸 'báo giấy', tạp chí thường có chất lượng giấy tốt hơn và phát hành ít thường xuyên hơn. Từ liên quan: 期刊 'tạp chí học thuật', 刊物 'ấn phẩm'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__3__topic__10__giai-tri-toi",
+      "sectionSlug": "giai-tri-toi",
       "sectionTitle": "Giải trí tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

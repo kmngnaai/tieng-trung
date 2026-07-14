@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:方便面",
   "type": "word",
   "word": "方便面",
@@ -16,24 +16,25 @@
     "readings": [
       {
         "pinyin": "fāng biàn miàn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phương tiện diện",
+      "meaningShortVi": "phương tiện diện",
+      "meaningFullVi": "phương tiện diện",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phương tiện diện",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -48,44 +49,39 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "泡方便面",
-        "pinyin": "",
-        "meaningVi": "pha mì ăn liền",
-        "target": "方便面",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "一包方便面",
-        "pinyin": "",
+        "pinyin": "yī bāo fāng biàn miàn",
         "meaningVi": "một gói mì ăn liền",
+        "meaningFullVi": "một gói mì ăn liền",
         "target": "方便面",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "方便面",
-      "chinese": "我泡了一碗方便面",
-      "pinyin": "",
-      "meaningVi": "Tôi pha một bát mì ăn liền",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "方便面",
       "chinese": "方便面不好吃",
-      "pinyin": "",
+      "pinyin": "fāng biàn miàn bù hǎo chī",
       "meaningVi": "Mì ăn liền không ngon",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 方便面",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/方便面.mp3"
   ],
@@ -94,21 +90,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__2__topic__1__thuc-an-va-do-uong",
+      "sectionSlug": "thuc-an-va-do-uong",
       "sectionTitle": "Thức ăn và đồ uống",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thuc-an-va-do-uong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thuc-an-va-do-uong/",
+      "orderInSection": 12
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 2,
+      "sectionId": "new_hsk__3__lesson__2__bai-2-you-can-order-whatever-you-feel-like",
+      "sectionSlug": "bai-2-you-can-order-whatever-you-feel-like",
       "sectionTitle": "Các bạn thích ăn gì thì gọi nấy",
       "sectionTitleZh": "你们想吃什么就点什么",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-2-you-can-order-whatever-you-feel-like/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-2-you-can-order-whatever-you-feel-like/",
+      "orderInSection": 27
     }
   ],
   "sources": [
@@ -124,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

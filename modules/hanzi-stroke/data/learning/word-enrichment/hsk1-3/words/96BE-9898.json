@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:难题",
   "type": "word",
   "word": "难题",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "nán tí",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "vấn đề khó",
+      "meaningShortVi": "vấn đề khó",
+      "meaningFullVi": "vấn đề khó",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "vấn đề khó",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -48,60 +49,68 @@
     "collocations": [
       {
         "text": "解决难题",
-        "pinyin": "",
+        "pinyin": "jiě jué nán tí",
         "meaningVi": "giải quyết vấn đề khó",
+        "meaningFullVi": "giải quyết vấn đề khó",
         "target": "难题",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "遇到难题",
-        "pinyin": "",
+        "pinyin": "yù dào nán tí",
         "meaningVi": "gặp vấn đề khó",
+        "meaningFullVi": "gặp vấn đề khó",
         "target": "难题",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "很难的题",
-        "pinyin": "",
-        "meaningVi": "đề rất khó",
-        "target": "难题",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "难题",
       "chinese": "这是一道难题。",
-      "pinyin": "",
+      "pinyin": "zhè shì yī dào nán tí。",
       "meaningVi": "Đây là một vấn đề khó.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "难题",
       "chinese": "遇到难题不要放弃。",
-      "pinyin": "",
+      "pinyin": "yù dào nán tí bù yào fàng qì。",
       "meaningVi": "Gặp vấn đề khó đừng bỏ cuộc.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "难题",
       "chinese": "这个难题解决了。",
-      "pinyin": "",
+      "pinyin": "zhè ge nán tí jiě jué le。",
       "meaningVi": "Vấn đề khó này đã được giải quyết.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 难题",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/难题.mp3"
   ],
@@ -110,21 +119,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 28,
+      "sectionId": "new_hsk__2__topic__28__danh-tu",
+      "sectionSlug": "danh-tu",
       "sectionTitle": "Danh từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/danh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/danh-tu/",
+      "orderInSection": 18
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__lesson__17__bai-17-i-will-learn-from-people-who-are-careful",
+      "sectionSlug": "bai-17-i-will-learn-from-people-who-are-careful",
       "sectionTitle": "Tôi phải học hỏi nhiều từ những người nghiêm túc",
       "sectionTitleZh": "我要多向认真的人学习",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-17-i-will-learn-from-people-who-are-careful/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-17-i-will-learn-from-people-who-are-careful/",
+      "orderInSection": 27
     }
   ],
   "sources": [
@@ -140,7 +159,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

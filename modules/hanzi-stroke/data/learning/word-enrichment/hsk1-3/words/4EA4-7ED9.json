@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:交给",
   "type": "word",
   "word": "交给",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "jiāo gěi",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bàn giao",
+      "meaningShortVi": "bàn giao",
+      "meaningFullVi": "bàn giao",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bàn giao",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,46 +45,40 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "交",
-        "pinyin": "",
-        "meaningVi": "giao,nộp",
-        "target": "交给",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "给",
-        "pinyin": "",
-        "meaningVi": "cho",
-        "target": "交给",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "交给",
       "chinese": "交给我",
-      "pinyin": "",
+      "pinyin": "jiāo gěi wǒ",
       "meaningVi": "Giao cho tôi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "交给",
       "chinese": "把作业交给老师",
-      "pinyin": "",
+      "pinyin": "bǎ zuò yè jiāo gěi lǎo shī",
       "meaningVi": "Nộp bài tập cho giáo viên",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 交给",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/交给.mp3"
   ],
@@ -92,11 +87,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 27,
+      "sectionId": "new_hsk__2__topic__27__dong-tu-tuong-tac",
+      "sectionSlug": "dong-tu-tuong-tac",
       "sectionTitle": "Động từ tương tác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dong-tu-tuong-tac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dong-tu-tuong-tac/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -107,7 +107,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

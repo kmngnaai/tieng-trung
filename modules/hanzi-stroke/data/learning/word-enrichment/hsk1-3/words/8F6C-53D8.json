@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:转变",
   "type": "word",
   "word": "转变",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhuǎn biàn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thay đổi, chuyển đổi, chuyển biến",
+      "meaningShortVi": "thay đổi",
+      "meaningFullVi": "thay đổi, chuyển đổi, chuyển biến",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thay đổi",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Chỉ sự thay đổi từ trạng thái này sang trạng thái khác, thường là thay đổi đáng kể hoặc dài hạn. Khác với 变化 (thay đổi - tổng quát), chuyển chuyển gợi ý sự 'chuyển từ A sang B' rõ rệt hơn."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "思想转变",
         "pinyin": "sīxiǎng zhuǎnbiàn",
         "meaningVi": "sự thay đổi tư tưởng",
+        "meaningFullVi": "sự thay đổi tư tưởng",
         "target": "转变",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "发生转变",
         "pinyin": "fāshēng zhuǎnbiàn",
         "meaningVi": "xảy ra sự thay đổi",
+        "meaningFullVi": "xảy ra sự thay đổi",
         "target": "转变",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Thái độ của anh ấy thay đổi rất nhiều.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "转变",
@@ -82,16 +87,17 @@
       "meaningVi": "Kinh tế đang chuyển đổi từ mô hình truyền thống sang mô hình mới.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 转变",
-      "syntax": "động từ",
-      "matchedExample": "Chỉ sự thay đổi từ trạng thái này sang trạng thái khác, thường là thay đổi đáng kể hoặc dài hạn. Khác với 变化 (thay đổi - tổng quát), chuyển chuyển gợi ý sự 'chuyển từ A sang B' rõ rệt hơn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 转变",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Chỉ sự thay đổi từ trạng thái này sang trạng thái khác, thường là thay đổi đáng kể hoặc dài hạn. Khác với 变化 (thay đổi - tổng quát), chuyển chuyển gợi ý sự 'chuyển từ A sang B' rõ rệt hơn.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__topic__17__nhung-thay-doi",
+      "sectionSlug": "nhung-thay-doi",
       "sectionTitle": "Những thay đổi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:经典",
   "type": "word",
   "word": "经典",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jīng diǎn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "kinh điển; mẫu mực, tiêu biểu; tác phẩm xuất sắc",
+      "meaningShortVi": "kinh điển",
+      "meaningFullVi": "kinh điển; mẫu mực, tiêu biểu; tác phẩm xuất sắc",
       "partOfSpeech": "danh từ / tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "kinh điển",
   "wordType": "danh từ / tính từ",
   "wordTypes": [
     "danh từ / tính từ"
   ],
-  "usageNotes": [
-    "Kinh điển (经典) dùng cho tác phẩm có giá trị lâu bền (văn học, phim ảnh, âm nhạc). Trong giao tiếp, gọi một việc là 'kinh điển' nghĩa là nó rất tiêu biểu, đáng học hỏi. Lưu ý: 经典 mang sắc thái trang trọng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,19 +48,24 @@
         "text": "经典作品",
         "pinyin": "jīngdiǎn zuòpǐn",
         "meaningVi": "tác phẩm kinh điển",
+        "meaningFullVi": "tác phẩm kinh điển",
         "target": "经典",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "经典句子",
         "pinyin": "jīngdiǎn jùzi",
         "meaningVi": "câu nói kinh điển",
+        "meaningFullVi": "câu nói kinh điển",
         "target": "经典",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +75,8 @@
       "meaningVi": "Đây là một bộ phim kinh điển.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "经典",
@@ -80,16 +85,17 @@
       "meaningVi": "Thi Đường là kinh điển của văn học Trung Quốc.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 经典",
-      "syntax": "danh từ / tính từ",
-      "matchedExample": "Kinh điển (经典) dùng cho tác phẩm có giá trị lâu bền (văn học, phim ảnh, âm nhạc). Trong giao tiếp, gọi một việc là 'kinh điển' nghĩa là nó rất tiêu biểu, đáng học hỏi. Lưu ý: 经典 mang sắc thái trang trọng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 经典",
+      "partOfSpeech": "danh từ / tính từ",
+      "usageNoteVi": "Kinh điển (经典) dùng cho tác phẩm có giá trị lâu bền (văn học, phim ảnh, âm nhạc). Trong giao tiếp, gọi một việc là 'kinh điển' nghĩa là nó rất tiêu biểu, đáng học hỏi. Lưu ý: 经典 mang sắc thái trang trọng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

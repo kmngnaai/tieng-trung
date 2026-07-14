@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:预防",
   "type": "word",
   "word": "预防",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yù fáng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Phòng ngừa",
+      "meaningShortVi": "Phòng ngừa",
+      "meaningFullVi": "Phòng ngừa",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Phòng ngừa",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "预防 là động từ chỉ hành động phòng ngừa trước khi điều gì xảy ra. Thường kết hợp với các từ chỉ bệnh tật hoặc rủi ro."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,27 +50,34 @@
         "text": "预防感冒",
         "pinyin": "yùfáng gǎnmào",
         "meaningVi": "phòng ngừa cảm lạnh",
+        "meaningFullVi": "phòng ngừa cảm lạnh",
         "target": "预防",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "预防措施",
         "pinyin": "yùfáng cuòshī",
         "meaningVi": "biện pháp phòng ngừa",
+        "meaningFullVi": "biện pháp phòng ngừa",
         "target": "预防",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "预防疾病",
         "pinyin": "yùfáng jíbìng",
         "meaningVi": "phòng ngừa bệnh tật",
+        "meaningFullVi": "phòng ngừa bệnh tật",
         "target": "预防",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +87,8 @@
       "meaningVi": "Chúng ta cần phòng ngừa cảm lạnh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "预防",
@@ -90,7 +97,8 @@
       "meaningVi": "Phòng bệnh hơn chữa bệnh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "预防",
@@ -99,16 +107,17 @@
       "meaningVi": "Bác sĩ khuyến nghị thực hiện biện pháp phòng ngừa căn bệnh này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 预防",
-      "syntax": "compound-semantic",
-      "matchedExample": "预防 là động từ chỉ hành động phòng ngừa trước khi điều gì xảy ra. Thường kết hợp với các từ chỉ bệnh tật hoặc rủi ro.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 预防",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "预防 là động từ chỉ hành động phòng ngừa trước khi điều gì xảy ra. Thường kết hợp với các từ chỉ bệnh tật hoặc rủi ro.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -119,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__3__topic__6__bao-hanh-va-bao-ve",
+      "sectionSlug": "bao-hanh-va-bao-ve",
       "sectionTitle": "Bảo hành và bảo vệ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bao-hanh-va-bao-ve/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bao-hanh-va-bao-ve/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -134,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

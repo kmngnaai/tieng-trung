@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:采访",
   "type": "word",
   "word": "采访",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "cǎi fǎng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phỏng vấn, đến để hỏi thông tin, thu thập tin tức",
+      "meaningShortVi": "phỏng vấn",
+      "meaningFullVi": "phỏng vấn, đến để hỏi thông tin, thu thập tin tức",
       "partOfSpeech": "động từ (verb)",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phỏng vấn",
   "wordType": "động từ (verb)",
   "wordTypes": [
     "động từ (verb)"
   ],
-  "usageNotes": [
-    "采 (thái) nghĩa là hái lượm, tuyển chọn; 访 (phỏng) nghĩa là hỏi thăm. 采访 kết hợp hai hành động: đi thu thập thông tin và đặt câu hỏi. Thường dùng trong bối cảnh báo chí, truyền thông."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,27 +48,34 @@
         "text": "采访记者",
         "pinyin": "cǎifǎng jìzhě",
         "meaningVi": "phỏng vấn nhà báo",
+        "meaningFullVi": "phỏng vấn nhà báo",
         "target": "采访",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "采访报道",
         "pinyin": "cǎifǎng bàodào",
         "meaningVi": "phóng sự phỏng vấn",
+        "meaningFullVi": "phóng sự phỏng vấn",
         "target": "采访",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "现场采访",
         "pinyin": "xiànchǎng cǎifǎng",
         "meaningVi": "phỏng vấn tại hiện trường",
+        "meaningFullVi": "phỏng vấn tại hiện trường",
         "target": "采访",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +85,8 @@
       "meaningVi": "Nhà báo đã phỏng vấn chuyên gia đó.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "采访",
@@ -88,7 +95,8 @@
       "meaningVi": "Tôi đi phỏng vấn vận động viên đó.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "采访",
@@ -97,16 +105,17 @@
       "meaningVi": "Bài báo cáo này được phỏng vấn tại hiện trường.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 采访",
-      "syntax": "động từ (verb)",
-      "matchedExample": "采 (thái) nghĩa là hái lượm, tuyển chọn; 访 (phỏng) nghĩa là hỏi thăm. 采访 kết hợp hai hành động: đi thu thập thông tin và đặt câu hỏi. Thường dùng trong bối cảnh báo chí, truyền thông.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 采访",
+      "partOfSpeech": "động từ (verb)",
+      "usageNoteVi": "采 (thái) nghĩa là hái lượm, tuyển chọn; 访 (phỏng) nghĩa là hỏi thăm. 采访 kết hợp hai hành động: đi thu thập thông tin và đặt câu hỏi. Thường dùng trong bối cảnh báo chí, truyền thông.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -121,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

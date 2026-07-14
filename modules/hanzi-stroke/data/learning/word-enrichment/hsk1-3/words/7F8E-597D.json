@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:美好",
   "type": "word",
   "word": "美好",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "měi hǎo",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tốt đẹp, tuyệt vời; tươi sáng",
+      "meaningShortVi": "tốt đẹp",
+      "meaningFullVi": "tốt đẹp, tuyệt vời; tươi sáng",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tốt đẹp",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "Měi hǎo kết hợp vẻ đẹp và sự tốt lành, thường dùng cho tính từ miêu tả cuộc sống, tương lai, kỷ niệm mang sắc thái tích cực."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "美好的未来",
-        "pinyin": "",
+        "pinyin": "měi hǎo de wèi lái",
         "meaningVi": "tương lai tươi sáng",
+        "meaningFullVi": "tương lai tươi sáng",
         "target": "美好",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "美好的一天",
-        "pinyin": "",
+        "pinyin": "měi hǎo de yī tiān",
         "meaningVi": "một ngày đẹp",
+        "meaningFullVi": "một ngày đẹp",
         "target": "美好",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "美好",
       "chinese": "我们过着美好的生活。",
-      "pinyin": "",
+      "pinyin": "wǒ men guò zhe měi hǎo de shēng huó。",
       "meaningVi": "Chúng ta sống một cuộc sống tốt đẹp.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "美好",
       "chinese": "这是一个美好的回忆。",
-      "pinyin": "",
+      "pinyin": "zhè shì yī gè měi hǎo de huí yì。",
       "meaningVi": "Đây là một kỷ niệm đẹp.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 美好",
-      "syntax": "tính từ",
-      "matchedExample": "Měi hǎo kết hợp vẻ đẹp và sự tốt lành, thường dùng cho tính từ miêu tả cuộc sống, tương lai, kỷ niệm mang sắc thái tích cực.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 美好",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "Měi hǎo kết hợp vẻ đẹp và sự tốt lành, thường dùng cho tính từ miêu tả cuộc sống, tương lai, kỷ niệm mang sắc thái tích cực.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 33,
+      "sectionId": "new_hsk__3__topic__33__tinh-tu",
+      "sectionSlug": "tinh-tu",
       "sectionTitle": "Tính từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:旅客",
   "type": "word",
   "word": "旅客",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "lǚ kè",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hành khách",
+      "meaningShortVi": "hành khách",
+      "meaningFullVi": "hành khách",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hành khách",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,43 +48,48 @@
     "collocations": [
       {
         "text": "旅客列车",
-        "pinyin": "",
+        "pinyin": "lǚ kè liè chē",
         "meaningVi": "tàu chở hành khách",
+        "meaningFullVi": "tàu chở hành khách",
         "target": "旅客",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "旅客大厅",
-        "pinyin": "",
-        "meaningVi": "sảnh hành khách",
-        "target": "旅客",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "旅客",
       "chinese": "机场有很多旅客",
-      "pinyin": "",
+      "pinyin": "jī chǎng yǒu hěn duō lǚ kè",
       "meaningVi": "Sân bay có rất nhiều hành khách",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "旅客",
       "chinese": "请旅客注意安全",
-      "pinyin": "",
+      "pinyin": "qǐng lǚ kè zhù yì ān quán",
       "meaningVi": "Hành khách vui lòng chú ý an toàn",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 旅客",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/旅客.mp3"
   ],
@@ -92,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 22,
+      "sectionId": "new_hsk__2__topic__22__du-lich",
+      "sectionSlug": "du-lich",
       "sectionTitle": "Du lịch",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/du-lich/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/du-lich/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -107,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

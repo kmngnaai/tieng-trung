@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:早饭",
   "type": "word",
   "word": "早饭",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zǎo fàn",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bữa sáng",
+      "meaningShortVi": "bữa sáng",
+      "meaningFullVi": "bữa sáng",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bữa sáng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Danh từ chỉ bữa ăn buổi sáng. '早饭' (bữa sớm), '早餐' (bữa điểm tâm) - tương đương nhau."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -46,40 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "吃早饭",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "早饭",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "做早饭",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "早饭",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "早饭时间",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "早饭",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "早饭以后",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "早饭",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -89,7 +56,8 @@
       "meaningVi": "Tôi đã ăn sáng.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "早饭",
@@ -98,7 +66,8 @@
       "meaningVi": "Bữa sáng ăn gì?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "早饭",
@@ -107,16 +76,17 @@
       "meaningVi": "Chúng ta cùng ăn sáng nhé.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 早饭",
-      "syntax": "compound-semantic",
-      "matchedExample": "Danh từ chỉ bữa ăn buổi sáng. '早饭' (bữa sớm), '早餐' (bữa điểm tâm) - tương đương nhau.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 早饭",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Danh từ chỉ bữa ăn buổi sáng. '早饭' (bữa sớm), '早餐' (bữa điểm tâm) - tương đương nhau.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -127,21 +97,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__1__lesson__13__bai-13-i-ll-have-a-cup-of-tea-please",
+      "sectionSlug": "bai-13-i-ll-have-a-cup-of-tea-please",
       "sectionTitle": "Cho tôi một cốc trà",
       "sectionTitleZh": "请给我一杯茶",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-13-i-ll-have-a-cup-of-tea-please/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-13-i-ll-have-a-cup-of-tea-please/",
+      "orderInSection": 20
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 2,
+      "sectionId": "new_hsk__1__topic__2__mon-an",
+      "sectionSlug": "mon-an",
       "sectionTitle": "Món ăn",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/mon-an/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/mon-an/",
+      "orderInSection": 23
     }
   ],
   "sources": [
@@ -152,7 +132,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

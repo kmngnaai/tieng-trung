@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:楼下",
   "type": "word",
   "word": "楼下",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "lóu xià",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "dưới nhà, tầng dưới",
+      "meaningShortVi": "dưới nhà",
+      "meaningFullVi": "dưới nhà, tầng dưới",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "dưới nhà",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "楼下 chỉ tầng dưới hoặc dưới nhà. Hán-Việt: lâu (lầu) + hạ (dưới)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -51,19 +50,24 @@
         "text": "楼下的人",
         "pinyin": "lóuxià de rén",
         "meaningVi": "người dưới nhà",
+        "meaningFullVi": "người dưới nhà",
         "target": "楼下",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "从楼下",
         "pinyin": "cóng lóuxià",
         "meaningVi": "từ dưới nhà",
+        "meaningFullVi": "từ dưới nhà",
         "target": "楼下",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Anh ấy đang đợi tôi dưới nhà.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "楼下",
@@ -82,16 +87,17 @@
       "meaningVi": "Dưới nhà có một cửa hàng.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 楼下",
-      "syntax": "compound-semantic",
-      "matchedExample": "楼下 chỉ tầng dưới hoặc dưới nhà. Hán-Việt: lâu (lầu) + hạ (dưới).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 楼下",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "楼下 chỉ tầng dưới hoặc dưới nhà. Hán-Việt: lâu (lầu) + hạ (dưới).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__1__topic__7__cac-toa-nha",
+      "sectionSlug": "cac-toa-nha",
       "sectionTitle": "Các tòa nhà",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cac-toa-nha/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cac-toa-nha/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

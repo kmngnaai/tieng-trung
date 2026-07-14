@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:小声",
   "type": "word",
   "word": "小声",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xiǎo shēng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thì thầm",
+      "meaningShortVi": "thì thầm",
+      "meaningFullVi": "thì thầm",
       "partOfSpeech": "adjective",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thì thầm",
   "wordType": "adjective",
   "wordTypes": [
     "adjective"
   ],
-  "usageNotes": [
-    "Tính từ chỉ âm lượng nhỏ."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "小声说",
-        "pinyin": "",
+        "pinyin": "xiǎo shēng shuō",
         "meaningVi": "nói nhỏ",
+        "meaningFullVi": "nói nhỏ",
         "target": "小声",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "小声点",
-        "pinyin": "",
+        "pinyin": "xiǎo shēng diǎn",
         "meaningVi": "nhỏ tiếng lại",
+        "meaningFullVi": "nhỏ tiếng lại",
         "target": "小声",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "小声",
       "chinese": "请小声说话",
-      "pinyin": "",
+      "pinyin": "qǐng xiǎo shēng shuō huà",
       "meaningVi": "Vui lòng nói nhỏ",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "小声",
       "chinese": "他小声告诉我",
-      "pinyin": "",
+      "pinyin": "tā xiǎo shēng gào su wǒ",
       "meaningVi": "Anh ấy thì thầm告诉我",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 小声",
-      "syntax": "adjective",
-      "matchedExample": "Tính từ chỉ âm lượng nhỏ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 小声",
+      "partOfSpeech": "adjective",
+      "usageNoteVi": "Tính từ chỉ âm lượng nhỏ.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__2__topic__18__tinh-tu",
+      "sectionSlug": "tinh-tu",
       "sectionTitle": "Tính từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-tu/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:电视剧",
   "type": "word",
   "word": "电视剧",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "diàn shì jù",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Phim truyền hình",
+      "meaningShortVi": "Phim truyền hình",
+      "meaningFullVi": "Phim truyền hình",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Phim truyền hình",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "电视剧 là phim truyền hình, phim bộ chiếu trên TV. Nó khác với 电影 (phim chiếu rạp) — 电影 chiếu ở rạp, 电视剧 chiếu trên TV. Trong giao tiếp, người ta thường gọi 网剧 (phim mạng) cho phim chiếu online, còn 电视剧 cho phim chiếu truyền hình."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -53,19 +52,14 @@
         "text": "国产电视剧",
         "pinyin": "guóchǎn diànshìjù",
         "meaningVi": "phim truyền hình nội địa",
+        "meaningFullVi": "phim truyền hình nội địa",
         "target": "电视剧",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "连续剧",
-        "pinyin": "liánxùjù",
-        "meaningVi": "phim bộ",
-        "target": "电视剧",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -75,7 +69,8 @@
       "meaningVi": "Bộ phim truyền hình này rất受欢迎.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "电视剧",
@@ -84,16 +79,17 @@
       "meaningVi": "Tôi hàng ngày tối đều xem phim truyền hình.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 电视剧",
-      "syntax": "danh từ",
-      "matchedExample": "电视剧 là phim truyền hình, phim bộ chiếu trên TV. Nó khác với 电影 (phim chiếu rạp) — 电影 chiếu ở rạp, 电视剧 chiếu trên TV. Trong giao tiếp, người ta thường gọi 网剧 (phim mạng) cho phim chiếu online, còn 电视剧 cho phim chiếu truyền hình.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 电视剧",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "电视剧 là phim truyền hình, phim bộ chiếu trên TV. Nó khác với 电影 (phim chiếu rạp) — 电影 chiếu ở rạp, 电视剧 chiếu trên TV. Trong giao tiếp, người ta thường gọi 网剧 (phim mạng) cho phim chiếu online, còn 电视剧 cho phim chiếu truyền hình.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,11 +100,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__3__topic__11__giai-tri-ii",
+      "sectionSlug": "giai-tri-ii",
       "sectionTitle": "Giải trí II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-ii/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -124,7 +125,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

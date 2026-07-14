@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:古老",
   "type": "word",
   "word": "古老",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gǔ lǎo",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cổ xưa, cổ kính, rất cũ; đã tồn tại từ lâu",
+      "meaningShortVi": "cổ xưa",
+      "meaningFullVi": "cổ xưa, cổ kính, rất cũ; đã tồn tại từ lâu",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cổ xưa",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "古老 ghép 古 (cổ, xưa) + 老 (lâu, già). Nhấn mạnh tính cổ kính, đã tồn tại từ thời xa xưa."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,48 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "古老城市",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "古老",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "古老文化",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "古老",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "古老传统",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "古老",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "古老建筑",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "古老",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "古老故事",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "古老",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -95,7 +54,8 @@
       "meaningVi": "Đây là một thành phố cổ kính.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "古老",
@@ -104,7 +64,8 @@
       "meaningVi": "Trung Quốc có rất nhiều câu chuyện cổ xưa.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "古老",
@@ -113,16 +74,17 @@
       "meaningVi": "Những truyền thống cổ xưa này vẫn được gìn giữ.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 古老",
-      "syntax": "compound-semantic",
-      "matchedExample": "古老 ghép 古 (cổ, xưa) + 老 (lâu, già). Nhấn mạnh tính cổ kính, đã tồn tại từ thời xa xưa.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 古老",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "古老 ghép 古 (cổ, xưa) + 老 (lâu, già). Nhấn mạnh tính cổ kính, đã tồn tại từ thời xa xưa.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -137,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

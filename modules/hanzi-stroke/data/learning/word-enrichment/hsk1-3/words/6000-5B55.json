@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:怀孕",
   "type": "word",
   "word": "怀孕",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "huái yùn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "mang thai",
+      "meaningShortVi": "mang thai",
+      "meaningFullVi": "mang thai",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "mang thai",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "怀孕 chỉ trạng thái mang thai của phụ nữ. Là từ y tế/sinh học, dùng trong ngữ cảnh gia đình, y tế."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 怀 (ôm, mang trong lòng) + 孕 (có thai). Hán-Việt 'hoài dựng' → ôm ấp thai nhi."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "怀孕期间",
         "pinyin": "huáiyùn qījiān",
         "meaningVi": "thai kỳ",
+        "meaningFullVi": "thai kỳ",
         "target": "怀孕",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "意外怀孕",
         "pinyin": "yìwài huáiyùn",
         "meaningVi": "mang thai ngoài ý muốn",
+        "meaningFullVi": "mang thai ngoài ý muốn",
         "target": "怀孕",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "再次怀孕",
         "pinyin": "zàicì huáiyùn",
         "meaningVi": "mang thai lại",
+        "meaningFullVi": "mang thai lại",
         "target": "怀孕",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Cô ấy mang thai",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "怀孕",
@@ -90,7 +95,8 @@
       "meaningVi": "Mang thai ba tháng",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "怀孕",
@@ -99,23 +105,17 @@
       "meaningVi": "Trong thời gian mang thai",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 怀孕",
-      "syntax": "compound-semantic",
-      "matchedExample": "怀孕 chỉ trạng thái mang thai của phụ nữ. Là từ y tế/sinh học, dùng trong ngữ cảnh gia đình, y tế.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 怀 (ôm, mang trong lòng) + 孕 (có thai). Hán-Việt 'hoài dựng' → ôm ấp thai nhi.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 怀孕",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "怀孕 chỉ trạng thái mang thai của phụ nữ. Là từ y tế/sinh học, dùng trong ngữ cảnh gia đình, y tế.",
+      "explanationVi": "Ghép nghĩa: 怀 (ôm, mang trong lòng) + 孕 (có thai). Hán-Việt 'hoài dựng' → ôm ấp thai nhi.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -130,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

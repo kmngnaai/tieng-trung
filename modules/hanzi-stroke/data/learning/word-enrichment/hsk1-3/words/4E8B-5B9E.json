@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:事实",
   "type": "word",
   "word": "事实",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shì shí",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sự thật",
+      "meaningShortVi": "sự thật",
+      "meaningFullVi": "sự thật",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sự thật",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "指事情的真实情况。多用于强调客观事实，与\"观点\"、\"想象\"相对。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,61 +48,46 @@
       {
         "word": "事实上",
         "pinyin": "shì shí shàng",
-        "meaningVi": "trên thực tế; thực ra là",
+        "meaningVi": "trên thực tế",
+        "meaningFullVi": "trên thực tế; thực ra là",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          3
-        ],
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 3",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
       {
         "text": "事实证明",
-        "pinyin": "",
+        "pinyin": "shì shí zhèng míng",
         "meaningVi": "sự thật chứng minh",
+        "meaningFullVi": "sự thật chứng minh",
         "target": "事实",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "尊重事实",
-        "pinyin": "",
-        "meaningVi": "tôn trọng sự thật",
-        "target": "事实",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "事实",
-      "chinese": "这是事实，不是谣言。",
-      "pinyin": "",
-      "meaningVi": "Đây là sự thật, không phải tin đồn.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "事实",
       "chinese": "我们必须面对事实。",
-      "pinyin": "",
+      "pinyin": "wǒ men bì xū miàn duì shì shí。",
       "meaningVi": "Chúng ta phải đối mặt với sự thật.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 事实",
-      "syntax": "danh từ",
-      "matchedExample": "指事情的真实情况。多用于强调客观事实，与\"观点\"、\"想象\"相对。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 事实",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "指事情的真实情况。多用于强调客观事实，与\"观点\"、\"想象\"相对。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__3__topic__18__thong-tin-va-phuong-tien",
+      "sectionSlug": "thong-tin-va-phuong-tien",
       "sectionTitle": "Thông tin và phương tiện",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -129,7 +118,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:排球",
   "type": "word",
   "word": "排球",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "pái qiú",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bóng chuyền",
+      "meaningShortVi": "bóng chuyền",
+      "meaningFullVi": "bóng chuyền",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bóng chuyền",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,43 +48,58 @@
     "collocations": [
       {
         "text": "打排球",
-        "pinyin": "",
+        "pinyin": "dǎ pái qiú",
         "meaningVi": "chơi bóng chuyền",
+        "meaningFullVi": "chơi bóng chuyền",
         "target": "排球",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "排球队",
-        "pinyin": "",
+        "pinyin": "pái qiú duì",
         "meaningVi": "đội bóng chuyền",
+        "meaningFullVi": "đội bóng chuyền",
         "target": "排球",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "排球",
       "chinese": "我们打排球吧",
-      "pinyin": "",
+      "pinyin": "wǒ men dǎ pái qiú ba",
       "meaningVi": "Chúng tôi chơi bóng chuyền nhé",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "排球",
       "chinese": "排球运动很受欢迎",
-      "pinyin": "",
+      "pinyin": "pái qiú yùn dòng hěn shòu huān yíng",
       "meaningVi": "Môn bóng chuyền rất được yêu thích",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 排球",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/排球.mp3"
   ],
@@ -92,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__2__topic__14__co-the-va-suc-khoe",
+      "sectionSlug": "co-the-va-suc-khoe",
       "sectionTitle": "Cơ thể và sức khỏe",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/co-the-va-suc-khoe/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/co-the-va-suc-khoe/",
+      "orderInSection": 25
     }
   ],
   "sources": [
@@ -107,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

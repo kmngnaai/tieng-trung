@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:温和",
   "type": "word",
   "word": "温和",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wēn hé",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "dịu dàng; ôn hòa; nhẹ nhàng",
+      "meaningShortVi": "dịu dàng",
+      "meaningFullVi": "dịu dàng; ôn hòa; nhẹ nhàng",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "dịu dàng",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "温和 có thể chỉ tính cách dịu dàng hoặc khí hậu ôn hòa, không quá nóng lạnh."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,40 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "态度温和",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "温和",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "气候温和",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "温和",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "性格温和",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "温和",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "温和派",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "温和",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -87,7 +54,8 @@
       "meaningVi": "Tính cách của cô ấy rất dịu dàng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "温和",
@@ -96,16 +64,17 @@
       "meaningVi": "Khí hậu ở đây rất ôn hòa.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 温和",
-      "syntax": "tính từ",
-      "matchedExample": "温和 có thể chỉ tính cách dịu dàng hoặc khí hậu ôn hòa, không quá nóng lạnh.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 温和",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "温和 có thể chỉ tính cách dịu dàng hoặc khí hậu ôn hòa, không quá nóng lạnh.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -120,7 +89,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

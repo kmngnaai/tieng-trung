@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:批准",
   "type": "word",
   "word": "批准",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "pī zhǔn",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phê duyệt, cho phép chính thức; cấp quyền hoặc chấp thuận một yêu cầu, đề xuất",
+      "meaningShortVi": "phê duyệt",
+      "meaningFullVi": "phê duyệt, cho phép chính thức; cấp quyền hoặc chấp thuận một yêu cầu, đề xuất",
       "partOfSpeech": "động từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phê duyệt",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Thường dùng trong văn hành chính, pháp lý. Có thể dùng bị động 被...批准 để nói về việc được cấp phép. Đối với同意, 批准 mang tính 'chính thức, có thẩm quyền' hơn. Từ liên quan: 审批 'xét duyệt', 批文 'văn bản chấp thuận'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -52,19 +51,24 @@
         "text": "批准申请",
         "pinyin": "pīzhǔn shēnqǐng",
         "meaningVi": "phê duyệt đơn từ",
+        "meaningFullVi": "phê duyệt đơn từ",
         "target": "批准",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "获得批准",
         "pinyin": "huòdé pīzhǔn",
         "meaningVi": "được chấp thuận",
+        "meaningFullVi": "được chấp thuận",
         "target": "批准",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Chính phủ đã phê duyệt dự án mới này.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "批准",
@@ -83,16 +88,17 @@
       "meaningVi": "Đơn xin nghỉ phép của tôi đã được phê duyệt.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 批准",
-      "syntax": "động từ",
-      "matchedExample": "Thường dùng trong văn hành chính, pháp lý. Có thể dùng bị động 被...批准 để nói về việc được cấp phép. Đối với同意, 批准 mang tính 'chính thức, có thẩm quyền' hơn. Từ liên quan: 审批 'xét duyệt', 批文 'văn bản chấp thuận'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 批准",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Thường dùng trong văn hành chính, pháp lý. Có thể dùng bị động 被...批准 để nói về việc được cấp phép. Đối với同意, 批准 mang tính 'chính thức, có thẩm quyền' hơn. Từ liên quan: 审批 'xét duyệt', 批文 'văn bản chấp thuận'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 28,
+      "sectionId": "new_hsk__3__topic__28__tu-duy",
+      "sectionSlug": "tu-duy",
       "sectionTitle": "tư duy",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-duy/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-duy/",
+      "orderInSection": 32
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

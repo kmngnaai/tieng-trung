@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:不对",
   "type": "word",
   "word": "不对",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "bù duì",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "không đúng, sai",
+      "meaningShortVi": "không đúng",
+      "meaningFullVi": "không đúng, sai",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "không đúng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "不对 nghĩa là không đúng, sai. Có thể dùng để phản kháng nhẹ nhàng. Hán-Việt: bất + đối."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -51,19 +50,24 @@
         "text": "说不对",
         "pinyin": "shuō bù duì",
         "meaningVi": "nói sai",
+        "meaningFullVi": "nói sai",
         "target": "不对",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "做不对",
         "pinyin": "zuò bù duì",
         "meaningVi": "làm sai",
+        "meaningFullVi": "làm sai",
         "target": "不对",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Câu trả lời này sai rồi.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不对",
@@ -82,16 +87,17 @@
       "meaningVi": "Không phải, tôi không có ý đó.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 不对",
-      "syntax": "compound-semantic",
-      "matchedExample": "不对 nghĩa là không đúng, sai. Có thể dùng để phản kháng nhẹ nhàng. Hán-Việt: bất + đối.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 不对",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "不对 nghĩa là không đúng, sai. Có thể dùng để phản kháng nhẹ nhàng. Hán-Việt: bất + đối.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__1__topic__11__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/pho-tu/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

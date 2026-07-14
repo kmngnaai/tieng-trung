@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:那会{儿}",
   "type": "word",
   "word": "那会{儿}",
@@ -18,26 +18,25 @@
     "readings": [
       {
         "pinyin": "nà huìr ",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tại thời điểm đó",
+      "meaningShortVi": "tại thời điểm đó",
+      "meaningFullVi": "tại thời điểm đó",
       "partOfSpeech": "noun/time word",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tại thời điểm đó",
   "wordType": "noun/time word",
   "wordTypes": [
     "noun/time word"
   ],
-  "usageNotes": [
-    "Cách nói khẩu ngữ, 儿 (ér) là hậu tố từ chỉ khoảng thời gian ngắn."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,33 +48,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "那会儿的时候",
-        "pinyin": "",
-        "meaningVi": "vào lúc đó",
-        "target": "那会{儿}",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "在那一会儿",
-        "pinyin": "",
-        "meaningVi": "vào thời điểm đó",
-        "target": "那会{儿}",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 那会{儿}",
-      "syntax": "noun/time word",
-      "matchedExample": "Cách nói khẩu ngữ, 儿 (ér) là hậu tố từ chỉ khoảng thời gian ngắn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 那会{儿}",
+      "partOfSpeech": "noun/time word",
+      "usageNoteVi": "Cách nói khẩu ngữ, 儿 (ér) là hậu tố từ chỉ khoảng thời gian ngắn.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -86,11 +69,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__2__topic__3__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thoi-gian/",
+      "orderInSection": 31
     }
   ],
   "sources": [
@@ -101,9 +89,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": [
-      "Chưa có câu chứa nguyên từ"
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
     ]
   }
 }

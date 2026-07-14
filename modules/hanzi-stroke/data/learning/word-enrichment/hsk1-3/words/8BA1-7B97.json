@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:计算",
   "type": "word",
   "word": "计算",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jì suàn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tính toán, tính toán số liệu",
+      "meaningShortVi": "tính toán",
+      "meaningFullVi": "tính toán, tính toán số liệu",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tính toán",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "计算 là động từ chỉ việc tính toán số học hoặc ước lượng. Có thể dùng theo nghĩa đen (tính toán con số) hoặc nghĩa bóng (ước tính, tính toán hậu quả)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -50,60 +49,55 @@
         "word": "计算机",
         "pinyin": "jì suàn jī",
         "meaningVi": "máy tính",
+        "meaningFullVi": "máy tính",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          2
-        ],
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 2",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
       {
-        "text": "计算器",
-        "pinyin": "",
-        "meaningVi": "máy tính bỏ túi",
-        "target": "计算",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "计算能力",
-        "pinyin": "",
+        "pinyin": "jì suàn néng lì",
         "meaningVi": "khả năng tính toán",
+        "meaningFullVi": "khả năng tính toán",
         "target": "计算",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "计算",
       "chinese": "我需要计算一下总费用。",
-      "pinyin": "",
+      "pinyin": "wǒ xū yào jì suàn yī xià zǒng fèi yòng。",
       "meaningVi": "Tôi cần tính toán tổng chi phí.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "计算",
       "chinese": "这个问题很难计算。",
-      "pinyin": "",
+      "pinyin": "zhè ge wèn tí hěn nán jì suàn。",
       "meaningVi": "Vấn đề này rất khó tính toán.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 计算",
-      "syntax": "động từ",
-      "matchedExample": "计算 là động từ chỉ việc tính toán số học hoặc ước lượng. Có thể dùng theo nghĩa đen (tính toán con số) hoặc nghĩa bóng (ước tính, tính toán hậu quả).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 计算",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "计算 là động từ chỉ việc tính toán số học hoặc ước lượng. Có thể dùng theo nghĩa đen (tính toán con số) hoặc nghĩa bóng (ước tính, tính toán hậu quả).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 22,
+      "sectionId": "new_hsk__3__topic__22__kinh-te-va-tai-chinh",
+      "sectionSlug": "kinh-te-va-tai-chinh",
       "sectionTitle": "Kinh tế và tài chính",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/kinh-te-va-tai-chinh/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/kinh-te-va-tai-chinh/",
+      "orderInSection": 6
     }
   ],
   "sources": [
@@ -129,7 +128,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

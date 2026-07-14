@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:放弃",
   "type": "word",
   "word": "放弃",
@@ -15,22 +15,23 @@
     "readings": [
       {
         "pinyin": "fàng qì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "từ bỏ",
+      "meaningShortVi": "từ bỏ",
+      "meaningFullVi": "từ bỏ",
       "partOfSpeech": "",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "từ bỏ",
   "wordType": "",
   "wordTypes": [],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -41,7 +42,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [],
   "grammarLinks": [],
@@ -62,9 +64,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PARTIAL",
     "warnings": [
-      "Chưa có câu chứa nguyên từ"
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
     ]
   }
 }

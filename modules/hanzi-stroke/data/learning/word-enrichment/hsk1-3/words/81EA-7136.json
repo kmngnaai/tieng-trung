@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:自然",
   "type": "word",
   "word": "自然",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zì rán",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tự nhiên; đương nhiên",
+      "meaningShortVi": "tự nhiên",
+      "meaningFullVi": "tự nhiên; đương nhiên",
       "partOfSpeech": "danh từ / tính từ /副词",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tự nhiên",
   "wordType": "danh từ / tính từ /副词",
   "wordTypes": [
     "danh từ / tính từ /副词"
   ],
-  "usageNotes": [
-    "自然 有三层 nghĩa: (1) Nhiên = tự nhiên (không nhân tạo), (2) Đương nhiên 当然 = of course, (3) Tự phát 自发. 作副词: 我自然知道 (Tôi đương nhiên biết)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -50,12 +49,10 @@
         "word": "大自然",
         "pinyin": "dà zì rán",
         "meaningVi": "đại tự nhiên",
+        "meaningFullVi": "đại tự nhiên",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          2
-        ],
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 2",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
@@ -63,19 +60,24 @@
         "text": "大自然",
         "pinyin": "dàzìrán",
         "meaningVi": "mẹ thiên nhiên",
+        "meaningFullVi": "mẹ thiên nhiên",
         "target": "自然",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "自然风景",
         "pinyin": "zìrán fēngjǐng",
         "meaningVi": "phong cảnh tự nhiên",
+        "meaningFullVi": "phong cảnh tự nhiên",
         "target": "自然",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -85,7 +87,8 @@
       "meaningVi": "Chúng ta cần bảo vệ môi trường tự nhiên.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "自然",
@@ -94,16 +97,17 @@
       "meaningVi": "Đây là điều rất tự nhiên.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 自然",
-      "syntax": "danh từ / tính từ /副词",
-      "matchedExample": "自然 有三层 nghĩa: (1) Nhiên = tự nhiên (không nhân tạo), (2) Đương nhiên 当然 = of course, (3) Tự phát 自发. 作副词: 我自然知道 (Tôi đương nhiên biết).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 自然",
+      "partOfSpeech": "danh từ / tính từ /副词",
+      "usageNoteVi": "自然 有三层 nghĩa: (1) Nhiên = tự nhiên (không nhân tạo), (2) Đương nhiên 当然 = of course, (3) Tự phát 自发. 作副词: 我自然知道 (Tôi đương nhiên biết).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__3__topic__9__thien-nhien",
+      "sectionSlug": "thien-nhien",
       "sectionTitle": "Thiên nhiên",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thien-nhien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thien-nhien/",
+      "orderInSection": 20
     }
   ],
   "sources": [
@@ -129,7 +138,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

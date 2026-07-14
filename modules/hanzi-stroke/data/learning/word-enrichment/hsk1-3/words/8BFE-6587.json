@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:课文",
   "type": "word",
   "word": "课文",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "kè wén",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bài học (trong sách giáo khoa)",
+      "meaningShortVi": "bài học (trong sách giáo khoa)",
+      "meaningFullVi": "bài học (trong sách giáo khoa)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bài học (trong sách giáo khoa)",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Danh từ chỉ bài đọc, bài học trong sách giáo khoa. Khác với '课' (giờ học/tiết học)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -46,40 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "课文内容",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "课文",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "长课文",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "课文",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "新课文",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "课文",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "学习课文",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "课文",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -89,7 +56,8 @@
       "meaningVi": "Xin mời đọc bài học bài 3.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "课文",
@@ -98,7 +66,8 @@
       "meaningVi": "Bài học này rất dài.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "课文",
@@ -107,16 +76,17 @@
       "meaningVi": "Hiểu bài học rất quan trọng.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 课文",
-      "syntax": "compound-semantic",
-      "matchedExample": "Danh từ chỉ bài đọc, bài học trong sách giáo khoa. Khác với '课' (giờ học/tiết học).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 课文",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Danh từ chỉ bài đọc, bài học trong sách giáo khoa. Khác với '课' (giờ học/tiết học).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -127,11 +97,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__1__topic__6__trong-lop",
+      "sectionSlug": "trong-lop",
       "sectionTitle": "Trong lớp",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/trong-lop/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/trong-lop/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -142,7 +117,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

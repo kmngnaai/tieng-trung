@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:生长",
   "type": "word",
   "word": "生长",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shēng zhǎng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sinh trưởng, phát triển; quá trình sinh sống và lớn lên của sinh vật hoặc thực vật",
+      "meaningShortVi": "sinh trưởng",
+      "meaningFullVi": "sinh trưởng, phát triển; quá trình sinh sống và lớn lên của sinh vật hoặc thực vật",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sinh trưởng",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Có thể dùng cho cả động vật, thực vật và con người. Trong văn y sinh, 生长 còn có nghĩa 'sinh sôi, nảy nở'. Từ liên quan: 成长 'lớn lên', 发育 'phát triển'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "生长环境",
         "pinyin": "shēngzhǎng huánjìng",
         "meaningVi": "môi trường sinh trưởng",
+        "meaningFullVi": "môi trường sinh trưởng",
         "target": "生长",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "迅速生长",
         "pinyin": "xùnsù shēngzhǎng",
         "meaningVi": "sinh trưởng nhanh chóng",
+        "meaningFullVi": "sinh trưởng nhanh chóng",
         "target": "生长",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Cây cối cần nước và ánh sáng mặt trời mới sinh trưởng được.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "生长",
@@ -82,16 +87,17 @@
       "meaningVi": "Đứa trẻ lớn lên trong môi trường lành mạnh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 生长",
-      "syntax": "động từ",
-      "matchedExample": "Có thể dùng cho cả động vật, thực vật và con người. Trong văn y sinh, 生长 còn có nghĩa 'sinh sôi, nảy nở'. Từ liên quan: 成长 'lớn lên', 发育 'phát triển'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 生长",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Có thể dùng cho cả động vật, thực vật và con người. Trong văn y sinh, 生长 còn có nghĩa 'sinh sôi, nảy nở'. Từ liên quan: 成长 'lớn lên', 发育 'phát triển'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__topic__17__nhung-thay-doi",
+      "sectionSlug": "nhung-thay-doi",
       "sectionTitle": "Những thay đổi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/",
+      "orderInSection": 32
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

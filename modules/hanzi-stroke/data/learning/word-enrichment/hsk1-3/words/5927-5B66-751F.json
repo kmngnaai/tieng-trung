@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:大学生",
   "type": "word",
   "word": "大学生",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "dà xué shēng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sinh viên",
+      "meaningShortVi": "sinh viên",
+      "meaningFullVi": "sinh viên",
       "partOfSpeech": "other",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sinh viên",
   "wordType": "other",
   "wordTypes": [
     "other"
   ],
-  "usageNotes": [
-    "大学生 chỉ người đang học tại đại học."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -52,19 +51,24 @@
         "text": "男大学生",
         "pinyin": "nán dàxuéshēng",
         "meaningVi": "sinh viên nam",
+        "meaningFullVi": "sinh viên nam",
         "target": "大学生",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "女大学生",
         "pinyin": "nǚ dàxuéshēng",
         "meaningVi": "sinh viên nữ",
+        "meaningFullVi": "sinh viên nữ",
         "target": "大学生",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Anh ấy là sinh viên.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "大学生",
@@ -83,16 +88,17 @@
       "meaningVi": "Nhiều sinh viên thích thể thao.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 大学生",
-      "syntax": "other",
-      "matchedExample": "大学生 chỉ người đang học tại đại học.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 大学生",
+      "partOfSpeech": "other",
+      "usageNoteVi": "大学生 chỉ người đang học tại đại học.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,21 +109,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__1__lesson__11__bai-11-i-m-studying-at-university",
+      "sectionSlug": "bai-11-i-m-studying-at-university",
       "sectionTitle": "Tôi đang học đại học",
       "sectionTitleZh": "我读大学呢",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-11-i-m-studying-at-university/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-11-i-m-studying-at-university/",
+      "orderInSection": 4
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__1__topic__5__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nghien-cuu/",
+      "orderInSection": 6
     }
   ],
   "sources": [
@@ -128,7 +144,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

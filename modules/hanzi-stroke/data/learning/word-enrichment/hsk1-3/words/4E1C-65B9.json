@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:东方",
   "type": "word",
   "word": "东方",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "dōng fāng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phương đông",
+      "meaningShortVi": "phương đông",
+      "meaningFullVi": "phương đông",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phương đông",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -47,36 +48,39 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "西方",
-        "pinyin": "",
-        "meaningVi": "phương Tây",
+        "text": "东方",
+        "pinyin": "dōng fāng",
+        "meaningVi": "phương Đông",
+        "meaningFullVi": "phương Đông",
         "target": "东方",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "东方",
       "chinese": "东方文化",
-      "pinyin": "",
+      "pinyin": "dōng fāng wén huà",
       "meaningVi": "Văn hóa phương Đông",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "东方",
-      "chinese": "太阳从东方升起",
-      "pinyin": "",
-      "meaningVi": "Mặt trời mọc ở phương Đông",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 东方",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/东方.mp3"
   ],
@@ -85,21 +89,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__2__topic__6__huong",
+      "sectionSlug": "huong",
       "sectionTitle": "Hướng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/huong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/huong/",
+      "orderInSection": 15
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__3__lesson__13__bai-13-my-new-neighbors-come-from-the-uk",
+      "sectionSlug": "bai-13-my-new-neighbors-come-from-the-uk",
       "sectionTitle": "Hàng xóm mới của tôi đến từ Anh",
       "sectionTitleZh": "我的新邻居来自英国",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-13-my-new-neighbors-come-from-the-uk/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-13-my-new-neighbors-come-from-the-uk/",
+      "orderInSection": 26
     }
   ],
   "sources": [
@@ -115,7 +129,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:玩具",
   "type": "word",
   "word": "玩具",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wán jù",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đồ chơi",
+      "meaningShortVi": "đồ chơi",
+      "meaningFullVi": "đồ chơi",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đồ chơi",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Đồ vật chơi giải trí, thường cho trẻ em."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,68 +45,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "玩具车",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "玩具",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "玩具熊",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "玩具",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "玩具店",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "玩具",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "益智玩具",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "玩具",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "玩具",
-      "chinese": "孩子在玩玩具。",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "玩具",
-      "chinese": "买玩具",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 玩具",
-      "syntax": "danh từ",
-      "matchedExample": "Đồ vật chơi giải trí, thường cho trẻ em.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 玩具",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Đồ vật chơi giải trí, thường cho trẻ em.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -118,11 +66,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 27,
+      "sectionId": "new_hsk__3__topic__27__can-nha",
+      "sectionSlug": "can-nha",
       "sectionTitle": "Căn nhà",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/can-nha/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/can-nha/",
+      "orderInSection": 25
     }
   ],
   "sources": [
@@ -133,7 +86,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

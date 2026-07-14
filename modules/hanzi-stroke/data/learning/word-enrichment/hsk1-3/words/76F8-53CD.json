@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:相反",
   "type": "word",
   "word": "相反",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "xiāng fǎn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ngược lại",
+      "meaningShortVi": "ngược lại",
+      "meaningFullVi": "ngược lại",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ngược lại",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng để so sánh, chỉ sự trái ngược."
-  ],
-  "wordTypeExplanations": [
-    "相 (tương - qua lại/lẫn nhau) + 反 (phản - ngược lại) → trái ngược nhau."
   ],
   "hsk": {
     "levels": [
@@ -48,22 +45,37 @@
     "compounds": [],
     "collocations": [
       {
+        "text": "相反",
+        "pinyin": "xiāngfǎn",
+        "meaningVi": "ngược lại",
+        "meaningFullVi": "ngược lại",
+        "target": "相反",
+        "source": "hsk_3.json",
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
+      },
+      {
         "text": "恰恰相反",
         "pinyin": "qiàqià xiāngfǎn",
         "meaningVi": "hoàn toàn ngược lại",
+        "meaningFullVi": "hoàn toàn ngược lại",
         "target": "相反",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "想法相反",
         "pinyin": "xiǎngfǎ xiāngfǎn",
         "meaningVi": "ý kiến trái ngược",
+        "meaningFullVi": "ý kiến trái ngược",
         "target": "相反",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +85,8 @@
       "meaningVi": "Tình hình lại hoàn toàn ngược lại",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "相反",
@@ -82,7 +95,8 @@
       "meaningVi": "Suy nghĩ của tôi trái ngược",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "相反",
@@ -91,7 +105,8 @@
       "meaningVi": "Ngược lại, tôi nghĩ rằng",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "相反",
@@ -100,23 +115,17 @@
       "meaningVi": "hướng ngược nhau",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 相反",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng để so sánh, chỉ sự trái ngược.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "相 (tương - qua lại/lẫn nhau) + 反 (phản - ngược lại) → trái ngược nhau.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 相反",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng để so sánh, chỉ sự trái ngược.",
+      "explanationVi": "相 (tương - qua lại/lẫn nhau) + 反 (phản - ngược lại) → trái ngược nhau.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -131,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

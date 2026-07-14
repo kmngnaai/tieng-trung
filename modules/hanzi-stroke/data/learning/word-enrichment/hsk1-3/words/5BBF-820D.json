@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:宿舍",
   "type": "word",
   "word": "宿舍",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "sù shè",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ký túc xá",
+      "meaningShortVi": "ký túc xá",
+      "meaningFullVi": "ký túc xá",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ký túc xá",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -45,68 +46,88 @@
     "collocations": [
       {
         "text": "学生宿舍",
-        "pinyin": "",
+        "pinyin": "xué shēng sù shè",
         "meaningVi": "ký túc xá sinh viên",
+        "meaningFullVi": "ký túc xá sinh viên",
         "target": "宿舍",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "住宿舍",
-        "pinyin": "",
+        "pinyin": "zhù sù shè",
         "meaningVi": "ở ký túc xá",
+        "meaningFullVi": "ở ký túc xá",
         "target": "宿舍",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "宿舍楼",
-        "pinyin": "",
+        "pinyin": "sù shè lóu",
         "meaningVi": "tòa nhà ký túc xá",
+        "meaningFullVi": "tòa nhà ký túc xá",
         "target": "宿舍",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "宿舍管理员",
-        "pinyin": "",
+        "pinyin": "sù shè guǎn lǐ yuán",
         "meaningVi": "người quản lý ký túc xá",
+        "meaningFullVi": "người quản lý ký túc xá",
         "target": "宿舍",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "宿舍",
       "chinese": "学生住在学校宿舍里。",
-      "pinyin": "",
+      "pinyin": "xué shēng zhù zài xué xiào sù shè lǐ。",
       "meaningVi": "Sinh viên sống trong ký túc xá của trường.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "宿舍",
       "chinese": "我的宿舍在三楼。",
-      "pinyin": "",
+      "pinyin": "wǒ de sù shè zài sān lóu。",
       "meaningVi": "Phòng ký túc xá của tôi ở tầng ba.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "宿舍",
       "chinese": "大学的宿舍条件很好。",
-      "pinyin": "",
+      "pinyin": "dà xué de sù shè tiáo jiàn hěn hǎo。",
       "meaningVi": "Cơ sở vật chất của ký túc xá đại học rất tốt.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 宿舍",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/宿舍.mp3"
   ],
@@ -119,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

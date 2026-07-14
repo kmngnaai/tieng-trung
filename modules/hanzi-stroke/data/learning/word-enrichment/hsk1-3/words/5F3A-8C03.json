@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:强调",
   "type": "word",
   "word": "强调",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "qiáng diào",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nhấn mạnh; nhấn; đề cao; đặc biệt lưu ý",
+      "meaningShortVi": "nhấn mạnh",
+      "meaningFullVi": "nhấn mạnh; nhấn; đề cao; đặc biệt lưu ý",
       "partOfSpeech": "động từ (Emphasis Verb)",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nhấn mạnh",
   "wordType": "động từ (Emphasis Verb)",
   "wordTypes": [
     "động từ (Emphasis Verb)"
   ],
-  "usageNotes": [
-    "Dùng khi muốn làm nổi bật một điểm, ý kiến, hoặc nguyên tắc. Trang trọng hơn 重申 (nhắc lại). Synonym: 重申 (nhắc lại), 指出 (chỉ ra), 突出 (làm nổi bật)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "强调指出",
         "pinyin": "qiángdiào zhǐchū",
         "meaningVi": "nhấn mạnh chỉ ra",
+        "meaningFullVi": "nhấn mạnh chỉ ra",
         "target": "强调",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "特别强调",
         "pinyin": "tèbié qiángdiào",
         "meaningVi": "đặc biệt nhấn mạnh",
+        "meaningFullVi": "đặc biệt nhấn mạnh",
         "target": "强调",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Thầy giáo đã nhấn mạnh tầm quan trọng của vấn đề này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "强调",
@@ -82,16 +87,17 @@
       "meaningVi": "Phải nhấn mạnh rằng an toàn là trên hết.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 强调",
-      "syntax": "động từ (Emphasis Verb)",
-      "matchedExample": "Dùng khi muốn làm nổi bật một điểm, ý kiến, hoặc nguyên tắc. Trang trọng hơn 重申 (nhắc lại). Synonym: 重申 (nhắc lại), 指出 (chỉ ra), 突出 (làm nổi bật).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 强调",
+      "partOfSpeech": "động từ (Emphasis Verb)",
+      "usageNoteVi": "Dùng khi muốn làm nổi bật một điểm, ý kiến, hoặc nguyên tắc. Trang trọng hơn 重申 (nhắc lại). Synonym: 重申 (nhắc lại), 指出 (chỉ ra), 突出 (làm nổi bật).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 29,
+      "sectionId": "new_hsk__3__topic__29__lien-lac",
+      "sectionSlug": "lien-lac",
       "sectionTitle": "Liên lạc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/",
+      "orderInSection": 17
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

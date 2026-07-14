@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:热闹",
   "type": "word",
   "word": "热闹",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "rè nao",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nhộn nhịp",
+      "meaningShortVi": "nhộn nhịp",
+      "meaningFullVi": "nhộn nhịp",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nhộn nhịp",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -42,29 +43,51 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [
+      {
+        "text": "热闹",
+        "pinyin": "rè nao",
+        "meaningVi": "nhộn nhịp",
+        "meaningFullVi": "nhộn nhịp",
+        "target": "热闹",
+        "source": "hsk_1.json",
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "热闹",
       "chinese": "这个热闹很好。",
-      "pinyin": "",
+      "pinyin": "zhè ge rè nao hěn hǎo。",
       "meaningVi": "nhộn nhịp này rất tốt.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "热闹",
       "chinese": "我喜欢这个热闹。",
-      "pinyin": "",
+      "pinyin": "wǒ xǐ huan zhè ge rè nao。",
       "meaningVi": "Tôi thích nhộn nhịp này.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 热闹",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/热闹.mp3"
   ],
@@ -77,7 +100,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

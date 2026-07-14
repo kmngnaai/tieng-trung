@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:放到",
   "type": "word",
   "word": "放到",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fàng dào",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đặt vào, để lên",
+      "meaningShortVi": "đặt vào",
+      "meaningFullVi": "đặt vào, để lên",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đặt vào",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Kết hợp giữa '放' (đặt) và '到' (đến), chỉ hành động đặt vật vào vị trí xác định."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "放到桌子上",
-        "pinyin": "",
+        "pinyin": "fàng dào zhuō zi shàng",
         "meaningVi": "để lên bàn",
+        "meaningFullVi": "để lên bàn",
         "target": "放到",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "放到包里",
-        "pinyin": "",
+        "pinyin": "fàng dào bāo lǐ",
         "meaningVi": "để vào trong túi",
+        "meaningFullVi": "để vào trong túi",
         "target": "放到",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "放到",
       "chinese": "请把书放到书架上。",
-      "pinyin": "",
+      "pinyin": "qǐng bǎ shū fàng dào shū jià shàng。",
       "meaningVi": "Để sách lên kệ sách ạ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "放到",
       "chinese": "我把手机放到了包里。",
-      "pinyin": "",
+      "pinyin": "wǒ bǎ shǒu jī fàng dào le bāo lǐ。",
       "meaningVi": "Tôi đã để điện thoại vào trong túi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 放到",
-      "syntax": "động từ",
-      "matchedExample": "Kết hợp giữa '放' (đặt) và '到' (đến), chỉ hành động đặt vật vào vị trí xác định.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 放到",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Kết hợp giữa '放' (đặt) và '到' (đến), chỉ hành động đặt vật vào vị trí xác định.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 24,
+      "sectionId": "new_hsk__3__topic__24__words-ii",
+      "sectionSlug": "words-ii",
       "sectionTitle": "Words II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/words-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/words-ii/",
+      "orderInSection": 25
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

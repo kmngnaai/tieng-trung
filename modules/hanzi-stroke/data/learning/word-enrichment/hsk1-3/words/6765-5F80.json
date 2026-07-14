@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:来往",
   "type": "word",
   "word": "来往",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "lái wang",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "liên lạc",
+      "meaningShortVi": "liên lạc",
+      "meaningFullVi": "liên lạc",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "liên lạc",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng để chỉ liên lạc."
-  ],
-  "wordTypeExplanations": [
-    "liên lạc — từ ghép mang nghĩa này."
   ],
   "hsk": {
     "levels": [
@@ -51,11 +48,14 @@
         "text": "关于来往",
         "pinyin": "guānyú 来往",
         "meaningVi": "về liên lạc",
+        "meaningFullVi": "về liên lạc",
         "target": "来往",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -65,7 +65,8 @@
       "meaningVi": "Liên lạc này rất quan trọng",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "来往",
@@ -74,7 +75,8 @@
       "meaningVi": "Họ đã liên lạc",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "来往",
@@ -83,23 +85,17 @@
       "meaningVi": "Về liên lạc",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 来往",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng để chỉ liên lạc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "liên lạc — từ ghép mang nghĩa này.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 来往",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng để chỉ liên lạc.",
+      "explanationVi": "liên lạc — từ ghép mang nghĩa này.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:接着",
   "type": "word",
   "word": "接着",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiē zhe",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tiếp trước",
+      "meaningShortVi": "tiếp trước",
+      "meaningFullVi": "tiếp trước",
       "partOfSpeech": "conjunction",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tiếp trước",
   "wordType": "conjunction",
   "wordTypes": [
     "conjunction"
   ],
-  "usageNotes": [
-    "Chỉ hành động nối tiếp ngay sau hành động khác"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "接着做",
-        "pinyin": "",
+        "pinyin": "jiē zhe zuò",
         "meaningVi": "làm tiếp",
+        "meaningFullVi": "làm tiếp",
         "target": "接着",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "接着说",
-        "pinyin": "",
+        "pinyin": "jiē zhe shuō",
         "meaningVi": "nói tiếp",
+        "meaningFullVi": "nói tiếp",
         "target": "接着",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "接着",
       "chinese": "吃完饭接着看电视",
-      "pinyin": "",
+      "pinyin": "chī wán fàn jiē zhe kàn diàn shì",
       "meaningVi": "Ăn xong cơm rồi xem TV",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "接着",
       "chinese": "他接着说",
-      "pinyin": "",
+      "pinyin": "tā jiē zhe shuō",
       "meaningVi": "Anh ấy nói tiếp",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 接着",
-      "syntax": "conjunction",
-      "matchedExample": "Chỉ hành động nối tiếp ngay sau hành động khác",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 接着",
+      "partOfSpeech": "conjunction",
+      "usageNoteVi": "Chỉ hành động nối tiếp ngay sau hành động khác",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__2__topic__10__tu-noi",
+      "sectionSlug": "tu-noi",
       "sectionTitle": "Từ nối",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-noi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-noi/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

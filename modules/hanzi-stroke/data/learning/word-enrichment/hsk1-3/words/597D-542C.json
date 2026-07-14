@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:好听",
   "type": "word",
   "word": "好听",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "hǎo tīng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nghe hay, hay (về âm thanh)",
+      "meaningShortVi": "nghe hay",
+      "meaningFullVi": "nghe hay, hay (về âm thanh)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nghe hay",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Tính từ kết hợp chỉ âm thanh nghe hay, dễ chịu. Dùng cho âm nhạc, giọng nói, câu chuyện."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -46,40 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "很好听",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "好听",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "不好听",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "好听",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "好听的音乐",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "好听",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "听起来好听",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "好听",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -89,7 +56,8 @@
       "meaningVi": "Bài hát này rất hay.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "好听",
@@ -98,7 +66,8 @@
       "meaningVi": "Bạn nói tiếng Trung nghe hay lắm.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "好听",
@@ -107,16 +76,17 @@
       "meaningVi": "Câu chuyện này không hay.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 好听",
-      "syntax": "compound-semantic",
-      "matchedExample": "Tính từ kết hợp chỉ âm thanh nghe hay, dễ chịu. Dùng cho âm nhạc, giọng nói, câu chuyện.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 好听",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Tính từ kết hợp chỉ âm thanh nghe hay, dễ chịu. Dùng cho âm nhạc, giọng nói, câu chuyện.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -127,21 +97,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__1__lesson__9__bai-9-i-ll-be-studying-at-school-tomorrow-morning",
+      "sectionSlug": "bai-9-i-ll-be-studying-at-school-tomorrow-morning",
       "sectionTitle": "Sáng mai tôi học ở trường",
       "sectionTitleZh": "我明天上午在学校学习",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-9-i-ll-be-studying-at-school-tomorrow-morning/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-9-i-ll-be-studying-at-school-tomorrow-morning/",
+      "orderInSection": 11
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__1__topic__12__tinh-tu",
+      "sectionSlug": "tinh-tu",
       "sectionTitle": "Tính từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/tinh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/tinh-tu/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -152,7 +132,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

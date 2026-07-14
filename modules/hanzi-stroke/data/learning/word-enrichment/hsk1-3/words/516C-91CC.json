@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:公里",
   "type": "word",
   "word": "公里",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gōng lǐ",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "công lý",
+      "meaningShortVi": "công lý",
+      "meaningFullVi": "công lý",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "công lý",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Đơn vị đo khoảng cách, tương đương km"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -50,60 +49,65 @@
         "word": "平方公里",
         "pinyin": "píng fāng gōng lǐ",
         "meaningVi": "Kilômét vuông (km²)",
+        "meaningFullVi": "Kilômét vuông (km²)",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          2
-        ],
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 2",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
       {
         "text": "几公里",
-        "pinyin": "",
+        "pinyin": "jǐ gōng lǐ",
         "meaningVi": "bao nhiêu ki-lô-mét",
+        "meaningFullVi": "bao nhiêu ki-lô-mét",
         "target": "公里",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "一百公里",
-        "pinyin": "",
+        "pinyin": "yī bǎi gōng lǐ",
         "meaningVi": "một trăm ki-lô-mét",
+        "meaningFullVi": "một trăm ki-lô-mét",
         "target": "公里",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "公里",
       "chinese": "学校离家五公里",
-      "pinyin": "",
+      "pinyin": "xué xiào lí jiā wǔ gōng lǐ",
       "meaningVi": "Trường học cách nhà năm ki-lô-mét",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "公里",
       "chinese": "开车走了五十公里",
-      "pinyin": "",
+      "pinyin": "kāi chē zǒu le wǔ shí gōng lǐ",
       "meaningVi": "Lái xe được năm mươi ki-lô-mét",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 公里",
-      "syntax": "noun",
-      "matchedExample": "Đơn vị đo khoảng cách, tương đương km",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 公里",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Đơn vị đo khoảng cách, tương đương km",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 2,
+      "sectionId": "new_hsk__2__topic__2__do-luong-tu",
+      "sectionSlug": "do-luong-tu",
       "sectionTitle": "Đo lường từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/do-luong-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/do-luong-tu/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -129,7 +138,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

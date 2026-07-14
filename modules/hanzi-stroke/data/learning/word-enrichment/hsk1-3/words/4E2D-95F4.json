@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:中间",
   "type": "word",
   "word": "中间",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "zhōng jiān",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ở giữa, trung gian",
+      "meaningShortVi": "ở giữa",
+      "meaningFullVi": "ở giữa, trung gian",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ở giữa",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Chỉ vị trí hoặc thời gian ở giữa hai điểm. Có thể dùng cho không gian vật lý hoặc trừu tượng."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 中 (giữa, trung tâm) + 间 (khoảng, khoảng cách) = ở khoảng giữa hai thứ."
   ],
   "hsk": {
     "levels": [
@@ -54,28 +51,35 @@
       {
         "text": "中间人",
         "pinyin": "zhōngjiān rén",
-        "meaningVi": "người môi giới, trung gian",
+        "meaningVi": "người môi giới",
+        "meaningFullVi": "người môi giới, trung gian",
         "target": "中间",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "中间层",
         "pinyin": "zhōngjiān céng",
         "meaningVi": "tầng trung lưu",
+        "meaningFullVi": "tầng trung lưu",
         "target": "中间",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "空气中间",
         "pinyin": "kōngqì zhōngjiān",
         "meaningVi": "trong không khí",
+        "meaningFullVi": "trong không khí",
         "target": "中间",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -85,7 +89,8 @@
       "meaningVi": "Tôi ngồi giữa hai người",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "中间",
@@ -94,7 +99,8 @@
       "meaningVi": "Trường học ở giữa công viên và cửa hàng",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "中间",
@@ -103,23 +109,17 @@
       "meaningVi": "Chúng ta nghỉ ngơi một chút ở giữa",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 中间",
-      "syntax": "compound-semantic",
-      "matchedExample": "Chỉ vị trí hoặc thời gian ở giữa hai điểm. Có thể dùng cho không gian vật lý hoặc trừu tượng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 中 (giữa, trung tâm) + 间 (khoảng, khoảng cách) = ở khoảng giữa hai thứ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 中间",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Chỉ vị trí hoặc thời gian ở giữa hai điểm. Có thể dùng cho không gian vật lý hoặc trừu tượng.",
+      "explanationVi": "Ghép nghĩa: 中 (giữa, trung tâm) + 间 (khoảng, khoảng cách) = ở khoảng giữa hai thứ.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -130,31 +130,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__1__topic__17__dia-diem",
+      "sectionSlug": "dia-diem",
       "sectionTitle": "Địa điểm",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dia-diem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dia-diem/",
+      "orderInSection": 18
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 9,
+      "sectionId": "hsk__3__lesson__9__bai-9-co-ay-noi-tieng-han-gioi-nhu-nguoi-trung-quoc",
+      "sectionSlug": "bai-9-co-ay-noi-tieng-han-gioi-nhu-nguoi-trung-quoc",
       "sectionTitle": "Cô ấy nói tiếng Hán giỏi như người Trung Quốc.",
       "sectionTitleZh": "她的汉语说得跟中国人一样好",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-9-co-ay-noi-tieng-han-gioi-nhu-nguoi-trung-quoc/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-9-co-ay-noi-tieng-han-gioi-nhu-nguoi-trung-quoc/",
+      "orderInSection": 10
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__3__lesson__1__bai-1-we-will-pick-you-up-at-the-airport",
+      "sectionSlug": "bai-1-we-will-pick-you-up-at-the-airport",
       "sectionTitle": "Chúng tôi ra sân bay đón các bạn",
       "sectionTitleZh": "我们去机场接你们",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-1-we-will-pick-you-up-at-the-airport/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-1-we-will-pick-you-up-at-the-airport/",
+      "orderInSection": 19
     }
   ],
   "sources": [
@@ -170,7 +185,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:中文",
   "type": "word",
   "word": "中文",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "zhōng wén",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tiếng Trung (chữ viết)",
+      "meaningShortVi": "tiếng Trung (chữ viết)",
+      "meaningFullVi": "tiếng Trung (chữ viết)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tiếng Trung (chữ viết)",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Tiếng Trung (chữ viết). 同义词 有 汉语 (Hànyǔ - tiếng nói người Hán)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 中 (Trung Quốc) + 文 (chữ/văn) -> chữ viết/văn hóa Trung Hoa."
   ],
   "hsk": {
     "levels": [
@@ -53,19 +50,34 @@
         "text": "学中文",
         "pinyin": "xué Zhōngwén",
         "meaningVi": "học tiếng Trung",
+        "meaningFullVi": "học tiếng Trung",
         "target": "中文",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "说中文",
         "pinyin": "shuō Zhōngwén",
         "meaningVi": "nói tiếng Trung",
+        "meaningFullVi": "nói tiếng Trung",
         "target": "中文",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
+      },
+      {
+        "text": "中文",
+        "pinyin": "Zhōngwén",
+        "meaningVi": "tiếng Trung",
+        "meaningFullVi": "tiếng Trung",
+        "target": "中文",
+        "source": "hsk_1.json",
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -75,7 +87,8 @@
       "meaningVi": "Tôi học tiếng Trung",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "中文",
@@ -84,7 +97,8 @@
       "meaningVi": "Tiếng Trung rất khó",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "中文",
@@ -93,7 +107,8 @@
       "meaningVi": "nói tiếng Trung",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "中文",
@@ -102,23 +117,17 @@
       "meaningVi": "sách tiếng Trung",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 中文",
-      "syntax": "compound-semantic",
-      "matchedExample": "Tiếng Trung (chữ viết). 同义词 有 汉语 (Hànyǔ - tiếng nói người Hán).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 中 (Trung Quốc) + 文 (chữ/văn) -> chữ viết/văn hóa Trung Hoa.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 中文",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Tiếng Trung (chữ viết). 同义词 有 汉语 (Hànyǔ - tiếng nói người Hán).",
+      "explanationVi": "Ghép nghĩa: 中 (Trung Quốc) + 文 (chữ/văn) -> chữ viết/văn hóa Trung Hoa.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -129,21 +138,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__1__lesson__3__bai-3-i-m-chinese",
+      "sectionSlug": "bai-3-i-m-chinese",
       "sectionTitle": "Tôi là người Trung Quốc",
       "sectionTitleZh": "我是中国人",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-3-i-m-chinese/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-3-i-m-chinese/",
+      "orderInSection": 22
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__1__topic__6__trong-lop",
+      "sectionSlug": "trong-lop",
       "sectionTitle": "Trong lớp",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/trong-lop/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/trong-lop/",
+      "orderInSection": 18
     }
   ],
   "sources": [
@@ -154,7 +173,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

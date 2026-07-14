@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:证明",
   "type": "word",
   "word": "证明",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhèng míng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chứng minh, chứng thực, bằng chứng",
+      "meaningShortVi": "chứng minh",
+      "meaningFullVi": "chứng minh, chứng thực, bằng chứng",
       "partOfSpeech": "động từ / danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chứng minh",
   "wordType": "động từ / danh từ",
   "wordTypes": [
     "động từ / danh từ"
   ],
-  "usageNotes": [
-    "Cả động từ và danh từ. Làm động từ có nghĩa là chứng minh một điều gì đó là đúng. Làm danh từ chỉ bằng chứng, giấy tờ chứng nhận."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,74 +48,56 @@
     "collocations": [
       {
         "text": "证明自己",
-        "pinyin": "",
+        "pinyin": "zhèng míng zì jǐ",
         "meaningVi": "chứng minh bản thân",
+        "meaningFullVi": "chứng minh bản thân",
         "target": "证明",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "身份证明",
-        "pinyin": "",
-        "meaningVi": "giấy chứng minh thân thân, chứng minh thư",
-        "target": "证明",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "事实证明",
-        "pinyin": "",
+        "pinyin": "shì shí zhèng míng",
         "meaningVi": "sự thật chứng minh",
+        "meaningFullVi": "sự thật chứng minh",
         "target": "证明",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "足以证明",
-        "pinyin": "",
-        "meaningVi": "đủ để chứng minh",
-        "target": "证明",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "证明",
-      "chinese": "请出示身份证明。",
-      "pinyin": "",
-      "meaningVi": "Vui lòng xuất trình giấy chứng minh thân thân.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "证明",
       "chinese": "事实证明了他是正确的。",
-      "pinyin": "",
+      "pinyin": "shì shí zhèng míng le tā shì zhèng què de。",
       "meaningVi": "Sự thật đã chứng minh anh ấy đúng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "证明",
       "chinese": "这是最好的证明。",
-      "pinyin": "",
+      "pinyin": "zhè shì zuì hǎo de zhèng míng。",
       "meaningVi": "Đây là bằng chứng tốt nhất.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 证明",
-      "syntax": "động từ / danh từ",
-      "matchedExample": "Cả động từ và danh từ. Làm động từ có nghĩa là chứng minh một điều gì đó là đúng. Làm danh từ chỉ bằng chứng, giấy tờ chứng nhận.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 证明",
+      "partOfSpeech": "động từ / danh từ",
+      "usageNoteVi": "Cả động từ và danh từ. Làm động từ có nghĩa là chứng minh một điều gì đó là đúng. Làm danh từ chỉ bằng chứng, giấy tờ chứng nhận.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -127,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__3__topic__6__bao-hanh-va-bao-ve",
+      "sectionSlug": "bao-hanh-va-bao-ve",
       "sectionTitle": "Bảo hành và bảo vệ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bao-hanh-va-bao-ve/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bao-hanh-va-bao-ve/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -142,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

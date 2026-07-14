@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:里头",
   "type": "word",
   "word": "里头",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "lǐ tou",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bên trong",
+      "meaningShortVi": "bên trong",
+      "meaningFullVi": "bên trong",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bên trong",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Từ khẩu ngữ, = 里面."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "屋子 里头",
-        "pinyin": "",
+        "pinyin": "wū zi lǐ tou",
         "meaningVi": "bên trong phòng",
+        "meaningFullVi": "bên trong phòng",
         "target": "里头",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "里头的东西",
-        "pinyin": "",
+        "pinyin": "lǐ tou de dōng xi",
         "meaningVi": "đồ vật bên trong",
+        "meaningFullVi": "đồ vật bên trong",
         "target": "里头",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "里头",
       "chinese": "里头有人吗",
-      "pinyin": "",
+      "pinyin": "lǐ tou yǒu rén ma",
       "meaningVi": "Bên trong có người không",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "里头",
       "chinese": "房间里头很干净",
-      "pinyin": "",
+      "pinyin": "fáng jiān lǐ tou hěn gān jìng",
       "meaningVi": "Bên trong phòng rất sạch sẽ",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 里头",
-      "syntax": "noun",
-      "matchedExample": "Từ khẩu ngữ, = 里面.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 里头",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Từ khẩu ngữ, = 里面.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__2__topic__6__huong",
+      "sectionSlug": "huong",
       "sectionTitle": "Hướng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/huong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/huong/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

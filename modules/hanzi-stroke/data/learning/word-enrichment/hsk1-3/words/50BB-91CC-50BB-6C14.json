@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:傻里傻气",
   "type": "word",
   "word": "傻里傻气",
@@ -17,24 +17,25 @@
     "readings": [
       {
         "pinyin": "shǎ li shǎ qì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Ngây ngô, khờ khạo, ngớ ngẩn",
+      "meaningShortVi": "Ngây ngô",
+      "meaningFullVi": "Ngây ngô, khờ khạo, ngớ ngẩn",
       "partOfSpeech": "Tính từ / Trạng từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Ngây ngô",
   "wordType": "Tính từ / Trạng từ",
   "wordTypes": [
     "Tính từ / Trạng từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,7 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -54,7 +56,8 @@
       "meaningVi": "Anh ấy lúc nào cũng ngây ngô, khiến người ta thấy buồn cười.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "傻里傻气",
@@ -63,10 +66,19 @@
       "meaningVi": "Đừng ngớ ngẩn mà tin lời người lạ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 傻里傻气",
+      "partOfSpeech": "Tính từ / Trạng từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/傻里傻气.mp3"
   ],
@@ -79,7 +91,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:生词",
   "type": "word",
   "word": "生词",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "shēng cí",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "từ mới",
+      "meaningShortVi": "từ mới",
+      "meaningFullVi": "từ mới",
       "partOfSpeech": "noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "từ mới",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -45,46 +46,40 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "新词",
-        "pinyin": "",
-        "meaningVi": "từ mới",
-        "target": "生词",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "词汇",
-        "pinyin": "",
-        "meaningVi": "từ vựng",
-        "target": "生词",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "生词",
       "chinese": "今天学了十个生词",
-      "pinyin": "",
+      "pinyin": "jīn tiān xué le shí gè shēng cí",
       "meaningVi": "Hôm nay học mười từ mới",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "生词",
       "chinese": "把生词写下来",
-      "pinyin": "",
+      "pinyin": "bǎ shēng cí xiě xià lái",
       "meaningVi": "Viết từ mới ra",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 生词",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/生词.mp3"
   ],
@@ -93,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__2__topic__8__ngon-ngu",
+      "sectionSlug": "ngon-ngu",
       "sectionTitle": "Ngôn ngữ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/ngon-ngu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/ngon-ngu/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -113,7 +113,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

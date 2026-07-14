@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:人民币",
   "type": "word",
   "word": "人民币",
@@ -16,24 +16,25 @@
     "readings": [
       {
         "pinyin": "rén mín bì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đồng tiền Nhân dân tệ (tiền Trung Quốc)",
+      "meaningShortVi": "đồng tiền Nhân dân tệ (tiền Trung Quốc)",
+      "meaningFullVi": "đồng tiền Nhân dân tệ (tiền Trung Quốc)",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đồng tiền Nhân dân tệ (tiền Trung Quốc)",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -45,46 +46,40 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "人民币汇率",
-        "pinyin": "",
-        "meaningVi": "tỷ giá nhân dân tệ",
-        "target": "人民币",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "兑换人民币",
-        "pinyin": "",
-        "meaningVi": "đổi nhân dân tệ",
-        "target": "人民币",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "人民币",
       "chinese": "一百人民币可以买什么？",
-      "pinyin": "",
+      "pinyin": "yī bǎi rén mín bì kě yǐ mǎi shén me？",
       "meaningVi": "Một trăm nhân dân tệ có thể mua được gì?",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "人民币",
       "chinese": "请用人民币支付。",
-      "pinyin": "",
+      "pinyin": "qǐng yòng rén mín bì zhī fù。",
       "meaningVi": "Vui lòng thanh toán bằng nhân dân tệ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 人民币",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/人民币.mp3"
   ],
@@ -93,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 22,
+      "sectionId": "new_hsk__3__topic__22__kinh-te-va-tai-chinh",
+      "sectionSlug": "kinh-te-va-tai-chinh",
       "sectionTitle": "Kinh tế và tài chính",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/kinh-te-va-tai-chinh/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/kinh-te-va-tai-chinh/",
+      "orderInSection": 26
     }
   ],
   "sources": [
@@ -108,7 +108,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

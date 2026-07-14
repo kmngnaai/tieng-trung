@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:限于",
   "type": "word",
   "word": "限于",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "xiàn yú",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bị giới hạn trong, chỉ được...",
+      "meaningShortVi": "bị giới hạn trong",
+      "meaningFullVi": "bị giới hạn trong, chỉ được...",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bị giới hạn trong",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Thường dùng khi nói về sự giới hạn (thời gian, điều kiện, khả năng...)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 限 (giới hạn) + 于 (tại, trong) → bị giới hạn trong."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "限于时间",
         "pinyin": "xiànyú shíjiān",
         "meaningVi": "giới hạn thời gian",
+        "meaningFullVi": "giới hạn thời gian",
         "target": "限于",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "限于条件",
         "pinyin": "xiànyú tiáojiàn",
         "meaningVi": "giới hạn điều kiện",
+        "meaningFullVi": "giới hạn điều kiện",
         "target": "限于",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "限于篇幅",
         "pinyin": "xiànyú piānfú",
         "meaningVi": "giới hạn số trang",
+        "meaningFullVi": "giới hạn số trang",
         "target": "限于",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Bị giới hạn điều kiện",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "限于",
@@ -90,7 +95,8 @@
       "meaningVi": "Bị giới hạn thời gian",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "限于",
@@ -99,7 +105,8 @@
       "meaningVi": "Bị giới hạn số trang/bài viết",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "限于",
@@ -108,7 +115,8 @@
       "meaningVi": "Bị giới hạn khả năng",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "限于",
@@ -117,23 +125,17 @@
       "meaningVi": "Chỉ giới hạn trong, chỉ được",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 限于",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường dùng khi nói về sự giới hạn (thời gian, điều kiện, khả năng...).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 限 (giới hạn) + 于 (tại, trong) → bị giới hạn trong.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 限于",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường dùng khi nói về sự giới hạn (thời gian, điều kiện, khả năng...).",
+      "explanationVi": "Ghép nghĩa: 限 (giới hạn) + 于 (tại, trong) → bị giới hạn trong.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -148,7 +150,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

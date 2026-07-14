@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:想法",
   "type": "word",
   "word": "想法",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "xiǎng fǎ",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ý tưởng",
+      "meaningShortVi": "ý tưởng",
+      "meaningFullVi": "ý tưởng",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ý tưởng",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,43 +48,58 @@
     "collocations": [
       {
         "text": "好想法",
-        "pinyin": "",
+        "pinyin": "hǎo xiǎng fǎ",
         "meaningVi": "ý tưởng tốt",
+        "meaningFullVi": "ý tưởng tốt",
         "target": "想法",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "新想法",
-        "pinyin": "",
+        "pinyin": "xīn xiǎng fǎ",
         "meaningVi": "ý tưởng mới",
+        "meaningFullVi": "ý tưởng mới",
         "target": "想法",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "想法",
       "chinese": "我有一个好想法",
-      "pinyin": "",
+      "pinyin": "wǒ yǒu yī gè hǎo xiǎng fǎ",
       "meaningVi": "Tôi có một ý tưởng tốt",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "想法",
       "chinese": "请说说你的想法",
-      "pinyin": "",
+      "pinyin": "qǐng shuō shuō nǐ de xiǎng fǎ",
       "meaningVi": "Hãy nói ý tưởng của bạn",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 想法",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/想法.mp3"
   ],
@@ -92,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 23,
+      "sectionId": "new_hsk__2__topic__23__suy-nghi",
+      "sectionSlug": "suy-nghi",
       "sectionTitle": "Suy nghĩ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/suy-nghi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/suy-nghi/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -107,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

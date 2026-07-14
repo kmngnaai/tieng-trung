@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:形成",
   "type": "word",
   "word": "形成",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xíng chéng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hình thành, thành hình; quá trình phát triển và trở thành một trạng thái, cấu trúc hoặc kết quả nhất định",
+      "meaningShortVi": "hình thành",
+      "meaningFullVi": "hình thành, thành hình; quá trình phát triển và trở thành một trạng thái, cấu trúc hoặc kết quả nhất định",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hình thành",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Thường đi kèm với thói quen, phong cách, quan điểm, kết quả. Trong văn trang trọng, 有助于形成 để tăng tính lễ phép. Từ liên quan: 养成 'hình thành (thói quen)', 建立 'thiết lập'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "形成风格",
         "pinyin": "xíngchéng fēnggé",
         "meaningVi": "hình thành phong cách",
+        "meaningFullVi": "hình thành phong cách",
         "target": "形成",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "形成共识",
         "pinyin": "xíngchéng gòngshí",
         "meaningVi": "hình thành sự đồng thuận",
+        "meaningFullVi": "hình thành sự đồng thuận",
         "target": "形成",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Thói quen này được hình thành từ bé.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "形成",
@@ -82,16 +87,17 @@
       "meaningVi": "Chúng ta cần hình thành thói quen học tập tốt.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 形成",
-      "syntax": "động từ",
-      "matchedExample": "Thường đi kèm với thói quen, phong cách, quan điểm, kết quả. Trong văn trang trọng, 有助于形成 để tăng tính lễ phép. Từ liên quan: 养成 'hình thành (thói quen)', 建立 'thiết lập'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 形成",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Thường đi kèm với thói quen, phong cách, quan điểm, kết quả. Trong văn trang trọng, 有助于形成 để tăng tính lễ phép. Từ liên quan: 养成 'hình thành (thói quen)', 建立 'thiết lập'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__topic__17__nhung-thay-doi",
+      "sectionSlug": "nhung-thay-doi",
       "sectionTitle": "Những thay đổi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:加工",
   "type": "word",
   "word": "加工",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiā gōng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Gia công, chế biến",
+      "meaningShortVi": "Gia công",
+      "meaningFullVi": "Gia công, chế biến",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Gia công",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "加工 là xử lý hoặc chế biến nguyên liệu thô thành sản phẩm. Nó có thể dùng cho thực phẩm (chế biến), kim loại (gia công), hoặc dữ liệu (xử lý). Trong giao tiếp, người ta thường nói '加工产品' (gia công sản phẩm) hoặc '深加工' (gia công sâu)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "加工食品",
         "pinyin": "jiāgōng shípǐn",
         "meaningVi": "thực phẩm chế biến",
+        "meaningFullVi": "thực phẩm chế biến",
         "target": "加工",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "再加工",
         "pinyin": "zài jiāgōng",
         "meaningVi": "gia công lại",
+        "meaningFullVi": "gia công lại",
         "target": "加工",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Nhà máy này chuyên gia công linh kiện ô tô.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "加工",
@@ -82,16 +87,17 @@
       "meaningVi": "Thực phẩm này cần gia công thêm mới bán được.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 加工",
-      "syntax": "động từ",
-      "matchedExample": "加工 là xử lý hoặc chế biến nguyên liệu thô thành sản phẩm. Nó có thể dùng cho thực phẩm (chế biến), kim loại (gia công), hoặc dữ liệu (xử lý). Trong giao tiếp, người ta thường nói '加工产品' (gia công sản phẩm) hoặc '深加工' (gia công sâu).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 加工",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "加工 là xử lý hoặc chế biến nguyên liệu thô thành sản phẩm. Nó có thể dùng cho thực phẩm (chế biến), kim loại (gia công), hoặc dữ liệu (xử lý). Trong giao tiếp, người ta thường nói '加工产品' (gia công sản phẩm) hoặc '深加工' (gia công sâu).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__3__topic__12__lam-viec-toi",
+      "sectionSlug": "lam-viec-toi",
       "sectionTitle": "Làm việc tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

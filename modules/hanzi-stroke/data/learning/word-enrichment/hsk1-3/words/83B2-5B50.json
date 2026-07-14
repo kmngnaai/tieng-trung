@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:莲子",
   "type": "word",
   "word": "莲子",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "lián zǐ",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hạt sen",
+      "meaningShortVi": "hạt sen",
+      "meaningFullVi": "hạt sen",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hạt sen",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Hạt của hoa sen, dùng làm thuốc hoặc thực phẩm."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 莲 (sen) + 子 (hạt, hạt giống) → hạt sen."
   ],
   "hsk": {
     "levels": [
@@ -51,19 +48,24 @@
         "text": "莲子粥",
         "pinyin": "liánzǐ zhōu",
         "meaningVi": "cháo hạt sen",
+        "meaningFullVi": "cháo hạt sen",
         "target": "莲子",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "干莲子",
         "pinyin": "gān liánzǐ",
         "meaningVi": "hạt sen khô",
+        "meaningFullVi": "hạt sen khô",
         "target": "莲子",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +75,8 @@
       "meaningVi": "Cháo hạt sen rất ngon",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "莲子",
@@ -82,7 +85,8 @@
       "meaningVi": "Hạt sen phơi khô",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "莲子",
@@ -91,23 +95,17 @@
       "meaningVi": "Hạt sen tươi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 莲子",
-      "syntax": "compound-semantic",
-      "matchedExample": "Hạt của hoa sen, dùng làm thuốc hoặc thực phẩm.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 莲 (sen) + 子 (hạt, hạt giống) → hạt sen.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 莲子",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Hạt của hoa sen, dùng làm thuốc hoặc thực phẩm.",
+      "explanationVi": "Ghép nghĩa: 莲 (sen) + 子 (hạt, hạt giống) → hạt sen.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -122,7 +120,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

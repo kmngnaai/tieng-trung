@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:碰到",
   "type": "word",
   "word": "碰到",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "pèng dào",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "vấp phải; gặp",
+      "meaningShortVi": "vấp phải",
+      "meaningFullVi": "vấp phải; gặp",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "vấp phải",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [
-    "Thường dùng cho tình cờ gặp hoặc va phải"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -48,42 +47,47 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "遇见",
-        "pinyin": "",
-        "meaningVi": "bạn gặp",
+        "text": "碰到",
+        "pinyin": "pèng dào",
+        "meaningVi": "tình cờ gặp",
+        "meaningFullVi": "tình cờ gặp",
         "target": "碰到",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "碰到",
       "chinese": "我在街上碰到他",
-      "pinyin": "",
+      "pinyin": "wǒ zài jiē shàng pèng dào tā",
       "meaningVi": "Tôi gặp anh ấy trên phố",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "碰到",
       "chinese": "碰到困难",
-      "pinyin": "",
+      "pinyin": "pèng dào kùn nan",
       "meaningVi": "Gặp khó khăn",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 碰到",
-      "syntax": "verb",
-      "matchedExample": "Thường dùng cho tình cờ gặp hoặc va phải",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 碰到",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "Thường dùng cho tình cờ gặp hoặc va phải",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -94,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 26,
+      "sectionId": "new_hsk__2__topic__26__dong-tu",
+      "sectionSlug": "dong-tu",
       "sectionTitle": "Động từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dong-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dong-tu/",
+      "orderInSection": 18
     }
   ],
   "sources": [
@@ -109,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:生动",
   "type": "word",
   "word": "生动",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shēng dòng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sống động, sinh động; đầy sức sống",
+      "meaningShortVi": "sống động",
+      "meaningFullVi": "sống động, sinh động; đầy sức sống",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sống động",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "Shēng dòng dùng cho phong cách trình bày, miêu tả có sức thu hút, không khô khan. Thường miêu tả bài giảng, văn viết, ví dụ."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "生动的例子",
-        "pinyin": "",
+        "pinyin": "shēng dòng de lì zi",
         "meaningVi": "ví dụ sinh động",
+        "meaningFullVi": "ví dụ sinh động",
         "target": "生动",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "生动形象",
-        "pinyin": "",
-        "meaningVi": "sinh động, hình ảnh",
+        "pinyin": "shēng dòng xíng xiàng",
+        "meaningVi": "sinh động",
+        "meaningFullVi": "sinh động, hình ảnh",
         "target": "生动",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "生动",
       "chinese": "老师讲课很生动。",
-      "pinyin": "",
+      "pinyin": "lǎo shī jiǎng kè hěn shēng dòng。",
       "meaningVi": "Thầy cô giảng bài rất sinh động.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "生动",
       "chinese": "这篇文章写得很生动。",
-      "pinyin": "",
+      "pinyin": "zhè piān wén zhāng xiě děi hěn shēng dòng。",
       "meaningVi": "Bài viết này rất sinh động.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 生动",
-      "syntax": "tính từ",
-      "matchedExample": "Shēng dòng dùng cho phong cách trình bày, miêu tả có sức thu hút, không khô khan. Thường miêu tả bài giảng, văn viết, ví dụ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 生动",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "Shēng dòng dùng cho phong cách trình bày, miêu tả có sức thu hút, không khô khan. Thường miêu tả bài giảng, văn viết, ví dụ.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 33,
+      "sectionId": "new_hsk__3__topic__33__tinh-tu",
+      "sectionSlug": "tinh-tu",
       "sectionTitle": "Tính từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/",
+      "orderInSection": 22
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

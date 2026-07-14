@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:下次",
   "type": "word",
   "word": "下次",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xià cì",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lần sau",
+      "meaningShortVi": "lần sau",
+      "meaningFullVi": "lần sau",
       "partOfSpeech": "other",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lần sau",
   "wordType": "other",
   "wordTypes": [
     "other"
   ],
-  "usageNotes": [
-    "下次 chỉ thời điểm sau thời gian hiện tại."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -51,19 +50,24 @@
         "text": "下次见",
         "pinyin": "xiàcì jiàn",
         "meaningVi": "hẹn lần sau gặp",
+        "meaningFullVi": "hẹn lần sau gặp",
         "target": "下次",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "下次再",
         "pinyin": "xiàcì zài",
         "meaningVi": "lần sau nữa",
+        "meaningFullVi": "lần sau nữa",
         "target": "下次",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Hẹn gặp lại lần sau.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "下次",
@@ -82,7 +87,8 @@
       "meaningVi": "Lần sau hãy đến lại nhé.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "下次",
@@ -91,16 +97,17 @@
       "meaningVi": "Lần sau chúng ta bao giờ gặp nhau?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 下次",
-      "syntax": "other",
-      "matchedExample": "下次 chỉ thời điểm sau thời gian hiện tại.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 下次",
+      "partOfSpeech": "other",
+      "usageNoteVi": "下次 chỉ thời điểm sau thời gian hiện tại.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -111,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__1__topic__1__dat-cau-hoi-va-do-luong-tu-ngu",
+      "sectionSlug": "dat-cau-hoi-va-do-luong-tu-ngu",
       "sectionTitle": "Đặt câu hỏi và đo lường từ ngữ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dat-cau-hoi-va-do-luong-tu-ngu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dat-cau-hoi-va-do-luong-tu-ngu/",
+      "orderInSection": 22
     }
   ],
   "sources": [
@@ -126,7 +138,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

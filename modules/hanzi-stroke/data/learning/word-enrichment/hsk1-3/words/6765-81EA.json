@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:来自",
   "type": "word",
   "word": "来自",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "lái zì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đến từ",
+      "meaningShortVi": "đến từ",
+      "meaningFullVi": "đến từ",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đến từ",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -48,52 +49,68 @@
     "collocations": [
       {
         "text": "来自哪里",
-        "pinyin": "",
+        "pinyin": "lái zì nǎ lǐ",
         "meaningVi": "đến từ đâu",
+        "meaningFullVi": "đến từ đâu",
         "target": "来自",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "来自世界各地",
-        "pinyin": "",
+        "pinyin": "lái zì shì jiè gè dì",
         "meaningVi": "đến từ khắp nơi trên thế giới",
+        "meaningFullVi": "đến từ khắp nơi trên thế giới",
         "target": "来自",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "来自",
       "chinese": "他来自中国",
-      "pinyin": "",
+      "pinyin": "tā lái zì Zhōng guó",
       "meaningVi": "Anh ấy đến từ Trung Quốc",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "来自",
       "chinese": "这封信来自朋友",
-      "pinyin": "",
+      "pinyin": "zhè fēng xìn lái zì péng you",
       "meaningVi": "Bức thư này đến từ bạn",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "来自",
       "chinese": "我们来自不同的城市",
-      "pinyin": "",
+      "pinyin": "wǒ men lái zì bù tóng de chéng shì",
       "meaningVi": "Chúng tôi đến từ những thành phố khác nhau",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 来自",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/来自.mp3"
   ],
@@ -102,21 +119,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 21,
+      "sectionId": "new_hsk__2__topic__21__thong-tin-ca-nhan",
+      "sectionSlug": "thong-tin-ca-nhan",
       "sectionTitle": "Thông tin cá nhân",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin-ca-nhan/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin-ca-nhan/",
+      "orderInSection": 13
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__3__lesson__13__bai-13-my-new-neighbors-come-from-the-uk",
+      "sectionSlug": "bai-13-my-new-neighbors-come-from-the-uk",
       "sectionTitle": "Hàng xóm mới của tôi đến từ Anh",
       "sectionTitleZh": "我的新邻居来自英国",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-13-my-new-neighbors-come-from-the-uk/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-13-my-new-neighbors-come-from-the-uk/",
+      "orderInSection": 20
     }
   ],
   "sources": [
@@ -132,7 +159,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:读书",
   "type": "word",
   "word": "读书",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "dú shū",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đọc sách, đi học",
+      "meaningShortVi": "đọc sách",
+      "meaningFullVi": "đọc sách, đi học",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đọc sách",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Có thể mang nghĩa 'đọc sách' hoặc 'đi học' tùy ngữ cảnh. Khi nói về nơi học, nghĩa là 'đi học'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -47,40 +46,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "喜欢读书",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "读书",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "读书人",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "读书",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "读好书",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "读书",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "认真读书",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "读书",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -90,7 +57,8 @@
       "meaningVi": "Tôi thích đọc sách.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "读书",
@@ -99,7 +67,8 @@
       "meaningVi": "Anh ấy đang học tại Đại học Bắc Kinh.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "读书",
@@ -108,16 +77,17 @@
       "meaningVi": "Mỗi tối tôi đều đọc sách.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 读书",
-      "syntax": "compound-semantic",
-      "matchedExample": "Có thể mang nghĩa 'đọc sách' hoặc 'đi học' tùy ngữ cảnh. Khi nói về nơi học, nghĩa là 'đi học'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 读书",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Có thể mang nghĩa 'đọc sách' hoặc 'đi học' tùy ngữ cảnh. Khi nói về nơi học, nghĩa là 'đi học'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -128,21 +98,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__1__lesson__9__bai-9-i-ll-be-studying-at-school-tomorrow-morning",
+      "sectionSlug": "bai-9-i-ll-be-studying-at-school-tomorrow-morning",
       "sectionTitle": "Sáng mai tôi học ở trường",
       "sectionTitleZh": "我明天上午在学校学习",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-9-i-ll-be-studying-at-school-tomorrow-morning/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-9-i-ll-be-studying-at-school-tomorrow-morning/",
+      "orderInSection": 7
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__1__topic__5__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nghien-cuu/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -158,7 +138,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

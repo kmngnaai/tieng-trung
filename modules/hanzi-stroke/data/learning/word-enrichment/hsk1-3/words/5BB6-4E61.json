@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:家乡",
   "type": "word",
   "word": "家乡",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiā xiāng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "quê hương",
+      "meaningShortVi": "quê hương",
+      "meaningFullVi": "quê hương",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "quê hương",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "家乡 (quê hương) là từ phổ biến nhất chỉ nơi sinh ra và lớn lên, mang sắc thái tình cảm, ấm áp."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "回到家乡",
         "pinyin": "huí dào jiāxiāng",
         "meaningVi": "về quê hương",
+        "meaningFullVi": "về quê hương",
         "target": "家乡",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "家乡人",
         "pinyin": "jiāxiāngrén",
         "meaningVi": "người cùng quê",
+        "meaningFullVi": "người cùng quê",
         "target": "家乡",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Tôi rất yêu quê hương của mình.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "家乡",
@@ -82,16 +87,17 @@
       "meaningVi": "Dịp Tết, tôi về quê hương.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 家乡",
-      "syntax": "danh từ",
-      "matchedExample": "家乡 (quê hương) là từ phổ biến nhất chỉ nơi sinh ra và lớn lên, mang sắc thái tình cảm, ấm áp.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 家乡",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "家乡 (quê hương) là từ phổ biến nhất chỉ nơi sinh ra và lớn lên, mang sắc thái tình cảm, ấm áp.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 15,
+      "sectionId": "new_hsk__3__topic__15__noi",
+      "sectionSlug": "noi",
       "sectionTitle": "Nơi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/noi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/noi/",
+      "orderInSection": 24
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

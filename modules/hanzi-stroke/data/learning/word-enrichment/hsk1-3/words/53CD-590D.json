@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:反复",
   "type": "word",
   "word": "反复",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fǎn fù",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lặp đi lặp lại; nhiều lần; thay đổi liên tục",
+      "meaningShortVi": "lặp đi lặp lại",
+      "meaningFullVi": "lặp đi lặp lại; nhiều lần; thay đổi liên tục",
       "partOfSpeech": "động từ / trạng từ (Verb / Adverb)",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lặp đi lặp lại",
   "wordType": "động từ / trạng từ (Verb / Adverb)",
   "wordTypes": [
     "động từ / trạng từ (Verb / Adverb)"
   ],
-  "usageNotes": [
-    "Chỉ hành động lặp lại nhiều lần hoặc sự thay đổi liên tục. Có thể mang nghĩa tích cực (luyện tập chăm chỉ) hoặc tiêu cực (hay thay đổi, không nhất quán). Synonym: 重复 (lặp lại), 再三 (nhiều lần)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "反复思考",
         "pinyin": "fǎnfù sīkǎo",
         "meaningVi": "nghĩ đi nghĩ lại nhiều lần",
+        "meaningFullVi": "nghĩ đi nghĩ lại nhiều lần",
         "target": "反复",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "反复无常",
         "pinyin": "fǎnfù wúcháng",
-        "meaningVi": "hay thay đổi, thất thường",
+        "meaningVi": "hay thay đổi",
+        "meaningFullVi": "hay thay đổi, thất thường",
         "target": "反复",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Anh ấy luyện tập bài hát này nhiều lần.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "反复",
@@ -82,16 +87,17 @@
       "meaningVi": "Tình hình thay đổi liên tục.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 反复",
-      "syntax": "động từ / trạng từ (Verb / Adverb)",
-      "matchedExample": "Chỉ hành động lặp lại nhiều lần hoặc sự thay đổi liên tục. Có thể mang nghĩa tích cực (luyện tập chăm chỉ) hoặc tiêu cực (hay thay đổi, không nhất quán). Synonym: 重复 (lặp lại), 再三 (nhiều lần).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 反复",
+      "partOfSpeech": "động từ / trạng từ (Verb / Adverb)",
+      "usageNoteVi": "Chỉ hành động lặp lại nhiều lần hoặc sự thay đổi liên tục. Có thể mang nghĩa tích cực (luyện tập chăm chỉ) hoặc tiêu cực (hay thay đổi, không nhất quán). Synonym: 重复 (lặp lại), 再三 (nhiều lần).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 29,
+      "sectionId": "new_hsk__3__topic__29__lien-lac",
+      "sectionSlug": "lien-lac",
       "sectionTitle": "Liên lạc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/",
+      "orderInSection": 25
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

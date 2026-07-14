@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:难道",
   "type": "word",
   "word": "难道",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "nán dào",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chẳng lẽ, lẽ nào",
+      "meaningShortVi": "chẳng lẽ",
+      "meaningFullVi": "chẳng lẽ, lẽ nào",
       "partOfSpeech": "trợ từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chẳng lẽ",
   "wordType": "trợ từ",
   "wordTypes": [
     "trợ từ"
   ],
-  "usageNotes": [
-    "Dùng trong câu hỏi phản tu để nhấn mạnh."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -47,52 +46,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "难道说",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "难道",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "难道不",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "难道",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "难道",
-      "chinese": "难道你不知道吗？",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "难道",
-      "chinese": "难道这是真的？",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 难道",
-      "syntax": "trợ từ",
-      "matchedExample": "Dùng trong câu hỏi phản tu để nhấn mạnh.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 难道",
+      "partOfSpeech": "trợ từ",
+      "usageNoteVi": "Dùng trong câu hỏi phản tu để nhấn mạnh.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +67,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 35,
+      "sectionId": "new_hsk__3__topic__35__tu-chuc-nang-i",
+      "sectionSlug": "tu-chuc-nang-i",
       "sectionTitle": "Từ chức năng I",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-i/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-i/",
+      "orderInSection": 6
     }
   ],
   "sources": [
@@ -123,7 +92,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

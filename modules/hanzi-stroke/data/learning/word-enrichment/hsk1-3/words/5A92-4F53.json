@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:媒体",
   "type": "word",
   "word": "媒体",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "méi tǐ",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phương tiện truyền thông; báo chí, truyền thông",
+      "meaningShortVi": "phương tiện truyền thông",
+      "meaningFullVi": "phương tiện truyền thông; báo chí, truyền thông",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phương tiện truyền thông",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "媒体 là danh từ chỉ phương tiện truyền thông, bao gồm báo chí, TV, radio, mạng xã hội. Là từ ghép Hán-Việt 'môi thể' (phương tiện truyền tải)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "社交媒体",
         "pinyin": "shèjiāo méitǐ",
         "meaningVi": "mạng xã hội",
+        "meaningFullVi": "mạng xã hội",
         "target": "媒体",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "大众媒体",
         "pinyin": "dàzhòng méitǐ",
         "meaningVi": "truyền thông đại chúng",
+        "meaningFullVi": "truyền thông đại chúng",
         "target": "媒体",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Mạng xã hội rất quan trọng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "媒体",
@@ -82,16 +87,17 @@
       "meaningVi": "Đây là báo cáo của truyền thông.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 媒体",
-      "syntax": "danh từ",
-      "matchedExample": "媒体 là danh từ chỉ phương tiện truyền thông, bao gồm báo chí, TV, radio, mạng xã hội. Là từ ghép Hán-Việt 'môi thể' (phương tiện truyền tải).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 媒体",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "媒体 là danh từ chỉ phương tiện truyền thông, bao gồm báo chí, TV, radio, mạng xã hội. Là từ ghép Hán-Việt 'môi thể' (phương tiện truyền tải).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__3__topic__18__thong-tin-va-phuong-tien",
+      "sectionSlug": "thong-tin-va-phuong-tien",
       "sectionTitle": "Thông tin và phương tiện",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

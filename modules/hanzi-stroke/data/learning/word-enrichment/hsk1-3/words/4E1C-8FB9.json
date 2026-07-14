@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:东边",
   "type": "word",
   "word": "东边",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "dōng biān",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phía đông, bên đông",
+      "meaningShortVi": "phía đông",
+      "meaningFullVi": "phía đông, bên đông",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phía đông",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Chỉ vị trí phía đông. Phân biệt 与 东方 (phương đông, thiên về văn phong trang trọng), 东部 (vùng đông, thiên về phân khu hành chính)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 东 (đông) + 边 (bên, cạnh) → phía đông, bên đông."
   ],
   "hsk": {
     "levels": [
@@ -53,27 +50,34 @@
         "text": "东边有",
         "pinyin": "dōngbiān yǒu",
         "meaningVi": "phía đông có",
+        "meaningFullVi": "phía đông có",
         "target": "东边",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "往东边走",
         "pinyin": "wǎng dōngbiān zǒu",
         "meaningVi": "đi về phía đông",
+        "meaningFullVi": "đi về phía đông",
         "target": "东边",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "东边去",
         "pinyin": "dōngbiān qù",
         "meaningVi": "đi sang phía đông",
+        "meaningFullVi": "đi sang phía đông",
         "target": "东边",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -83,7 +87,8 @@
       "meaningVi": "Mặt trời mọc từ phía đông",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "东边",
@@ -92,7 +97,8 @@
       "meaningVi": "Phía đông có biển",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "东边",
@@ -101,7 +107,8 @@
       "meaningVi": "Chúng ta gặp nhau ở phía đông",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "东边",
@@ -110,23 +117,17 @@
       "meaningVi": "Phía đông rất đẹp",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 东边",
-      "syntax": "compound-semantic",
-      "matchedExample": "Chỉ vị trí phía đông. Phân biệt 与 东方 (phương đông, thiên về văn phong trang trọng), 东部 (vùng đông, thiên về phân khu hành chính).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 东 (đông) + 边 (bên, cạnh) → phía đông, bên đông.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 东边",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Chỉ vị trí phía đông. Phân biệt 与 东方 (phương đông, thiên về văn phong trang trọng), 东部 (vùng đông, thiên về phân khu hành chính).",
+      "explanationVi": "Ghép nghĩa: 东 (đông) + 边 (bên, cạnh) → phía đông, bên đông.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -137,11 +138,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__1__topic__18__dia-ly",
+      "sectionSlug": "dia-ly",
       "sectionTitle": "Địa lý",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dia-ly/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dia-ly/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -152,7 +158,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

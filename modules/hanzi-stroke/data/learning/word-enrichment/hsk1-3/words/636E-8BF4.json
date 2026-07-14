@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:据说",
   "type": "word",
   "word": "据说",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jù shuō",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nghe nói; tin đồn; theo như",
+      "meaningShortVi": "nghe nói",
+      "meaningFullVi": "nghe nói; tin đồn; theo như",
       "partOfSpeech": "trạng từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nghe nói",
   "wordType": "trạng từ",
   "wordTypes": [
     "trạng từ"
   ],
-  "usageNotes": [
-    "Dùng để dẫn thông tin từ người khác, không khẳng định sự đúng sai. Trang trọng hơn '听说'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -49,22 +48,17 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "据报道",
-        "pinyin": "jù bàodào",
-        "meaningVi": "theo như báo cáo",
-        "target": "据说",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "据说如此",
         "pinyin": "jùshuō rúcǐ",
         "meaningVi": "nghe nói là như vậy",
+        "meaningFullVi": "nghe nói là như vậy",
         "target": "据说",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +68,8 @@
       "meaningVi": "Nghe nói ở đây trước kia là một cái hồ.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "据说",
@@ -83,16 +78,17 @@
       "meaningVi": "Nghe đồn ngày mai sẽ mưa.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 据说",
-      "syntax": "trạng từ",
-      "matchedExample": "Dùng để dẫn thông tin từ người khác, không khẳng định sự đúng sai. Trang trọng hơn '听说'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 据说",
+      "partOfSpeech": "trạng từ",
+      "usageNoteVi": "Dùng để dẫn thông tin từ người khác, không khẳng định sự đúng sai. Trang trọng hơn '听说'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +99,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 29,
+      "sectionId": "new_hsk__3__topic__29__lien-lac",
+      "sectionSlug": "lien-lac",
       "sectionTitle": "Liên lạc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/",
+      "orderInSection": 31
     }
   ],
   "sources": [
@@ -123,7 +124,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

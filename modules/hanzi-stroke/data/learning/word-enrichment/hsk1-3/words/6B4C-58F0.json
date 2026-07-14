@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:歌声",
   "type": "word",
   "word": "歌声",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gē shēng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Âm thanh của bài hát, tiếng hát",
+      "meaningShortVi": "Âm thanh của bài hát",
+      "meaningFullVi": "Âm thanh của bài hát, tiếng hát",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Âm thanh của bài hát",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "歌声 chỉ âm thanh của việc hát. Trong giao tiếp, người ta thường dùng 形容词 như 动听 (hay), 嘹亮 (vang), 美妙 (tuyệt đẹp) để miêu tả 歌声. Lưu ý: 歌声 khác với 歌曲 (bài hát) — 歌声 là âm thanh, 歌曲 là tác phẩm."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "优美的歌声",
         "pinyin": "yōuměi de gēshēng",
         "meaningVi": "tiếng hát优美",
+        "meaningFullVi": "tiếng hát优美",
         "target": "歌声",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "歌声嘹亮",
         "pinyin": "gēshēng liáoliàng",
         "meaningVi": "tiếng hát vang xa",
+        "meaningFullVi": "tiếng hát vang xa",
         "target": "歌声",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Tiếng hát của cô ấy rất hay.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "歌声",
@@ -82,16 +87,17 @@
       "meaningVi": "Từ xa vọng tới tiếng hát tuyệt đẹp.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 歌声",
-      "syntax": "danh từ",
-      "matchedExample": "歌声 chỉ âm thanh của việc hát. Trong giao tiếp, người ta thường dùng 形容词 như 动听 (hay), 嘹亮 (vang), 美妙 (tuyệt đẹp) để miêu tả 歌声. Lưu ý: 歌声 khác với 歌曲 (bài hát) — 歌声 là âm thanh, 歌曲 là tác phẩm.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 歌声",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "歌声 chỉ âm thanh của việc hát. Trong giao tiếp, người ta thường dùng 形容词 như 动听 (hay), 嘹亮 (vang), 美妙 (tuyệt đẹp) để miêu tả 歌声. Lưu ý: 歌声 khác với 歌曲 (bài hát) — 歌声 là âm thanh, 歌曲 là tác phẩm.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__3__topic__11__giai-tri-ii",
+      "sectionSlug": "giai-tri-ii",
       "sectionTitle": "Giải trí II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-ii/",
+      "orderInSection": 18
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:颜色",
   "type": "word",
   "word": "颜色",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "yán sè",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "màu sắc",
+      "meaningShortVi": "màu sắc",
+      "meaningFullVi": "màu sắc",
       "partOfSpeech": "noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "màu sắc",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -47,37 +48,30 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "红色",
-        "pinyin": "",
-        "meaningVi": "màu đỏ",
-        "target": "颜色",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "有色",
-        "pinyin": "",
-        "meaningVi": "có màu",
-        "target": "颜色",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "颜色",
       "chinese": "这衣服颜色很好看",
-      "pinyin": "",
+      "pinyin": "zhè yī fu yán sè hěn hǎo kàn",
       "meaningVi": "Cái áo này màu đẹp",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 颜色",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/颜色.mp3"
   ],
@@ -86,31 +80,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 3,
+      "sectionId": "hsk__2__lesson__3__bai-3-cai-mau-do-ben-trai-la-cua-toi",
+      "sectionSlug": "bai-3-cai-mau-do-ben-trai-la-cua-toi",
       "sectionTitle": "Cái màu đỏ bên trái là của tôi",
       "sectionTitleZh": "左边那个红色的是我的",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-3-cai-mau-do-ben-trai-la-cua-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-3-cai-mau-do-ben-trai-la-cua-toi/",
+      "orderInSection": 12
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__2__lesson__4__bai-4-you-look-pretty-good-in-red",
+      "sectionSlug": "bai-4-you-look-pretty-good-in-red",
       "sectionTitle": "Bạn mặc màu đỏ rất đẹp",
       "sectionTitleZh": "你穿红色的很好看",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-4-you-look-pretty-good-in-red/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-4-you-look-pretty-good-in-red/",
+      "orderInSection": 16
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__2__topic__17__dac-trung",
+      "sectionSlug": "dac-trung",
       "sectionTitle": "Đặc trưng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dac-trung/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dac-trung/",
+      "orderInSection": 17
     }
   ],
   "sources": [
@@ -131,7 +140,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

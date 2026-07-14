@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:词汇",
   "type": "word",
   "word": "词汇",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "cí huì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "từ vựng, vốn từ",
+      "meaningShortVi": "từ vựng",
+      "meaningFullVi": "từ vựng, vốn từ",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "từ vựng",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Từ vựng (词汇) là tập hợp các từ trong một ngôn ngữ. Trong học ngoại ngữ, 增加词汇 là tăng vốn từ. Lưu ý: 分辨 词汇 (từ vựng) 与 词语 (cụm từ/từ ngữ) — 词汇 thiên về 'vốn từ', 词语 thiên về 'cụm từ'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,19 +48,24 @@
         "text": "词汇量",
         "pinyin": "cíhuì liàng",
         "meaningVi": "số lượng từ vựng",
+        "meaningFullVi": "số lượng từ vựng",
         "target": "词汇",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "学术词汇",
         "pinyin": "xuéshù cíhuì",
         "meaningVi": "từ vựng học thuật",
+        "meaningFullVi": "từ vựng học thuật",
         "target": "词汇",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +75,8 @@
       "meaningVi": "Từ vựng cuốn sách này rất khó.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "词汇",
@@ -80,16 +85,17 @@
       "meaningVi": "Tôi mỗi ngày học mười từ mới.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 词汇",
-      "syntax": "danh từ",
-      "matchedExample": "Từ vựng (词汇) là tập hợp các từ trong một ngôn ngữ. Trong học ngoại ngữ, 增加词汇 là tăng vốn từ. Lưu ý: 分辨 词汇 (từ vựng) 与 词语 (cụm từ/từ ngữ) — 词汇 thiên về 'vốn từ', 词语 thiên về 'cụm từ'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 词汇",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Từ vựng (词汇) là tập hợp các từ trong một ngôn ngữ. Trong học ngoại ngữ, 增加词汇 là tăng vốn từ. Lưu ý: 分辨 词汇 (từ vựng) 与 词语 (cụm từ/từ ngữ) — 词汇 thiên về 'vốn từ', 词语 thiên về 'cụm từ'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

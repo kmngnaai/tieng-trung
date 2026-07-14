@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:小话{儿}",
   "type": "word",
   "word": "小话{儿}",
@@ -18,26 +18,25 @@
     "readings": [
       {
         "pinyin": "xiǎo huàr ",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tin nhắn riêng tư, nói chuyện riêng",
+      "meaningShortVi": "tin nhắn riêng tư",
+      "meaningFullVi": "tin nhắn riêng tư, nói chuyện riêng",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tin nhắn riêng tư",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Thường dùng khi hai người thì thầm riêng trong khi có người khác, hoặc nhắn tin riêng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,33 +48,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "说小话",
-        "pinyin": "",
-        "meaningVi": "nói chuyện riêng",
-        "target": "小话{儿}",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "偷偷小话",
-        "pinyin": "",
-        "meaningVi": "thì thầm riêng",
-        "target": "小话{儿}",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 小话{儿}",
-      "syntax": "noun",
-      "matchedExample": "Thường dùng khi hai người thì thầm riêng trong khi có người khác, hoặc nhắn tin riêng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 小话{儿}",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Thường dùng khi hai người thì thầm riêng trong khi có người khác, hoặc nhắn tin riêng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -86,11 +69,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 24,
+      "sectionId": "new_hsk__2__topic__24__giao-tiep-va-cac-moi-quan-he",
+      "sectionSlug": "giao-tiep-va-cac-moi-quan-he",
       "sectionTitle": "Giao tiếp và các mối quan hệ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giao-tiep-va-cac-moi-quan-he/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giao-tiep-va-cac-moi-quan-he/",
+      "orderInSection": 19
     }
   ],
   "sources": [
@@ -101,9 +89,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": [
-      "Chưa có câu chứa nguyên từ"
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
     ]
   }
 }

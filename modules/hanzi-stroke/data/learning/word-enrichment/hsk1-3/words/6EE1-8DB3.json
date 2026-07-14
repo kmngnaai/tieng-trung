@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:满足",
   "type": "word",
   "word": "满足",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "mǎn zú",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Thỏa mãn, hài lòng",
+      "meaningShortVi": "Thỏa mãn",
+      "meaningFullVi": "Thỏa mãn, hài lòng",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Thỏa mãn",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Có thể dùng cho cảm xúc cá nhân (hài lòng) hoặc đáp ứng yêu cầu/điều kiện."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "感到满足",
         "pinyin": "gǎndào mǎnzú",
         "meaningVi": "cảm thấy thỏa mãn",
+        "meaningFullVi": "cảm thấy thỏa mãn",
         "target": "满足",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "满足需要",
         "pinyin": "mǎnzú xūyào",
         "meaningVi": "thỏa mãn nhu cầu",
+        "meaningFullVi": "thỏa mãn nhu cầu",
         "target": "满足",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Tôi rất hài lòng với kết quả này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "满足",
@@ -82,7 +87,8 @@
       "meaningVi": "Chúng ta cần thỏa mãn yêu cầu của khách hàng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "满足",
@@ -91,16 +97,17 @@
       "meaningVi": "Đừng chỉ thỏa mãn với hiện trạng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 满足",
-      "syntax": "compound-semantic",
-      "matchedExample": "Có thể dùng cho cảm xúc cá nhân (hài lòng) hoặc đáp ứng yêu cầu/điều kiện.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 满足",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Có thể dùng cho cảm xúc cá nhân (hài lòng) hoặc đáp ứng yêu cầu/điều kiện.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -111,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__3__topic__6__bao-hanh-va-bao-ve",
+      "sectionSlug": "bao-hanh-va-bao-ve",
       "sectionTitle": "Bảo hành và bảo vệ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bao-hanh-va-bao-ve/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bao-hanh-va-bao-ve/",
+      "orderInSection": 22
     }
   ],
   "sources": [
@@ -126,7 +138,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:就要",
   "type": "word",
   "word": "就要",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "jiù yào",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sắp",
+      "meaningShortVi": "sắp",
+      "meaningFullVi": "sắp",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sắp",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -46,36 +47,49 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "将要",
-        "pinyin": "",
-        "meaningVi": "sẽ, sắp",
+        "text": "就要",
+        "pinyin": "jiù yào",
+        "meaningVi": "sắp",
+        "meaningFullVi": "sắp, sẽ",
         "target": "就要",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "就要",
       "chinese": "就要下雨了",
-      "pinyin": "",
+      "pinyin": "jiù yào xià yǔ le",
       "meaningVi": "Sắp mưa rồi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "就要",
       "chinese": "就要出发",
-      "pinyin": "",
+      "pinyin": "jiù yào chū fā",
       "meaningVi": "Sắp xuất phát",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 就要",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/就要.mp3"
   ],
@@ -84,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__2__topic__9__tu-chuc-nang",
+      "sectionSlug": "tu-chuc-nang",
       "sectionTitle": "Từ chức năng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-chuc-nang/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-chuc-nang/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -99,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

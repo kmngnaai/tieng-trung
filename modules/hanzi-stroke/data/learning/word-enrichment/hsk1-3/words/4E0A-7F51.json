@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:上网",
   "type": "word",
   "word": "上网",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "shàng wǎng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lướt web, lên mạng (sử dụng Internet)",
+      "meaningShortVi": "lướt web",
+      "meaningFullVi": "lướt web, lên mạng (sử dụng Internet)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lướt web",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Động từ ghép, chỉ hoạt động sử dụng Internet. Phân biệt với 在线 (trực tuyến, trạng thái kỹ thuật): 上网 thiên về hành động người dùng终, 在线 thiên về trạng thái kết nối."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 上 (lên, đi lên) + 网 (mạng) → đi lên mạng Internet."
   ],
   "hsk": {
     "levels": [
@@ -56,35 +53,44 @@
         "text": "上网聊天",
         "pinyin": "shàngwǎng liáotiān",
         "meaningVi": "trò chuyện trên mạng",
+        "meaningFullVi": "trò chuyện trên mạng",
         "target": "上网",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "上网购物",
         "pinyin": "shàngwǎng gòuwù",
         "meaningVi": "mua sắm trực tuyến",
+        "meaningFullVi": "mua sắm trực tuyến",
         "target": "上网",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "上网看电影",
         "pinyin": "shàngwǎng kàn diànyǐng",
         "meaningVi": "xem phim trên mạng",
+        "meaningFullVi": "xem phim trên mạng",
         "target": "上网",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "上网时间",
         "pinyin": "shàngwǎng shíjiān",
         "meaningVi": "thời gian lên mạng",
+        "meaningFullVi": "thời gian lên mạng",
         "target": "上网",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -94,7 +100,8 @@
       "meaningVi": "Tôi đang lướt web",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "上网",
@@ -103,7 +110,8 @@
       "meaningVi": "Anh ấy thích lên mạng trò chuyện",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "上网",
@@ -112,7 +120,8 @@
       "meaningVi": "Có thể lên mạng được không?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "上网",
@@ -121,23 +130,17 @@
       "meaningVi": "Tôi dùng điện thoại lên mạng",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 上网",
-      "syntax": "compound-semantic",
-      "matchedExample": "Động từ ghép, chỉ hoạt động sử dụng Internet. Phân biệt với 在线 (trực tuyến, trạng thái kỹ thuật): 上网 thiên về hành động người dùng终, 在线 thiên về trạng thái kết nối.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 上 (lên, đi lên) + 网 (mạng) → đi lên mạng Internet.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 上网",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Động từ ghép, chỉ hoạt động sử dụng Internet. Phân biệt với 在线 (trực tuyến, trạng thái kỹ thuật): 上网 thiên về hành động người dùng终, 在线 thiên về trạng thái kết nối.",
+      "explanationVi": "Ghép nghĩa: 上 (lên, đi lên) + 网 (mạng) → đi lên mạng Internet.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -148,31 +151,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__1__topic__16__thoi-gian-ranh-roi",
+      "sectionSlug": "thoi-gian-ranh-roi",
       "sectionTitle": "Thời gian rảnh rỗi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian-ranh-roi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian-ranh-roi/",
+      "orderInSection": 19
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__2__lesson__13__bai-13-we-love-attending-chinese-class",
+      "sectionSlug": "bai-13-we-love-attending-chinese-class",
       "sectionTitle": "Chúng tôi thích giờ học tiếng Trung",
       "sectionTitleZh": "我们爱上中文课",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-13-we-love-attending-chinese-class/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-13-we-love-attending-chinese-class/",
+      "orderInSection": 10
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 15,
+      "sectionId": "hsk__3__lesson__15__bai-15-nhung-cai-khac-deu-khong-co-van-de-gi",
+      "sectionSlug": "bai-15-nhung-cai-khac-deu-khong-co-van-de-gi",
       "sectionTitle": "Những cái khác đều không có vấn đề gì.",
       "sectionTitleZh": "其他都没什么问题",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-15-nhung-cai-khac-deu-khong-co-van-de-gi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-15-nhung-cai-khac-deu-khong-co-van-de-gi/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -193,7 +211,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

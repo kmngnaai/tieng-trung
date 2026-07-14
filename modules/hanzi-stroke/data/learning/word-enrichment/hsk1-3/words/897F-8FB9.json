@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:西边",
   "type": "word",
   "word": "西边",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "xī biān",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phía tây",
+      "meaningShortVi": "phía tây",
+      "meaningFullVi": "phía tây",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phía tây",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Chỉ vị trí phía tây. Có thể nói 西边 hoặc 看边. Trong giao tiếp, thường chỉ hướng: 向西边走 (đi về phía tây). Trong văn viết trang trọng, có thể dùng 西方 (phương tây). Phân biệt với 西 (chỉ phương chung) và 西边 (rõ hơn là vị trí)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 西 (tây) + 边 (bên, phía) → phía tây, bên tây. Chỉ vị trí hướng tây trong không gian."
   ],
   "hsk": {
     "levels": [
@@ -50,14 +47,17 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "西方",
-        "pinyin": "Xīfāng",
-        "meaningVi": "phương tây",
+        "text": "西边",
+        "pinyin": "xībian",
+        "meaningVi": "bên tây",
+        "meaningFullVi": "bên tây",
         "target": "西边",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -67,7 +67,8 @@
       "meaningVi": "Mặt trời lặn ở phía tây",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "西边",
@@ -76,7 +77,8 @@
       "meaningVi": "Nhà tôi ở phía tây",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "西边",
@@ -85,7 +87,8 @@
       "meaningVi": "đi về phía tây",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "西边",
@@ -94,7 +97,8 @@
       "meaningVi": "Phía tây có một công viên",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "西边",
@@ -103,23 +107,17 @@
       "meaningVi": "gặp nhau ở phía tây",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 西边",
-      "syntax": "compound-semantic",
-      "matchedExample": "Chỉ vị trí phía tây. Có thể nói 西边 hoặc 看边. Trong giao tiếp, thường chỉ hướng: 向西边走 (đi về phía tây). Trong văn viết trang trọng, có thể dùng 西方 (phương tây). Phân biệt với 西 (chỉ phương chung) và 西边 (rõ hơn là vị trí).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 西 (tây) + 边 (bên, phía) → phía tây, bên tây. Chỉ vị trí hướng tây trong không gian.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 西边",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Chỉ vị trí phía tây. Có thể nói 西边 hoặc 看边. Trong giao tiếp, thường chỉ hướng: 向西边走 (đi về phía tây). Trong văn viết trang trọng, có thể dùng 西方 (phương tây). Phân biệt với 西 (chỉ phương chung) và 西边 (rõ hơn là vị trí).",
+      "explanationVi": "Ghép nghĩa: 西 (tây) + 边 (bên, phía) → phía tây, bên tây. Chỉ vị trí hướng tây trong không gian.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -130,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__1__topic__18__dia-ly",
+      "sectionSlug": "dia-ly",
       "sectionTitle": "Địa lý",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dia-ly/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dia-ly/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -145,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

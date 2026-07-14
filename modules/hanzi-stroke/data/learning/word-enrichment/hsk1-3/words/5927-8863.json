@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:大衣",
   "type": "word",
   "word": "大衣",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "dà yī",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "áo khoác dài",
+      "meaningShortVi": "áo khoác dài",
+      "meaningFullVi": "áo khoác dài",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "áo khoác dài",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -48,43 +49,58 @@
     "collocations": [
       {
         "text": "穿大衣",
-        "pinyin": "",
+        "pinyin": "chuān dà yī",
         "meaningVi": "mặc áo khoác",
+        "meaningFullVi": "mặc áo khoác",
         "target": "大衣",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "厚大衣",
-        "pinyin": "",
+        "pinyin": "hòu dà yī",
         "meaningVi": "áo khoác dày",
+        "meaningFullVi": "áo khoác dày",
         "target": "大衣",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "大衣",
       "chinese": "冬天穿大衣",
-      "pinyin": "",
+      "pinyin": "dōng tiān chuān dà yī",
       "meaningVi": "Mùa đông mặc áo khoác dài",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "大衣",
       "chinese": "这件大衣很暖和",
-      "pinyin": "",
+      "pinyin": "zhè jiàn dà yī hěn nuǎn huo",
       "meaningVi": "Áo khoác dài này rất ấm",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 大衣",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/大衣.mp3"
   ],
@@ -93,21 +109,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 25,
+      "sectionId": "new_hsk__2__topic__25__ve-be-ngoai",
+      "sectionSlug": "ve-be-ngoai",
       "sectionTitle": "Vẻ bề ngoài",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/ve-be-ngoai/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/ve-be-ngoai/",
+      "orderInSection": 8
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__3__lesson__5__bai-5-photos-like-these-are-the-best",
+      "sectionSlug": "bai-5-photos-like-these-are-the-best",
       "sectionTitle": "Ảnh như thế này mới đẹp",
       "sectionTitleZh": "这样的照片才好看",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-5-photos-like-these-are-the-best/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-5-photos-like-these-are-the-best/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -123,7 +149,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

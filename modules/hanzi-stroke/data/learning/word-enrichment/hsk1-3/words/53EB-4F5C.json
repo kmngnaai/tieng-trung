@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:叫作",
   "type": "word",
   "word": "叫作",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "jiào zuò",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "gọi là",
+      "meaningShortVi": "gọi là",
+      "meaningFullVi": "gọi là",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "gọi là",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,52 +48,58 @@
     "collocations": [
       {
         "text": "被叫作",
-        "pinyin": "",
+        "pinyin": "bèi jiào zuò",
         "meaningVi": "được gọi là",
+        "meaningFullVi": "được gọi là",
         "target": "叫作",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "通常叫作",
-        "pinyin": "",
+        "pinyin": "tōng cháng jiào zuò",
         "meaningVi": "thường gọi là",
+        "meaningFullVi": "thường gọi là",
         "target": "叫作",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "叫作",
       "chinese": "这叫作什么？",
-      "pinyin": "",
+      "pinyin": "zhè jiào zuò shén me？",
       "meaningVi": "Đây gọi là cái gì?",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "叫作",
-      "chinese": "这种现象叫作幻觉。",
-      "pinyin": "",
-      "meaningVi": "Hiện tượng này gọi là ảo giác.",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "叫作",
       "chinese": "人们把它叫作长城。",
-      "pinyin": "",
+      "pinyin": "rén men bǎ tā jiào zuò Cháng chéng。",
       "meaningVi": "Mọi người gọi nó là Vạn Lý Trường Thành.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 叫作",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/叫作.mp3"
   ],
@@ -101,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__2__topic__19__thong-tin",
+      "sectionSlug": "thong-tin",
       "sectionTitle": "Thông tin",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin/",
+      "orderInSection": 25
     }
   ],
   "sources": [
@@ -116,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

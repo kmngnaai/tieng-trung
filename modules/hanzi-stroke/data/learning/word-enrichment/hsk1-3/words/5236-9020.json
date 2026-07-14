@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:制造",
   "type": "word",
   "word": "制造",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhì zào",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sản xuất, chế tạo, làm ra",
+      "meaningShortVi": "sản xuất",
+      "meaningFullVi": "sản xuất, chế tạo, làm ra",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sản xuất",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "制造 là động từ chỉ việc sản xuất, chế tạo hàng hóa bằng máy móc hoặc công nghiệp. Thường dùng cho sản phẩm công nghiệp, máy móc, thiết bị."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,36 @@
     "collocations": [
       {
         "text": "制造厂家",
-        "pinyin": "",
+        "pinyin": "zhì zào chǎng jiā",
         "meaningVi": "nhà sản xuất",
+        "meaningFullVi": "nhà sản xuất",
         "target": "制造",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "制造业",
-        "pinyin": "",
-        "meaningVi": "ngành chế tạo",
-        "target": "制造",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "制造",
       "chinese": "这家工厂制造机器设备。",
-      "pinyin": "",
+      "pinyin": "zhè jiā gōng chǎng zhì zào jī qì shè bèi。",
       "meaningVi": "Nhà máy này chế tạo thiết bị máy móc.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "制造",
-      "chinese": "中国制造的电子产品很有名。",
-      "pinyin": "",
-      "meaningVi": "Sản phẩm điện tử sản xuất tại Trung Quốc rất nổi tiếng.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 制造",
-      "syntax": "động từ",
-      "matchedExample": "制造 là động từ chỉ việc sản xuất, chế tạo hàng hóa bằng máy móc hoặc công nghiệp. Thường dùng cho sản phẩm công nghiệp, máy móc, thiết bị.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 制造",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "制造 là động từ chỉ việc sản xuất, chế tạo hàng hóa bằng máy móc hoặc công nghiệp. Thường dùng cho sản phẩm công nghiệp, máy móc, thiết bị.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__3__topic__19__thanh-tuu-va-ket-qua",
+      "sectionSlug": "thanh-tuu-va-ket-qua",
       "sectionTitle": "Thành tựu và kết quả",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/",
+      "orderInSection": 34
     }
   ],
   "sources": [
@@ -117,7 +108,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

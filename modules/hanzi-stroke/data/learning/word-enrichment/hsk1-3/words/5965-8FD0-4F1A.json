@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:奥运会",
   "type": "word",
   "word": "奥运会",
@@ -16,27 +16,24 @@
     "readings": [
       {
         "pinyin": "Ào yùn huì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Thế vận hội Olympic",
+      "meaningShortVi": "Thế vận hội Olympic",
+      "meaningFullVi": "Thế vận hội Olympic",
       "partOfSpeech": "abbreviation",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Thế vận hội Olympic",
   "wordType": "abbreviation",
   "wordTypes": [
     "abbreviation"
-  ],
-  "usageNotes": [
-    "Viết tắt phổ biến cho Thế vận hội Olympic. Có thể加主办城市: 北京奥运会, 伦敦奥运会."
-  ],
-  "wordTypeExplanations": [
-    "Viết tắt của 奥林匹克运动会 (Olympic Games) — rút gọn thành 奥运会."
   ],
   "hsk": {
     "levels": [
@@ -52,19 +49,24 @@
         "text": "奥运会冠军",
         "pinyin": "Àoyùnhuì guànjūn",
         "meaningVi": "vô địch Olympic",
+        "meaningFullVi": "vô địch Olympic",
         "target": "奥运会",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "举办奥运会",
         "pinyin": "jǔbàn Àoyùnhuì",
         "meaningVi": "tổ chức Thế vận hội",
+        "meaningFullVi": "tổ chức Thế vận hội",
         "target": "奥运会",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +76,8 @@
       "meaningVi": "Thế vận hội tổ chức mỗi 4 năm một lần",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "奥运会",
@@ -83,7 +86,8 @@
       "meaningVi": "Anh ấy tham gia Thế vận hội",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "奥运会",
@@ -92,23 +96,17 @@
       "meaningVi": "Thế vận hội Bắc Kinh",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 奥运会",
-      "syntax": "abbreviation",
-      "matchedExample": "Viết tắt phổ biến cho Thế vận hội Olympic. Có thể加主办城市: 北京奥运会, 伦敦奥运会.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "abbreviation",
-      "matchedExample": "Viết tắt của 奥林匹克运动会 (Olympic Games) — rút gọn thành 奥运会.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 奥运会",
+      "partOfSpeech": "abbreviation",
+      "usageNoteVi": "Viết tắt phổ biến cho Thế vận hội Olympic. Có thể加主办城市: 北京奥运会, 伦敦奥运会.",
+      "explanationVi": "Viết tắt của 奥林匹克运动会 (Olympic Games) — rút gọn thành 奥运会.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -123,7 +121,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

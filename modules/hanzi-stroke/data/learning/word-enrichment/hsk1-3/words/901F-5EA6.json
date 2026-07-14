@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:速度",
   "type": "word",
   "word": "速度",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "sù dù",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tốc độ; vận tốc; tốc độ di chuyển",
+      "meaningShortVi": "tốc độ",
+      "meaningFullVi": "tốc độ; vận tốc; tốc độ di chuyển",
       "partOfSpeech": "danh từ (Noun - Measurement)",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tốc độ",
   "wordType": "danh từ (Noun - Measurement)",
   "wordTypes": [
     "danh từ (Noun - Measurement)"
   ],
-  "usageNotes": [
-    "Dùng trong vận tải, thể thao, công nghệ: car speed, internet speed, processing speed. Thường kết hợp: 提高 (tăng), 降低 (giảm), 限制 (giới hạn). Synonym: 速率 (tỷ suất), 快慢 (nhanh chậm)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "提高速度",
         "pinyin": "tígāo sùdù",
         "meaningVi": "tăng tốc độ",
+        "meaningFullVi": "tăng tốc độ",
         "target": "速度",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "速度限制",
         "pinyin": "sùdù xiànzhì",
         "meaningVi": "giới hạn tốc độ",
+        "meaningFullVi": "giới hạn tốc độ",
         "target": "速度",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Ô tô chạy rất nhanh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "速度",
@@ -82,16 +87,17 @@
       "meaningVi": "Chú ý giới hạn tốc độ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 速度",
-      "syntax": "danh từ (Noun - Measurement)",
-      "matchedExample": "Dùng trong vận tải, thể thao, công nghệ: car speed, internet speed, processing speed. Thường kết hợp: 提高 (tăng), 降低 (giảm), 限制 (giới hạn). Synonym: 速率 (tỷ suất), 快慢 (nhanh chậm).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 速度",
+      "partOfSpeech": "danh từ (Noun - Measurement)",
+      "usageNoteVi": "Dùng trong vận tải, thể thao, công nghệ: car speed, internet speed, processing speed. Thường kết hợp: 提高 (tăng), 降低 (giảm), 限制 (giới hạn). Synonym: 速率 (tỷ suất), 快慢 (nhanh chậm).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__3__topic__14__van-chuyen-va-di-chuyen",
+      "sectionSlug": "van-chuyen-va-di-chuyen",
       "sectionTitle": "Vận chuyển và di chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/van-chuyen-va-di-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/van-chuyen-va-di-chuyen/",
+      "orderInSection": 34
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

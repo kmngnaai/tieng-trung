@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:种类",
   "type": "word",
   "word": "种类",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhǒng lèi",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "loại, chủng loại",
+      "meaningShortVi": "loại",
+      "meaningFullVi": "loại, chủng loại",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "loại",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Danh từ, chỉ phân loại, category. Thường kèm với 各种 (mọi loại)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,32 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "各种种类",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "种类",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "种类繁多",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "种类",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "种类不同",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "种类",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +54,8 @@
       "meaningVi": "Ở đây có nhiều loại sách.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "种类",
@@ -88,7 +64,8 @@
       "meaningVi": "Có đủ loại hàng hóa.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "种类",
@@ -97,16 +74,17 @@
       "meaningVi": "Loại hoa này có ba chủng loại.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 种类",
-      "syntax": "compound-semantic",
-      "matchedExample": "Danh từ, chỉ phân loại, category. Thường kèm với 各种 (mọi loại).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 种类",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Danh từ, chỉ phân loại, category. Thường kèm với 各种 (mọi loại).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -121,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

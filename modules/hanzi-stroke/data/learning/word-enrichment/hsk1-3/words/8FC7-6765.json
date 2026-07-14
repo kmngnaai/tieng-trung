@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:过来",
   "type": "word",
   "word": "过来",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "guò lai",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đến đây",
+      "meaningShortVi": "đến đây",
+      "meaningFullVi": "đến đây",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đến đây",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,60 +48,78 @@
     "collocations": [
       {
         "text": "走过来",
-        "pinyin": "",
+        "pinyin": "zǒu guò lái",
         "meaningVi": "đi tới",
+        "meaningFullVi": "đi tới",
         "target": "过来",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "跑过来",
-        "pinyin": "",
+        "pinyin": "pǎo guò lai",
         "meaningVi": "chạy tới",
+        "meaningFullVi": "chạy tới",
         "target": "过来",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "过来一下",
-        "pinyin": "",
+        "pinyin": "guò lai yī xià",
         "meaningVi": "qua đây một chút",
+        "meaningFullVi": "qua đây một chút",
         "target": "过来",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "过来",
       "chinese": "请过来一下。",
-      "pinyin": "",
+      "pinyin": "qǐng guò lai yī xià。",
       "meaningVi": "Làm ơn qua đây một chút.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "过来",
       "chinese": "他向我走过来了。",
-      "pinyin": "",
+      "pinyin": "tā xiàng wǒ zǒu guò lái le。",
       "meaningVi": "Anh ấy đi về phía tôi rồi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "过来",
       "chinese": "春天就要过来了。",
-      "pinyin": "",
+      "pinyin": "chūn tiān jiù yào guò lai le。",
       "meaningVi": "Mùa xuân sắp đến rồi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 过来",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/过来.mp3"
   ],
@@ -109,21 +128,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 2,
+      "sectionId": "new_hsk__2__lesson__2__bai-2-let-s-take-a-taxi-to-peking-university-instead",
+      "sectionSlug": "bai-2-let-s-take-a-taxi-to-peking-university-instead",
       "sectionTitle": "Hay là bắt taxi đến Đại học Bắc Kinh đi",
       "sectionTitleZh": "还是打车去北大吧",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-2-let-s-take-a-taxi-to-peking-university-instead/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-2-let-s-take-a-taxi-to-peking-university-instead/",
+      "orderInSection": 16
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 29,
+      "sectionId": "new_hsk__2__topic__29__su-chuyen-dong",
+      "sectionSlug": "su-chuyen-dong",
       "sectionTitle": "Sự chuyển động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/su-chuyen-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/su-chuyen-dong/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -134,7 +163,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

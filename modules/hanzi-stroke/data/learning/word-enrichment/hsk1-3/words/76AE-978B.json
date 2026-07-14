@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:皮鞋",
   "type": "word",
   "word": "皮鞋",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "pí xié",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "giày da",
+      "meaningShortVi": "giày da",
+      "meaningFullVi": "giày da",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "giày da",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Từ vựng HSK 5: giày da"
-  ],
-  "wordTypeExplanations": [
-    "Từ ghép nghĩa"
   ],
   "hsk": {
     "levels": [
@@ -53,19 +50,24 @@
         "text": "很皮鞋",
         "pinyin": "很 皮鞋",
         "meaningVi": "很 皮鞋",
+        "meaningFullVi": "很 皮鞋",
         "target": "皮鞋",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "非常皮鞋",
         "pinyin": "非常 皮鞋",
         "meaningVi": "非常 皮鞋",
+        "meaningFullVi": "非常 皮鞋",
         "target": "皮鞋",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -75,7 +77,8 @@
       "meaningVi": "Đây là giày da",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "皮鞋",
@@ -84,7 +87,8 @@
       "meaningVi": "Tôi thích 皮鞋",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "皮鞋",
@@ -93,7 +97,8 @@
       "meaningVi": "Có 皮鞋",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "皮鞋",
@@ -102,23 +107,17 @@
       "meaningVi": "Không có 皮鞋",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 皮鞋",
-      "syntax": "compound-semantic",
-      "matchedExample": "Từ vựng HSK 5: giày da",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Từ ghép nghĩa",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 皮鞋",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Từ vựng HSK 5: giày da",
+      "explanationVi": "Từ ghép nghĩa",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -129,11 +128,16 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 16,
+      "sectionId": "hsk__3__lesson__16__bai-16-bay-gio-toi-met-den-muc-tan-lam-la-chi-muon-ngu",
+      "sectionSlug": "bai-16-bay-gio-toi-met-den-muc-tan-lam-la-chi-muon-ngu",
       "sectionTitle": "Bây giờ tôi mệt đến mức tan làm là chỉ muốn ngủ.",
       "sectionTitleZh": "我现在累得下了班就想睡觉",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-16-bay-gio-toi-met-den-muc-tan-lam-la-chi-muon-ngu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-16-bay-gio-toi-met-den-muc-tan-lam-la-chi-muon-ngu/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -144,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

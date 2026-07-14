@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:代表",
   "type": "word",
   "word": "代表",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "dài biǎo",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Đại biểu",
+      "meaningShortVi": "Đại biểu",
+      "meaningFullVi": "Đại biểu",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Đại biểu",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "代表 có thể là danh từ (người đại diện) hoặc động từ (đại diện cho). 代 (đại) nghĩa là thay thế, đại diện; 表 (biểu) nghĩa là biểu hiện, thể hiện ra bên ngoài."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,57 +48,15 @@
       {
         "word": "代表团",
         "pinyin": "dài biǎo tuán",
-        "meaningVi": "phái đoàn, đoàn đại biểu",
+        "meaningVi": "phái đoàn",
+        "meaningFullVi": "phái đoàn, đoàn đại biểu",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          3
-        ],
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 3",
+        "reviewStatus": "reviewed-local"
       }
     ],
-    "collocations": [
-      {
-        "text": "代表公司",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "代表",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "代表国家",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "代表",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "代表会议",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "代表",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "选出代表",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "代表",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "担任代表",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "代表",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -109,7 +66,8 @@
       "meaningVi": "Anh ấy là đại biểu của công ty.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "代表",
@@ -118,7 +76,8 @@
       "meaningVi": "Màu đỏ đại diện cho sự nhiệt huyết.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "代表",
@@ -127,16 +86,17 @@
       "meaningVi": "Hãy thay mặt chúng tôi gửi lời cảm ơn đến họ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 代表",
-      "syntax": "compound-semantic",
-      "matchedExample": "代表 có thể là danh từ (người đại diện) hoặc động từ (đại diện cho). 代 (đại) nghĩa là thay thế, đại diện; 表 (biểu) nghĩa là biểu hiện, thể hiện ra bên ngoài.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 代表",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "代表 có thể là danh từ (người đại diện) hoặc động từ (đại diện cho). 代 (đại) nghĩa là thay thế, đại diện; 表 (biểu) nghĩa là biểu hiện, thể hiện ra bên ngoài.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -147,11 +107,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__topic__16__cac-hoat-dong",
+      "sectionSlug": "cac-hoat-dong",
       "sectionTitle": "Các hoạt động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/",
+      "orderInSection": 33
     }
   ],
   "sources": [
@@ -162,7 +127,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:楼上",
   "type": "word",
   "word": "楼上",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "lóu shàng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trên nhà, tầng trên",
+      "meaningShortVi": "trên nhà",
+      "meaningFullVi": "trên nhà, tầng trên",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trên nhà",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "楼上 chỉ tầng trên hoặc trên nhà. Hán-Việt: lâu (lầu) + thượng (trên)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -51,19 +50,24 @@
         "text": "楼上的人",
         "pinyin": "lóushàng de rén",
         "meaningVi": "người trên nhà",
+        "meaningFullVi": "người trên nhà",
         "target": "楼上",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "从楼上",
         "pinyin": "cóng lóushàng",
         "meaningVi": "từ trên nhà",
+        "meaningFullVi": "từ trên nhà",
         "target": "楼上",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Anh ấy ở trên nhà.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "楼上",
@@ -82,16 +87,17 @@
       "meaningVi": "Trên nhà rất yên tĩnh.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 楼上",
-      "syntax": "compound-semantic",
-      "matchedExample": "楼上 chỉ tầng trên hoặc trên nhà. Hán-Việt: lâu (lầu) + thượng (trên).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 楼上",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "楼上 chỉ tầng trên hoặc trên nhà. Hán-Việt: lâu (lầu) + thượng (trên).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__1__topic__7__cac-toa-nha",
+      "sectionSlug": "cac-toa-nha",
       "sectionTitle": "Các tòa nhà",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cac-toa-nha/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cac-toa-nha/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

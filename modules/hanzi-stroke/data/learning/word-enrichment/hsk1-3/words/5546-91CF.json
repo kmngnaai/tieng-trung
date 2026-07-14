@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:商量",
   "type": "word",
   "word": "商量",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "shāng liang",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thương lượng",
+      "meaningShortVi": "thương lượng",
+      "meaningFullVi": "thương lượng",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thương lượng",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,60 +48,78 @@
     "collocations": [
       {
         "text": "商量一下",
-        "pinyin": "",
+        "pinyin": "shāng liang yī xià",
         "meaningVi": "thương lượng một chút",
+        "meaningFullVi": "thương lượng một chút",
         "target": "商量",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "好好商量",
-        "pinyin": "",
+        "pinyin": "hǎo hào shāng liang",
         "meaningVi": "thương lượng cho tốt",
+        "meaningFullVi": "thương lượng cho tốt",
         "target": "商量",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "商量事情",
-        "pinyin": "",
+        "pinyin": "shāng liang shì qing",
         "meaningVi": "thương lượng công việc",
+        "meaningFullVi": "thương lượng công việc",
         "target": "商量",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "商量",
       "chinese": "我们需要商量一下",
-      "pinyin": "",
+      "pinyin": "wǒ men xū yào shāng liang yī xià",
       "meaningVi": "Chúng ta cần thương lượng một chút",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "商量",
       "chinese": "我和朋友商量了这个问题",
-      "pinyin": "",
+      "pinyin": "wǒ hé péng you shāng liang le zhè ge wèn tí",
       "meaningVi": "Tôi đã thảo luận vấn đề này với bạn bè",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "商量",
       "chinese": "让我们商量个办法",
-      "pinyin": "",
+      "pinyin": "ràng wǒ men shāng liang gè bàn fǎ",
       "meaningVi": "Hãy cùng nhau thương lượng một giải pháp",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 商量",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/商量.mp3"
   ],
@@ -109,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 24,
+      "sectionId": "new_hsk__2__topic__24__giao-tiep-va-cac-moi-quan-he",
+      "sectionSlug": "giao-tiep-va-cac-moi-quan-he",
       "sectionTitle": "Giao tiếp và các mối quan hệ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giao-tiep-va-cac-moi-quan-he/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giao-tiep-va-cac-moi-quan-he/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -124,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

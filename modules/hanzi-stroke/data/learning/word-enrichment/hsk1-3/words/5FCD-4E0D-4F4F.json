@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:忍不住",
   "type": "word",
   "word": "忍不住",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "rěn bu zhù",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "không thể chịu nổi; không kìm lòng được",
+      "meaningShortVi": "không thể chịu nổi",
+      "meaningFullVi": "không thể chịu nổi; không kìm lòng được",
       "partOfSpeech": "idiom",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "không thể chịu nổi",
   "wordType": "idiom",
   "wordTypes": [
     "idiom"
   ],
-  "usageNotes": [
-    "Hán-Việt 'Nhẫn bất trú' — 忍 (nhẫn, nhẫn nại) + 不 (bất, không) + 住 (trú, dừng); nhẫn không dừng được."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -50,27 +49,34 @@
         "text": "忍不住流泪",
         "pinyin": "rěnbuzhù liúlèi",
         "meaningVi": "không kìm được nước mắt",
+        "meaningFullVi": "không kìm được nước mắt",
         "target": "忍不住",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "忍不住要说",
         "pinyin": "rěnbuzhù yào shuō",
         "meaningVi": "không nhịn được mà nói",
+        "meaningFullVi": "không nhịn được mà nói",
         "target": "忍不住",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "让人忍不住",
         "pinyin": "ràng rén rěnbuzhù",
         "meaningVi": "khiến người không kìm được",
+        "meaningFullVi": "khiến người không kìm được",
         "target": "忍不住",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -80,7 +86,8 @@
       "meaningVi": "tôi không kìm được cười",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "忍不住",
@@ -89,7 +96,8 @@
       "meaningVi": "không chịu nổi mà khóc",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "忍不住",
@@ -98,16 +106,17 @@
       "meaningVi": "khiến người không kìm được cười",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 忍不住",
-      "syntax": "idiom",
-      "matchedExample": "Hán-Việt 'Nhẫn bất trú' — 忍 (nhẫn, nhẫn nại) + 不 (bất, không) + 住 (trú, dừng); nhẫn không dừng được.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 忍不住",
+      "partOfSpeech": "idiom",
+      "usageNoteVi": "Hán-Việt 'Nhẫn bất trú' — 忍 (nhẫn, nhẫn nại) + 不 (bất, không) + 住 (trú, dừng); nhẫn không dừng được.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -122,7 +131,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

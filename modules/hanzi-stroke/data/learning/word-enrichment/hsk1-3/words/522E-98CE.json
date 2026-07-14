@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:刮风",
   "type": "word",
   "word": "刮风",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "guā fēng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "gió thổi",
+      "meaningShortVi": "gió thổi",
+      "meaningFullVi": "gió thổi",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "gió thổi",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,10 +45,19 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 刮风",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/刮风.mp3"
   ],
@@ -56,11 +66,16 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 14,
+      "sectionId": "hsk__3__lesson__14__bai-14-ban-mang-hoa-qua-qua-day",
+      "sectionSlug": "bai-14-ban-mang-hoa-qua-qua-day",
       "sectionTitle": "Bạn mang hoa quả qua đây.",
       "sectionTitleZh": "你把水果拿过来",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-14-ban-mang-hoa-qua-qua-day/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-14-ban-mang-hoa-qua-qua-day/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -71,9 +86,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": [
-      "Chưa có câu chứa nguyên từ"
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
     ]
   }
 }

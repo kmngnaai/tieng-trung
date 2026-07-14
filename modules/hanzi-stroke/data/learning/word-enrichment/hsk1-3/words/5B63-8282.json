@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:季节",
   "type": "word",
   "word": "季节",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "jì jié",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "mùa",
+      "meaningShortVi": "mùa",
+      "meaningFullVi": "mùa",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "mùa",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -46,29 +47,51 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [
+      {
+        "text": "季节",
+        "pinyin": "jì jié",
+        "meaningVi": "mùa",
+        "meaningFullVi": "mùa",
+        "target": "季节",
+        "source": "hsk_1.json",
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "季节",
       "chinese": "这个季节很好。",
-      "pinyin": "",
+      "pinyin": "zhè ge jì jié hěn hǎo。",
       "meaningVi": "mùa này rất tốt.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "季节",
       "chinese": "我喜欢这个季节。",
-      "pinyin": "",
+      "pinyin": "wǒ xǐ huan zhè ge jì jié。",
       "meaningVi": "Tôi thích mùa này.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 季节",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/季节.mp3"
   ],
@@ -77,21 +100,31 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "hsk__3__lesson__5__bai-5-dao-nay-toi-cang-ngay-cang-beo",
+      "sectionSlug": "bai-5-dao-nay-toi-cang-ngay-cang-beo",
       "sectionTitle": "Dạo này tôi càng ngày càng béo.",
       "sectionTitleZh": "我最近越来越胖了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-5-dao-nay-toi-cang-ngay-cang-beo/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-5-dao-nay-toi-cang-ngay-cang-beo/",
+      "orderInSection": 7
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__3__lesson__12__bai-12-the-weather-changes-rapidly-in-this-season",
+      "sectionSlug": "bai-12-the-weather-changes-rapidly-in-this-season",
       "sectionTitle": "Mùa này thời tiết thay đổi rất nhanh",
       "sectionTitleZh": "这个季节天气变化很快",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-12-the-weather-changes-rapidly-in-this-season/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-12-the-weather-changes-rapidly-in-this-season/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -107,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

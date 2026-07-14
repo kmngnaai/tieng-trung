@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:西医",
   "type": "word",
   "word": "西医",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xī yī",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "y học phương Tây",
+      "meaningShortVi": "y học phương Tây",
+      "meaningFullVi": "y học phương Tây",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "y học phương Tây",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Danh từ chỉ y học phương Tây."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -46,52 +45,38 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "西医治疗",
-        "pinyin": "",
-        "meaningVi": "điều trị Tây y",
-        "target": "西医",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "西药",
-        "pinyin": "",
-        "meaningVi": "thuốc Tây",
-        "target": "西医",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "西医",
       "chinese": "西医很有效",
-      "pinyin": "",
+      "pinyin": "xī yī hěn yǒu xiào",
       "meaningVi": "Y học phương Tây rất hiệu quả",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "西医",
       "chinese": "看西医",
-      "pinyin": "",
+      "pinyin": "kàn xī yī",
       "meaningVi": "khám bác sĩ Tây y",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 西医",
-      "syntax": "noun",
-      "matchedExample": "Danh từ chỉ y học phương Tây.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 西医",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Danh từ chỉ y học phương Tây.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +87,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__2__topic__14__co-the-va-suc-khoe",
+      "sectionSlug": "co-the-va-suc-khoe",
       "sectionTitle": "Cơ thể và sức khỏe",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/co-the-va-suc-khoe/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/co-the-va-suc-khoe/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -117,7 +107,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

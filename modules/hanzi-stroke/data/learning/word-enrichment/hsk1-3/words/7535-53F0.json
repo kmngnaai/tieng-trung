@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:电台",
   "type": "word",
   "word": "电台",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "diàn tái",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đài phát thanh",
+      "meaningShortVi": "đài phát thanh",
+      "meaningFullVi": "đài phát thanh",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đài phát thanh",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Đài phát thanh qua sóng radio."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,60 +45,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "电台节目",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "电台",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "音乐电台",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "电台",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "新闻电台",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "电台",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "电台",
-      "chinese": "收音机播放电台节目。",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "电台",
-      "chinese": "广播电台",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 电台",
-      "syntax": "danh từ",
-      "matchedExample": "Đài phát thanh qua sóng radio.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 电台",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Đài phát thanh qua sóng radio.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -110,11 +66,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 27,
+      "sectionId": "new_hsk__3__topic__27__can-nha",
+      "sectionSlug": "can-nha",
       "sectionTitle": "Căn nhà",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/can-nha/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/can-nha/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -125,7 +86,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

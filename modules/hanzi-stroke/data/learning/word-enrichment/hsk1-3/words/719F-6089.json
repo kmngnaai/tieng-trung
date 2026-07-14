@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:熟悉",
   "type": "word",
   "word": "熟悉",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shú xī",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "quen thuộc",
+      "meaningShortVi": "quen thuộc",
+      "meaningFullVi": "quen thuộc",
       "partOfSpeech": "tính từ / động từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "quen thuộc",
   "wordType": "tính từ / động từ",
   "wordTypes": [
     "tính từ / động từ"
   ],
-  "usageNotes": [
-    "Đôi khi cũng dùng với nghĩa là 'thành thạo' khi nói về kỹ năng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -47,74 +46,66 @@
     "collocations": [
       {
         "text": "熟悉情况",
-        "pinyin": "",
+        "pinyin": "shú xī qíng kuàng",
         "meaningVi": "nắm rõ tình hình",
+        "meaningFullVi": "nắm rõ tình hình",
         "target": "熟悉",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "熟悉环境",
-        "pinyin": "",
+        "pinyin": "shú xī huán jìng",
         "meaningVi": "làm quen môi trường",
+        "meaningFullVi": "làm quen môi trường",
         "target": "熟悉",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "互相熟悉",
-        "pinyin": "",
+        "pinyin": "hù xiāng shú xī",
         "meaningVi": "làm quen với nhau",
+        "meaningFullVi": "làm quen với nhau",
         "target": "熟悉",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "熟悉的面孔",
-        "pinyin": "",
-        "meaningVi": "gương mặt quen thuộc",
-        "target": "熟悉",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "熟悉",
       "chinese": "我对这个地方很熟悉。",
-      "pinyin": "",
+      "pinyin": "wǒ duì zhè ge dì fang hěn shú xī。",
       "meaningVi": "Tôi rất quen thuộc với nơi này.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "熟悉",
       "chinese": "我们需要熟悉新的工作环境。",
-      "pinyin": "",
+      "pinyin": "wǒ men xū yào shú xī xīn de gōng zuò huán jìng。",
       "meaningVi": "Chúng ta cần làm quen với môi trường làm việc mới.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "熟悉",
-      "chinese": "他熟悉计算机操作。",
-      "pinyin": "",
-      "meaningVi": "Anh ấy thành thạo việc sử dụng máy tính.",
-      "source": "hsk_1.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 熟悉",
-      "syntax": "tính từ / động từ",
-      "matchedExample": "Đôi khi cũng dùng với nghĩa là 'thành thạo' khi nói về kỹ năng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 熟悉",
+      "partOfSpeech": "tính từ / động từ",
+      "usageNoteVi": "Đôi khi cũng dùng với nghĩa là 'thành thạo' khi nói về kỹ năng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -129,7 +120,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

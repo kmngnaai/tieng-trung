@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:达到",
   "type": "word",
   "word": "达到",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "dá dào",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đạt được, đến",
+      "meaningShortVi": "đạt được",
+      "meaningFullVi": "đạt được, đến",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đạt được",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "指到达某种程度或标准。多用于目标、标准、水平等。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "达到目的",
-        "pinyin": "",
+        "pinyin": "dá dào mù dì",
         "meaningVi": "đạt được mục đích",
+        "meaningFullVi": "đạt được mục đích",
         "target": "达到",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "达到标准",
-        "pinyin": "",
+        "pinyin": "dá dào biāo zhǔn",
         "meaningVi": "đạt chuẩn",
+        "meaningFullVi": "đạt chuẩn",
         "target": "达到",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "达到",
-      "chinese": "我们达到了预期目标。",
-      "pinyin": "",
-      "meaningVi": "Chúng ta đã đạt được mục tiêu kỳ vọng.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "达到",
       "chinese": "温度达到了30度。",
-      "pinyin": "",
+      "pinyin": "wēn dù dá dào le 3 0 dù。",
       "meaningVi": "Nhiệt độ đã đạt 30 độ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 达到",
-      "syntax": "động từ",
-      "matchedExample": "指到达某种程度或标准。多用于目标、标准、水平等。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 达到",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "指到达某种程度或标准。多用于目标、标准、水平等。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__3__topic__19__thanh-tuu-va-ket-qua",
+      "sectionSlug": "thanh-tuu-va-ket-qua",
       "sectionTitle": "Thành tựu và kết quả",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

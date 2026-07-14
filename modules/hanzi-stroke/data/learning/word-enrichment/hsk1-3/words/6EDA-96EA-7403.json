@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:滚雪球",
   "type": "word",
   "word": "滚雪球",
@@ -16,24 +16,25 @@
     "readings": [
       {
         "pinyin": "gǔn xuě qiú",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lăn cầu tuyết (ý nói sự việc ngày càng lớn, tích tụ dần)",
+      "meaningShortVi": "lăn cầu tuyết (ý nói sự việc ngày càng lớn",
+      "meaningFullVi": "lăn cầu tuyết (ý nói sự việc ngày càng lớn, tích tụ dần)",
       "partOfSpeech": "Động từ, Thành ngữ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lăn cầu tuyết (ý nói sự việc ngày càng lớn",
   "wordType": "Động từ, Thành ngữ",
   "wordTypes": [
     "Động từ, Thành ngữ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -43,7 +44,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -53,7 +55,8 @@
       "meaningVi": "Vấn đề sẽ ngày càng lớn như lăn cầu tuyết.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "滚雪球",
@@ -62,10 +65,19 @@
       "meaningVi": "Tài sản của anh ấy tăng lên như lăn cầu tuyết.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 滚雪球",
+      "partOfSpeech": "Động từ, Thành ngữ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/滚雪球.mp3"
   ],
@@ -78,7 +90,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

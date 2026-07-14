@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:交警",
   "type": "word",
   "word": "交警",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiāo jǐng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cảnh sát giao thông",
+      "meaningShortVi": "cảnh sát giao thông",
+      "meaningFullVi": "cảnh sát giao thông",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cảnh sát giao thông",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "交警 (cảnh sát giao thông) là từ viết tắt của交通警察, người chịu trách nhiệm điều phối giao thông."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "交警大队",
         "pinyin": "jiāojǐng dàduì",
         "meaningVi": "đội cảnh sát giao thông",
+        "meaningFullVi": "đội cảnh sát giao thông",
         "target": "交警",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "交警叔叔",
         "pinyin": "jiāojǐng shūshu",
         "meaningVi": "chú cảnh sát giao thông",
+        "meaningFullVi": "chú cảnh sát giao thông",
         "target": "交警",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Cảnh sát giao thông đang chỉ huy giao thông.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "交警",
@@ -82,16 +87,17 @@
       "meaningVi": "Làm ơn nghe theo cảnh sát giao thông.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 交警",
-      "syntax": "danh từ",
-      "matchedExample": "交警 (cảnh sát giao thông) là từ viết tắt của交通警察, người chịu trách nhiệm điều phối giao thông.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 交警",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "交警 (cảnh sát giao thông) là từ viết tắt của交通警察, người chịu trách nhiệm điều phối giao thông.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__topic__16__cac-hoat-dong",
+      "sectionSlug": "cac-hoat-dong",
       "sectionTitle": "Các hoạt động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

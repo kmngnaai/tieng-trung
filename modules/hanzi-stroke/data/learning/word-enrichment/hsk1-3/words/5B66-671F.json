@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:学期",
   "type": "word",
   "word": "学期",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "xué qī",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "học kỳ",
+      "meaningShortVi": "học kỳ",
+      "meaningFullVi": "học kỳ",
       "partOfSpeech": "noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "học kỳ",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -48,36 +49,49 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "学年",
-        "pinyin": "",
-        "meaningVi": "năm học",
+        "text": "学期",
+        "pinyin": "xué qī",
+        "meaningVi": "học kỳ",
+        "meaningFullVi": "học kỳ",
         "target": "学期",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "学期",
       "chinese": "这个学期",
-      "pinyin": "",
+      "pinyin": "zhè ge xué qī",
       "meaningVi": "Học kỳ này",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "学期",
       "chinese": "上学期",
-      "pinyin": "",
+      "pinyin": "shàng xué qī",
       "meaningVi": "Học kỳ đầu",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 学期",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/学期.mp3"
   ],
@@ -86,21 +100,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__2__topic__7__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/nghien-cuu/",
+      "orderInSection": 4
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__3__lesson__18__bai-18-i-ve-learned-how-to-make-jiaozi",
+      "sectionSlug": "bai-18-i-ve-learned-how-to-make-jiaozi",
       "sectionTitle": "Tôi đã học được cách gói sủi cảo",
       "sectionTitleZh": "我学会了包饺子",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-18-i-ve-learned-how-to-make-jiaozi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-18-i-ve-learned-how-to-make-jiaozi/",
+      "orderInSection": 20
     }
   ],
   "sources": [
@@ -121,7 +145,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:气温",
   "type": "word",
   "word": "气温",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "qì wēn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "khí ôn",
+      "meaningShortVi": "khí ôn",
+      "meaningFullVi": "khí ôn",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "khí ôn",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,60 +48,58 @@
     "collocations": [
       {
         "text": "气温高",
-        "pinyin": "",
+        "pinyin": "qì wēn gāo",
         "meaningVi": "nhiệt độ cao",
+        "meaningFullVi": "nhiệt độ cao",
         "target": "气温",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "气温低",
-        "pinyin": "",
+        "pinyin": "qì wēn dī",
         "meaningVi": "nhiệt độ thấp",
+        "meaningFullVi": "nhiệt độ thấp",
         "target": "气温",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "气温升高",
-        "pinyin": "",
-        "meaningVi": "nhiệt độ tăng",
-        "target": "气温",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "气温",
       "chinese": "气温很高",
-      "pinyin": "",
+      "pinyin": "qì wēn hěn gāo",
       "meaningVi": "Nhiệt độ không khí rất cao",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "气温",
-      "chinese": "气温下降",
-      "pinyin": "",
-      "meaningVi": "Nhiệt độ giảm xuống",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "气温",
       "chinese": "今天气温多少",
-      "pinyin": "",
+      "pinyin": "jīn tiān qì wēn duō shao",
       "meaningVi": "Hôm nay nhiệt độ bao nhiêu",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 气温",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/气温.mp3"
   ],
@@ -109,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__2__topic__16__thien-nhien",
+      "sectionSlug": "thien-nhien",
       "sectionTitle": "Thiên nhiên",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thien-nhien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thien-nhien/",
+      "orderInSection": 34
     }
   ],
   "sources": [
@@ -124,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

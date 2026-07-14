@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:画笔",
   "type": "word",
   "word": "画笔",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "huà bǐ",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Cọ vẽ, bút vẽ",
+      "meaningShortVi": "Cọ vẽ",
+      "meaningFullVi": "Cọ vẽ, bút vẽ",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Cọ vẽ",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,7 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -54,7 +56,8 @@
       "meaningVi": "Anh ấy cầm cọ vẽ lên và bắt đầu vẽ.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "画笔",
@@ -63,10 +66,19 @@
       "meaningVi": "Cây cọ vẽ này là mới.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 画笔",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/画笔.mp3"
   ],
@@ -75,11 +87,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__2__lesson__6__bai-6-happy-birthday-xiaoxue",
+      "sectionSlug": "bai-6-happy-birthday-xiaoxue",
       "sectionTitle": "Tiểu Tuyết, chúc mừng sinh nhật!",
       "sectionTitleZh": "小雪，生日快乐！",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-6-happy-birthday-xiaoxue/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-6-happy-birthday-xiaoxue/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -90,7 +107,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

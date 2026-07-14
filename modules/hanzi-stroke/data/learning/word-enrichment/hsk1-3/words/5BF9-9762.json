@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:对面",
   "type": "word",
   "word": "对面",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "duì miàn",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đối diện",
+      "meaningShortVi": "đối diện",
+      "meaningFullVi": "đối diện",
       "partOfSpeech": "noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đối diện",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Chỉ vị trí ở phía đối diện."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,49 +49,56 @@
     "collocations": [
       {
         "text": "就在对面",
-        "pinyin": "",
+        "pinyin": "jiù zài duì miàn",
         "meaningVi": "ngay đối diện",
+        "meaningFullVi": "ngay đối diện",
         "target": "对面",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "马路对面",
-        "pinyin": "",
+        "pinyin": "mǎ lù duì miàn",
         "meaningVi": "bên kia đường",
+        "meaningFullVi": "bên kia đường",
         "target": "对面",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "对面",
       "chinese": "学校对面有一个商店",
-      "pinyin": "",
+      "pinyin": "xué xiào duì miàn yǒu yī gè shāng diàn",
       "meaningVi": "Đối diện trường học có một cửa hàng",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "对面",
       "chinese": "我们就住对面",
-      "pinyin": "",
+      "pinyin": "wǒ men jiù zhù duì miàn",
       "meaningVi": "Chúng tôi ngay ở đối diện",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 对面",
-      "syntax": "noun",
-      "matchedExample": "Chỉ vị trí ở phía đối diện.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 对面",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Chỉ vị trí ở phía đối diện.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__2__topic__6__huong",
+      "sectionSlug": "huong",
       "sectionTitle": "Hướng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/huong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/huong/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

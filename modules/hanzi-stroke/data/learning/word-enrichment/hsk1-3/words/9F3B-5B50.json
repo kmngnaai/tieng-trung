@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:鼻子",
   "type": "word",
   "word": "鼻子",
@@ -15,32 +15,32 @@
     "readings": [
       {
         "pinyin": "bí zi",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "mũi (cơ quan khứu giác); lỗ (phần có lỗ lộ ra ngoài của vật dụng)",
+      "meaningShortVi": "mũi (cơ quan khứu giác)",
+      "meaningFullVi": "mũi (cơ quan khứu giác); lỗ (phần có lỗ lộ ra ngoài của vật dụng)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     },
     {
-      "meaningVi": "mũi",
+      "meaningShortVi": "mũi",
+      "meaningFullVi": "mũi",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "mũi (cơ quan khứu giác)",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Từ ghép: 鼻 + 子 (hậu tố danh từ). Trong khẩu ngữ, 子 thường đọc nhẹ hoặc biến thành zi. Trong TCVN, 鼻子 là tị hoặc mũi."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -56,38 +56,27 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "鼻子疼",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "鼻子",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "摸鼻子",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "鼻子",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "这个鼻子",
-        "pinyin": "",
+        "pinyin": "zhè ge bí zi",
         "meaningVi": "cái mũi này",
+        "meaningFullVi": "cái mũi này",
         "target": "鼻子",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "那个鼻子",
-        "pinyin": "",
+        "pinyin": "nà ge bí zi",
         "meaningVi": "cái mũi kia",
+        "meaningFullVi": "cái mũi kia",
         "target": "鼻子",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -97,7 +86,8 @@
       "meaningVi": "Mũi của anh ấy rất to",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "鼻子",
@@ -106,7 +96,8 @@
       "meaningVi": "mũi bị nghẹt",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "鼻子",
@@ -115,7 +106,8 @@
       "meaningVi": "Mũi của anh ấy rất to.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "鼻子",
@@ -124,16 +116,17 @@
       "meaningVi": "Mũi tôi bị nghẹt.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 鼻子",
-      "syntax": "compound-semantic",
-      "matchedExample": "Từ ghép: 鼻 + 子 (hậu tố danh từ). Trong khẩu ngữ, 子 thường đọc nhẹ hoặc biến thành zi. Trong TCVN, 鼻子 là tị hoặc mũi.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 鼻子",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Từ ghép: 鼻 + 子 (hậu tố danh từ). Trong khẩu ngữ, 子 thường đọc nhẹ hoặc biến thành zi. Trong TCVN, 鼻子 là tị hoặc mũi.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -144,11 +137,16 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 16,
+      "sectionId": "hsk__3__lesson__16__bai-16-bay-gio-toi-met-den-muc-tan-lam-la-chi-muon-ngu",
+      "sectionSlug": "bai-16-bay-gio-toi-met-den-muc-tan-lam-la-chi-muon-ngu",
       "sectionTitle": "Bây giờ tôi mệt đến mức tan làm là chỉ muốn ngủ.",
       "sectionTitleZh": "我现在累得下了班就想睡觉",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-16-bay-gio-toi-met-den-muc-tan-lam-la-chi-muon-ngu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-16-bay-gio-toi-met-den-muc-tan-lam-la-chi-muon-ngu/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -169,7 +167,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

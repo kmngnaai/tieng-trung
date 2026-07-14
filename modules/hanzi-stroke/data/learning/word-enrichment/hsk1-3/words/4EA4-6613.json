@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:交易",
   "type": "word",
   "word": "交易",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiāo yì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "giao dịch, mua bán, trao đổi",
+      "meaningShortVi": "giao dịch",
+      "meaningFullVi": "giao dịch, mua bán, trao đổi",
       "partOfSpeech": "động từ / danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "giao dịch",
   "wordType": "động từ / danh từ",
   "wordTypes": [
     "động từ / danh từ"
   ],
-  "usageNotes": [
-    "交易 có thể là động từ (tiến hành giao dịch) hoặc danh từ (một giao dịch). Thường dùng trong ngữ cảnh kinh tế, tài chính, thương mại."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,36 @@
     "collocations": [
       {
         "text": "交易市场",
-        "pinyin": "",
+        "pinyin": "jiāo yì shì chǎng",
         "meaningVi": "thị trường giao dịch",
+        "meaningFullVi": "thị trường giao dịch",
         "target": "交易",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "贸易交易",
-        "pinyin": "",
-        "meaningVi": "giao dịch thương mại",
-        "target": "交易",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "交易",
-      "chinese": "他们在网上进行股票交易。",
-      "pinyin": "",
-      "meaningVi": "Họ thực hiện giao dịch cổ phiếu trên mạng.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "交易",
       "chinese": "这是一笔公平的交易。",
-      "pinyin": "",
+      "pinyin": "zhè shì yī bǐ gōng píng de jiāo yì。",
       "meaningVi": "Đây là một giao dịch công bằng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 交易",
-      "syntax": "động từ / danh từ",
-      "matchedExample": "交易 có thể là động từ (tiến hành giao dịch) hoặc danh từ (một giao dịch). Thường dùng trong ngữ cảnh kinh tế, tài chính, thương mại.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 交易",
+      "partOfSpeech": "động từ / danh từ",
+      "usageNoteVi": "交易 có thể là động từ (tiến hành giao dịch) hoặc danh từ (một giao dịch). Thường dùng trong ngữ cảnh kinh tế, tài chính, thương mại.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 22,
+      "sectionId": "new_hsk__3__topic__22__kinh-te-va-tai-chinh",
+      "sectionSlug": "kinh-te-va-tai-chinh",
       "sectionTitle": "Kinh tế và tài chính",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/kinh-te-va-tai-chinh/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/kinh-te-va-tai-chinh/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -117,7 +108,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

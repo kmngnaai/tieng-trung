@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:遇到",
   "type": "word",
   "word": "遇到",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "yù dào",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "gặp phải",
+      "meaningShortVi": "gặp phải",
+      "meaningFullVi": "gặp phải",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "gặp phải",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -46,29 +47,51 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [
+      {
+        "text": "遇到",
+        "pinyin": "yù dào",
+        "meaningVi": "gặp phải",
+        "meaningFullVi": "gặp phải",
+        "target": "遇到",
+        "source": "hsk_2.json",
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "遇到",
       "chinese": "这个遇到很好。",
-      "pinyin": "",
+      "pinyin": "zhè ge yù dào hěn hǎo。",
       "meaningVi": "gặp phải này rất tốt.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "遇到",
       "chinese": "我喜欢这个遇到。",
-      "pinyin": "",
+      "pinyin": "wǒ xǐ huan zhè ge yù dào。",
       "meaningVi": "Tôi thích gặp phải này.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 遇到",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/遇到.mp3"
   ],
@@ -77,21 +100,31 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 13,
+      "sectionId": "hsk__3__lesson__13__bai-13-toi-di-bo-ve",
+      "sectionSlug": "bai-13-toi-di-bo-ve",
       "sectionTitle": "Tôi đi bộ về.",
       "sectionTitleZh": "我是走回来的",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-13-toi-di-bo-ve/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-13-toi-di-bo-ve/",
+      "orderInSection": 5
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__3__lesson__10__bai-10-you-can-return-the-book-to-me-tomorrow",
+      "sectionSlug": "bai-10-you-can-return-the-book-to-me-tomorrow",
       "sectionTitle": "Mai bạn trả sách cho tôi cũng được",
       "sectionTitleZh": "你明天再把书还给我",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-10-you-can-return-the-book-to-me-tomorrow/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-10-you-can-return-the-book-to-me-tomorrow/",
+      "orderInSection": 17
     }
   ],
   "sources": [
@@ -107,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

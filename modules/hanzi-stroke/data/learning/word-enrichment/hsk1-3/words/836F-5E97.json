@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:药店",
   "type": "word",
   "word": "药店",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yào diàn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hiệu thuốc",
+      "meaningShortVi": "hiệu thuốc",
+      "meaningFullVi": "hiệu thuốc",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hiệu thuốc",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Danh từ chỉ nơi bán thuốc."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "中药店",
-        "pinyin": "",
+        "pinyin": "zhōng yào diàn",
         "meaningVi": "hiệu thuốc Bắc",
+        "meaningFullVi": "hiệu thuốc Bắc",
         "target": "药店",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "药店老板",
-        "pinyin": "",
+        "pinyin": "yào diàn lǎo bǎn",
         "meaningVi": "chủ hiệu thuốc",
+        "meaningFullVi": "chủ hiệu thuốc",
         "target": "药店",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "药店",
       "chinese": "去药店买药",
-      "pinyin": "",
+      "pinyin": "qù yào diàn mǎi yào",
       "meaningVi": "Đi hiệu thuốc mua thuốc",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "药店",
       "chinese": "药店在街角",
-      "pinyin": "",
+      "pinyin": "yào diàn zài jiē jiǎo",
       "meaningVi": "Hiệu thuốc ở góc phố",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 药店",
-      "syntax": "noun",
-      "matchedExample": "Danh từ chỉ nơi bán thuốc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 药店",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Danh từ chỉ nơi bán thuốc.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,21 +108,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__2__lesson__11__bai-11-i-like-chinese-food-the-most",
+      "sectionSlug": "bai-11-i-like-chinese-food-the-most",
       "sectionTitle": "Tôi thích ăn món Trung Quốc nhất",
       "sectionTitleZh": "我最喜欢吃中国菜",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-11-i-like-chinese-food-the-most/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-11-i-like-chinese-food-the-most/",
+      "orderInSection": 13
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__2__topic__14__co-the-va-suc-khoe",
+      "sectionSlug": "co-the-va-suc-khoe",
       "sectionTitle": "Cơ thể và sức khỏe",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/co-the-va-suc-khoe/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/co-the-va-suc-khoe/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -127,7 +143,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

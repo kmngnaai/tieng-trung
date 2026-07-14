@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:请进",
   "type": "word",
   "word": "请进",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "qǐng jìn",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "mời vào",
+      "meaningShortVi": "mời vào",
+      "meaningFullVi": "mời vào",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "mời vào",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Cụm từ lịch sự khi mời ai đó bước vào nhà/phòng. Thường đi kèm với 请坐 (mời ngồi) sau đó. Trong giao tiếp, nói 请进 khi mở cửa cho khách. Khác với 进来 (vào đây) là mệnh lệnh hoặc mô tả, 请进 thêm ý lịch sự."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 请 (mời) + 进 (vào) → mời ai đó bước vào. Cụm động từ lịch sự dùng khi đón khách."
   ],
   "hsk": {
     "levels": [
@@ -50,30 +47,17 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "请坐",
-        "pinyin": "qǐng zuò",
-        "meaningVi": "mời ngồi",
-        "target": "请进",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "请进来",
         "pinyin": "qǐng jìnlái",
         "meaningVi": "mời vào đây",
+        "meaningFullVi": "mời vào đây",
         "target": "请进",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "进来",
-        "pinyin": "jìnlái",
-        "meaningVi": "vào đây (không mời)",
-        "target": "请进",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -83,7 +67,8 @@
       "meaningVi": "Mời vào, mời ngồi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "请进",
@@ -92,7 +77,8 @@
       "meaningVi": "Mời vào đi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "请进",
@@ -101,7 +87,8 @@
       "meaningVi": "Mời vào nhanh nhé",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "请进",
@@ -110,7 +97,8 @@
       "meaningVi": "Mời vào, tôi đợi bạn lâu rồi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "请进",
@@ -119,23 +107,17 @@
       "meaningVi": "Mời thầy vào",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 请进",
-      "syntax": "compound-semantic",
-      "matchedExample": "Cụm từ lịch sự khi mời ai đó bước vào nhà/phòng. Thường đi kèm với 请坐 (mời ngồi) sau đó. Trong giao tiếp, nói 请进 khi mở cửa cho khách. Khác với 进来 (vào đây) là mệnh lệnh hoặc mô tả, 请进 thêm ý lịch sự.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 请 (mời) + 进 (vào) → mời ai đó bước vào. Cụm động từ lịch sự dùng khi đón khách.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 请进",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Cụm từ lịch sự khi mời ai đó bước vào nhà/phòng. Thường đi kèm với 请坐 (mời ngồi) sau đó. Trong giao tiếp, nói 请进 khi mở cửa cho khách. Khác với 进来 (vào đây) là mệnh lệnh hoặc mô tả, 请进 thêm ý lịch sự.",
+      "explanationVi": "Ghép nghĩa: 请 (mời) + 进 (vào) → mời ai đó bước vào. Cụm động từ lịch sự dùng khi đón khách.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -146,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__1__topic__19__nhung-tu-ngu-lich-su",
+      "sectionSlug": "nhung-tu-ngu-lich-su",
       "sectionTitle": "Những từ ngữ lịch sự",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nhung-tu-ngu-lich-su/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nhung-tu-ngu-lich-su/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -161,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

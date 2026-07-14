@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:一点{儿}",
   "type": "word",
   "word": "一点{儿}",
@@ -18,26 +18,25 @@
     "readings": [
       {
         "pinyin": "yī diǎnr ",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "một chút, một ít; dùng để chỉ số lượng nhỏ hoặc khoảng thời gian ngắn",
+      "meaningShortVi": "một chút",
+      "meaningFullVi": "một chút, một ít; dùng để chỉ số lượng nhỏ hoặc khoảng thời gian ngắn",
       "partOfSpeech": "other",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "một chút",
   "wordType": "other",
   "wordTypes": [
     "other"
   ],
-  "usageNotes": [
-    "儿化音: 儿 (ér) là hậu tố phát âm er, viết ngoặc sau 一点. 在一点{儿}中, 儿连读成diǎnr (一音节)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -53,40 +52,14 @@
         "word": "有一点{儿}",
         "pinyin": "yǒu yī diǎnr ",
         "meaningVi": "một chút",
+        "meaningFullVi": "một chút",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          2
-        ],
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 2",
+        "reviewStatus": "reviewed-local"
       }
     ],
-    "collocations": [
-      {
-        "text": "有一点儿",
-        "pinyin": "yǒu yīdiǎnr",
-        "meaningVi": "hơi một chút",
-        "target": "一点{儿}",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "一会儿",
-        "pinyin": "yīhuìr",
-        "meaningVi": "một lát, một chút",
-        "target": "一点{儿}",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "一点儿一点儿",
-        "pinyin": "yīdiǎnr yīdiǎnr",
-        "meaningVi": "từ từ, dần dần",
-        "target": "一点{儿}",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -96,7 +69,8 @@
       "meaningVi": "Tôi hơi đói một chút.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "一点{儿}",
@@ -105,7 +79,8 @@
       "meaningVi": "Cái này đắt hơn cái kia một chút.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "一点{儿}",
@@ -114,16 +89,17 @@
       "meaningVi": "Làm ơn cho tôi một chút nước.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 一点{儿}",
-      "syntax": "other",
-      "matchedExample": "儿化音: 儿 (ér) là hậu tố phát âm er, viết ngoặc sau 一点. 在一点{儿}中, 儿连读成diǎnr (一音节).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 一点{儿}",
+      "partOfSpeech": "other",
+      "usageNoteVi": "儿化音: 儿 (ér) là hậu tố phát âm er, viết ngoặc sau 一点. 在一点{儿}中, 儿连读成diǎnr (一音节).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -134,11 +110,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__1__topic__11__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/pho-tu/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -149,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng"
+    ]
   }
 }

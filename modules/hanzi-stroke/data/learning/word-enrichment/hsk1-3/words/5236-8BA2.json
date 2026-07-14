@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:制订",
   "type": "word",
   "word": "制订",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhì dìng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "soạn thảo, lập ra (kế hoạch, quy định)",
+      "meaningShortVi": "soạn thảo",
+      "meaningFullVi": "soạn thảo, lập ra (kế hoạch, quy định)",
       "partOfSpeech": "động từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "soạn thảo",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Chủ yếu dùng với kế hoạch, chương trình, quy định. Với 'luật pháp' thường dùng 制定 (không có 口)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,32 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "制订计划",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "制订",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "制订方案",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "制订",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "制订政策",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "制订",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,16 +54,17 @@
       "meaningVi": "Chúng tôi đã lập kế hoạch",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 制订",
-      "syntax": "động từ",
-      "matchedExample": "Chủ yếu dùng với kế hoạch, chương trình, quy định. Với 'luật pháp' thường dùng 制定 (không có 口).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 制订",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Chủ yếu dùng với kế hoạch, chương trình, quy định. Với 'luật pháp' thường dùng 制定 (không có 口).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,7 +79,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

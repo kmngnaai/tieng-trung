@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:丰富",
   "type": "word",
   "word": "丰富",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fēng fù",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phong phú; dồi dào; nhiều",
+      "meaningShortVi": "phong phú",
+      "meaningFullVi": "phong phú; dồi dào; nhiều",
       "partOfSpeech": "tính từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phong phú",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "Dùng để miêu tả sự dồi dào, đa dạng về tài nguyên, kinh nghiệm, hoặc nội dung."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,19 +51,24 @@
         "text": "经验丰富",
         "pinyin": "jīngyàn fēngfù",
         "meaningVi": "kinh nghiệm phong phú",
+        "meaningFullVi": "kinh nghiệm phong phú",
         "target": "丰富",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "丰富多彩",
         "pinyin": "fēngfù duōcǎi",
-        "meaningVi": "đa dạng, phong phú",
+        "meaningVi": "đa dạng",
+        "meaningFullVi": "đa dạng, phong phú",
         "target": "丰富",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Nguồn tài nguyên văn hóa của Trung Quốc rất phong phú.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "丰富",
@@ -83,16 +88,17 @@
       "meaningVi": "Bữa tối này rất phong phú (nhiều món).",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 丰富",
-      "syntax": "tính từ",
-      "matchedExample": "Dùng để miêu tả sự dồi dào, đa dạng về tài nguyên, kinh nghiệm, hoặc nội dung.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 丰富",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "Dùng để miêu tả sự dồi dào, đa dạng về tài nguyên, kinh nghiệm, hoặc nội dung.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 33,
+      "sectionId": "new_hsk__3__topic__33__tinh-tu",
+      "sectionSlug": "tinh-tu",
       "sectionTitle": "Tính từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/",
+      "orderInSection": 34
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

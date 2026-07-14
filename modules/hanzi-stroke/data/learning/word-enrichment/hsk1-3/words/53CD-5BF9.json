@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:反对",
   "type": "word",
   "word": "反对",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fǎn duì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phản đối",
+      "meaningShortVi": "phản đối",
+      "meaningFullVi": "phản đối",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phản đối",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Dùng khi không đồng ý với một quan điểm hoặc hành động. Trái nghĩa với '支持' (ủng hộ) hoặc '同意' (đồng ý)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "反对意见",
-        "pinyin": "",
+        "pinyin": "fǎn duì yì jiàn",
         "meaningVi": "ý kiến phản đối",
+        "meaningFullVi": "ý kiến phản đối",
         "target": "反对",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "坚决反对",
-        "pinyin": "",
+        "pinyin": "jiān jué fǎn duì",
         "meaningVi": "phản đối kiên quyết",
+        "meaningFullVi": "phản đối kiên quyết",
         "target": "反对",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "反对",
       "chinese": "我反对这个计划。",
-      "pinyin": "",
+      "pinyin": "wǒ fǎn duì zhè ge jì huà。",
       "meaningVi": "Tôi phản đối kế hoạch này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "反对",
       "chinese": "大家都反对这样做。",
-      "pinyin": "",
+      "pinyin": "dà jiā dōu fǎn duì zhè yàng zuò。",
       "meaningVi": "Mọi người đều phản đối việc làm như vậy.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 反对",
-      "syntax": "động từ",
-      "matchedExample": "Dùng khi không đồng ý với một quan điểm hoặc hành động. Trái nghĩa với '支持' (ủng hộ) hoặc '同意' (đồng ý).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 反对",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Dùng khi không đồng ý với một quan điểm hoặc hành động. Trái nghĩa với '支持' (ủng hộ) hoặc '同意' (đồng ý).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 24,
+      "sectionId": "new_hsk__3__topic__24__words-ii",
+      "sectionSlug": "words-ii",
       "sectionTitle": "Words II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/words-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/words-ii/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

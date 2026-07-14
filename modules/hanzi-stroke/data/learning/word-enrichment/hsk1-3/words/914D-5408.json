@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:配合",
   "type": "word",
   "word": "配合",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "pèi hé",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phối hợp, hợp tác, đồng bộ; yểm trợ",
+      "meaningShortVi": "phối hợp",
+      "meaningFullVi": "phối hợp, hợp tác, đồng bộ; yểm trợ",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phối hợp",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "配合 là động từ chỉ phối hợp, hợp tác hoặc yểm trợ. Là từ ghép Hán-Việt 'phối hợp'. Thường dùng trong ngữ cảnh công việc, team work."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "互相配合",
         "pinyin": "hùxiāng pèihé",
         "meaningVi": "phối hợp lẫn nhau",
+        "meaningFullVi": "phối hợp lẫn nhau",
         "target": "配合",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "密切配合",
         "pinyin": "mìqiè pèihé",
         "meaningVi": "phối hợp mật thiết",
+        "meaningFullVi": "phối hợp mật thiết",
         "target": "配合",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Chúng ta cần phối hợp công việc.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "配合",
@@ -82,16 +87,17 @@
       "meaningVi": "Cảm ơn sự phối hợp của bạn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 配合",
-      "syntax": "động từ",
-      "matchedExample": "配合 là động từ chỉ phối hợp, hợp tác hoặc yểm trợ. Là từ ghép Hán-Việt 'phối hợp'. Thường dùng trong ngữ cảnh công việc, team work.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 配合",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "配合 là động từ chỉ phối hợp, hợp tác hoặc yểm trợ. Là từ ghép Hán-Việt 'phối hợp'. Thường dùng trong ngữ cảnh công việc, team work.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 20,
+      "sectionId": "new_hsk__3__topic__20__so-sanh-va-tuan-thu",
+      "sectionSlug": "so-sanh-va-tuan-thu",
       "sectionTitle": "So sánh và Tuân thủ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/so-sanh-va-tuan-thu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/so-sanh-va-tuan-thu/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

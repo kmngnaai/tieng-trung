@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:意义",
   "type": "word",
   "word": "意义",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yì yì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ý nghĩa, giá trị, tầm quan trọng; sự đáng để thực hiện hoặc lưu ý",
+      "meaningShortVi": "ý nghĩa",
+      "meaningFullVi": "ý nghĩa, giá trị, tầm quan trọng; sự đáng để thực hiện hoặc lưu ý",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ý nghĩa",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Có thể dùng để đánh giá giá trị của một hành động, quyết định, hoặc sự vật. Trong văn cảnh học thuật, 用意 ngữ境, 用意 ngữ cảnh, 用意 ngữ cảnh, 用意 ngữ cảnh, 用意 ngữ cảnh. Từ liên quan: 价值 'giá trị', 作用 'vai trò'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -50,12 +49,10 @@
         "word": "有意义",
         "pinyin": "yǒu yì yì",
         "meaningVi": "Có ý nghĩa",
+        "meaningFullVi": "Có ý nghĩa",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          3
-        ],
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 3",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
@@ -63,19 +60,24 @@
         "text": "有意义",
         "pinyin": "yǒu yìyì",
         "meaningVi": "có ý nghĩa",
+        "meaningFullVi": "có ý nghĩa",
         "target": "意义",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "意义深远",
         "pinyin": "yìyì shēnyuǎn",
         "meaningVi": "ý nghĩa sâu xa",
+        "meaningFullVi": "ý nghĩa sâu xa",
         "target": "意义",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -85,7 +87,8 @@
       "meaningVi": "Việc học tiếng Trung rất có ý nghĩa cho công việc sau này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "意义",
@@ -94,16 +97,17 @@
       "meaningVi": "Quyển sách này có ý nghĩa to lớn với tôi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 意义",
-      "syntax": "danh từ",
-      "matchedExample": "Có thể dùng để đánh giá giá trị của một hành động, quyết định, hoặc sự vật. Trong văn cảnh học thuật, 用意 ngữ境, 用意 ngữ cảnh, 用意 ngữ cảnh, 用意 ngữ cảnh, 用意 ngữ cảnh. Từ liên quan: 价值 'giá trị', 作用 'vai trò'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 意义",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Có thể dùng để đánh giá giá trị của một hành động, quyết định, hoặc sự vật. Trong văn cảnh học thuật, 用意 ngữ境, 用意 ngữ cảnh, 用意 ngữ cảnh, 用意 ngữ cảnh, 用意 ngữ cảnh. Từ liên quan: 价值 'giá trị', 作用 'vai trò'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 28,
+      "sectionId": "new_hsk__3__topic__28__tu-duy",
+      "sectionSlug": "tu-duy",
       "sectionTitle": "tư duy",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-duy/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-duy/",
+      "orderInSection": 27
     }
   ],
   "sources": [
@@ -129,7 +138,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

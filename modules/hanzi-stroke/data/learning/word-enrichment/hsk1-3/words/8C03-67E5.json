@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:调查",
   "type": "word",
   "word": "调查",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "diào chá",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "điều tra",
+      "meaningShortVi": "điều tra",
+      "meaningFullVi": "điều tra",
       "partOfSpeech": "động từ/danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "điều tra",
   "wordType": "động từ/danh từ",
   "wordTypes": [
     "động từ/danh từ"
   ],
-  "usageNotes": [
-    "Dùng trong điều tra tội phạm hoặc khảo sát thị trường, nghiên cứu."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -48,50 +47,37 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "调查案件",
-        "pinyin": "",
-        "meaningVi": "điều tra vụ án",
-        "target": "调查",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "市场调查",
-        "pinyin": "",
+        "pinyin": "shì chǎng diào chá",
         "meaningVi": "khảo sát thị trường",
+        "meaningFullVi": "khảo sát thị trường",
         "target": "调查",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "调查",
-      "chinese": "警察正在调查这起案件。",
-      "pinyin": "",
-      "meaningVi": "Cảnh sát đang điều tra vụ án này.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "调查",
       "chinese": "我们需要调查一下市场情况。",
-      "pinyin": "",
+      "pinyin": "wǒ men xū yào diào chá yī xià shì chǎng qíng kuàng。",
       "meaningVi": "Chúng ta cần điều tra tình hình thị trường một chút.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 调查",
-      "syntax": "động từ/danh từ",
-      "matchedExample": "Dùng trong điều tra tội phạm hoặc khảo sát thị trường, nghiên cứu.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 调查",
+      "partOfSpeech": "động từ/danh từ",
+      "usageNoteVi": "Dùng trong điều tra tội phạm hoặc khảo sát thị trường, nghiên cứu.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 26,
+      "sectionId": "new_hsk__3__topic__26__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -117,7 +108,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

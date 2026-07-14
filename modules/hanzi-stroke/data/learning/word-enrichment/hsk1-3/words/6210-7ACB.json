@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:成立",
   "type": "word",
   "word": "成立",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "chéng lì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thành lập",
+      "meaningShortVi": "thành lập",
+      "meaningFullVi": "thành lập",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thành lập",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "指组织、机构等的建立。成立 vs. 建立：成立更正式，多用于组织机构。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "成立公司",
-        "pinyin": "",
+        "pinyin": "chéng lì gōng sī",
         "meaningVi": "thành lập công ty",
+        "meaningFullVi": "thành lập công ty",
         "target": "成立",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "成立政府",
-        "pinyin": "",
+        "pinyin": "chéng lì zhèng fǔ",
         "meaningVi": "thành lập chính phủ",
+        "meaningFullVi": "thành lập chính phủ",
         "target": "成立",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "成立",
-      "chinese": "这个公司成立于2010年。",
-      "pinyin": "",
-      "meaningVi": "Công ty này được thành lập năm 2010.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "成立",
       "chinese": "我们要成立一个新的团队。",
-      "pinyin": "",
+      "pinyin": "wǒ men yào chéng lì yī gè xīn de tuán duì。",
       "meaningVi": "Chúng ta cần thành lập một đội ngũ mới.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 成立",
-      "syntax": "động từ",
-      "matchedExample": "指组织、机构等的建立。成立 vs. 建立：成立更正式，多用于组织机构。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 成立",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "指组织、机构等的建立。成立 vs. 建立：成立更正式，多用于组织机构。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__3__topic__19__thanh-tuu-va-ket-qua",
+      "sectionSlug": "thanh-tuu-va-ket-qua",
       "sectionTitle": "Thành tựu và kết quả",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/",
+      "orderInSection": 20
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

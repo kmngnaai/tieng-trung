@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:上述",
   "type": "word",
   "word": "上述",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "shàng shù",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nêu trên, đã nêu ở trên (dùng trong văn viết để refer lại nội dung trước)",
+      "meaningShortVi": "nêu trên",
+      "meaningFullVi": "nêu trên, đã nêu ở trên (dùng trong văn viết để refer lại nội dung trước)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nêu trên",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Thường dùng trong văn viết trang trọng. Phân biệt 上述 (nêu trên - văn viết) vs 上面 (phía trên - văn nói)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa：上 (thượng - phía trên, trước) + 述 (thuật - kể lại, nêu). Nêu lại phía trên → đã nêu ở trên."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "上述问题",
         "pinyin": "shàngshù wèntí",
         "meaningVi": "vấn đề nêu trên",
+        "meaningFullVi": "vấn đề nêu trên",
         "target": "上述",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "上述内容",
         "pinyin": "shàngshù nèiróng",
         "meaningVi": "nội dung nêu trên",
+        "meaningFullVi": "nội dung nêu trên",
         "target": "上述",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "根据上述",
         "pinyin": "gēnjù shàngshù",
         "meaningVi": "theo nêu trên",
+        "meaningFullVi": "theo nêu trên",
         "target": "上述",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Vấn đề nêu trên",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "上述",
@@ -90,7 +95,8 @@
       "meaningVi": "Theo nêu trên",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "上述",
@@ -99,7 +105,8 @@
       "meaningVi": "Nội dung nêu trên",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "上述",
@@ -108,23 +115,17 @@
       "meaningVi": "Như nêu trên所示",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 上述",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường dùng trong văn viết trang trọng. Phân biệt 上述 (nêu trên - văn viết) vs 上面 (phía trên - văn nói).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa：上 (thượng - phía trên, trước) + 述 (thuật - kể lại, nêu). Nêu lại phía trên → đã nêu ở trên.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 上述",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường dùng trong văn viết trang trọng. Phân biệt 上述 (nêu trên - văn viết) vs 上面 (phía trên - văn nói).",
+      "explanationVi": "Ghép nghĩa：上 (thượng - phía trên, trước) + 述 (thuật - kể lại, nêu). Nêu lại phía trên → đã nêu ở trên.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

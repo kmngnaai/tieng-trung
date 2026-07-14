@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:南边",
   "type": "word",
   "word": "南边",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "nán biān",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phía nam, bên nam",
+      "meaningShortVi": "phía nam",
+      "meaningFullVi": "phía nam, bên nam",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phía nam",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Chỉ vị trí phía nam. Phân biệt 与 南方 (phương nam, thiên về văn phong trang trọng), 南部 (vùng nam, thiên về phân khu hành chính)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 南 (nam) + 边 (bên, cạnh) → phía nam, bên nam."
   ],
   "hsk": {
     "levels": [
@@ -54,27 +51,34 @@
         "text": "南边有",
         "pinyin": "nánbiān yǒu",
         "meaningVi": "phía nam có",
+        "meaningFullVi": "phía nam có",
         "target": "南边",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "往南边走",
         "pinyin": "wǎng nánbiān zǒu",
         "meaningVi": "đi về phía nam",
+        "meaningFullVi": "đi về phía nam",
         "target": "南边",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "南边去",
         "pinyin": "nánbiān qù",
         "meaningVi": "đi sang phía nam",
+        "meaningFullVi": "đi sang phía nam",
         "target": "南边",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -84,7 +88,8 @@
       "meaningVi": "Phía nam có sông",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "南边",
@@ -93,7 +98,8 @@
       "meaningVi": "Mặt trời ở phía nam",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "南边",
@@ -102,7 +108,8 @@
       "meaningVi": "Chúng ta đi du lịch phía nam",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "南边",
@@ -111,23 +118,17 @@
       "meaningVi": "Phía nam rất nóng",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 南边",
-      "syntax": "compound-semantic",
-      "matchedExample": "Chỉ vị trí phía nam. Phân biệt 与 南方 (phương nam, thiên về văn phong trang trọng), 南部 (vùng nam, thiên về phân khu hành chính).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 南 (nam) + 边 (bên, cạnh) → phía nam, bên nam.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 南边",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Chỉ vị trí phía nam. Phân biệt 与 南方 (phương nam, thiên về văn phong trang trọng), 南部 (vùng nam, thiên về phân khu hành chính).",
+      "explanationVi": "Ghép nghĩa: 南 (nam) + 边 (bên, cạnh) → phía nam, bên nam.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -138,11 +139,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__1__topic__18__dia-ly",
+      "sectionSlug": "dia-ly",
       "sectionTitle": "Địa lý",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dia-ly/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dia-ly/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -158,7 +164,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

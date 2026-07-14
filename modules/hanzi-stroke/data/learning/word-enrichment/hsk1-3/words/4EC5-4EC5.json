@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:仅仅",
   "type": "word",
   "word": "仅仅",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jǐn jǐn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chỉ là, đơn thuần, thôi",
+      "meaningShortVi": "chỉ là",
+      "meaningFullVi": "chỉ là, đơn thuần, thôi",
       "partOfSpeech": "phó từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chỉ là",
   "wordType": "phó từ",
   "wordTypes": [
     "phó từ"
   ],
-  "usageNotes": [
-    "Thường用đểnhấn mạnh giới hạn, tương đương với只是。Khi đi với不成为不仅仅（không chỉ）。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,58 +48,56 @@
     "collocations": [
       {
         "text": "不仅仅",
-        "pinyin": "",
-        "meaningVi": "không chỉ, không đơn thuần",
+        "pinyin": "bù jǐn jǐn",
+        "meaningVi": "không chỉ",
+        "meaningFullVi": "không chỉ, không đơn thuần",
         "target": "仅仅",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "仅仅如此",
-        "pinyin": "",
-        "meaningVi": "chỉ có vậy, chỉ thế thôi",
-        "target": "仅仅",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "仅仅",
       "chinese": "这仅仅是一个开始。",
-      "pinyin": "",
+      "pinyin": "zhè jǐn jǐn shì yī gè kāi shǐ。",
       "meaningVi": "Đây chỉ là sự khởi đầu.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "仅仅",
       "chinese": "他不仅仅是个医生。",
-      "pinyin": "",
+      "pinyin": "tā bù jǐn jǐn shì gè yī shēng。",
       "meaningVi": "Anh ấy không chỉ là một bác sĩ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "仅仅",
       "chinese": "不仅仅是我，大家都这么想。",
-      "pinyin": "",
+      "pinyin": "bù jǐn jǐn shì wǒ， dà jiā dōu zhè me xiǎng。",
       "meaningVi": "Không chỉ tôi, mà ai cũng nghĩ vậy.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 仅仅",
-      "syntax": "phó từ",
-      "matchedExample": "Thường用đểnhấn mạnh giới hạn, tương đương với只是。Khi đi với不成为不仅仅（không chỉ）。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 仅仅",
+      "partOfSpeech": "phó từ",
+      "usageNoteVi": "Thường用đểnhấn mạnh giới hạn, tương đương với只是。Khi đi với不成为不仅仅（không chỉ）。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -111,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__3__topic__1__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/pho-tu/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -126,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

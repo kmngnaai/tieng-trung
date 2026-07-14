@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:问题",
   "type": "word",
   "word": "问题",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wèn tí",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "vấn đề, câu hỏi",
+      "meaningShortVi": "vấn đề",
+      "meaningFullVi": "vấn đề, câu hỏi",
       "partOfSpeech": "noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "vấn đề",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Có thể mang nghĩa 'câu hỏi' khi cần hỏi điều gì, hoặc 'vấn đề' khi nói về khó khăn cần giải quyết"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -52,78 +51,86 @@
       {
         "word": "没问题",
         "pinyin": "méi wèn tí",
-        "meaningVi": "không vấn đề gì, được thôi",
+        "meaningVi": "không vấn đề gì",
+        "meaningFullVi": "không vấn đề gì, được thôi",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
       {
         "text": "解决问题",
-        "pinyin": "",
+        "pinyin": "jiě jué wèn tí",
         "meaningVi": "giải quyết vấn đề",
+        "meaningFullVi": "giải quyết vấn đề",
         "target": "问题",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "提出问题",
-        "pinyin": "",
+        "pinyin": "tí chū wèn tí",
         "meaningVi": "đưa ra câu hỏi",
+        "meaningFullVi": "đưa ra câu hỏi",
         "target": "问题",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "没问题",
-        "pinyin": "",
+        "pinyin": "méi wèn tí",
         "meaningVi": "không có vấn đề gì",
+        "meaningFullVi": "không có vấn đề gì",
         "target": "问题",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "问题",
       "chinese": "我有一个问题",
-      "pinyin": "",
+      "pinyin": "wǒ yǒu yī gè wèn tí",
       "meaningVi": "Tôi có một câu hỏi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "问题",
       "chinese": "这个问题很难解决",
-      "pinyin": "",
+      "pinyin": "zhè ge wèn tí hěn nán jiě jué",
       "meaningVi": "Vấn đề này rất khó giải quyết",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "问题",
       "chinese": "请回答我的问题",
-      "pinyin": "",
+      "pinyin": "qǐng huí dá wǒ de wèn tí",
       "meaningVi": "Vui lòng trả lời câu hỏi của tôi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 问题",
-      "syntax": "noun",
-      "matchedExample": "Có thể mang nghĩa 'câu hỏi' khi cần hỏi điều gì, hoặc 'vấn đề' khi nói về khó khăn cần giải quyết",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 问题",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Có thể mang nghĩa 'câu hỏi' khi cần hỏi điều gì, hoặc 'vấn đề' khi nói về khó khăn cần giải quyết",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -134,31 +141,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__1__lesson__13__bai-13-i-ll-have-a-cup-of-tea-please",
+      "sectionSlug": "bai-13-i-ll-have-a-cup-of-tea-please",
       "sectionTitle": "Cho tôi một cốc trà",
       "sectionTitleZh": "请给我一杯茶",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-13-i-ll-have-a-cup-of-tea-please/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-13-i-ll-have-a-cup-of-tea-please/",
+      "orderInSection": 12
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 9,
+      "sectionId": "hsk__2__lesson__9__bai-9-bai-tap-nhieu-qua-toi-chua-lam-xong",
+      "sectionSlug": "bai-9-bai-tap-nhieu-qua-toi-chua-lam-xong",
       "sectionTitle": "Bài tập nhiều quá, tôi chưa làm xong",
       "sectionTitleZh": "题太多，我没做完",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-9-bai-tap-nhieu-qua-toi-chua-lam-xong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-9-bai-tap-nhieu-qua-toi-chua-lam-xong/",
+      "orderInSection": 6
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__2__topic__19__thong-tin",
+      "sectionSlug": "thong-tin",
       "sectionTitle": "Thông tin",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin/",
+      "orderInSection": 6
     }
   ],
   "sources": [
@@ -179,7 +201,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

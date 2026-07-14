@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:老百姓",
   "type": "word",
   "word": "老百姓",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "lǎo bǎi xìng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Người dân, dân thường",
+      "meaningShortVi": "Người dân",
+      "meaningFullVi": "Người dân, dân thường",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Người dân",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "老百姓 là từ thân mật chỉ người dân thường, phân biệt với quan lại hoặc người giàu có. Trong văn nói phổ thông, dùng rộng rãi để chỉ nhân dân."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -52,27 +51,34 @@
         "text": "为老百姓服务",
         "pinyin": "wèi lǎobǎixìng fúwù",
         "meaningVi": "phục vụ người dân",
+        "meaningFullVi": "phục vụ người dân",
         "target": "老百姓",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "老百姓的生活",
         "pinyin": "lǎobǎixìng de shēnghuó",
         "meaningVi": "cuộc sống người dân",
+        "meaningFullVi": "cuộc sống người dân",
         "target": "老百姓",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "中国老百姓",
         "pinyin": "Zhōngguó lǎobǎixìng",
         "meaningVi": "người dân Trung Quốc",
+        "meaningFullVi": "người dân Trung Quốc",
         "target": "老百姓",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -82,7 +88,8 @@
       "meaningVi": "Chúng ta phải phục vụ người dân.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "老百姓",
@@ -91,7 +98,8 @@
       "meaningVi": "Cuộc sống người dân ngày càng tốt hơn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "老百姓",
@@ -100,16 +108,17 @@
       "meaningVi": "Chính sách này được người dân hoan nghênh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 老百姓",
-      "syntax": "compound-semantic",
-      "matchedExample": "老百姓 là từ thân mật chỉ người dân thường, phân biệt với quan lại hoặc người giàu có. Trong văn nói phổ thông, dùng rộng rãi để chỉ nhân dân.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 老百姓",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "老百姓 là từ thân mật chỉ người dân thường, phân biệt với quan lại hoặc người giàu có. Trong văn nói phổ thông, dùng rộng rãi để chỉ nhân dân.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -120,11 +129,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__3__topic__4__nhung-nguoi",
+      "sectionSlug": "nhung-nguoi",
       "sectionTitle": "Những người",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -135,7 +149,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

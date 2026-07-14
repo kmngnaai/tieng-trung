@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:别提",
   "type": "word",
   "word": "别提",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "bié tí",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Đừng nhắc tới (thường dùng để diễn tả sự không hài lòng, khó chịu, hoặc quá mức không cần nói thêm)",
+      "meaningShortVi": "Đừng nhắc tới (thường dùng để diễn tả sự không hài lòng",
+      "meaningFullVi": "Đừng nhắc tới (thường dùng để diễn tả sự không hài lòng, khó chịu, hoặc quá mức không cần nói thêm)",
       "partOfSpeech": "Cụm động từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Đừng nhắc tới (thường dùng để diễn tả sự không hài lòng",
   "wordType": "Cụm động từ",
   "wordTypes": [
     "Cụm động từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -42,7 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -52,7 +54,8 @@
       "meaningVi": "Đừng nhắc tới nữa, hôm qua tôi xui xẻo cực kỳ.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "别提",
@@ -61,10 +64,19 @@
       "meaningVi": "Chuyện đó thì đừng nhắc đến nữa.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 别提",
+      "partOfSpeech": "Cụm động từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/别提.mp3"
   ],
@@ -77,7 +89,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

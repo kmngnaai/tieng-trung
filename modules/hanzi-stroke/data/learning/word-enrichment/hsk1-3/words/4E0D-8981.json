@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:不要",
   "type": "word",
   "word": "不要",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "bù yào",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "không",
+      "meaningShortVi": "không",
+      "meaningFullVi": "không",
       "partOfSpeech": "auxiliary verb",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "không",
   "wordType": "auxiliary verb",
   "wordTypes": [
     "auxiliary verb"
   ],
-  "usageNotes": [
-    "Trợ động từ phủ định: đừng, không."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,49 +49,56 @@
     "collocations": [
       {
         "text": "不要忘记",
-        "pinyin": "",
+        "pinyin": "bù yào wàng jì",
         "meaningVi": "đừng quên",
+        "meaningFullVi": "đừng quên",
         "target": "不要",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不要说话",
-        "pinyin": "",
+        "pinyin": "bù yào shuō huà",
         "meaningVi": "đừng nói",
+        "meaningFullVi": "đừng nói",
         "target": "不要",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "不要",
       "chinese": "不要紧",
-      "pinyin": "",
+      "pinyin": "bù yào jǐn",
       "meaningVi": "không sao",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不要",
       "chinese": "我不要",
-      "pinyin": "",
+      "pinyin": "wǒ bù yào",
       "meaningVi": "Tôi không muốn",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 不要",
-      "syntax": "auxiliary verb",
-      "matchedExample": "Trợ động từ phủ định: đừng, không.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 不要",
+      "partOfSpeech": "auxiliary verb",
+      "usageNoteVi": "Trợ động từ phủ định: đừng, không.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,21 +109,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__1__lesson__14__bai-14-i-watched-a-movie",
+      "sectionSlug": "bai-14-i-watched-a-movie",
       "sectionTitle": "Tôi đã xem một bộ phim",
       "sectionTitleZh": "我看了一个电影",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-14-i-watched-a-movie/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-14-i-watched-a-movie/",
+      "orderInSection": 1
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__2__topic__9__tu-chuc-nang",
+      "sectionSlug": "tu-chuc-nang",
       "sectionTitle": "Từ chức năng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-chuc-nang/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-chuc-nang/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -133,7 +149,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

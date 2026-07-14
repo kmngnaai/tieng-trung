@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:免费",
   "type": "word",
   "word": "免费",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "miǎn fèi",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "miễn phí, không mất tiền",
+      "meaningShortVi": "miễn phí",
+      "meaningFullVi": "miễn phí, không mất tiền",
       "partOfSpeech": "tính từ/động từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "miễn phí",
   "wordType": "tính từ/động từ",
   "wordTypes": [
     "tính từ/động từ"
   ],
-  "usageNotes": [
-    "Có thể dùng như tính từ hoặc động từ (miễn tiền)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,32 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "免费入场",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "免费",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "免费教育",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "免费",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "免费WiFi",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "免费",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,16 +54,17 @@
       "meaningVi": "Triển lãm này miễn phí",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 免费",
-      "syntax": "tính từ/động từ",
-      "matchedExample": "Có thể dùng như tính từ hoặc động từ (miễn tiền).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 免费",
+      "partOfSpeech": "tính từ/động từ",
+      "usageNoteVi": "Có thể dùng như tính từ hoặc động từ (miễn tiền).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,7 +79,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

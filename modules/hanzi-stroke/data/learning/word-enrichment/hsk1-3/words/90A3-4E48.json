@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:那么",
   "type": "word",
   "word": "那么",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "nà me",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "vậy thì; như vậy",
+      "meaningShortVi": "vậy thì",
+      "meaningFullVi": "vậy thì; như vậy",
       "partOfSpeech": "pronoun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "vậy thì",
   "wordType": "pronoun",
   "wordTypes": [
     "pronoun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -47,36 +48,49 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "这么",
-        "pinyin": "",
-        "meaningVi": "như vậy, thế này",
+        "text": "那么",
+        "pinyin": "nà me",
+        "meaningVi": "vậy thì",
+        "meaningFullVi": "vậy thì, như thế",
         "target": "那么",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "那么",
       "chinese": "那么，我们走吧",
-      "pinyin": "",
+      "pinyin": "nà me， wǒ men zǒu ba",
       "meaningVi": "Vậy thì chúng ta đi thôi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "那么",
       "chinese": "没那么简单",
-      "pinyin": "",
+      "pinyin": "méi nà me jiǎn dān",
       "meaningVi": "Không đơn giản như vậy",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 那么",
+      "partOfSpeech": "pronoun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/那么.mp3"
   ],
@@ -85,21 +99,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__2__lesson__9__bai-9-i-m-going-to-buy-a-cup-of-bubble-tea",
+      "sectionSlug": "bai-9-i-m-going-to-buy-a-cup-of-bubble-tea",
       "sectionTitle": "Tôi đi mua một cốc trà sữa",
       "sectionTitleZh": "我去买杯奶茶",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-9-i-m-going-to-buy-a-cup-of-bubble-tea/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-9-i-m-going-to-buy-a-cup-of-bubble-tea/",
+      "orderInSection": 6
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__2__topic__11__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/pho-tu/",
+      "orderInSection": 24
     }
   ],
   "sources": [
@@ -115,7 +139,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

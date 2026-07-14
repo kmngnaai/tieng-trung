@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:雨伞",
   "type": "word",
   "word": "雨伞",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "yǔ sǎn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cái ô, ô",
+      "meaningShortVi": "cái ô",
+      "meaningFullVi": "cái ô, ô",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cái ô",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Thường dùng khi nói về dù mưa."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 雨 (mưa) + 伞 (dù) → dù mưa, ô."
   ],
   "hsk": {
     "levels": [
@@ -46,16 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "伞",
-        "pinyin": "sǎn",
-        "meaningVi": "ô, dù",
-        "target": "雨伞",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -65,7 +54,8 @@
       "meaningVi": "Tôi mang theo ô",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "雨伞",
@@ -74,7 +64,8 @@
       "meaningVi": "Trời mưa rồi, xin hãy dùng ô",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "雨伞",
@@ -83,23 +74,17 @@
       "meaningVi": "Đây là một cái ô đẹp",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 雨伞",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường dùng khi nói về dù mưa.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 雨 (mưa) + 伞 (dù) → dù mưa, ô.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 雨伞",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường dùng khi nói về dù mưa.",
+      "explanationVi": "Ghép nghĩa: 雨 (mưa) + 伞 (dù) → dù mưa, ô.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:具体",
   "type": "word",
   "word": "具体",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jù tǐ",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cụ thể, chi tiết; có chi tiết rõ ràng, không trừu tượng",
+      "meaningShortVi": "cụ thể",
+      "meaningFullVi": "cụ thể, chi tiết; có chi tiết rõ ràng, không trừu tượng",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cụ thể",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "Đối với 抽象, 具体 là反 nghĩa. Có thể dùng để yêu cầu thêm chi tiết như 请具体说明. Trong văn cảnh học thuật, 常用 具体 + 数据/số liệu/điển hình. Từ liên quan: 详细 'chi tiết', 明确 'rõ ràng'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -50,20 +49,25 @@
       {
         "text": "具体来说",
         "pinyin": "jùtǐ lái shuō",
-        "meaningVi": "cụ thể là, nói một cách cụ thể",
+        "meaningVi": "cụ thể là",
+        "meaningFullVi": "cụ thể là, nói một cách cụ thể",
         "target": "具体",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "具体问题",
         "pinyin": "jùtǐ wèntí",
         "meaningVi": "vấn đề cụ thể",
+        "meaningFullVi": "vấn đề cụ thể",
         "target": "具体",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Bạn hãy nói cụ thể hơn nữa.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "具体",
@@ -82,16 +87,17 @@
       "meaningVi": "Tôi cần kế hoạch cụ thể, không phải ý tưởng chung chung.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 具体",
-      "syntax": "tính từ",
-      "matchedExample": "Đối với 抽象, 具体 là反 nghĩa. Có thể dùng để yêu cầu thêm chi tiết như 请具体说明. Trong văn cảnh học thuật, 常用 具体 + 数据/số liệu/điển hình. Từ liên quan: 详细 'chi tiết', 明确 'rõ ràng'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 具体",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "Đối với 抽象, 具体 là反 nghĩa. Có thể dùng để yêu cầu thêm chi tiết như 请具体说明. Trong văn cảnh học thuật, 常用 具体 + 数据/số liệu/điển hình. Từ liên quan: 详细 'chi tiết', 明确 'rõ ràng'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 28,
+      "sectionId": "new_hsk__3__topic__28__tu-duy",
+      "sectionSlug": "tu-duy",
       "sectionTitle": "tư duy",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-duy/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-duy/",
+      "orderInSection": 25
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

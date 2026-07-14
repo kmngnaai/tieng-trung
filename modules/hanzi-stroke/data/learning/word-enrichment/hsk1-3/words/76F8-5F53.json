@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:相当",
   "type": "word",
   "word": "相当",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xiāng dāng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "xứng đáng, tương xứng; khá, lắm; tương đương với",
+      "meaningShortVi": "xứng đáng",
+      "meaningFullVi": "xứng đáng, tương xứng; khá, lắm; tương đương với",
       "partOfSpeech": "tính từ / động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "xứng đáng",
   "wordType": "tính từ / động từ",
   "wordTypes": [
     "tính từ / động từ"
   ],
-  "usageNotes": [
-    "相当 có thể là tính từ (khá, lắm) hoặc động từ (tương xứng, tương đương). Là từ ghép Hán-Việt 'tương đang'. Khi dùng như 'khá', thường đi kèm với tính từ."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -50,20 +49,25 @@
       {
         "text": "相当不错",
         "pinyin": "xiāngdāng búcuò",
-        "meaningVi": "khá tốt, khá ổn",
+        "meaningVi": "khá tốt",
+        "meaningFullVi": "khá tốt, khá ổn",
         "target": "相当",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "相当大",
         "pinyin": "xiāngdāng dà",
         "meaningVi": "khá lớn",
+        "meaningFullVi": "khá lớn",
         "target": "相当",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Nghĩa của hai từ này tương đương nhau.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "相当",
@@ -82,16 +87,17 @@
       "meaningVi": "Nơi này khá đẹp.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 相当",
-      "syntax": "tính từ / động từ",
-      "matchedExample": "相当 có thể là tính từ (khá, lắm) hoặc động từ (tương xứng, tương đương). Là từ ghép Hán-Việt 'tương đang'. Khi dùng như 'khá', thường đi kèm với tính từ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 相当",
+      "partOfSpeech": "tính từ / động từ",
+      "usageNoteVi": "相当 có thể là tính từ (khá, lắm) hoặc động từ (tương xứng, tương đương). Là từ ghép Hán-Việt 'tương đang'. Khi dùng như 'khá', thường đi kèm với tính từ.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 20,
+      "sectionId": "new_hsk__3__topic__20__so-sanh-va-tuan-thu",
+      "sectionSlug": "so-sanh-va-tuan-thu",
       "sectionTitle": "So sánh và Tuân thủ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/so-sanh-va-tuan-thu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/so-sanh-va-tuan-thu/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

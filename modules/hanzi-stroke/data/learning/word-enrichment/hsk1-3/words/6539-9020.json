@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:改造",
   "type": "word",
   "word": "改造",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gǎi zào",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cải tạo, sửa đổi; thay đổi cấu trúc, hình thức hoặc tính chất của một vật để tốt hơn hoặc phù hợp hơn",
+      "meaningShortVi": "cải tạo",
+      "meaningFullVi": "cải tạo, sửa đổi; thay đổi cấu trúc, hình thức hoặc tính chất của một vật để tốt hơn hoặc phù hợp hơn",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cải tạo",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Có thể dùng cho vật thể (nhà, máy) hoặc trừu tượng (tư tưởng, hành vi). Trong văn chính trị, 改造 còn mang nghĩa 'đào tạo, giáo dục lại'. Từ liên quan: 改进 'cải tiến', 改善 'cải thiện', 修建 'xây dựng'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "改造环境",
         "pinyin": "gǎizào huánjìng",
         "meaningVi": "cải tạo môi trường",
+        "meaningFullVi": "cải tạo môi trường",
         "target": "改造",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "改造思想",
         "pinyin": "gǎizào sīxiǎng",
         "meaningVi": "cải tạo tư tưởng",
+        "meaningFullVi": "cải tạo tư tưởng",
         "target": "改造",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Họ đang cải tạo ngôi nhà cũ này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "改造",
@@ -82,16 +87,17 @@
       "meaningVi": "Giáo dục cải tạo là công việc rất quan trọng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 改造",
-      "syntax": "động từ",
-      "matchedExample": "Có thể dùng cho vật thể (nhà, máy) hoặc trừu tượng (tư tưởng, hành vi). Trong văn chính trị, 改造 còn mang nghĩa 'đào tạo, giáo dục lại'. Từ liên quan: 改进 'cải tiến', 改善 'cải thiện', 修建 'xây dựng'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 改造",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Có thể dùng cho vật thể (nhà, máy) hoặc trừu tượng (tư tưởng, hành vi). Trong văn chính trị, 改造 còn mang nghĩa 'đào tạo, giáo dục lại'. Từ liên quan: 改进 'cải tiến', 改善 'cải thiện', 修建 'xây dựng'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__topic__17__nhung-thay-doi",
+      "sectionSlug": "nhung-thay-doi",
       "sectionTitle": "Những thay đổi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/",
+      "orderInSection": 30
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

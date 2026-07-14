@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:原料",
   "type": "word",
   "word": "原料",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yuán liào",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nguyên liệu, vật liệu gốc",
+      "meaningShortVi": "nguyên liệu",
+      "meaningFullVi": "nguyên liệu, vật liệu gốc",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nguyên liệu",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "原料 nghĩa là vật liệu gốc, nguyên liệu. Hán-Việt 'nguyên' là nguồn gốc, ban đầu; 'liệu' là vật liệu, thứ được đong đếm."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,40 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "生产原料",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "原料",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "天然原料",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "原料",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "原料成本",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "原料",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "原材料",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "原料",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -87,7 +54,8 @@
       "meaningVi": "Nguyên liệu món này rất tươi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "原料",
@@ -96,7 +64,8 @@
       "meaningVi": "Nhà máy cần nhiều nguyên liệu.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "原料",
@@ -105,16 +74,17 @@
       "meaningVi": "Đây là nguyên liệu làm bánh mì.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 原料",
-      "syntax": "compound-semantic",
-      "matchedExample": "原料 nghĩa là vật liệu gốc, nguyên liệu. Hán-Việt 'nguyên' là nguồn gốc, ban đầu; 'liệu' là vật liệu, thứ được đong đếm.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 原料",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "原料 nghĩa là vật liệu gốc, nguyên liệu. Hán-Việt 'nguyên' là nguồn gốc, ban đầu; 'liệu' là vật liệu, thứ được đong đếm.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -129,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

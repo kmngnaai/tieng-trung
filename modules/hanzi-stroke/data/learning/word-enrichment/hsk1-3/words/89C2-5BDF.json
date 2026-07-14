@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:观察",
   "type": "word",
   "word": "观察",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "guān chá",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "quan sát",
+      "meaningShortVi": "quan sát",
+      "meaningFullVi": "quan sát",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "quan sát",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Dùng cho việc quan sát kỹ lưỡng. Trong khoa học, '观察' là phương pháp nghiên cứu."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "仔细观察",
-        "pinyin": "",
+        "pinyin": "zǐ xì guān chá",
         "meaningVi": "quan sát kỹ",
+        "meaningFullVi": "quan sát kỹ",
         "target": "观察",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "观察力",
-        "pinyin": "",
+        "pinyin": "guān chá lì",
         "meaningVi": "khả năng quan sát",
+        "meaningFullVi": "khả năng quan sát",
         "target": "观察",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "观察",
       "chinese": "科学家观察动物的行为。",
-      "pinyin": "",
+      "pinyin": "kē xué jiā guān chá dòng wù de xíng wéi。",
       "meaningVi": "Các nhà khoa học quan sát hành vi của động vật.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "观察",
       "chinese": "请你仔细观察一下。",
-      "pinyin": "",
+      "pinyin": "qǐng nǐ zǐ xì guān chá yī xià。",
       "meaningVi": "Hãy quan sát kỹ một chút.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 观察",
-      "syntax": "động từ",
-      "matchedExample": "Dùng cho việc quan sát kỹ lưỡng. Trong khoa học, '观察' là phương pháp nghiên cứu.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 观察",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Dùng cho việc quan sát kỹ lưỡng. Trong khoa học, '观察' là phương pháp nghiên cứu.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 26,
+      "sectionId": "new_hsk__3__topic__26__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

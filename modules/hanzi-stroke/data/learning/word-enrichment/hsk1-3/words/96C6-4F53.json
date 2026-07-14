@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:集体",
   "type": "word",
   "word": "集体",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jí tǐ",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Tập thể, cộng đồng",
+      "meaningShortVi": "Tập thể",
+      "meaningFullVi": "Tập thể, cộng đồng",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Tập thể",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Chỉ nhóm người, tổ chức hoặc sự thuộc về cộng đồng, đối lập với 'cá nhân'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "集体活动",
         "pinyin": "jítǐ huódòng",
         "meaningVi": "hoạt động tập thể",
+        "meaningFullVi": "hoạt động tập thể",
         "target": "集体",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "集体生活",
         "pinyin": "jítǐ shēnghuó",
         "meaningVi": "cuộc sống tập thể",
+        "meaningFullVi": "cuộc sống tập thể",
         "target": "集体",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Đây là một hoạt động tập thể.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "集体",
@@ -82,7 +87,8 @@
       "meaningVi": "Chúng ta phải có tinh thần tự hào tập thể.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "集体",
@@ -91,16 +97,17 @@
       "meaningVi": "Lợi ích tập thể của mọi người rất quan trọng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 集体",
-      "syntax": "compound-semantic",
-      "matchedExample": "Chỉ nhóm người, tổ chức hoặc sự thuộc về cộng đồng, đối lập với 'cá nhân'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 集体",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Chỉ nhóm người, tổ chức hoặc sự thuộc về cộng đồng, đối lập với 'cá nhân'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -111,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__3__topic__5__cac-moi-quan-he",
+      "sectionSlug": "cac-moi-quan-he",
       "sectionTitle": "Các mối quan hệ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-moi-quan-he/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-moi-quan-he/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -126,7 +138,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

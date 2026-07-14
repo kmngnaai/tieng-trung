@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:建议",
   "type": "word",
   "word": "建议",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiàn yì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đề nghị; khuyên; kiến nghị; gợi ý",
+      "meaningShortVi": "đề nghị",
+      "meaningFullVi": "đề nghị; khuyên; kiến nghị; gợi ý",
       "partOfSpeech": "động từ / danh từ (Verb / Noun)",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đề nghị",
   "wordType": "động từ / danh từ (Verb / Noun)",
   "wordTypes": [
     "động từ / danh từ (Verb / Noun)"
   ],
-  "usageNotes": [
-    "Có thể là động từ (đề nghị ai đó làm gì) hoặc danh từ (lời khuyên, ý kiến). Trang trọng hơn 让 (để), 比 起 tốt hơn. Cấu trúc: 建议 + người + làm gì. Synonym: 提议 (đề xuất), 主张 (chủ trương)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "提出建议",
         "pinyin": "tíchū jiànyì",
         "meaningVi": "đưa ra đề nghị",
+        "meaningFullVi": "đưa ra đề nghị",
         "target": "建议",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "接受建议",
         "pinyin": "jiēshòu jiànyì",
         "meaningVi": "chấp nhận đề nghị",
+        "meaningFullVi": "chấp nhận đề nghị",
         "target": "建议",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Tôi đề nghị bạn đi khám bác sĩ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "建议",
@@ -82,16 +87,17 @@
       "meaningVi": "Mọi người đã đồng ý với đề nghị này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 建议",
-      "syntax": "động từ / danh từ (Verb / Noun)",
-      "matchedExample": "Có thể là động từ (đề nghị ai đó làm gì) hoặc danh từ (lời khuyên, ý kiến). Trang trọng hơn 让 (để), 比 起 tốt hơn. Cấu trúc: 建议 + người + làm gì. Synonym: 提议 (đề xuất), 主张 (chủ trương).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 建议",
+      "partOfSpeech": "động từ / danh từ (Verb / Noun)",
+      "usageNoteVi": "Có thể là động từ (đề nghị ai đó làm gì) hoặc danh từ (lời khuyên, ý kiến). Trang trọng hơn 让 (để), 比 起 tốt hơn. Cấu trúc: 建议 + người + làm gì. Synonym: 提议 (đề xuất), 主张 (chủ trương).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 29,
+      "sectionId": "new_hsk__3__topic__29__lien-lac",
+      "sectionSlug": "lien-lac",
       "sectionTitle": "Liên lạc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/",
+      "orderInSection": 27
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

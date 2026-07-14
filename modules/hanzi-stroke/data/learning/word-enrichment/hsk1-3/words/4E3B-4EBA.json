@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:主人",
   "type": "word",
   "word": "主人",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhǔ rén",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chủ nhân",
+      "meaningShortVi": "chủ nhân",
+      "meaningFullVi": "chủ nhân",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chủ nhân",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Danh từ chỉ người làm chủ, sở hữu."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -48,50 +47,47 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "主人翁",
-        "pinyin": "",
-        "meaningVi": "chủ nhân, người làm chủ",
-        "target": "主人",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "好主人",
-        "pinyin": "",
+        "pinyin": "hǎo zhǔ rén",
         "meaningVi": "chủ nhân tốt",
+        "meaningFullVi": "chủ nhân tốt",
         "target": "主人",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "主人",
       "chinese": "狗的主人",
-      "pinyin": "",
+      "pinyin": "gǒu de zhǔ rén",
       "meaningVi": "Chủ nhân con chó",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "主人",
       "chinese": "我是这个家的主人",
-      "pinyin": "",
+      "pinyin": "wǒ shì zhè ge jiā de zhǔ rén",
       "meaningVi": "Tôi là chủ nhân ngôi nhà này",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 主人",
-      "syntax": "noun",
-      "matchedExample": "Danh từ chỉ người làm chủ, sở hữu.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 主人",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Danh từ chỉ người làm chủ, sở hữu.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__2__topic__13__cong-viec",
+      "sectionSlug": "cong-viec",
       "sectionTitle": "Công việc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/cong-viec/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/cong-viec/",
+      "orderInSection": 28
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:谢谢",
   "type": "word",
   "word": "谢谢",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "xiè xie",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cảm ơn",
+      "meaningShortVi": "cảm ơn",
+      "meaningFullVi": "cảm ơn",
       "partOfSpeech": "reduplication",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cảm ơn",
   "wordType": "reduplication",
   "wordTypes": [
     "reduplication"
-  ],
-  "usageNotes": [
-    "谢谢 là cách nói cảm ơn phổ biến nhất trong giao tiếp hàng ngày. Khi nói thường đọc nhẹ âm thứ hai. Trong văn viết, có thể dùng 多谢 (đa tạ) hoặc 感谢 (cảm tạ) cho trang trọng hơn."
-  ],
-  "wordTypeExplanations": [
-    "Từ láy: lặp chữ 谢 (cảm ơn) hai lần để tạo thành lời cảm ơn thân mật, dùng trong giao tiếp hàng ngày. Khi nói thường đọc nhẹ âm thứ hai thành 'xie'."
   ],
   "hsk": {
     "levels": [
@@ -49,24 +46,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "多谢",
-        "pinyin": "duō xiè",
-        "meaningVi": "cảm ơn nhiều (trang trọng hơn)",
-        "target": "谢谢",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "感谢",
-        "pinyin": "gǎn xiè",
-        "meaningVi": "biết ơn, cảm ơn (trang trọng)",
-        "target": "谢谢",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -76,7 +57,8 @@
       "meaningVi": "Cảm ơn sự giúp đỡ của bạn",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "谢谢",
@@ -85,7 +67,8 @@
       "meaningVi": "Cảm ơn rất nhiều",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "谢谢",
@@ -94,7 +77,8 @@
       "meaningVi": "Cảm ơn thầy/cô",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "谢谢",
@@ -103,7 +87,8 @@
       "meaningVi": "Không cần cảm ơn",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "谢谢",
@@ -112,23 +97,17 @@
       "meaningVi": "Cảm ơn mọi người",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 谢谢",
-      "syntax": "reduplication",
-      "matchedExample": "谢谢 là cách nói cảm ơn phổ biến nhất trong giao tiếp hàng ngày. Khi nói thường đọc nhẹ âm thứ hai. Trong văn viết, có thể dùng 多谢 (đa tạ) hoặc 感谢 (cảm tạ) cho trang trọng hơn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "reduplication",
-      "matchedExample": "Từ láy: lặp chữ 谢 (cảm ơn) hai lần để tạo thành lời cảm ơn thân mật, dùng trong giao tiếp hàng ngày. Khi nói thường đọc nhẹ âm thứ hai thành 'xie'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 谢谢",
+      "partOfSpeech": "reduplication",
+      "usageNoteVi": "谢谢 là cách nói cảm ơn phổ biến nhất trong giao tiếp hàng ngày. Khi nói thường đọc nhẹ âm thứ hai. Trong văn viết, có thể dùng 多谢 (đa tạ) hoặc 感谢 (cảm tạ) cho trang trọng hơn.",
+      "explanationVi": "Từ láy: lặp chữ 谢 (cảm ơn) hai lần để tạo thành lời cảm ơn thân mật, dùng trong giao tiếp hàng ngày. Khi nói thường đọc nhẹ âm thứ hai thành 'xie'.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,31 +118,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 2,
+      "sectionId": "hsk__1__lesson__2__bai-2-cam-on-ban",
+      "sectionSlug": "bai-2-cam-on-ban",
       "sectionTitle": "Cảm ơn bạn",
       "sectionTitleZh": "谢谢你",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-2-cam-on-ban/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-2-cam-on-ban/",
+      "orderInSection": 1
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__1__lesson__1__bai-1-hello-ai-xiaoyu",
+      "sectionSlug": "bai-1-hello-ai-xiaoyu",
       "sectionTitle": "AI Tiểu Ngữ, xin chào!",
       "sectionTitleZh": "AI小语，你好！",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-1-hello-ai-xiaoyu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-1-hello-ai-xiaoyu/",
+      "orderInSection": 10
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__1__topic__19__nhung-tu-ngu-lich-su",
+      "sectionSlug": "nhung-tu-ngu-lich-su",
       "sectionTitle": "Những từ ngữ lịch sự",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nhung-tu-ngu-lich-su/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nhung-tu-ngu-lich-su/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -174,7 +168,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:专家",
   "type": "word",
   "word": "专家",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhuān jiā",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Chuyên gia",
+      "meaningShortVi": "Chuyên gia",
+      "meaningFullVi": "Chuyên gia",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Chuyên gia",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "专家 chỉ người có chuyên môn sâu trong một lĩnh vực. Có thể thêm lĩnh vực trước như 医学专家(chuyên gia y học), 经济专家(chuyên gia kinh tế)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,27 +50,34 @@
         "text": "专家认为",
         "pinyin": "zhuānjiā rènwéi",
         "meaningVi": "chuyên gia cho rằng",
+        "meaningFullVi": "chuyên gia cho rằng",
         "target": "专家",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "专家意见",
         "pinyin": "zhuānjiā yìjiàn",
         "meaningVi": "ý kiến chuyên gia",
+        "meaningFullVi": "ý kiến chuyên gia",
         "target": "专家",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "请专家",
         "pinyin": "qǐng zhuānjiā",
         "meaningVi": "mời chuyên gia",
+        "meaningFullVi": "mời chuyên gia",
         "target": "专家",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +87,8 @@
       "meaningVi": "Anh ấy là chuyên gia trong lĩnh vực này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "专家",
@@ -90,7 +97,8 @@
       "meaningVi": "Mời chuyên gia đến giải quyết vấn đề.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "专家",
@@ -99,16 +107,17 @@
       "meaningVi": "Chuyên gia này rất có kinh nghiệm.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 专家",
-      "syntax": "compound-semantic",
-      "matchedExample": "专家 chỉ người có chuyên môn sâu trong một lĩnh vực. Có thể thêm lĩnh vực trước như 医学专家(chuyên gia y học), 经济专家(chuyên gia kinh tế).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 专家",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "专家 chỉ người có chuyên môn sâu trong một lĩnh vực. Có thể thêm lĩnh vực trước như 医学专家(chuyên gia y học), 经济专家(chuyên gia kinh tế).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -119,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__topic__16__cac-hoat-dong",
+      "sectionSlug": "cac-hoat-dong",
       "sectionTitle": "Các hoạt động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/",
+      "orderInSection": 32
     }
   ],
   "sources": [
@@ -134,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:发动",
   "type": "word",
   "word": "发动",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fā dòng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "khởi động, phát động",
+      "meaningShortVi": "khởi động",
+      "meaningFullVi": "khởi động, phát động",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "khởi động",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Có thể là khởi động (máy móc) hoặc phát động (chiến dịch, phong trào)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "发动机器",
-        "pinyin": "",
+        "pinyin": "fā dòng jī qì",
         "meaningVi": "khởi động máy móc",
+        "meaningFullVi": "khởi động máy móc",
         "target": "发动",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "发动群众",
-        "pinyin": "",
-        "meaningVi": "phát động quần chúng",
-        "target": "发动",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "发动",
       "chinese": "老师发动学生们参加活动。",
-      "pinyin": "",
+      "pinyin": "lǎo shī fā dòng xué shēng men cān jiā huó dòng。",
       "meaningVi": "Thầy giáo phát động học sinh tham gia hoạt động.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "发动",
       "chinese": "我们需要发动大家一起努力。",
-      "pinyin": "",
+      "pinyin": "wǒ men xū yào fā dòng dà jiā yī qǐ nǔ lì。",
       "meaningVi": "Chúng ta cần phát động mọi người cùng nỗ lực.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 发动",
-      "syntax": "động từ",
-      "matchedExample": "Có thể là khởi động (máy móc) hoặc phát động (chiến dịch, phong trào).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 发动",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Có thể là khởi động (máy móc) hoặc phát động (chiến dịch, phong trào).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 25,
+      "sectionId": "new_hsk__3__topic__25__truong-hop",
+      "sectionSlug": "truong-hop",
       "sectionTitle": "Trường hợp",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/truong-hop/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/truong-hop/",
+      "orderInSection": 6
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:变为",
   "type": "word",
   "word": "变为",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "biàn wéi",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "biến thành, chuyển thành",
+      "meaningShortVi": "biến thành",
+      "meaningFullVi": "biến thành, chuyển thành",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "biến thành",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Bi为 là cấu trúc results: A变为B (A biến thành B). Có thể thay bằng 成为. Đi với reality (现实), habit (习惯), history (历史)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "变为现实",
         "pinyin": "biànwéi xiànshí",
         "meaningVi": "biến thành hiện thực",
+        "meaningFullVi": "biến thành hiện thực",
         "target": "变为",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "变为习惯",
         "pinyin": "biànwéi xíguàn",
         "meaningVi": "trở thành thói quen",
+        "meaningFullVi": "trở thành thói quen",
         "target": "变为",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Cây nhỏ rất nhanh sẽ biến thành cây lớn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "变为",
@@ -82,16 +87,17 @@
       "meaningVi": "Để mơ ước biến thành hiện thực cần nỗ lực.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 变为",
-      "syntax": "động từ",
-      "matchedExample": "Bi为 là cấu trúc results: A变为B (A biến thành B). Có thể thay bằng 成为. Đi với reality (现实), habit (习惯), history (历史).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 变为",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Bi为 là cấu trúc results: A变为B (A biến thành B). Có thể thay bằng 成为. Đi với reality (现实), habit (习惯), history (历史).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__topic__17__nhung-thay-doi",
+      "sectionSlug": "nhung-thay-doi",
       "sectionTitle": "Những thay đổi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:试验",
   "type": "word",
   "word": "试验",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shì yàn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thử nghiệm, thử",
+      "meaningShortVi": "thử nghiệm",
+      "meaningFullVi": "thử nghiệm, thử",
       "partOfSpeech": "động từ/danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thử nghiệm",
   "wordType": "động từ/danh từ",
   "wordTypes": [
     "động từ/danh từ"
   ],
-  "usageNotes": [
-    "Khác với '实验' (thí nghiệm khoa học), '试验' thiên về thử sản phẩm hoặc phương pháp mới."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -48,50 +47,37 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "试验田",
-        "pinyin": "",
-        "meaningVi": "ruộng thí nghiệm",
-        "target": "试验",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "做试验",
-        "pinyin": "",
+        "pinyin": "zuò shì yàn",
         "meaningVi": "làm thử nghiệm",
+        "meaningFullVi": "làm thử nghiệm",
         "target": "试验",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "试验",
-      "chinese": "我们需要试验这个新产品。",
-      "pinyin": "",
-      "meaningVi": "Chúng ta cần thử sản phẩm mới này.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "试验",
       "chinese": "试验结果很成功。",
-      "pinyin": "",
+      "pinyin": "shì yàn jié guǒ hěn chéng gōng。",
       "meaningVi": "Kết quả thử nghiệm rất thành công.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 试验",
-      "syntax": "động từ/danh từ",
-      "matchedExample": "Khác với '实验' (thí nghiệm khoa học), '试验' thiên về thử sản phẩm hoặc phương pháp mới.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 试验",
+      "partOfSpeech": "động từ/danh từ",
+      "usageNoteVi": "Khác với '实验' (thí nghiệm khoa học), '试验' thiên về thử sản phẩm hoặc phương pháp mới.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 26,
+      "sectionId": "new_hsk__3__topic__26__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/",
+      "orderInSection": 25
     }
   ],
   "sources": [
@@ -117,7 +108,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

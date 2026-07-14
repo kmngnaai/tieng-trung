@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:个性",
   "type": "word",
   "word": "个性",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gè xìng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cá tính, tính cách riêng; đặc trưng riêng",
+      "meaningShortVi": "cá tính",
+      "meaningFullVi": "cá tính, tính cách riêng; đặc trưng riêng",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cá tính",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Gè xìng dùng cho tính cách riêng biệt, độc đáo của một người. Phản nghĩa với đồng nhất, giống mọi người."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "很强的个性",
-        "pinyin": "",
+        "pinyin": "hěn qiáng de gè xìng",
         "meaningVi": "cá tính rất mạnh",
+        "meaningFullVi": "cá tính rất mạnh",
         "target": "个性",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "个性发展",
-        "pinyin": "",
+        "pinyin": "gè xìng fā zhǎn",
         "meaningVi": "phát triển cá tính",
+        "meaningFullVi": "phát triển cá tính",
         "target": "个性",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "个性",
       "chinese": "她很有个性。",
-      "pinyin": "",
+      "pinyin": "tā hěn yǒu gè xìng。",
       "meaningVi": "Cô ấy rất có cá tính.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "个性",
       "chinese": "每个人都有自己的个性。",
-      "pinyin": "",
+      "pinyin": "měi gè rén dōu yǒu zì jǐ de gè xìng。",
       "meaningVi": "Mỗi người đều có tính cách riêng của mình.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 个性",
-      "syntax": "danh từ",
-      "matchedExample": "Gè xìng dùng cho tính cách riêng biệt, độc đáo của một người. Phản nghĩa với đồng nhất, giống mọi người.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 个性",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Gè xìng dùng cho tính cách riêng biệt, độc đáo của một người. Phản nghĩa với đồng nhất, giống mọi người.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 31,
+      "sectionId": "new_hsk__3__topic__31__ban-tinh",
+      "sectionSlug": "ban-tinh",
       "sectionTitle": "Bản tính",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/ban-tinh/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/ban-tinh/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

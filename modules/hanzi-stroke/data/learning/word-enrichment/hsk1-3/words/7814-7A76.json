@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:研究",
   "type": "word",
   "word": "研究",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yán jiū",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nghiên cứu",
+      "meaningShortVi": "nghiên cứu",
+      "meaningFullVi": "nghiên cứu",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nghiên cứu",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Động từ: tìm hiểu, điều tra. Danh từ: công việc nghiên cứu."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -48,40 +47,14 @@
         "word": "研究生",
         "pinyin": "yán jiū shēng",
         "meaningVi": "nghiên cứu sinh",
+        "meaningFullVi": "nghiên cứu sinh",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       }
     ],
-    "collocations": [
-      {
-        "text": "研究问题",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "研究",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "科学研究",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "研究",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "进行研究",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "研究",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -91,7 +64,8 @@
       "meaningVi": "Anh ấy nghiên cứu văn hóa Trung Quốc đã mười năm rồi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "研究",
@@ -100,7 +74,8 @@
       "meaningVi": "Vấn đề này đáng để nghiên cứu.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "研究",
@@ -109,16 +84,17 @@
       "meaningVi": "Tôi đang nghiên cứu vấn đề này.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 研究",
-      "syntax": "compound-semantic",
-      "matchedExample": "Động từ: tìm hiểu, điều tra. Danh từ: công việc nghiên cứu.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 研究",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Động từ: tìm hiểu, điều tra. Danh từ: công việc nghiên cứu.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -133,7 +109,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng"
+    ]
   }
 }

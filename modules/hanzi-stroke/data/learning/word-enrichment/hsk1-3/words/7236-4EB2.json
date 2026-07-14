@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:父亲",
   "type": "word",
   "word": "父亲",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fù qīn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Bố, cha, người cha",
+      "meaningShortVi": "Bố",
+      "meaningFullVi": "Bố, cha, người cha",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Bố",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Từ trang trọng hơn '爸爸', dùng trong văn viết hoặc khi nhấn mạnh vai trò người cha."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,11 +51,14 @@
         "text": "父亲节",
         "pinyin": "Fùqīnjié",
         "meaningVi": "Ngày của Cha",
+        "meaningFullVi": "Ngày của Cha",
         "target": "父亲",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -66,7 +68,8 @@
       "meaningVi": "Bố của tôi là một giáo viên.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "父亲",
@@ -75,7 +78,8 @@
       "meaningVi": "Ngày của Cha sắp đến.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "父亲",
@@ -84,16 +88,17 @@
       "meaningVi": "Chúng ta cần tôn trọng cha.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 父亲",
-      "syntax": "compound-semantic",
-      "matchedExample": "Từ trang trọng hơn '爸爸', dùng trong văn viết hoặc khi nhấn mạnh vai trò người cha.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 父亲",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Từ trang trọng hơn '爸爸', dùng trong văn viết hoặc khi nhấn mạnh vai trò người cha.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__3__topic__4__nhung-nguoi",
+      "sectionSlug": "nhung-nguoi",
       "sectionTitle": "Những người",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -124,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

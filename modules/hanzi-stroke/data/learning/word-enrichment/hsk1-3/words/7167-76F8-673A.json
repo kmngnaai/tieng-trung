@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:照相机",
   "type": "word",
   "word": "照相机",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "zhào xiàng jī",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Máy ảnh là thiết bị dùng để chụp ảnh, ghi lại hình ảnh vật thể qua ống kính.",
+      "meaningShortVi": "Máy ảnh là thiết bị dùng để chụp ảnh",
+      "meaningFullVi": "Máy ảnh là thiết bị dùng để chụp ảnh, ghi lại hình ảnh vật thể qua ống kính.",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Máy ảnh là thiết bị dùng để chụp ảnh",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "照相机 thường được gọi tắt là 相机 trong giao tiếp hàng ngày. Ngày nay nhiều người dùng điện thoại di động thay vì máy ảnh riêng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,38 +48,27 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "数码相机",
-        "pinyin": "shùmǎ xiàngjī",
-        "meaningVi": "máy ảnh số",
-        "target": "照相机",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "拍照片",
-        "pinyin": "pāi zhàopiàn",
-        "meaningVi": "chụp ảnh",
-        "target": "照相机",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "照相机镜头",
         "pinyin": "zhàoxiàngjī jìngtóu",
         "meaningVi": "ống kính máy ảnh",
+        "meaningFullVi": "ống kính máy ảnh",
         "target": "照相机",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "老式照相机",
         "pinyin": "lǎoshì zhàoxiàngjī",
         "meaningVi": "máy ảnh kiểu cũ",
+        "meaningFullVi": "máy ảnh kiểu cũ",
         "target": "照相机",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -90,7 +78,8 @@
       "meaningVi": "Tôi mua một cái máy ảnh",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "照相机",
@@ -99,7 +88,8 @@
       "meaningVi": "Cái máy ảnh này rất đắt",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "照相机",
@@ -108,16 +98,17 @@
       "meaningVi": "Dùng máy ảnh chụp hình",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 照相机",
-      "syntax": "compound-semantic",
-      "matchedExample": "照相机 thường được gọi tắt là 相机 trong giao tiếp hàng ngày. Ngày nay nhiều người dùng điện thoại di động thay vì máy ảnh riêng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 照相机",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "照相机 thường được gọi tắt là 相机 trong giao tiếp hàng ngày. Ngày nay nhiều người dùng điện thoại di động thay vì máy ảnh riêng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -128,11 +119,16 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 20,
+      "sectionId": "hsk__3__lesson__20__bai-20-toi-bi-anh-ay-anh-huong",
+      "sectionSlug": "bai-20-toi-bi-anh-ay-anh-huong",
       "sectionTitle": "Tôi bị anh ấy ảnh hưởng.",
       "sectionTitleZh": "我被他影响了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-20-toi-bi-anh-ay-anh-huong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-20-toi-bi-anh-ay-anh-huong/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -143,7 +139,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

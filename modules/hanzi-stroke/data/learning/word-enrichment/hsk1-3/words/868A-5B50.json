@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:蚊子",
   "type": "word",
   "word": "蚊子",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "wén zi",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "muỗi, con muỗi",
+      "meaningShortVi": "muỗi",
+      "meaningFullVi": "muỗi, con muỗi",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "muỗi",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Muỗi — côn trùng gây phiền toái, truyền bệnh. '蚊子' là danh từ thông dụng. '蚊香' = hương muỗi (đuổi muỗi). '蚊帐' = mùng (chặn muỗi)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 蚊 (muỗi) + 子 (hậu tố sinh vật) → con muỗi."
   ],
   "hsk": {
     "levels": [
@@ -48,38 +45,17 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "蚊香",
-        "pinyin": "wénxiāng",
-        "meaningVi": "hương muỗi",
-        "target": "蚊子",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "蚊子咬",
         "pinyin": "wénzi yǎo",
         "meaningVi": "muỗi đốt",
+        "meaningFullVi": "muỗi đốt",
         "target": "蚊子",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "灭蚊",
-        "pinyin": "miè wén",
-        "meaningVi": "diệt muỗi",
-        "target": "蚊子",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "蚊帐",
-        "pinyin": "wénzhàng",
-        "meaningVi": "mùng",
-        "target": "蚊子",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -89,7 +65,8 @@
       "meaningVi": "Muỗi đã đốt tôi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "蚊子",
@@ -98,7 +75,8 @@
       "meaningVi": "Nhiều muỗi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "蚊子",
@@ -107,7 +85,8 @@
       "meaningVi": "Muỗi bay tới bay lui",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "蚊子",
@@ -116,23 +95,17 @@
       "meaningVi": "Muỗi lan truyền bệnh",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 蚊子",
-      "syntax": "compound-semantic",
-      "matchedExample": "Muỗi — côn trùng gây phiền toái, truyền bệnh. '蚊子' là danh từ thông dụng. '蚊香' = hương muỗi (đuổi muỗi). '蚊帐' = mùng (chặn muỗi).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 蚊 (muỗi) + 子 (hậu tố sinh vật) → con muỗi.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 蚊子",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Muỗi — côn trùng gây phiền toái, truyền bệnh. '蚊子' là danh từ thông dụng. '蚊香' = hương muỗi (đuổi muỗi). '蚊帐' = mùng (chặn muỗi).",
+      "explanationVi": "Ghép nghĩa: 蚊 (muỗi) + 子 (hậu tố sinh vật) → con muỗi.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -147,7 +120,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

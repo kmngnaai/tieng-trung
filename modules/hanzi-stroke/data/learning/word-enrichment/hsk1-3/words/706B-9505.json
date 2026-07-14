@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:火锅",
   "type": "word",
   "word": "火锅",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "huǒ guō",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Hoả oa — lẩu; món ăn nấu tại bàn với nồi nước dùng sôi, nhúng các nguyên liệu tươi.",
+      "meaningShortVi": "Hoả oa — lẩu",
+      "meaningFullVi": "Hoả oa — lẩu; món ăn nấu tại bàn với nồi nước dùng sôi, nhúng các nguyên liệu tươi.",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Hoả oa — lẩu",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "火锅 là món ăn xã giao quan trọng trong văn hóa Trung Quốc; 清汤锅 (lẩu thanh) và 麻辣锅 (lẩu cay) là hai kiểu phổ biến nhất."
-  ],
-  "wordTypeExplanations": [
-    "火 (hoả — lửa) + 锅 (oa — nồi) ghép nghĩa: nồi ăn trên lửa trực tiếp."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "吃火锅",
         "pinyin": "chī huǒguō",
         "meaningVi": "ăn lẩu",
+        "meaningFullVi": "ăn lẩu",
         "target": "火锅",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "四川火锅",
         "pinyin": "Sìchuān huǒguō",
         "meaningVi": "lẩu Tứ Xuyên",
+        "meaningFullVi": "lẩu Tứ Xuyên",
         "target": "火锅",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "火锅底料",
         "pinyin": "huǒguō dǐliào",
-        "meaningVi": "nước dùng lẩu, gia vị lẩu",
+        "meaningVi": "nước dùng lẩu",
+        "meaningFullVi": "nước dùng lẩu, gia vị lẩu",
         "target": "火锅",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Nhóm bạn cùng nhau đi ăn lẩu",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "火锅",
@@ -90,7 +95,8 @@
       "meaningVi": "Lẩu Tứ Xuyên rất cay",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "火锅",
@@ -99,7 +105,8 @@
       "meaningVi": "Ăn lẩu vào mùa đông là thích nhất",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "火锅",
@@ -108,23 +115,17 @@
       "meaningVi": "Quán lẩu này làm ăn rất tốt",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 火锅",
-      "syntax": "compound-semantic",
-      "matchedExample": "火锅 là món ăn xã giao quan trọng trong văn hóa Trung Quốc; 清汤锅 (lẩu thanh) và 麻辣锅 (lẩu cay) là hai kiểu phổ biến nhất.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "火 (hoả — lửa) + 锅 (oa — nồi) ghép nghĩa: nồi ăn trên lửa trực tiếp.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 火锅",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "火锅 là món ăn xã giao quan trọng trong văn hóa Trung Quốc; 清汤锅 (lẩu thanh) và 麻辣锅 (lẩu cay) là hai kiểu phổ biến nhất.",
+      "explanationVi": "火 (hoả — lửa) + 锅 (oa — nồi) ghép nghĩa: nồi ăn trên lửa trực tiếp.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

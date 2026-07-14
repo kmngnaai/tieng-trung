@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:自从",
   "type": "word",
   "word": "自从",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zì cóng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "từ lúc; kể từ",
+      "meaningShortVi": "từ lúc",
+      "meaningFullVi": "từ lúc; kể từ",
       "partOfSpeech": "giới từ thời gian",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "từ lúc",
   "wordType": "giới từ thời gian",
   "wordTypes": [
     "giới từ thời gian"
   ],
-  "usageNotes": [
-    "Dùng để chỉ điểm xuất phát của một khoảng thời gian kéo dài đến hiện tại. Thường đi kèm với '以后', '以来'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -50,20 +49,25 @@
       {
         "text": "自从...以后",
         "pinyin": "zìcóng... yǐhòu",
-        "meaningVi": "từ... về sau",
+        "meaningVi": "từ",
+        "meaningFullVi": "từ... về sau",
         "target": "自从",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "自从...以来",
         "pinyin": "zìcóng... yǐlái",
-        "meaningVi": "từ... cho đến nay",
+        "meaningVi": "từ",
+        "meaningFullVi": "từ... cho đến nay",
         "target": "自从",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Từ lúc quen biết bạn, tôi rất vui.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "自从",
@@ -82,16 +87,17 @@
       "meaningVi": "Kể từ khi tốt nghiệp, anh ấy chưa từng về nhà.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 自从",
-      "syntax": "giới từ thời gian",
-      "matchedExample": "Dùng để chỉ điểm xuất phát của một khoảng thời gian kéo dài đến hiện tại. Thường đi kèm với '以后', '以来'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 自从",
+      "partOfSpeech": "giới từ thời gian",
+      "usageNoteVi": "Dùng để chỉ điểm xuất phát của một khoảng thời gian kéo dài đến hiện tại. Thường đi kèm với '以后', '以来'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 36,
+      "sectionId": "new_hsk__3__topic__36__tu-chuc-nang-ii",
+      "sectionSlug": "tu-chuc-nang-ii",
       "sectionTitle": "Từ chức năng II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-ii/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

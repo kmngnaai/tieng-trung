@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:不由得",
   "type": "word",
   "word": "不由得",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "bù yóu de",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "không thể không,不由自主",
+      "meaningShortVi": "không thể không",
+      "meaningFullVi": "không thể không,不由自主",
       "partOfSpeech": "phó từ / adverb",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "không thể không",
   "wordType": "phó từ / adverb",
   "wordTypes": [
     "phó từ / adverb"
   ],
-  "usageNotes": [
-    "Phó từ chỉ phản ứng tự nhiên không thể kiểm soát được."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -45,32 +44,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "不由得笑",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "不由得",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "不由得想",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "不由得",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "不由自主地",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "不由得",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -80,7 +55,8 @@
       "meaningVi": "Không nhịn được cười.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不由得",
@@ -89,16 +65,17 @@
       "meaningVi": "Anh ấy không thể không nhớ lại quá khứ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 不由得",
-      "syntax": "phó từ / adverb",
-      "matchedExample": "Phó từ chỉ phản ứng tự nhiên không thể kiểm soát được.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 不由得",
+      "partOfSpeech": "phó từ / adverb",
+      "usageNoteVi": "Phó từ chỉ phản ứng tự nhiên không thể kiểm soát được.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -113,7 +90,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

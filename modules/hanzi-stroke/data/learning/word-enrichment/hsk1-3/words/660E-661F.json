@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:明星",
   "type": "word",
   "word": "明星",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "míng xīng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ngôi sao",
+      "meaningShortVi": "ngôi sao",
+      "meaningFullVi": "ngôi sao",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ngôi sao",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,52 +48,68 @@
     "collocations": [
       {
         "text": "电影明星",
-        "pinyin": "",
+        "pinyin": "diàn yǐng míng xīng",
         "meaningVi": "ngôi sao điện ảnh",
+        "meaningFullVi": "ngôi sao điện ảnh",
         "target": "明星",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "流行明星",
-        "pinyin": "",
+        "pinyin": "liú xíng míng xīng",
         "meaningVi": "ngôi sao nổi tiếng",
+        "meaningFullVi": "ngôi sao nổi tiếng",
         "target": "明星",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "明星",
       "chinese": "他是电影明星",
-      "pinyin": "",
+      "pinyin": "tā shì diàn yǐng míng xīng",
       "meaningVi": "Anh ấy là ngôi sao điện ảnh",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "明星",
       "chinese": "很多明星来这里",
-      "pinyin": "",
+      "pinyin": "hěn duō míng xīng lái zhè li",
       "meaningVi": "Nhiều ngôi sao đến đây",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "明星",
       "chinese": "她喜欢那个明星",
-      "pinyin": "",
+      "pinyin": "tā xǐ huan nà ge míng xīng",
       "meaningVi": "Cô ấy thích ngôi sao đó",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 明星",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/明星.mp3"
   ],
@@ -101,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__2__topic__12__giai-tri",
+      "sectionSlug": "giai-tri",
       "sectionTitle": "Giải trí",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -116,7 +138,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

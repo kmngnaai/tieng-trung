@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:跳远",
   "type": "word",
   "word": "跳远",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "tiào yuǎn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nhảy xa",
+      "meaningShortVi": "nhảy xa",
+      "meaningFullVi": "nhảy xa",
       "partOfSpeech": "động từ / danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nhảy xa",
   "wordType": "động từ / danh từ",
   "wordTypes": [
     "động từ / danh từ"
   ],
-  "usageNotes": [
-    "跳远 (nhảy xa) là môn thể dục thể thao, nhảy từ bẫy nhảy xa nhất có thể."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "参加跳远",
         "pinyin": "cānjiā tiàoyuǎn",
         "meaningVi": "tham gia nhảy xa",
+        "meaningFullVi": "tham gia nhảy xa",
         "target": "跳远",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "跳远比赛",
         "pinyin": "tiàoyuǎn bǐsài",
         "meaningVi": "thi đấu nhảy xa",
+        "meaningFullVi": "thi đấu nhảy xa",
         "target": "跳远",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Anh ấy đã tham gia nhảy xa trong đại hội thể thao.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "跳远",
@@ -82,16 +87,17 @@
       "meaningVi": "Nhảy xa là một môn điền kinh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 跳远",
-      "syntax": "động từ / danh từ",
-      "matchedExample": "跳远 (nhảy xa) là môn thể dục thể thao, nhảy từ bẫy nhảy xa nhất có thể.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 跳远",
+      "partOfSpeech": "động từ / danh từ",
+      "usageNoteVi": "跳远 (nhảy xa) là môn thể dục thể thao, nhảy từ bẫy nhảy xa nhất có thể.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__3__topic__14__van-chuyen-va-di-chuyen",
+      "sectionSlug": "van-chuyen-va-di-chuyen",
       "sectionTitle": "Vận chuyển và di chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/van-chuyen-va-di-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/van-chuyen-va-di-chuyen/",
+      "orderInSection": 30
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

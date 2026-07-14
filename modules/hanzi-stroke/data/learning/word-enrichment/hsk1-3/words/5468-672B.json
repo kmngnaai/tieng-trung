@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:周末",
   "type": "word",
   "word": "周末",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "zhōu mò",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cuối tuần",
+      "meaningShortVi": "cuối tuần",
+      "meaningFullVi": "cuối tuần",
       "partOfSpeech": "noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cuối tuần",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,43 +51,58 @@
     "collocations": [
       {
         "text": "这个周末",
-        "pinyin": "",
+        "pinyin": "zhè ge zhōu mò",
         "meaningVi": "cuối tuần này",
+        "meaningFullVi": "cuối tuần này",
         "target": "周末",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "周末休息",
-        "pinyin": "",
+        "pinyin": "zhōu mò xiū xi",
         "meaningVi": "nghỉ cuối tuần",
+        "meaningFullVi": "nghỉ cuối tuần",
         "target": "周末",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "周末",
       "chinese": "周末你做什么",
-      "pinyin": "",
+      "pinyin": "zhōu mò nǐ zuò shén me",
       "meaningVi": "Cuối tuần bạn làm gì",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "周末",
       "chinese": "快乐的周末",
-      "pinyin": "",
+      "pinyin": "kuài lè de zhōu mò",
       "meaningVi": "Cuối tuần vui vẻ",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 周末",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/周末.mp3"
   ],
@@ -95,31 +111,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__2__topic__3__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thoi-gian/",
+      "orderInSection": 3
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 1,
+      "sectionId": "hsk__3__lesson__1__bai-1-cuoi-tuan-ban-co-du-dinh-gi",
+      "sectionSlug": "bai-1-cuoi-tuan-ban-co-du-dinh-gi",
       "sectionTitle": "Cuối tuần bạn có dự định gì?",
       "sectionTitleZh": "周末你有什么打算",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-1-cuoi-tuan-ban-co-du-dinh-gi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-1-cuoi-tuan-ban-co-du-dinh-gi/",
+      "orderInSection": 1
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__lesson__16__bai-16-i-heard-that-some-pandas-have-gone-abroad",
+      "sectionSlug": "bai-16-i-heard-that-some-pandas-have-gone-abroad",
       "sectionTitle": "Tôi nghe nói có vài con gấu trúc đã ra nước ngoài",
       "sectionTitleZh": "我听说有的熊猫出国了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-16-i-heard-that-some-pandas-have-gone-abroad/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-16-i-heard-that-some-pandas-have-gone-abroad/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -140,7 +171,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

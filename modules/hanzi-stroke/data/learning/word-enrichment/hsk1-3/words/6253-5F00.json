@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:打开",
   "type": "word",
   "word": "打开",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "dǎ kāi",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "mở ra",
+      "meaningShortVi": "mở ra",
+      "meaningFullVi": "mở ra",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "mở ra",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Động từ phổ biến chỉ hành động mở. Trong giao tiếp, 打开 thường đi với vật cần mở: 打开门 (mở cửa), 打开窗户 (mở cửa sổ). Với thiết bị điện tử, 也 có nghĩa là bật: 打开手机 (bật điện thoại), 打开电脑 (bật máy tính). Trái nghĩa với 关上 (đóng lại) hoặc 关闭 (tắt)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 打 (làm, tác động) + 开 (mở) → tác động để mở ra. Chỉ hành động mở cửa, mở hộp, mở thiết bị, mở tập tin."
   ],
   "hsk": {
     "levels": [
@@ -51,38 +48,27 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "开门",
-        "pinyin": "kāi mén",
-        "meaningVi": "mở cửa",
-        "target": "打开",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "打开书",
         "pinyin": "dǎ kāi shū",
         "meaningVi": "mở sách ra",
+        "meaningFullVi": "mở sách ra",
         "target": "打开",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "打开手机",
         "pinyin": "dǎ kāi shǒujī",
-        "meaningVi": "mở/bật điện thoại",
+        "meaningVi": "mở",
+        "meaningFullVi": "mở/bật điện thoại",
         "target": "打开",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "关上",
-        "pinyin": "guān shàng",
-        "meaningVi": "đóng lại (trái nghĩa)",
-        "target": "打开",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -92,7 +78,8 @@
       "meaningVi": "Xin hãy mở cửa",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "打开",
@@ -101,7 +88,8 @@
       "meaningVi": "Tôi đã mở máy tính",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "打开",
@@ -110,7 +98,8 @@
       "meaningVi": "mở cửa sổ",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "打开",
@@ -119,23 +108,17 @@
       "meaningVi": "giúp tôi mở",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 打开",
-      "syntax": "compound-semantic",
-      "matchedExample": "Động từ phổ biến chỉ hành động mở. Trong giao tiếp, 打开 thường đi với vật cần mở: 打开门 (mở cửa), 打开窗户 (mở cửa sổ). Với thiết bị điện tử, 也 có nghĩa là bật: 打开手机 (bật điện thoại), 打开电脑 (bật máy tính). Trái nghĩa với 关上 (đóng lại) hoặc 关闭 (tắt).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 打 (làm, tác động) + 开 (mở) → tác động để mở ra. Chỉ hành động mở cửa, mở hộp, mở thiết bị, mở tập tin.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 打开",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Động từ phổ biến chỉ hành động mở. Trong giao tiếp, 打开 thường đi với vật cần mở: 打开门 (mở cửa), 打开窗户 (mở cửa sổ). Với thiết bị điện tử, 也 có nghĩa là bật: 打开手机 (bật điện thoại), 打开电脑 (bật máy tính). Trái nghĩa với 关上 (đóng lại) hoặc 关闭 (tắt).",
+      "explanationVi": "Ghép nghĩa: 打 (làm, tác động) + 开 (mở) → tác động để mở ra. Chỉ hành động mở cửa, mở hộp, mở thiết bị, mở tập tin.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -146,21 +129,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 21,
+      "sectionId": "new_hsk__1__topic__21__dong-tu-thuong-le",
+      "sectionSlug": "dong-tu-thuong-le",
       "sectionTitle": "Động từ thường lệ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dong-tu-thuong-le/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dong-tu-thuong-le/",
+      "orderInSection": 3
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__2__lesson__6__bai-6-happy-birthday-xiaoxue",
+      "sectionSlug": "bai-6-happy-birthday-xiaoxue",
       "sectionTitle": "Tiểu Tuyết, chúc mừng sinh nhật!",
       "sectionTitleZh": "小雪，生日快乐！",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-6-happy-birthday-xiaoxue/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-6-happy-birthday-xiaoxue/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -176,7 +169,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

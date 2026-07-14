@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:不够",
   "type": "word",
   "word": "不够",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "bù gòu",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bất cú",
+      "meaningShortVi": "bất cú",
+      "meaningFullVi": "bất cú",
       "partOfSpeech": "verb/adjective",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bất cú",
   "wordType": "verb/adjective",
   "wordTypes": [
     "verb/adjective"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,60 +48,78 @@
     "collocations": [
       {
         "text": "钱不够",
-        "pinyin": "",
+        "pinyin": "qián bù gòu",
         "meaningVi": "thiếu tiền",
+        "meaningFullVi": "thiếu tiền",
         "target": "不够",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "时间不够",
-        "pinyin": "",
+        "pinyin": "shí jiān bù gòu",
         "meaningVi": "thiếu thời gian",
+        "meaningFullVi": "thiếu thời gian",
         "target": "不够",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "还不够",
-        "pinyin": "",
+        "pinyin": "hái bù gòu",
         "meaningVi": "vẫn chưa đủ",
+        "meaningFullVi": "vẫn chưa đủ",
         "target": "不够",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "不够",
       "chinese": "钱不够",
-      "pinyin": "",
+      "pinyin": "qián bù gòu",
       "meaningVi": "Tiền không đủ",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不够",
       "chinese": "时间不够",
-      "pinyin": "",
+      "pinyin": "shí jiān bù gòu",
       "meaningVi": "Thời gian không đủ",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不够",
       "chinese": "还不够",
-      "pinyin": "",
+      "pinyin": "hái bù gòu",
       "meaningVi": "Vẫn chưa đủ",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 不够",
+      "partOfSpeech": "verb/adjective",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/不够.mp3"
   ],
@@ -109,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 15,
+      "sectionId": "new_hsk__2__topic__15__so-luong",
+      "sectionSlug": "so-luong",
       "sectionTitle": "Số lượng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/so-luong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/so-luong/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -124,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

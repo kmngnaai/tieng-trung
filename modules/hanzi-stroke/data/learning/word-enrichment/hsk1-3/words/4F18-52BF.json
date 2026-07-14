@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:优势",
   "type": "word",
   "word": "优势",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yōu shì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ưu thế, lợi thế; điểm mạnh",
+      "meaningShortVi": "ưu thế",
+      "meaningFullVi": "ưu thế, lợi thế; điểm mạnh",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ưu thế",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Yōu shì dùng cho điểm mạnh, lợi thế trong cạnh tranh. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -48,50 +47,37 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "竞争优势",
-        "pinyin": "",
-        "meaningVi": "lợi thế cạnh tranh",
-        "target": "优势",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "发挥优势",
-        "pinyin": "",
+        "pinyin": "fā huī yōu shì",
         "meaningVi": "phát huy ưu thế",
+        "meaningFullVi": "phát huy ưu thế",
         "target": "优势",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "优势",
-      "chinese": "这个产品有很多优势。",
-      "pinyin": "",
-      "meaningVi": "Sản phẩm này có nhiều ưu điểm.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "优势",
       "chinese": "我们要发挥自己的优势。",
-      "pinyin": "",
+      "pinyin": "wǒ men yào fā huī zì jǐ de yōu shì。",
       "meaningVi": "Chúng ta cần phát huy lợi thế của mình.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 优势",
-      "syntax": "danh từ",
-      "matchedExample": "Yōu shì dùng cho điểm mạnh, lợi thế trong cạnh tranh. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 优势",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Yōu shì dùng cho điểm mạnh, lợi thế trong cạnh tranh. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 32,
+      "sectionId": "new_hsk__3__topic__32__dac-diem",
+      "sectionSlug": "dac-diem",
       "sectionTitle": "Đặc điểm",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -117,7 +108,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:只要",
   "type": "word",
   "word": "只要",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhǐ yào",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "miễn là",
+      "meaningShortVi": "miễn là",
+      "meaningFullVi": "miễn là",
       "partOfSpeech": "conjunction",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "miễn là",
   "wordType": "conjunction",
   "wordTypes": [
     "conjunction"
   ],
-  "usageNotes": [
-    "Liên từ điều kiện: chỉ cần."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -50,49 +49,56 @@
     "collocations": [
       {
         "text": "只要...就",
-        "pinyin": "",
-        "meaningVi": "chỉ cần...thì",
+        "pinyin": "zhǐ yào... jiù",
+        "meaningVi": "chỉ cần",
+        "meaningFullVi": "chỉ cần...thì",
         "target": "只要",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "只要你",
-        "pinyin": "",
+        "pinyin": "zhǐ yào nǐ",
         "meaningVi": "miễn là bạn",
+        "meaningFullVi": "miễn là bạn",
         "target": "只要",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "只要",
       "chinese": "只要你来就好",
-      "pinyin": "",
+      "pinyin": "zhǐ yào nǐ lái jiù hǎo",
       "meaningVi": "Miễn là bạn đến là tốt",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "只要",
       "chinese": "只要努力就能成功",
-      "pinyin": "",
+      "pinyin": "zhǐ yào nǔ lì jiù néng chéng gōng",
       "meaningVi": "Chỉ cần nỗ lực thì sẽ thành công",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 只要",
-      "syntax": "conjunction",
-      "matchedExample": "Liên từ điều kiện: chỉ cần.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 只要",
+      "partOfSpeech": "conjunction",
+      "usageNoteVi": "Liên từ điều kiện: chỉ cần.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,21 +109,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__2__topic__9__tu-chuc-nang",
+      "sectionSlug": "tu-chuc-nang",
       "sectionTitle": "Từ chức năng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-chuc-nang/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-chuc-nang/",
+      "orderInSection": 32
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__3__lesson__18__bai-18-i-ve-learned-how-to-make-jiaozi",
+      "sectionSlug": "bai-18-i-ve-learned-how-to-make-jiaozi",
       "sectionTitle": "Tôi đã học được cách gói sủi cảo",
       "sectionTitleZh": "我学会了包饺子",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-18-i-ve-learned-how-to-make-jiaozi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-18-i-ve-learned-how-to-make-jiaozi/",
+      "orderInSection": 19
     }
   ],
   "sources": [
@@ -133,7 +149,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

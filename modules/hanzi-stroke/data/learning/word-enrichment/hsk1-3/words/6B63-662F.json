@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:正是",
   "type": "word",
   "word": "正是",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhèng shì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chính xác là",
+      "meaningShortVi": "chính xác là",
+      "meaningFullVi": "chính xác là",
       "partOfSpeech": "adverb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chính xác là",
   "wordType": "adverb",
   "wordTypes": [
     "adverb"
   ],
-  "usageNotes": [
-    "Phó từ khẳng định chính xác."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -48,50 +47,47 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "正是如此",
-        "pinyin": "",
-        "meaningVi": "chính là như vậy",
-        "target": "正是",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "不正是",
-        "pinyin": "",
+        "pinyin": "bù zhèng shì",
         "meaningVi": "chẳng phải là",
+        "meaningFullVi": "chẳng phải là",
         "target": "正是",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "正是",
       "chinese": "这正是我要的",
-      "pinyin": "",
+      "pinyin": "zhè zhèng shì wǒ yào de",
       "meaningVi": "Đây chính là thứ tôi muốn",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "正是",
       "chinese": "正是时候",
-      "pinyin": "",
+      "pinyin": "zhèng shì shí hou",
       "meaningVi": "đúng lúc",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 正是",
-      "syntax": "adverb",
-      "matchedExample": "Phó từ khẳng định chính xác.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 正是",
+      "partOfSpeech": "adverb",
+      "usageNoteVi": "Phó từ khẳng định chính xác.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__2__topic__9__tu-chuc-nang",
+      "sectionSlug": "tu-chuc-nang",
       "sectionTitle": "Từ chức năng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-chuc-nang/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-chuc-nang/",
+      "orderInSection": 20
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

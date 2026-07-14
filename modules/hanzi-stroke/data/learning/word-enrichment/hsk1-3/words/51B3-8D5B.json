@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:决赛",
   "type": "word",
   "word": "决赛",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jué sài",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Chung kết",
+      "meaningShortVi": "Chung kết",
+      "meaningFullVi": "Chung kết",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Chung kết",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "决赛 là vòng đấu cuối cùng để xác định người chiến thắng. Nó thường đi sau các vòng 初赛 (vòng sơ loại), 半决赛 (bán kết). Trong giao tiếp, người ta thường说 '决赛' (chung kết) hoặc '总冠军赛' (trận tranh cup)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "进入决赛",
         "pinyin": "jìnrù juésài",
         "meaningVi": "vào chung kết",
+        "meaningFullVi": "vào chung kết",
         "target": "决赛",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "决赛阶段",
         "pinyin": "juésài jiēduàn",
         "meaningVi": "vòng chung kết",
+        "meaningFullVi": "vòng chung kết",
         "target": "决赛",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Trận chung kết World Cup sẽ diễn ra tuần sau.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "决赛",
@@ -82,16 +87,17 @@
       "meaningVi": "Đội chúng tôi đã vào được vòng chung kết.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 决赛",
-      "syntax": "danh từ",
-      "matchedExample": "决赛 là vòng đấu cuối cùng để xác định người chiến thắng. Nó thường đi sau các vòng 初赛 (vòng sơ loại), 半决赛 (bán kết). Trong giao tiếp, người ta thường说 '决赛' (chung kết) hoặc '总冠军赛' (trận tranh cup).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 决赛",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "决赛 là vòng đấu cuối cùng để xác định người chiến thắng. Nó thường đi sau các vòng 初赛 (vòng sơ loại), 半决赛 (bán kết). Trong giao tiếp, người ta thường说 '决赛' (chung kết) hoặc '总冠军赛' (trận tranh cup).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__3__topic__11__giai-tri-ii",
+      "sectionSlug": "giai-tri-ii",
       "sectionTitle": "Giải trí II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-ii/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:屋子",
   "type": "word",
   "word": "屋子",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wū zi",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phòng, căn phòng",
+      "meaningShortVi": "phòng",
+      "meaningFullVi": "phòng, căn phòng",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phòng",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Căn phòng hoặc không gian trong nhà."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -47,60 +46,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "屋子里面",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "屋子",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "这间屋子",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "屋子",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "屋子干净",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "屋子",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "屋子",
-      "chinese": "这间屋子很小。",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "屋子",
-      "chinese": "进屋子里坐",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 屋子",
-      "syntax": "danh từ",
-      "matchedExample": "Căn phòng hoặc không gian trong nhà.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 屋子",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Căn phòng hoặc không gian trong nhà.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -111,21 +67,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__lesson__17__bai-17-i-will-learn-from-people-who-are-careful",
+      "sectionSlug": "bai-17-i-will-learn-from-people-who-are-careful",
       "sectionTitle": "Tôi phải học hỏi nhiều từ những người nghiêm túc",
       "sectionTitleZh": "我要多向认真的人学习",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-17-i-will-learn-from-people-who-are-careful/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-17-i-will-learn-from-people-who-are-careful/",
+      "orderInSection": 13
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 27,
+      "sectionId": "new_hsk__3__topic__27__can-nha",
+      "sectionSlug": "can-nha",
       "sectionTitle": "Căn nhà",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/can-nha/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/can-nha/",
+      "orderInSection": 19
     }
   ],
   "sources": [
@@ -141,7 +107,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

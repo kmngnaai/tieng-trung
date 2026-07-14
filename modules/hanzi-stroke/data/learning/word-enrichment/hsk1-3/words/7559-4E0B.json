@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:留下",
   "type": "word",
   "word": "留下",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "liú xià",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "để lại; ở lại",
+      "meaningShortVi": "để lại",
+      "meaningFullVi": "để lại; ở lại",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "để lại",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -46,36 +47,49 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "保留",
-        "pinyin": "",
-        "meaningVi": "giữ lại",
+        "text": "留下",
+        "pinyin": "liú xià",
+        "meaningVi": "để lại",
+        "meaningFullVi": "để lại",
         "target": "留下",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "留下",
       "chinese": "请留下你的名字",
-      "pinyin": "",
+      "pinyin": "qǐng liú xià nǐ de míng zi",
       "meaningVi": "Vui lòng để lại tên của bạn",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "留下",
       "chinese": "他选择留下",
-      "pinyin": "",
+      "pinyin": "tā xuǎn zé liú xià",
       "meaningVi": "Anh ấy chọn ở lại",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 留下",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/留下.mp3"
   ],
@@ -84,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 27,
+      "sectionId": "new_hsk__2__topic__27__dong-tu-tuong-tac",
+      "sectionSlug": "dong-tu-tuong-tac",
       "sectionTitle": "Động từ tương tác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dong-tu-tuong-tac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dong-tu-tuong-tac/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -99,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

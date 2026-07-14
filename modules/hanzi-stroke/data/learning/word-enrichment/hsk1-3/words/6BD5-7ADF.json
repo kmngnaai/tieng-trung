@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:毕竟",
   "type": "word",
   "word": "毕竟",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "bì jìng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sau tất cả, cho đến cuối cùng; thực ra là",
+      "meaningShortVi": "sau tất cả",
+      "meaningFullVi": "sau tất cả, cho đến cuối cùng; thực ra là",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sau tất cả",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Dùng để nhấn mạnh kết luận cuối cùng hoặc bản chất sự việc sau khi cân nhắc."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,32 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "毕竟还是",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "毕竟",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "毕竟不是",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "毕竟",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "毕竟意味着",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "毕竟",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +54,8 @@
       "meaningVi": "sau tất cả thì cậu ấy vẫn còn là một đứa trẻ",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "毕竟",
@@ -88,7 +64,8 @@
       "meaningVi": "sau cùng thì đây là lựa chọn của bạn",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "毕竟",
@@ -97,7 +74,8 @@
       "meaningVi": "mùa đông rồi cũng sẽ qua",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "毕竟",
@@ -106,16 +84,17 @@
       "meaningVi": "sau cùng thì không phải lỗi của bạn",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 毕竟",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng để nhấn mạnh kết luận cuối cùng hoặc bản chất sự việc sau khi cân nhắc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 毕竟",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng để nhấn mạnh kết luận cuối cùng hoặc bản chất sự việc sau khi cân nhắc.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -130,7 +109,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

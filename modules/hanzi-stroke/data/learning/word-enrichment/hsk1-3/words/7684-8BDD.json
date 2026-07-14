@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:的话",
   "type": "word",
   "word": "的话",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "de huà",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nếu",
+      "meaningShortVi": "nếu",
+      "meaningFullVi": "nếu",
       "partOfSpeech": "particle",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nếu",
   "wordType": "particle",
   "wordTypes": [
     "particle"
   ],
-  "usageNotes": [
-    "Dùng ở cuối mệnh đề để tạo điều kiện"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,42 +49,47 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "如果",
-        "pinyin": "",
-        "meaningVi": "nếu",
+        "text": "的话",
+        "pinyin": "de huà",
+        "meaningVi": "nếu như",
+        "meaningFullVi": "nếu như",
         "target": "的话",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "的话",
       "chinese": "如果不去的话",
-      "pinyin": "",
+      "pinyin": "rú guǒ bù qù de huà",
       "meaningVi": "Nếu không đi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "的话",
       "chinese": "明天下雨的话",
-      "pinyin": "",
+      "pinyin": "míng tiān xià yǔ de huà",
       "meaningVi": "Nếu ngày mai mưa",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 的话",
-      "syntax": "particle",
-      "matchedExample": "Dùng ở cuối mệnh đề để tạo điều kiện",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 的话",
+      "partOfSpeech": "particle",
+      "usageNoteVi": "Dùng ở cuối mệnh đề để tạo điều kiện",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -96,21 +100,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__2__topic__9__tu-chuc-nang",
+      "sectionSlug": "tu-chuc-nang",
       "sectionTitle": "Từ chức năng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-chuc-nang/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-chuc-nang/",
+      "orderInSection": 6
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__3__lesson__13__bai-13-my-new-neighbors-come-from-the-uk",
+      "sectionSlug": "bai-13-my-new-neighbors-come-from-the-uk",
       "sectionTitle": "Hàng xóm mới của tôi đến từ Anh",
       "sectionTitleZh": "我的新邻居来自英国",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-13-my-new-neighbors-come-from-the-uk/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-13-my-new-neighbors-come-from-the-uk/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -131,7 +145,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:相比",
   "type": "word",
   "word": "相比",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xiāng bǐ",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "so sánh; so với, đối với",
+      "meaningShortVi": "so sánh",
+      "meaningFullVi": "so sánh; so với, đối với",
       "partOfSpeech": "động từ / giới từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "so sánh",
   "wordType": "động từ / giới từ",
   "wordTypes": [
     "động từ / giới từ"
   ],
-  "usageNotes": [
-    "相比 là động từ chỉ so sánh hoặc giới từ 'so với'. Là từ ghép Hán-Việt 'tương tỷ'. Cấu trúc thường gặp: 相比 + [đối tượng so sánh] + [kết luận]."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -50,20 +49,25 @@
       {
         "text": "相比而言",
         "pinyin": "xiāngbǐ éryán",
-        "meaningVi": "so mà nói, xét cho cùng",
+        "meaningVi": "so mà nói",
+        "meaningFullVi": "so mà nói, xét cho cùng",
         "target": "相比",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "相比之下",
         "pinyin": "xiāngbǐ zhīxià",
         "meaningVi": "so sánh dưới ánh sáng này = so sánh lại",
+        "meaningFullVi": "so sánh dưới ánh sáng này = so sánh lại",
         "target": "相比",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "So với năm ngoái, năm nay kinh doanh rất tốt.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "相比",
@@ -82,16 +87,17 @@
       "meaningVi": "So sánh lại, tôi thích cái này hơn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 相比",
-      "syntax": "động từ / giới từ",
-      "matchedExample": "相比 là động từ chỉ so sánh hoặc giới từ 'so với'. Là từ ghép Hán-Việt 'tương tỷ'. Cấu trúc thường gặp: 相比 + [đối tượng so sánh] + [kết luận].",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 相比",
+      "partOfSpeech": "động từ / giới từ",
+      "usageNoteVi": "相比 là động từ chỉ so sánh hoặc giới từ 'so với'. Là từ ghép Hán-Việt 'tương tỷ'. Cấu trúc thường gặp: 相比 + [đối tượng so sánh] + [kết luận].",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 20,
+      "sectionId": "new_hsk__3__topic__20__so-sanh-va-tuan-thu",
+      "sectionSlug": "so-sanh-va-tuan-thu",
       "sectionTitle": "So sánh và Tuân thủ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/so-sanh-va-tuan-thu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/so-sanh-va-tuan-thu/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

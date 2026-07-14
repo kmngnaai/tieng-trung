@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:耳机",
   "type": "word",
   "word": "耳机",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "ěr jī",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tai nghe",
+      "meaningShortVi": "tai nghe",
+      "meaningFullVi": "tai nghe",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tai nghe",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Nhĩ cơ (ěrjī) là ghép của 耳 (tai) + 机 (máy). Dùng cho tai nghe điện thoại, máy tính. Từ đồng nghĩa: 耳麦 (ěrmài) - tai nghe có micro."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "戴耳机",
         "pinyin": "dài ěrjī",
         "meaningVi": "đeo tai nghe",
+        "meaningFullVi": "đeo tai nghe",
         "target": "耳机",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "蓝牙耳机",
         "pinyin": "lányá ěrjī",
         "meaningVi": "tai nghe Bluetooth",
+        "meaningFullVi": "tai nghe Bluetooth",
         "target": "耳机",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Làm ơn đeo tai nghe để nghe nhạc.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "耳机",
@@ -82,16 +87,17 @@
       "meaningVi": "Tai nghe của tôi bị hỏng rồi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 耳机",
-      "syntax": "danh từ",
-      "matchedExample": "Nhĩ cơ (ěrjī) là ghép của 耳 (tai) + 机 (máy). Dùng cho tai nghe điện thoại, máy tính. Từ đồng nghĩa: 耳麦 (ěrmài) - tai nghe có micro.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 耳机",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Nhĩ cơ (ěrjī) là ghép của 耳 (tai) + 机 (máy). Dùng cho tai nghe điện thoại, máy tính. Từ đồng nghĩa: 耳麦 (ěrmài) - tai nghe có micro.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__3__lesson__6__bai-6-you-can-even-order-takeout-on-a-high-speed-train",
+      "sectionSlug": "bai-6-you-can-even-order-takeout-on-a-high-speed-train",
       "sectionTitle": "Trên tàu cao tốc còn có thể đặt đồ ăn ngoài",
       "sectionTitleZh": "高铁上还可以点外卖",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-6-you-can-even-order-takeout-on-a-high-speed-train/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-6-you-can-even-order-takeout-on-a-high-speed-train/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:公平",
   "type": "word",
   "word": "公平",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gōng píng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "công bằng",
+      "meaningShortVi": "công bằng",
+      "meaningFullVi": "công bằng",
       "partOfSpeech": "adjective",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "công bằng",
   "wordType": "adjective",
   "wordTypes": [
     "adjective"
   ],
-  "usageNotes": [
-    "Tính từ chỉ sự công minh, đúng đắn."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "不公平",
-        "pinyin": "",
+        "pinyin": "bù gōng píng",
         "meaningVi": "không công bằng",
+        "meaningFullVi": "không công bằng",
         "target": "公平",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "公平竞争",
-        "pinyin": "",
-        "meaningVi": "cạnh tranh công bằng",
-        "target": "公平",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "公平",
       "chinese": "这很公平",
-      "pinyin": "",
+      "pinyin": "zhè hěn gōng píng",
       "meaningVi": "Điều này rất công bằng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "公平",
       "chinese": "我们需要公平",
-      "pinyin": "",
+      "pinyin": "wǒ men xū yào gōng píng",
       "meaningVi": "Chúng ta cần sự công bằng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 公平",
-      "syntax": "adjective",
-      "matchedExample": "Tính từ chỉ sự công minh, đúng đắn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 公平",
+      "partOfSpeech": "adjective",
+      "usageNoteVi": "Tính từ chỉ sự công minh, đúng đắn.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__2__topic__18__tinh-tu",
+      "sectionSlug": "tinh-tu",
       "sectionTitle": "Tính từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-tu/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:老头{儿}",
   "type": "word",
   "word": "老头{儿}",
@@ -18,26 +18,25 @@
     "readings": [
       {
         "pinyin": "lǎo tóur ",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Ông già, người đàn ông lớn tuổi",
+      "meaningShortVi": "Ông già",
+      "meaningFullVi": "Ông già, người đàn ông lớn tuổi",
       "partOfSpeech": "other",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Ông già",
   "wordType": "other",
   "wordTypes": [
     "other"
   ],
-  "usageNotes": [
-    "老头儿 (lǎotóur) là từ dùng để chỉ người đàn ông lớn tuổi, mang sắc thái thân mật, không trang trọng. Đây là dạng 儿化音 (erhua) của 老头. Trong văn nói Bắc Kinh, từ này rất phổ biến. Nên dùng cẩn thận vì có thể mang sắc thái thiếu tôn trọng nếu dùng với người không quen thân."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -53,36 +52,35 @@
       {
         "text": "小老头{儿}",
         "pinyin": "xiǎo lǎotóur",
-        "meaningVi": "ông già nhỏ, ông già nhỏ bé",
+        "meaningVi": "ông già nhỏ",
+        "meaningFullVi": "ông già nhỏ, ông già nhỏ bé",
         "target": "老头{儿}",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "倔老头{儿}",
         "pinyin": "juè lǎotóur",
         "meaningVi": "ông già bảo thủ",
+        "meaningFullVi": "ông già bảo thủ",
         "target": "老头{儿}",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "老头子",
-        "pinyin": "lǎotóuzi",
-        "meaningVi": "ông già (khác với老头儿)",
-        "target": "老头{儿}",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "老头{儿}乐",
         "pinyin": "lǎotóur lè",
         "meaningVi": "vui vẻ của người già",
+        "meaningFullVi": "vui vẻ của người già",
         "target": "老头{儿}",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -92,7 +90,8 @@
       "meaningVi": "Trong công viên có nhiều ông già đang tập Thái cực quyền.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "老头{儿}",
@@ -101,7 +100,8 @@
       "meaningVi": "Ông già đó mỗi ngày đều đến đây câu cá.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "老头{儿}",
@@ -110,16 +110,17 @@
       "meaningVi": "Ở cạnh nhà tôi sống một ông già hiền lành.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 老头{儿}",
-      "syntax": "other",
-      "matchedExample": "老头儿 (lǎotóur) là từ dùng để chỉ người đàn ông lớn tuổi, mang sắc thái thân mật, không trang trọng. Đây là dạng 儿化音 (erhua) của 老头. Trong văn nói Bắc Kinh, từ này rất phổ biến. Nên dùng cẩn thận vì có thể mang sắc thái thiếu tôn trọng nếu dùng với người không quen thân.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 老头{儿}",
+      "partOfSpeech": "other",
+      "usageNoteVi": "老头儿 (lǎotóur) là từ dùng để chỉ người đàn ông lớn tuổi, mang sắc thái thân mật, không trang trọng. Đây là dạng 儿化音 (erhua) của 老头. Trong văn nói Bắc Kinh, từ này rất phổ biến. Nên dùng cẩn thận vì có thể mang sắc thái thiếu tôn trọng nếu dùng với người không quen thân.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -130,11 +131,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__3__topic__4__nhung-nguoi",
+      "sectionSlug": "nhung-nguoi",
       "sectionTitle": "Những người",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -145,7 +151,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

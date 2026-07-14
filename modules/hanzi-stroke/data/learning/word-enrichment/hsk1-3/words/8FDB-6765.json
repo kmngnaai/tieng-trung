@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:进来",
   "type": "word",
   "word": "进来",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jìn lái",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "vào trong, đi vào",
+      "meaningShortVi": "vào trong",
+      "meaningFullVi": "vào trong, đi vào",
       "partOfSpeech": "compound-phonetic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "vào trong",
   "wordType": "compound-phonetic",
   "wordTypes": [
     "compound-phonetic"
   ],
-  "usageNotes": [
-    "进来 là động từ hướng chỉ hành động đi vào. Hán-Việt: tiến (đi lên) + lai (đến)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -52,19 +51,24 @@
         "text": "走进来",
         "pinyin": "zǒu jìnlái",
         "meaningVi": "đi vào",
+        "meaningFullVi": "đi vào",
         "target": "进来",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "跑进来",
         "pinyin": "pǎo jìnlái",
         "meaningVi": "chạy vào",
+        "meaningFullVi": "chạy vào",
         "target": "进来",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Mời vào trong.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "进来",
@@ -83,16 +88,17 @@
       "meaningVi": "Anh ấy đã vào.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 进来",
-      "syntax": "compound-phonetic",
-      "matchedExample": "进来 là động từ hướng chỉ hành động đi vào. Hán-Việt: tiến (đi lên) + lai (đến).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 进来",
+      "partOfSpeech": "compound-phonetic",
+      "usageNoteVi": "进来 là động từ hướng chỉ hành động đi vào. Hán-Việt: tiến (đi lên) + lai (đến).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,21 +109,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__1__topic__9__su-chuyen-dong",
+      "sectionSlug": "su-chuyen-dong",
       "sectionTitle": "Sự chuyển động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/su-chuyen-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/su-chuyen-dong/",
+      "orderInSection": 4
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__2__lesson__5__bai-5-visiting-a-chinese-friend-s-home-for-the-first-time",
+      "sectionSlug": "bai-5-visiting-a-chinese-friend-s-home-for-the-first-time",
       "sectionTitle": "Lần đầu đến nhà bạn người Trung Quốc",
       "sectionTitleZh": "第一次去中国朋友家",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-5-visiting-a-chinese-friend-s-home-for-the-first-time/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-5-visiting-a-chinese-friend-s-home-for-the-first-time/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -133,7 +149,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

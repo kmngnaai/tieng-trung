@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:以外",
   "type": "word",
   "word": "以外",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "yǐ wài",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bên ngoài",
+      "meaningShortVi": "bên ngoài",
+      "meaningFullVi": "bên ngoài",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bên ngoài",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -47,36 +48,49 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "除了",
-        "pinyin": "",
-        "meaningVi": "ngoại trừ",
+        "text": "以外",
+        "pinyin": "yǐ wài",
+        "meaningVi": "bên ngoài",
+        "meaningFullVi": "bên ngoài",
         "target": "以外",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "以外",
       "chinese": "这周以外",
-      "pinyin": "",
+      "pinyin": "zhè zhōu yǐ wài",
       "meaningVi": "Ngoài tuần này",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "以外",
       "chinese": "中国以外",
-      "pinyin": "",
+      "pinyin": "Zhōng guó yǐ wài",
       "meaningVi": "Ngoài Trung Quốc",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 以外",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/以外.mp3"
   ],
@@ -85,21 +99,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__2__topic__9__tu-chuc-nang",
+      "sectionSlug": "tu-chuc-nang",
       "sectionTitle": "Từ chức năng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-chuc-nang/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-chuc-nang/",
+      "orderInSection": 2
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__3__lesson__4__bai-4-this-hotel-is-unlike-any-other",
+      "sectionSlug": "bai-4-this-hotel-is-unlike-any-other",
       "sectionTitle": "Khách sạn này khác hẳn những nơi khác",
       "sectionTitleZh": "这家宾馆跟别的都不一样",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-4-this-hotel-is-unlike-any-other/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-4-this-hotel-is-unlike-any-other/",
+      "orderInSection": 23
     }
   ],
   "sources": [
@@ -115,7 +139,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

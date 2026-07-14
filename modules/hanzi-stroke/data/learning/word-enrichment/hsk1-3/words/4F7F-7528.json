@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:使用",
   "type": "word",
   "word": "使用",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "shǐ yòng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sử dụng",
+      "meaningShortVi": "sử dụng",
+      "meaningFullVi": "sử dụng",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sử dụng",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,43 +48,58 @@
     "collocations": [
       {
         "text": "使用方法",
-        "pinyin": "",
+        "pinyin": "shǐ yòng fāng fǎ",
         "meaningVi": "phương pháp sử dụng",
+        "meaningFullVi": "phương pháp sử dụng",
         "target": "使用",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "开始使用",
-        "pinyin": "",
+        "pinyin": "kāi shǐ shǐ yòng",
         "meaningVi": "bắt đầu sử dụng",
+        "meaningFullVi": "bắt đầu sử dụng",
         "target": "使用",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "使用",
       "chinese": "我使用电脑工作",
-      "pinyin": "",
+      "pinyin": "wǒ shǐ yòng diàn nǎo gōng zuò",
       "meaningVi": "Tôi dùng máy tính để làm việc",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "使用",
       "chinese": "如何使用",
-      "pinyin": "",
+      "pinyin": "rú hé shǐ yòng",
       "meaningVi": "Cách sử dụng như thế nào",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 使用",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/使用.mp3"
   ],
@@ -92,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 27,
+      "sectionId": "new_hsk__2__topic__27__dong-tu-tuong-tac",
+      "sectionSlug": "dong-tu-tuong-tac",
       "sectionTitle": "Động từ tương tác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dong-tu-tuong-tac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dong-tu-tuong-tac/",
+      "orderInSection": 18
     }
   ],
   "sources": [
@@ -107,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

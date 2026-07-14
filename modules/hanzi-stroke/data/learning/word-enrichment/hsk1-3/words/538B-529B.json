@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:压力",
   "type": "word",
   "word": "压力",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yā lì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Áp lực",
+      "meaningShortVi": "Áp lực",
+      "meaningFullVi": "Áp lực",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Áp lực",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "压力 chỉ sự ép buộc từ bên ngoài, thường là áp lực công việc, học tập, hoặc tâm lý. Trong giao tiếp, người ta thường nói '压力大' (áp lực lớn) hoặc '有压力' (có áp lực). Động từ đi kèm thường là 减轻 (giảm nhẹ), 增加 (tăng thêm)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "工作压力",
         "pinyin": "gōngzuò yālì",
         "meaningVi": "áp lực công việc",
+        "meaningFullVi": "áp lực công việc",
         "target": "压力",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "减少压力",
         "pinyin": "jiǎnshǎo yālì",
         "meaningVi": "giảm áp lực",
+        "meaningFullVi": "giảm áp lực",
         "target": "压力",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Áp lực công việc quá lớn, tôi cần nghỉ ngơi một chút.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "压力",
@@ -82,16 +87,17 @@
       "meaningVi": "Áp lực học tập khiến nhiều học sinh lo âu.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 压力",
-      "syntax": "danh từ",
-      "matchedExample": "压力 chỉ sự ép buộc từ bên ngoài, thường là áp lực công việc, học tập, hoặc tâm lý. Trong giao tiếp, người ta thường nói '压力大' (áp lực lớn) hoặc '有压力' (có áp lực). Động từ đi kèm thường là 减轻 (giảm nhẹ), 增加 (tăng thêm).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 压力",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "压力 chỉ sự ép buộc từ bên ngoài, thường là áp lực công việc, học tập, hoặc tâm lý. Trong giao tiếp, người ta thường nói '压力大' (áp lực lớn) hoặc '有压力' (có áp lực). Động từ đi kèm thường là 减轻 (giảm nhẹ), 增加 (tăng thêm).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__3__topic__12__lam-viec-toi",
+      "sectionSlug": "lam-viec-toi",
       "sectionTitle": "Làm việc tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/",
+      "orderInSection": 26
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

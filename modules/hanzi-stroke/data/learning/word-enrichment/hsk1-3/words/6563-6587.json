@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:散文",
   "type": "word",
   "word": "散文",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "sǎn wén",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tản văn; văn bản xuôi, không vần; thể loại văn học tự do",
+      "meaningShortVi": "tản văn",
+      "meaningFullVi": "tản văn; văn bản xuôi, không vần; thể loại văn học tự do",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tản văn",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "散文 là danh từ chỉ thể loại văn bản xuôi, không vần, có cấu trúc tự do hơn bài văn luận. Hán-Việt 'tản' (散 - tản mát, rời rạc) + 'văn' (文 - văn chương) = văn viết tự do, không gò bó. Khác với thơ (thơ ca) và văn luận (论说文)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,7 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -54,7 +54,8 @@
       "meaningVi": "Tôi thích đọc tản văn của Lỗ Tấn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "散文",
@@ -63,7 +64,8 @@
       "meaningVi": "Bài tản văn này viết rất đẹp.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "散文",
@@ -72,16 +74,17 @@
       "meaningVi": "Anh ấy đăng một bài tản văn trên báo.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 散文",
-      "syntax": "danh từ",
-      "matchedExample": "散文 là danh từ chỉ thể loại văn bản xuôi, không vần, có cấu trúc tự do hơn bài văn luận. Hán-Việt 'tản' (散 - tản mát, rời rạc) + 'văn' (文 - văn chương) = văn viết tự do, không gò bó. Khác với thơ (thơ ca) và văn luận (论说文).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 散文",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "散文 là danh từ chỉ thể loại văn bản xuôi, không vần, có cấu trúc tự do hơn bài văn luận. Hán-Việt 'tản' (散 - tản mát, rời rạc) + 'văn' (文 - văn chương) = văn viết tự do, không gò bó. Khác với thơ (thơ ca) và văn luận (论说文).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -96,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

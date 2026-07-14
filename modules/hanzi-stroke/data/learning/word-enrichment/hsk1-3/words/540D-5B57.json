@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:名字",
   "type": "word",
   "word": "名字",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "míng zi",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tên (cá nhân, đồ vật)",
+      "meaningShortVi": "tên (cá nhân",
+      "meaningFullVi": "tên (cá nhân, đồ vật)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tên (cá nhân",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "'名字' là tên. Câu hỏi phổ biến '你叫什么名字?' hoặc '你叫什么?' đều là hỏi tên. '我的名字是...' giới thiệu tên đầy đủ."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 名 (tên) + 字 (chữ, tự). Tên chỉ danh hoặc chữ biểu thị tên."
   ],
   "hsk": {
     "levels": [
@@ -55,27 +52,34 @@
         "text": "什么名字",
         "pinyin": "shénme míngzi",
         "meaningVi": "tên gì",
+        "meaningFullVi": "tên gì",
         "target": "名字",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "我的名字",
         "pinyin": "wǒ de míngzi",
         "meaningVi": "tên của tôi",
+        "meaningFullVi": "tên của tôi",
         "target": "名字",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "起名字",
         "pinyin": "qǐ míngzi",
         "meaningVi": "đặt tên",
+        "meaningFullVi": "đặt tên",
         "target": "名字",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -85,7 +89,8 @@
       "meaningVi": "Bạn tên gì?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "名字",
@@ -94,7 +99,8 @@
       "meaningVi": "Tên tôi là Lý Minh",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "名字",
@@ -103,7 +109,8 @@
       "meaningVi": "Cái tên này hay lắm",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "名字",
@@ -112,7 +119,8 @@
       "meaningVi": "Đặt cho tôi một cái tên",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "名字",
@@ -121,23 +129,17 @@
       "meaningVi": "Cái tên cửa hàng này là gì?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 名字",
-      "syntax": "compound-semantic",
-      "matchedExample": "'名字' là tên. Câu hỏi phổ biến '你叫什么名字?' hoặc '你叫什么?' đều là hỏi tên. '我的名字是...' giới thiệu tên đầy đủ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 名 (tên) + 字 (chữ, tự). Tên chỉ danh hoặc chữ biểu thị tên.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 名字",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "'名字' là tên. Câu hỏi phổ biến '你叫什么名字?' hoặc '你叫什么?' đều là hỏi tên. '我的名字是...' giới thiệu tên đầy đủ.",
+      "explanationVi": "Ghép nghĩa: 名 (tên) + 字 (chữ, tự). Tên chỉ danh hoặc chữ biểu thị tên.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -148,31 +150,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 3,
+      "sectionId": "hsk__1__lesson__3__bai-3-ban-ten-la-gi",
+      "sectionSlug": "bai-3-ban-ten-la-gi",
       "sectionTitle": "Bạn tên là gì?",
       "sectionTitleZh": "你叫什么名字",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-3-ban-ten-la-gi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-3-ban-ten-la-gi/",
+      "orderInSection": 3
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 2,
+      "sectionId": "new_hsk__1__lesson__2__bai-2-my-name-is-li-wen",
+      "sectionSlug": "bai-2-my-name-is-li-wen",
       "sectionTitle": "Tôi tên là Lý Văn",
       "sectionTitleZh": "我叫李文",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-2-my-name-is-li-wen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-2-my-name-is-li-wen/",
+      "orderInSection": 8
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 23,
+      "sectionId": "new_hsk__1__topic__23__danh-tu",
+      "sectionSlug": "danh-tu",
       "sectionTitle": "Danh từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/danh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/danh-tu/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -188,7 +205,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

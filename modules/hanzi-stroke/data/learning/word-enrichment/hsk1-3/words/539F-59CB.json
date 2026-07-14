@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:原始",
   "type": "word",
   "word": "原始",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yuán shǐ",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nguyên thủy, ban đầu, sơ khai",
+      "meaningShortVi": "nguyên thủy",
+      "meaningFullVi": "nguyên thủy, ban đầu, sơ khai",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nguyên thủy",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "'原始' kết hợp '原' (nguyên) = nguồn, gốc và '始' (thuỷ) = bắt đầu. Chỉ cái gì thuộc về giai đoạn đầu tiên, chưa qua thay đổi, hoặc cái còn nguyên trạng ban đầu."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,48 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "原始社会",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "原始",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "原始森林",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "原始",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "原始文件",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "原始",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "原始数据",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "原始",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "原始记录",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "原始",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -95,7 +54,8 @@
       "meaningVi": "Đây là rừng nguyên sinh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "原始",
@@ -104,7 +64,8 @@
       "meaningVi": "Loài người phát triển từ xã hội nguyên thủy đến văn minh hiện đại.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "原始",
@@ -113,16 +74,17 @@
       "meaningVi": "Hãy giữ lại file gốc.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 原始",
-      "syntax": "compound-semantic",
-      "matchedExample": "'原始' kết hợp '原' (nguyên) = nguồn, gốc và '始' (thuỷ) = bắt đầu. Chỉ cái gì thuộc về giai đoạn đầu tiên, chưa qua thay đổi, hoặc cái còn nguyên trạng ban đầu.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 原始",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "'原始' kết hợp '原' (nguyên) = nguồn, gốc và '始' (thuỷ) = bắt đầu. Chỉ cái gì thuộc về giai đoạn đầu tiên, chưa qua thay đổi, hoặc cái còn nguyên trạng ban đầu.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -137,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

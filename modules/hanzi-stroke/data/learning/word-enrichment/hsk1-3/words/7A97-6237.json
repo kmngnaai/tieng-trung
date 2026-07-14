@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:窗户",
   "type": "word",
   "word": "窗户",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "chuāng hu",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cửa sổ",
+      "meaningShortVi": "cửa sổ",
+      "meaningFullVi": "cửa sổ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cửa sổ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -45,21 +46,26 @@
     "collocations": [
       {
         "text": "这个窗户",
-        "pinyin": "",
+        "pinyin": "zhè ge chuāng hu",
         "meaningVi": "cái cửa sổ này",
+        "meaningFullVi": "cái cửa sổ này",
         "target": "窗户",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "那个窗户",
-        "pinyin": "",
+        "pinyin": "nà ge chuāng hu",
         "meaningVi": "cái cửa sổ kia",
+        "meaningFullVi": "cái cửa sổ kia",
         "target": "窗户",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -69,7 +75,8 @@
       "meaningVi": "Hãy mở cửa sổ.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "窗户",
@@ -78,10 +85,19 @@
       "meaningVi": "Bên ngoài cửa sổ rất đẹp.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 窗户",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/窗户.mp3"
   ],
@@ -94,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

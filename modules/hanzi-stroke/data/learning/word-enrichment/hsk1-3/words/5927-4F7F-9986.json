@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:大使馆",
   "type": "word",
   "word": "大使馆",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "dà shǐ guǎn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Đại sứ quán",
+      "meaningShortVi": "Đại sứ quán",
+      "meaningFullVi": "Đại sứ quán",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Đại sứ quán",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "大使馆 là cơ quan đại diện ngoại giao của một quốc gia ở nước khác. Người đứng đầu gọi là 大使 (đại sứ). Lưu ý: 大使 quán khác với 领事馆 (lãnh sự quán) — lãnh sự quán là cơ quan ngoại giao cấp thấp hơn, thường ở các thành phố lớn."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -52,19 +51,24 @@
         "text": "大使馆官员",
         "pinyin": "dàshǐguǎn guānyuán",
         "meaningVi": "quan chức đại sứ quán",
+        "meaningFullVi": "quan chức đại sứ quán",
         "target": "大使馆",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "大使馆签证",
         "pinyin": "dàshǐguǎn qiānzhèng",
         "meaningVi": "visa đại sứ quán",
+        "meaningFullVi": "visa đại sứ quán",
         "target": "大使馆",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Đại sứ quán Trung Quốc ở Bắc Kinh có mấy trung tâm visa.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "大使馆",
@@ -83,16 +88,17 @@
       "meaningVi": "Chúng tôi cần đến đại sứ quán làm visa.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 大使馆",
-      "syntax": "danh từ",
-      "matchedExample": "大使馆 là cơ quan đại diện ngoại giao của một quốc gia ở nước khác. Người đứng đầu gọi là 大使 (đại sứ). Lưu ý: 大使 quán khác với 领事馆 (lãnh sự quán) — lãnh sự quán là cơ quan ngoại giao cấp thấp hơn, thường ở các thành phố lớn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 大使馆",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "大使馆 là cơ quan đại diện ngoại giao của một quốc gia ở nước khác. Người đứng đầu gọi là 大使 (đại sứ). Lưu ý: 大使 quán khác với 领事馆 (lãnh sự quán) — lãnh sự quán là cơ quan ngoại giao cấp thấp hơn, thường ở các thành phố lớn.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__3__topic__12__lam-viec-toi",
+      "sectionSlug": "lam-viec-toi",
       "sectionTitle": "Làm việc tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/",
+      "orderInSection": 25
     }
   ],
   "sources": [
@@ -118,7 +129,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

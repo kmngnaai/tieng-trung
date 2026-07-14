@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:预报",
   "type": "word",
   "word": "预报",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yù bào",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "dự báo",
+      "meaningShortVi": "dự báo",
+      "meaningFullVi": "dự báo",
       "partOfSpeech": "động từ / danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "dự báo",
   "wordType": "động từ / danh từ",
   "wordTypes": [
     "động từ / danh từ"
   ],
-  "usageNotes": [
-    "预报 常与 天气 (thời tiết) 连用. 主语 可以是 气象台 (trạm khí tượng), 也可以是 人. 用法: 作预报 (làm dự báo), 看预报 (xem dự báo)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "天气预报",
         "pinyin": "tiānqì yùbào",
         "meaningVi": "dự báo thời tiết",
+        "meaningFullVi": "dự báo thời tiết",
         "target": "预报",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "地震预报",
         "pinyin": "dìzhèn yùbào",
         "meaningVi": "dự báo động đất",
+        "meaningFullVi": "dự báo động đất",
         "target": "预报",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Dự báo thời tiết nói ngày mai sẽ mưa.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "预报",
@@ -82,16 +87,17 @@
       "meaningVi": "Vui lòng theo dõi bản dự báo động đất mới nhất.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 预报",
-      "syntax": "động từ / danh từ",
-      "matchedExample": "预报 常与 天气 (thời tiết) 连用. 主语 可以是 气象台 (trạm khí tượng), 也可以是 人. 用法: 作预报 (làm dự báo), 看预报 (xem dự báo).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 预报",
+      "partOfSpeech": "động từ / danh từ",
+      "usageNoteVi": "预报 常与 天气 (thời tiết) 连用. 主语 可以是 气象台 (trạm khí tượng), 也可以是 人. 用法: 作预报 (làm dự báo), 看预报 (xem dự báo).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__3__topic__9__thien-nhien",
+      "sectionSlug": "thien-nhien",
       "sectionTitle": "Thiên nhiên",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thien-nhien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thien-nhien/",
+      "orderInSection": 29
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

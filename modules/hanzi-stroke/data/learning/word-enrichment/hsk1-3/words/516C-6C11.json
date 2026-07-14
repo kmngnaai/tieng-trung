@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:公民",
   "type": "word",
   "word": "公民",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gōng mín",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Công dân",
+      "meaningShortVi": "Công dân",
+      "meaningFullVi": "Công dân",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Công dân",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "公民 chỉ người có quốc tịch của một quốc gia và được hưởng các quyền, nghĩa vụ tương ứng. Thường kết hợp với tên quốc gia như 中国公民, 美国公民."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,27 +50,34 @@
         "text": "好公民",
         "pinyin": "hǎo gōngmín",
         "meaningVi": "công dân tốt",
+        "meaningFullVi": "công dân tốt",
         "target": "公民",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "公民权利",
         "pinyin": "gōngmín quánlì",
         "meaningVi": "quyền công dân",
+        "meaningFullVi": "quyền công dân",
         "target": "公民",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "中国公民",
         "pinyin": "Zhōngguó gōngmín",
         "meaningVi": "công dân Trung Quốc",
+        "meaningFullVi": "công dân Trung Quốc",
         "target": "公民",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +87,8 @@
       "meaningVi": "Mỗi công dân đều có quyền bầu cử.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "公民",
@@ -90,7 +97,8 @@
       "meaningVi": "Công dân tốt nên tuân thủ pháp luật.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "公民",
@@ -99,16 +107,17 @@
       "meaningVi": "Anh ấy là công dân Trung Quốc.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 公民",
-      "syntax": "compound-semantic",
-      "matchedExample": "公民 chỉ người có quốc tịch của một quốc gia và được hưởng các quyền, nghĩa vụ tương ứng. Thường kết hợp với tên quốc gia như 中国公民, 美国公民.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 公民",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "公民 chỉ người có quốc tịch của một quốc gia và được hưởng các quyền, nghĩa vụ tương ứng. Thường kết hợp với tên quốc gia như 中国公民, 美国公民.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -119,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__3__topic__4__nhung-nguoi",
+      "sectionSlug": "nhung-nguoi",
       "sectionTitle": "Những người",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -134,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

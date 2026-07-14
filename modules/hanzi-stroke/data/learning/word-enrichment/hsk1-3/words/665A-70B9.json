@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:晚点",
   "type": "word",
   "word": "晚点",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wǎn diǎn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trễ, chậm chuyến (xe/tàu máy bay)",
+      "meaningShortVi": "trễ",
+      "meaningFullVi": "trễ, chậm chuyến (xe/tàu máy bay)",
       "partOfSpeech": "động từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trễ",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Chỉ dùng cho phương tiện công cộng (tàu, xe, máy bay). Đi trễ hẹn không dùng từ này (dùng 迟到)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -47,32 +46,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "飞机晚点",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "晚点",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "晚点到达",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "晚点",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "不会晚点",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "晚点",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -82,16 +57,17 @@
       "meaningVi": "Tàu hỏa bị trễ rồi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 晚点",
-      "syntax": "động từ",
-      "matchedExample": "Chỉ dùng cho phương tiện công cộng (tàu, xe, máy bay). Đi trễ hẹn không dùng từ này (dùng 迟到).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 晚点",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Chỉ dùng cho phương tiện công cộng (tàu, xe, máy bay). Đi trễ hẹn không dùng từ này (dùng 迟到).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +78,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__3__lesson__4__bai-4-this-hotel-is-unlike-any-other",
+      "sectionSlug": "bai-4-this-hotel-is-unlike-any-other",
       "sectionTitle": "Khách sạn này khác hẳn những nơi khác",
       "sectionTitleZh": "这家宾馆跟别的都不一样",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-4-this-hotel-is-unlike-any-other/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-4-this-hotel-is-unlike-any-other/",
+      "orderInSection": 20
     }
   ],
   "sources": [
@@ -122,7 +103,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

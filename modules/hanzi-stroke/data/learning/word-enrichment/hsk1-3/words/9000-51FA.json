@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:退出",
   "type": "word",
   "word": "退出",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "tuì chū",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "rút lui, thoát ra, bỏ cuộc",
+      "meaningShortVi": "rút lui",
+      "meaningFullVi": "rút lui, thoát ra, bỏ cuộc",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "rút lui",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "退出 dùng trong bối cảnh rời khỏi một không gian, chương trình, tổ chức hoặc cuộc thi. Trong công nghệ, hay dùng cho 'thoát ứng dụng'. Khác 离开 (rời đi nơi chốn) hơn về ngữ cảnh trừu tượng/hệ thống."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "退出市场",
         "pinyin": "tuìchū shìchǎng",
         "meaningVi": "rút lui khỏi thị trường",
+        "meaningFullVi": "rút lui khỏi thị trường",
         "target": "退出",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "自动退出",
         "pinyin": "zìdòng tuìchū",
         "meaningVi": "tự động thoát",
+        "meaningFullVi": "tự động thoát",
         "target": "退出",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Vui lòng nhấn phím này để thoát khỏi chương trình.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "退出",
@@ -82,16 +87,17 @@
       "meaningVi": "Anh ấy quyết định rút khỏi cuộc thi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 退出",
-      "syntax": "động từ",
-      "matchedExample": "退出 dùng trong bối cảnh rời khỏi một không gian, chương trình, tổ chức hoặc cuộc thi. Trong công nghệ, hay dùng cho 'thoát ứng dụng'. Khác 离开 (rời đi nơi chốn) hơn về ngữ cảnh trừu tượng/hệ thống.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 退出",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "退出 dùng trong bối cảnh rời khỏi một không gian, chương trình, tổ chức hoặc cuộc thi. Trong công nghệ, hay dùng cho 'thoát ứng dụng'. Khác 离开 (rời đi nơi chốn) hơn về ngữ cảnh trừu tượng/hệ thống.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__3__topic__13__cong-viec-ii",
+      "sectionSlug": "cong-viec-ii",
       "sectionTitle": "Công việc II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cong-viec-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cong-viec-ii/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

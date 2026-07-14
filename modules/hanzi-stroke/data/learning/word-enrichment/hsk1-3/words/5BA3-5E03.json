@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:宣布",
   "type": "word",
   "word": "宣布",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xuān bù",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "công bố",
+      "meaningShortVi": "công bố",
+      "meaningFullVi": "công bố",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "công bố",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "指公开告诉大家。多用于正式场合，如发布政策、决定、结果等。宣布 vs. 公布：宣布更强调口头宣告，公布更强调书面发布。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "正式宣布",
-        "pinyin": "",
+        "pinyin": "zhèng shì xuān bù",
         "meaningVi": "tuyên bố chính thức",
+        "meaningFullVi": "tuyên bố chính thức",
         "target": "宣布",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "宣布决定",
-        "pinyin": "",
+        "pinyin": "xuān bù jué dìng",
         "meaningVi": "công bố quyết định",
+        "meaningFullVi": "công bố quyết định",
         "target": "宣布",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "宣布",
       "chinese": "老师宣布了考试结果。",
-      "pinyin": "",
+      "pinyin": "lǎo shī xuān bù le kǎo shì jié guǒ。",
       "meaningVi": "Thầy giáo đã công bố kết quả thi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "宣布",
-      "chinese": "公司宣布了新政策。",
-      "pinyin": "",
-      "meaningVi": "Công ty đã công bố chính sách mới.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 宣布",
-      "syntax": "động từ",
-      "matchedExample": "指公开告诉大家。多用于正式场合，如发布政策、决定、结果等。宣布 vs. 公布：宣布更强调口头宣告，公布更强调书面发布。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 宣布",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "指公开告诉大家。多用于正式场合，如发布政策、决定、结果等。宣布 vs. 公布：宣布更强调口头宣告，公布更强调书面发布。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__3__topic__18__thong-tin-va-phuong-tien",
+      "sectionSlug": "thong-tin-va-phuong-tien",
       "sectionTitle": "Thông tin và phương tiện",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/",
+      "orderInSection": 30
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

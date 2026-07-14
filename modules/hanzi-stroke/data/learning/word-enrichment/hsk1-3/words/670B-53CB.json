@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:朋友",
   "type": "word",
   "word": "朋友",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "péng you",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bạn bè, bạn",
+      "meaningShortVi": "bạn bè",
+      "meaningFullVi": "bạn bè, bạn",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bạn bè",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Từ rất phổ biến chỉ tình bạn. Có thể dùng cho cả nam và nữ. Trong giao tiếp thân mật, '朋友' có thể dùng để chỉ 'người yêu' (男朋友/女朋友 được rút ngắn)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 朋 (bạn, từ hai chuỗi vỏ sò đôi) + 友 (bạn, hai bàn tay nắm nhau) → 'bạn bè', tình bạn chân thành."
   ],
   "hsk": {
     "levels": [
@@ -54,56 +51,46 @@
         "word": "女朋友",
         "pinyin": "nǚ péng you",
         "meaningVi": "bạn gái",
+        "meaningFullVi": "bạn gái",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       },
       {
         "word": "小朋友",
         "pinyin": "xiǎo péng you",
-        "meaningVi": "bé, đứa trẻ (xưng hô thân mật)",
+        "meaningVi": "bé",
+        "meaningFullVi": "bé, đứa trẻ (xưng hô thân mật)",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       },
       {
         "word": "男朋友",
         "pinyin": "nán péng you",
         "meaningVi": "bạn trai (người yêu nam)",
+        "meaningFullVi": "bạn trai (người yêu nam)",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       },
       {
         "word": "交朋友",
         "pinyin": "jiāo péng yǒu",
         "meaningVi": "kết bạn",
+        "meaningFullVi": "kết bạn",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          2
-        ],
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 2",
+        "reviewStatus": "reviewed-local"
       },
       {
         "word": "老朋友",
         "pinyin": "lǎo péng you",
         "meaningVi": "bạn cũ",
+        "meaningFullVi": "bạn cũ",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          2
-        ],
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 2",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
@@ -111,43 +98,54 @@
         "text": "好朋友",
         "pinyin": "hǎo péng you",
         "meaningVi": "bạn tốt",
+        "meaningFullVi": "bạn tốt",
         "target": "朋友",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "老朋友",
         "pinyin": "lǎo péng you",
         "meaningVi": "bạn cũ",
+        "meaningFullVi": "bạn cũ",
         "target": "朋友",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "新朋友",
         "pinyin": "xīn péng you",
         "meaningVi": "bạn mới",
+        "meaningFullVi": "bạn mới",
         "target": "朋友",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "男朋友",
         "pinyin": "nán péng you",
         "meaningVi": "bạn trai",
+        "meaningFullVi": "bạn trai",
         "target": "朋友",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "女朋友",
         "pinyin": "nǚ péng you",
         "meaningVi": "bạn gái",
+        "meaningFullVi": "bạn gái",
         "target": "朋友",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -157,7 +155,8 @@
       "meaningVi": "Anh ấy là bạn tốt của tôi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "朋友",
@@ -166,7 +165,8 @@
       "meaningVi": "Chúng tôi đều là bạn",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "朋友",
@@ -175,7 +175,8 @@
       "meaningVi": "Kết bạn rất quan trọng",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "朋友",
@@ -184,23 +185,17 @@
       "meaningVi": "Bạn bè cần phải giúp đỡ lẫn nhau",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 朋友",
-      "syntax": "compound-semantic",
-      "matchedExample": "Từ rất phổ biến chỉ tình bạn. Có thể dùng cho cả nam và nữ. Trong giao tiếp thân mật, '朋友' có thể dùng để chỉ 'người yêu' (男朋友/女朋友 được rút ngắn).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 朋 (bạn, từ hai chuỗi vỏ sò đôi) + 友 (bạn, hai bàn tay nắm nhau) → 'bạn bè', tình bạn chân thành.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 朋友",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Từ rất phổ biến chỉ tình bạn. Có thể dùng cho cả nam và nữ. Trong giao tiếp thân mật, '朋友' có thể dùng để chỉ 'người yêu' (男朋友/女朋友 được rút ngắn).",
+      "explanationVi": "Ghép nghĩa: 朋 (bạn, từ hai chuỗi vỏ sò đôi) + 友 (bạn, hai bàn tay nắm nhau) → 'bạn bè', tình bạn chân thành.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -211,31 +206,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 4,
+      "sectionId": "hsk__1__lesson__4__bai-4-co-ay-la-giao-vien-tieng-han-cua-toi",
+      "sectionSlug": "bai-4-co-ay-la-giao-vien-tieng-han-cua-toi",
       "sectionTitle": "Cô ấy là giáo viên tiếng Hán của tôi",
       "sectionTitleZh": "她是我的汉语老师",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-4-co-ay-la-giao-vien-tieng-han-cua-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-4-co-ay-la-giao-vien-tieng-han-cua-toi/",
+      "orderInSection": 9
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__1__lesson__9__bai-9-i-ll-be-studying-at-school-tomorrow-morning",
+      "sectionSlug": "bai-9-i-ll-be-studying-at-school-tomorrow-morning",
       "sectionTitle": "Sáng mai tôi học ở trường",
       "sectionTitleZh": "我明天上午在学校学习",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-9-i-ll-be-studying-at-school-tomorrow-morning/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-9-i-ll-be-studying-at-school-tomorrow-morning/",
+      "orderInSection": 15
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 24,
+      "sectionId": "new_hsk__1__topic__24__nhung-nguoi",
+      "sectionSlug": "nhung-nguoi",
       "sectionTitle": "Những người",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nhung-nguoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nhung-nguoi/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -251,7 +261,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

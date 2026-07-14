@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:进入",
   "type": "word",
   "word": "进入",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "jìn rù",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "vào, đi vào",
+      "meaningShortVi": "vào",
+      "meaningFullVi": "vào, đi vào",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "vào",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,43 +48,48 @@
     "collocations": [
       {
         "text": "进入房间",
-        "pinyin": "",
+        "pinyin": "jìn rù fáng jiān",
         "meaningVi": "vào phòng",
+        "meaningFullVi": "vào phòng",
         "target": "进入",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "进入状态",
-        "pinyin": "",
-        "meaningVi": "vào trạng thái/nhập cuộc",
+        "pinyin": "jìn rù zhuàng tài",
+        "meaningVi": "vào trạng thái",
+        "meaningFullVi": "vào trạng thái/nhập cuộc",
         "target": "进入",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "进入",
       "chinese": "请进入会议室",
-      "pinyin": "",
+      "pinyin": "qǐng jìn rù huì yì shì",
       "meaningVi": "Mời vào phòng họp",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "进入",
-      "chinese": "汽车进入了隧道",
-      "pinyin": "",
-      "meaningVi": "Xe hơi đã đi vào đường hầm",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 进入",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/进入.mp3"
   ],
@@ -92,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 29,
+      "sectionId": "new_hsk__2__topic__29__su-chuyen-dong",
+      "sectionSlug": "su-chuyen-dong",
       "sectionTitle": "Sự chuyển động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/su-chuyen-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/su-chuyen-dong/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -107,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:展示",
   "type": "word",
   "word": "展示",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhǎn shì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trưng bày, thể hiện, trình diễn",
+      "meaningShortVi": "trưng bày",
+      "meaningFullVi": "trưng bày, thể hiện, trình diễn",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trưng bày",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Động từ chỉ việc trưng bày, thể hiện, trình diễn cái gì đó cho người khác thấy. Có thể là vật phẩm (trong bảo tàng), hoặc năng lực, tài năng (trong thi đấu, công việc). Cận nghĩa với 显示 (hiển thị) nhưng 展示 mang tính chủ động, ý thức hơn."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -47,37 +46,36 @@
     "collocations": [
       {
         "text": "展示自己",
-        "pinyin": "",
+        "pinyin": "zhǎn shì zì jǐ",
         "meaningVi": "thể hiện bản thân",
+        "meaningFullVi": "thể hiện bản thân",
         "target": "展示",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "展示实力",
-        "pinyin": "",
+        "pinyin": "zhǎn shì shí lì",
         "meaningVi": "thể hiện sức mạnh",
+        "meaningFullVi": "thể hiện sức mạnh",
         "target": "展示",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "展示才华",
-        "pinyin": "",
-        "meaningVi": "thể hiện tài năng",
-        "target": "展示",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "图片展示",
-        "pinyin": "",
+        "pinyin": "tú piàn zhǎn shì",
         "meaningVi": "trưng bày hình ảnh",
+        "meaningFullVi": "trưng bày hình ảnh",
         "target": "展示",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -87,7 +85,8 @@
       "meaningVi": "Trong bảo tàng trưng bày các tác phẩm nghệ thuật cổ đại",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "展示",
@@ -96,16 +95,17 @@
       "meaningVi": "Cuộc thi này thể hiện đầy đủ sức mạnh của họ",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 展示",
-      "syntax": "động từ",
-      "matchedExample": "Động từ chỉ việc trưng bày, thể hiện, trình diễn cái gì đó cho người khác thấy. Có thể là vật phẩm (trong bảo tàng), hoặc năng lực, tài năng (trong thi đấu, công việc). Cận nghĩa với 显示 (hiển thị) nhưng 展示 mang tính chủ động, ý thức hơn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 展示",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Động từ chỉ việc trưng bày, thể hiện, trình diễn cái gì đó cho người khác thấy. Có thể là vật phẩm (trong bảo tàng), hoặc năng lực, tài năng (trong thi đấu, công việc). Cận nghĩa với 显示 (hiển thị) nhưng 展示 mang tính chủ động, ý thức hơn.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -120,7 +120,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

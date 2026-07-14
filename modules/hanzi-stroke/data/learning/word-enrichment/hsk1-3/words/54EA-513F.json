@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:哪儿",
   "type": "word",
   "word": "哪儿",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "nǎr",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ở đâu",
+      "meaningShortVi": "ở đâu",
+      "meaningFullVi": "ở đâu",
       "partOfSpeech": "đại từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ở đâu",
   "wordType": "đại từ",
   "wordTypes": [
     "đại từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -45,10 +46,19 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 哪儿",
+      "partOfSpeech": "đại từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/哪儿.mp3"
   ],
@@ -57,31 +67,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 9,
+      "sectionId": "hsk__1__lesson__9__bai-9-con-trai-ban-lam-viec-o-dau",
+      "sectionSlug": "bai-9-con-trai-ban-lam-viec-o-dau",
       "sectionTitle": "Con trai bạn làm việc ở đâu?",
       "sectionTitleZh": "你儿子在哪儿工作",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-9-con-trai-ban-lam-viec-o-dau/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-9-con-trai-ban-lam-viec-o-dau/",
+      "orderInSection": 8
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__1__lesson__6__bai-6-what-s-your-cell-phone-number",
+      "sectionSlug": "bai-6-what-s-your-cell-phone-number",
       "sectionTitle": "Số điện thoại của bạn là bao nhiêu?",
       "sectionTitleZh": "你的手机号是多少？",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-6-what-s-your-cell-phone-number/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-6-what-s-your-cell-phone-number/",
+      "orderInSection": 15
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__1__topic__10__dai-tu",
+      "sectionSlug": "dai-tu",
       "sectionTitle": "Đại từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dai-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dai-tu/",
+      "orderInSection": 30
     }
   ],
   "sources": [
@@ -92,9 +117,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": [
-      "Chưa có câu chứa nguyên từ"
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
     ]
   }
 }

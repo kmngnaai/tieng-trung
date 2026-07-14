@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:撞击",
   "type": "word",
   "word": "撞击",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "zhuàng jī",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "va chạm, đập vào (xảy ra va đập mạnh)",
+      "meaningShortVi": "va chạm",
+      "meaningFullVi": "va chạm, đập vào (xảy ra va đập mạnh)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "va chạm",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng khi mô tả va chạm giữa xe cộ, tàu thuyền hoặc vật thể."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 撞 (tráng - đâm vào) + 击 (kích - đánh,đập) → đâm va đập mạnh."
   ],
   "hsk": {
     "levels": [
@@ -51,19 +48,24 @@
         "text": "互相撞击",
         "pinyin": "hù xiāng zhuàng jī",
         "meaningVi": "va chạm nhau",
+        "meaningFullVi": "va chạm nhau",
         "target": "撞击",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "强烈撞击",
         "pinyin": "qiáng liè zhuàng jī",
         "meaningVi": "va chạm mạnh",
+        "meaningFullVi": "va chạm mạnh",
         "target": "撞击",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +75,8 @@
       "meaningVi": "Xe hơi đã va chạm lan can",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "撞击",
@@ -82,7 +85,8 @@
       "meaningVi": "Va chạm mạnh gây ra thiệt hại",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "撞击",
@@ -91,23 +95,17 @@
       "meaningVi": "Ngăn va chạm",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 撞击",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng khi mô tả va chạm giữa xe cộ, tàu thuyền hoặc vật thể.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 撞 (tráng - đâm vào) + 击 (kích - đánh,đập) → đâm va đập mạnh.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 撞击",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng khi mô tả va chạm giữa xe cộ, tàu thuyền hoặc vật thể.",
+      "explanationVi": "Ghép nghĩa: 撞 (tráng - đâm vào) + 击 (kích - đánh,đập) → đâm va đập mạnh.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -122,7 +120,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

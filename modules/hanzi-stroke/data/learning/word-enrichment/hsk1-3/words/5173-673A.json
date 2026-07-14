@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:关机",
   "type": "word",
   "word": "关机",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "guān jī",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tắt máy",
+      "meaningShortVi": "tắt máy",
+      "meaningFullVi": "tắt máy",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tắt máy",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -47,36 +48,49 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "开机",
-        "pinyin": "",
-        "meaningVi": "bật máy",
+        "text": "关机",
+        "pinyin": "guān jī",
+        "meaningVi": "tắt máy",
+        "meaningFullVi": "tắt máy",
         "target": "关机",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "关机",
       "chinese": "手机关机了",
-      "pinyin": "",
+      "pinyin": "shǒu jī guān jī le",
       "meaningVi": "Điện thoại đã tắt máy",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "关机",
       "chinese": "请关机",
-      "pinyin": "",
+      "pinyin": "qǐng guān jī",
       "meaningVi": "Vui lòng tắt máy",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 关机",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/关机.mp3"
   ],
@@ -85,21 +99,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 27,
+      "sectionId": "new_hsk__2__topic__27__dong-tu-tuong-tac",
+      "sectionSlug": "dong-tu-tuong-tac",
       "sectionTitle": "Động từ tương tác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dong-tu-tuong-tac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dong-tu-tuong-tac/",
+      "orderInSection": 10
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__lesson__17__bai-17-i-will-learn-from-people-who-are-careful",
+      "sectionSlug": "bai-17-i-will-learn-from-people-who-are-careful",
       "sectionTitle": "Tôi phải học hỏi nhiều từ những người nghiêm túc",
       "sectionTitleZh": "我要多向认真的人学习",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-17-i-will-learn-from-people-who-are-careful/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-17-i-will-learn-from-people-who-are-careful/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -115,7 +139,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

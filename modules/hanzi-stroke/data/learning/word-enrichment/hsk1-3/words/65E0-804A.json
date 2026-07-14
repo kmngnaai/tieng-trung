@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:无聊",
   "type": "word",
   "word": "无聊",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wú liáo",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chán nản, tẻ nhạt, không có việc gì làm",
+      "meaningShortVi": "chán nản",
+      "meaningFullVi": "chán nản, tẻ nhạt, không có việc gì làm",
       "partOfSpeech": "tính từ (adjective)",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chán nản",
   "wordType": "tính từ (adjective)",
   "wordTypes": [
     "tính từ (adjective)"
   ],
-  "usageNotes": [
-    "无 (vô) nghĩa là không có; 聊 (liêu) nghĩa là đáng để nói, thú vị. 无聊 là không có gì thú vị để nói hoặc làm, diễn tả sự chán nản, tẻ nhạt."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -49,27 +48,34 @@
         "text": "感到无聊",
         "pinyin": "gǎndào wúliáo",
         "meaningVi": "cảm thấy chán",
+        "meaningFullVi": "cảm thấy chán",
         "target": "无聊",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "无聊的事",
         "pinyin": "wúliáo de shì",
         "meaningVi": "việc nhạt nhẽo",
+        "meaningFullVi": "việc nhạt nhẽo",
         "target": "无聊",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "打发无聊",
         "pinyin": "dǎfa wúliáo",
         "meaningVi": "giết thời gian rảnh rỗi",
+        "meaningFullVi": "giết thời gian rảnh rỗi",
         "target": "无聊",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +85,8 @@
       "meaningVi": "Tôi đang chán, muốn tìm người trò chuyện.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "无聊",
@@ -88,7 +95,8 @@
       "meaningVi": "Bộ phim này rất chán.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "无聊",
@@ -97,16 +105,17 @@
       "meaningVi": "Cuối tuần ở nhà rất chán.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 无聊",
-      "syntax": "tính từ (adjective)",
-      "matchedExample": "无 (vô) nghĩa là không có; 聊 (liêu) nghĩa là đáng để nói, thú vị. 无聊 là không có gì thú vị để nói hoặc làm, diễn tả sự chán nản, tẻ nhạt.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 无聊",
+      "partOfSpeech": "tính từ (adjective)",
+      "usageNoteVi": "无 (vô) nghĩa là không có; 聊 (liêu) nghĩa là đáng để nói, thú vị. 无聊 là không có gì thú vị để nói hoặc làm, diễn tả sự chán nản, tẻ nhạt.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -121,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

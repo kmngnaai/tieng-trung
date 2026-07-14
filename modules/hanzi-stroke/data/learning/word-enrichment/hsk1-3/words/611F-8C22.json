@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:感谢",
   "type": "word",
   "word": "感谢",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "gǎn xiè",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cảm ơn",
+      "meaningShortVi": "cảm ơn",
+      "meaningFullVi": "cảm ơn",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cảm ơn",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,60 +48,68 @@
     "collocations": [
       {
         "text": "表示感谢",
-        "pinyin": "",
+        "pinyin": "biǎo shì gǎn xiè",
         "meaningVi": "bày tỏ cảm ơn",
+        "meaningFullVi": "bày tỏ cảm ơn",
         "target": "感谢",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "衷心感谢",
-        "pinyin": "",
-        "meaningVi": "chân thành cảm ơn",
-        "target": "感谢",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "感谢信",
-        "pinyin": "",
+        "pinyin": "gǎn xiè xìn",
         "meaningVi": "thư cảm ơn",
+        "meaningFullVi": "thư cảm ơn",
         "target": "感谢",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "感谢",
       "chinese": "感谢你的帮助。",
-      "pinyin": "",
+      "pinyin": "gǎn xiè nǐ de bāng zhù。",
       "meaningVi": "Cảm ơn sự giúp đỡ của bạn.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "感谢",
       "chinese": "我非常感谢你。",
-      "pinyin": "",
+      "pinyin": "wǒ fēi cháng gǎn xiè nǐ。",
       "meaningVi": "Tôi rất cảm ơn bạn.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "感谢",
       "chinese": "感谢大家的支持。",
-      "pinyin": "",
+      "pinyin": "gǎn xiè dà jiā de zhī chí。",
       "meaningVi": "Cảm ơn sự ủng hộ của mọi người.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 感谢",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/感谢.mp3"
   ],
@@ -109,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__2__topic__4__khac",
+      "sectionSlug": "khac",
       "sectionTitle": "Khác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/khac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/khac/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -124,7 +138,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:显而易见",
   "type": "word",
   "word": "显而易见",
@@ -17,27 +17,24 @@
     "readings": [
       {
         "pinyin": "xiǎn ér yì jiàn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "rõ ràng, hiển nhiên, dễ thấy, không thể chối cãi",
+      "meaningShortVi": "rõ ràng",
+      "meaningFullVi": "rõ ràng, hiển nhiên, dễ thấy, không thể chối cãi",
       "partOfSpeech": "idiom",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "rõ ràng",
   "wordType": "idiom",
   "wordTypes": [
     "idiom"
-  ],
-  "usageNotes": [
-    "Dùng để nhấn mạnh một điều rất rõ ràng, không cần tranh luận. Thường đi sau '是' (là) hoặc bổ ngữ cho danh từ."
-  ],
-  "wordTypeExplanations": [
-    "Thành ngữ: 显 (rõ ràng) + 而 (mà) + 易 (dễ) + 见 (thấy) → 'rõ ràng mà dễ thấy' — điều hiển nhiên, ai cũng nhận ra."
   ],
   "hsk": {
     "levels": [
@@ -53,19 +50,24 @@
         "text": "显而易见的道理",
         "pinyin": "xiǎnéryìjiàn de dàolǐ",
         "meaningVi": "lý lẽ hiển nhiên",
+        "meaningFullVi": "lý lẽ hiển nhiên",
         "target": "显而易见",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "显而易见的结果",
         "pinyin": "xiǎnéryìjiàn de jiéguǒ",
-        "meaningVi": "kết quả rõ ràng, dễ thấy",
+        "meaningVi": "kết quả rõ ràng",
+        "meaningFullVi": "kết quả rõ ràng, dễ thấy",
         "target": "显而易见",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -75,7 +77,8 @@
       "meaningVi": "Đây là điều rõ ràng, hiển nhiên",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "显而易见",
@@ -84,7 +87,8 @@
       "meaningVi": "Câu trả lời rõ ràng, hiển nhiên",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "显而易见",
@@ -93,7 +97,8 @@
       "meaningVi": "lợi ích rõ ràng, ai cũng thấy",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "显而易见",
@@ -102,23 +107,17 @@
       "meaningVi": "sự thật hiển nhiên",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 显而易见",
-      "syntax": "idiom",
-      "matchedExample": "Dùng để nhấn mạnh một điều rất rõ ràng, không cần tranh luận. Thường đi sau '是' (là) hoặc bổ ngữ cho danh từ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "idiom",
-      "matchedExample": "Thành ngữ: 显 (rõ ràng) + 而 (mà) + 易 (dễ) + 见 (thấy) → 'rõ ràng mà dễ thấy' — điều hiển nhiên, ai cũng nhận ra.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 显而易见",
+      "partOfSpeech": "idiom",
+      "usageNoteVi": "Dùng để nhấn mạnh một điều rất rõ ràng, không cần tranh luận. Thường đi sau '是' (là) hoặc bổ ngữ cho danh từ.",
+      "explanationVi": "Thành ngữ: 显 (rõ ràng) + 而 (mà) + 易 (dễ) + 见 (thấy) → 'rõ ràng mà dễ thấy' — điều hiển nhiên, ai cũng nhận ra.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -133,7 +132,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

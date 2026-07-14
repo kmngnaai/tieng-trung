@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:本子",
   "type": "word",
   "word": "本子",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "běn zi",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cuốn vở, vở",
+      "meaningShortVi": "cuốn vở",
+      "meaningFullVi": "cuốn vở, vở",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cuốn vở",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Danh từ chỉ cuốn vở dùng để viết. '笔记本' là vở ghi chép hoặc laptop."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -47,40 +46,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "一个本子",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "本子",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "新本子",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "本子",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "写本子",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "本子",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "笔记本",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "本子",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -90,7 +57,8 @@
       "meaningVi": "Tôi mua một cuốn vở.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "本子",
@@ -99,7 +67,8 @@
       "meaningVi": "Xin mời mở vở của bạn.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "本子",
@@ -108,16 +77,17 @@
       "meaningVi": "Cuốn vở này rất đẹp.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 本子",
-      "syntax": "compound-semantic",
-      "matchedExample": "Danh từ chỉ cuốn vở dùng để viết. '笔记本' là vở ghi chép hoặc laptop.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 本子",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Danh từ chỉ cuốn vở dùng để viết. '笔记本' là vở ghi chép hoặc laptop.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -128,21 +98,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__1__topic__6__trong-lop",
+      "sectionSlug": "trong-lop",
       "sectionTitle": "Trong lớp",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/trong-lop/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/trong-lop/",
+      "orderInSection": 22
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__2__lesson__10__bai-10-the-exam-is-coming",
+      "sectionSlug": "bai-10-the-exam-is-coming",
       "sectionTitle": "Sắp thi rồi",
       "sectionTitleZh": "就要考试了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-10-the-exam-is-coming/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-10-the-exam-is-coming/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -158,7 +138,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

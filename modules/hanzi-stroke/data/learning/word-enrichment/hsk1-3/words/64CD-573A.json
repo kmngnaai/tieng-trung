@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:操场",
   "type": "word",
   "word": "操场",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "cāo chǎng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sân thể thao, sân vận động, sân chơi",
+      "meaningShortVi": "sân thể thao",
+      "meaningFullVi": "sân thể thao, sân vận động, sân chơi",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sân thể thao",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Danh từ chỉ sân bãi dùng cho hoạt động thể thao, tập luyện. Trong trường học thường gọi là操场. Có thể dùng với giới từ 在 + 上."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,19 +48,24 @@
         "text": "操场跑步",
         "pinyin": "cāochǎng pǎobù",
         "meaningVi": "chạy bộ trên sân thể thao",
+        "meaningFullVi": "chạy bộ trên sân thể thao",
         "target": "操场",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "大操场",
         "pinyin": "dà cāochǎng",
         "meaningVi": "sân thể thao lớn",
+        "meaningFullVi": "sân thể thao lớn",
         "target": "操场",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +75,8 @@
       "meaningVi": "Học sinh đang chơi bóng đá trên sân thể thao.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "操场",
@@ -80,16 +85,17 @@
       "meaningVi": "Sáu giờ sáng, sân thể thao đã có rất nhiều người đang tập thể dục.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 操场",
-      "syntax": "danh từ",
-      "matchedExample": "Danh từ chỉ sân bãi dùng cho hoạt động thể thao, tập luyện. Trong trường học thường gọi là操场. Có thể dùng với giới từ 在 + 上.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 操场",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Danh từ chỉ sân bãi dùng cho hoạt động thể thao, tập luyện. Trong trường học thường gọi là操场. Có thể dùng với giới từ 在 + 上.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

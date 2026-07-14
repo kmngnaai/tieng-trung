@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:日报",
   "type": "word",
   "word": "日报",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "rì bào",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "báo ngày",
+      "meaningShortVi": "báo ngày",
+      "meaningFullVi": "báo ngày",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "báo ngày",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -46,61 +47,69 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "日报社",
-        "pinyin": "",
-        "meaningVi": "nhà xuất bản báo ngày",
-        "target": "日报",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "日报记者",
-        "pinyin": "",
+        "pinyin": "rì bào jì zhě",
         "meaningVi": "phóng viên báo ngày",
+        "meaningFullVi": "phóng viên báo ngày",
         "target": "日报",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "人民日报",
-        "pinyin": "",
+        "pinyin": "rén mín rì bào",
         "meaningVi": "Nhân dân nhật báo",
+        "meaningFullVi": "Nhân dân nhật báo",
         "target": "日报",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "日报",
       "chinese": "我每天早上都看日报",
-      "pinyin": "",
+      "pinyin": "wǒ měi tiān zǎo shang dōu kàn rì bào",
       "meaningVi": "Tôi mỗi sáng đều đọc báo ngày",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "日报",
       "chinese": "这家日报很受欢迎",
-      "pinyin": "",
+      "pinyin": "zhè jiā rì bào hěn shòu huān yíng",
       "meaningVi": "Báo ngày này rất được ưa chuộng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "日报",
       "chinese": "他在日报工作",
-      "pinyin": "",
+      "pinyin": "tā zài rì bào gōng zuò",
       "meaningVi": "Anh ấy làm việc tại báo ngày",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 日报",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/日报.mp3"
   ],
@@ -109,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__2__topic__19__thong-tin",
+      "sectionSlug": "thong-tin",
       "sectionTitle": "Thông tin",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -124,7 +138,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:分别",
   "type": "word",
   "word": "分别",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fēn bié",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phân biệt, sự khác biệt; chia tay",
+      "meaningShortVi": "phân biệt",
+      "meaningFullVi": "phân biệt, sự khác biệt; chia tay",
       "partOfSpeech": "động từ / danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phân biệt",
   "wordType": "động từ / danh từ",
   "wordTypes": [
     "động từ / danh từ"
   ],
-  "usageNotes": [
-    "分别 có thể là động từ (chia tay, phân biệt) hoặc副词 (riêng biệt, từng người). Trong ngữ cảnh chia tay dùng như động từ; trong ngữ cảnh phân biệt dùng để chỉ sự khác biệt."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -50,49 +49,56 @@
     "collocations": [
       {
         "text": "分别处理",
-        "pinyin": "",
+        "pinyin": "fēn bié chǔ lǐ",
         "meaningVi": "xử lý riêng biệt",
+        "meaningFullVi": "xử lý riêng biệt",
         "target": "分别",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "分别表示",
-        "pinyin": "",
+        "pinyin": "fēn bié biǎo shì",
         "meaningVi": "làm rõ sự khác biệt",
+        "meaningFullVi": "làm rõ sự khác biệt",
         "target": "分别",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "分别",
       "chinese": "我们要分别对待这些问题。",
-      "pinyin": "",
+      "pinyin": "wǒ men yào fēn bié duì dài zhè xiē wèn tí。",
       "meaningVi": "Chúng ta cần phân biệt xử dụng các vấn đề này.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "分别",
       "chinese": "我们在车站分别了。",
-      "pinyin": "",
+      "pinyin": "wǒ men zài chē zhàn fēn bié le。",
       "meaningVi": "Chúng tôi chia tay ở nhà ga.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 分别",
-      "syntax": "động từ / danh từ",
-      "matchedExample": "分别 có thể là động từ (chia tay, phân biệt) hoặc副词 (riêng biệt, từng người). Trong ngữ cảnh chia tay dùng như động từ; trong ngữ cảnh phân biệt dùng để chỉ sự khác biệt.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 分别",
+      "partOfSpeech": "động từ / danh từ",
+      "usageNoteVi": "分别 có thể là động từ (chia tay, phân biệt) hoặc副词 (riêng biệt, từng người). Trong ngữ cảnh chia tay dùng như động từ; trong ngữ cảnh phân biệt dùng để chỉ sự khác biệt.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 20,
+      "sectionId": "new_hsk__3__topic__20__so-sanh-va-tuan-thu",
+      "sectionSlug": "so-sanh-va-tuan-thu",
       "sectionTitle": "So sánh và Tuân thủ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/so-sanh-va-tuan-thu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/so-sanh-va-tuan-thu/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

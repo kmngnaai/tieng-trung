@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:宏观",
   "type": "word",
   "word": "宏观",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "hóng guān",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Hoành quan (vĩ mô) — góc nhìn tổng thể, ở tầm rộng và bao quát; đối lập với vi mô (微观). Thường dùng trong kinh tế và khoa học.",
+      "meaningShortVi": "Hoành quan (vĩ mô) — góc nhìn tổng thể",
+      "meaningFullVi": "Hoành quan (vĩ mô) — góc nhìn tổng thể, ở tầm rộng và bao quát; đối lập với vi mô (微观). Thường dùng trong kinh tế và khoa học.",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Hoành quan (vĩ mô) — góc nhìn tổng thể",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Thường đi cặp với 微观 (wēiguān — vi mô) trong các bài viết học thuật hay chính sách kinh tế."
-  ],
-  "wordTypeExplanations": [
-    "宏 (hoành — rộng lớn, bao la) + 观 (quan — quan sát, góc nhìn). Ghép nghĩa: cái nhìn tổng thể, quy mô lớn."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "宏观经济",
         "pinyin": "hóngguān jīngjì",
         "meaningVi": "kinh tế vĩ mô",
+        "meaningFullVi": "kinh tế vĩ mô",
         "target": "宏观",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "宏观调控",
         "pinyin": "hóngguān tiáokòng",
         "meaningVi": "điều tiết vĩ mô",
+        "meaningFullVi": "điều tiết vĩ mô",
         "target": "宏观",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "宏观角度",
         "pinyin": "hóngguān jiǎodù",
         "meaningVi": "góc độ vĩ mô",
+        "meaningFullVi": "góc độ vĩ mô",
         "target": "宏观",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Chúng ta cần phân tích vấn đề này từ góc độ vĩ mô",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "宏观",
@@ -90,7 +95,8 @@
       "meaningVi": "Chính sách kinh tế vĩ mô ảnh hưởng đến mọi người",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "宏观",
@@ -99,7 +105,8 @@
       "meaningVi": "Điều tiết vĩ mô là chức năng quan trọng của chính phủ",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "宏观",
@@ -108,23 +115,17 @@
       "meaningVi": "Nhìn từ góc vĩ mô, tình hình khá lạc quan",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 宏观",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường đi cặp với 微观 (wēiguān — vi mô) trong các bài viết học thuật hay chính sách kinh tế.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "宏 (hoành — rộng lớn, bao la) + 观 (quan — quan sát, góc nhìn). Ghép nghĩa: cái nhìn tổng thể, quy mô lớn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 宏观",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường đi cặp với 微观 (wēiguān — vi mô) trong các bài viết học thuật hay chính sách kinh tế.",
+      "explanationVi": "宏 (hoành — rộng lớn, bao la) + 观 (quan — quan sát, góc nhìn). Ghép nghĩa: cái nhìn tổng thể, quy mô lớn.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:干什么",
   "type": "word",
   "word": "干什么",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "gàn shén me",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "làm gì",
+      "meaningShortVi": "làm gì",
+      "meaningFullVi": "làm gì",
       "partOfSpeech": "other",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "làm gì",
   "wordType": "other",
   "wordTypes": [
     "other"
   ],
-  "usageNotes": [
-    "干什么 dùng để hỏi về hành động hoặc mục đích, có thể mang ngữ điệu thân mật hoặc tò mò."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -52,19 +51,24 @@
         "text": "干什么工作",
         "pinyin": "gàn shénme gōngzuò",
         "meaningVi": "làm nghề gì",
+        "meaningFullVi": "làm nghề gì",
         "target": "干什么",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "想干什么",
         "pinyin": "xiǎng gàn shénme",
         "meaningVi": "muốn làm gì",
+        "meaningFullVi": "muốn làm gì",
         "target": "干什么",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Bạn đang làm gì?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "干什么",
@@ -83,7 +88,8 @@
       "meaningVi": "Anh ấy định đi làm gì?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "干什么",
@@ -92,16 +98,17 @@
       "meaningVi": "Đây dùng để làm gì?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 干什么",
-      "syntax": "other",
-      "matchedExample": "干什么 dùng để hỏi về hành động hoặc mục đích, có thể mang ngữ điệu thân mật hoặc tò mò.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 干什么",
+      "partOfSpeech": "other",
+      "usageNoteVi": "干什么 dùng để hỏi về hành động hoặc mục đích, có thể mang ngữ điệu thân mật hoặc tò mò.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -112,11 +119,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__1__topic__1__dat-cau-hoi-va-do-luong-tu-ngu",
+      "sectionSlug": "dat-cau-hoi-va-do-luong-tu-ngu",
       "sectionTitle": "Đặt câu hỏi và đo lường từ ngữ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dat-cau-hoi-va-do-luong-tu-ngu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dat-cau-hoi-va-do-luong-tu-ngu/",
+      "orderInSection": 6
     }
   ],
   "sources": [
@@ -127,7 +139,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

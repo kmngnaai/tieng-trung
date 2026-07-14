@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:短信",
   "type": "word",
   "word": "短信",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "duǎn xìn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tin nhắn",
+      "meaningShortVi": "tin nhắn",
+      "meaningFullVi": "tin nhắn",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tin nhắn",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,60 +48,68 @@
     "collocations": [
       {
         "text": "发短信",
-        "pinyin": "",
+        "pinyin": "fā duǎn xìn",
         "meaningVi": "gửi tin nhắn",
+        "meaningFullVi": "gửi tin nhắn",
         "target": "短信",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "收短信",
-        "pinyin": "",
+        "pinyin": "shōu duǎn xìn",
         "meaningVi": "nhận tin nhắn",
+        "meaningFullVi": "nhận tin nhắn",
         "target": "短信",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "短信验证码",
-        "pinyin": "",
-        "meaningVi": "mã xác nhận tin nhắn",
-        "target": "短信",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "短信",
       "chinese": "我给你发了一条短信",
-      "pinyin": "",
+      "pinyin": "wǒ gěi nǐ fā le yī tiáo duǎn xìn",
       "meaningVi": "Tôi đã gửi cho bạn một tin nhắn",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "短信",
       "chinese": "请回我的短信",
-      "pinyin": "",
+      "pinyin": "qǐng huí wǒ de duǎn xìn",
       "meaningVi": "Hãy trả lời tin nhắn của tôi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "短信",
       "chinese": "他的手机总是收到很多短信",
-      "pinyin": "",
+      "pinyin": "tā de shǒu jī zǒng shì shōu dào hěn duō duǎn xìn",
       "meaningVi": "Điện thoại của anh ấy luôn nhận được nhiều tin nhắn",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 短信",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/短信.mp3"
   ],
@@ -109,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__2__topic__19__thong-tin",
+      "sectionSlug": "thong-tin",
       "sectionTitle": "Thông tin",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -124,7 +138,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:道理",
   "type": "word",
   "word": "道理",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "dào li",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lý lẽ, đạo lý",
+      "meaningShortVi": "lý lẽ",
+      "meaningFullVi": "lý lẽ, đạo lý",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lý lẽ",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,60 +48,78 @@
     "collocations": [
       {
         "text": "讲道理",
-        "pinyin": "",
-        "meaningVi": "nói lý lẽ/nghĩ luật",
+        "pinyin": "jiǎng dào li",
+        "meaningVi": "nói lý lẽ",
+        "meaningFullVi": "nói lý lẽ/nghĩ luật",
         "target": "道理",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "有道理",
-        "pinyin": "",
+        "pinyin": "yǒu dào li",
         "meaningVi": "có lý lẽ",
+        "meaningFullVi": "có lý lẽ",
         "target": "道理",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "没道理",
-        "pinyin": "",
+        "pinyin": "méi dào li",
         "meaningVi": "không có lý",
+        "meaningFullVi": "không có lý",
         "target": "道理",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "道理",
       "chinese": "他说的话很有道理",
-      "pinyin": "",
+      "pinyin": "tā shuō de huà hěn yǒu dào li",
       "meaningVi": "Lời anh ấy nói rất có lý",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "道理",
       "chinese": "你要明白这个道理",
-      "pinyin": "",
+      "pinyin": "nǐ yào míng bai zhè ge dào li",
       "meaningVi": "Bạn cần hiểu đạo lý này",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "道理",
       "chinese": "这不是什么道理",
-      "pinyin": "",
+      "pinyin": "zhè bù shì shén me dào li",
       "meaningVi": "Đây không phải là lý lẽ gì",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 道理",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/道理.mp3"
   ],
@@ -109,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 23,
+      "sectionId": "new_hsk__2__topic__23__suy-nghi",
+      "sectionSlug": "suy-nghi",
       "sectionTitle": "Suy nghĩ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/suy-nghi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/suy-nghi/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -124,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

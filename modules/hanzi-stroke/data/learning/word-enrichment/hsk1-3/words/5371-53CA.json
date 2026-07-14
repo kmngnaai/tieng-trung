@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:危及",
   "type": "word",
   "word": "危及",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "wēi jí",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nguy cập — đe doạ đến, gây nguy hiểm cho; tác động tiêu cực trực tiếp đến đối tượng khác.",
+      "meaningShortVi": "nguy cập — đe doạ đến",
+      "meaningFullVi": "nguy cập — đe doạ đến, gây nguy hiểm cho; tác động tiêu cực trực tiếp đến đối tượng khác.",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nguy cập — đe doạ đến",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "危及 mạnh hơn 影响 (ảnh hưởng đến) và chứa hàm ý mối nguy đang trực tiếp tiếp cận — thường dùng trong văn viết trang trọng."
-  ],
-  "wordTypeExplanations": [
-    "危 (nguy — nguy hiểm) + 及 (cập — đến, tới) → nguy hiểm đến tận, đe doạ đến."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "危及生命",
         "pinyin": "wēijí shēngmìng",
         "meaningVi": "đe doạ tính mạng",
+        "meaningFullVi": "đe doạ tính mạng",
         "target": "危及",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "危及安全",
         "pinyin": "wēijí ānquán",
         "meaningVi": "đe doạ an toàn",
+        "meaningFullVi": "đe doạ an toàn",
         "target": "危及",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "危及健康",
         "pinyin": "wēijí jiànkāng",
         "meaningVi": "gây nguy hại cho sức khoẻ",
+        "meaningFullVi": "gây nguy hại cho sức khoẻ",
         "target": "危及",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Đám cháy này đe doạ đến tính mạng của cư dân gần đó",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "危及",
@@ -90,7 +95,8 @@
       "meaningVi": "Ô nhiễm đang đe doạ nguồn nước uống của địa phương",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "危及",
@@ -99,7 +105,8 @@
       "meaningVi": "Thói quen xấu sẽ gây nguy hại cho sức khoẻ",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "危及",
@@ -108,23 +115,17 @@
       "meaningVi": "Quyết định này đe doạ đến an ninh quốc gia",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 危及",
-      "syntax": "compound-semantic",
-      "matchedExample": "危及 mạnh hơn 影响 (ảnh hưởng đến) và chứa hàm ý mối nguy đang trực tiếp tiếp cận — thường dùng trong văn viết trang trọng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "危 (nguy — nguy hiểm) + 及 (cập — đến, tới) → nguy hiểm đến tận, đe doạ đến.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 危及",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "危及 mạnh hơn 影响 (ảnh hưởng đến) và chứa hàm ý mối nguy đang trực tiếp tiếp cận — thường dùng trong văn viết trang trọng.",
+      "explanationVi": "危 (nguy — nguy hiểm) + 及 (cập — đến, tới) → nguy hiểm đến tận, đe doạ đến.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

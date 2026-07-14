@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:人工",
   "type": "word",
   "word": "人工",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "rén gōng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nhân tạo",
+      "meaningShortVi": "nhân tạo",
+      "meaningFullVi": "nhân tạo",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nhân tạo",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "人工 (nhân tạo) chỉ do con người làm ra, không phải tự nhiên, cũng có nghĩa là làm bằng tay không dùng máy."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "人工智能",
         "pinyin": "réngōng zhìnéng",
         "meaningVi": "trí tuệ nhân tạo",
+        "meaningFullVi": "trí tuệ nhân tạo",
         "target": "人工",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "人工呼吸",
         "pinyin": "réngōng hūxī",
         "meaningVi": "hô hấp nhân tạo",
+        "meaningFullVi": "hô hấp nhân tạo",
         "target": "人工",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Đây là làm bằng tay, không phải làm bằng máy.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "人工",
@@ -82,16 +87,17 @@
       "meaningVi": "Hồ nhân tạo rất đẹp.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 人工",
-      "syntax": "tính từ",
-      "matchedExample": "人工 (nhân tạo) chỉ do con người làm ra, không phải tự nhiên, cũng có nghĩa là làm bằng tay không dùng máy.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 人工",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "人工 (nhân tạo) chỉ do con người làm ra, không phải tự nhiên, cũng có nghĩa là làm bằng tay không dùng máy.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__topic__16__cac-hoat-dong",
+      "sectionSlug": "cac-hoat-dong",
       "sectionTitle": "Các hoạt động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/",
+      "orderInSection": 18
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

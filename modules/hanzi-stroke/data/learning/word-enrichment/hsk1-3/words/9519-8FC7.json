@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:错过",
   "type": "word",
   "word": "错过",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "cuò guò",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bỏ lỡ",
+      "meaningShortVi": "bỏ lỡ",
+      "meaningFullVi": "bỏ lỡ",
       "partOfSpeech": "compound",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bỏ lỡ",
   "wordType": "compound",
   "wordTypes": [
     "compound"
   ],
-  "usageNotes": [
-    "Từ vựng Hán 错过 (cuò*guò). Hán-Việt: thác quá."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,26 +43,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "错过",
-      "chinese": "错过 — bỏ lỡ",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 错过",
-      "syntax": "compound",
-      "matchedExample": "Từ vựng Hán 错过 (cuò*guò). Hán-Việt: thác quá.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 错过",
+      "partOfSpeech": "compound",
+      "usageNoteVi": "Từ vựng Hán 错过 (cuò*guò). Hán-Việt: thác quá.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -78,7 +68,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

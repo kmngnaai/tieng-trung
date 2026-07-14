@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:后悔",
   "type": "word",
   "word": "后悔",
@@ -15,22 +15,23 @@
     "readings": [
       {
         "pinyin": "hòu huǐ",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hối hận",
+      "meaningShortVi": "hối hận",
+      "meaningFullVi": "hối hận",
       "partOfSpeech": "",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hối hận",
   "wordType": "",
   "wordTypes": [],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -40,7 +41,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [],
   "grammarLinks": [],
@@ -56,9 +58,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PARTIAL",
     "warnings": [
-      "Chưa có câu chứa nguyên từ"
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
     ]
   }
 }

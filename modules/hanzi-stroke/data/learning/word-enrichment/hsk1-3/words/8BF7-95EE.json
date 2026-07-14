@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:请问",
   "type": "word",
   "word": "请问",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "qǐng wèn",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "xin hỏi, cho tôi hỏi",
+      "meaningShortVi": "xin hỏi",
+      "meaningFullVi": "xin hỏi, cho tôi hỏi",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "xin hỏi",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Cụm từ lịch sự rất phổ biến. Đặt đầu câu hỏi để tỏ rõ lịch sự: 请问...?. Có thể dùng trong giao tiếp hàng ngày với người lạ hoặc người có vị trí cao hơn."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 请 (mời, xin) + 问 (hỏi) → 'xin phép hỏi'. Cụm từ lịch sự để mở đầu câu hỏi."
   ],
   "hsk": {
     "levels": [
@@ -53,19 +50,24 @@
         "text": "请问一下",
         "pinyin": "qǐng wèn yī xià",
         "meaningVi": "cho tôi hỏi một chút",
+        "meaningFullVi": "cho tôi hỏi một chút",
         "target": "请问",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "想请问",
         "pinyin": "xiǎng qǐng wèn",
         "meaningVi": "muốn hỏi",
+        "meaningFullVi": "muốn hỏi",
         "target": "请问",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -75,7 +77,8 @@
       "meaningVi": "Xin hỏi, nhà vệ sinh ở đâu",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "请问",
@@ -84,7 +87,8 @@
       "meaningVi": "Xin hỏi làm sao đến ga tàu",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "请问",
@@ -93,7 +97,8 @@
       "meaningVi": "Xin hỏi cái này bao nhiêu tiền",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "请问",
@@ -102,23 +107,17 @@
       "meaningVi": "Xin hỏi bạn có thể giúp tôi không",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 请问",
-      "syntax": "compound-semantic",
-      "matchedExample": "Cụm từ lịch sự rất phổ biến. Đặt đầu câu hỏi để tỏ rõ lịch sự: 请问...?. Có thể dùng trong giao tiếp hàng ngày với người lạ hoặc người có vị trí cao hơn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 请 (mời, xin) + 问 (hỏi) → 'xin phép hỏi'. Cụm từ lịch sự để mở đầu câu hỏi.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 请问",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Cụm từ lịch sự rất phổ biến. Đặt đầu câu hỏi để tỏ rõ lịch sự: 请问...?. Có thể dùng trong giao tiếp hàng ngày với người lạ hoặc người có vị trí cao hơn.",
+      "explanationVi": "Ghép nghĩa: 请 (mời, xin) + 问 (hỏi) → 'xin phép hỏi'. Cụm từ lịch sự để mở đầu câu hỏi.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -129,21 +128,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 2,
+      "sectionId": "new_hsk__1__lesson__2__bai-2-my-name-is-li-wen",
+      "sectionSlug": "bai-2-my-name-is-li-wen",
       "sectionTitle": "Tôi tên là Lý Văn",
       "sectionTitleZh": "我叫李文",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-2-my-name-is-li-wen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-2-my-name-is-li-wen/",
+      "orderInSection": 10
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__1__topic__19__nhung-tu-ngu-lich-su",
+      "sectionSlug": "nhung-tu-ngu-lich-su",
       "sectionTitle": "Những từ ngữ lịch sự",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nhung-tu-ngu-lich-su/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nhung-tu-ngu-lich-su/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -154,7 +163,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

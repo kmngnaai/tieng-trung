@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:毕业",
   "type": "word",
   "word": "毕业",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "bì yè",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tốt nghiệp, ra trường",
+      "meaningShortVi": "tốt nghiệp",
+      "meaningFullVi": "tốt nghiệp, ra trường",
       "partOfSpeech": "động từ (verb)",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tốt nghiệp",
   "wordType": "động từ (verb)",
   "wordTypes": [
     "động từ (verb)"
   ],
-  "usageNotes": [
-    "毕 (tất) nghĩa là hết, hoàn thành; 业 (nghiệp) nghĩa là nghiệp vụ, học nghiệp. 毕业 là hoàn thành khóa học, được phép ra trường."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -52,27 +51,34 @@
         "text": "大学毕业",
         "pinyin": "dàxué bìyè",
         "meaningVi": "tốt nghiệp đại học",
+        "meaningFullVi": "tốt nghiệp đại học",
         "target": "毕业",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "毕业典礼",
         "pinyin": "bìyè diǎnlǐ",
         "meaningVi": "lễ tốt nghiệp",
+        "meaningFullVi": "lễ tốt nghiệp",
         "target": "毕业",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "毕业证书",
         "pinyin": "bìyè zhèngshū",
         "meaningVi": "bằng tốt nghiệp",
+        "meaningFullVi": "bằng tốt nghiệp",
         "target": "毕业",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -82,7 +88,8 @@
       "meaningVi": "Tôi tốt nghiệp đại học năm nay.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "毕业",
@@ -91,7 +98,8 @@
       "meaningVi": "Sau khi tốt nghiệp tôi tìm được việc.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "毕业",
@@ -100,16 +108,17 @@
       "meaningVi": "Chúc mừng bạn tốt nghiệp!",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 毕业",
-      "syntax": "động từ (verb)",
-      "matchedExample": "毕 (tất) nghĩa là hết, hoàn thành; 业 (nghiệp) nghĩa là nghiệp vụ, học nghiệp. 毕业 là hoàn thành khóa học, được phép ra trường.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 毕业",
+      "partOfSpeech": "động từ (verb)",
+      "usageNoteVi": "毕 (tất) nghĩa là hết, hoàn thành; 业 (nghiệp) nghĩa là nghiệp vụ, học nghiệp. 毕业 là hoàn thành khóa học, được phép ra trường.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -120,11 +129,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__3__lesson__18__bai-18-i-ve-learned-how-to-make-jiaozi",
+      "sectionSlug": "bai-18-i-ve-learned-how-to-make-jiaozi",
       "sectionTitle": "Tôi đã học được cách gói sủi cảo",
       "sectionTitleZh": "我学会了包饺子",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-18-i-ve-learned-how-to-make-jiaozi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-18-i-ve-learned-how-to-make-jiaozi/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -140,7 +154,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:有利",
   "type": "word",
   "word": "有利",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yǒu lì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "có lợi, thuận lợi; hữu ích",
+      "meaningShortVi": "có lợi",
+      "meaningFullVi": "có lợi, thuận lợi; hữu ích",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "có lợi",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "Yǒu lì dùng để chỉ điều gì đó mang lại lợi ích. Thường đi kèm với介词 đối (đối với) hoặc cho (cho)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "有利条件",
-        "pinyin": "",
+        "pinyin": "yǒu lì tiáo jiàn",
         "meaningVi": "điều kiện thuận lợi",
+        "meaningFullVi": "điều kiện thuận lợi",
         "target": "有利",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "对...有利",
-        "pinyin": "",
-        "meaningVi": "có lợi cho...",
+        "pinyin": "duì... yǒu lì",
+        "meaningVi": "có lợi cho",
+        "meaningFullVi": "có lợi cho...",
         "target": "有利",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "有利",
       "chinese": "运动对健康有利。",
-      "pinyin": "",
+      "pinyin": "yùn dòng duì jiàn kāng yǒu lì。",
       "meaningVi": "Vận động có lợi cho sức khỏe.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "有利",
       "chinese": "这个决定对我们很有利。",
-      "pinyin": "",
+      "pinyin": "zhè ge jué dìng duì wǒ men hěn yǒu lì。",
       "meaningVi": "Quyết định này rất có lợi cho chúng ta.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 有利",
-      "syntax": "tính từ",
-      "matchedExample": "Yǒu lì dùng để chỉ điều gì đó mang lại lợi ích. Thường đi kèm với介词 đối (đối với) hoặc cho (cho).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 有利",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "Yǒu lì dùng để chỉ điều gì đó mang lại lợi ích. Thường đi kèm với介词 đối (đối với) hoặc cho (cho).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 33,
+      "sectionId": "new_hsk__3__topic__33__tinh-tu",
+      "sectionSlug": "tinh-tu",
       "sectionTitle": "Tính từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/",
+      "orderInSection": 20
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

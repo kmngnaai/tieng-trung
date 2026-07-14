@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:房间",
   "type": "word",
   "word": "房间",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "fáng jiān",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phòng (nhà)",
+      "meaningShortVi": "phòng (nhà)",
+      "meaningFullVi": "phòng (nhà)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phòng (nhà)",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Chỉ căn phòng trong nhà. Đếm 用 间 (yī jiān fángjiān) hoặc 个 (yī gè fángjiān)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 房 (phòng/nhà) + 间 (khoảng không gian) → căn phòng."
   ],
   "hsk": {
     "levels": [
@@ -56,19 +53,34 @@
         "text": "一个房间",
         "pinyin": "yī gè fángjiān",
         "meaningVi": "một căn phòng",
+        "meaningFullVi": "một căn phòng",
         "target": "房间",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "大房间",
         "pinyin": "dà fángjiān",
         "meaningVi": "phòng lớn",
+        "meaningFullVi": "phòng lớn",
         "target": "房间",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
+      },
+      {
+        "text": "房间",
+        "pinyin": "fángjiān",
+        "meaningVi": "phòng",
+        "meaningFullVi": "phòng",
+        "target": "房间",
+        "source": "hsk_1.json",
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -78,7 +90,8 @@
       "meaningVi": "Đây là phòng của tôi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "房间",
@@ -87,7 +100,8 @@
       "meaningVi": "Phòng rất lớn",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "房间",
@@ -96,7 +110,8 @@
       "meaningVi": "Có bao nhiêu phòng?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "房间",
@@ -105,23 +120,17 @@
       "meaningVi": "Phòng rất sạch",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 房间",
-      "syntax": "compound-semantic",
-      "matchedExample": "Chỉ căn phòng trong nhà. Đếm 用 间 (yī jiān fángjiān) hoặc 个 (yī gè fángjiān).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 房 (phòng/nhà) + 间 (khoảng không gian) → căn phòng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 房间",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Chỉ căn phòng trong nhà. Đếm 用 间 (yī jiān fángjiān) hoặc 个 (yī gè fángjiān).",
+      "explanationVi": "Ghép nghĩa: 房 (phòng/nhà) + 间 (khoảng không gian) → căn phòng.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -132,31 +141,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__1__lesson__8__bai-8-my-father-also-works-at-a-hospital",
+      "sectionSlug": "bai-8-my-father-also-works-at-a-hospital",
       "sectionTitle": "Bố tôi cũng làm việc ở bệnh viện",
       "sectionTitleZh": "我爸爸也在医院工作",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-8-my-father-also-works-at-a-hospital/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-8-my-father-also-works-at-a-hospital/",
+      "orderInSection": 6
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__1__topic__7__cac-toa-nha",
+      "sectionSlug": "cac-toa-nha",
       "sectionTitle": "Các tòa nhà",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cac-toa-nha/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cac-toa-nha/",
+      "orderInSection": 20
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 3,
+      "sectionId": "hsk__2__lesson__3__bai-3-cai-mau-do-ben-trai-la-cua-toi",
+      "sectionSlug": "bai-3-cai-mau-do-ben-trai-la-cua-toi",
       "sectionTitle": "Cái màu đỏ bên trái là của tôi",
       "sectionTitleZh": "左边那个红色的是我的",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-3-cai-mau-do-ben-trai-la-cua-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-3-cai-mau-do-ben-trai-la-cua-toi/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -177,7 +201,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

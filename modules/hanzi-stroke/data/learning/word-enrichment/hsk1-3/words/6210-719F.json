@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:成熟",
   "type": "word",
   "word": "成熟",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "chéng shú",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trưởng thành, chín muồi",
+      "meaningShortVi": "trưởng thành",
+      "meaningFullVi": "trưởng thành, chín muồi",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trưởng thành",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "可指人（心理成熟、稳重）或物（果实成熟、时机成熟）。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "成熟的经验",
-        "pinyin": "",
+        "pinyin": "chéng shú de jīng yàn",
         "meaningVi": "kinh nghiệm dày dặn",
+        "meaningFullVi": "kinh nghiệm dày dặn",
         "target": "成熟",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "思想成熟",
-        "pinyin": "",
+        "pinyin": "sī xiǎng chéng shú",
         "meaningVi": "tư tưởng trưởng thành",
+        "meaningFullVi": "tư tưởng trưởng thành",
         "target": "成熟",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "成熟",
       "chinese": "他是个成熟的人。",
-      "pinyin": "",
+      "pinyin": "tā shì gè chéng shú de rén。",
       "meaningVi": "Anh ấy là một người trưởng thành.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "成熟",
       "chinese": "这种水果还没成熟。",
-      "pinyin": "",
+      "pinyin": "zhè zhǒng shuǐ guǒ hái méi chéng shú。",
       "meaningVi": "Loại quả này chưa chín.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 成熟",
-      "syntax": "tính từ",
-      "matchedExample": "可指人（心理成熟、稳重）或物（果实成熟、时机成熟）。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 成熟",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "可指人（心理成熟、稳重）或物（果实成熟、时机成熟）。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__3__topic__19__thanh-tuu-va-ket-qua",
+      "sectionSlug": "thanh-tuu-va-ket-qua",
       "sectionTitle": "Thành tựu và kết quả",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

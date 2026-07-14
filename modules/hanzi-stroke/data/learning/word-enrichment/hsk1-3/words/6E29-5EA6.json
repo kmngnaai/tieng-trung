@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:温度",
   "type": "word",
   "word": "温度",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wēn dù",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nhiệt độ",
+      "meaningShortVi": "nhiệt độ",
+      "meaningFullVi": "nhiệt độ",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nhiệt độ",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Danh từ chỉ độ nóng/lạnh của không khí/nước."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,40 +48,36 @@
     "collocations": [
       {
         "text": "气温温度",
-        "pinyin": "",
+        "pinyin": "qì wēn wēn dù",
         "meaningVi": "nhiệt độ không khí",
+        "meaningFullVi": "nhiệt độ không khí",
         "target": "温度",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "测量温度",
-        "pinyin": "",
-        "meaningVi": "đo nhiệt độ",
-        "target": "温度",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "温度",
       "chinese": "今天温度很高",
-      "pinyin": "",
+      "pinyin": "jīn tiān wēn dù hěn gāo",
       "meaningVi": "Hôm nay nhiệt độ rất cao",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 温度",
-      "syntax": "noun",
-      "matchedExample": "Danh từ chỉ độ nóng/lạnh của không khí/nước.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 温度",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Danh từ chỉ độ nóng/lạnh của không khí/nước.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -93,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__2__topic__16__thien-nhien",
+      "sectionSlug": "thien-nhien",
       "sectionTitle": "Thiên nhiên",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thien-nhien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thien-nhien/",
+      "orderInSection": 35
     }
   ],
   "sources": [
@@ -108,7 +108,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

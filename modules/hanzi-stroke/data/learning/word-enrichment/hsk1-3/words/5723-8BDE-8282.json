@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:圣诞节",
   "type": "word",
   "word": "圣诞节",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "Shèng dàn jié",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Giáng sinh",
+      "meaningShortVi": "Giáng sinh",
+      "meaningFullVi": "Giáng sinh",
       "partOfSpeech": "noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Giáng sinh",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Dùng với nghĩa \"Giáng sinh\". Thuộc New HSK 6."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -45,16 +44,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 圣诞节",
-      "syntax": "noun",
-      "matchedExample": "Dùng với nghĩa \"Giáng sinh\". Thuộc New HSK 6.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 圣诞节",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Dùng với nghĩa \"Giáng sinh\". Thuộc New HSK 6.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -69,9 +69,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": [
-      "Chưa có câu chứa nguyên từ"
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
     ]
   }
 }

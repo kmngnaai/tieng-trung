@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:外交",
   "type": "word",
   "word": "外交",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wài jiāo",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ngoại giao",
+      "meaningShortVi": "ngoại giao",
+      "meaningFullVi": "ngoại giao",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ngoại giao",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "外交 (ngoại giao) chỉ hoạt động, mối quan hệ giữa các quốc gia, cũng chỉ Bộ Ngoại giao."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "外交部",
         "pinyin": "wàijiāobù",
         "meaningVi": "Bộ Ngoại giao",
+        "meaningFullVi": "Bộ Ngoại giao",
         "target": "外交",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "外交关系",
         "pinyin": "wàijiāo guānxì",
         "meaningVi": "quan hệ ngoại giao",
+        "meaningFullVi": "quan hệ ngoại giao",
         "target": "外交",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Anh ấy làm việc ở Bộ Ngoại giao.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "外交",
@@ -82,16 +87,17 @@
       "meaningVi": "Quan hệ ngoại giao giữa hai nước rất tốt.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 外交",
-      "syntax": "danh từ",
-      "matchedExample": "外交 (ngoại giao) chỉ hoạt động, mối quan hệ giữa các quốc gia, cũng chỉ Bộ Ngoại giao.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 外交",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "外交 (ngoại giao) chỉ hoạt động, mối quan hệ giữa các quốc gia, cũng chỉ Bộ Ngoại giao.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__topic__16__cac-hoat-dong",
+      "sectionSlug": "cac-hoat-dong",
       "sectionTitle": "Các hoạt động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

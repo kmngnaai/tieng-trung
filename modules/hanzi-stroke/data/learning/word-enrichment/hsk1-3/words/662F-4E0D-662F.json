@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:是不是",
   "type": "word",
   "word": "是不是",
@@ -16,27 +16,24 @@
     "readings": [
       {
         "pinyin": "shì bu shì",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "có phải không?; phải không?; liệu có",
+      "meaningShortVi": "có phải không?",
+      "meaningFullVi": "có phải không?; phải không?; liệu có",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "có phải không?",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng để hỏi xác nhận, thường ở cuối câu. Khi ở đầu câu, thường mang ý 'liệu có' hoặc 'chẳng phải'. Trong khẩu ngữ có thể đọc nhanh thành 'shìbshì'. Có thể thêm 'a' ở cuối để mềm mỏng hơn."
-  ],
-  "wordTypeExplanations": [
-    "Cấu trúc nghi vấn: 是 (là/đúng) + 不 (không) + 是 (là). Nghĩa đen 'đúng không đúng', dùng để hỏi xác nhận hoặc yêu cầu đồng thuận. Đây là cấu trúc ngữ pháp, không ghép nghĩa trực tiếp."
   ],
   "hsk": {
     "levels": [
@@ -51,14 +48,27 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "是不是...啊",
-        "pinyin": "shìbu shì...a",
-        "meaningVi": "có phải... à (nhấn mạnh)",
+        "text": "是不是",
+        "pinyin": "shìbu shì",
+        "meaningVi": "có phải không",
+        "meaningFullVi": "có phải không",
         "target": "是不是",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
+      },
+      {
+        "text": "是不是...啊",
+        "pinyin": "shìbu shì...a",
+        "meaningVi": "có phải",
+        "meaningFullVi": "có phải... à (nhấn mạnh)",
+        "target": "是不是",
+        "source": "hsk_1.json",
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -68,7 +78,8 @@
       "meaningVi": "Bạn có phải người Trung Quốc không?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "是不是",
@@ -77,7 +88,8 @@
       "meaningVi": "Cái này có phải sách của bạn không?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "是不是",
@@ -86,7 +98,8 @@
       "meaningVi": "Liệu anh ấy có không biết không?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "是不是",
@@ -95,7 +108,8 @@
       "meaningVi": "Hôm nay có phải là chủ nhật không?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "是不是",
@@ -104,23 +118,17 @@
       "meaningVi": "Bạn có phải mệt không? (hỏi thăm)",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 是不是",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng để hỏi xác nhận, thường ở cuối câu. Khi ở đầu câu, thường mang ý 'liệu có' hoặc 'chẳng phải'. Trong khẩu ngữ có thể đọc nhanh thành 'shìbshì'. Có thể thêm 'a' ở cuối để mềm mỏng hơn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Cấu trúc nghi vấn: 是 (là/đúng) + 不 (không) + 是 (là). Nghĩa đen 'đúng không đúng', dùng để hỏi xác nhận hoặc yêu cầu đồng thuận. Đây là cấu trúc ngữ pháp, không ghép nghĩa trực tiếp.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 是不是",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng để hỏi xác nhận, thường ở cuối câu. Khi ở đầu câu, thường mang ý 'liệu có' hoặc 'chẳng phải'. Trong khẩu ngữ có thể đọc nhanh thành 'shìbshì'. Có thể thêm 'a' ở cuối để mềm mỏng hơn.",
+      "explanationVi": "Cấu trúc nghi vấn: 是 (là/đúng) + 不 (không) + 是 (là). Nghĩa đen 'đúng không đúng', dùng để hỏi xác nhận hoặc yêu cầu đồng thuận. Đây là cấu trúc ngữ pháp, không ghép nghĩa trực tiếp.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -131,11 +139,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__1__topic__13__tu-chuc-nang",
+      "sectionSlug": "tu-chuc-nang",
       "sectionTitle": "Từ chức năng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/tu-chuc-nang/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/tu-chuc-nang/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -146,7 +159,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

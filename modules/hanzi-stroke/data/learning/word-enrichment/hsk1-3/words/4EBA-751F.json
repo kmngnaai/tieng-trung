@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:人生",
   "type": "word",
   "word": "人生",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "rén shēng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Cuộc đời, cuộc sống",
+      "meaningShortVi": "Cuộc đời",
+      "meaningFullVi": "Cuộc đời, cuộc sống",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Cuộc đời",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "人生 chỉ cuộc đời của con người, thường mang nghĩa triết lý hơn 生活(cuộc sống sinh hoạt hàng ngày). Các cụm phổ biến: 人生哲学, 人生意义."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,27 +51,34 @@
         "text": "人生经验",
         "pinyin": "rénshēng jīngyàn",
         "meaningVi": "kinh nghiệm sống",
+        "meaningFullVi": "kinh nghiệm sống",
         "target": "人生",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "人生目标",
         "pinyin": "rénshēng mùbiāo",
         "meaningVi": "mục tiêu cuộc đời",
+        "meaningFullVi": "mục tiêu cuộc đời",
         "target": "人生",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "精彩人生",
         "pinyin": "jīngcǎi rénshēng",
         "meaningVi": "cuộc đời tuyệt vời",
+        "meaningFullVi": "cuộc đời tuyệt vời",
         "target": "人生",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -82,7 +88,8 @@
       "meaningVi": "Cuộc sống có nhiều khó khăn.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "人生",
@@ -91,7 +98,8 @@
       "meaningVi": "Cuộc đời của anh ấy rất tuyệt vời.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "人生",
@@ -100,16 +108,17 @@
       "meaningVi": "Đây là sự bắt đầu của cuộc đời.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 人生",
-      "syntax": "compound-semantic",
-      "matchedExample": "人生 chỉ cuộc đời của con người, thường mang nghĩa triết lý hơn 生活(cuộc sống sinh hoạt hàng ngày). Các cụm phổ biến: 人生哲学, 人生意义.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 人生",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "人生 chỉ cuộc đời của con người, thường mang nghĩa triết lý hơn 生活(cuộc sống sinh hoạt hàng ngày). Các cụm phổ biến: 人生哲学, 人生意义.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -120,11 +129,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__3__topic__4__nhung-nguoi",
+      "sectionSlug": "nhung-nguoi",
       "sectionTitle": "Những người",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/",
+      "orderInSection": 22
     }
   ],
   "sources": [
@@ -140,7 +154,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

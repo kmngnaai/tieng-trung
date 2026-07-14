@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:球迷",
   "type": "word",
   "word": "球迷",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "qiú mí",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "fan hâm mộ bóng đá; người rất thích xem và theo dõi bóng đá",
+      "meaningShortVi": "fan hâm mộ bóng đá",
+      "meaningFullVi": "fan hâm mộ bóng đá; người rất thích xem và theo dõi bóng đá",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "fan hâm mộ bóng đá",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Có thể kết hợp với nhiều loại thể thao như 足球迷, 篮球迷, 网球迷. Đối với 粉丝, 球迷 mang nghĩa 'người hâm mộ thể thao' trong khi 粉丝 thường dùng cho người nổi tiếng hoặc giải trí. Từ liên quan: 爱好者 'người yêu thích', 支持者 'người ủng hộ'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "足球迷",
         "pinyin": "zúqiúmí",
         "meaningVi": "fan hâm mộ bóng đá",
+        "meaningFullVi": "fan hâm mộ bóng đá",
         "target": "球迷",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "篮球迷",
         "pinyin": "lánqiúmí",
         "meaningVi": "fan hâm mộ bóng rổ",
+        "meaningFullVi": "fan hâm mộ bóng rổ",
         "target": "球迷",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Bố tôi là một fan hâm mộ bóng đá.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "球迷",
@@ -82,16 +87,17 @@
       "meaningVi": "Trong dịp World Cup, các fan bóng đá rất hào hứng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 球迷",
-      "syntax": "danh từ",
-      "matchedExample": "Có thể kết hợp với nhiều loại thể thao như 足球迷, 篮球迷, 网球迷. Đối với 粉丝, 球迷 mang nghĩa 'người hâm mộ thể thao' trong khi 粉丝 thường dùng cho người nổi tiếng hoặc giải trí. Từ liên quan: 爱好者 'người yêu thích', 支持者 'người ủng hộ'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 球迷",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Có thể kết hợp với nhiều loại thể thao như 足球迷, 篮球迷, 网球迷. Đối với 粉丝, 球迷 mang nghĩa 'người hâm mộ thể thao' trong khi 粉丝 thường dùng cho người nổi tiếng hoặc giải trí. Từ liên quan: 爱好者 'người yêu thích', 支持者 'người ủng hộ'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__3__topic__10__giai-tri-toi",
+      "sectionSlug": "giai-tri-toi",
       "sectionTitle": "Giải trí tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

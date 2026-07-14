@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:交涉",
   "type": "word",
   "word": "交涉",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiāo shè",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Giao thiệp — đàm phán; thương lượng.",
+      "meaningShortVi": "Giao thiệp — đàm phán",
+      "meaningFullVi": "Giao thiệp — đàm phán; thương lượng.",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Giao thiệp — đàm phán",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Trao đổi, thương lượng để giải quyết vấn đề hoặc tranh chấp."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,24 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "与...交涉",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "交涉",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "直接交涉",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "交涉",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +54,8 @@
       "meaningVi": "Chúng ta cần đàm phán với đối phương.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "交涉",
@@ -80,7 +64,8 @@
       "meaningVi": "Thương lượng lâu nhưng không có kết quả.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "交涉",
@@ -89,16 +74,17 @@
       "meaningVi": "Đàm phán trực tiếp để giải quyết vấn đề.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 交涉",
-      "syntax": "compound-semantic",
-      "matchedExample": "Trao đổi, thương lượng để giải quyết vấn đề hoặc tranh chấp.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 交涉",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Trao đổi, thương lượng để giải quyết vấn đề hoặc tranh chấp.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -113,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

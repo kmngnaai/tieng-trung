@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:留学生",
   "type": "word",
   "word": "留学生",
@@ -16,24 +16,25 @@
     "readings": [
       {
         "pinyin": "liú xué shēng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "du học sinh",
+      "meaningShortVi": "du học sinh",
+      "meaningFullVi": "du học sinh",
       "partOfSpeech": "noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "du học sinh",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -47,46 +48,40 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "学生",
-        "pinyin": "",
-        "meaningVi": "học sinh",
-        "target": "留学生",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "留学",
-        "pinyin": "",
-        "meaningVi": "đi du học",
-        "target": "留学生",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "留学生",
       "chinese": "很多中国留学生来美国",
-      "pinyin": "",
+      "pinyin": "hěn duō Zhōng guó liú xué shēng lái měi guó",
       "meaningVi": "Nhiều du học sinh Trung Quốc đến Mỹ",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "留学生",
       "chinese": "我是留学生",
-      "pinyin": "",
+      "pinyin": "wǒ shì liú xué shēng",
       "meaningVi": "Tôi là du học sinh",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 留学生",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/留学生.mp3"
   ],
@@ -95,21 +90,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__2__topic__7__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/nghien-cuu/",
+      "orderInSection": 23
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__3__lesson__14__bai-14-this-book-is-checked-out",
+      "sectionSlug": "bai-14-this-book-is-checked-out",
       "sectionTitle": "Cuốn sách này bị người khác mượn mất rồi",
       "sectionTitleZh": "这本书被别人借走了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-14-this-book-is-checked-out/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-14-this-book-is-checked-out/",
+      "orderInSection": 23
     }
   ],
   "sources": [
@@ -130,7 +135,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

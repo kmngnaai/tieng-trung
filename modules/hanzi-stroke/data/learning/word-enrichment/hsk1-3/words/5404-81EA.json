@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:各自",
   "type": "word",
   "word": "各自",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gè zì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "mỗi người, mỗi bên; riêng, từng người một",
+      "meaningShortVi": "mỗi người",
+      "meaningFullVi": "mỗi người, mỗi bên; riêng, từng người một",
       "partOfSpeech": "phó từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "mỗi người",
   "wordType": "phó từ",
   "wordTypes": [
     "phó từ"
   ],
-  "usageNotes": [
-    "Gè zì dùng để chỉ mỗi người hoặc mỗi bên làm việc riêng. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -48,41 +47,37 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "各自为政",
-        "pinyin": "",
-        "meaningVi": "từng người tự làm chủ",
-        "target": "各自",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "各自负责",
-        "pinyin": "",
+        "pinyin": "gè zì fù zé",
         "meaningVi": "mỗi người chịu trách nhiệm",
+        "meaningFullVi": "mỗi người chịu trách nhiệm",
         "target": "各自",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "各自",
       "chinese": "我们各自回家吧。",
-      "pinyin": "",
+      "pinyin": "wǒ men gè zì huí jiā ba。",
       "meaningVi": "Chúng ta mỗi người về nhà đi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 各自",
-      "syntax": "phó từ",
-      "matchedExample": "Gè zì dùng để chỉ mỗi người hoặc mỗi bên làm việc riêng. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 各自",
+      "partOfSpeech": "phó từ",
+      "usageNoteVi": "Gè zì dùng để chỉ mỗi người hoặc mỗi bên làm việc riêng. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -93,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 32,
+      "sectionId": "new_hsk__3__topic__32__dac-diem",
+      "sectionSlug": "dac-diem",
       "sectionTitle": "Đặc điểm",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -108,7 +108,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

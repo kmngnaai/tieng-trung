@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:消失",
   "type": "word",
   "word": "消失",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xiāo shī",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "biến mất, tan biến",
+      "meaningShortVi": "biến mất",
+      "meaningFullVi": "biến mất, tan biến",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "biến mất",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "消失 là động từ chỉ việc biến mất hoàn toàn. Thường kết hợp với từ chỉ thời gian: 慢慢 (từ từ), 很快 (rất nhanh), 逐渐 (dần dần)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "消失不见",
-        "pinyin": "",
+        "pinyin": "xiāo shī bù jiàn",
         "meaningVi": "biến mất sạch",
+        "meaningFullVi": "biến mất sạch",
         "target": "消失",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "逐渐消失",
-        "pinyin": "",
-        "meaningVi": "dần dần biến mất",
-        "target": "消失",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "消失",
       "chinese": "太阳慢慢消失在山后。",
-      "pinyin": "",
+      "pinyin": "tài yáng màn màn xiāo shī zài shān hòu。",
       "meaningVi": "Mặt trời từ từ biến mất sau ngọn núi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "消失",
       "chinese": "这个问题很快就会消失。",
-      "pinyin": "",
+      "pinyin": "zhè ge wèn tí hěn kuài jiù huì xiāo shī。",
       "meaningVi": "Vấn đề này rất nhanh sẽ biến mất.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 消失",
-      "syntax": "động từ",
-      "matchedExample": "消失 là động từ chỉ việc biến mất hoàn toàn. Thường kết hợp với từ chỉ thời gian: 慢慢 (từ từ), 很快 (rất nhanh), 逐渐 (dần dần).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 消失",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "消失 là động từ chỉ việc biến mất hoàn toàn. Thường kết hợp với từ chỉ thời gian: 慢慢 (từ từ), 很快 (rất nhanh), 逐渐 (dần dần).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__3__topic__19__thanh-tuu-va-ket-qua",
+      "sectionSlug": "thanh-tuu-va-ket-qua",
       "sectionTitle": "Thành tựu và kết quả",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/",
+      "orderInSection": 35
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

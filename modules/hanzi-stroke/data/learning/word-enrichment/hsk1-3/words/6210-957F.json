@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:成长",
   "type": "word",
   "word": "成长",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "chéng zhǎng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lớn lên, trưởng thành",
+      "meaningShortVi": "lớn lên",
+      "meaningFullVi": "lớn lên, trưởng thành",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lớn lên",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "成长 dùng cho con người (trẻ em, thanh niên) hoặc tổ chức. Không dùng cho cây cối (dùng 生长). Thường đi với healthily (健康), fast (快速)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "健康成长",
         "pinyin": "jiànkāng chéngzhǎng",
         "meaningVi": "lớn lên khỏe mạnh",
+        "meaningFullVi": "lớn lên khỏe mạnh",
         "target": "成长",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "成长经历",
         "pinyin": "chéngzhǎng jīnglì",
         "meaningVi": "kinh nghiệm trưởng thành",
+        "meaningFullVi": "kinh nghiệm trưởng thành",
         "target": "成长",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Đứa trẻ đang lớn lên trong niềm vui hạnh phúc.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "成长",
@@ -82,16 +87,17 @@
       "meaningVi": "Anh ấy trưởng thành trong khó khăn, trở nên kiên cường hơn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 成长",
-      "syntax": "động từ",
-      "matchedExample": "成长 dùng cho con người (trẻ em, thanh niên) hoặc tổ chức. Không dùng cho cây cối (dùng 生长). Thường đi với healthily (健康), fast (快速).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 成长",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "成长 dùng cho con người (trẻ em, thanh niên) hoặc tổ chức. Không dùng cho cây cối (dùng 生长). Thường đi với healthily (健康), fast (快速).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__topic__17__nhung-thay-doi",
+      "sectionSlug": "nhung-thay-doi",
       "sectionTitle": "Những thay đổi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

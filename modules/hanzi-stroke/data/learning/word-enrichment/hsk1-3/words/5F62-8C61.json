@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:形象",
   "type": "word",
   "word": "形象",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xíng xiàng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hình ảnh; hình tượng; dáng vẻ, diện mạo",
+      "meaningShortVi": "hình ảnh",
+      "meaningFullVi": "hình ảnh; hình tượng; dáng vẻ, diện mạo",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hình ảnh",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Xíng xiàng dùng cho hình ảnh, diện mạo của người hoặc tổ chức. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -48,41 +47,37 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "企业形象",
-        "pinyin": "",
-        "meaningVi": "hình ảnh doanh nghiệp",
-        "target": "形象",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "个人形象",
-        "pinyin": "",
+        "pinyin": "gè rén xíng xiàng",
         "meaningVi": "hình ảnh cá nhân",
+        "meaningFullVi": "hình ảnh cá nhân",
         "target": "形象",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "形象",
       "chinese": "这家公司的形象很好。",
-      "pinyin": "",
+      "pinyin": "zhè jiā gōng sī de xíng xiàng hěn hǎo。",
       "meaningVi": "Hình ảnh của công ty này rất tốt.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 形象",
-      "syntax": "danh từ",
-      "matchedExample": "Xíng xiàng dùng cho hình ảnh, diện mạo của người hoặc tổ chức. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 形象",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Xíng xiàng dùng cho hình ảnh, diện mạo của người hoặc tổ chức. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -93,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 32,
+      "sectionId": "new_hsk__3__topic__32__dac-diem",
+      "sectionSlug": "dac-diem",
       "sectionTitle": "Đặc điểm",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -108,7 +108,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

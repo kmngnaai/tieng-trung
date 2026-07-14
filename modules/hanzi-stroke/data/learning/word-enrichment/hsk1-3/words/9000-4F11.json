@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:退休",
   "type": "word",
   "word": "退休",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "tuì xiū",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Nghỉ hưu",
+      "meaningShortVi": "Nghỉ hưu",
+      "meaningFullVi": "Nghỉ hưu",
       "partOfSpeech": "động từ / danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Nghỉ hưu",
   "wordType": "động từ / danh từ",
   "wordTypes": [
     "động từ / danh từ"
   ],
-  "usageNotes": [
-    "退休 là kết thúc công việc sau khi đạt đến tuổi định hoặc đủ điều kiện. Trong giao tiếp, người ta thường nói '退休了' (đã nghỉ hưu) hoặc '准备退休' (chuẩn bị nghỉ hưu). Lưu ý: 退休 khác với 辞职 (thôi việc) — 辞职 là tự nguyện thôi việc giữa chừng, còn 退休 là nghỉ hưu theo chế độ."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,19 +51,24 @@
         "text": "退休人员",
         "pinyin": "tuìxiū rényuán",
         "meaningVi": "người nghỉ hưu",
+        "meaningFullVi": "người nghỉ hưu",
         "target": "退休",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "退休金",
         "pinyin": "tuìxiūjīn",
         "meaningVi": "lương hưu",
+        "meaningFullVi": "lương hưu",
         "target": "退休",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Bố tôi năm sau sẽ nghỉ hưu.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "退休",
@@ -83,16 +88,17 @@
       "meaningVi": "Nghỉ hưu xong anh ấy muốn về quê sống.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 退休",
-      "syntax": "động từ / danh từ",
-      "matchedExample": "退休 là kết thúc công việc sau khi đạt đến tuổi định hoặc đủ điều kiện. Trong giao tiếp, người ta thường nói '退休了' (đã nghỉ hưu) hoặc '准备退休' (chuẩn bị nghỉ hưu). Lưu ý: 退休 khác với 辞职 (thôi việc) — 辞职 là tự nguyện thôi việc giữa chừng, còn 退休 là nghỉ hưu theo chế độ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 退休",
+      "partOfSpeech": "động từ / danh từ",
+      "usageNoteVi": "退休 là kết thúc công việc sau khi đạt đến tuổi định hoặc đủ điều kiện. Trong giao tiếp, người ta thường nói '退休了' (đã nghỉ hưu) hoặc '准备退休' (chuẩn bị nghỉ hưu). Lưu ý: 退休 khác với 辞职 (thôi việc) — 辞职 là tự nguyện thôi việc giữa chừng, còn 退休 là nghỉ hưu theo chế độ.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__3__topic__12__lam-viec-toi",
+      "sectionSlug": "lam-viec-toi",
       "sectionTitle": "Làm việc tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

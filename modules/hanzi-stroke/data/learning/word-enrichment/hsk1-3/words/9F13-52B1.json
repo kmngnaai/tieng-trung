@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:鼓励",
   "type": "word",
   "word": "鼓励",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gǔ lì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "khuyến khích, động viên, cổ vũ",
+      "meaningShortVi": "khuyến khích",
+      "meaningFullVi": "khuyến khích, động viên, cổ vũ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "khuyến khích",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "鼓励 ghép 鼓 (gõ, vỗ — vỗ về) + 励 (tấn, động viên — 力量). Chỉ việc khích lệ, động viên người khác làm việc gì đó."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,48 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "鼓励学习",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "鼓励",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "鼓励运动",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "鼓励",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "鼓励创新",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "鼓励",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "相互鼓励",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "鼓励",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "受到鼓励",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "鼓励",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -95,7 +54,8 @@
       "meaningVi": "Thầy cô khuyến khích chúng tôi học chăm chỉ.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "鼓励",
@@ -104,7 +64,8 @@
       "meaningVi": "Bố mẹ luôn động viên tôi theo đuổi ước mơ.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "鼓励",
@@ -113,16 +74,17 @@
       "meaningVi": "Cần khuyến khích trẻ em vận động nhiều hơn.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 鼓励",
-      "syntax": "compound-semantic",
-      "matchedExample": "鼓励 ghép 鼓 (gõ, vỗ — vỗ về) + 励 (tấn, động viên — 力量). Chỉ việc khích lệ, động viên người khác làm việc gì đó.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 鼓励",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "鼓励 ghép 鼓 (gõ, vỗ — vỗ về) + 励 (tấn, động viên — 力量). Chỉ việc khích lệ, động viên người khác làm việc gì đó.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -137,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:人家",
   "type": "word",
   "word": "人家",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "rén jiā",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "người ta, họ",
+      "meaningShortVi": "người ta",
+      "meaningFullVi": "người ta, họ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "người ta",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Ngữ pháp: (1) Người ta (bất định) (2) Họ (chỉ người cụ thể) (3) Ngược nhẹ/pi (phụ nữ)."
-  ],
-  "wordTypeExplanations": [
-    "人 (nhân - người) + 家 (gia - nhà) → người khác/người ta."
   ],
   "hsk": {
     "levels": [
@@ -48,14 +45,27 @@
     "compounds": [],
     "collocations": [
       {
+        "text": "人家",
+        "pinyin": "rénjiā",
+        "meaningVi": "người ta",
+        "meaningFullVi": "người ta/họ",
+        "target": "人家",
+        "source": "hsk_2.json",
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
+      },
+      {
         "text": "看人家",
         "pinyin": "kàn rénjiā",
         "meaningVi": "nhìn người khác",
+        "meaningFullVi": "nhìn người khác",
         "target": "人家",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -65,7 +75,8 @@
       "meaningVi": "Người ta đã đi rồi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "人家",
@@ -74,7 +85,8 @@
       "meaningVi": "Họ không biết",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "人家",
@@ -83,7 +95,8 @@
       "meaningVi": "nhìn người ta",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "人家",
@@ -92,23 +105,17 @@
       "meaningVi": "nói tôi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 人家",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ngữ pháp: (1) Người ta (bất định) (2) Họ (chỉ người cụ thể) (3) Ngược nhẹ/pi (phụ nữ).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "人 (nhân - người) + 家 (gia - nhà) → người khác/người ta.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 人家",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Ngữ pháp: (1) Người ta (bất định) (2) Họ (chỉ người cụ thể) (3) Ngược nhẹ/pi (phụ nữ).",
+      "explanationVi": "人 (nhân - người) + 家 (gia - nhà) → người khác/người ta.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -123,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:隔壁",
   "type": "word",
   "word": "隔壁",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "gé bì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cách vách, kế bên, nhà hàng xóm",
+      "meaningShortVi": "cách vách",
+      "meaningFullVi": "cách vách, kế bên, nhà hàng xóm",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cách vách",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "隔壁 chỉ vị trí ngay kề bên, cách một vách tường. Dùng cho nhà, phòng, hoặc người ở gần. Cũng dùng ẩn dụ cho 'bên cạnh' trong ngữ cảnh trừu tượng."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 隔 (ngăn cách) + 壁 (tường) → cách một bức tường, kế bên."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "隔壁邻居",
         "pinyin": "gébì línjū",
         "meaningVi": "hàng xóm",
+        "meaningFullVi": "hàng xóm",
         "target": "隔壁",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "隔壁房间",
         "pinyin": "gébì fángjiān",
         "meaningVi": "phòng kế bên",
+        "meaningFullVi": "phòng kế bên",
         "target": "隔壁",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "隔壁班",
         "pinyin": "gébì bān",
         "meaningVi": "lớp bên cạnh",
+        "meaningFullVi": "lớp bên cạnh",
         "target": "隔壁",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Tôi ở trong phòng kế bên",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "隔壁",
@@ -90,7 +95,8 @@
       "meaningVi": "Hàng xóm kế bên rất thân thiện",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "隔壁",
@@ -99,7 +105,8 @@
       "meaningVi": "Họ đang học trong lớp học kế bên",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "隔壁",
@@ -108,7 +115,8 @@
       "meaningVi": "Chúng ta có thể nghe thấy tiếng nhạc từ bên cạnh",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "隔壁",
@@ -117,23 +125,17 @@
       "meaningVi": "Cửa hàng kế bên bán bánh mì rất ngon",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 隔壁",
-      "syntax": "compound-semantic",
-      "matchedExample": "隔壁 chỉ vị trí ngay kề bên, cách một vách tường. Dùng cho nhà, phòng, hoặc người ở gần. Cũng dùng ẩn dụ cho 'bên cạnh' trong ngữ cảnh trừu tượng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 隔 (ngăn cách) + 壁 (tường) → cách một bức tường, kế bên.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 隔壁",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "隔壁 chỉ vị trí ngay kề bên, cách một vách tường. Dùng cho nhà, phòng, hoặc người ở gần. Cũng dùng ẩn dụ cho 'bên cạnh' trong ngữ cảnh trừu tượng.",
+      "explanationVi": "Ghép nghĩa: 隔 (ngăn cách) + 壁 (tường) → cách một bức tường, kế bên.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -148,7 +150,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

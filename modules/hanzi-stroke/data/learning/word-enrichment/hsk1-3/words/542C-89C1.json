@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:听见",
   "type": "word",
   "word": "听见",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "tīng jiàn",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nghe thấy",
+      "meaningShortVi": "nghe thấy",
+      "meaningFullVi": "nghe thấy",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nghe thấy",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng để chỉ việc 'nghe thấy' (cả hai hành động nghe và nhận thức). Phủ định là '听不见'. Trong văn nói, có thể chỉ dùng '听' thay cho '听见'."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 听 (nghe) + 见 (thấy, gặp) → 'nghe và thấy', 即 'nghe thấy'."
   ],
   "hsk": {
     "levels": [
@@ -51,30 +48,27 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "听不见",
-        "pinyin": "tīng bú jiàn",
-        "meaningVi": "không nghe thấy",
-        "target": "听见",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "能听见",
         "pinyin": "néng tīng jiàn",
         "meaningVi": "có thể nghe thấy",
+        "meaningFullVi": "có thể nghe thấy",
         "target": "听见",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "听见声音",
         "pinyin": "tīng jiàn shēng yīn",
         "meaningVi": "nghe thấy tiếng động",
+        "meaningFullVi": "nghe thấy tiếng động",
         "target": "听见",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -84,7 +78,8 @@
       "meaningVi": "Tôi nghe thấy tiếng rồi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "听见",
@@ -93,7 +88,8 @@
       "meaningVi": "Bạn nghe thấy tôi nói không",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "听见",
@@ -102,7 +98,8 @@
       "meaningVi": "Tôi nghe thấy có người đang hát",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "听见",
@@ -111,23 +108,17 @@
       "meaningVi": "Làm ơn nghe cho kỹ",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 听见",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng để chỉ việc 'nghe thấy' (cả hai hành động nghe và nhận thức). Phủ định là '听不见'. Trong văn nói, có thể chỉ dùng '听' thay cho '听见'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 听 (nghe) + 见 (thấy, gặp) → 'nghe và thấy', 即 'nghe thấy'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 听见",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng để chỉ việc 'nghe thấy' (cả hai hành động nghe và nhận thức). Phủ định là '听不见'. Trong văn nói, có thể chỉ dùng '听' thay cho '听见'.",
+      "explanationVi": "Ghép nghĩa: 听 (nghe) + 见 (thấy, gặp) → 'nghe và thấy', 即 'nghe thấy'.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -138,21 +129,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__1__lesson__14__bai-14-i-watched-a-movie",
+      "sectionSlug": "bai-14-i-watched-a-movie",
       "sectionTitle": "Tôi đã xem một bộ phim",
       "sectionTitleZh": "我看了一个电影",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-14-i-watched-a-movie/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-14-i-watched-a-movie/",
+      "orderInSection": 17
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 20,
+      "sectionId": "new_hsk__1__topic__20__dong-tu",
+      "sectionSlug": "dong-tu",
       "sectionTitle": "Động từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dong-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dong-tu/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -168,7 +169,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

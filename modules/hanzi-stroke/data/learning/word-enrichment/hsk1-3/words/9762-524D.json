@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:面前",
   "type": "word",
   "word": "面前",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "miàn qián",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trước mặt",
+      "meaningShortVi": "trước mặt",
+      "meaningFullVi": "trước mặt",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trước mặt",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -47,36 +48,59 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "面前人",
-        "pinyin": "",
-        "meaningVi": "người trước mặt",
+        "text": "面前",
+        "pinyin": "miàn qián",
+        "meaningVi": "trước mặt",
+        "meaningFullVi": "trước mặt",
         "target": "面前",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
+      },
+      {
+        "text": "面前人",
+        "pinyin": "miàn qián rén",
+        "meaningVi": "người trước mặt",
+        "meaningFullVi": "người trước mặt",
+        "target": "面前",
+        "source": "hsk_2.json",
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "面前",
       "chinese": "在我面前",
-      "pinyin": "",
+      "pinyin": "zài wǒ miàn qián",
       "meaningVi": "Trước mặt tôi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "面前",
       "chinese": "摆在面前",
-      "pinyin": "",
+      "pinyin": "bǎi zài miàn qián",
       "meaningVi": "Đặt trước mặt",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 面前",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/面前.mp3"
   ],
@@ -85,21 +109,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__2__topic__6__huong",
+      "sectionSlug": "huong",
       "sectionTitle": "Hướng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/huong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/huong/",
+      "orderInSection": 13
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__3__lesson__14__bai-14-this-book-is-checked-out",
+      "sectionSlug": "bai-14-this-book-is-checked-out",
       "sectionTitle": "Cuốn sách này bị người khác mượn mất rồi",
       "sectionTitleZh": "这本书被别人借走了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-14-this-book-is-checked-out/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-14-this-book-is-checked-out/",
+      "orderInSection": 17
     }
   ],
   "sources": [
@@ -115,7 +149,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:传播",
   "type": "word",
   "word": "传播",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "chuán bò",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "truyền bá",
+      "meaningShortVi": "truyền bá",
+      "meaningFullVi": "truyền bá",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "truyền bá",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "指广泛散布、传扬。可用于信息、知识、文化，也可用于疾病传播。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "传播知识",
-        "pinyin": "",
+        "pinyin": "chuán bò zhī shi",
         "meaningVi": "truyền bá tri thức",
+        "meaningFullVi": "truyền bá tri thức",
         "target": "传播",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "传播消息",
-        "pinyin": "",
+        "pinyin": "chuán bò xiāo xi",
         "meaningVi": "truyền tin tức",
+        "meaningFullVi": "truyền tin tức",
         "target": "传播",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "传播",
       "chinese": "新闻传播得很快。",
-      "pinyin": "",
+      "pinyin": "xīn wén chuán bò děi hěn kuài。",
       "meaningVi": "Tin tức được truyền bá rất nhanh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "传播",
-      "chinese": "这种疾病通过空气传播。",
-      "pinyin": "",
-      "meaningVi": "Loại bệnh này lây qua đường không khí.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 传播",
-      "syntax": "động từ",
-      "matchedExample": "指广泛散布、传扬。可用于信息、知识、文化，也可用于疾病传播。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 传播",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "指广泛散布、传扬。可用于信息、知识、文化，也可用于疾病传播。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__3__topic__18__thong-tin-va-phuong-tien",
+      "sectionSlug": "thong-tin-va-phuong-tien",
       "sectionTitle": "Thông tin và phương tiện",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

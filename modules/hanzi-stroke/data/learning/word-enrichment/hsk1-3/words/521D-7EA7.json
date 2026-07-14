@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:初级",
   "type": "word",
   "word": "初级",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "chū jí",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sơ cấp",
+      "meaningShortVi": "sơ cấp",
+      "meaningFullVi": "sơ cấp",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sơ cấp",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "Dùng cho trình độ học tập, thi cử. '初级' < '中级' < '高级' (sơ cấp - trung cấp - cao cấp)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -48,58 +47,57 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "初级阶段",
-        "pinyin": "",
-        "meaningVi": "giai đoạn sơ cấp",
-        "target": "初级",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "初级水平",
-        "pinyin": "",
+        "pinyin": "chū jí shuǐ píng",
         "meaningVi": "trình độ sơ cấp",
+        "meaningFullVi": "trình độ sơ cấp",
         "target": "初级",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "初级中学",
-        "pinyin": "",
+        "pinyin": "chū jí zhōng xué",
         "meaningVi": "trung học cơ sở",
+        "meaningFullVi": "trung học cơ sở",
         "target": "初级",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "初级",
       "chinese": "这是一本初级汉语教材。",
-      "pinyin": "",
+      "pinyin": "zhè shì yī běn chū jí hàn yǔ jiào cái。",
       "meaningVi": "Đây là sách giáo trình tiếng Trung sơ cấp.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "初级",
       "chinese": "他通过了初级考试。",
-      "pinyin": "",
+      "pinyin": "tā tōng guò le chū jí kǎo shì。",
       "meaningVi": "Anh ấy đã vượt qua kỳ thi sơ cấp.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 初级",
-      "syntax": "tính từ",
-      "matchedExample": "Dùng cho trình độ học tập, thi cử. '初级' < '中级' < '高级' (sơ cấp - trung cấp - cao cấp).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 初级",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "Dùng cho trình độ học tập, thi cử. '初级' < '中级' < '高级' (sơ cấp - trung cấp - cao cấp).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -110,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 21,
+      "sectionId": "new_hsk__3__topic__21__phan-bo",
+      "sectionSlug": "phan-bo",
       "sectionTitle": "Phân bổ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/phan-bo/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/phan-bo/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -125,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

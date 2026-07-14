@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:不管",
   "type": "word",
   "word": "不管",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "bù guǎn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bất kể, dù cho, không quản",
+      "meaningShortVi": "bất kể",
+      "meaningFullVi": "bất kể, dù cho, không quản",
       "partOfSpeech": "liên từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bất kể",
   "wordType": "liên từ",
   "wordTypes": [
     "liên từ"
   ],
-  "usageNotes": [
-    "Liên từ khẩu ngữ chỉ sự không phân biệt điều kiện. không = không, quản = quản để/quan tâm. Thường đi với đều/đều hoặc ai/bá/cái để chỉ kết quả không thay đổi. Đồng nghĩa với 无论 nhưng kém trang trọng hơn."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,19 +48,24 @@
         "text": "不管怎样",
         "pinyin": "bùguǎn zěnyàng",
         "meaningVi": "bất kể thế nào",
+        "meaningFullVi": "bất kể thế nào",
         "target": "不管",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不管是谁",
         "pinyin": "bùguǎn shì shéi",
         "meaningVi": "bất kể là ai",
+        "meaningFullVi": "bất kể là ai",
         "target": "不管",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +75,8 @@
       "meaningVi": "Bất kể muộn thế nào, tôi cũng phải về nhà.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不管",
@@ -80,16 +85,17 @@
       "meaningVi": "Dù bạn có đi hay không, tôi đều phải đi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 不管",
-      "syntax": "liên từ",
-      "matchedExample": "Liên từ khẩu ngữ chỉ sự không phân biệt điều kiện. không = không, quản = quản để/quan tâm. Thường đi với đều/đều hoặc ai/bá/cái để chỉ kết quả không thay đổi. Đồng nghĩa với 无论 nhưng kém trang trọng hơn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 不管",
+      "partOfSpeech": "liên từ",
+      "usageNoteVi": "Liên từ khẩu ngữ chỉ sự không phân biệt điều kiện. không = không, quản = quản để/quan tâm. Thường đi với đều/đều hoặc ai/bá/cái để chỉ kết quả không thay đổi. Đồng nghĩa với 无论 nhưng kém trang trọng hơn.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

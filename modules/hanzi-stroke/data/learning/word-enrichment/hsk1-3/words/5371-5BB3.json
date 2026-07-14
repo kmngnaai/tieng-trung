@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:危害",
   "type": "word",
   "word": "危害",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wēi hài",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "gây hại, tổn hại",
+      "meaningShortVi": "gây hại",
+      "meaningFullVi": "gây hại, tổn hại",
       "partOfSpeech": "động từ/danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "gây hại",
   "wordType": "động từ/danh từ",
   "wordTypes": [
     "động từ/danh từ"
   ],
-  "usageNotes": [
-    "Dùng cho hành động hoặc vật gây hại. Khác với '危险' (nguy hiểm) — '危害' thiên về tác động gây hại."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,36 @@
     "collocations": [
       {
         "text": "危害健康",
-        "pinyin": "",
+        "pinyin": "wēi hài jiàn kāng",
         "meaningVi": "gây hại sức khỏe",
+        "meaningFullVi": "gây hại sức khỏe",
         "target": "危害",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "严重危害",
-        "pinyin": "",
-        "meaningVi": "gây hại nghiêm trọng",
-        "target": "危害",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "危害",
-      "chinese": "吸烟危害健康。",
-      "pinyin": "",
-      "meaningVi": "Hút thuốc lá gây hại cho sức khỏe.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "危害",
       "chinese": "这种行为对社会有危害。",
-      "pinyin": "",
+      "pinyin": "zhè zhǒng xíng wéi duì shè huì yǒu wēi hài。",
       "meaningVi": "Hành vi này gây hại cho xã hội.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 危害",
-      "syntax": "động từ/danh từ",
-      "matchedExample": "Dùng cho hành động hoặc vật gây hại. Khác với '危险' (nguy hiểm) — '危害' thiên về tác động gây hại.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 危害",
+      "partOfSpeech": "động từ/danh từ",
+      "usageNoteVi": "Dùng cho hành động hoặc vật gây hại. Khác với '危险' (nguy hiểm) — '危害' thiên về tác động gây hại.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 25,
+      "sectionId": "new_hsk__3__topic__25__truong-hop",
+      "sectionSlug": "truong-hop",
       "sectionTitle": "Trường hợp",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/truong-hop/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/truong-hop/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -117,7 +108,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

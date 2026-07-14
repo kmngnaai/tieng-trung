@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:中国",
   "type": "word",
   "word": "中国",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "Zhōng guó",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Trung Quốc (nước Trung Hoa)",
+      "meaningShortVi": "Trung Quốc (nước Trung Hoa)",
+      "meaningFullVi": "Trung Quốc (nước Trung Hoa)",
       "partOfSpeech": "proper-noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Trung Quốc (nước Trung Hoa)",
   "wordType": "proper-noun",
   "wordTypes": [
     "proper-noun"
-  ],
-  "usageNotes": [
-    "Tên riêng, chỉ quốc gia Trung Hoa. Trong tiếng Trung cũng gọi là 华夏, 中华. Trong Hán-Việt, 中国 mang nghĩa 'Trung Quốc'."
-  ],
-  "wordTypeExplanations": [
-    "Tên riêng: 中 (giữa, trung tâm) + 国 (nước) → nước ở trung tâm, nước Trung Hoa."
   ],
   "hsk": {
     "levels": [
@@ -52,13 +49,11 @@
       {
         "word": "中国人",
         "pinyin": "zhōng guó rén",
-        "meaningVi": "Người Trung Quốc, người nước Trung Hoa",
+        "meaningVi": "Người Trung Quốc",
+        "meaningFullVi": "Người Trung Quốc, người nước Trung Hoa",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
@@ -66,35 +61,44 @@
         "text": "中国人",
         "pinyin": "Zhōngguórén",
         "meaningVi": "người Trung Quốc",
+        "meaningFullVi": "người Trung Quốc",
         "target": "中国",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "中国菜",
         "pinyin": "Zhōngguó cài",
         "meaningVi": "món Trung Quốc",
+        "meaningFullVi": "món Trung Quốc",
         "target": "中国",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "中国话",
         "pinyin": "Zhōngguó huà",
         "meaningVi": "tiếng Trung Quốc",
+        "meaningFullVi": "tiếng Trung Quốc",
         "target": "中国",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "中国文化",
         "pinyin": "Zhōngguó wénhuà",
         "meaningVi": "văn hóa Trung Quốc",
+        "meaningFullVi": "văn hóa Trung Quốc",
         "target": "中国",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -104,7 +108,8 @@
       "meaningVi": "Tôi đến từ Trung Quốc",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "中国",
@@ -113,7 +118,8 @@
       "meaningVi": "Trung Quốc rất lớn",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "中国",
@@ -122,7 +128,8 @@
       "meaningVi": "Chúng tôi là người Trung Quốc",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "中国",
@@ -131,23 +138,17 @@
       "meaningVi": "Món Trung Quốc rất ngon",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 中国",
-      "syntax": "proper-noun",
-      "matchedExample": "Tên riêng, chỉ quốc gia Trung Hoa. Trong tiếng Trung cũng gọi là 华夏, 中华. Trong Hán-Việt, 中国 mang nghĩa 'Trung Quốc'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "proper-noun",
-      "matchedExample": "Tên riêng: 中 (giữa, trung tâm) + 国 (nước) → nước ở trung tâm, nước Trung Hoa.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 中国",
+      "partOfSpeech": "proper-noun",
+      "usageNoteVi": "Tên riêng, chỉ quốc gia Trung Hoa. Trong tiếng Trung cũng gọi là 华夏, 中华. Trong Hán-Việt, 中国 mang nghĩa 'Trung Quốc'.",
+      "explanationVi": "Tên riêng: 中 (giữa, trung tâm) + 国 (nước) → nước ở trung tâm, nước Trung Hoa.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -158,21 +159,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__1__lesson__3__bai-3-i-m-chinese",
+      "sectionSlug": "bai-3-i-m-chinese",
       "sectionTitle": "Tôi là người Trung Quốc",
       "sectionTitleZh": "我是中国人",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-3-i-m-chinese/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-3-i-m-chinese/",
+      "orderInSection": 21
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__1__topic__18__dia-ly",
+      "sectionSlug": "dia-ly",
       "sectionTitle": "Địa lý",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dia-ly/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dia-ly/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -188,7 +199,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

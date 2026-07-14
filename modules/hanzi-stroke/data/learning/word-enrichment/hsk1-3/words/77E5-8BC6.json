@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:知识",
   "type": "word",
   "word": "知识",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhī shi",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "kiến thức",
+      "meaningShortVi": "kiến thức",
+      "meaningFullVi": "kiến thức",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "kiến thức",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "知识 chỉ những điều đã biết, đã học được."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,13 +49,11 @@
       {
         "word": "知识分子",
         "pinyin": "zhī shì fèn zǐ",
-        "meaningVi": "trí thức, người có trình độ học vấn cao",
+        "meaningVi": "trí thức",
+        "meaningFullVi": "trí thức, người có trình độ học vấn cao",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          3
-        ],
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 3",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
@@ -64,19 +61,24 @@
         "text": "学知识",
         "pinyin": "xué zhīshi",
         "meaningVi": "học kiến thức",
+        "meaningFullVi": "học kiến thức",
         "target": "知识",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "丰富知识",
         "pinyin": "fēngfù zhīshi",
         "meaningVi": "kiến thức phong phú",
+        "meaningFullVi": "kiến thức phong phú",
         "target": "知识",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -86,7 +88,8 @@
       "meaningVi": "Đọc sách có thể tăng kiến thức.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "知识",
@@ -95,7 +98,8 @@
       "meaningVi": "Anh ấy có nhiều kiến thức.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "知识",
@@ -104,16 +108,17 @@
       "meaningVi": "Học tiếng Trung có thể đạt được nhiều kiến thức.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 知识",
-      "syntax": "compound-semantic",
-      "matchedExample": "知识 chỉ những điều đã biết, đã học được.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 知识",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "知识 chỉ những điều đã biết, đã học được.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -124,11 +129,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__1__topic__6__trong-lop",
+      "sectionSlug": "trong-lop",
       "sectionTitle": "Trong lớp",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/trong-lop/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/trong-lop/",
+      "orderInSection": 20
     }
   ],
   "sources": [
@@ -144,7 +154,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

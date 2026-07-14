@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:基础",
   "type": "word",
   "word": "基础",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jī chǔ",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nền tảng, cơ sở; cơ bản",
+      "meaningShortVi": "nền tảng",
+      "meaningFullVi": "nền tảng, cơ sở; cơ bản",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nền tảng",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Jī chǔ dùng cho nền tảng, cơ sở của sự vật hoặc hoạt động. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,49 +49,56 @@
     "collocations": [
       {
         "text": "打好基础",
-        "pinyin": "",
+        "pinyin": "dǎ hǎo jī chǔ",
         "meaningVi": "nắm vững nền tảng",
+        "meaningFullVi": "nắm vững nền tảng",
         "target": "基础",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "基础设施",
-        "pinyin": "",
+        "pinyin": "jī chǔ shè shī",
         "meaningVi": "cơ sở hạ tầng",
+        "meaningFullVi": "cơ sở hạ tầng",
         "target": "基础",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "基础",
       "chinese": "学习外语需要打好基础。",
-      "pinyin": "",
+      "pinyin": "xué xí wài yǔ xū yào dǎ hǎo jī chǔ。",
       "meaningVi": "Học ngoại ngữ cần phải nắm vững nền tảng.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "基础",
       "chinese": "这是我们合作的基础。",
-      "pinyin": "",
+      "pinyin": "zhè shì wǒ men hé zuò de jī chǔ。",
       "meaningVi": "Đây là nền tảng hợp tác của chúng ta.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 基础",
-      "syntax": "danh từ",
-      "matchedExample": "Jī chǔ dùng cho nền tảng, cơ sở của sự vật hoặc hoạt động. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 基础",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Jī chǔ dùng cho nền tảng, cơ sở của sự vật hoặc hoạt động. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 32,
+      "sectionId": "new_hsk__3__topic__32__dac-diem",
+      "sectionSlug": "dac-diem",
       "sectionTitle": "Đặc điểm",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

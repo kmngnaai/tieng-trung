@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:延长",
   "type": "word",
   "word": "延长",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yán cháng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "kéo dài thời gian hoặc khoảng cách, làm dài thêm",
+      "meaningShortVi": "kéo dài thời gian hoặc khoảng cách",
+      "meaningFullVi": "kéo dài thời gian hoặc khoảng cách, làm dài thêm",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "kéo dài thời gian hoặc khoảng cách",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "延长 chỉ hành động làm dài thêm thời gian hoặc khoảng cách. Thường dùng cho hợp đồng, kỳ hạn, thời gian, đường đi. Hán-Việt 'diên' còn có trong 'diên trì' (trì hoãn)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,40 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "延长合同",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "延长",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "延长时间",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "延长",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "延长假期",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "延长",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "延长有效期",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "延长",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -87,7 +54,8 @@
       "meaningVi": "Cuộc họp kéo dài thêm một tiếng.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "延长",
@@ -96,7 +64,8 @@
       "meaningVi": "Chúng tôi cần gia hạn hợp đồng.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "延长",
@@ -105,16 +74,17 @@
       "meaningVi": "Con đường này kéo dài ra đến biển.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 延长",
-      "syntax": "compound-semantic",
-      "matchedExample": "延长 chỉ hành động làm dài thêm thời gian hoặc khoảng cách. Thường dùng cho hợp đồng, kỳ hạn, thời gian, đường đi. Hán-Việt 'diên' còn có trong 'diên trì' (trì hoãn).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 延长",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "延长 chỉ hành động làm dài thêm thời gian hoặc khoảng cách. Thường dùng cho hợp đồng, kỳ hạn, thời gian, đường đi. Hán-Việt 'diên' còn có trong 'diên trì' (trì hoãn).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -129,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

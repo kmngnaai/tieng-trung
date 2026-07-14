@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:确实",
   "type": "word",
   "word": "确实",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "què shí",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thực sự, quả thực, chính xác",
+      "meaningShortVi": "thực sự",
+      "meaningFullVi": "thực sự, quả thực, chính xác",
       "partOfSpeech": "tính từ / trạng từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thực sự",
   "wordType": "tính từ / trạng từ",
   "wordTypes": [
     "tính từ / trạng từ"
   ],
-  "usageNotes": [
-    "用来强调事情的真实性或准确性。可作定语（确实的消息）或状语（确实知道）。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -49,50 +48,47 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "确实如此",
-        "pinyin": "",
-        "meaningVi": "thật là vậy, quả thật",
-        "target": "确实",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "确实可靠",
-        "pinyin": "",
+        "pinyin": "què shí kě kào",
         "meaningVi": "thực sự đáng tin",
+        "meaningFullVi": "thực sự đáng tin",
         "target": "确实",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "确实",
       "chinese": "这个消息确实可靠。",
-      "pinyin": "",
+      "pinyin": "zhè ge xiāo xi què shí kě kào。",
       "meaningVi": "Tin tức này thực sự đáng tin cậy.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "确实",
       "chinese": "他确实很努力。",
-      "pinyin": "",
+      "pinyin": "tā què shí hěn nǔ lì。",
       "meaningVi": "Anh ấy thực sự rất努力.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 确实",
-      "syntax": "tính từ / trạng từ",
-      "matchedExample": "用来强调事情的真实性或准确性。可作定语（确实的消息）或状语（确实知道）。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 确实",
+      "partOfSpeech": "tính từ / trạng từ",
+      "usageNoteVi": "用来强调事情的真实性或准确性。可作定语（确实的消息）或状语（确实知道）。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +99,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__3__topic__18__thong-tin-va-phuong-tien",
+      "sectionSlug": "thong-tin-va-phuong-tien",
       "sectionTitle": "Thông tin và phương tiện",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -123,7 +124,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

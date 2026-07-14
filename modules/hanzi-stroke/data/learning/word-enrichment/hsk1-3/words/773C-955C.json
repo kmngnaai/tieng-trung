@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:眼镜",
   "type": "word",
   "word": "眼镜",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yǎn jìng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "kính (mắt)",
+      "meaningShortVi": "kính (mắt)",
+      "meaningFullVi": "kính (mắt)",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "kính (mắt)",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Kính (mắt). Trong tiếng Trung, 测 lượng từ cho kính là 副 (phó). 子 là hậu tố danh từ."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,16 +45,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 眼镜",
-      "syntax": "danh từ",
-      "matchedExample": "Kính (mắt). Trong tiếng Trung, 测 lượng từ cho kính là 副 (phó). 子 là hậu tố danh từ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 眼镜",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Kính (mắt). Trong tiếng Trung, 测 lượng từ cho kính là 副 (phó). 子 là hậu tố danh từ.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -66,11 +66,16 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 6,
+      "sectionId": "hsk__3__lesson__6__bai-6-sao-dot-nhien-khong-tim-thay",
+      "sectionSlug": "bai-6-sao-dot-nhien-khong-tim-thay",
       "sectionTitle": "Sao đột nhiên không tìm thấy?",
       "sectionTitleZh": "怎么突然找不到了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-6-sao-dot-nhien-khong-tim-thay/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-6-sao-dot-nhien-khong-tim-thay/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -81,9 +86,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": [
-      "Chưa có câu chứa nguyên từ"
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
     ]
   }
 }

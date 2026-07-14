@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:体验",
   "type": "word",
   "word": "体验",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "tǐ yàn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trải nghiệm",
+      "meaningShortVi": "trải nghiệm",
+      "meaningFullVi": "trải nghiệm",
       "partOfSpeech": "động từ/danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trải nghiệm",
   "wordType": "động từ/danh từ",
   "wordTypes": [
     "động từ/danh từ"
   ],
-  "usageNotes": [
-    "Có thể là động từ (trải qua) hoặc danh từ (trải nghiệm đã qua)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "体验生活",
-        "pinyin": "",
+        "pinyin": "tǐ yàn shēng huó",
         "meaningVi": "trải nghiệm cuộc sống",
+        "meaningFullVi": "trải nghiệm cuộc sống",
         "target": "体验",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "新体验",
-        "pinyin": "",
+        "pinyin": "xīn tǐ yàn",
         "meaningVi": "trải nghiệm mới",
+        "meaningFullVi": "trải nghiệm mới",
         "target": "体验",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "体验",
       "chinese": "我想体验一下中国文化。",
-      "pinyin": "",
+      "pinyin": "wǒ xiǎng tǐ yàn yī xià Zhōng guó wén huà。",
       "meaningVi": "Tôi muốn trải nghiệm văn hóa Trung Quốc.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "体验",
       "chinese": "这是一次难忘的体验。",
-      "pinyin": "",
+      "pinyin": "zhè shì yī cì nán wàng de tǐ yàn。",
       "meaningVi": "Đây là một trải nghiệm khó quên.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 体验",
-      "syntax": "động từ/danh từ",
-      "matchedExample": "Có thể là động từ (trải qua) hoặc danh từ (trải nghiệm đã qua).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 体验",
+      "partOfSpeech": "động từ/danh từ",
+      "usageNoteVi": "Có thể là động từ (trải qua) hoặc danh từ (trải nghiệm đã qua).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 26,
+      "sectionId": "new_hsk__3__topic__26__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

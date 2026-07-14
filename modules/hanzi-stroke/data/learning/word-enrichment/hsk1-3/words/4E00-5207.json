@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:一切",
   "type": "word",
   "word": "一切",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yī qiè",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tất cả; mọi thứ; toàn bộ",
+      "meaningShortVi": "tất cả",
+      "meaningFullVi": "tất cả; mọi thứ; toàn bộ",
       "partOfSpeech": "đại từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tất cả",
   "wordType": "đại từ",
   "wordTypes": [
     "đại từ"
   ],
-  "usageNotes": [
-    "Dùng để chỉ tổng thể, bao gồm tất cả. Trang trọng hơn '所有'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -51,20 +50,25 @@
       {
         "text": "一切事物",
         "pinyin": "yíqiè shìwù",
-        "meaningVi": "mọi sự, mọi vật",
+        "meaningVi": "mọi sự",
+        "meaningFullVi": "mọi sự, mọi vật",
         "target": "一切",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "一切顺利",
         "pinyin": "yíqiè shùnlì",
         "meaningVi": "mọi sự suôn sẻ",
+        "meaningFullVi": "mọi sự suôn sẻ",
         "target": "一切",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Mọi thứ đều sẽ tốt lên.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "一切",
@@ -83,16 +88,17 @@
       "meaningVi": "Vì con trẻ, cô ấy sẵn sàng hy sinh tất cả.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 一切",
-      "syntax": "đại từ",
-      "matchedExample": "Dùng để chỉ tổng thể, bao gồm tất cả. Trang trọng hơn '所有'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 一切",
+      "partOfSpeech": "đại từ",
+      "usageNoteVi": "Dùng để chỉ tổng thể, bao gồm tất cả. Trang trọng hơn '所有'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 30,
+      "sectionId": "new_hsk__3__topic__30__do-luong-cac-tu-va-dai-tu",
+      "sectionSlug": "do-luong-cac-tu-va-dai-tu",
       "sectionTitle": "Đo lường các từ và đại từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/do-luong-cac-tu-va-dai-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/do-luong-cac-tu-va-dai-tu/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

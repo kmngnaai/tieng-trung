@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:校长",
   "type": "word",
   "word": "校长",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "xiào zhǎng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hiệu trưởng",
+      "meaningShortVi": "hiệu trưởng",
+      "meaningFullVi": "hiệu trưởng",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hiệu trưởng",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -49,43 +50,58 @@
     "collocations": [
       {
         "text": "副校长",
-        "pinyin": "",
+        "pinyin": "fù xiào zhǎng",
         "meaningVi": "phó hiệu trưởng",
+        "meaningFullVi": "phó hiệu trưởng",
         "target": "校长",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "大学校长",
-        "pinyin": "",
+        "pinyin": "dà xué xiào zhǎng",
         "meaningVi": "hiệu trưởng đại học",
+        "meaningFullVi": "hiệu trưởng đại học",
         "target": "校长",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "校长",
       "chinese": "校长在讲话",
-      "pinyin": "",
+      "pinyin": "xiào zhǎng zài jiǎng huà",
       "meaningVi": "Hiệu trưởng đang phát biểu",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "校长",
       "chinese": "这是我们学校的校长",
-      "pinyin": "",
+      "pinyin": "zhè shì wǒ men xué xiào de xiào zhǎng",
       "meaningVi": "Đây là hiệu trưởng trường chúng tôi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 校长",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/校长.mp3"
   ],
@@ -94,31 +110,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__2__topic__13__cong-viec",
+      "sectionSlug": "cong-viec",
       "sectionTitle": "Công việc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/cong-viec/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/cong-viec/",
+      "orderInSection": 5
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 13,
+      "sectionId": "hsk__3__lesson__13__bai-13-toi-di-bo-ve",
+      "sectionSlug": "bai-13-toi-di-bo-ve",
       "sectionTitle": "Tôi đi bộ về.",
       "sectionTitleZh": "我是走回来的",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-13-toi-di-bo-ve/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-13-toi-di-bo-ve/",
+      "orderInSection": 13
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__3__lesson__14__bai-14-this-book-is-checked-out",
+      "sectionSlug": "bai-14-this-book-is-checked-out",
       "sectionTitle": "Cuốn sách này bị người khác mượn mất rồi",
       "sectionTitleZh": "这本书被别人借走了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-14-this-book-is-checked-out/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-14-this-book-is-checked-out/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -134,7 +165,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:冰箱",
   "type": "word",
   "word": "冰箱",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "bīng xiāng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tủ lạnh",
+      "meaningShortVi": "tủ lạnh",
+      "meaningFullVi": "tủ lạnh",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tủ lạnh",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -49,21 +50,26 @@
     "collocations": [
       {
         "text": "这个冰箱",
-        "pinyin": "",
+        "pinyin": "zhè ge bīng xiāng",
         "meaningVi": "cái tủ lạnh này",
+        "meaningFullVi": "cái tủ lạnh này",
         "target": "冰箱",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "那个冰箱",
-        "pinyin": "",
+        "pinyin": "nà ge bīng xiāng",
         "meaningVi": "cái tủ lạnh kia",
+        "meaningFullVi": "cái tủ lạnh kia",
         "target": "冰箱",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +79,8 @@
       "meaningVi": "Trong tủ lạnh có đồ uống.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "冰箱",
@@ -82,10 +89,19 @@
       "meaningVi": "Để phần thức ăn thừa vào tủ lạnh.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 冰箱",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/冰箱.mp3"
   ],
@@ -94,21 +110,31 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 14,
+      "sectionId": "hsk__3__lesson__14__bai-14-ban-mang-hoa-qua-qua-day",
+      "sectionSlug": "bai-14-ban-mang-hoa-qua-qua-day",
       "sectionTitle": "Bạn mang hoa quả qua đây.",
       "sectionTitleZh": "你把水果拿过来",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-14-ban-mang-hoa-qua-qua-day/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-14-ban-mang-hoa-qua-qua-day/",
+      "orderInSection": 4
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__3__lesson__3__bai-3-this-neighborhood-is-pretty-nice",
+      "sectionSlug": "bai-3-this-neighborhood-is-pretty-nice",
       "sectionTitle": "Khu chung cư này khá đẹp",
       "sectionTitleZh": "这个小区挺好的",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-3-this-neighborhood-is-pretty-nice/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-3-this-neighborhood-is-pretty-nice/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -124,7 +150,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

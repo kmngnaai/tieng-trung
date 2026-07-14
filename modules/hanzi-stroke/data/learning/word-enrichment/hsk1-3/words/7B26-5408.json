@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:符合",
   "type": "word",
   "word": "符合",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fú hé",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phù hợp, đúng với",
+      "meaningShortVi": "phù hợp",
+      "meaningFullVi": "phù hợp, đúng với",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phù hợp",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Động từ chỉ sự tương thích, thỏa mãn điều kiện nào đó. Phổ biến trong bối cảnh công việc, học tập."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,60 +43,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "符合要求",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "符合",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "符合标准",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "符合",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "符合实际",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "符合",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "符合",
-      "chinese": "这个计划符合我们的要求。",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "符合",
-      "chinese": "他的表现符合预期。",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 符合",
-      "syntax": "động từ",
-      "matchedExample": "Động từ chỉ sự tương thích, thỏa mãn điều kiện nào đó. Phổ biến trong bối cảnh công việc, học tập.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 符合",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Động từ chỉ sự tương thích, thỏa mãn điều kiện nào đó. Phổ biến trong bối cảnh công việc, học tập.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -112,7 +68,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

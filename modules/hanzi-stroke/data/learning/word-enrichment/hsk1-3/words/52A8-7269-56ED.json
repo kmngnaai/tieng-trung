@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:动物园",
   "type": "word",
   "word": "动物园",
@@ -16,24 +16,25 @@
     "readings": [
       {
         "pinyin": "dòng wù yuán",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sở thú",
+      "meaningShortVi": "sở thú",
+      "meaningFullVi": "sở thú",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sở thú",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -49,43 +50,58 @@
     "collocations": [
       {
         "text": "去动物园",
-        "pinyin": "",
+        "pinyin": "qù dòng wù yuán",
         "meaningVi": "đi sở thú",
+        "meaningFullVi": "đi sở thú",
         "target": "动物园",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "野生动物园",
-        "pinyin": "",
+        "pinyin": "yě shēng dòng wù yuán",
         "meaningVi": "sở thú hoang dã",
+        "meaningFullVi": "sở thú hoang dã",
         "target": "动物园",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "动物园",
       "chinese": "孩子们喜欢去动物园",
-      "pinyin": "",
+      "pinyin": "hái zi men xǐ huan qù dòng wù yuán",
       "meaningVi": "Trẻ em thích đi sở thú",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "动物园",
       "chinese": "动物园有很多动物",
-      "pinyin": "",
+      "pinyin": "dòng wù yuán yǒu hěn duō dòng wù",
       "meaningVi": "Sở thú có rất nhiều động vật",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 动物园",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/动物园.mp3"
   ],
@@ -94,21 +110,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 22,
+      "sectionId": "new_hsk__2__topic__22__du-lich",
+      "sectionSlug": "du-lich",
       "sectionTitle": "Du lịch",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/du-lich/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/du-lich/",
+      "orderInSection": 17
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__lesson__16__bai-16-i-heard-that-some-pandas-have-gone-abroad",
+      "sectionSlug": "bai-16-i-heard-that-some-pandas-have-gone-abroad",
       "sectionTitle": "Tôi nghe nói có vài con gấu trúc đã ra nước ngoài",
       "sectionTitleZh": "我听说有的熊猫出国了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-16-i-heard-that-some-pandas-have-gone-abroad/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-16-i-heard-that-some-pandas-have-gone-abroad/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -124,7 +150,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

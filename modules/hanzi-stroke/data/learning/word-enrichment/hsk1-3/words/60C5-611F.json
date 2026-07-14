@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:情感",
   "type": "word",
   "word": "情感",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "qíng gǎn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Tình cảm, cảm xúc",
+      "meaningShortVi": "Tình cảm",
+      "meaningFullVi": "Tình cảm, cảm xúc",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Tình cảm",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Danh từ chỉ cảm xúc, tình cảm, hoặc mối quan hệ tình cảm giữa người với người."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,11 +50,14 @@
         "text": "情感问题",
         "pinyin": "qínggǎn wèntí",
         "meaningVi": "vấn đề tình cảm",
+        "meaningFullVi": "vấn đề tình cảm",
         "target": "情感",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -65,7 +67,8 @@
       "meaningVi": "Giữa người với người cần trao đổi tình cảm.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "情感",
@@ -74,7 +77,8 @@
       "meaningVi": "Anh ấy có tình cảm rất sâu sắc với gia đình.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "情感",
@@ -83,16 +87,17 @@
       "meaningVi": "Bài hát này diễn tả cảm xúc phong phú.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 情感",
-      "syntax": "compound-semantic",
-      "matchedExample": "Danh từ chỉ cảm xúc, tình cảm, hoặc mối quan hệ tình cảm giữa người với người.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 情感",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Danh từ chỉ cảm xúc, tình cảm, hoặc mối quan hệ tình cảm giữa người với người.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__3__topic__8__nhung-cam-xuc-va-cam-giac",
+      "sectionSlug": "nhung-cam-xuc-va-cam-giac",
       "sectionTitle": "Những cảm xúc và cảm giác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-cam-xuc-va-cam-giac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-cam-xuc-va-cam-giac/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -118,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

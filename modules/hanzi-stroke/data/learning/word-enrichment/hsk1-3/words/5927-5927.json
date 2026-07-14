@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:大大",
   "type": "word",
   "word": "大大",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "dà dà",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "rất nhiều",
+      "meaningShortVi": "rất nhiều",
+      "meaningFullVi": "rất nhiều",
       "partOfSpeech": "adjective",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "rất nhiều",
   "wordType": "adjective",
   "wordTypes": [
     "adjective"
   ],
-  "usageNotes": [
-    "Lập từ đại đại (lớn lớn) dùng làm phó từ nhấn mạnh"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -48,42 +47,47 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "大大提高",
-        "pinyin": "",
-        "meaningVi": "nâng cao rất nhiều",
+        "text": "大大",
+        "pinyin": "dà dà",
+        "meaningVi": "rất lớn",
+        "meaningFullVi": "rất lớn, rất nhiều",
         "target": "大大",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
+      },
+      {
+        "text": "大大提高",
+        "pinyin": "dà dà tí gāo",
+        "meaningVi": "nâng cao rất nhiều",
+        "meaningFullVi": "nâng cao rất nhiều",
+        "target": "大大",
+        "source": "hsk_2.json",
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "大大",
-      "chinese": "这个问题大大改善",
-      "pinyin": "",
-      "meaningVi": "Vấn đề này được cải thiện rất nhiều",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "大大",
       "chinese": "大大增加",
-      "pinyin": "",
+      "pinyin": "dà dà zēng jiā",
       "meaningVi": "Tăng lên rất nhiều",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 大大",
-      "syntax": "adjective",
-      "matchedExample": "Lập từ đại đại (lớn lớn) dùng làm phó từ nhấn mạnh",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 大大",
+      "partOfSpeech": "adjective",
+      "usageNoteVi": "Lập từ đại đại (lớn lớn) dùng làm phó từ nhấn mạnh",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -94,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__2__topic__11__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/pho-tu/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -109,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

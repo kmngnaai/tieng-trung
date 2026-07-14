@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:昨天",
   "type": "word",
   "word": "昨天",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "zuó tiān",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hôm qua (ngày trước ngày hôm nay)",
+      "meaningShortVi": "hôm qua (ngày trước ngày hôm nay)",
+      "meaningFullVi": "hôm qua (ngày trước ngày hôm nay)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hôm qua (ngày trước ngày hôm nay)",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Danh từ thời gian, chỉ ngày hôm qua. Luôn đứng trước thì动词 (过去时). Phân biệt với 前天 (ngày kia), 大前天 (ngày kia nữa)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 昨 (hôm qua, vừa rồi) + 天 (ngày) → ngày hôm qua."
   ],
   "hsk": {
     "levels": [
@@ -55,35 +52,44 @@
         "text": "昨天晚上",
         "pinyin": "zuótiān wǎnshang",
         "meaningVi": "đêm qua",
+        "meaningFullVi": "đêm qua",
         "target": "昨天",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "昨天早上",
         "pinyin": "zuótiān zǎoshang",
         "meaningVi": "sáng hôm qua",
+        "meaningFullVi": "sáng hôm qua",
         "target": "昨天",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "昨天下午",
         "pinyin": "zuótiān xiàwǔ",
         "meaningVi": "chiều hôm qua",
+        "meaningFullVi": "chiều hôm qua",
         "target": "昨天",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "昨天中午",
         "pinyin": "zuótiān zhōngwǔ",
         "meaningVi": "trưa hôm qua",
+        "meaningFullVi": "trưa hôm qua",
         "target": "昨天",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -93,7 +99,8 @@
       "meaningVi": "Hôm qua tôi đi cửa hàng",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "昨天",
@@ -102,7 +109,8 @@
       "meaningVi": "Hôm qua bạn đã làm gì?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "昨天",
@@ -111,7 +119,8 @@
       "meaningVi": "Hôm qua rất lạnh",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "昨天",
@@ -120,23 +129,17 @@
       "meaningVi": "Hôm qua tôi không gặp được anh ấy",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 昨天",
-      "syntax": "compound-semantic",
-      "matchedExample": "Danh từ thời gian, chỉ ngày hôm qua. Luôn đứng trước thì动词 (过去时). Phân biệt với 前天 (ngày kia), 大前天 (ngày kia nữa).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 昨 (hôm qua, vừa rồi) + 天 (ngày) → ngày hôm qua.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 昨天",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Danh từ thời gian, chỉ ngày hôm qua. Luôn đứng trước thì动词 (过去时). Phân biệt với 前天 (ngày kia), 大前天 (ngày kia nữa).",
+      "explanationVi": "Ghép nghĩa: 昨 (hôm qua, vừa rồi) + 天 (ngày) → ngày hôm qua.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -147,31 +150,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 7,
+      "sectionId": "hsk__1__lesson__7__bai-7-hom-nay-la-ngay-may",
+      "sectionSlug": "bai-7-hom-nay-la-ngay-may",
       "sectionTitle": "Hôm nay là ngày mấy?",
       "sectionTitleZh": "今天几号",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-7-hom-nay-la-ngay-may/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-7-hom-nay-la-ngay-may/",
+      "orderInSection": 7
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__1__lesson__11__bai-11-i-m-studying-at-university",
+      "sectionSlug": "bai-11-i-m-studying-at-university",
       "sectionTitle": "Tôi đang học đại học",
       "sectionTitleZh": "我读大学呢",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-11-i-m-studying-at-university/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-11-i-m-studying-at-university/",
+      "orderInSection": 24
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 15,
+      "sectionId": "new_hsk__1__topic__15__lich",
+      "sectionSlug": "lich",
       "sectionTitle": "Lịch",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/lich/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/lich/",
+      "orderInSection": 19
     }
   ],
   "sources": [
@@ -187,7 +205,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

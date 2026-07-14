@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:上课",
   "type": "word",
   "word": "上课",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shàng kè",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "vào lớp, lên lớp",
+      "meaningShortVi": "vào lớp",
+      "meaningFullVi": "vào lớp, lên lớp",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "vào lớp",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "上课 nghĩa là vào lớp, bắt đầu bài học. Hán-Việt: thượng (lên) + khoá (bài học)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -51,19 +50,14 @@
         "text": "开始上课",
         "pinyin": "kāishǐ shàngkè",
         "meaningVi": "bắt đầu vào lớp",
+        "meaningFullVi": "bắt đầu vào lớp",
         "target": "上课",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "下课",
-        "pinyin": "xiàkè",
-        "meaningVi": "tan học",
-        "target": "上课",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +67,8 @@
       "meaningVi": "Chúng tôi đang trong lớp học.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "上课",
@@ -82,16 +77,17 @@
       "meaningVi": "Mấy giờ vào lớp?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 上课",
-      "syntax": "compound-semantic",
-      "matchedExample": "上课 nghĩa là vào lớp, bắt đầu bài học. Hán-Việt: thượng (lên) + khoá (bài học).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 上课",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "上课 nghĩa là vào lớp, bắt đầu bài học. Hán-Việt: thượng (lên) + khoá (bài học).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,21 +98,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__1__lesson__7__bai-7-i-ll-finish-work-at-6-30-in-the-evening",
+      "sectionSlug": "bai-7-i-ll-finish-work-at-6-30-in-the-evening",
       "sectionTitle": "Tôi tan làm lúc 6 giờ rưỡi tối",
       "sectionTitleZh": "我晚上六点半下班",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-7-i-ll-finish-work-at-6-30-in-the-evening/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-7-i-ll-finish-work-at-6-30-in-the-evening/",
+      "orderInSection": 18
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__1__topic__5__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nghien-cuu/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -127,7 +133,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

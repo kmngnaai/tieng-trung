@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:主持",
   "type": "word",
   "word": "主持",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhǔ chí",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chủ trì, dẫn chương trình; quản lý",
+      "meaningShortVi": "chủ trì",
+      "meaningFullVi": "chủ trì, dẫn chương trình; quản lý",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chủ trì",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "主持 及物动词: 主持节目 (dẫn chương trình), 主持工作 (chủ trì công việc). 搞 (gǎo) + 主持 là slang搞笑. Phân biệt 控制 (kòngzhì - kiểm soát) 强调 quyền lực."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -50,20 +49,25 @@
       {
         "text": "主持人",
         "pinyin": "zhǔchírén",
-        "meaningVi": "người dẫn chương trình/MC",
+        "meaningVi": "người dẫn chương trình",
+        "meaningFullVi": "người dẫn chương trình/MC",
         "target": "主持",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "主持会议",
         "pinyin": "zhǔchí huìyì",
         "meaningVi": "chủ trì cuộc họp",
+        "meaningFullVi": "chủ trì cuộc họp",
         "target": "主持",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Cô ấy chủ trì cuộc họp này rất thành công.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "主持",
@@ -82,16 +87,17 @@
       "meaningVi": "Anh ấy là người dẫn chương trình TV này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 主持",
-      "syntax": "động từ",
-      "matchedExample": "主持 及物动词: 主持节目 (dẫn chương trình), 主持工作 (chủ trì công việc). 搞 (gǎo) + 主持 là slang搞笑. Phân biệt 控制 (kòngzhì - kiểm soát) 强调 quyền lực.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 主持",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "主持 及物动词: 主持节目 (dẫn chương trình), 主持工作 (chủ trì công việc). 搞 (gǎo) + 主持 là slang搞笑. Phân biệt 控制 (kòngzhì - kiểm soát) 强调 quyền lực.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__3__topic__12__lam-viec-toi",
+      "sectionSlug": "lam-viec-toi",
       "sectionTitle": "Làm việc tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

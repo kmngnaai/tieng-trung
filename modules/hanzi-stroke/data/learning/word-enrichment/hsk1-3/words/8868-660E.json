@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:表明",
   "type": "word",
   "word": "表明",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "biǎo míng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bày tỏ; làm rõ; tuyên bố; cho thấy rõ",
+      "meaningShortVi": "bày tỏ",
+      "meaningFullVi": "bày tỏ; làm rõ; tuyên bố; cho thấy rõ",
       "partOfSpeech": "động từ (Declaration Verb)",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bày tỏ",
   "wordType": "động từ (Declaration Verb)",
   "wordTypes": [
     "động từ (Declaration Verb)"
   ],
-  "usageNotes": [
-    "Trang trọng hơn 表现. Dùng trong văn cảnh chính thức: tuyên bố lập trường, kết quả nghiên cứu, thái độ. Thường đi với: 态度 (thái độ), 立场 (lập trường), 观点 (quan điểm). Synonym: 表示 (bày tỏ), 说明 (giải thích)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "表明立场",
         "pinyin": "biǎomíng lìchǎng",
         "meaningVi": "bày tỏ lập trường",
+        "meaningFullVi": "bày tỏ lập trường",
         "target": "表明",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "明确表明",
         "pinyin": "míngquè biǎomíng",
-        "meaningVi": "làm rõ ràng, tuyên bố rõ ràng",
+        "meaningVi": "làm rõ ràng",
+        "meaningFullVi": "làm rõ ràng, tuyên bố rõ ràng",
         "target": "表明",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Anh ấy đã bày tỏ thái độ của mình.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "表明",
@@ -82,16 +87,17 @@
       "meaningVi": "Nghiên cứu cho thấy vận động có lợi cho sức khỏe.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 表明",
-      "syntax": "động từ (Declaration Verb)",
-      "matchedExample": "Trang trọng hơn 表现. Dùng trong văn cảnh chính thức: tuyên bố lập trường, kết quả nghiên cứu, thái độ. Thường đi với: 态度 (thái độ), 立场 (lập trường), 观点 (quan điểm). Synonym: 表示 (bày tỏ), 说明 (giải thích).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 表明",
+      "partOfSpeech": "động từ (Declaration Verb)",
+      "usageNoteVi": "Trang trọng hơn 表现. Dùng trong văn cảnh chính thức: tuyên bố lập trường, kết quả nghiên cứu, thái độ. Thường đi với: 态度 (thái độ), 立场 (lập trường), 观点 (quan điểm). Synonym: 表示 (bày tỏ), 说明 (giải thích).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 29,
+      "sectionId": "new_hsk__3__topic__29__lien-lac",
+      "sectionSlug": "lien-lac",
       "sectionTitle": "Liên lạc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

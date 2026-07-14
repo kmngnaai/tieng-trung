@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:心里",
   "type": "word",
   "word": "心里",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "xīn li",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trong tâm trí",
+      "meaningShortVi": "trong tâm trí",
+      "meaningFullVi": "trong tâm trí",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trong tâm trí",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -48,43 +49,58 @@
     "collocations": [
       {
         "text": "心里想",
-        "pinyin": "",
+        "pinyin": "xīn li xiǎng",
         "meaningVi": "nghĩ trong lòng",
+        "meaningFullVi": "nghĩ trong lòng",
         "target": "心里",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "心里明白",
-        "pinyin": "",
+        "pinyin": "xīn li míng bai",
         "meaningVi": "hiểu trong lòng",
+        "meaningFullVi": "hiểu trong lòng",
         "target": "心里",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "心里",
       "chinese": "我心里很高兴",
-      "pinyin": "",
+      "pinyin": "wǒ xīn li hěn gāo xìng",
       "meaningVi": "Trong lòng tôi rất vui",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "心里",
       "chinese": "把话放在心里",
-      "pinyin": "",
+      "pinyin": "bǎ huà fàng zài xīn li",
       "meaningVi": "Giữ lời nói trong lòng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 心里",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/心里.mp3"
   ],
@@ -93,21 +109,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 20,
+      "sectionId": "new_hsk__2__topic__20__tinh-cam-va-cam-xuc",
+      "sectionSlug": "tinh-cam-va-cam-xuc",
       "sectionTitle": "Tình cảm và cảm xúc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-cam-va-cam-xuc/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-cam-va-cam-xuc/",
+      "orderInSection": 16
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__3__lesson__8__bai-8-today-i-was-discharged-from-the-hospital",
+      "sectionSlug": "bai-8-today-i-was-discharged-from-the-hospital",
       "sectionTitle": "Hôm nay tôi xuất viện",
       "sectionTitleZh": "今天我出院了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-8-today-i-was-discharged-from-the-hospital/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-8-today-i-was-discharged-from-the-hospital/",
+      "orderInSection": 28
     }
   ],
   "sources": [
@@ -123,7 +149,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

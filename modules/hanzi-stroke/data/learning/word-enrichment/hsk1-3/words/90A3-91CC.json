@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:那里",
   "type": "word",
   "word": "那里",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "nà li",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ở đó, chỗ đó",
+      "meaningShortVi": "ở đó",
+      "meaningFullVi": "ở đó, chỗ đó",
       "partOfSpeech": "other",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ở đó",
   "wordType": "other",
   "wordTypes": [
     "other"
   ],
-  "usageNotes": [
-    "那里 là đại từ chỉ nơi ở xa người nói hoặc người nghe."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -51,11 +50,14 @@
         "text": "在那里",
         "pinyin": "zài nàli",
         "meaningVi": "ở đó",
+        "meaningFullVi": "ở đó",
         "target": "那里",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -65,7 +67,8 @@
       "meaningVi": "Ở đó có một ngân hàng.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "那里",
@@ -74,7 +77,8 @@
       "meaningVi": "Tôi sống ở đó.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "那里",
@@ -83,16 +87,17 @@
       "meaningVi": "Đi đến đó như thế nào?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 那里",
-      "syntax": "other",
-      "matchedExample": "那里 là đại từ chỉ nơi ở xa người nói hoặc người nghe.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 那里",
+      "partOfSpeech": "other",
+      "usageNoteVi": "那里 là đại từ chỉ nơi ở xa người nói hoặc người nghe.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,21 +108,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__1__lesson__11__bai-11-i-m-studying-at-university",
+      "sectionSlug": "bai-11-i-m-studying-at-university",
       "sectionTitle": "Tôi đang học đại học",
       "sectionTitleZh": "我读大学呢",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-11-i-m-studying-at-university/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-11-i-m-studying-at-university/",
+      "orderInSection": 9
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__1__topic__10__dai-tu",
+      "sectionSlug": "dai-tu",
       "sectionTitle": "Đại từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dai-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dai-tu/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -128,7 +143,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

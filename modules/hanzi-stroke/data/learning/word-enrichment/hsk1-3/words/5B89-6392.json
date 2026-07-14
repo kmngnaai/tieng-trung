@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:安排",
   "type": "word",
   "word": "安排",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "ān pái",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sắp xếp, bố trí, an bài",
+      "meaningShortVi": "sắp xếp",
+      "meaningFullVi": "sắp xếp, bố trí, an bài",
       "partOfSpeech": "động từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sắp xếp",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Tổ chức, bố trí mọi thứ theo kế hoạch."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -47,60 +46,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "安排工作",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "安排",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "安排时间",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "安排",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "妥善安排",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "安排",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "安排",
-      "chinese": "请安排一下时间。",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_1.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "安排",
-      "chinese": "工作安排",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_1.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 安排",
-      "syntax": "động từ",
-      "matchedExample": "Tổ chức, bố trí mọi thứ theo kế hoạch.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 安排",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Tổ chức, bố trí mọi thứ theo kế hoạch.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -111,11 +67,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 28,
+      "sectionId": "new_hsk__3__topic__28__tu-duy",
+      "sectionSlug": "tu-duy",
       "sectionTitle": "tư duy",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-duy/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-duy/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -131,7 +92,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

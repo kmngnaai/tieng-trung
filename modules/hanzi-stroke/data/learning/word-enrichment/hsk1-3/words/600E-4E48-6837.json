@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:怎么样",
   "type": "word",
   "word": "怎么样",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "zěn me yàng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Thế nào",
+      "meaningShortVi": "Thế nào",
+      "meaningFullVi": "Thế nào",
       "partOfSpeech": "pronoun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Thế nào",
   "wordType": "pronoun",
   "wordTypes": [
     "pronoun"
   ],
-  "usageNotes": [
-    "Đại từ hỏi về tình trạng, cách thức."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -53,49 +52,56 @@
     "collocations": [
       {
         "text": "身体怎么样",
-        "pinyin": "",
+        "pinyin": "shēn tǐ zěn me yàng",
         "meaningVi": "sức khỏe thế nào",
+        "meaningFullVi": "sức khỏe thế nào",
         "target": "怎么样",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "怎么样了",
-        "pinyin": "",
+        "pinyin": "zěn me yàng le",
         "meaningVi": "thế nào rồi",
+        "meaningFullVi": "thế nào rồi",
         "target": "怎么样",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "怎么样",
       "chinese": "你怎么样",
-      "pinyin": "",
+      "pinyin": "nǐ zěn me yàng",
       "meaningVi": "Bạn thế nào",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "怎么样",
       "chinese": "这样怎么样",
-      "pinyin": "",
+      "pinyin": "zhè yàng zěn me yàng",
       "meaningVi": "Làm như thế nào",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 怎么样",
-      "syntax": "pronoun",
-      "matchedExample": "Đại từ hỏi về tình trạng, cách thức.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 怎么样",
+      "partOfSpeech": "pronoun",
+      "usageNoteVi": "Đại từ hỏi về tình trạng, cách thức.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -106,31 +112,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 12,
+      "sectionId": "hsk__1__lesson__12__bai-12-ngay-mai-thoi-tiet-the-nao",
+      "sectionSlug": "bai-12-ngay-mai-thoi-tiet-the-nao",
       "sectionTitle": "Ngày mai thời tiết thế nào?",
       "sectionTitleZh": "明天天气怎么样",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-12-ngay-mai-thoi-tiet-the-nao/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-12-ngay-mai-thoi-tiet-the-nao/",
+      "orderInSection": 2
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__1__lesson__10__bai-10-the-apples-here-are-really-affordable",
+      "sectionSlug": "bai-10-the-apples-here-are-really-affordable",
       "sectionTitle": "Táo ở đây rẻ thật!",
       "sectionTitleZh": "这儿的苹果真便宜！",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-10-the-apples-here-are-really-affordable/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-10-the-apples-here-are-really-affordable/",
+      "orderInSection": 23
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__2__topic__9__tu-chuc-nang",
+      "sectionSlug": "tu-chuc-nang",
       "sectionTitle": "Từ chức năng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-chuc-nang/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-chuc-nang/",
+      "orderInSection": 29
     }
   ],
   "sources": [
@@ -151,7 +172,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

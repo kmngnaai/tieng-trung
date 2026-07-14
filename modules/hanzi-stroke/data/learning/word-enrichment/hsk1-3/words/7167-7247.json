@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:照片",
   "type": "word",
   "word": "照片",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "zhào piàn",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bức ảnh",
+      "meaningShortVi": "bức ảnh",
+      "meaningFullVi": "bức ảnh",
       "partOfSpeech": "noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bức ảnh",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,43 +51,58 @@
     "collocations": [
       {
         "text": "拍照片",
-        "pinyin": "",
+        "pinyin": "pāi zhào piàn",
         "meaningVi": "chụp ảnh",
+        "meaningFullVi": "chụp ảnh",
         "target": "照片",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "照片墙",
-        "pinyin": "",
+        "pinyin": "zhào piàn qiáng",
         "meaningVi": "bức tường ảnh",
+        "meaningFullVi": "bức tường ảnh",
         "target": "照片",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "照片",
       "chinese": "这张照片很漂亮",
-      "pinyin": "",
+      "pinyin": "zhè zhāng zhào piàn hěn piào liang",
       "meaningVi": "Bức ảnh này rất đẹp",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "照片",
       "chinese": "这是我的照片",
-      "pinyin": "",
+      "pinyin": "zhè shì wǒ de zhào piàn",
       "meaningVi": "Đây là bức ảnh của tôi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 照片",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/照片.mp3"
   ],
@@ -95,31 +111,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__2__topic__12__giai-tri",
+      "sectionSlug": "giai-tri",
       "sectionTitle": "Giải trí",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/",
+      "orderInSection": 7
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 4,
+      "sectionId": "hsk__3__lesson__4__bai-4-co-ay-luon-cuoi-noi-voi-khach",
+      "sectionSlug": "bai-4-co-ay-luon-cuoi-noi-voi-khach",
       "sectionTitle": "Cô ấy luôn cười nói với khách.",
       "sectionTitleZh": "她总是笑着跟客人说话",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-4-co-ay-luon-cuoi-noi-voi-khach/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-4-co-ay-luon-cuoi-noi-voi-khach/",
+      "orderInSection": 2
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__3__lesson__1__bai-1-we-will-pick-you-up-at-the-airport",
+      "sectionSlug": "bai-1-we-will-pick-you-up-at-the-airport",
       "sectionTitle": "Chúng tôi ra sân bay đón các bạn",
       "sectionTitleZh": "我们去机场接你们",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-1-we-will-pick-you-up-at-the-airport/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-1-we-will-pick-you-up-at-the-airport/",
+      "orderInSection": 27
     }
   ],
   "sources": [
@@ -140,7 +171,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

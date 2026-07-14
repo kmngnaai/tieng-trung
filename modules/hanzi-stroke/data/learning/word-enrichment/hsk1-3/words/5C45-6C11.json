@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:居民",
   "type": "word",
   "word": "居民",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "jū mín",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cư dân (người sinh sống tại một địa phương)",
+      "meaningShortVi": "cư dân (người sinh sống tại một địa phương)",
+      "meaningFullVi": "cư dân (người sinh sống tại một địa phương)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cư dân (người sinh sống tại một địa phương)",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng để chỉ người sinh sống thường xuyên tại một địa phương. Trong văn bản hành chính, thường dùng 'cư dân' thay vì 'dân' để trang trọng hơn."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 居 (cư trú, ở) + 民 (người dân) = người đang cư trú, sinh sống tại một nơi."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "社区居民",
         "pinyin": "shèqū jūmín",
         "meaningVi": "cư dân cộng đồng",
+        "meaningFullVi": "cư dân cộng đồng",
         "target": "居民",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "城市居民",
         "pinyin": "chéngshì jūmín",
         "meaningVi": "cư dân thành phố",
+        "meaningFullVi": "cư dân thành phố",
         "target": "居民",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "农村居民",
         "pinyin": "nóngcūn jūmín",
         "meaningVi": "cư dân nông thôn",
+        "meaningFullVi": "cư dân nông thôn",
         "target": "居民",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Cư dân ở khu vực này khoảng một vạn người",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "居民",
@@ -90,7 +95,8 @@
       "meaningVi": "Bắc Kinh có rất nhiều cư dân đến từ nơi khác",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "居民",
@@ -99,7 +105,8 @@
       "meaningVi": "Cư dân địa phương đều rất thân thiện",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "居民",
@@ -108,23 +115,17 @@
       "meaningVi": "Môi trường khu dân cư rất tốt",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 居民",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng để chỉ người sinh sống thường xuyên tại một địa phương. Trong văn bản hành chính, thường dùng 'cư dân' thay vì 'dân' để trang trọng hơn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 居 (cư trú, ở) + 民 (người dân) = người đang cư trú, sinh sống tại một nơi.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 居民",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng để chỉ người sinh sống thường xuyên tại một địa phương. Trong văn bản hành chính, thường dùng 'cư dân' thay vì 'dân' để trang trọng hơn.",
+      "explanationVi": "Ghép nghĩa: 居 (cư trú, ở) + 民 (người dân) = người đang cư trú, sinh sống tại một nơi.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

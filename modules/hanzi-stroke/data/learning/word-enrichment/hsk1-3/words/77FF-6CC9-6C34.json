@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:矿泉水",
   "type": "word",
   "word": "矿泉水",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "kuàng quán shuǐ",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nước khoáng",
+      "meaningShortVi": "nước khoáng",
+      "meaningFullVi": "nước khoáng",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nước khoáng",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Nước khoáng (ngọt, không ga). Phổ biến trong đời sống hàng ngày – mọi người thường mua nước đóng chai thay vì uống nước máy."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -47,52 +46,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "一瓶矿泉水",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "矿泉水",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "天然矿泉水",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "矿泉水",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "矿泉水",
-      "chinese": "请给我一瓶矿泉水。",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "矿泉水",
-      "chinese": "每天喝矿泉水对身体好。",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 矿泉水",
-      "syntax": "danh từ",
-      "matchedExample": "Nước khoáng (ngọt, không ga). Phổ biến trong đời sống hàng ngày – mọi người thường mua nước đóng chai thay vì uống nước máy.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 矿泉水",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Nước khoáng (ngọt, không ga). Phổ biến trong đời sống hàng ngày – mọi người thường mua nước đóng chai thay vì uống nước máy.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +67,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__3__lesson__18__bai-18-i-ve-learned-how-to-make-jiaozi",
+      "sectionSlug": "bai-18-i-ve-learned-how-to-make-jiaozi",
       "sectionTitle": "Tôi đã học được cách gói sủi cảo",
       "sectionTitleZh": "我学会了包饺子",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-18-i-ve-learned-how-to-make-jiaozi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-18-i-ve-learned-how-to-make-jiaozi/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -118,7 +87,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

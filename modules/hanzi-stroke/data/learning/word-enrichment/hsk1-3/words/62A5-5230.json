@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:报到",
   "type": "word",
   "word": "报到",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "bào dào",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đăng ký, check-in, đến nơi báo danh",
+      "meaningShortVi": "đăng ký",
+      "meaningFullVi": "đăng ký, check-in, đến nơi báo danh",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đăng ký",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "报到 的第二个字读 第四声 (dào). 报道 的第二个字也读 第四声 (dào). Phân biệt bằng ngữ cảnh: 报到 thường với 到/去/来 (chuyển động), 报道 thường với 新闻/消息 (nội dung)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -50,20 +49,25 @@
       {
         "text": "去报到",
         "pinyin": "qù bàodào",
-        "meaningVi": "đi đăng ký/check-in",
+        "meaningVi": "đi đăng ký",
+        "meaningFullVi": "đi đăng ký/check-in",
         "target": "报到",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "准时报到",
         "pinyin": "zhǔnshí bàodào",
         "meaningVi": "đến đúng giờ",
+        "meaningFullVi": "đến đúng giờ",
         "target": "报到",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Học sinh mới cần đến trường đăng ký.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "报到",
@@ -82,16 +87,17 @@
       "meaningVi": "Ngày mai tôi đến sân bay check-in lúc 8 giờ sáng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 报到",
-      "syntax": "động từ",
-      "matchedExample": "报到 的第二个字读 第四声 (dào). 报道 的第二个字也读 第四声 (dào). Phân biệt bằng ngữ cảnh: 报到 thường với 到/去/来 (chuyển động), 报道 thường với 新闻/消息 (nội dung).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 报到",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "报到 的第二个字读 第四声 (dào). 报道 的第二个字也读 第四声 (dào). Phân biệt bằng ngữ cảnh: 报到 thường với 到/去/来 (chuyển động), 报道 thường với 新闻/消息 (nội dung).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__3__topic__12__lam-viec-toi",
+      "sectionSlug": "lam-viec-toi",
       "sectionTitle": "Làm việc tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

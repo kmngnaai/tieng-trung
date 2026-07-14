@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:一半",
   "type": "word",
   "word": "一半",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yī bàn",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "một nửa",
+      "meaningShortVi": "một nửa",
+      "meaningFullVi": "một nửa",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "một nửa",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Số từ chỉ một phần hai (50%). '一' là một, '半' là nửa."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -46,40 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "一半人",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "一半",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "一半时间",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "一半",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "看了一半",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "一半",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "吃了一半",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "一半",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -89,7 +56,8 @@
       "meaningVi": "Tôi đã ăn một nửa.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "一半",
@@ -98,7 +66,8 @@
       "meaningVi": "Bây giờ một nửa số người đã đến.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "一半",
@@ -107,16 +76,17 @@
       "meaningVi": "Cuốn sách này tôi đã đọc được một nửa.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 一半",
-      "syntax": "compound-semantic",
-      "matchedExample": "Số từ chỉ một phần hai (50%). '一' là một, '半' là nửa.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 一半",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Số từ chỉ một phần hai (50%). '一' là một, '半' là nửa.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -127,21 +97,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__1__lesson__13__bai-13-i-ll-have-a-cup-of-tea-please",
+      "sectionSlug": "bai-13-i-ll-have-a-cup-of-tea-please",
       "sectionTitle": "Cho tôi một cốc trà",
       "sectionTitleZh": "请给我一杯茶",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-13-i-ll-have-a-cup-of-tea-please/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-13-i-ll-have-a-cup-of-tea-please/",
+      "orderInSection": 15
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__1__topic__4__chu-so",
+      "sectionSlug": "chu-so",
       "sectionTitle": "Chữ số",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/chu-so/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/chu-so/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -152,7 +132,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

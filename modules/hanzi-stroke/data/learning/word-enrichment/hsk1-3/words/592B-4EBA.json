@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:夫人",
   "type": "word",
   "word": "夫人",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fū ren",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Vợ (trang trọng), phu nhân",
+      "meaningShortVi": "Vợ (trang trọng)",
+      "meaningFullVi": "Vợ (trang trọng), phu nhân",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Vợ (trang trọng)",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Cách xưng hô trang trọng để gọi vợ của người có địa vị (trong văn viết hoặc ngữ cảnh lễ nghi). Không dùng trong văn nói đời thường."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -46,14 +45,17 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "总统夫人",
-        "pinyin": "",
-        "meaningVi": "Đệ nhất phu nhân",
+        "text": "夫人",
+        "pinyin": "fū ren",
+        "meaningVi": "phu nhân",
+        "meaningFullVi": "phu nhân",
         "target": "夫人",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -63,7 +65,8 @@
       "meaningVi": "Phu nhân Vương",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "夫人",
@@ -72,7 +75,8 @@
       "meaningVi": "vợ tổng thống",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "夫人",
@@ -81,16 +85,17 @@
       "meaningVi": "ông Lý và vợ ông ấy",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 夫人",
-      "syntax": "danh từ",
-      "matchedExample": "Cách xưng hô trang trọng để gọi vợ của người có địa vị (trong văn viết hoặc ngữ cảnh lễ nghi). Không dùng trong văn nói đời thường.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 夫人",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Cách xưng hô trang trọng để gọi vợ của người có địa vị (trong văn viết hoặc ngữ cảnh lễ nghi). Không dùng trong văn nói đời thường.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -105,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

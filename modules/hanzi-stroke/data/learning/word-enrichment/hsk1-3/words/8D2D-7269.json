@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:购物",
   "type": "word",
   "word": "购物",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gòu wù",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "mua sắm",
+      "meaningShortVi": "mua sắm",
+      "meaningFullVi": "mua sắm",
       "partOfSpeech": "động từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "mua sắm",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Hoạt động mua hàng, thường tại cửa hàng/trung tâm thương mại."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -48,40 +47,25 @@
         "word": "购物中心",
         "pinyin": "gòu wù zhōng xīn",
         "meaningVi": "trung tâm mua sắm",
+        "meaningFullVi": "trung tâm mua sắm",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
       {
         "text": "购物中心",
-        "pinyin": "",
-        "meaningVi": "",
+        "pinyin": "gòu wù zhōng xīn",
+        "meaningVi": "trung tâm mua sắm",
+        "meaningFullVi": "trung tâm mua sắm",
         "target": "购物",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "网上购物",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "购物",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "购物车",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "购物",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -91,16 +75,17 @@
       "meaningVi": "Cuối tuần đi mua sắm",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 购物",
-      "syntax": "động từ",
-      "matchedExample": "Hoạt động mua hàng, thường tại cửa hàng/trung tâm thương mại.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 购物",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Hoạt động mua hàng, thường tại cửa hàng/trung tâm thương mại.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -115,7 +100,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

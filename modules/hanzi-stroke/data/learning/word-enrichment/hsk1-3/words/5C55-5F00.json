@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:展开",
   "type": "word",
   "word": "展开",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhǎn kāi",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "mở ra, trải ra; triển khai, phát triển; mở (cánh tay, cánh quạt)",
+      "meaningShortVi": "mở ra",
+      "meaningFullVi": "mở ra, trải ra; triển khai, phát triển; mở (cánh tay, cánh quạt)",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "mở ra",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "展开 có thể dùng theo nghĩa đen (mở giấy, bản đồ, cánh) hoặc nghĩa bóng (triển khai hoạt động, thảo luận)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "展开讨论",
         "pinyin": "zhǎnkāi tǎolùn",
         "meaningVi": "triển khai thảo luận",
+        "meaningFullVi": "triển khai thảo luận",
         "target": "展开",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "全面展开",
         "pinyin": "quánmiàn zhǎnkāi",
         "meaningVi": "triển khai toàn diện",
+        "meaningFullVi": "triển khai toàn diện",
         "target": "展开",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Xin hãy mở bản đồ ra.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "展开",
@@ -82,16 +87,17 @@
       "meaningVi": "Chim mở cánh bay đi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 展开",
-      "syntax": "động từ",
-      "matchedExample": "展开 có thể dùng theo nghĩa đen (mở giấy, bản đồ, cánh) hoặc nghĩa bóng (triển khai hoạt động, thảo luận).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 展开",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "展开 có thể dùng theo nghĩa đen (mở giấy, bản đồ, cánh) hoặc nghĩa bóng (triển khai hoạt động, thảo luận).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__3__topic__14__van-chuyen-va-di-chuyen",
+      "sectionSlug": "van-chuyen-va-di-chuyen",
       "sectionTitle": "Vận chuyển và di chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/van-chuyen-va-di-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/van-chuyen-va-di-chuyen/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

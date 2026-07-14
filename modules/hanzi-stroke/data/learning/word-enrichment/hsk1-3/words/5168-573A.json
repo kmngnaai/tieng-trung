@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:全场",
   "type": "word",
   "word": "全场",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "quán chǎng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "toàn trường, tất cả mọi người có mặt",
+      "meaningShortVi": "toàn trường",
+      "meaningFullVi": "toàn trường, tất cả mọi người có mặt",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "toàn trường",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Chỉ toàn bộ người có mặt tại một nơi (sân vận động, rạp hát...)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,25 @@
     "collocations": [
       {
         "text": "全场观众",
-        "pinyin": "",
+        "pinyin": "quán chǎng guān zhòng",
         "meaningVi": "toàn bộ khán giả",
+        "meaningFullVi": "toàn bộ khán giả",
         "target": "全场",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "全场欢呼",
-        "pinyin": "",
-        "meaningVi": "toàn trường reo hò",
-        "target": "全场",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "全场",
-      "chinese": "全场观众都站起来鼓掌。",
-      "pinyin": "",
-      "meaningVi": "Toàn bộ khán giả đều đứng lên vỗ tay.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "全场",
-      "chinese": "他的演讲赢得了全场的掌声。",
-      "pinyin": "",
-      "meaningVi": "Bài phát biểu của anh ấy nhận được sự vỗ tay của toàn trường.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 全场",
-      "syntax": "danh từ",
-      "matchedExample": "Chỉ toàn bộ người có mặt tại một nơi (sân vận động, rạp hát...).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 全场",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Chỉ toàn bộ người có mặt tại một nơi (sân vận động, rạp hát...).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +77,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 25,
+      "sectionId": "new_hsk__3__topic__25__truong-hop",
+      "sectionSlug": "truong-hop",
       "sectionTitle": "Trường hợp",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/truong-hop/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/truong-hop/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -117,7 +97,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:不太",
   "type": "word",
   "word": "不太",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "bù tài",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bất thái",
+      "meaningShortVi": "bất thái",
+      "meaningFullVi": "bất thái",
       "partOfSpeech": "adverb",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bất thái",
   "wordType": "adverb",
   "wordTypes": [
     "adverb"
   ],
-  "usageNotes": [
-    "Dùng để giảm nhẹ语气, lịch sự hơn khi nói 'không'"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,49 +49,56 @@
     "collocations": [
       {
         "text": "不太一样",
-        "pinyin": "",
+        "pinyin": "bù tài yī yàng",
         "meaningVi": "không quá giống nhau",
+        "meaningFullVi": "không quá giống nhau",
         "target": "不太",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不太清楚",
-        "pinyin": "",
+        "pinyin": "bù tài qīng chu",
         "meaningVi": "không quá rõ",
+        "meaningFullVi": "không quá rõ",
         "target": "不太",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "不太",
       "chinese": "我不太喜欢吃辣",
-      "pinyin": "",
+      "pinyin": "wǒ bù tài xǐ huan chī là",
       "meaningVi": "Tôi không quá thích ăn cay",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不太",
       "chinese": "今天不太冷",
-      "pinyin": "",
+      "pinyin": "jīn tiān bù tài lěng",
       "meaningVi": "Hôm nay không quá lạnh",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 不太",
-      "syntax": "adverb",
-      "matchedExample": "Dùng để giảm nhẹ语气, lịch sự hơn khi nói 'không'",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 不太",
+      "partOfSpeech": "adverb",
+      "usageNoteVi": "Dùng để giảm nhẹ语气, lịch sự hơn khi nói 'không'",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__2__topic__11__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/pho-tu/",
+      "orderInSection": 26
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

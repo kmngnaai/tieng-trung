@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:小孩儿",
   "type": "word",
   "word": "小孩儿",
@@ -16,24 +16,25 @@
     "readings": [
       {
         "pinyin": "xiǎo háir",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trẻ con; đứa trẻ",
+      "meaningShortVi": "trẻ con",
+      "meaningFullVi": "trẻ con; đứa trẻ",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trẻ con",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -45,10 +46,19 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 小孩儿",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/小孩儿.mp3"
   ],
@@ -57,11 +67,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__2__lesson__14__bai-14-it-s-boring-to-celebrate-the-spring-festival-alone",
+      "sectionSlug": "bai-14-it-s-boring-to-celebrate-the-spring-festival-alone",
       "sectionTitle": "Đón Tết một mình thật chán",
       "sectionTitleZh": "一个人过年多没意思啊",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-14-it-s-boring-to-celebrate-the-spring-festival-alone/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-14-it-s-boring-to-celebrate-the-spring-festival-alone/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -72,9 +87,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": [
-      "Chưa có câu chứa nguyên từ"
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
     ]
   }
 }

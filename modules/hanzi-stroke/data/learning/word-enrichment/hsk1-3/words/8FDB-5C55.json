@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:进展",
   "type": "word",
   "word": "进展",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jìn zhǎn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tiến triển, diễn tiến",
+      "meaningShortVi": "tiến triển",
+      "meaningFullVi": "tiến triển, diễn tiến",
       "partOfSpeech": "động từ / danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tiến triển",
   "wordType": "động từ / danh từ",
   "wordTypes": [
     "động từ / danh từ"
   ],
-  "usageNotes": [
-    "进展 có thể là động từ (tiến triển, diễn ra như thế nào) hoặc danh từ (sự tiến triển, tin tức mới). Dùng cho công việc, dự án, sự kiện đang diễn ra. Thường kết hợp với 顺利 (thuận lợi), 缓慢 (chậm chạp)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "取得进展",
         "pinyin": "qǔdé jìnzhǎn",
         "meaningVi": "đạt được tiến triển",
+        "meaningFullVi": "đạt được tiến triển",
         "target": "进展",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "最新进展",
         "pinyin": "zuìxīn jìnzhǎn",
         "meaningVi": "diễn tiến mới nhất",
+        "meaningFullVi": "diễn tiến mới nhất",
         "target": "进展",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Công trình tiến triển thuận lợi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "进展",
@@ -82,16 +87,17 @@
       "meaningVi": "Vui lòng cho tôi biết diễn tiến mới nhất của sự việc.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 进展",
-      "syntax": "động từ / danh từ",
-      "matchedExample": "进展 có thể là động từ (tiến triển, diễn ra như thế nào) hoặc danh từ (sự tiến triển, tin tức mới). Dùng cho công việc, dự án, sự kiện đang diễn ra. Thường kết hợp với 顺利 (thuận lợi), 缓慢 (chậm chạp).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 进展",
+      "partOfSpeech": "động từ / danh từ",
+      "usageNoteVi": "进展 có thể là động từ (tiến triển, diễn ra như thế nào) hoặc danh từ (sự tiến triển, tin tức mới). Dùng cho công việc, dự án, sự kiện đang diễn ra. Thường kết hợp với 顺利 (thuận lợi), 缓慢 (chậm chạp).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__topic__17__nhung-thay-doi",
+      "sectionSlug": "nhung-thay-doi",
       "sectionTitle": "Những thay đổi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/",
+      "orderInSection": 17
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

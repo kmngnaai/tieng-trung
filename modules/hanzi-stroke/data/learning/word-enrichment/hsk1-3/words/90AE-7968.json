@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:邮票",
   "type": "word",
   "word": "邮票",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yóu piào",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tem, tem thư",
+      "meaningShortVi": "tem",
+      "meaningFullVi": "tem, tem thư",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tem",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "指邮寄信件时贴用的凭证小票，也指集邮收藏品。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,49 +49,46 @@
     "collocations": [
       {
         "text": "寄邮票",
-        "pinyin": "",
+        "pinyin": "jì yóu piào",
         "meaningVi": "gửi thư (dán tem)",
+        "meaningFullVi": "gửi thư (dán tem)",
         "target": "邮票",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "纪念邮票",
-        "pinyin": "",
+        "pinyin": "jì niàn yóu piào",
         "meaningVi": "tem kỷ niệm",
+        "meaningFullVi": "tem kỷ niệm",
         "target": "邮票",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "邮票",
       "chinese": "请贴一张邮票在信封上。",
-      "pinyin": "",
+      "pinyin": "qǐng tiē yī zhāng yóu piào zài xìn fēng shàng。",
       "meaningVi": "Hãy dán một con tem lên phong bì.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "邮票",
-      "chinese": "这是张收藏的邮票。",
-      "pinyin": "",
-      "meaningVi": "Đây là tem bưu chính được sưu tầm.",
-      "source": "hsk_1.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 邮票",
-      "syntax": "danh từ",
-      "matchedExample": "指邮寄信件时贴用的凭证小票，也指集邮收藏品。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 邮票",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "指邮寄信件时贴用的凭证小票，也指集邮收藏品。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +99,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__3__topic__18__thong-tin-va-phuong-tien",
+      "sectionSlug": "thong-tin-va-phuong-tien",
       "sectionTitle": "Thông tin và phương tiện",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/",
+      "orderInSection": 34
     }
   ],
   "sources": [
@@ -123,7 +124,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

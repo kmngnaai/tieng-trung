@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:奶茶",
   "type": "word",
   "word": "奶茶",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "nǎi chá",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trà sữa",
+      "meaningShortVi": "trà sữa",
+      "meaningFullVi": "trà sữa",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trà sữa",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Dùng với nghĩa \"trà sữa\". Thuộc New HSK 6."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -46,16 +45,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 奶茶",
-      "syntax": "noun",
-      "matchedExample": "Dùng với nghĩa \"trà sữa\". Thuộc New HSK 6.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 奶茶",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Dùng với nghĩa \"trà sữa\". Thuộc New HSK 6.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -66,11 +66,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__2__lesson__5__bai-5-visiting-a-chinese-friend-s-home-for-the-first-time",
+      "sectionSlug": "bai-5-visiting-a-chinese-friend-s-home-for-the-first-time",
       "sectionTitle": "Lần đầu đến nhà bạn người Trung Quốc",
       "sectionTitleZh": "第一次去中国朋友家",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-5-visiting-a-chinese-friend-s-home-for-the-first-time/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-5-visiting-a-chinese-friend-s-home-for-the-first-time/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -81,9 +86,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": [
-      "Chưa có câu chứa nguyên từ"
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
     ]
   }
 }

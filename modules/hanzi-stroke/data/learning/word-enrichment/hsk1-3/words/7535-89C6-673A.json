@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:电视机",
   "type": "word",
   "word": "电视机",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "diàn shì jī",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "TV",
+      "meaningShortVi": "TV",
+      "meaningFullVi": "TV",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "TV",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "电视机 là thiết bị phát sóng truyền hình."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -52,19 +51,24 @@
         "text": "看电视机",
         "pinyin": "kàn diànshìjī",
         "meaningVi": "xem TV",
+        "meaningFullVi": "xem TV",
         "target": "电视机",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "电视机前",
         "pinyin": "diànshìjī qián",
         "meaningVi": "trước TV",
+        "meaningFullVi": "trước TV",
         "target": "电视机",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Nhà tôi có một chiếc TV.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "电视机",
@@ -83,7 +88,8 @@
       "meaningVi": "Chúng tôi ăn cơm trước TV.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "电视机",
@@ -92,16 +98,17 @@
       "meaningVi": "Chiếc TV này rất mới.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 电视机",
-      "syntax": "compound-semantic",
-      "matchedExample": "电视机 là thiết bị phát sóng truyền hình.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 电视机",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "电视机 là thiết bị phát sóng truyền hình.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -112,11 +119,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__1__topic__16__thoi-gian-ranh-roi",
+      "sectionSlug": "thoi-gian-ranh-roi",
       "sectionTitle": "Thời gian rảnh rỗi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian-ranh-roi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian-ranh-roi/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -127,7 +139,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

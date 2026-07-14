@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:文明",
   "type": "word",
   "word": "文明",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wén míng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nền văn minh",
+      "meaningShortVi": "nền văn minh",
+      "meaningFullVi": "nền văn minh",
       "partOfSpeech": "danh từ / tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nền văn minh",
   "wordType": "danh từ / tính từ",
   "wordTypes": [
     "danh từ / tính từ"
   ],
-  "usageNotes": [
-    "可指人类社会发展的状态（名词），也可指有礼貌、有教养（形容词）。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,35 @@
     "collocations": [
       {
         "text": "精神文明",
-        "pinyin": "",
+        "pinyin": "jīng shén wén míng",
         "meaningVi": "văn minh tinh thần",
+        "meaningFullVi": "văn minh tinh thần",
         "target": "文明",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "文明社会",
-        "pinyin": "",
+        "pinyin": "wén míng shè huì",
         "meaningVi": "xã hội văn minh",
+        "meaningFullVi": "xã hội văn minh",
         "target": "文明",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "文明",
-      "chinese": "中华文明历史悠久。",
-      "pinyin": "",
-      "meaningVi": "Nền văn minh Trung Hoa có lịch sử lâu đời.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "文明",
-      "chinese": "请文明礼貌。",
-      "pinyin": "",
-      "meaningVi": "Hãy văn minh và lịch sự.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 文明",
-      "syntax": "danh từ / tính từ",
-      "matchedExample": "可指人类社会发展的状态（名词），也可指有礼貌、有教养（形容词）。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 文明",
+      "partOfSpeech": "danh từ / tính từ",
+      "usageNoteVi": "可指人类社会发展的状态（名词），也可指有礼貌、有教养（形容词）。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +87,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__3__topic__18__thong-tin-va-phuong-tien",
+      "sectionSlug": "thong-tin-va-phuong-tien",
       "sectionTitle": "Thông tin và phương tiện",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -117,7 +107,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

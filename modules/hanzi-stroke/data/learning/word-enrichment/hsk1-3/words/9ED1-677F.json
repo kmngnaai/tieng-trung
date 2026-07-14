@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:黑板",
   "type": "word",
   "word": "黑板",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "hēi bǎn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bảng đen",
+      "meaningShortVi": "bảng đen",
+      "meaningFullVi": "bảng đen",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bảng đen",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -48,36 +49,49 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "白板",
-        "pinyin": "",
-        "meaningVi": "bảng trắng",
+        "text": "黑板",
+        "pinyin": "hēi bǎn",
+        "meaningVi": "bảng đen",
+        "meaningFullVi": "bảng đen",
         "target": "黑板",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "黑板",
       "chinese": "看黑板",
-      "pinyin": "",
+      "pinyin": "kàn hēi bǎn",
       "meaningVi": "Nhìn bảng đen",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "黑板",
       "chinese": "在黑板上写字",
-      "pinyin": "",
+      "pinyin": "zài hēi bǎn shàng xiě zì",
       "meaningVi": "Viết lên bảng đen",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 黑板",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/黑板.mp3"
   ],
@@ -86,31 +100,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__2__topic__7__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/nghien-cuu/",
+      "orderInSection": 5
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 12,
+      "sectionId": "hsk__3__lesson__12__bai-12-de-do-quan-trong-o-cho-toi-di",
+      "sectionSlug": "bai-12-de-do-quan-trong-o-cho-toi-di",
       "sectionTitle": "Để đồ quan trọng ở chỗ tôi đi.",
       "sectionTitleZh": "把重要的东西放在我这儿吧",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-12-de-do-quan-trong-o-cho-toi-di/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-12-de-do-quan-trong-o-cho-toi-di/",
+      "orderInSection": 14
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__3__lesson__10__bai-10-you-can-return-the-book-to-me-tomorrow",
+      "sectionSlug": "bai-10-you-can-return-the-book-to-me-tomorrow",
       "sectionTitle": "Mai bạn trả sách cho tôi cũng được",
       "sectionTitleZh": "你明天再把书还给我",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-10-you-can-return-the-book-to-me-tomorrow/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-10-you-can-return-the-book-to-me-tomorrow/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -126,7 +155,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

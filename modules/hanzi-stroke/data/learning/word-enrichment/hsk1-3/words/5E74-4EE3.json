@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:年代",
   "type": "word",
   "word": "年代",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "nián dài",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Thời kỳ, thập niên",
+      "meaningShortVi": "Thời kỳ",
+      "meaningFullVi": "Thời kỳ, thập niên",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Thời kỳ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "年代 là danh từ chỉ một khoảng thời gian trong lịch sử, thường dùng cho thập niên hoặc một giai đoạn lịch sử. 年 (niên) nghĩa là năm; 代 (đại) nghĩa là thế hệ, giai đoạn."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,48 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "八十年代",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "年代",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "九十年代",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "年代",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "哪个年代",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "年代",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "现代年代",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "年代",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "很久的年代",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "年代",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -97,7 +56,8 @@
       "meaningVi": "Đây là việc của thập niên 80 thế kỷ trước.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "年代",
@@ -106,7 +66,8 @@
       "meaningVi": "Bộ phim này miêu tả cuộc sống thời kỳ đó.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "年代",
@@ -115,16 +76,17 @@
       "meaningVi": "Những thời kỳ khác nhau có những bài hát thịnh hành khác nhau.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 年代",
-      "syntax": "compound-semantic",
-      "matchedExample": "年代 là danh từ chỉ một khoảng thời gian trong lịch sử, thường dùng cho thập niên hoặc một giai đoạn lịch sử. 年 (niên) nghĩa là năm; 代 (đại) nghĩa là thế hệ, giai đoạn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 年代",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "年代 là danh từ chỉ một khoảng thời gian trong lịch sử, thường dùng cho thập niên hoặc một giai đoạn lịch sử. 年 (niên) nghĩa là năm; 代 (đại) nghĩa là thế hệ, giai đoạn.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -135,11 +97,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__3__topic__7__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -150,7 +117,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

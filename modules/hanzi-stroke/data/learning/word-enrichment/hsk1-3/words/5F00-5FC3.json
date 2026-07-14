@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:开心",
   "type": "word",
   "word": "开心",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "kāi xīn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "vui vẻ",
+      "meaningShortVi": "vui vẻ",
+      "meaningFullVi": "vui vẻ",
       "partOfSpeech": "adjective",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "vui vẻ",
   "wordType": "adjective",
   "wordTypes": [
     "adjective"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -48,60 +49,68 @@
     "collocations": [
       {
         "text": "很开心",
-        "pinyin": "",
+        "pinyin": "hěn kāi xīn",
         "meaningVi": "rất vui",
+        "meaningFullVi": "rất vui",
         "target": "开心",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "开心地笑",
-        "pinyin": "",
+        "pinyin": "kāi xīn de xiào",
         "meaningVi": "cười vui vẻ",
+        "meaningFullVi": "cười vui vẻ",
         "target": "开心",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "令人开心",
-        "pinyin": "",
-        "meaningVi": "đáng vui",
-        "target": "开心",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "开心",
       "chinese": "我今天很开心。",
-      "pinyin": "",
+      "pinyin": "wǒ jīn tiān hěn kāi xīn。",
       "meaningVi": "Hôm nay tôi rất vui.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "开心",
       "chinese": "看到你我就很开心。",
-      "pinyin": "",
+      "pinyin": "kàn dào nǐ wǒ jiù hěn kāi xīn。",
       "meaningVi": "Thấy bạn tôi đã rất vui.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "开心",
       "chinese": "祝大家玩得开心。",
-      "pinyin": "",
+      "pinyin": "zhù dà jiā wán děi kāi xīn。",
       "meaningVi": "Chúc mọi người chơi vui vẻ.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 开心",
+      "partOfSpeech": "adjective",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/开心.mp3"
   ],
@@ -110,21 +119,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 20,
+      "sectionId": "new_hsk__2__topic__20__tinh-cam-va-cam-xuc",
+      "sectionSlug": "tinh-cam-va-cam-xuc",
       "sectionTitle": "Tình cảm và cảm xúc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-cam-va-cam-xuc/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-cam-va-cam-xuc/",
+      "orderInSection": 5
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__3__lesson__8__bai-8-today-i-was-discharged-from-the-hospital",
+      "sectionSlug": "bai-8-today-i-was-discharged-from-the-hospital",
       "sectionTitle": "Hôm nay tôi xuất viện",
       "sectionTitleZh": "今天我出院了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-8-today-i-was-discharged-from-the-hospital/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-8-today-i-was-discharged-from-the-hospital/",
+      "orderInSection": 22
     }
   ],
   "sources": [
@@ -140,7 +159,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

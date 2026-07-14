@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:只是",
   "type": "word",
   "word": "只是",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhǐ shì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Chỉ là; chỉ là vậy thôi",
+      "meaningShortVi": "Chỉ là",
+      "meaningFullVi": "Chỉ là; chỉ là vậy thôi",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Chỉ là",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Dùng để giới hạn nghĩa, nhấn mạnh tính chất 'chỉ là' thường đi với '而已' hoặc '不过'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -50,20 +49,25 @@
       {
         "text": "只是...而已",
         "pinyin": "zhǐshì...'éryǐ",
-        "meaningVi": "chỉ là...thôi",
+        "meaningVi": "chỉ là",
+        "meaningFullVi": "chỉ là...thôi",
         "target": "只是",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不只是",
         "pinyin": "bùzhǐshì",
         "meaningVi": "không chỉ là",
+        "meaningFullVi": "không chỉ là",
         "target": "只是",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Đây chỉ là một vấn đề nhỏ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "只是",
@@ -82,7 +87,8 @@
       "meaningVi": "Tôi chỉ muốn giúp bạn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "只是",
@@ -91,16 +97,17 @@
       "meaningVi": "Không phải tôi không đi, chỉ là không có thời gian.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 只是",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng để giới hạn nghĩa, nhấn mạnh tính chất 'chỉ là' thường đi với '而已' hoặc '不过'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 只是",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng để giới hạn nghĩa, nhấn mạnh tính chất 'chỉ là' thường đi với '而已' hoặc '不过'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -111,21 +118,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__3__lesson__9__bai-9-it-doesn-t-matter-if-you-don-t-play-well",
+      "sectionSlug": "bai-9-it-doesn-t-matter-if-you-don-t-play-well",
       "sectionTitle": "Chơi không giỏi cũng không sao",
       "sectionTitleZh": "打不好没关系",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-9-it-doesn-t-matter-if-you-don-t-play-well/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-9-it-doesn-t-matter-if-you-don-t-play-well/",
+      "orderInSection": 14
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__3__topic__1__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/pho-tu/",
+      "orderInSection": 23
     }
   ],
   "sources": [
@@ -136,7 +153,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

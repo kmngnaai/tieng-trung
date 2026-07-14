@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:晚安",
   "type": "word",
   "word": "晚安",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "wǎn'ān",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chúc ngủ ngon",
+      "meaningShortVi": "chúc ngủ ngon",
+      "meaningFullVi": "chúc ngủ ngon",
       "partOfSpeech": "greeting phrase",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chúc ngủ ngon",
   "wordType": "greeting phrase",
   "wordTypes": [
     "greeting phrase"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -48,43 +49,48 @@
     "collocations": [
       {
         "text": "说晚安",
-        "pinyin": "",
+        "pinyin": "shuō wǎn'ān",
         "meaningVi": "nói chúc ngủ ngon",
+        "meaningFullVi": "nói chúc ngủ ngon",
         "target": "晚安",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "向...道晚安",
-        "pinyin": "",
-        "meaningVi": "chúc... ngủ ngon",
+        "pinyin": "xiàng... dào wǎn'ān",
+        "meaningVi": "chúc",
+        "meaningFullVi": "chúc... ngủ ngon",
         "target": "晚安",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "晚安",
-      "chinese": "晚安，做个好梦。",
-      "pinyin": "",
-      "meaningVi": "Chúc ngủ ngon, ngủ mơ đẹp.",
-      "source": "hsk_1.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "晚安",
       "chinese": "我要睡觉了，晚安。",
-      "pinyin": "",
+      "pinyin": "wǒ yào shuì jiào le， wǎn'ān。",
       "meaningVi": "Tôi phải ngủ rồi, chúc ngủ ngon.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 晚安",
+      "partOfSpeech": "greeting phrase",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/晚安.mp3"
   ],
@@ -93,11 +99,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__2__topic__4__khac",
+      "sectionSlug": "khac",
       "sectionTitle": "Khác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/khac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/khac/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -113,7 +124,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:迅速",
   "type": "word",
   "word": "迅速",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xùn sù",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nhanh chóng, mau lẹ",
+      "meaningShortVi": "nhanh chóng",
+      "meaningFullVi": "nhanh chóng, mau lẹ",
       "partOfSpeech": "tính từ / trạng từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nhanh chóng",
   "wordType": "tính từ / trạng từ",
   "wordTypes": [
     "tính từ / trạng từ"
   ],
-  "usageNotes": [
-    "Tấn tốc (xùnsù) gần với 快 (kuài - nhanh), nhưng mang sắc thái văn viết/trang trọng hơn. Tương đồng tiếng Việt: \"nhanh chóng, mau lẹ\"."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,19 +48,24 @@
         "text": "迅速发展",
         "pinyin": "xùnsù fāzhǎn",
         "meaningVi": "phát triển nhanh chóng",
+        "meaningFullVi": "phát triển nhanh chóng",
         "target": "迅速",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "行动迅速",
         "pinyin": "xíngdòng xùnsù",
         "meaningVi": "hành động nhanh chóng",
+        "meaningFullVi": "hành động nhanh chóng",
         "target": "迅速",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +75,8 @@
       "meaningVi": "Lính cứu hỏa nhanh chóng đến hiện trường.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "迅速",
@@ -80,16 +85,17 @@
       "meaningVi": "Chúng tôi phải nhanh chóng đưa ra quyết định.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 迅速",
-      "syntax": "tính từ / trạng từ",
-      "matchedExample": "Tấn tốc (xùnsù) gần với 快 (kuài - nhanh), nhưng mang sắc thái văn viết/trang trọng hơn. Tương đồng tiếng Việt: \"nhanh chóng, mau lẹ\".",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 迅速",
+      "partOfSpeech": "tính từ / trạng từ",
+      "usageNoteVi": "Tấn tốc (xùnsù) gần với 快 (kuài - nhanh), nhưng mang sắc thái văn viết/trang trọng hơn. Tương đồng tiếng Việt: \"nhanh chóng, mau lẹ\".",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

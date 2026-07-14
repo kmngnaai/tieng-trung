@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:质量",
   "type": "word",
   "word": "质量",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhì liàng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chất lượng, phẩm chất",
+      "meaningShortVi": "chất lượng",
+      "meaningFullVi": "chất lượng, phẩm chất",
       "partOfSpeech": "danh từ (noun)",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chất lượng",
   "wordType": "danh từ (noun)",
   "wordTypes": [
     "danh từ (noun)"
   ],
-  "usageNotes": [
-    "质 (chất) nghĩa là bản chất; 量 (lượng) nghĩa là lượng, số lượng. 质量 là tiêu chuẩn đánh giá mức độ tốt/xấu của một vật hoặc dịch vụ."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -49,27 +48,34 @@
         "text": "高质量",
         "pinyin": "gāo zhìliàng",
         "meaningVi": "chất lượng cao",
+        "meaningFullVi": "chất lượng cao",
         "target": "质量",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "质量好",
         "pinyin": "zhìliàng hǎo",
         "meaningVi": "chất lượng tốt",
+        "meaningFullVi": "chất lượng tốt",
         "target": "质量",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "质量控制",
         "pinyin": "zhìliàng kòngzhì",
         "meaningVi": "kiểm soát chất lượng",
+        "meaningFullVi": "kiểm soát chất lượng",
         "target": "质量",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +85,8 @@
       "meaningVi": "Sản phẩm này chất lượng rất tốt.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "质量",
@@ -88,7 +95,8 @@
       "meaningVi": "Chúng ta cần nâng cao chất lượng dịch vụ.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "质量",
@@ -97,16 +105,17 @@
       "meaningVi": "Vấn đề chất lượng rất quan trọng.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 质量",
-      "syntax": "danh từ (noun)",
-      "matchedExample": "质 (chất) nghĩa là bản chất; 量 (lượng) nghĩa là lượng, số lượng. 质量 là tiêu chuẩn đánh giá mức độ tốt/xấu của một vật hoặc dịch vụ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 质量",
+      "partOfSpeech": "danh từ (noun)",
+      "usageNoteVi": "质 (chất) nghĩa là bản chất; 量 (lượng) nghĩa là lượng, số lượng. 质量 là tiêu chuẩn đánh giá mức độ tốt/xấu của một vật hoặc dịch vụ.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -121,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

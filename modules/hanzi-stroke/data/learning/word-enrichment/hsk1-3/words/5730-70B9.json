@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:地点",
   "type": "word",
   "word": "地点",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "dì diǎn",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "địa điểm",
+      "meaningShortVi": "địa điểm",
+      "meaningFullVi": "địa điểm",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "địa điểm",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "地点 nghĩa là địa điểm, nơi chốn. Hán-Việt: địa (đất) + điểm (chỗ/nơi)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -53,19 +52,24 @@
         "text": "见面地点",
         "pinyin": "jiànmiàn dìdiǎn",
         "meaningVi": "địa điểm gặp mặt",
+        "meaningFullVi": "địa điểm gặp mặt",
         "target": "地点",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "具体地点",
         "pinyin": "jùtǐ dìdiǎn",
         "meaningVi": "địa điểm cụ thể",
+        "meaningFullVi": "địa điểm cụ thể",
         "target": "地点",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -75,7 +79,8 @@
       "meaningVi": "Chúng ta gặp nhau ở địa điểm nào?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "地点",
@@ -84,16 +89,17 @@
       "meaningVi": "Địa điểm này rất tốt.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 地点",
-      "syntax": "compound-semantic",
-      "matchedExample": "地点 nghĩa là địa điểm, nơi chốn. Hán-Việt: địa (đất) + điểm (chỗ/nơi).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 地点",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "地点 nghĩa là địa điểm, nơi chốn. Hán-Việt: địa (đất) + điểm (chỗ/nơi).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,21 +110,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__1__topic__7__cac-toa-nha",
+      "sectionSlug": "cac-toa-nha",
       "sectionTitle": "Các tòa nhà",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cac-toa-nha/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cac-toa-nha/",
+      "orderInSection": 10
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__3__lesson__11__bai-11-it-seems-i-can-t-solve-this-problem",
+      "sectionSlug": "bai-11-it-seems-i-can-t-solve-this-problem",
       "sectionTitle": "Xem ra tôi không có cách giải quyết vấn đề này",
       "sectionTitleZh": "看来我没办法解决这个问题",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-11-it-seems-i-can-t-solve-this-problem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-11-it-seems-i-can-t-solve-this-problem/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -139,7 +155,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

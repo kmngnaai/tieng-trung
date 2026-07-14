@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:师傅",
   "type": "word",
   "word": "师傅",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shī fu",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Thầy, người thầy; người có nghề nghiệp giỏi, công nhân lành nghề; xưng hô lịch sự với người lạ lớn tuổi",
+      "meaningShortVi": "Thầy",
+      "meaningFullVi": "Thầy, người thầy; người có nghề nghiệp giỏi, công nhân lành nghề; xưng hô lịch sự với người lạ lớn tuổi",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Thầy",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "师傅 (shīfu) là từ xưng hô lịch sự. Ghép từ 师 (thầy, sư phụ) + 傅 (người dạy, giám hộ). Trong giao tiếp hàng ngày, dùng để xưng hô người lạ lớn tuổi hoặc người làm nghề."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -44,40 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "师傅好",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "师傅",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "学师傅",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "师傅",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "老师傅",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "师傅",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "王师傅",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "师傅",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -87,7 +54,8 @@
       "meaningVi": "Anh ấy là thầy thư pháp của tôi.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "师傅",
@@ -96,7 +64,8 @@
       "meaningVi": "Thưa thầy, cho hỏi ga metro ở đâu?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "师傅",
@@ -105,16 +74,17 @@
       "meaningVi": "Người thầy này sửa xe rất giỏi.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 师傅",
-      "syntax": "danh từ",
-      "matchedExample": "师傅 (shīfu) là từ xưng hô lịch sự. Ghép từ 师 (thầy, sư phụ) + 傅 (người dạy, giám hộ). Trong giao tiếp hàng ngày, dùng để xưng hô người lạ lớn tuổi hoặc người làm nghề.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 师傅",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "师傅 (shīfu) là từ xưng hô lịch sự. Ghép từ 师 (thầy, sư phụ) + 傅 (người dạy, giám hộ). Trong giao tiếp hàng ngày, dùng để xưng hô người lạ lớn tuổi hoặc người làm nghề.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -129,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

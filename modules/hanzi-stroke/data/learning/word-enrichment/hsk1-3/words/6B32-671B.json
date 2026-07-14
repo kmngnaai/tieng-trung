@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:欲望",
   "type": "word",
   "word": "欲望",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "yù wàng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "khao khát, mong muốn mạnh mẽ",
+      "meaningShortVi": "khao khát",
+      "meaningFullVi": "khao khát, mong muốn mạnh mẽ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "khao khát",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng cho mong muốn mạnh mẽ, thường mang sắc thái tâm lý."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 欲 (mong muốn) + 望 (hy vọng, nhìn xa) → mong muốn, khao khát."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "物质欲望",
         "pinyin": "wùzhì yùwàng",
         "meaningVi": "khao khát vật chất",
+        "meaningFullVi": "khao khát vật chất",
         "target": "欲望",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "控制欲望",
         "pinyin": "kòngzhì yùwàng",
         "meaningVi": "kiểm soát mong muốn",
+        "meaningFullVi": "kiểm soát mong muốn",
         "target": "欲望",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "强烈欲望",
         "pinyin": "qiángliè yùwàng",
         "meaningVi": "khao khát mãnh liệt",
+        "meaningFullVi": "khao khát mãnh liệt",
         "target": "欲望",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Kiểm soát khao khát của bản thân",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "欲望",
@@ -90,7 +95,8 @@
       "meaningVi": "Khao khát là vô hạn",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "欲望",
@@ -99,7 +105,8 @@
       "meaningVi": "khao khát vật chất",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "欲望",
@@ -108,7 +115,8 @@
       "meaningVi": "Khao khát thúc đẩy hành vi",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "欲望",
@@ -117,23 +125,17 @@
       "meaningVi": "thỏa mãn khao khát",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 欲望",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng cho mong muốn mạnh mẽ, thường mang sắc thái tâm lý.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 欲 (mong muốn) + 望 (hy vọng, nhìn xa) → mong muốn, khao khát.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 欲望",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng cho mong muốn mạnh mẽ, thường mang sắc thái tâm lý.",
+      "explanationVi": "Ghép nghĩa: 欲 (mong muốn) + 望 (hy vọng, nhìn xa) → mong muốn, khao khát.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -148,7 +150,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

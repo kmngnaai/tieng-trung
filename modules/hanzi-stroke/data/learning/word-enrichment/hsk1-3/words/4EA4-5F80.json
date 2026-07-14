@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:交往",
   "type": "word",
   "word": "交往",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiāo wǎng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "giao lưu; qua lại; có mối quan hệ xã hội",
+      "meaningShortVi": "giao lưu",
+      "meaningFullVi": "giao lưu; qua lại; có mối quan hệ xã hội",
       "partOfSpeech": "động từ (Social Verb)",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "giao lưu",
   "wordType": "động từ (Social Verb)",
   "wordTypes": [
     "động từ (Social Verb)"
   ],
-  "usageNotes": [
-    "Có thể chỉ quen biết xã hội hoặc hẹn hò tình cảm. Tùy ngữ cảnh: bạn bè giao lưu, hoặc người yêu đang hẹn hò. Phân biệt 来往 (qua lại), 联系 (liên lạc). Synonym: 来往 (qua lại), 相处 (sống chung)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -50,20 +49,15 @@
       {
         "text": "停止交往",
         "pinyin": "tíngzhǐ jiāowǎng",
-        "meaningVi": "ngừng giao lưu, cắt đứt quan hệ",
+        "meaningVi": "ngừng giao lưu",
+        "meaningFullVi": "ngừng giao lưu, cắt đứt quan hệ",
         "target": "交往",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "社交",
-        "pinyin": "shèjiāo",
-        "meaningVi": "giao tiếp xã hội",
-        "target": "交往",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +67,8 @@
       "meaningVi": "Họ đã giao lưu (quen biết) rất lâu.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "交往",
@@ -82,16 +77,17 @@
       "meaningVi": "Tôi thích giao lưu với những người thú vị.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 交往",
-      "syntax": "động từ (Social Verb)",
-      "matchedExample": "Có thể chỉ quen biết xã hội hoặc hẹn hò tình cảm. Tùy ngữ cảnh: bạn bè giao lưu, hoặc người yêu đang hẹn hò. Phân biệt 来往 (qua lại), 联系 (liên lạc). Synonym: 来往 (qua lại), 相处 (sống chung).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 交往",
+      "partOfSpeech": "động từ (Social Verb)",
+      "usageNoteVi": "Có thể chỉ quen biết xã hội hoặc hẹn hò tình cảm. Tùy ngữ cảnh: bạn bè giao lưu, hoặc người yêu đang hẹn hò. Phân biệt 来往 (qua lại), 联系 (liên lạc). Synonym: 来往 (qua lại), 相处 (sống chung).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 29,
+      "sectionId": "new_hsk__3__topic__29__lien-lac",
+      "sectionSlug": "lien-lac",
       "sectionTitle": "Liên lạc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/",
+      "orderInSection": 28
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

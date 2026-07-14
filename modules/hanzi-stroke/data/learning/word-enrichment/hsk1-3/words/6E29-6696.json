@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:温暖",
   "type": "word",
   "word": "温暖",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wēn nuǎn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ấm áp; ấm áp, tình cảm; nhân hậu",
+      "meaningShortVi": "ấm áp",
+      "meaningFullVi": "ấm áp; ấm áp, tình cảm; nhân hậu",
       "partOfSpeech": "tính từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ấm áp",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "Wēn nuǎn vừa miêu tả nhiệt độ ấm vừa diễn tả tình cảm. Trang trọng hơn略 so với 暖和."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -50,49 +49,46 @@
     "collocations": [
       {
         "text": "温暖的家",
-        "pinyin": "",
+        "pinyin": "wēn nuǎn de jiā",
         "meaningVi": "gia đình ấm áp",
+        "meaningFullVi": "gia đình ấm áp",
         "target": "温暖",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "温暖的阳光",
-        "pinyin": "",
+        "pinyin": "wēn nuǎn de yáng guāng",
         "meaningVi": "ánh nắng ấm áp",
+        "meaningFullVi": "ánh nắng ấm áp",
         "target": "温暖",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "温暖",
-      "chinese": "母爱是温暖的。",
-      "pinyin": "",
-      "meaningVi": "Tình mẫu thân rất ấm áp.",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "温暖",
       "chinese": "春天给我们带来温暖。",
-      "pinyin": "",
+      "pinyin": "chūn tiān gěi wǒ men dài lái wēn nuǎn。",
       "meaningVi": "Mùa xuân mang lại cho chúng ta sự ấm áp.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 温暖",
-      "syntax": "tính từ",
-      "matchedExample": "Wēn nuǎn vừa miêu tả nhiệt độ ấm vừa diễn tả tình cảm. Trang trọng hơn略 so với 暖和.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 温暖",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "Wēn nuǎn vừa miêu tả nhiệt độ ấm vừa diễn tả tình cảm. Trang trọng hơn略 so với 暖和.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +99,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 33,
+      "sectionId": "new_hsk__3__topic__33__tinh-tu",
+      "sectionSlug": "tinh-tu",
       "sectionTitle": "Tính từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/",
+      "orderInSection": 29
     }
   ],
   "sources": [
@@ -123,7 +124,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

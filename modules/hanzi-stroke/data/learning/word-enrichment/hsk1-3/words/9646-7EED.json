@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:陆续",
   "type": "word",
   "word": "陆续",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "lù xù",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lần lượt, nối tiếp nhau",
+      "meaningShortVi": "lần lượt",
+      "meaningFullVi": "lần lượt, nối tiếp nhau",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lần lượt",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Chỉ sự việc diễn ra liên tục nhưng không đồng thời, từng người/một."
-  ],
-  "wordTypeExplanations": [
-    "陆 (lục - liên tục/đất liền) + 续 (tục - tiếp nối) → nối tiếp không ngừng."
   ],
   "hsk": {
     "levels": [
@@ -48,14 +45,27 @@
     "compounds": [],
     "collocations": [
       {
+        "text": "陆续",
+        "pinyin": "lùxù",
+        "meaningVi": "lần lượt",
+        "meaningFullVi": "lần lượt/nối tiếp",
+        "target": "陆续",
+        "source": "hsk_3.json",
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
+      },
+      {
         "text": "陆续到来",
         "pinyin": "lùxù dàolái",
         "meaningVi": "lần lượt đến",
+        "meaningFullVi": "lần lượt đến",
         "target": "陆续",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -65,7 +75,8 @@
       "meaningVi": "Học sinh lần lượt đi vào lớp học",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "陆续",
@@ -74,7 +85,8 @@
       "meaningVi": "Khách lần lượt đã đến",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "陆续",
@@ -83,7 +95,8 @@
       "meaningVi": "Chúng tôi lần lượt nhận được tin",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "陆续",
@@ -92,23 +105,17 @@
       "meaningVi": "lần lượt công bố",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 陆续",
-      "syntax": "compound-semantic",
-      "matchedExample": "Chỉ sự việc diễn ra liên tục nhưng không đồng thời, từng người/một.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "陆 (lục - liên tục/đất liền) + 续 (tục - tiếp nối) → nối tiếp không ngừng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 陆续",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Chỉ sự việc diễn ra liên tục nhưng không đồng thời, từng người/một.",
+      "explanationVi": "陆 (lục - liên tục/đất liền) + 续 (tục - tiếp nối) → nối tiếp không ngừng.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -123,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

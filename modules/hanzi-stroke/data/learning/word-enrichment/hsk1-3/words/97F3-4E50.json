@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:音乐",
   "type": "word",
   "word": "音乐",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "yīn yuè",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "âm nhạc",
+      "meaningShortVi": "âm nhạc",
+      "meaningFullVi": "âm nhạc",
       "partOfSpeech": "noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "âm nhạc",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -51,54 +52,67 @@
         "word": "音乐会",
         "pinyin": "yīn yuè huì",
         "meaningVi": "buổi hòa nhạc",
+        "meaningFullVi": "buổi hòa nhạc",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
       {
         "text": "听音乐",
-        "pinyin": "",
+        "pinyin": "tīng yīn yuè",
         "meaningVi": "nghe nhạc",
+        "meaningFullVi": "nghe nhạc",
         "target": "音乐",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "流行音乐",
-        "pinyin": "",
+        "pinyin": "liú xíng yīn yuè",
         "meaningVi": "nhạc pop",
+        "meaningFullVi": "nhạc pop",
         "target": "音乐",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "音乐",
       "chinese": "我喜欢听音乐",
-      "pinyin": "",
+      "pinyin": "wǒ xǐ huan tīng yīn yuè",
       "meaningVi": "Tôi thích nghe nhạc",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "音乐",
       "chinese": "音乐很好听",
-      "pinyin": "",
+      "pinyin": "yīn yuè hěn hǎo tīng",
       "meaningVi": "Nhạc rất hay",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 音乐",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/音乐.mp3"
   ],
@@ -107,31 +121,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__2__topic__12__giai-tri",
+      "sectionSlug": "giai-tri",
       "sectionTitle": "Giải trí",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/",
+      "orderInSection": 1
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 6,
+      "sectionId": "hsk__3__lesson__6__bai-6-sao-dot-nhien-khong-tim-thay",
+      "sectionSlug": "bai-6-sao-dot-nhien-khong-tim-thay",
       "sectionTitle": "Sao đột nhiên không tìm thấy?",
       "sectionTitleZh": "怎么突然找不到了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-6-sao-dot-nhien-khong-tim-thay/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-6-sao-dot-nhien-khong-tim-thay/",
+      "orderInSection": 11
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__3__lesson__5__bai-5-photos-like-these-are-the-best",
+      "sectionSlug": "bai-5-photos-like-these-are-the-best",
       "sectionTitle": "Ảnh như thế này mới đẹp",
       "sectionTitleZh": "这样的照片才好看",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-5-photos-like-these-are-the-best/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-5-photos-like-these-are-the-best/",
+      "orderInSection": 24
     }
   ],
   "sources": [
@@ -152,7 +181,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

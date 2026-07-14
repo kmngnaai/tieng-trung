@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:多大",
   "type": "word",
   "word": "多大",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "duō dà",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bao nhiêu tuổi; lớn cỡ nào",
+      "meaningShortVi": "bao nhiêu tuổi",
+      "meaningFullVi": "bao nhiêu tuổi; lớn cỡ nào",
       "partOfSpeech": "cụm từ nghi vấn",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bao nhiêu tuổi",
   "wordType": "cụm từ nghi vấn",
   "wordTypes": [
     "cụm từ nghi vấn"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -42,10 +43,19 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 多大",
+      "partOfSpeech": "cụm từ nghi vấn",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/多大.mp3"
   ],
@@ -58,9 +68,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": [
-      "Chưa có câu chứa nguyên từ"
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
     ]
   }
 }

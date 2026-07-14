@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:频繁",
   "type": "word",
   "word": "频繁",
@@ -15,22 +15,23 @@
     "readings": [
       {
         "pinyin": "pín fán",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thường xuyên",
+      "meaningShortVi": "thường xuyên",
+      "meaningFullVi": "thường xuyên",
       "partOfSpeech": "",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thường xuyên",
   "wordType": "",
   "wordTypes": [],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -40,7 +41,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [],
   "grammarLinks": [],
@@ -56,9 +58,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PARTIAL",
     "warnings": [
-      "Chưa có câu chứa nguyên từ"
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
     ]
   }
 }

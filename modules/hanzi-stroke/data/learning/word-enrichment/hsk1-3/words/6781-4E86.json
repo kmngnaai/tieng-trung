@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:极了",
   "type": "word",
   "word": "极了",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jí le",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cực kỳ; vô cùng; lắm",
+      "meaningShortVi": "cực kỳ",
+      "meaningFullVi": "cực kỳ; vô cùng; lắm",
       "partOfSpeech": "trợ từ mức độ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cực kỳ",
   "wordType": "trợ từ mức độ",
   "wordTypes": [
     "trợ từ mức độ"
   ],
-  "usageNotes": [
-    "Đặt sau tính từ hoặc động từ để nhấn mạnh mức độ cao nhất. Thường dùng trong câu cảm thán."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -52,20 +51,25 @@
       {
         "text": "好极了",
         "pinyin": "hǎo jí le",
-        "meaningVi": "tốt lắm, tốt cực kỳ",
+        "meaningVi": "tốt lắm",
+        "meaningFullVi": "tốt lắm, tốt cực kỳ",
         "target": "极了",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "美极了",
         "pinyin": "měi jí le",
         "meaningVi": "đẹp cực kỳ",
+        "meaningFullVi": "đẹp cực kỳ",
         "target": "极了",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -75,7 +79,8 @@
       "meaningVi": "Món này ngon cực kỳ!",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "极了",
@@ -84,16 +89,17 @@
       "meaningVi": "Anh ấy vui mừng vô cùng, sắp kết hôn rồi.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 极了",
-      "syntax": "trợ từ mức độ",
-      "matchedExample": "Đặt sau tính từ hoặc động từ để nhấn mạnh mức độ cao nhất. Thường dùng trong câu cảm thán.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 极了",
+      "partOfSpeech": "trợ từ mức độ",
+      "usageNoteVi": "Đặt sau tính từ hoặc động từ để nhấn mạnh mức độ cao nhất. Thường dùng trong câu cảm thán.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,21 +110,31 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 15,
+      "sectionId": "hsk__3__lesson__15__bai-15-nhung-cai-khac-deu-khong-co-van-de-gi",
+      "sectionSlug": "bai-15-nhung-cai-khac-deu-khong-co-van-de-gi",
       "sectionTitle": "Những cái khác đều không có vấn đề gì.",
       "sectionTitleZh": "其他都没什么问题",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-15-nhung-cai-khac-deu-khong-co-van-de-gi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-15-nhung-cai-khac-deu-khong-co-van-de-gi/",
+      "orderInSection": 15
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 35,
+      "sectionId": "new_hsk__3__topic__35__tu-chuc-nang-i",
+      "sectionSlug": "tu-chuc-nang-i",
       "sectionTitle": "Từ chức năng I",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-i/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-i/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -134,7 +150,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

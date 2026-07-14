@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:通信",
   "type": "word",
   "word": "通信",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "tōng xìn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thông tin liên lạc; thư từ; liên lạc",
+      "meaningShortVi": "thông tin liên lạc",
+      "meaningFullVi": "thông tin liên lạc; thư từ; liên lạc",
       "partOfSpeech": "danh từ / động từ (Noun / Verb)",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thông tin liên lạc",
   "wordType": "danh từ / động từ (Noun / Verb)",
   "wordTypes": [
     "danh từ / động từ (Noun / Verb)"
   ],
-  "usageNotes": [
-    "Chỉ việc trao đổi thông tin qua các phương tiện: thư, điện thoại, internet. Trong kỹ thuật: telecommunications, 通信技术. Phân biệt 联系 (liên lạc). Synonym: 联系 (liên hệ), 联络 (liên lạc)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "通信地址",
         "pinyin": "tōngxìn dìzhǐ",
         "meaningVi": "địa chỉ liên lạc",
+        "meaningFullVi": "địa chỉ liên lạc",
         "target": "通信",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "通信公司",
         "pinyin": "tōngxìn gōngsī",
         "meaningVi": "công ty viễn thông",
+        "meaningFullVi": "công ty viễn thông",
         "target": "通信",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Chúng tôi giữ liên lạc qua điện thoại.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "通信",
@@ -82,16 +87,17 @@
       "meaningVi": "Công nghệ thông tin liên lạc phát triển rất nhanh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 通信",
-      "syntax": "danh từ / động từ (Noun / Verb)",
-      "matchedExample": "Chỉ việc trao đổi thông tin qua các phương tiện: thư, điện thoại, internet. Trong kỹ thuật: telecommunications, 通信技术. Phân biệt 联系 (liên lạc). Synonym: 联系 (liên hệ), 联络 (liên lạc).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 通信",
+      "partOfSpeech": "danh từ / động từ (Noun / Verb)",
+      "usageNoteVi": "Chỉ việc trao đổi thông tin qua các phương tiện: thư, điện thoại, internet. Trong kỹ thuật: telecommunications, 通信技术. Phân biệt 联系 (liên lạc). Synonym: 联系 (liên hệ), 联络 (liên lạc).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 29,
+      "sectionId": "new_hsk__3__topic__29__lien-lac",
+      "sectionSlug": "lien-lac",
       "sectionTitle": "Liên lạc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

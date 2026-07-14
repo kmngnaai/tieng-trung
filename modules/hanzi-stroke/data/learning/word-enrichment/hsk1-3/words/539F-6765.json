@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:原来",
   "type": "word",
   "word": "原来",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "yuán lái",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ban đầu; trước đây",
+      "meaningShortVi": "ban đầu",
+      "meaningFullVi": "ban đầu; trước đây",
       "partOfSpeech": "adverb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ban đầu",
   "wordType": "adverb",
   "wordTypes": [
     "adverb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -46,36 +47,49 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "原本",
-        "pinyin": "",
-        "meaningVi": "vốn ban đầu",
+        "text": "原来",
+        "pinyin": "yuán lái",
+        "meaningVi": "thì ra",
+        "meaningFullVi": "thì ra, ban đầu",
         "target": "原来",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "原来",
       "chinese": "原来是他",
-      "pinyin": "",
+      "pinyin": "yuán lái shì tā",
       "meaningVi": "Thì ra là anh ấy",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "原来",
       "chinese": "原来的计划",
-      "pinyin": "",
+      "pinyin": "yuán lái de jì huà",
       "meaningVi": "Kế hoạch ban đầu",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 原来",
+      "partOfSpeech": "adverb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/原来.mp3"
   ],
@@ -84,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__2__topic__10__tu-noi",
+      "sectionSlug": "tu-noi",
       "sectionTitle": "Từ nối",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-noi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-noi/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -99,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

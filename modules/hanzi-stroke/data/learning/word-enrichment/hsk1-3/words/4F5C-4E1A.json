@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:作业",
   "type": "word",
   "word": "作业",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "zuò yè",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tác nghiệp",
+      "meaningShortVi": "tác nghiệp",
+      "meaningFullVi": "tác nghiệp",
       "partOfSpeech": "noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tác nghiệp",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,43 +51,48 @@
     "collocations": [
       {
         "text": "家庭作业",
-        "pinyin": "",
+        "pinyin": "jiā tíng zuò yè",
         "meaningVi": "bài tập về nhà",
+        "meaningFullVi": "bài tập về nhà",
         "target": "作业",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "写作业",
-        "pinyin": "",
-        "meaningVi": "làm bài tập",
-        "target": "作业",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "作业",
       "chinese": "今天的作业很多",
-      "pinyin": "",
+      "pinyin": "jīn tiān de zuò yè hěn duō",
       "meaningVi": "Bài tập hôm nay rất nhiều",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "作业",
       "chinese": "请交作业",
-      "pinyin": "",
+      "pinyin": "qǐng jiāo zuò yè",
       "meaningVi": "Vui lòng nộp bài tập",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 作业",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/作业.mp3"
   ],
@@ -95,31 +101,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__2__topic__7__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/nghien-cuu/",
+      "orderInSection": 8
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 1,
+      "sectionId": "hsk__3__lesson__1__bai-1-cuoi-tuan-ban-co-du-dinh-gi",
+      "sectionSlug": "bai-1-cuoi-tuan-ban-co-du-dinh-gi",
       "sectionTitle": "Cuối tuần bạn có dự định gì?",
       "sectionTitleZh": "周末你有什么打算",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-1-cuoi-tuan-ban-co-du-dinh-gi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-1-cuoi-tuan-ban-co-du-dinh-gi/",
+      "orderInSection": 7
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__3__lesson__10__bai-10-you-can-return-the-book-to-me-tomorrow",
+      "sectionSlug": "bai-10-you-can-return-the-book-to-me-tomorrow",
       "sectionTitle": "Mai bạn trả sách cho tôi cũng được",
       "sectionTitleZh": "你明天再把书还给我",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-10-you-can-return-the-book-to-me-tomorrow/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-10-you-can-return-the-book-to-me-tomorrow/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -140,7 +161,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

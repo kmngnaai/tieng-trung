@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:防止",
   "type": "word",
   "word": "防止",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fáng zhǐ",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Ngăn ngừa",
+      "meaningShortVi": "Ngăn ngừa",
+      "meaningFullVi": "Ngăn ngừa",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Ngăn ngừa",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "防止 là động từ chỉ việc ngăn chặn, phòng ngừa trước khi sự việc xảy ra. 防 (phòng) nghĩa là phòng chống, đê ngăn; 止 nghĩa là dừng lại."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,48 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "防止发生",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "防止",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "防止感染",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "防止",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "防止事故",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "防止",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "采取措施防止",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "防止",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "防止疾病",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "防止",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -97,7 +56,8 @@
       "meaningVi": "Chúng ta cần có biện pháp ngăn chặn việc này xảy ra.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "防止",
@@ -106,7 +66,8 @@
       "meaningVi": "Loại thuốc này có thể ngăn ngừa cảm cúm.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "防止",
@@ -115,16 +76,17 @@
       "meaningVi": "Đội mũ bảo hiểm có thể ngăn ngừa chấn thương.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 防止",
-      "syntax": "compound-semantic",
-      "matchedExample": "防止 là động từ chỉ việc ngăn chặn, phòng ngừa trước khi sự việc xảy ra. 防 (phòng) nghĩa là phòng chống, đê ngăn; 止 nghĩa là dừng lại.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 防止",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "防止 là động từ chỉ việc ngăn chặn, phòng ngừa trước khi sự việc xảy ra. 防 (phòng) nghĩa là phòng chống, đê ngăn; 止 nghĩa là dừng lại.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -135,11 +97,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__3__topic__6__bao-hanh-va-bao-ve",
+      "sectionSlug": "bao-hanh-va-bao-ve",
       "sectionTitle": "Bảo hành và bảo vệ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bao-hanh-va-bao-ve/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bao-hanh-va-bao-ve/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -150,7 +117,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:玫瑰花",
   "type": "word",
   "word": "玫瑰花",
@@ -16,27 +16,24 @@
     "readings": [
       {
         "pinyin": "méiguīhuā",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bông hồng, hoa hồng",
+      "meaningShortVi": "bông hồng",
+      "meaningFullVi": "bông hồng, hoa hồng",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bông hồng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Thường dùng khi nói về hoa hồng."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 玫瑰 (hoa hồng) + 花 (hoa) → hoa hồng."
   ],
   "hsk": {
     "levels": [
@@ -47,24 +44,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "玫瑰",
-        "pinyin": "méiguī",
-        "meaningVi": "hoa hồng",
-        "target": "玫瑰花",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "一朵花",
-        "pinyin": "yī duǒ huā",
-        "meaningVi": "một bông hoa",
-        "target": "玫瑰花",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +55,8 @@
       "meaningVi": "Đây là một bông hồng",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "玫瑰花",
@@ -83,7 +65,8 @@
       "meaningVi": "Tôi mua hoa hồng",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "玫瑰花",
@@ -92,23 +75,17 @@
       "meaningVi": "Hoa hồng rất đẹp",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 玫瑰花",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường dùng khi nói về hoa hồng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 玫瑰 (hoa hồng) + 花 (hoa) → hoa hồng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 玫瑰花",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường dùng khi nói về hoa hồng.",
+      "explanationVi": "Ghép nghĩa: 玫瑰 (hoa hồng) + 花 (hoa) → hoa hồng.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -123,7 +100,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

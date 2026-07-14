@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:类似",
   "type": "word",
   "word": "类似",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "lèi sì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tương tự, giống nhau; gần giống",
+      "meaningShortVi": "tương tự",
+      "meaningFullVi": "tương tự, giống nhau; gần giống",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tương tự",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "类似 là tính từ chỉ sự tương đồng, giống nhau. Là từ ghép Hán-Việt 'loại tự' (cùng loại). Thường dùng với rất 很, 非常."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "类似的情况",
         "pinyin": "lèisì de qíngkuàng",
         "meaningVi": "tình huống tương tự",
+        "meaningFullVi": "tình huống tương tự",
         "target": "类似",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "类似的产品",
         "pinyin": "lèisì de chǎnpǐn",
         "meaningVi": "sản phẩm tương tự",
+        "meaningFullVi": "sản phẩm tương tự",
         "target": "类似",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Hai vấn đề này rất tương tự.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "类似",
@@ -82,16 +87,17 @@
       "meaningVi": "Tình huống này rất tương tự.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 类似",
-      "syntax": "tính từ",
-      "matchedExample": "类似 là tính từ chỉ sự tương đồng, giống nhau. Là từ ghép Hán-Việt 'loại tự' (cùng loại). Thường dùng với rất 很, 非常.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 类似",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "类似 là tính từ chỉ sự tương đồng, giống nhau. Là từ ghép Hán-Việt 'loại tự' (cùng loại). Thường dùng với rất 很, 非常.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 20,
+      "sectionId": "new_hsk__3__topic__20__so-sanh-va-tuan-thu",
+      "sectionSlug": "so-sanh-va-tuan-thu",
       "sectionTitle": "So sánh và Tuân thủ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/so-sanh-va-tuan-thu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/so-sanh-va-tuan-thu/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:变成",
   "type": "word",
   "word": "变成",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "biàn chéng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "biến thành",
+      "meaningShortVi": "biến thành",
+      "meaningFullVi": "biến thành",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "biến thành",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -48,43 +49,58 @@
     "collocations": [
       {
         "text": "变成什么样",
-        "pinyin": "",
+        "pinyin": "biàn chéng shén me yàng",
         "meaningVi": "trở thành như thế nào",
+        "meaningFullVi": "trở thành như thế nào",
         "target": "变成",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "终于变成",
-        "pinyin": "",
+        "pinyin": "zhōng yú biàn chéng",
         "meaningVi": "cuối cùng trở thành",
+        "meaningFullVi": "cuối cùng trở thành",
         "target": "变成",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "变成",
       "chinese": "水变成冰",
-      "pinyin": "",
+      "pinyin": "shuǐ biàn chéng bīng",
       "meaningVi": "Nước biến thành băng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "变成",
       "chinese": "他变成了好朋友",
-      "pinyin": "",
+      "pinyin": "tā biàn chéng le hǎo péng you",
       "meaningVi": "Anh ấy trở thành bạn tốt",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 变成",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/变成.mp3"
   ],
@@ -93,21 +109,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 26,
+      "sectionId": "new_hsk__2__topic__26__dong-tu",
+      "sectionSlug": "dong-tu",
       "sectionTitle": "Động từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dong-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dong-tu/",
+      "orderInSection": 5
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__3__lesson__12__bai-12-the-weather-changes-rapidly-in-this-season",
+      "sectionSlug": "bai-12-the-weather-changes-rapidly-in-this-season",
       "sectionTitle": "Mùa này thời tiết thay đổi rất nhanh",
       "sectionTitleZh": "这个季节天气变化很快",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-12-the-weather-changes-rapidly-in-this-season/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-12-the-weather-changes-rapidly-in-this-season/",
+      "orderInSection": 27
     }
   ],
   "sources": [
@@ -123,7 +149,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

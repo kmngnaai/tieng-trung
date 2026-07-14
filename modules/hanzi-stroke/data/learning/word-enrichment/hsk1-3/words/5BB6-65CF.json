@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:家族",
   "type": "word",
   "word": "家族",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiā zú",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "gia tộc; dòng họ; họ hàng (nhóm người cùng họ)",
+      "meaningShortVi": "gia tộc",
+      "meaningFullVi": "gia tộc; dòng họ; họ hàng (nhóm người cùng họ)",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "gia tộc",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Chỉ tập thể người có cùng nguồn gốc họ hàng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,32 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "家族企业",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "家族",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "家族历史",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "家族",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "大家族",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "家族",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,16 +54,17 @@
       "meaningVi": "Gia tộc này đã có lịch sử ba trăm năm.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 家族",
-      "syntax": "danh từ",
-      "matchedExample": "Chỉ tập thể người có cùng nguồn gốc họ hàng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 家族",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Chỉ tập thể người có cùng nguồn gốc họ hàng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,7 +79,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

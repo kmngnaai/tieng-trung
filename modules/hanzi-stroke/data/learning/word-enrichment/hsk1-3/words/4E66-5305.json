@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:书包",
   "type": "word",
   "word": "书包",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shū bāo",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cặp sách",
+      "meaningShortVi": "cặp sách",
+      "meaningFullVi": "cặp sách",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cặp sách",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "书包 là loại túi dùng để đựng sách vở, học cụ."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -53,19 +52,24 @@
         "text": "新书包",
         "pinyin": "xīn shūbāo",
         "meaningVi": "cặp sách mới",
+        "meaningFullVi": "cặp sách mới",
         "target": "书包",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "书包里",
         "pinyin": "shūbāo lǐ",
         "meaningVi": "trong cặp sách",
+        "meaningFullVi": "trong cặp sách",
         "target": "书包",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -75,7 +79,8 @@
       "meaningVi": "Cặp sách của tôi rất nặng.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "书包",
@@ -84,7 +89,8 @@
       "meaningVi": "Hãy để cặp sách lên ghế.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "书包",
@@ -93,16 +99,17 @@
       "meaningVi": "Tôi mua một cặp sách mới.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 书包",
-      "syntax": "compound-semantic",
-      "matchedExample": "书包 là loại túi dùng để đựng sách vở, học cụ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 书包",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "书包 là loại túi dùng để đựng sách vở, học cụ.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -113,21 +120,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__1__topic__6__trong-lop",
+      "sectionSlug": "trong-lop",
       "sectionTitle": "Trong lớp",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/trong-lop/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/trong-lop/",
+      "orderInSection": 21
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__2__lesson__4__bai-4-you-look-pretty-good-in-red",
+      "sectionSlug": "bai-4-you-look-pretty-good-in-red",
       "sectionTitle": "Bạn mặc màu đỏ rất đẹp",
       "sectionTitleZh": "你穿红色的很好看",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-4-you-look-pretty-good-in-red/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-4-you-look-pretty-good-in-red/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -148,7 +165,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

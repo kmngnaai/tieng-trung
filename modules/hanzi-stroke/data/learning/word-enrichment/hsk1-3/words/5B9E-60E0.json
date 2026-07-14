@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:实惠",
   "type": "word",
   "word": "实惠",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shí huì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hữu ích, lợi ích thực tế; giá cả phải chăng",
+      "meaningShortVi": "hữu ích",
+      "meaningFullVi": "hữu ích, lợi ích thực tế; giá cả phải chăng",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hữu ích",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Thường dùng để miêu tả hàng hóa có giá cả hợp lý và mang lại lợi ích thiết thực."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,32 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "经济实惠",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "实惠",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "实惠价格",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "实惠",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "实用实惠",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "实惠",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +54,8 @@
       "meaningVi": "Loại trái cây này vừa hữu ích vừa ngon",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "实惠",
@@ -88,7 +64,8 @@
       "meaningVi": "giá cửa hàng này rất phải chăng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "实惠",
@@ -97,7 +74,8 @@
       "meaningVi": "mua một số món quà hữu ích cho người già",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "实惠",
@@ -106,16 +84,17 @@
       "meaningVi": "combo giá cả phải chăng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 实惠",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường dùng để miêu tả hàng hóa có giá cả hợp lý và mang lại lợi ích thiết thực.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 实惠",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường dùng để miêu tả hàng hóa có giá cả hợp lý và mang lại lợi ích thiết thực.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -130,7 +109,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

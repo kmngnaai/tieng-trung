@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:自动",
   "type": "word",
   "word": "自动",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zì dòng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tự động; hoạt động một mình không cần người tác động",
+      "meaningShortVi": "tự động",
+      "meaningFullVi": "tự động; hoạt động một mình không cần người tác động",
       "partOfSpeech": "tính từ / trạng từ (Adjective / Adverb)",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tự động",
   "wordType": "tính từ / trạng từ (Adjective / Adverb)",
   "wordTypes": [
     "tính từ / trạng từ (Adjective / Adverb)"
   ],
-  "usageNotes": [
-    "Chỉ thứ tự hoạt động mà không cần tác động từ bên ngoài: tự động cửa, tự động hóa, tự động trả lời. Ngược nghĩa: 手动 (thủ công), 人工 (nhân công). Synonym: 自动化 (tự động hóa)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "自动门",
         "pinyin": "zìdòngmén",
         "meaningVi": "cửa tự động",
+        "meaningFullVi": "cửa tự động",
         "target": "自动",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "自动化",
         "pinyin": "zìdònghuà",
         "meaningVi": "tự động hóa",
+        "meaningFullVi": "tự động hóa",
         "target": "自动",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Cửa là tự động.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "自动",
@@ -82,16 +87,17 @@
       "meaningVi": "Tôi sẽ tự động hoàn thành nhiệm vụ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 自动",
-      "syntax": "tính từ / trạng từ (Adjective / Adverb)",
-      "matchedExample": "Chỉ thứ tự hoạt động mà không cần tác động từ bên ngoài: tự động cửa, tự động hóa, tự động trả lời. Ngược nghĩa: 手动 (thủ công), 人工 (nhân công). Synonym: 自动化 (tự động hóa).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 自动",
+      "partOfSpeech": "tính từ / trạng từ (Adjective / Adverb)",
+      "usageNoteVi": "Chỉ thứ tự hoạt động mà không cần tác động từ bên ngoài: tự động cửa, tự động hóa, tự động trả lời. Ngược nghĩa: 手动 (thủ công), 人工 (nhân công). Synonym: 自动化 (tự động hóa).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__3__topic__14__van-chuyen-va-di-chuyen",
+      "sectionSlug": "van-chuyen-va-di-chuyen",
       "sectionTitle": "Vận chuyển và di chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/van-chuyen-va-di-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/van-chuyen-va-di-chuyen/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

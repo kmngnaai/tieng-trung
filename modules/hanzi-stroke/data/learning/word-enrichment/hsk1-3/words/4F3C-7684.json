@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:似的",
   "type": "word",
   "word": "似的",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shì de",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "giống như, tựa như, dường như",
+      "meaningShortVi": "giống như",
+      "meaningFullVi": "giống như, tựa như, dường như",
       "partOfSpeech": "trợ từ so sánh",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "giống như",
   "wordType": "trợ từ so sánh",
   "wordTypes": [
     "trợ từ so sánh"
   ],
-  "usageNotes": [
-    "似的 thường đi sau danh từ hoặc cụm từ để tạo so sánh, tương đương với 'giống như'. Vị trí thường ở cuối cụm so sánh, trước đó có thể có '好像' hoặc '跟'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -48,20 +47,25 @@
       {
         "text": "好像...似的",
         "pinyin": "hǎoxiàng...shìde",
-        "meaningVi": "như thể, dường như",
+        "meaningVi": "như thể",
+        "meaningFullVi": "như thể, dường như",
         "target": "似的",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "跟...似的",
         "pinyin": "gēn...shìde",
-        "meaningVi": "giống như...",
+        "meaningVi": "giống như",
+        "meaningFullVi": "giống như...",
         "target": "似的",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +75,8 @@
       "meaningVi": "Anh ấy giống như một đứa trẻ.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "似的",
@@ -80,16 +85,17 @@
       "meaningVi": "Trời mưa rồi, những bông hoa dường như đang buồn.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 似的",
-      "syntax": "trợ từ so sánh",
-      "matchedExample": "似的 thường đi sau danh từ hoặc cụm từ để tạo so sánh, tương đương với 'giống như'. Vị trí thường ở cuối cụm so sánh, trước đó có thể có '好像' hoặc '跟'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 似的",
+      "partOfSpeech": "trợ từ so sánh",
+      "usageNoteVi": "似的 thường đi sau danh từ hoặc cụm từ để tạo so sánh, tương đương với 'giống như'. Vị trí thường ở cuối cụm so sánh, trước đó có thể có '好像' hoặc '跟'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

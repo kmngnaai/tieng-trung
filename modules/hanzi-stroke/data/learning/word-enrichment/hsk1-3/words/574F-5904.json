@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:坏处",
   "type": "word",
   "word": "坏处",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "huài chu",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "điều xấu; điểm hại",
+      "meaningShortVi": "điều xấu",
+      "meaningFullVi": "điều xấu; điểm hại",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "điều xấu",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,46 +45,30 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "好处",
-        "pinyin": "",
-        "meaningVi": "lợi ích, điểm tốt",
-        "target": "坏处",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "弄坏",
-        "pinyin": "",
-        "meaningVi": "làm hỏng",
-        "target": "坏处",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "坏处",
-      "chinese": "抽烟的坏处很多",
-      "pinyin": "",
-      "meaningVi": "Hút thuốc có nhiều điều xấu",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "坏处",
       "chinese": "你要知道坏处",
-      "pinyin": "",
+      "pinyin": "nǐ yào zhī dào huài chu",
       "meaningVi": "Bạn cần biết về những điều xấu đó",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 坏处",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/坏处.mp3"
   ],
@@ -92,11 +77,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__2__topic__17__dac-trung",
+      "sectionSlug": "dac-trung",
       "sectionTitle": "Đặc trưng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dac-trung/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/dac-trung/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -107,7 +97,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

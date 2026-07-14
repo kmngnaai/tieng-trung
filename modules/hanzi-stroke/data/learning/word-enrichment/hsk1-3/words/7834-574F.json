@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:破坏",
   "type": "word",
   "word": "破坏",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "pò huài",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phá hoại",
+      "meaningShortVi": "phá hoại",
+      "meaningFullVi": "phá hoại",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phá hoại",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "指使某事物受到损害或毁坏。可用于具体事物（房屋、物品）或抽象事物（环境、关系、计划等）。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,25 @@
     "collocations": [
       {
         "text": "破坏环境",
-        "pinyin": "",
+        "pinyin": "pò huài huán jìng",
         "meaningVi": "phá hoại môi trường",
+        "meaningFullVi": "phá hoại môi trường",
         "target": "破坏",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "严重破坏",
-        "pinyin": "",
-        "meaningVi": "phá hoại nghiêm trọng",
-        "target": "破坏",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "破坏",
-      "chinese": "不要破坏公物。",
-      "pinyin": "",
-      "meaningVi": "Đừng phá hoại tài sản công.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "破坏",
-      "chinese": "暴风雨破坏了很多房屋。",
-      "pinyin": "",
-      "meaningVi": "Bão tố đã phá hoại nhiều ngôi nhà.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 破坏",
-      "syntax": "động từ",
-      "matchedExample": "指使某事物受到损害或毁坏。可用于具体事物（房屋、物品）或抽象事物（环境、关系、计划等）。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 破坏",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "指使某事物受到损害或毁坏。可用于具体事物（房屋、物品）或抽象事物（环境、关系、计划等）。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +77,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__3__topic__19__thanh-tuu-va-ket-qua",
+      "sectionSlug": "thanh-tuu-va-ket-qua",
       "sectionTitle": "Thành tựu và kết quả",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/",
+      "orderInSection": 29
     }
   ],
   "sources": [
@@ -117,7 +97,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:不满",
   "type": "word",
   "word": "不满",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "bù mǎn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bất mãn",
+      "meaningShortVi": "bất mãn",
+      "meaningFullVi": "bất mãn",
       "partOfSpeech": "adjective/verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bất mãn",
   "wordType": "adjective/verb",
   "wordTypes": [
     "adjective/verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,60 +48,68 @@
     "collocations": [
       {
         "text": "感到不满",
-        "pinyin": "",
+        "pinyin": "gǎn dào bù mǎn",
         "meaningVi": "cảm thấy bất mãn",
+        "meaningFullVi": "cảm thấy bất mãn",
         "target": "不满",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "表示不满",
-        "pinyin": "",
+        "pinyin": "biǎo shì bù mǎn",
         "meaningVi": "bày tỏ bất mãn",
+        "meaningFullVi": "bày tỏ bất mãn",
         "target": "不满",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "令人不满",
-        "pinyin": "",
-        "meaningVi": "đáng bất mãn",
-        "target": "不满",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "不满",
       "chinese": "他对工作条件不满。",
-      "pinyin": "",
+      "pinyin": "tā duì gōng zuò tiáo jiàn bù mǎn。",
       "meaningVi": "Anh ấy bất mãn với điều kiện làm việc.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不满",
       "chinese": "表达不满。",
-      "pinyin": "",
+      "pinyin": "biǎo dá bù mǎn。",
       "meaningVi": "Bày tỏ bất mãn.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不满",
       "chinese": "大家都感到不满。",
-      "pinyin": "",
+      "pinyin": "dà jiā dōu gǎn dào bù mǎn。",
       "meaningVi": "Mọi người đều cảm thấy bất mãn.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 不满",
+      "partOfSpeech": "adjective/verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/不满.mp3"
   ],
@@ -109,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 20,
+      "sectionId": "new_hsk__2__topic__20__tinh-cam-va-cam-xuc",
+      "sectionSlug": "tinh-cam-va-cam-xuc",
       "sectionTitle": "Tình cảm và cảm xúc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-cam-va-cam-xuc/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-cam-va-cam-xuc/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -124,7 +138,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

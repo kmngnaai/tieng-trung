@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:设施",
   "type": "word",
   "word": "设施",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "shè shī",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cơ sở vật chất, công trình, tiện ích",
+      "meaningShortVi": "cơ sở vật chất",
+      "meaningFullVi": "cơ sở vật chất, công trình, tiện ích",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cơ sở vật chất",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng chỉ các công trình, trang thiết bị phục vụ cho hoạt động của con người như trường học, bệnh viện, khu vui chơi."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 设 (sắp đặt, thiết lập) + 施 (thực hiện) = những gì được thiết lập và thực hiện để phục vụ."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "公共设施",
         "pinyin": "gōnggòng shèshī",
         "meaningVi": "cơ sở công cộng",
+        "meaningFullVi": "cơ sở công cộng",
         "target": "设施",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "基础设施",
         "pinyin": "jīchǔ shèshī",
         "meaningVi": "cơ sở hạ tầng",
+        "meaningFullVi": "cơ sở hạ tầng",
         "target": "设施",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "体育设施",
         "pinyin": "tǐyù shèshī",
         "meaningVi": "cơ sở thể thao",
+        "meaningFullVi": "cơ sở thể thao",
         "target": "设施",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Cơ sở vật chất trong khu này rất đầy đủ",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "设施",
@@ -90,7 +95,8 @@
       "meaningVi": "Trường học có nhiều cơ sở thể thao",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "设施",
@@ -99,7 +105,8 @@
       "meaningVi": "Chúng ta cần cải thiện cơ sở công cộng",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "设施",
@@ -108,23 +115,17 @@
       "meaningVi": "Tiện nghi khách sạn rất tốt",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 设施",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng chỉ các công trình, trang thiết bị phục vụ cho hoạt động của con người như trường học, bệnh viện, khu vui chơi.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 设 (sắp đặt, thiết lập) + 施 (thực hiện) = những gì được thiết lập và thực hiện để phục vụ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 设施",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng chỉ các công trình, trang thiết bị phục vụ cho hoạt động của con người như trường học, bệnh viện, khu vui chơi.",
+      "explanationVi": "Ghép nghĩa: 设 (sắp đặt, thiết lập) + 施 (thực hiện) = những gì được thiết lập và thực hiện để phục vụ.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

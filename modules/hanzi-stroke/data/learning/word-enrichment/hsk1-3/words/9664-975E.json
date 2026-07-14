@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:除非",
   "type": "word",
   "word": "除非",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "chú fēi",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trừ khi, chỉ khi — biểu thị điều kiện duy nhất để một sự việc có thể xảy ra hoặc không xảy ra",
+      "meaningShortVi": "trừ khi",
+      "meaningFullVi": "trừ khi, chỉ khi — biểu thị điều kiện duy nhất để một sự việc có thể xảy ra hoặc không xảy ra",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trừ khi",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "除非 thường đi cặp với 否则 (nếu không) hoặc 才 (mới): 除非A，否则B = nếu không phải A thì B; 除非A，才B = chỉ khi A mới B. Khác với 只有 (chỉ có) — 只有 thiên về khẳng định điều kiện, 除非 thiên về phủ định điều kiện ngược lại."
-  ],
-  "wordTypeExplanations": [
-    "除 (trừ — ngoại trừ, loại bỏ) + 非 (phi — không phải) → loại trừ tất cả ngoại trừ trường hợp 'không phải như thế', tức là 'trừ khi'."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "除非……否则",
         "pinyin": "chúfēi… fǒuzé",
         "meaningVi": "trừ khi… nếu không thì",
+        "meaningFullVi": "trừ khi… nếu không thì",
         "target": "除非",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "除非……才",
         "pinyin": "chúfēi… cái",
         "meaningVi": "chỉ khi… mới",
+        "meaningFullVi": "chỉ khi… mới",
         "target": "除非",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "除非万不得已",
         "pinyin": "chúfēi wànbùdéyǐ",
         "meaningVi": "trừ khi bất đắc dĩ",
+        "meaningFullVi": "trừ khi bất đắc dĩ",
         "target": "除非",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Trừ khi anh xin lỗi, nếu không tôi sẽ không tha thứ",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "除非",
@@ -90,7 +95,8 @@
       "meaningVi": "Trừ khi trời mưa, trận đấu sẽ tiếp tục diễn ra",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "除非",
@@ -99,7 +105,8 @@
       "meaningVi": "Chỉ khi bạn học chăm chỉ thì mới có thể qua kỳ thi",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "除非",
@@ -108,23 +115,17 @@
       "meaningVi": "Anh ta sẽ không đến, trừ khi bạn đích thân đi mời",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 除非",
-      "syntax": "compound-semantic",
-      "matchedExample": "除非 thường đi cặp với 否则 (nếu không) hoặc 才 (mới): 除非A，否则B = nếu không phải A thì B; 除非A，才B = chỉ khi A mới B. Khác với 只有 (chỉ có) — 只有 thiên về khẳng định điều kiện, 除非 thiên về phủ định điều kiện ngược lại.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "除 (trừ — ngoại trừ, loại bỏ) + 非 (phi — không phải) → loại trừ tất cả ngoại trừ trường hợp 'không phải như thế', tức là 'trừ khi'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 除非",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "除非 thường đi cặp với 否则 (nếu không) hoặc 才 (mới): 除非A，否则B = nếu không phải A thì B; 除非A，才B = chỉ khi A mới B. Khác với 只有 (chỉ có) — 只有 thiên về khẳng định điều kiện, 除非 thiên về phủ định điều kiện ngược lại.",
+      "explanationVi": "除 (trừ — ngoại trừ, loại bỏ) + 非 (phi — không phải) → loại trừ tất cả ngoại trừ trường hợp 'không phải như thế', tức là 'trừ khi'.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

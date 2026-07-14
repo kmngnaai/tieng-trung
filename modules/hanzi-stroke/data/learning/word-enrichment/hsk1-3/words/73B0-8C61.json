@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:现象",
   "type": "word",
   "word": "现象",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xiàn xiàng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hiện tượng",
+      "meaningShortVi": "hiện tượng",
+      "meaningFullVi": "hiện tượng",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hiện tượng",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Chỉ hiện tượng tự nhiên hoặc xã hội. Dùng trong khoa học, văn học."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "自然现象",
-        "pinyin": "",
+        "pinyin": "zì rán xiàn xiàng",
         "meaningVi": "hiện tượng tự nhiên",
+        "meaningFullVi": "hiện tượng tự nhiên",
         "target": "现象",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "社会现象",
-        "pinyin": "",
+        "pinyin": "shè huì xiàn xiàng",
         "meaningVi": "hiện tượng xã hội",
+        "meaningFullVi": "hiện tượng xã hội",
         "target": "现象",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "现象",
       "chinese": "这是一种很常见的现象。",
-      "pinyin": "",
+      "pinyin": "zhè shì yī zhǒng hěn cháng jiàn de xiàn xiàng。",
       "meaningVi": "Đây là một hiện tượng rất phổ biến.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "现象",
       "chinese": "科学家们正在研究这个自然现象。",
-      "pinyin": "",
+      "pinyin": "kē xué jiā men zhèng zài yán jiū zhè ge zì rán xiàn xiàng。",
       "meaningVi": "Các nhà khoa học đang nghiên cứu hiện tượng tự nhiên này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 现象",
-      "syntax": "danh từ",
-      "matchedExample": "Chỉ hiện tượng tự nhiên hoặc xã hội. Dùng trong khoa học, văn học.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 现象",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Chỉ hiện tượng tự nhiên hoặc xã hội. Dùng trong khoa học, văn học.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 25,
+      "sectionId": "new_hsk__3__topic__25__truong-hop",
+      "sectionSlug": "truong-hop",
       "sectionTitle": "Trường hợp",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/truong-hop/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/truong-hop/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

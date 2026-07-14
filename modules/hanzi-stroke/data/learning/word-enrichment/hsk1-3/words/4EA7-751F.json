@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:产生",
   "type": "word",
   "word": "产生",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "chǎn shēng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sinh ra, sản sinh, tạo ra",
+      "meaningShortVi": "sinh ra",
+      "meaningFullVi": "sinh ra, sản sinh, tạo ra",
       "partOfSpeech": "động từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sinh ra",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "指从无到有地出现。可用于具体事物、抽象概念、结果等。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -50,49 +49,35 @@
     "collocations": [
       {
         "text": "产生兴趣",
-        "pinyin": "",
+        "pinyin": "chǎn shēng xìng qù",
         "meaningVi": "nảy sinh hứng thú",
+        "meaningFullVi": "nảy sinh hứng thú",
         "target": "产生",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "产生影响",
-        "pinyin": "",
+        "pinyin": "chǎn shēng yǐng xiǎng",
         "meaningVi": "gây ảnh hưởng",
+        "meaningFullVi": "gây ảnh hưởng",
         "target": "产生",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "产生",
-      "chinese": "这项决定产生了很大影响。",
-      "pinyin": "",
-      "meaningVi": "Quyết định này đã tạo ra ảnh hưởng lớn.",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "产生",
-      "chinese": "工厂产生了大量废物。",
-      "pinyin": "",
-      "meaningVi": "Nhà máy đã thải ra lượng lớn rác thải.",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 产生",
-      "syntax": "động từ",
-      "matchedExample": "指从无到有地出现。可用于具体事物、抽象概念、结果等。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 产生",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "指从无到有地出现。可用于具体事物、抽象概念、结果等。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__3__topic__19__thanh-tuu-va-ket-qua",
+      "sectionSlug": "thanh-tuu-va-ket-qua",
       "sectionTitle": "Thành tựu và kết quả",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/",
+      "orderInSection": 19
     }
   ],
   "sources": [
@@ -123,7 +113,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

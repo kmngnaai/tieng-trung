@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:生产",
   "type": "word",
   "word": "生产",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shēng chǎn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sản xuất, làm ra hàng hóa",
+      "meaningShortVi": "sản xuất",
+      "meaningFullVi": "sản xuất, làm ra hàng hóa",
       "partOfSpeech": "động từ / danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sản xuất",
   "wordType": "động từ / danh từ",
   "wordTypes": [
     "động từ / danh từ"
   ],
-  "usageNotes": [
-    "生产 có thể là động từ (sản xuất) hoặc danh từ (sản xuất, ngành sản xuất). Thường đi kèm với các từ chỉ sản phẩm hoặc lĩnh vực: 生产汽车 (sản xuất ô tô), 农业生产 (sản xuất nông nghiệp)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,61 +48,66 @@
       {
         "word": "生产力",
         "pinyin": "shēng chǎn lì",
-        "meaningVi": "Sức sản xuất, năng suất lao động",
+        "meaningVi": "Sức sản xuất",
+        "meaningFullVi": "Sức sản xuất, năng suất lao động",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          3
-        ],
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 3",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
       {
         "text": "生产线",
-        "pinyin": "",
+        "pinyin": "shēng chǎn xiàn",
         "meaningVi": "dây chuyền sản xuất",
+        "meaningFullVi": "dây chuyền sản xuất",
         "target": "生产",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "生产厂家",
-        "pinyin": "",
+        "pinyin": "shēng chǎn chǎng jiā",
         "meaningVi": "nhà sản xuất",
+        "meaningFullVi": "nhà sản xuất",
         "target": "生产",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "生产",
       "chinese": "这家工厂生产汽车。",
-      "pinyin": "",
+      "pinyin": "zhè jiā gōng chǎng shēng chǎn qì chē。",
       "meaningVi": "Nhà máy này sản xuất ô tô.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "生产",
       "chinese": "农业生产很重要。",
-      "pinyin": "",
+      "pinyin": "nóng yè shēng chǎn hěn zhòng yào。",
       "meaningVi": "Sản xuất nông nghiệp rất quan trọng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 生产",
-      "syntax": "động từ / danh từ",
-      "matchedExample": "生产 có thể là động từ (sản xuất) hoặc danh từ (sản xuất, ngành sản xuất). Thường đi kèm với các từ chỉ sản phẩm hoặc lĩnh vực: 生产汽车 (sản xuất ô tô), 农业生产 (sản xuất nông nghiệp).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 生产",
+      "partOfSpeech": "động từ / danh từ",
+      "usageNoteVi": "生产 có thể là động từ (sản xuất) hoặc danh từ (sản xuất, ngành sản xuất). Thường đi kèm với các từ chỉ sản phẩm hoặc lĩnh vực: 生产汽车 (sản xuất ô tô), 农业生产 (sản xuất nông nghiệp).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__3__topic__19__thanh-tuu-va-ket-qua",
+      "sectionSlug": "thanh-tuu-va-ket-qua",
       "sectionTitle": "Thành tựu và kết quả",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/",
+      "orderInSection": 32
     }
   ],
   "sources": [
@@ -129,7 +138,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

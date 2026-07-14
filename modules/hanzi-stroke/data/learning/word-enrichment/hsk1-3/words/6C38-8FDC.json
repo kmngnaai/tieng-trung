@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:永远",
   "type": "word",
   "word": "永远",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "yǒng yuǎn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "mãi mãi",
+      "meaningShortVi": "mãi mãi",
+      "meaningFullVi": "mãi mãi",
       "partOfSpeech": "adverb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "mãi mãi",
   "wordType": "adverb",
   "wordTypes": [
     "adverb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,60 +48,78 @@
     "collocations": [
       {
         "text": "永远不要",
-        "pinyin": "",
+        "pinyin": "yǒng yuǎn bù yào",
         "meaningVi": "mãi mãi đừng",
+        "meaningFullVi": "mãi mãi đừng",
         "target": "永远",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "永远的朋友",
-        "pinyin": "",
+        "pinyin": "yǒng yuǎn de péng you",
         "meaningVi": "bạn bè mãi mãi",
+        "meaningFullVi": "bạn bè mãi mãi",
         "target": "永远",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "永远记住",
-        "pinyin": "",
+        "pinyin": "yǒng yuǎn jì zhù",
         "meaningVi": "mãi mãi nhớ",
+        "meaningFullVi": "mãi mãi nhớ",
         "target": "永远",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "永远",
       "chinese": "我永远爱你。",
-      "pinyin": "",
+      "pinyin": "wǒ yǒng yuǎn ài nǐ。",
       "meaningVi": "Tôi yêu bạn mãi mãi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "永远",
       "chinese": "我们要永远记住这一天。",
-      "pinyin": "",
+      "pinyin": "wǒ men yào yǒng yuǎn jì zhù zhè yī tiān。",
       "meaningVi": "Chúng ta phải mãi mãi nhớ ngày này.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "永远",
       "chinese": "这种精神永远值得学习。",
-      "pinyin": "",
+      "pinyin": "zhè zhǒng jīng shén yǒng yuǎn zhí dé xué xí。",
       "meaningVi": "Tinh thần này mãi mãi đáng để học hỏi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 永远",
+      "partOfSpeech": "adverb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/永远.mp3"
   ],
@@ -109,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__2__topic__3__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thoi-gian/",
+      "orderInSection": 27
     }
   ],
   "sources": [
@@ -124,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

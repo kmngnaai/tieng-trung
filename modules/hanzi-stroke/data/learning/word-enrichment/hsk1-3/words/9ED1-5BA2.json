@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:黑客",
   "type": "word",
   "word": "黑客",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "hēi kè",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Hắc khách — hacker, kẻ xâm nhập hệ thống máy tính trái phép. Có thể chỉ cả hacker mũ đen (phá hoại) lẫn hacker mũ trắng (bảo mật).",
+      "meaningShortVi": "Hắc khách — hacker",
+      "meaningFullVi": "Hắc khách — hacker, kẻ xâm nhập hệ thống máy tính trái phép. Có thể chỉ cả hacker mũ đen (phá hoại) lẫn hacker mũ trắng (bảo mật).",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Hắc khách — hacker",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Trong tiếng Trung hiện đại, 黑客 thường chỉ hacker xấu (mũ đen); hacker mũ trắng gọi là 白帽黑客 hoặc 道德黑客."
-  ],
-  "wordTypeExplanations": [
-    "黑 (hắc — đen, bí ẩn, bất hợp pháp) + 客 (khách — người): người hoạt động trong bóng tối/bí ẩn, kẻ xâm nhập. Cấu trúc ghép nghĩa sáng tạo của tiếng Trung để dịch khái niệm hacker — không phải mượn âm."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "黑客攻击",
         "pinyin": "hēikè gōngjī",
         "meaningVi": "tấn công hacker",
+        "meaningFullVi": "tấn công hacker",
         "target": "黑客",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "黑客入侵",
         "pinyin": "hēikè rùqīn",
         "meaningVi": "hacker xâm nhập",
+        "meaningFullVi": "hacker xâm nhập",
         "target": "黑客",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "道德黑客",
         "pinyin": "dàodé hēikè",
         "meaningVi": "ethical hacker (hacker mũ trắng)",
+        "meaningFullVi": "ethical hacker (hacker mũ trắng)",
         "target": "黑客",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Hacker đã xâm nhập máy chủ của công ty.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "黑客",
@@ -90,7 +95,8 @@
       "meaningVi": "Phòng chống tấn công hacker là chủ đề quan trọng của an ninh mạng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "黑客",
@@ -99,7 +105,8 @@
       "meaningVi": "Anh ấy là một ethical hacker, giúp doanh nghiệp kiểm tra bảo mật.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "黑客",
@@ -108,23 +115,17 @@
       "meaningVi": "Nhóm hacker đã làm rò rỉ lượng lớn dữ liệu người dùng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 黑客",
-      "syntax": "compound-semantic",
-      "matchedExample": "Trong tiếng Trung hiện đại, 黑客 thường chỉ hacker xấu (mũ đen); hacker mũ trắng gọi là 白帽黑客 hoặc 道德黑客.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "黑 (hắc — đen, bí ẩn, bất hợp pháp) + 客 (khách — người): người hoạt động trong bóng tối/bí ẩn, kẻ xâm nhập. Cấu trúc ghép nghĩa sáng tạo của tiếng Trung để dịch khái niệm hacker — không phải mượn âm.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 黑客",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Trong tiếng Trung hiện đại, 黑客 thường chỉ hacker xấu (mũ đen); hacker mũ trắng gọi là 白帽黑客 hoặc 道德黑客.",
+      "explanationVi": "黑 (hắc — đen, bí ẩn, bất hợp pháp) + 客 (khách — người): người hoạt động trong bóng tối/bí ẩn, kẻ xâm nhập. Cấu trúc ghép nghĩa sáng tạo của tiếng Trung để dịch khái niệm hacker — không phải mượn âm.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

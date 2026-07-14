@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:要是",
   "type": "word",
   "word": "要是",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yào shi",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nếu; nếu như",
+      "meaningShortVi": "nếu",
+      "meaningFullVi": "nếu; nếu như",
       "partOfSpeech": "liên từ giả định",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nếu",
   "wordType": "liên từ giả định",
   "wordTypes": [
     "liên từ giả định"
   ],
-  "usageNotes": [
-    "Dùng trong câu điều kiện, thường đi kèm với '就'. Trong khẩu ngữ, '要是' có thể thay bằng '要是...的话'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -51,20 +50,25 @@
       {
         "text": "要是...的话",
         "pinyin": "yàoshi... de huà",
-        "meaningVi": "nếu...thì",
+        "meaningVi": "nếu",
+        "meaningFullVi": "nếu...thì",
         "target": "要是",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "要是...就",
         "pinyin": "yàoshi... jiù",
-        "meaningVi": "nếu...thì",
+        "meaningVi": "nếu",
+        "meaningFullVi": "nếu...thì",
         "target": "要是",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Nếu ngày mai không mưa, chúng tôi sẽ đi công viên.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "要是",
@@ -83,16 +88,17 @@
       "meaningVi": "Nếu bạn có câu hỏi, có thể hỏi tôi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 要是",
-      "syntax": "liên từ giả định",
-      "matchedExample": "Dùng trong câu điều kiện, thường đi kèm với '就'. Trong khẩu ngữ, '要是' có thể thay bằng '要是...的话'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 要是",
+      "partOfSpeech": "liên từ giả định",
+      "usageNoteVi": "Dùng trong câu điều kiện, thường đi kèm với '就'. Trong khẩu ngữ, '要是' có thể thay bằng '要是...的话'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 36,
+      "sectionId": "new_hsk__3__topic__36__tu-chuc-nang-ii",
+      "sectionSlug": "tu-chuc-nang-ii",
       "sectionTitle": "Từ chức năng II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-ii/",
+      "orderInSection": 17
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

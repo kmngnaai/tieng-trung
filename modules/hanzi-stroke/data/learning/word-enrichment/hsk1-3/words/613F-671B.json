@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:愿望",
   "type": "word",
   "word": "愿望",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yuàn wàng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Ước mơ, nguyện vọng",
+      "meaningShortVi": "Ước mơ",
+      "meaningFullVi": "Ước mơ, nguyện vọng",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Ước mơ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Danh từ chỉ khát vọng, mong muốn lớn hoặc mong ước sâu xa."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,11 +51,14 @@
         "text": "美好愿望",
         "pinyin": "měihǎo yuànwàng",
         "meaningVi": "ước mơ tốt đẹp",
+        "meaningFullVi": "ước mơ tốt đẹp",
         "target": "愿望",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -66,7 +68,8 @@
       "meaningVi": "Ước mơ của tôi là trở thành một bác sĩ.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "愿望",
@@ -75,7 +78,8 @@
       "meaningVi": "Hy vọng mọi ước mơ của bạn đều thành hiện thực.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "愿望",
@@ -84,16 +88,17 @@
       "meaningVi": "Đây là ước mơ chung của mọi người.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 愿望",
-      "syntax": "compound-semantic",
-      "matchedExample": "Danh từ chỉ khát vọng, mong muốn lớn hoặc mong ước sâu xa.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 愿望",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Danh từ chỉ khát vọng, mong muốn lớn hoặc mong ước sâu xa.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__3__topic__8__nhung-cam-xuc-va-cam-giac",
+      "sectionSlug": "nhung-cam-xuc-va-cam-giac",
       "sectionTitle": "Những cảm xúc và cảm giác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-cam-xuc-va-cam-giac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-cam-xuc-va-cam-giac/",
+      "orderInSection": 28
     }
   ],
   "sources": [
@@ -124,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

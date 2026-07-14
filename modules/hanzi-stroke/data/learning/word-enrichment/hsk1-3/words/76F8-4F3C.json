@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:相似",
   "type": "word",
   "word": "相似",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xiāng sì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tương tự, giống nhau",
+      "meaningShortVi": "tương tự",
+      "meaningFullVi": "tương tự, giống nhau",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tương tự",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "相似 là tính từ chỉ sự giống nhau, tương tự. Thường kết hợp với 很 (rất), 非常 (rất), 有点 (hơi)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -48,50 +47,37 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "相似之处",
-        "pinyin": "",
-        "meaningVi": "điểm tương tự",
-        "target": "相似",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "非常相似",
-        "pinyin": "",
+        "pinyin": "fēi cháng xiāng sì",
         "meaningVi": "rất tương tự",
+        "meaningFullVi": "rất tương tự",
         "target": "相似",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "相似",
       "chinese": "这两个词的意思很相似。",
-      "pinyin": "",
+      "pinyin": "zhè liǎng gè cí de yì si hěn xiāng sì。",
       "meaningVi": "Hai từ này có nghĩa rất tương tự.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "相似",
-      "chinese": "他们姐妹长得很相似。",
-      "pinyin": "",
-      "meaningVi": "Hai chị em họ长得 rất giống nhau.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 相似",
-      "syntax": "tính từ",
-      "matchedExample": "相似 là tính từ chỉ sự giống nhau, tương tự. Thường kết hợp với 很 (rất), 非常 (rất), 有点 (hơi).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 相似",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "相似 là tính từ chỉ sự giống nhau, tương tự. Thường kết hợp với 很 (rất), 非常 (rất), 有点 (hơi).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 20,
+      "sectionId": "new_hsk__3__topic__20__so-sanh-va-tuan-thu",
+      "sectionSlug": "so-sanh-va-tuan-thu",
       "sectionTitle": "So sánh và Tuân thủ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/so-sanh-va-tuan-thu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/so-sanh-va-tuan-thu/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -117,7 +108,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

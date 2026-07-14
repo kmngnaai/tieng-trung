@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:叔叔",
   "type": "word",
   "word": "叔叔",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shū shu",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chú",
+      "meaningShortVi": "chú",
+      "meaningFullVi": "chú",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chú",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Trong tiếng Trung, 叔叔 chỉ em trai của bố. Gọi người đàn ông lớn hơn một chút là 叔叔 (tương đượng 'chú' trong tiếng Việt). Trẻ em dùng để xưng hô người lớn."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -47,16 +46,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 叔叔",
-      "syntax": "danh từ",
-      "matchedExample": "Trong tiếng Trung, 叔叔 chỉ em trai của bố. Gọi người đàn ông lớn hơn một chút là 叔叔 (tương đượng 'chú' trong tiếng Việt). Trẻ em dùng để xưng hô người lớn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 叔叔",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Trong tiếng Trung, 叔叔 chỉ em trai của bố. Gọi người đàn ông lớn hơn một chút là 叔叔 (tương đượng 'chú' trong tiếng Việt). Trẻ em dùng để xưng hô người lớn.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -67,21 +67,31 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 14,
+      "sectionId": "hsk__3__lesson__14__bai-14-ban-mang-hoa-qua-qua-day",
+      "sectionSlug": "bai-14-ban-mang-hoa-qua-qua-day",
       "sectionTitle": "Bạn mang hoa quả qua đây.",
       "sectionTitleZh": "你把水果拿过来",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-14-ban-mang-hoa-qua-qua-day/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-14-ban-mang-hoa-qua-qua-day/",
+      "orderInSection": 11
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__3__lesson__18__bai-18-i-ve-learned-how-to-make-jiaozi",
+      "sectionSlug": "bai-18-i-ve-learned-how-to-make-jiaozi",
       "sectionTitle": "Tôi đã học được cách gói sủi cảo",
       "sectionTitleZh": "我学会了包饺子",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-18-i-ve-learned-how-to-make-jiaozi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-18-i-ve-learned-how-to-make-jiaozi/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -92,9 +102,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": [
-      "Chưa có câu chứa nguyên từ"
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
     ]
   }
 }

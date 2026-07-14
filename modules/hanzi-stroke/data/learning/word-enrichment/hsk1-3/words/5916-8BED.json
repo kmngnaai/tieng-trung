@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:外语",
   "type": "word",
   "word": "外语",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wài yǔ",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ngoại ngữ",
+      "meaningShortVi": "ngoại ngữ",
+      "meaningFullVi": "ngoại ngữ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ngoại ngữ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "外语 chỉ ngôn ngữ nước ngoài, thường dùng trong bối cảnh giáo dục."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -53,19 +52,24 @@
         "text": "外语学校",
         "pinyin": "wàiyǔ xuéxiào",
         "meaningVi": "trường ngoại ngữ",
+        "meaningFullVi": "trường ngoại ngữ",
         "target": "外语",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "外语教学",
         "pinyin": "wàiyǔ jiàoxué",
         "meaningVi": "giảng dạy ngoại ngữ",
+        "meaningFullVi": "giảng dạy ngoại ngữ",
         "target": "外语",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -75,7 +79,8 @@
       "meaningVi": "Tôi muốn học ngoại ngữ.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "外语",
@@ -84,7 +89,8 @@
       "meaningVi": "Bạn có thể nói ngoại ngữ nào?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "外语",
@@ -93,16 +99,17 @@
       "meaningVi": "Tiếng Anh là một ngoại ngữ quan trọng.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 外语",
-      "syntax": "compound-semantic",
-      "matchedExample": "外语 chỉ ngôn ngữ nước ngoài, thường dùng trong bối cảnh giáo dục.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 外语",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "外语 chỉ ngôn ngữ nước ngoài, thường dùng trong bối cảnh giáo dục.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -113,21 +120,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__1__topic__6__trong-lop",
+      "sectionSlug": "trong-lop",
       "sectionTitle": "Trong lớp",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/trong-lop/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/trong-lop/",
+      "orderInSection": 9
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__3__lesson__10__bai-10-you-can-return-the-book-to-me-tomorrow",
+      "sectionSlug": "bai-10-you-can-return-the-book-to-me-tomorrow",
       "sectionTitle": "Mai bạn trả sách cho tôi cũng được",
       "sectionTitleZh": "你明天再把书还给我",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-10-you-can-return-the-book-to-me-tomorrow/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-10-you-can-return-the-book-to-me-tomorrow/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -148,7 +165,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

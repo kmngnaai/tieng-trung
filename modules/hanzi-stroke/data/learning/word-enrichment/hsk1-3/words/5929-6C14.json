@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:天气",
   "type": "word",
   "word": "天气",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "tiān qì",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thời tiết",
+      "meaningShortVi": "thời tiết",
+      "meaningFullVi": "thời tiết",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thời tiết",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "'天气' là thời tiết. '天气预报' dự báo thời tiết. '好天气' thời tiết tốt, '坏天气' thời tiết xấu."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 天 (trời, bầu trời) + 气 (khí, không khí). Khí hậu của trời, thời tiết."
   ],
   "hsk": {
     "levels": [
@@ -55,27 +52,34 @@
         "text": "天气预报",
         "pinyin": "tiānqì yùbào",
         "meaningVi": "dự báo thời tiết",
+        "meaningFullVi": "dự báo thời tiết",
         "target": "天气",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "好天气",
         "pinyin": "hǎo tiānqì",
         "meaningVi": "thời tiết tốt",
+        "meaningFullVi": "thời tiết tốt",
         "target": "天气",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "坏天气",
         "pinyin": "huài tiānqì",
         "meaningVi": "thời tiết xấu",
+        "meaningFullVi": "thời tiết xấu",
         "target": "天气",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -85,7 +89,8 @@
       "meaningVi": "Hôm nay thời tiết rất tốt",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "天气",
@@ -94,7 +99,8 @@
       "meaningVi": "Dự báo thời tiết nói có mưa",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "天气",
@@ -103,7 +109,8 @@
       "meaningVi": "Thời tiết ngày càng nóng",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "天气",
@@ -112,7 +119,8 @@
       "meaningVi": "Thời tiết Bắc Kinh thế nào?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "天气",
@@ -121,23 +129,17 @@
       "meaningVi": "Thời tiết này không phù hợp đi ra ngoài",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 天气",
-      "syntax": "compound-semantic",
-      "matchedExample": "'天气' là thời tiết. '天气预报' dự báo thời tiết. '好天气' thời tiết tốt, '坏天气' thời tiết xấu.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 天 (trời, bầu trời) + 气 (khí, không khí). Khí hậu của trời, thời tiết.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 天气",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "'天气' là thời tiết. '天气预报' dự báo thời tiết. '好天气' thời tiết tốt, '坏天气' thời tiết xấu.",
+      "explanationVi": "Ghép nghĩa: 天 (trời, bầu trời) + 气 (khí, không khí). Khí hậu của trời, thời tiết.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -148,31 +150,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 12,
+      "sectionId": "hsk__1__lesson__12__bai-12-ngay-mai-thoi-tiet-the-nao",
+      "sectionSlug": "bai-12-ngay-mai-thoi-tiet-the-nao",
       "sectionTitle": "Ngày mai thời tiết thế nào?",
       "sectionTitleZh": "明天天气怎么样",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-12-ngay-mai-thoi-tiet-the-nao/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-12-ngay-mai-thoi-tiet-the-nao/",
+      "orderInSection": 1
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__1__lesson__12__bai-12-it-snowed-yesterday",
+      "sectionSlug": "bai-12-it-snowed-yesterday",
       "sectionTitle": "Hôm qua tuyết rơi",
       "sectionTitleZh": "昨天下雪了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-12-it-snowed-yesterday/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-12-it-snowed-yesterday/",
+      "orderInSection": 14
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 23,
+      "sectionId": "new_hsk__1__topic__23__danh-tu",
+      "sectionSlug": "danh-tu",
       "sectionTitle": "Danh từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/danh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/danh-tu/",
+      "orderInSection": 24
     }
   ],
   "sources": [
@@ -188,7 +205,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

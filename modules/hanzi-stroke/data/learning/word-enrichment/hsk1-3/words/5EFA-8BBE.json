@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:建设",
   "type": "word",
   "word": "建设",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiàn shè",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Xây dựng, phát triển",
+      "meaningShortVi": "Xây dựng",
+      "meaningFullVi": "Xây dựng, phát triển",
       "partOfSpeech": "động từ / danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Xây dựng",
   "wordType": "động từ / danh từ",
   "wordTypes": [
     "động từ / danh từ"
   ],
-  "usageNotes": [
-    "建设 mang hành động xây dựng hoặc phát triển một lĩnh vực. Nó thường dùng cho các dự án lớn như 基础设施 (cơ sở hạ tầng), 城市 (đô thị), 国家 (nhà nước). Trong giao tiếp, người ta thường用 进行建设 (đang xây dựng) 或 完成建设 (hoàn thành xây dựng)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "基础设施建设",
         "pinyin": "jīchǔ shèshī jiànshè",
         "meaningVi": "xây dựng cơ sở hạ tầng",
+        "meaningFullVi": "xây dựng cơ sở hạ tầng",
         "target": "建设",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "城市建设",
         "pinyin": "chéngshì jiànshè",
         "meaningVi": "xây dựng đô thị",
+        "meaningFullVi": "xây dựng đô thị",
         "target": "建设",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Nhà nước đang phát triển mạnh mẽ xây dựng cơ sở hạ tầng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "建设",
@@ -82,16 +87,17 @@
       "meaningVi": "Xây dựng đô thị ngày càng hiện đại.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 建设",
-      "syntax": "động từ / danh từ",
-      "matchedExample": "建设 mang hành động xây dựng hoặc phát triển một lĩnh vực. Nó thường dùng cho các dự án lớn như 基础设施 (cơ sở hạ tầng), 城市 (đô thị), 国家 (nhà nước). Trong giao tiếp, người ta thường用 进行建设 (đang xây dựng) 或 完成建设 (hoàn thành xây dựng).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 建设",
+      "partOfSpeech": "động từ / danh từ",
+      "usageNoteVi": "建设 mang hành động xây dựng hoặc phát triển một lĩnh vực. Nó thường dùng cho các dự án lớn như 基础设施 (cơ sở hạ tầng), 城市 (đô thị), 国家 (nhà nước). Trong giao tiếp, người ta thường用 进行建设 (đang xây dựng) 或 完成建设 (hoàn thành xây dựng).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__3__topic__12__lam-viec-toi",
+      "sectionSlug": "lam-viec-toi",
       "sectionTitle": "Làm việc tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/",
+      "orderInSection": 24
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

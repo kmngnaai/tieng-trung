@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:顺便",
   "type": "word",
   "word": "顺便",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "shùn biàn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thuận tiện — nhân tiện, tiện thể; làm gì đó trong lúc đang làm việc khác",
+      "meaningShortVi": "thuận tiện — nhân tiện",
+      "meaningFullVi": "thuận tiện — nhân tiện, tiện thể; làm gì đó trong lúc đang làm việc khác",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thuận tiện — nhân tiện",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "顺便 đứng trước động từ hoặc ở đầu câu/mệnh đề. Gần nghĩa với 顺手 (shùnshǒu) nhưng 顺便 thiên về 'nhân dịp đó', còn 顺手 thiên về 'tay đang làm thì làm luôn'."
-  ],
-  "wordTypeExplanations": [
-    "顺 (thuận — thuận theo, thuận tiện) + 便 (tiện — thuận lợi, tiện) → nhân lúc thuận tiện mà làm thêm."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "顺便一提",
         "pinyin": "shùnbiàn yī tí",
         "meaningVi": "tiện đây đề cập",
+        "meaningFullVi": "tiện đây đề cập",
         "target": "顺便",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "顺便说一句",
         "pinyin": "shùnbiàn shuō yī jù",
         "meaningVi": "tiện đây nói một câu",
+        "meaningFullVi": "tiện đây nói một câu",
         "target": "顺便",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "顺便带上",
         "pinyin": "shùnbiàn dài shàng",
         "meaningVi": "tiện thể mang theo",
+        "meaningFullVi": "tiện thể mang theo",
         "target": "顺便",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Tôi đi siêu thị, tiện thể mua đồ giúp bạn",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "顺便",
@@ -90,7 +95,8 @@
       "meaningVi": "Khi bạn đến thư viện, tiện thể trả cuốn sách này",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "顺便",
@@ -99,7 +105,8 @@
       "meaningVi": "Anh ấy tiện thể đề cập đến chuyện này",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "顺便",
@@ -108,23 +115,17 @@
       "meaningVi": "Tiện thể hỏi một chút, bạn khi nào rảnh?",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 顺便",
-      "syntax": "compound-semantic",
-      "matchedExample": "顺便 đứng trước động từ hoặc ở đầu câu/mệnh đề. Gần nghĩa với 顺手 (shùnshǒu) nhưng 顺便 thiên về 'nhân dịp đó', còn 顺手 thiên về 'tay đang làm thì làm luôn'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "顺 (thuận — thuận theo, thuận tiện) + 便 (tiện — thuận lợi, tiện) → nhân lúc thuận tiện mà làm thêm.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 顺便",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "顺便 đứng trước động từ hoặc ở đầu câu/mệnh đề. Gần nghĩa với 顺手 (shùnshǒu) nhưng 顺便 thiên về 'nhân dịp đó', còn 顺手 thiên về 'tay đang làm thì làm luôn'.",
+      "explanationVi": "顺 (thuận — thuận theo, thuận tiện) + 便 (tiện — thuận lợi, tiện) → nhân lúc thuận tiện mà làm thêm.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

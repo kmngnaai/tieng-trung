@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:选手",
   "type": "word",
   "word": "选手",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xuǎn shǒu",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "vận động viên, người được chọn",
+      "meaningShortVi": "vận động viên",
+      "meaningFullVi": "vận động viên, người được chọn",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "vận động viên",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "选手 (vận động viên) chỉ người được chọn thi đấu trong một môn thể thao hoặc cuộc thi nào đó."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "职业选手",
         "pinyin": "zhíyè xuǎnshǒu",
         "meaningVi": "vận động viên chuyên nghiệp",
+        "meaningFullVi": "vận động viên chuyên nghiệp",
         "target": "选手",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "优秀选手",
         "pinyin": "yōuxiù xuǎnshǒu",
         "meaningVi": "vận động viên xuất sắc",
+        "meaningFullVi": "vận động viên xuất sắc",
         "target": "选手",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Cô ấy là vận động viên bóng bàn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "选手",
@@ -82,16 +87,17 @@
       "meaningVi": "Vận động viên từ khắp các nước đều đã đến.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 选手",
-      "syntax": "danh từ",
-      "matchedExample": "选手 (vận động viên) chỉ người được chọn thi đấu trong một môn thể thao hoặc cuộc thi nào đó.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 选手",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "选手 (vận động viên) chỉ người được chọn thi đấu trong một môn thể thao hoặc cuộc thi nào đó.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__topic__16__cac-hoat-dong",
+      "sectionSlug": "cac-hoat-dong",
       "sectionTitle": "Các hoạt động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

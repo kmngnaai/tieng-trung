@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:前年",
   "type": "word",
   "word": "前年",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "qián nián",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "năm trước nữa",
+      "meaningShortVi": "năm trước nữa",
+      "meaningFullVi": "năm trước nữa",
       "partOfSpeech": "time noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "năm trước nữa",
   "wordType": "time noun",
   "wordTypes": [
     "time noun"
   ],
-  "usageNotes": [
-    "前年 = 年前年，即“năm trước nữa”。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "前年夏天",
-        "pinyin": "",
+        "pinyin": "qián nián xià tiān",
         "meaningVi": "mùa hè năm kia",
+        "meaningFullVi": "mùa hè năm kia",
         "target": "前年",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "前年买的",
-        "pinyin": "",
+        "pinyin": "qián nián mǎi de",
         "meaningVi": "mua năm kia",
+        "meaningFullVi": "mua năm kia",
         "target": "前年",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "前年",
       "chinese": "前年我去过中国",
-      "pinyin": "",
+      "pinyin": "qián nián wǒ qù guò Zhōng guó",
       "meaningVi": "Năm kia tôi đã đi Trung Quốc",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "前年",
       "chinese": "前年的事",
-      "pinyin": "",
+      "pinyin": "qián nián de shì",
       "meaningVi": "việc năm kia",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 前年",
-      "syntax": "time noun",
-      "matchedExample": "前年 = 年前年，即“năm trước nữa”。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 前年",
+      "partOfSpeech": "time noun",
+      "usageNoteVi": "前年 = 年前年，即“năm trước nữa”。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__2__topic__3__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thoi-gian/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

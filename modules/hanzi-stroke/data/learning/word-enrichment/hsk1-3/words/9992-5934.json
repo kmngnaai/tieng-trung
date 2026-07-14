@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:馒头",
   "type": "word",
   "word": "馒头",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "mán tou",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bánh mì hấp, bánh bao",
+      "meaningShortVi": "bánh mì hấp",
+      "meaningFullVi": "bánh mì hấp, bánh bao",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bánh mì hấp",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Danh từ chỉ bánh mì hấp kiểu Trung Quốc. Là thực phẩm phổ biến ở miền Bắc Trung Quốc."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,32 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "吃馒头",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "馒头",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "蒸馒头",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "馒头",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "白馒头",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "馒头",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +54,8 @@
       "meaningVi": "Ăn bánh bao",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "馒头",
@@ -88,7 +64,8 @@
       "meaningVi": "Bánh bao nóng hổi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "馒头",
@@ -97,16 +74,17 @@
       "meaningVi": "Hấp bánh bao",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 馒头",
-      "syntax": "compound-semantic",
-      "matchedExample": "Danh từ chỉ bánh mì hấp kiểu Trung Quốc. Là thực phẩm phổ biến ở miền Bắc Trung Quốc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 馒头",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Danh từ chỉ bánh mì hấp kiểu Trung Quốc. Là thực phẩm phổ biến ở miền Bắc Trung Quốc.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -121,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

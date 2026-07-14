@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:考虑",
   "type": "word",
   "word": "考虑",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "kǎo lǜ",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cân nhắc, suy nghĩ, xem xét",
+      "meaningShortVi": "cân nhắc",
+      "meaningFullVi": "cân nhắc, suy nghĩ, xem xét",
       "partOfSpeech": "động từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cân nhắc",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Dùng khi cần đưa ra quyết định sau khi suy nghĩ kỹ. Trang trọng hơn '想'. Có thể thêm '一下' để nhẹ hóa giọng điệu."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -49,19 +48,24 @@
         "text": "考虑一下",
         "pinyin": "kǎolǜ yīxià",
         "meaningVi": "cân nhắc một chút",
+        "meaningFullVi": "cân nhắc một chút",
         "target": "考虑",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "认真考虑",
         "pinyin": "rènzhēn kǎolǜ",
         "meaningVi": "nghiêm túc cân nhắc",
+        "meaningFullVi": "nghiêm túc cân nhắc",
         "target": "考虑",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +75,8 @@
       "meaningVi": "Để tôi cân nhắc một chút.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "考虑",
@@ -80,16 +85,17 @@
       "meaningVi": "Chúng ta cần cân nhắc tất cả các trường hợp có thể xảy ra.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 考虑",
-      "syntax": "động từ",
-      "matchedExample": "Dùng khi cần đưa ra quyết định sau khi suy nghĩ kỹ. Trang trọng hơn '想'. Có thể thêm '一下' để nhẹ hóa giọng điệu.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 考虑",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Dùng khi cần đưa ra quyết định sau khi suy nghĩ kỹ. Trang trọng hơn '想'. Có thể thêm '一下' để nhẹ hóa giọng điệu.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:乐观",
   "type": "word",
   "word": "乐观",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "lè guān",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Lạc quan",
+      "meaningShortVi": "Lạc quan",
+      "meaningFullVi": "Lạc quan",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Lạc quan",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "乐观 là tính từ chỉ thái độ tích cực, tin tưởng vào tương lai tốt đẹp. Từ đối lập là 悲观(bi quan)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,27 +50,34 @@
         "text": "很乐观",
         "pinyin": "hěn lèguān",
         "meaningVi": "rất lạc quan",
+        "meaningFullVi": "rất lạc quan",
         "target": "乐观",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "乐观态度",
         "pinyin": "lèguān tàidu",
         "meaningVi": "thái độ lạc quan",
+        "meaningFullVi": "thái độ lạc quan",
         "target": "乐观",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "保持乐观",
         "pinyin": "bǎochí lèguān",
         "meaningVi": "giữ thái độ lạc quan",
+        "meaningFullVi": "giữ thái độ lạc quan",
         "target": "乐观",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +87,8 @@
       "meaningVi": "Anh ấy rất lạc quan về tương lai.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "乐观",
@@ -90,7 +97,8 @@
       "meaningVi": "Chúng ta nên giữ thái độ lạc quan.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "乐观",
@@ -99,16 +107,17 @@
       "meaningVi": "Cô ấy là người lạc quan.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 乐观",
-      "syntax": "compound-semantic",
-      "matchedExample": "乐观 là tính từ chỉ thái độ tích cực, tin tưởng vào tương lai tốt đẹp. Từ đối lập là 悲观(bi quan).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 乐观",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "乐观 là tính từ chỉ thái độ tích cực, tin tưởng vào tương lai tốt đẹp. Từ đối lập là 悲观(bi quan).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -119,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__3__topic__8__nhung-cam-xuc-va-cam-giac",
+      "sectionSlug": "nhung-cam-xuc-va-cam-giac",
       "sectionTitle": "Những cảm xúc và cảm giác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-cam-xuc-va-cam-giac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-cam-xuc-va-cam-giac/",
+      "orderInSection": 30
     }
   ],
   "sources": [
@@ -134,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

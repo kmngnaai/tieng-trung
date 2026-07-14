@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:话题",
   "type": "word",
   "word": "话题",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "huà tí",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chủ đề; đề tài; câu chuyện được bàn luận",
+      "meaningShortVi": "chủ đề",
+      "meaningFullVi": "chủ đề; đề tài; câu chuyện được bàn luận",
       "partOfSpeech": "danh từ (Noun - Topic)",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chủ đề",
   "wordType": "danh từ (Noun - Topic)",
   "wordTypes": [
     "danh từ (Noun - Topic)"
   ],
-  "usageNotes": [
-    "Dùng trong hội thoại để chỉ điều đang được bàn luận. Thường đi với: 换 (đổi), 聊 (trò chuyện), 有趣 (thú vị). Phân biệt: 题目 (đề bài, tiêu đề), 主题 (chủ đề chính). Synonym: 主题 (chủ đề chính), 题目 (đề bài)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,19 +51,24 @@
         "text": "热门话题",
         "pinyin": "rèmén huàtí",
         "meaningVi": "chủ đề nóng",
+        "meaningFullVi": "chủ đề nóng",
         "target": "话题",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "聊话题",
         "pinyin": "liáo huàtí",
         "meaningVi": "trò chuyện về chủ đề",
+        "meaningFullVi": "trò chuyện về chủ đề",
         "target": "话题",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Đây là một chủ đề thú vị.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "话题",
@@ -83,16 +88,17 @@
       "meaningVi": "Chúng ta đổi chủ đề đi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 话题",
-      "syntax": "danh từ (Noun - Topic)",
-      "matchedExample": "Dùng trong hội thoại để chỉ điều đang được bàn luận. Thường đi với: 换 (đổi), 聊 (trò chuyện), 有趣 (thú vị). Phân biệt: 题目 (đề bài, tiêu đề), 主题 (chủ đề chính). Synonym: 主题 (chủ đề chính), 题目 (đề bài).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 话题",
+      "partOfSpeech": "danh từ (Noun - Topic)",
+      "usageNoteVi": "Dùng trong hội thoại để chỉ điều đang được bàn luận. Thường đi với: 换 (đổi), 聊 (trò chuyện), 有趣 (thú vị). Phân biệt: 题目 (đề bài, tiêu đề), 主题 (chủ đề chính). Synonym: 主题 (chủ đề chính), 题目 (đề bài).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 29,
+      "sectionId": "new_hsk__3__topic__29__lien-lac",
+      "sectionSlug": "lien-lac",
       "sectionTitle": "Liên lạc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:行为",
   "type": "word",
   "word": "行为",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "xíng wéi",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hành vi, hành động",
+      "meaningShortVi": "hành vi",
+      "meaningFullVi": "hành vi, hành động",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hành vi",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -45,46 +46,40 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "良好行为",
-        "pinyin": "",
-        "meaningVi": "hành vi tốt đẹp",
-        "target": "行为",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "行为举止",
-        "pinyin": "",
-        "meaningVi": "phong thái hành vi",
-        "target": "行为",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "行为",
       "chinese": "他的行为很好",
-      "pinyin": "",
+      "pinyin": "tā de xíng wéi hěn hǎo",
       "meaningVi": "Hành vi của anh ấy rất tốt",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "行为",
       "chinese": "这种行为不对",
-      "pinyin": "",
+      "pinyin": "zhè zhǒng xíng wéi bù duì",
       "meaningVi": "Hành vi này không đúng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 行为",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/行为.mp3"
   ],
@@ -93,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 25,
+      "sectionId": "new_hsk__2__topic__25__ve-be-ngoai",
+      "sectionSlug": "ve-be-ngoai",
       "sectionTitle": "Vẻ bề ngoài",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/ve-be-ngoai/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/ve-be-ngoai/",
+      "orderInSection": 6
     }
   ],
   "sources": [
@@ -113,7 +113,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

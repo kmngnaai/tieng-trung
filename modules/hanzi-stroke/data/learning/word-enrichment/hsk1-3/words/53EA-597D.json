@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:只好",
   "type": "word",
   "word": "只好",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhǐ hǎo",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Đành phải",
+      "meaningShortVi": "Đành phải",
+      "meaningFullVi": "Đành phải",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Đành phải",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "只好 là liên từ chỉ sự bất đắc dĩ, không có lựa chọn nào khác. 只 nghĩa là chỉ; 好 ở đây nghĩa là được, phải. Dùng khi muốn diễn tả việc buộc phải làm gì đó."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -47,40 +46,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "只好放弃",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "只好",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "只好同意",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "只好",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "只好等",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "只好",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "只好做",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "只好",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -90,7 +57,8 @@
       "meaningVi": "Trời mưa rồi, chúng tôi đành phải hủy kế hoạch.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "只好",
@@ -99,7 +67,8 @@
       "meaningVi": "Không tìm thấy cách tốt hơn, đành phải làm như vậy.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "只好",
@@ -108,16 +77,17 @@
       "meaningVi": "Không còn thời gian, đành phải đi rồi.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 只好",
-      "syntax": "compound-semantic",
-      "matchedExample": "只好 là liên từ chỉ sự bất đắc dĩ, không có lựa chọn nào khác. 只 nghĩa là chỉ; 好 ở đây nghĩa là được, phải. Dùng khi muốn diễn tả việc buộc phải làm gì đó.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 只好",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "只好 là liên từ chỉ sự bất đắc dĩ, không có lựa chọn nào khác. 只 nghĩa là chỉ; 好 ở đây nghĩa là được, phải. Dùng khi muốn diễn tả việc buộc phải làm gì đó.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -128,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__3__topic__1__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/pho-tu/",
+      "orderInSection": 22
     }
   ],
   "sources": [
@@ -148,7 +123,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

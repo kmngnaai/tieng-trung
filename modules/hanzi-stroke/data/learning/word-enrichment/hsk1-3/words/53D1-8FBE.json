@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:发达",
   "type": "word",
   "word": "发达",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fā dá",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phát đạt, thịnh vượng, tiến bộ",
+      "meaningShortVi": "phát đạt",
+      "meaningFullVi": "phát đạt, thịnh vượng, tiến bộ",
       "partOfSpeech": "tính từ / động từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phát đạt",
   "wordType": "tính từ / động từ",
   "wordTypes": [
     "tính từ / động từ"
   ],
-  "usageNotes": [
-    "发达 thường là tính từ mô tả mức độ phát triển cao của một quốc gia, vùng, ngành. Khác với 发展 (động từ), phát đạt chỉ trạng thái đã phát triển mạnh mẽ."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,19 +51,24 @@
         "text": "发达国家",
         "pinyin": "fādá guójiā",
         "meaningVi": "nước phát triển",
+        "meaningFullVi": "nước phát triển",
         "target": "发达",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "高度发达",
         "pinyin": "gāodù fādá",
         "meaningVi": "phát triển ở mức độ cao",
+        "meaningFullVi": "phát triển ở mức độ cao",
         "target": "发达",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Đây là một nước phát triển.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "发达",
@@ -83,16 +88,17 @@
       "meaningVi": "Công nghiệp ở khu vực này rất phát đạt.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 发达",
-      "syntax": "tính từ / động từ",
-      "matchedExample": "发达 thường là tính từ mô tả mức độ phát triển cao của một quốc gia, vùng, ngành. Khác với 发展 (động từ), phát đạt chỉ trạng thái đã phát triển mạnh mẽ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 发达",
+      "partOfSpeech": "tính từ / động từ",
+      "usageNoteVi": "发达 thường là tính từ mô tả mức độ phát triển cao của một quốc gia, vùng, ngành. Khác với 发展 (động từ), phát đạt chỉ trạng thái đã phát triển mạnh mẽ.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__topic__17__nhung-thay-doi",
+      "sectionSlug": "nhung-thay-doi",
       "sectionTitle": "Những thay đổi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

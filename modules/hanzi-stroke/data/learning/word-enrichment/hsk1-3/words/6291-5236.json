@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:抑制",
   "type": "word",
   "word": "抑制",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "yì zhì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ức chế, kìm hãm, ngăn chặn",
+      "meaningShortVi": "ức chế",
+      "meaningFullVi": "ức chế, kìm hãm, ngăn chặn",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ức chế",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng cho cảm xúc, kinh tế, hoặc sinh học (ức chế virus). Mang sắc thái kiểm soát, kìm hãm. Khác với '压制' (áp chế), '抑制' nhẹ hơn, mang tính kiểm soát."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 抑 (ấn xuống, kìm hãm) + 制 (kiểm soát) → kìm hãm và kiểm soát."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "抑制不住",
         "pinyin": "yìzhì bù zhù",
         "meaningVi": "không thể kìm hãm",
+        "meaningFullVi": "không thể kìm hãm",
         "target": "抑制",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "抑制通货膨胀",
         "pinyin": "yìzhì tōnghuò péngzhàng",
         "meaningVi": "kiềm chế lạm phát",
+        "meaningFullVi": "kiềm chế lạm phát",
         "target": "抑制",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "抑制情绪",
         "pinyin": "yìzhì qíngxù",
         "meaningVi": "kìm hãm cảm xúc",
+        "meaningFullVi": "kìm hãm cảm xúc",
         "target": "抑制",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Niềm vui không thể kìm hãm được",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "抑制",
@@ -90,7 +95,8 @@
       "meaningVi": "Kiềm chế lạm phát",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "抑制",
@@ -99,7 +105,8 @@
       "meaningVi": "Cố gắng kìm hãm cảm xúc",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "抑制",
@@ -108,23 +115,17 @@
       "meaningVi": "Thuốc này có thể ức chế vi-rút",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 抑制",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng cho cảm xúc, kinh tế, hoặc sinh học (ức chế virus). Mang sắc thái kiểm soát, kìm hãm. Khác với '压制' (áp chế), '抑制' nhẹ hơn, mang tính kiểm soát.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 抑 (ấn xuống, kìm hãm) + 制 (kiểm soát) → kìm hãm và kiểm soát.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 抑制",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng cho cảm xúc, kinh tế, hoặc sinh học (ức chế virus). Mang sắc thái kiểm soát, kìm hãm. Khác với '压制' (áp chế), '抑制' nhẹ hơn, mang tính kiểm soát.",
+      "explanationVi": "Ghép nghĩa: 抑 (ấn xuống, kìm hãm) + 制 (kiểm soát) → kìm hãm và kiểm soát.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

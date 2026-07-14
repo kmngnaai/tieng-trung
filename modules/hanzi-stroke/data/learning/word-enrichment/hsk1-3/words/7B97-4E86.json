@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:算了",
   "type": "word",
   "word": "算了",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "suàn le",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bỏ qua",
+      "meaningShortVi": "bỏ qua",
+      "meaningFullVi": "bỏ qua",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bỏ qua",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng để chỉ bỏ qua."
-  ],
-  "wordTypeExplanations": [
-    "bỏ qua — từ ghép mang nghĩa này."
   ],
   "hsk": {
     "levels": [
@@ -51,11 +48,14 @@
         "text": "关于算了",
         "pinyin": "guānyú 算了",
         "meaningVi": "về bỏ qua",
+        "meaningFullVi": "về bỏ qua",
         "target": "算了",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -65,7 +65,8 @@
       "meaningVi": "Bỏ qua này rất quan trọng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "算了",
@@ -74,7 +75,8 @@
       "meaningVi": "Họ đã bỏ qua",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "算了",
@@ -83,23 +85,17 @@
       "meaningVi": "Về bỏ qua",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 算了",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng để chỉ bỏ qua.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "bỏ qua — từ ghép mang nghĩa này.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 算了",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng để chỉ bỏ qua.",
+      "explanationVi": "bỏ qua — từ ghép mang nghĩa này.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:工程师",
   "type": "word",
   "word": "工程师",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "gōng chéng shī",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "kỹ sư",
+      "meaningShortVi": "kỹ sư",
+      "meaningFullVi": "kỹ sư",
       "partOfSpeech": "danh từ nghề nghiệp",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "kỹ sư",
   "wordType": "danh từ nghề nghiệp",
   "wordTypes": [
     "danh từ nghề nghiệp"
   ],
-  "usageNotes": [
-    "工程师 (kỹ sư) là người có trình độ kỹ thuật cao, làm việc trong lĩnh vực kỹ thuật, xây dựng, công nghệ."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -52,19 +51,24 @@
         "text": "软件工程师",
         "pinyin": "ruǎnjiàn gōngchéngshī",
         "meaningVi": "kỹ sư phần mềm",
+        "meaningFullVi": "kỹ sư phần mềm",
         "target": "工程师",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "土木工程师",
         "pinyin": "tǔmù gōngchéngshī",
         "meaningVi": "kỹ sư xây dựng",
+        "meaningFullVi": "kỹ sư xây dựng",
         "target": "工程师",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Anh trai tôi là một kỹ sư.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "工程师",
@@ -83,16 +88,17 @@
       "meaningVi": "Kỹ sư này đã thiết kế rất nhiều công trình.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 工程师",
-      "syntax": "danh từ nghề nghiệp",
-      "matchedExample": "工程师 (kỹ sư) là người có trình độ kỹ thuật cao, làm việc trong lĩnh vực kỹ thuật, xây dựng, công nghệ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 工程师",
+      "partOfSpeech": "danh từ nghề nghiệp",
+      "usageNoteVi": "工程师 (kỹ sư) là người có trình độ kỹ thuật cao, làm việc trong lĩnh vực kỹ thuật, xây dựng, công nghệ.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__topic__16__cac-hoat-dong",
+      "sectionSlug": "cac-hoat-dong",
       "sectionTitle": "Các hoạt động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -118,7 +129,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

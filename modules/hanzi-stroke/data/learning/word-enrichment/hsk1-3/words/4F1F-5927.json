@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:伟大",
   "type": "word",
   "word": "伟大",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wěi dà",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "vĩ đại, vĩ đại; to lớn, phi thường",
+      "meaningShortVi": "vĩ đại",
+      "meaningFullVi": "vĩ đại, vĩ đại; to lớn, phi thường",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "vĩ đại",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "Wěi dà dùng cho người, sự nghiệp có tầm vóc và tầm ảnh hưởng lớn. Rất trang trọng, thường dùng trong văn viết chính trị hoặc diễn đạt công khai."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,35 @@
     "collocations": [
       {
         "text": "伟大的理想",
-        "pinyin": "",
+        "pinyin": "wěi dà de lǐ xiǎng",
         "meaningVi": "lý tưởng vĩ đại",
+        "meaningFullVi": "lý tưởng vĩ đại",
         "target": "伟大",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "伟大的胜利",
-        "pinyin": "",
+        "pinyin": "wěi dà de shèng lì",
         "meaningVi": "thắng lợi vĩ đại",
+        "meaningFullVi": "thắng lợi vĩ đại",
         "target": "伟大",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "伟大",
-      "chinese": "这是一项伟大的事业。",
-      "pinyin": "",
-      "meaningVi": "Đây là một sự nghiệp vĩ đại.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "伟大",
-      "chinese": "中国人民是伟大的。",
-      "pinyin": "",
-      "meaningVi": "Nhân dân Trung Quốc là vĩ đại.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 伟大",
-      "syntax": "tính từ",
-      "matchedExample": "Wěi dà dùng cho người, sự nghiệp có tầm vóc và tầm ảnh hưởng lớn. Rất trang trọng, thường dùng trong văn viết chính trị hoặc diễn đạt công khai.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 伟大",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "Wěi dà dùng cho người, sự nghiệp có tầm vóc và tầm ảnh hưởng lớn. Rất trang trọng, thường dùng trong văn viết chính trị hoặc diễn đạt công khai.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +87,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 33,
+      "sectionId": "new_hsk__3__topic__33__tinh-tu",
+      "sectionSlug": "tinh-tu",
       "sectionTitle": "Tính từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/",
+      "orderInSection": 30
     }
   ],
   "sources": [
@@ -117,7 +107,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:不如",
   "type": "word",
   "word": "不如",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "bù rú",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "không bằng",
+      "meaningShortVi": "không bằng",
+      "meaningFullVi": "không bằng",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "không bằng",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [
-    "Động từ so sánh: kém hơn, không bằng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "不如说",
-        "pinyin": "",
+        "pinyin": "bù rú shuō",
         "meaningVi": "thà nói là",
+        "meaningFullVi": "thà nói là",
         "target": "不如",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "远不如",
-        "pinyin": "",
+        "pinyin": "yuǎn bù rú",
         "meaningVi": "không bằng xa",
+        "meaningFullVi": "không bằng xa",
         "target": "不如",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "不如",
       "chinese": "我不如他",
-      "pinyin": "",
+      "pinyin": "wǒ bù rú tā",
       "meaningVi": "Tôi không bằng anh ấy",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不如",
       "chinese": "还是不去不如",
-      "pinyin": "",
+      "pinyin": "hái shi bù qù bù rú",
       "meaningVi": "Thà không đi còn hơn",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 不如",
-      "syntax": "verb",
-      "matchedExample": "Động từ so sánh: kém hơn, không bằng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 不如",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "Động từ so sánh: kém hơn, không bằng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__2__topic__9__tu-chuc-nang",
+      "sectionSlug": "tu-chuc-nang",
       "sectionTitle": "Từ chức năng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-chuc-nang/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-chuc-nang/",
+      "orderInSection": 23
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

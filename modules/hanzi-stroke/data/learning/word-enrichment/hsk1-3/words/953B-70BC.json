@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:锻炼",
   "type": "word",
   "word": "锻炼",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "duàn liàn",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tập thể dục",
+      "meaningShortVi": "tập thể dục",
+      "meaningFullVi": "tập thể dục",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tập thể dục",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -49,21 +50,26 @@
     "collocations": [
       {
         "text": "很锻炼",
-        "pinyin": "",
+        "pinyin": "hěn duàn liàn",
         "meaningVi": "rất tập thể dục",
+        "meaningFullVi": "rất tập thể dục",
         "target": "锻炼",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不锻炼",
-        "pinyin": "",
+        "pinyin": "bù duàn liàn",
         "meaningVi": "không tập thể dục",
+        "meaningFullVi": "không tập thể dục",
         "target": "锻炼",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +79,8 @@
       "meaningVi": "Tôi đều tập thể dục vào mỗi buổi sáng.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "锻炼",
@@ -82,10 +89,19 @@
       "meaningVi": "Tập thể dục tốt cho sức khỏe.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 锻炼",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/锻炼.mp3"
   ],
@@ -94,21 +110,31 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 6,
+      "sectionId": "hsk__3__lesson__6__bai-6-sao-dot-nhien-khong-tim-thay",
+      "sectionSlug": "bai-6-sao-dot-nhien-khong-tim-thay",
       "sectionTitle": "Sao đột nhiên không tìm thấy?",
       "sectionTitleZh": "怎么突然找不到了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-6-sao-dot-nhien-khong-tim-thay/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-6-sao-dot-nhien-khong-tim-thay/",
+      "orderInSection": 10
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__3__lesson__5__bai-5-photos-like-these-are-the-best",
+      "sectionSlug": "bai-5-photos-like-these-are-the-best",
       "sectionTitle": "Ảnh như thế này mới đẹp",
       "sectionTitleZh": "这样的照片才好看",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-5-photos-like-these-are-the-best/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-5-photos-like-these-are-the-best/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -124,7 +150,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

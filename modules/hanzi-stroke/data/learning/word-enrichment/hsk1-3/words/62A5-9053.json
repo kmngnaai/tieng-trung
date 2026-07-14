@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:报道",
   "type": "word",
   "word": "报道",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "bào dào",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "báo cáo, đưa tin",
+      "meaningShortVi": "báo cáo",
+      "meaningFullVi": "báo cáo, đưa tin",
       "partOfSpeech": "động từ / danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "báo cáo",
   "wordType": "động từ / danh từ",
   "wordTypes": [
     "động từ / danh từ"
   ],
-  "usageNotes": [
-    "报道 (bào dào - báo cáo/đưa tin) vs 报到 (bào dào - đăng ký/check-in). Hán Việt khác nhau: 报道 = 'báo đạo' (bài báo), 报到 = 'báo đáo' (đến nơi). Chủ thể thường là báo chí/phóng viên."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -51,20 +50,25 @@
       {
         "text": "新闻报道",
         "pinyin": "xīnwén bàodào",
-        "meaningVi": "bản tin, bài báo",
+        "meaningVi": "bản tin",
+        "meaningFullVi": "bản tin, bài báo",
         "target": "报道",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "详细报道",
         "pinyin": "xiángxì bàodào",
         "meaningVi": "đưa tin chi tiết",
+        "meaningFullVi": "đưa tin chi tiết",
         "target": "报道",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Báo giấy đã đưa tin này.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "报道",
@@ -83,16 +88,17 @@
       "meaningVi": "Đây là bản tin về bảo vệ môi trường.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 报道",
-      "syntax": "động từ / danh từ",
-      "matchedExample": "报道 (bào dào - báo cáo/đưa tin) vs 报到 (bào dào - đăng ký/check-in). Hán Việt khác nhau: 报道 = 'báo đạo' (bài báo), 报到 = 'báo đáo' (đến nơi). Chủ thể thường là báo chí/phóng viên.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 报道",
+      "partOfSpeech": "động từ / danh từ",
+      "usageNoteVi": "报道 (bào dào - báo cáo/đưa tin) vs 报到 (bào dào - đăng ký/check-in). Hán Việt khác nhau: 报道 = 'báo đạo' (bài báo), 报到 = 'báo đáo' (đến nơi). Chủ thể thường là báo chí/phóng viên.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__3__topic__12__lam-viec-toi",
+      "sectionSlug": "lam-viec-toi",
       "sectionTitle": "Làm việc tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:别人",
   "type": "word",
   "word": "别人",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "bié rén",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "người khác, người ngoài",
+      "meaningShortVi": "người khác",
+      "meaningFullVi": "người khác, người ngoài",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "người khác",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng rất phổ biến để chỉ 'người khác' (không phải mình). Trong một số ngữ cảnh có thể mang nghĩa 'người ngoài, người lạ'."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 别 (khác, chia ra) + 人 (người) → 'người khác với mình'. '别' ở đây mang nghĩa 'khác biệt', không phải 'chia tay'."
   ],
   "hsk": {
     "levels": [
@@ -56,27 +53,34 @@
         "text": "帮别人",
         "pinyin": "bāng bié rén",
         "meaningVi": "giúp người khác",
+        "meaningFullVi": "giúp người khác",
         "target": "别人",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "别人家",
         "pinyin": "bié rén jiā",
-        "meaningVi": "người khác, nhà khác",
+        "meaningVi": "người khác",
+        "meaningFullVi": "người khác, nhà khác",
         "target": "别人",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "看不起别人",
         "pinyin": "kàn bù qǐ bié rén",
         "meaningVi": "coi thường người khác",
+        "meaningFullVi": "coi thường người khác",
         "target": "别人",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -86,7 +90,8 @@
       "meaningVi": "Đừng cười chê người khác",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "别人",
@@ -95,7 +100,8 @@
       "meaningVi": "Việc của người khác",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "别人",
@@ -104,7 +110,8 @@
       "meaningVi": "Giúp người khác một tay",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "别人",
@@ -113,23 +120,17 @@
       "meaningVi": "Đồ của người khác không được lấy",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 别人",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng rất phổ biến để chỉ 'người khác' (không phải mình). Trong một số ngữ cảnh có thể mang nghĩa 'người ngoài, người lạ'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 别 (khác, chia ra) + 人 (người) → 'người khác với mình'. '别' ở đây mang nghĩa 'khác biệt', không phải 'chia tay'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 别人",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng rất phổ biến để chỉ 'người khác' (không phải mình). Trong một số ngữ cảnh có thể mang nghĩa 'người ngoài, người lạ'.",
+      "explanationVi": "Ghép nghĩa: 别 (khác, chia ra) + 人 (người) → 'người khác với mình'. '别' ở đây mang nghĩa 'khác biệt', không phải 'chia tay'.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -140,31 +141,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__1__topic__10__dai-tu",
+      "sectionSlug": "dai-tu",
       "sectionTitle": "Đại từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dai-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dai-tu/",
+      "orderInSection": 27
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 16,
+      "sectionId": "hsk__3__lesson__16__bai-16-bay-gio-toi-met-den-muc-tan-lam-la-chi-muon-ngu",
+      "sectionSlug": "bai-16-bay-gio-toi-met-den-muc-tan-lam-la-chi-muon-ngu",
       "sectionTitle": "Bây giờ tôi mệt đến mức tan làm là chỉ muốn ngủ.",
       "sectionTitleZh": "我现在累得下了班就想睡觉",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-16-bay-gio-toi-met-den-muc-tan-lam-la-chi-muon-ngu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-16-bay-gio-toi-met-den-muc-tan-lam-la-chi-muon-ngu/",
+      "orderInSection": 15
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__3__lesson__11__bai-11-it-seems-i-can-t-solve-this-problem",
+      "sectionSlug": "bai-11-it-seems-i-can-t-solve-this-problem",
       "sectionTitle": "Xem ra tôi không có cách giải quyết vấn đề này",
       "sectionTitleZh": "看来我没办法解决这个问题",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-11-it-seems-i-can-t-solve-this-problem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-11-it-seems-i-can-t-solve-this-problem/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -185,7 +201,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

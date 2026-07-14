@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:主导",
   "type": "word",
   "word": "主导",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhǔ dǎo",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Đóng vai trò chính, chi phối, định hướng; dẫn dắt",
+      "meaningShortVi": "Đóng vai trò chính",
+      "meaningFullVi": "Đóng vai trò chính, chi phối, định hướng; dẫn dắt",
       "partOfSpeech": "động từ / tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Đóng vai trò chính",
   "wordType": "động từ / tính từ",
   "wordTypes": [
     "động từ / tính từ"
   ],
-  "usageNotes": [
-    "主 (chủ - người đứng đầu) + 导 (dẫn - dẫn dắt). 主导 mang nghĩa 'làm chủ và dẫn dắt', thường dùng cho vai trò, vị thế, hoặc yếu tố chi phối. Chỉ yếu tố quan trọng nhất chi phối hướng đi của một hệ thống."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,48 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "主导地位",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "主导",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "主导作用",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "主导",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "主导产业",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "主导",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "主导思想",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "主导",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "主导权",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "主导",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -95,7 +54,8 @@
       "meaningVi": "Anh ấy đóng vai trò chủ đạo trong dự án này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "主导",
@@ -104,7 +64,8 @@
       "meaningVi": "Chính phủ đã dẫn dắt cuộc cải cách này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "主导",
@@ -113,16 +74,17 @@
       "meaningVi": "Đây là kinh tế do thị trường chi phối.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 主导",
-      "syntax": "động từ / tính từ",
-      "matchedExample": "主 (chủ - người đứng đầu) + 导 (dẫn - dẫn dắt). 主导 mang nghĩa 'làm chủ và dẫn dắt', thường dùng cho vai trò, vị thế, hoặc yếu tố chi phối. Chỉ yếu tố quan trọng nhất chi phối hướng đi của một hệ thống.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 主导",
+      "partOfSpeech": "động từ / tính từ",
+      "usageNoteVi": "主 (chủ - người đứng đầu) + 导 (dẫn - dẫn dắt). 主导 mang nghĩa 'làm chủ và dẫn dắt', thường dùng cho vai trò, vị thế, hoặc yếu tố chi phối. Chỉ yếu tố quan trọng nhất chi phối hướng đi của một hệ thống.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -137,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

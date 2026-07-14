@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:导演",
   "type": "word",
   "word": "导演",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "dǎo yǎn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đạo diễn",
+      "meaningShortVi": "đạo diễn",
+      "meaningFullVi": "đạo diễn",
       "partOfSpeech": "danh từ / động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đạo diễn",
   "wordType": "danh từ / động từ",
   "wordTypes": [
     "danh từ / động từ"
   ],
-  "usageNotes": [
-    "导演 (đạo diễn) là người chỉ đạo sản xuất phim, kịch, chương trình nghệ thuật. Có thể dùng như động từ hoặc danh từ."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "导演电影",
         "pinyin": "dǎoyǎn diànyǐng",
         "meaningVi": "đạo diễn phim",
+        "meaningFullVi": "đạo diễn phim",
         "target": "导演",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "副导演",
         "pinyin": "fù dǎoyǎn",
         "meaningVi": "phó đạo diễn",
+        "meaningFullVi": "phó đạo diễn",
         "target": "导演",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Bộ phim này do Trương Nghệ Mưu đạo diễn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "导演",
@@ -82,16 +87,17 @@
       "meaningVi": "Ông ấy là một đạo diễn điện ảnh nổi tiếng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 导演",
-      "syntax": "danh từ / động từ",
-      "matchedExample": "导演 (đạo diễn) là người chỉ đạo sản xuất phim, kịch, chương trình nghệ thuật. Có thể dùng như động từ hoặc danh từ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 导演",
+      "partOfSpeech": "danh từ / động từ",
+      "usageNoteVi": "导演 (đạo diễn) là người chỉ đạo sản xuất phim, kịch, chương trình nghệ thuật. Có thể dùng như động từ hoặc danh từ.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__topic__16__cac-hoat-dong",
+      "sectionSlug": "cac-hoat-dong",
       "sectionTitle": "Các hoạt động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

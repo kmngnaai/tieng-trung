@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:实际",
   "type": "word",
   "word": "实际",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "shí jì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thực tế",
+      "meaningShortVi": "thực tế",
+      "meaningFullVi": "thực tế",
       "partOfSpeech": "noun/adjective",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thực tế",
   "wordType": "noun/adjective",
   "wordTypes": [
     "noun/adjective"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,72 +48,78 @@
       {
         "word": "实际上",
         "pinyin": "shí jì shàng",
-        "meaningVi": "thực tế, trên thực tế",
+        "meaningVi": "thực tế",
+        "meaningFullVi": "thực tế, trên thực tế",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          3
-        ],
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 3",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
       {
         "text": "实际情况",
-        "pinyin": "",
+        "pinyin": "shí jì qíng kuàng",
         "meaningVi": "tình hình thực tế",
+        "meaningFullVi": "tình hình thực tế",
         "target": "实际",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "从实际出发",
-        "pinyin": "",
+        "pinyin": "cóng shí jì chū fā",
         "meaningVi": "xuất phát từ thực tế",
+        "meaningFullVi": "xuất phát từ thực tế",
         "target": "实际",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "实际上",
-        "pinyin": "",
+        "pinyin": "shí jì shàng",
         "meaningVi": "trên thực tế",
+        "meaningFullVi": "trên thực tế",
         "target": "实际",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "实际",
-      "chinese": "实际情况比想象复杂。",
-      "pinyin": "",
-      "meaningVi": "Thực tế phức tạp hơn tưởng tượng.",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "实际",
       "chinese": "我们要从实际出发。",
-      "pinyin": "",
+      "pinyin": "wǒ men yào cóng shí jì chū fā。",
       "meaningVi": "Chúng ta phải xuất phát từ thực tế.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "实际",
       "chinese": "这个问题很实际。",
-      "pinyin": "",
+      "pinyin": "zhè ge wèn tí hěn shí jì。",
       "meaningVi": "Vấn đề này rất thực tế.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 实际",
+      "partOfSpeech": "noun/adjective",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/实际.mp3"
   ],
@@ -121,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 28,
+      "sectionId": "new_hsk__2__topic__28__danh-tu",
+      "sectionSlug": "danh-tu",
       "sectionTitle": "Danh từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/danh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/danh-tu/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -136,7 +148,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

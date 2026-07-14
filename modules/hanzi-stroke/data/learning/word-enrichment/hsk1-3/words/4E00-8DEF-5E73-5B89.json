@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:一路平安",
   "type": "word",
   "word": "一路平安",
@@ -17,26 +17,25 @@
     "readings": [
       {
         "pinyin": "yī lù píng'ān",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chúc đường đi bình an",
+      "meaningShortVi": "chúc đường đi bình an",
+      "meaningFullVi": "chúc đường đi bình an",
       "partOfSpeech": "farewell phrase",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chúc đường đi bình an",
   "wordType": "farewell phrase",
   "wordTypes": [
     "farewell phrase"
   ],
-  "usageNotes": [
-    "Câu chúc thường dùng khi ai đó sắp đi xa."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -51,49 +50,56 @@
     "collocations": [
       {
         "text": "祝一路平安",
-        "pinyin": "",
+        "pinyin": "zhù yī lù píng'ān",
         "meaningVi": "chúc đường đi bình an",
+        "meaningFullVi": "chúc đường đi bình an",
         "target": "一路平安",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "愿一路平安",
-        "pinyin": "",
+        "pinyin": "yuàn yī lù píng'ān",
         "meaningVi": "mong đường đi bình an",
+        "meaningFullVi": "mong đường đi bình an",
         "target": "一路平安",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "一路平安",
       "chinese": "祝你一路平安！",
-      "pinyin": "",
+      "pinyin": "zhù nǐ yī lù píng'ān！",
       "meaningVi": "Chúc bạn đường đi bình an!",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "一路平安",
       "chinese": "愿你们一路平安。",
-      "pinyin": "",
+      "pinyin": "yuàn nǐ men yī lù píng'ān。",
       "meaningVi": "Chúc các bạn đi đường bình an.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 一路平安",
-      "syntax": "farewell phrase",
-      "matchedExample": "Câu chúc thường dùng khi ai đó sắp đi xa.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 一路平安",
+      "partOfSpeech": "farewell phrase",
+      "usageNoteVi": "Câu chúc thường dùng khi ai đó sắp đi xa.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,11 +110,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__2__topic__4__khac",
+      "sectionSlug": "khac",
       "sectionTitle": "Khác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/khac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/khac/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -119,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

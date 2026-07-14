@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:中国人",
   "type": "word",
   "word": "中国人",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "zhōng guó rén",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Người Trung Quốc, người nước Trung Hoa",
+      "meaningShortVi": "Người Trung Quốc",
+      "meaningFullVi": "Người Trung Quốc, người nước Trung Hoa",
       "partOfSpeech": "Danh từ (danh từ chỉ người)",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Người Trung Quốc",
   "wordType": "Danh từ (danh từ chỉ người)",
   "wordTypes": [
     "Danh từ (danh từ chỉ người)"
   ],
-  "usageNotes": [
-    "\"中国人\" cấu tạo theo pattern [tên quốc gia] + 人. Từ này chỉ quốc tịch/người thuộc dân tộc Trung Hoa."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -47,40 +46,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "中国",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "中国人",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "人",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "中国人",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "外国人",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "中国人",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "美国人",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "中国人",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -90,7 +57,8 @@
       "meaningVi": "Anh ấy là người Trung Quốc.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "中国人",
@@ -99,7 +67,8 @@
       "meaningVi": "Rất nhiều người Trung Quốc thích uống trà.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "中国人",
@@ -108,16 +77,17 @@
       "meaningVi": "Lớp chúng tôi có hai người Trung Quốc.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 中国人",
-      "syntax": "Danh từ (danh từ chỉ người)",
-      "matchedExample": "\"中国人\" cấu tạo theo pattern [tên quốc gia] + 人. Từ này chỉ quốc tịch/người thuộc dân tộc Trung Hoa.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 中国人",
+      "partOfSpeech": "Danh từ (danh từ chỉ người)",
+      "usageNoteVi": "\"中国人\" cấu tạo theo pattern [tên quốc gia] + 人. Từ này chỉ quốc tịch/người thuộc dân tộc Trung Hoa.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -142,7 +112,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

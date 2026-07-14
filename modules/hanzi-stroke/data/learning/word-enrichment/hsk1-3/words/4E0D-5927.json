@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:不大",
   "type": "word",
   "word": "不大",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "bù dà",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "không lớn, hơi nhỏ",
+      "meaningShortVi": "không lớn",
+      "meaningFullVi": "không lớn, hơi nhỏ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "không lớn",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "不大 là hình thức phủ định của 大 (lớn), nghĩa là không lớn. Hán-Việt: bất + đại."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -50,20 +49,25 @@
       {
         "text": "不大不小",
         "pinyin": "bù dà bù xiǎo",
-        "meaningVi": "vừa phải, không lớn không nhỏ",
+        "meaningVi": "vừa phải",
+        "meaningFullVi": "vừa phải, không lớn không nhỏ",
         "target": "不大",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不大好",
         "pinyin": "bù dà hǎo",
         "meaningVi": "không quá tốt",
+        "meaningFullVi": "không quá tốt",
         "target": "不大",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Căn phòng này không lớn.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不大",
@@ -82,16 +87,17 @@
       "meaningVi": "Căn phòng không lớn không nhỏ vừa phải.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 不大",
-      "syntax": "compound-semantic",
-      "matchedExample": "不大 là hình thức phủ định của 大 (lớn), nghĩa là không lớn. Hán-Việt: bất + đại.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 不大",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "不大 là hình thức phủ định của 大 (lớn), nghĩa là không lớn. Hán-Việt: bất + đại.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__1__topic__11__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/pho-tu/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

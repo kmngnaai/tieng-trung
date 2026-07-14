@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:最好",
   "type": "word",
   "word": "最好",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "zuì hǎo",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tốt nhất",
+      "meaningShortVi": "tốt nhất",
+      "meaningFullVi": "tốt nhất",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tốt nhất",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng so sánh nhất. Có thể dùng để khuyến nghị: 你最好去 (bạn tốt nhất nên đi)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 最 (cực kỳ/nhất) + 好 (tốt) → tốt nhất."
   ],
   "hsk": {
     "levels": [
@@ -51,14 +48,27 @@
     "compounds": [],
     "collocations": [
       {
+        "text": "最好",
+        "pinyin": "zuì hǎo",
+        "meaningVi": "tốt nhất",
+        "meaningFullVi": "tốt nhất",
+        "target": "最好",
+        "source": "hsk_1.json",
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
+      },
+      {
         "text": "最好的",
         "pinyin": "zuì hǎo de",
         "meaningVi": "tốt nhất (kính ngữ)",
+        "meaningFullVi": "tốt nhất (kính ngữ)",
         "target": "最好",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -68,7 +78,8 @@
       "meaningVi": "Hôm nay thời tiết tốt nhất",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "最好",
@@ -77,7 +88,8 @@
       "meaningVi": "Tốt nhất là ăn gì?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "最好",
@@ -86,7 +98,8 @@
       "meaningVi": "Bạn tốt nhất nên đi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "最好",
@@ -95,23 +108,17 @@
       "meaningVi": "Cái này tốt nhất",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 最好",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng so sánh nhất. Có thể dùng để khuyến nghị: 你最好去 (bạn tốt nhất nên đi).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 最 (cực kỳ/nhất) + 好 (tốt) → tốt nhất.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 最好",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng so sánh nhất. Có thể dùng để khuyến nghị: 你最好去 (bạn tốt nhất nên đi).",
+      "explanationVi": "Ghép nghĩa: 最 (cực kỳ/nhất) + 好 (tốt) → tốt nhất.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -122,21 +129,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__1__topic__11__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/pho-tu/",
+      "orderInSection": 3
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__3__lesson__14__bai-14-this-book-is-checked-out",
+      "sectionSlug": "bai-14-this-book-is-checked-out",
       "sectionTitle": "Cuốn sách này bị người khác mượn mất rồi",
       "sectionTitleZh": "这本书被别人借走了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-14-this-book-is-checked-out/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-14-this-book-is-checked-out/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -152,7 +169,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

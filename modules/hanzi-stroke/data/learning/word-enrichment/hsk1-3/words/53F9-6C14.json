@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:叹气",
   "type": "word",
   "word": "叹气",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "tàn qì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thở dài, thở dài não nuột (biểu hiện sự buồn bã, lo lắng hoặc bất lực)",
+      "meaningShortVi": "thở dài",
+      "meaningFullVi": "thở dài, thở dài não nuột (biểu hiện sự buồn bã, lo lắng hoặc bất lực)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thở dài",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Thường đi kèm 一口 (一口气: một hơi dài) hoặc không mang tân ngữ. Thành ngữ 唉声叹气 (ái thanh thán khí) chỉ sự rầu rĩ kéo dài. Phân biệt với 深呼吸 (hít thở sâu có chủ ý)."
-  ],
-  "wordTypeExplanations": [
-    "叹 (thán – thán thở, than thở) + 气 (khí – hơi thở) → thở hơi than, thở dài."
   ],
   "hsk": {
     "levels": [
@@ -48,30 +45,17 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "叹了一口气",
-        "pinyin": "tàn le yī kǒu qì",
-        "meaningVi": "thở dài một cái",
-        "target": "叹气",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "长叹一声",
-        "pinyin": "cháng tàn yī shēng",
-        "meaningVi": "thở dài một tiếng",
-        "target": "叹气",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "唉声叹气",
         "pinyin": "āi shēng tàn qì",
-        "meaningVi": "than thở, rầu rĩ (thành ngữ)",
+        "meaningVi": "than thở",
+        "meaningFullVi": "than thở, rầu rĩ (thành ngữ)",
         "target": "叹气",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +65,8 @@
       "meaningVi": "Anh ấy không ngừng thở dài sau khi nghe tin đó",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "叹气",
@@ -90,7 +75,8 @@
       "meaningVi": "Cô ấy thở dài sâu, tiếng thở dài khiến người ta thương",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "叹气",
@@ -99,7 +85,8 @@
       "meaningVi": "Thôi đừng thở dài nữa, hãy nghĩ cách giải quyết vấn đề đi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "叹气",
@@ -108,23 +95,17 @@
       "meaningVi": "Nhìn vào bảng điểm, bố mẹ thở dài lắc đầu",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 叹气",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường đi kèm 一口 (一口气: một hơi dài) hoặc không mang tân ngữ. Thành ngữ 唉声叹气 (ái thanh thán khí) chỉ sự rầu rĩ kéo dài. Phân biệt với 深呼吸 (hít thở sâu có chủ ý).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "叹 (thán – thán thở, than thở) + 气 (khí – hơi thở) → thở hơi than, thở dài.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 叹气",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường đi kèm 一口 (一口气: một hơi dài) hoặc không mang tân ngữ. Thành ngữ 唉声叹气 (ái thanh thán khí) chỉ sự rầu rĩ kéo dài. Phân biệt với 深呼吸 (hít thở sâu có chủ ý).",
+      "explanationVi": "叹 (thán – thán thở, than thở) + 气 (khí – hơi thở) → thở hơi than, thở dài.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +120,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:现代",
   "type": "word",
   "word": "现代",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xiàn dài",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Hiện đại",
+      "meaningShortVi": "Hiện đại",
+      "meaningFullVi": "Hiện đại",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Hiện đại",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Tính từ chỉ thời kỳ hoặc đặc điểm của thời hiện đại, đối lập với cổ đại/truyền thống."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -52,19 +51,24 @@
         "text": "现代化",
         "pinyin": "xiàndàihuà",
         "meaningVi": "hiện đại hóa",
+        "meaningFullVi": "hiện đại hóa",
         "target": "现代",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "现代社会",
         "pinyin": "xiàndài shèhuì",
         "meaningVi": "xã hội hiện đại",
+        "meaningFullVi": "xã hội hiện đại",
         "target": "现代",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Cuộc sống hiện đại rất tiện lợi.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "现代",
@@ -83,7 +88,8 @@
       "meaningVi": "Đây là một tòa nhà kiến trúc hiện đại.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "现代",
@@ -92,16 +98,17 @@
       "meaningVi": "Công nghệ hiện đại phát triển rất nhanh.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 现代",
-      "syntax": "compound-semantic",
-      "matchedExample": "Tính từ chỉ thời kỳ hoặc đặc điểm của thời hiện đại, đối lập với cổ đại/truyền thống.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 现代",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Tính từ chỉ thời kỳ hoặc đặc điểm của thời hiện đại, đối lập với cổ đại/truyền thống.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -112,11 +119,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__3__topic__7__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -132,7 +144,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

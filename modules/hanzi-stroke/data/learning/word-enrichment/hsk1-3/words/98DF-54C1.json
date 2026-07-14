@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:食品",
   "type": "word",
   "word": "食品",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shí pǐn",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Thực phẩm, đồ ăn",
+      "meaningShortVi": "Thực phẩm",
+      "meaningFullVi": "Thực phẩm, đồ ăn",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Thực phẩm",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Chỉ đồ ăn, thực phẩm đóng gói hoặc sản xuất, thường dùng trong thương mại."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -52,19 +51,24 @@
         "text": "健康食品",
         "pinyin": "jiànkāng shípǐn",
         "meaningVi": "thực phẩm tốt cho sức khỏe",
+        "meaningFullVi": "thực phẩm tốt cho sức khỏe",
         "target": "食品",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "食品安全",
         "pinyin": "shípǐn ānquán",
         "meaningVi": "an toàn thực phẩm",
+        "meaningFullVi": "an toàn thực phẩm",
         "target": "食品",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Loại thực phẩm này rất tốt cho sức khỏe.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "食品",
@@ -83,7 +88,8 @@
       "meaningVi": "Trong siêu thị có rất nhiều thực phẩm.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "食品",
@@ -92,16 +98,17 @@
       "meaningVi": "Thực phẩm hết hạn không được ăn.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 食品",
-      "syntax": "compound-semantic",
-      "matchedExample": "Chỉ đồ ăn, thực phẩm đóng gói hoặc sản xuất, thường dùng trong thương mại.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 食品",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Chỉ đồ ăn, thực phẩm đóng gói hoặc sản xuất, thường dùng trong thương mại.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -112,11 +119,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 2,
+      "sectionId": "new_hsk__3__topic__2__thuc-an-va-do-uong",
+      "sectionSlug": "thuc-an-va-do-uong",
       "sectionTitle": "Thức ăn và đồ uống",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thuc-an-va-do-uong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thuc-an-va-do-uong/",
+      "orderInSection": 18
     }
   ],
   "sources": [
@@ -132,7 +144,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

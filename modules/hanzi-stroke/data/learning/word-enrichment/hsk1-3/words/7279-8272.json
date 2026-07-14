@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:特色",
   "type": "word",
   "word": "特色",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "tè sè",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đặc sắc; đặc điểm; nét riêng",
+      "meaningShortVi": "đặc sắc",
+      "meaningFullVi": "đặc sắc; đặc điểm; nét riêng",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đặc sắc",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Chỉ những nét riêng biệt, đặc trưng làm nên sự khác biệt của một vật, người hay địa điểm."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "特色小吃",
         "pinyin": "tèsè xiǎochī",
         "meaningVi": "đặc sản ăn vặt",
+        "meaningFullVi": "đặc sản ăn vặt",
         "target": "特色",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "民族特色",
         "pinyin": "mínzú tèsè",
         "meaningVi": "đặc sắc dân tộc",
+        "meaningFullVi": "đặc sắc dân tộc",
         "target": "特色",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Món đặc sắc của nhà hàng này là vịt quay.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "特色",
@@ -82,16 +87,17 @@
       "meaningVi": "Mỗi thành phố đều có nét đặc sắc văn hóa của riêng mình.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 特色",
-      "syntax": "danh từ",
-      "matchedExample": "Chỉ những nét riêng biệt, đặc trưng làm nên sự khác biệt của một vật, người hay địa điểm.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 特色",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Chỉ những nét riêng biệt, đặc trưng làm nên sự khác biệt của một vật, người hay địa điểm.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 31,
+      "sectionId": "new_hsk__3__topic__31__ban-tinh",
+      "sectionSlug": "ban-tinh",
       "sectionTitle": "Bản tính",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/ban-tinh/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/ban-tinh/",
+      "orderInSection": 6
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:火车",
   "type": "word",
   "word": "火车",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "huǒ chē",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tàu hỏa, tàu lửa",
+      "meaningShortVi": "tàu hỏa",
+      "meaningFullVi": "tàu hỏa, tàu lửa",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tàu hỏa",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Tàu hỏa/tàu lửa. Ngồi tàu = 坐火车. Ga tàu = 火车站. Hán-Việt: 'hoả xa'."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 火 (lửa) + 车 (xe) → xe chạy bằng lửa (tàu hoả)."
   ],
   "hsk": {
     "levels": [
@@ -51,13 +48,11 @@
       {
         "word": "火车站",
         "pinyin": "huǒ chē zhàn",
-        "meaningVi": "ga xe lửa, nhà ga; nơi tàu hỏa dừng và đón trả khách",
+        "meaningVi": "ga xe lửa",
+        "meaningFullVi": "ga xe lửa, nhà ga; nơi tàu hỏa dừng và đón trả khách",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
@@ -65,19 +60,24 @@
         "text": "火车站",
         "pinyin": "huǒchēzhàn",
         "meaningVi": "ga tàu",
+        "meaningFullVi": "ga tàu",
         "target": "火车",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "坐火车",
         "pinyin": "zuò huǒchē",
         "meaningVi": "đi tàu hỏa",
+        "meaningFullVi": "đi tàu hỏa",
         "target": "火车",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -87,7 +87,8 @@
       "meaningVi": "Đi tàu hỏa đến Bắc Kinh",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "火车",
@@ -96,7 +97,8 @@
       "meaningVi": "Tàu đến rồi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "火车",
@@ -105,7 +107,8 @@
       "meaningVi": "ở ga tàu",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "火车",
@@ -114,23 +117,17 @@
       "meaningVi": "Tàu chạy rất nhanh",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 火车",
-      "syntax": "compound-semantic",
-      "matchedExample": "Tàu hỏa/tàu lửa. Ngồi tàu = 坐火车. Ga tàu = 火车站. Hán-Việt: 'hoả xa'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 火 (lửa) + 车 (xe) → xe chạy bằng lửa (tàu hoả).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 火车",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Tàu hỏa/tàu lửa. Ngồi tàu = 坐火车. Ga tàu = 火车站. Hán-Việt: 'hoả xa'.",
+      "explanationVi": "Ghép nghĩa: 火 (lửa) + 车 (xe) → xe chạy bằng lửa (tàu hoả).",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -141,21 +138,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__1__lesson__14__bai-14-i-watched-a-movie",
+      "sectionSlug": "bai-14-i-watched-a-movie",
       "sectionTitle": "Tôi đã xem một bộ phim",
       "sectionTitleZh": "我看了一个电影",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-14-i-watched-a-movie/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-14-i-watched-a-movie/",
+      "orderInSection": 3
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__1__topic__8__van-chuyen",
+      "sectionSlug": "van-chuyen",
       "sectionTitle": "Vận chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/van-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/van-chuyen/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -166,7 +173,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

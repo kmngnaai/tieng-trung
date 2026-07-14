@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:耐心",
   "type": "word",
   "word": "耐心",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "nài xīn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "kiên nhẫn, sự kiên nhẫn; nhẫn nại",
+      "meaningShortVi": "kiên nhẫn",
+      "meaningFullVi": "kiên nhẫn, sự kiên nhẫn; nhẫn nại",
       "partOfSpeech": "danh từ / tính từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "kiên nhẫn",
   "wordType": "danh từ / tính từ",
   "wordTypes": [
     "danh từ / tính từ"
   ],
-  "usageNotes": [
-    "耐心 là danh từ hoặc tính từ chỉ sự kiên nhẫn, nhẫn nại. Hán-V Việt 'nại' (耐 - chịu đựng/nhẫn) + 'tâm' (心 - lòng/tim) = lòng chịu đựng. Dùng cho thái độ của con người khi đối mặt với khó khăn, khi dạy dỗ, khi chờ đợi. Có thể làm tính từ (很耐心 - rất kiên nhẫn)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,7 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -54,7 +54,8 @@
       "meaningVi": "Thầy giáo rất kiên nhẫn với học sinh.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "耐心",
@@ -63,7 +64,8 @@
       "meaningVi": "Học ngôn ngữ cần sự kiên nhẫn.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "耐心",
@@ -72,16 +74,17 @@
       "meaningVi": "Vui lòng kiên nhẫn chờ đợi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 耐心",
-      "syntax": "danh từ / tính từ",
-      "matchedExample": "耐心 là danh từ hoặc tính từ chỉ sự kiên nhẫn, nhẫn nại. Hán-V Việt 'nại' (耐 - chịu đựng/nhẫn) + 'tâm' (心 - lòng/tim) = lòng chịu đựng. Dùng cho thái độ của con người khi đối mặt với khó khăn, khi dạy dỗ, khi chờ đợi. Có thể làm tính từ (很耐心 - rất kiên nhẫn).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 耐心",
+      "partOfSpeech": "danh từ / tính từ",
+      "usageNoteVi": "耐心 là danh từ hoặc tính từ chỉ sự kiên nhẫn, nhẫn nại. Hán-V Việt 'nại' (耐 - chịu đựng/nhẫn) + 'tâm' (心 - lòng/tim) = lòng chịu đựng. Dùng cho thái độ của con người khi đối mặt với khó khăn, khi dạy dỗ, khi chờ đợi. Có thể làm tính từ (很耐心 - rất kiên nhẫn).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -96,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

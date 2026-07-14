@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:反应",
   "type": "word",
   "word": "反应",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fǎn yìng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phản ứng",
+      "meaningShortVi": "phản ứng",
+      "meaningFullVi": "phản ứng",
       "partOfSpeech": "động từ / danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phản ứng",
   "wordType": "động từ / danh từ",
   "wordTypes": [
     "động từ / danh từ"
   ],
-  "usageNotes": [
-    "指生物体受到刺激后产生的活动，或事物受影响后发生的变化。也可指态度、意见。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -50,40 +49,46 @@
     "collocations": [
       {
         "text": "做出反应",
-        "pinyin": "",
-        "meaningVi": "phản ứng, có phản ứng",
+        "pinyin": "zuò chū fǎn yìng",
+        "meaningVi": "phản ứng",
+        "meaningFullVi": "phản ứng, có phản ứng",
         "target": "反应",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "化学反应",
-        "pinyin": "",
+        "pinyin": "huà xué fǎn yìng",
         "meaningVi": "phản ứng hoá học",
+        "meaningFullVi": "phản ứng hoá học",
         "target": "反应",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "反应",
       "chinese": "他对这个消息反应很快。",
-      "pinyin": "",
+      "pinyin": "tā duì zhè ge xiāo xi fǎn yìng hěn kuài。",
       "meaningVi": "Anh ấy phản ứng rất nhanh với tin tức này.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 反应",
-      "syntax": "động từ / danh từ",
-      "matchedExample": "指生物体受到刺激后产生的活动，或事物受影响后发生的变化。也可指态度、意见。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 反应",
+      "partOfSpeech": "động từ / danh từ",
+      "usageNoteVi": "指生物体受到刺激后产生的活动，或事物受影响后发生的变化。也可指态度、意见。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -94,11 +99,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__3__topic__19__thanh-tuu-va-ket-qua",
+      "sectionSlug": "thanh-tuu-va-ket-qua",
       "sectionTitle": "Thành tựu và kết quả",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/",
+      "orderInSection": 24
     }
   ],
   "sources": [
@@ -114,7 +124,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

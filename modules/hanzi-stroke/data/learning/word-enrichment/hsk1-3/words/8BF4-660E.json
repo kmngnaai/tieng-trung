@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:说明",
   "type": "word",
   "word": "说明",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "shuō míng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "giải thích",
+      "meaningShortVi": "giải thích",
+      "meaningFullVi": "giải thích",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "giải thích",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,43 +48,48 @@
     "collocations": [
       {
         "text": "说明一下",
-        "pinyin": "",
+        "pinyin": "shuō míng yī xià",
         "meaningVi": "giải thích một chút",
+        "meaningFullVi": "giải thích một chút",
         "target": "说明",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "详细说明",
-        "pinyin": "",
-        "meaningVi": "giải thích chi tiết",
-        "target": "说明",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "说明",
       "chinese": "请说明原因",
-      "pinyin": "",
+      "pinyin": "qǐng shuō míng yuán yīn",
       "meaningVi": "Vui lòng giải thích nguyên nhân",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "说明",
       "chinese": "这本书说明了学习方法",
-      "pinyin": "",
+      "pinyin": "zhè běn shū shuō míng le xué xí fāng fǎ",
       "meaningVi": "Cuốn sách này giải thích phương pháp học tập",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 说明",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/说明.mp3"
   ],
@@ -92,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 24,
+      "sectionId": "new_hsk__2__topic__24__giao-tiep-va-cac-moi-quan-he",
+      "sectionSlug": "giao-tiep-va-cac-moi-quan-he",
       "sectionTitle": "Giao tiếp và các mối quan hệ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giao-tiep-va-cac-moi-quan-he/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giao-tiep-va-cac-moi-quan-he/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -107,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

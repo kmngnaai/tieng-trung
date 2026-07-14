@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:出来",
   "type": "word",
   "word": "出来",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "chū lai",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ra ngoài",
+      "meaningShortVi": "ra ngoài",
+      "meaningFullVi": "ra ngoài",
       "partOfSpeech": "other",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ra ngoài",
   "wordType": "other",
   "wordTypes": [
     "other"
   ],
-  "usageNotes": [
-    "Chỉ hành động di chuyển từ trong ra ngoài."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -52,19 +51,24 @@
         "text": "走出来",
         "pinyin": "zǒu chūlái",
         "meaningVi": "bước ra",
+        "meaningFullVi": "bước ra",
         "target": "出来",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "跑出来",
         "pinyin": "pǎo chūlái",
         "meaningVi": "chạy ra",
+        "meaningFullVi": "chạy ra",
         "target": "出来",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Xin hãy ra ngoài một chút.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "出来",
@@ -83,7 +88,8 @@
       "meaningVi": "Anh ấy đã ra khỏi phòng.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "出来",
@@ -92,16 +98,17 @@
       "meaningVi": "Mặt trời đã lên rồi.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 出来",
-      "syntax": "other",
-      "matchedExample": "Chỉ hành động di chuyển từ trong ra ngoài.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 出来",
+      "partOfSpeech": "other",
+      "usageNoteVi": "Chỉ hành động di chuyển từ trong ra ngoài.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -112,11 +119,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__1__topic__9__su-chuyen-dong",
+      "sectionSlug": "su-chuyen-dong",
       "sectionTitle": "Sự chuyển động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/su-chuyen-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/su-chuyen-dong/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -132,7 +144,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

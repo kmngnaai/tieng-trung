@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:团体",
   "type": "word",
   "word": "团体",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "tuán tǐ",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nhóm, tổ chức, tập thể",
+      "meaningShortVi": "nhóm",
+      "meaningFullVi": "nhóm, tổ chức, tập thể",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nhóm",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "团体 强调 tổ chức/nhóm người. 团队 (tuánduì) = team (nhóm làm việc cùng nhau). 集体 (jítǐ) = tập thể (tập hợp mọi người)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -50,29 +49,24 @@
       {
         "text": "团体票",
         "pinyin": "tuántǐ piào",
-        "meaningVi": "vé nhóm/vé tập thể",
+        "meaningVi": "vé nhóm",
+        "meaningFullVi": "vé nhóm/vé tập thể",
         "target": "团体",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "团队精神",
-        "pinyin": "tuánduì jīngshén",
-        "meaningVi": "tinh thần đồng đội",
-        "target": "团体",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 团体",
-      "syntax": "danh từ",
-      "matchedExample": "团体 强调 tổ chức/nhóm người. 团队 (tuánduì) = team (nhóm làm việc cùng nhau). 集体 (jítǐ) = tập thể (tập hợp mọi người).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 团体",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "团体 强调 tổ chức/nhóm người. 团队 (tuánduì) = team (nhóm làm việc cùng nhau). 集体 (jítǐ) = tập thể (tập hợp mọi người).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -83,11 +77,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__3__topic__10__giai-tri-toi",
+      "sectionSlug": "giai-tri-toi",
       "sectionTitle": "Giải trí tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -98,9 +97,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": [
-      "Chưa có câu chứa nguyên từ"
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
     ]
   }
 }

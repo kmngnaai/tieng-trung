@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:来到",
   "type": "word",
   "word": "来到",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "lái dào",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đến với, đến nơi",
+      "meaningShortVi": "đến với",
+      "meaningFullVi": "đến với, đến nơi",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đến với",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "来到 là động từ chỉ hành động đến nơi. Hán-Việt: lai (đến) + đáo (đến nơi)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -51,19 +50,24 @@
         "text": "来到这里",
         "pinyin": "láidào zhèlǐ",
         "meaningVi": "đến đây",
+        "meaningFullVi": "đến đây",
         "target": "来到",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "来到中国",
         "pinyin": "láidào Zhōngguó",
         "meaningVi": "đến Trung Quốc",
+        "meaningFullVi": "đến Trung Quốc",
         "target": "来到",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Anh ấy đến nhà tôi.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "来到",
@@ -82,16 +87,17 @@
       "meaningVi": "Chúng tôi đến Bắc Kinh.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 来到",
-      "syntax": "compound-semantic",
-      "matchedExample": "来到 là động từ chỉ hành động đến nơi. Hán-Việt: lai (đến) + đáo (đến nơi).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 来到",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "来到 là động từ chỉ hành động đến nơi. Hán-Việt: lai (đến) + đáo (đến nơi).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__1__topic__9__su-chuyen-dong",
+      "sectionSlug": "su-chuyen-dong",
       "sectionTitle": "Sự chuyển động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/su-chuyen-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/su-chuyen-dong/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

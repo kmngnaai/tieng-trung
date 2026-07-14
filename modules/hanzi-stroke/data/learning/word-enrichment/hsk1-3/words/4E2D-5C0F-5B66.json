@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:中小学",
   "type": "word",
   "word": "中小学",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "zhōng xiǎo xué",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trường tiểu học và trung học cơ sở",
+      "meaningShortVi": "trường tiểu học và trung học cơ sở",
+      "meaningFullVi": "trường tiểu học và trung học cơ sở",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trường tiểu học và trung học cơ sở",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Từ ghép chỉ cấp giáo dục cơ bản"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,52 +46,38 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "小学",
-        "pinyin": "",
-        "meaningVi": "tiểu học",
-        "target": "中小学",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "中学",
-        "pinyin": "",
-        "meaningVi": "trung học",
-        "target": "中小学",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "中小学",
       "chinese": "他在中小学教书",
-      "pinyin": "",
+      "pinyin": "tā zài zhōng xiǎo xué jiāo shū",
       "meaningVi": "Anh ấy dạy học ở tiểu học và THCS",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "中小学",
       "chinese": "中小学教育",
-      "pinyin": "",
+      "pinyin": "zhōng xiǎo xué jiào yù",
       "meaningVi": "Giáo dục tiểu học và trung học",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 中小学",
-      "syntax": "noun",
-      "matchedExample": "Từ ghép chỉ cấp giáo dục cơ bản",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 中小学",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Từ ghép chỉ cấp giáo dục cơ bản",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__2__topic__7__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/nghien-cuu/",
+      "orderInSection": 19
     }
   ],
   "sources": [
@@ -118,7 +108,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

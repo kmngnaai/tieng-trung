@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:笑话",
   "type": "word",
   "word": "笑话",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "xiào hua",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trò cười, truyện cười",
+      "meaningShortVi": "trò cười",
+      "meaningFullVi": "trò cười, truyện cười",
       "partOfSpeech": "noun/verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trò cười",
   "wordType": "noun/verb",
   "wordTypes": [
     "noun/verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,60 +48,78 @@
     "collocations": [
       {
         "text": "讲笑话",
-        "pinyin": "",
+        "pinyin": "jiǎng xiào hua",
         "meaningVi": "kể chuyện cười",
+        "meaningFullVi": "kể chuyện cười",
         "target": "笑话",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "开笑话",
-        "pinyin": "",
+        "pinyin": "kāi xiào hua",
         "meaningVi": "đùa giỡn",
+        "meaningFullVi": "đùa giỡn",
         "target": "笑话",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "听笑话",
-        "pinyin": "",
+        "pinyin": "tīng xiào hua",
         "meaningVi": "nghe chuyện cười",
+        "meaningFullVi": "nghe chuyện cười",
         "target": "笑话",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "笑话",
       "chinese": "他讲了一个很好笑的笑话",
-      "pinyin": "",
+      "pinyin": "tā jiǎng le yī gè hěn hǎo xiào de xiào hua",
       "meaningVi": "Anh ấy kể một câu truyện cười rất hay",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "笑话",
       "chinese": "不要把我当笑话",
-      "pinyin": "",
+      "pinyin": "bù yào bǎ wǒ dāng xiào hua",
       "meaningVi": "Đừng coi tôi là trò cười",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "笑话",
       "chinese": "我们经常一起讲笑话",
-      "pinyin": "",
+      "pinyin": "wǒ men jīng cháng yī qǐ jiǎng xiào hua",
       "meaningVi": "Chúng tôi thường cùng nhau kể chuyện cười",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 笑话",
+      "partOfSpeech": "noun/verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/笑话.mp3"
   ],
@@ -109,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 24,
+      "sectionId": "new_hsk__2__topic__24__giao-tiep-va-cac-moi-quan-he",
+      "sectionSlug": "giao-tiep-va-cac-moi-quan-he",
       "sectionTitle": "Giao tiếp và các mối quan hệ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giao-tiep-va-cac-moi-quan-he/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giao-tiep-va-cac-moi-quan-he/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -124,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

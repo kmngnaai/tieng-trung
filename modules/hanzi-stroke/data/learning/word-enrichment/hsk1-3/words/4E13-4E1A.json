@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:专业",
   "type": "word",
   "word": "专业",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhuān yè",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Chuyên nghiệp, chuyên môn",
+      "meaningShortVi": "Chuyên nghiệp",
+      "meaningFullVi": "Chuyên nghiệp, chuyên môn",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Chuyên nghiệp",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "专业 có thể là tính từ (chuyên nghiệp) hoặc danh từ (chuyên ngành, chuyên môn). Phân biệt 专业(chuyên môn) và 职业(nghề nghiệp)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -52,27 +51,34 @@
         "text": "很专业",
         "pinyin": "hěn zhuānyè",
         "meaningVi": "rất chuyên nghiệp",
+        "meaningFullVi": "rất chuyên nghiệp",
         "target": "专业",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "专业人员",
         "pinyin": "zhuānyè rényuán",
         "meaningVi": "nhân viên chuyên môn",
+        "meaningFullVi": "nhân viên chuyên môn",
         "target": "专业",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "专业知识",
         "pinyin": "zhuānyè zhīshi",
         "meaningVi": "kiến thức chuyên môn",
+        "meaningFullVi": "kiến thức chuyên môn",
         "target": "专业",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -82,7 +88,8 @@
       "meaningVi": "Cô ấy là một bác sĩ rất chuyên nghiệp.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "专业",
@@ -91,7 +98,8 @@
       "meaningVi": "Anh ấy rất chuyên môn trong lĩnh vực này.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "专业",
@@ -100,16 +108,17 @@
       "meaningVi": "Chúng tôi cần sự giúp đỡ của nhân viên chuyên môn.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 专业",
-      "syntax": "compound-semantic",
-      "matchedExample": "专业 có thể là tính từ (chuyên nghiệp) hoặc danh từ (chuyên ngành, chuyên môn). Phân biệt 专业(chuyên môn) và 职业(nghề nghiệp).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 专业",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "专业 có thể là tính từ (chuyên nghiệp) hoặc danh từ (chuyên ngành, chuyên môn). Phân biệt 专业(chuyên môn) và 职业(nghề nghiệp).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -120,11 +129,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__topic__16__cac-hoat-dong",
+      "sectionSlug": "cac-hoat-dong",
       "sectionTitle": "Các hoạt động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/",
+      "orderInSection": 31
     }
   ],
   "sources": [
@@ -140,7 +154,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:来不及",
   "type": "word",
   "word": "来不及",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "lái bu jí",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "không kịp",
+      "meaningShortVi": "không kịp",
+      "meaningFullVi": "không kịp",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "không kịp",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Động từ kết quả, chỉ việc không kịp thời điểm. 'Lai' = đến, 'Bất' = không, 'Kịp' = kịp."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -45,32 +44,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "来不及了",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "来不及",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "来不及做",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "来不及",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "来不及赶上",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "来不及",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -80,7 +55,8 @@
       "meaningVi": "Đi nhanh, không thì không kịp rồi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "来不及",
@@ -89,7 +65,8 @@
       "meaningVi": "Tôi hối tiếc không bắt đầu sớm hơn, giờ không kịp rồi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "来不及",
@@ -98,16 +75,17 @@
       "meaningVi": "Không kịp ăn cơm nữa, đi nhanh đi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 来不及",
-      "syntax": "compound-semantic",
-      "matchedExample": "Động từ kết quả, chỉ việc không kịp thời điểm. 'Lai' = đến, 'Bất' = không, 'Kịp' = kịp.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 来不及",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Động từ kết quả, chỉ việc không kịp thời điểm. 'Lai' = đến, 'Bất' = không, 'Kịp' = kịp.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -122,7 +100,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

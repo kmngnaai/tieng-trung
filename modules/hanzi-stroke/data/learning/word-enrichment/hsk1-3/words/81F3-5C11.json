@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:至少",
   "type": "word",
   "word": "至少",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhì shǎo",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Ít nhất",
+      "meaningShortVi": "Ít nhất",
+      "meaningFullVi": "Ít nhất",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Ít nhất",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "至少 là giới từ chỉ mức độ tối thiểu, không dưới mức nào đó. 至 nghĩa là đến, nhất; 少 nghĩa là ít. Ghép lại: đến mức ít nhất."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,40 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "至少需要",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "至少",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "至少要",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "至少",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "至少可以说",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "至少",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "至少一次",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "至少",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -89,7 +56,8 @@
       "meaningVi": "Bạn cần ít nhất hai tiếng để hoàn thành công việc này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "至少",
@@ -98,7 +66,8 @@
       "meaningVi": "Ít nhất tôi biết anh ấy không nói dối.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "至少",
@@ -107,16 +76,17 @@
       "meaningVi": "Mỗi ngày cần ít nhất uống tám cốc nước.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 至少",
-      "syntax": "compound-semantic",
-      "matchedExample": "至少 là giới từ chỉ mức độ tối thiểu, không dưới mức nào đó. 至 nghĩa là đến, nhất; 少 nghĩa là ít. Ghép lại: đến mức ít nhất.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 至少",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "至少 là giới từ chỉ mức độ tối thiểu, không dưới mức nào đó. 至 nghĩa là đến, nhất; 少 nghĩa là ít. Ghép lại: đến mức ít nhất.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -127,11 +97,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__3__topic__1__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/pho-tu/",
+      "orderInSection": 6
     }
   ],
   "sources": [
@@ -142,7 +117,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

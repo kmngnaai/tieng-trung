@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:麻烦",
   "type": "word",
   "word": "麻烦",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "má fan",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phiền phức, rắc rối; gây phiền; điều phiền toái",
+      "meaningShortVi": "phiền phức",
+      "meaningFullVi": "phiền phức, rắc rối; gây phiền; điều phiền toái",
       "partOfSpeech": "tính từ / động từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phiền phức",
   "wordType": "tính từ / động từ",
   "wordTypes": [
     "tính từ / động từ"
   ],
-  "usageNotes": [
-    "Ma fan vừa có thể là tính từ (phiền phức) hoặc động từ (làm phiền ai đó). Rất phổ biến trong giao tiếp hàng ngày khi nhờ vả hoặc xin lỗi."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,49 +49,56 @@
     "collocations": [
       {
         "text": "很麻烦",
-        "pinyin": "",
+        "pinyin": "hěn má fan",
         "meaningVi": "rất phiền phức",
+        "meaningFullVi": "rất phiền phức",
         "target": "麻烦",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "麻烦事",
-        "pinyin": "",
+        "pinyin": "má fan shì",
         "meaningVi": "việc phiền toái",
+        "meaningFullVi": "việc phiền toái",
         "target": "麻烦",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "麻烦",
       "chinese": "这件事很麻烦。",
-      "pinyin": "",
+      "pinyin": "zhè jiàn shì hěn má fan。",
       "meaningVi": "Việc này rất phiền phức.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "麻烦",
       "chinese": "麻烦你帮我把门关上。",
-      "pinyin": "",
+      "pinyin": "má fan nǐ bāng wǒ bǎ mén guān shàng。",
       "meaningVi": "Làm phiền bạn giúp tôi đóng cửa lại.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 麻烦",
-      "syntax": "tính từ / động từ",
-      "matchedExample": "Ma fan vừa có thể là tính từ (phiền phức) hoặc động từ (làm phiền ai đó). Rất phổ biến trong giao tiếp hàng ngày khi nhờ vả hoặc xin lỗi.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 麻烦",
+      "partOfSpeech": "tính từ / động từ",
+      "usageNoteVi": "Ma fan vừa có thể là tính từ (phiền phức) hoặc động từ (làm phiền ai đó). Rất phổ biến trong giao tiếp hàng ngày khi nhờ vả hoặc xin lỗi.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 33,
+      "sectionId": "new_hsk__3__topic__33__tinh-tu",
+      "sectionSlug": "tinh-tu",
       "sectionTitle": "Tính từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/",
+      "orderInSection": 6
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

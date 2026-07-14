@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:文章",
   "type": "word",
   "word": "文章",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wén zhāng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bài báo, bài viết, văn chương",
+      "meaningShortVi": "bài báo",
+      "meaningFullVi": "bài báo, bài viết, văn chương",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bài báo",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Chỉ bài báo, bài viết hoặc văn chương nói chung."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "写文章",
-        "pinyin": "",
+        "pinyin": "xiě wén zhāng",
         "meaningVi": "viết bài",
+        "meaningFullVi": "viết bài",
         "target": "文章",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "好文章",
-        "pinyin": "",
+        "pinyin": "hǎo wén zhāng",
         "meaningVi": "bài viết hay",
+        "meaningFullVi": "bài viết hay",
         "target": "文章",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "文章",
       "chinese": "他在报纸上发表了一篇文章。",
-      "pinyin": "",
+      "pinyin": "tā zài bào zhǐ shàng fā biǎo le yī piān wén zhāng。",
       "meaningVi": "Anh ấy đã đăng một bài báo trên tờ báo.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "文章",
       "chinese": "这篇文章写得很好。",
-      "pinyin": "",
+      "pinyin": "zhè piān wén zhāng xiě děi hěn hǎo。",
       "meaningVi": "Bài viết này rất hay.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 文章",
-      "syntax": "danh từ",
-      "matchedExample": "Chỉ bài báo, bài viết hoặc văn chương nói chung.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 文章",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Chỉ bài báo, bài viết hoặc văn chương nói chung.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 26,
+      "sectionId": "new_hsk__3__topic__26__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

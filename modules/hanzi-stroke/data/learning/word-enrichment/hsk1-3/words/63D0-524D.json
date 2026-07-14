@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:提前",
   "type": "word",
   "word": "提前",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "tí qián",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Trước thời hạn, sớm hơn dự kiến",
+      "meaningShortVi": "Trước thời hạn",
+      "meaningFullVi": "Trước thời hạn, sớm hơn dự kiến",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Trước thời hạn",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "提前 là động từ hoặc bổ ngữ chỉ việc làm trước thời hạn. Thường kết hợp với động từ khác để chỉ hành động xảy ra sớm hơn dự kiến."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,27 +50,34 @@
         "text": "提前完成",
         "pinyin": "tíqián wánchéng",
         "meaningVi": "hoàn thành trước thời hạn",
+        "meaningFullVi": "hoàn thành trước thời hạn",
         "target": "提前",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "提前告诉",
         "pinyin": "tíqián gàosu",
         "meaningVi": "cho biết trước",
+        "meaningFullVi": "cho biết trước",
         "target": "提前",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "提前到达",
         "pinyin": "tíqián dàodá",
         "meaningVi": "đến sớm hơn dự kiến",
+        "meaningFullVi": "đến sớm hơn dự kiến",
         "target": "提前",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +87,8 @@
       "meaningVi": "Chúng tôi hoàn thành nhiệm vụ trước thời hạn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "提前",
@@ -90,7 +97,8 @@
       "meaningVi": "Xin hãy cho tôi biết trước.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "提前",
@@ -99,16 +107,17 @@
       "meaningVi": "Tàu hỏa đến sớm mười phút.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 提前",
-      "syntax": "compound-semantic",
-      "matchedExample": "提前 là động từ hoặc bổ ngữ chỉ việc làm trước thời hạn. Thường kết hợp với động từ khác để chỉ hành động xảy ra sớm hơn dự kiến.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 提前",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "提前 là động từ hoặc bổ ngữ chỉ việc làm trước thời hạn. Thường kết hợp với động từ khác để chỉ hành động xảy ra sớm hơn dự kiến.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -119,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__3__topic__7__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/",
+      "orderInSection": 35
     }
   ],
   "sources": [
@@ -134,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

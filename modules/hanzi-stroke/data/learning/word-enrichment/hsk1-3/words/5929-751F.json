@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:天生",
   "type": "word",
   "word": "天生",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "tiān shēng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thiên sinh — bẩm sinh, có từ khi sinh ra (tài năng, tính cách, đặc điểm tự nhiên)",
+      "meaningShortVi": "thiên sinh — bẩm sinh",
+      "meaningFullVi": "thiên sinh — bẩm sinh, có từ khi sinh ra (tài năng, tính cách, đặc điểm tự nhiên)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thiên sinh — bẩm sinh",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "天生 thường đứng trước tính từ hoặc động từ tâm lý. Phân biệt: 后天 (hậu thiên — do rèn luyện, không phải bẩm sinh) là antonym về khái niệm."
-  ],
-  "wordTypeExplanations": [
-    "天 (thiên — trời, tự nhiên) + 生 (sinh — sinh ra) → do trời sinh ra, bẩm sinh từ tự nhiên. Existingmeaning 'thiên bẩm' đúng nhưng có thể bổ sung sắc thái."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "天生丽质",
         "pinyin": "tiānshēng lìzhì",
         "meaningVi": "nhan sắc trời cho",
+        "meaningFullVi": "nhan sắc trời cho",
         "target": "天生",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "天生才能",
         "pinyin": "tiānshēng cáinéng",
         "meaningVi": "tài năng bẩm sinh",
+        "meaningFullVi": "tài năng bẩm sinh",
         "target": "天生",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "天生性格",
         "pinyin": "tiānshēng xìnggé",
         "meaningVi": "tính cách bẩm sinh",
+        "meaningFullVi": "tính cách bẩm sinh",
         "target": "天生",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Cô ấy bẩm sinh đã có năng khiếu âm nhạc.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "天生",
@@ -90,7 +95,8 @@
       "meaningVi": "Anh ấy bẩm sinh lạc quan, chuyện gì cũng không để bụng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "天生",
@@ -99,7 +105,8 @@
       "meaningVi": "Nhan sắc trời cho, không cần trang điểm quá nhiều.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "天生",
@@ -108,23 +115,17 @@
       "meaningVi": "Khí chất lãnh đạo bẩm sinh khiến anh ấy nổi bật giữa đám đông.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 天生",
-      "syntax": "compound-semantic",
-      "matchedExample": "天生 thường đứng trước tính từ hoặc động từ tâm lý. Phân biệt: 后天 (hậu thiên — do rèn luyện, không phải bẩm sinh) là antonym về khái niệm.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "天 (thiên — trời, tự nhiên) + 生 (sinh — sinh ra) → do trời sinh ra, bẩm sinh từ tự nhiên. Existingmeaning 'thiên bẩm' đúng nhưng có thể bổ sung sắc thái.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 天生",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "天生 thường đứng trước tính từ hoặc động từ tâm lý. Phân biệt: 后天 (hậu thiên — do rèn luyện, không phải bẩm sinh) là antonym về khái niệm.",
+      "explanationVi": "天 (thiên — trời, tự nhiên) + 生 (sinh — sinh ra) → do trời sinh ra, bẩm sinh từ tự nhiên. Existingmeaning 'thiên bẩm' đúng nhưng có thể bổ sung sắc thái.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

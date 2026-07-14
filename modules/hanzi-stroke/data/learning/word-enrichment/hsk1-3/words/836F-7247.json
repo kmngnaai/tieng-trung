@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:药片",
   "type": "word",
   "word": "药片",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yào piàn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "viên thuốc",
+      "meaningShortVi": "viên thuốc",
+      "meaningFullVi": "viên thuốc",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "viên thuốc",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Danh từ chỉ thuốc dạng viên."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "白色药片",
-        "pinyin": "",
+        "pinyin": "bái sè yào piàn",
         "meaningVi": "viên thuốc màu trắng",
+        "meaningFullVi": "viên thuốc màu trắng",
         "target": "药片",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "一片药片",
-        "pinyin": "",
+        "pinyin": "yī piàn yào piàn",
         "meaningVi": "một viên thuốc",
+        "meaningFullVi": "một viên thuốc",
         "target": "药片",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "药片",
       "chinese": "一天吃三片药片",
-      "pinyin": "",
+      "pinyin": "yī tiān chī sān piàn yào piàn",
       "meaningVi": "Một ngày uống ba viên thuốc",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "药片",
-      "chinese": "这药片很苦",
-      "pinyin": "",
-      "meaningVi": "Viên thuốc này rất đắng",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 药片",
-      "syntax": "noun",
-      "matchedExample": "Danh từ chỉ thuốc dạng viên.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 药片",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Danh từ chỉ thuốc dạng viên.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__2__topic__14__co-the-va-suc-khoe",
+      "sectionSlug": "co-the-va-suc-khoe",
       "sectionTitle": "Cơ thể và sức khỏe",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/co-the-va-suc-khoe/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/co-the-va-suc-khoe/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

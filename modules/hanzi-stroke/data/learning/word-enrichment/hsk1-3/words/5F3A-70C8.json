@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:强烈",
   "type": "word",
   "word": "强烈",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "qiáng liè",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "mạnh mẽ, kịch liệt, dữ dội; gay gắt",
+      "meaningShortVi": "mạnh mẽ",
+      "meaningFullVi": "mạnh mẽ, kịch liệt, dữ dội; gay gắt",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "mạnh mẽ",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "Qiáng liè miêu tả mức độ cao của cảm xúc, ánh sáng, phản ứng hay khát vọng. Thường đi kèm với danh từ như hứng thú, phản đối, mong muốn."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "强烈反对",
-        "pinyin": "",
+        "pinyin": "qiáng liè fǎn duì",
         "meaningVi": "phản đối gay gắt",
+        "meaningFullVi": "phản đối gay gắt",
         "target": "强烈",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "强烈的愿望",
-        "pinyin": "",
+        "pinyin": "qiáng liè de yuàn wàng",
         "meaningVi": "mong muốn mãnh liệt",
+        "meaningFullVi": "mong muốn mãnh liệt",
         "target": "强烈",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "强烈",
       "chinese": "我对这个话题有强烈的兴趣。",
-      "pinyin": "",
+      "pinyin": "wǒ duì zhè ge huà tí yǒu qiáng liè de xìng qù。",
       "meaningVi": "Tôi có hứng thú mãnh liệt đối với chủ đề này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "强烈",
       "chinese": "强烈的阳光",
-      "pinyin": "",
+      "pinyin": "qiáng liè de yáng guāng",
       "meaningVi": "Ánh nắng gắt",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 强烈",
-      "syntax": "tính từ",
-      "matchedExample": "Qiáng liè miêu tả mức độ cao của cảm xúc, ánh sáng, phản ứng hay khát vọng. Thường đi kèm với danh từ như hứng thú, phản đối, mong muốn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 强烈",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "Qiáng liè miêu tả mức độ cao của cảm xúc, ánh sáng, phản ứng hay khát vọng. Thường đi kèm với danh từ như hứng thú, phản đối, mong muốn.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 33,
+      "sectionId": "new_hsk__3__topic__33__tinh-tu",
+      "sectionSlug": "tinh-tu",
       "sectionTitle": "Tính từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

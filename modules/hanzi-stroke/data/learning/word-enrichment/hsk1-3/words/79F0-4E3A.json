@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:称为",
   "type": "word",
   "word": "称为",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "chēng wéi",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "được gọi là, được coi là",
+      "meaningShortVi": "được gọi là",
+      "meaningFullVi": "được gọi là, được coi là",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "được gọi là",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -47,43 +48,48 @@
     "collocations": [
       {
         "text": "被称为",
-        "pinyin": "",
+        "pinyin": "bèi chēng wéi",
         "meaningVi": "được gọi là",
+        "meaningFullVi": "được gọi là",
         "target": "称为",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "称之为",
-        "pinyin": "",
-        "meaningVi": "gọi nó là",
-        "target": "称为",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "称为",
       "chinese": "这称为中国文化。",
-      "pinyin": "",
+      "pinyin": "zhè chēng wéi Zhōng guó wén huà。",
       "meaningVi": "Đây được gọi là văn hóa Trung Quốc.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "称为",
       "chinese": "他被称为伟大的作家。",
-      "pinyin": "",
+      "pinyin": "tā bèi chēng wéi wěi dà de zuò jiā。",
       "meaningVi": "Ông ấy được gọi là một nhà văn vĩ đại.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 称为",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/称为.mp3"
   ],
@@ -92,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 23,
+      "sectionId": "new_hsk__3__topic__23__dong-tu-toi",
+      "sectionSlug": "dong-tu-toi",
       "sectionTitle": "Động từ tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dong-tu-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dong-tu-toi/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -107,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

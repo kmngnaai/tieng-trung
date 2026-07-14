@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:阳光",
   "type": "word",
   "word": "阳光",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yáng guāng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ánh nắng",
+      "meaningShortVi": "ánh nắng",
+      "meaningFullVi": "ánh nắng",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ánh nắng",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "阳光 nói về ánh nắng mặt trời (thường tích cực). 常用 充满 (đầy), 照耀 (chiếu rọi). 说 'mưa nắng' 用 雨水 (mưa) 和 阳光. 注意: 太阳 (tàiyang) là mặt trời (celestial body), 阳光 là ánh nắng (dòng ánh sáng)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -51,20 +50,15 @@
       {
         "text": "阳光充足",
         "pinyin": "yángguāng chōngzú",
-        "meaningVi": "nắng đầy đủ, nhiều nắng",
+        "meaningVi": "nắng đầy đủ",
+        "meaningFullVi": "nắng đầy đủ, nhiều nắng",
         "target": "阳光",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "晒太阳",
-        "pinyin": "shài tàiyang",
-        "meaningVi": "tắm nắng",
-        "target": "阳光",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +68,8 @@
       "meaningVi": "Ánh nắng hôm nay rất ấm áp.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "阳光",
@@ -83,16 +78,17 @@
       "meaningVi": "Trong phòng đầy ánh nắng.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 阳光",
-      "syntax": "danh từ",
-      "matchedExample": "阳光 nói về ánh nắng mặt trời (thường tích cực). 常用 充满 (đầy), 照耀 (chiếu rọi). 说 'mưa nắng' 用 雨水 (mưa) 和 阳光. 注意: 太阳 (tàiyang) là mặt trời (celestial body), 阳光 là ánh nắng (dòng ánh sáng).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 阳光",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "阳光 nói về ánh nắng mặt trời (thường tích cực). 常用 充满 (đầy), 照耀 (chiếu rọi). 说 'mưa nắng' 用 雨水 (mưa) 和 阳光. 注意: 太阳 (tàiyang) là mặt trời (celestial body), 阳光 là ánh nắng (dòng ánh sáng).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +99,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__3__topic__9__thien-nhien",
+      "sectionSlug": "thien-nhien",
       "sectionTitle": "Thiên nhiên",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thien-nhien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thien-nhien/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -123,7 +124,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:随时",
   "type": "word",
   "word": "随时",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "suí shí",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bất kỳ lúc nào",
+      "meaningShortVi": "bất kỳ lúc nào",
+      "meaningFullVi": "bất kỳ lúc nào",
       "partOfSpeech": "adverb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bất kỳ lúc nào",
   "wordType": "adverb",
   "wordTypes": [
     "adverb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,60 +48,78 @@
     "collocations": [
       {
         "text": "随时都可以",
-        "pinyin": "",
+        "pinyin": "suí shí dōu kě yǐ",
         "meaningVi": "bất kỳ lúc nào cũng được",
+        "meaningFullVi": "bất kỳ lúc nào cũng được",
         "target": "随时",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "随时准备",
-        "pinyin": "",
+        "pinyin": "suí shí zhǔn bèi",
         "meaningVi": "sẵn sàng bất kỳ lúc nào",
+        "meaningFullVi": "sẵn sàng bất kỳ lúc nào",
         "target": "随时",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "随时欢迎",
-        "pinyin": "",
+        "pinyin": "suí shí huān yíng",
         "meaningVi": "hoan nghênh bất kỳ lúc nào",
+        "meaningFullVi": "hoan nghênh bất kỳ lúc nào",
         "target": "随时",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "随时",
       "chinese": "你可以随时给我打电话。",
-      "pinyin": "",
+      "pinyin": "nǐ kě yǐ suí shí gěi wǒ dǎ diàn huà。",
       "meaningVi": "Bạn có thể bất kỳ lúc nào gọi điện cho tôi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "随时",
       "chinese": "我随时准备出发。",
-      "pinyin": "",
+      "pinyin": "wǒ suí shí zhǔn bèi chū fā。",
       "meaningVi": "Tôi bất kỳ lúc nào cũng sẵn sàng xuất phát.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "随时",
       "chinese": "有问题随时问我。",
-      "pinyin": "",
+      "pinyin": "yǒu wèn tí suí shí wèn wǒ。",
       "meaningVi": "Có vấn đề bất kỳ lúc nào cũng có thể hỏi tôi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 随时",
+      "partOfSpeech": "adverb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/随时.mp3"
   ],
@@ -109,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__2__topic__3__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thoi-gian/",
+      "orderInSection": 24
     }
   ],
   "sources": [
@@ -124,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:小学",
   "type": "word",
   "word": "小学",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xiǎo xué",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tiểu học, trường tiểu học",
+      "meaningShortVi": "tiểu học",
+      "meaningFullVi": "tiểu học, trường tiểu học",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tiểu học",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Chỉ cấp học đầu tiên trong hệ thống giáo dục Trung Quốc (6 năm). Có thể chỉ cả cấp học và ngôi trường."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -50,59 +49,34 @@
         "word": "小学生",
         "pinyin": "xiǎo xué shēng",
         "meaningVi": "học sinh tiểu học",
+        "meaningFullVi": "học sinh tiểu học",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       },
       {
         "word": "中小学",
         "pinyin": "zhōng xiǎo xué",
         "meaningVi": "trường tiểu học và trung học cơ sở",
+        "meaningFullVi": "trường tiểu học và trung học cơ sở",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          2
-        ],
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 2",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
       {
         "text": "小学生",
-        "pinyin": "",
-        "meaningVi": "",
+        "pinyin": "xiǎo xué shēng",
+        "meaningVi": "học sinh tiểu học",
+        "meaningFullVi": "học sinh tiểu học",
         "target": "小学",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "小学校",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "小学",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "上小学",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "小学",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "小学老师",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "小学",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -112,7 +86,8 @@
       "meaningVi": "Tôi đang học tiểu học.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "小学",
@@ -121,7 +96,8 @@
       "meaningVi": "Đây là trường tiểu học của tôi.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "小学",
@@ -130,16 +106,17 @@
       "meaningVi": "Trường tiểu học ở bên trái.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 小学",
-      "syntax": "compound-semantic",
-      "matchedExample": "Chỉ cấp học đầu tiên trong hệ thống giáo dục Trung Quốc (6 năm). Có thể chỉ cả cấp học và ngôi trường.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 小学",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Chỉ cấp học đầu tiên trong hệ thống giáo dục Trung Quốc (6 năm). Có thể chỉ cả cấp học và ngôi trường.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -150,21 +127,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__1__lesson__14__bai-14-i-watched-a-movie",
+      "sectionSlug": "bai-14-i-watched-a-movie",
       "sectionTitle": "Tôi đã xem một bộ phim",
       "sectionTitleZh": "我看了一个电影",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-14-i-watched-a-movie/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-14-i-watched-a-movie/",
+      "orderInSection": 20
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__1__topic__5__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nghien-cuu/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -175,7 +162,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

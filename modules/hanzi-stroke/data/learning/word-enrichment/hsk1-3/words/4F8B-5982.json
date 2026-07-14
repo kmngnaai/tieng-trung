@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:例如",
   "type": "word",
   "word": "例如",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "lì rú",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lê như",
+      "meaningShortVi": "lê như",
+      "meaningFullVi": "lê như",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lê như",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [
-    "Dùng trong văn viết nhiều hơn '比如'"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,49 +48,36 @@
     "collocations": [
       {
         "text": "例如...和...",
-        "pinyin": "",
-        "meaningVi": "ví dụ... và...",
+        "pinyin": "lì rú... hé...",
+        "meaningVi": "ví dụ",
+        "meaningFullVi": "ví dụ... và...",
         "target": "例如",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "举例来说",
-        "pinyin": "",
-        "meaningVi": "lấy ví dụ mà nói",
-        "target": "例如",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "例如",
-      "chinese": "很多水果，例如苹果、香蕉、橙子",
-      "pinyin": "",
-      "meaningVi": "Nhiều loại trái cây, ví dụ táo, chuối, cam",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "例如",
       "chinese": "例如这样的问题",
-      "pinyin": "",
+      "pinyin": "lì rú zhè yàng de wèn tí",
       "meaningVi": "Ví dụ vấn đề như vậy",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 例如",
-      "syntax": "verb",
-      "matchedExample": "Dùng trong văn viết nhiều hơn '比如'",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 例如",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "Dùng trong văn viết nhiều hơn '比如'",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__2__topic__10__tu-noi",
+      "sectionSlug": "tu-noi",
       "sectionTitle": "Từ nối",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-noi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-noi/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -117,7 +108,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

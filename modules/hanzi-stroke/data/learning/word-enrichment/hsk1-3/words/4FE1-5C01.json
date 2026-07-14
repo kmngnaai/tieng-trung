@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:信封",
   "type": "word",
   "word": "信封",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xìn fēng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phong bì",
+      "meaningShortVi": "phong bì",
+      "meaningFullVi": "phong bì",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phong bì",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "指装信纸的纸袋/封套。传统的邮寄用品。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "寄信封",
-        "pinyin": "",
+        "pinyin": "jì xìn fēng",
         "meaningVi": "gửi phong bì thư",
+        "meaningFullVi": "gửi phong bì thư",
         "target": "信封",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "信封邮票",
-        "pinyin": "",
+        "pinyin": "xìn fēng yóu piào",
         "meaningVi": "tem phong bì",
+        "meaningFullVi": "tem phong bì",
         "target": "信封",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "信封",
       "chinese": "请把信装进信封里。",
-      "pinyin": "",
+      "pinyin": "qǐng bǎ xìn zhuāng jìn xìn fēng lǐ。",
       "meaningVi": "Hãy bỏ thư vào phong bì.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "信封",
       "chinese": "我在信封上写了地址。",
-      "pinyin": "",
+      "pinyin": "wǒ zài xìn fēng shàng xiě le dì zhǐ。",
       "meaningVi": "Mình đã viết địa chỉ lên phong bì.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 信封",
-      "syntax": "danh từ",
-      "matchedExample": "指装信纸的纸袋/封套。传统的邮寄用品。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 信封",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "指装信纸的纸袋/封套。传统的邮寄用品。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__3__topic__18__thong-tin-va-phuong-tien",
+      "sectionSlug": "thong-tin-va-phuong-tien",
       "sectionTitle": "Thông tin và phương tiện",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/",
+      "orderInSection": 29
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

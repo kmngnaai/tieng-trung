@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:高铁",
   "type": "word",
   "word": "高铁",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gāo tiě",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tàu cao tốc, đường sắt cao tốc",
+      "meaningShortVi": "tàu cao tốc",
+      "meaningFullVi": "tàu cao tốc, đường sắt cao tốc",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tàu cao tốc",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "高铁 là viết tắt của 高速铁路 (đường sắt cao tốc). Được dùng phổ biến trong giao tiếp hàng ngày khi nói về phương tiện đi lại nhanh."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,60 +45,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "高铁站",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "高铁",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "高铁票",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "高铁",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "高铁网络",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "高铁",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "高铁",
-      "chinese": "坐高铁去北京很快。",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "高铁",
-      "chinese": "中国的高铁网络很发达。",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 高铁",
-      "syntax": "danh từ",
-      "matchedExample": "高铁 là viết tắt của 高速铁路 (đường sắt cao tốc). Được dùng phổ biến trong giao tiếp hàng ngày khi nói về phương tiện đi lại nhanh.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 高铁",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "高铁 là viết tắt của 高速铁路 (đường sắt cao tốc). Được dùng phổ biến trong giao tiếp hàng ngày khi nói về phương tiện đi lại nhanh.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -110,11 +66,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__3__lesson__6__bai-6-you-can-even-order-takeout-on-a-high-speed-train",
+      "sectionSlug": "bai-6-you-can-even-order-takeout-on-a-high-speed-train",
       "sectionTitle": "Trên tàu cao tốc còn có thể đặt đồ ăn ngoài",
       "sectionTitleZh": "高铁上还可以点外卖",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-6-you-can-even-order-takeout-on-a-high-speed-train/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-6-you-can-even-order-takeout-on-a-high-speed-train/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -125,7 +86,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

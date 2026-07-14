@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:联系",
   "type": "word",
   "word": "联系",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "lián xì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Liên lạc, liên hệ",
+      "meaningShortVi": "Liên lạc",
+      "meaningFullVi": "Liên lạc, liên hệ",
       "partOfSpeech": "động từ / danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Liên lạc",
   "wordType": "động từ / danh từ",
   "wordTypes": [
     "động từ / danh từ"
   ],
-  "usageNotes": [
-    "联系 có thể là động từ (liên lạc) hoặc danh từ (mối quan hệ). Là động từ, nó mang hành động liên lạc qua điện thoại, email, tin nhắn. Là danh từ, nó chỉ mối quan hệ giữa người với người. Trong giao tiếp, người ta thường nói '保持联系' (giữ liên lạc) hoặc '联系我' (liên hệ tôi)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,19 +51,24 @@
         "text": "保持联系",
         "pinyin": "bǎochí liánxì",
         "meaningVi": "duy trì liên lạc",
+        "meaningFullVi": "duy trì liên lạc",
         "target": "联系",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "联系方式",
         "pinyin": "liánxì fāngshì",
         "meaningVi": "thông tin liên hệ",
+        "meaningFullVi": "thông tin liên hệ",
         "target": "联系",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Vui lòng liên lạc với tôi qua điện thoại.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "联系",
@@ -83,16 +88,17 @@
       "meaningVi": "Hai công ty chúng tôi duy trì mối quan hệ mật thiết.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 联系",
-      "syntax": "động từ / danh từ",
-      "matchedExample": "联系 có thể là động từ (liên lạc) hoặc danh từ (mối quan hệ). Là động từ, nó mang hành động liên lạc qua điện thoại, email, tin nhắn. Là danh từ, nó chỉ mối quan hệ giữa người với người. Trong giao tiếp, người ta thường nói '保持联系' (giữ liên lạc) hoặc '联系我' (liên hệ tôi).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 联系",
+      "partOfSpeech": "động từ / danh từ",
+      "usageNoteVi": "联系 có thể là động từ (liên lạc) hoặc danh từ (mối quan hệ). Là động từ, nó mang hành động liên lạc qua điện thoại, email, tin nhắn. Là danh từ, nó chỉ mối quan hệ giữa người với người. Trong giao tiếp, người ta thường nói '保持联系' (giữ liên lạc) hoặc '联系我' (liên hệ tôi).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__3__topic__12__lam-viec-toi",
+      "sectionSlug": "lam-viec-toi",
       "sectionTitle": "Làm việc tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

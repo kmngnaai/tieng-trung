@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:再说",
   "type": "word",
   "word": "再说",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "zài shuō",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hơn nữa",
+      "meaningShortVi": "hơn nữa",
+      "meaningFullVi": "hơn nữa",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hơn nữa",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng để chỉ hơn nữa."
-  ],
-  "wordTypeExplanations": [
-    "hơn nữa — từ ghép mang nghĩa này."
   ],
   "hsk": {
     "levels": [
@@ -51,11 +48,14 @@
         "text": "关于再说",
         "pinyin": "guānyú 再说",
         "meaningVi": "về hơn nữa",
+        "meaningFullVi": "về hơn nữa",
         "target": "再说",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -65,7 +65,8 @@
       "meaningVi": "Hơn nữa này rất quan trọng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "再说",
@@ -74,7 +75,8 @@
       "meaningVi": "Họ đã hơn nữa",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "再说",
@@ -83,23 +85,17 @@
       "meaningVi": "Về hơn nữa",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 再说",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng để chỉ hơn nữa.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "hơn nữa — từ ghép mang nghĩa này.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 再说",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng để chỉ hơn nữa.",
+      "explanationVi": "hơn nữa — từ ghép mang nghĩa này.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

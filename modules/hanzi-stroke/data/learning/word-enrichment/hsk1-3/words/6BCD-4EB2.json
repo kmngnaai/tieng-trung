@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:母亲",
   "type": "word",
   "word": "母亲",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "mǔ qīn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Mẹ (ngôn ngữ trang trọng)",
+      "meaningShortVi": "Mẹ (ngôn ngữ trang trọng)",
+      "meaningFullVi": "Mẹ (ngôn ngữ trang trọng)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Mẹ (ngôn ngữ trang trọng)",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "母亲 là cách gọi mẹ trang trọng hơn so với 妈妈 trong giao tiếp hàng ngày. Thường dùng trong văn viết, ngữ cảnh trang trọng hoặc khi nhấn mạnh quan hệ gia đình."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,27 +51,34 @@
         "text": "我的母亲",
         "pinyin": "wǒde mǔqīn",
         "meaningVi": "mẹ tôi",
+        "meaningFullVi": "mẹ tôi",
         "target": "母亲",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "母亲节",
         "pinyin": "Mǔqīnjié",
         "meaningVi": "Ngày của Mẹ",
+        "meaningFullVi": "Ngày của Mẹ",
         "target": "母亲",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "父母母亲",
         "pinyin": "fùmǔ mǔqīn",
         "meaningVi": "cha mẹ",
+        "meaningFullVi": "cha mẹ",
         "target": "母亲",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -82,7 +88,8 @@
       "meaningVi": "Mẹ tôi là một giáo viên.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "母亲",
@@ -91,7 +98,8 @@
       "meaningVi": "Ngày của Mẹ sắp đến rồi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "母亲",
@@ -100,16 +108,17 @@
       "meaningVi": "Anh ấy rất yêu mẹ mình.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 母亲",
-      "syntax": "compound-semantic",
-      "matchedExample": "母亲 là cách gọi mẹ trang trọng hơn so với 妈妈 trong giao tiếp hàng ngày. Thường dùng trong văn viết, ngữ cảnh trang trọng hoặc khi nhấn mạnh quan hệ gia đình.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 母亲",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "母亲 là cách gọi mẹ trang trọng hơn so với 妈妈 trong giao tiếp hàng ngày. Thường dùng trong văn viết, ngữ cảnh trang trọng hoặc khi nhấn mạnh quan hệ gia đình.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -120,11 +129,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__3__topic__4__nhung-nguoi",
+      "sectionSlug": "nhung-nguoi",
       "sectionTitle": "Những người",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/",
+      "orderInSection": 17
     }
   ],
   "sources": [
@@ -140,7 +154,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:试题",
   "type": "word",
   "word": "试题",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shì tí",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đề bài kiểm tra, câu hỏi thi",
+      "meaningShortVi": "đề bài kiểm tra",
+      "meaningFullVi": "đề bài kiểm tra, câu hỏi thi",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đề bài kiểm tra",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Chỉ đề thi, bài kiểm tra. Khác với '题目' (chủ đề/tiêu đề) và '考试' (kỳ thi)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "考试试题",
-        "pinyin": "",
+        "pinyin": "kǎo shì shì tí",
         "meaningVi": "đề bài kiểm tra",
+        "meaningFullVi": "đề bài kiểm tra",
         "target": "试题",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "试题答案",
-        "pinyin": "",
-        "meaningVi": "đáp án đề bài",
-        "target": "试题",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "试题",
       "chinese": "这次的试题很难，很多同学都没做完。",
-      "pinyin": "",
+      "pinyin": "zhè cì de shì tí hěn nán， hěn duō tóng xué dōu méi zuò wán。",
       "meaningVi": "Đề bài lần này rất khó, nhiều bạn học sinh đều không làm kịp.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "试题",
       "chinese": "老师发给我们三页试题。",
-      "pinyin": "",
+      "pinyin": "lǎo shī fā gěi wǒ men sān yè shì tí。",
       "meaningVi": "Thầy giáo phát cho chúng tôi ba trang đề bài.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 试题",
-      "syntax": "danh từ",
-      "matchedExample": "Chỉ đề thi, bài kiểm tra. Khác với '题目' (chủ đề/tiêu đề) và '考试' (kỳ thi).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 试题",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Chỉ đề thi, bài kiểm tra. Khác với '题目' (chủ đề/tiêu đề) và '考试' (kỳ thi).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 26,
+      "sectionId": "new_hsk__3__topic__26__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/",
+      "orderInSection": 28
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

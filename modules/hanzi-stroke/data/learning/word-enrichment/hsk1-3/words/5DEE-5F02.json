@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:差异",
   "type": "word",
   "word": "差异",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "chā yì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sự khác biệt, sự sai lệch (sai dị)",
+      "meaningShortVi": "sự khác biệt",
+      "meaningFullVi": "sự khác biệt, sự sai lệch (sai dị)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sự khác biệt",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "差异 mang tính trung lập và học thuật hơn 不同 (bùtóng — khác nhau). Thường dùng trong bối cảnh phân tích, nghiên cứu. 差异化 (chāyìhuà) = sự khác biệt hóa (trong kinh doanh)."
-  ],
-  "wordTypeExplanations": [
-    "差 (sai — sai khác, không đồng nhất) + 异 (dị — khác nhau, dị thường) ghép nghĩa: sự chênh lệch, không giống nhau giữa hai hay nhiều thứ."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "文化差异",
         "pinyin": "wénhuà chāyì",
         "meaningVi": "sự khác biệt văn hóa",
+        "meaningFullVi": "sự khác biệt văn hóa",
         "target": "差异",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "个体差异",
         "pinyin": "gètǐ chāyì",
         "meaningVi": "sự khác biệt cá thể",
+        "meaningFullVi": "sự khác biệt cá thể",
         "target": "差异",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "存在差异",
         "pinyin": "cúnzài chāyì",
         "meaningVi": "tồn tại sự khác biệt",
+        "meaningFullVi": "tồn tại sự khác biệt",
         "target": "差异",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Hai phương pháp này có sự khác biệt rất lớn",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "差异",
@@ -90,7 +95,8 @@
       "meaningVi": "Sự khác biệt văn hóa ảnh hưởng đến cách tư duy của mọi người",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "差异",
@@ -99,7 +105,8 @@
       "meaningVi": "Sự khác biệt cá nhân rất quan trọng trong giáo dục",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "差异",
@@ -108,23 +115,17 @@
       "meaningVi": "Có sự khác biệt rõ ràng giữa hai nhóm dữ liệu",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 差异",
-      "syntax": "compound-semantic",
-      "matchedExample": "差异 mang tính trung lập và học thuật hơn 不同 (bùtóng — khác nhau). Thường dùng trong bối cảnh phân tích, nghiên cứu. 差异化 (chāyìhuà) = sự khác biệt hóa (trong kinh doanh).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "差 (sai — sai khác, không đồng nhất) + 异 (dị — khác nhau, dị thường) ghép nghĩa: sự chênh lệch, không giống nhau giữa hai hay nhiều thứ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 差异",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "差异 mang tính trung lập và học thuật hơn 不同 (bùtóng — khác nhau). Thường dùng trong bối cảnh phân tích, nghiên cứu. 差异化 (chāyìhuà) = sự khác biệt hóa (trong kinh doanh).",
+      "explanationVi": "差 (sai — sai khác, không đồng nhất) + 异 (dị — khác nhau, dị thường) ghép nghĩa: sự chênh lệch, không giống nhau giữa hai hay nhiều thứ.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

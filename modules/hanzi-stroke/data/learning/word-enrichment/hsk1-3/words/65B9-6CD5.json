@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:方法",
   "type": "word",
   "word": "方法",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "fāng fǎ",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phương pháp",
+      "meaningShortVi": "phương pháp",
+      "meaningFullVi": "phương pháp",
       "partOfSpeech": "noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phương pháp",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -49,60 +50,78 @@
     "collocations": [
       {
         "text": "好方法",
-        "pinyin": "",
+        "pinyin": "hǎo fāng fǎ",
         "meaningVi": "phương pháp tốt",
+        "meaningFullVi": "phương pháp tốt",
         "target": "方法",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "新方法",
-        "pinyin": "",
+        "pinyin": "xīn fāng fǎ",
         "meaningVi": "phương pháp mới",
+        "meaningFullVi": "phương pháp mới",
         "target": "方法",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "学习方法",
-        "pinyin": "",
+        "pinyin": "xué xí fāng fǎ",
         "meaningVi": "phương pháp học",
+        "meaningFullVi": "phương pháp học",
         "target": "方法",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "方法",
       "chinese": "这是一个好方法。",
-      "pinyin": "",
+      "pinyin": "zhè shì yī gè hǎo fāng fǎ。",
       "meaningVi": "Đây là một phương pháp tốt.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "方法",
       "chinese": "你有更好的方法吗？",
-      "pinyin": "",
+      "pinyin": "nǐ yǒu gèng hǎo de fāng fǎ ma？",
       "meaningVi": "Bạn có phương pháp nào tốt hơn không?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "方法",
       "chinese": "用这种方法学习。",
-      "pinyin": "",
+      "pinyin": "yòng zhè zhǒng fāng fǎ xué xí。",
       "meaningVi": "Dùng phương pháp này để học.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 方法",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/方法.mp3"
   ],
@@ -111,21 +130,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 28,
+      "sectionId": "new_hsk__2__topic__28__danh-tu",
+      "sectionSlug": "danh-tu",
       "sectionTitle": "Danh từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/danh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/danh-tu/",
+      "orderInSection": 4
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__3__lesson__8__bai-8-today-i-was-discharged-from-the-hospital",
+      "sectionSlug": "bai-8-today-i-was-discharged-from-the-hospital",
       "sectionTitle": "Hôm nay tôi xuất viện",
       "sectionTitleZh": "今天我出院了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-8-today-i-was-discharged-from-the-hospital/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-8-today-i-was-discharged-from-the-hospital/",
+      "orderInSection": 26
     }
   ],
   "sources": [
@@ -146,7 +175,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

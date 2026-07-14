@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:卫生间",
   "type": "word",
   "word": "卫生间",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "wèi shēng jiān",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nhà vệ sinh, toilet; phòng tắm",
+      "meaningShortVi": "nhà vệ sinh",
+      "meaningFullVi": "nhà vệ sinh, toilet; phòng tắm",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nhà vệ sinh",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "卫生间 là từ lịch sự chỉ nhà vệ sinh, thường dùng trong nơi công cộng. Cũng có thể dùng 厕所 (cách suồng sã hơn) hoặc 洗手间 (nhà rửa tay)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -53,19 +52,24 @@
         "text": "公共卫生间",
         "pinyin": "gōnggòng wèishēngjiān",
         "meaningVi": "nhà vệ sinh công cộng",
+        "meaningFullVi": "nhà vệ sinh công cộng",
         "target": "卫生间",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "男/女卫生间",
         "pinyin": "nán/nǚ wèishēngjiān",
-        "meaningVi": "nhà vệ sinh nam/nữ",
+        "meaningVi": "nhà vệ sinh nam",
+        "meaningFullVi": "nhà vệ sinh nam/nữ",
         "target": "卫生间",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -75,7 +79,8 @@
       "meaningVi": "Xin hỏi nhà vệ sinh ở đâu?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "卫生间",
@@ -84,16 +89,17 @@
       "meaningVi": "đi nhà vệ sinh",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 卫生间",
-      "syntax": "danh từ",
-      "matchedExample": "卫生间 là từ lịch sự chỉ nhà vệ sinh, thường dùng trong nơi công cộng. Cũng có thể dùng 厕所 (cách suồng sã hơn) hoặc 洗手间 (nhà rửa tay).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 卫生间",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "卫生间 là từ lịch sự chỉ nhà vệ sinh, thường dùng trong nơi công cộng. Cũng có thể dùng 厕所 (cách suồng sã hơn) hoặc 洗手间 (nhà rửa tay).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,21 +110,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__3__lesson__3__bai-3-this-neighborhood-is-pretty-nice",
+      "sectionSlug": "bai-3-this-neighborhood-is-pretty-nice",
       "sectionTitle": "Khu chung cư này khá đẹp",
       "sectionTitleZh": "这个小区挺好的",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-3-this-neighborhood-is-pretty-nice/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-3-this-neighborhood-is-pretty-nice/",
+      "orderInSection": 15
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 27,
+      "sectionId": "new_hsk__3__topic__27__can-nha",
+      "sectionSlug": "can-nha",
       "sectionTitle": "Căn nhà",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/can-nha/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/can-nha/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -134,7 +150,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

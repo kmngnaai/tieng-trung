@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:扑克",
   "type": "word",
   "word": "扑克",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "pū kè",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bài tây; bài poker",
+      "meaningShortVi": "bài tây",
+      "meaningFullVi": "bài tây; bài poker",
       "partOfSpeech": "loanword",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bài tây",
   "wordType": "loanword",
   "wordTypes": [
     "loanword"
-  ],
-  "usageNotes": [
-    "Bài tây."
-  ],
-  "wordTypeExplanations": [
-    "Mượn读音 tiếng Anh 'poker' → 'pūkè'. (phonetic loan)"
   ],
   "hsk": {
     "levels": [
@@ -51,19 +48,24 @@
         "text": "扑克牌",
         "pinyin": "pūkèpái",
         "meaningVi": "bài tây",
+        "meaningFullVi": "bài tây",
         "target": "扑克",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "玩扑克",
         "pinyin": "wán pūkè",
         "meaningVi": "chơi bài tây",
+        "meaningFullVi": "chơi bài tây",
         "target": "扑克",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +75,8 @@
       "meaningVi": "Chơi bài tây",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "扑克",
@@ -82,7 +85,8 @@
       "meaningVi": "một bộ bài tây",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "扑克",
@@ -91,23 +95,17 @@
       "meaningVi": "bài tây",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 扑克",
-      "syntax": "loanword",
-      "matchedExample": "Bài tây.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "loanword",
-      "matchedExample": "Mượn读音 tiếng Anh 'poker' → 'pūkè'. (phonetic loan)",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 扑克",
+      "partOfSpeech": "loanword",
+      "usageNoteVi": "Bài tây.",
+      "explanationVi": "Mượn读音 tiếng Anh 'poker' → 'pūkè'. (phonetic loan)",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -122,7 +120,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

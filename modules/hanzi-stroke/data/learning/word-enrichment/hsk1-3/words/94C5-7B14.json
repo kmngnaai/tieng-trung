@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:铅笔",
   "type": "word",
   "word": "铅笔",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "qiān bǐ",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bút chì",
+      "meaningShortVi": "bút chì",
+      "meaningFullVi": "bút chì",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bút chì",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -48,21 +49,26 @@
     "collocations": [
       {
         "text": "这个铅笔",
-        "pinyin": "",
+        "pinyin": "zhè ge qiān bǐ",
         "meaningVi": "cái bút chì này",
+        "meaningFullVi": "cái bút chì này",
         "target": "铅笔",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "那个铅笔",
-        "pinyin": "",
+        "pinyin": "nà ge qiān bǐ",
         "meaningVi": "cái bút chì kia",
+        "meaningFullVi": "cái bút chì kia",
         "target": "铅笔",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -72,7 +78,8 @@
       "meaningVi": "Tôi cần một cây bút chì.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "铅笔",
@@ -81,10 +88,19 @@
       "meaningVi": "Viết bằng bút chì rất dễ xóa.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 铅笔",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/铅笔.mp3"
   ],
@@ -93,11 +109,16 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 13,
+      "sectionId": "hsk__2__lesson__13__bai-13-cua-dang-mo",
+      "sectionSlug": "bai-13-cua-dang-mo",
       "sectionTitle": "Cửa đang mở",
       "sectionTitleZh": "门开着呢",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-13-cua-dang-mo/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-13-cua-dang-mo/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -113,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

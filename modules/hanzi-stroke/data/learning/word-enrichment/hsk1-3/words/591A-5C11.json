@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:多少",
   "type": "word",
   "word": "多少",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "duō shao",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bao nhiêu",
+      "meaningShortVi": "bao nhiêu",
+      "meaningFullVi": "bao nhiêu",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bao nhiêu",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Cụm từ hỏi số lượng: bao nhiêu. 多少钱? (bao nhiêu tiền?)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 多 (nhiều) + 少 (ít) -> từ nhiều đến ít -> bao nhiêu."
   ],
   "hsk": {
     "levels": [
@@ -56,19 +53,34 @@
         "text": "多少钱",
         "pinyin": "duōshǎo qián",
         "meaningVi": "bao nhiêu tiền",
+        "meaningFullVi": "bao nhiêu tiền",
         "target": "多少",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "多少人",
         "pinyin": "duōshǎo rén",
         "meaningVi": "bao nhiêu người",
+        "meaningFullVi": "bao nhiêu người",
         "target": "多少",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
+      },
+      {
+        "text": "多少",
+        "pinyin": "duōshǎo",
+        "meaningVi": "bao nhiêu",
+        "meaningFullVi": "bao nhiêu",
+        "target": "多少",
+        "source": "hsk_1.json",
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -78,7 +90,8 @@
       "meaningVi": "Bạn có bao nhiêu tiền?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "多少",
@@ -87,7 +100,8 @@
       "meaningVi": "Bao nhiêu người?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "多少",
@@ -96,7 +110,8 @@
       "meaningVi": "Bao nhiêu tiền?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "多少",
@@ -105,23 +120,17 @@
       "meaningVi": "Tôi không biết bao nhiêu",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 多少",
-      "syntax": "compound-semantic",
-      "matchedExample": "Cụm từ hỏi số lượng: bao nhiêu. 多少钱? (bao nhiêu tiền?).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 多 (nhiều) + 少 (ít) -> từ nhiều đến ít -> bao nhiêu.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 多少",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Cụm từ hỏi số lượng: bao nhiêu. 多少钱? (bao nhiêu tiền?).",
+      "explanationVi": "Ghép nghĩa: 多 (nhiều) + 少 (ít) -> từ nhiều đến ít -> bao nhiêu.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -132,31 +141,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 8,
+      "sectionId": "hsk__1__lesson__8__bai-8-toi-muon-uong-tra",
+      "sectionSlug": "bai-8-toi-muon-uong-tra",
       "sectionTitle": "Tôi muốn uống trà",
       "sectionTitleZh": "我想喝茶",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-8-toi-muon-uong-tra/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-8-toi-muon-uong-tra/",
+      "orderInSection": 12
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__1__lesson__4__bai-4-i-have-two-children",
+      "sectionSlug": "bai-4-i-have-two-children",
       "sectionTitle": "Tôi có hai đứa con",
       "sectionTitleZh": "我有两个孩子",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-4-i-have-two-children/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-4-i-have-two-children/",
+      "orderInSection": 5
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__1__topic__1__dat-cau-hoi-va-do-luong-tu-ngu",
+      "sectionSlug": "dat-cau-hoi-va-do-luong-tu-ngu",
       "sectionTitle": "Đặt câu hỏi và đo lường từ ngữ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dat-cau-hoi-va-do-luong-tu-ngu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dat-cau-hoi-va-do-luong-tu-ngu/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -177,7 +201,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

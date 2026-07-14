@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:专题",
   "type": "word",
   "word": "专题",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhuān tí",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chủ đề đặc biệt",
+      "meaningShortVi": "chủ đề đặc biệt",
+      "meaningFullVi": "chủ đề đặc biệt",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chủ đề đặc biệt",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Chỉ chủ đề hoặc chuyên đề cụ thể."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "专题报道",
-        "pinyin": "",
+        "pinyin": "zhuān tí bào dào",
         "meaningVi": "phóng sự chuyên đề",
+        "meaningFullVi": "phóng sự chuyên đề",
         "target": "专题",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "专题讨论",
-        "pinyin": "",
+        "pinyin": "zhuān tí tǎo lùn",
         "meaningVi": "thảo luận chuyên đề",
+        "meaningFullVi": "thảo luận chuyên đề",
         "target": "专题",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "专题",
       "chinese": "这期杂志有一个关于环保的专题。",
-      "pinyin": "",
+      "pinyin": "zhè qī zá zhì yǒu yī gè guān yú huán bǎo de zhuān tí。",
       "meaningVi": "Số báo này có một chuyên đề về bảo vệ môi trường.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "专题",
       "chinese": "我们来讨论一下这个专题。",
-      "pinyin": "",
+      "pinyin": "wǒ men lái tǎo lùn yī xià zhè ge zhuān tí。",
       "meaningVi": "Hãy cùng thảo luận về chuyên đề này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 专题",
-      "syntax": "danh từ",
-      "matchedExample": "Chỉ chủ đề hoặc chuyên đề cụ thể.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 专题",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Chỉ chủ đề hoặc chuyên đề cụ thể.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 26,
+      "sectionId": "new_hsk__3__topic__26__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/",
+      "orderInSection": 18
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

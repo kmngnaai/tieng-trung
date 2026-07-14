@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:银牌",
   "type": "word",
   "word": "银牌",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yín pái",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "huy chương bạc",
+      "meaningShortVi": "huy chương bạc",
+      "meaningFullVi": "huy chương bạc",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "huy chương bạc",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Chỉ huy chương bạc, vị trí thứ hai trong thi đấu. Khác với '金牌' (vàng) và '铜牌' (đồng)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,52 +45,28 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "获得银牌",
-        "pinyin": "",
-        "meaningVi": "giành huy chương bạc",
-        "target": "银牌",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "银牌得主",
-        "pinyin": "",
-        "meaningVi": "người giành huy chương bạc",
-        "target": "银牌",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "银牌",
-      "chinese": "他获得了奥运会的银牌。",
-      "pinyin": "",
-      "meaningVi": "Anh ấy giành được huy chương bạc Olympic.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "银牌",
       "chinese": "银牌代表第二名。",
-      "pinyin": "",
+      "pinyin": "yín pái dài biǎo dì èr míng。",
       "meaningVi": "Huy chương bạc đại diện cho vị trí thứ hai.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 银牌",
-      "syntax": "danh từ",
-      "matchedExample": "Chỉ huy chương bạc, vị trí thứ hai trong thi đấu. Khác với '金牌' (vàng) và '铜牌' (đồng).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 银牌",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Chỉ huy chương bạc, vị trí thứ hai trong thi đấu. Khác với '金牌' (vàng) và '铜牌' (đồng).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +77,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__3__topic__19__thanh-tuu-va-ket-qua",
+      "sectionSlug": "thanh-tuu-va-ket-qua",
       "sectionTitle": "Thành tựu và kết quả",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -117,7 +97,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

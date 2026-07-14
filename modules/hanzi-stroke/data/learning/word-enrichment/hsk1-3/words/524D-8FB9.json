@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:前边",
   "type": "word",
   "word": "前边",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "qián bian",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phía trước",
+      "meaningShortVi": "phía trước",
+      "meaningFullVi": "phía trước",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phía trước",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Khẩu ngữ miền Bắc chỉ vị trí phía trước. Miền Nam dùng 前面."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 前 (trước) + 边 (bên, cạnh) = phía bên trước."
   ],
   "hsk": {
     "levels": [
@@ -53,19 +50,24 @@
         "text": "前边的人",
         "pinyin": "qiánbiān de rén",
         "meaningVi": "người ở phía trước",
+        "meaningFullVi": "người ở phía trước",
         "target": "前边",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "往前边",
         "pinyin": "wǎng qiánbiān",
         "meaningVi": "về phía trước",
+        "meaningFullVi": "về phía trước",
         "target": "前边",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -75,7 +77,8 @@
       "meaningVi": "Phía trước có một cửa hàng",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "前边",
@@ -84,7 +87,8 @@
       "meaningVi": "Xin hãy đợi ở phía trước",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "前边",
@@ -93,23 +97,17 @@
       "meaningVi": "Phía trước chính là trường học",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 前边",
-      "syntax": "compound-semantic",
-      "matchedExample": "Khẩu ngữ miền Bắc chỉ vị trí phía trước. Miền Nam dùng 前面.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 前 (trước) + 边 (bên, cạnh) = phía bên trước.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 前边",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Khẩu ngữ miền Bắc chỉ vị trí phía trước. Miền Nam dùng 前面.",
+      "explanationVi": "Ghép nghĩa: 前 (trước) + 边 (bên, cạnh) = phía bên trước.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -120,21 +118,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__1__lesson__9__bai-9-i-ll-be-studying-at-school-tomorrow-morning",
+      "sectionSlug": "bai-9-i-ll-be-studying-at-school-tomorrow-morning",
       "sectionTitle": "Sáng mai tôi học ở trường",
       "sectionTitleZh": "我明天上午在学校学习",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-9-i-ll-be-studying-at-school-tomorrow-morning/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-9-i-ll-be-studying-at-school-tomorrow-morning/",
+      "orderInSection": 16
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__1__topic__17__dia-diem",
+      "sectionSlug": "dia-diem",
       "sectionTitle": "Địa điểm",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dia-diem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dia-diem/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -145,7 +153,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

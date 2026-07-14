@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:打官司",
   "type": "word",
   "word": "打官司",
@@ -16,27 +16,24 @@
     "readings": [
       {
         "pinyin": "dǎ guān sī",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "kiện (đổ lỗi, kiện tụng)",
+      "meaningShortVi": "kiện (đổ lỗi",
+      "meaningFullVi": "kiện (đổ lỗi, kiện tụng)",
       "partOfSpeech": "idiom",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "kiện (đổ lỗi",
   "wordType": "idiom",
   "wordTypes": [
     "idiom"
-  ],
-  "usageNotes": [
-    "Thành ngữ thông dụng trong tiếng nói để chỉ việc kiện tụng. Trang trọng hơn dùng '起诉' (khởi kiện), '诉讼' (tố tụng)."
-  ],
-  "wordTypeExplanations": [
-    "Thành ngữ: 打 (đánh, làm) + 官司 (vụ án quan) — làm kiện, đi kiện."
   ],
   "hsk": {
     "levels": [
@@ -49,22 +46,17 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "打赢官司",
-        "pinyin": "dǎ yíng guānsi",
-        "meaningVi": "kiện thắng",
+        "text": "打官司",
+        "pinyin": "dǎ guānsi",
+        "meaningVi": "đi kiện",
+        "meaningFullVi": "đi kiện",
         "target": "打官司",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "打输官司",
-        "pinyin": "dǎ shū guānsi",
-        "meaningVi": "kiện thua",
-        "target": "打官司",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +66,8 @@
       "meaningVi": "Họ kiện nhau vì ngôi nhà",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "打官司",
@@ -83,7 +76,8 @@
       "meaningVi": "Tôi không muốn kiện anh ta",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "打官司",
@@ -92,7 +86,8 @@
       "meaningVi": "Vụ kiện này đã kéo dài 3 năm",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "打官司",
@@ -101,23 +96,17 @@
       "meaningVi": "Kiện tụng rất tốn kém",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 打官司",
-      "syntax": "idiom",
-      "matchedExample": "Thành ngữ thông dụng trong tiếng nói để chỉ việc kiện tụng. Trang trọng hơn dùng '起诉' (khởi kiện), '诉讼' (tố tụng).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "idiom",
-      "matchedExample": "Thành ngữ: 打 (đánh, làm) + 官司 (vụ án quan) — làm kiện, đi kiện.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 打官司",
+      "partOfSpeech": "idiom",
+      "usageNoteVi": "Thành ngữ thông dụng trong tiếng nói để chỉ việc kiện tụng. Trang trọng hơn dùng '起诉' (khởi kiện), '诉讼' (tố tụng).",
+      "explanationVi": "Thành ngữ: 打 (đánh, làm) + 官司 (vụ án quan) — làm kiện, đi kiện.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -132,7 +121,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:教师",
   "type": "word",
   "word": "教师",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiào shī",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "giáo viên",
+      "meaningShortVi": "giáo viên",
+      "meaningFullVi": "giáo viên",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "giáo viên",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Danh từ chỉ người dạy học, lịch sự hơn 老师."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "数学教师",
-        "pinyin": "",
+        "pinyin": "shù xué jiào shī",
         "meaningVi": "giáo viên toán",
+        "meaningFullVi": "giáo viên toán",
         "target": "教师",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "优秀教师",
-        "pinyin": "",
-        "meaningVi": "giáo viên xuất sắc",
-        "target": "教师",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "教师",
       "chinese": "她是一位教师",
-      "pinyin": "",
+      "pinyin": "tā shì yī wèi jiào shī",
       "meaningVi": "Cô ấy là một giáo viên",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "教师",
       "chinese": "教师节快乐",
-      "pinyin": "",
+      "pinyin": "jiào shī jié kuài lè",
       "meaningVi": "Chúc mừng ngày nhà giáo",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 教师",
-      "syntax": "noun",
-      "matchedExample": "Danh từ chỉ người dạy học, lịch sự hơn 老师.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 教师",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Danh từ chỉ người dạy học, lịch sự hơn 老师.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__2__topic__13__cong-viec",
+      "sectionSlug": "cong-viec",
       "sectionTitle": "Công việc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/cong-viec/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/cong-viec/",
+      "orderInSection": 23
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

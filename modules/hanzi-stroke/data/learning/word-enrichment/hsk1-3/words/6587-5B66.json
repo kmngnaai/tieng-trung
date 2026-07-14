@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:文学",
   "type": "word",
   "word": "文学",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wén xué",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "văn học",
+      "meaningShortVi": "văn học",
+      "meaningFullVi": "văn học",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "văn học",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Chỉ ngành văn học, tác phẩm văn chương. Khác với '文字' (chữ viết)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,49 +49,46 @@
     "collocations": [
       {
         "text": "文学作品",
-        "pinyin": "",
+        "pinyin": "wén xué zuò pǐn",
         "meaningVi": "tác phẩm văn học",
+        "meaningFullVi": "tác phẩm văn học",
         "target": "文学",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "现代文学",
-        "pinyin": "",
+        "pinyin": "xiàn dài wén xué",
         "meaningVi": "văn học hiện đại",
+        "meaningFullVi": "văn học hiện đại",
         "target": "文学",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "文学",
       "chinese": "他非常喜欢中国文学。",
-      "pinyin": "",
+      "pinyin": "tā fēi cháng xǐ huan Zhōng guó wén xué。",
       "meaningVi": "Anh ấy rất thích văn học Trung Quốc.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "文学",
-      "chinese": "这是一本文学名著。",
-      "pinyin": "",
-      "meaningVi": "Đây là một tác phẩm văn học nổi tiếng.",
-      "source": "hsk_1.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 文学",
-      "syntax": "danh từ",
-      "matchedExample": "Chỉ ngành văn học, tác phẩm văn chương. Khác với '文字' (chữ viết).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 文学",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Chỉ ngành văn học, tác phẩm văn chương. Khác với '文字' (chữ viết).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +99,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 26,
+      "sectionId": "new_hsk__3__topic__26__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -123,7 +124,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

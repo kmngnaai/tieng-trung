@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:对象",
   "type": "word",
   "word": "对象",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "duì xiàng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Đối tượng, người yêu",
+      "meaningShortVi": "Đối tượng",
+      "meaningFullVi": "Đối tượng, người yêu",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Đối tượng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "对象 có thể là danh từ chỉ đối tượng (trong nghiên cứu, công việc) hoặc người yêu (trong giao tiếp). 对 (đối) nghĩa là đối diện; 象 (tượng) nghĩa là hình tượng, vật thể."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,48 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "研究对象",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "对象",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "服务对象",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "对象",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "找对象",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "对象",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "男朋友",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "对象",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "女朋友",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "对象",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -97,7 +56,8 @@
       "meaningVi": "Mỗi người đều có đối tượng nghiên cứu riêng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "对象",
@@ -106,7 +66,8 @@
       "meaningVi": "Bạn đã có người yêu chưa?",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "对象",
@@ -115,16 +76,17 @@
       "meaningVi": "Chúng ta cần xác định rõ đối tượng của dự án này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 对象",
-      "syntax": "compound-semantic",
-      "matchedExample": "对象 có thể là danh từ chỉ đối tượng (trong nghiên cứu, công việc) hoặc người yêu (trong giao tiếp). 对 (đối) nghĩa là đối diện; 象 (tượng) nghĩa là hình tượng, vật thể.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 对象",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "对象 có thể là danh từ chỉ đối tượng (trong nghiên cứu, công việc) hoặc người yêu (trong giao tiếp). 对 (đối) nghĩa là đối diện; 象 (tượng) nghĩa là hình tượng, vật thể.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -135,11 +97,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__3__topic__5__cac-moi-quan-he",
+      "sectionSlug": "cac-moi-quan-he",
       "sectionTitle": "Các mối quan hệ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-moi-quan-he/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-moi-quan-he/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -150,7 +117,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:在家",
   "type": "word",
   "word": "在家",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "zài jiā",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ở nhà (chỉ trạng thái có mặt tại nhà, dùng cho người)",
+      "meaningShortVi": "ở nhà (chỉ trạng thái có mặt tại nhà",
+      "meaningFullVi": "ở nhà (chỉ trạng thái có mặt tại nhà, dùng cho người)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ở nhà (chỉ trạng thái có mặt tại nhà",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng chỉ trạng thái có mặt tại nhà, không dùng chỉ vị trí của vật (vật dùng 在家里). Phân biệt với 在家里: 在 thiên về trạng thái người, 在家里 thiên về vị trí không gian."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 在 (ở, tại) + 家 (nhà) → ở tại nhà."
   ],
   "hsk": {
     "levels": [
@@ -53,27 +50,34 @@
         "text": "待在家",
         "pinyin": "dāi zàijiā",
         "meaningVi": "ở lại nhà",
+        "meaningFullVi": "ở lại nhà",
         "target": "在家",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "在家办公",
         "pinyin": "zàijiā bàngōng",
         "meaningVi": "làm việc tại nhà (WFH)",
+        "meaningFullVi": "làm việc tại nhà (WFH)",
         "target": "在家",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "在家学习",
         "pinyin": "zàijiā xuéxí",
         "meaningVi": "học ở nhà",
+        "meaningFullVi": "học ở nhà",
         "target": "在家",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -83,7 +87,8 @@
       "meaningVi": "Cuối tuần tôi thích ở nhà nghỉ ngơi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "在家",
@@ -92,7 +97,8 @@
       "meaningVi": "Hôm nay bạn có ở nhà không?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "在家",
@@ -101,7 +107,8 @@
       "meaningVi": "Mẹ đang ở nhà nấu cơm",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "在家",
@@ -110,23 +117,17 @@
       "meaningVi": "Tôi đang ở nhà đọc sách",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 在家",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng chỉ trạng thái có mặt tại nhà, không dùng chỉ vị trí của vật (vật dùng 在家里). Phân biệt với 在家里: 在 thiên về trạng thái người, 在家里 thiên về vị trí không gian.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 在 (ở, tại) + 家 (nhà) → ở tại nhà.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 在家",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng chỉ trạng thái có mặt tại nhà, không dùng chỉ vị trí của vật (vật dùng 在家里). Phân biệt với 在家里: 在 thiên về trạng thái người, 在家里 thiên về vị trí không gian.",
+      "explanationVi": "Ghép nghĩa: 在 (ở, tại) + 家 (nhà) → ở tại nhà.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -137,11 +138,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__1__topic__16__thoi-gian-ranh-roi",
+      "sectionSlug": "thoi-gian-ranh-roi",
       "sectionTitle": "Thời gian rảnh rỗi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian-ranh-roi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian-ranh-roi/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -152,7 +158,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

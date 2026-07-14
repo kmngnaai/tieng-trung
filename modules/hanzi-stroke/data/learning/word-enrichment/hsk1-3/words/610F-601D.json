@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:意思",
   "type": "word",
   "word": "意思",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yì si",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ý nghĩa",
+      "meaningShortVi": "ý nghĩa",
+      "meaningFullVi": "ý nghĩa",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ý nghĩa",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "有趣 (có nghĩa là thú vị) là một cụm từ rất thông dụng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -51,100 +50,104 @@
       {
         "word": "有意思",
         "pinyin": "yǒu yì si",
-        "meaningVi": "thú vị, hay",
+        "meaningVi": "thú vị",
+        "meaningFullVi": "thú vị, hay",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       },
       {
         "word": "没意思",
         "pinyin": "méi yì si",
-        "meaningVi": "chán, không thú vị",
+        "meaningVi": "chán",
+        "meaningFullVi": "chán, không thú vị",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       },
       {
         "word": "不好意思",
         "pinyin": "bù hǎo yì si",
-        "meaningVi": "xấu hổ / xin lỗi",
+        "meaningVi": "xấu hổ",
+        "meaningFullVi": "xấu hổ / xin lỗi",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
       {
         "text": "有意思",
-        "pinyin": "",
+        "pinyin": "yǒu yì si",
         "meaningVi": "thú vị",
+        "meaningFullVi": "thú vị",
         "target": "意思",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "什么意思",
-        "pinyin": "",
+        "pinyin": "shén me yì si",
         "meaningVi": "ý nghĩa gì",
+        "meaningFullVi": "ý nghĩa gì",
         "target": "意思",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "意思是",
-        "pinyin": "",
+        "pinyin": "yì si shì",
         "meaningVi": "ý nghĩa là",
+        "meaningFullVi": "ý nghĩa là",
         "target": "意思",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "意思",
       "chinese": "这个词是什么意思？",
-      "pinyin": "",
+      "pinyin": "zhè ge cí shì shén me yì si？",
       "meaningVi": "Từ này có ý nghĩa gì?",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "意思",
       "chinese": "我明白你的意思了。",
-      "pinyin": "",
+      "pinyin": "wǒ míng bai nǐ de yì si le。",
       "meaningVi": "Tôi hiểu ý của bạn rồi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "意思",
       "chinese": "很有意思的故事。",
-      "pinyin": "",
+      "pinyin": "hěn yǒu yì si de gù shi。",
       "meaningVi": "Câu chuyện rất thú vị.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 意思",
-      "syntax": "noun",
-      "matchedExample": "有趣 (có nghĩa là thú vị) là một cụm từ rất thông dụng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 意思",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "有趣 (có nghĩa là thú vị) là một cụm từ rất thông dụng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -155,31 +158,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "hsk__2__lesson__5__bai-5-cu-mua-cai-nay-di",
+      "sectionSlug": "bai-5-cu-mua-cai-nay-di",
       "sectionTitle": "Cứ mua cái này đi",
       "sectionTitleZh": "就买这件吧",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-5-cu-mua-cai-nay-di/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-5-cu-mua-cai-nay-di/",
+      "orderInSection": 11
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__2__lesson__1__bai-1-she-treated-us-to-peking-duck",
+      "sectionSlug": "bai-1-she-treated-us-to-peking-duck",
       "sectionTitle": "Cô ấy mời chúng tôi ăn vịt quay Bắc Kinh",
       "sectionTitleZh": "她请我们吃了北京烤鸭",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-1-she-treated-us-to-peking-duck/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-1-she-treated-us-to-peking-duck/",
+      "orderInSection": 14
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__2__topic__19__thong-tin",
+      "sectionSlug": "thong-tin",
       "sectionTitle": "Thông tin",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -195,7 +213,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

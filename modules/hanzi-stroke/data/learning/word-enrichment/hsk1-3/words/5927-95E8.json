@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:大门",
   "type": "word",
   "word": "大门",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "dà mén",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cổng chính, đại môn",
+      "meaningShortVi": "cổng chính",
+      "meaningFullVi": "cổng chính, đại môn",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cổng chính",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,60 +48,68 @@
     "collocations": [
       {
         "text": "大门口",
-        "pinyin": "",
+        "pinyin": "dà mén kǒu",
         "meaningVi": "cửa cổng chính",
+        "meaningFullVi": "cửa cổng chính",
         "target": "大门",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "学校大门",
-        "pinyin": "",
+        "pinyin": "xué xiào dà mén",
         "meaningVi": "cổng trường",
+        "meaningFullVi": "cổng trường",
         "target": "大门",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "关闭大门",
-        "pinyin": "",
-        "meaningVi": "đóng cổng chính",
-        "target": "大门",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "大门",
       "chinese": "他站在大门口等我",
-      "pinyin": "",
+      "pinyin": "tā zhàn zài dà mén kǒu děng wǒ",
       "meaningVi": "Anh ấy đứng ở cổng chính chờ tôi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "大门",
       "chinese": "请走大门",
-      "pinyin": "",
+      "pinyin": "qǐng zǒu dà mén",
       "meaningVi": "Vui lòng đi qua cổng chính",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "大门",
       "chinese": "大门是开着的",
-      "pinyin": "",
+      "pinyin": "dà mén shì kāi zhe de",
       "meaningVi": "Cổng chính đang mở",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 大门",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/大门.mp3"
   ],
@@ -109,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 29,
+      "sectionId": "new_hsk__2__topic__29__su-chuyen-dong",
+      "sectionSlug": "su-chuyen-dong",
       "sectionTitle": "Sự chuyển động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/su-chuyen-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/su-chuyen-dong/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -124,7 +138,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

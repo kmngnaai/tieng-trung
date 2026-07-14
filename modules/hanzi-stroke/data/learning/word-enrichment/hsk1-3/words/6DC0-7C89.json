@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:淀粉",
   "type": "word",
   "word": "淀粉",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "diàn fěn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tinh bột",
+      "meaningShortVi": "tinh bột",
+      "meaningFullVi": "tinh bột",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tinh bột",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Danh từ chỉ tinh bột. Dùng trong thực phẩm, dinh dưỡng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,32 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "玉米淀粉",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "淀粉",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "淀粉含量",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "淀粉",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "富含淀粉",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "淀粉",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +54,8 @@
       "meaningVi": "Tinh bột ngô",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "淀粉",
@@ -88,7 +64,8 @@
       "meaningVi": "Hàm lượng tinh bột",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "淀粉",
@@ -97,16 +74,17 @@
       "meaningVi": "Giàu tinh bột",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 淀粉",
-      "syntax": "compound-semantic",
-      "matchedExample": "Danh từ chỉ tinh bột. Dùng trong thực phẩm, dinh dưỡng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 淀粉",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Danh từ chỉ tinh bột. Dùng trong thực phẩm, dinh dưỡng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -121,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

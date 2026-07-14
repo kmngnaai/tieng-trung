@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:社会",
   "type": "word",
   "word": "社会",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shè huì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "xã hội",
+      "meaningShortVi": "xã hội",
+      "meaningFullVi": "xã hội",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "xã hội",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Danh từ chỉ cộng đồng người sống cùng nhau và các mối quan hệ trong đó.\""
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -50,66 +49,46 @@
     "collocations": [
       {
         "text": "现代社会",
-        "pinyin": "",
+        "pinyin": "xiàn dài shè huì",
         "meaningVi": "xã hội hiện đại",
+        "meaningFullVi": "xã hội hiện đại",
         "target": "社会",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "社会责任",
-        "pinyin": "",
+        "pinyin": "shè huì zé rèn",
         "meaningVi": "trách nhiệm xã hội",
+        "meaningFullVi": "trách nhiệm xã hội",
         "target": "社会",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "社会福利",
-        "pinyin": "",
-        "meaningVi": "phúc lợi xã hội",
-        "target": "社会",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "社会",
-      "chinese": "我们需要建设一个和谐社会。",
-      "pinyin": "",
-      "meaningVi": "Chúng ta cần xây dựng một xã hội hòa hợp.",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "社会",
       "chinese": "这个变化对整个社会都有影响。",
-      "pinyin": "",
+      "pinyin": "zhè ge biàn huà duì zhěng gè shè huì dōu yǒu yǐng xiǎng。",
       "meaningVi": "Sự thay đổi này có ảnh hưởng đến toàn xã hội.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "社会",
-      "chinese": "他在社会中扮演重要角色。",
-      "pinyin": "",
-      "meaningVi": "Cậu ấy đóng vai trò quan trọng trong xã hội.",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 社会",
-      "syntax": "danh từ",
-      "matchedExample": "Danh từ chỉ cộng đồng người sống cùng nhau và các mối quan hệ trong đó.\"",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 社会",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Danh từ chỉ cộng đồng người sống cùng nhau và các mối quan hệ trong đó.\"",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -120,11 +99,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__3__topic__4__nhung-nguoi",
+      "sectionSlug": "nhung-nguoi",
       "sectionTitle": "Những người",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/",
+      "orderInSection": 20
     }
   ],
   "sources": [
@@ -140,7 +124,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:见闻",
   "type": "word",
   "word": "见闻",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "jiàn wén",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "kiến văn — những điều đã thấy và nghe, kinh nghiệm thực tế thu thập được; vốn hiểu biết qua trải nghiệm",
+      "meaningShortVi": "kiến văn — những điều đã thấy và nghe",
+      "meaningFullVi": "kiến văn — những điều đã thấy và nghe, kinh nghiệm thực tế thu thập được; vốn hiểu biết qua trải nghiệm",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "kiến văn — những điều đã thấy và nghe",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "见闻 thiên về vốn hiểu biết thực tế qua trải nghiệm (thấy + nghe), khác với 知识 (kiến thức học thuật) hay 常识 (thường thức). Thường dùng với 增长, 丰富, 广博."
-  ],
-  "wordTypeExplanations": [
-    "见 (kiến — thấy, gặp) + 闻 (văn — nghe, tin tức) — những gì đã thấy và nghe, tổng hợp thành vốn hiểu biết thực tế."
   ],
   "hsk": {
     "levels": [
@@ -51,35 +48,44 @@
         "text": "增长见闻",
         "pinyin": "zēngzhǎng jiànwén",
         "meaningVi": "mở rộng vốn hiểu biết",
+        "meaningFullVi": "mở rộng vốn hiểu biết",
         "target": "见闻",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "丰富见闻",
         "pinyin": "fēngfù jiànwén",
         "meaningVi": "làm phong phú vốn hiểu biết",
+        "meaningFullVi": "làm phong phú vốn hiểu biết",
         "target": "见闻",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "见闻广博",
         "pinyin": "jiànwén guǎngbó",
         "meaningVi": "vốn hiểu biết rộng rãi",
+        "meaningFullVi": "vốn hiểu biết rộng rãi",
         "target": "见闻",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "旅途见闻",
         "pinyin": "lǚtú jiànwén",
         "meaningVi": "điều tai nghe mắt thấy trên đường",
+        "meaningFullVi": "điều tai nghe mắt thấy trên đường",
         "target": "见闻",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -89,7 +95,8 @@
       "meaningVi": "Du lịch đã mở rộng vốn hiểu biết của anh ấy.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "见闻",
@@ -98,7 +105,8 @@
       "meaningVi": "Cô ấy viết những điều mắt thấy tai nghe trên đường thành du ký.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "见闻",
@@ -107,7 +115,8 @@
       "meaningVi": "Đọc nhiều sách có thể làm phong phú vốn hiểu biết của bản thân.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "见闻",
@@ -116,23 +125,17 @@
       "meaningVi": "Vốn hiểu biết của anh ấy rộng rãi, biết nhiều chuyện lạ kỳ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 见闻",
-      "syntax": "compound-semantic",
-      "matchedExample": "见闻 thiên về vốn hiểu biết thực tế qua trải nghiệm (thấy + nghe), khác với 知识 (kiến thức học thuật) hay 常识 (thường thức). Thường dùng với 增长, 丰富, 广博.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "见 (kiến — thấy, gặp) + 闻 (văn — nghe, tin tức) — những gì đã thấy và nghe, tổng hợp thành vốn hiểu biết thực tế.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 见闻",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "见闻 thiên về vốn hiểu biết thực tế qua trải nghiệm (thấy + nghe), khác với 知识 (kiến thức học thuật) hay 常识 (thường thức). Thường dùng với 增长, 丰富, 广博.",
+      "explanationVi": "见 (kiến — thấy, gặp) + 闻 (văn — nghe, tin tức) — những gì đã thấy và nghe, tổng hợp thành vốn hiểu biết thực tế.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -147,7 +150,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

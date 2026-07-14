@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:适量",
   "type": "word",
   "word": "适量",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "shì liàng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phù hợp lượng, vừa đủ, vừa phải (không quá nhiều không quá ít)",
+      "meaningShortVi": "phù hợp lượng",
+      "meaningFullVi": "phù hợp lượng, vừa đủ, vừa phải (không quá nhiều không quá ít)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phù hợp lượng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Thường dùng cho y học, dinh dưỡng. Phân biệt 适量 (vừa đủ - lý tưởng) vs 少量 (ít - ít)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa：适 (thích - phù hợp) + 量 (lượng - lượng). Lượng phù hợp → vừa đủ."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "适量运动",
         "pinyin": "shìliàng yùndòng",
         "meaningVi": "vận động vừa phải",
+        "meaningFullVi": "vận động vừa phải",
         "target": "适量",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "适量饮酒",
         "pinyin": "shìliàng yǐnjiǔ",
         "meaningVi": "uống rượu vừa phải",
+        "meaningFullVi": "uống rượu vừa phải",
         "target": "适量",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "适量食盐",
         "pinyin": "shìliàng shíyán",
         "meaningVi": "ăn muối vừa đủ",
+        "meaningFullVi": "ăn muối vừa đủ",
         "target": "适量",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Vận động vừa phải",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "适量",
@@ -90,7 +95,8 @@
       "meaningVi": "Uống nước vừa đủ",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "适量",
@@ -99,7 +105,8 @@
       "meaningVi": "Uống rượu vừa phải",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "适量",
@@ -108,23 +115,17 @@
       "meaningVi": "Cho lượng muối vừa đủ",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 适量",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường dùng cho y học, dinh dưỡng. Phân biệt 适量 (vừa đủ - lý tưởng) vs 少量 (ít - ít).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa：适 (thích - phù hợp) + 量 (lượng - lượng). Lượng phù hợp → vừa đủ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 适量",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường dùng cho y học, dinh dưỡng. Phân biệt 适量 (vừa đủ - lý tưởng) vs 少量 (ít - ít).",
+      "explanationVi": "Ghép nghĩa：适 (thích - phù hợp) + 量 (lượng - lượng). Lượng phù hợp → vừa đủ.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

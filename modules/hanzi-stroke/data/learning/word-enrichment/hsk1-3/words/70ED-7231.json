@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:热爱",
   "type": "word",
   "word": "热爱",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "rè'ài",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Yêu tha thiết, yêu mến",
+      "meaningShortVi": "Yêu tha thiết",
+      "meaningFullVi": "Yêu tha thiết, yêu mến",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Yêu tha thiết",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "热爱 là động từ chỉ sự yêu thích sâu sắc, thường dùng với các khái niệm lớn như tổ quốc, cuộc sống, công việc. Mang sắc thái trang trọng hơn so với 喜欢(thích)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,27 +50,34 @@
         "text": "热爱祖国",
         "pinyin": "rè'ài zǔguó",
         "meaningVi": "yêu tha thiết tổ quốc",
+        "meaningFullVi": "yêu tha thiết tổ quốc",
         "target": "热爱",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "热爱生活",
         "pinyin": "rè'ài shēnghuó",
         "meaningVi": "yêu mến cuộc sống",
+        "meaningFullVi": "yêu mến cuộc sống",
         "target": "热爱",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "热爱工作",
         "pinyin": "rè'ài gōngzuò",
         "meaningVi": "yêu thích công việc",
+        "meaningFullVi": "yêu thích công việc",
         "target": "热爱",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +87,8 @@
       "meaningVi": "Tôi yêu tha thiết tổ quốc của tôi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "热爱",
@@ -90,7 +97,8 @@
       "meaningVi": "Anh ấy yêu mến âm nhạc.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "热爱",
@@ -99,16 +107,17 @@
       "meaningVi": "Chúng tôi yêu chuộng hòa bình.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 热爱",
-      "syntax": "compound-semantic",
-      "matchedExample": "热爱 là động từ chỉ sự yêu thích sâu sắc, thường dùng với các khái niệm lớn như tổ quốc, cuộc sống, công việc. Mang sắc thái trang trọng hơn so với 喜欢(thích).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 热爱",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "热爱 là động từ chỉ sự yêu thích sâu sắc, thường dùng với các khái niệm lớn như tổ quốc, cuộc sống, công việc. Mang sắc thái trang trọng hơn so với 喜欢(thích).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -119,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__3__topic__8__nhung-cam-xuc-va-cam-giac",
+      "sectionSlug": "nhung-cam-xuc-va-cam-giac",
       "sectionTitle": "Những cảm xúc và cảm giác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-cam-xuc-va-cam-giac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-cam-xuc-va-cam-giac/",
+      "orderInSection": 17
     }
   ],
   "sources": [
@@ -134,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

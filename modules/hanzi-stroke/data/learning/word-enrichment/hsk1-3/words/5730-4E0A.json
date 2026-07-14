@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:地上",
   "type": "word",
   "word": "地上",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "dì shàng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "mặt đất, dưới đất",
+      "meaningShortVi": "mặt đất",
+      "meaningFullVi": "mặt đất, dưới đất",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "mặt đất",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Chỉ vị trí trên bề mặt đất. Lưu ý 上 ở đây là 'phía trên' nhưng 地上 lại hiểu là 'dưới đất' so với người đứng."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 地 (đất) + 上 (trên, phía trên) = ở trên mặt đất."
   ],
   "hsk": {
     "levels": [
@@ -53,19 +50,24 @@
         "text": "地上的人",
         "pinyin": "dìshàng de rén",
         "meaningVi": "người dưới đất",
+        "meaningFullVi": "người dưới đất",
         "target": "地上",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "掉在地上",
         "pinyin": "diào zài dìshàng",
         "meaningVi": "rơi xuống đất",
+        "meaningFullVi": "rơi xuống đất",
         "target": "地上",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -75,7 +77,8 @@
       "meaningVi": "Quyển sách ở dưới đất",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "地上",
@@ -84,7 +87,8 @@
       "meaningVi": "Có nhiều lá cây ở dưới đất",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "地上",
@@ -93,23 +97,17 @@
       "meaningVi": "Xin hãy đổ rác trên đất (vui lòng không làm vậy)",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 地上",
-      "syntax": "compound-semantic",
-      "matchedExample": "Chỉ vị trí trên bề mặt đất. Lưu ý 上 ở đây là 'phía trên' nhưng 地上 lại hiểu là 'dưới đất' so với người đứng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 地 (đất) + 上 (trên, phía trên) = ở trên mặt đất.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 地上",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Chỉ vị trí trên bề mặt đất. Lưu ý 上 ở đây là 'phía trên' nhưng 地上 lại hiểu là 'dưới đất' so với người đứng.",
+      "explanationVi": "Ghép nghĩa: 地 (đất) + 上 (trên, phía trên) = ở trên mặt đất.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -120,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__1__topic__17__dia-diem",
+      "sectionSlug": "dia-diem",
       "sectionTitle": "Địa điểm",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dia-diem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dia-diem/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -135,7 +138,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

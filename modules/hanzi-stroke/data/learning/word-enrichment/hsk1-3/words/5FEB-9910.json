@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:快餐",
   "type": "word",
   "word": "快餐",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "kuài cān",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "khái xan",
+      "meaningShortVi": "khái xan",
+      "meaningFullVi": "khái xan",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "khái xan",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,43 +48,48 @@
     "collocations": [
       {
         "text": "快餐店",
-        "pinyin": "",
+        "pinyin": "kuài cān diàn",
         "meaningVi": "quán thức ăn nhanh",
+        "meaningFullVi": "quán thức ăn nhanh",
         "target": "快餐",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "西式快餐",
-        "pinyin": "",
-        "meaningVi": "fast food phương Tây",
-        "target": "快餐",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "快餐",
       "chinese": "我不喜欢吃快餐",
-      "pinyin": "",
+      "pinyin": "wǒ bù xǐ huan chī kuài cān",
       "meaningVi": "Tôi không thích ăn thức ăn nhanh",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "快餐",
       "chinese": "快餐店很多",
-      "pinyin": "",
+      "pinyin": "kuài cān diàn hěn duō",
       "meaningVi": "Quán thức ăn nhanh rất nhiều",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 快餐",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/快餐.mp3"
   ],
@@ -92,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__2__topic__1__thuc-an-va-do-uong",
+      "sectionSlug": "thuc-an-va-do-uong",
       "sectionTitle": "Thức ăn và đồ uống",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thuc-an-va-do-uong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thuc-an-va-do-uong/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -107,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

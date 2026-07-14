@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:长处",
   "type": "word",
   "word": "长处",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "cháng chu",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ưu điểm, điểm mạnh",
+      "meaningShortVi": "ưu điểm",
+      "meaningFullVi": "ưu điểm, điểm mạnh",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ưu điểm",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "长处 (ưu điểm) chỉ điểm mạnh, thế mạnh của người hoặc vật. Đồng nghĩa với优点, đối lập với短处."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "发挥长处",
         "pinyin": "fāhuī chángchù",
         "meaningVi": "phát huy ưu điểm",
+        "meaningFullVi": "phát huy ưu điểm",
         "target": "长处",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "看到长处",
         "pinyin": "kàndào chángchù",
         "meaningVi": "thấy được điểm mạnh",
+        "meaningFullVi": "thấy được điểm mạnh",
         "target": "长处",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Ưu điểm của anh ấy là rất biết nói chuyện.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "长处",
@@ -82,16 +87,17 @@
       "meaningVi": "Phát huy ưu điểm của bản thân.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 长处",
-      "syntax": "danh từ",
-      "matchedExample": "长处 (ưu điểm) chỉ điểm mạnh, thế mạnh của người hoặc vật. Đồng nghĩa với优点, đối lập với短处.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 长处",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "长处 (ưu điểm) chỉ điểm mạnh, thế mạnh của người hoặc vật. Đồng nghĩa với优点, đối lập với短处.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 31,
+      "sectionId": "new_hsk__3__topic__31__ban-tinh",
+      "sectionSlug": "ban-tinh",
       "sectionTitle": "Bản tính",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/ban-tinh/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/ban-tinh/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

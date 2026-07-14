@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:开展",
   "type": "word",
   "word": "开展",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "kāi zhǎn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "triển khai, phát triển",
+      "meaningShortVi": "triển khai",
+      "meaningFullVi": "triển khai, phát triển",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "triển khai",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "triển khai dùng khi bắt đầu thực hiện kế hoạch, hoạt động. Thường đi với activity (活动), work (工作), comprehensively (全面)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "开展活动",
         "pinyin": "kāizhǎn huódòng",
         "meaningVi": "triển khai hoạt động",
+        "meaningFullVi": "triển khai hoạt động",
         "target": "开展",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "全面开展",
         "pinyin": "quánmiàn kāizhǎn",
         "meaningVi": "triển khai toàn diện",
+        "meaningFullVi": "triển khai toàn diện",
         "target": "开展",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Công ty đang triển khai nghiệp vụ mới.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "开展",
@@ -82,16 +87,17 @@
       "meaningVi": "Chúng tôi kế hoạch triển khai hoạt động truyền thông.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 开展",
-      "syntax": "động từ",
-      "matchedExample": "triển khai dùng khi bắt đầu thực hiện kế hoạch, hoạt động. Thường đi với activity (活动), work (工作), comprehensively (全面).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 开展",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "triển khai dùng khi bắt đầu thực hiện kế hoạch, hoạt động. Thường đi với activity (活动), work (工作), comprehensively (全面).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__topic__17__nhung-thay-doi",
+      "sectionSlug": "nhung-thay-doi",
       "sectionTitle": "Những thay đổi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/",
+      "orderInSection": 24
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

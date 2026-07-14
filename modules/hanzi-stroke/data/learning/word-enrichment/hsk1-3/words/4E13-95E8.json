@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:专门",
   "type": "word",
   "word": "专门",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhuān mén",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chuyên môn; chuyên biệt; đặc biệt",
+      "meaningShortVi": "chuyên môn",
+      "meaningFullVi": "chuyên môn; chuyên biệt; đặc biệt",
       "partOfSpeech": "tính từ / trạng từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chuyên môn",
   "wordType": "tính từ / trạng từ",
   "wordTypes": [
     "tính từ / trạng từ"
   ],
-  "usageNotes": [
-    "Chỉ việc tập trung vào một lĩnh vực cụ thể, hoặc làm việc một cách đặc biệt."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,19 +51,24 @@
         "text": "专门研究",
         "pinyin": "zhuānmén yánjiū",
         "meaningVi": "nghiên cứu chuyên sâu",
+        "meaningFullVi": "nghiên cứu chuyên sâu",
         "target": "专门",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "专门学校",
         "pinyin": "zhuānmén xuéxiào",
         "meaningVi": "trường chuyên môn",
+        "meaningFullVi": "trường chuyên môn",
         "target": "专门",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Anh ấy là chuyên gia nghiên cứu lịch sử Trung Quốc.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "专门",
@@ -83,16 +88,17 @@
       "meaningVi": "Vấn đề này cần giải quyết một cách chuyên biệt.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 专门",
-      "syntax": "tính từ / trạng từ",
-      "matchedExample": "Chỉ việc tập trung vào một lĩnh vực cụ thể, hoặc làm việc một cách đặc biệt.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 专门",
+      "partOfSpeech": "tính từ / trạng từ",
+      "usageNoteVi": "Chỉ việc tập trung vào một lĩnh vực cụ thể, hoặc làm việc một cách đặc biệt.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 33,
+      "sectionId": "new_hsk__3__topic__33__tinh-tu",
+      "sectionSlug": "tinh-tu",
       "sectionTitle": "Tính từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

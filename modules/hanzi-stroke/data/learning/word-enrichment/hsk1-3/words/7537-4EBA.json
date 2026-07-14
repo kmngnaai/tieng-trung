@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:男人",
   "type": "word",
   "word": "男人",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "nán rén",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đàn ông, người nam",
+      "meaningShortVi": "đàn ông",
+      "meaningFullVi": "đàn ông, người nam",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đàn ông",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Từ phổ biến chỉ người đàn ông. Có thể dùng trong cả giao tiếp bình thường và văn viết. Trong ngữ cảnh thân mật, có thể dùng '男人' để chỉ 'chồng/người yêu' (như ví dụ 1)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 男 (đàn ông, nam giới) + 人 (người) → 'người đàn ông'."
   ],
   "hsk": {
     "levels": [
@@ -54,27 +51,34 @@
         "text": "好男人",
         "pinyin": "hǎo nán rén",
         "meaningVi": "đàn ông tốt",
+        "meaningFullVi": "đàn ông tốt",
         "target": "男人",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "男人们",
         "pinyin": "nán rén men",
         "meaningVi": "những người đàn ông",
+        "meaningFullVi": "những người đàn ông",
         "target": "男人",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "男人味",
         "pinyin": "nán rén wèi",
         "meaningVi": "pha口罩àn của đàn ông",
+        "meaningFullVi": "pha口罩àn của đàn ông",
         "target": "男人",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -84,7 +88,8 @@
       "meaningVi": "Anh ấy là đàn ông của tôi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "男人",
@@ -93,7 +98,8 @@
       "meaningVi": "Đàn ông và phụ nữ không giống nhau",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "男人",
@@ -102,7 +108,8 @@
       "meaningVi": "Người đàn ông đó rất cao",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "男人",
@@ -111,23 +118,17 @@
       "meaningVi": "Đàn ông tốt nên có trách nhiệm",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 男人",
-      "syntax": "compound-semantic",
-      "matchedExample": "Từ phổ biến chỉ người đàn ông. Có thể dùng trong cả giao tiếp bình thường và văn viết. Trong ngữ cảnh thân mật, có thể dùng '男人' để chỉ 'chồng/người yêu' (như ví dụ 1).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 男 (đàn ông, nam giới) + 人 (người) → 'người đàn ông'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 男人",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Từ phổ biến chỉ người đàn ông. Có thể dùng trong cả giao tiếp bình thường và văn viết. Trong ngữ cảnh thân mật, có thể dùng '男人' để chỉ 'chồng/người yêu' (như ví dụ 1).",
+      "explanationVi": "Ghép nghĩa: 男 (đàn ông, nam giới) + 人 (người) → 'người đàn ông'.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -138,11 +139,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 24,
+      "sectionId": "new_hsk__1__topic__24__nhung-nguoi",
+      "sectionSlug": "nhung-nguoi",
       "sectionTitle": "Những người",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nhung-nguoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nhung-nguoi/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -158,7 +164,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

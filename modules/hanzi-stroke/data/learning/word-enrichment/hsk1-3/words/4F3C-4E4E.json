@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:似乎",
   "type": "word",
   "word": "似乎",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "sì hū",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hình như, dường như, có vẻ",
+      "meaningShortVi": "hình như",
+      "meaningFullVi": "hình như, dường như, có vẻ",
       "partOfSpeech": "trợ từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hình như",
   "wordType": "trợ từ",
   "wordTypes": [
     "trợ từ"
   ],
-  "usageNotes": [
-    "Dùng để phỏng đoán, nhận định không chắc chắn. Trang trọng hơn '好像', thường dùng trong văn viết."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -50,19 +49,24 @@
         "text": "似乎不太",
         "pinyin": "sìhū bù tài",
         "meaningVi": "hình như không quá",
+        "meaningFullVi": "hình như không quá",
         "target": "似乎",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "似乎可以",
         "pinyin": "sìhū kěyǐ",
         "meaningVi": "có vẻ có thể",
+        "meaningFullVi": "có vẻ có thể",
         "target": "似乎",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -72,7 +76,8 @@
       "meaningVi": "Anh ấy dường như không quá vui.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "似乎",
@@ -81,16 +86,17 @@
       "meaningVi": "Vấn đề này có vẻ không khó giải quyết.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 似乎",
-      "syntax": "trợ từ",
-      "matchedExample": "Dùng để phỏng đoán, nhận định không chắc chắn. Trang trọng hơn '好像', thường dùng trong văn viết.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 似乎",
+      "partOfSpeech": "trợ từ",
+      "usageNoteVi": "Dùng để phỏng đoán, nhận định không chắc chắn. Trang trọng hơn '好像', thường dùng trong văn viết.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -110,7 +116,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

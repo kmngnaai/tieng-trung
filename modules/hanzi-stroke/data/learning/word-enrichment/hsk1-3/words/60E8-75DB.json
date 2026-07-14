@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:惨痛",
   "type": "word",
   "word": "惨痛",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "cǎn tòng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đau đớn, bi thảm",
+      "meaningShortVi": "đau đớn",
+      "meaningFullVi": "đau đớn, bi thảm",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đau đớn",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng khi miêu tả nỗi đau, thất bại lớn."
-  ],
-  "wordTypeExplanations": [
-    "惨 (bi thảm) + 痛 (đau) — đau đớn tột cùng."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "惨痛教训",
         "pinyin": "cǎntòng jiàoxun",
         "meaningVi": "bài học đau đớn",
+        "meaningFullVi": "bài học đau đớn",
         "target": "惨痛",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "惨痛经历",
         "pinyin": "cǎntòng jīnglì",
         "meaningVi": "trải nghiệm đau đớn",
+        "meaningFullVi": "trải nghiệm đau đớn",
         "target": "惨痛",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "惨痛损失",
         "pinyin": "cǎntòng sǔnshī",
         "meaningVi": "thiệt hại đau đớn",
+        "meaningFullVi": "thiệt hại đau đớn",
         "target": "惨痛",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Đây là một bài học đau đớn",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "惨痛",
@@ -90,7 +95,8 @@
       "meaningVi": "Anh ấy trải qua tai nạn đau đớn",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "惨痛",
@@ -99,7 +105,8 @@
       "meaningVi": "Thiệt hại đau đớn",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "惨痛",
@@ -108,23 +115,17 @@
       "meaningVi": "Đừng quên lịch sử đau thương",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 惨痛",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng khi miêu tả nỗi đau, thất bại lớn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "惨 (bi thảm) + 痛 (đau) — đau đớn tột cùng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 惨痛",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng khi miêu tả nỗi đau, thất bại lớn.",
+      "explanationVi": "惨 (bi thảm) + 痛 (đau) — đau đớn tột cùng.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

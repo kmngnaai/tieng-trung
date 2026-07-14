@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:基本上",
   "type": "word",
   "word": "基本上",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "jī běn shang",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "về cơ bản; căn bản; nói chung là",
+      "meaningShortVi": "về cơ bản",
+      "meaningFullVi": "về cơ bản; căn bản; nói chung là",
       "partOfSpeech": "trạng từ / cụm từ (Adverb - Modifier)",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "về cơ bản",
   "wordType": "trạng từ / cụm từ (Adverb - Modifier)",
   "wordTypes": [
     "trạng từ / cụm từ (Adverb - Modifier)"
   ],
-  "usageNotes": [
-    "Nhấn mạnh tính chất chủ đạo, căn bản của một vấn đề — có thể có ngoại lệ nhỏ nhưng tổng thể là như vậy. Dùng trong cả văn viết và khẩu ngữ. Synonym: 大体上 (nói chung), 总的来说 (nhìn chung)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -52,19 +51,24 @@
         "text": "基本上解决",
         "pinyin": "jīběnshang jiějué",
         "meaningVi": "giải quyết cơ bản",
+        "meaningFullVi": "giải quyết cơ bản",
         "target": "基本上",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "了解基本上",
         "pinyin": "liǎojiě jīběnshang",
         "meaningVi": "hiểu cơ bản",
+        "meaningFullVi": "hiểu cơ bản",
         "target": "基本上",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Về cơ bản mọi người đều đồng ý.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "基本上",
@@ -83,16 +88,17 @@
       "meaningVi": "Nhiệm vụ cơ bản đã hoàn thành.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 基本上",
-      "syntax": "trạng từ / cụm từ (Adverb - Modifier)",
-      "matchedExample": "Nhấn mạnh tính chất chủ đạo, căn bản của một vấn đề — có thể có ngoại lệ nhỏ nhưng tổng thể là như vậy. Dùng trong cả văn viết và khẩu ngữ. Synonym: 大体上 (nói chung), 总的来说 (nhìn chung).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 基本上",
+      "partOfSpeech": "trạng từ / cụm từ (Adverb - Modifier)",
+      "usageNoteVi": "Nhấn mạnh tính chất chủ đạo, căn bản của một vấn đề — có thể có ngoại lệ nhỏ nhưng tổng thể là như vậy. Dùng trong cả văn viết và khẩu ngữ. Synonym: 大体上 (nói chung), 总的来说 (nhìn chung).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 29,
+      "sectionId": "new_hsk__3__topic__29__lien-lac",
+      "sectionSlug": "lien-lac",
       "sectionTitle": "Liên lạc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/",
+      "orderInSection": 23
     }
   ],
   "sources": [
@@ -118,7 +129,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

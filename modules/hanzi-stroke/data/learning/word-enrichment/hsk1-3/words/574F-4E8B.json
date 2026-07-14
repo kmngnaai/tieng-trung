@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:坏事",
   "type": "word",
   "word": "坏事",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "huài shì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "việc xấu, tai họa; (động từ) làm hỏng",
+      "meaningShortVi": "việc xấu",
+      "meaningFullVi": "việc xấu, tai họa; (động từ) làm hỏng",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "việc xấu",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Có thể là danh từ (việc xấu) hoặc động từ (làm hỏng)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 坏 (xấu, hỏng) + 事 (việc) → việc xấu/tai họa."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "做坏事",
         "pinyin": "zuò huàishì",
         "meaningVi": "làm việc xấu",
+        "meaningFullVi": "làm việc xấu",
         "target": "坏事",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "成了坏事",
         "pinyin": "chéngle huàishì",
         "meaningVi": "trở thành tai họa",
+        "meaningFullVi": "trở thành tai họa",
         "target": "坏事",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "坏事传千里",
         "pinyin": "huàishì chuán qiānlǐ",
         "meaningVi": "việc xấu lan xa",
+        "meaningFullVi": "việc xấu lan xa",
         "target": "坏事",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Đừng làm việc xấu",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "坏事",
@@ -90,7 +95,8 @@
       "meaningVi": "Thật là một tai họa",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "坏事",
@@ -99,23 +105,17 @@
       "meaningVi": "Bất kỳ việc xấu nào cũng có hậu quả",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 坏事",
-      "syntax": "compound-semantic",
-      "matchedExample": "Có thể là danh từ (việc xấu) hoặc động từ (làm hỏng).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 坏 (xấu, hỏng) + 事 (việc) → việc xấu/tai họa.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 坏事",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Có thể là danh từ (việc xấu) hoặc động từ (làm hỏng).",
+      "explanationVi": "Ghép nghĩa: 坏 (xấu, hỏng) + 事 (việc) → việc xấu/tai họa.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -130,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

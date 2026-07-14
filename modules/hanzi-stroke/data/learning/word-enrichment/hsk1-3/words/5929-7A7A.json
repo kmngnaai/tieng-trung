@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:天空",
   "type": "word",
   "word": "天空",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "tiān kōng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bầu trời",
+      "meaningShortVi": "bầu trời",
+      "meaningFullVi": "bầu trời",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bầu trời",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Thường dùng 形容词 + 的 + 天空 hoặc 天空 + 很/非常 + 形容词. Không nói 天空很美丽 (kiểu Việt), dùng 天空很美 或 天空很漂亮."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "天空颜色",
         "pinyin": "tiānkōng yánsè",
         "meaningVi": "màu bầu trời",
+        "meaningFullVi": "màu bầu trời",
         "target": "天空",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "天空明亮",
         "pinyin": "tiānkōng míngliàng",
         "meaningVi": "bầu trời sáng sủa",
+        "meaningFullVi": "bầu trời sáng sủa",
         "target": "天空",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Bầu trời hôm nay rất xanh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "天空",
@@ -82,16 +87,17 @@
       "meaningVi": "Một đàn chim bay qua bầu trời.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 天空",
-      "syntax": "danh từ",
-      "matchedExample": "Thường dùng 形容词 + 的 + 天空 hoặc 天空 + 很/非常 + 形容词. Không nói 天空很美丽 (kiểu Việt), dùng 天空很美 或 天空很漂亮.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 天空",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Thường dùng 形容词 + 的 + 天空 hoặc 天空 + 很/非常 + 形容词. Không nói 天空很美丽 (kiểu Việt), dùng 天空很美 或 天空很漂亮.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__3__topic__9__thien-nhien",
+      "sectionSlug": "thien-nhien",
       "sectionTitle": "Thiên nhiên",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thien-nhien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thien-nhien/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

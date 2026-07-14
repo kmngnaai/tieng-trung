@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:握手",
   "type": "word",
   "word": "握手",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wò shǒu",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Bắt tay",
+      "meaningShortVi": "Bắt tay",
+      "meaningFullVi": "Bắt tay",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Bắt tay",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Động từ chỉ hành động bắt tay, thường dùng trong khi chào hỏi, ký kết hoặc hòa giải."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,11 +51,14 @@
         "text": "握手言和",
         "pinyin": "wòshǒu yánhé",
         "meaningVi": "bắt tay hòa giải",
+        "meaningFullVi": "bắt tay hòa giải",
         "target": "握手",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -66,7 +68,8 @@
       "meaningVi": "Họ bắt tay để thể hiện sự thân thiện.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "握手",
@@ -75,7 +78,8 @@
       "meaningVi": "Khi gặp mặt, chúng ta thường bắt tay.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "握手",
@@ -84,16 +88,17 @@
       "meaningVi": "Hai vị lãnh đạo đã bắt tay.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 握手",
-      "syntax": "compound-semantic",
-      "matchedExample": "Động từ chỉ hành động bắt tay, thường dùng trong khi chào hỏi, ký kết hoặc hòa giải.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 握手",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Động từ chỉ hành động bắt tay, thường dùng trong khi chào hỏi, ký kết hoặc hòa giải.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__3__topic__5__cac-moi-quan-he",
+      "sectionSlug": "cac-moi-quan-he",
       "sectionTitle": "Các mối quan hệ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-moi-quan-he/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-moi-quan-he/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -124,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

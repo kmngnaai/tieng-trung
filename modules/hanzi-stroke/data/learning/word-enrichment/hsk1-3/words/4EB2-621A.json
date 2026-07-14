@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:亲戚",
   "type": "word",
   "word": "亲戚",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "qīn qi",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "họ hàng, thân thích",
+      "meaningShortVi": "họ hàng",
+      "meaningFullVi": "họ hàng, thân thích",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "họ hàng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "亲戚 là họ hàng, thân thích, dùng rất phổ biến trong văn nói. 走亲戚 là hoạt động thăm hỏi họ hàng vào dịp lễ tết."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 亲 (thân, ruột thịt) + 戚 (họ hàng). Hán-Việt 'thân thích' → người có quan hệ huyết thống."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "走亲戚",
         "pinyin": "zǒu qīnqi",
         "meaningVi": "thăm họ hàng",
+        "meaningFullVi": "thăm họ hàng",
         "target": "亲戚",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "远近亲戚",
         "pinyin": "yuǎnjìn qīnqi",
         "meaningVi": "họ hàng xa gần",
+        "meaningFullVi": "họ hàng xa gần",
         "target": "亲戚",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "亲戚朋友",
         "pinyin": "qīnqi péngyǒu",
         "meaningVi": "họ hàng và bạn bè",
+        "meaningFullVi": "họ hàng và bạn bè",
         "target": "亲戚",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Thăm họ hàng",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "亲戚",
@@ -90,7 +95,8 @@
       "meaningVi": "Gia đình tôi nhiều họ hàng",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "亲戚",
@@ -99,23 +105,17 @@
       "meaningVi": "Anh ấy là họ hàng của tôi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 亲戚",
-      "syntax": "compound-semantic",
-      "matchedExample": "亲戚 là họ hàng, thân thích, dùng rất phổ biến trong văn nói. 走亲戚 là hoạt động thăm hỏi họ hàng vào dịp lễ tết.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 亲 (thân, ruột thịt) + 戚 (họ hàng). Hán-Việt 'thân thích' → người có quan hệ huyết thống.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 亲戚",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "亲戚 là họ hàng, thân thích, dùng rất phổ biến trong văn nói. 走亲戚 là hoạt động thăm hỏi họ hàng vào dịp lễ tết.",
+      "explanationVi": "Ghép nghĩa: 亲 (thân, ruột thịt) + 戚 (họ hàng). Hán-Việt 'thân thích' → người có quan hệ huyết thống.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -130,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

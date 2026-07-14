@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:观众",
   "type": "word",
   "word": "观众",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "guān zhòng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "khán giả; người đến xem biểu diễn, trận đấu hoặc sự kiện giải trí",
+      "meaningShortVi": "khán giả",
+      "meaningFullVi": "khán giả; người đến xem biểu diễn, trận đấu hoặc sự kiện giải trí",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "khán giả",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Có thể dùng cho rạp hát, sân vận động, phim ảnh, truyền hình. Đối với 听众 'người nghe' chỉ người nghe radio hoặc podcast. Từ liên quan: 粉丝 'fan hâm mộ', 支持者 'người ủng hộ'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "观众席",
         "pinyin": "guānzhòng xí",
         "meaningVi": "ghế khán giả",
+        "meaningFullVi": "ghế khán giả",
         "target": "观众",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "吸引观众",
         "pinyin": "xīyǐn guānzhòng",
         "meaningVi": "thu hút khán giả",
+        "meaningFullVi": "thu hút khán giả",
         "target": "观众",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Khán giả rất đông, nhà hát ngồi đầy người.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "观众",
@@ -82,16 +87,17 @@
       "meaningVi": "Bộ phim này nhận được đánh giá tốt từ khán giả.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 观众",
-      "syntax": "danh từ",
-      "matchedExample": "Có thể dùng cho rạp hát, sân vận động, phim ảnh, truyền hình. Đối với 听众 'người nghe' chỉ người nghe radio hoặc podcast. Từ liên quan: 粉丝 'fan hâm mộ', 支持者 'người ủng hộ'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 观众",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Có thể dùng cho rạp hát, sân vận động, phim ảnh, truyền hình. Đối với 听众 'người nghe' chỉ người nghe radio hoặc podcast. Từ liên quan: 粉丝 'fan hâm mộ', 支持者 'người ủng hộ'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__3__topic__10__giai-tri-toi",
+      "sectionSlug": "giai-tri-toi",
       "sectionTitle": "Giải trí tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

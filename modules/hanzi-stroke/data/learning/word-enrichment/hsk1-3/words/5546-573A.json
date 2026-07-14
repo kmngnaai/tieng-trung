@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:商场",
   "type": "word",
   "word": "商场",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shāng chǎng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cửa hàng, trung tâm thương mại",
+      "meaningShortVi": "cửa hàng",
+      "meaningFullVi": "cửa hàng, trung tâm thương mại",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cửa hàng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "商场 là trung tâm thương mại hoặc cửa hàng lớn. Hán-Việt: thương (buôn bán) + tràng (sân/vùng)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -52,19 +51,24 @@
         "text": "大商场",
         "pinyin": "dà shāngchǎng",
         "meaningVi": "trung tâm thương mại lớn",
+        "meaningFullVi": "trung tâm thương mại lớn",
         "target": "商场",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "在商场",
         "pinyin": "zài shāngchǎng",
         "meaningVi": "ở trung tâm thương mại",
+        "meaningFullVi": "ở trung tâm thương mại",
         "target": "商场",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Trung tâm thương mại rất lớn.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "商场",
@@ -83,16 +88,17 @@
       "meaningVi": "Chúng tôi đi trung tâm thương mại mua đồ.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 商场",
-      "syntax": "compound-semantic",
-      "matchedExample": "商场 là trung tâm thương mại hoặc cửa hàng lớn. Hán-Việt: thương (buôn bán) + tràng (sân/vùng).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 商场",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "商场 là trung tâm thương mại hoặc cửa hàng lớn. Hán-Việt: thương (buôn bán) + tràng (sân/vùng).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,21 +109,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__1__topic__7__cac-toa-nha",
+      "sectionSlug": "cac-toa-nha",
       "sectionTitle": "Các tòa nhà",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cac-toa-nha/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cac-toa-nha/",
+      "orderInSection": 1
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__2__lesson__4__bai-4-you-look-pretty-good-in-red",
+      "sectionSlug": "bai-4-you-look-pretty-good-in-red",
       "sectionTitle": "Bạn mặc màu đỏ rất đẹp",
       "sectionTitleZh": "你穿红色的很好看",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-4-you-look-pretty-good-in-red/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-4-you-look-pretty-good-in-red/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -133,7 +149,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

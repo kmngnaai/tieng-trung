@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:动摇",
   "type": "word",
   "word": "动摇",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "dòng yáo",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "dao động, lung lay, thay đổi quan điểm",
+      "meaningShortVi": "dao động",
+      "meaningFullVi": "dao động, lung lay, thay đổi quan điểm",
       "partOfSpeech": "động từ (verb)",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "dao động",
   "wordType": "động từ (verb)",
   "wordTypes": [
     "động từ (verb)"
   ],
-  "usageNotes": [
-    "动 (động) nghĩa là vận động; 摇 (dao) nghĩa là lay, động. 动摇 là lung lay, không vững chắc, hoặc làm thay đổi quan điểm, niềm tin."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,30 +45,27 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "坚定不移",
-        "pinyin": "jiāndìng bùyí",
-        "meaningVi": "không lay chuyển",
-        "target": "动摇",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "动摇人心",
         "pinyin": "dòngyáo rénxīn",
         "meaningVi": "làm lung lay lòng người",
+        "meaningFullVi": "làm lung lay lòng người",
         "target": "动摇",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "发生动摇",
         "pinyin": "fāshēng dòngyáo",
         "meaningVi": "xảy ra dao động",
+        "meaningFullVi": "xảy ra dao động",
         "target": "动摇",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +75,8 @@
       "meaningVi": "Niềm tin của anh ấy không hề lung lay.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "动摇",
@@ -88,7 +85,8 @@
       "meaningVi": "Gió thổi khiến cây dao động.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "动摇",
@@ -97,16 +95,17 @@
       "meaningVi": "Việc này đã làm thay đổi quyết định của anh ấy.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 动摇",
-      "syntax": "động từ (verb)",
-      "matchedExample": "动 (động) nghĩa là vận động; 摇 (dao) nghĩa là lay, động. 动摇 là lung lay, không vững chắc, hoặc làm thay đổi quan điểm, niềm tin.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 动摇",
+      "partOfSpeech": "động từ (verb)",
+      "usageNoteVi": "动 (động) nghĩa là vận động; 摇 (dao) nghĩa là lay, động. 动摇 là lung lay, không vững chắc, hoặc làm thay đổi quan điểm, niềm tin.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -121,7 +120,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

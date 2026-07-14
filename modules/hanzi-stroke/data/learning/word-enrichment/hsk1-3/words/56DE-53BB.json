@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:回去",
   "type": "word",
   "word": "回去",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "huí qù",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trở về, quay lại, về",
+      "meaningShortVi": "trở về",
+      "meaningFullVi": "trở về, quay lại, về",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trở về",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Động từ chỉ hành động quay trở lại nơi đã từng ở hoặc đến. '回去' nhấn mạnh hướng đi về."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -47,40 +46,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "回去吧",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "回去",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "回去以后",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "回去",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "回不去",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "回去",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "走回去",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "回去",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -90,7 +57,8 @@
       "meaningVi": "Khi nào chúng ta trở về?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "回去",
@@ -99,16 +67,17 @@
       "meaningVi": "Anh ấy ngày mai trở về.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 回去",
-      "syntax": "compound-semantic",
-      "matchedExample": "Động từ chỉ hành động quay trở lại nơi đã từng ở hoặc đến. '回去' nhấn mạnh hướng đi về.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 回去",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Động từ chỉ hành động quay trở lại nơi đã từng ở hoặc đến. '回去' nhấn mạnh hướng đi về.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -119,21 +88,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__1__topic__9__su-chuyen-dong",
+      "sectionSlug": "su-chuyen-dong",
       "sectionTitle": "Sự chuyển động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/su-chuyen-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/su-chuyen-dong/",
+      "orderInSection": 3
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__2__lesson__3__bai-3-i-want-to-visit-xi-an",
+      "sectionSlug": "bai-3-i-want-to-visit-xi-an",
       "sectionTitle": "Tôi muốn đi du lịch Tây An",
       "sectionTitleZh": "我想去西安旅游",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-3-i-want-to-visit-xi-an/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-3-i-want-to-visit-xi-an/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -149,7 +128,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

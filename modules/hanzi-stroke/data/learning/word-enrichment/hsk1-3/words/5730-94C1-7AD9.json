@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:地铁站",
   "type": "word",
   "word": "地铁站",
@@ -16,24 +16,25 @@
     "readings": [
       {
         "pinyin": "dì tiě zhàn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "địa thiết trạm",
+      "meaningShortVi": "địa thiết trạm",
+      "meaningFullVi": "địa thiết trạm",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "địa thiết trạm",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -48,52 +49,68 @@
     "collocations": [
       {
         "text": "地铁站口",
-        "pinyin": "",
+        "pinyin": "dì tiě zhàn kǒu",
         "meaningVi": "cửa ga tàu điện ngầm",
+        "meaningFullVi": "cửa ga tàu điện ngầm",
         "target": "地铁站",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "地铁站内",
-        "pinyin": "",
+        "pinyin": "dì tiě zhàn nèi",
         "meaningVi": "trong ga tàu điện ngầm",
+        "meaningFullVi": "trong ga tàu điện ngầm",
         "target": "地铁站",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "地铁站",
       "chinese": "地铁站到了",
-      "pinyin": "",
+      "pinyin": "dì tiě zhàn dào le",
       "meaningVi": "Đến ga tàu điện ngầm rồi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "地铁站",
       "chinese": "在地铁站等你",
-      "pinyin": "",
+      "pinyin": "zài dì tiě zhàn děng nǐ",
       "meaningVi": "Đợi bạn ở ga tàu điện ngầm",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "地铁站",
       "chinese": "最近的地铁站",
-      "pinyin": "",
+      "pinyin": "zuì jìn de dì tiě zhàn",
       "meaningVi": "Ga tàu điện ngầm gần nhất",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 地铁站",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/地铁站.mp3"
   ],
@@ -102,11 +119,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__2__topic__5__van-chuyen",
+      "sectionSlug": "van-chuyen",
       "sectionTitle": "Vận chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/van-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/van-chuyen/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -117,7 +139,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

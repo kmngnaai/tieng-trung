@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:排名",
   "type": "word",
   "word": "排名",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "pái míng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "xếp hạng",
+      "meaningShortVi": "xếp hạng",
+      "meaningFullVi": "xếp hạng",
       "partOfSpeech": "danh từ / động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "xếp hạng",
   "wordType": "danh từ / động từ",
   "wordTypes": [
     "danh từ / động từ"
   ],
-  "usageNotes": [
-    "Thường dùng trong thi đấu, bảng xếp hạng, tìm kiếm, thương mại điện tử. '排名' vs '列名' (liệt kê)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,66 +48,76 @@
     "collocations": [
       {
         "text": "排名第一",
-        "pinyin": "",
+        "pinyin": "pái míng dì yī",
         "meaningVi": "xếp hạng nhất",
+        "meaningFullVi": "xếp hạng nhất",
         "target": "排名",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "排名靠前",
-        "pinyin": "",
+        "pinyin": "pái míng kào qián",
         "meaningVi": "xếp hạng cao",
+        "meaningFullVi": "xếp hạng cao",
         "target": "排名",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "排名表",
-        "pinyin": "",
+        "pinyin": "pái míng biǎo",
         "meaningVi": "bảng xếp hạng",
+        "meaningFullVi": "bảng xếp hạng",
         "target": "排名",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "排名",
       "chinese": "他在班级排名第一。",
-      "pinyin": "",
+      "pinyin": "tā zài bān jí pái míng dì yī。",
       "meaningVi": "Anh ấy xếp hạng nhất trong lớp.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "排名",
       "chinese": "这个网站排名很高。",
-      "pinyin": "",
+      "pinyin": "zhè ge wǎng zhàn pái míng hěn gāo。",
       "meaningVi": "Website này có xếp hạng rất cao.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "排名",
       "chinese": "根据成绩排名。",
-      "pinyin": "",
+      "pinyin": "gēn jù chéng jì pái míng。",
       "meaningVi": "Xếp hạng dựa trên thành tích.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 排名",
-      "syntax": "danh từ / động từ",
-      "matchedExample": "Thường dùng trong thi đấu, bảng xếp hạng, tìm kiếm, thương mại điện tử. '排名' vs '列名' (liệt kê).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 排名",
+      "partOfSpeech": "danh từ / động từ",
+      "usageNoteVi": "Thường dùng trong thi đấu, bảng xếp hạng, tìm kiếm, thương mại điện tử. '排名' vs '列名' (liệt kê).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -119,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 21,
+      "sectionId": "new_hsk__3__topic__21__phan-bo",
+      "sectionSlug": "phan-bo",
       "sectionTitle": "Phân bổ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/phan-bo/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/phan-bo/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -134,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:时间",
   "type": "word",
   "word": "时间",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "shí jiān",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thời gian",
+      "meaningShortVi": "thời gian",
+      "meaningFullVi": "thời gian",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thời gian",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Danh từ chỉ thời gian trôi hoặc khoảng thời gian. Rất phổ biến trong giao tiếp hàng ngày."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 时 (thời điểm, giờ) + 间 (khoảng, khoảng giữa) = khoảng thời gian."
   ],
   "hsk": {
     "levels": [
@@ -56,27 +53,34 @@
         "text": "很多时间",
         "pinyin": "hěnduō shíjiān",
         "meaningVi": "nhiều thời gian",
+        "meaningFullVi": "nhiều thời gian",
         "target": "时间",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "没有时间",
         "pinyin": "méiyǒu shíjiān",
         "meaningVi": "không có thời gian",
+        "meaningFullVi": "không có thời gian",
         "target": "时间",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "浪费时间",
         "pinyin": "làngfèi shíjiān",
         "meaningVi": "lãng phí thời gian",
+        "meaningFullVi": "lãng phí thời gian",
         "target": "时间",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -86,7 +90,8 @@
       "meaningVi": "Tôi không có thời gian",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "时间",
@@ -95,7 +100,8 @@
       "meaningVi": "Thời gian trôi rất nhanh",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "时间",
@@ -104,23 +110,17 @@
       "meaningVi": "Chúng ta đã mất rất nhiều thời gian",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 时间",
-      "syntax": "compound-semantic",
-      "matchedExample": "Danh từ chỉ thời gian trôi hoặc khoảng thời gian. Rất phổ biến trong giao tiếp hàng ngày.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 时 (thời điểm, giờ) + 间 (khoảng, khoảng giữa) = khoảng thời gian.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 时间",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Danh từ chỉ thời gian trôi hoặc khoảng thời gian. Rất phổ biến trong giao tiếp hàng ngày.",
+      "explanationVi": "Ghép nghĩa: 时 (thời điểm, giờ) + 间 (khoảng, khoảng giữa) = khoảng thời gian.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -131,31 +131,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 15,
+      "sectionId": "new_hsk__1__lesson__15__bai-15-see-you-at-daxing-airport",
+      "sectionSlug": "bai-15-see-you-at-daxing-airport",
       "sectionTitle": "Hẹn gặp ở sân bay Đại Hưng!",
       "sectionTitleZh": "大兴机场见！",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-15-see-you-at-daxing-airport/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-15-see-you-at-daxing-airport/",
+      "orderInSection": 13
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__1__topic__14__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian/",
+      "orderInSection": 12
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 2,
+      "sectionId": "hsk__2__lesson__2__bai-2-toi-day-luc-6-gio-moi-ngay",
+      "sectionSlug": "bai-2-toi-day-luc-6-gio-moi-ngay",
       "sectionTitle": "Tôi dậy lúc 6 giờ mỗi ngày",
       "sectionTitleZh": "我每天六点起床",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-2-toi-day-luc-6-gio-moi-ngay/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-2-toi-day-luc-6-gio-moi-ngay/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -176,7 +191,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

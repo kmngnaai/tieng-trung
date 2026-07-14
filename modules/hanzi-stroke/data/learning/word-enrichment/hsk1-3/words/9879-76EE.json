@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:项目",
   "type": "word",
   "word": "项目",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xiàng mù",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "dự án, hạng mục, mục",
+      "meaningShortVi": "dự án",
+      "meaningFullVi": "dự án, hạng mục, mục",
       "partOfSpeech": "danh từ (noun)",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "dự án",
   "wordType": "danh từ (noun)",
   "wordTypes": [
     "danh từ (noun)"
   ],
-  "usageNotes": [
-    "项 (hạng) nghĩa là hạng mục; 目 (mục) nghĩa là mục. 项目 là một công việc có kế hoạch, mục tiêu và thời hạn thực hiện."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,27 +48,34 @@
         "text": "新项目",
         "pinyin": "xīn xiàngmù",
         "meaningVi": "dự án mới",
+        "meaningFullVi": "dự án mới",
         "target": "项目",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "工程项目",
         "pinyin": "gōngchéng xiàngmù",
         "meaningVi": "dự án công trình",
+        "meaningFullVi": "dự án công trình",
         "target": "项目",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "投资项目",
         "pinyin": "tóuzī xiàngmù",
         "meaningVi": "dự án đầu tư",
+        "meaningFullVi": "dự án đầu tư",
         "target": "项目",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +85,8 @@
       "meaningVi": "Chúng tôi đang làm một dự án mới.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "项目",
@@ -88,7 +95,8 @@
       "meaningVi": "Dự án này rất quan trọng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "项目",
@@ -97,16 +105,17 @@
       "meaningVi": "Dự án đã hoàn thành.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 项目",
-      "syntax": "danh từ (noun)",
-      "matchedExample": "项 (hạng) nghĩa là hạng mục; 目 (mục) nghĩa là mục. 项目 là một công việc có kế hoạch, mục tiêu và thời hạn thực hiện.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 项目",
+      "partOfSpeech": "danh từ (noun)",
+      "usageNoteVi": "项 (hạng) nghĩa là hạng mục; 目 (mục) nghĩa là mục. 项目 là một công việc có kế hoạch, mục tiêu và thời hạn thực hiện.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -121,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

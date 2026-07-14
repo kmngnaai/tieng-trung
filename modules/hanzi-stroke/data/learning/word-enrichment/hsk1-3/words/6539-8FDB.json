@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:改进",
   "type": "word",
   "word": "改进",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gǎi jìn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cải tiến; sửa đổi để tốt hơn, tiến bộ hơn",
+      "meaningShortVi": "cải tiến",
+      "meaningFullVi": "cải tiến; sửa đổi để tốt hơn, tiến bộ hơn",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cải tiến",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Đối với 改善, 改进 nhấn mạnh 'tiến bộ, bước đi lên' hơn là 'làm cho tốt lên'. Thường đi kèm với 方法, 技术, 工作. Từ liên quan: 提高 'nâng cao', 改善 'cải thiện', 完善 'hoàn thiện'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "改进工作",
         "pinyin": "gǎijìn gōngzuò",
         "meaningVi": "cải tiến công việc",
+        "meaningFullVi": "cải tiến công việc",
         "target": "改进",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "改进技术",
         "pinyin": "gǎijìn jìshù",
         "meaningVi": "cải tiến kỹ thuật",
+        "meaningFullVi": "cải tiến kỹ thuật",
         "target": "改进",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Chúng ta cần cải tiến phương pháp học tập.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "改进",
@@ -82,16 +87,17 @@
       "meaningVi": "Sản phẩm này đã được cải tiến rất nhiều.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 改进",
-      "syntax": "động từ",
-      "matchedExample": "Đối với 改善, 改进 nhấn mạnh 'tiến bộ, bước đi lên' hơn là 'làm cho tốt lên'. Thường đi kèm với 方法, 技术, 工作. Từ liên quan: 提高 'nâng cao', 改善 'cải thiện', 完善 'hoàn thiện'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 改进",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Đối với 改善, 改进 nhấn mạnh 'tiến bộ, bước đi lên' hơn là 'làm cho tốt lên'. Thường đi kèm với 方法, 技术, 工作. Từ liên quan: 提高 'nâng cao', 改善 'cải thiện', 完善 'hoàn thiện'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__topic__17__nhung-thay-doi",
+      "sectionSlug": "nhung-thay-doi",
       "sectionTitle": "Những thay đổi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/",
+      "orderInSection": 29
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

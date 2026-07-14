@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:现实",
   "type": "word",
   "word": "现实",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xiàn shí",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thực tế",
+      "meaningShortVi": "thực tế",
+      "meaningFullVi": "thực tế",
       "partOfSpeech": "danh từ / tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thực tế",
   "wordType": "danh từ / tính từ",
   "wordTypes": [
     "danh từ / tính từ"
   ],
-  "usageNotes": [
-    "指客观存在的事物或情况。可作名词（现实情况）或形容词（实际的、可行的）。现实 vs. 理想：一对反义词。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "面对现实",
-        "pinyin": "",
+        "pinyin": "miàn duì xiàn shí",
         "meaningVi": "đối mặt với thực tế",
+        "meaningFullVi": "đối mặt với thực tế",
         "target": "现实",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "现实生活",
-        "pinyin": "",
+        "pinyin": "xiàn shí shēng huó",
         "meaningVi": "cuộc sống thực tế",
+        "meaningFullVi": "cuộc sống thực tế",
         "target": "现实",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "现实",
       "chinese": "我们要面对现实。",
-      "pinyin": "",
+      "pinyin": "wǒ men yào miàn duì xiàn shí。",
       "meaningVi": "Chúng ta phải đối mặt với thực tế.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "现实",
       "chinese": "这个计划不现实。",
-      "pinyin": "",
+      "pinyin": "zhè ge jì huà bù xiàn shí。",
       "meaningVi": "Kế hoạch này không thực tế.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 现实",
-      "syntax": "danh từ / tính từ",
-      "matchedExample": "指客观存在的事物或情况。可作名词（现实情况）或形容词（实际的、可行的）。现实 vs. 理想：一对反义词。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 现实",
+      "partOfSpeech": "danh từ / tính từ",
+      "usageNoteVi": "指客观存在的事物或情况。可作名词（现实情况）或形容词（实际的、可行的）。现实 vs. 理想：一对反义词。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__3__topic__18__thong-tin-va-phuong-tien",
+      "sectionSlug": "thong-tin-va-phuong-tien",
       "sectionTitle": "Thông tin và phương tiện",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

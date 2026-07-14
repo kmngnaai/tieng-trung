@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:关于",
   "type": "word",
   "word": "关于",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "guān yú",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "về, liên quan đến",
+      "meaningShortVi": "về",
+      "meaningFullVi": "về, liên quan đến",
       "partOfSpeech": "giới từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "về",
   "wordType": "giới từ",
   "wordTypes": [
     "giới từ"
   ],
-  "usageNotes": [
-    "Dùng để giới thiệu chủ đề hoặc đối tượng được đề cập đến. Thường đi trước danh từ hoặc đứng đầu câu để chuyển chủ đề."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,20 +50,25 @@
       {
         "text": "关于...的",
         "pinyin": "guānyú...de",
-        "meaningVi": "liên quan đến...",
+        "meaningVi": "liên quan đến",
+        "meaningFullVi": "liên quan đến...",
         "target": "关于",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "关于这件事",
         "pinyin": "guānyú zhè jiàn shì",
         "meaningVi": "về việc này",
+        "meaningFullVi": "về việc này",
         "target": "关于",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Về vấn đề này, chúng ta hãy thảo luận thêm nhé.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "关于",
@@ -83,16 +88,17 @@
       "meaningVi": "Tôi đã đọc một cuốn sách về lịch sử.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 关于",
-      "syntax": "giới từ",
-      "matchedExample": "Dùng để giới thiệu chủ đề hoặc đối tượng được đề cập đến. Thường đi trước danh từ hoặc đứng đầu câu để chuyển chủ đề.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 关于",
+      "partOfSpeech": "giới từ",
+      "usageNoteVi": "Dùng để giới thiệu chủ đề hoặc đối tượng được đề cập đến. Thường đi trước danh từ hoặc đứng đầu câu để chuyển chủ đề.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,21 +109,31 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 18,
+      "sectionId": "hsk__3__lesson__18__bai-18-toi-tin-ho-se-dong-y",
+      "sectionSlug": "bai-18-toi-tin-ho-se-dong-y",
       "sectionTitle": "Tôi tin họ sẽ đồng ý.",
       "sectionTitleZh": "我相信他们会同意的",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-18-toi-tin-ho-se-dong-y/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-18-toi-tin-ho-se-dong-y/",
+      "orderInSection": 10
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__lesson__16__bai-16-i-heard-that-some-pandas-have-gone-abroad",
+      "sectionSlug": "bai-16-i-heard-that-some-pandas-have-gone-abroad",
       "sectionTitle": "Tôi nghe nói có vài con gấu trúc đã ra nước ngoài",
       "sectionTitleZh": "我听说有的熊猫出国了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-16-i-heard-that-some-pandas-have-gone-abroad/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-16-i-heard-that-some-pandas-have-gone-abroad/",
+      "orderInSection": 18
     }
   ],
   "sources": [
@@ -128,7 +144,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

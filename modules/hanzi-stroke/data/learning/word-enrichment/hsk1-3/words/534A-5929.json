@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:半天",
   "type": "word",
   "word": "半天",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "bàn tiān",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "một thời gian dài (nghĩa bóng), nửa ngày (nghĩa đen)",
+      "meaningShortVi": "một thời gian dài (nghĩa bóng)",
+      "meaningFullVi": "một thời gian dài (nghĩa bóng), nửa ngày (nghĩa đen)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "một thời gian dài (nghĩa bóng)",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Trong văn nói, '半天' thường dùng chỉ một khoảng thời gian dài theo cảm giác, không thực sự là nửa ngày. Diễn tả sự số ruột hoặc cảm giác thời gian trôi lâu."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 半 (một nửa) + 天 (ngày). Nghĩa đen là nửa ngày, nhưng trong văn nói thường dùng để chỉ một thời gian dài dài đằng đẵng."
   ],
   "hsk": {
     "levels": [
@@ -53,20 +50,25 @@
       {
         "text": "等了半天",
         "pinyin": "děng le bàntiān",
-        "meaningVi": "đợi mãi/đợi lâu",
+        "meaningVi": "đợi mãi",
+        "meaningFullVi": "đợi mãi/đợi lâu",
         "target": "半天",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "想了半天",
         "pinyin": "xiǎng le bàntiān",
         "meaningVi": "nghĩ mãi",
+        "meaningFullVi": "nghĩ mãi",
         "target": "半天",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -76,7 +78,8 @@
       "meaningVi": "Tôi đợi anh ấy một hồi lâu",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "半天",
@@ -85,7 +88,8 @@
       "meaningVi": "Bạn nghĩ mãi cũng không nghĩ ra",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "半天",
@@ -94,7 +98,8 @@
       "meaningVi": "Anh ấy im lặng một hồi lâu",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "半天",
@@ -103,7 +108,8 @@
       "meaningVi": "Mất nửa ngày mới hoàn thành",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "半天",
@@ -112,23 +118,17 @@
       "meaningVi": "Nửa ngày không thấy bóng người",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 半天",
-      "syntax": "compound-semantic",
-      "matchedExample": "Trong văn nói, '半天' thường dùng chỉ một khoảng thời gian dài theo cảm giác, không thực sự là nửa ngày. Diễn tả sự số ruột hoặc cảm giác thời gian trôi lâu.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 半 (một nửa) + 天 (ngày). Nghĩa đen là nửa ngày, nhưng trong văn nói thường dùng để chỉ một thời gian dài dài đằng đẵng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 半天",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Trong văn nói, '半天' thường dùng chỉ một khoảng thời gian dài theo cảm giác, không thực sự là nửa ngày. Diễn tả sự số ruột hoặc cảm giác thời gian trôi lâu.",
+      "explanationVi": "Ghép nghĩa: 半 (một nửa) + 天 (ngày). Nghĩa đen là nửa ngày, nhưng trong văn nói thường dùng để chỉ một thời gian dài dài đằng đẵng.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,21 +139,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__1__topic__14__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian/",
+      "orderInSection": 1
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__lesson__16__bai-16-i-heard-that-some-pandas-have-gone-abroad",
+      "sectionSlug": "bai-16-i-heard-that-some-pandas-have-gone-abroad",
       "sectionTitle": "Tôi nghe nói có vài con gấu trúc đã ra nước ngoài",
       "sectionTitleZh": "我听说有的熊猫出国了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-16-i-heard-that-some-pandas-have-gone-abroad/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-16-i-heard-that-some-pandas-have-gone-abroad/",
+      "orderInSection": 23
     }
   ],
   "sources": [
@@ -169,7 +179,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

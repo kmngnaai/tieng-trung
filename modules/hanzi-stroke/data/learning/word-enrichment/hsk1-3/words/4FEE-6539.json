@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:修改",
   "type": "word",
   "word": "修改",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xiū gǎi",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sửa đổi, hiệu đính; thay đổi nội dung, hình thức hoặc chi tiết của một văn bản, kế hoạch hoặc vật thể",
+      "meaningShortVi": "sửa đổi",
+      "meaningFullVi": "sửa đổi, hiệu đính; thay đổi nội dung, hình thức hoặc chi tiết của một văn bản, kế hoạch hoặc vật thể",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sửa đổi",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Thường dùng cho văn bản, kế hoạch, ý kiến. Trong văn soạn thảo, 修改 có thể dùng cho cả sửa lỗi và cải thiện nội dung. Từ liên quan: 修订 'biên tập, sửa lại', 改进 'cải tiến', 调整 'điều chỉnh'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "修改文章",
         "pinyin": "xiūgǎi wénzhāng",
         "meaningVi": "sửa bài viết",
+        "meaningFullVi": "sửa bài viết",
         "target": "修改",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "修改意见",
         "pinyin": "xiūgǎi yìjiàn",
         "meaningVi": "ý kiến sửa đổi",
+        "meaningFullVi": "ý kiến sửa đổi",
         "target": "修改",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Giáo viên bảo tôi sửa bài viết này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "修改",
@@ -82,16 +87,17 @@
       "meaningVi": "Chúng ta cần sửa đổi kế hoạch.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 修改",
-      "syntax": "động từ",
-      "matchedExample": "Thường dùng cho văn bản, kế hoạch, ý kiến. Trong văn soạn thảo, 修改 có thể dùng cho cả sửa lỗi và cải thiện nội dung. Từ liên quan: 修订 'biên tập, sửa lại', 改进 'cải tiến', 调整 'điều chỉnh'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 修改",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Thường dùng cho văn bản, kế hoạch, ý kiến. Trong văn soạn thảo, 修改 có thể dùng cho cả sửa lỗi và cải thiện nội dung. Từ liên quan: 修订 'biên tập, sửa lại', 改进 'cải tiến', 调整 'điều chỉnh'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__topic__17__nhung-thay-doi",
+      "sectionSlug": "nhung-thay-doi",
       "sectionTitle": "Những thay đổi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/",
+      "orderInSection": 28
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

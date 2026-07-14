@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:衣服",
   "type": "word",
   "word": "衣服",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "yī fu",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "quần áo",
+      "meaningShortVi": "quần áo",
+      "meaningFullVi": "quần áo",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "quần áo",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Từ phổ biến chỉ quần áo nói chung. Có thể rút ngắn thành '衣服' hoặc phân biệt '上衣' (áo) và '裤子' (quần)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 衣 (áo, cái áo mặc bên trên) + 服 (quần áo, đồ mặc). Nghĩa tổng quát chỉ quần áo nói chung."
   ],
   "hsk": {
     "levels": [
@@ -55,35 +52,44 @@
         "text": "新衣服",
         "pinyin": "xīn yī fu",
         "meaningVi": "quần áo mới",
+        "meaningFullVi": "quần áo mới",
         "target": "衣服",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "干净衣服",
         "pinyin": "gān jìng yī fu",
         "meaningVi": "quần áo sạch",
+        "meaningFullVi": "quần áo sạch",
         "target": "衣服",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "洗衣服",
         "pinyin": "xǐ yī fu",
         "meaningVi": "giặt quần áo",
+        "meaningFullVi": "giặt quần áo",
         "target": "衣服",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "穿衣服",
         "pinyin": "chuān yī fu",
         "meaningVi": "mặc quần áo",
+        "meaningFullVi": "mặc quần áo",
         "target": "衣服",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -93,7 +99,8 @@
       "meaningVi": "Tôi mua được rất nhiều quần áo mới",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "衣服",
@@ -102,7 +109,8 @@
       "meaningVi": "Làm ơn thay quần áo sạch",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "衣服",
@@ -111,7 +119,8 @@
       "meaningVi": "Cô ấy thích quần áo đẹp",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "衣服",
@@ -120,23 +129,17 @@
       "meaningVi": "Mặc quần áo cần chú ý hoàn cảnh",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 衣服",
-      "syntax": "compound-semantic",
-      "matchedExample": "Từ phổ biến chỉ quần áo nói chung. Có thể rút ngắn thành '衣服' hoặc phân biệt '上衣' (áo) và '裤子' (quần).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 衣 (áo, cái áo mặc bên trên) + 服 (quần áo, đồ mặc). Nghĩa tổng quát chỉ quần áo nói chung.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 衣服",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Từ phổ biến chỉ quần áo nói chung. Có thể rút ngắn thành '衣服' hoặc phân biệt '上衣' (áo) và '裤子' (quần).",
+      "explanationVi": "Ghép nghĩa: 衣 (áo, cái áo mặc bên trên) + 服 (quần áo, đồ mặc). Nghĩa tổng quát chỉ quần áo nói chung.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -147,31 +150,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 14,
+      "sectionId": "hsk__1__lesson__14__bai-14-co-ay-da-mua-kha-nhieu-quan-ao",
+      "sectionSlug": "bai-14-co-ay-da-mua-kha-nhieu-quan-ao",
       "sectionTitle": "Cô ấy đã mua khá nhiều quần áo",
       "sectionTitleZh": "她买了不少衣服",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-14-co-ay-da-mua-kha-nhieu-quan-ao/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-14-co-ay-da-mua-kha-nhieu-quan-ao/",
+      "orderInSection": 12
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__1__lesson__10__bai-10-the-apples-here-are-really-affordable",
+      "sectionSlug": "bai-10-the-apples-here-are-really-affordable",
       "sectionTitle": "Táo ở đây rẻ thật!",
       "sectionTitleZh": "这儿的苹果真便宜！",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-10-the-apples-here-are-really-affordable/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-10-the-apples-here-are-really-affordable/",
+      "orderInSection": 19
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 23,
+      "sectionId": "new_hsk__1__topic__23__danh-tu",
+      "sectionSlug": "danh-tu",
       "sectionTitle": "Danh từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/danh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/danh-tu/",
+      "orderInSection": 26
     }
   ],
   "sources": [
@@ -187,7 +205,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

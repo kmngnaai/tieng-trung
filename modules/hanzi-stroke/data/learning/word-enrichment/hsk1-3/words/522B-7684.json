@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:别的",
   "type": "word",
   "word": "别的",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "bié de",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "khác",
+      "meaningShortVi": "khác",
+      "meaningFullVi": "khác",
       "partOfSpeech": "other",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "khác",
   "wordType": "other",
   "wordTypes": [
     "other"
   ],
-  "usageNotes": [
-    "别的 dùng để chỉ người hoặc vật khác."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -52,19 +51,24 @@
         "text": "别的东西",
         "pinyin": "bié de dōngxi",
         "meaningVi": "đồ khác",
+        "meaningFullVi": "đồ khác",
         "target": "别的",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "别的人",
         "pinyin": "bié de rén",
         "meaningVi": "người khác",
+        "meaningFullVi": "người khác",
         "target": "别的",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Bạn có câu hỏi khác không?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "别的",
@@ -83,7 +88,8 @@
       "meaningVi": "Ngày mai chúng tôi gặp ở nơi khác.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "别的",
@@ -92,16 +98,17 @@
       "meaningVi": "Tôi muốn màu khác.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 别的",
-      "syntax": "other",
-      "matchedExample": "别的 dùng để chỉ người hoặc vật khác.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 别的",
+      "partOfSpeech": "other",
+      "usageNoteVi": "别的 dùng để chỉ người hoặc vật khác.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -112,21 +119,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__1__topic__10__dai-tu",
+      "sectionSlug": "dai-tu",
       "sectionTitle": "Đại từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dai-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dai-tu/",
+      "orderInSection": 25
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__3__lesson__4__bai-4-this-hotel-is-unlike-any-other",
+      "sectionSlug": "bai-4-this-hotel-is-unlike-any-other",
       "sectionTitle": "Khách sạn này khác hẳn những nơi khác",
       "sectionTitleZh": "这家宾馆跟别的都不一样",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-4-this-hotel-is-unlike-any-other/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-4-this-hotel-is-unlike-any-other/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -142,7 +159,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

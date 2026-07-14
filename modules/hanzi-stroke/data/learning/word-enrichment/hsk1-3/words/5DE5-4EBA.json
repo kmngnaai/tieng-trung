@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:工人",
   "type": "word",
   "word": "工人",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gōng rén",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "công nhân (người làm công)",
+      "meaningShortVi": "công nhân (người làm công)",
+      "meaningFullVi": "công nhân (người làm công)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "công nhân (người làm công)",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "'工人' chỉ người lao động trong sản xuất công nghiệp. Khác với '员工' (nhân viên nói chung) hoặc '职员' (nhân viên văn phòng)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -51,27 +50,34 @@
         "text": "建筑工人",
         "pinyin": "jiànzhù gōngrén",
         "meaningVi": "công nhân xây dựng",
+        "meaningFullVi": "công nhân xây dựng",
         "target": "工人",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "工厂工人",
         "pinyin": "gōngchǎng gōngrén",
         "meaningVi": "công nhân nhà máy",
+        "meaningFullVi": "công nhân nhà máy",
         "target": "工人",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "技术工人",
         "pinyin": "jìshù gōngrén",
         "meaningVi": "công nhân kỹ thuật",
+        "meaningFullVi": "công nhân kỹ thuật",
         "target": "工人",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +87,8 @@
       "meaningVi": "Anh ấy là công nhân nhà máy",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "工人",
@@ -90,7 +97,8 @@
       "meaningVi": "Những công nhân đang làm việc",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "工人",
@@ -99,7 +107,8 @@
       "meaningVi": "Làm công nhân rất vất vả",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "工人",
@@ -108,7 +117,8 @@
       "meaningVi": "Công nhân xây dựng rất nhiều",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "工人",
@@ -117,16 +127,17 @@
       "meaningVi": "Giai cấp công nhân",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 工人",
-      "syntax": "compound-semantic",
-      "matchedExample": "'工人' chỉ người lao động trong sản xuất công nghiệp. Khác với '员工' (nhân viên nói chung) hoặc '职员' (nhân viên văn phòng).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 工人",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "'工人' chỉ người lao động trong sản xuất công nghiệp. Khác với '员工' (nhân viên nói chung) hoặc '职员' (nhân viên văn phòng).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -137,11 +148,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 24,
+      "sectionId": "new_hsk__1__topic__24__nhung-nguoi",
+      "sectionSlug": "nhung-nguoi",
       "sectionTitle": "Những người",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nhung-nguoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nhung-nguoi/",
+      "orderInSection": 6
     }
   ],
   "sources": [
@@ -152,7 +168,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

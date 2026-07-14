@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:维生素",
   "type": "word",
   "word": "维生素",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "wéi shēng sù",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Duy sinh tố — vitamin; chất dinh dưỡng thiết yếu cho cơ thể.",
+      "meaningShortVi": "Duy sinh tố — vitamin",
+      "meaningFullVi": "Duy sinh tố — vitamin; chất dinh dưỡng thiết yếu cho cơ thể.",
       "partOfSpeech": "loanword",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Duy sinh tố — vitamin",
   "wordType": "loanword",
   "wordTypes": [
     "loanword"
   ],
-  "usageNotes": [
-    "Từ mượn từ tiếng Tây, chỉ nhóm dưỡng chất thiết yếu cho sức khỏe."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -46,24 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "维生素C",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "维生素",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "维生素补充剂",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "维生素",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +56,8 @@
       "meaningVi": "Rau củ giàu vitamin.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "维生素",
@@ -82,7 +66,8 @@
       "meaningVi": "Mỗi ngày cần ăn đủ vitamin.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "维生素",
@@ -91,16 +76,17 @@
       "meaningVi": "Vitamin C rất quan trọng cho sức khỏe.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 维生素",
-      "syntax": "loanword",
-      "matchedExample": "Từ mượn từ tiếng Tây, chỉ nhóm dưỡng chất thiết yếu cho sức khỏe.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 维生素",
+      "partOfSpeech": "loanword",
+      "usageNoteVi": "Từ mượn từ tiếng Tây, chỉ nhóm dưỡng chất thiết yếu cho sức khỏe.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -120,7 +106,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

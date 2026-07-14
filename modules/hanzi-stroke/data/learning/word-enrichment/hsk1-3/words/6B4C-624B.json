@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:歌手",
   "type": "word",
   "word": "歌手",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gē shǒu",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Ca sĩ",
+      "meaningShortVi": "Ca sĩ",
+      "meaningFullVi": "Ca sĩ",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Ca sĩ",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "歌手 là người chuyên nghiệp hát nhạc. Trong giao tiếp, người ta thường gọi 'singer' hoặc 'ca sĩ'. Lưu ý: 歌手 khác với 歌星 (ngôi sao nhạc) — 歌星 là ca sĩ rất nổi tiếng. 还有一个词是 唱歌的人 (người hát), nhưng这个 là cách nói bình dân."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "流行歌手",
         "pinyin": "liúxíng gēshǒu",
         "meaningVi": "ca sĩ pop",
+        "meaningFullVi": "ca sĩ pop",
         "target": "歌手",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "著名歌手",
         "pinyin": "zhùmíng gēshǒu",
         "meaningVi": "ca sĩ nổi tiếng",
+        "meaningFullVi": "ca sĩ nổi tiếng",
         "target": "歌手",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Cô ấy là ca sĩ tôi thích nhất.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "歌手",
@@ -82,16 +87,17 @@
       "meaningVi": "Nhiều người trẻ đều muốn trở thành ca sĩ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 歌手",
-      "syntax": "danh từ",
-      "matchedExample": "歌手 là người chuyên nghiệp hát nhạc. Trong giao tiếp, người ta thường gọi 'singer' hoặc 'ca sĩ'. Lưu ý: 歌手 khác với 歌星 (ngôi sao nhạc) — 歌星 là ca sĩ rất nổi tiếng. 还有一个词是 唱歌的人 (người hát), nhưng这个 là cách nói bình dân.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 歌手",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "歌手 là người chuyên nghiệp hát nhạc. Trong giao tiếp, người ta thường gọi 'singer' hoặc 'ca sĩ'. Lưu ý: 歌手 khác với 歌星 (ngôi sao nhạc) — 歌星 là ca sĩ rất nổi tiếng. 还有一个词是 唱歌的人 (người hát), nhưng这个 là cách nói bình dân.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__3__topic__11__giai-tri-ii",
+      "sectionSlug": "giai-tri-ii",
       "sectionTitle": "Giải trí II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-ii/",
+      "orderInSection": 19
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

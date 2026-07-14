@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:春节",
   "type": "word",
   "word": "春节",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "Chūn jié",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Tết Nguyên Đán",
+      "meaningShortVi": "Tết Nguyên Đán",
+      "meaningFullVi": "Tết Nguyên Đán",
       "partOfSpeech": "noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Tết Nguyên Đán",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -48,52 +49,68 @@
     "collocations": [
       {
         "text": "春节联欢晚会",
-        "pinyin": "",
+        "pinyin": "Chūn jié lián huān wǎn huì",
         "meaningVi": "đại hội xuân",
+        "meaningFullVi": "đại hội xuân",
         "target": "春节",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "过春节",
-        "pinyin": "",
+        "pinyin": "guò Chūn jié",
         "meaningVi": "đón Tết",
+        "meaningFullVi": "đón Tết",
         "target": "春节",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "春节",
       "chinese": "春节快乐",
-      "pinyin": "",
+      "pinyin": "Chūn jié kuài lè",
       "meaningVi": "Chúc mừng năm mới",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "春节",
       "chinese": "春节我们回家",
-      "pinyin": "",
+      "pinyin": "Chūn jié wǒ men huí jiā",
       "meaningVi": "Tết chúng tôi về nhà",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "春节",
       "chinese": "春节有很多活动",
-      "pinyin": "",
+      "pinyin": "Chūn jié yǒu hěn duō huó dòng",
       "meaningVi": "Tết có nhiều hoạt động",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 春节",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/春节.mp3"
   ],
@@ -102,11 +119,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__2__topic__12__giai-tri",
+      "sectionSlug": "giai-tri",
       "sectionTitle": "Giải trí",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -122,7 +144,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

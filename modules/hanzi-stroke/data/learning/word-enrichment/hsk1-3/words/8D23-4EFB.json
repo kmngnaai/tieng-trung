@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:责任",
   "type": "word",
   "word": "责任",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zé rèn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Trách nhiệm, nghĩa vụ",
+      "meaningShortVi": "Trách nhiệm",
+      "meaningFullVi": "Trách nhiệm, nghĩa vụ",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Trách nhiệm",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "责任 là nghĩa vụ hoặc trách nhiệm phải làm gì đó. Trong giao tiếp, người ta thường说 '有责任' (có trách nhiệm) 或 '负责任' (chịu trách nhiệm). Lưu ý: 责任 还 có nghĩa 'trách nhiệm pháp lý' như 在法律上他要承担责任 (về pháp lý anh ấy phải chịu trách nhiệm)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "负责任",
         "pinyin": "fù zérèn",
         "meaningVi": "có trách nhiệm",
+        "meaningFullVi": "có trách nhiệm",
         "target": "责任",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "责任感",
         "pinyin": "zérèngǎn",
         "meaningVi": "cảm giác trách nhiệm",
+        "meaningFullVi": "cảm giác trách nhiệm",
         "target": "责任",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Mỗi người đều có trách nhiệm của mình.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "责任",
@@ -82,16 +87,17 @@
       "meaningVi": "Anh ấy có trách nhiệm về lỗi này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 责任",
-      "syntax": "danh từ",
-      "matchedExample": "责任 là nghĩa vụ hoặc trách nhiệm phải làm gì đó. Trong giao tiếp, người ta thường说 '有责任' (có trách nhiệm) 或 '负责任' (chịu trách nhiệm). Lưu ý: 责任 还 có nghĩa 'trách nhiệm pháp lý' như 在法律上他要承担责任 (về pháp lý anh ấy phải chịu trách nhiệm).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 责任",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "责任 là nghĩa vụ hoặc trách nhiệm phải làm gì đó. Trong giao tiếp, người ta thường说 '有责任' (có trách nhiệm) 或 '负责任' (chịu trách nhiệm). Lưu ý: 责任 还 có nghĩa 'trách nhiệm pháp lý' như 在法律上他要承担责任 (về pháp lý anh ấy phải chịu trách nhiệm).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__3__topic__13__cong-viec-ii",
+      "sectionSlug": "cong-viec-ii",
       "sectionTitle": "Công việc II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cong-viec-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cong-viec-ii/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

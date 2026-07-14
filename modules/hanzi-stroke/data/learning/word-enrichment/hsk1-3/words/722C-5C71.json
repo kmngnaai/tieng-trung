@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:爬山",
   "type": "word",
   "word": "爬山",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "pá shān",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "leo núi",
+      "meaningShortVi": "leo núi",
+      "meaningFullVi": "leo núi",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "leo núi",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -48,44 +49,49 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "爬高山",
-        "pinyin": "",
-        "meaningVi": "leo núi cao",
-        "target": "爬山",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "爬山活动",
-        "pinyin": "",
+        "pinyin": "pá shān huó dòng",
         "meaningVi": "hoạt động leo núi",
+        "meaningFullVi": "hoạt động leo núi",
         "target": "爬山",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "爬山",
       "chinese": "我们周末去爬山",
-      "pinyin": "",
+      "pinyin": "wǒ men zhōu mò qù pá shān",
       "meaningVi": "Cuối tuần chúng tôi đi leo núi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "爬山",
       "chinese": "爬山很累",
-      "pinyin": "",
+      "pinyin": "pá shān hěn lèi",
       "meaningVi": "Leo núi rất mệt",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 爬山",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/爬山.mp3"
   ],
@@ -94,21 +100,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__2__topic__12__giai-tri",
+      "sectionSlug": "giai-tri",
       "sectionTitle": "Giải trí",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/",
+      "orderInSection": 27
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 3,
+      "sectionId": "hsk__3__lesson__3__bai-3-tren-ban-de-nhieu-do-uong",
+      "sectionSlug": "bai-3-tren-ban-de-nhieu-do-uong",
       "sectionTitle": "Trên bàn để nhiều đồ uống.",
       "sectionTitleZh": "桌子上放着很多饮料",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-3-tren-ban-de-nhieu-do-uong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-3-tren-ban-de-nhieu-do-uong/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -124,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

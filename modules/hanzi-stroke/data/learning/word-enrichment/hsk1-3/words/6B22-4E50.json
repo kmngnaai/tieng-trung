@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:欢乐",
   "type": "word",
   "word": "欢乐",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "huān lè",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Vui vẻ",
+      "meaningShortVi": "Vui vẻ",
+      "meaningFullVi": "Vui vẻ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Vui vẻ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "欢乐 là tính từ chỉ sự vui vẻ, phấn khởi. 欢 (hoan) nghĩa là vui mừng; 乐 (lạc) nghĩa là vui sướng. Ghép lại tạo thành từ chỉ niềm vui mạnh mẽ, thường dùng trong bối cảnh lễ hội, tụ tập."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,40 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "欢乐的笑声",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "欢乐",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "充满欢乐",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "欢乐",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "欢乐时光",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "欢乐",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "一片欢乐",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "欢乐",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -89,7 +56,8 @@
       "meaningVi": "Tết Nguyên Đán là một ngày lễ vui vẻ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "欢乐",
@@ -98,7 +66,8 @@
       "meaningVi": "Những đứa trẻ vui vẻ chơi đùa.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "欢乐",
@@ -107,16 +76,17 @@
       "meaningVi": "Chúc năm mới vui vẻ!",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 欢乐",
-      "syntax": "compound-semantic",
-      "matchedExample": "欢乐 là tính từ chỉ sự vui vẻ, phấn khởi. 欢 (hoan) nghĩa là vui mừng; 乐 (lạc) nghĩa là vui sướng. Ghép lại tạo thành từ chỉ niềm vui mạnh mẽ, thường dùng trong bối cảnh lễ hội, tụ tập.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 欢乐",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "欢乐 là tính từ chỉ sự vui vẻ, phấn khởi. 欢 (hoan) nghĩa là vui mừng; 乐 (lạc) nghĩa là vui sướng. Ghép lại tạo thành từ chỉ niềm vui mạnh mẽ, thường dùng trong bối cảnh lễ hội, tụ tập.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -127,11 +97,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__3__topic__8__nhung-cam-xuc-va-cam-giac",
+      "sectionSlug": "nhung-cam-xuc-va-cam-giac",
       "sectionTitle": "Những cảm xúc và cảm giác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-cam-xuc-va-cam-giac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-cam-xuc-va-cam-giac/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -142,7 +117,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

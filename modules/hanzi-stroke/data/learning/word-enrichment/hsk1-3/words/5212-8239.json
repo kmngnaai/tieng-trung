@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:划船",
   "type": "word",
   "word": "划船",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "huá chuán",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chèo thuyền",
+      "meaningShortVi": "chèo thuyền",
+      "meaningFullVi": "chèo thuyền",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chèo thuyền",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "划 (huá - chèo) 读 第二声. 注意区别 计划 (jìhuà - kế hoạch) 中 划 读 第四声 (huà). 划船 强调 động tác chèo. 坐船 (zuòchuán) = đi thuyền (làm hành khách)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "划船比赛",
         "pinyin": "huáchuán bǐsài",
         "meaningVi": "đua thuyền",
+        "meaningFullVi": "đua thuyền",
         "target": "划船",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "划船运动",
         "pinyin": "huáchuán yùndòng",
         "meaningVi": "môn thể thao chèo thuyền",
+        "meaningFullVi": "môn thể thao chèo thuyền",
         "target": "划船",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Chúng tôi chèo thuyền trên hồ chơi rất vui.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "划船",
@@ -82,16 +87,17 @@
       "meaningVi": "Anh ấy mỗi sáng đều ra sông chèo thuyền.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 划船",
-      "syntax": "động từ",
-      "matchedExample": "划 (huá - chèo) 读 第二声. 注意区别 计划 (jìhuà - kế hoạch) 中 划 读 第四声 (huà). 划船 强调 động tác chèo. 坐船 (zuòchuán) = đi thuyền (làm hành khách).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 划船",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "划 (huá - chèo) 读 第二声. 注意区别 计划 (jìhuà - kế hoạch) 中 划 读 第四声 (huà). 划船 强调 động tác chèo. 坐船 (zuòchuán) = đi thuyền (làm hành khách).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__3__topic__10__giai-tri-toi",
+      "sectionSlug": "giai-tri-toi",
       "sectionTitle": "Giải trí tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

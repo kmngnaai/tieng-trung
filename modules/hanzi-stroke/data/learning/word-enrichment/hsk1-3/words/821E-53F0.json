@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:舞台",
   "type": "word",
   "word": "舞台",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wǔ tái",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Sân khấu",
+      "meaningShortVi": "Sân khấu",
+      "meaningFullVi": "Sân khấu",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Sân khấu",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "舞台 là nơi diễn ra các hoạt động biểu diễn như kịch, múa, hát. Trong giao tiếp, người ta thường用 'sân khấu' hoặc 'stage'. Lưu ý: 舞台 还 có nghĩa 'phạm vi hoạt động' như trong 政治舞台 (chính trường), 国际舞台 (thế giới)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "舞台表演",
         "pinyin": "wǔtái biǎoyǎn",
         "meaningVi": "biểu diễn sân khấu",
+        "meaningFullVi": "biểu diễn sân khấu",
         "target": "舞台",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "舞台设计",
         "pinyin": "wǔtái shèjì",
         "meaningVi": "thiết kế sân khấu",
+        "meaningFullVi": "thiết kế sân khấu",
         "target": "舞台",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Các diễn viên đang biểu diễn trên sân khấu.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "舞台",
@@ -82,16 +87,17 @@
       "meaningVi": "Sân khấu này được thiết kế rất đẹp.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 舞台",
-      "syntax": "danh từ",
-      "matchedExample": "舞台 là nơi diễn ra các hoạt động biểu diễn như kịch, múa, hát. Trong giao tiếp, người ta thường用 'sân khấu' hoặc 'stage'. Lưu ý: 舞台 还 có nghĩa 'phạm vi hoạt động' như trong 政治舞台 (chính trường), 国际舞台 (thế giới).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 舞台",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "舞台 là nơi diễn ra các hoạt động biểu diễn như kịch, múa, hát. Trong giao tiếp, người ta thường用 'sân khấu' hoặc 'stage'. Lưu ý: 舞台 还 có nghĩa 'phạm vi hoạt động' như trong 政治舞台 (chính trường), 国际舞台 (thế giới).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__3__topic__11__giai-tri-ii",
+      "sectionSlug": "giai-tri-ii",
       "sectionTitle": "Giải trí II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-ii/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

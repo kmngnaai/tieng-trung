@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:阅读",
   "type": "word",
   "word": "阅读",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yuè dú",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đọc; xem xét; trải qua",
+      "meaningShortVi": "đọc",
+      "meaningFullVi": "đọc; xem xét; trải qua",
       "partOfSpeech": "động từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đọc",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Đọc (阅读) thiên về 'đọc sách/báo' hoặc 'đọc hiểu'. Phân biệt với 看 (nhìn) — 看 thiên về hành động nhìn, 阅读 thiên về hoạt động đọc hiểu. Trong thi cử, 阅读理解 là phần đọc hiểu."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -49,19 +48,24 @@
         "text": "阅读能力",
         "pinyin": "yuèdú nénglì",
         "meaningVi": "khả năng đọc hiểu",
+        "meaningFullVi": "khả năng đọc hiểu",
         "target": "阅读",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "课外阅读",
         "pinyin": "kèwài yuèdú",
         "meaningVi": "đọc thêm ngoài giờ",
+        "meaningFullVi": "đọc thêm ngoài giờ",
         "target": "阅读",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +75,8 @@
       "meaningVi": "Tôi thích đọc tiểu thuyết.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "阅读",
@@ -80,16 +85,17 @@
       "meaningVi": "Giáo viên đang chấm bài đọc hiểu.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 阅读",
-      "syntax": "động từ",
-      "matchedExample": "Đọc (阅读) thiên về 'đọc sách/báo' hoặc 'đọc hiểu'. Phân biệt với 看 (nhìn) — 看 thiên về hành động nhìn, 阅读 thiên về hoạt động đọc hiểu. Trong thi cử, 阅读理解 là phần đọc hiểu.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 阅读",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Đọc (阅读) thiên về 'đọc sách/báo' hoặc 'đọc hiểu'. Phân biệt với 看 (nhìn) — 看 thiên về hành động nhìn, 阅读 thiên về hoạt động đọc hiểu. Trong thi cử, 阅读理解 là phần đọc hiểu.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

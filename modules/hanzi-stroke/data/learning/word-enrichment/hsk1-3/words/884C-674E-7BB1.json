@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:行李箱",
   "type": "word",
   "word": "行李箱",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "xíng li xiāng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Vali hay cốp xe là hộp đựng đồ dùng khi đi du lịch hoặc đi xa, thường có bánh xe để kéo đi.",
+      "meaningShortVi": "Vali hay cốp xe là hộp đựng đồ dùng khi đi du lịch hoặc đi xa",
+      "meaningFullVi": "Vali hay cốp xe là hộp đựng đồ dùng khi đi du lịch hoặc đi xa, thường có bánh xe để kéo đi.",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Vali hay cốp xe là hộp đựng đồ dùng khi đi du lịch hoặc đi xa",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "行李箱 dùng khi đi du lịch hoặc công tác xa. Có thể gọi tắt là 箱子 (hộp) hoặc 行李 (hành lý - chỉ đồ đạc chung)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,38 +48,17 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "行李",
-        "pinyin": "xíngli",
-        "meaningVi": "hành lý",
-        "target": "行李箱",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "托运行李",
-        "pinyin": "tuōyùn xíngli",
-        "meaningVi": "gửi hành lý",
-        "target": "行李箱",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "收拾行李",
-        "pinyin": "shōushi xíngli",
-        "meaningVi": "đóng gói hành lý",
-        "target": "行李箱",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "大行李箱",
         "pinyin": "dà xínglǐxiāng",
         "meaningVi": "vali lớn",
+        "meaningFullVi": "vali lớn",
         "target": "行李箱",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -90,7 +68,8 @@
       "meaningVi": "Tôi muốn mua một cái vali",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "行李箱",
@@ -99,7 +78,8 @@
       "meaningVi": "Trong vali có rất nhiều quần áo",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "行李箱",
@@ -108,16 +88,17 @@
       "meaningVi": "Kéo vali ra sân bay",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 行李箱",
-      "syntax": "compound-semantic",
-      "matchedExample": "行李箱 dùng khi đi du lịch hoặc công tác xa. Có thể gọi tắt là 箱子 (hộp) hoặc 行李 (hành lý - chỉ đồ đạc chung).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 行李箱",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "行李箱 dùng khi đi du lịch hoặc công tác xa. Có thể gọi tắt là 箱子 (hộp) hoặc 行李 (hành lý - chỉ đồ đạc chung).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -128,11 +109,16 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 12,
+      "sectionId": "hsk__3__lesson__12__bai-12-de-do-quan-trong-o-cho-toi-di",
+      "sectionSlug": "bai-12-de-do-quan-trong-o-cho-toi-di",
       "sectionTitle": "Để đồ quan trọng ở chỗ tôi đi.",
       "sectionTitleZh": "把重要的东西放在我这儿吧",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-12-de-do-quan-trong-o-cho-toi-di/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-12-de-do-quan-trong-o-cho-toi-di/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -143,7 +129,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

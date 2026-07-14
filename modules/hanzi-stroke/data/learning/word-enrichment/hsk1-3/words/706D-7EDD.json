@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:灭绝",
   "type": "word",
   "word": "灭绝",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "miè jué",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Diệt tuyệt — tuyệt chủng, diệt vong hoàn toàn; xóa sổ không còn sót lại.",
+      "meaningShortVi": "Diệt tuyệt — tuyệt chủng",
+      "meaningFullVi": "Diệt tuyệt — tuyệt chủng, diệt vong hoàn toàn; xóa sổ không còn sót lại.",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Diệt tuyệt — tuyệt chủng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "灭绝 mạnh hơn 消失 (biến mất); nhấn mạnh sự chấm dứt vĩnh viễn và hoàn toàn."
-  ],
-  "wordTypeExplanations": [
-    "灭 (diệt — dập tắt, tiêu diệt) + 绝 (tuyệt — cắt đứt, hết) ghép nghĩa: tiêu diệt hoàn toàn."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "濒临灭绝",
         "pinyin": "bīnlín mièjué",
         "meaningVi": "sắp tuyệt chủng",
+        "meaningFullVi": "sắp tuyệt chủng",
         "target": "灭绝",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "灭绝物种",
         "pinyin": "mièjué wùzhǒng",
         "meaningVi": "loài tuyệt chủng",
+        "meaningFullVi": "loài tuyệt chủng",
         "target": "灭绝",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "种族灭绝",
         "pinyin": "zhǒngzú mièjué",
         "meaningVi": "diệt chủng",
+        "meaningFullVi": "diệt chủng",
         "target": "灭绝",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Khủng long đã tuyệt chủng từ 60 triệu năm trước",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "灭绝",
@@ -90,7 +95,8 @@
       "meaningVi": "Chúng ta nên bảo vệ các loài động vật có nguy cơ tuyệt chủng",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "灭绝",
@@ -99,7 +105,8 @@
       "meaningVi": "Loài thực vật này gần như đã tuyệt chủng",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "灭绝",
@@ -108,23 +115,17 @@
       "meaningVi": "Hoạt động của con người đã đẩy nhanh sự tuyệt chủng của nhiều loài",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 灭绝",
-      "syntax": "compound-semantic",
-      "matchedExample": "灭绝 mạnh hơn 消失 (biến mất); nhấn mạnh sự chấm dứt vĩnh viễn và hoàn toàn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "灭 (diệt — dập tắt, tiêu diệt) + 绝 (tuyệt — cắt đứt, hết) ghép nghĩa: tiêu diệt hoàn toàn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 灭绝",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "灭绝 mạnh hơn 消失 (biến mất); nhấn mạnh sự chấm dứt vĩnh viễn và hoàn toàn.",
+      "explanationVi": "灭 (diệt — dập tắt, tiêu diệt) + 绝 (tuyệt — cắt đứt, hết) ghép nghĩa: tiêu diệt hoàn toàn.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

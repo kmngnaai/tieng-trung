@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:其中",
   "type": "word",
   "word": "其中",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "qí zhōng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trong số đó",
+      "meaningShortVi": "trong số đó",
+      "meaningFullVi": "trong số đó",
       "partOfSpeech": "pronoun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trong số đó",
   "wordType": "pronoun",
   "wordTypes": [
     "pronoun"
   ],
-  "usageNotes": [
-    "Đại từ chỉ một phần trong tổng thể."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -46,52 +45,38 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "其中之一",
-        "pinyin": "",
-        "meaningVi": "một trong số đó",
-        "target": "其中",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "尤其是其中",
-        "pinyin": "",
-        "meaningVi": "đặc biệt là trong đó",
-        "target": "其中",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "其中",
       "chinese": "其中有一个是我朋友",
-      "pinyin": "",
+      "pinyin": "qí zhōng yǒu yī gè shì wǒ péng you",
       "meaningVi": "Trong số đó có một người là bạn tôi",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "其中",
       "chinese": "其中最重要",
-      "pinyin": "",
+      "pinyin": "qí zhōng zuì zhòng yào",
       "meaningVi": "trong đó quan trọng nhất",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 其中",
-      "syntax": "pronoun",
-      "matchedExample": "Đại từ chỉ một phần trong tổng thể.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 其中",
+      "partOfSpeech": "pronoun",
+      "usageNoteVi": "Đại từ chỉ một phần trong tổng thể.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +87,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__2__topic__9__tu-chuc-nang",
+      "sectionSlug": "tu-chuc-nang",
       "sectionTitle": "Từ chức năng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-chuc-nang/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-chuc-nang/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -117,7 +107,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

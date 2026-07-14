@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:休息",
   "type": "word",
   "word": "休息",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "xiū xi",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nghỉ ngơi, tạm dừng hoạt động để lấy lại sức",
+      "meaningShortVi": "nghỉ ngơi",
+      "meaningFullVi": "nghỉ ngơi, tạm dừng hoạt động để lấy lại sức",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nghỉ ngơi",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Động từ, có thể tách ra dùng 休 hoặc 恣 trong văn cảnh cổ, nhưng hiện nay dùng liền. Phân biệt với 歇 (nghỉ ngơi ngắn): 休息 thiên về nghỉ để hồi phục sức, 歉 thiên về nghỉ ngắn."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 休 (người dựa cây nghỉ) + 息 (lấy lại hơi thở) → nghỉ ngơi để hồi phục."
   ],
   "hsk": {
     "levels": [
@@ -56,27 +53,34 @@
         "text": "休息室",
         "pinyin": "xiūxìshì",
         "meaningVi": "phòng nghỉ",
+        "meaningFullVi": "phòng nghỉ",
         "target": "休息",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "休息时间",
         "pinyin": "xiūxi shíjiān",
         "meaningVi": "thời gian nghỉ ngơi",
+        "meaningFullVi": "thời gian nghỉ ngơi",
         "target": "休息",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "好好休息",
         "pinyin": "hǎohāo xiūxi",
         "meaningVi": "nghỉ ngơi cho thật tốt",
+        "meaningFullVi": "nghỉ ngơi cho thật tốt",
         "target": "休息",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -86,7 +90,8 @@
       "meaningVi": "Tôi mệt rồi, muốn nghỉ ngơi một chút",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "休息",
@@ -95,7 +100,8 @@
       "meaningVi": "Mọi người nghỉ mười phút",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "休息",
@@ -104,7 +110,8 @@
       "meaningVi": "Cuối tuần ở nhà nghỉ ngơi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "休息",
@@ -113,23 +120,17 @@
       "meaningVi": "Để mắt nghỉ ngơi một lúc",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 休息",
-      "syntax": "compound-semantic",
-      "matchedExample": "Động từ, có thể tách ra dùng 休 hoặc 恣 trong văn cảnh cổ, nhưng hiện nay dùng liền. Phân biệt với 歇 (nghỉ ngơi ngắn): 休息 thiên về nghỉ để hồi phục sức, 歉 thiên về nghỉ ngắn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 休 (người dựa cây nghỉ) + 息 (lấy lại hơi thở) → nghỉ ngơi để hồi phục.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 休息",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Động từ, có thể tách ra dùng 休 hoặc 恣 trong văn cảnh cổ, nhưng hiện nay dùng liền. Phân biệt với 歇 (nghỉ ngơi ngắn): 休息 thiên về nghỉ để hồi phục sức, 歉 thiên về nghỉ ngắn.",
+      "explanationVi": "Ghép nghĩa: 休 (người dựa cây nghỉ) + 息 (lấy lại hơi thở) → nghỉ ngơi để hồi phục.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -140,31 +141,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__1__lesson__5__bai-5-i-m-off-today",
+      "sectionSlug": "bai-5-i-m-off-today",
       "sectionTitle": "Hôm nay tôi nghỉ",
       "sectionTitleZh": "今天我休息",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-5-i-m-off-today/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-5-i-m-off-today/",
+      "orderInSection": 12
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 20,
+      "sectionId": "new_hsk__1__topic__20__dong-tu",
+      "sectionSlug": "dong-tu",
       "sectionTitle": "Động từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dong-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dong-tu/",
+      "orderInSection": 34
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 2,
+      "sectionId": "hsk__2__lesson__2__bai-2-toi-day-luc-6-gio-moi-ngay",
+      "sectionSlug": "bai-2-toi-day-luc-6-gio-moi-ngay",
       "sectionTitle": "Tôi dậy lúc 6 giờ mỗi ngày",
       "sectionTitleZh": "我每天六点起床",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-2-toi-day-luc-6-gio-moi-ngay/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-2-toi-day-luc-6-gio-moi-ngay/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -185,7 +201,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:北部",
   "type": "word",
   "word": "北部",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "běi bù",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "khu vực phía bắc, vùng phía bắc",
+      "meaningShortVi": "khu vực phía bắc",
+      "meaningFullVi": "khu vực phía bắc, vùng phía bắc",
       "partOfSpeech": "danh từ chỉ nơi chốn",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "khu vực phía bắc",
   "wordType": "danh từ chỉ nơi chốn",
   "wordTypes": [
     "danh từ chỉ nơi chốn"
   ],
-  "usageNotes": [
-    "北部 (phía bắc) chỉ phần phía bắc của một vùng lãnh thổ, thường dùng khi chia một khu vực thành các phần theo hướng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "北部地区",
         "pinyin": "běibù dìqū",
         "meaningVi": "khu vực phía bắc",
+        "meaningFullVi": "khu vực phía bắc",
         "target": "北部",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "城市北部",
         "pinyin": "chéngshì běibù",
         "meaningVi": "phía bắc thành phố",
+        "meaningFullVi": "phía bắc thành phố",
         "target": "北部",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Vùng phía bắc Trung Quốc冬天 rất lạnh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "北部",
@@ -82,16 +87,17 @@
       "meaningVi": "Chúng ta gặp nhau ở phần phía bắc của công ty.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 北部",
-      "syntax": "danh từ chỉ nơi chốn",
-      "matchedExample": "北部 (phía bắc) chỉ phần phía bắc của một vùng lãnh thổ, thường dùng khi chia một khu vực thành các phần theo hướng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 北部",
+      "partOfSpeech": "danh từ chỉ nơi chốn",
+      "usageNoteVi": "北部 (phía bắc) chỉ phần phía bắc của một vùng lãnh thổ, thường dùng khi chia một khu vực thành các phần theo hướng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 15,
+      "sectionId": "new_hsk__3__topic__15__noi",
+      "sectionSlug": "noi",
       "sectionTitle": "Nơi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/noi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/noi/",
+      "orderInSection": 29
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

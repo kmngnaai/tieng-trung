@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:教室",
   "type": "word",
   "word": "教室",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "jiào shì",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lớp học",
+      "meaningShortVi": "lớp học",
+      "meaningFullVi": "lớp học",
       "partOfSpeech": "noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lớp học",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -49,36 +50,49 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "上课",
-        "pinyin": "",
-        "meaningVi": "vào lớp",
+        "text": "教室",
+        "pinyin": "jiào shì",
+        "meaningVi": "phòng học",
+        "meaningFullVi": "phòng học",
         "target": "教室",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "教室",
       "chinese": "我们在教室上课",
-      "pinyin": "",
+      "pinyin": "wǒ men zài jiào shì shàng kè",
       "meaningVi": "Chúng tôi học trong lớp học",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "教室",
       "chinese": "教室很大",
-      "pinyin": "",
+      "pinyin": "jiào shì hěn dà",
       "meaningVi": "Lớp học rất lớn",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 教室",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/教室.mp3"
   ],
@@ -87,31 +101,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 7,
+      "sectionId": "hsk__2__lesson__7__bai-7-nha-ban-co-xa-cong-ty-khong",
+      "sectionSlug": "bai-7-nha-ban-co-xa-cong-ty-khong",
       "sectionTitle": "Nhà bạn có xa công ty không?",
       "sectionTitleZh": "你家离公司远吗",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-7-nha-ban-co-xa-cong-ty-khong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-7-nha-ban-co-xa-cong-ty-khong/",
+      "orderInSection": 1
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 2,
+      "sectionId": "new_hsk__2__lesson__2__bai-2-let-s-take-a-taxi-to-peking-university-instead",
+      "sectionSlug": "bai-2-let-s-take-a-taxi-to-peking-university-instead",
       "sectionTitle": "Hay là bắt taxi đến Đại học Bắc Kinh đi",
       "sectionTitleZh": "还是打车去北大吧",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-2-let-s-take-a-taxi-to-peking-university-instead/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-2-let-s-take-a-taxi-to-peking-university-instead/",
+      "orderInSection": 13
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__2__topic__7__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/nghien-cuu/",
+      "orderInSection": 20
     }
   ],
   "sources": [
@@ -132,7 +161,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

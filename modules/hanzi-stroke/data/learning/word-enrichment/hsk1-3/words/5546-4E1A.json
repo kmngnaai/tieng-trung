@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:商业",
   "type": "word",
   "word": "商业",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shāng yè",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thương mại, hoạt động buôn bán",
+      "meaningShortVi": "thương mại",
+      "meaningFullVi": "thương mại, hoạt động buôn bán",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thương mại",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "商业 là danh từ chỉ hoạt động thương mại, buôn bán. Thường đi kèm với các từ như 中心 (trung tâm), 区 (khu vực), 发达 (phát triển)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "商业中心",
-        "pinyin": "",
+        "pinyin": "shāng yè zhōng xīn",
         "meaningVi": "trung tâm thương mại",
+        "meaningFullVi": "trung tâm thương mại",
         "target": "商业",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "商业区",
-        "pinyin": "",
+        "pinyin": "shāng yè qū",
         "meaningVi": "khu thương mại",
+        "meaningFullVi": "khu thương mại",
         "target": "商业",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "商业",
       "chinese": "这个城市的商业很发达。",
-      "pinyin": "",
+      "pinyin": "zhè ge chéng shì de shāng yè hěn fā dá。",
       "meaningVi": "Thương mại của thành phố này rất phát triển.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "商业",
       "chinese": "他在商业区工作。",
-      "pinyin": "",
+      "pinyin": "tā zài shāng yè qū gōng zuò。",
       "meaningVi": "Anh ấy làm việc ở khu thương mại.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 商业",
-      "syntax": "danh từ",
-      "matchedExample": "商业 là danh từ chỉ hoạt động thương mại, buôn bán. Thường đi kèm với các từ như 中心 (trung tâm), 区 (khu vực), 发达 (phát triển).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 商业",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "商业 là danh từ chỉ hoạt động thương mại, buôn bán. Thường đi kèm với các từ như 中心 (trung tâm), 区 (khu vực), 发达 (phát triển).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 22,
+      "sectionId": "new_hsk__3__topic__22__kinh-te-va-tai-chinh",
+      "sectionSlug": "kinh-te-va-tai-chinh",
       "sectionTitle": "Kinh tế và tài chính",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/kinh-te-va-tai-chinh/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/kinh-te-va-tai-chinh/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

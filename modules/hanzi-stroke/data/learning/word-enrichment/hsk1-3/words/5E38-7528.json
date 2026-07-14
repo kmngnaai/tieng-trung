@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:常用",
   "type": "word",
   "word": "常用",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "cháng yòng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thường dụng",
+      "meaningShortVi": "thường dụng",
+      "meaningFullVi": "thường dụng",
       "partOfSpeech": "adjective",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thường dụng",
   "wordType": "adjective",
   "wordTypes": [
     "adjective"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -48,60 +49,78 @@
     "collocations": [
       {
         "text": "常用词",
-        "pinyin": "",
+        "pinyin": "cháng yòng cí",
         "meaningVi": "từ thường dùng",
+        "meaningFullVi": "từ thường dùng",
         "target": "常用",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "常用字",
-        "pinyin": "",
+        "pinyin": "cháng yòng zì",
         "meaningVi": "chữ thông dụng",
+        "meaningFullVi": "chữ thông dụng",
         "target": "常用",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "最常用",
-        "pinyin": "",
+        "pinyin": "zuì cháng yòng",
         "meaningVi": "thường dùng nhất",
+        "meaningFullVi": "thường dùng nhất",
         "target": "常用",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "常用",
       "chinese": "常用汉字",
-      "pinyin": "",
+      "pinyin": "cháng yòng hàn zì",
       "meaningVi": "Chữ Hán thông dụng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "常用",
       "chinese": "这是常用词",
-      "pinyin": "",
+      "pinyin": "zhè shì cháng yòng cí",
       "meaningVi": "Đây là từ thường dùng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "常用",
       "chinese": "常用方法",
-      "pinyin": "",
+      "pinyin": "cháng yòng fāng fǎ",
       "meaningVi": "Phương pháp thường dùng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 常用",
+      "partOfSpeech": "adjective",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/常用.mp3"
   ],
@@ -110,21 +129,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__2__topic__18__tinh-tu",
+      "sectionSlug": "tinh-tu",
       "sectionTitle": "Tính từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-tu/",
+      "orderInSection": 15
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__3__lesson__6__bai-6-you-can-even-order-takeout-on-a-high-speed-train",
+      "sectionSlug": "bai-6-you-can-even-order-takeout-on-a-high-speed-train",
       "sectionTitle": "Trên tàu cao tốc còn có thể đặt đồ ăn ngoài",
       "sectionTitleZh": "高铁上还可以点外卖",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-6-you-can-even-order-takeout-on-a-high-speed-train/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-6-you-can-even-order-takeout-on-a-high-speed-train/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -140,7 +169,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

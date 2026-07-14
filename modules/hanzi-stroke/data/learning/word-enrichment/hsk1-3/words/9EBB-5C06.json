@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:麻将",
   "type": "word",
   "word": "麻将",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "má jiàng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "mạt chược (trò chơi bài của Trung Quốc)",
+      "meaningShortVi": "mạt chược (trò chơi bài của Trung Quốc)",
+      "meaningFullVi": "mạt chược (trò chơi bài của Trung Quốc)",
       "partOfSpeech": "loanword",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "mạt chược (trò chơi bài của Trung Quốc)",
   "wordType": "loanword",
   "wordTypes": [
     "loanword"
-  ],
-  "usageNotes": [
-    "Trò chơi bài phổ biến Trung Quốc."
-  ],
-  "wordTypeExplanations": [
-    "Mượn từ：麻将 mượn读音 tiếng Anh 'mahjong'. Phiên âm, không phải ghép từ麻 + 将."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "打麻将",
         "pinyin": "dǎ májiàng",
         "meaningVi": "chơi mạt chược",
+        "meaningFullVi": "chơi mạt chược",
         "target": "麻将",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "麻将牌",
         "pinyin": "májiàngpái",
         "meaningVi": "bài mạt chược",
+        "meaningFullVi": "bài mạt chược",
         "target": "麻将",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "麻将桌",
         "pinyin": "májiàngzhuō",
         "meaningVi": "bàn mạt chược",
+        "meaningFullVi": "bàn mạt chược",
         "target": "麻将",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Chơi mạt chược",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "麻将",
@@ -90,7 +95,8 @@
       "meaningVi": "Bài mạt chược",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "麻将",
@@ -99,7 +105,8 @@
       "meaningVi": "Chơi mạt chược (thông dụng)",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "麻将",
@@ -108,23 +115,17 @@
       "meaningVi": "Bàn mạt chược",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 麻将",
-      "syntax": "loanword",
-      "matchedExample": "Trò chơi bài phổ biến Trung Quốc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "loanword",
-      "matchedExample": "Mượn từ：麻将 mượn读音 tiếng Anh 'mahjong'. Phiên âm, không phải ghép từ麻 + 将.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 麻将",
+      "partOfSpeech": "loanword",
+      "usageNoteVi": "Trò chơi bài phổ biến Trung Quốc.",
+      "explanationVi": "Mượn từ：麻将 mượn读音 tiếng Anh 'mahjong'. Phiên âm, không phải ghép từ麻 + 将.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

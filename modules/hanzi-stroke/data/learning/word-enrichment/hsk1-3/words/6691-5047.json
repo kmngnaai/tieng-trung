@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:暑假",
   "type": "word",
   "word": "暑假",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shǔ jià",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "kỳ nghỉ hè",
+      "meaningShortVi": "kỳ nghỉ hè",
+      "meaningFullVi": "kỳ nghỉ hè",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "kỳ nghỉ hè",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Nghỉ hè của học sinh, sinh viên. Thường từ tháng 6-8. Trong văn hóa Trung Quốc, đây là thời điểm học sinh học thêm hoặc đi du lịch."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,60 +43,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "放暑假",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "暑假",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "暑假作业",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "暑假",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "暑假期间",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "暑假",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "暑假",
-      "chinese": "孩子们暑假去夏令营。",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "暑假",
-      "chinese": "暑假有两个月。",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 暑假",
-      "syntax": "danh từ",
-      "matchedExample": "Nghỉ hè của học sinh, sinh viên. Thường từ tháng 6-8. Trong văn hóa Trung Quốc, đây là thời điểm học sinh học thêm hoặc đi du lịch.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 暑假",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Nghỉ hè của học sinh, sinh viên. Thường từ tháng 6-8. Trong văn hóa Trung Quốc, đây là thời điểm học sinh học thêm hoặc đi du lịch.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -112,7 +68,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

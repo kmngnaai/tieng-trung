@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:开玩笑",
   "type": "word",
   "word": "开玩笑",
@@ -16,27 +16,24 @@
     "readings": [
       {
         "pinyin": "kāi wán xiào",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đùa cợt, nói đùa",
+      "meaningShortVi": "đùa cợt",
+      "meaningFullVi": "đùa cợt, nói đùa",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đùa cợt",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Động từ ghép, có thể tách thành 开玩笑 (đùa nói) hoặc dùng 笑话 (chuyện cười). Cẩn thận: 开玩笑 có thể mang nghĩa đùa nhây hoặc trêu chọc tùy ngữ điệu."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 开 (mở ra, phát) + 玩 (chơi đùa) + 笑 (cười) → mở ra chuyện vui, tạo ra tiếng cười."
   ],
   "hsk": {
     "levels": [
@@ -55,27 +52,34 @@
         "text": "别开玩笑",
         "pinyin": "bié kāiwánxiào",
         "meaningVi": "đừng đùa",
+        "meaningFullVi": "đừng đùa",
         "target": "开玩笑",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "开玩笑的话",
         "pinyin": "kāiwánxiào de huà",
         "meaningVi": "lời nói đùa",
+        "meaningFullVi": "lời nói đùa",
         "target": "开玩笑",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "跟某人开玩笑",
         "pinyin": "gēn mǒurén kāiwánxiào",
         "meaningVi": "đùa với ai đó",
+        "meaningFullVi": "đùa với ai đó",
         "target": "开玩笑",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -85,7 +89,8 @@
       "meaningVi": "Đừng đùa, tôi nói nghiệt đấy",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "开玩笑",
@@ -94,7 +99,8 @@
       "meaningVi": "Tôi chỉ đùa thôi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "开玩笑",
@@ -103,7 +109,8 @@
       "meaningVi": "Anh ấy thích đùa cợt",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "开玩笑",
@@ -112,23 +119,17 @@
       "meaningVi": "Chúng tôi đùa thôi, đừng có nghĩ thật",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 开玩笑",
-      "syntax": "compound-semantic",
-      "matchedExample": "Động từ ghép, có thể tách thành 开玩笑 (đùa nói) hoặc dùng 笑话 (chuyện cười). Cẩn thận: 开玩笑 có thể mang nghĩa đùa nhây hoặc trêu chọc tùy ngữ điệu.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 开 (mở ra, phát) + 玩 (chơi đùa) + 笑 (cười) → mở ra chuyện vui, tạo ra tiếng cười.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 开玩笑",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Động từ ghép, có thể tách thành 开玩笑 (đùa nói) hoặc dùng 笑话 (chuyện cười). Cẩn thận: 开玩笑 có thể mang nghĩa đùa nhây hoặc trêu chọc tùy ngữ điệu.",
+      "explanationVi": "Ghép nghĩa: 开 (mở ra, phát) + 玩 (chơi đùa) + 笑 (cười) → mở ra chuyện vui, tạo ra tiếng cười.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,11 +140,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__1__topic__16__thoi-gian-ranh-roi",
+      "sectionSlug": "thoi-gian-ranh-roi",
       "sectionTitle": "Thời gian rảnh rỗi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian-ranh-roi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian-ranh-roi/",
+      "orderInSection": 18
     }
   ],
   "sources": [
@@ -159,7 +165,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

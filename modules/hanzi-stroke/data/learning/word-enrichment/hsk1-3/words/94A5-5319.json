@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:钥匙",
   "type": "word",
   "word": "钥匙",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "yào shi",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chìa khóa",
+      "meaningShortVi": "chìa khóa",
+      "meaningFullVi": "chìa khóa",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chìa khóa",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -45,21 +46,26 @@
     "collocations": [
       {
         "text": "这个钥匙",
-        "pinyin": "",
+        "pinyin": "zhè ge yào shi",
         "meaningVi": "cái chìa khóa này",
+        "meaningFullVi": "cái chìa khóa này",
         "target": "钥匙",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "那个钥匙",
-        "pinyin": "",
+        "pinyin": "nà ge yào shi",
         "meaningVi": "cái chìa khóa kia",
+        "meaningFullVi": "cái chìa khóa kia",
         "target": "钥匙",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -69,7 +75,8 @@
       "meaningVi": "Chìa khóa của tôi bị mất.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "钥匙",
@@ -78,10 +85,19 @@
       "meaningVi": "Hãy đưa chìa khóa cho tôi.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 钥匙",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/钥匙.mp3"
   ],
@@ -94,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:一路顺风",
   "type": "word",
   "word": "一路顺风",
@@ -17,26 +17,25 @@
     "readings": [
       {
         "pinyin": "yī lù shùn fēng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chúc đường đi thuận lợi",
+      "meaningShortVi": "chúc đường đi thuận lợi",
+      "meaningFullVi": "chúc đường đi thuận lợi",
       "partOfSpeech": "farewell phrase",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chúc đường đi thuận lợi",
   "wordType": "farewell phrase",
   "wordTypes": [
     "farewell phrase"
   ],
-  "usageNotes": [
-    "Câu chúc thường dùng khi ai đó đi xa, ý nói đi được thuận lợi suôn sẻ."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -51,49 +50,56 @@
     "collocations": [
       {
         "text": "祝一路顺风",
-        "pinyin": "",
+        "pinyin": "zhù yī lù shùn fēng",
         "meaningVi": "chúc đường đi thuận lợi",
+        "meaningFullVi": "chúc đường đi thuận lợi",
         "target": "一路顺风",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "愿一路顺风",
-        "pinyin": "",
+        "pinyin": "yuàn yī lù shùn fēng",
         "meaningVi": "mong đường đi thuận lợi",
+        "meaningFullVi": "mong đường đi thuận lợi",
         "target": "一路顺风",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "一路顺风",
       "chinese": "祝你一路顺风！",
-      "pinyin": "",
+      "pinyin": "zhù nǐ yī lù shùn fēng！",
       "meaningVi": "Chúc bạn đường đi thuận lợi!",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "一路顺风",
       "chinese": "希望你们一路顺风。",
-      "pinyin": "",
+      "pinyin": "xī wàng nǐ men yī lù shùn fēng。",
       "meaningVi": "Hy vọng các bạn đường đi thuận lợi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 一路顺风",
-      "syntax": "farewell phrase",
-      "matchedExample": "Câu chúc thường dùng khi ai đó đi xa, ý nói đi được thuận lợi suôn sẻ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 一路顺风",
+      "partOfSpeech": "farewell phrase",
+      "usageNoteVi": "Câu chúc thường dùng khi ai đó đi xa, ý nói đi được thuận lợi suôn sẻ.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,11 +110,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__2__topic__4__khac",
+      "sectionSlug": "khac",
       "sectionTitle": "Khác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/khac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/khac/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -119,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

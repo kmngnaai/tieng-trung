@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:完整",
   "type": "word",
   "word": "完整",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wán zhěng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hoàn chỉnh, nguyên vẹn",
+      "meaningShortVi": "hoàn chỉnh",
+      "meaningFullVi": "hoàn chỉnh, nguyên vẹn",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hoàn chỉnh",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "完整 nhấn mạnh không thiếu sót, đầy đủ. Thường đi với story (故事), sentence (句子), system (系统)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "完整的句子",
         "pinyin": "wánzhěng de jùzi",
         "meaningVi": "câu hoàn chỉnh",
+        "meaningFullVi": "câu hoàn chỉnh",
         "target": "完整",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "保持完整",
         "pinyin": "bǎochí wánzhěng",
         "meaningVi": "giữ nguyên vẹn",
+        "meaningFullVi": "giữ nguyên vẹn",
         "target": "完整",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Câu chuyện này rất hoàn chỉnh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "完整",
@@ -82,16 +87,17 @@
       "meaningVi": "Hãy cho tôi một bản báo cáo hoàn chỉnh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 完整",
-      "syntax": "tính từ",
-      "matchedExample": "完整 nhấn mạnh không thiếu sót, đầy đủ. Thường đi với story (故事), sentence (句子), system (系统).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 完整",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "完整 nhấn mạnh không thiếu sót, đầy đủ. Thường đi với story (故事), sentence (句子), system (系统).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 21,
+      "sectionId": "new_hsk__3__topic__21__phan-bo",
+      "sectionSlug": "phan-bo",
       "sectionTitle": "Phân bổ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/phan-bo/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/phan-bo/",
+      "orderInSection": 19
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

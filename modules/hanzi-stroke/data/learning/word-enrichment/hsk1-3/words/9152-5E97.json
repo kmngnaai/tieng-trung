@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:酒店",
   "type": "word",
   "word": "酒店",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "jiǔ diàn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "khách sạn",
+      "meaningShortVi": "khách sạn",
+      "meaningFullVi": "khách sạn",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "khách sạn",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,43 +48,48 @@
     "collocations": [
       {
         "text": "大酒店",
-        "pinyin": "",
+        "pinyin": "dà jiǔ diàn",
         "meaningVi": "khách sạn lớn",
+        "meaningFullVi": "khách sạn lớn",
         "target": "酒店",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "预订酒店",
-        "pinyin": "",
-        "meaningVi": "đặt phòng khách sạn",
-        "target": "酒店",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "酒店",
       "chinese": "我们住在一家酒店",
-      "pinyin": "",
+      "pinyin": "wǒ men zhù zài yī jiā jiǔ diàn",
       "meaningVi": "Chúng tôi ở tại một khách sạn",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "酒店",
       "chinese": "这家酒店很舒服",
-      "pinyin": "",
+      "pinyin": "zhè jiā jiǔ diàn hěn shū fu",
       "meaningVi": "Khách sạn này rất thoải mái",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 酒店",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/酒店.mp3"
   ],
@@ -92,21 +98,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__2__lesson__5__bai-5-visiting-a-chinese-friend-s-home-for-the-first-time",
+      "sectionSlug": "bai-5-visiting-a-chinese-friend-s-home-for-the-first-time",
       "sectionTitle": "Lần đầu đến nhà bạn người Trung Quốc",
       "sectionTitleZh": "第一次去中国朋友家",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-5-visiting-a-chinese-friend-s-home-for-the-first-time/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-5-visiting-a-chinese-friend-s-home-for-the-first-time/",
+      "orderInSection": 17
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 22,
+      "sectionId": "new_hsk__2__topic__22__du-lich",
+      "sectionSlug": "du-lich",
       "sectionTitle": "Du lịch",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/du-lich/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/du-lich/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -117,7 +133,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

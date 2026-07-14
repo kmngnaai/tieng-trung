@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:不断",
   "type": "word",
   "word": "不断",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "bù duàn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Liên tục, không ngừng",
+      "meaningShortVi": "Liên tục",
+      "meaningFullVi": "Liên tục, không ngừng",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Liên tục",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "不断 là từ chỉ sự liên tục, không gián đoạn. Thường đứng trước động từ để nhấn mạnh tính liên tục của hành động. Phân biệt với 不停(không ngớt) và 连续(liên tiếp)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,27 +50,34 @@
         "text": "不断发展",
         "pinyin": "bùduàn fāzhǎn",
         "meaningVi": "liên tục phát triển",
+        "meaningFullVi": "liên tục phát triển",
         "target": "不断",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不断努力",
         "pinyin": "bùduàn nǔlì",
         "meaningVi": "không ngừng nỗ lực",
+        "meaningFullVi": "không ngừng nỗ lực",
         "target": "不断",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不断学习",
         "pinyin": "bùduàn xuéxí",
         "meaningVi": "liên tục học hỏi",
+        "meaningFullVi": "liên tục học hỏi",
         "target": "不断",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +87,8 @@
       "meaningVi": "Mưa liên tục rơi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不断",
@@ -90,7 +97,8 @@
       "meaningVi": "Anh ấy không ngừng tiến bộ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不断",
@@ -99,16 +107,17 @@
       "meaningVi": "Khoa học công nghệ liên tục phát triển.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 不断",
-      "syntax": "compound-semantic",
-      "matchedExample": "不断 là từ chỉ sự liên tục, không gián đoạn. Thường đứng trước động từ để nhấn mạnh tính liên tục của hành động. Phân biệt với 不停(không ngớt) và 连续(liên tiếp).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 不断",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "不断 là từ chỉ sự liên tục, không gián đoạn. Thường đứng trước động từ để nhấn mạnh tính liên tục của hành động. Phân biệt với 不停(không ngớt) và 连续(liên tiếp).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -119,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__3__topic__7__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/",
+      "orderInSection": 22
     }
   ],
   "sources": [
@@ -134,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

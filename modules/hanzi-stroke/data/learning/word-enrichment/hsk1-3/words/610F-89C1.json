@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:意见",
   "type": "word",
   "word": "意见",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yì jiàn",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ý kiến",
+      "meaningShortVi": "ý kiến",
+      "meaningFullVi": "ý kiến",
       "partOfSpeech": "noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ý kiến",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Trong một số ngữ cảnh có thể mang nghĩa 'phàn nàn, bất mãn' như 我对他有意见 (Tôi có phàn nàn về anh ấy)"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,78 +49,76 @@
       {
         "word": "没意见",
         "pinyin": "méi yì jiàn",
-        "meaningVi": "Không có ý kiến gì, đồng ý",
+        "meaningVi": "Không có ý kiến gì",
+        "meaningFullVi": "Không có ý kiến gì, đồng ý",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
       {
         "text": "提意见",
-        "pinyin": "",
+        "pinyin": "tí yì jiàn",
         "meaningVi": "đưa ra ý kiến",
+        "meaningFullVi": "đưa ra ý kiến",
         "target": "意见",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "不同意意见",
-        "pinyin": "",
-        "meaningVi": "không đồng ý với ý kiến",
-        "target": "意见",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "很有意见",
-        "pinyin": "",
-        "meaningVi": "có nhiều ý kiến/phàn nàn",
+        "pinyin": "hěn yǒu yì jiàn",
+        "meaningVi": "có nhiều ý kiến",
+        "meaningFullVi": "có nhiều ý kiến/phàn nàn",
         "target": "意见",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "意见",
       "chinese": "我对这个计划有意见",
-      "pinyin": "",
+      "pinyin": "wǒ duì zhè ge jì huà yǒu yì jiàn",
       "meaningVi": "Tôi có ý kiến về kế hoạch này",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "意见",
       "chinese": "请提出你的意见",
-      "pinyin": "",
+      "pinyin": "qǐng tí chū nǐ de yì jiàn",
       "meaningVi": "Hãy đưa ra ý kiến của bạn",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "意见",
       "chinese": "大家的意见不一样",
-      "pinyin": "",
+      "pinyin": "dà jiā de yì jiàn bù yī yàng",
       "meaningVi": "Ý kiến của mọi người không giống nhau",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 意见",
-      "syntax": "noun",
-      "matchedExample": "Trong một số ngữ cảnh có thể mang nghĩa 'phàn nàn, bất mãn' như 我对他有意见 (Tôi có phàn nàn về anh ấy)",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 意见",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Trong một số ngữ cảnh có thể mang nghĩa 'phàn nàn, bất mãn' như 我对他有意见 (Tôi có phàn nàn về anh ấy)",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -132,11 +129,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 23,
+      "sectionId": "new_hsk__2__topic__23__suy-nghi",
+      "sectionSlug": "suy-nghi",
       "sectionTitle": "Suy nghĩ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/suy-nghi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/suy-nghi/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -152,7 +154,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

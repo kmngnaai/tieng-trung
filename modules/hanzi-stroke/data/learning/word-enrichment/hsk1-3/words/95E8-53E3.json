@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:门口",
   "type": "word",
   "word": "门口",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "mén kǒu",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lối vào, cửa",
+      "meaningShortVi": "lối vào",
+      "meaningFullVi": "lối vào, cửa",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lối vào",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Lối vào/cửa. Đợi ở cửa = 在门口等你. Hán-Việt: 'môn khẩu'."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 门 (cửa) + 口 (miệng/lối) -> lối vào cửa."
   ],
   "hsk": {
     "levels": [
@@ -54,11 +51,24 @@
         "text": "在门口",
         "pinyin": "zài ménkǒu",
         "meaningVi": "ở cửa",
+        "meaningFullVi": "ở cửa",
         "target": "门口",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
+      },
+      {
+        "text": "门口",
+        "pinyin": "ménkǒu",
+        "meaningVi": "cửa",
+        "meaningFullVi": "cửa, lối vào",
+        "target": "门口",
+        "source": "hsk_1.json",
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -68,7 +78,8 @@
       "meaningVi": "đợi bạn ở cửa",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "门口",
@@ -77,7 +88,8 @@
       "meaningVi": "Có người ở cửa",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "门口",
@@ -86,7 +98,8 @@
       "meaningVi": "vào từ cửa",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "门口",
@@ -95,23 +108,17 @@
       "meaningVi": "cổng trường",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 门口",
-      "syntax": "compound-semantic",
-      "matchedExample": "Lối vào/cửa. Đợi ở cửa = 在门口等你. Hán-Việt: 'môn khẩu'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 门 (cửa) + 口 (miệng/lối) -> lối vào cửa.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 门口",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Lối vào/cửa. Đợi ở cửa = 在门口等你. Hán-Việt: 'môn khẩu'.",
+      "explanationVi": "Ghép nghĩa: 门 (cửa) + 口 (miệng/lối) -> lối vào cửa.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -122,21 +129,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__1__topic__7__cac-toa-nha",
+      "sectionSlug": "cac-toa-nha",
       "sectionTitle": "Các tòa nhà",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cac-toa-nha/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cac-toa-nha/",
+      "orderInSection": 18
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__2__lesson__9__bai-9-i-m-going-to-buy-a-cup-of-bubble-tea",
+      "sectionSlug": "bai-9-i-m-going-to-buy-a-cup-of-bubble-tea",
       "sectionTitle": "Tôi đi mua một cốc trà sữa",
       "sectionTitleZh": "我去买杯奶茶",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-9-i-m-going-to-buy-a-cup-of-bubble-tea/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-9-i-m-going-to-buy-a-cup-of-bubble-tea/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -152,7 +169,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

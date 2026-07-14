@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:当初",
   "type": "word",
   "word": "当初",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "dāng chū",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Vào lúc đó, lúc đầu, trước đây",
+      "meaningShortVi": "Vào lúc đó",
+      "meaningFullVi": "Vào lúc đó, lúc đầu, trước đây",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Vào lúc đó",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "当初 dùng để chỉ thời điểm trong quá khứ khi một việc bắt đầu hoặc xảy ra. Mang sắc thái hồi tưởng về quá khứ."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,27 +50,34 @@
         "text": "当初的决定",
         "pinyin": "dāngchū de juédìng",
         "meaningVi": "quyết định lúc đầu",
+        "meaningFullVi": "quyết định lúc đầu",
         "target": "当初",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "当初我们",
         "pinyin": "dāngchū wǒmen",
         "meaningVi": "chúng ta lúc đó",
+        "meaningFullVi": "chúng ta lúc đó",
         "target": "当初",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "想当初",
         "pinyin": "xiǎng dāngchū",
         "meaningVi": "nhớ lại lúc đó",
+        "meaningFullVi": "nhớ lại lúc đó",
         "target": "当初",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +87,8 @@
       "meaningVi": "Lúc đầu tôi không biết sẽ như vậy.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "当初",
@@ -90,7 +97,8 @@
       "meaningVi": "Lúc đó chúng ta nên nỗ lực hơn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "当初",
@@ -99,16 +107,17 @@
       "meaningVi": "Quyết định lúc đầu là đúng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 当初",
-      "syntax": "compound-semantic",
-      "matchedExample": "当初 dùng để chỉ thời điểm trong quá khứ khi một việc bắt đầu hoặc xảy ra. Mang sắc thái hồi tưởng về quá khứ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 当初",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "当初 dùng để chỉ thời điểm trong quá khứ khi một việc bắt đầu hoặc xảy ra. Mang sắc thái hồi tưởng về quá khứ.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -119,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__3__topic__7__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/",
+      "orderInSection": 26
     }
   ],
   "sources": [
@@ -134,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:停车",
   "type": "word",
   "word": "停车",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "tíng chē",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "dừng xe, đỗ xe",
+      "meaningShortVi": "dừng xe",
+      "meaningFullVi": "dừng xe, đỗ xe",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "dừng xe",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -48,45 +49,47 @@
         "word": "停车场",
         "pinyin": "tíng chē chǎng",
         "meaningVi": "bãi đậu xe",
+        "meaningFullVi": "bãi đậu xe",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          2
-        ],
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 2",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
       {
         "text": "停车场",
-        "pinyin": "",
+        "pinyin": "tíng chē chǎng",
         "meaningVi": "bãi đỗ xe",
+        "meaningFullVi": "bãi đỗ xe",
         "target": "停车",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "停车牌",
-        "pinyin": "",
-        "meaningVi": "biển báo dừng xe",
-        "target": "停车",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "停车",
       "chinese": "这里不能停车",
-      "pinyin": "",
+      "pinyin": "zhè li bù néng tíng chē",
       "meaningVi": "Ở đây không được đỗ xe",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 停车",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/停车.mp3"
   ],
@@ -95,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__2__topic__5__van-chuyen",
+      "sectionSlug": "van-chuyen",
       "sectionTitle": "Vận chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/van-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/van-chuyen/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -110,7 +118,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

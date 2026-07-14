@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:反省",
   "type": "word",
   "word": "反省",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "fǎn xǐng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tự phản tỉnh, soi chiếu bản thân; tự rà soát lỗi sai",
+      "meaningShortVi": "tự phản tỉnh",
+      "meaningFullVi": "tự phản tỉnh, soi chiếu bản thân; tự rà soát lỗi sai",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tự phản tỉnh",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Thường dùng trong giáo dục, đạo đức, tu dưỡng bản thân. Mang sắc thái tích cực khi tự sửa lỗi."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 反 (ngược lại, quay lại) + 省 (xem xét, tỉnh táo) → quay lại soi xét bản thân."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "自我反省",
         "pinyin": "zì wǒ fǎn xǐng",
         "meaningVi": "tự soi chiếu bản thân",
+        "meaningFullVi": "tự soi chiếu bản thân",
         "target": "反省",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "深刻反省",
         "pinyin": "shēn kè fǎn xǐng",
         "meaningVi": "phản tỉnh sâu sắc",
+        "meaningFullVi": "phản tỉnh sâu sắc",
         "target": "反省",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "反省自己",
         "pinyin": "fǎn xǐng zì jǐ",
         "meaningVi": "tự soi chiếu mình",
+        "meaningFullVi": "tự soi chiếu mình",
         "target": "反省",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Bạn nên tự phản tỉnh về lỗi của mình",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "反省",
@@ -90,7 +95,8 @@
       "meaningVi": "Tối nào tôi cũng tự soi chiếu những việc đã làm trong ngày",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "反省",
@@ -99,7 +105,8 @@
       "meaningVi": "Sau khi tự phản tỉnh, anh ấy nhận ra mình quá bốc đồng",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "反省",
@@ -108,23 +115,17 @@
       "meaningVi": "Biết tự phản tỉnh mới không ngừng tiến bộ",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 反省",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường dùng trong giáo dục, đạo đức, tu dưỡng bản thân. Mang sắc thái tích cực khi tự sửa lỗi.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 反 (ngược lại, quay lại) + 省 (xem xét, tỉnh táo) → quay lại soi xét bản thân.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 反省",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường dùng trong giáo dục, đạo đức, tu dưỡng bản thân. Mang sắc thái tích cực khi tự sửa lỗi.",
+      "explanationVi": "Ghép nghĩa: 反 (ngược lại, quay lại) + 省 (xem xét, tỉnh táo) → quay lại soi xét bản thân.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

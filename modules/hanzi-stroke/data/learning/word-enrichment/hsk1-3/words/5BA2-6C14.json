@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:客气",
   "type": "word",
   "word": "客气",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "kè qi",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lịch sự, khách sáo, xa lạ",
+      "meaningShortVi": "lịch sự",
+      "meaningFullVi": "lịch sự, khách sáo, xa lạ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lịch sự",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "'客气' kết hợp '客' (khách) = người khách và '气' (khí) = thái độ. Chỉ thái độ đối xử khách quan, lễ phép, tôn trọng. '不客气' có nghĩa là 'không cần khách sáo' (khi mời) hoặc 'không tha thứ' (khi đe dọa)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,68 +49,35 @@
       {
         "word": "不客气",
         "pinyin": "bù kè qi",
-        "meaningVi": "không có chi, đừng khách sáo",
+        "meaningVi": "không có chi",
+        "meaningFullVi": "không có chi, đừng khách sáo",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       },
       {
         "word": "别客气",
         "pinyin": "bié kè qi",
-        "meaningVi": "Đừng khách sáo, đừng ngại",
+        "meaningVi": "Đừng khách sáo",
+        "meaningFullVi": "Đừng khách sáo, đừng ngại",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
       {
-        "text": "太客气了",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "客气",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "不客气",
-        "pinyin": "",
-        "meaningVi": "",
+        "pinyin": "bù kè qi",
+        "meaningVi": "không có chi",
+        "meaningFullVi": "không có chi, đừng khách sáo",
         "target": "客气",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "客气话",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "客气",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "客气地说",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "客气",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "非常客气",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "客气",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -121,7 +87,8 @@
       "meaningVi": "Anh ấy là người rất lịch sự.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "客气",
@@ -130,7 +97,8 @@
       "meaningVi": "Đừng khách sáo, mời ngồi.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "客气",
@@ -139,16 +107,17 @@
       "meaningVi": "Giữa chúng ta không cần khách sáo như vậy.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 客气",
-      "syntax": "compound-semantic",
-      "matchedExample": "'客气' kết hợp '客' (khách) = người khách và '气' (khí) = thái độ. Chỉ thái độ đối xử khách quan, lễ phép, tôn trọng. '不客气' có nghĩa là 'không cần khách sáo' (khi mời) hoặc 'không tha thứ' (khi đe dọa).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 客气",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "'客气' kết hợp '客' (khách) = người khách và '气' (khí) = thái độ. Chỉ thái độ đối xử khách quan, lễ phép, tôn trọng. '不客气' có nghĩa là 'không cần khách sáo' (khi mời) hoặc 'không tha thứ' (khi đe dọa).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -159,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 2,
+      "sectionId": "new_hsk__3__lesson__2__bai-2-you-can-order-whatever-you-feel-like",
+      "sectionSlug": "bai-2-you-can-order-whatever-you-feel-like",
       "sectionTitle": "Các bạn thích ăn gì thì gọi nấy",
       "sectionTitleZh": "你们想吃什么就点什么",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-2-you-can-order-whatever-you-feel-like/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-2-you-can-order-whatever-you-feel-like/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -179,7 +153,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

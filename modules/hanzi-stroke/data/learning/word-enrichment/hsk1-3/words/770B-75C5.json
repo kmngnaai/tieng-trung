@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:看病",
   "type": "word",
   "word": "看病",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "kàn bìng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "khám bệnh, đi khám bác sĩ (cho bệnh nhân)",
+      "meaningShortVi": "khám bệnh",
+      "meaningFullVi": "khám bệnh, đi khám bác sĩ (cho bệnh nhân)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "khám bệnh",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "'看病' có thể là bệnh nhân đi khám bác sĩ hoặc bác sĩ khám bệnh tùy ngữ cảnh. '去看病' thường là bệnh nhân. '医生看病' bác sĩ khám."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 看 (xem, khám) + 病 (bệnh). Khám bệnh hoặc đi khám bác sĩ. Lưu ý: đối với bác sĩ thì là 'khám bệnh', đối với bệnh nhân thì là 'đi khám'."
   ],
   "hsk": {
     "levels": [
@@ -53,27 +50,34 @@
         "text": "去看病",
         "pinyin": "qù kànbìng",
         "meaningVi": "đi khám bác sĩ",
+        "meaningFullVi": "đi khám bác sĩ",
         "target": "看病",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "医生看病",
         "pinyin": "yīshēng kànbìng",
         "meaningVi": "bác sĩ khám bệnh",
+        "meaningFullVi": "bác sĩ khám bệnh",
         "target": "看病",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "看病挂号",
         "pinyin": "kànbìng guàhào",
         "meaningVi": "đăng ký khám bệnh",
+        "meaningFullVi": "đăng ký khám bệnh",
         "target": "看病",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -83,7 +87,8 @@
       "meaningVi": "Tôi đi khám bác sĩ",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "看病",
@@ -92,7 +97,8 @@
       "meaningVi": "Bác sĩ đang khám bệnh",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "看病",
@@ -101,7 +107,8 @@
       "meaningVi": "Khám bệnh phải xếp hàng",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "看病",
@@ -110,7 +117,8 @@
       "meaningVi": "Đi bệnh viện nào khám?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "看病",
@@ -119,23 +127,17 @@
       "meaningVi": "Khám bệnh rất đắt",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 看病",
-      "syntax": "compound-semantic",
-      "matchedExample": "'看病' có thể là bệnh nhân đi khám bác sĩ hoặc bác sĩ khám bệnh tùy ngữ cảnh. '去看病' thường là bệnh nhân. '医生看病' bác sĩ khám.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 看 (xem, khám) + 病 (bệnh). Khám bệnh hoặc đi khám bác sĩ. Lưu ý: đối với bác sĩ thì là 'khám bệnh', đối với bệnh nhân thì là 'đi khám'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 看病",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "'看病' có thể là bệnh nhân đi khám bác sĩ hoặc bác sĩ khám bệnh tùy ngữ cảnh. '去看病' thường là bệnh nhân. '医生看病' bác sĩ khám.",
+      "explanationVi": "Ghép nghĩa: 看 (xem, khám) + 病 (bệnh). Khám bệnh hoặc đi khám bác sĩ. Lưu ý: đối với bác sĩ thì là 'khám bệnh', đối với bệnh nhân thì là 'đi khám'.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -146,21 +148,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__1__lesson__12__bai-12-it-snowed-yesterday",
+      "sectionSlug": "bai-12-it-snowed-yesterday",
       "sectionTitle": "Hôm qua tuyết rơi",
       "sectionTitleZh": "昨天下雪了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-12-it-snowed-yesterday/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-12-it-snowed-yesterday/",
+      "orderInSection": 6
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 21,
+      "sectionId": "new_hsk__1__topic__21__dong-tu-thuong-le",
+      "sectionSlug": "dong-tu-thuong-le",
       "sectionTitle": "Động từ thường lệ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dong-tu-thuong-le/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dong-tu-thuong-le/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -171,7 +183,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

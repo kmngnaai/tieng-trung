@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:真实",
   "type": "word",
   "word": "真实",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhēn shí",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thật, thực tế",
+      "meaningShortVi": "thật",
+      "meaningFullVi": "thật, thực tế",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thật",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "强调不虚假、符合实际情况。真实 vs. 虚假：反义词。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "真实情况",
-        "pinyin": "",
+        "pinyin": "zhēn shí qíng kuàng",
         "meaningVi": "tình huống thực tế",
+        "meaningFullVi": "tình huống thực tế",
         "target": "真实",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "真实姓名",
-        "pinyin": "",
+        "pinyin": "zhēn shí xìng míng",
         "meaningVi": "tên thật",
+        "meaningFullVi": "tên thật",
         "target": "真实",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "真实",
       "chinese": "这是一个真实的故事。",
-      "pinyin": "",
+      "pinyin": "zhè shì yī gè zhēn shí de gù shi。",
       "meaningVi": "Đây là một câu chuyện có thật.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "真实",
       "chinese": "他的感情很真实。",
-      "pinyin": "",
+      "pinyin": "tā de gǎn qíng hěn zhēn shí。",
       "meaningVi": "Tình cảm của anh ấy rất chân thật.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 真实",
-      "syntax": "tính từ",
-      "matchedExample": "强调不虚假、符合实际情况。真实 vs. 虚假：反义词。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 真实",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "强调不虚假、符合实际情况。真实 vs. 虚假：反义词。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__3__topic__18__thong-tin-va-phuong-tien",
+      "sectionSlug": "thong-tin-va-phuong-tien",
       "sectionTitle": "Thông tin và phương tiện",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/",
+      "orderInSection": 33
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

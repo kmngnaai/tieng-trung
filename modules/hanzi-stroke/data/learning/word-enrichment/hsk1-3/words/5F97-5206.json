@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:得分",
   "type": "word",
   "word": "得分",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "dé fēn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "điểm số; ghi bàn, ghi điểm; nhận được điểm",
+      "meaningShortVi": "điểm số",
+      "meaningFullVi": "điểm số; ghi bàn, ghi điểm; nhận được điểm",
       "partOfSpeech": "danh từ / động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "điểm số",
   "wordType": "danh từ / động từ",
   "wordTypes": [
     "danh từ / động từ"
   ],
-  "usageNotes": [
-    "得分 thường dùng trong thể thao (ghi bàn) hoặc thi cử (điểm số). Là động từ khi chỉ hành động ghi điểm, danh từ khi chỉ số điểm đạt được."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "得分点",
         "pinyin": "défēn diǎn",
         "meaningVi": "điểm ghi bàn",
+        "meaningFullVi": "điểm ghi bàn",
         "target": "得分",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "得分率",
         "pinyin": "défēn lǜ",
         "meaningVi": "tỷ lệ ghi bàn",
+        "meaningFullVi": "tỷ lệ ghi bàn",
         "target": "得分",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Anh ấy ghi được rất nhiều điểm.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "得分",
@@ -82,16 +87,17 @@
       "meaningVi": "Điểm số cao nhất là 100 điểm.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 得分",
-      "syntax": "danh từ / động từ",
-      "matchedExample": "得分 thường dùng trong thể thao (ghi bàn) hoặc thi cử (điểm số). Là động từ khi chỉ hành động ghi điểm, danh từ khi chỉ số điểm đạt được.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 得分",
+      "partOfSpeech": "danh từ / động từ",
+      "usageNoteVi": "得分 thường dùng trong thể thao (ghi bàn) hoặc thi cử (điểm số). Là động từ khi chỉ hành động ghi điểm, danh từ khi chỉ số điểm đạt được.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,21 +108,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__3__lesson__9__bai-9-it-doesn-t-matter-if-you-don-t-play-well",
+      "sectionSlug": "bai-9-it-doesn-t-matter-if-you-don-t-play-well",
       "sectionTitle": "Chơi không giỏi cũng không sao",
       "sectionTitleZh": "打不好没关系",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-9-it-doesn-t-matter-if-you-don-t-play-well/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-9-it-doesn-t-matter-if-you-don-t-play-well/",
+      "orderInSection": 21
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__3__topic__19__thanh-tuu-va-ket-qua",
+      "sectionSlug": "thanh-tuu-va-ket-qua",
       "sectionTitle": "Thành tựu và kết quả",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/",
+      "orderInSection": 37
     }
   ],
   "sources": [
@@ -127,7 +143,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

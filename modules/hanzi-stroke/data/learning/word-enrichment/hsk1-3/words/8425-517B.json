@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:营养",
   "type": "word",
   "word": "营养",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yíng yǎng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Dinh dưỡng",
+      "meaningShortVi": "Dinh dưỡng",
+      "meaningFullVi": "Dinh dưỡng",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Dinh dưỡng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "营养 chỉ giá trị dinh dưỡng của thức ăn, hoặc quá trình dinh dưỡng. Thường kết hợp với 形容词 như 丰富(phú phong), 均衡(cân bằng)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,27 +51,34 @@
         "text": "有营养",
         "pinyin": "yǒu yíngyǎng",
         "meaningVi": "có dinh dưỡng",
+        "meaningFullVi": "có dinh dưỡng",
         "target": "营养",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "营养丰富",
         "pinyin": "yíngyǎng fēngfù",
         "meaningVi": "giàu dinh dưỡng",
+        "meaningFullVi": "giàu dinh dưỡng",
         "target": "营养",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "营养均衡",
         "pinyin": "yíngyǎng jūnhéng",
         "meaningVi": "dinh dưỡng cân bằng",
+        "meaningFullVi": "dinh dưỡng cân bằng",
         "target": "营养",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -82,7 +88,8 @@
       "meaningVi": "Rau rất giàu dinh dưỡng.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "营养",
@@ -91,7 +98,8 @@
       "meaningVi": "Trẻ em cần đủ dinh dưỡng.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "营养",
@@ -100,16 +108,17 @@
       "meaningVi": "Loại thức ăn này dinh dưỡng không cân bằng.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 营养",
-      "syntax": "compound-semantic",
-      "matchedExample": "营养 chỉ giá trị dinh dưỡng của thức ăn, hoặc quá trình dinh dưỡng. Thường kết hợp với 形容词 như 丰富(phú phong), 均衡(cân bằng).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 营养",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "营养 chỉ giá trị dinh dưỡng của thức ăn, hoặc quá trình dinh dưỡng. Thường kết hợp với 形容词 như 丰富(phú phong), 均衡(cân bằng).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -120,11 +129,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__3__topic__3__co-the-va-suc-khoe",
+      "sectionSlug": "co-the-va-suc-khoe",
       "sectionTitle": "Cơ thể và sức khỏe",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/co-the-va-suc-khoe/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/co-the-va-suc-khoe/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -140,7 +154,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

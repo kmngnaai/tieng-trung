@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:广播",
   "type": "word",
   "word": "广播",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "guǎng bō",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phát thanh, phát sóng",
+      "meaningShortVi": "phát thanh",
+      "meaningFullVi": "phát thanh, phát sóng",
       "partOfSpeech": "danh từ / động từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phát thanh",
   "wordType": "danh từ / động từ",
   "wordTypes": [
     "danh từ / động từ"
   ],
-  "usageNotes": [
-    "可指广播节目（名词）或播送信号（动词）。也用于电视的\"广播电视\"。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -50,49 +49,56 @@
     "collocations": [
       {
         "text": "听广播",
-        "pinyin": "",
+        "pinyin": "tīng guǎng bō",
         "meaningVi": "nghe đài",
+        "meaningFullVi": "nghe đài",
         "target": "广播",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "广播电台",
-        "pinyin": "",
+        "pinyin": "guǎng bō diàn tái",
         "meaningVi": "đài phát thanh",
+        "meaningFullVi": "đài phát thanh",
         "target": "广播",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "广播",
       "chinese": "我每天听新闻广播。",
-      "pinyin": "",
+      "pinyin": "wǒ měi tiān tīng xīn wén guǎng bō。",
       "meaningVi": "Mình đều nghe bản tin phát thanh mỗi ngày.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "广播",
       "chinese": "这场比赛将现场直播广播。",
-      "pinyin": "",
+      "pinyin": "zhè chǎng bǐ sài jiāng xiàn chǎng zhí bō guǎng bō。",
       "meaningVi": "Trận đấu này sẽ được phát sóng trực tiếp.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 广播",
-      "syntax": "danh từ / động từ",
-      "matchedExample": "可指广播节目（名词）或播送信号（动词）。也用于电视的\"广播电视\"。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 广播",
+      "partOfSpeech": "danh từ / động từ",
+      "usageNoteVi": "可指广播节目（名词）或播送信号（动词）。也用于电视的\"广播电视\"。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__3__topic__18__thong-tin-va-phuong-tien",
+      "sectionSlug": "thong-tin-va-phuong-tien",
       "sectionTitle": "Thông tin và phương tiện",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/",
+      "orderInSection": 24
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

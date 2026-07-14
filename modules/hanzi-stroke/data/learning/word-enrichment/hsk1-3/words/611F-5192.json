@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:感冒",
   "type": "word",
   "word": "感冒",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gǎn mào",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Cảm lạnh, cảm cúm",
+      "meaningShortVi": "Cảm lạnh",
+      "meaningFullVi": "Cảm lạnh, cảm cúm",
       "partOfSpeech": "loanword",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Cảm lạnh",
   "wordType": "loanword",
   "wordTypes": [
     "loanword"
   ],
-  "usageNotes": [
-    "Có thể là động từ (bị cảm) hoặc danh từ (bệnh cảm)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -53,19 +52,24 @@
         "text": "感冒药",
         "pinyin": "gǎnmàoyào",
         "meaningVi": "thuốc trị cảm",
+        "meaningFullVi": "thuốc trị cảm",
         "target": "感冒",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "重感冒",
         "pinyin": "zhòng gǎnmào",
         "meaningVi": "cảm nặng",
+        "meaningFullVi": "cảm nặng",
         "target": "感冒",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -75,7 +79,8 @@
       "meaningVi": "Tôi bị cảm, đau đầu sốt.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "感冒",
@@ -84,7 +89,8 @@
       "meaningVi": "Loại thuốc này có thể trị cảm.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "感冒",
@@ -93,16 +99,17 @@
       "meaningVi": "Chú ý giữ ấm, đừng để bị cảm.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 感冒",
-      "syntax": "loanword",
-      "matchedExample": "Có thể là động từ (bị cảm) hoặc danh từ (bệnh cảm).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 感冒",
+      "partOfSpeech": "loanword",
+      "usageNoteVi": "Có thể là động từ (bị cảm) hoặc danh từ (bệnh cảm).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -113,31 +120,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "hsk__3__lesson__5__bai-5-dao-nay-toi-cang-ngay-cang-beo",
+      "sectionSlug": "bai-5-dao-nay-toi-cang-ngay-cang-beo",
       "sectionTitle": "Dạo này tôi càng ngày càng béo.",
       "sectionTitleZh": "我最近越来越胖了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-5-dao-nay-toi-cang-ngay-cang-beo/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-5-dao-nay-toi-cang-ngay-cang-beo/",
+      "orderInSection": 5
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__3__lesson__8__bai-8-today-i-was-discharged-from-the-hospital",
+      "sectionSlug": "bai-8-today-i-was-discharged-from-the-hospital",
       "sectionTitle": "Hôm nay tôi xuất viện",
       "sectionTitleZh": "今天我出院了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-8-today-i-was-discharged-from-the-hospital/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-8-today-i-was-discharged-from-the-hospital/",
+      "orderInSection": 10
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__3__topic__3__co-the-va-suc-khoe",
+      "sectionSlug": "co-the-va-suc-khoe",
       "sectionTitle": "Cơ thể và sức khỏe",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/co-the-va-suc-khoe/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/co-the-va-suc-khoe/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -153,7 +175,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

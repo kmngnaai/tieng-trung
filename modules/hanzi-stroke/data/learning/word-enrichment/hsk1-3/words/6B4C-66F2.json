@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:歌曲",
   "type": "word",
   "word": "歌曲",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "gē qǔ",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bài hát, khúc nhạc",
+      "meaningShortVi": "bài hát",
+      "meaningFullVi": "bài hát, khúc nhạc",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bài hát",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "歌曲 chỉ bài hát hoàn chỉnh với giai điệu và lời. Có thể dùng cho mọi thể loại nhạc."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 歌 (hát, bài ca) + 曲 (khúc nhạc) → bài hát có giai điệu."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "流行歌曲",
         "pinyin": "liúxíng gēqǔ",
         "meaningVi": "bài hát phổ biến",
+        "meaningFullVi": "bài hát phổ biến",
         "target": "歌曲",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "中文歌曲",
         "pinyin": "Zhōngwén gēqǔ",
         "meaningVi": "bài hát tiếng Trung",
+        "meaningFullVi": "bài hát tiếng Trung",
         "target": "歌曲",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "唱歌曲",
         "pinyin": "chàng gēqǔ",
         "meaningVi": "hát bài hát",
+        "meaningFullVi": "hát bài hát",
         "target": "歌曲",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Tôi thích bài hát này",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "歌曲",
@@ -90,7 +95,8 @@
       "meaningVi": "Cô ấy đã hát một bài hát tiếng Trung",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "歌曲",
@@ -99,7 +105,8 @@
       "meaningVi": "Bài hát này rất phổ biến",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "歌曲",
@@ -108,7 +115,8 @@
       "meaningVi": "Bạn có thể recommend một số bài hát tiếng Trung hay không?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "歌曲",
@@ -117,23 +125,17 @@
       "meaningVi": "Lời bài hát này rất đẹp",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 歌曲",
-      "syntax": "compound-semantic",
-      "matchedExample": "歌曲 chỉ bài hát hoàn chỉnh với giai điệu và lời. Có thể dùng cho mọi thể loại nhạc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 歌 (hát, bài ca) + 曲 (khúc nhạc) → bài hát có giai điệu.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 歌曲",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "歌曲 chỉ bài hát hoàn chỉnh với giai điệu và lời. Có thể dùng cho mọi thể loại nhạc.",
+      "explanationVi": "Ghép nghĩa: 歌 (hát, bài ca) + 曲 (khúc nhạc) → bài hát có giai điệu.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -148,7 +150,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

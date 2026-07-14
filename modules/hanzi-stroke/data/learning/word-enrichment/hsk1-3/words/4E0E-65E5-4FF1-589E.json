@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:与日俱增",
   "type": "word",
   "word": "与日俱增",
@@ -17,26 +17,25 @@
     "readings": [
       {
         "pinyin": "yǔ rì jù zēng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tăng theo từng ngày, ngày càng nhiều",
+      "meaningShortVi": "tăng theo từng ngày",
+      "meaningFullVi": "tăng theo từng ngày, ngày càng nhiều",
       "partOfSpeech": "thành ngữ / idiom",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tăng theo từng ngày",
   "wordType": "thành ngữ / idiom",
   "wordTypes": [
     "thành ngữ / idiom"
   ],
-  "usageNotes": [
-    "Thành ngữ chỉ việc ngày càng tăng theo thời gian."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,24 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "与日俱增地",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "与日俱增",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "信心与日俱增",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "与日俱增",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +56,8 @@
       "meaningVi": "Niềm tin của tôi ngày càng tăng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "与日俱增",
@@ -82,16 +66,17 @@
       "meaningVi": "Sức mạnh của đất nước ngày càng lớn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 与日俱增",
-      "syntax": "thành ngữ / idiom",
-      "matchedExample": "Thành ngữ chỉ việc ngày càng tăng theo thời gian.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 与日俱增",
+      "partOfSpeech": "thành ngữ / idiom",
+      "usageNoteVi": "Thành ngữ chỉ việc ngày càng tăng theo thời gian.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -106,7 +91,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

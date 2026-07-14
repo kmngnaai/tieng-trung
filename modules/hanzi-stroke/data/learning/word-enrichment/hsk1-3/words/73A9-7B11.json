@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:玩笑",
   "type": "word",
   "word": "玩笑",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "wán xiào",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Chuyện đùa, trò đùa; đùa giỡn, bông đùa.",
+      "meaningShortVi": "Chuyện đùa",
+      "meaningFullVi": "Chuyện đùa, trò đùa; đùa giỡn, bông đùa.",
       "partOfSpeech": "Danh từ / Động từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Chuyện đùa",
   "wordType": "Danh từ / Động từ",
   "wordTypes": [
     "Danh từ / Động từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -45,16 +46,15 @@
       {
         "word": "开玩笑",
         "pinyin": "kāi wán xiào",
-        "meaningVi": "đùa cợt, nói đùa",
+        "meaningVi": "đùa cợt",
+        "meaningFullVi": "đùa cợt, nói đùa",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       }
     ],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -64,7 +64,8 @@
       "meaningVi": "Anh ấy chỉ đùa thôi, bạn đừng coi là thật.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "玩笑",
@@ -73,10 +74,19 @@
       "meaningVi": "Đừng đem chuyện này ra đùa giỡn.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 玩笑",
+      "partOfSpeech": "Danh từ / Động từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/玩笑.mp3"
   ],
@@ -89,7 +99,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng"
+    ]
   }
 }

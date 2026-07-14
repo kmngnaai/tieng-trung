@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:面包",
   "type": "word",
   "word": "面包",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "miàn bāo",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bánh mì",
+      "meaningShortVi": "bánh mì",
+      "meaningFullVi": "bánh mì",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bánh mì",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Bánh mì. Đếm 用 个 (yī gè miànbāo - một ổ bánh mì) 或 条 (yī tiáo miànbāo)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 面 (bề mặt/mặt bánh) + 包 (bọc/gói) → bánh được bọc."
   ],
   "hsk": {
     "levels": [
@@ -56,19 +53,34 @@
         "text": "吃面包",
         "pinyin": "chī miànbāo",
         "meaningVi": "ăn bánh mì",
+        "meaningFullVi": "ăn bánh mì",
         "target": "面包",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "买面包",
         "pinyin": "mǎi miànbāo",
         "meaningVi": "mua bánh mì",
+        "meaningFullVi": "mua bánh mì",
         "target": "面包",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
+      },
+      {
+        "text": "面包",
+        "pinyin": "miànbāo",
+        "meaningVi": "bánh mì",
+        "meaningFullVi": "bánh mì",
+        "target": "面包",
+        "source": "hsk_1.json",
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -78,7 +90,8 @@
       "meaningVi": "Tôi ăn bánh mì",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "面包",
@@ -87,7 +100,8 @@
       "meaningVi": "Mua bánh mì",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "面包",
@@ -96,7 +110,8 @@
       "meaningVi": "Bánh mì rất ngon",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "面包",
@@ -105,23 +120,17 @@
       "meaningVi": "một ổ bánh mì",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 面包",
-      "syntax": "compound-semantic",
-      "matchedExample": "Bánh mì. Đếm 用 个 (yī gè miànbāo - một ổ bánh mì) 或 条 (yī tiáo miànbāo).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 面 (bề mặt/mặt bánh) + 包 (bọc/gói) → bánh được bọc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 面包",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Bánh mì. Đếm 用 个 (yī gè miànbāo - một ổ bánh mì) 或 条 (yī tiáo miànbāo).",
+      "explanationVi": "Ghép nghĩa: 面 (bề mặt/mặt bánh) + 包 (bọc/gói) → bánh được bọc.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -132,31 +141,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__1__lesson__13__bai-13-i-ll-have-a-cup-of-tea-please",
+      "sectionSlug": "bai-13-i-ll-have-a-cup-of-tea-please",
       "sectionTitle": "Cho tôi một cốc trà",
       "sectionTitleZh": "请给我一杯茶",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-13-i-ll-have-a-cup-of-tea-please/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-13-i-ll-have-a-cup-of-tea-please/",
+      "orderInSection": 8
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 2,
+      "sectionId": "new_hsk__1__topic__2__mon-an",
+      "sectionSlug": "mon-an",
       "sectionTitle": "Món ăn",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/mon-an/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/mon-an/",
+      "orderInSection": 11
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 1,
+      "sectionId": "hsk__3__lesson__1__bai-1-cuoi-tuan-ban-co-du-dinh-gi",
+      "sectionSlug": "bai-1-cuoi-tuan-ban-co-du-dinh-gi",
       "sectionTitle": "Cuối tuần bạn có dự định gì?",
       "sectionTitleZh": "周末你有什么打算",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-1-cuoi-tuan-ban-co-du-dinh-gi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-1-cuoi-tuan-ban-co-du-dinh-gi/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -177,7 +201,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

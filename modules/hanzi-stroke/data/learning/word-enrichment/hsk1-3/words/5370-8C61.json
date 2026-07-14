@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:印象",
   "type": "word",
   "word": "印象",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yìn xiàng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Ấn tượng",
+      "meaningShortVi": "Ấn tượng",
+      "meaningFullVi": "Ấn tượng",
       "partOfSpeech": "loanword",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Ấn tượng",
   "wordType": "loanword",
   "wordTypes": [
     "loanword"
   ],
-  "usageNotes": [
-    "Dùng khi nói về cảm nhận, đánh giá ban đầu hoặc sự ghi nhớ về người/sự vật."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,27 +51,34 @@
         "text": "留下印象",
         "pinyin": "liúxià yìnxiàng",
         "meaningVi": "để lại ấn tượng",
+        "meaningFullVi": "để lại ấn tượng",
         "target": "印象",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "深刻印象",
         "pinyin": "shēnkè yìnxiàng",
         "meaningVi": "ấn tượng sâu sắc",
+        "meaningFullVi": "ấn tượng sâu sắc",
         "target": "印象",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "第一印象",
         "pinyin": "dì-yī yìnxiàng",
         "meaningVi": "ấn tượng đầu tiên",
+        "meaningFullVi": "ấn tượng đầu tiên",
         "target": "印象",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -82,7 +88,8 @@
       "meaningVi": "Anh ấy có ấn tượng tốt về tôi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "印象",
@@ -91,7 +98,8 @@
       "meaningVi": "Bộ phim này để lại cho tôi ấn tượng sâu sắc.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "印象",
@@ -100,16 +108,17 @@
       "meaningVi": "Tôi có ấn tượng không tồi với nơi này.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 印象",
-      "syntax": "loanword",
-      "matchedExample": "Dùng khi nói về cảm nhận, đánh giá ban đầu hoặc sự ghi nhớ về người/sự vật.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 印象",
+      "partOfSpeech": "loanword",
+      "usageNoteVi": "Dùng khi nói về cảm nhận, đánh giá ban đầu hoặc sự ghi nhớ về người/sự vật.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -120,11 +129,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__3__topic__8__nhung-cam-xuc-va-cam-giac",
+      "sectionSlug": "nhung-cam-xuc-va-cam-giac",
       "sectionTitle": "Những cảm xúc và cảm giác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-cam-xuc-va-cam-giac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-cam-xuc-va-cam-giac/",
+      "orderInSection": 27
     }
   ],
   "sources": [
@@ -140,7 +154,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

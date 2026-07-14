@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:目的地",
   "type": "word",
   "word": "目的地",
@@ -16,27 +16,24 @@
     "readings": [
       {
         "pinyin": "mù dì dì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Mục đích địa — điểm đến, nơi cần đến. Dùng trong du lịch, giao thông, và nghĩa bóng (mục tiêu cuối cùng).",
+      "meaningShortVi": "Mục đích địa — điểm đến",
+      "meaningFullVi": "Mục đích địa — điểm đến, nơi cần đến. Dùng trong du lịch, giao thông, và nghĩa bóng (mục tiêu cuối cùng).",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Mục đích địa — điểm đến",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "目的地 thường dùng trong du lịch và giao thông; khác với 目的 (mục đích, mục tiêu trừu tượng, không kèm địa điểm)."
-  ],
-  "wordTypeExplanations": [
-    "目的 (mục đích — mục tiêu) + 地 (địa — địa điểm, nơi) → địa điểm của mục tiêu, tức điểm đến."
   ],
   "hsk": {
     "levels": [
@@ -52,35 +49,44 @@
         "text": "旅游目的地",
         "pinyin": "lǚyóu mùdìdì",
         "meaningVi": "điểm đến du lịch",
+        "meaningFullVi": "điểm đến du lịch",
         "target": "目的地",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "抵达目的地",
         "pinyin": "dǐdá mùdìdì",
-        "meaningVi": "đến nơi, đến điểm đến",
+        "meaningVi": "đến nơi",
+        "meaningFullVi": "đến nơi, đến điểm đến",
         "target": "目的地",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "热门目的地",
         "pinyin": "rèmén mùdìdì",
         "meaningVi": "điểm đến phổ biến",
+        "meaningFullVi": "điểm đến phổ biến",
         "target": "目的地",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "最终目的地",
         "pinyin": "zuìzhōng mùdìdì",
         "meaningVi": "điểm đến cuối cùng",
+        "meaningFullVi": "điểm đến cuối cùng",
         "target": "目的地",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -90,7 +96,8 @@
       "meaningVi": "Điểm đến của chúng tôi là Bắc Kinh.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "目的地",
@@ -99,7 +106,8 @@
       "meaningVi": "Máy bay đã đến đích an toàn.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "目的地",
@@ -108,7 +116,8 @@
       "meaningVi": "Thành phố này đã trở thành điểm đến du lịch nổi tiếng.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "目的地",
@@ -117,23 +126,17 @@
       "meaningVi": "Dù điểm đến ở đâu, bản thân chuyến đi cũng rất quan trọng.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 目的地",
-      "syntax": "compound-semantic",
-      "matchedExample": "目的地 thường dùng trong du lịch và giao thông; khác với 目的 (mục đích, mục tiêu trừu tượng, không kèm địa điểm).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "目的 (mục đích — mục tiêu) + 地 (địa — địa điểm, nơi) → địa điểm của mục tiêu, tức điểm đến.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 目的地",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "目的地 thường dùng trong du lịch và giao thông; khác với 目的 (mục đích, mục tiêu trừu tượng, không kèm địa điểm).",
+      "explanationVi": "目的 (mục đích — mục tiêu) + 地 (địa — địa điểm, nơi) → địa điểm của mục tiêu, tức điểm đến.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -148,7 +151,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

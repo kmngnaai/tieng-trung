@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:小区",
   "type": "word",
   "word": "小区",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "xiǎo qū",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "khu dân cư, khu chung cư",
+      "meaningShortVi": "khu dân cư",
+      "meaningFullVi": "khu dân cư, khu chung cư",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "khu dân cư",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng cho khu dân cư, khu chung cư ở đô thị."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 小 (nhỏ) + 区 (khu vực) → khu dân cư nhỏ, khu nhà."
   ],
   "hsk": {
     "levels": [
@@ -54,19 +51,24 @@
         "text": "小区环境",
         "pinyin": "xiǎoqū huánjìng",
         "meaningVi": "môi trường khu chung cư",
+        "meaningFullVi": "môi trường khu chung cư",
         "target": "小区",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "小区管理",
         "pinyin": "xiǎoqū guǎnlǐ",
         "meaningVi": "quản lý khu chung cư",
+        "meaningFullVi": "quản lý khu chung cư",
         "target": "小区",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -76,7 +78,8 @@
       "meaningVi": "Khu chung cư nhà tôi rất đẹp",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "小区",
@@ -85,7 +88,8 @@
       "meaningVi": "Trong khu chung cư có phòng gym",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "小区",
@@ -94,23 +98,17 @@
       "meaningVi": "Khu dân cư mới xây",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 小区",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng cho khu dân cư, khu chung cư ở đô thị.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 小 (nhỏ) + 区 (khu vực) → khu dân cư nhỏ, khu nhà.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 小区",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng cho khu dân cư, khu chung cư ở đô thị.",
+      "explanationVi": "Ghép nghĩa: 小 (nhỏ) + 区 (khu vực) → khu dân cư nhỏ, khu nhà.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -121,11 +119,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__3__lesson__3__bai-3-this-neighborhood-is-pretty-nice",
+      "sectionSlug": "bai-3-this-neighborhood-is-pretty-nice",
       "sectionTitle": "Khu chung cư này khá đẹp",
       "sectionTitleZh": "这个小区挺好的",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-3-this-neighborhood-is-pretty-nice/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-3-this-neighborhood-is-pretty-nice/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -141,7 +144,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

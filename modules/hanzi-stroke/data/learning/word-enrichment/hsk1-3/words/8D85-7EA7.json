@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:超级",
   "type": "word",
   "word": "超级",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "chāo jí",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "siêu cấp, siêu hạng; vô cùng, hết sức",
+      "meaningShortVi": "siêu cấp",
+      "meaningFullVi": "siêu cấp, siêu hạng; vô cùng, hết sức",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "siêu cấp",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "Chāo jí dùng cho sự vật vượt mức bình thường hoặc diễn tả mức độ cao. Phổ biến trong giao tiếp hàng ngày và văn viết."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "超级大国",
-        "pinyin": "",
+        "pinyin": "chāo jí dà guó",
         "meaningVi": "siêu cường",
+        "meaningFullVi": "siêu cường",
         "target": "超级",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "超级喜欢",
-        "pinyin": "",
+        "pinyin": "chāo jí xǐ huan",
         "meaningVi": "thích vô cùng",
+        "meaningFullVi": "thích vô cùng",
         "target": "超级",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "超级",
       "chinese": "这是一家超级市场。",
-      "pinyin": "",
+      "pinyin": "zhè shì yī jiā chāo jí shì chǎng。",
       "meaningVi": "Đây là một siêu thị.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "超级",
       "chinese": "他是个超级明星。",
-      "pinyin": "",
+      "pinyin": "tā shì gè chāo jí míng xīng。",
       "meaningVi": "Anh ấy là một ngôi sao siêu hạng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 超级",
-      "syntax": "tính từ",
-      "matchedExample": "Chāo jí dùng cho sự vật vượt mức bình thường hoặc diễn tả mức độ cao. Phổ biến trong giao tiếp hàng ngày và văn viết.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 超级",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "Chāo jí dùng cho sự vật vượt mức bình thường hoặc diễn tả mức độ cao. Phổ biến trong giao tiếp hàng ngày và văn viết.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 32,
+      "sectionId": "new_hsk__3__topic__32__dac-diem",
+      "sectionSlug": "dac-diem",
       "sectionTitle": "Đặc điểm",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

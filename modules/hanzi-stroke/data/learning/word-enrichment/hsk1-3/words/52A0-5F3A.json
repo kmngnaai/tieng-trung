@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:加强",
   "type": "word",
   "word": "加强",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiā qiáng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tăng cường, làm mạnh hơn",
+      "meaningShortVi": "tăng cường",
+      "meaningFullVi": "tăng cường, làm mạnh hơn",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tăng cường",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Động từ chỉ việc làm cho cái gì đó mạnh hơn, sâu sắc hơn hoặc thường xuyên hơn. Tân ngữ thường là các trừu tượng: hợp tác, quản lý, liên hệ,锻炼,而非 vật chất cụ thể."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "加强联系",
         "pinyin": "jiāqiáng liánxì",
         "meaningVi": "tăng cường liên hệ",
+        "meaningFullVi": "tăng cường liên hệ",
         "target": "加强",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "加强锻炼",
         "pinyin": "jiāqiáng duànliàn",
         "meaningVi": "tăng cường tập thể dục",
+        "meaningFullVi": "tăng cường tập thể dục",
         "target": "加强",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Chúng ta cần tăng cường hợp tác.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "加强",
@@ -82,16 +87,17 @@
       "meaningVi": "Chính phủ quyết định tăng cường quản lý an toàn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 加强",
-      "syntax": "động từ",
-      "matchedExample": "Động từ chỉ việc làm cho cái gì đó mạnh hơn, sâu sắc hơn hoặc thường xuyên hơn. Tân ngữ thường là các trừu tượng: hợp tác, quản lý, liên hệ,锻炼,而非 vật chất cụ thể.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 加强",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Động từ chỉ việc làm cho cái gì đó mạnh hơn, sâu sắc hơn hoặc thường xuyên hơn. Tân ngữ thường là các trừu tượng: hợp tác, quản lý, liên hệ,锻炼,而非 vật chất cụ thể.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__topic__17__nhung-thay-doi",
+      "sectionSlug": "nhung-thay-doi",
       "sectionTitle": "Những thay đổi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/",
+      "orderInSection": 18
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

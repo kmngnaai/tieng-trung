@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:错误",
   "type": "word",
   "word": "错误",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "cuò wù",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sai lầm, lỗi; sai, nhầm",
+      "meaningShortVi": "sai lầm",
+      "meaningFullVi": "sai lầm, lỗi; sai, nhầm",
       "partOfSpeech": "danh từ / động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sai lầm",
   "wordType": "danh từ / động từ",
   "wordTypes": [
     "danh từ / động từ"
   ],
-  "usageNotes": [
-    "可作名词（错误本身）或动词（做错）。错误 vs. 失误：错误更重，失误多指不小心的疏忽。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,36 @@
     "collocations": [
       {
         "text": "犯错误",
-        "pinyin": "",
+        "pinyin": "fàn cuò wù",
         "meaningVi": "mắc sai lầm",
+        "meaningFullVi": "mắc sai lầm",
         "target": "错误",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "纠正错误",
-        "pinyin": "",
-        "meaningVi": "sửa chữa sai lầm",
-        "target": "错误",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "错误",
       "chinese": "我犯了一个错误，把名字写错了。",
-      "pinyin": "",
+      "pinyin": "wǒ fàn le yī gè cuò wù， bǎ míng zi xiě cuò le。",
       "meaningVi": "Mình đã mắc một sai lầm, viết nhầm tên.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "错误",
-      "chinese": "这道题的答案是错误的。",
-      "pinyin": "",
-      "meaningVi": "Câu trả lời của câu hỏi này là sai.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 错误",
-      "syntax": "danh từ / động từ",
-      "matchedExample": "可作名词（错误本身）或动词（做错）。错误 vs. 失误：错误更重，失误多指不小心的疏忽。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 错误",
+      "partOfSpeech": "danh từ / động từ",
+      "usageNoteVi": "可作名词（错误本身）或动词（做错）。错误 vs. 失误：错误更重，失误多指不小心的疏忽。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__3__topic__19__thanh-tuu-va-ket-qua",
+      "sectionSlug": "thanh-tuu-va-ket-qua",
       "sectionTitle": "Thành tựu và kết quả",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -117,7 +108,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

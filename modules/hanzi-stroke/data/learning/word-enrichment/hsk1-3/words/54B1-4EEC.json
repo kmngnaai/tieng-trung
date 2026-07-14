@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:咱们",
   "type": "word",
   "word": "咱们",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zán men",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chúng ta",
+      "meaningShortVi": "chúng ta",
+      "meaningFullVi": "chúng ta",
       "partOfSpeech": "pronoun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chúng ta",
   "wordType": "pronoun",
   "wordTypes": [
     "pronoun"
   ],
-  "usageNotes": [
-    "Đại từ bao gồm cả người nói và người nghe, thân mật, thường dùng khẩu ngữ Bắc."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,50 +49,47 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "咱们俩",
-        "pinyin": "",
-        "meaningVi": "chúng ta hai người",
-        "target": "咱们",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "咱们家",
-        "pinyin": "",
+        "pinyin": "zán men jiā",
         "meaningVi": "nhà chúng ta",
+        "meaningFullVi": "nhà chúng ta",
         "target": "咱们",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "咱们",
       "chinese": "咱们一起去吧",
-      "pinyin": "",
+      "pinyin": "zán men yī qǐ qù ba",
       "meaningVi": "Chúng ta cùng đi đi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "咱们",
       "chinese": "咱们是最好的朋友",
-      "pinyin": "",
+      "pinyin": "zán men shì zuì hǎo de péng you",
       "meaningVi": "Chúng ta là bạn tốt nhất",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 咱们",
-      "syntax": "pronoun",
-      "matchedExample": "Đại từ bao gồm cả người nói và người nghe, thân mật, thường dùng khẩu ngữ Bắc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 咱们",
+      "partOfSpeech": "pronoun",
+      "usageNoteVi": "Đại từ bao gồm cả người nói và người nghe, thân mật, thường dùng khẩu ngữ Bắc.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,21 +100,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__2__topic__4__khac",
+      "sectionSlug": "khac",
       "sectionTitle": "Khác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/khac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/khac/",
+      "orderInSection": 23
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__3__lesson__3__bai-3-this-neighborhood-is-pretty-nice",
+      "sectionSlug": "bai-3-this-neighborhood-is-pretty-nice",
       "sectionTitle": "Khu chung cư này khá đẹp",
       "sectionTitleZh": "这个小区挺好的",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-3-this-neighborhood-is-pretty-nice/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-3-this-neighborhood-is-pretty-nice/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -139,7 +145,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:羊肉",
   "type": "word",
   "word": "羊肉",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "yáng ròu",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thịt cừu",
+      "meaningShortVi": "thịt cừu",
+      "meaningFullVi": "thịt cừu",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thịt cừu",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -48,21 +49,26 @@
     "collocations": [
       {
         "text": "吃羊肉",
-        "pinyin": "",
+        "pinyin": "chī yáng ròu",
         "meaningVi": "ăn thịt cừu",
+        "meaningFullVi": "ăn thịt cừu",
         "target": "羊肉",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "买羊肉",
-        "pinyin": "",
+        "pinyin": "mǎi yáng ròu",
         "meaningVi": "mua thịt cừu",
+        "meaningFullVi": "mua thịt cừu",
         "target": "羊肉",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -72,7 +78,8 @@
       "meaningVi": "Lẩu cừu rất ngon.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "羊肉",
@@ -81,10 +88,19 @@
       "meaningVi": "Tôi không thích ăn thịt cừu.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 羊肉",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/羊肉.mp3"
   ],
@@ -93,11 +109,16 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 6,
+      "sectionId": "hsk__2__lesson__6__bai-6-sao-ban-khong-an-nua",
+      "sectionSlug": "bai-6-sao-ban-khong-an-nua",
       "sectionTitle": "Sao bạn không ăn nữa?",
       "sectionTitleZh": "你怎么不吃了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-6-sao-ban-khong-an-nua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-6-sao-ban-khong-an-nua/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -113,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

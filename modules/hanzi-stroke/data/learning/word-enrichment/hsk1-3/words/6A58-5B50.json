@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:橘子",
   "type": "word",
   "word": "橘子",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "jú zi",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "quýt, cam",
+      "meaningShortVi": "quýt",
+      "meaningFullVi": "quýt, cam",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "quýt",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Quả quýt hoặc cam (tùy vùng miền). Trái với 橙子 (cam sành)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 橘 (quýt) + 子 (hậu tố danh từ) — quả quýt"
   ],
   "hsk": {
     "levels": [
@@ -51,19 +48,24 @@
         "text": "橘子汁",
         "pinyin": "júzi zhī",
         "meaningVi": "nước quýt",
+        "meaningFullVi": "nước quýt",
         "target": "橘子",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "橘子皮",
         "pinyin": "júzi pí",
         "meaningVi": "vỏ quýt",
+        "meaningFullVi": "vỏ quýt",
         "target": "橘子",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +75,8 @@
       "meaningVi": "Ăn quýt",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "橘子",
@@ -82,7 +85,8 @@
       "meaningVi": "Quýt rất ngọt",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "橘子",
@@ -91,23 +95,17 @@
       "meaningVi": "Mua quýt",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 橘子",
-      "syntax": "compound-semantic",
-      "matchedExample": "Quả quýt hoặc cam (tùy vùng miền). Trái với 橙子 (cam sành).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 橘 (quýt) + 子 (hậu tố danh từ) — quả quýt",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 橘子",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Quả quýt hoặc cam (tùy vùng miền). Trái với 橙子 (cam sành).",
+      "explanationVi": "Ghép nghĩa: 橘 (quýt) + 子 (hậu tố danh từ) — quả quýt",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -122,7 +120,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

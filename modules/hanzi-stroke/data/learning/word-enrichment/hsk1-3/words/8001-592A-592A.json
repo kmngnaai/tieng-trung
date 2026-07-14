@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:老太太",
   "type": "word",
   "word": "老太太",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "lǎo tài tai",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Bà cụ, bà già; (vùng phương Bắc) vợ, bà",
+      "meaningShortVi": "Bà cụ",
+      "meaningFullVi": "Bà cụ, bà già; (vùng phương Bắc) vợ, bà",
       "partOfSpeech": "other",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Bà cụ",
   "wordType": "other",
   "wordTypes": [
     "other"
   ],
-  "usageNotes": [
-    "老太太 (lǎotàitai) là từ dùng để chỉ phụ nữ lớn tuổi. Trong văn nói phương Bắc, đôi khi được dùng để gọi vợ một cách thân mật. Nên dùng từ này với sự tôn trọng, tránh dùng trong ngữ cảnh miệt thị."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,22 +48,37 @@
     "compounds": [],
     "collocations": [
       {
+        "text": "老太太",
+        "pinyin": "lǎotàitai",
+        "meaningVi": "bà cụ",
+        "meaningFullVi": "bà cụ, bà già",
+        "target": "老太太",
+        "source": "hsk_3.json",
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
+      },
+      {
         "text": "老婆老太太",
         "pinyin": "lǎopo lǎotàitai",
         "meaningVi": "vợ (vùng phương Bắc)",
+        "meaningFullVi": "vợ (vùng phương Bắc)",
         "target": "老太太",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "老太太子",
         "pinyin": "lǎotàitai zi",
         "meaningVi": "bà cụ (kèm từ hậu 'zi' ở một số phương ngữ)",
+        "meaningFullVi": "bà cụ (kèm từ hậu 'zi' ở một số phương ngữ)",
         "target": "老太太",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +88,8 @@
       "meaningVi": "Bà cụ đó mỗi sáng đều đi dạo ở công viên.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "老太太",
@@ -83,7 +98,8 @@
       "meaningVi": "Bà cụ nhà chúng tôi nay tám mươi tuổi, sức khỏe còn rất tốt.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "老太太",
@@ -92,16 +108,17 @@
       "meaningVi": "Bà cụ ngồi ở cửa, nhìn trẻ con chơi đùa.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 老太太",
-      "syntax": "other",
-      "matchedExample": "老太太 (lǎotàitai) là từ dùng để chỉ phụ nữ lớn tuổi. Trong văn nói phương Bắc, đôi khi được dùng để gọi vợ một cách thân mật. Nên dùng từ này với sự tôn trọng, tránh dùng trong ngữ cảnh miệt thị.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 老太太",
+      "partOfSpeech": "other",
+      "usageNoteVi": "老太太 (lǎotàitai) là từ dùng để chỉ phụ nữ lớn tuổi. Trong văn nói phương Bắc, đôi khi được dùng để gọi vợ một cách thân mật. Nên dùng từ này với sự tôn trọng, tránh dùng trong ngữ cảnh miệt thị.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -112,11 +129,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__3__topic__4__nhung-nguoi",
+      "sectionSlug": "nhung-nguoi",
       "sectionTitle": "Những người",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -127,7 +149,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

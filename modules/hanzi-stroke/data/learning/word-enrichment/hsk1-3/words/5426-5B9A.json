@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:否定",
   "type": "word",
   "word": "否定",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fǒu dìng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phủ định; bác bỏ; khẳng định là sai",
+      "meaningShortVi": "phủ định",
+      "meaningFullVi": "phủ định; bác bỏ; khẳng định là sai",
       "partOfSpeech": "động từ / danh từ (Verb / Noun)",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phủ định",
   "wordType": "động từ / danh từ (Verb / Noun)",
   "wordTypes": [
     "động từ / danh từ (Verb / Noun)"
   ],
-  "usageNotes": [
-    "Trong ngữ pháp: câu phủ định. Trong tranh luận: bác bỏ, bác luận. Phân biệt 否认 (chối không), 反对 (phản đối). Synonym: 否认 (phủ nhận), 反对 (phản đối), 反驳 (bác bỏ). Ngược nghĩa: 肯定 (khẳng định), 同意 (đồng ý)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "否定句",
         "pinyin": "fǒudìngjù",
         "meaningVi": "câu phủ định (ngữ pháp)",
+        "meaningFullVi": "câu phủ định (ngữ pháp)",
         "target": "否定",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "完全否定",
         "pinyin": "wánquán fǒudìng",
         "meaningVi": "hoàn toàn bác bỏ",
+        "meaningFullVi": "hoàn toàn bác bỏ",
         "target": "否定",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Anh ấy đã bác bỏ ý kiến của tôi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "否定",
@@ -82,16 +87,17 @@
       "meaningVi": "Đây không phải lý do để phủ định.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 否定",
-      "syntax": "động từ / danh từ (Verb / Noun)",
-      "matchedExample": "Trong ngữ pháp: câu phủ định. Trong tranh luận: bác bỏ, bác luận. Phân biệt 否认 (chối không), 反对 (phản đối). Synonym: 否认 (phủ nhận), 反对 (phản đối), 反驳 (bác bỏ). Ngược nghĩa: 肯定 (khẳng định), 同意 (đồng ý).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 否定",
+      "partOfSpeech": "động từ / danh từ (Verb / Noun)",
+      "usageNoteVi": "Trong ngữ pháp: câu phủ định. Trong tranh luận: bác bỏ, bác luận. Phân biệt 否认 (chối không), 反对 (phản đối). Synonym: 否认 (phủ nhận), 反对 (phản đối), 反驳 (bác bỏ). Ngược nghĩa: 肯定 (khẳng định), 同意 (đồng ý).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 29,
+      "sectionId": "new_hsk__3__topic__29__lien-lac",
+      "sectionSlug": "lien-lac",
       "sectionTitle": "Liên lạc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/",
+      "orderInSection": 20
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

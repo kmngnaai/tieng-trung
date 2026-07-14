@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:十分",
   "type": "word",
   "word": "十分",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shí fēn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thập phân",
+      "meaningShortVi": "thập phân",
+      "meaningFullVi": "thập phân",
       "partOfSpeech": "adverb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thập phân",
   "wordType": "adverb",
   "wordTypes": [
     "adverb"
   ],
-  "usageNotes": [
-    "Độ lượng cao, trang trọng hơn '很'"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "十分高兴",
-        "pinyin": "",
+        "pinyin": "shí fēn gāo xìng",
         "meaningVi": "vui mừng rất nhiều",
+        "meaningFullVi": "vui mừng rất nhiều",
         "target": "十分",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "十分满意",
-        "pinyin": "",
+        "pinyin": "shí fēn mǎn yì",
         "meaningVi": "rất hài lòng",
+        "meaningFullVi": "rất hài lòng",
         "target": "十分",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "十分",
       "chinese": "我十分喜欢",
-      "pinyin": "",
+      "pinyin": "wǒ shí fēn xǐ huan",
       "meaningVi": "Tôi rất thích",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "十分",
       "chinese": "十分感谢",
-      "pinyin": "",
+      "pinyin": "shí fēn gǎn xiè",
       "meaningVi": "Cảm ơn rất nhiều",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 十分",
-      "syntax": "adverb",
-      "matchedExample": "Độ lượng cao, trang trọng hơn '很'",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 十分",
+      "partOfSpeech": "adverb",
+      "usageNoteVi": "Độ lượng cao, trang trọng hơn '很'",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__2__topic__11__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/pho-tu/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

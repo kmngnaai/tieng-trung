@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:西北",
   "type": "word",
   "word": "西北",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "xī běi",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tây bắc",
+      "meaningShortVi": "tây bắc",
+      "meaningFullVi": "tây bắc",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tây bắc",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -47,36 +48,49 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "东南",
-        "pinyin": "",
-        "meaningVi": "Đông Nam",
+        "text": "西北",
+        "pinyin": "xī běi",
+        "meaningVi": "Tây Bắc",
+        "meaningFullVi": "Tây Bắc",
         "target": "西北",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "西北",
       "chinese": "西北地区",
-      "pinyin": "",
+      "pinyin": "xī běi dì qū",
       "meaningVi": "Vùng tây bắc",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "西北",
       "chinese": "向西北方向",
-      "pinyin": "",
+      "pinyin": "xiàng xī běi fāng xiàng",
       "meaningVi": "Hướng tây bắc",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 西北",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/西北.mp3"
   ],
@@ -85,21 +99,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__2__topic__6__huong",
+      "sectionSlug": "huong",
       "sectionTitle": "Hướng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/huong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/huong/",
+      "orderInSection": 16
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 15,
+      "sectionId": "new_hsk__3__lesson__15__bai-15-i-am-basically-half-a-nanjing-local",
+      "sectionSlug": "bai-15-i-am-basically-half-a-nanjing-local",
       "sectionTitle": "Tôi coi như là nửa người Nam Kinh",
       "sectionTitleZh": "我是半个南京人",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-15-i-am-basically-half-a-nanjing-local/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-15-i-am-basically-half-a-nanjing-local/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -115,7 +139,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

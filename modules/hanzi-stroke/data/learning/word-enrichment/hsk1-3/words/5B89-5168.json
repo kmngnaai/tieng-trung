@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:安全",
   "type": "word",
   "word": "安全",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "ān quán",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "an toàn",
+      "meaningShortVi": "an toàn",
+      "meaningFullVi": "an toàn",
       "partOfSpeech": "adjective/noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "an toàn",
   "wordType": "adjective/noun",
   "wordTypes": [
     "adjective/noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,60 +48,78 @@
     "collocations": [
       {
         "text": "很安全",
-        "pinyin": "",
+        "pinyin": "hěn ān quán",
         "meaningVi": "rất an toàn",
+        "meaningFullVi": "rất an toàn",
         "target": "安全",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "注意安全",
-        "pinyin": "",
+        "pinyin": "zhù yì ān quán",
         "meaningVi": "chú ý an toàn",
+        "meaningFullVi": "chú ý an toàn",
         "target": "安全",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "交通安全",
-        "pinyin": "",
+        "pinyin": "jiāo tōng ān quán",
         "meaningVi": "an toàn giao thông",
+        "meaningFullVi": "an toàn giao thông",
         "target": "安全",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "安全",
       "chinese": "请注意安全。",
-      "pinyin": "",
+      "pinyin": "qǐng zhù yì ān quán。",
       "meaningVi": "Vui lòng chú ý an toàn.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "安全",
       "chinese": "这里很安全。",
-      "pinyin": "",
+      "pinyin": "zhè li hěn ān quán。",
       "meaningVi": "Ở đây rất an toàn.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "安全",
       "chinese": "安全问题很重要。",
-      "pinyin": "",
+      "pinyin": "ān quán wèn tí hěn zhòng yào。",
       "meaningVi": "Vấn đề an toàn rất quan trọng.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 安全",
+      "partOfSpeech": "adjective/noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/安全.mp3"
   ],
@@ -109,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__2__topic__18__tinh-tu",
+      "sectionSlug": "tinh-tu",
       "sectionTitle": "Tính từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-tu/",
+      "orderInSection": 26
     }
   ],
   "sources": [
@@ -124,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

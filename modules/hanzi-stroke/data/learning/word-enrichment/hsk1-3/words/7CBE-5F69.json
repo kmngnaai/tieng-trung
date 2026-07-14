@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:精彩",
   "type": "word",
   "word": "精彩",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jīng cǎi",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tuyệt vời, xuất sắc; rực rỡ",
+      "meaningShortVi": "tuyệt vời",
+      "meaningFullVi": "tuyệt vời, xuất sắc; rực rỡ",
       "partOfSpeech": "tính từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tuyệt vời",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "Jīng cǎi dùng cho sự xuất sắc, rực rỡ của biểu diễn, văn viết, sự kiện. Phổ biến trong giao tiếp hàng ngày và văn viết."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -50,49 +49,56 @@
     "collocations": [
       {
         "text": "精彩的表演",
-        "pinyin": "",
+        "pinyin": "jīng cǎi de biǎo yǎn",
         "meaningVi": "buổi diễn tuyệt vời",
+        "meaningFullVi": "buổi diễn tuyệt vời",
         "target": "精彩",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "非常精彩",
-        "pinyin": "",
+        "pinyin": "fēi cháng jīng cǎi",
         "meaningVi": "rất tuyệt vời",
+        "meaningFullVi": "rất tuyệt vời",
         "target": "精彩",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "精彩",
       "chinese": "昨天的比赛非常精彩。",
-      "pinyin": "",
+      "pinyin": "zuó tiān de bǐ sài fēi cháng jīng cǎi。",
       "meaningVi": "Trận đấu hôm qua rất tuyệt vời.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "精彩",
       "chinese": "这是一篇精彩的文章。",
-      "pinyin": "",
+      "pinyin": "zhè shì yī piān jīng cǎi de wén zhāng。",
       "meaningVi": "Đây là một bài viết xuất sắc.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 精彩",
-      "syntax": "tính từ",
-      "matchedExample": "Jīng cǎi dùng cho sự xuất sắc, rực rỡ của biểu diễn, văn viết, sự kiện. Phổ biến trong giao tiếp hàng ngày và văn viết.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 精彩",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "Jīng cǎi dùng cho sự xuất sắc, rực rỡ của biểu diễn, văn viết, sự kiện. Phổ biến trong giao tiếp hàng ngày và văn viết.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 32,
+      "sectionId": "new_hsk__3__topic__32__dac-diem",
+      "sectionSlug": "dac-diem",
       "sectionTitle": "Đặc điểm",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

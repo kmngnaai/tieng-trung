@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:电影院",
   "type": "word",
   "word": "电影院",
@@ -16,27 +16,24 @@
     "readings": [
       {
         "pinyin": "diàn yǐng yuàn",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "rạp chiếu phim, rạp phim",
+      "meaningShortVi": "rạp chiếu phim",
+      "meaningFullVi": "rạp chiếu phim, rạp phim",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "rạp chiếu phim",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Danh từ, chỉ địa điểm chiếu phim. Lượng từ: 家 (一家电影院). Phân biệt 与 影院 (viết tắt của 电影院, chỉ rạp phim)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 电 (điện) + 影 (ảnh, bóng) + 院 (sân, nơi) → nơi chiếu phim điện ảnh."
   ],
   "hsk": {
     "levels": [
@@ -54,27 +51,34 @@
         "text": "电影院门口",
         "pinyin": "diànyǐngyuàn ménkǒu",
         "meaningVi": "cửa rạp phim",
+        "meaningFullVi": "cửa rạp phim",
         "target": "电影院",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "电影院售票处",
         "pinyin": "diànyǐngyuàn shòupiàochù",
         "meaningVi": "quầy vé rạp phim",
+        "meaningFullVi": "quầy vé rạp phim",
         "target": "电影院",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "电影院座位",
         "pinyin": "diànyǐngyuàn zuòwèi",
         "meaningVi": "ghế ngồi rạp phim",
+        "meaningFullVi": "ghế ngồi rạp phim",
         "target": "电影院",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -84,7 +88,8 @@
       "meaningVi": "Chúng ta đi rạp xem phim nhé",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "电影院",
@@ -93,7 +98,8 @@
       "meaningVi": "Rạp phim ở đâu?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "电影院",
@@ -102,7 +108,8 @@
       "meaningVi": "Rạp phim này rất to",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "电影院",
@@ -111,23 +118,17 @@
       "meaningVi": "Rạp phim đang chiếu một bộ phim mới",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 电影院",
-      "syntax": "compound-semantic",
-      "matchedExample": "Danh từ, chỉ địa điểm chiếu phim. Lượng từ: 家 (一家电影院). Phân biệt 与 影院 (viết tắt của 电影院, chỉ rạp phim).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 电 (điện) + 影 (ảnh, bóng) + 院 (sân, nơi) → nơi chiếu phim điện ảnh.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 电影院",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Danh từ, chỉ địa điểm chiếu phim. Lượng từ: 家 (一家电影院). Phân biệt 与 影院 (viết tắt của 电影院, chỉ rạp phim).",
+      "explanationVi": "Ghép nghĩa: 电 (điện) + 影 (ảnh, bóng) + 院 (sân, nơi) → nơi chiếu phim điện ảnh.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -138,21 +139,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__1__lesson__7__bai-7-i-ll-finish-work-at-6-30-in-the-evening",
+      "sectionSlug": "bai-7-i-ll-finish-work-at-6-30-in-the-evening",
       "sectionTitle": "Tôi tan làm lúc 6 giờ rưỡi tối",
       "sectionTitleZh": "我晚上六点半下班",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-7-i-ll-finish-work-at-6-30-in-the-evening/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-7-i-ll-finish-work-at-6-30-in-the-evening/",
+      "orderInSection": 6
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__1__topic__16__thoi-gian-ranh-roi",
+      "sectionSlug": "thoi-gian-ranh-roi",
       "sectionTitle": "Thời gian rảnh rỗi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian-ranh-roi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian-ranh-roi/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -163,7 +174,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

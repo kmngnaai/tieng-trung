@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:年初",
   "type": "word",
   "word": "年初",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "nián chū",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Đầu năm",
+      "meaningShortVi": "Đầu năm",
+      "meaningFullVi": "Đầu năm",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Đầu năm",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "年初 là danh từ chỉ thời điểm đầu năm. 年 nghĩa là năm; 初 nghĩa là đầu, bắt đầu. Dùng để chỉ giai đoạn đầu của một năm."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,40 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "今年年初",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "年初",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "年初计划",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "年初",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "年初开始",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "年初",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "从年初到年底",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "年初",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -89,7 +56,8 @@
       "meaningVi": "Vào đầu năm, chúng tôi đã lập kế hoạch mới.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "年初",
@@ -98,7 +66,8 @@
       "meaningVi": "Công ty này được thành lập vào đầu năm.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "年初",
@@ -107,16 +76,17 @@
       "meaningVi": "Vào đầu năm, thời tiết vẫn còn lạnh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 年初",
-      "syntax": "compound-semantic",
-      "matchedExample": "年初 là danh từ chỉ thời điểm đầu năm. 年 nghĩa là năm; 初 nghĩa là đầu, bắt đầu. Dùng để chỉ giai đoạn đầu của một năm.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 年初",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "年初 là danh từ chỉ thời điểm đầu năm. 年 nghĩa là năm; 初 nghĩa là đầu, bắt đầu. Dùng để chỉ giai đoạn đầu của một năm.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -127,11 +97,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__3__topic__7__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -142,7 +117,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

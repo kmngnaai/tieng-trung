@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:表面",
   "type": "word",
   "word": "表面",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "biǎo miàn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bề mặt, mặt ngoài; bên ngoài, hời hợt",
+      "meaningShortVi": "bề mặt",
+      "meaningFullVi": "bề mặt, mặt ngoài; bên ngoài, hời hợt",
       "partOfSpeech": "danh từ / tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bề mặt",
   "wordType": "danh từ / tính từ",
   "wordTypes": [
     "danh từ / tính từ"
   ],
-  "usageNotes": [
-    "Biǎo miàn dùng cho mặt ngoài hoặc sự hời hợt, thiếu sâu sắc. Phản nghĩa với bản chất, bên trong. Phổ biến trong giao tiếp hàng ngày."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "表面功夫",
-        "pinyin": "",
-        "meaningVi": "làm cho có/hời hợt",
+        "pinyin": "biǎo miàn gōng fu",
+        "meaningVi": "làm cho có",
+        "meaningFullVi": "làm cho có/hời hợt",
         "target": "表面",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "表面现象",
-        "pinyin": "",
+        "pinyin": "biǎo miàn xiàn xiàng",
         "meaningVi": "hiện tượng bên ngoài",
+        "meaningFullVi": "hiện tượng bên ngoài",
         "target": "表面",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "表面",
       "chinese": "这只是表面现象。",
-      "pinyin": "",
+      "pinyin": "zhè zhǐ shì biǎo miàn xiàn xiàng。",
       "meaningVi": "Đây chỉ là hiện tượng bề mặt.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "表面",
       "chinese": "不要只看表面。",
-      "pinyin": "",
+      "pinyin": "bù yào zhǐ kàn biǎo miàn。",
       "meaningVi": "Đừng chỉ nhìn bên ngoài.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 表面",
-      "syntax": "danh từ / tính từ",
-      "matchedExample": "Biǎo miàn dùng cho mặt ngoài hoặc sự hời hợt, thiếu sâu sắc. Phản nghĩa với bản chất, bên trong. Phổ biến trong giao tiếp hàng ngày.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 表面",
+      "partOfSpeech": "danh từ / tính từ",
+      "usageNoteVi": "Biǎo miàn dùng cho mặt ngoài hoặc sự hời hợt, thiếu sâu sắc. Phản nghĩa với bản chất, bên trong. Phổ biến trong giao tiếp hàng ngày.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 32,
+      "sectionId": "new_hsk__3__topic__32__dac-diem",
+      "sectionSlug": "dac-diem",
       "sectionTitle": "Đặc điểm",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/",
+      "orderInSection": 23
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

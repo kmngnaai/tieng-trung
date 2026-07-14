@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:歌迷",
   "type": "word",
   "word": "歌迷",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gē mí",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Người hâm mộ ca sĩ, fan nhạc",
+      "meaningShortVi": "Người hâm mộ ca sĩ",
+      "meaningFullVi": "Người hâm mộ ca sĩ, fan nhạc",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Người hâm mộ ca sĩ",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "歌迷 chỉ người hâm mộ ca sĩ hoặc nhạc sĩ. Trong giao tiếp, người ta thường dùng 'fan' (mượn từ tiếng Anh) hoặc 粉丝 (fandom). Lưu ý: 歌迷 khác với 影迷 (fan phim) 或 球迷 (fan bóng đá) — 后两者 是 fan 其他领域的."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "歌迷俱乐部",
         "pinyin": "gēmí jùlèbù",
         "meaningVi": "câu lạc bộ fan",
+        "meaningFullVi": "câu lạc bộ fan",
         "target": "歌迷",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "歌迷见面会",
         "pinyin": "gēmí jiànmiànhuì",
         "meaningVi": "buổi gặp mặt fan",
+        "meaningFullVi": "buổi gặp mặt fan",
         "target": "歌迷",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Nhiều fan nhạc đang đợi ngôi sao ở sân bay.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "歌迷",
@@ -82,16 +87,17 @@
       "meaningVi": "Là một fan nhạc, tôi đã mua tất cả album của cô ấy.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 歌迷",
-      "syntax": "danh từ",
-      "matchedExample": "歌迷 chỉ người hâm mộ ca sĩ hoặc nhạc sĩ. Trong giao tiếp, người ta thường dùng 'fan' (mượn từ tiếng Anh) hoặc 粉丝 (fandom). Lưu ý: 歌迷 khác với 影迷 (fan phim) 或 球迷 (fan bóng đá) — 后两者 是 fan 其他领域的.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 歌迷",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "歌迷 chỉ người hâm mộ ca sĩ hoặc nhạc sĩ. Trong giao tiếp, người ta thường dùng 'fan' (mượn từ tiếng Anh) hoặc 粉丝 (fandom). Lưu ý: 歌迷 khác với 影迷 (fan phim) 或 球迷 (fan bóng đá) — 后两者 是 fan 其他领域的.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__3__topic__11__giai-tri-ii",
+      "sectionSlug": "giai-tri-ii",
       "sectionTitle": "Giải trí II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-ii/",
+      "orderInSection": 17
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

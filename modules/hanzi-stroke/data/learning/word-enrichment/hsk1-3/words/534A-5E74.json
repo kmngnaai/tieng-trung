@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:半年",
   "type": "word",
   "word": "半年",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "bàn nián",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nửa năm; sáu tháng",
+      "meaningShortVi": "nửa năm",
+      "meaningFullVi": "nửa năm; sáu tháng",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nửa năm",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng để chỉ khoảng thời gian 6 tháng. Có thể đứng sau động từ/tính từ hoặc đầu câu. Lưu ý thanh điệu: bàn (thanh 4) + nián (thanh 2)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 半 (một nửa) + 年 (năm). 'Một nửa năm' = nửa năm = 6 tháng. Đây là ghép nghĩa trực tiếp, toán học."
   ],
   "hsk": {
     "levels": [
@@ -53,27 +50,34 @@
         "text": "半年后",
         "pinyin": "bànnián hòu",
         "meaningVi": "nửa năm sau",
+        "meaningFullVi": "nửa năm sau",
         "target": "半年",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "这半年",
         "pinyin": "zhè bànnián",
         "meaningVi": "nửa năm này",
+        "meaningFullVi": "nửa năm này",
         "target": "半年",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "学了半年",
         "pinyin": "xuéle bànnián",
         "meaningVi": "học nửa năm rồi",
+        "meaningFullVi": "học nửa năm rồi",
         "target": "半年",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -83,7 +87,8 @@
       "meaningVi": "Tôi đã học tiếng Trung 6 tháng",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "半年",
@@ -92,7 +97,8 @@
       "meaningVi": "sáu tháng sau",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "半年",
@@ -101,7 +107,8 @@
       "meaningVi": "Nửa năm này rất bận",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "半年",
@@ -110,7 +117,8 @@
       "meaningVi": "đợi nửa năm rồi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "半年",
@@ -119,23 +127,17 @@
       "meaningVi": "thời gian nửa năm",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 半年",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng để chỉ khoảng thời gian 6 tháng. Có thể đứng sau động từ/tính từ hoặc đầu câu. Lưu ý thanh điệu: bàn (thanh 4) + nián (thanh 2).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 半 (một nửa) + 年 (năm). 'Một nửa năm' = nửa năm = 6 tháng. Đây là ghép nghĩa trực tiếp, toán học.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 半年",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng để chỉ khoảng thời gian 6 tháng. Có thể đứng sau động từ/tính từ hoặc đầu câu. Lưu ý thanh điệu: bàn (thanh 4) + nián (thanh 2).",
+      "explanationVi": "Ghép nghĩa: 半 (một nửa) + 年 (năm). 'Một nửa năm' = nửa năm = 6 tháng. Đây là ghép nghĩa trực tiếp, toán học.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -146,11 +148,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 15,
+      "sectionId": "new_hsk__1__topic__15__lich",
+      "sectionSlug": "lich",
       "sectionTitle": "Lịch",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/lich/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/lich/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -161,7 +168,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

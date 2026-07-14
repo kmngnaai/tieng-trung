@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:预习",
   "type": "word",
   "word": "预习",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yù xí",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chuẩn bị bài, ôn bài trước",
+      "meaningShortVi": "chuẩn bị bài",
+      "meaningFullVi": "chuẩn bị bài, ôn bài trước",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chuẩn bị bài",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Dùng cho việc chuẩn bị bài trước khi đến lớp. Có thể kèm với '复习' (ôn lại bài cũ) thành '预习复习'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "预习课文",
-        "pinyin": "",
+        "pinyin": "yù xí kè wén",
         "meaningVi": "chuẩn bị bài văn",
+        "meaningFullVi": "chuẩn bị bài văn",
         "target": "预习",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "课前预习",
-        "pinyin": "",
+        "pinyin": "kè qián yù xí",
         "meaningVi": "chuẩn bị bài trước giờ học",
+        "meaningFullVi": "chuẩn bị bài trước giờ học",
         "target": "预习",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "预习",
       "chinese": "你应该预习明天的课文。",
-      "pinyin": "",
+      "pinyin": "nǐ yīng gāi yù xí míng tiān de kè wén。",
       "meaningVi": "Em nên chuẩn bị bài cho ngày mai.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "预习",
-      "chinese": "预习有助于更好地理解课堂内容。",
-      "pinyin": "",
-      "meaningVi": "Chuẩn bị bài trước giúp hiểu nội dung trên lớp tốt hơn.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 预习",
-      "syntax": "động từ",
-      "matchedExample": "Dùng cho việc chuẩn bị bài trước khi đến lớp. Có thể kèm với '复习' (ôn lại bài cũ) thành '预习复习'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 预习",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Dùng cho việc chuẩn bị bài trước khi đến lớp. Có thể kèm với '复习' (ôn lại bài cũ) thành '预习复习'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 26,
+      "sectionId": "new_hsk__3__topic__26__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/",
+      "orderInSection": 30
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

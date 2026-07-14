@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:延伸",
   "type": "word",
   "word": "延伸",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yán shēn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "kéo dài, vươn dài; mở rộng, phát triển",
+      "meaningShortVi": "kéo dài",
+      "meaningFullVi": "kéo dài, vươn dài; mở rộng, phát triển",
       "partOfSpeech": "động từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "kéo dài",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "延伸 là động từ chỉ việc kéo dài hoặc mở rộng. Hán-Việt 'diên' (延 - kéo dài) + 'thân' (伸 - vươn/duỗi) = vươn dài ra. Dùng cho vật lý (đường, dây kéo dài), khái niệm (thời gian, không gian mở rộng), hoặc kinh doanh (mở rộng chuỗi giá trị)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,7 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -54,7 +54,8 @@
       "meaningVi": "Con đường bộ này kéo dài đến vùng núi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "延伸",
@@ -63,7 +64,8 @@
       "meaningVi": "Chúng ta có thể mở rộng dây chuyền sản xuất này đến các thành phố khác.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "延伸",
@@ -72,16 +74,17 @@
       "meaningVi": "Tuyến đường sắt cao tốc đang vươn ra bên ngoài.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 延伸",
-      "syntax": "động từ",
-      "matchedExample": "延伸 là động từ chỉ việc kéo dài hoặc mở rộng. Hán-Việt 'diên' (延 - kéo dài) + 'thân' (伸 - vươn/duỗi) = vươn dài ra. Dùng cho vật lý (đường, dây kéo dài), khái niệm (thời gian, không gian mở rộng), hoặc kinh doanh (mở rộng chuỗi giá trị).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 延伸",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "延伸 là động từ chỉ việc kéo dài hoặc mở rộng. Hán-Việt 'diên' (延 - kéo dài) + 'thân' (伸 - vươn/duỗi) = vươn dài ra. Dùng cho vật lý (đường, dây kéo dài), khái niệm (thời gian, không gian mở rộng), hoặc kinh doanh (mở rộng chuỗi giá trị).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -96,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

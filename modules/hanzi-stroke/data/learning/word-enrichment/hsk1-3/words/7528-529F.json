@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:用功",
   "type": "word",
   "word": "用功",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yòng gōng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Dục công — chăm chỉ; cần cù; cố gắng học.",
+      "meaningShortVi": "Dục công — chăm chỉ",
+      "meaningFullVi": "Dục công — chăm chỉ; cần cù; cố gắng học.",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Dục công — chăm chỉ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Khen ngợi sự cố gắng, chăm chỉ trong học tập."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -44,24 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "用功读书",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "用功",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "非常用功",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "用功",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +54,8 @@
       "meaningVi": "Anh ấy học rất chăm chỉ.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "用功",
@@ -80,7 +64,8 @@
       "meaningVi": "Em cần học chăm chỉ hơn nữa.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "用功",
@@ -89,16 +74,17 @@
       "meaningVi": "Học chăm chỉ sẽ đạt kết quả tốt.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 用功",
-      "syntax": "compound-semantic",
-      "matchedExample": "Khen ngợi sự cố gắng, chăm chỉ trong học tập.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 用功",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Khen ngợi sự cố gắng, chăm chỉ trong học tập.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -113,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

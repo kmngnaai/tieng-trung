@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:星期",
   "type": "word",
   "word": "星期",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "xīng qī",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tuần; thứ (trong tuần)",
+      "meaningShortVi": "tuần",
+      "meaningFullVi": "tuần; thứ (trong tuần)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tuần",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng để hỏi thứ (星期几) hoặc chỉ tuần (下星期). Có thể ghép với số để chỉ các thứ: 星期一 (thứ hai) đến 星期日 (chủ nhật). Lưu ý thanh điệu: xīng (thanh 1) + qī (thanh 1)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 星 (ngôi sao) + 期 (thời kỳ). Ban đầu dùng 'thất tinh' (7 ngôi sao) đại diện cho 7 ngày trong tuần. Sau '星期' được dùng để chỉ cả tuần hoặc thứ. Đây là từ phái sinh văn hóa thiên văn."
   ],
   "hsk": {
     "levels": [
@@ -53,89 +50,73 @@
         "word": "星期一",
         "pinyin": "xīng qī yī",
         "meaningVi": "thứ Hai",
+        "meaningFullVi": "thứ Hai",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       },
       {
         "word": "星期三",
         "pinyin": "xīng qī sān",
         "meaningVi": "thứ Tư",
+        "meaningFullVi": "thứ Tư",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       },
       {
         "word": "星期二",
         "pinyin": "xīng qī èr",
         "meaningVi": "thứ Ba",
+        "meaningFullVi": "thứ Ba",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       },
       {
         "word": "星期五",
         "pinyin": "xīng qī wǔ",
         "meaningVi": "thứ Sáu",
+        "meaningFullVi": "thứ Sáu",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       },
       {
         "word": "星期六",
         "pinyin": "xīng qī liù",
         "meaningVi": "thứ Bảy",
+        "meaningFullVi": "thứ Bảy",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       },
       {
         "word": "星期四",
         "pinyin": "xīng qī sì",
         "meaningVi": "thứ Năm",
+        "meaningFullVi": "thứ Năm",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       },
       {
         "word": "星期天",
         "pinyin": "xīng qī tiān",
         "meaningVi": "Chủ nhật (ngày nghỉ cuối tuần)",
+        "meaningFullVi": "Chủ nhật (ngày nghỉ cuối tuần)",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       },
       {
         "word": "星期日",
         "pinyin": "xīng qī rì",
         "meaningVi": "Chủ nhật (ngày thứ bảy trong tuần)",
+        "meaningFullVi": "Chủ nhật (ngày thứ bảy trong tuần)",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
@@ -143,35 +124,44 @@
         "text": "星期几",
         "pinyin": "xīngqī jǐ",
         "meaningVi": "thứ mấy",
+        "meaningFullVi": "thứ mấy",
         "target": "星期",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "星期天",
         "pinyin": "xīngqītiān",
         "meaningVi": "chủ nhật",
+        "meaningFullVi": "chủ nhật",
         "target": "星期",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "下星期",
         "pinyin": "xià xīngqī",
         "meaningVi": "tuần sau",
+        "meaningFullVi": "tuần sau",
         "target": "星期",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "每星期",
         "pinyin": "měi xīngqī",
         "meaningVi": "mỗi tuần",
+        "meaningFullVi": "mỗi tuần",
         "target": "星期",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -181,7 +171,8 @@
       "meaningVi": "Hôm nay thứ mấy?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "星期",
@@ -190,7 +181,8 @@
       "meaningVi": "Tuần sau tôi đi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "星期",
@@ -199,7 +191,8 @@
       "meaningVi": "Mỗi tuần tôi đều tập thể dục",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "星期",
@@ -208,7 +201,8 @@
       "meaningVi": "chủ nhật",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "星期",
@@ -217,23 +211,17 @@
       "meaningVi": "Tuần này rất bận",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 星期",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng để hỏi thứ (星期几) hoặc chỉ tuần (下星期). Có thể ghép với số để chỉ các thứ: 星期一 (thứ hai) đến 星期日 (chủ nhật). Lưu ý thanh điệu: xīng (thanh 1) + qī (thanh 1).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 星 (ngôi sao) + 期 (thời kỳ). Ban đầu dùng 'thất tinh' (7 ngôi sao) đại diện cho 7 ngày trong tuần. Sau '星期' được dùng để chỉ cả tuần hoặc thứ. Đây là từ phái sinh văn hóa thiên văn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 星期",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng để hỏi thứ (星期几) hoặc chỉ tuần (下星期). Có thể ghép với số để chỉ các thứ: 星期一 (thứ hai) đến 星期日 (chủ nhật). Lưu ý thanh điệu: xīng (thanh 1) + qī (thanh 1).",
+      "explanationVi": "Ghép nghĩa: 星 (ngôi sao) + 期 (thời kỳ). Ban đầu dùng 'thất tinh' (7 ngôi sao) đại diện cho 7 ngày trong tuần. Sau '星期' được dùng để chỉ cả tuần hoặc thứ. Đây là từ phái sinh văn hóa thiên văn.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -244,31 +232,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 7,
+      "sectionId": "hsk__1__lesson__7__bai-7-hom-nay-la-ngay-may",
+      "sectionSlug": "bai-7-hom-nay-la-ngay-may",
       "sectionTitle": "Hôm nay là ngày mấy?",
       "sectionTitleZh": "今天几号",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-7-hom-nay-la-ngay-may/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-7-hom-nay-la-ngay-may/",
+      "orderInSection": 6
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__1__lesson__5__bai-5-i-m-off-today",
+      "sectionSlug": "bai-5-i-m-off-today",
       "sectionTitle": "Hôm nay tôi nghỉ",
       "sectionTitleZh": "今天我休息",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-5-i-m-off-today/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-5-i-m-off-today/",
+      "orderInSection": 14
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 15,
+      "sectionId": "new_hsk__1__topic__15__lich",
+      "sectionSlug": "lich",
       "sectionTitle": "Lịch",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/lich/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/lich/",
+      "orderInSection": 17
     }
   ],
   "sources": [
@@ -279,7 +282,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:前面",
   "type": "word",
   "word": "前面",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "qián miàn",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phía trước; phần đầu, phần trước; tương lai",
+      "meaningShortVi": "phía trước",
+      "meaningFullVi": "phía trước; phần đầu, phần trước; tương lai",
       "partOfSpeech": "địa từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phía trước",
   "wordType": "địa từ",
   "wordTypes": [
     "địa từ"
   ],
-  "usageNotes": [
-    "前面 chỉ vị trí không gian phía trước hoặc vị trí trong tài liệu/nội dung. Cũng có thể dùng chỉ thời gian tương lai (ít phổ biến hơn)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -51,22 +50,17 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "往前看",
-        "pinyin": "wǎng qián kàn",
-        "meaningVi": "nhìn về phía trước",
-        "target": "前面",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "走在前面",
         "pinyin": "zǒu zài qiánmiàn",
         "meaningVi": "đi ở phía trước",
+        "meaningFullVi": "đi ở phía trước",
         "target": "前面",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -76,7 +70,8 @@
       "meaningVi": "Phía trước chính là ngân hàng.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "前面",
@@ -85,16 +80,17 @@
       "meaningVi": "Xin hãy xem nội dung ở phía trước.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 前面",
-      "syntax": "địa từ",
-      "matchedExample": "前面 chỉ vị trí không gian phía trước hoặc vị trí trong tài liệu/nội dung. Cũng có thể dùng chỉ thời gian tương lai (ít phổ biến hơn).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 前面",
+      "partOfSpeech": "địa từ",
+      "usageNoteVi": "前面 chỉ vị trí không gian phía trước hoặc vị trí trong tài liệu/nội dung. Cũng có thể dùng chỉ thời gian tương lai (ít phổ biến hơn).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -105,31 +101,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 10,
+      "sectionId": "hsk__1__lesson__10__bai-10-toi-co-the-ngoi-day-khong",
+      "sectionSlug": "bai-10-toi-co-the-ngoi-day-khong",
       "sectionTitle": "Tôi có thể ngồi đây không?",
       "sectionTitleZh": "我能坐这儿吗",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-10-toi-co-the-ngoi-day-khong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-10-toi-co-the-ngoi-day-khong/",
+      "orderInSection": 7
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__2__lesson__14__bai-14-it-s-boring-to-celebrate-the-spring-festival-alone",
+      "sectionSlug": "bai-14-it-s-boring-to-celebrate-the-spring-festival-alone",
       "sectionTitle": "Đón Tết một mình thật chán",
       "sectionTitleZh": "一个人过年多没意思啊",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-14-it-s-boring-to-celebrate-the-spring-festival-alone/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-14-it-s-boring-to-celebrate-the-spring-festival-alone/",
+      "orderInSection": 6
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 15,
+      "sectionId": "new_hsk__3__topic__15__noi",
+      "sectionSlug": "noi",
       "sectionTitle": "Nơi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/noi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/noi/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -150,7 +161,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

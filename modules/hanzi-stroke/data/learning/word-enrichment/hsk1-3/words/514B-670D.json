@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:克服",
   "type": "word",
   "word": "克服",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "kè fú",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "khắc phục",
+      "meaningShortVi": "khắc phục",
+      "meaningFullVi": "khắc phục",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "khắc phục",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "指用坚强的意志和力量战胜困难、缺点等。也可指抑制某种情绪或欲望。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "克服困难",
-        "pinyin": "",
+        "pinyin": "kè fú kùn nan",
         "meaningVi": "khắc phục khó khăn",
+        "meaningFullVi": "khắc phục khó khăn",
         "target": "克服",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "克服缺点",
-        "pinyin": "",
+        "pinyin": "kè fú quē diǎn",
         "meaningVi": "khắc phục khuyết điểm",
+        "meaningFullVi": "khắc phục khuyết điểm",
         "target": "克服",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "克服",
       "chinese": "我们要克服困难。",
-      "pinyin": "",
+      "pinyin": "wǒ men yào kè fú kùn nan。",
       "meaningVi": "Chúng ta phải khắc phục khó khăn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "克服",
-      "chinese": "他终于克服了紧张情绪。",
-      "pinyin": "",
-      "meaningVi": "Anh ấy cuối cùng cũng đã vượt qua được cảm giác căng thẳng.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 克服",
-      "syntax": "động từ",
-      "matchedExample": "指用坚强的意志和力量战胜困难、缺点等。也可指抑制某种情绪或欲望。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 克服",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "指用坚强的意志和力量战胜困难、缺点等。也可指抑制某种情绪或欲望。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__3__topic__19__thanh-tuu-va-ket-qua",
+      "sectionSlug": "thanh-tuu-va-ket-qua",
       "sectionTitle": "Thành tựu và kết quả",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/",
+      "orderInSection": 27
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

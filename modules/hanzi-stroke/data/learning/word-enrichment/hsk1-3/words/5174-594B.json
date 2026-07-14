@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:兴奋",
   "type": "word",
   "word": "兴奋",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xīng fèn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hưng phấn, phấn khích, vui mừng tột độ",
+      "meaningShortVi": "hưng phấn",
+      "meaningFullVi": "hưng phấn, phấn khích, vui mừng tột độ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hưng phấn",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "兴奋 diễn tả trạng thái tâm lý vui mừng, phấn khích. Hán-Việt 'hưng' có nghĩa là hưng khởi, hứng thịnh; 'phấn' là phấn khích, hăng say. Ghép lại thành 'hưng phấn'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,40 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "兴奋地说",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "兴奋",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "感到兴奋",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "兴奋",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "让人兴奋",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "兴奋",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "过度兴奋",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "兴奋",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -87,7 +54,8 @@
       "meaningVi": "Nghe tin này tôi rất hưng phấn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "兴奋",
@@ -96,7 +64,8 @@
       "meaningVi": "Đứa trẻ nhảy lên vì phấn khích.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "兴奋",
@@ -105,16 +74,17 @@
       "meaningVi": "Đừng hưng phấn quá, bình tĩnh lại đi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 兴奋",
-      "syntax": "compound-semantic",
-      "matchedExample": "兴奋 diễn tả trạng thái tâm lý vui mừng, phấn khích. Hán-Việt 'hưng' có nghĩa là hưng khởi, hứng thịnh; 'phấn' là phấn khích, hăng say. Ghép lại thành 'hưng phấn'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 兴奋",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "兴奋 diễn tả trạng thái tâm lý vui mừng, phấn khích. Hán-Việt 'hưng' có nghĩa là hưng khởi, hứng thịnh; 'phấn' là phấn khích, hăng say. Ghép lại thành 'hưng phấn'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -129,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

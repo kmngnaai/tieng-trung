@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:力量",
   "type": "word",
   "word": "力量",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "lì liang",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Sức mạnh, sức lực",
+      "meaningShortVi": "Sức mạnh",
+      "meaningFullVi": "Sức mạnh, sức lực",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Sức mạnh",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "力量 (lìliàng) chỉ sức mạnh về thể chất hoặc tinh thần. Trong thể chất, nó gần với 用力 (dùng sức). Trong tinh thần, nó chỉ sức mạnh của ý chí, tri thức, đoàn kết. Từ này mang sắc thái trung tính, có thể dùng trong nhiều ngữ cảnh: thể thao, chính trị, triết học."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -48,38 +47,37 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "体力",
-        "pinyin": "tǐlì",
-        "meaningVi": "sức lực thể chất",
-        "target": "力量",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "力量大",
         "pinyin": "lìliàng dà",
         "meaningVi": "sức mạnh lớn",
+        "meaningFullVi": "sức mạnh lớn",
         "target": "力量",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "尽力量",
         "pinyin": "jìn lìliàng",
         "meaningVi": "dùng hết sức",
+        "meaningFullVi": "dùng hết sức",
         "target": "力量",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "力量对比",
         "pinyin": "lìliàng duìbǐ",
         "meaningVi": "so sánh sức mạnh",
+        "meaningFullVi": "so sánh sức mạnh",
         "target": "力量",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -89,7 +87,8 @@
       "meaningVi": "Đoàn kết là sức mạnh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "力量",
@@ -98,7 +97,8 @@
       "meaningVi": "Anh ấy đã dùng sức rất lớn mới đẩy được tảng đá đi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "力量",
@@ -107,16 +107,17 @@
       "meaningVi": "Sức mạnh của tri thức là vô tận.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 力量",
-      "syntax": "compound-semantic",
-      "matchedExample": "力量 (lìliàng) chỉ sức mạnh về thể chất hoặc tinh thần. Trong thể chất, nó gần với 用力 (dùng sức). Trong tinh thần, nó chỉ sức mạnh của ý chí, tri thức, đoàn kết. Từ này mang sắc thái trung tính, có thể dùng trong nhiều ngữ cảnh: thể thao, chính trị, triết học.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 力量",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "力量 (lìliàng) chỉ sức mạnh về thể chất hoặc tinh thần. Trong thể chất, nó gần với 用力 (dùng sức). Trong tinh thần, nó chỉ sức mạnh của ý chí, tri thức, đoàn kết. Từ này mang sắc thái trung tính, có thể dùng trong nhiều ngữ cảnh: thể thao, chính trị, triết học.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -127,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__3__topic__3__co-the-va-suc-khoe",
+      "sectionSlug": "co-the-va-suc-khoe",
       "sectionTitle": "Cơ thể và sức khỏe",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/co-the-va-suc-khoe/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/co-the-va-suc-khoe/",
+      "orderInSection": 20
     }
   ],
   "sources": [
@@ -142,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

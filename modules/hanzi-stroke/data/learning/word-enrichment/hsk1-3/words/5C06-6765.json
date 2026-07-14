@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:将来",
   "type": "word",
   "word": "将来",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiāng lái",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Tương lai",
+      "meaningShortVi": "Tương lai",
+      "meaningFullVi": "Tương lai",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Tương lai",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "将来 là danh từ chỉ thời gian sau này, tương lai. 将 (tương) nghĩa là sắp, sẽ; 来 (lai) nghĩa là đến. Dùng khi nói về dự định, hy vọng, hoặc thời điểm trong tương lai."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -47,48 +46,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "在将来",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "将来",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "将来时",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "将来",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "将来打算",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "将来",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "展望将来",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "将来",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "未来将来",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "将来",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -98,7 +57,8 @@
       "meaningVi": "Tương lai bạn muốn làm công việc gì?",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "将来",
@@ -107,7 +67,8 @@
       "meaningVi": "Cuộc sống tương lai của chúng ta sẽ tốt đẹp hơn.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "将来",
@@ -116,16 +77,17 @@
       "meaningVi": "Đừng lo lắng về tương lai, hãy sống trọn vẹn hiện tại.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 将来",
-      "syntax": "compound-semantic",
-      "matchedExample": "将来 là danh từ chỉ thời gian sau này, tương lai. 将 (tương) nghĩa là sắp, sẽ; 来 (lai) nghĩa là đến. Dùng khi nói về dự định, hy vọng, hoặc thời điểm trong tương lai.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 将来",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "将来 là danh từ chỉ thời gian sau này, tương lai. 将 (tương) nghĩa là sắp, sẽ; 来 (lai) nghĩa là đến. Dùng khi nói về dự định, hy vọng, hoặc thời điểm trong tương lai.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -136,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__3__topic__7__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/",
+      "orderInSection": 29
     }
   ],
   "sources": [
@@ -156,7 +123,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

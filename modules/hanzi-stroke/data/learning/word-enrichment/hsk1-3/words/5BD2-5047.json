@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:寒假",
   "type": "word",
   "word": "寒假",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "hán jià",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "kỳ nghỉ đông, nghỉ đông",
+      "meaningShortVi": "kỳ nghỉ đông",
+      "meaningFullVi": "kỳ nghỉ đông, nghỉ đông",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "kỳ nghỉ đông",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "寒假 nghĩa là kỳ nghỉ mùa đông. Hán-Việt 'hàn' là lạnh, mùa đông; 'giá' là kỳ nghỉ, thời gian mượn. Kỳ nghỉ mùa lạnh là nghỉ đông."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,40 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "放寒假",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "寒假",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "过寒假",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "寒假",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "寒假作业",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "寒假",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "寒假期间",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "寒假",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -87,7 +54,8 @@
       "meaningVi": "Kỳ nghỉ đông sắp đến.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "寒假",
@@ -96,7 +64,8 @@
       "meaningVi": "Đứa trẻ mong chờ kỳ nghỉ đông.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "寒假",
@@ -105,16 +74,17 @@
       "meaningVi": "Kỳ nghỉ đông chúng tôi đi du lịch.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 寒假",
-      "syntax": "compound-semantic",
-      "matchedExample": "寒假 nghĩa là kỳ nghỉ mùa đông. Hán-Việt 'hàn' là lạnh, mùa đông; 'giá' là kỳ nghỉ, thời gian mượn. Kỳ nghỉ mùa lạnh là nghỉ đông.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 寒假",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "寒假 nghĩa là kỳ nghỉ mùa đông. Hán-Việt 'hàn' là lạnh, mùa đông; 'giá' là kỳ nghỉ, thời gian mượn. Kỳ nghỉ mùa lạnh là nghỉ đông.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -129,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

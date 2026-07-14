@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:亲人",
   "type": "word",
   "word": "亲人",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "qīn rén",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Người thân, người ruột thịt",
+      "meaningShortVi": "Người thân",
+      "meaningFullVi": "Người thân, người ruột thịt",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Người thân",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "亲人 chỉ người có quan hệ máu mủ hoặc quan hệ gia đình gần gũi. Phân biệt với 家人(gia đình - người sống cùng nhà) và 亲戚(họ hàng - bao gồm cả họ hàng xa)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,27 +50,34 @@
         "text": "看望亲人",
         "pinyin": "kànwàng qīnrén",
         "meaningVi": "thăm người thân",
+        "meaningFullVi": "thăm người thân",
         "target": "亲人",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "亲人朋友",
         "pinyin": "qīnrén péngyǒu",
         "meaningVi": "người thân và bạn bè",
+        "meaningFullVi": "người thân và bạn bè",
         "target": "亲人",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "家里亲人",
         "pinyin": "jiālǐ qīnrén",
         "meaningVi": "người thân trong gia đình",
+        "meaningFullVi": "người thân trong gia đình",
         "target": "亲人",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +87,8 @@
       "meaningVi": "Người thân của tôi đều ở ở Bắc Kinh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "亲人",
@@ -90,7 +97,8 @@
       "meaningVi": "Anh ấy đi thăm người thân của anh ấy.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "亲人",
@@ -99,16 +107,17 @@
       "meaningVi": "Người thân nên quan tâm đến nhau.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 亲人",
-      "syntax": "compound-semantic",
-      "matchedExample": "亲人 chỉ người có quan hệ máu mủ hoặc quan hệ gia đình gần gũi. Phân biệt với 家人(gia đình - người sống cùng nhà) và 亲戚(họ hàng - bao gồm cả họ hàng xa).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 亲人",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "亲人 chỉ người có quan hệ máu mủ hoặc quan hệ gia đình gần gũi. Phân biệt với 家人(gia đình - người sống cùng nhà) và 亲戚(họ hàng - bao gồm cả họ hàng xa).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -119,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__3__topic__4__nhung-nguoi",
+      "sectionSlug": "nhung-nguoi",
       "sectionTitle": "Những người",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -134,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

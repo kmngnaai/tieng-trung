@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:必要",
   "type": "word",
   "word": "必要",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "bì yào",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cần thiết, tất yếu; cần phải",
+      "meaningShortVi": "cần thiết",
+      "meaningFullVi": "cần thiết, tất yếu; cần phải",
       "partOfSpeech": "tính từ / động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cần thiết",
   "wordType": "tính từ / động từ",
   "wordTypes": [
     "tính từ / động từ"
   ],
-  "usageNotes": [
-    "Bì yào dùng cho điều gì đó cần phải có. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "很有必要",
-        "pinyin": "",
+        "pinyin": "hěn yǒu bì yào",
         "meaningVi": "rất cần thiết",
+        "meaningFullVi": "rất cần thiết",
         "target": "必要",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "必要条件",
-        "pinyin": "",
+        "pinyin": "bì yào tiáo jiàn",
         "meaningVi": "điều kiện cần thiết",
+        "meaningFullVi": "điều kiện cần thiết",
         "target": "必要",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "必要",
-      "chinese": "充分的准备是必要的。",
-      "pinyin": "",
-      "meaningVi": "Sự chuẩn bị đầy đủ là cần thiết.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "必要",
       "chinese": "如果有必要,我可以帮你。",
-      "pinyin": "",
+      "pinyin": "rú guǒ yǒu bì yào, wǒ kě yǐ bāng nǐ。",
       "meaningVi": "Nếu cần thiết, tôi có thể giúp bạn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 必要",
-      "syntax": "tính từ / động từ",
-      "matchedExample": "Bì yào dùng cho điều gì đó cần phải có. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 必要",
+      "partOfSpeech": "tính từ / động từ",
+      "usageNoteVi": "Bì yào dùng cho điều gì đó cần phải có. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 35,
+      "sectionId": "new_hsk__3__topic__35__tu-chuc-nang-i",
+      "sectionSlug": "tu-chuc-nang-i",
       "sectionTitle": "Từ chức năng I",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-i/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-i/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

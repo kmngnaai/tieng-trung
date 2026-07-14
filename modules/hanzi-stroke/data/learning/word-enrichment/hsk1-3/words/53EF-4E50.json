@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:可乐",
   "type": "word",
   "word": "可乐",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "kě lè",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Nước ngọt có ga, Coca-Cola",
+      "meaningShortVi": "Nước ngọt có ga",
+      "meaningFullVi": "Nước ngọt có ga, Coca-Cola",
       "partOfSpeech": "loanword",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Nước ngọt có ga",
   "wordType": "loanword",
   "wordTypes": [
     "loanword"
   ],
-  "usageNotes": [
-    "可乐 là danh từ chỉ nước ngọt có ga, là từ mượn âm từ cola. 可 (khả) nghĩa là có thể; 乐 (lạc) nghĩa là vui sướng. Ban đầu dịch nghĩa là mang lại niềm vui, nay dùng như tên riêng loại đồ uống."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -47,7 +46,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -57,7 +57,8 @@
       "meaningVi": "Tôi muốn uống một ly Coca-Cola.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "可乐",
@@ -66,7 +67,8 @@
       "meaningVi": "Coca-Cola là một trong những đồ uống ngon nhất.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "可乐",
@@ -75,16 +77,17 @@
       "meaningVi": "Lấy cho tôi một chai Coca-Cola, cảm ơn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 可乐",
-      "syntax": "loanword",
-      "matchedExample": "可乐 là danh từ chỉ nước ngọt có ga, là từ mượn âm từ cola. 可 (khả) nghĩa là có thể; 乐 (lạc) nghĩa là vui sướng. Ban đầu dịch nghĩa là mang lại niềm vui, nay dùng như tên riêng loại đồ uống.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 可乐",
+      "partOfSpeech": "loanword",
+      "usageNoteVi": "可乐 là danh từ chỉ nước ngọt có ga, là từ mượn âm từ cola. 可 (khả) nghĩa là có thể; 乐 (lạc) nghĩa là vui sướng. Ban đầu dịch nghĩa là mang lại niềm vui, nay dùng như tên riêng loại đồ uống.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -95,21 +98,31 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 8,
+      "sectionId": "hsk__3__lesson__8__bai-8-ban-di-dau-toi-di-do",
+      "sectionSlug": "bai-8-ban-di-dau-toi-di-do",
       "sectionTitle": "Bạn đi đâu tôi đi đó.",
       "sectionTitleZh": "你去哪儿我就去哪儿",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-8-ban-di-dau-toi-di-do/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-8-ban-di-dau-toi-di-do/",
+      "orderInSection": 9
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 2,
+      "sectionId": "new_hsk__3__topic__2__thuc-an-va-do-uong",
+      "sectionSlug": "thuc-an-va-do-uong",
       "sectionTitle": "Thức ăn và đồ uống",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thuc-an-va-do-uong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thuc-an-va-do-uong/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -120,7 +133,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

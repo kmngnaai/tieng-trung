@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:快速",
   "type": "word",
   "word": "快速",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "kuài sù",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nhanh chóng, mau lẹ; ở tốc độ cao",
+      "meaningShortVi": "nhanh chóng",
+      "meaningFullVi": "nhanh chóng, mau lẹ; ở tốc độ cao",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nhanh chóng",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "快速 là tính từ chỉ tốc độ cao, thường dùng trong văn viết hoặc ngữ cảnh trang trọng. Trong khẩu ngữ, người ta thường dùng 快 hoặc 快点."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "快速发展",
         "pinyin": "kuàisù fāzhǎn",
         "meaningVi": "phát triển nhanh chóng",
+        "meaningFullVi": "phát triển nhanh chóng",
         "target": "快速",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "快速反应",
         "pinyin": "kuàisù fǎnyìng",
         "meaningVi": "phản ứng nhanh",
+        "meaningFullVi": "phản ứng nhanh",
         "target": "快速",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Tàu cao tốc chạy rất nhanh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "快速",
@@ -82,16 +87,17 @@
       "meaningVi": "Chúng ta cần giải quyết vấn đề này một cách nhanh chóng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 快速",
-      "syntax": "tính từ",
-      "matchedExample": "快速 là tính từ chỉ tốc độ cao, thường dùng trong văn viết hoặc ngữ cảnh trang trọng. Trong khẩu ngữ, người ta thường dùng 快 hoặc 快点.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 快速",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "快速 là tính từ chỉ tốc độ cao, thường dùng trong văn viết hoặc ngữ cảnh trang trọng. Trong khẩu ngữ, người ta thường dùng 快 hoặc 快点.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__3__topic__14__van-chuyen-va-di-chuyen",
+      "sectionSlug": "van-chuyen-va-di-chuyen",
       "sectionTitle": "Vận chuyển và di chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/van-chuyen-va-di-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/van-chuyen-va-di-chuyen/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

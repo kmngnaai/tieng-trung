@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:直到",
   "type": "word",
   "word": "直到",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhí dào",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cho đến khi; mãi cho đến",
+      "meaningShortVi": "cho đến khi",
+      "meaningFullVi": "cho đến khi; mãi cho đến",
       "partOfSpeech": "liên từ / giới từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cho đến khi",
   "wordType": "liên từ / giới từ",
   "wordTypes": [
     "liên từ / giới từ"
   ],
-  "usageNotes": [
-    "Dùng để chỉ thời điểm kết thúc hoặc giới hạn thời gian. Thường đi kèm với '才' để nhấn mạnh sự trễ muộn."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -50,20 +49,25 @@
       {
         "text": "直到...才",
         "pinyin": "zhídào... cái",
-        "meaningVi": "cho đến...mới",
+        "meaningVi": "cho đến",
+        "meaningFullVi": "cho đến...mới",
         "target": "直到",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "直到现在",
         "pinyin": "zhídào xiànzài",
         "meaningVi": "cho đến bây giờ",
+        "meaningFullVi": "cho đến bây giờ",
         "target": "直到",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,16 +77,17 @@
       "meaningVi": "Cho đến hôm qua tôi mới biết tin này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 直到",
-      "syntax": "liên từ / giới từ",
-      "matchedExample": "Dùng để chỉ thời điểm kết thúc hoặc giới hạn thời gian. Thường đi kèm với '才' để nhấn mạnh sự trễ muộn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 直到",
+      "partOfSpeech": "liên từ / giới từ",
+      "usageNoteVi": "Dùng để chỉ thời điểm kết thúc hoặc giới hạn thời gian. Thường đi kèm với '才' để nhấn mạnh sự trễ muộn.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -93,21 +98,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__3__lesson__13__bai-13-my-new-neighbors-come-from-the-uk",
+      "sectionSlug": "bai-13-my-new-neighbors-come-from-the-uk",
       "sectionTitle": "Hàng xóm mới của tôi đến từ Anh",
       "sectionTitleZh": "我的新邻居来自英国",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-13-my-new-neighbors-come-from-the-uk/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-13-my-new-neighbors-come-from-the-uk/",
+      "orderInSection": 22
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 36,
+      "sectionId": "new_hsk__3__topic__36__tu-chuc-nang-ii",
+      "sectionSlug": "tu-chuc-nang-ii",
       "sectionTitle": "Từ chức năng II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-ii/",
+      "orderInSection": 23
     }
   ],
   "sources": [
@@ -118,7 +133,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

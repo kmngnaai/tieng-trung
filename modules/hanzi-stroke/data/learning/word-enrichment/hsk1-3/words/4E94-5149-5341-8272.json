@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:五光十色",
   "type": "word",
   "word": "五光十色",
@@ -17,24 +17,25 @@
     "readings": [
       {
         "pinyin": "wǔ guāng shí sè",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "muôn màu muôn vẻ, sặc sỡ, rực rỡ",
+      "meaningShortVi": "muôn màu muôn vẻ",
+      "meaningFullVi": "muôn màu muôn vẻ, sặc sỡ, rực rỡ",
       "partOfSpeech": "Thành ngữ, Tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "muôn màu muôn vẻ",
   "wordType": "Thành ngữ, Tính từ",
   "wordTypes": [
     "Thành ngữ, Tính từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,7 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -54,7 +56,8 @@
       "meaningVi": "Hàng hóa trong chợ đêm muôn màu muôn vẻ, khiến người ta hoa mắt.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "五光十色",
@@ -63,10 +66,19 @@
       "meaningVi": "Thế giới dưới biển muôn màu muôn vẻ, vô cùng đẹp.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 五光十色",
+      "partOfSpeech": "Thành ngữ, Tính từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/五光十色.mp3"
   ],
@@ -79,7 +91,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

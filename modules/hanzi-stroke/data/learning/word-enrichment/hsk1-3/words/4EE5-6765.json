@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:以来",
   "type": "word",
   "word": "以来",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yǐ lái",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Từ khi",
+      "meaningShortVi": "Từ khi",
+      "meaningFullVi": "Từ khi",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Từ khi",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "以来 là hậu từ chỉ từ một thời điểm nào đó cho đến nay. 以 (dĩ) nghĩa là bằng, lấy; 来 (lai) nghĩa là đến. Thường đi sau thời điểm hoặc sự kiện để chỉ khoảng thời gian từ đó đến nay."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,48 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "以来一直",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "以来",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "三年以来",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "以来",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "自古以来",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "以来",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "毕业以来",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "以来",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "以来就",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "以来",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -97,7 +56,8 @@
       "meaningVi": "Từ đầu năm đến nay, mọi việc đều tốt.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "以来",
@@ -106,7 +66,8 @@
       "meaningVi": "Từ khi cải cách mở cửa, Trung Quốc đã thay đổi rất nhiều.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "以来",
@@ -115,16 +76,17 @@
       "meaningVi": "Từ khi chúng tôi quen nhau, anh ấy vẫn luôn giúp đỡ tôi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 以来",
-      "syntax": "compound-semantic",
-      "matchedExample": "以来 là hậu từ chỉ từ một thời điểm nào đó cho đến nay. 以 (dĩ) nghĩa là bằng, lấy; 来 (lai) nghĩa là đến. Thường đi sau thời điểm hoặc sự kiện để chỉ khoảng thời gian từ đó đến nay.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 以来",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "以来 là hậu từ chỉ từ một thời điểm nào đó cho đến nay. 以 (dĩ) nghĩa là bằng, lấy; 来 (lai) nghĩa là đến. Thường đi sau thời điểm hoặc sự kiện để chỉ khoảng thời gian từ đó đến nay.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -135,11 +97,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__3__topic__7__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/",
+      "orderInSection": 24
     }
   ],
   "sources": [
@@ -150,7 +117,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

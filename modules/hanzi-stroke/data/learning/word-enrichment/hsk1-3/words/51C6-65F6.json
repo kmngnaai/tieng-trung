@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:准时",
   "type": "word",
   "word": "准时",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhǔn shí",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đúng giờ",
+      "meaningShortVi": "đúng giờ",
+      "meaningFullVi": "đúng giờ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đúng giờ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Thường dùng để diễn tả việc đến đúng giờ, không muộn."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,21 +46,26 @@
     "collocations": [
       {
         "text": "准时到达",
-        "pinyin": "",
+        "pinyin": "zhǔn shí dào dá",
         "meaningVi": "đến đúng giờ",
+        "meaningFullVi": "đến đúng giờ",
         "target": "准时",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "得准时",
-        "pinyin": "",
+        "pinyin": "děi zhǔn shí",
         "meaningVi": "đạt hạng nhất",
+        "meaningFullVi": "đạt hạng nhất",
         "target": "准时",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +75,8 @@
       "meaningVi": "Cuộc họp bắt đầu đúng giờ.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "准时",
@@ -80,16 +85,17 @@
       "meaningVi": "Anh ấy luôn luôn đến đúng giờ.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 准时",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường dùng để diễn tả việc đến đúng giờ, không muộn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 准时",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường dùng để diễn tả việc đến đúng giờ, không muộn.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

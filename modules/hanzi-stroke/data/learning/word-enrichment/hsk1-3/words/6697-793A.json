@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:暗示",
   "type": "word",
   "word": "暗示",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "àn shì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ám chỉ, gợi ý (không nói trực tiếp)",
+      "meaningShortVi": "ám chỉ",
+      "meaningFullVi": "ám chỉ, gợi ý (không nói trực tiếp)",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ám chỉ",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Động từ chỉ hành động gợi ý một điều gì đó mà không nói trực tiếp (暗 = tối, không rõ;示 = tỏ, chỉ). Đối tượng có thể là người (暗示他 - ám chỉ anh ấy) hoặc sự việc (暗示问题 - ám chỉ vấn đề). Trong văn nói, có thể dùng 言下之意 hoặc 意思是 để diễn đạt ý tương tự. Trong văn viết hoặc văn học,暗示 thường dùng để tạo sự ẩn ý."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,19 +48,24 @@
         "text": "暗示范例",
         "pinyin": "ànshì fánlì",
         "meaningVi": "ví dụ gợi ý",
+        "meaningFullVi": "ví dụ gợi ý",
         "target": "暗示",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "暗示性",
         "pinyin": "ànshìxìng",
         "meaningVi": "tính chất gợi ý",
+        "meaningFullVi": "tính chất gợi ý",
         "target": "暗示",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +75,8 @@
       "meaningVi": "Anh ấy ám chỉ tôi nên về nhà rồi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "暗示",
@@ -80,16 +85,17 @@
       "meaningVi": "Bài viết này ám chỉ nhiều vấn đề.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 暗示",
-      "syntax": "động từ",
-      "matchedExample": "Động từ chỉ hành động gợi ý một điều gì đó mà không nói trực tiếp (暗 = tối, không rõ;示 = tỏ, chỉ). Đối tượng có thể là người (暗示他 - ám chỉ anh ấy) hoặc sự việc (暗示问题 - ám chỉ vấn đề). Trong văn nói, có thể dùng 言下之意 hoặc 意思是 để diễn đạt ý tương tự. Trong văn viết hoặc văn học,暗示 thường dùng để tạo sự ẩn ý.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 暗示",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Động từ chỉ hành động gợi ý một điều gì đó mà không nói trực tiếp (暗 = tối, không rõ;示 = tỏ, chỉ). Đối tượng có thể là người (暗示他 - ám chỉ anh ấy) hoặc sự việc (暗示问题 - ám chỉ vấn đề). Trong văn nói, có thể dùng 言下之意 hoặc 意思是 để diễn đạt ý tương tự. Trong văn viết hoặc văn học,暗示 thường dùng để tạo sự ẩn ý.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

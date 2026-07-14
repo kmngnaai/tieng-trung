@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:看法",
   "type": "word",
   "word": "看法",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "kàn fǎ",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "quan điểm, cách nhìn",
+      "meaningShortVi": "quan điểm",
+      "meaningFullVi": "quan điểm, cách nhìn",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "quan điểm",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,60 +48,78 @@
     "collocations": [
       {
         "text": "对...的看法",
-        "pinyin": "",
-        "meaningVi": "quan điểm về...",
+        "pinyin": "duì... de kàn fǎ",
+        "meaningVi": "quan điểm về",
+        "meaningFullVi": "quan điểm về...",
         "target": "看法",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "改变看法",
-        "pinyin": "",
+        "pinyin": "gǎi biàn kàn fǎ",
         "meaningVi": "thay đổi quan điểm",
+        "meaningFullVi": "thay đổi quan điểm",
         "target": "看法",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "个人看法",
-        "pinyin": "",
+        "pinyin": "gè rén kàn fǎ",
         "meaningVi": "quan điểm cá nhân",
+        "meaningFullVi": "quan điểm cá nhân",
         "target": "看法",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "看法",
       "chinese": "我对这件事有不同的看法",
-      "pinyin": "",
+      "pinyin": "wǒ duì zhè jiàn shì yǒu bù tóng de kàn fǎ",
       "meaningVi": "Tôi có cách nhìn khác về việc này",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "看法",
       "chinese": "他的看法很有道理",
-      "pinyin": "",
+      "pinyin": "tā de kàn fǎ hěn yǒu dào li",
       "meaningVi": "Quan điểm của anh ấy rất có lý",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "看法",
       "chinese": "每个人都有自己的看法",
-      "pinyin": "",
+      "pinyin": "měi gè rén dōu yǒu zì jǐ de kàn fǎ",
       "meaningVi": "Mỗi người đều có quan điểm riêng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 看法",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/看法.mp3"
   ],
@@ -109,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 23,
+      "sectionId": "new_hsk__2__topic__23__suy-nghi",
+      "sectionSlug": "suy-nghi",
       "sectionTitle": "Suy nghĩ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/suy-nghi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/suy-nghi/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -124,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

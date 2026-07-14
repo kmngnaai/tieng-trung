@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:怎么办",
   "type": "word",
   "word": "怎么办",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "zěn me bàn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "làm thế nào",
+      "meaningShortVi": "làm thế nào",
+      "meaningFullVi": "làm thế nào",
       "partOfSpeech": "pronoun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "làm thế nào",
   "wordType": "pronoun",
   "wordTypes": [
     "pronoun"
   ],
-  "usageNotes": [
-    "Cụm từ hỏi về cách xử lý."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -51,49 +50,56 @@
     "collocations": [
       {
         "text": "该怎么办",
-        "pinyin": "",
+        "pinyin": "gāi zěn me bàn",
         "meaningVi": "nên làm sao",
+        "meaningFullVi": "nên làm sao",
         "target": "怎么办",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不知道怎么办",
-        "pinyin": "",
+        "pinyin": "bù zhī dào zěn me bàn",
         "meaningVi": "không biết làm sao",
+        "meaningFullVi": "không biết làm sao",
         "target": "怎么办",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "怎么办",
       "chinese": "怎么办呢",
-      "pinyin": "",
+      "pinyin": "zěn me bàn ne",
       "meaningVi": "Làm thế nào đây",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "怎么办",
       "chinese": "你说怎么办",
-      "pinyin": "",
+      "pinyin": "nǐ shuō zěn me bàn",
       "meaningVi": "Bạn nói làm sao",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 怎么办",
-      "syntax": "pronoun",
-      "matchedExample": "Cụm từ hỏi về cách xử lý.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 怎么办",
+      "partOfSpeech": "pronoun",
+      "usageNoteVi": "Cụm từ hỏi về cách xử lý.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,21 +110,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__2__topic__4__khac",
+      "sectionSlug": "khac",
       "sectionTitle": "Khác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/khac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/khac/",
+      "orderInSection": 30
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__3__lesson__14__bai-14-this-book-is-checked-out",
+      "sectionSlug": "bai-14-this-book-is-checked-out",
       "sectionTitle": "Cuốn sách này bị người khác mượn mất rồi",
       "sectionTitleZh": "这本书被别人借走了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-14-this-book-is-checked-out/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-14-this-book-is-checked-out/",
+      "orderInSection": 15
     }
   ],
   "sources": [
@@ -134,7 +150,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

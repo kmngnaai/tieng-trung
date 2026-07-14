@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:优美",
   "type": "word",
   "word": "优美",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yōu měi",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "u mỹ - duyên dáng",
+      "meaningShortVi": "u mỹ - duyên dáng",
+      "meaningFullVi": "u mỹ - duyên dáng",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "u mỹ - duyên dáng",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "Hán-Việt 'u mỹ' chỉ vẻ đẹp, sự duyên dáng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -47,66 +46,56 @@
     "collocations": [
       {
         "text": "优美环境",
-        "pinyin": "",
+        "pinyin": "yōu měi huán jìng",
         "meaningVi": "môi trường đẹp",
+        "meaningFullVi": "môi trường đẹp",
         "target": "优美",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "优美的旋律",
-        "pinyin": "",
-        "meaningVi": "giai điệu đẹp",
-        "target": "优美",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "风景优美",
-        "pinyin": "",
+        "pinyin": "fēng jǐng yōu měi",
         "meaningVi": "cảnh đẹp",
+        "meaningFullVi": "cảnh đẹp",
         "target": "优美",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "优美",
       "chinese": "这里的风景很优美。",
-      "pinyin": "",
+      "pinyin": "zhè li de fēng jǐng hěn yōu měi。",
       "meaningVi": "Cảnh vật nơi đây rất đẹp.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "优美",
-      "chinese": "她的舞姿优美。",
-      "pinyin": "",
-      "meaningVi": "Điệu múa của cô ấy rất duyên dáng.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "优美",
       "chinese": "优美的音乐让人放松。",
-      "pinyin": "",
+      "pinyin": "yōu měi de yīn yuè ràng rén fàng sōng。",
       "meaningVi": "Nhạc đẹp giúp người ta thư giãn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 优美",
-      "syntax": "tính từ",
-      "matchedExample": "Hán-Việt 'u mỹ' chỉ vẻ đẹp, sự duyên dáng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 优美",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "Hán-Việt 'u mỹ' chỉ vẻ đẹp, sự duyên dáng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -121,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

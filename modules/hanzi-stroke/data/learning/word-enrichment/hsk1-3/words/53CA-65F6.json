@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:及时",
   "type": "word",
   "word": "及时",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jí shí",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Kịp thời",
+      "meaningShortVi": "Kịp thời",
+      "meaningFullVi": "Kịp thời",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Kịp thời",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "及时 là tính từ chỉ việc được thực hiện đúng lúc, không muộn. 及 nghĩa là kịp, đến; 时 nghĩa là thời gian. Dùng khi nói về phản hồi, hành động đúng lúc."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,48 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "及时到达",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "及时",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "及时处理",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "及时",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "及时帮助",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "及时",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "及时通知",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "及时",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "及时完成",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "及时",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -97,7 +56,8 @@
       "meaningVi": "Cảm ơn bạn đã kịp thời nhắc nhở tôi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "及时",
@@ -106,7 +66,8 @@
       "meaningVi": "Chúng ta cần kịp thời giải quyết vấn đề này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "及时",
@@ -115,16 +76,17 @@
       "meaningVi": "Trời mưa rồi, may là đã kịp mang theo ô.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 及时",
-      "syntax": "compound-semantic",
-      "matchedExample": "及时 là tính từ chỉ việc được thực hiện đúng lúc, không muộn. 及 nghĩa là kịp, đến; 时 nghĩa là thời gian. Dùng khi nói về phản hồi, hành động đúng lúc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 及时",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "及时 là tính từ chỉ việc được thực hiện đúng lúc, không muộn. 及 nghĩa là kịp, đến; 时 nghĩa là thời gian. Dùng khi nói về phản hồi, hành động đúng lúc.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -135,11 +97,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__3__topic__7__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/",
+      "orderInSection": 28
     }
   ],
   "sources": [
@@ -150,7 +117,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

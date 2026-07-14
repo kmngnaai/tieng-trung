@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:开花",
   "type": "word",
   "word": "开花",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "kāi huā",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nở hoa",
+      "meaningShortVi": "nở hoa",
+      "meaningFullVi": "nở hoa",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nở hoa",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,29 +45,51 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [
+      {
+        "text": "开花",
+        "pinyin": "kāi huā",
+        "meaningVi": "nở hoa",
+        "meaningFullVi": "nở hoa",
+        "target": "开花",
+        "source": "hsk_3.json",
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
+      }
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "开花",
       "chinese": "这个开花很好。",
-      "pinyin": "",
+      "pinyin": "zhè ge kāi huā hěn hǎo。",
       "meaningVi": "nở hoa này rất tốt.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "开花",
       "chinese": "我喜欢这个开花。",
-      "pinyin": "",
+      "pinyin": "wǒ xǐ huan zhè ge kāi huā。",
       "meaningVi": "Tôi thích nở hoa này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 开花",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/开花.mp3"
   ],
@@ -75,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__3__lesson__12__bai-12-the-weather-changes-rapidly-in-this-season",
+      "sectionSlug": "bai-12-the-weather-changes-rapidly-in-this-season",
       "sectionTitle": "Mùa này thời tiết thay đổi rất nhanh",
       "sectionTitleZh": "这个季节天气变化很快",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-12-the-weather-changes-rapidly-in-this-season/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-12-the-weather-changes-rapidly-in-this-season/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -90,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:全球",
   "type": "word",
   "word": "全球",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "quán qiú",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "toàn cầu, toàn thế giới",
+      "meaningShortVi": "toàn cầu",
+      "meaningFullVi": "toàn cầu, toàn thế giới",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "toàn cầu",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "全球 强调 bao quát toàn bộ cầu. 常与 化 (hóa - hóa), 性 (tính) 连用: 全球化 (toàn cầu hóa), 全球性 (mang tính toàn cầu). 全球范围 (trong phạm vi toàn cầu)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "全球变暖",
         "pinyin": "quánqiú biànnuǎn",
         "meaningVi": "hiện tượng nóng lên toàn cầu",
+        "meaningFullVi": "hiện tượng nóng lên toàn cầu",
         "target": "全球",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "全球化",
         "pinyin": "quánqiúhuà",
         "meaningVi": "toàn cầu hóa",
+        "meaningFullVi": "toàn cầu hóa",
         "target": "全球",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Đây là một vấn đề mang tính toàn cầu.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "全球",
@@ -82,16 +87,17 @@
       "meaningVi": "Công ty này có nhiều chi nhánh trên toàn cầu.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 全球",
-      "syntax": "danh từ",
-      "matchedExample": "全球 强调 bao quát toàn bộ cầu. 常与 化 (hóa - hóa), 性 (tính) 连用: 全球化 (toàn cầu hóa), 全球性 (mang tính toàn cầu). 全球范围 (trong phạm vi toàn cầu).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 全球",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "全球 强调 bao quát toàn bộ cầu. 常与 化 (hóa - hóa), 性 (tính) 连用: 全球化 (toàn cầu hóa), 全球性 (mang tính toàn cầu). 全球范围 (trong phạm vi toàn cầu).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__3__topic__9__thien-nhien",
+      "sectionSlug": "thien-nhien",
       "sectionTitle": "Thiên nhiên",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thien-nhien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thien-nhien/",
+      "orderInSection": 22
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:赶到",
   "type": "word",
   "word": "赶到",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gǎn dào",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "vội vàng đến nơi; kịp đến, đuổi kịp đến",
+      "meaningShortVi": "vội vàng đến nơi",
+      "meaningFullVi": "vội vàng đến nơi; kịp đến, đuổi kịp đến",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "vội vàng đến nơi",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "赶到 nhấn mạnh hành động vội vã để đến nơi kịp thời. Thường dùng với cấu trúc 赶到 + nơi chốn."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,14 @@
         "text": "赶到现场",
         "pinyin": "gǎn dào xiànchǎng",
         "meaningVi": "vội đến hiện trường",
+        "meaningFullVi": "vội đến hiện trường",
         "target": "赶到",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "赶不上",
-        "pinyin": "gǎn bù shàng",
-        "meaningVi": "không kịp, đuổi không kịp",
-        "target": "赶到",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,16 +67,17 @@
       "meaningVi": "Chúng tôi đã vội đến được nhà ga.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 赶到",
-      "syntax": "động từ",
-      "matchedExample": "赶到 nhấn mạnh hành động vội vã để đến nơi kịp thời. Thường dùng với cấu trúc 赶到 + nơi chốn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 赶到",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "赶到 nhấn mạnh hành động vội vã để đến nơi kịp thời. Thường dùng với cấu trúc 赶到 + nơi chốn.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -93,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__3__topic__14__van-chuyen-va-di-chuyen",
+      "sectionSlug": "van-chuyen-va-di-chuyen",
       "sectionTitle": "Vận chuyển và di chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/van-chuyen-va-di-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/van-chuyen-va-di-chuyen/",
+      "orderInSection": 17
     }
   ],
   "sources": [
@@ -108,7 +108,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

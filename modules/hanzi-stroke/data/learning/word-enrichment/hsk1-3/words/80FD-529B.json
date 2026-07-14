@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:能力",
   "type": "word",
   "word": "能力",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "néng lì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "khả năng; năng lực; tài năng",
+      "meaningShortVi": "khả năng",
+      "meaningFullVi": "khả năng; năng lực; tài năng",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "khả năng",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Chỉ năng lực, tài năng hoặc khả năng làm việc của một người."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,19 +51,24 @@
         "text": "工作能力",
         "pinyin": "gōngzuò nénglì",
         "meaningVi": "khả năng làm việc",
+        "meaningFullVi": "khả năng làm việc",
         "target": "能力",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "有能力",
         "pinyin": "yǒu nénglì",
-        "meaningVi": "có khả năng, có năng lực",
+        "meaningVi": "có khả năng",
+        "meaningFullVi": "có khả năng, có năng lực",
         "target": "能力",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Anh ấy có khả năng học tập rất mạnh.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "能力",
@@ -83,16 +88,17 @@
       "meaningVi": "Điều này vượt quá khả năng của tôi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 能力",
-      "syntax": "danh từ",
-      "matchedExample": "Chỉ năng lực, tài năng hoặc khả năng làm việc của một người.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 能力",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Chỉ năng lực, tài năng hoặc khả năng làm việc của một người.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 31,
+      "sectionId": "new_hsk__3__topic__31__ban-tinh",
+      "sectionSlug": "ban-tinh",
       "sectionTitle": "Bản tính",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/ban-tinh/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/ban-tinh/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

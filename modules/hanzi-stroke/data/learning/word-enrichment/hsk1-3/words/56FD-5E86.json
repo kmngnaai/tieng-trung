@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:国庆",
   "type": "word",
   "word": "国庆",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "guó qìng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Quốc khánh, ngày lễ kỷ niệm thành lập nước; ngày nghỉ lễ để chúc mừng ngày thành lập quốc gia",
+      "meaningShortVi": "Quốc khánh",
+      "meaningFullVi": "Quốc khánh, ngày lễ kỷ niệm thành lập nước; ngày nghỉ lễ để chúc mừng ngày thành lập quốc gia",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Quốc khánh",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Thường đi với 节 để chỉ ngày lễ. Trong văn hành chính, có thể nói 国庆期间 để chỉ khoảng thời gian nghỉ lễ. Từ liên quan: 独立日 'ngày độc lập', 建国 'thành lập nước'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "国庆节",
         "pinyin": "guóqìngjié",
         "meaningVi": "ngày Quốc khánh",
+        "meaningFullVi": "ngày Quốc khánh",
         "target": "国庆",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "庆祝国庆",
         "pinyin": "qìngzhù guóqìng",
         "meaningVi": "chúc mừng Quốc khánh",
+        "meaningFullVi": "chúc mừng Quốc khánh",
         "target": "国庆",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Mùng một tháng mười là ngày Quốc khánh của Trung Quốc.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "国庆",
@@ -82,16 +87,17 @@
       "meaningVi": "Trong dịp Quốc khánh, rất nhiều người đi du lịch.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 国庆",
-      "syntax": "danh từ",
-      "matchedExample": "Thường đi với 节 để chỉ ngày lễ. Trong văn hành chính, có thể nói 国庆期间 để chỉ khoảng thời gian nghỉ lễ. Từ liên quan: 独立日 'ngày độc lập', 建国 'thành lập nước'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 国庆",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Thường đi với 节 để chỉ ngày lễ. Trong văn hành chính, có thể nói 国庆期间 để chỉ khoảng thời gian nghỉ lễ. Từ liên quan: 独立日 'ngày độc lập', 建国 'thành lập nước'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__3__topic__10__giai-tri-toi",
+      "sectionSlug": "giai-tri-toi",
       "sectionTitle": "Giải trí tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:农业",
   "type": "word",
   "word": "农业",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "nóng yè",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nông nghiệp",
+      "meaningShortVi": "nông nghiệp",
+      "meaningFullVi": "nông nghiệp",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nông nghiệp",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "农业 (nông nghiệp) chỉ ngành kinh tế liên quan đến trồng trọt, chăn nuôi, khai thác thủy sản."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "农业发展",
         "pinyin": "nóngyè fāzhǎn",
         "meaningVi": "phát triển nông nghiệp",
+        "meaningFullVi": "phát triển nông nghiệp",
         "target": "农业",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "现代农业",
         "pinyin": "xiàndài nóngyè",
         "meaningVi": "nông nghiệp hiện đại",
+        "meaningFullVi": "nông nghiệp hiện đại",
         "target": "农业",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Nông nghiệp Trung Quốc rất phát triển.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "农业",
@@ -82,16 +87,17 @@
       "meaningVi": "Ông nội tôi làm về nông nghiệp.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 农业",
-      "syntax": "danh từ",
-      "matchedExample": "农业 (nông nghiệp) chỉ ngành kinh tế liên quan đến trồng trọt, chăn nuôi, khai thác thủy sản.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 农业",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "农业 (nông nghiệp) chỉ ngành kinh tế liên quan đến trồng trọt, chăn nuôi, khai thác thủy sản.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__topic__16__cac-hoat-dong",
+      "sectionSlug": "cac-hoat-dong",
       "sectionTitle": "Các hoạt động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/",
+      "orderInSection": 17
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

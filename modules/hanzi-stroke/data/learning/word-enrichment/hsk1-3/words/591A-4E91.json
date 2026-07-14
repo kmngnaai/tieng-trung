@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:多云",
   "type": "word",
   "word": "多云",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "duō yún",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đa vân",
+      "meaningShortVi": "đa vân",
+      "meaningFullVi": "đa vân",
       "partOfSpeech": "adjective",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đa vân",
   "wordType": "adjective",
   "wordTypes": [
     "adjective"
   ],
-  "usageNotes": [
-    "Thuật ngữ dự báo thời tiết"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,58 +48,66 @@
     "collocations": [
       {
         "text": "多云天气",
-        "pinyin": "",
+        "pinyin": "duō yún tiān qì",
         "meaningVi": "thời tiết nhiều mây",
+        "meaningFullVi": "thời tiết nhiều mây",
         "target": "多云",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "多云转阴",
-        "pinyin": "",
+        "pinyin": "duō yún zhuǎn yīn",
         "meaningVi": "nhiều mây chuyển âm u",
+        "meaningFullVi": "nhiều mây chuyển âm u",
         "target": "多云",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "多云",
       "chinese": "今天多云",
-      "pinyin": "",
+      "pinyin": "jīn tiān duō yún",
       "meaningVi": "Hôm nay nhiều mây",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "多云",
       "chinese": "天气预报多云",
-      "pinyin": "",
+      "pinyin": "tiān qì yù bào duō yún",
       "meaningVi": "Dự báo thời tiết nhiều mây",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "多云",
       "chinese": "多云转晴",
-      "pinyin": "",
+      "pinyin": "duō yún zhuǎn qíng",
       "meaningVi": "Nhiều mây chuyển tạnh",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 多云",
-      "syntax": "adjective",
-      "matchedExample": "Thuật ngữ dự báo thời tiết",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 多云",
+      "partOfSpeech": "adjective",
+      "usageNoteVi": "Thuật ngữ dự báo thời tiết",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -111,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__2__topic__16__thien-nhien",
+      "sectionSlug": "thien-nhien",
       "sectionTitle": "Thiên nhiên",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thien-nhien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thien-nhien/",
+      "orderInSection": 23
     }
   ],
   "sources": [
@@ -126,7 +138,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:相遇",
   "type": "word",
   "word": "相遇",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "xiāng yù",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "gặp nhau, chạm trán; đối diện",
+      "meaningShortVi": "gặp nhau",
+      "meaningFullVi": "gặp nhau, chạm trán; đối diện",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "gặp nhau",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng cho việc con người gặp nhau hoặc sự vật/cảnh tượng chạm trán nhau. Có sắc thái lãng mạn hoặc duyên số."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 相 (tương - qua lại lẫn nhau) + 遇 (ngộ - gặp gỡ). 相遇 = hai bên gặp nhau."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "意外相遇",
         "pinyin": "yìwài xiāngyù",
         "meaningVi": "gặp nhau một cách tình cờ",
+        "meaningFullVi": "gặp nhau một cách tình cờ",
         "target": "相遇",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "相遇相识",
         "pinyin": "xiāngyù xiāngshí",
         "meaningVi": "gặp nhau và làm quen",
+        "meaningFullVi": "gặp nhau và làm quen",
         "target": "相遇",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "偶然相遇",
         "pinyin": "ǒurán xiāngyù",
         "meaningVi": "gặp nhau ngẫu nhiên",
+        "meaningFullVi": "gặp nhau ngẫu nhiên",
         "target": "相遇",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Chúng tôi gặp nhau ở thư viện",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "相遇",
@@ -90,7 +95,8 @@
       "meaningVi": "Hai người họ gặp nhau một cách tình cờ",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "相遇",
@@ -99,7 +105,8 @@
       "meaningVi": "Gặp nhau là một loại duyên phận",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "相遇",
@@ -108,7 +115,8 @@
       "meaningVi": "Hai con đường gặp nhau ở đây",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "相遇",
@@ -117,23 +125,17 @@
       "meaningVi": "Rất vui được gặp bạn",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 相遇",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng cho việc con người gặp nhau hoặc sự vật/cảnh tượng chạm trán nhau. Có sắc thái lãng mạn hoặc duyên số.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 相 (tương - qua lại lẫn nhau) + 遇 (ngộ - gặp gỡ). 相遇 = hai bên gặp nhau.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 相遇",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng cho việc con người gặp nhau hoặc sự vật/cảnh tượng chạm trán nhau. Có sắc thái lãng mạn hoặc duyên số.",
+      "explanationVi": "Ghép nghĩa: 相 (tương - qua lại lẫn nhau) + 遇 (ngộ - gặp gỡ). 相遇 = hai bên gặp nhau.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -148,7 +150,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

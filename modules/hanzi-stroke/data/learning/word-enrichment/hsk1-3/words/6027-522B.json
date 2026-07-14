@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:性别",
   "type": "word",
   "word": "性别",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xìng bié",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Giới tính (nam/nữ); tính biệt lập",
+      "meaningShortVi": "Giới tính (nam",
+      "meaningFullVi": "Giới tính (nam/nữ); tính biệt lập",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Giới tính (nam",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "性别 (xìngbié) dùng để chỉ sự phân biệt sinh học và xã hội giữa nam và nữ. Trong văn nói, người ta thường dùng '男生/女生' (nam sinh/nữ sinh) hoặc '男的/女的' (người đàn ông/người phụ nữ) để chỉ giới tính một cách trực tiếp hơn."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,35 +50,24 @@
         "text": "性别歧视",
         "pinyin": "xìngbié qíshì",
         "meaningVi": "phân biệt giới tính",
+        "meaningFullVi": "phân biệt giới tính",
         "target": "性别",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "性别平等",
         "pinyin": "xìngbié píngděng",
         "meaningVi": "bình đẳng giới tính",
+        "meaningFullVi": "bình đẳng giới tính",
         "target": "性别",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "男性",
-        "pinyin": "nánxìng",
-        "meaningVi": "giới tính nam",
-        "target": "性别",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "女性",
-        "pinyin": "nǚxìng",
-        "meaningVi": "giới tính nữ",
-        "target": "性别",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -89,7 +77,8 @@
       "meaningVi": "Ở Trung Quốc, nam nữ bình đẳng, bất kể là giới tính gì, đều nên có cơ hội như nhau.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "性别",
@@ -98,7 +87,8 @@
       "meaningVi": "Vui lòng điền giới tính của quý vị vào biểu mẫu này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "性别",
@@ -107,16 +97,17 @@
       "meaningVi": "Phân biệt giới tính là một vấn đề xã hội nghiêm trọng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 性别",
-      "syntax": "compound-semantic",
-      "matchedExample": "性别 (xìngbié) dùng để chỉ sự phân biệt sinh học và xã hội giữa nam và nữ. Trong văn nói, người ta thường dùng '男生/女生' (nam sinh/nữ sinh) hoặc '男的/女的' (người đàn ông/người phụ nữ) để chỉ giới tính một cách trực tiếp hơn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 性别",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "性别 (xìngbié) dùng để chỉ sự phân biệt sinh học và xã hội giữa nam và nữ. Trong văn nói, người ta thường dùng '男生/女生' (nam sinh/nữ sinh) hoặc '男的/女的' (người đàn ông/người phụ nữ) để chỉ giới tính một cách trực tiếp hơn.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -127,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__3__topic__4__nhung-nguoi",
+      "sectionSlug": "nhung-nguoi",
       "sectionTitle": "Những người",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -142,7 +138,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

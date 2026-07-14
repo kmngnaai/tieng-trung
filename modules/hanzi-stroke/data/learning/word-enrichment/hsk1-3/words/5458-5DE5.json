@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:员工",
   "type": "word",
   "word": "员工",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yuán gōng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nhân viên, người lao động trong công ty; cán bộ công nhân viên",
+      "meaningShortVi": "nhân viên",
+      "meaningFullVi": "nhân viên, người lao động trong công ty; cán bộ công nhân viên",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nhân viên",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "员工 là danh từ chỉ nhân viên, người làm công ăn lương. Là từ ghép Hán-Việt 'viên công' (thành viên công nhân). Trong văn viết, cũng dùng 人员 (nhân sự) hoặc 职员 (nhân viên văn phòng)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "员工培训",
         "pinyin": "yuángōng péixùn",
         "meaningVi": "đào tạo nhân viên",
+        "meaningFullVi": "đào tạo nhân viên",
         "target": "员工",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "全体员工",
         "pinyin": "quántǐ yuángōng",
         "meaningVi": "toàn thể nhân viên",
+        "meaningFullVi": "toàn thể nhân viên",
         "target": "员工",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Công ty chúng tôi có 100 nhân viên.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "员工",
@@ -82,16 +87,17 @@
       "meaningVi": "Phúc lợi nhân viên rất tốt.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 员工",
-      "syntax": "danh từ",
-      "matchedExample": "员工 là danh từ chỉ nhân viên, người làm công ăn lương. Là từ ghép Hán-Việt 'viên công' (thành viên công nhân). Trong văn viết, cũng dùng 人员 (nhân sự) hoặc 职员 (nhân viên văn phòng).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 员工",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "员工 là danh từ chỉ nhân viên, người làm công ăn lương. Là từ ghép Hán-Việt 'viên công' (thành viên công nhân). Trong văn viết, cũng dùng 人员 (nhân sự) hoặc 职员 (nhân viên văn phòng).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__topic__16__cac-hoat-dong",
+      "sectionSlug": "cac-hoat-dong",
       "sectionTitle": "Các hoạt động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-hoat-dong/",
+      "orderInSection": 25
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

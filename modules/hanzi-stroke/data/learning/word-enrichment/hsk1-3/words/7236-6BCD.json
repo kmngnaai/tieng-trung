@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:父母",
   "type": "word",
   "word": "父母",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fù mǔ",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Bố mẹ, cha mẹ",
+      "meaningShortVi": "Bố mẹ",
+      "meaningFullVi": "Bố mẹ, cha mẹ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Bố mẹ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Từ kính trọng hoặc trang trọng để gọi chung bố và mẹ."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,11 +51,14 @@
         "text": "父母亲",
         "pinyin": "fùmǔqīn",
         "meaningVi": "bố mẹ (trang trọng)",
+        "meaningFullVi": "bố mẹ (trang trọng)",
         "target": "父母",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -66,7 +68,8 @@
       "meaningVi": "Bố mẹ tôi đều làm việc tại Bắc Kinh.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "父母",
@@ -75,7 +78,8 @@
       "meaningVi": "Tình yêu thương của bố mẹ là vĩ đại.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "父母",
@@ -84,16 +88,17 @@
       "meaningVi": "Chúng ta cần hiếu thảo với bố mẹ.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 父母",
-      "syntax": "compound-semantic",
-      "matchedExample": "Từ kính trọng hoặc trang trọng để gọi chung bố và mẹ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 父母",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Từ kính trọng hoặc trang trọng để gọi chung bố và mẹ.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__3__topic__4__nhung-nguoi",
+      "sectionSlug": "nhung-nguoi",
       "sectionTitle": "Những người",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -124,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

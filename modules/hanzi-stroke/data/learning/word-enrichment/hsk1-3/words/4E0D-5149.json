@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:不光",
   "type": "word",
   "word": "不光",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "bù guāng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "không chỉ là; không những",
+      "meaningShortVi": "không chỉ là",
+      "meaningFullVi": "không chỉ là; không những",
       "partOfSpeech": "liên từ cộng mãnh",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "không chỉ là",
   "wordType": "liên từ cộng mãnh",
   "wordTypes": [
     "liên từ cộng mãnh"
   ],
-  "usageNotes": [
-    "Dùng để cộng mãnh câu, nhấn mạnh rằng còn có thêm điều gì đó nữa. Thường đi kèm với '还', '也', '而且'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "不光是",
         "pinyin": "bù guāng shì",
         "meaningVi": "không chỉ là",
+        "meaningFullVi": "không chỉ là",
         "target": "不光",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不光...而且",
         "pinyin": "bù guāng... érqiě",
-        "meaningVi": "không những...mà còn",
+        "meaningVi": "không những",
+        "meaningFullVi": "không những...mà còn",
         "target": "不光",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Anh ấy không những nói được tiếng Trung mà còn viết được chữ Hán.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不光",
@@ -82,16 +87,17 @@
       "meaningVi": "Vấn đề này không chỉ quan trọng mà còn rất khẩn cấp.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 不光",
-      "syntax": "liên từ cộng mãnh",
-      "matchedExample": "Dùng để cộng mãnh câu, nhấn mạnh rằng còn có thêm điều gì đó nữa. Thường đi kèm với '还', '也', '而且'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 不光",
+      "partOfSpeech": "liên từ cộng mãnh",
+      "usageNoteVi": "Dùng để cộng mãnh câu, nhấn mạnh rằng còn có thêm điều gì đó nữa. Thường đi kèm với '还', '也', '而且'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 36,
+      "sectionId": "new_hsk__3__topic__36__tu-chuc-nang-ii",
+      "sectionSlug": "tu-chuc-nang-ii",
       "sectionTitle": "Từ chức năng II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-ii/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:感兴趣",
   "type": "word",
   "word": "感兴趣",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "gǎn xìng qù",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "quan tâm đến",
+      "meaningShortVi": "quan tâm đến",
+      "meaningFullVi": "quan tâm đến",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "quan tâm đến",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Thường đi cùng với '对...': 对某事感兴趣 = thích thú với cái gì đó."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -52,21 +51,26 @@
     "collocations": [
       {
         "text": "很感兴趣",
-        "pinyin": "",
+        "pinyin": "hěn gǎn xìng qù",
         "meaningVi": "rất quan tâm đến",
+        "meaningFullVi": "rất quan tâm đến",
         "target": "感兴趣",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不感兴趣",
-        "pinyin": "",
+        "pinyin": "bù gǎn xìng qù",
         "meaningVi": "không quan tâm đến",
+        "meaningFullVi": "không quan tâm đến",
         "target": "感兴趣",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -76,7 +80,8 @@
       "meaningVi": "Tôi rất thích thú với văn hóa Trung Quốc.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "感兴趣",
@@ -85,16 +90,17 @@
       "meaningVi": "Anh ấy không thích thú với thể thao.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 感兴趣",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường đi cùng với '对...': 对某事感兴趣 = thích thú với cái gì đó.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 感兴趣",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường đi cùng với '对...': 对某事感兴趣 = thích thú với cái gì đó.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -105,21 +111,31 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 7,
+      "sectionId": "hsk__3__lesson__7__bai-7-toi-va-co-ay-quen-nhau-5-nam-roi",
+      "sectionSlug": "bai-7-toi-va-co-ay-quen-nhau-5-nam-roi",
       "sectionTitle": "Tôi và cô ấy quen nhau 5 năm rồi.",
       "sectionTitleZh": "我跟她都认识五年了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-7-toi-va-co-ay-quen-nhau-5-nam-roi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-7-toi-va-co-ay-quen-nhau-5-nam-roi/",
+      "orderInSection": 5
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__3__lesson__5__bai-5-photos-like-these-are-the-best",
+      "sectionSlug": "bai-5-photos-like-these-are-the-best",
       "sectionTitle": "Ảnh như thế này mới đẹp",
       "sectionTitleZh": "这样的照片才好看",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-5-photos-like-these-are-the-best/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-5-photos-like-these-are-the-best/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -135,7 +151,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

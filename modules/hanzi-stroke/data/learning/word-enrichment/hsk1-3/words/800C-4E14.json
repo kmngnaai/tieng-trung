@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:而且",
   "type": "word",
   "word": "而且",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "ér qiě",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nhị thả",
+      "meaningShortVi": "nhị thả",
+      "meaningFullVi": "nhị thả",
       "partOfSpeech": "conjunction",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nhị thả",
   "wordType": "conjunction",
   "wordTypes": [
     "conjunction"
   ],
-  "usageNotes": [
-    "Liên từ cộng thêm, dùng để bổ sung thông tin"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -50,49 +49,56 @@
     "collocations": [
       {
         "text": "不但...而且...",
-        "pinyin": "",
-        "meaningVi": "không những... mà còn...",
+        "pinyin": "bù dàn... ér qiě...",
+        "meaningVi": "không những",
+        "meaningFullVi": "không những... mà còn...",
         "target": "而且",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "而且还有",
-        "pinyin": "",
+        "pinyin": "ér qiě hái yǒu",
         "meaningVi": "hơn nữa còn có",
+        "meaningFullVi": "hơn nữa còn có",
         "target": "而且",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "而且",
       "chinese": "这件衣服便宜，而且很好看",
-      "pinyin": "",
+      "pinyin": "zhè jiàn yī fu pián yi， ér qiě hěn hǎo kàn",
       "meaningVi": "Cái áo này rẻ, hơn nữa lại rất đẹp",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "而且",
       "chinese": "他学习努力，而且成绩很好",
-      "pinyin": "",
+      "pinyin": "tā xué xí nǔ lì， ér qiě chéng jì hěn hǎo",
       "meaningVi": "Anh ấy học chăm chỉ, hơn nữa thành tích rất tốt",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 而且",
-      "syntax": "conjunction",
-      "matchedExample": "Liên từ cộng thêm, dùng để bổ sung thông tin",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 而且",
+      "partOfSpeech": "conjunction",
+      "usageNoteVi": "Liên từ cộng thêm, dùng để bổ sung thông tin",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,21 +109,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__2__topic__10__tu-noi",
+      "sectionSlug": "tu-noi",
       "sectionTitle": "Từ nối",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-noi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-noi/",
+      "orderInSection": 16
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__3__lesson__7__bai-7-that-skirt-looks-better-than-the-shorts",
+      "sectionSlug": "bai-7-that-skirt-looks-better-than-the-shorts",
       "sectionTitle": "Cái váy đó đẹp hơn quần soóc",
       "sectionTitleZh": "那条裙子比短裤更好看",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-7-that-skirt-looks-better-than-the-shorts/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-7-that-skirt-looks-better-than-the-shorts/",
+      "orderInSection": 25
     }
   ],
   "sources": [
@@ -133,7 +149,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

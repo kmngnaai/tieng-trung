@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:首先",
   "type": "word",
   "word": "首先",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shǒu xiān",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trước hết, trước tiên",
+      "meaningShortVi": "trước hết",
+      "meaningFullVi": "trước hết, trước tiên",
       "partOfSpeech": "liên từ / trạng từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trước hết",
   "wordType": "liên từ / trạng từ",
   "wordTypes": [
     "liên từ / trạng từ"
   ],
-  "usageNotes": [
-    "首先 dùng để mở đầu liệt kê, thường ghép với 然后 (sau đó). Có thể thay bằng 第一 (đệ nhất) trong văn nói. Thường đứng đầu câu."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -50,20 +49,25 @@
       {
         "text": "首先...然后...",
         "pinyin": "shǒuxiān... ránhòu...",
-        "meaningVi": "trước hết... sau đó...",
+        "meaningVi": "trước hết",
+        "meaningFullVi": "trước hết... sau đó...",
         "target": "首先",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "首先想到",
         "pinyin": "shǒuxiān xiǎngdào",
         "meaningVi": "đầu tiên nghĩ đến",
+        "meaningFullVi": "đầu tiên nghĩ đến",
         "target": "首先",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Trước hết, để tôi tự giới thiệu.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "首先",
@@ -82,16 +87,17 @@
       "meaningVi": "Trước tiên cần làm tốt công tác chuẩn bị.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 首先",
-      "syntax": "liên từ / trạng từ",
-      "matchedExample": "首先 dùng để mở đầu liệt kê, thường ghép với 然后 (sau đó). Có thể thay bằng 第一 (đệ nhất) trong văn nói. Thường đứng đầu câu.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 首先",
+      "partOfSpeech": "liên từ / trạng từ",
+      "usageNoteVi": "首先 dùng để mở đầu liệt kê, thường ghép với 然后 (sau đó). Có thể thay bằng 第一 (đệ nhất) trong văn nói. Thường đứng đầu câu.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 21,
+      "sectionId": "new_hsk__3__topic__21__phan-bo",
+      "sectionSlug": "phan-bo",
       "sectionTitle": "Phân bổ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/phan-bo/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/phan-bo/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

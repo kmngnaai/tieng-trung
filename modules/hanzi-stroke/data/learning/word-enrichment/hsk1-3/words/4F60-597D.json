@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:你好",
   "type": "word",
   "word": "你好",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "nǐ hǎo",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "xin chào",
+      "meaningShortVi": "xin chào",
+      "meaningFullVi": "xin chào",
       "partOfSpeech": "thán từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "xin chào",
   "wordType": "thán từ",
   "wordTypes": [
     "thán từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -44,10 +45,19 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 你好",
+      "partOfSpeech": "thán từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/你好.mp3"
   ],
@@ -56,21 +66,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__1__lesson__1__bai-1-hello-ai-xiaoyu",
+      "sectionSlug": "bai-1-hello-ai-xiaoyu",
       "sectionTitle": "AI Tiểu Ngữ, xin chào!",
       "sectionTitleZh": "AI小语，你好！",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-1-hello-ai-xiaoyu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-1-hello-ai-xiaoyu/",
+      "orderInSection": 7
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__1__topic__19__nhung-tu-ngu-lich-su",
+      "sectionSlug": "nhung-tu-ngu-lich-su",
       "sectionTitle": "Những từ ngữ lịch sự",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nhung-tu-ngu-lich-su/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nhung-tu-ngu-lich-su/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -81,9 +101,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": [
-      "Chưa có câu chứa nguyên từ"
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
     ]
   }
 }

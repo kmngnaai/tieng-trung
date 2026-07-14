@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:不屑",
   "type": "word",
   "word": "不屑",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "bù xiè",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Bất tiết — khinh thường, không thèm, coi là không xứng đáng để quan tâm. Thể hiện thái độ khinh bỉ hoặc tự cao.",
+      "meaningShortVi": "Bất tiết — khinh thường",
+      "meaningFullVi": "Bất tiết — khinh thường, không thèm, coi là không xứng đáng để quan tâm. Thể hiện thái độ khinh bỉ hoặc tự cao.",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Bất tiết — khinh thường",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Thường dùng cấu trúc 不屑一顾 (khinh không thèm nhìn) hoặc 不屑于 + động từ."
-  ],
-  "wordTypeExplanations": [
-    "不 (bất — không) + 屑 (tiết — thèm muốn, coi là đáng giá) → không thèm đếm xỉa, coi là không đáng."
   ],
   "hsk": {
     "levels": [
@@ -50,28 +47,35 @@
       {
         "text": "不屑一顾",
         "pinyin": "bù xiè yī gù",
-        "meaningVi": "không thèm liếc mắt, coi khinh",
+        "meaningVi": "không thèm liếc mắt",
+        "meaningFullVi": "không thèm liếc mắt, coi khinh",
         "target": "不屑",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不屑于",
         "pinyin": "bù xiè yú",
-        "meaningVi": "không thèm làm, khinh thường",
+        "meaningVi": "không thèm làm",
+        "meaningFullVi": "không thèm làm, khinh thường",
         "target": "不屑",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "嗤之以鼻，不屑",
         "pinyin": "chī zhī yǐ bí, bù xiè",
-        "meaningVi": "khinh thường, bĩu môi",
+        "meaningVi": "khinh thường",
+        "meaningFullVi": "khinh thường, bĩu môi",
         "target": "不屑",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Anh ta coi việc nhỏ nhặt này không đáng liếc mắt tới.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不屑",
@@ -90,7 +95,8 @@
       "meaningVi": "Cô ấy không thèm so sánh mình với người khác.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不屑",
@@ -99,7 +105,8 @@
       "meaningVi": "Anh ta không thèm đáp lại những lời chỉ trích đó.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不屑",
@@ -108,23 +115,17 @@
       "meaningVi": "Họ coi việc dùng thủ đoạn đó là hạ thấp bản thân.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 不屑",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường dùng cấu trúc 不屑一顾 (khinh không thèm nhìn) hoặc 不屑于 + động từ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "不 (bất — không) + 屑 (tiết — thèm muốn, coi là đáng giá) → không thèm đếm xỉa, coi là không đáng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 不屑",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường dùng cấu trúc 不屑一顾 (khinh không thèm nhìn) hoặc 不屑于 + động từ.",
+      "explanationVi": "不 (bất — không) + 屑 (tiết — thèm muốn, coi là đáng giá) → không thèm đếm xỉa, coi là không đáng.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

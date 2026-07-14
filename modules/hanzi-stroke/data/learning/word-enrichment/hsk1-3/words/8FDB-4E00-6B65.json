@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:进一步",
   "type": "word",
   "word": "进一步",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "jìn yī bù",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hơn nữa, tiếp tục, thêm một bước nữa",
+      "meaningShortVi": "hơn nữa",
+      "meaningFullVi": "hơn nữa, tiếp tục, thêm một bước nữa",
       "partOfSpeech": "động từ / trạng ngữ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hơn nữa",
   "wordType": "động từ / trạng ngữ",
   "wordTypes": [
     "động từ / trạng ngữ"
   ],
-  "usageNotes": [
-    "Đây là kết hợp của 进 (tiến) + 一 (một) + 步 (bước), nghĩa đen 'tiến thêm một bước'. Dùng như trạng ngữ hoặc động từ để chỉ việc đi sâu hơn, mở rộng hơn hoặc tiếp tục một hành động nào đó."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,20 +50,25 @@
       {
         "text": "进一步了解",
         "pinyin": "jìnyībù liǎojiě",
-        "meaningVi": "tìm hiểu thêm, tìm hiểu sâu hơn",
+        "meaningVi": "tìm hiểu thêm",
+        "meaningFullVi": "tìm hiểu thêm, tìm hiểu sâu hơn",
         "target": "进一步",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "进一步发展",
         "pinyin": "jìnyībù fāzhǎn",
         "meaningVi": "phát triển thêm một bước nữa",
+        "meaningFullVi": "phát triển thêm một bước nữa",
         "target": "进一步",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Chúng ta cần thảo luận thêm về vấn đề này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "进一步",
@@ -83,16 +88,17 @@
       "meaningVi": "Để tôi tìm hiểu thêm một chút về tình hình.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 进一步",
-      "syntax": "động từ / trạng ngữ",
-      "matchedExample": "Đây là kết hợp của 进 (tiến) + 一 (một) + 步 (bước), nghĩa đen 'tiến thêm một bước'. Dùng như trạng ngữ hoặc động từ để chỉ việc đi sâu hơn, mở rộng hơn hoặc tiếp tục một hành động nào đó.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 进一步",
+      "partOfSpeech": "động từ / trạng ngữ",
+      "usageNoteVi": "Đây là kết hợp của 进 (tiến) + 一 (một) + 步 (bước), nghĩa đen 'tiến thêm một bước'. Dùng như trạng ngữ hoặc động từ để chỉ việc đi sâu hơn, mở rộng hơn hoặc tiếp tục một hành động nào đó.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__topic__17__nhung-thay-doi",
+      "sectionSlug": "nhung-thay-doi",
       "sectionTitle": "Những thay đổi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -118,7 +129,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

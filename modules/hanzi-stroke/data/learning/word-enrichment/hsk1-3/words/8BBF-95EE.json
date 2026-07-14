@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:访问",
   "type": "word",
   "word": "访问",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fǎng wèn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thăm hỏi, viếng thăm, truy cập",
+      "meaningShortVi": "thăm hỏi",
+      "meaningFullVi": "thăm hỏi, viếng thăm, truy cập",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thăm hỏi",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "访问 dùng cho thăm viếng (trang trọng) hoặc truy cập website/máy tính. Trang trọng hơn 拜访 hoặc 看望. Trong bối cảnh internet, dùng cho việc truy cập trang web."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "访问学者",
         "pinyin": "fǎngwèn xuézhě",
         "meaningVi": "học giả lưu trú nghiên cứu",
+        "meaningFullVi": "học giả lưu trú nghiên cứu",
         "target": "访问",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "正式访问",
         "pinyin": "zhèngshì fǎngwèn",
         "meaningVi": "thăm hỏi chính thức",
+        "meaningFullVi": "thăm hỏi chính thức",
         "target": "访问",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Tuần tới chúng tôi sẽ thăm Bắc Kinh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "访问",
@@ -82,16 +87,17 @@
       "meaningVi": "Nhiều sinh viên đã truy cập trang web này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 访问",
-      "syntax": "động từ",
-      "matchedExample": "访问 dùng cho thăm viếng (trang trọng) hoặc truy cập website/máy tính. Trang trọng hơn 拜访 hoặc 看望. Trong bối cảnh internet, dùng cho việc truy cập trang web.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 访问",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "访问 dùng cho thăm viếng (trang trọng) hoặc truy cập website/máy tính. Trang trọng hơn 拜访 hoặc 看望. Trong bối cảnh internet, dùng cho việc truy cập trang web.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__3__topic__13__cong-viec-ii",
+      "sectionSlug": "cong-viec-ii",
       "sectionTitle": "Công việc II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cong-viec-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cong-viec-ii/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

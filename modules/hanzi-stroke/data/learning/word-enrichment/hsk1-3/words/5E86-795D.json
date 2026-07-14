@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:庆祝",
   "type": "word",
   "word": "庆祝",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "qìng zhù",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Ăn mừng, kỷ niệm",
+      "meaningShortVi": "Ăn mừng",
+      "meaningFullVi": "Ăn mừng, kỷ niệm",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Ăn mừng",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "庆祝 mang hành động ăn mừng một sự kiện vui như ngày lễ, sinh nhật, chiến thắng. Trong giao tiếp, người ta thường说 '庆祝...节' (ăn mừng lễ...) 或 '庆祝生日' (ăn mừng sinh nhật). 动词 thường đi kèm: 举办 (tổ chức), 举行 (diễn ra)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "庆祝活动",
         "pinyin": "qìngzhù huódòng",
         "meaningVi": "hoạt động kỷ niệm",
+        "meaningFullVi": "hoạt động kỷ niệm",
         "target": "庆祝",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "庆祝胜利",
         "pinyin": "qìngzhù shènglì",
         "meaningVi": "ăn mừng chiến thắng",
+        "meaningFullVi": "ăn mừng chiến thắng",
         "target": "庆祝",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Chúng tôi cùng nhau ăn mừng năm mới.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "庆祝",
@@ -82,16 +87,17 @@
       "meaningVi": "Cả nhà cùng ăn mừng sinh nhật mẹ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 庆祝",
-      "syntax": "động từ",
-      "matchedExample": "庆祝 mang hành động ăn mừng một sự kiện vui như ngày lễ, sinh nhật, chiến thắng. Trong giao tiếp, người ta thường说 '庆祝...节' (ăn mừng lễ...) 或 '庆祝生日' (ăn mừng sinh nhật). 动词 thường đi kèm: 举办 (tổ chức), 举行 (diễn ra).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 庆祝",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "庆祝 mang hành động ăn mừng một sự kiện vui như ngày lễ, sinh nhật, chiến thắng. Trong giao tiếp, người ta thường说 '庆祝...节' (ăn mừng lễ...) 或 '庆祝生日' (ăn mừng sinh nhật). 动词 thường đi kèm: 举办 (tổ chức), 举行 (diễn ra).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__3__topic__11__giai-tri-ii",
+      "sectionSlug": "giai-tri-ii",
       "sectionTitle": "Giải trí II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-ii/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

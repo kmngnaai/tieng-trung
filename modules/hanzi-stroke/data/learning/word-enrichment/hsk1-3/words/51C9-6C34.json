@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:凉水",
   "type": "word",
   "word": "凉水",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "liáng shuǐ",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Nước lạnh",
+      "meaningShortVi": "Nước lạnh",
+      "meaningFullVi": "Nước lạnh",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Nước lạnh",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "凉水 chỉ nước lạnh, thường dùng trong giao tiếp hàng ngày về uống hoặc rửa mặt. Phân biệt với 温水(nước ấm) và 开水(nước sôi)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,27 +50,34 @@
         "text": "喝凉水",
         "pinyin": "hē liángshuǐ",
         "meaningVi": "uống nước lạnh",
+        "meaningFullVi": "uống nước lạnh",
         "target": "凉水",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "凉水洗脸",
         "pinyin": "liángshuǐ xǐliǎn",
         "meaningVi": "rửa mặt bằng nước lạnh",
+        "meaningFullVi": "rửa mặt bằng nước lạnh",
         "target": "凉水",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "一杯凉水",
         "pinyin": "yībēi liángshuǐ",
         "meaningVi": "một cốc nước lạnh",
+        "meaningFullVi": "một cốc nước lạnh",
         "target": "凉水",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +87,8 @@
       "meaningVi": "Mùa hè uống nước lạnh rất thoải mái.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "凉水",
@@ -90,7 +97,8 @@
       "meaningVi": "Làm ơn cho tôi một cốc nước lạnh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "凉水",
@@ -99,16 +107,17 @@
       "meaningVi": "Đừng uống quá nhiều nước lạnh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 凉水",
-      "syntax": "compound-semantic",
-      "matchedExample": "凉水 chỉ nước lạnh, thường dùng trong giao tiếp hàng ngày về uống hoặc rửa mặt. Phân biệt với 温水(nước ấm) và 开水(nước sôi).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 凉水",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "凉水 chỉ nước lạnh, thường dùng trong giao tiếp hàng ngày về uống hoặc rửa mặt. Phân biệt với 温水(nước ấm) và 开水(nước sôi).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -119,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 2,
+      "sectionId": "new_hsk__3__topic__2__thuc-an-va-do-uong",
+      "sectionSlug": "thuc-an-va-do-uong",
       "sectionTitle": "Thức ăn và đồ uống",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thuc-an-va-do-uong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thuc-an-va-do-uong/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -134,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

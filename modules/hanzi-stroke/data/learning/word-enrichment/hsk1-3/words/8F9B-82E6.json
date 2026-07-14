@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:辛苦",
   "type": "word",
   "word": "辛苦",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xīn kǔ",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Vất vả, khó nhọc, cần cù",
+      "meaningShortVi": "Vất vả",
+      "meaningFullVi": "Vất vả, khó nhọc, cần cù",
       "partOfSpeech": "tính từ / động từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Vất vả",
   "wordType": "tính từ / động từ",
   "wordTypes": [
     "tính từ / động từ"
   ],
-  "usageNotes": [
-    "辛 (cay/vất vả) + 苦 (đắng/khổ). 辛苦 là tính từ chỉ sự vất vả, cũng dùng để cảm ơn người khác: 你辛苦了 là 'bạn vất vả rồi', lời cảm ơn phổ biến. 辛苦 có thể mang sắc thái tích cực (cần cù) hoặc tiêu cực (khó nhọc tùy ngữ cảnh)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -45,48 +44,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "辛苦了",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "辛苦",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "很辛苦",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "辛苦",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "辛苦工作",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "辛苦",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "辛苦你了",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "辛苦",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "不辛苦",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "辛苦",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -96,7 +55,8 @@
       "meaningVi": "Anh/chị vất vả rồi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "辛苦",
@@ -105,7 +65,8 @@
       "meaningVi": "Công việc rất vất vả.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "辛苦",
@@ -114,16 +75,17 @@
       "meaningVi": "Chăm sóc trẻ em rất vất vả.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 辛苦",
-      "syntax": "tính từ / động từ",
-      "matchedExample": "辛 (cay/vất vả) + 苦 (đắng/khổ). 辛苦 là tính từ chỉ sự vất vả, cũng dùng để cảm ơn người khác: 你辛苦了 là 'bạn vất vả rồi', lời cảm ơn phổ biến. 辛苦 có thể mang sắc thái tích cực (cần cù) hoặc tiêu cực (khó nhọc tùy ngữ cảnh).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 辛苦",
+      "partOfSpeech": "tính từ / động từ",
+      "usageNoteVi": "辛 (cay/vất vả) + 苦 (đắng/khổ). 辛苦 là tính từ chỉ sự vất vả, cũng dùng để cảm ơn người khác: 你辛苦了 là 'bạn vất vả rồi', lời cảm ơn phổ biến. 辛苦 có thể mang sắc thái tích cực (cần cù) hoặc tiêu cực (khó nhọc tùy ngữ cảnh).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -143,7 +105,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:打球",
   "type": "word",
   "word": "打球",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "dǎ qiú",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chơi bóng (thể thao dùng bóng)",
+      "meaningShortVi": "chơi bóng (thể thao dùng bóng)",
+      "meaningFullVi": "chơi bóng (thể thao dùng bóng)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chơi bóng (thể thao dùng bóng)",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Động từ ghép, chỉ chơi các môn thể thao dùng bóng. 打 là động từ phụ thuộc, không phân biệt với 'đánh' trong tiếng Việt. Phân biệt với 踢球 (chỉ bóng đá) 哭 踢 (đá)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 打 (làm, đánh) + 球 (quả bóng) → chơi các môn thể thao dùng bóng. 打 ở đây là động từ phụ thuộc, không có nghĩa 'đánh'."
   ],
   "hsk": {
     "levels": [
@@ -48,40 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "打篮球",
-        "pinyin": "dǎ lánqiú",
-        "meaningVi": "chơi bóng rổ",
-        "target": "打球",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "打乒乓球",
-        "pinyin": "dǎ pīngpāngqiú",
-        "meaningVi": "chơi bóng bàn",
-        "target": "打球",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "打足球",
-        "pinyin": "dǎ zúqiú",
-        "meaningVi": "chơi bóng đá",
-        "target": "打球",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "打羽毛球",
-        "pinyin": "dǎ yǔmáoqiú",
-        "meaningVi": "chơi cầu lông",
-        "target": "打球",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -91,7 +56,8 @@
       "meaningVi": "Chúng ta đi chơi bóng nhé",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "打球",
@@ -100,23 +66,17 @@
       "meaningVi": "Bạn đang chơi bóng à?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 打球",
-      "syntax": "compound-semantic",
-      "matchedExample": "Động từ ghép, chỉ chơi các môn thể thao dùng bóng. 打 là động từ phụ thuộc, không phân biệt với 'đánh' trong tiếng Việt. Phân biệt với 踢球 (chỉ bóng đá) 哭 踢 (đá).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 打 (làm, đánh) + 球 (quả bóng) → chơi các môn thể thao dùng bóng. 打 ở đây là động từ phụ thuộc, không có nghĩa 'đánh'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 打球",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Động từ ghép, chỉ chơi các môn thể thao dùng bóng. 打 là động từ phụ thuộc, không phân biệt với 'đánh' trong tiếng Việt. Phân biệt với 踢球 (chỉ bóng đá) 哭 踢 (đá).",
+      "explanationVi": "Ghép nghĩa: 打 (làm, đánh) + 球 (quả bóng) → chơi các môn thể thao dùng bóng. 打 ở đây là động từ phụ thuộc, không có nghĩa 'đánh'.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -127,11 +87,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__1__topic__16__thoi-gian-ranh-roi",
+      "sectionSlug": "thoi-gian-ranh-roi",
       "sectionTitle": "Thời gian rảnh rỗi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian-ranh-roi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian-ranh-roi/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -142,7 +107,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

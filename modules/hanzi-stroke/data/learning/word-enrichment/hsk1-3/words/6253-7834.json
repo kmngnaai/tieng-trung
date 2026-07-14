@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:打破",
   "type": "word",
   "word": "打破",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "dǎ pò",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phá vỡ, đập vỡ; vượt qua, phá vỡ (kỷ lục, quy tắc)",
+      "meaningShortVi": "phá vỡ",
+      "meaningFullVi": "phá vỡ, đập vỡ; vượt qua, phá vỡ (kỷ lục, quy tắc)",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phá vỡ",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "既可指物理上的打碎（如杯子），也可指抽象意义的突破（如纪录、规则、沉默）。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "打破纪录",
-        "pinyin": "",
+        "pinyin": "dǎ pò jì lù",
         "meaningVi": "phá kỷ lục",
+        "meaningFullVi": "phá kỷ lục",
         "target": "打破",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "打破沉默",
-        "pinyin": "",
-        "meaningVi": "phá vỡ sự im lặng",
-        "target": "打破",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "打破",
       "chinese": "小心别打破杯子。",
-      "pinyin": "",
+      "pinyin": "xiǎo xīn bié dǎ pò bēi zi。",
       "meaningVi": "Cẩn thận đừng làm vỡ cái ly.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "打破",
       "chinese": "他打破了世界纪录。",
-      "pinyin": "",
+      "pinyin": "tā dǎ pò le shì jiè jì lù。",
       "meaningVi": "Anh ấy đã phá vỡ kỷ lục thế giới.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 打破",
-      "syntax": "động từ",
-      "matchedExample": "既可指物理上的打碎（如杯子），也可指抽象意义的突破（如纪录、规则、沉默）。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 打破",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "既可指物理上的打碎（如杯子），也可指抽象意义的突破（如纪录、规则、沉默）。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__3__topic__19__thanh-tuu-va-ket-qua",
+      "sectionSlug": "thanh-tuu-va-ket-qua",
       "sectionTitle": "Thành tựu và kết quả",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/",
+      "orderInSection": 23
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:事业",
   "type": "word",
   "word": "事业",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shì yè",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Sự nghiệp, công việc kinh doanh hoặc sự nghiệp cá nhân",
+      "meaningShortVi": "Sự nghiệp",
+      "meaningFullVi": "Sự nghiệp, công việc kinh doanh hoặc sự nghiệp cá nhân",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Sự nghiệp",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "事业 khác với 工作 (công việc). 工作 chỉ công việc hàng ngày, còn 事业 mang nghĩa toàn diện hơn, chỉ toàn bộ quá trình phát triển nghề nghiệp hoặc một lĩnh vực hoạt động lớn như '教育事业' (sự nghiệp giáo dục), '卫生事业' (sự nghiệp y tế)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "事业成功",
         "pinyin": "shìyè chénggōng",
         "meaningVi": "thành công trong sự nghiệp",
+        "meaningFullVi": "thành công trong sự nghiệp",
         "target": "事业",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "教育事业",
         "pinyin": "jiàoyù shìyè",
         "meaningVi": "sự nghiệp giáo dục",
+        "meaningFullVi": "sự nghiệp giáo dục",
         "target": "事业",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Sự nghiệp của cô ấy rất thành công.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "事业",
@@ -82,16 +87,17 @@
       "meaningVi": "Chúng ta cần đóng góp sức lực cho sự nghiệp giáo dục.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 事业",
-      "syntax": "danh từ",
-      "matchedExample": "事业 khác với 工作 (công việc). 工作 chỉ công việc hàng ngày, còn 事业 mang nghĩa toàn diện hơn, chỉ toàn bộ quá trình phát triển nghề nghiệp hoặc một lĩnh vực hoạt động lớn như '教育事业' (sự nghiệp giáo dục), '卫生事业' (sự nghiệp y tế).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 事业",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "事业 khác với 工作 (công việc). 工作 chỉ công việc hàng ngày, còn 事业 mang nghĩa toàn diện hơn, chỉ toàn bộ quá trình phát triển nghề nghiệp hoặc một lĩnh vực hoạt động lớn như '教育事业' (sự nghiệp giáo dục), '卫生事业' (sự nghiệp y tế).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__3__topic__13__cong-viec-ii",
+      "sectionSlug": "cong-viec-ii",
       "sectionTitle": "Công việc II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cong-viec-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cong-viec-ii/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

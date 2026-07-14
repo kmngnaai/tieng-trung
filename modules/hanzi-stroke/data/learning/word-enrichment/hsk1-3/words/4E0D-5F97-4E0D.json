@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:不得不",
   "type": "word",
   "word": "不得不",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "bù dé bù",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "không thể không, buộc phải",
+      "meaningShortVi": "không thể không",
+      "meaningFullVi": "không thể không, buộc phải",
       "partOfSpeech": "cụm từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "không thể không",
   "wordType": "cụm từ",
   "wordTypes": [
     "cụm từ"
   ],
-  "usageNotes": [
-    "Biểu thị sự ép buộc, không có lựa chọn khác."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -47,52 +46,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "不得不做",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "不得不",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "不得不说",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "不得不",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "不得不",
-      "chinese": "我不得不去。",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "不得不",
-      "chinese": "不得不承认",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 不得不",
-      "syntax": "cụm từ",
-      "matchedExample": "Biểu thị sự ép buộc, không có lựa chọn khác.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 不得不",
+      "partOfSpeech": "cụm từ",
+      "usageNoteVi": "Biểu thị sự ép buộc, không có lựa chọn khác.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +67,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 35,
+      "sectionId": "new_hsk__3__topic__35__tu-chuc-nang-i",
+      "sectionSlug": "tu-chuc-nang-i",
       "sectionTitle": "Từ chức năng I",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-i/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-i/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -118,7 +87,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

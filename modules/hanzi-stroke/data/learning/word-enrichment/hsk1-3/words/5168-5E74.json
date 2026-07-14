@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:全年",
   "type": "word",
   "word": "全年",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "quán nián",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cả năm, quanh năm",
+      "meaningShortVi": "cả năm",
+      "meaningFullVi": "cả năm, quanh năm",
       "partOfSpeech": "noun/adverb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cả năm",
   "wordType": "noun/adverb",
   "wordTypes": [
     "noun/adverb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,43 +48,38 @@
     "collocations": [
       {
         "text": "全年收入",
-        "pinyin": "",
+        "pinyin": "quán nián shōu rù",
         "meaningVi": "thu nhập cả năm",
+        "meaningFullVi": "thu nhập cả năm",
         "target": "全年",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "全年无休",
-        "pinyin": "",
-        "meaningVi": "làm việc quanh năm không nghỉ",
-        "target": "全年",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "全年",
-      "chinese": "商店全年营业",
-      "pinyin": "",
-      "meaningVi": "Cửa hàng mở cửa cả năm",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "全年",
       "chinese": "全年都很热",
-      "pinyin": "",
+      "pinyin": "quán nián dōu hěn rè",
       "meaningVi": "Cả năm đều rất nóng",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 全年",
+      "partOfSpeech": "noun/adverb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/全年.mp3"
   ],
@@ -92,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__2__topic__3__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thoi-gian/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -107,7 +108,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

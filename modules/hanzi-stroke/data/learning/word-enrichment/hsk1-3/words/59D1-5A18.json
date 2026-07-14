@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:姑娘",
   "type": "word",
   "word": "姑娘",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gū niang",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Cô gái, thiếu nữ; (vùng phương Bắc) con gái",
+      "meaningShortVi": "Cô gái",
+      "meaningFullVi": "Cô gái, thiếu nữ; (vùng phương Bắc) con gái",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Cô gái",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "姑娘 (gūniang) là từ dùng để chỉ phụ nữ trẻ, chưa kết hôn. Trong phương ngữ Bắc Kinh, 也用 để gọi con gái trong gia đình. Từ này mang sắc thái ân cần, thân mật. Trong văn viết trang trọng, nên dùng 女青年 或 女性 thay vì 姑娘."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -51,36 +50,45 @@
       {
         "text": "小姑娘",
         "pinyin": "xiǎo gūniang",
-        "meaningVi": "cô gái nhỏ, bé gái",
+        "meaningVi": "cô gái nhỏ",
+        "meaningFullVi": "cô gái nhỏ, bé gái",
         "target": "姑娘",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "大姑娘",
         "pinyin": "dà gūniang",
-        "meaningVi": "cô gái lớn, thiếu nữ đã trưởng thành",
+        "meaningVi": "cô gái lớn",
+        "meaningFullVi": "cô gái lớn, thiếu nữ đã trưởng thành",
         "target": "姑娘",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "姑娘家",
         "pinyin": "gūniang jiā",
-        "meaningVi": "phụ nữ, con gái (khi nói về giới tính)",
+        "meaningVi": "phụ nữ",
+        "meaningFullVi": "phụ nữ, con gái (khi nói về giới tính)",
         "target": "姑娘",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "乡下姑娘",
         "pinyin": "xiāngxià gūniang",
         "meaningVi": "cô gái quê",
+        "meaningFullVi": "cô gái quê",
         "target": "姑娘",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -90,7 +98,8 @@
       "meaningVi": "Cô gái đó rất xinh đẹp, tính cách cũng rất tốt.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "姑娘",
@@ -99,7 +108,8 @@
       "meaningVi": "Các cô gái trong làng đều thích giặt quần áo bên bờ sông.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "姑娘",
@@ -108,16 +118,17 @@
       "meaningVi": "Con gái nhà chúng tôi năm nay đỗ một trường đại học tốt.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 姑娘",
-      "syntax": "compound-semantic",
-      "matchedExample": "姑娘 (gūniang) là từ dùng để chỉ phụ nữ trẻ, chưa kết hôn. Trong phương ngữ Bắc Kinh, 也用 để gọi con gái trong gia đình. Từ này mang sắc thái ân cần, thân mật. Trong văn viết trang trọng, nên dùng 女青年 或 女性 thay vì 姑娘.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 姑娘",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "姑娘 (gūniang) là từ dùng để chỉ phụ nữ trẻ, chưa kết hôn. Trong phương ngữ Bắc Kinh, 也用 để gọi con gái trong gia đình. Từ này mang sắc thái ân cần, thân mật. Trong văn viết trang trọng, nên dùng 女青年 或 女性 thay vì 姑娘.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -128,11 +139,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__3__topic__4__nhung-nguoi",
+      "sectionSlug": "nhung-nguoi",
       "sectionTitle": "Những người",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-nguoi/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -148,7 +164,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

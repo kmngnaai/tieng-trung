@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:偷懒",
   "type": "word",
   "word": "偷懒",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "tōu lǎn",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Lười biếng, trốn tránh việc làm; cố ý làm ít để nghỉ ngơi. Hán-Việt: thâu lãn.",
+      "meaningShortVi": "Lười biếng",
+      "meaningFullVi": "Lười biếng, trốn tránh việc làm; cố ý làm ít để nghỉ ngơi. Hán-Việt: thâu lãn.",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Lười biếng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Thường dùng trong lời phê bình hoặc lời khuyên; mang sắc thái khẩu ngữ, không dùng trong văn phong trang trọng."
-  ],
-  "wordTypeExplanations": [
-    "偷 (thâu — lén lút) + 懒 (lãn — lười). Ghép nghĩa: lén trốn tránh lao động, không chịu làm việc."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "爱偷懒",
         "pinyin": "ài tōulǎn",
         "meaningVi": "hay lười biếng",
+        "meaningFullVi": "hay lười biếng",
         "target": "偷懒",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "偷懒耍滑",
         "pinyin": "tōulǎn shuǎhuá",
-        "meaningVi": "lười biếng gian dối, trốn tránh trách nhiệm",
+        "meaningVi": "lười biếng gian dối",
+        "meaningFullVi": "lười biếng gian dối, trốn tránh trách nhiệm",
         "target": "偷懒",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不能偷懒",
         "pinyin": "bù néng tōulǎn",
         "meaningVi": "không được lười biếng",
+        "meaningFullVi": "không được lười biếng",
         "target": "偷懒",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Trong giờ làm việc không được lười biếng.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "偷懒",
@@ -90,7 +95,8 @@
       "meaningVi": "Anh ta luôn tìm lý do để trốn tránh việc làm.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "偷懒",
@@ -99,7 +105,8 @@
       "meaningVi": "Không thể lười biếng chỉ vì không có ai giám sát.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "偷懒",
@@ -108,23 +115,17 @@
       "meaningVi": "Trong việc học không được lười biếng, phải nỗ lực kiên trì.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 偷懒",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường dùng trong lời phê bình hoặc lời khuyên; mang sắc thái khẩu ngữ, không dùng trong văn phong trang trọng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "偷 (thâu — lén lút) + 懒 (lãn — lười). Ghép nghĩa: lén trốn tránh lao động, không chịu làm việc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 偷懒",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường dùng trong lời phê bình hoặc lời khuyên; mang sắc thái khẩu ngữ, không dùng trong văn phong trang trọng.",
+      "explanationVi": "偷 (thâu — lén lút) + 懒 (lãn — lười). Ghép nghĩa: lén trốn tránh lao động, không chịu làm việc.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

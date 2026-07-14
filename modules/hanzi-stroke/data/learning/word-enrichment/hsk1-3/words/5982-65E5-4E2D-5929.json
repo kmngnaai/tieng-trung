@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:如日中天",
   "type": "word",
   "word": "如日中天",
@@ -17,24 +17,25 @@
     "readings": [
       {
         "pinyin": "rú rì zhōng tiān",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Như mặt trời giữa trưa, đang ở đỉnh cao, thời kỳ hoàng kim",
+      "meaningShortVi": "Như mặt trời giữa trưa",
+      "meaningFullVi": "Như mặt trời giữa trưa, đang ở đỉnh cao, thời kỳ hoàng kim",
       "partOfSpeech": "Thành ngữ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Như mặt trời giữa trưa",
   "wordType": "Thành ngữ",
   "wordTypes": [
     "Thành ngữ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,7 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -54,7 +56,8 @@
       "meaningVi": "Sự nghiệp của anh ấy đang ở đỉnh cao.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "如日中天",
@@ -63,10 +66,19 @@
       "meaningVi": "Quốc gia này đang ở thời kỳ hoàng kim về kinh tế.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 如日中天",
+      "partOfSpeech": "Thành ngữ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/如日中天.mp3"
   ],
@@ -79,7 +91,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

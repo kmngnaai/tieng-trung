@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:缺点",
   "type": "word",
   "word": "缺点",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "quē diǎn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "khuyết điểm; điểm yếu; nhược điểm",
+      "meaningShortVi": "khuyết điểm",
+      "meaningFullVi": "khuyết điểm; điểm yếu; nhược điểm",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "khuyết điểm",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Chỉ điểm yếu, nhược điểm của người hoặc vật. Trái nghĩa với '优点' (ưu điểm)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "主要缺点",
         "pinyin": "zhǔyào quēdiǎn",
         "meaningVi": "khuyết điểm chính",
+        "meaningFullVi": "khuyết điểm chính",
         "target": "缺点",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "改正缺点",
         "pinyin": "gǎizhèng quēdiǎn",
         "meaningVi": "khắc phục khuyết điểm",
+        "meaningFullVi": "khắc phục khuyết điểm",
         "target": "缺点",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Mỗi người đều có ưu điểm và khuyết điểm của mình.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "缺点",
@@ -82,16 +87,17 @@
       "meaningVi": "Nhược điểm của phương pháp này là chi phí quá cao.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 缺点",
-      "syntax": "danh từ",
-      "matchedExample": "Chỉ điểm yếu, nhược điểm của người hoặc vật. Trái nghĩa với '优点' (ưu điểm).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 缺点",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Chỉ điểm yếu, nhược điểm của người hoặc vật. Trái nghĩa với '优点' (ưu điểm).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 31,
+      "sectionId": "new_hsk__3__topic__31__ban-tinh",
+      "sectionSlug": "ban-tinh",
       "sectionTitle": "Bản tính",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/ban-tinh/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/ban-tinh/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

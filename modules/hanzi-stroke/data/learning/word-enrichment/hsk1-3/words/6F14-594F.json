@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:演奏",
   "type": "word",
   "word": "演奏",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "yǎn zòu",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "biểu diễn nhạc cụ, trình tấu (chơi nhạc trước khán giả)",
+      "meaningShortVi": "biểu diễn nhạc cụ",
+      "meaningFullVi": "biểu diễn nhạc cụ, trình tấu (chơi nhạc trước khán giả)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "biểu diễn nhạc cụ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "演奏 dùng khi biểu diễn nhạc cụ (không phải hát). Khác với 演唱 (yǎnchàng — hát biểu diễn) và 歌唱 (gēchàng — ca hát). Thường kết hợp: 演奏会 (buổi hòa nhạc), 演奏家 (nhạc sĩ trình diễn)."
-  ],
-  "wordTypeExplanations": [
-    "演 (diễn — biểu diễn, trình diễn) + 奏 (tấu — tấu nhạc, chơi nhạc cụ) → 'biểu diễn chơi nhạc'. Cả hai thành phần đều liên quan đến nghệ thuật trình diễn."
   ],
   "hsk": {
     "levels": [
@@ -51,35 +48,44 @@
         "text": "演奏会",
         "pinyin": "yǎnzòu huì",
         "meaningVi": "buổi hòa nhạc",
+        "meaningFullVi": "buổi hòa nhạc",
         "target": "演奏",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "演奏家",
         "pinyin": "yǎnzòujiā",
-        "meaningVi": "nhạc sĩ trình diễn, nghệ sĩ độc tấu",
+        "meaningVi": "nhạc sĩ trình diễn",
+        "meaningFullVi": "nhạc sĩ trình diễn, nghệ sĩ độc tấu",
         "target": "演奏",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "独自演奏",
         "pinyin": "dúzì yǎnzòu",
         "meaningVi": "độc tấu",
+        "meaningFullVi": "độc tấu",
         "target": "演奏",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "演奏技巧",
         "pinyin": "yǎnzòu jìqiǎo",
         "meaningVi": "kỹ thuật trình diễn nhạc cụ",
+        "meaningFullVi": "kỹ thuật trình diễn nhạc cụ",
         "target": "演奏",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -89,7 +95,8 @@
       "meaningVi": "Dàn nhạc đã trình tấu bản giao hưởng của Beethoven tại nhà hát",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "演奏",
@@ -98,7 +105,8 @@
       "meaningVi": "Cô ấy học đàn piano từ nhỏ, bây giờ có thể trình tấu nhiều tác phẩm nổi tiếng",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "演奏",
@@ -107,7 +115,8 @@
       "meaningVi": "Kính mời mọi người thưởng thức bản nhạc chúng tôi trình tấu",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "演奏",
@@ -116,23 +125,17 @@
       "meaningVi": "Người chơi violin trình tấu rất cảm động",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 演奏",
-      "syntax": "compound-semantic",
-      "matchedExample": "演奏 dùng khi biểu diễn nhạc cụ (không phải hát). Khác với 演唱 (yǎnchàng — hát biểu diễn) và 歌唱 (gēchàng — ca hát). Thường kết hợp: 演奏会 (buổi hòa nhạc), 演奏家 (nhạc sĩ trình diễn).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "演 (diễn — biểu diễn, trình diễn) + 奏 (tấu — tấu nhạc, chơi nhạc cụ) → 'biểu diễn chơi nhạc'. Cả hai thành phần đều liên quan đến nghệ thuật trình diễn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 演奏",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "演奏 dùng khi biểu diễn nhạc cụ (không phải hát). Khác với 演唱 (yǎnchàng — hát biểu diễn) và 歌唱 (gēchàng — ca hát). Thường kết hợp: 演奏会 (buổi hòa nhạc), 演奏家 (nhạc sĩ trình diễn).",
+      "explanationVi": "演 (diễn — biểu diễn, trình diễn) + 奏 (tấu — tấu nhạc, chơi nhạc cụ) → 'biểu diễn chơi nhạc'. Cả hai thành phần đều liên quan đến nghệ thuật trình diễn.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -147,7 +150,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

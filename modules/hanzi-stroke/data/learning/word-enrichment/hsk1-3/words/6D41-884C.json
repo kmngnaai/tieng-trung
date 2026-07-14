@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:流行",
   "type": "word",
   "word": "流行",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "liú xíng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phổ biến",
+      "meaningShortVi": "phổ biến",
+      "meaningFullVi": "phổ biến",
       "partOfSpeech": "adjective",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phổ biến",
   "wordType": "adjective",
   "wordTypes": [
     "adjective"
   ],
-  "usageNotes": [
-    "Tính từ chỉ cái đang thịnh hành."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,49 +49,56 @@
     "collocations": [
       {
         "text": "很流行",
-        "pinyin": "",
+        "pinyin": "hěn liú xíng",
         "meaningVi": "rất phổ biến",
+        "meaningFullVi": "rất phổ biến",
         "target": "流行",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "流行歌曲",
-        "pinyin": "",
+        "pinyin": "liú xíng gē qǔ",
         "meaningVi": "bài hát phổ biến",
+        "meaningFullVi": "bài hát phổ biến",
         "target": "流行",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "流行",
       "chinese": "这首歌很流行",
-      "pinyin": "",
+      "pinyin": "zhè shǒu gē hěn liú xíng",
       "meaningVi": "Bài hát này rất phổ biến",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "流行",
       "chinese": "现在流行短发",
-      "pinyin": "",
+      "pinyin": "xiàn zài liú xíng duǎn fā",
       "meaningVi": "Hiện nay để tóc ngắn đang phổ biến",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 流行",
-      "syntax": "adjective",
-      "matchedExample": "Tính từ chỉ cái đang thịnh hành.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 流行",
+      "partOfSpeech": "adjective",
+      "usageNoteVi": "Tính từ chỉ cái đang thịnh hành.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__2__topic__18__tinh-tu",
+      "sectionSlug": "tinh-tu",
       "sectionTitle": "Tính từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tinh-tu/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

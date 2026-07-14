@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:停车场",
   "type": "word",
   "word": "停车场",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "tíng chē chǎng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bãi đậu xe",
+      "meaningShortVi": "bãi đậu xe",
+      "meaningFullVi": "bãi đậu xe",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bãi đậu xe",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Nơi đỗ xe ô tô, xe máy."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -50,49 +49,46 @@
     "collocations": [
       {
         "text": "地下停车场",
-        "pinyin": "",
+        "pinyin": "de xià tíng chē chǎng",
         "meaningVi": "bãi đậu xe ngầm",
+        "meaningFullVi": "bãi đậu xe ngầm",
         "target": "停车场",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "停车费",
-        "pinyin": "",
-        "meaningVi": "phí đỗ xe",
-        "target": "停车场",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "停车场",
       "chinese": "停车场满了",
-      "pinyin": "",
+      "pinyin": "tíng chē chǎng mǎn le",
       "meaningVi": "Bãi đậu xe đã đầy",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "停车场",
       "chinese": "车停在停车场里",
-      "pinyin": "",
+      "pinyin": "chē tíng zài tíng chē chǎng lǐ",
       "meaningVi": "Xe đỗ trong bãi đậu xe",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 停车场",
-      "syntax": "noun",
-      "matchedExample": "Nơi đỗ xe ô tô, xe máy.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 停车场",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Nơi đỗ xe ô tô, xe máy.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +99,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__2__topic__5__van-chuyen",
+      "sectionSlug": "van-chuyen",
       "sectionTitle": "Vận chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/van-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/van-chuyen/",
+      "orderInSection": 17
     }
   ],
   "sources": [
@@ -118,7 +119,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

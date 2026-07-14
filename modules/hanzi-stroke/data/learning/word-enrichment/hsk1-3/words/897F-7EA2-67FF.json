@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:西红柿",
   "type": "word",
   "word": "西红柿",
@@ -16,24 +16,25 @@
     "readings": [
       {
         "pinyin": "xī hóng shì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cà chua",
+      "meaningShortVi": "cà chua",
+      "meaningFullVi": "cà chua",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cà chua",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -46,21 +47,26 @@
     "collocations": [
       {
         "text": "这个西红柿",
-        "pinyin": "",
+        "pinyin": "zhè ge xī hóng shì",
         "meaningVi": "cái cà chua này",
+        "meaningFullVi": "cái cà chua này",
         "target": "西红柿",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "那个西红柿",
-        "pinyin": "",
+        "pinyin": "nà ge xī hóng shì",
         "meaningVi": "cái cà chua kia",
+        "meaningFullVi": "cái cà chua kia",
         "target": "西红柿",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -70,7 +76,8 @@
       "meaningVi": "Cà chua xào trứng rất ngon.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "西红柿",
@@ -79,10 +86,19 @@
       "meaningVi": "Tôi muốn mua một ít cà chua.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 西红柿",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/西红柿.mp3"
   ],
@@ -95,7 +111,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

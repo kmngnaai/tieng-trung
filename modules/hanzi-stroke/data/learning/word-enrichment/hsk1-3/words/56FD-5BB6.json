@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:国家",
   "type": "word",
   "word": "国家",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "guó jiā",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "quốc gia, nhà nước",
+      "meaningShortVi": "quốc gia",
+      "meaningFullVi": "quốc gia, nhà nước",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "quốc gia",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Chỉ toàn bộ thể chế chính trị của một quốc gia. Trang trọng hơn 国 khi nói về cơ cấu nhà nước."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 国 (quốc gia, nước) + 家 (nhà, gia đình) — nhà nước như một gia đình lớn."
   ],
   "hsk": {
     "levels": [
@@ -56,27 +53,34 @@
         "text": "国家主席",
         "pinyin": "guójiā zhǔxí",
         "meaningVi": "chủ tịch nước",
+        "meaningFullVi": "chủ tịch nước",
         "target": "国家",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "国家政策",
         "pinyin": "guójiā zhèngcè",
         "meaningVi": "chính sách nhà nước",
+        "meaningFullVi": "chính sách nhà nước",
         "target": "国家",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "国家利益",
         "pinyin": "guójiā lìyì",
         "meaningVi": "lợi ích quốc gia",
+        "meaningFullVi": "lợi ích quốc gia",
         "target": "国家",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -86,7 +90,8 @@
       "meaningVi": "Tôi yêu đất nước tôi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "国家",
@@ -95,7 +100,8 @@
       "meaningVi": "Nhà nước phát triển rất nhanh",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "国家",
@@ -104,23 +110,17 @@
       "meaningVi": "Mỗi quốc gia đều có văn hóa của riêng mình",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 国家",
-      "syntax": "compound-semantic",
-      "matchedExample": "Chỉ toàn bộ thể chế chính trị của một quốc gia. Trang trọng hơn 国 khi nói về cơ cấu nhà nước.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 国 (quốc gia, nước) + 家 (nhà, gia đình) — nhà nước như một gia đình lớn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 国家",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Chỉ toàn bộ thể chế chính trị của một quốc gia. Trang trọng hơn 国 khi nói về cơ cấu nhà nước.",
+      "explanationVi": "Ghép nghĩa: 国 (quốc gia, nước) + 家 (nhà, gia đình) — nhà nước như một gia đình lớn.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -131,31 +131,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__1__topic__18__dia-ly",
+      "sectionSlug": "dia-ly",
       "sectionTitle": "Địa lý",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dia-ly/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dia-ly/",
+      "orderInSection": 13
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 18,
+      "sectionId": "hsk__3__lesson__18__bai-18-toi-tin-ho-se-dong-y",
+      "sectionSlug": "bai-18-toi-tin-ho-se-dong-y",
       "sectionTitle": "Tôi tin họ sẽ đồng ý.",
       "sectionTitleZh": "我相信他们会同意的",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-18-toi-tin-ho-se-dong-y/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-18-toi-tin-ho-se-dong-y/",
+      "orderInSection": 12
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__lesson__17__bai-17-i-will-learn-from-people-who-are-careful",
+      "sectionSlug": "bai-17-i-will-learn-from-people-who-are-careful",
       "sectionTitle": "Tôi phải học hỏi nhiều từ những người nghiêm túc",
       "sectionTitleZh": "我要多向认真的人学习",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-17-i-will-learn-from-people-who-are-careful/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-17-i-will-learn-from-people-who-are-careful/",
+      "orderInSection": 18
     }
   ],
   "sources": [
@@ -176,7 +191,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

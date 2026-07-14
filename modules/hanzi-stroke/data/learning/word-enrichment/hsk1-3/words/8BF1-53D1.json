@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:诱发",
   "type": "word",
   "word": "诱发",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "yòu fā",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "khởi phát, gợi ra (gây ra điều gì)",
+      "meaningShortVi": "khởi phát",
+      "meaningFullVi": "khởi phát, gợi ra (gây ra điều gì)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "khởi phát",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng trong y học (gây bệnh) hoặc đời sống (kích động xung đột, vấn đề)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 诱 (dụ - dụ dỗ) + 发 (phát - phát sinh) -> dụ dỗ phát sinh, gợi ra."
   ],
   "hsk": {
     "levels": [
@@ -51,19 +48,24 @@
         "text": "诱发疾病",
         "pinyin": "yòu fā jí bìng",
         "meaningVi": "khởi phát bệnh",
+        "meaningFullVi": "khởi phát bệnh",
         "target": "诱发",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "诱发因素",
         "pinyin": "yòu fā yīn sù",
         "meaningVi": "yếu tố khởi phát",
+        "meaningFullVi": "yếu tố khởi phát",
         "target": "诱发",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +75,8 @@
       "meaningVi": "Thuốc có thể gây ra tác dụng phụ",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "诱发",
@@ -82,7 +85,8 @@
       "meaningVi": "Mệt mỏi khởi phát bệnh tật",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "诱发",
@@ -91,23 +95,17 @@
       "meaningVi": "Đừng kích động xung đột",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 诱发",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng trong y học (gây bệnh) hoặc đời sống (kích động xung đột, vấn đề).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 诱 (dụ - dụ dỗ) + 发 (phát - phát sinh) -> dụ dỗ phát sinh, gợi ra.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 诱发",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng trong y học (gây bệnh) hoặc đời sống (kích động xung đột, vấn đề).",
+      "explanationVi": "Ghép nghĩa: 诱 (dụ - dụ dỗ) + 发 (phát - phát sinh) -> dụ dỗ phát sinh, gợi ra.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -122,7 +120,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:仍然",
   "type": "word",
   "word": "仍然",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "réng rán",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "vẫn còn; vẫn là",
+      "meaningShortVi": "vẫn còn",
+      "meaningFullVi": "vẫn còn; vẫn là",
       "partOfSpeech": "trạng từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "vẫn còn",
   "wordType": "trạng từ",
   "wordTypes": [
     "trạng từ"
   ],
-  "usageNotes": [
-    "Thường dùng trong văn viết, mang sắc thái trang trọng hơn '还'. Nhấn mạnh tính tiếp tục bất chấp thay đổi."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -51,20 +50,25 @@
       {
         "text": "仍然在",
         "pinyin": "réngrán zài",
-        "meaningVi": "vẫn đang ở/vẫn đang làm",
+        "meaningVi": "vẫn đang ở",
+        "meaningFullVi": "vẫn đang ở/vẫn đang làm",
         "target": "仍然",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "仍然没有",
         "pinyin": "réngrán méiyǒu",
         "meaningVi": "vẫn chưa",
+        "meaningFullVi": "vẫn chưa",
         "target": "仍然",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Dù đã mưa, nhưng anh ấy vẫn kiên trì tập thể dục.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "仍然",
@@ -83,16 +88,17 @@
       "meaningVi": "Vấn đề vẫn chưa được giải quyết.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 仍然",
-      "syntax": "trạng từ",
-      "matchedExample": "Thường dùng trong văn viết, mang sắc thái trang trọng hơn '还'. Nhấn mạnh tính tiếp tục bất chấp thay đổi.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 仍然",
+      "partOfSpeech": "trạng từ",
+      "usageNoteVi": "Thường dùng trong văn viết, mang sắc thái trang trọng hơn '还'. Nhấn mạnh tính tiếp tục bất chấp thay đổi.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 36,
+      "sectionId": "new_hsk__3__topic__36__tu-chuc-nang-ii",
+      "sectionSlug": "tu-chuc-nang-ii",
       "sectionTitle": "Từ chức năng II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-ii/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:请坐",
   "type": "word",
   "word": "请坐",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "qǐng zuò",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "mời ngồi",
+      "meaningShortVi": "mời ngồi",
+      "meaningFullVi": "mời ngồi",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "mời ngồi",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Cụm từ lịch sự khi mời khách ngồi. Thường đi sau 请进 (mời vào) và trước các lời mời khác như 请喝茶 (mời uống trà). Trong giao tiếp, nói 请坐 khi chỉ vào ghế hoặc sau khi khách đã vào. Khác với 坐下 (ngồi xuống) là mệnh lệnh, 请坐 thêm ý lịch sự."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 请 (mời) + 坐 (ngồi) → mời ai đó ngồi xuống. Cụm động từ lịch sự dùng khi tiếp khách."
   ],
   "hsk": {
     "levels": [
@@ -48,32 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "请进",
-        "pinyin": "qǐng jìn",
-        "meaningVi": "mời vào",
-        "target": "请坐",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "坐下",
-        "pinyin": "zuò xià",
-        "meaningVi": "ngồi xuống",
-        "target": "请坐",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "坐",
-        "pinyin": "zuò",
-        "meaningVi": "ngồi",
-        "target": "请坐",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -83,7 +56,8 @@
       "meaningVi": "Mời ngồi, mời uống trà",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "请坐",
@@ -92,7 +66,8 @@
       "meaningVi": "Mời thầy ngồi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "请坐",
@@ -101,7 +76,8 @@
       "meaningVi": "Mời ngồi nhanh nhé",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "请坐",
@@ -110,7 +86,8 @@
       "meaningVi": "Mời ngồi ở đây",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "请坐",
@@ -119,23 +96,17 @@
       "meaningVi": "Mời ngồi xuống",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 请坐",
-      "syntax": "compound-semantic",
-      "matchedExample": "Cụm từ lịch sự khi mời khách ngồi. Thường đi sau 请进 (mời vào) và trước các lời mời khác như 请喝茶 (mời uống trà). Trong giao tiếp, nói 请坐 khi chỉ vào ghế hoặc sau khi khách đã vào. Khác với 坐下 (ngồi xuống) là mệnh lệnh, 请坐 thêm ý lịch sự.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 请 (mời) + 坐 (ngồi) → mời ai đó ngồi xuống. Cụm động từ lịch sự dùng khi tiếp khách.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 请坐",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Cụm từ lịch sự khi mời khách ngồi. Thường đi sau 请进 (mời vào) và trước các lời mời khác như 请喝茶 (mời uống trà). Trong giao tiếp, nói 请坐 khi chỉ vào ghế hoặc sau khi khách đã vào. Khác với 坐下 (ngồi xuống) là mệnh lệnh, 请坐 thêm ý lịch sự.",
+      "explanationVi": "Ghép nghĩa: 请 (mời) + 坐 (ngồi) → mời ai đó ngồi xuống. Cụm động từ lịch sự dùng khi tiếp khách.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -146,11 +117,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__1__topic__19__nhung-tu-ngu-lich-su",
+      "sectionSlug": "nhung-tu-ngu-lich-su",
       "sectionTitle": "Những từ ngữ lịch sự",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nhung-tu-ngu-lich-su/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nhung-tu-ngu-lich-su/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -161,7 +137,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:看起来",
   "type": "word",
   "word": "看起来",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "kàn qǐ lái",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trông có vẻ, hình như",
+      "meaningShortVi": "trông có vẻ",
+      "meaningFullVi": "trông có vẻ, hình như",
       "partOfSpeech": "cụm từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trông có vẻ",
   "wordType": "cụm từ",
   "wordTypes": [
     "cụm từ"
   ],
-  "usageNotes": [
-    "Biểu thị nhận thức dựa trên ngoại hình hoặc dấu hiệu."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -48,60 +47,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "看起来像",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "看起来",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "看起来很",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "看起来",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "看起来好像",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "看起来",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "看起来",
-      "chinese": "他看起来很高兴。",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_1.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "看起来",
-      "chinese": "看起来要下雨了",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_1.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 看起来",
-      "syntax": "cụm từ",
-      "matchedExample": "Biểu thị nhận thức dựa trên ngoại hình hoặc dấu hiệu.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 看起来",
+      "partOfSpeech": "cụm từ",
+      "usageNoteVi": "Biểu thị nhận thức dựa trên ngoại hình hoặc dấu hiệu.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -112,11 +68,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 28,
+      "sectionId": "new_hsk__3__topic__28__tu-duy",
+      "sectionSlug": "tu-duy",
       "sectionTitle": "tư duy",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-duy/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-duy/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -132,7 +93,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

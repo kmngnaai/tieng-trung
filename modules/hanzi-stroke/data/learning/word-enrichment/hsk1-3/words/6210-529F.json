@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:成功",
   "type": "word",
   "word": "成功",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "chéng gōng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thành công",
+      "meaningShortVi": "thành công",
+      "meaningFullVi": "thành công",
       "partOfSpeech": "động từ / danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thành công",
   "wordType": "động từ / danh từ",
   "wordTypes": [
     "động từ / danh từ"
   ],
-  "usageNotes": [
-    "可作动词（达到目的）或形容词（圆满的）。成功 vs. 失败：反义词。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -49,50 +48,47 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "获得成功",
-        "pinyin": "",
-        "meaningVi": "giành được thành công",
-        "target": "成功",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "成功的经验",
-        "pinyin": "",
+        "pinyin": "chéng gōng de jīng yàn",
         "meaningVi": "kinh nghiệm thành công",
+        "meaningFullVi": "kinh nghiệm thành công",
         "target": "成功",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "成功",
       "chinese": "祝贺你取得成功！",
-      "pinyin": "",
+      "pinyin": "zhù hè nǐ qǔ dé chéng gōng！",
       "meaningVi": "Chúc mừng bạn đã thành công!",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "成功",
       "chinese": "这次活动很成功。",
-      "pinyin": "",
+      "pinyin": "zhè cì huó dòng hěn chéng gōng。",
       "meaningVi": "Lần hoạt động này rất thành công.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 成功",
-      "syntax": "động từ / danh từ",
-      "matchedExample": "可作动词（达到目的）或形容词（圆满的）。成功 vs. 失败：反义词。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 成功",
+      "partOfSpeech": "động từ / danh từ",
+      "usageNoteVi": "可作动词（达到目的）或形容词（圆满的）。成功 vs. 失败：反义词。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +99,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__3__topic__19__thanh-tuu-va-ket-qua",
+      "sectionSlug": "thanh-tuu-va-ket-qua",
       "sectionTitle": "Thành tựu và kết quả",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -123,7 +124,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

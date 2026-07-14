@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:能不能",
   "type": "word",
   "word": "能不能",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "néng bu néng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "có được không; có thể không",
+      "meaningShortVi": "có được không",
+      "meaningFullVi": "có được không; có thể không",
       "partOfSpeech": "cụm hỏi khả năng",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "có được không",
   "wordType": "cụm hỏi khả năng",
   "wordTypes": [
     "cụm hỏi khả năng"
   ],
-  "usageNotes": [
-    "Đây là cấu trúc hỏi thân mật, dùng để hỏi về khả năng hoặc xin phép. Ngắn gọn hơn '可以不可以'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -52,19 +51,24 @@
         "text": "能不能去",
         "pinyin": "néng bu néng qù",
         "meaningVi": "có thể đi được không",
+        "meaningFullVi": "có thể đi được không",
         "target": "能不能",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "能不能做",
         "pinyin": "néng bu néng zuò",
         "meaningVi": "có thể làm được không",
+        "meaningFullVi": "có thể làm được không",
         "target": "能不能",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Bạn có thể giúp tôi một việc được không?",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "能不能",
@@ -83,16 +88,17 @@
       "meaningVi": "Ngày mai có thể mưa được không?",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 能不能",
-      "syntax": "cụm hỏi khả năng",
-      "matchedExample": "Đây là cấu trúc hỏi thân mật, dùng để hỏi về khả năng hoặc xin phép. Ngắn gọn hơn '可以不可以'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 能不能",
+      "partOfSpeech": "cụm hỏi khả năng",
+      "usageNoteVi": "Đây là cấu trúc hỏi thân mật, dùng để hỏi về khả năng hoặc xin phép. Ngắn gọn hơn '可以不可以'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 36,
+      "sectionId": "new_hsk__3__topic__36__tu-chuc-nang-ii",
+      "sectionSlug": "tu-chuc-nang-ii",
       "sectionTitle": "Từ chức năng II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-ii/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -118,7 +129,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

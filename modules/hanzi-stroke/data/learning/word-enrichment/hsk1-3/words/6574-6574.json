@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:整整",
   "type": "word",
   "word": "整整",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhěng zhěng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trọn vẹn, nguyên; trọn, cả (thời gian)",
+      "meaningShortVi": "trọn vẹn",
+      "meaningFullVi": "trọn vẹn, nguyên; trọn, cả (thời gian)",
       "partOfSpeech": "phó từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trọn vẹn",
   "wordType": "phó từ",
   "wordTypes": [
     "phó từ"
   ],
-  "usageNotes": [
-    "Zhěng zhěng là phó từ nhấn mạnh tính trọn vẹn của thời gian hoặc số lượng. Phổ biến trong giao tiếp hàng ngày."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,49 +49,56 @@
     "collocations": [
       {
         "text": "整整一天",
-        "pinyin": "",
-        "meaningVi": "cả ngày dài/nguyên một ngày",
+        "pinyin": "zhěng zhěng yī tiān",
+        "meaningVi": "cả ngày dài",
+        "meaningFullVi": "cả ngày dài/nguyên một ngày",
         "target": "整整",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "整整一年",
-        "pinyin": "",
+        "pinyin": "zhěng zhěng yī nián",
         "meaningVi": "trọn một năm",
+        "meaningFullVi": "trọn một năm",
         "target": "整整",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "整整",
       "chinese": "我等了整整一个小时。",
-      "pinyin": "",
+      "pinyin": "wǒ děng le zhěng zhěng yī gè xiǎo shí。",
       "meaningVi": "Tôi đã đợi nguyên một tiếng đồng hồ.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "整整",
       "chinese": "他们整整忙了一天。",
-      "pinyin": "",
+      "pinyin": "tā men zhěng zhěng máng le yī tiān。",
       "meaningVi": "Họ bận rộn cả ngày dài.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 整整",
-      "syntax": "phó từ",
-      "matchedExample": "Zhěng zhěng là phó từ nhấn mạnh tính trọn vẹn của thời gian hoặc số lượng. Phổ biến trong giao tiếp hàng ngày.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 整整",
+      "partOfSpeech": "phó từ",
+      "usageNoteVi": "Zhěng zhěng là phó từ nhấn mạnh tính trọn vẹn của thời gian hoặc số lượng. Phổ biến trong giao tiếp hàng ngày.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 32,
+      "sectionId": "new_hsk__3__topic__32__dac-diem",
+      "sectionSlug": "dac-diem",
       "sectionTitle": "Đặc điểm",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/",
+      "orderInSection": 17
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

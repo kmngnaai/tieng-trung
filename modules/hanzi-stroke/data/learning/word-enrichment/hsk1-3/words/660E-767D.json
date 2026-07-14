@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:明白",
   "type": "word",
   "word": "明白",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "míng bai",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hiểu, rõ ràng",
+      "meaningShortVi": "hiểu",
+      "meaningFullVi": "hiểu, rõ ràng",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hiểu",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Từ phổ biến chỉ việc 'hiểu'. Có thể dùng như động từ hoặc tính từ. Trong văn nói, phát âm 'bai' nhẹ. Có thể dùng '明白吗' để hỏi 'Bạn hiểu không?'."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 明 (sáng, rõ) + 白 (trắng, rõ) → 'rõ ràng, sáng tỏ', từ đó nghĩa 'hiểu'."
   ],
   "hsk": {
     "levels": [
@@ -55,35 +52,44 @@
         "text": "听明白",
         "pinyin": "tīng míng bai",
         "meaningVi": "nghe hiểu",
+        "meaningFullVi": "nghe hiểu",
         "target": "明白",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "看明白",
         "pinyin": "kàn míng bai",
         "meaningVi": "nhìn hiểu",
+        "meaningFullVi": "nhìn hiểu",
         "target": "明白",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不明白",
         "pinyin": "bú míng bai",
         "meaningVi": "không hiểu",
+        "meaningFullVi": "không hiểu",
         "target": "明白",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "说明白",
         "pinyin": "shuō míng bai",
         "meaningVi": "nói cho rõ",
+        "meaningFullVi": "nói cho rõ",
         "target": "明白",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -93,7 +99,8 @@
       "meaningVi": "Tôi hiểu rồi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "明白",
@@ -102,7 +109,8 @@
       "meaningVi": "Bạn hiểu không",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "明白",
@@ -111,7 +119,8 @@
       "meaningVi": "Nói cho rõ, để bạn hiểu",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "明白",
@@ -120,23 +129,17 @@
       "meaningVi": "Đạo lý này rất đơn giản, bạn nên hiểu",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 明白",
-      "syntax": "compound-semantic",
-      "matchedExample": "Từ phổ biến chỉ việc 'hiểu'. Có thể dùng như động từ hoặc tính từ. Trong văn nói, phát âm 'bai' nhẹ. Có thể dùng '明白吗' để hỏi 'Bạn hiểu không?'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 明 (sáng, rõ) + 白 (trắng, rõ) → 'rõ ràng, sáng tỏ', từ đó nghĩa 'hiểu'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 明白",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Từ phổ biến chỉ việc 'hiểu'. Có thể dùng như động từ hoặc tính từ. Trong văn nói, phát âm 'bai' nhẹ. Có thể dùng '明白吗' để hỏi 'Bạn hiểu không?'.",
+      "explanationVi": "Ghép nghĩa: 明 (sáng, rõ) + 白 (trắng, rõ) → 'rõ ràng, sáng tỏ', từ đó nghĩa 'hiểu'.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -147,31 +150,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 20,
+      "sectionId": "new_hsk__1__topic__20__dong-tu",
+      "sectionSlug": "dong-tu",
       "sectionTitle": "Động từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dong-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dong-tu/",
+      "orderInSection": 29
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 6,
+      "sectionId": "hsk__3__lesson__6__bai-6-sao-dot-nhien-khong-tim-thay",
+      "sectionSlug": "bai-6-sao-dot-nhien-khong-tim-thay",
       "sectionTitle": "Sao đột nhiên không tìm thấy?",
       "sectionTitleZh": "怎么突然找不到了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-6-sao-dot-nhien-khong-tim-thay/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-6-sao-dot-nhien-khong-tim-thay/",
+      "orderInSection": 9
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__3__lesson__10__bai-10-you-can-return-the-book-to-me-tomorrow",
+      "sectionSlug": "bai-10-you-can-return-the-book-to-me-tomorrow",
       "sectionTitle": "Mai bạn trả sách cho tôi cũng được",
       "sectionTitleZh": "你明天再把书还给我",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-10-you-can-return-the-book-to-me-tomorrow/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-10-you-can-return-the-book-to-me-tomorrow/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -187,7 +205,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

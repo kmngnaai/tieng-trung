@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:公路",
   "type": "word",
   "word": "公路",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gōng lù",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đường bộ",
+      "meaningShortVi": "đường bộ",
+      "meaningFullVi": "đường bộ",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đường bộ",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Danh từ chỉ đường bộ, đường cái."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,61 +48,66 @@
       {
         "word": "高速公路",
         "pinyin": "gāo sù gōng lù",
-        "meaningVi": "đường cao tốc; xa lộ",
+        "meaningVi": "đường cao tốc",
+        "meaningFullVi": "đường cao tốc; xa lộ",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          3
-        ],
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 3",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
       {
         "text": "高速公路",
-        "pinyin": "",
+        "pinyin": "gāo sù gōng lù",
         "meaningVi": "đường cao tốc",
+        "meaningFullVi": "đường cao tốc",
         "target": "公路",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "公路上",
-        "pinyin": "",
+        "pinyin": "gōng lù shàng",
         "meaningVi": "trên đường bộ",
+        "meaningFullVi": "trên đường bộ",
         "target": "公路",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "公路",
       "chinese": "这条公路很长",
-      "pinyin": "",
+      "pinyin": "zhè tiáo gōng lù hěn cháng",
       "meaningVi": "Con đường bộ này rất dài",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "公路",
       "chinese": "走公路",
-      "pinyin": "",
+      "pinyin": "zǒu gōng lù",
       "meaningVi": "đi đường bộ",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 公路",
-      "syntax": "noun",
-      "matchedExample": "Danh từ chỉ đường bộ, đường cái.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 公路",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Danh từ chỉ đường bộ, đường cái.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__2__topic__5__van-chuyen",
+      "sectionSlug": "van-chuyen",
       "sectionTitle": "Vận chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/van-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/van-chuyen/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -129,7 +138,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

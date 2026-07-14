@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:邮局",
   "type": "word",
   "word": "邮局",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yóu jú",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bưu điện, bưu cục",
+      "meaningShortVi": "bưu điện",
+      "meaningFullVi": "bưu điện, bưu cục",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bưu điện",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Danh từ chỉ bưu điện, nơi gửi thư và bưu phẩm. 邮 = thư/bưu phẩm, 局 = cơ quan. Trong tiếng Việt thường gọi bưu cục hoặc bưu điện."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -49,19 +48,24 @@
         "text": "邮局寄信",
         "pinyin": "yóujú jì xìn",
         "meaningVi": "gửi thư ở bưu điện",
+        "meaningFullVi": "gửi thư ở bưu điện",
         "target": "邮局",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "附近邮局",
         "pinyin": "fùjìn yóujú",
         "meaningVi": "bưu điện gần đây",
+        "meaningFullVi": "bưu điện gần đây",
         "target": "邮局",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +75,8 @@
       "meaningVi": "Tôi đi bưu điện gửi thư.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "邮局",
@@ -80,16 +85,17 @@
       "meaningVi": "Bưu điện ở cạnh ngân hàng.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 邮局",
-      "syntax": "danh từ",
-      "matchedExample": "Danh từ chỉ bưu điện, nơi gửi thư và bưu phẩm. 邮 = thư/bưu phẩm, 局 = cơ quan. Trong tiếng Việt thường gọi bưu cục hoặc bưu điện.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 邮局",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Danh từ chỉ bưu điện, nơi gửi thư và bưu phẩm. 邮 = thư/bưu phẩm, 局 = cơ quan. Trong tiếng Việt thường gọi bưu cục hoặc bưu điện.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

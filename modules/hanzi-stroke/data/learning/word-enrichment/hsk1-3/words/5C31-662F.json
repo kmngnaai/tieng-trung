@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:就是",
   "type": "word",
   "word": "就是",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiù shì",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chính là, đúng là",
+      "meaningShortVi": "chính là",
+      "meaningFullVi": "chính là, đúng là",
       "partOfSpeech": "trợ từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chính là",
   "wordType": "trợ từ",
   "wordTypes": [
     "trợ từ"
   ],
-  "usageNotes": [
-    "Nhấn mạnh sự xác định hoặc giải thích."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -49,42 +48,26 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "就是说",
-        "pinyin": "",
-        "meaningVi": "",
+        "text": "就是",
+        "pinyin": "jiù shì",
+        "meaningVi": "chính là",
+        "meaningFullVi": "chính là, đúng là",
         "target": "就是",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "就是",
-      "chinese": "这就是我要找的。",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_1.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "就是",
-      "chinese": "他就是我的朋友",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_1.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 就是",
-      "syntax": "trợ từ",
-      "matchedExample": "Nhấn mạnh sự xác định hoặc giải thích.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 就是",
+      "partOfSpeech": "trợ từ",
+      "usageNoteVi": "Nhấn mạnh sự xác định hoặc giải thích.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -95,11 +78,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 35,
+      "sectionId": "new_hsk__3__topic__35__tu-chuc-nang-i",
+      "sectionSlug": "tu-chuc-nang-i",
       "sectionTitle": "Từ chức năng I",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-i/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-i/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -115,7 +103,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:神情",
   "type": "word",
   "word": "神情",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shén qíng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "vẻ mặt, thần sắc; biểu cảm trên khuôn mặt",
+      "meaningShortVi": "vẻ mặt",
+      "meaningFullVi": "vẻ mặt, thần sắc; biểu cảm trên khuôn mặt",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "vẻ mặt",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Dùng để mô tả cảm xúc, thái độ được thể hiện qua khuôn mặt."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,32 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "神情紧张",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "神情",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "神情自然",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "神情",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "眼神表情",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "神情",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +54,8 @@
       "meaningVi": "trên khuôn mặt anh ấy lộ ra vẻ ngạc nhiên",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "神情",
@@ -88,7 +64,8 @@
       "meaningVi": "vẻ mặt cô ấy rất căng thẳng",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "神情",
@@ -97,7 +74,8 @@
       "meaningVi": "nhìn thần sắc của con, người mẹ cười",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "神情",
@@ -106,16 +84,17 @@
       "meaningVi": "anh ấy trả lời câu hỏi với vẻ mặt tự nhiên",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 神情",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng để mô tả cảm xúc, thái độ được thể hiện qua khuôn mặt.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 神情",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng để mô tả cảm xúc, thái độ được thể hiện qua khuôn mặt.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -130,7 +109,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

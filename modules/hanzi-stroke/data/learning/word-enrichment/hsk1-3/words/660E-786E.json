@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:明确",
   "type": "word",
   "word": "明确",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "míng què",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "rõ ràng, xác định; dứt khoát, không còn nghi ngờ gì nữa",
+      "meaningShortVi": "rõ ràng",
+      "meaningFullVi": "rõ ràng, xác định; dứt khoát, không còn nghi ngờ gì nữa",
       "partOfSpeech": "tính từ / động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "rõ ràng",
   "wordType": "tính từ / động từ",
   "wordTypes": [
     "tính từ / động từ"
   ],
-  "usageNotes": [
-    "Có thể dùng làm tính từ (明确的目标) hoặc động từ (明确要求). Trong văn trang trọng, 明确 thường đi kèm với 态度, 立场, 要求. Đối với 同义词: 清楚 'rõ ràng', 确定 'xác định'. Từ liên quan: 模糊 'nhạt nhòa', 含糊 'chưa rõ'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "明确表示",
         "pinyin": "míngquè biǎoshì",
         "meaningVi": "bày tỏ một cách rõ ràng",
+        "meaningFullVi": "bày tỏ một cách rõ ràng",
         "target": "明确",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "明确的目标",
         "pinyin": "míngquè de mùbiāo",
         "meaningVi": "mục tiêu rõ ràng",
+        "meaningFullVi": "mục tiêu rõ ràng",
         "target": "明确",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Mục tiêu của chúng ta rất rõ ràng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "明确",
@@ -82,16 +87,17 @@
       "meaningVi": "Hãy làm rõ thái độ của bạn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 明确",
-      "syntax": "tính từ / động từ",
-      "matchedExample": "Có thể dùng làm tính từ (明确的目标) hoặc động từ (明确要求). Trong văn trang trọng, 明确 thường đi kèm với 态度, 立场, 要求. Đối với 同义词: 清楚 'rõ ràng', 确定 'xác định'. Từ liên quan: 模糊 'nhạt nhòa', 含糊 'chưa rõ'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 明确",
+      "partOfSpeech": "tính từ / động từ",
+      "usageNoteVi": "Có thể dùng làm tính từ (明确的目标) hoặc động từ (明确要求). Trong văn trang trọng, 明确 thường đi kèm với 态度, 立场, 要求. Đối với 同义词: 清楚 'rõ ràng', 确定 'xác định'. Từ liên quan: 模糊 'nhạt nhòa', 含糊 'chưa rõ'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 28,
+      "sectionId": "new_hsk__3__topic__28__tu-duy",
+      "sectionSlug": "tu-duy",
       "sectionTitle": "tư duy",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-duy/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-duy/",
+      "orderInSection": 23
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:完善",
   "type": "word",
   "word": "完善",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wán shàn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hoàn thiện, đầy đủ, làm cho tốt hơn",
+      "meaningShortVi": "hoàn thiện",
+      "meaningFullVi": "hoàn thiện, đầy đủ, làm cho tốt hơn",
       "partOfSpeech": "động từ / tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hoàn thiện",
   "wordType": "động từ / tính từ",
   "wordTypes": [
     "động từ / tính từ"
   ],
-  "usageNotes": [
-    "Khác 完美 (hoàn hảo tuyệt đối), 完善 thiên về 'đầy đủ, toàn diện' hoặc 'làm cho tốt hơn' (động từ). Dùng cho hệ thống, cơ chế, thiết bị - những thứ có thể cải thiện thêm."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "完善设施",
         "pinyin": "wánshàn shèshī",
         "meaningVi": "hoàn thiện cơ sở vật chất",
+        "meaningFullVi": "hoàn thiện cơ sở vật chất",
         "target": "完善",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不断完善",
         "pinyin": "búduàn wánshàn",
         "meaningVi": "liên tục hoàn thiện",
+        "meaningFullVi": "liên tục hoàn thiện",
         "target": "完善",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Chúng ta cần hoàn thiện thể chế này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "完善",
@@ -82,16 +87,17 @@
       "meaningVi": "Hệ thống này chưa thực sự hoàn thiện.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 完善",
-      "syntax": "động từ / tính từ",
-      "matchedExample": "Khác 完美 (hoàn hảo tuyệt đối), 完善 thiên về 'đầy đủ, toàn diện' hoặc 'làm cho tốt hơn' (động từ). Dùng cho hệ thống, cơ chế, thiết bị - những thứ có thể cải thiện thêm.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 完善",
+      "partOfSpeech": "động từ / tính từ",
+      "usageNoteVi": "Khác 完美 (hoàn hảo tuyệt đối), 完善 thiên về 'đầy đủ, toàn diện' hoặc 'làm cho tốt hơn' (động từ). Dùng cho hệ thống, cơ chế, thiết bị - những thứ có thể cải thiện thêm.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__topic__17__nhung-thay-doi",
+      "sectionSlug": "nhung-thay-doi",
       "sectionTitle": "Những thay đổi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/",
+      "orderInSection": 19
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

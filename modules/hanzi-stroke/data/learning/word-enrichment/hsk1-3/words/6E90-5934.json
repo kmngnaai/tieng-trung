@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:源头",
   "type": "word",
   "word": "源头",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "yuán tóu",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nguồn gốc",
+      "meaningShortVi": "nguồn gốc",
+      "meaningFullVi": "nguồn gốc",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nguồn gốc",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "源头 là từ vựng HSK 7-9."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 源头 là từ ghép."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "污染源头",
         "pinyin": "wūrǎn yuántóu",
         "meaningVi": "Nguồn ô nhiễm",
+        "meaningFullVi": "Nguồn ô nhiễm",
         "target": "源头",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "找到源头",
         "pinyin": "zhǎodào yuántóu",
         "meaningVi": "Tìm được nguồn",
+        "meaningFullVi": "Tìm được nguồn",
         "target": "源头",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "从源头抓起",
         "pinyin": "cóng yuántóu zhuāqǐ",
         "meaningVi": "Bắt từ nguồn",
+        "meaningFullVi": "Bắt từ nguồn",
         "target": "源头",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Nguồn ô nhiễm",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "源头",
@@ -90,7 +95,8 @@
       "meaningVi": "Tìm được nguồn",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "源头",
@@ -99,23 +105,17 @@
       "meaningVi": "Bắt từ nguồn",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 源头",
-      "syntax": "compound-semantic",
-      "matchedExample": "源头 là từ vựng HSK 7-9.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 源头 là từ ghép.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 源头",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "源头 là từ vựng HSK 7-9.",
+      "explanationVi": "Ghép nghĩa: 源头 là từ ghép.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -130,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

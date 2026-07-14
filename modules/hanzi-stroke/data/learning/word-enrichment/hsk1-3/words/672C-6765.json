@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:本来",
   "type": "word",
   "word": "本来",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "běn lái",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ban đầu; nguyên gốc; theo lẽ thường",
+      "meaningShortVi": "ban đầu",
+      "meaningFullVi": "ban đầu; nguyên gốc; theo lẽ thường",
       "partOfSpeech": "trạng từ / danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ban đầu",
   "wordType": "trạng từ / danh từ",
   "wordTypes": [
     "trạng từ / danh từ"
   ],
-  "usageNotes": [
-    "Chỉ trạng thái hoặc tình huống ban đầu, trước khi có sự thay đổi. Tương đương với 'vốn' trong tiếng Việt."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -51,20 +50,25 @@
       {
         "text": "本来面目",
         "pinyin": "běnlái miànmù",
-        "meaningVi": "bộ mặt thật, diện mạo nguyên bản",
+        "meaningVi": "bộ mặt thật",
+        "meaningFullVi": "bộ mặt thật, diện mạo nguyên bản",
         "target": "本来",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "本来就有",
         "pinyin": "běnlái jiù yǒu",
         "meaningVi": "vốn đã có từ trước",
+        "meaningFullVi": "vốn đã có từ trước",
         "target": "本来",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Tôi vốn không định đi, nhưng anh ấy mời rồi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "本来",
@@ -83,16 +88,17 @@
       "meaningVi": "Việc này vốn rất đơn giản.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 本来",
-      "syntax": "trạng từ / danh từ",
-      "matchedExample": "Chỉ trạng thái hoặc tình huống ban đầu, trước khi có sự thay đổi. Tương đương với 'vốn' trong tiếng Việt.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 本来",
+      "partOfSpeech": "trạng từ / danh từ",
+      "usageNoteVi": "Chỉ trạng thái hoặc tình huống ban đầu, trước khi có sự thay đổi. Tương đương với 'vốn' trong tiếng Việt.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 36,
+      "sectionId": "new_hsk__3__topic__36__tu-chuc-nang-ii",
+      "sectionSlug": "tu-chuc-nang-ii",
       "sectionTitle": "Từ chức năng II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-ii/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

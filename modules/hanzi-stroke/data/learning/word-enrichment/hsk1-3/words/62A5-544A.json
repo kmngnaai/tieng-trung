@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:报告",
   "type": "word",
   "word": "报告",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "bào gào",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "báo cáo",
+      "meaningShortVi": "báo cáo",
+      "meaningFullVi": "báo cáo",
       "partOfSpeech": "động từ / danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "báo cáo",
   "wordType": "động từ / danh từ",
   "wordTypes": [
     "động từ / danh từ"
   ],
-  "usageNotes": [
-    "可以作动词也可以作名词. 作动词: 向经理报告 (báo cáo với giám đốc). 作名词: 读报告 (đọc báo cáo). Phân biệt 汇报 (huìbào - tổng hợp báo cáo lên cấp trên)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -52,19 +51,24 @@
         "text": "工作报告",
         "pinyin": "gōngzuò bàogào",
         "meaningVi": "báo cáo công việc",
+        "meaningFullVi": "báo cáo công việc",
         "target": "报告",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "研究报告",
         "pinyin": "yánjiū bàogào",
         "meaningVi": "báo cáo nghiên cứu",
+        "meaningFullVi": "báo cáo nghiên cứu",
         "target": "报告",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Giám đốc bảo tôi làm một báo cáo công việc.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "报告",
@@ -83,16 +88,17 @@
       "meaningVi": "Cảnh sát đang báo cáo tình huống tai nạn.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 报告",
-      "syntax": "động từ / danh từ",
-      "matchedExample": "可以作动词也可以作名词. 作动词: 向经理报告 (báo cáo với giám đốc). 作名词: 读报告 (đọc báo cáo). Phân biệt 汇报 (huìbào - tổng hợp báo cáo lên cấp trên).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 报告",
+      "partOfSpeech": "động từ / danh từ",
+      "usageNoteVi": "可以作动词也可以作名词. 作动词: 向经理报告 (báo cáo với giám đốc). 作名词: 读报告 (đọc báo cáo). Phân biệt 汇报 (huìbào - tổng hợp báo cáo lên cấp trên).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__3__topic__12__lam-viec-toi",
+      "sectionSlug": "lam-viec-toi",
       "sectionTitle": "Làm việc tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

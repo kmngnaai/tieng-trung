@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:教学",
   "type": "word",
   "word": "教学",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "jiào xué",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "dạy học; giảng dạy",
+      "meaningShortVi": "dạy học",
+      "meaningFullVi": "dạy học; giảng dạy",
       "partOfSpeech": "noun/verb",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "dạy học",
   "wordType": "noun/verb",
   "wordTypes": [
     "noun/verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -49,54 +50,46 @@
         "word": "教学楼",
         "pinyin": "jiào xué lóu",
         "meaningVi": "tòa nhà giảng đường",
+        "meaningFullVi": "tòa nhà giảng đường",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       }
     ],
-    "collocations": [
-      {
-        "text": "老师",
-        "pinyin": "",
-        "meaningVi": "giáo viên",
-        "target": "教学",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "学习",
-        "pinyin": "",
-        "meaningVi": "học tập",
-        "target": "教学",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "教学",
       "chinese": "他有丰富的教学经验",
-      "pinyin": "",
+      "pinyin": "tā yǒu fēng fù de jiào xué jīng yàn",
       "meaningVi": "Anh ấy có nhiều kinh nghiệm dạy học",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "教学",
       "chinese": "教学质量",
-      "pinyin": "",
+      "pinyin": "jiào xué zhì liàng",
       "meaningVi": "Chất lượng dạy học",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 教学",
+      "partOfSpeech": "noun/verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/教学.mp3"
   ],
@@ -105,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__2__topic__7__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/nghien-cuu/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -125,7 +123,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng"
+    ]
   }
 }

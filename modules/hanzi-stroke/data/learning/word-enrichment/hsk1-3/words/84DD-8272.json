@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:蓝色",
   "type": "word",
   "word": "蓝色",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "lán sè",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lam sắc",
+      "meaningShortVi": "lam sắc",
+      "meaningFullVi": "lam sắc",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lam sắc",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,43 +48,58 @@
     "collocations": [
       {
         "text": "深蓝色",
-        "pinyin": "",
+        "pinyin": "shēn lán sè",
         "meaningVi": "màu xanh đậm",
+        "meaningFullVi": "màu xanh đậm",
         "target": "蓝色",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "浅蓝色",
-        "pinyin": "",
+        "pinyin": "qiǎn lán sè",
         "meaningVi": "màu xanh nhạt",
+        "meaningFullVi": "màu xanh nhạt",
         "target": "蓝色",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "蓝色",
       "chinese": "大海是蓝色的",
-      "pinyin": "",
+      "pinyin": "dà hǎi shì lán sè de",
       "meaningVi": "Biển cả màu xanh",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "蓝色",
       "chinese": "蓝色很漂亮",
-      "pinyin": "",
+      "pinyin": "lán sè hěn piào liang",
       "meaningVi": "Màu xanh rất đẹp",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 蓝色",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/蓝色.mp3"
   ],
@@ -92,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 25,
+      "sectionId": "new_hsk__2__topic__25__ve-be-ngoai",
+      "sectionSlug": "ve-be-ngoai",
       "sectionTitle": "Vẻ bề ngoài",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/ve-be-ngoai/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/ve-be-ngoai/",
+      "orderInSection": 24
     }
   ],
   "sources": [
@@ -107,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

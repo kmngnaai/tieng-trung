@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:坚强",
   "type": "word",
   "word": "坚强",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiān qiáng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "mạnh mẽ, kiên cường; vững vàng",
+      "meaningShortVi": "mạnh mẽ",
+      "meaningFullVi": "mạnh mẽ, kiên cường; vững vàng",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "mạnh mẽ",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "Jiān qiáng dùng cho ý chí, tính cách mạnh mẽ, không khuất phục. Trang trọng, thường dùng trong văn viết hoặc diễn đạt."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "坚强的意志",
-        "pinyin": "",
+        "pinyin": "jiān qiáng de yì zhì",
         "meaningVi": "ý chí kiên cường",
+        "meaningFullVi": "ý chí kiên cường",
         "target": "坚强",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "坚强不屈",
-        "pinyin": "",
+        "pinyin": "jiān qiáng bù qū",
         "meaningVi": "kiên cường không khuất",
+        "meaningFullVi": "kiên cường không khuất",
         "target": "坚强",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "坚强",
-      "chinese": "她是一个坚强的女孩。",
-      "pinyin": "",
-      "meaningVi": "Cô ấy là một người con gái kiên cường.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "坚强",
       "chinese": "我们需要坚强的意志。",
-      "pinyin": "",
+      "pinyin": "wǒ men xū yào jiān qiáng de yì zhì。",
       "meaningVi": "Chúng ta cần ý chí kiên cường.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 坚强",
-      "syntax": "tính từ",
-      "matchedExample": "Jiān qiáng dùng cho ý chí, tính cách mạnh mẽ, không khuất phục. Trang trọng, thường dùng trong văn viết hoặc diễn đạt.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 坚强",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "Jiān qiáng dùng cho ý chí, tính cách mạnh mẽ, không khuất phục. Trang trọng, thường dùng trong văn viết hoặc diễn đạt.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 32,
+      "sectionId": "new_hsk__3__topic__32__dac-diem",
+      "sectionSlug": "dac-diem",
       "sectionTitle": "Đặc điểm",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/",
+      "orderInSection": 18
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

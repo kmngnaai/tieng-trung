@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:高速",
   "type": "word",
   "word": "高速",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gāo sù",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cao tốc, tốc độ cao; đường cao tốc",
+      "meaningShortVi": "cao tốc",
+      "meaningFullVi": "cao tốc, tốc độ cao; đường cao tốc",
       "partOfSpeech": "tính từ / danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cao tốc",
   "wordType": "tính từ / danh từ",
   "wordTypes": [
     "tính từ / danh từ"
   ],
-  "usageNotes": [
-    "高速 thường dùng chỉ đường cao tốc (高速公路) hoặc tốc độ cao trong phát triển, tăng trưởng. Là từ ghép Hán-Việt 'cao tốc'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,13 +48,11 @@
       {
         "word": "高速公路",
         "pinyin": "gāo sù gōng lù",
-        "meaningVi": "đường cao tốc; xa lộ",
+        "meaningVi": "đường cao tốc",
+        "meaningFullVi": "đường cao tốc; xa lộ",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          3
-        ],
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 3",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
@@ -63,19 +60,24 @@
         "text": "高速公路",
         "pinyin": "gāosù gōnglù",
         "meaningVi": "đường cao tốc",
+        "meaningFullVi": "đường cao tốc",
         "target": "高速",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "高速铁路",
         "pinyin": "gāosù tiělù",
         "meaningVi": "đường sắt cao tốc",
+        "meaningFullVi": "đường sắt cao tốc",
         "target": "高速",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -85,7 +87,8 @@
       "meaningVi": "Đường cao tốc rất nhanh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "高速",
@@ -94,16 +97,17 @@
       "meaningVi": "phát triển với tốc độ cao",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 高速",
-      "syntax": "tính từ / danh từ",
-      "matchedExample": "高速 thường dùng chỉ đường cao tốc (高速公路) hoặc tốc độ cao trong phát triển, tăng trưởng. Là từ ghép Hán-Việt 'cao tốc'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 高速",
+      "partOfSpeech": "tính từ / danh từ",
+      "usageNoteVi": "高速 thường dùng chỉ đường cao tốc (高速公路) hoặc tốc độ cao trong phát triển, tăng trưởng. Là từ ghép Hán-Việt 'cao tốc'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__3__topic__14__van-chuyen-va-di-chuyen",
+      "sectionSlug": "van-chuyen-va-di-chuyen",
       "sectionTitle": "Vận chuyển và di chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/van-chuyen-va-di-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/van-chuyen-va-di-chuyen/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -129,7 +138,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

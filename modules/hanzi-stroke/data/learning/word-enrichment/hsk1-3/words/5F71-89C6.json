@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:影视",
   "type": "word",
   "word": "影视",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yǐng shì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phim và truyền hình",
+      "meaningShortVi": "phim và truyền hình",
+      "meaningFullVi": "phim và truyền hình",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phim và truyền hình",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "影视是电影和电视剧的合称。常用于行业、作品等语境。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,25 @@
     "collocations": [
       {
         "text": "影视明星",
-        "pinyin": "",
-        "meaningVi": "ngôi sao điện ảnh/truyền hình",
+        "pinyin": "yǐng shì míng xīng",
+        "meaningVi": "ngôi sao điện ảnh",
+        "meaningFullVi": "ngôi sao điện ảnh/truyền hình",
         "target": "影视",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "影视圈",
-        "pinyin": "",
-        "meaningVi": "giới giải trí",
-        "target": "影视",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "影视",
-      "chinese": "他从事影视行业。",
-      "pinyin": "",
-      "meaningVi": "Anh ấy làm việc trong ngành điện ảnh và truyền hình.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "影视",
-      "chinese": "这是一部著名的影视作品。",
-      "pinyin": "",
-      "meaningVi": "Đây là một tác phẩm điện ảnh - truyền hình nổi tiếng.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 影视",
-      "syntax": "danh từ",
-      "matchedExample": "影视是电影和电视剧的合称。常用于行业、作品等语境。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 影视",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "影视是电影和电视剧的合称。常用于行业、作品等语境。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +77,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__3__topic__18__thong-tin-va-phuong-tien",
+      "sectionSlug": "thong-tin-va-phuong-tien",
       "sectionTitle": "Thông tin và phương tiện",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/",
+      "orderInSection": 31
     }
   ],
   "sources": [
@@ -117,7 +97,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:网上",
   "type": "word",
   "word": "网上",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "wǎng shàng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "trên mạng, trực tuyến (trên Internet)",
+      "meaningShortVi": "trên mạng",
+      "meaningFullVi": "trên mạng, trực tuyến (trên Internet)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "trên mạng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Chỉ hoạt động/trạng thái trên Internet. Phân biệt với 在线 (trực tuyến, dùng trong kỹ thuật). 网上 thiên về người dùng终, 在线 thiên về kỹ thuật."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 网 (mạng, lưới) + 上 (trên) → trên mạng Internet."
   ],
   "hsk": {
     "levels": [
@@ -54,35 +51,44 @@
         "text": "网上购物",
         "pinyin": "wǎngshàng gòuwù",
         "meaningVi": "mua sắm trực tuyến",
+        "meaningFullVi": "mua sắm trực tuyến",
         "target": "网上",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "网上聊天",
         "pinyin": "wǎngshàng liáotiān",
         "meaningVi": "trò chuyện trên mạng",
+        "meaningFullVi": "trò chuyện trên mạng",
         "target": "网上",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "网上交友",
         "pinyin": "wǎngshàng jiāoyǒu",
         "meaningVi": "kết bạn trên mạng",
+        "meaningFullVi": "kết bạn trên mạng",
         "target": "网上",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "网上银行",
         "pinyin": "wǎngshàng yínháng",
         "meaningVi": "ngân hàng trực tuyến",
+        "meaningFullVi": "ngân hàng trực tuyến",
         "target": "网上",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -92,7 +98,8 @@
       "meaningVi": "Tôi mua sắm trên mạng",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "网上",
@@ -101,7 +108,8 @@
       "meaningVi": "Trên mạng có rất nhiều thông tin",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "网上",
@@ -110,7 +118,8 @@
       "meaningVi": "Chúng ta trò chuyện trên mạng",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "网上",
@@ -119,23 +128,17 @@
       "meaningVi": "Đây là tìm được trên mạng",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 网上",
-      "syntax": "compound-semantic",
-      "matchedExample": "Chỉ hoạt động/trạng thái trên Internet. Phân biệt với 在线 (trực tuyến, dùng trong kỹ thuật). 网上 thiên về người dùng终, 在线 thiên về kỹ thuật.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 网 (mạng, lưới) + 上 (trên) → trên mạng Internet.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 网上",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Chỉ hoạt động/trạng thái trên Internet. Phân biệt với 在线 (trực tuyến, dùng trong kỹ thuật). 网上 thiên về người dùng终, 在线 thiên về kỹ thuật.",
+      "explanationVi": "Ghép nghĩa: 网 (mạng, lưới) + 上 (trên) → trên mạng Internet.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -146,21 +149,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__1__topic__16__thoi-gian-ranh-roi",
+      "sectionSlug": "thoi-gian-ranh-roi",
       "sectionTitle": "Thời gian rảnh rỗi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian-ranh-roi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian-ranh-roi/",
+      "orderInSection": 4
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 2,
+      "sectionId": "new_hsk__2__lesson__2__bai-2-let-s-take-a-taxi-to-peking-university-instead",
+      "sectionSlug": "bai-2-let-s-take-a-taxi-to-peking-university-instead",
       "sectionTitle": "Hay là bắt taxi đến Đại học Bắc Kinh đi",
       "sectionTitleZh": "还是打车去北大吧",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-2-let-s-take-a-taxi-to-peking-university-instead/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-2-let-s-take-a-taxi-to-peking-university-instead/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -176,7 +189,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:机场",
   "type": "word",
   "word": "机场",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jī chǎng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sân bay",
+      "meaningShortVi": "sân bay",
+      "meaningFullVi": "sân bay",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sân bay",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "机场 là nơi máy bay cất và hạ cánh."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -54,19 +53,24 @@
         "text": "去机场",
         "pinyin": "qù jīchǎng",
         "meaningVi": "đi sân bay",
+        "meaningFullVi": "đi sân bay",
         "target": "机场",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "国际机场",
         "pinyin": "guójì jīchǎng",
         "meaningVi": "sân bay quốc tế",
+        "meaningFullVi": "sân bay quốc tế",
         "target": "机场",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -76,7 +80,8 @@
       "meaningVi": "Chúng tôi ra sân bay tiễn bạn.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "机场",
@@ -85,7 +90,8 @@
       "meaningVi": "Sân bay ở đây rất xa.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "机场",
@@ -94,16 +100,17 @@
       "meaningVi": "Sân bay quốc tế rất lớn.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 机场",
-      "syntax": "compound-semantic",
-      "matchedExample": "机场 là nơi máy bay cất và hạ cánh.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 机场",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "机场 là nơi máy bay cất và hạ cánh.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,41 +121,61 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 15,
+      "sectionId": "new_hsk__1__lesson__15__bai-15-see-you-at-daxing-airport",
+      "sectionSlug": "bai-15-see-you-at-daxing-airport",
       "sectionTitle": "Hẹn gặp ở sân bay Đại Hưng!",
       "sectionTitleZh": "大兴机场见！",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-15-see-you-at-daxing-airport/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-15-see-you-at-daxing-airport/",
+      "orderInSection": 6
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__1__topic__7__cac-toa-nha",
+      "sectionSlug": "cac-toa-nha",
       "sectionTitle": "Các tòa nhà",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cac-toa-nha/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/cac-toa-nha/",
+      "orderInSection": 12
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 7,
+      "sectionId": "hsk__2__lesson__7__bai-7-nha-ban-co-xa-cong-ty-khong",
+      "sectionSlug": "bai-7-nha-ban-co-xa-cong-ty-khong",
       "sectionTitle": "Nhà bạn có xa công ty không?",
       "sectionTitleZh": "你家离公司远吗",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-7-nha-ban-co-xa-cong-ty-khong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-7-nha-ban-co-xa-cong-ty-khong/",
+      "orderInSection": 2
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 15,
+      "sectionId": "new_hsk__2__lesson__15__bai-15-i-want-to-go-to-china-again",
+      "sectionSlug": "bai-15-i-want-to-go-to-china-again",
       "sectionTitle": "Tôi muốn đến Trung Quốc thêm một lần nữa",
       "sectionTitleZh": "我想再去一次中国",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-15-i-want-to-go-to-china-again/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-15-i-want-to-go-to-china-again/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -169,7 +196,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

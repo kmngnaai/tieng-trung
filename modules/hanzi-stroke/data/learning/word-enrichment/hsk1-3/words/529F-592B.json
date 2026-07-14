@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:功夫",
   "type": "word",
   "word": "功夫",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gōng fu",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "công phu, thời gian và sức lực bỏ ra; võ thuật Trung Hoa, hoặc chỉ sự khéo léo đạt được qua luyện tập chăm chỉ",
+      "meaningShortVi": "công phu",
+      "meaningFullVi": "công phu, thời gian và sức lực bỏ ra; võ thuật Trung Hoa, hoặc chỉ sự khéo léo đạt được qua luyện tập chăm chỉ",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "công phu",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Có thể chỉ võ thuật (martial arts) hoặc chỉ công sức, thời gian luyện tập. Trong văn hàng ngày, 下功夫 là cụm phổ biến. Từ liên quan: 武术 'võ thuật', 本事 'kỹ năng'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -50,20 +49,25 @@
       {
         "text": "下功夫",
         "pinyin": "xià gōngfu",
-        "meaningVi": "dành công, bỏ sức ra",
+        "meaningVi": "dành công",
+        "meaningFullVi": "dành công, bỏ sức ra",
         "target": "功夫",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "中国功夫",
         "pinyin": "Zhōngguó gōngfu",
         "meaningVi": "võ thuật Trung Hoa",
+        "meaningFullVi": "võ thuật Trung Hoa",
         "target": "功夫",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Anh ấy đã tập võ nhiều năm.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "功夫",
@@ -82,16 +87,17 @@
       "meaningVi": "Món này cần tốn nhiều công phu mới làm được ngon.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 功夫",
-      "syntax": "danh từ",
-      "matchedExample": "Có thể chỉ võ thuật (martial arts) hoặc chỉ công sức, thời gian luyện tập. Trong văn hàng ngày, 下功夫 là cụm phổ biến. Từ liên quan: 武术 'võ thuật', 本事 'kỹ năng'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 功夫",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Có thể chỉ võ thuật (martial arts) hoặc chỉ công sức, thời gian luyện tập. Trong văn hàng ngày, 下功夫 là cụm phổ biến. Từ liên quan: 武术 'võ thuật', 本事 'kỹ năng'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__3__topic__10__giai-tri-toi",
+      "sectionSlug": "giai-tri-toi",
       "sectionTitle": "Giải trí tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/giai-tri-toi/",
+      "orderInSection": 17
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

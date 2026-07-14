@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:没落",
   "type": "word",
   "word": "没落",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "mò luò",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "suy tàn, xuống dốc, không còn thịnh vượng",
+      "meaningShortVi": "suy tàn",
+      "meaningFullVi": "suy tàn, xuống dốc, không còn thịnh vượng",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "suy tàn",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Chỉ sự suy tàn, xuống dốc của triều đại, gia đình, ngành nghề hoặc tổ chức."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 没 (chìm, mất) + 落 (rơi, tụt hậu) — chìm xuống, suy tàn."
   ],
   "hsk": {
     "levels": [
@@ -51,19 +48,24 @@
         "text": "没落贵族",
         "pinyin": "mòluò guìzú",
         "meaningVi": "quý tộc suy tàn",
+        "meaningFullVi": "quý tộc suy tàn",
         "target": "没落",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "日趋没落",
         "pinyin": "rì qū mòluò",
         "meaningVi": "ngày càng suy tàn",
+        "meaningFullVi": "ngày càng suy tàn",
         "target": "没落",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +75,8 @@
       "meaningVi": "Triều đại này dần suy tàn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "没落",
@@ -82,7 +85,8 @@
       "meaningVi": "Ngành truyền thống đối mặt với nguy cơ suy thoái.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "没落",
@@ -91,7 +95,8 @@
       "meaningVi": "Gia đình quý tộc đó đã suy tàn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "没落",
@@ -100,23 +105,17 @@
       "meaningVi": "Đừng chọn một ngành đang suy thoái.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 没落",
-      "syntax": "compound-semantic",
-      "matchedExample": "Chỉ sự suy tàn, xuống dốc của triều đại, gia đình, ngành nghề hoặc tổ chức.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 没 (chìm, mất) + 落 (rơi, tụt hậu) — chìm xuống, suy tàn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 没落",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Chỉ sự suy tàn, xuống dốc của triều đại, gia đình, ngành nghề hoặc tổ chức.",
+      "explanationVi": "Ghép nghĩa: 没 (chìm, mất) + 落 (rơi, tụt hậu) — chìm xuống, suy tàn.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -131,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

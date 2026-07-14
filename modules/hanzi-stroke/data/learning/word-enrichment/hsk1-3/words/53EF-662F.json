@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:可是",
   "type": "word",
   "word": "可是",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "kě shì",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "khả thị",
+      "meaningShortVi": "khả thị",
+      "meaningFullVi": "khả thị",
       "partOfSpeech": "conjunction",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "khả thị",
   "wordType": "conjunction",
   "wordTypes": [
     "conjunction"
   ],
-  "usageNotes": [
-    "Liên từ转折, dùng trong khẩu ngữ nhiều"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -51,49 +50,56 @@
     "collocations": [
       {
         "text": "可是我",
-        "pinyin": "",
+        "pinyin": "kě shì wǒ",
         "meaningVi": "nhưng tôi",
+        "meaningFullVi": "nhưng tôi",
         "target": "可是",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "可是因为",
-        "pinyin": "",
+        "pinyin": "kě shì yīn wèi",
         "meaningVi": "nhưng vì",
+        "meaningFullVi": "nhưng vì",
         "target": "可是",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "可是",
       "chinese": "我很想去，可是太忙了",
-      "pinyin": "",
+      "pinyin": "wǒ hěn xiǎng qù， kě shì tài máng le",
       "meaningVi": "Tôi rất muốn đi, nhưng quá bận",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "可是",
       "chinese": "这件衣服好看，可是贵了点",
-      "pinyin": "",
+      "pinyin": "zhè jiàn yī fu hǎo kàn， kě shì guì le diǎn",
       "meaningVi": "Cái áo này đẹp, nhưng hơi đắt",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 可是",
-      "syntax": "conjunction",
-      "matchedExample": "Liên từ转折, dùng trong khẩu ngữ nhiều",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 可是",
+      "partOfSpeech": "conjunction",
+      "usageNoteVi": "Liên từ转折, dùng trong khẩu ngữ nhiều",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,21 +110,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__2__topic__10__tu-noi",
+      "sectionSlug": "tu-noi",
       "sectionTitle": "Từ nối",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-noi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-noi/",
+      "orderInSection": 12
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 15,
+      "sectionId": "new_hsk__3__lesson__15__bai-15-i-am-basically-half-a-nanjing-local",
+      "sectionSlug": "bai-15-i-am-basically-half-a-nanjing-local",
       "sectionTitle": "Tôi coi như là nửa người Nam Kinh",
       "sectionTitleZh": "我是半个南京人",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-15-i-am-basically-half-a-nanjing-local/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-15-i-am-basically-half-a-nanjing-local/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -139,7 +155,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

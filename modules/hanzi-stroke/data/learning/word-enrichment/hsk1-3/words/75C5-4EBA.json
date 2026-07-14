@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:病人",
   "type": "word",
   "word": "病人",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "bìng rén",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bệnh nhân, người bệnh",
+      "meaningShortVi": "bệnh nhân",
+      "meaningFullVi": "bệnh nhân, người bệnh",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bệnh nhân",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng phổ biến trong ngữ cảnh y tế. Có thể gọi tắt là '病号' (bìng hào) trong văn nói thân mật."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 病 (bệnh, ốm) + 人 (người) → 'người đang bị bệnh'."
   ],
   "hsk": {
     "levels": [
@@ -54,27 +51,34 @@
         "text": "重病人",
         "pinyin": "zhòng bìng rén",
         "meaningVi": "bệnh nhân nặng",
+        "meaningFullVi": "bệnh nhân nặng",
         "target": "病人",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "门诊病人",
         "pinyin": "mén zhěn bìng rén",
         "meaningVi": "bệnh nhân ngoại trú",
+        "meaningFullVi": "bệnh nhân ngoại trú",
         "target": "病人",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "住院病人",
         "pinyin": "zhù yuàn bìng rén",
         "meaningVi": "bệnh nhân nội trú",
+        "meaningFullVi": "bệnh nhân nội trú",
         "target": "病人",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -84,7 +88,8 @@
       "meaningVi": "Bác sĩ đang chữa bệnh cho bệnh nhân",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "病人",
@@ -93,7 +98,8 @@
       "meaningVi": "Chăm sóc bệnh nhân rất quan trọng",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "病人",
@@ -102,7 +108,8 @@
       "meaningVi": "Bệnh nhân này cần nghỉ ngơi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "病人",
@@ -111,23 +118,17 @@
       "meaningVi": "Trong bệnh viện có rất nhiều bệnh nhân",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 病人",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng phổ biến trong ngữ cảnh y tế. Có thể gọi tắt là '病号' (bìng hào) trong văn nói thân mật.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 病 (bệnh, ốm) + 人 (người) → 'người đang bị bệnh'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 病人",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng phổ biến trong ngữ cảnh y tế. Có thể gọi tắt là '病号' (bìng hào) trong văn nói thân mật.",
+      "explanationVi": "Ghép nghĩa: 病 (bệnh, ốm) + 人 (người) → 'người đang bị bệnh'.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -138,31 +139,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__1__lesson__8__bai-8-my-father-also-works-at-a-hospital",
+      "sectionSlug": "bai-8-my-father-also-works-at-a-hospital",
       "sectionTitle": "Bố tôi cũng làm việc ở bệnh viện",
       "sectionTitleZh": "我爸爸也在医院工作",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-8-my-father-also-works-at-a-hospital/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-8-my-father-also-works-at-a-hospital/",
+      "orderInSection": 1
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 23,
+      "sectionId": "new_hsk__1__topic__23__danh-tu",
+      "sectionSlug": "danh-tu",
       "sectionTitle": "Danh từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/danh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/danh-tu/",
+      "orderInSection": 6
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__3__lesson__8__bai-8-today-i-was-discharged-from-the-hospital",
+      "sectionSlug": "bai-8-today-i-was-discharged-from-the-hospital",
       "sectionTitle": "Hôm nay tôi xuất viện",
       "sectionTitleZh": "今天我出院了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-8-today-i-was-discharged-from-the-hospital/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-8-today-i-was-discharged-from-the-hospital/",
+      "orderInSection": 19
     }
   ],
   "sources": [
@@ -178,7 +194,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

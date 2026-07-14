@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:恐怕",
   "type": "word",
   "word": "恐怕",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "kǒng pà",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "E rằng, có lẽ",
+      "meaningShortVi": "E rằng",
+      "meaningFullVi": "E rằng, có lẽ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "E rằng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "恐怕 là trạng từ chỉ sự lo ngại hoặc dự đoán không chắc chắn. 恐 (khủng) nghĩa là sợ hãi; 怕 (phạ) nghĩa là sợ. Dùng khi nói về điều có thể xảy ra hoặc lo ngại."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,48 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "恐怕不行",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "恐怕",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "恐怕不能",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "恐怕",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "恐怕会",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "恐怕",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "恐怕是",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "恐怕",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "恐怕很难",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "恐怕",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -97,7 +56,8 @@
       "meaningVi": "E rằng hôm nay trời sẽ mưa.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "恐怕",
@@ -106,7 +66,8 @@
       "meaningVi": "E rằng tôi không thể tham dự cuộc họp ngày mai.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "恐怕",
@@ -115,16 +76,17 @@
       "meaningVi": "Kế hoạch này e là có vấn đề.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 恐怕",
-      "syntax": "compound-semantic",
-      "matchedExample": "恐怕 là trạng từ chỉ sự lo ngại hoặc dự đoán không chắc chắn. 恐 (khủng) nghĩa là sợ hãi; 怕 (phạ) nghĩa là sợ. Dùng khi nói về điều có thể xảy ra hoặc lo ngại.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 恐怕",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "恐怕 là trạng từ chỉ sự lo ngại hoặc dự đoán không chắc chắn. 恐 (khủng) nghĩa là sợ hãi; 怕 (phạ) nghĩa là sợ. Dùng khi nói về điều có thể xảy ra hoặc lo ngại.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -135,11 +97,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__3__topic__8__nhung-cam-xuc-va-cam-giac",
+      "sectionSlug": "nhung-cam-xuc-va-cam-giac",
       "sectionTitle": "Những cảm xúc và cảm giác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-cam-xuc-va-cam-giac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-cam-xuc-va-cam-giac/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -150,7 +117,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

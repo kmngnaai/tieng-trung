@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:网络",
   "type": "word",
   "word": "网络",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "wǎng luò",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "võng lạc (mạng lưới, mạng Internet)",
+      "meaningShortVi": "võng lạc (mạng lưới",
+      "meaningFullVi": "võng lạc (mạng lưới, mạng Internet)",
       "partOfSpeech": "noun",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "võng lạc (mạng lưới",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Võng lạc mang nghĩa 'mạng lưới' hoặc 'mạng Internet'. Trong văn hiện đại, thường chỉ Internet."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,58 +45,47 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "互联网",
-        "pinyin": "",
-        "meaningVi": "mạng Internet",
-        "target": "网络",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "网络世界",
-        "pinyin": "",
+        "pinyin": "wǎng luò shì jiè",
         "meaningVi": "thế giới mạng",
+        "meaningFullVi": "thế giới mạng",
         "target": "网络",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "网络安全",
-        "pinyin": "",
+        "pinyin": "wǎng luò ān quán",
         "meaningVi": "an ninh mạng",
+        "meaningFullVi": "an ninh mạng",
         "target": "网络",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "网络",
       "chinese": "网络改变了我们的生活。",
-      "pinyin": "",
+      "pinyin": "wǎng luò gǎi biàn le wǒ men de shēng huó。",
       "meaningVi": "Mạng đã thay đổi cuộc sống của chúng ta.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "网络",
-      "chinese": "这家公司的网络覆盖全国。",
-      "pinyin": "",
-      "meaningVi": "Mạng của công ty này bao phủ toàn quốc.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 网络",
-      "syntax": "noun",
-      "matchedExample": "Võng lạc mang nghĩa 'mạng lưới' hoặc 'mạng Internet'. Trong văn hiện đại, thường chỉ Internet.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 网络",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Võng lạc mang nghĩa 'mạng lưới' hoặc 'mạng Internet'. Trong văn hiện đại, thường chỉ Internet.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -112,7 +100,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

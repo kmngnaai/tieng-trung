@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:走路",
   "type": "word",
   "word": "走路",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zǒu lù",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đi bộ, đi đường",
+      "meaningShortVi": "đi bộ",
+      "meaningFullVi": "đi bộ, đi đường",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đi bộ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "走路 là động từ ghép, có thể chỉ đi bộ hoặc đi đường. Hán-Việt: tẩu (chạy/đi) + lộ (đường)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -52,19 +51,24 @@
         "text": "走路去",
         "pinyin": "zǒulù qù",
         "meaningVi": "đi bộ đến",
+        "meaningFullVi": "đi bộ đến",
         "target": "走路",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "慢慢走路",
         "pinyin": "mànman zǒulù",
         "meaningVi": "đi bộ từ từ",
+        "meaningFullVi": "đi bộ từ từ",
         "target": "走路",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Tôi đi bộ đến trường.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "走路",
@@ -83,16 +88,17 @@
       "meaningVi": "Đừng đi bộ trên đường.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 走路",
-      "syntax": "compound-semantic",
-      "matchedExample": "走路 là động từ ghép, có thể chỉ đi bộ hoặc đi đường. Hán-Việt: tẩu (chạy/đi) + lộ (đường).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 走路",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "走路 là động từ ghép, có thể chỉ đi bộ hoặc đi đường. Hán-Việt: tẩu (chạy/đi) + lộ (đường).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,21 +109,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__1__topic__8__van-chuyen",
+      "sectionSlug": "van-chuyen",
       "sectionTitle": "Vận chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/van-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/van-chuyen/",
+      "orderInSection": 9
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__2__lesson__9__bai-9-i-m-going-to-buy-a-cup-of-bubble-tea",
+      "sectionSlug": "bai-9-i-m-going-to-buy-a-cup-of-bubble-tea",
       "sectionTitle": "Tôi đi mua một cốc trà sữa",
       "sectionTitleZh": "我去买杯奶茶",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-9-i-m-going-to-buy-a-cup-of-bubble-tea/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-9-i-m-going-to-buy-a-cup-of-bubble-tea/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -133,7 +149,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

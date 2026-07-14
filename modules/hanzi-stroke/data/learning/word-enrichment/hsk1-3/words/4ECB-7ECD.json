@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:介绍",
   "type": "word",
   "word": "介绍",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "jiè shào",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "giới thiệu",
+      "meaningShortVi": "giới thiệu",
+      "meaningFullVi": "giới thiệu",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "giới thiệu",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "'介绍' là giới thiệu. '让我介绍一下' để tôi giới thiệu. '自我介绍' tự giới thiệu. '介绍人' người mai mối hoặc người giới thiệu."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 介 (ở giữa, trung gian) + 绍 (nối tiếp). Người ở giữa nối tiếp hai bên, giới thiệu."
   ],
   "hsk": {
     "levels": [
@@ -56,27 +53,34 @@
         "text": "介绍一下",
         "pinyin": "jièshǎo yīxià",
         "meaningVi": "giới thiệu một chút",
+        "meaningFullVi": "giới thiệu một chút",
         "target": "介绍",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "介绍人",
         "pinyin": "jièshǎo rén",
-        "meaningVi": "người giới thiệu/mối",
+        "meaningVi": "người giới thiệu",
+        "meaningFullVi": "người giới thiệu/mối",
         "target": "介绍",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "自我介绍",
         "pinyin": "zìwǒ jièshǎo",
         "meaningVi": "tự giới thiệu",
+        "meaningFullVi": "tự giới thiệu",
         "target": "介绍",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -86,7 +90,8 @@
       "meaningVi": "Để tôi giới thiệu một chút",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "介绍",
@@ -95,7 +100,8 @@
       "meaningVi": "Anh ấy giới thiệu tôi biết bạn của anh ấy",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "介绍",
@@ -104,7 +110,8 @@
       "meaningVi": "Hãy giới thiệu về bản thân bạn",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "介绍",
@@ -113,7 +120,8 @@
       "meaningVi": "Cuốn sách này rất hay, tôi giới thiệu cho bạn",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "介绍",
@@ -122,23 +130,17 @@
       "meaningVi": "giới thiệu lẫn nhau",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 介绍",
-      "syntax": "compound-semantic",
-      "matchedExample": "'介绍' là giới thiệu. '让我介绍一下' để tôi giới thiệu. '自我介绍' tự giới thiệu. '介绍人' người mai mối hoặc người giới thiệu.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 介 (ở giữa, trung gian) + 绍 (nối tiếp). Người ở giữa nối tiếp hai bên, giới thiệu.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 介绍",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "'介绍' là giới thiệu. '让我介绍一下' để tôi giới thiệu. '自我介绍' tự giới thiệu. '介绍人' người mai mối hoặc người giới thiệu.",
+      "explanationVi": "Ghép nghĩa: 介 (ở giữa, trung gian) + 绍 (nối tiếp). Người ở giữa nối tiếp hai bên, giới thiệu.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -149,31 +151,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 20,
+      "sectionId": "new_hsk__1__topic__20__dong-tu",
+      "sectionSlug": "dong-tu",
       "sectionTitle": "Động từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dong-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dong-tu/",
+      "orderInSection": 26
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 4,
+      "sectionId": "hsk__2__lesson__4__bai-4-cong-viec-nay-la-do-anh-ay-gioi-thieu-cho-toi",
+      "sectionSlug": "bai-4-cong-viec-nay-la-do-anh-ay-gioi-thieu-cho-toi",
       "sectionTitle": "Công việc này là do anh ấy giới thiệu cho tôi",
       "sectionTitleZh": "这个工作是他帮我介绍的",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-4-cong-viec-nay-la-do-anh-ay-gioi-thieu-cho-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-4-cong-viec-nay-la-do-anh-ay-gioi-thieu-cho-toi/",
+      "orderInSection": 13
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__2__lesson__1__bai-1-she-treated-us-to-peking-duck",
+      "sectionSlug": "bai-1-she-treated-us-to-peking-duck",
       "sectionTitle": "Cô ấy mời chúng tôi ăn vịt quay Bắc Kinh",
       "sectionTitleZh": "她请我们吃了北京烤鸭",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-1-she-treated-us-to-peking-duck/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-1-she-treated-us-to-peking-duck/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -194,7 +211,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:复杂",
   "type": "word",
   "word": "复杂",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fù zá",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phức tạp; rắc rối; cầu kỳ",
+      "meaningShortVi": "phức tạp",
+      "meaningFullVi": "phức tạp; rắc rối; cầu kỳ",
       "partOfSpeech": "tính từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phức tạp",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "Chỉ sự việc có nhiều yếu tố, khó hiểu hoặc khó giải quyết. Trái với '简单' (đơn giản)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,19 +51,24 @@
         "text": "情况复杂",
         "pinyin": "qíngkuàng fùzá",
         "meaningVi": "tình hình phức tạp",
+        "meaningFullVi": "tình hình phức tạp",
         "target": "复杂",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "复杂的关系",
         "pinyin": "fùzá de guānxì",
         "meaningVi": "mối quan hệ phức tạp",
+        "meaningFullVi": "mối quan hệ phức tạp",
         "target": "复杂",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Vấn đề này rất phức tạp, cần nghiên cứu kỹ.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "复杂",
@@ -83,16 +88,17 @@
       "meaningVi": "Giao thông đô thị đang trở nên ngày càng phức tạp.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 复杂",
-      "syntax": "tính từ",
-      "matchedExample": "Chỉ sự việc có nhiều yếu tố, khó hiểu hoặc khó giải quyết. Trái với '简单' (đơn giản).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 复杂",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "Chỉ sự việc có nhiều yếu tố, khó hiểu hoặc khó giải quyết. Trái với '简单' (đơn giản).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 33,
+      "sectionId": "new_hsk__3__topic__33__tinh-tu",
+      "sectionSlug": "tinh-tu",
       "sectionTitle": "Tính từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/",
+      "orderInSection": 32
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:延续",
   "type": "word",
   "word": "延续",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yán xù",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "kéo dài, tiếp diễn, duy trì",
+      "meaningShortVi": "kéo dài",
+      "meaningFullVi": "kéo dài, tiếp diễn, duy trì",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "kéo dài",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Làm cho cái gì đó kéo dài hơn, tiếp tục tồn tại."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,32 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "延续生命",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "延续",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "延续传统",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "延续",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "继续延续",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "延续",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,16 +54,17 @@
       "meaningVi": "Câu chuyện kéo dài rất lâu",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 延续",
-      "syntax": "động từ",
-      "matchedExample": "Làm cho cái gì đó kéo dài hơn, tiếp tục tồn tại.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 延续",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Làm cho cái gì đó kéo dài hơn, tiếp tục tồn tại.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,7 +79,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:沟通",
   "type": "word",
   "word": "沟通",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "gōu tōng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Giao tiếp, trao đổi, liên lạc; kết nối thông tin giữa người với người",
+      "meaningShortVi": "Giao tiếp",
+      "meaningFullVi": "Giao tiếp, trao đổi, liên lạc; kết nối thông tin giữa người với người",
       "partOfSpeech": "động từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Giao tiếp",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "沟通 (gōutōng) nghĩa là giao tiếp, kết nối. Ghép từ 沟 (kênh, rãnh nối liền) + 通 (thông suốt, đi qua). Nhớ: có 'kênh' (沟) để 'thông' (通) với nhau — giao tiếp."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,40 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "加强沟通",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "沟通",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "沟通能力",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "沟通",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "有效沟通",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "沟通",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "沟通思想",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "沟通",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -87,7 +54,8 @@
       "meaningVi": "Chúng ta cần tăng cường giao tiếp.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "沟通",
@@ -96,7 +64,8 @@
       "meaningVi": "Anh ấy giao tiếp rất tốt với đồng nghiệp.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "沟通",
@@ -105,16 +74,17 @@
       "meaningVi": "Giao tiếp là phương pháp quan trọng để giải quyết vấn đề.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 沟通",
-      "syntax": "động từ",
-      "matchedExample": "沟通 (gōutōng) nghĩa là giao tiếp, kết nối. Ghép từ 沟 (kênh, rãnh nối liền) + 通 (thông suốt, đi qua). Nhớ: có 'kênh' (沟) để 'thông' (通) với nhau — giao tiếp.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 沟通",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "沟通 (gōutōng) nghĩa là giao tiếp, kết nối. Ghép từ 沟 (kênh, rãnh nối liền) + 通 (thông suốt, đi qua). Nhớ: có 'kênh' (沟) để 'thông' (通) với nhau — giao tiếp.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -129,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

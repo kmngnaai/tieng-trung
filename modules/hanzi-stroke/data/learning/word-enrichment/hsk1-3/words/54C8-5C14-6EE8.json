@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:哈尔滨",
   "type": "word",
   "word": "哈尔滨",
@@ -16,24 +16,25 @@
     "readings": [
       {
         "pinyin": "Hā ěr bīn",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Cáp Nhĩ Tân (thành phố ở Trung Quốc)",
+      "meaningShortVi": "Cáp Nhĩ Tân (thành phố ở Trung Quốc)",
+      "meaningFullVi": "Cáp Nhĩ Tân (thành phố ở Trung Quốc)",
       "partOfSpeech": "Danh từ riêng",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Cáp Nhĩ Tân (thành phố ở Trung Quốc)",
   "wordType": "Danh từ riêng",
   "wordTypes": [
     "Danh từ riêng"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -43,7 +44,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -53,7 +55,8 @@
       "meaningVi": "Mùa đông ở Cáp Nhĩ Tân rất lạnh.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "哈尔滨",
@@ -62,10 +65,19 @@
       "meaningVi": "Anh ấy đã đi du lịch Cáp Nhĩ Tân.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 哈尔滨",
+      "partOfSpeech": "Danh từ riêng",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/哈尔滨.mp3"
   ],
@@ -78,7 +90,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

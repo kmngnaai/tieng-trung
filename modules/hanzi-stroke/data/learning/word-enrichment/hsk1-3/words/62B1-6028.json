@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:抱怨",
   "type": "word",
   "word": "抱怨",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "bào yuàn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phàn nàn, than vãn",
+      "meaningShortVi": "phàn nàn",
+      "meaningFullVi": "phàn nàn, than vãn",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phàn nàn",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Diễn thái độ không hài lòng, thường bằng lời nói. Mang hơi hướng tiêu cực."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,30 +45,17 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "抱怨工作",
-        "pinyin": "",
-        "meaningVi": "",
+        "text": "抱怨",
+        "pinyin": "bào yuàn",
+        "meaningVi": "phàn nàn",
+        "meaningFullVi": "phàn nàn, than vãn",
         "target": "抱怨",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "抱怨生活",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "抱怨",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "不停抱怨",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "抱怨",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +65,8 @@
       "meaningVi": "Đừng luôn phàn nàn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "抱怨",
@@ -88,7 +75,8 @@
       "meaningVi": "Anh ấy than vãn việc quá mệt.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "抱怨",
@@ -97,16 +85,17 @@
       "meaningVi": "Cô ấy phàn nàn việc này không công bằng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 抱怨",
-      "syntax": "động từ",
-      "matchedExample": "Diễn thái độ không hài lòng, thường bằng lời nói. Mang hơi hướng tiêu cực.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 抱怨",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Diễn thái độ không hài lòng, thường bằng lời nói. Mang hơi hướng tiêu cực.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -121,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

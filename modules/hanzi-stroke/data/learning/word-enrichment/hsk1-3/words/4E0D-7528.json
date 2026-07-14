@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:不用",
   "type": "word",
   "word": "不用",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "bù yòng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "không cần; không phải; không dùng",
+      "meaningShortVi": "không cần",
+      "meaningFullVi": "không cần; không phải; không dùng",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "không cần",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng để từ chối khéo hoặc nói không cần làm gì. Không谢 là cụm từ rất phổ biến để đáp lời cảm ơn (tương đương 'không có chi'). Có thể viết tắt thành '甭' (beng) trong khẩu ngữ."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 不 (không) + 用 (dùng). Nghĩa đen là 'không dùng', phát triển thành 'không cần' hoặc 'không phải'. Đây là ghép nghĩa phủ định trực tiếp."
   ],
   "hsk": {
     "levels": [
@@ -53,12 +50,10 @@
         "word": "不用谢",
         "pinyin": "bú yòng xiè",
         "meaningVi": "không có gì (đáp lại lời cảm ơn)",
+        "meaningFullVi": "không có gì (đáp lại lời cảm ơn)",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          1
-        ],
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 1",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
@@ -66,27 +61,34 @@
         "text": "不用谢",
         "pinyin": "bùyòng xiè",
         "meaningVi": "không cần cảm ơn",
+        "meaningFullVi": "không cần cảm ơn",
         "target": "不用",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不用了",
         "pinyin": "bùyòngle",
         "meaningVi": "không cần đâu",
+        "meaningFullVi": "không cần đâu",
         "target": "不用",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不用说了",
         "pinyin": "bùyòng shuōle",
         "meaningVi": "không cần phải nói",
+        "meaningFullVi": "không cần phải nói",
         "target": "不用",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -96,7 +98,8 @@
       "meaningVi": "Không cần cảm ơn/Đừng khách sáo",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不用",
@@ -105,7 +108,8 @@
       "meaningVi": "Không cần vội/gấp",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不用",
@@ -114,7 +118,8 @@
       "meaningVi": "Việc này không cần anh lo/quản",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不用",
@@ -123,7 +128,8 @@
       "meaningVi": "Không cần đâu/Được rồi (từ chối đề nghị)",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不用",
@@ -132,23 +138,17 @@
       "meaningVi": "Không cần mua vé",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 不用",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng để từ chối khéo hoặc nói không cần làm gì. Không谢 là cụm từ rất phổ biến để đáp lời cảm ơn (tương đương 'không có chi'). Có thể viết tắt thành '甭' (beng) trong khẩu ngữ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 不 (không) + 用 (dùng). Nghĩa đen là 'không dùng', phát triển thành 'không cần' hoặc 'không phải'. Đây là ghép nghĩa phủ định trực tiếp.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 不用",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng để từ chối khéo hoặc nói không cần làm gì. Không谢 là cụm từ rất phổ biến để đáp lời cảm ơn (tương đương 'không có chi'). Có thể viết tắt thành '甭' (beng) trong khẩu ngữ.",
+      "explanationVi": "Ghép nghĩa: 不 (không) + 用 (dùng). Nghĩa đen là 'không dùng', phát triển thành 'không cần' hoặc 'không phải'. Đây là ghép nghĩa phủ định trực tiếp.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -159,21 +159,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__1__topic__13__tu-chuc-nang",
+      "sectionSlug": "tu-chuc-nang",
       "sectionTitle": "Từ chức năng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/tu-chuc-nang/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/tu-chuc-nang/",
+      "orderInSection": 4
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 2,
+      "sectionId": "new_hsk__3__lesson__2__bai-2-you-can-order-whatever-you-feel-like",
+      "sectionSlug": "bai-2-you-can-order-whatever-you-feel-like",
       "sectionTitle": "Các bạn thích ăn gì thì gọi nấy",
       "sectionTitleZh": "你们想吃什么就点什么",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-2-you-can-order-whatever-you-feel-like/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-2-you-can-order-whatever-you-feel-like/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -189,7 +199,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

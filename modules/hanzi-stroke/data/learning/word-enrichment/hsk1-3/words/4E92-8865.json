@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:互补",
   "type": "word",
   "word": "互补",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "hù bǔ",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bổ sung cho nhau, hỗ trợ nhau",
+      "meaningShortVi": "bổ sung cho nhau",
+      "meaningFullVi": "bổ sung cho nhau, hỗ trợ nhau",
       "partOfSpeech": "động từ / tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bổ sung cho nhau",
   "wordType": "động từ / tính từ",
   "wordTypes": [
     "động từ / tính từ"
   ],
-  "usageNotes": [
-    "Mô tả hai yếu tố hỗ trợ và hoàn thiện nhau."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,32 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "优势互补",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "互补",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "互补关系",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "互补",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "互利互补",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "互补",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,16 +54,17 @@
       "meaningVi": "Kinh tế hai nước bổ sung cho nhau mạnh.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 互补",
-      "syntax": "động từ / tính từ",
-      "matchedExample": "Mô tả hai yếu tố hỗ trợ và hoàn thiện nhau.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 互补",
+      "partOfSpeech": "động từ / tính từ",
+      "usageNoteVi": "Mô tả hai yếu tố hỗ trợ và hoàn thiện nhau.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,7 +79,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

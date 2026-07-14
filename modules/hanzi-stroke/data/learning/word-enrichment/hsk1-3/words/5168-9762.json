@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:全面",
   "type": "word",
   "word": "全面",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "quán miàn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "toàn diện, toàn vẹn; trọn vẹn, đầy đủ",
+      "meaningShortVi": "toàn diện",
+      "meaningFullVi": "toàn diện, toàn vẹn; trọn vẹn, đầy đủ",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "toàn diện",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "Quán miàn dùng cho sự hiểu biết, phát triển bao quát mọi khía cạnh. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "全面发展",
-        "pinyin": "",
+        "pinyin": "quán miàn fā zhǎn",
         "meaningVi": "phát triển toàn diện",
+        "meaningFullVi": "phát triển toàn diện",
         "target": "全面",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "全面的了解",
-        "pinyin": "",
+        "pinyin": "quán miàn de liǎo jiě",
         "meaningVi": "hiểu biết toàn diện",
+        "meaningFullVi": "hiểu biết toàn diện",
         "target": "全面",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "全面",
       "chinese": "我们需要全面了解这个问题。",
-      "pinyin": "",
+      "pinyin": "wǒ men xū yào quán miàn liǎo jiě zhè ge wèn tí。",
       "meaningVi": "Chúng ta cần hiểu toàn diện vấn đề này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "全面",
-      "chinese": "这家公司业务全面发展。",
-      "pinyin": "",
-      "meaningVi": "Công ty này phát triển toàn diện về kinh doanh.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 全面",
-      "syntax": "tính từ",
-      "matchedExample": "Quán miàn dùng cho sự hiểu biết, phát triển bao quát mọi khía cạnh. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 全面",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "Quán miàn dùng cho sự hiểu biết, phát triển bao quát mọi khía cạnh. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 32,
+      "sectionId": "new_hsk__3__topic__32__dac-diem",
+      "sectionSlug": "dac-diem",
       "sectionTitle": "Đặc điểm",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

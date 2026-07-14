@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:有效",
   "type": "word",
   "word": "有效",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yǒu xiào",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hiệu quả, có hiệu lực",
+      "meaningShortVi": "hiệu quả",
+      "meaningFullVi": "hiệu quả, có hiệu lực",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hiệu quả",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "指能产生预期效果或具有法律效力。可形容方法、药物（有效果）或证件、合同（有法律效力）。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "有效期",
-        "pinyin": "",
+        "pinyin": "yǒu xiào qī",
         "meaningVi": "thời hạn hiệu lực",
+        "meaningFullVi": "thời hạn hiệu lực",
         "target": "有效",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "有效证件",
-        "pinyin": "",
+        "pinyin": "yǒu xiào zhèng jiàn",
         "meaningVi": "giấy tờ hợp lệ",
+        "meaningFullVi": "giấy tờ hợp lệ",
         "target": "有效",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "有效",
       "chinese": "这种方法很有效。",
-      "pinyin": "",
+      "pinyin": "zhè zhǒng fāng fǎ hěn yǒu xiào。",
       "meaningVi": "Phương pháp này rất có hiệu quả.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "有效",
-      "chinese": "这张票还有效。",
-      "pinyin": "",
-      "meaningVi": "Vé này còn hiệu lực.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 有效",
-      "syntax": "tính từ",
-      "matchedExample": "指能产生预期效果或具有法律效力。可形容方法、药物（有效果）或证件、合同（有法律效力）。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 有效",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "指能产生预期效果或具有法律效力。可形容方法、药物（有效果）或证件、合同（有法律效力）。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__3__topic__19__thanh-tuu-va-ket-qua",
+      "sectionSlug": "thanh-tuu-va-ket-qua",
       "sectionTitle": "Thành tựu và kết quả",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:胜利",
   "type": "word",
   "word": "胜利",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shèng lì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chiến thắng, thắng lợi",
+      "meaningShortVi": "chiến thắng",
+      "meaningFullVi": "chiến thắng, thắng lợi",
       "partOfSpeech": "danh từ / động từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chiến thắng",
   "wordType": "danh từ / động từ",
   "wordTypes": [
     "danh từ / động từ"
   ],
-  "usageNotes": [
-    "指在斗争或竞赛中打败对方。可作名词或动词。胜利 vs. 失败：反义词。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -50,49 +49,46 @@
     "collocations": [
       {
         "text": "伟大胜利",
-        "pinyin": "",
+        "pinyin": "wěi dà shèng lì",
         "meaningVi": "chiến thắng vĩ đại",
+        "meaningFullVi": "chiến thắng vĩ đại",
         "target": "胜利",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "赢得胜利",
-        "pinyin": "",
+        "pinyin": "yíng děi shèng lì",
         "meaningVi": "giành chiến thắng",
+        "meaningFullVi": "giành chiến thắng",
         "target": "胜利",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "胜利",
       "chinese": "我们庆祝胜利！",
-      "pinyin": "",
+      "pinyin": "wǒ men qìng zhù shèng lì！",
       "meaningVi": "Chúng ta ăn mừng chiến thắng!",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "胜利",
-      "chinese": "正义终将取得胜利。",
-      "pinyin": "",
-      "meaningVi": "Chính nghĩa cuối cùng sẽ giành chiến thắng.",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 胜利",
-      "syntax": "danh từ / động từ",
-      "matchedExample": "指在斗争或竞赛中打败对方。可作名词或动词。胜利 vs. 失败：反义词。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 胜利",
+      "partOfSpeech": "danh từ / động từ",
+      "usageNoteVi": "指在斗争或竞赛中打败对方。可作名词或动词。胜利 vs. 失败：反义词。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +99,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__3__topic__19__thanh-tuu-va-ket-qua",
+      "sectionSlug": "thanh-tuu-va-ket-qua",
       "sectionTitle": "Thành tựu và kết quả",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -123,7 +124,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

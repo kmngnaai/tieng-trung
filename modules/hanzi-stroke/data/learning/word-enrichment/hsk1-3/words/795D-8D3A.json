@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:祝贺",
   "type": "word",
   "word": "祝贺",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhù hè",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chúc mừng, chúc tụng",
+      "meaningShortVi": "chúc mừng",
+      "meaningFullVi": "chúc mừng, chúc tụng",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chúc mừng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Dùng để chúc mừng khi ai đó đạt được thành tựu."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,40 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "祝贺你",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "祝贺",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "热烈祝贺",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "祝贺",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "表示祝贺",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "祝贺",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "祝贺信",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "祝贺",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -87,7 +54,8 @@
       "meaningVi": "Tôi chúc mừng bạn thành công!",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "祝贺",
@@ -96,7 +64,8 @@
       "meaningVi": "Mọi người chúc mừng anh ấy kết hôn.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "祝贺",
@@ -105,16 +74,17 @@
       "meaningVi": "Chúc mừng nồng nhiệt!",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 祝贺",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng để chúc mừng khi ai đó đạt được thành tựu.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 祝贺",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng để chúc mừng khi ai đó đạt được thành tựu.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -129,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

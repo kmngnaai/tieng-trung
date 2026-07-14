@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:失败",
   "type": "word",
   "word": "失败",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shī bài",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thất bại",
+      "meaningShortVi": "thất bại",
+      "meaningFullVi": "thất bại",
       "partOfSpeech": "danh từ / động từ / tính từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thất bại",
   "wordType": "danh từ / động từ / tính từ",
   "wordTypes": [
     "danh từ / động từ / tính từ"
   ],
-  "usageNotes": [
-    "Thất bại (shībài) là ghép của 失 (mất, lỡ) + 败 (thua, bại). Thừa thuyết tiếng Việt \"thất bại\" là từ Hán-Việt. Thành ngữ phổ biến: 失败是成功之母 (thất bại là mẹ thành công)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,19 +48,24 @@
         "text": "彻底失败",
         "pinyin": "chèdǐ shībài",
         "meaningVi": "thất bại hoàn toàn",
+        "meaningFullVi": "thất bại hoàn toàn",
         "target": "失败",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "遭受失败",
         "pinyin": "zāoshòu shībài",
         "meaningVi": "gánh chịu thất bại",
+        "meaningFullVi": "gánh chịu thất bại",
         "target": "失败",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +75,8 @@
       "meaningVi": "Thí nghiệm thất bại, nhưng chúng tôi không thể bỏ cuộc.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "失败",
@@ -80,16 +85,17 @@
       "meaningVi": "Thất bại là mẹ thành công.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 失败",
-      "syntax": "danh từ / động từ / tính từ",
-      "matchedExample": "Thất bại (shībài) là ghép của 失 (mất, lỡ) + 败 (thua, bại). Thừa thuyết tiếng Việt \"thất bại\" là từ Hán-Việt. Thành ngữ phổ biến: 失败是成功之母 (thất bại là mẹ thành công).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 失败",
+      "partOfSpeech": "danh từ / động từ / tính từ",
+      "usageNoteVi": "Thất bại (shībài) là ghép của 失 (mất, lỡ) + 败 (thua, bại). Thừa thuyết tiếng Việt \"thất bại\" là từ Hán-Việt. Thành ngữ phổ biến: 失败是成功之母 (thất bại là mẹ thành công).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

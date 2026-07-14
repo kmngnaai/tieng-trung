@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:严肃",
   "type": "word",
   "word": "严肃",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yán sù",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nghiêm túc, trang trọng, nghiêm khắc",
+      "meaningShortVi": "nghiêm túc",
+      "meaningFullVi": "nghiêm túc, trang trọng, nghiêm khắc",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nghiêm túc",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Mô tả thái độ nghiêm túc."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,40 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "态度严肃",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "严肃",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "严肃认真",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "严肃",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "严肃处理",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "严肃",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "表情严肃",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "严肃",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -87,7 +54,8 @@
       "meaningVi": "Thầy giáo rất nghiêm khắc.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "严肃",
@@ -96,7 +64,8 @@
       "meaningVi": "Đây là một vấn đề nghiêm túc.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "严肃",
@@ -105,16 +74,17 @@
       "meaningVi": "Không khí cuộc họp rất trang trọng.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 严肃",
-      "syntax": "compound-semantic",
-      "matchedExample": "Mô tả thái độ nghiêm túc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 严肃",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Mô tả thái độ nghiêm túc.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -129,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

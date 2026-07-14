@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:反正",
   "type": "word",
   "word": "反正",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fǎn zhèng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Dù sao, anyways, anyway",
+      "meaningShortVi": "Dù sao",
+      "meaningFullVi": "Dù sao, anyways, anyway",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Dù sao",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "反正 là từ dùng để nhấn mạnh kết luận bất kể điều kiện tiên quyết. Thường đứng đầu câu hoặc giữa câu để chỉ sự bất kể, \"dù sao thì\". Phổ biến trong văn nói."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,27 +51,34 @@
         "text": "反正都",
         "pinyin": "fǎnzhèng dōu",
         "meaningVi": "dù sao cũng",
+        "meaningFullVi": "dù sao cũng",
         "target": "反正",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "反正就是",
         "pinyin": "fǎnzhèng jiùshì",
         "meaningVi": "dù sao thì là",
+        "meaningFullVi": "dù sao thì là",
         "target": "反正",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不管...反正...",
         "pinyin": "bùguǎn...fǎnzhèng...",
-        "meaningVi": "dù...dù sao...",
+        "meaningVi": "dù",
+        "meaningFullVi": "dù...dù sao...",
         "target": "反正",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -82,7 +88,8 @@
       "meaningVi": "Dù sao thì tôi đã quyết định rồi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "反正",
@@ -91,7 +98,8 @@
       "meaningVi": "Dù bạn có đi hay không, dù sao tôi cũng sẽ đi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "反正",
@@ -100,16 +108,17 @@
       "meaningVi": "Dù sao cũng không có việc gì, chúng ta đi dạo đi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 反正",
-      "syntax": "compound-semantic",
-      "matchedExample": "反正 là từ dùng để nhấn mạnh kết luận bất kể điều kiện tiên quyết. Thường đứng đầu câu hoặc giữa câu để chỉ sự bất kể, \"dù sao thì\". Phổ biến trong văn nói.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 反正",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "反正 là từ dùng để nhấn mạnh kết luận bất kể điều kiện tiên quyết. Thường đứng đầu câu hoặc giữa câu để chỉ sự bất kể, \"dù sao thì\". Phổ biến trong văn nói.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -120,11 +129,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__3__topic__1__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/pho-tu/",
+      "orderInSection": 24
     }
   ],
   "sources": [
@@ -140,7 +154,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

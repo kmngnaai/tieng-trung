@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:可能",
   "type": "word",
   "word": "可能",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "kě néng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "có thể",
+      "meaningShortVi": "có thể",
+      "meaningFullVi": "có thể",
       "partOfSpeech": "verb/auxiliary",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "có thể",
   "wordType": "verb/auxiliary",
   "wordTypes": [
     "verb/auxiliary"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,35 +51,58 @@
     "collocations": [
       {
         "text": "可能性",
-        "pinyin": "",
+        "pinyin": "kě néng xìng",
         "meaningVi": "khả năng",
+        "meaningFullVi": "khả năng",
         "target": "可能",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
+      },
+      {
+        "text": "可能",
+        "pinyin": "kě néng",
+        "meaningVi": "có thể",
+        "meaningFullVi": "có thể",
+        "target": "可能",
+        "source": "hsk_1.json",
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "可能",
       "chinese": "明天可能下雨",
-      "pinyin": "",
+      "pinyin": "míng tiān kě néng xià yǔ",
       "meaningVi": "Ngày mai có thể mưa",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "可能",
       "chinese": "这不可能",
-      "pinyin": "",
+      "pinyin": "zhè bù kě néng",
       "meaningVi": "Điều này không thể",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 可能",
+      "partOfSpeech": "verb/auxiliary",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/可能.mp3"
   ],
@@ -87,31 +111,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 11,
+      "sectionId": "hsk__2__lesson__11__bai-11-anh-ay-hon-toi-3-tuoi",
+      "sectionSlug": "bai-11-anh-ay-hon-toi-3-tuoi",
       "sectionTitle": "Anh ấy hơn tôi 3 tuổi",
       "sectionTitleZh": "他比我大三岁",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-11-anh-ay-hon-toi-3-tuoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-11-anh-ay-hon-toi-3-tuoi/",
+      "orderInSection": 9
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__2__lesson__13__bai-13-we-love-attending-chinese-class",
+      "sectionSlug": "bai-13-we-love-attending-chinese-class",
       "sectionTitle": "Chúng tôi thích giờ học tiếng Trung",
       "sectionTitleZh": "我们爱上中文课",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-13-we-love-attending-chinese-class/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-13-we-love-attending-chinese-class/",
+      "orderInSection": 9
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__2__topic__11__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/pho-tu/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -132,7 +171,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

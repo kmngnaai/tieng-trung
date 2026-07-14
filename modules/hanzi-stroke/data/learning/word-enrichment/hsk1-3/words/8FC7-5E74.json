@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:过年",
   "type": "word",
   "word": "过年",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "guò nián",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đón Tết",
+      "meaningShortVi": "đón Tết",
+      "meaningFullVi": "đón Tết",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đón Tết",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,43 +48,58 @@
     "collocations": [
       {
         "text": "回家过年",
-        "pinyin": "",
+        "pinyin": "huí jiā guò nián",
         "meaningVi": "về nhà đón Tết",
+        "meaningFullVi": "về nhà đón Tết",
         "target": "过年",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "过年好",
-        "pinyin": "",
+        "pinyin": "guò nián hǎo",
         "meaningVi": "Chúc mừng năm mới",
+        "meaningFullVi": "Chúc mừng năm mới",
         "target": "过年",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "过年",
       "chinese": "我们回家过年",
-      "pinyin": "",
+      "pinyin": "wǒ men huí jiā guò nián",
       "meaningVi": "Chúng tôi về nhà đón Tết",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "过年",
       "chinese": "过年很热闹",
-      "pinyin": "",
+      "pinyin": "guò nián hěn rè nao",
       "meaningVi": "Dịp Tết rất vui vẻ",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 过年",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/过年.mp3"
   ],
@@ -92,21 +108,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__2__lesson__14__bai-14-it-s-boring-to-celebrate-the-spring-festival-alone",
+      "sectionSlug": "bai-14-it-s-boring-to-celebrate-the-spring-festival-alone",
       "sectionTitle": "Đón Tết một mình thật chán",
       "sectionTitleZh": "一个人过年多没意思啊",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-14-it-s-boring-to-celebrate-the-spring-festival-alone/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-14-it-s-boring-to-celebrate-the-spring-festival-alone/",
+      "orderInSection": 3
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__2__topic__12__giai-tri",
+      "sectionSlug": "giai-tri",
       "sectionTitle": "Giải trí",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -117,7 +143,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:原因",
   "type": "word",
   "word": "原因",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "yuán yīn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nguyên nhân",
+      "meaningShortVi": "nguyên nhân",
+      "meaningFullVi": "nguyên nhân",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nguyên nhân",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,60 +48,78 @@
     "collocations": [
       {
         "text": "主要原因",
-        "pinyin": "",
+        "pinyin": "zhǔ yào yuán yīn",
         "meaningVi": "nguyên nhân chính",
+        "meaningFullVi": "nguyên nhân chính",
         "target": "原因",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "真正原因",
-        "pinyin": "",
+        "pinyin": "zhēn zhèng yuán yīn",
         "meaningVi": "nguyên nhân thật",
+        "meaningFullVi": "nguyên nhân thật",
         "target": "原因",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "找出原因",
-        "pinyin": "",
+        "pinyin": "zhǎo chū yuán yīn",
         "meaningVi": "tìm ra nguyên nhân",
+        "meaningFullVi": "tìm ra nguyên nhân",
         "target": "原因",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "原因",
       "chinese": "这就是失败的原因。",
-      "pinyin": "",
+      "pinyin": "zhè jiù shì shī bài de yuán yīn。",
       "meaningVi": "Đây chính là nguyên nhân thất bại.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "原因",
       "chinese": "我不知道原因。",
-      "pinyin": "",
+      "pinyin": "wǒ bù zhī dào yuán yīn。",
       "meaningVi": "Tôi không biết nguyên nhân.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "原因",
       "chinese": "请说明原因。",
-      "pinyin": "",
+      "pinyin": "qǐng shuō míng yuán yīn。",
       "meaningVi": "Vui lòng giải thích nguyên nhân.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 原因",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/原因.mp3"
   ],
@@ -109,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 28,
+      "sectionId": "new_hsk__2__topic__28__danh-tu",
+      "sectionSlug": "danh-tu",
       "sectionTitle": "Danh từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/danh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/danh-tu/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -124,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

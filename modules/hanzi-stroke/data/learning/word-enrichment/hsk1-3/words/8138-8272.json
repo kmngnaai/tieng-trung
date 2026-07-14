@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:脸色",
   "type": "word",
   "word": "脸色",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "liǎn sè",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "màu mặt; sắc diện; vẻ mặt, biểu hiện cảm xúc trên gương mặt",
+      "meaningShortVi": "màu mặt",
+      "meaningFullVi": "màu mặt; sắc diện; vẻ mặt, biểu hiện cảm xúc trên gương mặt",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "màu mặt",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "脸色 ghép 脸 (mặt) + 色 (màu sắc). Chỉ màu mặt (tình trạng sức khỏe) hoặc vẻ mặt biểu hiện cảm xúc."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -44,48 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "脸色不好",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "脸色",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "脸色苍白",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "脸色",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "看脸色",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "脸色",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "脸色变了",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "脸色",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "脸色难看",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "脸色",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -95,7 +54,8 @@
       "meaningVi": "Mặt anh ấy không được khỏe.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "脸色",
@@ -104,7 +64,8 @@
       "meaningVi": "Nhìn vẻ mặt anh ấy, hình như đang giận.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "脸色",
@@ -113,16 +74,17 @@
       "meaningVi": "Cần chú ý sắc diện của sếp.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 脸色",
-      "syntax": "compound-semantic",
-      "matchedExample": "脸色 ghép 脸 (mặt) + 色 (màu sắc). Chỉ màu mặt (tình trạng sức khỏe) hoặc vẻ mặt biểu hiện cảm xúc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 脸色",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "脸色 ghép 脸 (mặt) + 色 (màu sắc). Chỉ màu mặt (tình trạng sức khỏe) hoặc vẻ mặt biểu hiện cảm xúc.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -137,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

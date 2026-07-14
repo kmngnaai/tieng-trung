@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:毛衣",
   "type": "word",
   "word": "毛衣",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "máo yī",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "áo len",
+      "meaningShortVi": "áo len",
+      "meaningFullVi": "áo len",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "áo len",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Áo len (dệt kim). Tradiotional là len (毛), nhưng hiện nay có thể là len tổng hợp."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -44,52 +43,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "羊毛毛衣",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "毛衣",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "针织毛衣",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "毛衣",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "毛衣",
-      "chinese": "冬天穿毛衣很暖和。",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_1.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "毛衣",
-      "chinese": "妈妈给我织了一件毛衣。",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_1.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 毛衣",
-      "syntax": "danh từ",
-      "matchedExample": "Áo len (dệt kim). Tradiotional là len (毛), nhưng hiện nay có thể là len tổng hợp.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 毛衣",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Áo len (dệt kim). Tradiotional là len (毛), nhưng hiện nay có thể là len tổng hợp.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,7 +68,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

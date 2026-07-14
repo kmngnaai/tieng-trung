@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:现场",
   "type": "word",
   "word": "现场",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xiàn chǎng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hiện trường, tại chỗ",
+      "meaningShortVi": "hiện trường",
+      "meaningFullVi": "hiện trường, tại chỗ",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hiện trường",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Chỉ nơi đang diễn ra sự việc hoặc nơi xảy ra sự cố. Cũng dùng trong '现场直播' (trực tiếp)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "事故现场",
-        "pinyin": "",
+        "pinyin": "shì gù xiàn chǎng",
         "meaningVi": "hiện trường tai nạn",
+        "meaningFullVi": "hiện trường tai nạn",
         "target": "现场",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "现场直播",
-        "pinyin": "",
+        "pinyin": "xiàn chǎng zhí bō",
         "meaningVi": "phát sóng trực tiếp",
+        "meaningFullVi": "phát sóng trực tiếp",
         "target": "现场",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "现场",
       "chinese": "警察正在现场调查。",
-      "pinyin": "",
+      "pinyin": "jǐng chá zhèng zài xiàn chǎng diào chá。",
       "meaningVi": "Cảnh sát đang điều tra tại hiện trường.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "现场",
       "chinese": "很多球迷来到了比赛现场。",
-      "pinyin": "",
+      "pinyin": "hěn duō qiú mí lái dào le bǐ sài xiàn chǎng。",
       "meaningVi": "Nhiều cổ động viên đã đến tận nơi thi đấu.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 现场",
-      "syntax": "danh từ",
-      "matchedExample": "Chỉ nơi đang diễn ra sự việc hoặc nơi xảy ra sự cố. Cũng dùng trong '现场直播' (trực tiếp).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 现场",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Chỉ nơi đang diễn ra sự việc hoặc nơi xảy ra sự cố. Cũng dùng trong '现场直播' (trực tiếp).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 25,
+      "sectionId": "new_hsk__3__topic__25__truong-hop",
+      "sectionSlug": "truong-hop",
       "sectionTitle": "Trường hợp",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/truong-hop/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/truong-hop/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

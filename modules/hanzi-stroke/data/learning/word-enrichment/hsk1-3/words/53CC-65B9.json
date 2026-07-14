@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:双方",
   "type": "word",
   "word": "双方",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shuāng fāng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Hai bên, cả hai phía",
+      "meaningShortVi": "Hai bên",
+      "meaningFullVi": "Hai bên, cả hai phía",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Hai bên",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "双方 chỉ hai phía trong một quan hệ hoặc giao dịch. Nó thường dùng trong các tình huống như đàm phán, thỏa thuận, tranh chấp, hoặc hôn nhân. Trong giao tiếp, người ta thường nói '双方都' (cả hai bên đều) hoặc '双方父母' (cả hai bên bố mẹ)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "双方同意",
         "pinyin": "shuāngfāng tóngyì",
         "meaningVi": "cả hai bên đồng ý",
+        "meaningFullVi": "cả hai bên đồng ý",
         "target": "双方",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "双方家长",
         "pinyin": "shuāngfāng jiāzhǎng",
         "meaningVi": "cả hai bên phụ huynh",
+        "meaningFullVi": "cả hai bên phụ huynh",
         "target": "双方",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Cả hai bên đều đồng ý phương án này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "双方",
@@ -82,16 +87,17 @@
       "meaningVi": "Hai bên đã đạt được thỏa thuận qua đàm phán.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 双方",
-      "syntax": "danh từ",
-      "matchedExample": "双方 chỉ hai phía trong một quan hệ hoặc giao dịch. Nó thường dùng trong các tình huống như đàm phán, thỏa thuận, tranh chấp, hoặc hôn nhân. Trong giao tiếp, người ta thường nói '双方都' (cả hai bên đều) hoặc '双方父母' (cả hai bên bố mẹ).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 双方",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "双方 chỉ hai phía trong một quan hệ hoặc giao dịch. Nó thường dùng trong các tình huống như đàm phán, thỏa thuận, tranh chấp, hoặc hôn nhân. Trong giao tiếp, người ta thường nói '双方都' (cả hai bên đều) hoặc '双方父母' (cả hai bên bố mẹ).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__3__topic__12__lam-viec-toi",
+      "sectionSlug": "lam-viec-toi",
       "sectionTitle": "Làm việc tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lam-viec-toi/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

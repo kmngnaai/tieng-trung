@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:短处",
   "type": "word",
   "word": "短处",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "duǎn chu",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nhược điểm, điểm yếu",
+      "meaningShortVi": "nhược điểm",
+      "meaningFullVi": "nhược điểm, điểm yếu",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nhược điểm",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "短处 (nhược điểm) chỉ điểm yếu, thiếu sót của người hoặc vật. Đồng nghĩa với缺点, đối lập với长处 (ưu điểm)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "克服短处",
         "pinyin": "kèfú duǎnchù",
         "meaningVi": "khắc phục nhược điểm",
+        "meaningFullVi": "khắc phục nhược điểm",
         "target": "短处",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "看到短处",
         "pinyin": "kàndào duǎnchù",
         "meaningVi": "thấy được điểm yếu",
+        "meaningFullVi": "thấy được điểm yếu",
         "target": "短处",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Mỗi người đều có ưu điểm và nhược điểm.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "短处",
@@ -82,16 +87,17 @@
       "meaningVi": "Chúng ta cần biết nhược điểm của mình.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 短处",
-      "syntax": "danh từ",
-      "matchedExample": "短处 (nhược điểm) chỉ điểm yếu, thiếu sót của người hoặc vật. Đồng nghĩa với缺点, đối lập với长处 (ưu điểm).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 短处",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "短处 (nhược điểm) chỉ điểm yếu, thiếu sót của người hoặc vật. Đồng nghĩa với缺点, đối lập với长处 (ưu điểm).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 31,
+      "sectionId": "new_hsk__3__topic__31__ban-tinh",
+      "sectionSlug": "ban-tinh",
       "sectionTitle": "Bản tính",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/ban-tinh/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/ban-tinh/",
+      "orderInSection": 8
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

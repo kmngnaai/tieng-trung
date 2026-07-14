@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:急忙",
   "type": "word",
   "word": "急忙",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jí máng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Vội vàng, hối hả, gấp gáp",
+      "meaningShortVi": "Vội vàng",
+      "meaningFullVi": "Vội vàng, hối hả, gấp gáp",
       "partOfSpeech": "tính từ / trạng từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Vội vàng",
   "wordType": "tính từ / trạng từ",
   "wordTypes": [
     "tính từ / trạng từ"
   ],
-  "usageNotes": [
-    "Thường bổ nghĩa cho động từ, mô tả hành động được thực hiện một cách vội vàng vì lý do nào đó (thiếu thời gian, tình huống khẩn cấp)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,21 +46,26 @@
     "collocations": [
       {
         "text": "急忙忙",
-        "pinyin": "",
+        "pinyin": "jí máng máng",
         "meaningVi": "vội vã",
+        "meaningFullVi": "vội vã",
         "target": "急忙",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "急忙离开",
-        "pinyin": "",
+        "pinyin": "jí máng lí kāi",
         "meaningVi": "vội vàng rời đi",
+        "meaningFullVi": "vội vàng rời đi",
         "target": "急忙",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +75,8 @@
       "meaningVi": "anh ấy vội vàng chạy ra ngoài",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "急忙",
@@ -80,7 +85,8 @@
       "meaningVi": "vội vàng đi đường",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "急忙",
@@ -89,16 +95,17 @@
       "meaningVi": "nghe tin tức, anh ấy vội vàng赶 đến",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 急忙",
-      "syntax": "tính từ / trạng từ",
-      "matchedExample": "Thường bổ nghĩa cho động từ, mô tả hành động được thực hiện một cách vội vàng vì lý do nào đó (thiếu thời gian, tình huống khẩn cấp).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 急忙",
+      "partOfSpeech": "tính từ / trạng từ",
+      "usageNoteVi": "Thường bổ nghĩa cho động từ, mô tả hành động được thực hiện một cách vội vàng vì lý do nào đó (thiếu thời gian, tình huống khẩn cấp).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -113,7 +120,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

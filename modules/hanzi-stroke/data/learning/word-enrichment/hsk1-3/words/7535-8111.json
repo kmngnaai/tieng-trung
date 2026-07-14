@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:电脑",
   "type": "word",
   "word": "电脑",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "diàn nǎo",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "máy tính (điện não)",
+      "meaningShortVi": "máy tính (điện não)",
+      "meaningFullVi": "máy tính (điện não)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "máy tính (điện não)",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Danh từ, chỉ máy tính cá nhân. Lượng từ: 台 (一台电脑). Phân biệt với 计算机 (thường dùng trong kỹ thuật, máy tính chuyên dụng)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 电 (điện) + 脑 (não, óc) → não chạy bằng điện, máy tính."
   ],
   "hsk": {
     "levels": [
@@ -55,35 +52,44 @@
         "text": "电脑桌",
         "pinyin": "diànnǎozhuō",
         "meaningVi": "bàn máy tính",
+        "meaningFullVi": "bàn máy tính",
         "target": "电脑",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "笔记本电脑",
         "pinyin": "bǐjìběn diànnǎo",
         "meaningVi": "máy tính xách tay",
+        "meaningFullVi": "máy tính xách tay",
         "target": "电脑",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "电脑游戏",
         "pinyin": "diànnǎo yóuxì",
         "meaningVi": "trò chơi trên máy tính",
+        "meaningFullVi": "trò chơi trên máy tính",
         "target": "电脑",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "台式电脑",
         "pinyin": "táishì diànnǎo",
         "meaningVi": "máy tính bàn",
+        "meaningFullVi": "máy tính bàn",
         "target": "电脑",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -93,7 +99,8 @@
       "meaningVi": "Tôi dùng máy tính để làm việc",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "电脑",
@@ -102,7 +109,8 @@
       "meaningVi": "Máy tính của tôi hỏng rồi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "电脑",
@@ -111,7 +119,8 @@
       "meaningVi": "Làm ơn bật máy tính lên",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "电脑",
@@ -120,23 +129,17 @@
       "meaningVi": "Cái máy tính này rất nhanh",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 电脑",
-      "syntax": "compound-semantic",
-      "matchedExample": "Danh từ, chỉ máy tính cá nhân. Lượng từ: 台 (一台电脑). Phân biệt với 计算机 (thường dùng trong kỹ thuật, máy tính chuyên dụng).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 电 (điện) + 脑 (não, óc) → não chạy bằng điện, máy tính.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 电脑",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Danh từ, chỉ máy tính cá nhân. Lượng từ: 台 (一台电脑). Phân biệt với 计算机 (thường dùng trong kỹ thuật, máy tính chuyên dụng).",
+      "explanationVi": "Ghép nghĩa: 电 (điện) + 脑 (não, óc) → não chạy bằng điện, máy tính.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -147,31 +150,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 10,
+      "sectionId": "hsk__1__lesson__10__bai-10-toi-co-the-ngoi-day-khong",
+      "sectionSlug": "bai-10-toi-co-the-ngoi-day-khong",
       "sectionTitle": "Tôi có thể ngồi đây không?",
       "sectionTitleZh": "我能坐这儿吗",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-10-toi-co-the-ngoi-day-khong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-10-toi-co-the-ngoi-day-khong/",
+      "orderInSection": 3
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__1__lesson__5__bai-5-i-m-off-today",
+      "sectionSlug": "bai-5-i-m-off-today",
       "sectionTitle": "Hôm nay tôi nghỉ",
       "sectionTitleZh": "今天我休息",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-5-i-m-off-today/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-5-i-m-off-today/",
+      "orderInSection": 2
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 23,
+      "sectionId": "new_hsk__1__topic__23__danh-tu",
+      "sectionSlug": "danh-tu",
       "sectionTitle": "Danh từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/danh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/danh-tu/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -187,7 +205,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

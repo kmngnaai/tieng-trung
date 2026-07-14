@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:算盘",
   "type": "word",
   "word": "算盘",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "suàn pán",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bàn tính",
+      "meaningShortVi": "bàn tính",
+      "meaningFullVi": "bàn tính",
       "partOfSpeech": "compound",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bàn tính",
   "wordType": "compound",
   "wordTypes": [
     "compound"
   ],
-  "usageNotes": [
-    "Từ vựng Hán 算盘 (suàn*pán). Hán-Việt: toán bàn."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,26 +43,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "算盘",
-      "chinese": "算盘 — bàn tính",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 算盘",
-      "syntax": "compound",
-      "matchedExample": "Từ vựng Hán 算盘 (suàn*pán). Hán-Việt: toán bàn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 算盘",
+      "partOfSpeech": "compound",
+      "usageNoteVi": "Từ vựng Hán 算盘 (suàn*pán). Hán-Việt: toán bàn.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -78,7 +68,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

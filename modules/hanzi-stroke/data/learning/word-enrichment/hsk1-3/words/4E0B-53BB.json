@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:下去",
   "type": "word",
   "word": "下去",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "xià qu",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "xuống, đi xuống",
+      "meaningShortVi": "xuống",
+      "meaningFullVi": "xuống, đi xuống",
       "partOfSpeech": "động từ hướng",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "xuống",
   "wordType": "động từ hướng",
   "wordTypes": [
     "động từ hướng"
   ],
-  "usageNotes": [
-    "下去 (xuống) chỉ hành động di chuyển từ cao xuống thấp theo hướng đi xa người nói."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -52,19 +51,24 @@
         "text": "走下去",
         "pinyin": "zǒu xiàqu",
         "meaningVi": "đi xuống",
+        "meaningFullVi": "đi xuống",
         "target": "下去",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "跑下去",
         "pinyin": "pǎo xiàqu",
         "meaningVi": "chạy xuống",
+        "meaningFullVi": "chạy xuống",
         "target": "下去",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Làm ơn đi xuống.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "下去",
@@ -83,16 +88,17 @@
       "meaningVi": "Anh ấy đã chạy xuống rồi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 下去",
-      "syntax": "động từ hướng",
-      "matchedExample": "下去 (xuống) chỉ hành động di chuyển từ cao xuống thấp theo hướng đi xa người nói.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 下去",
+      "partOfSpeech": "động từ hướng",
+      "usageNoteVi": "下去 (xuống) chỉ hành động di chuyển từ cao xuống thấp theo hướng đi xa người nói.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,21 +109,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__2__lesson__5__bai-5-visiting-a-chinese-friend-s-home-for-the-first-time",
+      "sectionSlug": "bai-5-visiting-a-chinese-friend-s-home-for-the-first-time",
       "sectionTitle": "Lần đầu đến nhà bạn người Trung Quốc",
       "sectionTitleZh": "第一次去中国朋友家",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-5-visiting-a-chinese-friend-s-home-for-the-first-time/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-5-visiting-a-chinese-friend-s-home-for-the-first-time/",
+      "orderInSection": 8
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__3__topic__14__van-chuyen-va-di-chuyen",
+      "sectionSlug": "van-chuyen-va-di-chuyen",
       "sectionTitle": "Vận chuyển và di chuyển",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/van-chuyen-va-di-chuyen/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/van-chuyen-va-di-chuyen/",
+      "orderInSection": 33
     }
   ],
   "sources": [
@@ -133,7 +149,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

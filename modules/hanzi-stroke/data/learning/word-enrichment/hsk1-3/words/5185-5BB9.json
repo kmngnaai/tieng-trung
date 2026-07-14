@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:内容",
   "type": "word",
   "word": "内容",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "nèi róng",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "nội dung",
+      "meaningShortVi": "nội dung",
+      "meaningFullVi": "nội dung",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "nội dung",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "指事物内部所含的实质或意义。常用于演讲、文章、课程、电影等。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -50,49 +49,46 @@
     "collocations": [
       {
         "text": "主要内容",
-        "pinyin": "",
+        "pinyin": "zhǔ yào nèi róng",
         "meaningVi": "nội dung chính",
+        "meaningFullVi": "nội dung chính",
         "target": "内容",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "内容丰富",
-        "pinyin": "",
+        "pinyin": "nèi róng fēng fù",
         "meaningVi": "nội dung phong phú",
+        "meaningFullVi": "nội dung phong phú",
         "target": "内容",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "内容",
-      "chinese": "这本书的内容很有趣。",
-      "pinyin": "",
-      "meaningVi": "Nội dung cuốn sách này rất thú vị.",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "内容",
       "chinese": "请告诉我会议的内容。",
-      "pinyin": "",
+      "pinyin": "qǐng gào su wǒ huì yì de nèi róng。",
       "meaningVi": "Hãy cho tôi biết nội dung cuộc họp.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 内容",
-      "syntax": "danh từ",
-      "matchedExample": "指事物内部所含的实质或意义。常用于演讲、文章、课程、电影等。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 内容",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "指事物内部所含的实质或意义。常用于演讲、文章、课程、电影等。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +99,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__3__topic__18__thong-tin-va-phuong-tien",
+      "sectionSlug": "thong-tin-va-phuong-tien",
       "sectionTitle": "Thông tin và phương tiện",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -123,7 +124,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

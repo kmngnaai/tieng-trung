@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:衬衫",
   "type": "word",
   "word": "衬衫",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "chèn shān",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "áo sơ mi",
+      "meaningShortVi": "áo sơ mi",
+      "meaningFullVi": "áo sơ mi",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "áo sơ mi",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Từ đồng nghĩa với 衬衣, đều chỉ áo sơ mi."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -48,52 +47,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "衬衫领子",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "衬衫",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "男式衬衫",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "衬衫",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "衬衫",
-      "chinese": "这件衬衫很合适。",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "衬衫",
-      "chinese": "白衬衫",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 衬衫",
-      "syntax": "danh từ",
-      "matchedExample": "Từ đồng nghĩa với 衬衣, đều chỉ áo sơ mi.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 衬衫",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Từ đồng nghĩa với 衬衣, đều chỉ áo sơ mi.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,21 +68,31 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 3,
+      "sectionId": "hsk__3__lesson__3__bai-3-tren-ban-de-nhieu-do-uong",
+      "sectionSlug": "bai-3-tren-ban-de-nhieu-do-uong",
       "sectionTitle": "Trên bàn để nhiều đồ uống.",
       "sectionTitleZh": "桌子上放着很多饮料",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-3-tren-ban-de-nhieu-do-uong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-3-tren-ban-de-nhieu-do-uong/",
+      "orderInSection": 7
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 34,
+      "sectionId": "new_hsk__3__topic__34__quan-ao-va-phu-kien",
+      "sectionSlug": "quan-ao-va-phu-kien",
       "sectionTitle": "Quần áo và phụ kiện",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/quan-ao-va-phu-kien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/quan-ao-va-phu-kien/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -134,7 +108,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

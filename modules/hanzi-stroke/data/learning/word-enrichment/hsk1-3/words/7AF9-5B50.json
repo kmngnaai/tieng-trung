@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:竹子",
   "type": "word",
   "word": "竹子",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhú zi",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cây tre, trúc",
+      "meaningShortVi": "cây tre",
+      "meaningFullVi": "cây tre, trúc",
       "partOfSpeech": "danh từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cây tre",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Tre trúc. Trong tiếng Việt, 'tre' phổ biến hơn. Trúc là loài tre thân nhỏ, dùng làm đồ thủ công."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -49,30 +48,17 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "种竹子",
-        "pinyin": "",
-        "meaningVi": "",
+        "text": "竹子",
+        "pinyin": "zhú zi",
+        "meaningVi": "cây tre",
+        "meaningFullVi": "cây tre, trúc",
         "target": "竹子",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "竹筷子",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "竹子",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "竹子林",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "竹子",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -82,7 +68,8 @@
       "meaningVi": "Trong sân trồng nhiều tre.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "竹子",
@@ -91,7 +78,8 @@
       "meaningVi": "Tre trúc là một phần văn hóa truyền thống Trung Quốc.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "竹子",
@@ -100,16 +88,17 @@
       "meaningVi": "Gấu trúc thích ăn tre.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 竹子",
-      "syntax": "danh từ",
-      "matchedExample": "Tre trúc. Trong tiếng Việt, 'tre' phổ biến hơn. Trúc là loài tre thân nhỏ, dùng làm đồ thủ công.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 竹子",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Tre trúc. Trong tiếng Việt, 'tre' phổ biến hơn. Trúc là loài tre thân nhỏ, dùng làm đồ thủ công.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -120,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 16,
+      "sectionId": "new_hsk__3__lesson__16__bai-16-i-heard-that-some-pandas-have-gone-abroad",
+      "sectionSlug": "bai-16-i-heard-that-some-pandas-have-gone-abroad",
       "sectionTitle": "Tôi nghe nói có vài con gấu trúc đã ra nước ngoài",
       "sectionTitleZh": "我听说有的熊猫出国了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-16-i-heard-that-some-pandas-have-gone-abroad/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-16-i-heard-that-some-pandas-have-gone-abroad/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -140,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

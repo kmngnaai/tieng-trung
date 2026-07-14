@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:上边",
   "type": "word",
   "word": "上边",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "shàng biān",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bên trên, phía trên",
+      "meaningShortVi": "bên trên",
+      "meaningFullVi": "bên trên, phía trên",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bên trên",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Thường dùng trong khẩu ngữ miền Bắc. Miền Nam thích用 上面 hơn. Đôi khi dùng để chỉ cấp bậc cao hơn."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 上 (ở trên) + 边 (bên, cạnh) = phía bên trên."
   ],
   "hsk": {
     "levels": [
@@ -55,19 +52,24 @@
         "text": "上边的人",
         "pinyin": "shàngbiān de rén",
         "meaningVi": "người ở bên trên",
+        "meaningFullVi": "người ở bên trên",
         "target": "上边",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "上边一层",
         "pinyin": "shàngbiān yī céng",
         "meaningVi": "tầng bên trên",
+        "meaningFullVi": "tầng bên trên",
         "target": "上边",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -77,7 +79,8 @@
       "meaningVi": "Quyển sách ở bên trên",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "上边",
@@ -86,23 +89,17 @@
       "meaningVi": "Xin hãy đặt đồ lên bên trên",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 上边",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường dùng trong khẩu ngữ miền Bắc. Miền Nam thích用 上面 hơn. Đôi khi dùng để chỉ cấp bậc cao hơn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 上 (ở trên) + 边 (bên, cạnh) = phía bên trên.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 上边",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường dùng trong khẩu ngữ miền Bắc. Miền Nam thích用 上面 hơn. Đôi khi dùng để chỉ cấp bậc cao hơn.",
+      "explanationVi": "Ghép nghĩa: 上 (ở trên) + 边 (bên, cạnh) = phía bên trên.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -113,11 +110,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__1__topic__17__dia-diem",
+      "sectionSlug": "dia-diem",
       "sectionTitle": "Địa điểm",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dia-diem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dia-diem/",
+      "orderInSection": 13
     }
   ],
   "sources": [
@@ -138,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

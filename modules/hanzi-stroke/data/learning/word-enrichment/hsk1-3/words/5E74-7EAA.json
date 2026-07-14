@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:年纪",
   "type": "word",
   "word": "年纪",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "nián jì",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Tuổi tác, số tuổi",
+      "meaningShortVi": "Tuổi tác",
+      "meaningFullVi": "Tuổi tác, số tuổi",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Tuổi tác",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Dùng để hỏi hoặc nói về tuổi của người, lịch sự hơn '多大' khi nói với người lớn tuổi."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,13 +49,11 @@
       {
         "word": "上年纪",
         "pinyin": "shàng nián ji",
-        "meaningVi": "có tuổi, lớn tuổi",
+        "meaningVi": "có tuổi",
+        "meaningFullVi": "có tuổi, lớn tuổi",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          3
-        ],
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 3",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
@@ -64,27 +61,24 @@
         "text": "年纪大",
         "pinyin": "niánjì dà",
         "meaningVi": "lớn tuổi",
+        "meaningFullVi": "lớn tuổi",
         "target": "年纪",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "年纪轻",
         "pinyin": "niánjì qīng",
         "meaningVi": "trẻ tuổi",
+        "meaningFullVi": "trẻ tuổi",
         "target": "年纪",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "同龄",
-        "pinyin": "tónglíng",
-        "meaningVi": "cùng tuổi",
-        "target": "年纪",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -94,7 +88,8 @@
       "meaningVi": "Năm nay bạn bao nhiêu tuổi?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "年纪",
@@ -103,7 +98,8 @@
       "meaningVi": "Ông ấy đã lớn tuổi, cần nghỉ ngơi.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "年纪",
@@ -112,16 +108,17 @@
       "meaningVi": "Độ tuổi này còn quá nhỏ đối với họ.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 年纪",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng để hỏi hoặc nói về tuổi của người, lịch sự hơn '多大' khi nói với người lớn tuổi.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 年纪",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng để hỏi hoặc nói về tuổi của người, lịch sự hơn '多大' khi nói với người lớn tuổi.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -132,11 +129,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__3__topic__7__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -152,7 +154,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

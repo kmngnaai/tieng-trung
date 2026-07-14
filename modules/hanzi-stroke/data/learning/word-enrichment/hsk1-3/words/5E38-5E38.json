@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:常常",
   "type": "word",
   "word": "常常",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "cháng cháng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thường xuyên, hay; nhiều lần",
+      "meaningShortVi": "thường xuyên",
+      "meaningFullVi": "thường xuyên, hay; nhiều lần",
       "partOfSpeech": "reduplication",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thường xuyên",
   "wordType": "reduplication",
   "wordTypes": [
     "reduplication"
-  ],
-  "usageNotes": [
-    "Dùng để nhấn mạnh tần suất cao, mạnh hơn '常' đơn. Có thể thay thế bằng '经常'. Lưu ý thanh điệu: cháng (thanh 2) lặp 2 lần, trong câu nói nhanh có thể đọc nhẹ thanh thứ hai."
-  ],
-  "wordTypeExplanations": [
-    "Từ lặp: 常 + 常. Lặp từ để nhấn mạnh tính thường xuyên hơn '常' đơn. Không thêm nghĩa mới, chỉ intensify (nhấn mạnh). Đây là lặp từ thuần túy."
   ],
   "hsk": {
     "levels": [
@@ -54,27 +51,34 @@
         "text": "常常去",
         "pinyin": "chángcháng qù",
         "meaningVi": "thường đi",
+        "meaningFullVi": "thường đi",
         "target": "常常",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "常常做",
         "pinyin": "chángcháng zuò",
         "meaningVi": "thường làm",
+        "meaningFullVi": "thường làm",
         "target": "常常",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "常常说",
         "pinyin": "chángcháng shuō",
         "meaningVi": "thường nói",
+        "meaningFullVi": "thường nói",
         "target": "常常",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -84,7 +88,8 @@
       "meaningVi": "Tôi thường đi đó",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "常常",
@@ -93,7 +98,8 @@
       "meaningVi": "Anh ấy hay ăn cơm cùng tôi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "常常",
@@ -102,7 +108,8 @@
       "meaningVi": "Thường xuyên mưa",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "常常",
@@ -111,7 +118,8 @@
       "meaningVi": "Tôi thường nhớ nhà",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "常常",
@@ -120,23 +128,17 @@
       "meaningVi": "Thường có tình huống này",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 常常",
-      "syntax": "reduplication",
-      "matchedExample": "Dùng để nhấn mạnh tần suất cao, mạnh hơn '常' đơn. Có thể thay thế bằng '经常'. Lưu ý thanh điệu: cháng (thanh 2) lặp 2 lần, trong câu nói nhanh có thể đọc nhẹ thanh thứ hai.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "reduplication",
-      "matchedExample": "Từ lặp: 常 + 常. Lặp từ để nhấn mạnh tính thường xuyên hơn '常' đơn. Không thêm nghĩa mới, chỉ intensify (nhấn mạnh). Đây là lặp từ thuần túy.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 常常",
+      "partOfSpeech": "reduplication",
+      "usageNoteVi": "Dùng để nhấn mạnh tần suất cao, mạnh hơn '常' đơn. Có thể thay thế bằng '经常'. Lưu ý thanh điệu: cháng (thanh 2) lặp 2 lần, trong câu nói nhanh có thể đọc nhẹ thanh thứ hai.",
+      "explanationVi": "Từ lặp: 常 + 常. Lặp từ để nhấn mạnh tính thường xuyên hơn '常' đơn. Không thêm nghĩa mới, chỉ intensify (nhấn mạnh). Đây là lặp từ thuần túy.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -147,21 +149,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 14,
+      "sectionId": "new_hsk__1__topic__14__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/thoi-gian/",
+      "orderInSection": 6
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__3__lesson__12__bai-12-the-weather-changes-rapidly-in-this-season",
+      "sectionSlug": "bai-12-the-weather-changes-rapidly-in-this-season",
       "sectionTitle": "Mùa này thời tiết thay đổi rất nhanh",
       "sectionTitleZh": "这个季节天气变化很快",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-12-the-weather-changes-rapidly-in-this-season/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-12-the-weather-changes-rapidly-in-this-season/",
+      "orderInSection": 19
     }
   ],
   "sources": [
@@ -177,7 +189,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

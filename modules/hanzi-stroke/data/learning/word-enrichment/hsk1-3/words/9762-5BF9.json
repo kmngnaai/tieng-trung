@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:面对",
   "type": "word",
   "word": "面对",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "miàn duì",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đối mặt, đối diện",
+      "meaningShortVi": "đối mặt",
+      "meaningFullVi": "đối mặt, đối diện",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đối mặt",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Có thể là đối mặt (khó khăn, thử thách) hoặc hướng mặt về phía (vị trí)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "面对困难",
-        "pinyin": "",
+        "pinyin": "miàn duì kùn nan",
         "meaningVi": "đối mặt khó khăn",
+        "meaningFullVi": "đối mặt khó khăn",
         "target": "面对",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "面对现实",
-        "pinyin": "",
+        "pinyin": "miàn duì xiàn shí",
         "meaningVi": "đối mặt với hiện thực",
+        "meaningFullVi": "đối mặt với hiện thực",
         "target": "面对",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "面对",
-      "chinese": "我们要勇敢面对困难。",
-      "pinyin": "",
-      "meaningVi": "Chúng ta phải dũng cảm đối mặt với khó khăn.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "面对",
       "chinese": "房子面对着大海。",
-      "pinyin": "",
+      "pinyin": "fáng zi miàn duì zhe dà hǎi。",
       "meaningVi": "Ngôi nhà hướng ra biển.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 面对",
-      "syntax": "động từ",
-      "matchedExample": "Có thể là đối mặt (khó khăn, thử thách) hoặc hướng mặt về phía (vị trí).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 面对",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Có thể là đối mặt (khó khăn, thử thách) hoặc hướng mặt về phía (vị trí).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 25,
+      "sectionId": "new_hsk__3__topic__25__truong-hop",
+      "sectionSlug": "truong-hop",
       "sectionTitle": "Trường hợp",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/truong-hop/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/truong-hop/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

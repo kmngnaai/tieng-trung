@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:另外",
   "type": "word",
   "word": "另外",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "lìng wài",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ngoài ra; thêm nữa; riêng khác",
+      "meaningShortVi": "ngoài ra",
+      "meaningFullVi": "ngoài ra; thêm nữa; riêng khác",
       "partOfSpeech": "trạng từ / giới từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ngoài ra",
   "wordType": "trạng từ / giới từ",
   "wordTypes": [
     "trạng từ / giới từ"
   ],
-  "usageNotes": [
-    "Dùng để thêm thông tin mới hoặc chỉ vật khác biệt. Có thể đặt đầu câu để chuyển chủ đề."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -52,19 +51,24 @@
         "text": "另外还有",
         "pinyin": "lìngwài háiyǒu",
         "meaningVi": "ngoài ra còn có",
+        "meaningFullVi": "ngoài ra còn có",
         "target": "另外",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "另外的",
         "pinyin": "lìngwài de",
-        "meaningVi": "khác, cái khác",
+        "meaningVi": "khác",
+        "meaningFullVi": "khác, cái khác",
         "target": "另外",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Ngoài ra, tôi còn có một câu hỏi nữa.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "另外",
@@ -83,16 +88,17 @@
       "meaningVi": "Chúng ta cần tìm một thời gian khác để gặp nhau.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 另外",
-      "syntax": "trạng từ / giới từ",
-      "matchedExample": "Dùng để thêm thông tin mới hoặc chỉ vật khác biệt. Có thể đặt đầu câu để chuyển chủ đề.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 另外",
+      "partOfSpeech": "trạng từ / giới từ",
+      "usageNoteVi": "Dùng để thêm thông tin mới hoặc chỉ vật khác biệt. Có thể đặt đầu câu để chuyển chủ đề.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 36,
+      "sectionId": "new_hsk__3__topic__36__tu-chuc-nang-ii",
+      "sectionSlug": "tu-chuc-nang-ii",
       "sectionTitle": "Từ chức năng II",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-ii/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-chuc-nang-ii/",
+      "orderInSection": 19
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

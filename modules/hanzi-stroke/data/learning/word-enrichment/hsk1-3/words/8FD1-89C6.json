@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:近视",
   "type": "word",
   "word": "近视",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jìn shì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cận thị",
+      "meaningShortVi": "cận thị",
+      "meaningFullVi": "cận thị",
       "partOfSpeech": "compound",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cận thị",
   "wordType": "compound",
   "wordTypes": [
     "compound"
   ],
-  "usageNotes": [
-    "Từ vựng Hán 近视 (jìn*shì). Hán-Việt: cận thị."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,26 +43,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "近视",
-      "chinese": "近视 — cận thị",
-      "pinyin": "",
-      "meaningVi": "",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 近视",
-      "syntax": "compound",
-      "matchedExample": "Từ vựng Hán 近视 (jìn*shì). Hán-Việt: cận thị.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 近视",
+      "partOfSpeech": "compound",
+      "usageNoteVi": "Từ vựng Hán 近视 (jìn*shì). Hán-Việt: cận thị.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -78,7 +68,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

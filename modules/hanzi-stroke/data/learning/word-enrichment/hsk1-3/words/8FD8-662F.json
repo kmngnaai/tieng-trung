@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:还是",
   "type": "word",
   "word": "还是",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "hái shi",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Hoặc (trong câu hỏi lựa chọn) - dùng để hỏi người nghe chọn một trong hai phương án.",
+      "meaningShortVi": "Hoặc (trong câu hỏi lựa chọn) - dùng để hỏi người nghe chọn một trong hai phương án",
+      "meaningFullVi": "Hoặc (trong câu hỏi lựa chọn) - dùng để hỏi người nghe chọn một trong hai phương án.",
       "partOfSpeech": "other",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Hoặc (trong câu hỏi lựa chọn) - dùng để hỏi người nghe chọn một trong hai phương án",
   "wordType": "other",
   "wordTypes": [
     "other"
-  ],
-  "usageNotes": [
-    "还是 dùng trong câu hỏi để đưa ra lựa chọn, khác với 或者 (huòzhě) chỉ dùng trong câu khẳng định. Ví dụ: 你喝茶还是咖啡？(Câu hỏi có dùng 还是) vs 你喝茶或者咖啡都可以 (Câu khẳng định dùng 或者)."
-  ],
-  "wordTypeExplanations": [
-    "还是 là liên từ dùng trong câu hỏi lựa chọn, khác với 或者 dùng trong câu khẳng định."
   ],
   "hsk": {
     "levels": [
@@ -53,30 +50,17 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "或者",
-        "pinyin": "huòzhě",
-        "meaningVi": "hoặc (trong câu khẳng định)",
-        "target": "还是",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "要么...要么...",
-        "pinyin": "yàome...yàome...",
-        "meaningVi": "hoặc là... hoặc là...",
-        "target": "还是",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "还是...好",
         "pinyin": "háishì...hǎo",
-        "meaningVi": "thà... còn tốt hơn",
+        "meaningVi": "thà",
+        "meaningFullVi": "thà... còn tốt hơn",
         "target": "还是",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -86,7 +70,8 @@
       "meaningVi": "Bạn thích cà phê hay trà?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "还是",
@@ -95,7 +80,8 @@
       "meaningVi": "Chúng ta đi nhà hàng hay ăn ở nhà?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "还是",
@@ -104,23 +90,17 @@
       "meaningVi": "Cốc lớn hay cốc nhỏ?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 还是",
-      "syntax": "other",
-      "matchedExample": "还是 dùng trong câu hỏi để đưa ra lựa chọn, khác với 或者 (huòzhě) chỉ dùng trong câu khẳng định. Ví dụ: 你喝茶还是咖啡？(Câu hỏi có dùng 还是) vs 你喝茶或者咖啡都可以 (Câu khẳng định dùng 或者).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "other",
-      "matchedExample": "还是 là liên từ dùng trong câu hỏi lựa chọn, khác với 或者 dùng trong câu khẳng định.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 还是",
+      "partOfSpeech": "other",
+      "usageNoteVi": "还是 dùng trong câu hỏi để đưa ra lựa chọn, khác với 或者 (huòzhě) chỉ dùng trong câu khẳng định. Ví dụ: 你喝茶还是咖啡？(Câu hỏi có dùng 还是) vs 你喝茶或者咖啡都可以 (Câu khẳng định dùng 或者).",
+      "explanationVi": "还是 là liên từ dùng trong câu hỏi lựa chọn, khác với 或者 dùng trong câu khẳng định.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -131,41 +111,61 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__1__topic__13__tu-chuc-nang",
+      "sectionSlug": "tu-chuc-nang",
       "sectionTitle": "Từ chức năng",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/tu-chuc-nang/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/tu-chuc-nang/",
+      "orderInSection": 14
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 2,
+      "sectionId": "new_hsk__2__lesson__2__bai-2-let-s-take-a-taxi-to-peking-university-instead",
+      "sectionSlug": "bai-2-let-s-take-a-taxi-to-peking-university-instead",
       "sectionTitle": "Hay là bắt taxi đến Đại học Bắc Kinh đi",
       "sectionTitleZh": "还是打车去北大吧",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-2-let-s-take-a-taxi-to-peking-university-instead/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-2-let-s-take-a-taxi-to-peking-university-instead/",
+      "orderInSection": 6
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__2__lesson__10__bai-10-the-exam-is-coming",
+      "sectionSlug": "bai-10-the-exam-is-coming",
       "sectionTitle": "Sắp thi rồi",
       "sectionTitleZh": "就要考试了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-10-the-exam-is-coming/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-10-the-exam-is-coming/",
+      "orderInSection": 11
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 3,
+      "sectionId": "hsk__3__lesson__3__bai-3-tren-ban-de-nhieu-do-uong",
+      "sectionSlug": "bai-3-tren-ban-de-nhieu-do-uong",
       "sectionTitle": "Trên bàn để nhiều đồ uống.",
       "sectionTitleZh": "桌子上放着很多饮料",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-3-tren-ban-de-nhieu-do-uong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-3-tren-ban-de-nhieu-do-uong/",
+      "orderInSection": 1
     }
   ],
   "sources": [
@@ -186,7 +186,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

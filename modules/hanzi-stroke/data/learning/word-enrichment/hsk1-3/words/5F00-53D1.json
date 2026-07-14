@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:开发",
   "type": "word",
   "word": "开发",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "kāi fā",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phát triển, khai phá; khai thác, xây dựng và mở rộng một lĩnh vực hoặc tài nguyên",
+      "meaningShortVi": "phát triển",
+      "meaningFullVi": "phát triển, khai phá; khai thác, xây dựng và mở rộng một lĩnh vực hoặc tài nguyên",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phát triển",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Có thể dùng cho sản phẩm, công nghệ, khu vực, thị trường, tài nguyên. Trong văn kinh doanh, 开发 còn mang nghĩa 'đầu tư'. Từ liên quan: 发展 'phát triển', 研发 'nghiên cứu và phát triển', 开拓 'khai phá'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "开发软件",
         "pinyin": "kāifā ruǎnjiàn",
         "meaningVi": "phát triển phần mềm",
+        "meaningFullVi": "phát triển phần mềm",
         "target": "开发",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "开发市场",
         "pinyin": "kāifā shìchǎng",
         "meaningVi": "khai phá thị trường",
+        "meaningFullVi": "khai phá thị trường",
         "target": "开发",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Công ty đang phát triển sản phẩm mới.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "开发",
@@ -82,16 +87,17 @@
       "meaningVi": "Khu vực này cần được phát triển thêm.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 开发",
-      "syntax": "động từ",
-      "matchedExample": "Có thể dùng cho sản phẩm, công nghệ, khu vực, thị trường, tài nguyên. Trong văn kinh doanh, 开发 còn mang nghĩa 'đầu tư'. Từ liên quan: 发展 'phát triển', 研发 'nghiên cứu và phát triển', 开拓 'khai phá'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 开发",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Có thể dùng cho sản phẩm, công nghệ, khu vực, thị trường, tài nguyên. Trong văn kinh doanh, 开发 còn mang nghĩa 'đầu tư'. Từ liên quan: 发展 'phát triển', 研发 'nghiên cứu và phát triển', 开拓 'khai phá'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__topic__17__nhung-thay-doi",
+      "sectionSlug": "nhung-thay-doi",
       "sectionTitle": "Những thay đổi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/",
+      "orderInSection": 27
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:坚决",
   "type": "word",
   "word": "坚决",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiān jué",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "quyết tâm, dứt khoát; kiên quyết",
+      "meaningShortVi": "quyết tâm",
+      "meaningFullVi": "quyết tâm, dứt khoát; kiên quyết",
       "partOfSpeech": "tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "quyết tâm",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "Jiān jué dùng cho thái độ dứt khoát, không lay chuyển. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "坚决反对",
-        "pinyin": "",
+        "pinyin": "jiān jué fǎn duì",
         "meaningVi": "kiên quyết phản đối",
+        "meaningFullVi": "kiên quyết phản đối",
         "target": "坚决",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "坚决支持",
-        "pinyin": "",
+        "pinyin": "jiān jué zhī chí",
         "meaningVi": "quyết tâm ủng hộ",
+        "meaningFullVi": "quyết tâm ủng hộ",
         "target": "坚决",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "坚决",
       "chinese": "我们坚决反对这种行为。",
-      "pinyin": "",
+      "pinyin": "wǒ men jiān jué fǎn duì zhè zhǒng xíng wéi。",
       "meaningVi": "Chúng ta kiên quyết phản đối hành vi này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "坚决",
-      "chinese": "他坚决不肯放弃。",
-      "pinyin": "",
-      "meaningVi": "Anh ấy quyết tâm không chịu từ bỏ.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 坚决",
-      "syntax": "tính từ",
-      "matchedExample": "Jiān jué dùng cho thái độ dứt khoát, không lay chuyển. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 坚决",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "Jiān jué dùng cho thái độ dứt khoát, không lay chuyển. Trang trọng, thường dùng trong văn viết hoặc văn nói trang trọng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 32,
+      "sectionId": "new_hsk__3__topic__32__dac-diem",
+      "sectionSlug": "dac-diem",
       "sectionTitle": "Đặc điểm",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dac-diem/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

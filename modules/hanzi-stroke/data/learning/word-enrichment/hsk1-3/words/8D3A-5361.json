@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:贺卡",
   "type": "word",
   "word": "贺卡",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "hè kǎ",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thiệp chúc mừng;卡片 chúc phúc",
+      "meaningShortVi": "thiệp chúc mừng",
+      "meaningFullVi": "thiệp chúc mừng;卡片 chúc phúc",
       "partOfSpeech": "danh từ",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thiệp chúc mừng",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "贺卡 là danh từ chỉ thiệp chúc mừng. Hán-Việt 'hạ' (贺 - chúc mừng) + 'ca' (卡 - thẻ, mượn từ card). Dùng trong các dịp lễ, sinh nhật, năm mới. Có thể viết tay hoặc in sẵn."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -44,7 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -54,7 +54,8 @@
       "meaningVi": "Tôi gửi cho bạn một tấm thiệp sinh nhật.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "贺卡",
@@ -63,7 +64,8 @@
       "meaningVi": "Vào dịp Giáng sinh, người ta gửi thiệp cho nhau.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "贺卡",
@@ -72,16 +74,17 @@
       "meaningVi": "Tấm thiệp này viết rất đẹp.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 贺卡",
-      "syntax": "danh từ",
-      "matchedExample": "贺卡 là danh từ chỉ thiệp chúc mừng. Hán-Việt 'hạ' (贺 - chúc mừng) + 'ca' (卡 - thẻ, mượn từ card). Dùng trong các dịp lễ, sinh nhật, năm mới. Có thể viết tay hoặc in sẵn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 贺卡",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "贺卡 là danh từ chỉ thiệp chúc mừng. Hán-Việt 'hạ' (贺 - chúc mừng) + 'ca' (卡 - thẻ, mượn từ card). Dùng trong các dịp lễ, sinh nhật, năm mới. Có thể viết tay hoặc in sẵn.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -96,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

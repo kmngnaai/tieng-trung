@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:酒水",
   "type": "word",
   "word": "酒水",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "jiǔ shuǐ",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đồ uống (tổng hợp cả có cồn và không cồn); nước giải khát trong bữa tiệc hoặc nhà hàng",
+      "meaningShortVi": "đồ uống (tổng hợp cả có cồn và không cồn)",
+      "meaningFullVi": "đồ uống (tổng hợp cả có cồn và không cồn); nước giải khát trong bữa tiệc hoặc nhà hàng",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đồ uống (tổng hợp cả có cồn và không cồn)",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "酒水 trong ngữ cảnh nhà hàng/sự kiện chỉ cả đồ uống có cồn và không cồn. 自带酒水 (tự mang đồ uống vào) là chính sách phổ biến ở một số nhà hàng Trung Quốc."
-  ],
-  "wordTypeExplanations": [
-    "酒 (tửu — rượu) + 水 (thủy — nước) → 'rượu và nước', chỉ chung các loại đồ uống. existingMeaning 'đồ uống có cồn' hơi hẹp; nghĩa đúng là đồ uống nói chung trong ngữ cảnh nhà hàng/tiệc."
   ],
   "hsk": {
     "levels": [
@@ -51,35 +48,44 @@
         "text": "酒水费",
         "pinyin": "jiǔshuǐ fèi",
         "meaningVi": "tiền đồ uống",
+        "meaningFullVi": "tiền đồ uống",
         "target": "酒水",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "免费酒水",
         "pinyin": "miǎnfèi jiǔshuǐ",
         "meaningVi": "đồ uống miễn phí",
+        "meaningFullVi": "đồ uống miễn phí",
         "target": "酒水",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "酒水单",
         "pinyin": "jiǔshuǐ dān",
         "meaningVi": "thực đơn đồ uống",
+        "meaningFullVi": "thực đơn đồ uống",
         "target": "酒水",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "自带酒水",
         "pinyin": "zìdài jiǔshuǐ",
         "meaningVi": "tự mang đồ uống",
+        "meaningFullVi": "tự mang đồ uống",
         "target": "酒水",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -89,7 +95,8 @@
       "meaningVi": "Chi phí đồ uống trong tiệc cưới rất đắt",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "酒水",
@@ -98,7 +105,8 @@
       "meaningVi": "Nhà hàng này cung cấp đồ uống miễn phí",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "酒水",
@@ -107,7 +115,8 @@
       "meaningVi": "Xin hỏi bạn có những loại đồ uống gì?",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "酒水",
@@ -116,23 +125,17 @@
       "meaningVi": "Không được mang đồ uống vào rạp chiếu phim",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 酒水",
-      "syntax": "compound-semantic",
-      "matchedExample": "酒水 trong ngữ cảnh nhà hàng/sự kiện chỉ cả đồ uống có cồn và không cồn. 自带酒水 (tự mang đồ uống vào) là chính sách phổ biến ở một số nhà hàng Trung Quốc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "酒 (tửu — rượu) + 水 (thủy — nước) → 'rượu và nước', chỉ chung các loại đồ uống. existingMeaning 'đồ uống có cồn' hơi hẹp; nghĩa đúng là đồ uống nói chung trong ngữ cảnh nhà hàng/tiệc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 酒水",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "酒水 trong ngữ cảnh nhà hàng/sự kiện chỉ cả đồ uống có cồn và không cồn. 自带酒水 (tự mang đồ uống vào) là chính sách phổ biến ở một số nhà hàng Trung Quốc.",
+      "explanationVi": "酒 (tửu — rượu) + 水 (thủy — nước) → 'rượu và nước', chỉ chung các loại đồ uống. existingMeaning 'đồ uống có cồn' hơi hẹp; nghĩa đúng là đồ uống nói chung trong ngữ cảnh nhà hàng/tiệc.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -147,7 +150,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

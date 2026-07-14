@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:于是",
   "type": "word",
   "word": "于是",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "yú shì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "sau đó, vì vậy, do đó",
+      "meaningShortVi": "sau đó",
+      "meaningFullVi": "sau đó, vì vậy, do đó",
       "partOfSpeech": "liên từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "sau đó",
   "wordType": "liên từ",
   "wordTypes": [
     "liên từ"
   ],
-  "usageNotes": [
-    "Liên từ chỉ kết quả hoặc sự tiếp nối sau một sự việc. Trang trọng hơn '所以', thường dùng trong văn viết hoặc kể chuyện."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -48,20 +47,25 @@
       {
         "text": "于是乎",
         "pinyin": "yúshìhū",
-        "meaningVi": "vì thế, cho nên",
+        "meaningVi": "vì thế",
+        "meaningFullVi": "vì thế, cho nên",
         "target": "于是",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "因此于是",
         "pinyin": "yīncǐ yúshì",
-        "meaningVi": "vì vậy, do đó",
+        "meaningVi": "vì vậy",
+        "meaningFullVi": "vì vậy, do đó",
         "target": "于是",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +75,8 @@
       "meaningVi": "Trời mưa, sau đó trận đấu bị hủy bỏ.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "于是",
@@ -80,16 +85,17 @@
       "meaningVi": "Anh ấy làm việc chăm chỉ, vì vậy đã được thăng chức.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 于是",
-      "syntax": "liên từ",
-      "matchedExample": "Liên từ chỉ kết quả hoặc sự tiếp nối sau một sự việc. Trang trọng hơn '所以', thường dùng trong văn viết hoặc kể chuyện.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 于是",
+      "partOfSpeech": "liên từ",
+      "usageNoteVi": "Liên từ chỉ kết quả hoặc sự tiếp nối sau một sự việc. Trang trọng hơn '所以', thường dùng trong văn viết hoặc kể chuyện.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:整天",
   "type": "word",
   "word": "整天",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhěng tiān",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Cả ngày, suốt ngày",
+      "meaningShortVi": "Cả ngày",
+      "meaningFullVi": "Cả ngày, suốt ngày",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Cả ngày",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "Trạng ngữ chỉ thời lượng, nhấn mạnh sự kéo dài suốt cả ngày."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -52,11 +51,14 @@
         "text": "整天整夜",
         "pinyin": "zhěngtiān zhěngyè",
         "meaningVi": "cả ngày cả đêm",
+        "meaningFullVi": "cả ngày cả đêm",
         "target": "整天",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -66,7 +68,8 @@
       "meaningVi": "Anh ấy đọc sách cả ngày.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "整天",
@@ -75,7 +78,8 @@
       "meaningVi": "Đừng chơi game suốt ngày.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "整天",
@@ -84,16 +88,17 @@
       "meaningVi": "Cô ấy bận cả ngày.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 整天",
-      "syntax": "compound-semantic",
-      "matchedExample": "Trạng ngữ chỉ thời lượng, nhấn mạnh sự kéo dài suốt cả ngày.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 整天",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Trạng ngữ chỉ thời lượng, nhấn mạnh sự kéo dài suốt cả ngày.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 7,
+      "sectionId": "new_hsk__3__topic__7__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thoi-gian/",
+      "orderInSection": 37
     }
   ],
   "sources": [
@@ -124,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

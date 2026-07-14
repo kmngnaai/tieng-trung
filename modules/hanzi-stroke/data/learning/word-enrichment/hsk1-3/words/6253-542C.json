@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:打听",
   "type": "word",
   "word": "打听",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "dǎ ting",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hỏi thăm",
+      "meaningShortVi": "hỏi thăm",
+      "meaningFullVi": "hỏi thăm",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hỏi thăm",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "指向人询问以获取信息。多用于口语，正式场合可用\"询问\"或\"咨询\"。"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "打听消息",
-        "pinyin": "",
+        "pinyin": "dǎ ting xiāo xi",
         "meaningVi": "hỏi thăm tin tức",
+        "meaningFullVi": "hỏi thăm tin tức",
         "target": "打听",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "打听情况",
-        "pinyin": "",
+        "pinyin": "dǎ ting qíng kuàng",
         "meaningVi": "hỏi thăm tình hình",
+        "meaningFullVi": "hỏi thăm tình hình",
         "target": "打听",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "打听",
       "chinese": "我去打听一下地址。",
-      "pinyin": "",
+      "pinyin": "wǒ qù dǎ ting yī xià dì zhǐ。",
       "meaningVi": "Mình đi hỏi thăm địa chỉ một chút.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "打听",
       "chinese": "你打听到消息了吗？",
-      "pinyin": "",
+      "pinyin": "nǐ dǎ ting dào xiāo xi le ma？",
       "meaningVi": "Bạn đã hỏi thăm được tin tức gì chưa?",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 打听",
-      "syntax": "động từ",
-      "matchedExample": "指向人询问以获取信息。多用于口语，正式场合可用\"询问\"或\"咨询\"。",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 打听",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "指向人询问以获取信息。多用于口语，正式场合可用\"询问\"或\"咨询\"。",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__3__topic__18__thong-tin-va-phuong-tien",
+      "sectionSlug": "thong-tin-va-phuong-tien",
       "sectionTitle": "Thông tin và phương tiện",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thong-tin-va-phuong-tien/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

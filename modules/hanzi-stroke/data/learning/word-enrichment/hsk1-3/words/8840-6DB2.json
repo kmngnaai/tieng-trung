@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:血液",
   "type": "word",
   "word": "血液",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "xuè yè",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "máu, huyết dịch (chất lỏng lưu thông trong cơ thể)",
+      "meaningShortVi": "máu",
+      "meaningFullVi": "máu, huyết dịch (chất lỏng lưu thông trong cơ thể)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "máu",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "血液 là từ y học/văn viết cho 'máu'. Khẩu ngữ thường dùng 血 (xuè/xiě) đứng một mình. 血液 nhấn mạnh bản chất dịch thể của máu, thường dùng trong ngữ cảnh y tế: 血液循环, 血液检查."
-  ],
-  "wordTypeExplanations": [
-    "血 (huyết — máu) + 液 (dịch — chất lỏng) → chất lỏng là máu trong cơ thể."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "血液循环",
         "pinyin": "xuèyè xúnhuán",
         "meaningVi": "tuần hoàn máu",
+        "meaningFullVi": "tuần hoàn máu",
         "target": "血液",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "血液检查",
         "pinyin": "xuèyè jiǎnchá",
         "meaningVi": "xét nghiệm máu",
+        "meaningFullVi": "xét nghiệm máu",
         "target": "血液",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "血液透析",
         "pinyin": "xuèyè tòuxī",
         "meaningVi": "lọc máu (chạy thận)",
+        "meaningFullVi": "lọc máu (chạy thận)",
         "target": "血液",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Máu lưu thông khắp cơ thể",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "血液",
@@ -90,7 +95,8 @@
       "meaningVi": "Hiến máu có thể cứu người",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "血液",
@@ -99,7 +105,8 @@
       "meaningVi": "Kết quả xét nghiệm máu đã có",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "血液",
@@ -108,23 +115,17 @@
       "meaningVi": "Tuần hoàn máu không tốt",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 血液",
-      "syntax": "compound-semantic",
-      "matchedExample": "血液 là từ y học/văn viết cho 'máu'. Khẩu ngữ thường dùng 血 (xuè/xiě) đứng một mình. 血液 nhấn mạnh bản chất dịch thể của máu, thường dùng trong ngữ cảnh y tế: 血液循环, 血液检查.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "血 (huyết — máu) + 液 (dịch — chất lỏng) → chất lỏng là máu trong cơ thể.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 血液",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "血液 là từ y học/văn viết cho 'máu'. Khẩu ngữ thường dùng 血 (xuè/xiě) đứng một mình. 血液 nhấn mạnh bản chất dịch thể của máu, thường dùng trong ngữ cảnh y tế: 血液循环, 血液检查.",
+      "explanationVi": "血 (huyết — máu) + 液 (dịch — chất lỏng) → chất lỏng là máu trong cơ thể.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

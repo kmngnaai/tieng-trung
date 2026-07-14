@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:不过",
   "type": "word",
   "word": "不过",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "bù guò",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bất quá",
+      "meaningShortVi": "bất quá",
+      "meaningFullVi": "bất quá",
       "partOfSpeech": "conjunction",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bất quá",
   "wordType": "conjunction",
   "wordTypes": [
     "conjunction"
   ],
-  "usageNotes": [
-    "Liên từ chuyển ý nhẹ nhàng hơn '但是'"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,49 +49,56 @@
     "collocations": [
       {
         "text": "不过我",
-        "pinyin": "",
+        "pinyin": "bù guò wǒ",
         "meaningVi": "nhưng tôi",
+        "meaningFullVi": "nhưng tôi",
         "target": "不过",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不过还好",
-        "pinyin": "",
+        "pinyin": "bù guò hái hǎo",
         "meaningVi": "nhưng may mà",
+        "meaningFullVi": "nhưng may mà",
         "target": "不过",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "不过",
       "chinese": "这件衣服很漂亮，不过太贵了",
-      "pinyin": "",
+      "pinyin": "zhè jiàn yī fu hěn piào liang， bù guò tài guì le",
       "meaningVi": "Cái áo này rất đẹp, nhưng quá đắt",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "不过",
       "chinese": "我也想去，不过没时间",
-      "pinyin": "",
+      "pinyin": "wǒ yě xiǎng qù， bù guò méi shí jiān",
       "meaningVi": "Tôi cũng muốn đi, nhưng không có thời gian",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 不过",
-      "syntax": "conjunction",
-      "matchedExample": "Liên từ chuyển ý nhẹ nhàng hơn '但是'",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 不过",
+      "partOfSpeech": "conjunction",
+      "usageNoteVi": "Liên từ chuyển ý nhẹ nhàng hơn '但是'",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__2__topic__10__tu-noi",
+      "sectionSlug": "tu-noi",
       "sectionTitle": "Từ nối",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-noi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-noi/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

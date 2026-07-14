@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:一下{儿}",
   "type": "word",
   "word": "一下{儿}",
@@ -18,26 +18,25 @@
     "readings": [
       {
         "pinyin": "yī xiàr ",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "một chút, một lúc; dùng sau động từ để chỉ thời gian ngắn hoặc một lần",
+      "meaningShortVi": "một chút",
+      "meaningFullVi": "một chút, một lúc; dùng sau động từ để chỉ thời gian ngắn hoặc một lần",
       "partOfSpeech": "hậu tố lượng từ / chỉ thời gian",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "một chút",
   "wordType": "hậu tố lượng từ / chỉ thời gian",
   "wordTypes": [
     "hậu tố lượng từ / chỉ thời gian"
   ],
-  "usageNotes": [
-    "Cấu trúc ngữ pháp: 一 (một) + 下 (xuống) + 儿 (hậu tố er-hua). Dùng sau động từ để chỉ hành động diễn ra trong thời gian ngắn hoặc chỉ thực hiện một lần. 儿 là hậu giảm đặc trưng tiếng Bắc Kinh."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -49,33 +48,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "坐一下",
-        "pinyin": "zuò yīxià",
-        "meaningVi": "ngồi một chút",
-        "target": "一下{儿}",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "睡一下",
-        "pinyin": "shuì yīxià",
-        "meaningVi": "ngủ một giấc ngắn",
-        "target": "一下{儿}",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 一下{儿}",
-      "syntax": "hậu tố lượng từ / chỉ thời gian",
-      "matchedExample": "Cấu trúc ngữ pháp: 一 (một) + 下 (xuống) + 儿 (hậu tố er-hua). Dùng sau động từ để chỉ hành động diễn ra trong thời gian ngắn hoặc chỉ thực hiện một lần. 儿 là hậu giảm đặc trưng tiếng Bắc Kinh.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 一下{儿}",
+      "partOfSpeech": "hậu tố lượng từ / chỉ thời gian",
+      "usageNoteVi": "Cấu trúc ngữ pháp: 一 (một) + 下 (xuống) + 儿 (hậu tố er-hua). Dùng sau động từ để chỉ hành động diễn ra trong thời gian ngắn hoặc chỉ thực hiện một lần. 儿 là hậu giảm đặc trưng tiếng Bắc Kinh.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -86,11 +69,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 11,
+      "sectionId": "new_hsk__1__topic__11__pho-tu",
+      "sectionSlug": "pho-tu",
       "sectionTitle": "Phó từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/pho-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/pho-tu/",
+      "orderInSection": 25
     }
   ],
   "sources": [
@@ -101,9 +89,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": [
-      "Chưa có câu chứa nguyên từ"
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
     ]
   }
 }

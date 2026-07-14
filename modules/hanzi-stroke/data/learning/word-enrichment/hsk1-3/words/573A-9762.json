@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:场面",
   "type": "word",
   "word": "场面",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "chǎng miàn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cảnh; khung cảnh; hoàn cảnh; quy mô; không khí",
+      "meaningShortVi": "cảnh",
+      "meaningFullVi": "cảnh; khung cảnh; hoàn cảnh; quy mô; không khí",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cảnh",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "场面 có thể chỉ khung cảnh vật lý hoặc quy mô của sự kiện. Trong giao tiếp, \"场面话\" là lời xã giao, \"撑场面\" là giữ thể diện."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,48 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "场面宏大",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "场面",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "场面热烈",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "场面",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "撑场面",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "场面",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "难看场面",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "场面",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "场面话",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "场面",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -95,7 +54,8 @@
       "meaningVi": "Khung cảnh đám cưới rất hoành tráng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "场面",
@@ -104,16 +64,17 @@
       "meaningVi": "Anh ấy không kiểm soát được tình hình.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 场面",
-      "syntax": "danh từ",
-      "matchedExample": "场面 có thể chỉ khung cảnh vật lý hoặc quy mô của sự kiện. Trong giao tiếp, \"场面话\" là lời xã giao, \"撑场面\" là giữ thể diện.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 场面",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "场面 có thể chỉ khung cảnh vật lý hoặc quy mô của sự kiện. Trong giao tiếp, \"场面话\" là lời xã giao, \"撑场面\" là giữ thể diện.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -128,7 +89,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

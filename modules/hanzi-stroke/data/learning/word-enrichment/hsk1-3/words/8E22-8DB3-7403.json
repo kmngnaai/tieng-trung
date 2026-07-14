@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:踢足球",
   "type": "word",
   "word": "踢足球",
@@ -16,27 +16,24 @@
     "readings": [
       {
         "pinyin": "tī zúqiú",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chơi bóng đá",
+      "meaningShortVi": "chơi bóng đá",
+      "meaningFullVi": "chơi bóng đá",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chơi bóng đá",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Thường dùng khi nói về hoạt động thể thao - chơi bóng đá."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 踢 (đá) + 足球 (bóng đá) → chơi bóng đá."
   ],
   "hsk": {
     "levels": [
@@ -50,16 +47,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "足球",
-        "pinyin": "zúqiú",
-        "meaningVi": "bóng đá",
-        "target": "踢足球",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -69,7 +58,8 @@
       "meaningVi": "Tôi thích chơi bóng đá",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "踢足球",
@@ -78,7 +68,8 @@
       "meaningVi": "Họ mỗi ngày chơi bóng đá",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "踢足球",
@@ -87,23 +78,17 @@
       "meaningVi": "Xin hãy cùng đi chơi bóng đá",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 踢足球",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường dùng khi nói về hoạt động thể thao - chơi bóng đá.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 踢 (đá) + 足球 (bóng đá) → chơi bóng đá.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 踢足球",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường dùng khi nói về hoạt động thể thao - chơi bóng đá.",
+      "explanationVi": "Ghép nghĩa: 踢 (đá) + 足球 (bóng đá) → chơi bóng đá.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,11 +99,16 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 1,
+      "sectionId": "hsk__2__lesson__1__bai-1-thang-9-di-bac-kinh-du-lich-la-tot-nhat",
+      "sectionSlug": "bai-1-thang-9-di-bac-kinh-du-lich-la-tot-nhat",
       "sectionTitle": "Tháng 9 đi Bắc Kinh du lịch là tốt nhất",
       "sectionTitleZh": "九月去北京旅游最好",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-1-thang-9-di-bac-kinh-du-lich-la-tot-nhat/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-1-thang-9-di-bac-kinh-du-lich-la-tot-nhat/",
+      "orderInSection": 7
     }
   ],
   "sources": [
@@ -134,7 +124,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

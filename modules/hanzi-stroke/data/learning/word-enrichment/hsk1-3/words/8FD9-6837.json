@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:这样",
   "type": "word",
   "word": "这样",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhè yàng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "như vậy",
+      "meaningShortVi": "như vậy",
+      "meaningFullVi": "như vậy",
       "partOfSpeech": "pronoun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "như vậy",
   "wordType": "pronoun",
   "wordTypes": [
     "pronoun"
   ],
-  "usageNotes": [
-    "Đại từ chỉ cách thức, trạng thái."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,49 +49,56 @@
     "collocations": [
       {
         "text": "这样的",
-        "pinyin": "",
+        "pinyin": "zhè yàng de",
         "meaningVi": "như thế này",
+        "meaningFullVi": "như thế này",
         "target": "这样",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "为什么这样",
-        "pinyin": "",
+        "pinyin": "wèi shén me zhè yàng",
         "meaningVi": "tại sao như vậy",
+        "meaningFullVi": "tại sao như vậy",
         "target": "这样",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "这样",
       "chinese": "这样做对不对",
-      "pinyin": "",
+      "pinyin": "zhè yàng zuò duì bù duì",
       "meaningVi": "Làm như vậy đúng không",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "这样",
       "chinese": "我不喜欢这样",
-      "pinyin": "",
+      "pinyin": "wǒ bù xǐ huan zhè yàng",
       "meaningVi": "Tôi không thích như vậy",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 这样",
-      "syntax": "pronoun",
-      "matchedExample": "Đại từ chỉ cách thức, trạng thái.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 这样",
+      "partOfSpeech": "pronoun",
+      "usageNoteVi": "Đại từ chỉ cách thức, trạng thái.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,21 +109,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__2__lesson__9__bai-9-i-m-going-to-buy-a-cup-of-bubble-tea",
+      "sectionSlug": "bai-9-i-m-going-to-buy-a-cup-of-bubble-tea",
       "sectionTitle": "Tôi đi mua một cốc trà sữa",
       "sectionTitleZh": "我去买杯奶茶",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-9-i-m-going-to-buy-a-cup-of-bubble-tea/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-9-i-m-going-to-buy-a-cup-of-bubble-tea/",
+      "orderInSection": 4
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__2__topic__4__khac",
+      "sectionSlug": "khac",
       "sectionTitle": "Khác",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/khac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/khac/",
+      "orderInSection": 20
     }
   ],
   "sources": [
@@ -133,7 +149,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

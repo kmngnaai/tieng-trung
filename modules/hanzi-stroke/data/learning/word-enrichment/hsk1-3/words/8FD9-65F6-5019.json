@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:这时候",
   "type": "word",
   "word": "这时候",
@@ -16,24 +16,25 @@
     "readings": [
       {
         "pinyin": "zhè shí hòu",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lúc này",
+      "meaningShortVi": "lúc này",
+      "meaningFullVi": "lúc này",
       "partOfSpeech": "noun/time word",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lúc này",
   "wordType": "noun/time word",
   "wordTypes": [
     "noun/time word"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,44 +48,49 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "在这个时候",
-        "pinyin": "",
-        "meaningVi": "vào lúc này",
-        "target": "这时候",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "就在这时候",
-        "pinyin": "",
+        "pinyin": "jiù zài zhè shí hòu",
         "meaningVi": "ngay lúc này",
+        "meaningFullVi": "ngay lúc này",
         "target": "这时候",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "这时候",
       "chinese": "这时候我突然想起了一件事。",
-      "pinyin": "",
+      "pinyin": "zhè shí hòu wǒ tū rán xiǎng qǐ le yī jiàn shì。",
       "meaningVi": "Lúc này tôi bỗng nhiên nhớ ra một việc.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "这时候",
       "chinese": "这时候下雨了，我们怎么办？",
-      "pinyin": "",
+      "pinyin": "zhè shí hòu xià yǔ le， wǒ men zěn me bàn？",
       "meaningVi": "Lúc này mưa rồi, chúng ta làm sao?",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 这时候",
+      "partOfSpeech": "noun/time word",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/这时候.mp3"
   ],
@@ -93,11 +99,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__2__topic__3__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thoi-gian/",
+      "orderInSection": 25
     }
   ],
   "sources": [
@@ -108,7 +119,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

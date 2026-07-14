@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:哪{儿}",
   "type": "word",
   "word": "哪{儿}",
@@ -17,26 +17,25 @@
     "readings": [
       {
         "pinyin": "nǎr ",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Ở đâu, nơi nào; (hỏi vị trí)",
+      "meaningShortVi": "Ở đâu",
+      "meaningFullVi": "Ở đâu, nơi nào; (hỏi vị trí)",
       "partOfSpeech": "Đại từ hỏi (xưng hô)",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Ở đâu",
   "wordType": "Đại từ hỏi (xưng hô)",
   "wordTypes": [
     "Đại từ hỏi (xưng hô)"
   ],
-  "usageNotes": [
-    "\"哪儿\" là khẩu ngữ Bắc Kinh, tương đương với \"哪里\" trong tiếng Trung tiêu chuẩn. Trong văn viết trang trọng, dùng \"哪里\"."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,49 +49,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "去哪儿",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "哪{儿}",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "在哪儿",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "哪{儿}",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "从哪儿",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "哪{儿}",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "到哪儿",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "哪{儿}",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 哪{儿}",
-      "syntax": "Đại từ hỏi (xưng hô)",
-      "matchedExample": "\"哪儿\" là khẩu ngữ Bắc Kinh, tương đương với \"哪里\" trong tiếng Trung tiêu chuẩn. Trong văn viết trang trọng, dùng \"哪里\".",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 哪{儿}",
+      "partOfSpeech": "Đại từ hỏi (xưng hô)",
+      "usageNoteVi": "\"哪儿\" là khẩu ngữ Bắc Kinh, tương đương với \"哪里\" trong tiếng Trung tiêu chuẩn. Trong văn viết trang trọng, dùng \"哪里\".",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +70,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__1__topic__10__dai-tu",
+      "sectionSlug": "dai-tu",
       "sectionTitle": "Đại từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dai-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dai-tu/",
+      "orderInSection": 29
     }
   ],
   "sources": [
@@ -128,9 +100,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": [
-      "Chưa có câu chứa nguyên từ"
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
     ]
   }
 }

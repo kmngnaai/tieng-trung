@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:北边",
   "type": "word",
   "word": "北边",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "běi biān",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phía bắc, bên bắc",
+      "meaningShortVi": "phía bắc",
+      "meaningFullVi": "phía bắc, bên bắc",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phía bắc",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Chỉ vị trí phía bắc. Phân biệt 与 北方 (phương bắc, thiên về văn phong trang trọng), 北部 (vùng bắc, thiên về phân khu hành chính)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 北 (bắc) + 边 (bên, cạnh) → phía bắc, bên bắc."
   ],
   "hsk": {
     "levels": [
@@ -53,27 +50,34 @@
         "text": "北边有",
         "pinyin": "běibiān yǒu",
         "meaningVi": "phía bắc có",
+        "meaningFullVi": "phía bắc có",
         "target": "北边",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "往北边走",
         "pinyin": "wǎng běibiān zǒu",
         "meaningVi": "đi về phía bắc",
+        "meaningFullVi": "đi về phía bắc",
         "target": "北边",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "北边去",
         "pinyin": "běibiān qù",
         "meaningVi": "đi sang phía bắc",
+        "meaningFullVi": "đi sang phía bắc",
         "target": "北边",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -83,7 +87,8 @@
       "meaningVi": "Phía bắc có núi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "北边",
@@ -92,7 +97,8 @@
       "meaningVi": "Chúng ta đi phía Bắc xem",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "北边",
@@ -101,7 +107,8 @@
       "meaningVi": "Phía bắc rất lạnh",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "北边",
@@ -110,23 +117,17 @@
       "meaningVi": "Phía bắc có gió",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 北边",
-      "syntax": "compound-semantic",
-      "matchedExample": "Chỉ vị trí phía bắc. Phân biệt 与 北方 (phương bắc, thiên về văn phong trang trọng), 北部 (vùng bắc, thiên về phân khu hành chính).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 北 (bắc) + 边 (bên, cạnh) → phía bắc, bên bắc.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 北边",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Chỉ vị trí phía bắc. Phân biệt 与 北方 (phương bắc, thiên về văn phong trang trọng), 北部 (vùng bắc, thiên về phân khu hành chính).",
+      "explanationVi": "Ghép nghĩa: 北 (bắc) + 边 (bên, cạnh) → phía bắc, bên bắc.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -137,11 +138,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 18,
+      "sectionId": "new_hsk__1__topic__18__dia-ly",
+      "sectionSlug": "dia-ly",
       "sectionTitle": "Địa lý",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dia-ly/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dia-ly/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -152,7 +158,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

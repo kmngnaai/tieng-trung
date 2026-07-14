@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:作为",
   "type": "word",
   "word": "作为",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zuò wéi",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "làm, hành động, với tư cách là",
+      "meaningShortVi": "làm",
+      "meaningFullVi": "làm, hành động, với tư cách là",
       "partOfSpeech": "động từ/giới từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "làm",
   "wordType": "động từ/giới từ",
   "wordTypes": [
     "động từ/giới từ"
   ],
-  "usageNotes": [
-    "Khi đọc 'zuòwéi' nghĩa là hành động, thành tích. Khi đọc 'zuòwei' (nhẹ 'wei') nghĩa là 'với tư cách là'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -48,20 +47,25 @@
       {
         "text": "作为...来说",
         "pinyin": "zuòwéi...láishuō",
-        "meaningVi": "xét trên tư cách là...",
+        "meaningVi": "xét trên tư cách là",
+        "meaningFullVi": "xét trên tư cách là...",
         "target": "作为",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "有所作为",
         "pinyin": "yǒusuǒ zuòwéi",
-        "meaningVi": "có thành tích, có hành động ý nghĩa",
+        "meaningVi": "có thành tích",
+        "meaningFullVi": "có thành tích, có hành động ý nghĩa",
         "target": "作为",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -71,7 +75,8 @@
       "meaningVi": "Với tư cách là một giáo viên, tôi rất quan tâm đến học sinh.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "作为",
@@ -80,16 +85,17 @@
       "meaningVi": "Hành động của anh ấy khiến người khác kính nể.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 作为",
-      "syntax": "động từ/giới từ",
-      "matchedExample": "Khi đọc 'zuòwéi' nghĩa là hành động, thành tích. Khi đọc 'zuòwei' (nhẹ 'wei') nghĩa là 'với tư cách là'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 作为",
+      "partOfSpeech": "động từ/giới từ",
+      "usageNoteVi": "Khi đọc 'zuòwéi' nghĩa là hành động, thành tích. Khi đọc 'zuòwei' (nhẹ 'wei') nghĩa là 'với tư cách là'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -104,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

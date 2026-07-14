@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:你们",
   "type": "word",
   "word": "你们",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "nǐ men",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "các bạn (ngôi thứ 2 số nhiều)",
+      "meaningShortVi": "các bạn (ngôi thứ 2 số nhiều)",
+      "meaningFullVi": "các bạn (ngôi thứ 2 số nhiều)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "các bạn (ngôi thứ 2 số nhiều)",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Đại từ ngôi thứ 2 số nhiều thân mật. Dùng cho nhóm người đang nói chuyện. Cách nói lịch sự hơn 是 您们 (nhưng ít dùng)."
-  ],
-  "wordTypeExplanations": [
-    "你 (bạn/anh) + 们 (hậu tố số nhiều) → các bạn/các anh."
   ],
   "hsk": {
     "levels": [
@@ -54,27 +51,34 @@
         "text": "你们好",
         "pinyin": "nǐmen hǎo",
         "meaningVi": "chào các bạn",
+        "meaningFullVi": "chào các bạn",
         "target": "你们",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "你们家",
         "pinyin": "nǐmen jiā",
-        "meaningVi": "nhà các bạn/gia đình các bạn",
+        "meaningVi": "nhà các bạn",
+        "meaningFullVi": "nhà các bạn/gia đình các bạn",
         "target": "你们",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "你们大家",
         "pinyin": "nǐmen dàjiā",
         "meaningVi": "các bạn tất cả",
+        "meaningFullVi": "các bạn tất cả",
         "target": "你们",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -84,7 +88,8 @@
       "meaningVi": "Chào các bạn!",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "你们",
@@ -93,7 +98,8 @@
       "meaningVi": "Các bạn người nước nào?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "你们",
@@ -102,7 +108,8 @@
       "meaningVi": "Các bạn có đi không?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "你们",
@@ -111,23 +118,17 @@
       "meaningVi": "Tôi muốn đi cùng các bạn",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 你们",
-      "syntax": "compound-semantic",
-      "matchedExample": "Đại từ ngôi thứ 2 số nhiều thân mật. Dùng cho nhóm người đang nói chuyện. Cách nói lịch sự hơn 是 您们 (nhưng ít dùng).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "你 (bạn/anh) + 们 (hậu tố số nhiều) → các bạn/các anh.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 你们",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Đại từ ngôi thứ 2 số nhiều thân mật. Dùng cho nhóm người đang nói chuyện. Cách nói lịch sự hơn 是 您们 (nhưng ít dùng).",
+      "explanationVi": "你 (bạn/anh) + 们 (hậu tố số nhiều) → các bạn/các anh.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -138,31 +139,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 1,
+      "sectionId": "hsk__1__lesson__1__bai-1-xin-chao",
+      "sectionSlug": "bai-1-xin-chao",
       "sectionTitle": "Xin chào",
       "sectionTitleZh": "你好",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-1-xin-chao/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-1-xin-chao/",
+      "orderInSection": 4
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 1,
+      "sectionId": "new_hsk__1__lesson__1__bai-1-hello-ai-xiaoyu",
+      "sectionSlug": "bai-1-hello-ai-xiaoyu",
       "sectionTitle": "AI Tiểu Ngữ, xin chào!",
       "sectionTitleZh": "AI小语，你好！",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-1-hello-ai-xiaoyu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-1-hello-ai-xiaoyu/",
+      "orderInSection": 8
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__1__topic__10__dai-tu",
+      "sectionSlug": "dai-tu",
       "sectionTitle": "Đại từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dai-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dai-tu/",
+      "orderInSection": 18
     }
   ],
   "sources": [
@@ -173,7 +189,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

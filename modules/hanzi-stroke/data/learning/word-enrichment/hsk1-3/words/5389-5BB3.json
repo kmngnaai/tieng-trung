@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:厉害",
   "type": "word",
   "word": "厉害",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "lì hai",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ngầu, lợi hại, ghê gớm",
+      "meaningShortVi": "ngầu",
+      "meaningFullVi": "ngầu, lợi hại, ghê gớm",
       "partOfSpeech": "tính từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ngầu",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "Lời khen (ngầu, giỏi) hoặc miêu tả mức độ (ghê, mạnh). Phổ biến trong văn nói."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -46,30 +45,17 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "太厉害了",
-        "pinyin": "",
-        "meaningVi": "",
+        "text": "厉害",
+        "pinyin": "lì hai",
+        "meaningVi": "ngầu",
+        "meaningFullVi": "ngầu, lợi hại, ghê gớm",
         "target": "厉害",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "很厉害",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "厉害",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "利害关系",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "厉害",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "exact-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +65,8 @@
       "meaningVi": "Anh ấy thật lợi hại, gì cũng biết.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "厉害",
@@ -88,7 +75,8 @@
       "meaningVi": "Siêu bão rất ghê gớm.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "厉害",
@@ -97,16 +85,17 @@
       "meaningVi": "Bạn quá đỉnh!",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 厉害",
-      "syntax": "tính từ",
-      "matchedExample": "Lời khen (ngầu, giỏi) hoặc miêu tả mức độ (ghê, mạnh). Phổ biến trong văn nói.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 厉害",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "Lời khen (ngầu, giỏi) hoặc miêu tả mức độ (ghê, mạnh). Phổ biến trong văn nói.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -121,7 +110,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

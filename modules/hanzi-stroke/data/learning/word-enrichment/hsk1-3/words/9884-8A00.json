@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:预言",
   "type": "word",
   "word": "预言",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "yù yán",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "lời tiên tri, dự ngôn; lời đoán trước về sự việc sẽ xảy ra trong tương lai",
+      "meaningShortVi": "lời tiên tri",
+      "meaningFullVi": "lời tiên tri, dự ngôn; lời đoán trước về sự việc sẽ xảy ra trong tương lai",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "lời tiên tri",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "预言 vừa là danh từ (lời tiên tri) vừa là động từ (tiên đoán, dự báo). Phân biệt với 预测 (dự trắc — dự đoán có cơ sở khoa học) và 预言 (thiên về huyền bí hoặc khẳng định chắc chắn)."
-  ],
-  "wordTypeExplanations": [
-    "预 (dự = trước, làm trước) + 言 (ngôn = lời nói) → lời nói trước về tương lai, tiên tri."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "预言成真",
         "pinyin": "yùyán chéng zhēn",
         "meaningVi": "lời tiên tri thành sự thật",
+        "meaningFullVi": "lời tiên tri thành sự thật",
         "target": "预言",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "自我预言",
         "pinyin": "zìwǒ yùyán",
         "meaningVi": "tự tiên tri (self-fulfilling prophecy)",
+        "meaningFullVi": "tự tiên tri (self-fulfilling prophecy)",
         "target": "预言",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "应验预言",
         "pinyin": "yìngyàn yùyán",
         "meaningVi": "ứng nghiệm lời tiên tri",
+        "meaningFullVi": "ứng nghiệm lời tiên tri",
         "target": "预言",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Lời tiên tri của ông ấy về sau đã thành sự thật.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "预言",
@@ -90,7 +95,8 @@
       "meaningVi": "Các tiên tri cổ đại đã để lại nhiều lời dự ngôn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "预言",
@@ -99,7 +105,8 @@
       "meaningVi": "Nhiều lời dự đoán trong tiểu thuyết khoa học viễn tưởng ngày nay đã thành hiện thực.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "预言",
@@ -108,23 +115,17 @@
       "meaningVi": "Anh ấy tiên đoán công ty này sẽ phá sản trong vòng năm năm.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 预言",
-      "syntax": "compound-semantic",
-      "matchedExample": "预言 vừa là danh từ (lời tiên tri) vừa là động từ (tiên đoán, dự báo). Phân biệt với 预测 (dự trắc — dự đoán có cơ sở khoa học) và 预言 (thiên về huyền bí hoặc khẳng định chắc chắn).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "预 (dự = trước, làm trước) + 言 (ngôn = lời nói) → lời nói trước về tương lai, tiên tri.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 预言",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "预言 vừa là danh từ (lời tiên tri) vừa là động từ (tiên đoán, dự báo). Phân biệt với 预测 (dự trắc — dự đoán có cơ sở khoa học) và 预言 (thiên về huyền bí hoặc khẳng định chắc chắn).",
+      "explanationVi": "预 (dự = trước, làm trước) + 言 (ngôn = lời nói) → lời nói trước về tương lai, tiên tri.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

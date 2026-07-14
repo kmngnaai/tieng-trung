@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:种子",
   "type": "word",
   "word": "种子",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhǒng zi",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Hạt giống",
+      "meaningShortVi": "Hạt giống",
+      "meaningFullVi": "Hạt giống",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Hạt giống",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "种子 chỉ hạt dùng để gieo trồng. 种 nghĩa là hạt giống, chủng loại; 子 là hậu tố danh từ. Đây là danh từ cơ bản trong nông nghiệp và làm vườn."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,48 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "播种",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "种子",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "选种子",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "种子",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "花种子",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "种子",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "菜种子",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "种子",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "优良种子",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "种子",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -97,7 +56,8 @@
       "meaningVi": "Người nông dân gieo hạt giống vào mùa xuân.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "种子",
@@ -106,7 +66,8 @@
       "meaningVi": "Những hạt giống hoa này cần tưới nước.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "种子",
@@ -115,16 +76,17 @@
       "meaningVi": "Những người nông dân đang chọn những hạt giống tốt nhất.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 种子",
-      "syntax": "compound-semantic",
-      "matchedExample": "种子 chỉ hạt dùng để gieo trồng. 种 nghĩa là hạt giống, chủng loại; 子 là hậu tố danh từ. Đây là danh từ cơ bản trong nông nghiệp và làm vườn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 种子",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "种子 chỉ hạt dùng để gieo trồng. 种 nghĩa là hạt giống, chủng loại; 子 là hậu tố danh từ. Đây là danh từ cơ bản trong nông nghiệp và làm vườn.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -135,11 +97,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__3__topic__9__thien-nhien",
+      "sectionSlug": "thien-nhien",
       "sectionTitle": "Thiên nhiên",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thien-nhien/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thien-nhien/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -150,7 +117,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

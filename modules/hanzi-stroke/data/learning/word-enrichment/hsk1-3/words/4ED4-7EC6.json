@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:仔细",
   "type": "word",
   "word": "仔细",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zǐ xì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Cẩn thận, tỉ mỉ, kỹ lưỡng; chú ý từng chi tiết",
+      "meaningShortVi": "Cẩn thận",
+      "meaningFullVi": "Cẩn thận, tỉ mỉ, kỹ lưỡng; chú ý từng chi tiết",
       "partOfSpeech": "tính từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Cẩn thận",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "仔细 (zǐxì) nghĩa là cẩn thận, tỉ mỉ. Ghép từ 仔 (tỉ mỉ, kỹ lưỡng) + 细 (nhỏ, mảnh, chi tiết). Nhớ: chăm chút 'tỉ mỉ' (仔) từng điều 'chi tiết' (细)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -44,40 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "仔细检查",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "仔细",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "仔细观察",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "仔细",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "仔细考虑",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "仔细",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "仔细看",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "仔细",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -87,7 +54,8 @@
       "meaningVi": "Hãy kiểm tra bài tập cẩn thận.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "仔细",
@@ -96,7 +64,8 @@
       "meaningVi": "Anh ấy quan sát bức tranh này tỉ mỉ.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "仔细",
@@ -105,16 +74,17 @@
       "meaningVi": "Khi ra quyết định phải cân nhắc cẩn thận.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 仔细",
-      "syntax": "tính từ",
-      "matchedExample": "仔细 (zǐxì) nghĩa là cẩn thận, tỉ mỉ. Ghép từ 仔 (tỉ mỉ, kỹ lưỡng) + 细 (nhỏ, mảnh, chi tiết). Nhớ: chăm chút 'tỉ mỉ' (仔) từng điều 'chi tiết' (细).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 仔细",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "仔细 (zǐxì) nghĩa là cẩn thận, tỉ mỉ. Ghép từ 仔 (tỉ mỉ, kỹ lưỡng) + 细 (nhỏ, mảnh, chi tiết). Nhớ: chăm chút 'tỉ mỉ' (仔) từng điều 'chi tiết' (细).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -129,7 +99,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

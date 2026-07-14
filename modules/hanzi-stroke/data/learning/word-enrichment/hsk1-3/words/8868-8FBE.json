@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:表达",
   "type": "word",
   "word": "表达",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "biǎo dá",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "biểu đạt, trình bày; làm cho ý nghĩ, tình cảm hoặc quan điểm được thể hiện ra bên ngoài bằng lời viết, lời nói hoặc hành động",
+      "meaningShortVi": "biểu đạt",
+      "meaningFullVi": "biểu đạt, trình bày; làm cho ý nghĩ, tình cảm hoặc quan điểm được thể hiện ra bên ngoài bằng lời viết, lời nói hoặc hành động",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "biểu đạt",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "Có thể đi kèm với đối tượng như 意见, 看法, 感情, 想法. Trong văn trang trọng, 有助于来表达 để tăng tính lễ phép. Từ liên quan: 表示 'chỉ ra/biểu thị', 表现 'biểu hiện'."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "表达感情",
         "pinyin": "biǎodá gǎnqíng",
         "meaningVi": "biểu đạt tình cảm",
+        "meaningFullVi": "biểu đạt tình cảm",
         "target": "表达",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "表达方式",
         "pinyin": "biǎodá fāngshì",
         "meaningVi": "cách thức biểu đạt",
+        "meaningFullVi": "cách thức biểu đạt",
         "target": "表达",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Anh ấy đã trình bày rất tốt suy nghĩ trong lòng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "表达",
@@ -82,16 +87,17 @@
       "meaningVi": "Hãy dùng tiếng Trung để trình bày ý của bạn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 表达",
-      "syntax": "động từ",
-      "matchedExample": "Có thể đi kèm với đối tượng như 意见, 看法, 感情, 想法. Trong văn trang trọng, 有助于来表达 để tăng tính lễ phép. Từ liên quan: 表示 'chỉ ra/biểu thị', 表现 'biểu hiện'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 表达",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "Có thể đi kèm với đối tượng như 意见, 看法, 感情, 想法. Trong văn trang trọng, 有助于来表达 để tăng tính lễ phép. Từ liên quan: 表示 'chỉ ra/biểu thị', 表现 'biểu hiện'.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 29,
+      "sectionId": "new_hsk__3__topic__29__lien-lac",
+      "sectionSlug": "lien-lac",
       "sectionTitle": "Liên lạc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

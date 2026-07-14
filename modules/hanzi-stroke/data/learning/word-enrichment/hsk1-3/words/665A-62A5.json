@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:晚报",
   "type": "word",
   "word": "晚报",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "wǎn bào",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "báo chiều",
+      "meaningShortVi": "báo chiều",
+      "meaningFullVi": "báo chiều",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "báo chiều",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,60 +48,68 @@
     "collocations": [
       {
         "text": "晚报记者",
-        "pinyin": "",
+        "pinyin": "wǎn bào jì zhě",
         "meaningVi": "phóng viên báo chiều",
+        "meaningFullVi": "phóng viên báo chiều",
         "target": "晚报",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "晚报新闻",
-        "pinyin": "",
+        "pinyin": "wǎn bào xīn wén",
         "meaningVi": "tin tức báo chiều",
+        "meaningFullVi": "tin tức báo chiều",
         "target": "晚报",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "北京晚报",
-        "pinyin": "",
+        "pinyin": "Běi jīng wǎn bào",
         "meaningVi": "Bắc Nhật晚报",
+        "meaningFullVi": "Bắc Nhật晚报",
         "target": "晚报",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "晚报",
       "chinese": "我父亲喜欢看晚报",
-      "pinyin": "",
+      "pinyin": "wǒ fù qīn xǐ huan kàn wǎn bào",
       "meaningVi": "Bố tôi thích đọc báo chiều",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "晚报",
-      "chinese": "晚报上有有趣的消息",
-      "pinyin": "",
-      "meaningVi": "Trên báo chiều có tin tức thú vị",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "晚报",
       "chinese": "她每天下午买晚报",
-      "pinyin": "",
+      "pinyin": "tā měi tiān xià wǔ mǎi wǎn bào",
       "meaningVi": "Cô ấy mỗi chiều mua báo chiều",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 晚报",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/晚报.mp3"
   ],
@@ -109,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__2__topic__19__thong-tin",
+      "sectionSlug": "thong-tin",
       "sectionTitle": "Thông tin",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -124,7 +138,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

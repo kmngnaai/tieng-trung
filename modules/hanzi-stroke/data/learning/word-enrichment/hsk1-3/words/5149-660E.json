@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:光明",
   "type": "word",
   "word": "光明",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "guāng míng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ánh sáng, sáng sủa; đầy triển vọng; công khai",
+      "meaningShortVi": "ánh sáng",
+      "meaningFullVi": "ánh sáng, sáng sủa; đầy triển vọng; công khai",
       "partOfSpeech": "danh từ / tính từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ánh sáng",
   "wordType": "danh từ / tính từ",
   "wordTypes": [
     "danh từ / tính từ"
   ],
-  "usageNotes": [
-    "Guāng míng vừa có nghĩa đen 'ánh sáng', vừa mang nghĩa ẩn dụ về triển vọng, đạo đức. Thường dùng trong văn viết hoặc diễn đạt trang trọng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -48,50 +47,37 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "光明的前途",
-        "pinyin": "",
-        "meaningVi": "tương lai tươi sáng",
-        "target": "光明",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "光明正大",
-        "pinyin": "",
-        "meaningVi": "công khai, ngay thẳng",
+        "pinyin": "guāng míng zhèng dà",
+        "meaningVi": "công khai",
+        "meaningFullVi": "công khai, ngay thẳng",
         "target": "光明",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "光明",
       "chinese": "我们要走向光明的未来。",
-      "pinyin": "",
+      "pinyin": "wǒ men yào zǒu xiàng guāng míng de wèi lái。",
       "meaningVi": "Chúng ta phải đi tới một tương lai tươi sáng.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "光明",
-      "chinese": "他为人光明磊落。",
-      "pinyin": "",
-      "meaningVi": "Anh ấy làm người công khai, ngay thẳng.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 光明",
-      "syntax": "danh từ / tính từ",
-      "matchedExample": "Guāng míng vừa có nghĩa đen 'ánh sáng', vừa mang nghĩa ẩn dụ về triển vọng, đạo đức. Thường dùng trong văn viết hoặc diễn đạt trang trọng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 光明",
+      "partOfSpeech": "danh từ / tính từ",
+      "usageNoteVi": "Guāng míng vừa có nghĩa đen 'ánh sáng', vừa mang nghĩa ẩn dụ về triển vọng, đạo đức. Thường dùng trong văn viết hoặc diễn đạt trang trọng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 33,
+      "sectionId": "new_hsk__3__topic__33__tinh-tu",
+      "sectionSlug": "tinh-tu",
       "sectionTitle": "Tính từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/",
+      "orderInSection": 28
     }
   ],
   "sources": [
@@ -117,7 +108,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

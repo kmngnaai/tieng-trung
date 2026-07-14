@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:教授",
   "type": "word",
   "word": "教授",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiào shòu",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "giáo sư; giáo, giảng dạy",
+      "meaningShortVi": "giáo sư",
+      "meaningFullVi": "giáo sư; giáo, giảng dạy",
       "partOfSpeech": "danh từ (noun) / động từ (verb)",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "giáo sư",
   "wordType": "danh từ (noun) / động từ (verb)",
   "wordTypes": [
     "danh từ (noun) / động từ (verb)"
   ],
-  "usageNotes": [
-    "教 (giáo) nghĩa là dạy; 授 (thụ) nghĩa là trao, giao. 教授 là người giảng dạy ở đại học (danh từ) hoặc hành động giảng dạy (động từ)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1
@@ -49,27 +48,34 @@
         "text": "副教授",
         "pinyin": "fù jiàoshòu",
         "meaningVi": "phó giáo sư",
+        "meaningFullVi": "phó giáo sư",
         "target": "教授",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "教授课程",
         "pinyin": "jiàoshòu kèchéng",
         "meaningVi": "giảng dạy khóa học",
+        "meaningFullVi": "giảng dạy khóa học",
         "target": "教授",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "客座教授",
         "pinyin": "kèzuò jiàoshòu",
         "meaningVi": "giáo sư thỉnh giảng",
+        "meaningFullVi": "giáo sư thỉnh giảng",
         "target": "教授",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -79,7 +85,8 @@
       "meaningVi": "Ông ấy là giáo sư Đại học Bắc Kinh.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "教授",
@@ -88,7 +95,8 @@
       "meaningVi": "Giáo sư giảng bài cho sinh viên.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "教授",
@@ -97,16 +105,17 @@
       "meaningVi": "Ông ấy dạy chúng tôi tiếng Anh.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 教授",
-      "syntax": "danh từ (noun) / động từ (verb)",
-      "matchedExample": "教 (giáo) nghĩa là dạy; 授 (thụ) nghĩa là trao, giao. 教授 là người giảng dạy ở đại học (danh từ) hoặc hành động giảng dạy (động từ).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 教授",
+      "partOfSpeech": "danh từ (noun) / động từ (verb)",
+      "usageNoteVi": "教 (giáo) nghĩa là dạy; 授 (thụ) nghĩa là trao, giao. 教授 là người giảng dạy ở đại học (danh từ) hoặc hành động giảng dạy (động từ).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -121,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

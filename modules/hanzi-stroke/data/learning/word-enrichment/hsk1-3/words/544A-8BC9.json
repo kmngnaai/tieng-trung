@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:告诉",
   "type": "word",
   "word": "告诉",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "gào su",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "báo cho, nói cho ai biết",
+      "meaningShortVi": "báo cho",
+      "meaningFullVi": "báo cho, nói cho ai biết",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "báo cho",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Động từ phổ biến chỉ hành động thông báo, kể lại. Thường đi với tân ngữ là người được nghe: 告诉我 (báo cho tôi), 告诉他 (báo cho anh ấy). Trong giao tiếp, 请告诉我 (xin hãy cho tôi biết) là cách yêu cầu thông tin lịch sự. Khác với 说 (nói), 告诉 thiên về việc truyền đạt nội dung."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 告 (báo, thông báo) + 诉 (kể, thuật) → báo cho ai đó biết, kể lại cho nghe. Chỉ hành động truyền đạt thông tin."
   ],
   "hsk": {
     "levels": [
@@ -56,35 +53,44 @@
         "text": "告诉我",
         "pinyin": "gàosu wǒ",
         "meaningVi": "báo cho tôi biết",
+        "meaningFullVi": "báo cho tôi biết",
         "target": "告诉",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "告诉你",
         "pinyin": "gàosu nǐ",
         "meaningVi": "báo cho bạn biết",
+        "meaningFullVi": "báo cho bạn biết",
         "target": "告诉",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "告诉老师",
         "pinyin": "gàosu lǎoshī",
         "meaningVi": "báo cho thầy cô",
+        "meaningFullVi": "báo cho thầy cô",
         "target": "告诉",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "请告诉",
         "pinyin": "qǐng gàosu",
         "meaningVi": "xin hãy báo cho",
+        "meaningFullVi": "xin hãy báo cho",
         "target": "告诉",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -94,7 +100,8 @@
       "meaningVi": "Tôi báo cho bạn một bí mật",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "告诉",
@@ -103,7 +110,8 @@
       "meaningVi": "Xin hãy cho tôi biết",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "告诉",
@@ -112,7 +120,8 @@
       "meaningVi": "Anh ấy đã báo cho tôi biết",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "告诉",
@@ -121,7 +130,8 @@
       "meaningVi": "Đừng nói cho người khác",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "告诉",
@@ -130,23 +140,17 @@
       "meaningVi": "Báo cho bạn tin tốt",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 告诉",
-      "syntax": "compound-semantic",
-      "matchedExample": "Động từ phổ biến chỉ hành động thông báo, kể lại. Thường đi với tân ngữ là người được nghe: 告诉我 (báo cho tôi), 告诉他 (báo cho anh ấy). Trong giao tiếp, 请告诉我 (xin hãy cho tôi biết) là cách yêu cầu thông tin lịch sự. Khác với 说 (nói), 告诉 thiên về việc truyền đạt nội dung.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 告 (báo, thông báo) + 诉 (kể, thuật) → báo cho ai đó biết, kể lại cho nghe. Chỉ hành động truyền đạt thông tin.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 告诉",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Động từ phổ biến chỉ hành động thông báo, kể lại. Thường đi với tân ngữ là người được nghe: 告诉我 (báo cho tôi), 告诉他 (báo cho anh ấy). Trong giao tiếp, 请告诉我 (xin hãy cho tôi biết) là cách yêu cầu thông tin lịch sự. Khác với 说 (nói), 告诉 thiên về việc truyền đạt nội dung.",
+      "explanationVi": "Ghép nghĩa: 告 (báo, thông báo) + 诉 (kể, thuật) → báo cho ai đó biết, kể lại cho nghe. Chỉ hành động truyền đạt thông tin.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -157,31 +161,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 20,
+      "sectionId": "new_hsk__1__topic__20__dong-tu",
+      "sectionSlug": "dong-tu",
       "sectionTitle": "Động từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dong-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/dong-tu/",
+      "orderInSection": 19
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 8,
+      "sectionId": "hsk__2__lesson__8__bai-8-de-toi-nghi-roi-noi-cho-ban-biet",
+      "sectionSlug": "bai-8-de-toi-nghi-roi-noi-cho-ban-biet",
       "sectionTitle": "Để tôi nghĩ rồi nói cho bạn biết",
       "sectionTitleZh": "让我想想再告诉你",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-8-de-toi-nghi-roi-noi-cho-ban-biet/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-8-de-toi-nghi-roi-noi-cho-ban-biet/",
+      "orderInSection": 3
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 13,
+      "sectionId": "new_hsk__2__lesson__13__bai-13-we-love-attending-chinese-class",
+      "sectionSlug": "bai-13-we-love-attending-chinese-class",
       "sectionTitle": "Chúng tôi thích giờ học tiếng Trung",
       "sectionTitleZh": "我们爱上中文课",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-13-we-love-attending-chinese-class/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-13-we-love-attending-chinese-class/",
+      "orderInSection": 12
     }
   ],
   "sources": [
@@ -202,7 +221,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

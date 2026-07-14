@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:奶奶",
   "type": "word",
   "word": "奶奶",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "nǎi nai",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "bà nội",
+      "meaningShortVi": "bà nội",
+      "meaningFullVi": "bà nội",
       "partOfSpeech": "reduplication",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "bà nội",
   "wordType": "reduplication",
   "wordTypes": [
     "reduplication"
-  ],
-  "usageNotes": [
-    "Chỉ bà nội (mẹ của cha). Bà ngoại (mẹ của mẹ) gọi là 姥姥 (lǎolao) ở miền Bắc Trung Quốc hoặc 外婆 (wàipó)."
-  ],
-  "wordTypeExplanations": [
-    "Từ láy: 奶 (bà/sữa) lặp lại thành 奶奶, chỉ bà nội (mẹ của cha)."
   ],
   "hsk": {
     "levels": [
@@ -56,19 +53,24 @@
         "text": "爷爷奶奶",
         "pinyin": "yéye nǎinai",
         "meaningVi": "ông bà",
+        "meaningFullVi": "ông bà",
         "target": "奶奶",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "奶奶家",
         "pinyin": "nǎinai jiā",
         "meaningVi": "nhà bà nội",
+        "meaningFullVi": "nhà bà nội",
         "target": "奶奶",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -78,7 +80,8 @@
       "meaningVi": "Bà nội rất tốt với tôi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "奶奶",
@@ -87,7 +90,8 @@
       "meaningVi": "Tôi sống cùng bà nội",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "奶奶",
@@ -96,7 +100,8 @@
       "meaningVi": "Bà nội năm nay tám mươi tuổi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "奶奶",
@@ -105,23 +110,17 @@
       "meaningVi": "đến nhà bà nội",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 奶奶",
-      "syntax": "reduplication",
-      "matchedExample": "Chỉ bà nội (mẹ của cha). Bà ngoại (mẹ của mẹ) gọi là 姥姥 (lǎolao) ở miền Bắc Trung Quốc hoặc 外婆 (wàipó).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "reduplication",
-      "matchedExample": "Từ láy: 奶 (bà/sữa) lặp lại thành 奶奶, chỉ bà nội (mẹ của cha).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 奶奶",
+      "partOfSpeech": "reduplication",
+      "usageNoteVi": "Chỉ bà nội (mẹ của cha). Bà ngoại (mẹ của mẹ) gọi là 姥姥 (lǎolao) ở miền Bắc Trung Quốc hoặc 外婆 (wàipó).",
+      "explanationVi": "Từ láy: 奶 (bà/sữa) lặp lại thành 奶奶, chỉ bà nội (mẹ của cha).",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -132,31 +131,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__1__topic__3__gia-dinh",
+      "sectionSlug": "gia-dinh",
       "sectionTitle": "Gia đình",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/gia-dinh/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/gia-dinh/",
+      "orderInSection": 11
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__2__lesson__5__bai-5-visiting-a-chinese-friend-s-home-for-the-first-time",
+      "sectionSlug": "bai-5-visiting-a-chinese-friend-s-home-for-the-first-time",
       "sectionTitle": "Lần đầu đến nhà bạn người Trung Quốc",
       "sectionTitleZh": "第一次去中国朋友家",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-5-visiting-a-chinese-friend-s-home-for-the-first-time/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-5-visiting-a-chinese-friend-s-home-for-the-first-time/",
+      "orderInSection": 11
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 3,
+      "levelId": "hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 13,
+      "sectionId": "hsk__3__lesson__13__bai-13-toi-di-bo-ve",
+      "sectionSlug": "bai-13-toi-di-bo-ve",
       "sectionTitle": "Tôi đi bộ về.",
       "sectionTitleZh": "我是走回来的",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-13-toi-di-bo-ve/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-3/bai-hoc/bai-13-toi-di-bo-ve/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -177,7 +191,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

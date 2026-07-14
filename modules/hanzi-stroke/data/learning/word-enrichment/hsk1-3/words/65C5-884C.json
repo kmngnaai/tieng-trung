@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:旅行",
   "type": "word",
   "word": "旅行",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "lǚ xíng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "du lịch",
+      "meaningShortVi": "du lịch",
+      "meaningFullVi": "du lịch",
       "partOfSpeech": "verb/noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "du lịch",
   "wordType": "verb/noun",
   "wordTypes": [
     "verb/noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -49,54 +50,67 @@
         "word": "旅行社",
         "pinyin": "lǚ xíng shè",
         "meaningVi": "công ty du lịch",
+        "meaningFullVi": "công ty du lịch",
         "relationType": "contains-exact-target",
-        "hskLevels": [
-          2
-        ],
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "hskLevel": "HSK 2",
+        "reviewStatus": "reviewed-local"
       }
     ],
     "collocations": [
       {
         "text": "去旅行",
-        "pinyin": "",
+        "pinyin": "qù lǚ xíng",
         "meaningVi": "đi du lịch",
+        "meaningFullVi": "đi du lịch",
         "target": "旅行",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "旅行团",
-        "pinyin": "",
+        "pinyin": "lǚ xíng tuán",
         "meaningVi": "đoàn du lịch",
+        "meaningFullVi": "đoàn du lịch",
         "target": "旅行",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "旅行",
       "chinese": "我们去旅行吧",
-      "pinyin": "",
+      "pinyin": "wǒ men qù lǚ xíng ba",
       "meaningVi": "Chúng ta hãy đi du lịch nào",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "旅行",
       "chinese": "旅行很愉快",
-      "pinyin": "",
+      "pinyin": "lǚ xíng hěn yú kuài",
       "meaningVi": "Chuyến đi rất vui vẻ",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 旅行",
+      "partOfSpeech": "verb/noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/旅行.mp3"
   ],
@@ -105,11 +119,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 22,
+      "sectionId": "new_hsk__2__topic__22__du-lich",
+      "sectionSlug": "du-lich",
       "sectionTitle": "Du lịch",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/du-lich/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/du-lich/",
+      "orderInSection": 18
     }
   ],
   "sources": [
@@ -125,7 +144,7 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": []
   }
 }

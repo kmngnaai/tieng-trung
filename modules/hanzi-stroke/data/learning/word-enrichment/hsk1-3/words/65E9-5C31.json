@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:早就",
   "type": "word",
   "word": "早就",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "zǎo jiù",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "từ lâu",
+      "meaningShortVi": "từ lâu",
+      "meaningFullVi": "từ lâu",
       "partOfSpeech": "adverb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "từ lâu",
   "wordType": "adverb",
   "wordTypes": [
     "adverb"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,60 +48,78 @@
     "collocations": [
       {
         "text": "早就知道",
-        "pinyin": "",
+        "pinyin": "zǎo jiù zhī dào",
         "meaningVi": "đã biết từ lâu",
+        "meaningFullVi": "đã biết từ lâu",
         "target": "早就",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "早就想",
-        "pinyin": "",
+        "pinyin": "zǎo jiù xiǎng",
         "meaningVi": "đã muốn từ lâu",
+        "meaningFullVi": "đã muốn từ lâu",
         "target": "早就",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "早就应该",
-        "pinyin": "",
+        "pinyin": "zǎo jiù yīng gāi",
         "meaningVi": "đã lẽ ra từ lâu",
+        "meaningFullVi": "đã lẽ ra từ lâu",
         "target": "早就",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "早就",
       "chinese": "我早就知道了。",
-      "pinyin": "",
+      "pinyin": "wǒ zǎo jiù zhī dào le。",
       "meaningVi": "Tôi đã biết từ lâu rồi.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "早就",
       "chinese": "他早就出发了。",
-      "pinyin": "",
+      "pinyin": "tā zǎo jiù chū fā le。",
       "meaningVi": "Anh ấy đã xuất phát từ lâu.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "早就",
       "chinese": "这事我早就想告诉你了。",
-      "pinyin": "",
+      "pinyin": "zhè shì wǒ zǎo jiù xiǎng gào su nǐ le。",
       "meaningVi": "Việc này tôi đã muốn nói cho bạn biết từ lâu.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 早就",
+      "partOfSpeech": "adverb",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/早就.mp3"
   ],
@@ -109,11 +128,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__2__topic__3__thoi-gian",
+      "sectionSlug": "thoi-gian",
       "sectionTitle": "Thời gian",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thoi-gian/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thoi-gian/",
+      "orderInSection": 30
     }
   ],
   "sources": [
@@ -124,7 +148,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

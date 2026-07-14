@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:妻子",
   "type": "word",
   "word": "妻子",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "qī zi",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "vợ",
+      "meaningShortVi": "vợ",
+      "meaningFullVi": "vợ",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "vợ",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -49,21 +50,26 @@
     "collocations": [
       {
         "text": "这个妻子",
-        "pinyin": "",
+        "pinyin": "zhè ge qī zi",
         "meaningVi": "cái vợ này",
+        "meaningFullVi": "cái vợ này",
         "target": "妻子",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "那个妻子",
-        "pinyin": "",
+        "pinyin": "nà ge qī zi",
         "meaningVi": "cái vợ kia",
+        "meaningFullVi": "cái vợ kia",
         "target": "妻子",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +79,8 @@
       "meaningVi": "Đây là vợ tôi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "妻子",
@@ -82,10 +89,19 @@
       "meaningVi": "Vợ anh ấy là bác sĩ.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 妻子",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/妻子.mp3"
   ],
@@ -94,21 +110,31 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 12,
+      "sectionId": "hsk__2__lesson__12__bai-12-ban-mac-it-qua",
+      "sectionSlug": "bai-12-ban-mac-it-qua",
       "sectionTitle": "Bạn mặc ít quá",
       "sectionTitleZh": "你穿得太少了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-12-ban-mac-it-qua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-12-ban-mac-it-qua/",
+      "orderInSection": 2
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 8,
+      "sectionId": "new_hsk__2__lesson__8__bai-8-even-though-you-forgot-i-remembered",
+      "sectionSlug": "bai-8-even-though-you-forgot-i-remembered",
       "sectionTitle": "Tuy bạn quên rồi, nhưng tôi vẫn nhớ",
       "sectionTitleZh": "虽然你忘了，但是我记得",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-8-even-though-you-forgot-i-remembered/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-8-even-though-you-forgot-i-remembered/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -124,7 +150,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

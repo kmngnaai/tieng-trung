@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:音乐会",
   "type": "word",
   "word": "音乐会",
@@ -16,24 +16,25 @@
     "readings": [
       {
         "pinyin": "yīn yuè huì",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "buổi hòa nhạc",
+      "meaningShortVi": "buổi hòa nhạc",
+      "meaningFullVi": "buổi hòa nhạc",
       "partOfSpeech": "noun",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "buổi hòa nhạc",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -49,52 +50,58 @@
     "collocations": [
       {
         "text": "听音乐会",
-        "pinyin": "",
+        "pinyin": "tīng yīn yuè huì",
         "meaningVi": "nghe hòa nhạc",
+        "meaningFullVi": "nghe hòa nhạc",
         "target": "音乐会",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "音乐厅",
-        "pinyin": "",
-        "meaningVi": "nhà hòa nhạc",
-        "target": "音乐会",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "音乐会",
       "chinese": "我们去听音乐会",
-      "pinyin": "",
+      "pinyin": "wǒ men qù tīng yīn yuè huì",
       "meaningVi": "Chúng tôi đi nghe hòa nhạc",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "音乐会",
       "chinese": "音乐会很精彩",
-      "pinyin": "",
+      "pinyin": "yīn yuè huì hěn jīng cǎi",
       "meaningVi": "Buổi hòa nhạc rất xuất sắc",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "音乐会",
       "chinese": "票音乐会的票卖完了",
-      "pinyin": "",
+      "pinyin": "piào yīn yuè huì de piào mài wán le",
       "meaningVi": "Vé hòa nhạc đã bán hết",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 音乐会",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/音乐会.mp3"
   ],
@@ -103,11 +110,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 12,
+      "sectionId": "new_hsk__2__topic__12__giai-tri",
+      "sectionSlug": "giai-tri",
       "sectionTitle": "Giải trí",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/giai-tri/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -123,7 +135,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

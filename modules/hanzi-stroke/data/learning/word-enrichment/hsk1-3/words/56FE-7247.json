@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:图片",
   "type": "word",
   "word": "图片",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "tú piàn",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "hình ảnh",
+      "meaningShortVi": "hình ảnh",
+      "meaningFullVi": "hình ảnh",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "hình ảnh",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -47,60 +48,68 @@
     "collocations": [
       {
         "text": "上传图片",
-        "pinyin": "",
+        "pinyin": "shàng chuán tú piàn",
         "meaningVi": "tải lên hình ảnh",
+        "meaningFullVi": "tải lên hình ảnh",
         "target": "图片",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "保存图片",
-        "pinyin": "",
+        "pinyin": "bǎo cún tú piàn",
         "meaningVi": "lưu hình ảnh",
+        "meaningFullVi": "lưu hình ảnh",
         "target": "图片",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "图片质量",
-        "pinyin": "",
+        "pinyin": "tú piàn zhì liàng",
         "meaningVi": "chất lượng hình ảnh",
+        "meaningFullVi": "chất lượng hình ảnh",
         "target": "图片",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "图片",
       "chinese": "这张图片很漂亮",
-      "pinyin": "",
+      "pinyin": "zhè zhāng tú piàn hěn piào liang",
       "meaningVi": "Bức hình này rất đẹp",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "图片",
       "chinese": "我给你发了一些图片",
-      "pinyin": "",
+      "pinyin": "wǒ gěi nǐ fā le yì xiē tú piàn",
       "meaningVi": "Tôi đã gửi cho bạn một số hình ảnh",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "图片",
-      "chinese": "请在文章中插入图片",
-      "pinyin": "",
-      "meaningVi": "Vui lòng chèn hình ảnh vào bài viết",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 图片",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/图片.mp3"
   ],
@@ -109,11 +118,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__2__topic__19__thong-tin",
+      "sectionSlug": "thong-tin",
       "sectionTitle": "Thông tin",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin/",
+      "orderInSection": 11
     }
   ],
   "sources": [
@@ -124,7 +138,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

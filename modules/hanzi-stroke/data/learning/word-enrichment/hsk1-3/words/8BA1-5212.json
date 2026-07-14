@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:计划",
   "type": "word",
   "word": "计划",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jì huà",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "kế hoạch",
+      "meaningShortVi": "kế hoạch",
+      "meaningFullVi": "kế hoạch",
       "partOfSpeech": "noun/verb",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "kế hoạch",
   "wordType": "noun/verb",
   "wordTypes": [
     "noun/verb"
   ],
-  "usageNotes": [
-    "Có thể là danh từ (kế hoạch) hoặc động từ (lập kế hoạch)"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -50,49 +49,56 @@
     "collocations": [
       {
         "text": "制定计划",
-        "pinyin": "",
+        "pinyin": "zhì dìng jì huà",
         "meaningVi": "lập kế hoạch",
+        "meaningFullVi": "lập kế hoạch",
         "target": "计划",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "按照计划",
-        "pinyin": "",
+        "pinyin": "àn zhào jì huà",
         "meaningVi": "theo kế hoạch",
+        "meaningFullVi": "theo kế hoạch",
         "target": "计划",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "计划",
       "chinese": "我有学习计划",
-      "pinyin": "",
+      "pinyin": "wǒ yǒu xué xí jì huà",
       "meaningVi": "Tôi có kế hoạch học tập",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "计划",
       "chinese": "我们计划下周去旅行",
-      "pinyin": "",
+      "pinyin": "wǒ men jì huà xià zhōu qù lǚ xíng",
       "meaningVi": "Chúng tôi kế hoạch tuần sau đi du lịch",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 计划",
-      "syntax": "noun/verb",
-      "matchedExample": "Có thể là danh từ (kế hoạch) hoặc động từ (lập kế hoạch)",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 计划",
+      "partOfSpeech": "noun/verb",
+      "usageNoteVi": "Có thể là danh từ (kế hoạch) hoặc động từ (lập kế hoạch)",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__2__topic__19__thong-tin",
+      "sectionSlug": "thong-tin",
       "sectionTitle": "Thông tin",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/thong-tin/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

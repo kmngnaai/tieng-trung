@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:否认",
   "type": "word",
   "word": "否认",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "fǒu rèn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phủ nhận; chối từ; không công nhận",
+      "meaningShortVi": "phủ nhận",
+      "meaningFullVi": "phủ nhận; chối từ; không công nhận",
       "partOfSpeech": "động từ (Denial Verb)",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phủ nhận",
   "wordType": "động từ (Denial Verb)",
   "wordTypes": [
     "động từ (Denial Verb)"
   ],
-  "usageNotes": [
-    "Động từ trang trọng, dùng trong tranh luận, pháp lý, báo chí. Mang sắc thái mạnh: hoàn toàn không thừa nhận. Ngược nghĩa: 承认 (thừa nhận), 确认 (xác nhận). Synonym: 否定 (phủ định), 反驳 (bác bỏ)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "坚决否认",
         "pinyin": "jiānjué fǒurèn",
         "meaningVi": "phủ quyết kiên quyết",
+        "meaningFullVi": "phủ quyết kiên quyết",
         "target": "否认",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "否认事实",
         "pinyin": "fǒurèn shìshí",
         "meaningVi": "phủ nhận sự thật",
+        "meaningFullVi": "phủ nhận sự thật",
         "target": "否认",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Anh ấy đã phủ nhận tin tức này.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "否认",
@@ -82,16 +87,17 @@
       "meaningVi": "Không ai phủ nhận khả năng của anh ấy.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 否认",
-      "syntax": "động từ (Denial Verb)",
-      "matchedExample": "Động từ trang trọng, dùng trong tranh luận, pháp lý, báo chí. Mang sắc thái mạnh: hoàn toàn không thừa nhận. Ngược nghĩa: 承认 (thừa nhận), 确认 (xác nhận). Synonym: 否定 (phủ định), 反驳 (bác bỏ).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 否认",
+      "partOfSpeech": "động từ (Denial Verb)",
+      "usageNoteVi": "Động từ trang trọng, dùng trong tranh luận, pháp lý, báo chí. Mang sắc thái mạnh: hoàn toàn không thừa nhận. Ngược nghĩa: 承认 (thừa nhận), 确认 (xác nhận). Synonym: 否定 (phủ định), 反驳 (bác bỏ).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 29,
+      "sectionId": "new_hsk__3__topic__29__lien-lac",
+      "sectionSlug": "lien-lac",
       "sectionTitle": "Liên lạc",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/lien-lac/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

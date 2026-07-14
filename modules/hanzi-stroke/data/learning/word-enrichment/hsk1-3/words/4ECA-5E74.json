@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:今年",
   "type": "word",
   "word": "今年",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "jīn nián",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "năm nay",
+      "meaningShortVi": "năm nay",
+      "meaningFullVi": "năm nay",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "năm nay",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Chỉ năm hiện tại. Có thể ghép với mùa để chỉ mùa trong năm nay: 今年夏天, 今年冬天. Lưu ý thanh điệu: jīn (thanh 1) + nián (thanh 2)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 今 (nay, bây giờ) + 年 (năm). 'Năm bây giờ' = năm nay. Đây là ghép nghĩa trực tiếp."
   ],
   "hsk": {
     "levels": [
@@ -52,14 +49,27 @@
     "compounds": [],
     "collocations": [
       {
+        "text": "今年",
+        "pinyin": "jīnnián",
+        "meaningVi": "năm nay",
+        "meaningFullVi": "năm nay",
+        "target": "今年",
+        "source": "hsk_1.json",
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
+      },
+      {
         "text": "今年夏天",
         "pinyin": "jīnnián xiàtiān",
         "meaningVi": "mùa hè năm nay",
+        "meaningFullVi": "mùa hè năm nay",
         "target": "今年",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -69,7 +79,8 @@
       "meaningVi": "Năm nay tôi 20 tuổi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "今年",
@@ -78,7 +89,8 @@
       "meaningVi": "Năm nay bạn có kế hoạch gì?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "今年",
@@ -87,7 +99,8 @@
       "meaningVi": "Năm nay là năm Long",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "今年",
@@ -96,7 +109,8 @@
       "meaningVi": "Năm nay chúng tôi kết hôn",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "今年",
@@ -105,23 +119,17 @@
       "meaningVi": "mùa hè năm nay",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 今年",
-      "syntax": "compound-semantic",
-      "matchedExample": "Chỉ năm hiện tại. Có thể ghép với mùa để chỉ mùa trong năm nay: 今年夏天, 今年冬天. Lưu ý thanh điệu: jīn (thanh 1) + nián (thanh 2).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 今 (nay, bây giờ) + 年 (năm). 'Năm bây giờ' = năm nay. Đây là ghép nghĩa trực tiếp.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 今年",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Chỉ năm hiện tại. Có thể ghép với mùa để chỉ mùa trong năm nay: 今年夏天, 今年冬天. Lưu ý thanh điệu: jīn (thanh 1) + nián (thanh 2).",
+      "explanationVi": "Ghép nghĩa: 今 (nay, bây giờ) + 年 (năm). 'Năm bây giờ' = năm nay. Đây là ghép nghĩa trực tiếp.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -132,31 +140,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "hsk__1__lesson__5__bai-5-con-gai-co-ay-nam-nay-20-tuoi",
+      "sectionSlug": "bai-5-con-gai-co-ay-nam-nay-20-tuoi",
       "sectionTitle": "Con gái cô ấy năm nay 20 tuổi",
       "sectionTitleZh": "她女儿今年二十岁",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-5-con-gai-co-ay-nam-nay-20-tuoi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-5-con-gai-co-ay-nam-nay-20-tuoi/",
+      "orderInSection": 8
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 4,
+      "sectionId": "new_hsk__1__lesson__4__bai-4-i-have-two-children",
+      "sectionSlug": "bai-4-i-have-two-children",
       "sectionTitle": "Tôi có hai đứa con",
       "sectionTitleZh": "我有两个孩子",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-4-i-have-two-children/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-4-i-have-two-children/",
+      "orderInSection": 13
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 15,
+      "sectionId": "new_hsk__1__topic__15__lich",
+      "sectionSlug": "lich",
       "sectionTitle": "Lịch",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/lich/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/lich/",
+      "orderInSection": 2
     }
   ],
   "sources": [
@@ -172,7 +195,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:心意",
   "type": "word",
   "word": "心意",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "xīn yì",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Tâm ý — tấm lòng, tình cảm chân thành muốn thể hiện; ý định hoặc nguyện vọng xuất phát từ lòng.",
+      "meaningShortVi": "Tâm ý — tấm lòng",
+      "meaningFullVi": "Tâm ý — tấm lòng, tình cảm chân thành muốn thể hiện; ý định hoặc nguyện vọng xuất phát từ lòng.",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Tâm ý — tấm lòng",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Thường dùng khi tặng quà hoặc giúp đỡ người khác, nhấn mạnh sự chân thành hơn là vật chất; gần với 好意 nhưng 心意 cá nhân hơn."
-  ],
-  "wordTypeExplanations": [
-    "心 (tâm — lòng) + 意 (ý — ý nghĩ, tình cảm): ghép thành 「tình cảm trong lòng」."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "一点心意",
         "pinyin": "yīdiǎn xīnyì",
         "meaningVi": "một chút tấm lòng",
+        "meaningFullVi": "một chút tấm lòng",
         "target": "心意",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "表达心意",
         "pinyin": "biǎodá xīnyì",
         "meaningVi": "bày tỏ tấm lòng",
+        "meaningFullVi": "bày tỏ tấm lòng",
         "target": "心意",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "领会心意",
         "pinyin": "lǐnghuì xīnyì",
         "meaningVi": "hiểu được tấm lòng",
+        "meaningFullVi": "hiểu được tấm lòng",
         "target": "心意",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Món quà này thể hiện một chút tấm lòng của tôi.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "心意",
@@ -90,7 +95,8 @@
       "meaningVi": "Xin hãy nhận tấm lòng của tôi.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "心意",
@@ -99,7 +105,8 @@
       "meaningVi": "Tấm lòng của anh ấy tốt, nhưng cách làm chưa đúng.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "心意",
@@ -108,23 +115,17 @@
       "meaningVi": "Tôi hiểu tấm lòng của bạn.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 心意",
-      "syntax": "compound-semantic",
-      "matchedExample": "Thường dùng khi tặng quà hoặc giúp đỡ người khác, nhấn mạnh sự chân thành hơn là vật chất; gần với 好意 nhưng 心意 cá nhân hơn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "心 (tâm — lòng) + 意 (ý — ý nghĩ, tình cảm): ghép thành 「tình cảm trong lòng」.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 心意",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Thường dùng khi tặng quà hoặc giúp đỡ người khác, nhấn mạnh sự chân thành hơn là vật chất; gần với 好意 nhưng 心意 cá nhân hơn.",
+      "explanationVi": "心 (tâm — lòng) + 意 (ý — ý nghĩ, tình cảm): ghép thành 「tình cảm trong lòng」.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

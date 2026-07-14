@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:礁石",
   "type": "word",
   "word": "礁石",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "jiāo shí",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đá ngầm, rạn san hô",
+      "meaningShortVi": "đá ngầm",
+      "meaningFullVi": "đá ngầm, rạn san hô",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đá ngầm",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Synonym: 暗礁 (àn jiāo - đá ngầm). Thường dùng trong ngữ cảnh hàng hải, du lịch biển."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 礁 (đá ngầm, san hô) + 石 (đá) → 'đá ngầm dưới nước'."
   ],
   "hsk": {
     "levels": [
@@ -46,24 +43,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "暗礁",
-        "pinyin": "ànjiāo",
-        "meaningVi": "Đá ngầm nguy hiểm",
-        "target": "礁石",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "珊瑚礁",
-        "pinyin": "shānhújiāo",
-        "meaningVi": "Rạn san hô",
-        "target": "礁石",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +54,8 @@
       "meaningVi": "Thuyền va vào đá ngầm",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "礁石",
@@ -82,7 +64,8 @@
       "meaningVi": "Cẩn thận đá ngầm",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "礁石",
@@ -91,7 +74,8 @@
       "meaningVi": "Vùng biển này có nhiều đá ngầm",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "礁石",
@@ -100,23 +84,17 @@
       "meaningVi": "Đá ngầm là loại đá ngầm nguy hiểm nhất",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 礁石",
-      "syntax": "compound-semantic",
-      "matchedExample": "Synonym: 暗礁 (àn jiāo - đá ngầm). Thường dùng trong ngữ cảnh hàng hải, du lịch biển.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 礁 (đá ngầm, san hô) + 石 (đá) → 'đá ngầm dưới nước'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 礁石",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Synonym: 暗礁 (àn jiāo - đá ngầm). Thường dùng trong ngữ cảnh hàng hải, du lịch biển.",
+      "explanationVi": "Ghép nghĩa: 礁 (đá ngầm, san hô) + 石 (đá) → 'đá ngầm dưới nước'.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -131,7 +109,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

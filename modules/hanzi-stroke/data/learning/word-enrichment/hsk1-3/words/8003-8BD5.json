@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:考试",
   "type": "word",
   "word": "考试",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "kǎo shì",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thi, kỳ thi",
+      "meaningShortVi": "thi",
+      "meaningFullVi": "thi, kỳ thi",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thi",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Kỳ thi/thi cử. 准备 (zhǔnbèi) 是 chuẩn bị/ôn thi. Hán-Việt: 'khảo thí'."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 考 (khảo thí) + 试 (thử) → kiểm tra, thi cử."
   ],
   "hsk": {
     "levels": [
@@ -55,20 +52,35 @@
       {
         "text": "准备考试",
         "pinyin": "zhǔnbèi kǎoshì",
-        "meaningVi": "ôn thi/chuẩn bị thi",
+        "meaningVi": "ôn thi",
+        "meaningFullVi": "ôn thi/chuẩn bị thi",
         "target": "考试",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "参加考试",
         "pinyin": "cānjiā kǎoshì",
         "meaningVi": "thi",
+        "meaningFullVi": "thi",
         "target": "考试",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
+      },
+      {
+        "text": "考试",
+        "pinyin": "kǎoshì",
+        "meaningVi": "thi",
+        "meaningFullVi": "thi, kỳ thi",
+        "target": "考试",
+        "source": "hsk_1.json",
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -78,7 +90,8 @@
       "meaningVi": "Ngày mai có thi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "考试",
@@ -87,7 +100,8 @@
       "meaningVi": "Tôi đang ôn thi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "考试",
@@ -96,7 +110,8 @@
       "meaningVi": "Bài thi rất khó",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "考试",
@@ -105,23 +120,17 @@
       "meaningVi": "thi/đợ thi",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 考试",
-      "syntax": "compound-semantic",
-      "matchedExample": "Kỳ thi/thi cử. 准备 (zhǔnbèi) 是 chuẩn bị/ôn thi. Hán-Việt: 'khảo thí'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 考 (khảo thí) + 试 (thử) → kiểm tra, thi cử.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 考试",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Kỳ thi/thi cử. 准备 (zhǔnbèi) 是 chuẩn bị/ôn thi. Hán-Việt: 'khảo thí'.",
+      "explanationVi": "Ghép nghĩa: 考 (khảo thí) + 试 (thử) → kiểm tra, thi cử.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -132,31 +141,46 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__1__topic__5__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nghien-cuu/",
+      "orderInSection": 18
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 5,
+      "sectionId": "hsk__2__lesson__5__bai-5-cu-mua-cai-nay-di",
+      "sectionSlug": "bai-5-cu-mua-cai-nay-di",
       "sectionTitle": "Cứ mua cái này đi",
       "sectionTitleZh": "就买这件吧",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-5-cu-mua-cai-nay-di/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-5-cu-mua-cai-nay-di/",
+      "orderInSection": 10
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__2__lesson__10__bai-10-the-exam-is-coming",
+      "sectionSlug": "bai-10-the-exam-is-coming",
       "sectionTitle": "Sắp thi rồi",
       "sectionTitleZh": "就要考试了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-10-the-exam-is-coming/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-10-the-exam-is-coming/",
+      "orderInSection": 6
     }
   ],
   "sources": [
@@ -177,7 +201,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

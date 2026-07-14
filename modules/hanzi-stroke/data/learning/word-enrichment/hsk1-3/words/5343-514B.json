@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:千克",
   "type": "word",
   "word": "千克",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "qiān kè",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thiên khắc",
+      "meaningShortVi": "thiên khắc",
+      "meaningFullVi": "thiên khắc",
       "partOfSpeech": "noun",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thiên khắc",
   "wordType": "noun",
   "wordTypes": [
     "noun"
   ],
-  "usageNotes": [
-    "Đơn vị đo khối lượng, tương đương kg, dùng trong văn bản"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "几千克",
-        "pinyin": "",
+        "pinyin": "jǐ qiān kè",
         "meaningVi": "bao nhiêu ki-lô-gam",
+        "meaningFullVi": "bao nhiêu ki-lô-gam",
         "target": "千克",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "半千克",
-        "pinyin": "",
+        "pinyin": "bàn qiān kè",
         "meaningVi": "nửa ki-lô-gam",
+        "meaningFullVi": "nửa ki-lô-gam",
         "target": "千克",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "千克",
       "chinese": "一千克大米",
-      "pinyin": "",
+      "pinyin": "yī qiān kè dà mǐ",
       "meaningVi": "Một ki-lô-gam gạo",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "千克",
       "chinese": "重量是二千克",
-      "pinyin": "",
+      "pinyin": "zhòng liàng shì èr qiān kè",
       "meaningVi": "Trọng lượng là hai ki-lô-gam",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 千克",
-      "syntax": "noun",
-      "matchedExample": "Đơn vị đo khối lượng, tương đương kg, dùng trong văn bản",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 千克",
+      "partOfSpeech": "noun",
+      "usageNoteVi": "Đơn vị đo khối lượng, tương đương kg, dùng trong văn bản",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 2,
+      "sectionId": "new_hsk__2__topic__2__do-luong-tu",
+      "sectionSlug": "do-luong-tu",
       "sectionTitle": "Đo lường từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/do-luong-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/do-luong-tu/",
+      "orderInSection": 9
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

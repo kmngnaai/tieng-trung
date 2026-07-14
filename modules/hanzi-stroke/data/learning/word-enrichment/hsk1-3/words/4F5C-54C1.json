@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:作品",
   "type": "word",
   "word": "作品",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zuò pǐn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tác phẩm, sản phẩm sáng tạo",
+      "meaningShortVi": "tác phẩm",
+      "meaningFullVi": "tác phẩm, sản phẩm sáng tạo",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tác phẩm",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "作品 là danh từ chỉ sản phẩm của hoạt động sáng tạo như văn học, nghệ thuật, học thuật. Thường kết hợp với loại hình: 文学作品 (tác phẩm văn học), 艺术作品 (tác phẩm nghệ thuật)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "文学作品",
-        "pinyin": "",
+        "pinyin": "wén xué zuò pǐn",
         "meaningVi": "tác phẩm văn học",
+        "meaningFullVi": "tác phẩm văn học",
         "target": "作品",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "艺术作品",
-        "pinyin": "",
+        "pinyin": "yì shù zuò pǐn",
         "meaningVi": "tác phẩm nghệ thuật",
+        "meaningFullVi": "tác phẩm nghệ thuật",
         "target": "作品",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "作品",
-      "chinese": "这是鲁迅的文学作品。",
-      "pinyin": "",
-      "meaningVi": "Đây là tác phẩm văn học của Lỗ Tấn.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "作品",
       "chinese": "这个展览展示了很多艺术作品。",
-      "pinyin": "",
+      "pinyin": "zhè ge zhǎn lǎn zhǎn shì le hěn duō yì shù zuò pǐn。",
       "meaningVi": "Triển lãm này trưng bày nhiều tác phẩm nghệ thuật.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 作品",
-      "syntax": "danh từ",
-      "matchedExample": "作品 là danh từ chỉ sản phẩm của hoạt động sáng tạo như văn học, nghệ thuật, học thuật. Thường kết hợp với loại hình: 文学作品 (tác phẩm văn học), 艺术作品 (tác phẩm nghệ thuật).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 作品",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "作品 là danh từ chỉ sản phẩm của hoạt động sáng tạo như văn học, nghệ thuật, học thuật. Thường kết hợp với loại hình: 文学作品 (tác phẩm văn học), 艺术作品 (tác phẩm nghệ thuật).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__3__topic__19__thanh-tuu-va-ket-qua",
+      "sectionSlug": "thanh-tuu-va-ket-qua",
       "sectionTitle": "Thành tựu và kết quả",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/",
+      "orderInSection": 33
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

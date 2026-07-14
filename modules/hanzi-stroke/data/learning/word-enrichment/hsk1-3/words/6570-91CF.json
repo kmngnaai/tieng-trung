@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:数量",
   "type": "word",
   "word": "数量",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shù liàng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "số lượng, số lượng vật phẩm",
+      "meaningShortVi": "số lượng",
+      "meaningFullVi": "số lượng, số lượng vật phẩm",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "số lượng",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "数量 dùng để chỉ số lượng của vật có thể đếm được. Thường kết hợp với 大 (nhiều), 少 (ít), 有限 (hạn chế)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,43 +45,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "大量",
-        "pinyin": "",
-        "meaningVi": "số lượng lớn",
-        "target": "数量",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "数量有限",
-        "pinyin": "",
-        "meaningVi": "số lượng có hạn",
-        "target": "数量",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
-  "sentences": [
-    {
-      "target": "数量",
-      "chinese": "我们需要控制产品的数量。",
-      "pinyin": "",
-      "meaningVi": "Chúng ta cần kiểm soát số lượng sản phẩm.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    }
-  ],
+  "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 数量",
-      "syntax": "danh từ",
-      "matchedExample": "数量 dùng để chỉ số lượng của vật có thể đếm được. Thường kết hợp với 大 (nhiều), 少 (ít), 有限 (hạn chế).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 数量",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "数量 dùng để chỉ số lượng của vật có thể đếm được. Thường kết hợp với 大 (nhiều), 少 (ít), 有限 (hạn chế).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -93,11 +66,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 22,
+      "sectionId": "new_hsk__3__topic__22__kinh-te-va-tai-chinh",
+      "sectionSlug": "kinh-te-va-tai-chinh",
       "sectionTitle": "Kinh tế và tài chính",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/kinh-te-va-tai-chinh/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/kinh-te-va-tai-chinh/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -108,7 +86,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

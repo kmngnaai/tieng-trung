@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:调整",
   "type": "word",
   "word": "调整",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "tiáo zhěng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "điều chỉnh; chỉnh sửa; sắp xếp lại cho phù hợp",
+      "meaningShortVi": "điều chỉnh",
+      "meaningFullVi": "điều chỉnh; chỉnh sửa; sắp xếp lại cho phù hợp",
       "partOfSpeech": "động từ (Adjustment Verb)",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "điều chỉnh",
   "wordType": "động từ (Adjustment Verb)",
   "wordTypes": [
     "động từ (Adjustment Verb)"
   ],
-  "usageNotes": [
-    "Dùng khi thay đổi cho phù hợp hơn: kế hoạch, vị trí, cài đặt. Rất phổ biến trong công việc, kỹ thuật, sinh hoạt. Synonym: 修改 (sửa đổi), 改变 (thay đổi), 调节 (điều hòa)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "调整时间",
         "pinyin": "tiáozhěng shíjiān",
         "meaningVi": "điều chỉnh thời gian",
+        "meaningFullVi": "điều chỉnh thời gian",
         "target": "调整",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "做出调整",
         "pinyin": "zuòchū tiáozhěng",
         "meaningVi": "thực hiện điều chỉnh",
+        "meaningFullVi": "thực hiện điều chỉnh",
         "target": "调整",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Chúng tôi cần điều chỉnh kế hoạch.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "调整",
@@ -82,16 +87,17 @@
       "meaningVi": "Điều chỉnh một chút chiều cao ghế.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 调整",
-      "syntax": "động từ (Adjustment Verb)",
-      "matchedExample": "Dùng khi thay đổi cho phù hợp hơn: kế hoạch, vị trí, cài đặt. Rất phổ biến trong công việc, kỹ thuật, sinh hoạt. Synonym: 修改 (sửa đổi), 改变 (thay đổi), 调节 (điều hòa).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 调整",
+      "partOfSpeech": "động từ (Adjustment Verb)",
+      "usageNoteVi": "Dùng khi thay đổi cho phù hợp hơn: kế hoạch, vị trí, cài đặt. Rất phổ biến trong công việc, kỹ thuật, sinh hoạt. Synonym: 修改 (sửa đổi), 改变 (thay đổi), 调节 (điều hòa).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__topic__17__nhung-thay-doi",
+      "sectionSlug": "nhung-thay-doi",
       "sectionTitle": "Những thay đổi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nhung-thay-doi/",
+      "orderInSection": 20
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

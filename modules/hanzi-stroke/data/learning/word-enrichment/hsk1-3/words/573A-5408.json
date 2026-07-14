@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:场合",
   "type": "word",
   "word": "场合",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "chǎng hé",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "dịp, hoàn cảnh, trường hợp",
+      "meaningShortVi": "dịp",
+      "meaningFullVi": "dịp, hoàn cảnh, trường hợp",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "dịp",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Chỉ hoàn cảnh hoặc dịp cụ thể. Thường dùng khi nói về hành vi phù hợp với từng dịp."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,46 @@
     "collocations": [
       {
         "text": "正式场合",
-        "pinyin": "",
+        "pinyin": "zhèng shì chǎng hé",
         "meaningVi": "dịp trang trọng",
+        "meaningFullVi": "dịp trang trọng",
         "target": "场合",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "公共场合",
-        "pinyin": "",
+        "pinyin": "gōng gòng chǎng hé",
         "meaningVi": "chốn công cộng",
+        "meaningFullVi": "chốn công cộng",
         "target": "场合",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "场合",
       "chinese": "在这个场合穿正装比较合适。",
-      "pinyin": "",
+      "pinyin": "zài zhè ge chǎng hé chuān zhèng zhuāng bǐ jiào hé shì。",
       "meaningVi": "Trong dịp này mặc đồ lịch sự sẽ phù hợp hơn.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "场合",
-      "chinese": "要注意自己的言行，看场合说话。",
-      "pinyin": "",
-      "meaningVi": "Cần chú ý lời nói hành động, phải biết nói chuyện đúng dịp.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 场合",
-      "syntax": "danh từ",
-      "matchedExample": "Chỉ hoàn cảnh hoặc dịp cụ thể. Thường dùng khi nói về hành vi phù hợp với từng dịp.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 场合",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Chỉ hoàn cảnh hoặc dịp cụ thể. Thường dùng khi nói về hành vi phù hợp với từng dịp.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 25,
+      "sectionId": "new_hsk__3__topic__25__truong-hop",
+      "sectionSlug": "truong-hop",
       "sectionTitle": "Trường hợp",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/truong-hop/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/truong-hop/",
+      "orderInSection": 19
     }
   ],
   "sources": [
@@ -117,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

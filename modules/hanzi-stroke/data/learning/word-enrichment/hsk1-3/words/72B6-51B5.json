@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:状况",
   "type": "word",
   "word": "状况",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhuàng kuàng",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tình hình, tình trạng",
+      "meaningShortVi": "tình hình",
+      "meaningFullVi": "tình hình, tình trạng",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tình hình",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Chỉ tình hình hoặc tình trạng tổng thể. Rất giống '情况' nhưng '状况' thiên về tình trạng cụ thể hơn."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,56 @@
     "collocations": [
       {
         "text": "健康状况",
-        "pinyin": "",
+        "pinyin": "jiàn kāng zhuàng kuàng",
         "meaningVi": "tình trạng sức khỏe",
+        "meaningFullVi": "tình trạng sức khỏe",
         "target": "状况",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "经济状况",
-        "pinyin": "",
+        "pinyin": "jīng jì zhuàng kuàng",
         "meaningVi": "tình hình kinh tế",
+        "meaningFullVi": "tình hình kinh tế",
         "target": "状况",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "状况",
       "chinese": "请介绍一下目前的经济状况。",
-      "pinyin": "",
+      "pinyin": "qǐng jiè shào yī xià mù qián de jīng jì zhuàng kuàng。",
       "meaningVi": "Hãy giới thiệu về tình hình kinh tế hiện tại.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "状况",
       "chinese": "她的健康状况不太好。",
-      "pinyin": "",
+      "pinyin": "tā de jiàn kāng zhuàng kuàng bù tài hǎo。",
       "meaningVi": "Tình trạng sức khỏe của cô ấy không quá tốt.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 状况",
-      "syntax": "danh từ",
-      "matchedExample": "Chỉ tình hình hoặc tình trạng tổng thể. Rất giống '情况' nhưng '状况' thiên về tình trạng cụ thể hơn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 状况",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Chỉ tình hình hoặc tình trạng tổng thể. Rất giống '情况' nhưng '状况' thiên về tình trạng cụ thể hơn.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 25,
+      "sectionId": "new_hsk__3__topic__25__truong-hop",
+      "sectionSlug": "truong-hop",
       "sectionTitle": "Trường hợp",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/truong-hop/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/truong-hop/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

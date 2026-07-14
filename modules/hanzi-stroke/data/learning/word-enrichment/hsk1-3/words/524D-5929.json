@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:前天",
   "type": "word",
   "word": "前天",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "qián tiān",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ngày hôm kia (2 ngày trước)",
+      "meaningShortVi": "ngày hôm kia (2 ngày trước)",
+      "meaningFullVi": "ngày hôm kia (2 ngày trước)",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ngày hôm kia (2 ngày trước)",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Chỉ ngày thứ hai tính ngược về trước từ hôm nay (hôm nay → hôm qua → hôm kia). Trong khẩu ngữ có thể thêm '大' thành '大前天' (ngày kia nữa). Lưu ý thanh điệu: qián (thanh 2) + tiān (thanh 1)."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 前 (trước, phía trước) + 天 (ngày). 'Ngày trước hôm qua' = ngày hôm kia. Đây là ghép nghĩa trực tiếp chỉ vị trí thời gian."
   ],
   "hsk": {
     "levels": [
@@ -51,22 +48,37 @@
     "compounds": [],
     "collocations": [
       {
+        "text": "前天",
+        "pinyin": "qiántiān",
+        "meaningVi": "ngày hôm kia",
+        "meaningFullVi": "ngày hôm kia",
+        "target": "前天",
+        "source": "hsk_1.json",
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
+      },
+      {
         "text": "大前天",
         "pinyin": "dàqiántiān",
         "meaningVi": "ngày kia nữa",
+        "meaningFullVi": "ngày kia nữa",
         "target": "前天",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "前天晚上",
         "pinyin": "qiántiān wǎnshang",
         "meaningVi": "tối ngày hôm kia",
+        "meaningFullVi": "tối ngày hôm kia",
         "target": "前天",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -76,7 +88,8 @@
       "meaningVi": "Ngày hôm kia tôi đã đi Thượng Hải",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "前天",
@@ -85,7 +98,8 @@
       "meaningVi": "Ngày hôm kia là thứ mấy?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "前天",
@@ -94,7 +108,8 @@
       "meaningVi": "Ngày hôm kia tôi đã gặp anh ấy",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "前天",
@@ -103,7 +118,8 @@
       "meaningVi": "ngày kia nữa (3 ngày trước)",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "前天",
@@ -112,23 +128,17 @@
       "meaningVi": "tối ngày hôm kia",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 前天",
-      "syntax": "compound-semantic",
-      "matchedExample": "Chỉ ngày thứ hai tính ngược về trước từ hôm nay (hôm nay → hôm qua → hôm kia). Trong khẩu ngữ có thể thêm '大' thành '大前天' (ngày kia nữa). Lưu ý thanh điệu: qián (thanh 2) + tiān (thanh 1).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 前 (trước, phía trước) + 天 (ngày). 'Ngày trước hôm qua' = ngày hôm kia. Đây là ghép nghĩa trực tiếp chỉ vị trí thời gian.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 前天",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Chỉ ngày thứ hai tính ngược về trước từ hôm nay (hôm nay → hôm qua → hôm kia). Trong khẩu ngữ có thể thêm '大' thành '大前天' (ngày kia nữa). Lưu ý thanh điệu: qián (thanh 2) + tiān (thanh 1).",
+      "explanationVi": "Ghép nghĩa: 前 (trước, phía trước) + 天 (ngày). 'Ngày trước hôm qua' = ngày hôm kia. Đây là ghép nghĩa trực tiếp chỉ vị trí thời gian.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,21 +149,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 15,
+      "sectionId": "new_hsk__1__topic__15__lich",
+      "sectionSlug": "lich",
       "sectionTitle": "Lịch",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/lich/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/lich/",
+      "orderInSection": 4
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 17,
+      "sectionId": "new_hsk__3__lesson__17__bai-17-i-will-learn-from-people-who-are-careful",
+      "sectionSlug": "bai-17-i-will-learn-from-people-who-are-careful",
       "sectionTitle": "Tôi phải học hỏi nhiều từ những người nghiêm túc",
       "sectionTitleZh": "我要多向认真的人学习",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-17-i-will-learn-from-people-who-are-careful/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-17-i-will-learn-from-people-who-are-careful/",
+      "orderInSection": 16
     }
   ],
   "sources": [
@@ -169,7 +189,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

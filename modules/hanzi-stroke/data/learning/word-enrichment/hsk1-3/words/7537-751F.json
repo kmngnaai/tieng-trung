@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:男生",
   "type": "word",
   "word": "男生",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "nán shēng",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "học sinh nam",
+      "meaningShortVi": "học sinh nam",
+      "meaningFullVi": "học sinh nam",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "học sinh nam",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng trong bối cảnh học đường. Học sinh nữ 是 女生. Sinh viên đại học 则用 男生/女生."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 男 (đàn ông/con trai) + 生 (người/người học) → học sinh nam."
   ],
   "hsk": {
     "levels": [
@@ -51,30 +48,17 @@
     "compounds": [],
     "collocations": [
       {
-        "text": "女生",
-        "pinyin": "nǚshēng",
-        "meaningVi": "học sinh nữ",
-        "target": "男生",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
         "text": "男生宿舍",
         "pinyin": "nánshēng sùshè",
         "meaningVi": "ký túc xá nam",
+        "meaningFullVi": "ký túc xá nam",
         "target": "男生",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "男同学",
-        "pinyin": "nán tóngxué",
-        "meaningVi": "bạn học nam",
-        "target": "男生",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -84,7 +68,8 @@
       "meaningVi": "Lớp chúng tôi có 20 học sinh nam",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "男生",
@@ -93,7 +78,8 @@
       "meaningVi": "Anh ấy là học sinh nam",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "男生",
@@ -102,7 +88,8 @@
       "meaningVi": "học sinh nam và nữ",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "男生",
@@ -111,23 +98,17 @@
       "meaningVi": "ký túc xá nam",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 男生",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng trong bối cảnh học đường. Học sinh nữ 是 女生. Sinh viên đại học 则用 男生/女生.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 男 (đàn ông/con trai) + 生 (người/người học) → học sinh nam.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 男生",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng trong bối cảnh học đường. Học sinh nữ 是 女生. Sinh viên đại học 则用 男生/女生.",
+      "explanationVi": "Ghép nghĩa: 男 (đàn ông/con trai) + 生 (người/người học) → học sinh nam.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -138,21 +119,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__1__topic__5__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nghien-cuu/",
+      "orderInSection": 19
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "lesson",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__3__lesson__9__bai-9-it-doesn-t-matter-if-you-don-t-play-well",
+      "sectionSlug": "bai-9-it-doesn-t-matter-if-you-don-t-play-well",
       "sectionTitle": "Chơi không giỏi cũng không sao",
       "sectionTitleZh": "打不好没关系",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-9-it-doesn-t-matter-if-you-don-t-play-well/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/bai-hoc/bai-9-it-doesn-t-matter-if-you-don-t-play-well/",
+      "orderInSection": 6
     }
   ],
   "sources": [
@@ -168,7 +159,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

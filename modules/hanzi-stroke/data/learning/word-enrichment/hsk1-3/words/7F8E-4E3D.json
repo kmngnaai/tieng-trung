@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:美丽",
   "type": "word",
   "word": "美丽",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "měi lì",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đẹp, xinh đẹp; lộng lẫy",
+      "meaningShortVi": "đẹp",
+      "meaningFullVi": "đẹp, xinh đẹp; lộng lẫy",
       "partOfSpeech": "tính từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đẹp",
   "wordType": "tính từ",
   "wordTypes": [
     "tính từ"
   ],
-  "usageNotes": [
-    "Měi lì là từ phổ biến nhất để miêu tả vẻ đẹp ngoại hình, cảnh vật. Trang trọng hơn略 so với 好看."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -50,49 +49,36 @@
     "collocations": [
       {
         "text": "美丽的风景",
-        "pinyin": "",
+        "pinyin": "měi lì de fēng jǐng",
         "meaningVi": "cảnh đẹp",
+        "meaningFullVi": "cảnh đẹp",
         "target": "美丽",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "美丽的心灵",
-        "pinyin": "",
-        "meaningVi": "trái tim đẹp/tâm hồn cao đẹp",
-        "target": "美丽",
-        "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "美丽",
-      "chinese": "她是一个非常美丽的女孩。",
-      "pinyin": "",
-      "meaningVi": "Cô ấy là một cô gái rất xinh đẹp.",
-      "source": "hsk_2.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "美丽",
       "chinese": "北京是一个美丽的城市。",
-      "pinyin": "",
+      "pinyin": "Běi jīng shì yī gè měi lì de chéng shì。",
       "meaningVi": "Bắc Kinh là một thành phố đẹp.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 美丽",
-      "syntax": "tính từ",
-      "matchedExample": "Měi lì là từ phổ biến nhất để miêu tả vẻ đẹp ngoại hình, cảnh vật. Trang trọng hơn略 so với 好看.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 美丽",
+      "partOfSpeech": "tính từ",
+      "usageNoteVi": "Měi lì là từ phổ biến nhất để miêu tả vẻ đẹp ngoại hình, cảnh vật. Trang trọng hơn略 so với 好看.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +89,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 33,
+      "sectionId": "new_hsk__3__topic__33__tinh-tu",
+      "sectionSlug": "tinh-tu",
       "sectionTitle": "Tính từ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tinh-tu/",
+      "orderInSection": 27
     }
   ],
   "sources": [
@@ -123,7 +114,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

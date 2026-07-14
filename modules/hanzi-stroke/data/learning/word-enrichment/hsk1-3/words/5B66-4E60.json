@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:学习",
   "type": "word",
   "word": "学习",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "xué xí",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "học, học tập",
+      "meaningShortVi": "học",
+      "meaningFullVi": "học, học tập",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "học",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Động từ/tên từ: học, học tập. Hán-Việt: 'học tập'."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 学 (học) + 习 (luyện tập) -> học và luyện tập."
   ],
   "hsk": {
     "levels": [
@@ -56,27 +53,34 @@
         "text": "学习中文",
         "pinyin": "xuéxí Zhōngwén",
         "meaningVi": "học tiếng Trung",
+        "meaningFullVi": "học tiếng Trung",
         "target": "学习",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "努力学习",
         "pinyin": "nǔlì xuéxí",
         "meaningVi": "chăm chỉ học",
+        "meaningFullVi": "chăm chỉ học",
         "target": "学习",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "喜欢学习",
         "pinyin": "xǐhuan xuéxí",
         "meaningVi": "thích học",
+        "meaningFullVi": "thích học",
         "target": "学习",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -86,7 +90,8 @@
       "meaningVi": "Tôi đang học tiếng Trung",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "学习",
@@ -95,7 +100,8 @@
       "meaningVi": "thích học",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "学习",
@@ -104,7 +110,8 @@
       "meaningVi": "chăm chỉ học",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "学习",
@@ -113,23 +120,17 @@
       "meaningVi": "Việc học rất quan trọng",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 学习",
-      "syntax": "compound-semantic",
-      "matchedExample": "Động từ/tên từ: học, học tập. Hán-Việt: 'học tập'.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 学 (học) + 习 (luyện tập) -> học và luyện tập.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 学习",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Động từ/tên từ: học, học tập. Hán-Việt: 'học tập'.",
+      "explanationVi": "Ghép nghĩa: 学 (học) + 习 (luyện tập) -> học và luyện tập.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -140,31 +141,46 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 13,
+      "sectionId": "hsk__1__lesson__13__bai-13-anh-ay-dang-hoc-nau-mon-trung-quoc",
+      "sectionSlug": "bai-13-anh-ay-dang-hoc-nau-mon-trung-quoc",
       "sectionTitle": "Anh ấy đang học nấu món Trung Quốc",
       "sectionTitleZh": "他在学做中国菜呢",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-13-anh-ay-dang-hoc-nau-mon-trung-quoc/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-13-anh-ay-dang-hoc-nau-mon-trung-quoc/",
+      "orderInSection": 3
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__1__lesson__9__bai-9-i-ll-be-studying-at-school-tomorrow-morning",
+      "sectionSlug": "bai-9-i-ll-be-studying-at-school-tomorrow-morning",
       "sectionTitle": "Sáng mai tôi học ở trường",
       "sectionTitleZh": "我明天上午在学校学习",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-9-i-ll-be-studying-at-school-tomorrow-morning/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-9-i-ll-be-studying-at-school-tomorrow-morning/",
+      "orderInSection": 21
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__1__topic__6__trong-lop",
+      "sectionSlug": "trong-lop",
       "sectionTitle": "Trong lớp",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/trong-lop/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/trong-lop/",
+      "orderInSection": 4
     }
   ],
   "sources": [
@@ -185,7 +201,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:教练",
   "type": "word",
   "word": "教练",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "jiào liàn",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "huấn luyện viên",
+      "meaningShortVi": "huấn luyện viên",
+      "meaningFullVi": "huấn luyện viên",
       "partOfSpeech": "danh từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "huấn luyện viên",
   "wordType": "danh từ",
   "wordTypes": [
     "danh từ"
   ],
-  "usageNotes": [
-    "Chỉ người huấn luyện trong thể thao hoặc kỹ năng."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -49,49 +48,36 @@
     "collocations": [
       {
         "text": "足球教练",
-        "pinyin": "",
+        "pinyin": "zú qiú jiào liàn",
         "meaningVi": "huấn luyện viên bóng đá",
+        "meaningFullVi": "huấn luyện viên bóng đá",
         "target": "教练",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "私人教练",
-        "pinyin": "",
-        "meaningVi": "huấn luyện viên cá nhân",
-        "target": "教练",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "教练",
-      "chinese": "我们的教练很严格。",
-      "pinyin": "",
-      "meaningVi": "Huấn luyện viên của chúng tôi rất nghiêm khắc.",
-      "source": "hsk_3.json",
-      "containsTarget": true,
-      "reviewStatus": "reviewed"
-    },
-    {
-      "target": "教练",
       "chinese": "他是一名足球教练。",
-      "pinyin": "",
+      "pinyin": "tā shì yī míng zú qiú jiào liàn。",
       "meaningVi": "Anh ấy là một huấn luyện viên bóng đá.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 教练",
-      "syntax": "danh từ",
-      "matchedExample": "Chỉ người huấn luyện trong thể thao hoặc kỹ năng.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 教练",
+      "partOfSpeech": "danh từ",
+      "usageNoteVi": "Chỉ người huấn luyện trong thể thao hoặc kỹ năng.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +88,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 26,
+      "sectionId": "new_hsk__3__topic__26__nghien-cuu",
+      "sectionSlug": "nghien-cuu",
       "sectionTitle": "Nghiên cứu",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/nghien-cuu/",
+      "orderInSection": 19
     }
   ],
   "sources": [
@@ -117,7 +108,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

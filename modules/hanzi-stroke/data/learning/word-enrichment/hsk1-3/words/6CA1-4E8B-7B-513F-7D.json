@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:没事{儿}",
   "type": "word",
   "word": "没事{儿}",
@@ -18,27 +18,24 @@
     "readings": [
       {
         "pinyin": "méi shìr ",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "không sao đâu, không có gì",
+      "meaningShortVi": "không sao đâu",
+      "meaningFullVi": "không sao đâu, không có gì",
       "partOfSpeech": "idiom",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "không sao đâu",
   "wordType": "idiom",
   "wordTypes": [
     "idiom"
-  ],
-  "usageNotes": [
-    "Cách nói không vănphoneNumber của miền Bắc (có 儿), dùng như 没关系. Trấn an ai đó lo lắng hoặc từ chối lời cảm ơn. Phân biệt với 没事 (không có 儿) phổ biến hơn, và 有事 (có việc/đang bận). Trong giao tiếp thân mật, rất phổ biến."
-  ],
-  "wordTypeExplanations": [
-    "Thành ngữ miền Bắc Trung Quốc, thêm hậu tố 儿 (ér). Ghép 没 (không) + 事 (việc) → không có việc gì, không có vấn đề gì. Dùng để trấn an hoặc từ chối lời cảm ơn."
   ],
   "hsk": {
     "levels": [
@@ -51,48 +48,17 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "没事",
-        "pinyin": "méi shì",
-        "meaningVi": "không sao (không có hậu tố 儿, miền Nam)",
-        "target": "没事{儿}",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "有事",
-        "pinyin": "yǒu shì",
-        "meaningVi": "có việc, có chuyện",
-        "target": "没事{儿}",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "没什么",
-        "pinyin": "méi shénme",
-        "meaningVi": "không có gì",
-        "target": "没事{儿}",
-        "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 没事{儿}",
-      "syntax": "idiom",
-      "matchedExample": "Cách nói không vănphoneNumber của miền Bắc (có 儿), dùng như 没关系. Trấn an ai đó lo lắng hoặc từ chối lời cảm ơn. Phân biệt với 没事 (không có 儿) phổ biến hơn, và 有事 (có việc/đang bận). Trong giao tiếp thân mật, rất phổ biến.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "idiom",
-      "matchedExample": "Thành ngữ miền Bắc Trung Quốc, thêm hậu tố 儿 (ér). Ghép 没 (không) + 事 (việc) → không có việc gì, không có vấn đề gì. Dùng để trấn an hoặc từ chối lời cảm ơn.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 没事{儿}",
+      "partOfSpeech": "idiom",
+      "usageNoteVi": "Cách nói không vănphoneNumber của miền Bắc (có 儿), dùng như 没关系. Trấn an ai đó lo lắng hoặc từ chối lời cảm ơn. Phân biệt với 没事 (không có 儿) phổ biến hơn, và 有事 (có việc/đang bận). Trong giao tiếp thân mật, rất phổ biến.",
+      "explanationVi": "Thành ngữ miền Bắc Trung Quốc, thêm hậu tố 儿 (ér). Ghép 没 (không) + 事 (việc) → không có việc gì, không có vấn đề gì. Dùng để trấn an hoặc từ chối lời cảm ơn.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +69,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__1__topic__19__nhung-tu-ngu-lich-su",
+      "sectionSlug": "nhung-tu-ngu-lich-su",
       "sectionTitle": "Những từ ngữ lịch sự",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nhung-tu-ngu-lich-su/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/nhung-tu-ngu-lich-su/",
+      "orderInSection": 3
     }
   ],
   "sources": [
@@ -118,9 +89,11 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
+    "status": "PASS",
     "warnings": [
-      "Chưa có câu chứa nguyên từ"
+      "Không có collocation đạt cổng chất lượng",
+      "Không có câu mẫu đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
     ]
   }
 }

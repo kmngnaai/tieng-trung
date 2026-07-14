@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:比如说",
   "type": "word",
   "word": "比如说",
@@ -16,26 +16,25 @@
     "readings": [
       {
         "pinyin": "bǐ rú shuō",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "tỷ như thuyết",
+      "meaningShortVi": "tỷ như thuyết",
+      "meaningFullVi": "tỷ như thuyết",
       "partOfSpeech": "verb",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "tỷ như thuyết",
   "wordType": "verb",
   "wordTypes": [
     "verb"
   ],
-  "usageNotes": [
-    "Cách nói thân mật hơn của '比如', thường dùng trong khẩu ngữ"
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2
@@ -50,49 +49,56 @@
     "collocations": [
       {
         "text": "比如说...和...",
-        "pinyin": "",
-        "meaningVi": "ví dụ như... và...",
+        "pinyin": "bǐ rú shuō... hé...",
+        "meaningVi": "ví dụ như",
+        "meaningFullVi": "ví dụ như... và...",
         "target": "比如说",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "比如说...这样的",
-        "pinyin": "",
-        "meaningVi": "ví dụ như... loại như vậy",
+        "pinyin": "bǐ rú shuō... zhè yàng de",
+        "meaningVi": "ví dụ như",
+        "meaningFullVi": "ví dụ như... loại như vậy",
         "target": "比如说",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "比如说",
       "chinese": "我喜欢的运动有很多，比如说跑步、游泳",
-      "pinyin": "",
+      "pinyin": "wǒ xǐ huan de yùn dòng yǒu hěn duō， bǐ rú shuō pǎo bù、 yóu yǒng",
       "meaningVi": "Môn thể thao tôi thích rất nhiều, ví dụ như chạy bộ, bơi lội",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "比如说",
       "chinese": "比如说，这个问题可以这样解决",
-      "pinyin": "",
+      "pinyin": "bǐ rú shuō， zhè ge wèn tí kě yǐ zhè yàng jiě jué",
       "meaningVi": "Ví dụ, vấn đề này có thể giải quyết như vậy",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 比如说",
-      "syntax": "verb",
-      "matchedExample": "Cách nói thân mật hơn của '比如', thường dùng trong khẩu ngữ",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 比如说",
+      "partOfSpeech": "verb",
+      "usageNoteVi": "Cách nói thân mật hơn của '比如', thường dùng trong khẩu ngữ",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "topic",
+      "sectionOrder": 10,
+      "sectionId": "new_hsk__2__topic__10__tu-noi",
+      "sectionSlug": "tu-noi",
       "sectionTitle": "Từ nối",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-noi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/tu-noi/",
+      "orderInSection": 14
     }
   ],
   "sources": [
@@ -118,7 +129,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

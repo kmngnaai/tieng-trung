@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:出去",
   "type": "word",
   "word": "出去",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "chū qu",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "đi ra ngoài",
+      "meaningShortVi": "đi ra ngoài",
+      "meaningFullVi": "đi ra ngoài",
       "partOfSpeech": "compound-phonetic",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "đi ra ngoài",
   "wordType": "compound-phonetic",
   "wordTypes": [
     "compound-phonetic"
   ],
-  "usageNotes": [
-    "出去 là động từ hướng chỉ hành động đi ra ngoài. Hán-Việt: xuất + khứ."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -52,19 +51,24 @@
         "text": "走出去",
         "pinyin": "zǒu chūqù",
         "meaningVi": "đi ra ngoài",
+        "meaningFullVi": "đi ra ngoài",
         "target": "出去",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "跑出去",
         "pinyin": "pǎo chūqù",
         "meaningVi": "chạy ra ngoài",
+        "meaningFullVi": "chạy ra ngoài",
         "target": "出去",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -74,7 +78,8 @@
       "meaningVi": "Anh ấy đi ra ngoài mua đồ.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "出去",
@@ -83,16 +88,17 @@
       "meaningVi": "Chúng mình cùng ra ngoài nhé.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 出去",
-      "syntax": "compound-phonetic",
-      "matchedExample": "出去 là động từ hướng chỉ hành động đi ra ngoài. Hán-Việt: xuất + khứ.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 出去",
+      "partOfSpeech": "compound-phonetic",
+      "usageNoteVi": "出去 là động từ hướng chỉ hành động đi ra ngoài. Hán-Việt: xuất + khứ.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,21 +109,31 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 9,
+      "sectionId": "new_hsk__1__topic__9__su-chuyen-dong",
+      "sectionSlug": "su-chuyen-dong",
       "sectionTitle": "Sự chuyển động",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/su-chuyen-dong/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/su-chuyen-dong/",
+      "orderInSection": 13
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 2,
+      "levelId": "new-hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 3,
+      "sectionId": "new_hsk__2__lesson__3__bai-3-i-want-to-visit-xi-an",
+      "sectionSlug": "bai-3-i-want-to-visit-xi-an",
       "sectionTitle": "Tôi muốn đi du lịch Tây An",
       "sectionTitleZh": "我想去西安旅游",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-3-i-want-to-visit-xi-an/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-2/bai-hoc/bai-3-i-want-to-visit-xi-an/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -133,7 +149,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

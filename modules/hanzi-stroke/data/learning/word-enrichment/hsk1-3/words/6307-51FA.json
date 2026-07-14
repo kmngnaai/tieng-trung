@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:指出",
   "type": "word",
   "word": "指出",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "zhǐ chū",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "chỉ ra, chỉ rõ; nêu ra một vấn đề, lỗi sai hoặc sự thật để người khác biết",
+      "meaningShortVi": "chỉ ra",
+      "meaningFullVi": "chỉ ra, chỉ rõ; nêu ra một vấn đề, lỗi sai hoặc sự thật để người khác biết",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "chỉ ra",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "指出 thường đi kèm với đối tượng được chỉ ra như 问题, 错误, 不足之处. Trong văn cảnh trang trọng, có thể dùng 指出 thay thế cho 说 'nói'. 结构: 指出 + 对象 + 给 + người (tùy chọn)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -51,19 +50,24 @@
         "text": "指出问题",
         "pinyin": "zhǐchū wèntí",
         "meaningVi": "chỉ ra vấn đề",
+        "meaningFullVi": "chỉ ra vấn đề",
         "target": "指出",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "指出错误",
         "pinyin": "zhǐchū cuòwù",
         "meaningVi": "chỉ ra sai lầm",
+        "meaningFullVi": "chỉ ra sai lầm",
         "target": "指出",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -73,7 +77,8 @@
       "meaningVi": "Giáo viên chỉ ra ba lỗi sai trong bài viết của tôi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "指出",
@@ -82,16 +87,17 @@
       "meaningVi": "Mọi người hãy chỉ ra chỗ chưa đủ của tôi.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 指出",
-      "syntax": "động từ",
-      "matchedExample": "指出 thường đi kèm với đối tượng được chỉ ra như 问题, 错误, 不足之处. Trong văn cảnh trang trọng, có thể dùng 指出 thay thế cho 说 'nói'. 结构: 指出 + 对象 + 给 + người (tùy chọn).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 指出",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "指出 thường đi kèm với đối tượng được chỉ ra như 问题, 错误, 不足之处. Trong văn cảnh trang trọng, có thể dùng 指出 thay thế cho 说 'nói'. 结构: 指出 + 对象 + 给 + người (tùy chọn).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -102,11 +108,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 28,
+      "sectionId": "new_hsk__3__topic__28__tu-duy",
+      "sectionSlug": "tu-duy",
       "sectionTitle": "tư duy",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-duy/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/tu-duy/",
+      "orderInSection": 21
     }
   ],
   "sources": [
@@ -117,7 +128,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

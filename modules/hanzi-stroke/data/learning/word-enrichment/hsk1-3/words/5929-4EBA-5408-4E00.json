@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:天人合一",
   "type": "word",
   "word": "天人合一",
@@ -17,24 +17,25 @@
     "readings": [
       {
         "pinyin": "tiān rén hé yī",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "thiên nhân hợp nhất (con người và trời đất hòa hợp)",
+      "meaningShortVi": "thiên nhân hợp nhất (con người và trời đất hòa hợp)",
+      "meaningFullVi": "thiên nhân hợp nhất (con người và trời đất hòa hợp)",
       "partOfSpeech": "thành ngữ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "thiên nhân hợp nhất (con người và trời đất hòa hợp)",
   "wordType": "thành ngữ",
   "wordTypes": [
     "thành ngữ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -44,7 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": []
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -54,7 +56,8 @@
       "meaningVi": "Tư tưởng Đạo giáo nhấn mạnh cảnh giới thiên nhân hợp nhất.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "天人合一",
@@ -63,10 +66,19 @@
       "meaningVi": "Thiên nhân hợp nhất là một quan niệm quan trọng trong văn hóa truyền thống Trung Quốc.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 天人合一",
+      "partOfSpeech": "thành ngữ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/天人合一.mp3"
   ],
@@ -79,7 +91,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:发出",
   "type": "word",
   "word": "发出",
@@ -15,24 +15,25 @@
     "readings": [
       {
         "pinyin": "fā chū",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "phát ra, gửi đi",
+      "meaningShortVi": "phát ra",
+      "meaningFullVi": "phát ra, gửi đi",
       "partOfSpeech": "động từ",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "phát ra",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -47,43 +48,48 @@
     "collocations": [
       {
         "text": "发出声音",
-        "pinyin": "",
+        "pinyin": "fā chū shēng yīn",
         "meaningVi": "phát ra âm thanh",
+        "meaningFullVi": "phát ra âm thanh",
         "target": "发出",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "发出邀请",
-        "pinyin": "",
-        "meaningVi": "gửi lời mời",
-        "target": "发出",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "发出",
       "chinese": "太阳发出光和热。",
-      "pinyin": "",
+      "pinyin": "tài yáng fā chū guāng hé rè。",
       "meaningVi": "Mặt trời phát ra ánh sáng và nhiệt.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "发出",
       "chinese": "公司发出了新的通知。",
-      "pinyin": "",
+      "pinyin": "gōng sī fā chū le xīn de tōng zhī。",
       "meaningVi": "Công ty đã gửi thông báo mới.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
-  "grammarLinks": [],
+  "grammarLinks": [
+    {
+      "title": "Cách dùng 发出",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
+    }
+  ],
   "audioUrls": [
     "https://static.xiehanzi.com/word_audios/发出.mp3"
   ],
@@ -92,11 +98,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 23,
+      "sectionId": "new_hsk__3__topic__23__dong-tu-toi",
+      "sectionSlug": "dong-tu-toi",
       "sectionTitle": "Động từ tôi",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dong-tu-toi/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/dong-tu-toi/",
+      "orderInSection": 10
     }
   ],
   "sources": [
@@ -107,7 +118,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

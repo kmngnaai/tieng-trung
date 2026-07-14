@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:唾液",
   "type": "word",
   "word": "唾液",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "tuò yè",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Thoá-dịch — nước bọt, nước miếng (dịch tiết từ tuyến nước bọt trong miệng). Đây là thuật ngữ y học/sinh học chính thức.",
+      "meaningShortVi": "Thoá-dịch — nước bọt",
+      "meaningFullVi": "Thoá-dịch — nước bọt, nước miếng (dịch tiết từ tuyến nước bọt trong miệng). Đây là thuật ngữ y học/sinh học chính thức.",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Thoá-dịch — nước bọt",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Là từ khoa học/y tế; trong giao tiếp hàng ngày thường dùng 口水 (kǒushuǐ) thay thế."
-  ],
-  "wordTypeExplanations": [
-    "唾 (thoá — nước bọt, nhổ) + 液 (dịch — chất lỏng) → chất lỏng nước bọt."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "唾液腺",
         "pinyin": "tuòyèxiàn",
         "meaningVi": "tuyến nước bọt",
+        "meaningFullVi": "tuyến nước bọt",
         "target": "唾液",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "分泌唾液",
         "pinyin": "fēnmì tuòyè",
         "meaningVi": "tiết nước bọt",
+        "meaningFullVi": "tiết nước bọt",
         "target": "唾液",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "唾液样本",
         "pinyin": "tuòyè yàngběn",
         "meaningVi": "mẫu nước bọt",
+        "meaningFullVi": "mẫu nước bọt",
         "target": "唾液",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Nước bọt giúp tiêu hóa thức ăn",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "唾液",
@@ -90,7 +95,8 @@
       "meaningVi": "Khi căng thẳng nước bọt sẽ giảm tiết",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "唾液",
@@ -99,7 +105,8 @@
       "meaningVi": "Trong nước bọt chứa enzyme amylase",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "唾液",
@@ -108,23 +115,17 @@
       "meaningVi": "Bác sĩ thu thập mẫu nước bọt",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 唾液",
-      "syntax": "compound-semantic",
-      "matchedExample": "Là từ khoa học/y tế; trong giao tiếp hàng ngày thường dùng 口水 (kǒushuǐ) thay thế.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "唾 (thoá — nước bọt, nhổ) + 液 (dịch — chất lỏng) → chất lỏng nước bọt.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 唾液",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Là từ khoa học/y tế; trong giao tiếp hàng ngày thường dùng 口水 (kǒushuǐ) thay thế.",
+      "explanationVi": "唾 (thoá — nước bọt, nhổ) + 液 (dịch — chất lỏng) → chất lỏng nước bọt.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -139,7 +140,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

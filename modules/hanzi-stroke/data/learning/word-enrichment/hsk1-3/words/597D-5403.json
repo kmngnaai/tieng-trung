@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:好吃",
   "type": "word",
   "word": "好吃",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "hǎo chī",
-        "source": "hsk_1.json"
+        "source": "hsk_1.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "ngon",
+      "meaningShortVi": "ngon",
+      "meaningFullVi": "ngon",
       "partOfSpeech": "other",
       "source": "hsk_1.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "ngon",
   "wordType": "other",
   "wordTypes": [
     "other"
   ],
-  "usageNotes": [
-    "好吃 chỉ dùng cho đồ ăn thức uống."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       1,
@@ -54,19 +53,24 @@
         "text": "很好吃",
         "pinyin": "hěn hǎochī",
         "meaningVi": "rất ngon",
+        "meaningFullVi": "rất ngon",
         "target": "好吃",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "不好吃",
         "pinyin": "bù hǎochī",
         "meaningVi": "không ngon",
+        "meaningFullVi": "không ngon",
         "target": "好吃",
         "source": "hsk_1.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -76,7 +80,8 @@
       "meaningVi": "Món này rất ngon.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "好吃",
@@ -85,7 +90,8 @@
       "meaningVi": "Món Trung Quốc rất ngon.",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "好吃",
@@ -94,16 +100,17 @@
       "meaningVi": "Bạn có thấy ngon không?",
       "source": "hsk_1.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 好吃",
-      "syntax": "other",
-      "matchedExample": "好吃 chỉ dùng cho đồ ăn thức uống.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 好吃",
+      "partOfSpeech": "other",
+      "usageNoteVi": "好吃 chỉ dùng cho đồ ăn thức uống.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -114,41 +121,61 @@
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 1,
+      "levelId": "hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 6,
+      "sectionId": "hsk__1__lesson__6__bai-6-toi-biet-noi-tieng-han",
+      "sectionSlug": "bai-6-toi-biet-noi-tieng-han",
       "sectionTitle": "Tôi biết nói tiếng Hán",
       "sectionTitleZh": "我会说汉语",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-6-toi-biet-noi-tieng-han/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-1/bai-hoc/bai-6-toi-biet-noi-tieng-han/",
+      "orderInSection": 6
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "lesson",
+      "sectionOrder": 6,
+      "sectionId": "new_hsk__1__lesson__6__bai-6-what-s-your-cell-phone-number",
+      "sectionSlug": "bai-6-what-s-your-cell-phone-number",
       "sectionTitle": "Số điện thoại của bạn là bao nhiêu?",
       "sectionTitleZh": "你的手机号是多少？",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-6-what-s-your-cell-phone-number/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/bai-hoc/bai-6-what-s-your-cell-phone-number/",
+      "orderInSection": 9
     },
     {
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 1,
+      "levelId": "new-hsk-1",
       "levelName": "HSK 1",
       "sectionType": "topic",
+      "sectionOrder": 2,
+      "sectionId": "new_hsk__1__topic__2__mon-an",
+      "sectionSlug": "mon-an",
       "sectionTitle": "Món ăn",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/mon-an/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-1/mon-an/",
+      "orderInSection": 17
     },
     {
       "libraryId": "hsk",
       "libraryName": "HSK 6 cấp",
       "levelNo": 2,
+      "levelId": "hsk-2",
       "levelName": "HSK 2",
       "sectionType": "lesson",
+      "sectionOrder": 6,
+      "sectionId": "hsk__2__lesson__6__bai-6-sao-ban-khong-an-nua",
+      "sectionSlug": "bai-6-sao-ban-khong-an-nua",
       "sectionTitle": "Sao bạn không ăn nữa?",
       "sectionTitleZh": "你怎么不吃了",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-6-sao-ban-khong-an-nua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-hsk/hsk-2/bai-hoc/bai-6-sao-ban-khong-an-nua/",
+      "orderInSection": 5
     }
   ],
   "sources": [
@@ -169,7 +196,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

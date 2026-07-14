@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:祈祷",
   "type": "word",
   "word": "祈祷",
@@ -15,27 +15,24 @@
     "readings": [
       {
         "pinyin": "qí dǎo",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "cầu nguyện, khấn nguyện",
+      "meaningShortVi": "cầu nguyện",
+      "meaningFullVi": "cầu nguyện, khấn nguyện",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "cầu nguyện",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
-  ],
-  "usageNotes": [
-    "Dùng trong tôn giáo: cầu nguyện thần linh, mong mỏi điều gì đó."
-  ],
-  "wordTypeExplanations": [
-    "Ghép nghĩa: 祈 (cầu khấn) + 祷 (cầu cúng) → cầu nguyện thần linh."
   ],
   "hsk": {
     "levels": [
@@ -51,27 +48,34 @@
         "text": "默默祈祷",
         "pinyin": "mòmò qídǎo",
         "meaningVi": "lặng lẽ cầu nguyện",
+        "meaningFullVi": "lặng lẽ cầu nguyện",
         "target": "祈祷",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "祈祷和平",
         "pinyin": "qídǎo hépíng",
         "meaningVi": "cầu nguyện hòa bình",
+        "meaningFullVi": "cầu nguyện hòa bình",
         "target": "祈祷",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "虔诚祈祷",
         "pinyin": "qiánchéng qídǎo",
         "meaningVi": "cầu nguyện thành kính",
+        "meaningFullVi": "cầu nguyện thành kính",
         "target": "祈祷",
         "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "source",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -81,7 +85,8 @@
       "meaningVi": "Chúng tôi cầu nguyện thế giới hòa bình",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "祈祷",
@@ -90,7 +95,8 @@
       "meaningVi": "Anh ấy đang cầu nguyện trong nhà thờ",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "祈祷",
@@ -99,23 +105,17 @@
       "meaningVi": "lặng lẽ cầu nguyện",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 祈祷",
-      "syntax": "compound-semantic",
-      "matchedExample": "Dùng trong tôn giáo: cầu nguyện thần linh, mong mỏi điều gì đó.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
-    },
-    {
-      "grammarTopic": "Loại từ và chức năng",
-      "syntax": "compound-semantic",
-      "matchedExample": "Ghép nghĩa: 祈 (cầu khấn) + 祷 (cầu cúng) → cầu nguyện thần linh.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 祈祷",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "Dùng trong tôn giáo: cầu nguyện thần linh, mong mỏi điều gì đó.",
+      "explanationVi": "Ghép nghĩa: 祈 (cầu khấn) + 祷 (cầu cúng) → cầu nguyện thần linh.",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -130,7 +130,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

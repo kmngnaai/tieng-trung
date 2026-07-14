@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:失去",
   "type": "word",
   "word": "失去",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shī qù",
-        "source": "hsk_2.json"
+        "source": "hsk_2.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "mất mát, không còn nữa",
+      "meaningShortVi": "mất mát",
+      "meaningFullVi": "mất mát, không còn nữa",
       "partOfSpeech": "động từ",
       "source": "hsk_2.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "mất mát",
   "wordType": "động từ",
   "wordTypes": [
     "động từ"
   ],
-  "usageNotes": [
-    "失去 là động từ chỉ việc mất mát cái gì đó (công việc, hy vọng, lòng tin...). Thường kết hợp với các danh từ trừu tượng như 信心 (lòng tin), 联系 (liên lạc), 机会 (cơ hội)."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       2,
@@ -50,49 +49,56 @@
     "collocations": [
       {
         "text": "失去信心",
-        "pinyin": "",
+        "pinyin": "shī qù xìn xīn",
         "meaningVi": "mất lòng tin",
+        "meaningFullVi": "mất lòng tin",
         "target": "失去",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       },
       {
         "text": "失去联系",
-        "pinyin": "",
+        "pinyin": "shī qù lián xì",
         "meaningVi": "mất liên lạc",
+        "meaningFullVi": "mất liên lạc",
         "target": "失去",
         "source": "hsk_2.json",
-        "reviewStatus": "reviewed"
+        "pinyinMethod": "segmented-local",
+        "reviewStatus": "reviewed-local"
       }
-    ]
+    ],
+    "relatedWords": []
   },
   "sentences": [
     {
       "target": "失去",
       "chinese": "他失去了一份好工作。",
-      "pinyin": "",
+      "pinyin": "tā shī qù le yī fèn hǎo gōng zuò。",
       "meaningVi": "Anh ấy mất một công việc tốt.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "失去",
       "chinese": "不要失去信心。",
-      "pinyin": "",
+      "pinyin": "bù yào shī qù xìn xīn。",
       "meaningVi": "Đừng mất lòng tin.",
       "source": "hsk_2.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "segmented-local",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 失去",
-      "syntax": "động từ",
-      "matchedExample": "失去 là động từ chỉ việc mất mát cái gì đó (công việc, hy vọng, lòng tin...). Thường kết hợp với các danh từ trừu tượng như 信心 (lòng tin), 联系 (liên lạc), 机会 (cơ hội).",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 失去",
+      "partOfSpeech": "động từ",
+      "usageNoteVi": "失去 là động từ chỉ việc mất mát cái gì đó (công việc, hy vọng, lòng tin...). Thường kết hợp với các danh từ trừu tượng như 信心 (lòng tin), 联系 (liên lạc), 机会 (cơ hội).",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -103,11 +109,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 19,
+      "sectionId": "new_hsk__3__topic__19__thanh-tuu-va-ket-qua",
+      "sectionSlug": "thanh-tuu-va-ket-qua",
       "sectionTitle": "Thành tựu và kết quả",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/thanh-tuu-va-ket-qua/",
+      "orderInSection": 31
     }
   ],
   "sources": [
@@ -123,7 +134,9 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có compound chứa nguyên target"
+    ]
   }
 }

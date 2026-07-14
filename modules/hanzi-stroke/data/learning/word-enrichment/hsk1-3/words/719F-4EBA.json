@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "word-enrichment-v1",
+  "schemaVersion": "word-enrichment-v2-quality-gated",
   "id": "word:熟人",
   "type": "word",
   "word": "熟人",
@@ -15,26 +15,25 @@
     "readings": [
       {
         "pinyin": "shú rén",
-        "source": "hsk_3.json"
+        "source": "hsk_3.json",
+        "reviewStatus": "reviewed"
       }
     ]
   },
   "meaningSenses": [
     {
-      "meaningVi": "Người quen",
+      "meaningShortVi": "Người quen",
+      "meaningFullVi": "Người quen",
       "partOfSpeech": "compound-semantic",
       "source": "hsk_3.json",
       "reviewStatus": "reviewed"
     }
   ],
+  "meaningShortVi": "Người quen",
   "wordType": "compound-semantic",
   "wordTypes": [
     "compound-semantic"
   ],
-  "usageNotes": [
-    "熟人 là danh từ chỉ người mà mình đã quen biết, không còn xa lạ nhưng có thể chưa thân thiết. 熟 (thục) nghĩa là chín, quen thuộc; 人 (nhân) nghĩa là người."
-  ],
-  "wordTypeExplanations": [],
   "hsk": {
     "levels": [
       3
@@ -46,48 +45,8 @@
   },
   "vocabulary": {
     "compounds": [],
-    "collocations": [
-      {
-        "text": "老熟人",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "熟人",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "很多熟人",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "熟人",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "熟人社会",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "熟人",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "成为熟人",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "熟人",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      },
-      {
-        "text": "托熟人",
-        "pinyin": "",
-        "meaningVi": "",
-        "target": "熟人",
-        "source": "hsk_3.json",
-        "reviewStatus": "reviewed"
-      }
-    ]
+    "collocations": [],
+    "relatedWords": []
   },
   "sentences": [
     {
@@ -97,7 +56,8 @@
       "meaningVi": "Ở đây tôi có nhiều người quen.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "熟人",
@@ -106,7 +66,8 @@
       "meaningVi": "Anh ấy là một người quen đáng tin cậy.",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     },
     {
       "target": "熟人",
@@ -115,16 +76,17 @@
       "meaningVi": "Ở đây bạn có người quen không?",
       "source": "hsk_3.json",
       "containsTarget": true,
-      "reviewStatus": "reviewed"
+      "pinyinMethod": "source",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "grammarLinks": [
     {
-      "grammarTopic": "Cách dùng 熟人",
-      "syntax": "compound-semantic",
-      "matchedExample": "熟人 là danh từ chỉ người mà mình đã quen biết, không còn xa lạ nhưng có thể chưa thân thiết. 熟 (thục) nghĩa là chín, quen thuộc; 人 (nhân) nghĩa là người.",
-      "source": "local_hsk",
-      "reviewStatus": "reviewed"
+      "title": "Cách dùng 熟人",
+      "partOfSpeech": "compound-semantic",
+      "usageNoteVi": "熟人 là danh từ chỉ người mà mình đã quen biết, không còn xa lạ nhưng có thể chưa thân thiết. 熟 (thục) nghĩa là chín, quen thuộc; 人 (nhân) nghĩa là người.",
+      "explanationVi": "",
+      "reviewStatus": "reviewed-local"
     }
   ],
   "audioUrls": [
@@ -135,11 +97,16 @@
       "libraryId": "new_hsk",
       "libraryName": "New HSK 9 cấp",
       "levelNo": 3,
+      "levelId": "new-hsk-3",
       "levelName": "HSK 3",
       "sectionType": "topic",
+      "sectionOrder": 5,
+      "sectionId": "new_hsk__3__topic__5__cac-moi-quan-he",
+      "sectionSlug": "cac-moi-quan-he",
       "sectionTitle": "Các mối quan hệ",
       "sectionTitleZh": "",
-      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-moi-quan-he/"
+      "sectionUrl": "https://xiehanzi.com/thu-vien-new-hsk/new-hsk-3/cac-moi-quan-he/",
+      "orderInSection": 19
     }
   ],
   "sources": [
@@ -150,7 +117,10 @@
     }
   ],
   "review": {
-    "status": "local-normalized",
-    "warnings": []
+    "status": "PASS",
+    "warnings": [
+      "Không có collocation đạt cổng chất lượng",
+      "Không có compound chứa nguyên target"
+    ]
   }
 }
