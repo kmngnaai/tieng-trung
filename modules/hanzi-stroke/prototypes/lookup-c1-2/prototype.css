@@ -522,3 +522,124 @@ body.radical-dialog-open { overflow: hidden; }
   .prototype-radical-accordion-body { padding: 0 12px 12px; }
   .prototype-radical-basic { gap: 5px 10px; }
 }
+
+/* C2A.13: quiet initial state and local-data search results */
+.search-results-panel { grid-column: 1 / -1; }
+.search-results-note { margin: -3px 0 13px; color: var(--muted); line-height: 1.55; }
+.search-results-list { display: grid; gap: 10px; }
+.search-result-card {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: var(--surface);
+  padding: 13px 14px;
+  text-align: left;
+  display: grid;
+  gap: 5px;
+  color: var(--ink);
+  cursor: pointer;
+}
+.search-result-card:active { transform: scale(.99); }
+.search-result-main { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.search-result-main strong { font-size: 1.25rem; }
+.search-result-main span { color: var(--accent); font-weight: 700; }
+.search-result-meaning { line-height: 1.45; }
+.search-result-card small { color: var(--muted); }
+@media (min-width: 720px) {
+  .search-results-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* C2A.14: Tra radical popup - vertical character rows, matching the Bộ thủ tab */
+.prototype-radical-examples.prototype-radical-char-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 9px;
+}
+.prototype-radical-char-row {
+  min-height: 0;
+  overflow: visible;
+}
+.prototype-radical-char-row .prototype-radical-item-search {
+  min-height: 76px;
+  padding: 10px 48px 10px 12px;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-areas:
+    "char pinyin"
+    "char meaning";
+  column-gap: 12px;
+  row-gap: 2px;
+  align-items: center;
+  text-align: left;
+}
+.prototype-radical-char-row .prototype-radical-item-search strong {
+  grid-area: char;
+  min-width: 42px;
+  font-size: 31px;
+  line-height: 1;
+  text-align: center;
+}
+.prototype-radical-char-row .prototype-radical-item-search span {
+  grid-area: pinyin;
+  align-self: end;
+  font-size: 13px;
+  font-weight: 750;
+}
+.prototype-radical-char-row .prototype-radical-item-search small {
+  grid-area: meaning;
+  align-self: start;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.prototype-radical-item-audio,
+.word-speak-btn {
+  display: inline-grid;
+  place-items: center;
+  color: var(--accent);
+}
+.prototype-radical-item-audio svg,
+.word-speak-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.prototype-radical-char-row .prototype-radical-item-audio {
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+.prototype-radical-char-row .prototype-radical-item-audio:active {
+  transform: translateY(-50%) scale(.94);
+}
+@media (max-width: 430px) {
+  .prototype-radical-examples.prototype-radical-char-list {
+    grid-template-columns: 1fr;
+  }
+  .prototype-radical-char-row .prototype-radical-item-search {
+    min-height: 72px;
+    padding-right: 46px;
+  }
+}
+
+/* C2A.15: audio button for radical example sentences in Tra */
+.prototype-radical-sentence-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 10px;
+}
+
+.prototype-radical-sentence-head strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.prototype-radical-sentence-audio {
+  position: static;
+  flex: 0 0 auto;
+  align-self: start;
+  margin: 0;
+}

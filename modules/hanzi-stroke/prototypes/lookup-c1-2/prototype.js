@@ -38,6 +38,11 @@ const isHanText = value => /^[\p{Script=Han}]+$/u.test(value);
 const isSingleHan = value => [...value].length === 1 && isHanText(value);
 const codePointHex = char => char.codePointAt(0).toString(16).toUpperCase();
 const normalizePinyin = value => String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
+const normalizeSearchText = value => String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/\s+/g, ' ').trim();
+
+async function safeFetchJson(url, fallback = null) {
+  try { return await fetchJson(url); } catch { return fallback; }
+}
 
 function reviewed(item) {
   return !item?.reviewStatus || item.reviewStatus === 'reviewed';
@@ -70,8 +75,8 @@ async function fetchJson(url) {
 
 async function loadHskLookup() {
   if (state.hskLookup) return state.hskLookup;
-  const payload = await fetchJson(HSK_LOOKUP_URL);
-  state.hskLookup = payload.items || {};
+  const payload = await safeFetchJson(HSK_LOOKUP_URL, { items: {} });
+  state.hskLookup = payload?.items || {};
   return state.hskLookup;
 }
 
@@ -81,8 +86,8 @@ function exactHskItemForChar(char, lookup) {
 
 async function loadHskLevelItems() {
   if (state.hskLevelItems) return state.hskLevelItems;
-  const payload = await fetchJson(HSK_LEVEL_URL);
-  state.hskLevelItems = Array.isArray(payload.items) ? payload.items : [];
+  const payload = await safeFetchJson(HSK_LEVEL_URL, { items: [] });
+  state.hskLevelItems = Array.isArray(payload?.items) ? payload.items : [];
   return state.hskLevelItems;
 }
 
@@ -266,6 +271,86 @@ async function buildFallbackWord(word, hskItem) {
   };
 }
 
+
+function radicalSearchText(note = {}) {
+  const examples = note.examples || {};
+  const words = examples.words || note.words || [];
+  const sentences = examples.sentences || note.sentences || [];
+  return normalizeSearchText([
+    note.mainForm, note.sideForm, ...(note.variants || []),
+    note.displayNameVi, note.pinyin, note.hanViet,
+    note.shortMeaningVi, note.meaningVi, note.originMeaning,
+    note.recognition, note.memoryVi, note.hintVi,
+    ...words.flatMap(item => [item.word, item.chinese, item.pinyin, item.meaningVi, item.meaning_vi]),
+    ...sentences.flatMap(item => [item.zh, item.chinese, item.pinyin, item.meaningVi, item.meaning_vi])
+  ].filter(Boolean).join(' '));
+}
+
+async function searchExistingData(query) {
+  const q = normalizeSearchText(query);
+  if (!q) return [];
+  const lookup = await loadHskLookup();
+  const hskItems = await loadHskLevelItems();
+  const results = [];
+
+  const allWords = uniqueBy([
+    ...Object.values(lookup || {}),
+    ...hskItems
+  ].filter(Boolean), item => item.word || item.simplified);
+
+  for (const item of allWords) {
+    const word = item.word || item.simplified || '';
+    const haystack = normalizeSearchText([word, item.pinyin, item.meaningVi, item.meaning_vi, item.translationVi, item.wordType].filter(Boolean).join(' '));
+    if (!haystack.includes(q)) continue;
+    results.push({
+      kind: 'word',
+      target: word,
+      title: word,
+      pinyin: item.pinyin || '',
+      meaningVi: item.meaningVi || item.meaning_vi || item.translationVi || '',
+      meta: item.hsk ? `HSK ${item.hsk}` : 'Dữ liệu HSK local'
+    });
+    if (results.length >= 18) break;
+  }
+
+  const notes = await safeFetchJson(RADICAL_NOTES_URL, {});
+  for (const note of Object.values(notes || {})) {
+    if (!note || !radicalSearchText(note).includes(q)) continue;
+    const form = note.sideForm || note.mainForm || first(note.variants) || '';
+    results.push({
+      kind: 'radical',
+      target: form,
+      title: form,
+      pinyin: note.pinyin || '',
+      meaningVi: note.displayNameVi || note.shortMeaningVi || note.meaningVi || 'Bộ thủ',
+      meta: note.kangxiNo ? `Bộ Khang Hy số ${note.kangxiNo}` : 'Bộ thủ'
+    });
+    if (results.length >= 24) break;
+  }
+
+  return uniqueBy(results, item => `${item.kind}:${item.target}`).slice(0, 24);
+}
+
+function renderSearchResults(payload) {
+  const results = payload.results || [];
+  el.loading.hidden = true;
+  el.message.hidden = true;
+  el.view.hidden = false;
+  el.view.innerHTML = `<section class="panel search-results-panel">
+    ${panelTitle('⌕', `Kết quả cho “${payload.query}”`)}
+    <p class="search-results-note">Tìm trong nghĩa tiếng Việt, pinyin, bộ thủ, từ liên quan và câu mẫu từ dữ liệu local hiện có.</p>
+    <div class="search-results-list">${results.map(item => {
+      const attr = item.kind === 'radical' ? `data-open-radical="${escapeHtml(item.target)}"` : `data-search-char="${escapeHtml(item.target)}"`;
+      return `<button class="search-result-card" type="button" ${attr}>
+        <span class="search-result-main"><strong>${escapeHtml(item.title)}</strong>${item.pinyin ? `<span>${escapeHtml(item.pinyin)}</span>` : ''}</span>
+        <span class="search-result-meaning">${escapeHtml(item.meaningVi || '')}</span>
+        <small>${escapeHtml(item.meta || '')}</small>
+      </button>`;
+    }).join('')}</div>
+  </section>`;
+  bindDynamicEvents();
+}
+
 async function resolveQuery(rawQuery) {
   const query = clean(rawQuery);
   if (!query) throw new Error('Hãy nhập chữ, từ hoặc pinyin cần tra.');
@@ -282,14 +367,18 @@ async function resolveQuery(rawQuery) {
     } catch {
       const hsk = lookup[query];
       if (hsk) return buildFallbackWord(query, hsk);
-      throw new Error(`Chưa tìm thấy dữ liệu local cho “${query}”.`);
+      const results = await searchExistingData(query);
+      if (results.length) return { type: 'search-results', query, results };
+      throw new Error(`Không tìm thấy “${query}” trong dữ liệu hiện có.`);
     }
   }
 
   if (isHanText(query)) {
     const hsk = lookup[query];
     if (hsk) return buildFallbackWord(query, hsk);
-    throw new Error(`Chưa tìm thấy từ “${query}” trong dữ liệu HSK local.`);
+    const results = await searchExistingData(query);
+    if (results.length) return { type: 'search-results', query, results };
+    throw new Error(`Không tìm thấy “${query}” trong dữ liệu hiện có.`);
   }
 
   const target = normalizePinyin(query);
@@ -298,15 +387,19 @@ async function resolveQuery(rawQuery) {
     return fetchJson(state.index.characters[indexedChar]);
   }
   const match = Object.values(lookup).find(item => normalizePinyin(item.pinyin) === target);
-  if (!match) throw new Error(`Chưa tìm thấy pinyin “${query}” trong dữ liệu local.`);
-  if (state.index?.characters?.[match.word]) return fetchJson(state.index.characters[match.word]);
-  if (isSingleHan(match.word)) {
-    try {
-      const raw = await fetchJson(`${LOCAL_CHAR_BASE}${codePointHex(match.word)}.json`);
-      return buildFallbackCharacter(raw, match);
-    } catch {}
+  if (match) {
+    if (state.index?.characters?.[match.word]) return fetchJson(state.index.characters[match.word]);
+    if (isSingleHan(match.word)) {
+      try {
+        const raw = await fetchJson(`${LOCAL_CHAR_BASE}${codePointHex(match.word)}.json`);
+        return buildFallbackCharacter(raw, match);
+      } catch {}
+    }
+    return buildFallbackWord(match.word, match);
   }
-  return buildFallbackWord(match.word, match);
+  const results = await searchExistingData(query);
+  if (results.length) return { type: 'search-results', query, results };
+  throw new Error(`Không tìm thấy “${query}” trong dữ liệu hiện có.`);
 }
 
 function componentCards(data) {
@@ -385,18 +478,27 @@ function radicalAccordion(title, content, open = false) {
   </details>`;
 }
 
+function radicalAudioIcon() {
+  return `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M4 9v6h4l5 4V5L8 9H4z"></path>
+    <path d="M16 9.5c1.25 1.35 1.25 3.65 0 5"></path>
+    <path d="M18.5 7c2.6 2.7 2.6 7.3 0 10"></path>
+  </svg>`;
+}
+
 function radicalSearchCards(items = [], kind = 'char') {
   const list = items.filter(item => item && (item.char || item.word)).slice(0, kind === 'char' ? 24 : 30);
   if (!list.length) return '';
-  return `<div class="prototype-radical-${kind === 'char' ? 'examples' : 'words'}">${list.map(item => {
+  const wrapperClass = kind === 'char' ? 'prototype-radical-examples prototype-radical-char-list' : 'prototype-radical-words';
+  return `<div class="${wrapperClass}">${list.map(item => {
     const target = item.char || item.word || '';
-    return `<div class="prototype-radical-item">
+    return `<div class="prototype-radical-item ${kind === 'char' ? 'prototype-radical-char-row' : ''}">
       <button type="button" class="prototype-radical-item-search" data-search-char="${escapeHtml(target)}">
         <strong>${escapeHtml(target)}</strong>
         <span>${escapeHtml(item.pinyin || '')}</span>
         <small>${escapeHtml(item.meaningVi || '')}</small>
       </button>
-      <button type="button" class="prototype-radical-item-audio" data-speak="${escapeHtml(target)}" aria-label="Nghe ${escapeHtml(target)}">🔊</button>
+      <button type="button" class="prototype-radical-item-audio" data-speak="${escapeHtml(target)}" aria-label="Nghe ${escapeHtml(target)}">${radicalAudioIcon()}</button>
     </div>`;
   }).join('')}</div>`;
 }
@@ -408,7 +510,7 @@ function radicalFormsHtml(forms = []) {
       <div class="prototype-radical-form-head">
         <strong>${escapeHtml(form.form || '')}</strong>
         <div><b>${escapeHtml(form.nameVi || '')}</b><span>${escapeHtml(form.pinyin || '')}</span></div>
-        ${form.form ? `<button type="button" class="prototype-radical-item-audio" data-speak="${escapeHtml(form.form)}" aria-label="Nghe ${escapeHtml(form.form)}">🔊</button>` : ''}
+        ${form.form ? `<button type="button" class="prototype-radical-item-audio" data-speak="${escapeHtml(form.form)}" aria-label="Nghe ${escapeHtml(form.form)}">${radicalAudioIcon()}</button>` : ''}
       </div>
       ${form.description ? `<p>${escapeHtml(form.description)}</p>` : ''}
       ${radicalSearchCards(form.examples || [], 'char')}
@@ -427,12 +529,17 @@ function radicalSemanticGroupsHtml(groups = []) {
 
 function radicalSentencesHtml(items = []) {
   if (!items.length) return '';
-  return `<div class="prototype-radical-sentence-list">${items.map(item => `
-    <article>
-      <strong>${escapeHtml(item.zh || item.chinese || '')}</strong>
+  return `<div class="prototype-radical-sentence-list">${items.map(item => {
+    const chinese = item.zh || item.chinese || '';
+    return `<article>
+      <div class="prototype-radical-sentence-head">
+        <strong>${escapeHtml(chinese)}</strong>
+        ${chinese ? `<button type="button" class="prototype-radical-item-audio prototype-radical-sentence-audio" data-speak="${escapeHtml(chinese)}" aria-label="Nghe câu ${escapeHtml(chinese)}">${radicalAudioIcon()}</button>` : ''}
+      </div>
       <span>${escapeHtml(item.pinyin || '')}</span>
       <small>${escapeHtml(item.vi || item.meaningVi || '')}</small>
-    </article>`).join('')}</div>`;
+    </article>`;
+  }).join('')}</div>`;
 }
 
 function radicalSourcesHtml(source = {}) {
@@ -500,7 +607,7 @@ function renderRadicalDialog(note) {
         <p>${escapeHtml(note.shortForCharLookup?.meaningLine || '')}</p>
         <div class="prototype-radical-basic">${basicLines}</div>
       </div>
-      <button class="word-speak-btn" type="button" data-speak="${escapeHtml(note.key || note.mainForm || '')}" aria-label="Nghe bộ thủ">🔊</button>
+      <button class="word-speak-btn" type="button" data-speak="${escapeHtml(note.key || note.mainForm || '')}" aria-label="Nghe bộ thủ">${radicalAudioIcon()}</button>
     </div>
     ${radicalAccordion('Nguồn gốc và ý nghĩa', detail.originMeaning ? `<p>${escapeHtml(detail.originMeaning)}</p>` : '', true)}
     ${radicalAccordion('Các dạng và vị trí xuất hiện', `${radicalFormsHtml(forms)}${note.shortForCharLookup?.positionLine ? `<p class="prototype-radical-note">${escapeHtml(note.shortForCharLookup.positionLine)}</p>` : ''}`)}
@@ -692,14 +799,24 @@ function bindDynamicEvents() {
 async function runSearch(value) {
   const query = clean(value);
   el.message.hidden = true;
+  if (!query) {
+    el.loading.hidden = true;
+    el.view.hidden = true;
+    el.view.innerHTML = '';
+    return;
+  }
+  el.loading.textContent = 'Đang tìm trong dữ liệu local…';
   el.loading.hidden = false;
   el.view.hidden = true;
   try {
     const data = await resolveQuery(query);
     el.input.value = query;
-    render(data);
+    if (data?.type === 'search-results') renderSearchResults(data);
+    else render(data);
   } catch (error) {
     el.loading.hidden = true;
+    el.view.hidden = true;
+    el.view.innerHTML = '';
     el.message.textContent = error.message || 'Không tìm thấy dữ liệu.';
     el.message.hidden = false;
   }
@@ -735,12 +852,10 @@ el.menuBackdrop.addEventListener('click', closeMenu);
 document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
 
 (async function init() {
-  try {
-    state.dark = localStorage.getItem('lookup-c1-2-theme') === 'dark';
-    document.body.classList.toggle('dark', state.dark);
-    state.index = await fetchJson(SAMPLE_INDEX_URL);
-    await runSearch('休');
-  } catch (error) {
-    el.loading.textContent = `Không thể khởi động prototype: ${error.message}`;
-  }
+  state.dark = localStorage.getItem('lookup-c1-2-theme') === 'dark';
+  document.body.classList.toggle('dark', state.dark);
+  state.index = await safeFetchJson(SAMPLE_INDEX_URL, { characters: {}, pinyinIndex: {} });
+  el.loading.hidden = true;
+  el.view.hidden = true;
+  el.message.hidden = true;
 })();
