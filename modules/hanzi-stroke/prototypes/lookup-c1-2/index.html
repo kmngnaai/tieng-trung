@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#fffaf4" />
-  <title>Tra chữ — Prototype C1.2.3</title>
+  <title>Tra chữ Hán</title>
   <link rel="stylesheet" href="prototype.css" />
 </head>
 <body>
@@ -19,25 +19,20 @@
     </header>
 
     <main class="main-content">
-      <section class="search-hero">
-        <p class="eyebrow">TRA · HIỂU · GHI NHỚ</p>
-        <h1>Hiểu chữ qua cấu tạo và cách dùng</h1>
-        <p class="hero-copy">休, 住 và 清 có dữ liệu chiết tự đã duyệt. Các chữ và từ khác dùng dữ liệu local hiện có.</p>
+      <section class="search-hero search-hero-compact">
         <form id="searchForm" class="search-box" role="search">
           <span aria-hidden="true">⌕</span>
           <input id="searchInput" type="search" autocomplete="off" placeholder="Tra chữ, từ hoặc pinyin…" aria-label="Tra chữ, từ hoặc pinyin" />
           <button type="submit">Tra</button>
         </form>
-        <div class="quick-list" aria-label="Chữ mẫu">
-          <span>Chữ mẫu</span>
-          <button type="button" data-char="休">休 <small>xiū</small></button>
-          <button type="button" data-char="住">住 <small>zhù</small></button>
-          <button type="button" data-char="清">清 <small>qīng</small></button>
-        </div>
         <p id="searchMessage" class="search-message" hidden></p>
       </section>
 
-      <div id="loading" class="loading">Đang tải dữ liệu…</div>
+      <section id="catalogView" class="catalog-view" aria-label="Khám phá kho tra cứu">
+        <div class="catalog-loading">Đang tải danh mục tra cứu…</div>
+      </section>
+
+      <div id="loading" class="loading" hidden>Đang tải dữ liệu…</div>
       <article id="characterView" class="character-view" hidden></article>
     </main>
 

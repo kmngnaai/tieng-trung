@@ -7,6 +7,7 @@ const resolveAssetUrl = relativePath => new URL(relativePath, SCRIPT_BASE_URL).h
 const UNIFIED_BASE_URL = resolveAssetUrl('../../data/learning/unified-lookup/all-sources/');
 const UNIFIED_INDEX_URL = new URL('unified-target-index.json', UNIFIED_BASE_URL).href;
 const UNIFIED_SEARCH_URL = new URL('search-index.json', UNIFIED_BASE_URL).href;
+const CATALOG_INDEX_URL = new URL('catalog-index.json', UNIFIED_BASE_URL).href;
 const SINGLE_CHAR_INDEX_URL = '../../data/learning/character-enrichment/hsk1-3-single/index.json';
 const SINGLE_CHAR_BASE_URL = '../../data/learning/character-enrichment/hsk1-3-single/';
 const SINGLE_CHAR_RADICAL_INDEX_URL = '../../data/learning/character-enrichment/hsk1-3-single/radical-character-index.json';
@@ -37,9 +38,14 @@ const state = {
   curatedCharacterIndex: null,
   unifiedIndex: null,
   unifiedSearch: null,
+  catalogIndex: null,
   unifiedBuckets: {},
   navigationStack: [],
-  pendingRestore: null
+  pendingRestore: null,
+  catalogList: null,
+  catalogListSnapshot: null,
+  catalogLazyObserver: null,
+  unifiedSearchMap: null
 };
 
 const el = {
@@ -48,6 +54,7 @@ const el = {
   input: document.querySelector('#searchInput'),
   form: document.querySelector('#searchForm'),
   message: document.querySelector('#searchMessage'),
+  catalog: document.querySelector('#catalogView'),
   theme: document.querySelector('#themeBtn'),
   strokeNavLink: document.querySelector('#strokeNavLink'),
   menuStrokeLink: document.querySelector('#menuStrokeLink'),
@@ -110,6 +117,387 @@ async function loadUnifiedSearch() {
   const payload = await fetchJson(UNIFIED_SEARCH_URL);
   state.unifiedSearch = payload?.items || [];
   return state.unifiedSearch;
+}
+async function loadCatalogIndex() {
+  if (state.catalogIndex) return state.catalogIndex;
+  state.catalogIndex = await fetchJson(CATALOG_INDEX_URL);
+  return state.catalogIndex;
+}
+
+function catalogLevelButtons(group, keys, columns = '') {
+  return `<div class="catalog-level-grid ${columns}">${keys.map(key => {
+    const entry = group?.levels?.[key] || { count: 0 };
+    const label = key === '7-9' ? '7–9' : key;
+    return `<button type="button" class="catalog-level-btn" data-catalog-group="${escapeHtml(group?.id || '')}" data-catalog-key="${escapeHtml(key)}">
+      <strong>${escapeHtml(label)}</strong><small>${Number(entry.count || 0).toLocaleString('vi-VN')} mục</small>
+    </button>`;
+  }).join('')}</div>`;
+}
+
+function catalogCourseCard(title, subtitle, body, extraClass = '') {
+  return `<section class="catalog-course ${extraClass}"><div class="catalog-course-head"><div><h3>${escapeHtml(title)}</h3>${subtitle ? `<p>${escapeHtml(subtitle)}</p>` : ''}</div></div>${body}</section>`;
+}
+
+function renderCatalog(catalog) {
+  if (!el.catalog || !catalog) return;
+  const newHsk = { ...(catalog.curricula?.new_hsk || {}), id: 'new_hsk' };
+  const hsk = { ...(catalog.curricula?.hsk || {}), id: 'hsk' };
+  const boya = { ...(catalog.curricula?.boya || {}), id: 'boya' };
+  const yct = { ...(catalog.curricula?.yct || {}), id: 'yct' };
+  const radicalItems = Object.values(catalog.radicals?.items || {});
+  const preferredForms = ['亻','口','氵','木','火','忄','扌','讠'];
+  const popular = preferredForms.map(form => radicalItems.find(item => item.sideForm === form || item.mainForm === form)).filter(Boolean);
+  const strokeGroups = catalog.strokes?.groups || {};
+  const strokeKeys = ['1','2','3','4','5','6','7','8','9','10+'];
+  const boyaLabels = { '1':'Quyển 1','2':'Quyển 2','3':'Quyển 3','4':'Quyển 4','5':'Quyển 5','6':'Quyển 6','7':'Quyển 7','8':'Quyển 8' };
+  const yctLabels = { '1':'Cấp 1','2':'Cấp 2','3':'Cấp 3','4':'Cấp 4' };
+
+  el.catalog.innerHTML = `
+    <section class="catalog-panel">
+      <div class="catalog-section-head"><span class="catalog-icon">册</span><div><h2>Tra theo cấp độ & giáo trình</h2><p>Chọn đúng kho từ bạn muốn tra cứu.</p></div></div>
+      <div class="catalog-course-list">
+        ${catalogCourseCard('New HSK 9 cấp', 'Nguồn hiện có tách cấp 1–6 và nhóm 7–9', catalogLevelButtons(newHsk, ['1','2','3','4','5','6','7-9'], 'hsk-nine-grid'))}
+        ${catalogCourseCard('HSK 6 cấp', '', catalogLevelButtons(hsk, ['1','2','3','4','5','6'], 'hsk-six-grid'))}
+        ${catalogCourseCard('Boya', '8 quyển', `<div class="catalog-book-grid">${Object.keys(boyaLabels).map(key => `<button type="button" class="catalog-book-btn" data-catalog-group="boya" data-catalog-key="${key}"><strong>${boyaLabels[key]}</strong><small>${Number(boya.levels?.[key]?.count || 0).toLocaleString('vi-VN')} mục</small></button>`).join('')}</div>`)}
+        ${catalogCourseCard('YCT', 'Cấp 1–4', `<div class="catalog-book-grid">${Object.keys(yctLabels).map(key => `<button type="button" class="catalog-book-btn" data-catalog-group="yct" data-catalog-key="${key}"><strong>${yctLabels[key]}</strong><small>${Number(yct.levels?.[key]?.count || 0).toLocaleString('vi-VN')} mục</small></button>`).join('')}</div>`)}
+      </div>
+    </section>
+
+    <section class="catalog-panel">
+      <div class="catalog-section-head"><span class="catalog-icon">部</span><div><h2>Tra theo Bộ thủ</h2><p>214 bộ thủ đã có trong kho dữ liệu.</p></div></div>
+      <div class="catalog-radical-grid">${popular.map(item => `<button type="button" class="catalog-radical-btn" data-catalog-group="radical" data-catalog-key="${escapeHtml(item.id)}"><strong>${escapeHtml(item.sideForm || item.mainForm)}</strong><small>${escapeHtml(item.displayNameVi || '')}</small></button>`).join('')}</div>
+      <button type="button" class="catalog-wide-btn" data-catalog-group="radicals" data-catalog-key="all"><span>Xem tất cả 214 bộ thủ</span><b>›</b></button>
+    </section>
+
+    <section class="catalog-panel">
+      <div class="catalog-section-head"><span class="catalog-icon">画</span><div><h2>Tra theo số nét</h2><p>Lọc chữ đơn theo số nét đã có trong dữ liệu.</p></div></div>
+      <div class="catalog-stroke-grid">${strokeKeys.map(key => `<button type="button" class="catalog-stroke-btn" data-catalog-group="strokes" data-catalog-key="${key}"><strong>${key === '10+' ? '10+ nét' : `${key} nét`}</strong><small>${Number(strokeGroups[key]?.count || 0).toLocaleString('vi-VN')} chữ</small></button>`).join('')}</div>
+    </section>
+
+    <section class="catalog-panel catalog-other-panel">
+      <div class="catalog-section-head"><span class="catalog-icon">外</span><div><h2>Khác</h2><p>Ngoài HSK, Boya, YCT hoặc chưa phân loại.</p></div></div>
+      <div class="catalog-other-stats"><span><b>${Number(catalog.other?.outsideCurriculaCount || 0).toLocaleString('vi-VN')}</b> ngoài giáo trình</span><span><b>${Number(catalog.other?.unclassifiedCount || 0).toLocaleString('vi-VN')}</b> chưa phân loại</span></div>
+      <button type="button" class="catalog-wide-btn" data-catalog-group="other" data-catalog-key="outsideCurricula"><span>Xem danh sách</span><b>›</b></button>
+    </section>`;
+
+  el.catalog.hidden = false;
+  if (!el.catalog.dataset.catalogBound) {
+    el.catalog.addEventListener('click', event => {
+      const button = event.target.closest('[data-catalog-group]');
+      if (!button || !el.catalog.contains(button)) return;
+      openCatalogSelection(button.dataset.catalogGroup, button.dataset.catalogKey, button);
+    });
+    el.catalog.dataset.catalogBound = 'true';
+  }
+}
+
+
+const CATALOG_BATCH_SIZE = 60;
+
+function catalogGroupLabel(group, key) {
+  const labels = {
+    new_hsk: `New HSK ${key === '7-9' ? '7–9' : `cấp ${key}`}`,
+    hsk: `HSK 6 cấp · Cấp ${key}`,
+    boya: `Boya · Quyển ${key}`,
+    yct: `YCT · Cấp ${key}`,
+    strokes: key === 'unknown' ? 'Chưa xác định số nét' : (key === '10+' ? '10+ nét' : `${key} nét`),
+    other: key === 'unclassified' ? 'Chưa phân loại' : 'Ngoài giáo trình'
+  };
+  return labels[group] || key;
+}
+
+function getCatalogEntry(catalog, group, key) {
+  if (['new_hsk', 'hsk', 'boya', 'yct'].includes(group)) {
+    const entry = catalog.curricula?.[group]?.levels?.[key];
+    return entry ? { title: catalogGroupLabel(group, key), targets: entry.targets || [] } : null;
+  }
+  if (group === 'radical') {
+    const entry = catalog.radicals?.items?.[key];
+    if (!entry) return null;
+    const form = entry.sideForm || entry.mainForm || '';
+    return { title: `${form} · ${entry.displayNameVi || 'Bộ thủ'}`, subtitle: [entry.pinyin, entry.hanViet, entry.meaningVi].filter(Boolean).join(' · '), targets: entry.targets || [] };
+  }
+  if (group === 'strokes') {
+    const entry = catalog.strokes?.groups?.[key];
+    return entry ? { title: catalogGroupLabel(group, key), targets: entry.targets || [] } : null;
+  }
+  if (group === 'other') {
+    const targets = Array.isArray(catalog.other?.[key]) ? catalog.other[key] : [];
+    return { title: catalogGroupLabel(group, key), targets };
+  }
+  return null;
+}
+
+function catalogSearchMap(items) {
+  if (state.unifiedSearchMap) return state.unifiedSearchMap;
+  state.unifiedSearchMap = new Map((items || []).map(item => [item.target, item]));
+  return state.unifiedSearchMap;
+}
+
+function catalogItemInfo(target, map) {
+  const item = map.get(target) || {};
+  return {
+    target,
+    type: item.type || (isSingleHan(target) ? 'single-character' : 'multi-character-word'),
+    pinyin: clean(item.pinyin),
+    meaningVi: clean(item.meaningVi),
+    dataTier: clean(item.dataTier),
+    levels: Array.isArray(item.levels) ? item.levels : []
+  };
+}
+
+function catalogMatches(item, filter, query) {
+  if (filter === 'single' && item.type !== 'single-character') return false;
+  if (filter === 'multi' && item.type === 'single-character') return false;
+  const q = normalizeSearchText(query);
+  if (!q) return true;
+  const haystack = normalizeSearchText([item.target, item.pinyin, item.meaningVi].join(' '));
+  return haystack.includes(q);
+}
+
+function catalogVisibleItems() {
+  const list = state.catalogList;
+  if (!list) return [];
+  return list.items.filter(item => catalogMatches(item, list.filter, list.query));
+}
+
+function catalogResultCard(item) {
+  const typeLabel = item.type === 'single-character' ? 'Chữ đơn' : 'Từ nhiều chữ';
+  return `<button type="button" class="catalog-result-card" data-catalog-target="${escapeHtml(item.target)}">
+    <span class="catalog-result-word">${escapeHtml(item.target)}</span>
+    <span class="catalog-result-body"><strong>${escapeHtml(item.pinyin || '')}</strong><span>${escapeHtml(item.meaningVi || 'Chưa có nghĩa tiếng Việt trong kho hiện tại')}</span></span>
+    <span class="catalog-result-meta"><small>${typeLabel}</small><b>›</b></span>
+  </button>`;
+}
+
+function stopCatalogObserver() {
+  if (state.catalogLazyObserver) state.catalogLazyObserver.disconnect();
+  state.catalogLazyObserver = null;
+}
+
+function debounceCatalogInput(callback, delay = 160) {
+  let timer = null;
+  return (...args) => {
+    window.clearTimeout(timer);
+    timer = window.setTimeout(() => callback(...args), delay);
+  };
+}
+
+function bindCatalogListEvents() {
+  const back = el.view.querySelector('[data-catalog-back]');
+  if (back) back.addEventListener('click', returnToCatalogLanding);
+
+  const input = el.view.querySelector('#catalogListSearch');
+  if (input) input.addEventListener('input', debounceCatalogInput(() => {
+    if (!state.catalogList) return;
+    state.catalogList.query = input.value;
+    state.catalogList.renderedCount = CATALOG_BATCH_SIZE;
+    updateCatalogListResults();
+  }));
+
+  el.view.addEventListener('click', handleCatalogListClick, { once: true });
+  setupCatalogLazyObserver();
+}
+
+function handleCatalogListClick(event) {
+  const filterButton = event.target.closest('[data-catalog-filter]');
+  if (filterButton && state.catalogList) {
+    state.catalogList.filter = filterButton.dataset.catalogFilter || 'all';
+    state.catalogList.renderedCount = CATALOG_BATCH_SIZE;
+    updateCatalogListResults();
+  } else {
+    const targetButton = event.target.closest('[data-catalog-target]');
+    if (targetButton) openTargetFromCatalog(targetButton.dataset.catalogTarget, targetButton);
+    const moreButton = event.target.closest('[data-catalog-more]');
+    if (moreButton) renderNextCatalogBatch();
+  }
+  if (!el.view.hidden && el.view.querySelector('.catalog-list-screen')) {
+    el.view.addEventListener('click', handleCatalogListClick, { once: true });
+  }
+}
+
+function setupCatalogLazyObserver() {
+  stopCatalogObserver();
+  const sentinel = el.view.querySelector('[data-catalog-sentinel]');
+  if (!sentinel || !('IntersectionObserver' in window)) return;
+  state.catalogLazyObserver = new IntersectionObserver(entries => {
+    if (entries.some(entry => entry.isIntersecting)) renderNextCatalogBatch();
+  }, { rootMargin: '240px 0px' });
+  state.catalogLazyObserver.observe(sentinel);
+}
+
+function updateCatalogListResults() {
+  const list = state.catalogList;
+  if (!list) return;
+  const all = catalogVisibleItems();
+  const shown = all.slice(0, list.renderedCount);
+  const results = el.view.querySelector('#catalogListResults');
+  const count = el.view.querySelector('#catalogListCount');
+  const empty = el.view.querySelector('#catalogListEmpty');
+  if (count) count.textContent = `${all.length.toLocaleString('vi-VN')} mục`;
+  if (results) results.innerHTML = shown.map(catalogResultCard).join('');
+  if (empty) empty.hidden = all.length > 0;
+  el.view.querySelectorAll('[data-catalog-filter]').forEach(button => {
+    const active = button.dataset.catalogFilter === list.filter;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', active ? 'true' : 'false');
+  });
+  const moreWrap = el.view.querySelector('#catalogListMoreWrap');
+  if (moreWrap) {
+    moreWrap.hidden = shown.length >= all.length;
+    const more = moreWrap.querySelector('[data-catalog-more]');
+    if (more) more.textContent = `Xem thêm ${Math.min(CATALOG_BATCH_SIZE, all.length - shown.length).toLocaleString('vi-VN')} mục`;
+  }
+  setupCatalogLazyObserver();
+}
+
+function renderCatalogList(list, options = {}) {
+  state.current = null;
+  state.catalogList = list;
+  stopCatalogObserver();
+  if (el.catalog) el.catalog.hidden = true;
+  el.loading.hidden = true;
+  el.message.hidden = true;
+  const total = list.items.length;
+  el.view.innerHTML = `<section class="catalog-list-screen">
+    <div class="catalog-list-topbar">
+      <button type="button" class="catalog-list-back" data-catalog-back>←</button>
+      <div><h1>${escapeHtml(list.title)}</h1>${list.subtitle ? `<p>${escapeHtml(list.subtitle)}</p>` : ''}</div>
+      <span id="catalogListCount">${total.toLocaleString('vi-VN')} mục</span>
+    </div>
+    <div class="catalog-list-tools">
+      <label class="catalog-list-search"><span>⌕</span><input id="catalogListSearch" type="search" value="${escapeHtml(list.query || '')}" placeholder="Tìm trong danh sách…" autocomplete="off"></label>
+      <div class="catalog-list-filters" aria-label="Lọc loại mục">
+        <button type="button" data-catalog-filter="all">Tất cả</button>
+        <button type="button" data-catalog-filter="single">Chữ đơn</button>
+        <button type="button" data-catalog-filter="multi">Từ nhiều chữ</button>
+      </div>
+    </div>
+    <div id="catalogListResults" class="catalog-result-list"></div>
+    <p id="catalogListEmpty" class="catalog-list-empty" hidden>Không có mục phù hợp trong danh sách này.</p>
+    <div id="catalogListMoreWrap" class="catalog-list-more-wrap"><button type="button" class="catalog-list-more" data-catalog-more></button><span data-catalog-sentinel aria-hidden="true"></span></div>
+  </section>`;
+  el.view.hidden = false;
+  bindCatalogListEvents();
+  updateCatalogListResults();
+  const restoreScroll = Number(options.restoreScroll ?? list.scrollY ?? 0);
+  requestAnimationFrame(() => window.scrollTo({ top: restoreScroll, behavior: 'auto' }));
+}
+
+async function openCatalogSelection(group, key, sourceButton = null) {
+  if (sourceButton) { sourceButton.disabled = true; sourceButton.setAttribute('aria-busy', 'true'); }
+  try {
+    const catalog = await loadCatalogIndex();
+    const fromRadicalDirectory = Boolean(sourceButton?.closest('.radical-directory-screen'));
+    if (group === 'radicals' && key === 'all') {
+      await renderRadicalDirectory(catalog);
+      return;
+    }
+    const entry = getCatalogEntry(catalog, group, key);
+    if (!entry) throw new Error('Danh mục này chưa có dữ liệu trong catalog-index.json.');
+    const search = await loadUnifiedSearch();
+    const map = catalogSearchMap(search);
+    const items = [...new Set(entry.targets)].map(target => catalogItemInfo(target, map));
+    renderCatalogList({
+      group, key, title: entry.title, subtitle: entry.subtitle || '', items,
+      filter: 'all', query: '', renderedCount: CATALOG_BATCH_SIZE,
+      landingScrollY: window.scrollY || 0,
+      returnMode: fromRadicalDirectory ? 'radical-directory' : 'landing',
+      radicalDirectoryQuery: fromRadicalDirectory ? (document.querySelector('#radicalDirectorySearch')?.value || '') : ''
+    });
+  } catch (error) {
+    console.error('[Tra catalog] Không mở được danh sách', { group, key, error });
+    el.message.textContent = `Không mở được danh sách: ${error.message || 'lỗi chưa xác định'}`;
+    el.message.hidden = false;
+    sourceButton?.focus();
+  } finally {
+    if (sourceButton) { sourceButton.disabled = false; sourceButton.removeAttribute('aria-busy'); }
+  }
+}
+
+async function renderRadicalDirectory(catalog, options = {}) {
+  const items = Object.values(catalog.radicals?.items || {}).sort((a, b) => Number(a.kangxiNo || 999) - Number(b.kangxiNo || 999));
+  if (el.catalog) el.catalog.hidden = true;
+  el.loading.hidden = true;
+  el.view.innerHTML = `<section class="catalog-list-screen radical-directory-screen">
+    <div class="catalog-list-topbar"><button type="button" class="catalog-list-back" data-catalog-back>←</button><div><h1>214 bộ thủ</h1><p>Chọn bộ thủ để xem các chữ liên quan.</p></div><span>${items.length} bộ</span></div>
+    <label class="catalog-list-search"><span>⌕</span><input id="radicalDirectorySearch" type="search" placeholder="Tìm tên bộ, pinyin, Hán Việt…" autocomplete="off"></label>
+    <div id="radicalDirectoryResults" class="radical-directory-list"></div>
+  </section>`;
+  el.view.hidden = false;
+  const draw = query => {
+    const q = normalizeSearchText(query);
+    const filtered = items.filter(item => !q || normalizeSearchText([item.mainForm, item.sideForm, item.displayNameVi, item.pinyin, item.hanViet, item.meaningVi].join(' ')).includes(q));
+    const box = el.view.querySelector('#radicalDirectoryResults');
+    box.innerHTML = filtered.map(item => `<button type="button" class="radical-directory-card" data-radical-catalog-id="${escapeHtml(item.id)}"><strong>${escapeHtml(item.sideForm || item.mainForm)}</strong><span><b>${escapeHtml(item.displayNameVi || '')}</b><small>${escapeHtml([item.pinyin, item.hanViet, item.meaningVi].filter(Boolean).join(' · '))}</small></span><em>${Number(item.count || 0).toLocaleString('vi-VN')} chữ</em><i>›</i></button>`).join('');
+    box.querySelectorAll('[data-radical-catalog-id]').forEach(button => button.addEventListener('click', () => openCatalogSelection('radical', button.dataset.radicalCatalogId, button)));
+  };
+  el.view.querySelector('[data-catalog-back]').addEventListener('click', returnToCatalogLanding);
+  const input = el.view.querySelector('#radicalDirectorySearch');
+  input.value = options.query || '';
+  input.addEventListener('input', () => draw(input.value));
+  draw(input.value);
+  requestAnimationFrame(() => window.scrollTo({ top: Number(options.scrollY || 0), behavior: 'auto' }));
+}
+
+function renderNextCatalogBatch() {
+  if (!state.catalogList) return;
+  const total = catalogVisibleItems().length;
+  if (state.catalogList.renderedCount >= total) return;
+  state.catalogList.renderedCount += CATALOG_BATCH_SIZE;
+  updateCatalogListResults();
+}
+
+async function openTargetFromCatalog(target, sourceButton) {
+  if (!state.catalogList) return;
+  state.catalogListSnapshot = {
+    ...state.catalogList,
+    items: state.catalogList.items,
+    scrollY: window.scrollY || 0,
+    focusTarget: target
+  };
+  state.navigationStack = [];
+  await runSearch(target, { skipHistory: true, preserveCatalogContext: true });
+}
+
+function restoreCatalogList() {
+  const snapshot = state.catalogListSnapshot;
+  if (!snapshot) return;
+  state.catalogListSnapshot = null;
+  renderCatalogList(snapshot, { restoreScroll: snapshot.scrollY });
+  requestAnimationFrame(() => {
+    const focus = [...el.view.querySelectorAll('[data-catalog-target]')].find(item => item.dataset.catalogTarget === (snapshot.focusTarget || ''));
+    focus?.focus({ preventScroll: true });
+  });
+}
+
+async function returnToCatalogLanding() {
+  stopCatalogObserver();
+  const previous = state.catalogList;
+  const landingScroll = previous?.landingScrollY || 0;
+  state.catalogList = null;
+  state.catalogListSnapshot = null;
+  state.navigationStack = [];
+  state.current = null;
+  el.message.hidden = true;
+  if (previous?.returnMode === 'radical-directory') {
+    const catalog = await loadCatalogIndex();
+    await renderRadicalDirectory(catalog, { query: previous.radicalDirectoryQuery || '', scrollY: landingScroll });
+    return;
+  }
+  el.view.hidden = true;
+  el.view.innerHTML = '';
+  if (el.catalog) el.catalog.hidden = false;
+  requestAnimationFrame(() => window.scrollTo({ top: landingScroll, behavior: 'auto' }));
+}
+
+async function initCatalog() {
+  if (!el.catalog) return;
+  try {
+    renderCatalog(await loadCatalogIndex());
+  } catch (error) {
+    el.catalog.innerHTML = `<div class="catalog-error">Không tải được danh mục Tra: ${escapeHtml(error.message || '')}</div>`;
+  }
 }
 async function loadUnifiedRecord(target) {
   const index = await loadUnifiedIndex();
@@ -1246,6 +1634,7 @@ function render(data) {
   const sections = [];
   const parent = state.navigationStack[state.navigationStack.length - 1];
   if (parent) sections.push(`<div class="lookup-context-back-wrap"><button type="button" class="lookup-context-back" data-back-parent>← Quay lại ${escapeHtml(parent.target)}</button></div>`);
+  else if (state.catalogListSnapshot) sections.push(`<div class="lookup-context-back-wrap"><button type="button" class="lookup-context-back" data-back-catalog-list>← Quay lại ${escapeHtml(state.catalogListSnapshot.title || 'danh sách')}</button></div>`);
   sections.push(`<section id="lookup-hero-section" class="panel hero-card full-width"><div class="panel-inner">
       <div class="hero-grid"><div class="main-char">${escapeHtml(target)}</div><div><div class="pinyin">${escapeHtml(pinyin)}</div><div class="hanviet">${data.pronunciation?.hanViet ? `Hán Việt: ${escapeHtml(data.pronunciation.hanViet)}` : ''}</div><p class="primary-meaning">${escapeHtml(meaningSummary(data))}</p></div><button class="speak-btn icon-audio-btn" type="button" data-speak="${escapeHtml(target)}" aria-label="Nghe phát âm">${audioIcon()}</button></div>
       <div class="meta-row">${formation ? `<span class="meta-chip">${escapeHtml(formation)}</span>` : ''}${structure ? `<span class="meta-chip">${escapeHtml(structure)}</span>` : ''}${data.characterInfo?.strokeCount ? `<span class="meta-chip">${escapeHtml(data.characterInfo.strokeCount)} nét</span>` : ''}${radicalVisible && radical.nameVi ? `<span class="meta-chip">${escapeHtml(radical.nameVi)}</span>` : ''}</div>
@@ -1351,6 +1740,7 @@ function bindDynamicEvents() {
   el.view.querySelectorAll('[data-speak]').forEach(button => button.addEventListener('click', () => speak(button.dataset.speak)));
   el.view.querySelectorAll('[data-search-char]').forEach(button => button.addEventListener('click', () => openTargetWithContext(button.dataset.searchChar, button)));
   el.view.querySelectorAll('[data-back-parent]').forEach(button => button.addEventListener('click', restoreParentTarget));
+  el.view.querySelectorAll('[data-back-catalog-list]').forEach(button => button.addEventListener('click', restoreCatalogList));
   el.view.querySelectorAll('[data-show-more-sentences]').forEach(button => button.addEventListener('click', () => {
     const expanded = button.getAttribute('aria-expanded') === 'true';
     el.view.querySelectorAll('.sentence-extra').forEach(card => { card.hidden = expanded; });
@@ -1371,11 +1761,14 @@ function bindDynamicEvents() {
 
 async function runSearch(value, options = {}) {
   const query = clean(value);
+  if (!options.preserveCatalogContext && !options.skipHistory) state.catalogListSnapshot = null;
   el.message.hidden = true;
+  if (el.catalog) el.catalog.hidden = Boolean(query) || Boolean(state.catalogList);
   if (!query) {
     el.loading.hidden = true;
     el.view.hidden = true;
     el.view.innerHTML = '';
+    if (el.catalog) el.catalog.hidden = false;
     return;
   }
   el.loading.textContent = 'Đang tìm trong dữ liệu local…';
@@ -1424,20 +1817,33 @@ function closeMenu() {
   document.body.classList.remove('menu-open');
 }
 
-el.form.addEventListener('submit', event => { event.preventDefault(); state.navigationStack = []; runSearch(el.input.value); });
-document.querySelectorAll('[data-char]').forEach(button => button.addEventListener('click', () => { state.navigationStack = []; runSearch(button.dataset.char); }));
-el.theme.addEventListener('click', () => setDark());
-document.querySelector('#menuThemeBtn').addEventListener('click', () => setDark());
-document.querySelectorAll('[data-menu-open]').forEach(button => button.addEventListener('click', openMenu));
-document.querySelectorAll('[data-menu-close]').forEach(button => button.addEventListener('click', closeMenu));
-el.menuBackdrop.addEventListener('click', closeMenu);
-document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
+async function bootstrapLookupPage() {
+  try {
+    await initCatalog();
+    el.form?.addEventListener('submit', event => { event.preventDefault(); state.navigationStack = []; runSearch(el.input.value); });
+    document.querySelectorAll('[data-char]').forEach(button => button.addEventListener('click', () => { state.navigationStack = []; runSearch(button.dataset.char); }));
+    el.theme?.addEventListener('click', () => setDark());
+    document.querySelector('#menuThemeBtn')?.addEventListener('click', () => setDark());
+    document.querySelectorAll('[data-menu-open]').forEach(button => button.addEventListener('click', openMenu));
+    document.querySelectorAll('[data-menu-close]').forEach(button => button.addEventListener('click', closeMenu));
+    el.menuBackdrop?.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
 
-(async function init() {
-  state.dark = localStorage.getItem('lookup-c1-2-theme') === 'dark';
-  document.body.classList.toggle('dark', state.dark);
-  await Promise.all([loadSingleCharacterIndex(), loadWordIndex()]);
-  el.loading.hidden = true;
-  el.view.hidden = true;
-  el.message.hidden = true;
-})();
+    state.dark = localStorage.getItem('lookup-c1-2-theme') === 'dark';
+    document.body.classList.toggle('dark', state.dark);
+    await Promise.all([loadSingleCharacterIndex(), loadWordIndex()]);
+    el.loading.hidden = true;
+    el.view.hidden = true;
+    el.message.hidden = true;
+    window.__C2A24_READY__ = true;
+  } catch (error) {
+    console.error('[Tra bootstrap]', error);
+    if (el.message) {
+      el.message.textContent = `Không khởi tạo được tab Tra: ${error.message || 'lỗi chưa xác định'}`;
+      el.message.hidden = false;
+    }
+  }
+}
+
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bootstrapLookupPage, { once: true });
+else bootstrapLookupPage();
