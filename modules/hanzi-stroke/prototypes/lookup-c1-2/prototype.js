@@ -1,6 +1,12 @@
-const UNIFIED_BASE_URL = '../../data/learning/unified-lookup/all-sources/';
-const UNIFIED_INDEX_URL = `${UNIFIED_BASE_URL}unified-target-index.json`;
-const UNIFIED_SEARCH_URL = `${UNIFIED_BASE_URL}search-index.json`;
+const SCRIPT_BASE_URL = (() => {
+  const script = document.currentScript;
+  if (script?.src) return new URL('./', script.src);
+  return new URL('./', window.location.href);
+})();
+const resolveAssetUrl = relativePath => new URL(relativePath, SCRIPT_BASE_URL).href;
+const UNIFIED_BASE_URL = resolveAssetUrl('../../data/learning/unified-lookup/all-sources/');
+const UNIFIED_INDEX_URL = new URL('unified-target-index.json', UNIFIED_BASE_URL).href;
+const UNIFIED_SEARCH_URL = new URL('search-index.json', UNIFIED_BASE_URL).href;
 const SINGLE_CHAR_INDEX_URL = '../../data/learning/character-enrichment/hsk1-3-single/index.json';
 const SINGLE_CHAR_BASE_URL = '../../data/learning/character-enrichment/hsk1-3-single/';
 const SINGLE_CHAR_RADICAL_INDEX_URL = '../../data/learning/character-enrichment/hsk1-3-single/radical-character-index.json';
@@ -109,13 +115,41 @@ async function loadUnifiedRecord(target) {
   const index = await loadUnifiedIndex();
   const bucket = index[target];
   if (!bucket) return null;
+  if (!/^[0-9A-F]{2}$/i.test(String(bucket))) {
+    throw new Error(`Index Tra không hợp lệ cho “${target}”: bucket ${bucket}`);
+  }
   if (!state.unifiedBuckets[bucket]) {
-    const payload = await fetchJson(`${UNIFIED_BASE_URL}records/${bucket}.json`);
+    const bucketUrl = new URL(`records/${bucket}.json`, UNIFIED_BASE_URL).href;
+    const payload = await fetchJson(bucketUrl);
     state.unifiedBuckets[bucket] = payload?.records || {};
   }
   const raw = state.unifiedBuckets[bucket]?.[target];
-  return raw ? adaptUnifiedRecord(raw) : null;
+  if (!raw) {
+    throw new Error(`Bucket ${bucket} không chứa record “${target}”.`);
+  }
+  return adaptUnifiedRecord(raw);
 }
+
+async function runUnifiedRuntimeSelfCheck(sampleTargets = ['一', '青', '清', '亲人', '学习']) {
+  const report = { ok: true, baseUrl: UNIFIED_BASE_URL, checks: [] };
+  try {
+    const index = await loadUnifiedIndex();
+    report.checks.push({ name: 'unified-index', ok: Object.keys(index).length > 0, count: Object.keys(index).length });
+    const search = await loadUnifiedSearch();
+    report.checks.push({ name: 'search-index', ok: Array.isArray(search) && search.length > 0, count: search.length });
+    for (const target of sampleTargets) {
+      const record = await loadUnifiedRecord(target);
+      report.checks.push({ name: `record:${target}`, ok: Boolean(record), bucket: index[target] || '' });
+    }
+  } catch (error) {
+    report.ok = false;
+    report.error = error.message;
+  }
+  report.ok = report.ok && report.checks.every(item => item.ok);
+  window.__TRA_RUNTIME_CHECK__ = report;
+  return report;
+}
+window.runUnifiedRuntimeSelfCheck = runUnifiedRuntimeSelfCheck;
 function adaptUnifiedRadical(raw) {
   if (!raw || raw.status !== 'resolved') return null;
   return {
@@ -133,9 +167,31 @@ function adaptUnifiedRecord(raw) {
     roleVi: item.roleVi || (item.role === 'semantic' ? 'biểu nghĩa' : item.role === 'phonetic' ? 'biểu âm' : 'thành phần'),
     pinyin: item.pinyin || '', hanViet: item.hanViet || '', meaningVi: item.meaningVi || '', reviewStatus: 'reviewed-local'
   })).filter(item => item.char);
-  const grammarLinks = (raw.grammar || []).map(item => ({
-    grammarTopic: item.topic || 'Cách dùng', syntax: item.syntax || '', usageNoteVi: item.explanationVi || '',
-    title: item.topic || 'Cách dùng', reviewStatus: 'reviewed-local', source: item.sourceFile || ''
+  const grammarLinks = (raw.grammar || []).map((item, index) => ({
+    id: item.grammarId || item.id || `${raw.target || 'target'}-grammar-${index + 1}`,
+    grammarTopic: item.topic || item.title || 'Cách dùng',
+    title: item.title || item.topic || 'Cách dùng',
+    syntax: item.syntax || item.pattern || '',
+    partOfSpeech: item.partOfSpeech || item.wordType || '',
+    usageNoteVi: item.usageNoteVi || item.explanationVi || item.explanation || '',
+    explanationVi: item.explanationVi || item.explanation || '',
+    tipsVi: item.tipsVi || item.tipVi || '',
+    attentionsVi: item.attentionsVi || item.attentionVi || item.noteVi || '',
+    matchedExample: item.matchedExample || item.example?.chinese || item.exampleZh || '',
+    examplePinyin: item.example?.pinyin || item.examplePinyin || '',
+    exampleMeaningVi: item.example?.meaningVi || item.exampleMeaningVi || '',
+    examples: (item.examples || []).map(row => ({
+      chinese: row.chinese || row.zh || '',
+      pinyin: row.pinyin || '',
+      meaningVi: row.meaningVi || row.vietnamese || row.vi || ''
+    })).filter(row => row.chinese),
+    tipsVi: item.tipsVi || item.tipVi || '',
+    attentionsVi: item.attentionsVi || item.attentionVi || item.noteVi || '',
+    source: item.sourceFile || item.source || '',
+    level: item.level || item.hskLevel || '',
+    curriculum: item.curriculum || '',
+    chapter: item.chapter || '',
+    reviewStatus: 'reviewed-local'
   }));
   const sources = (raw.sources || []).map((item, index) => ({ sourceId: `${item.file || 'source'}-${index}`, title: item.file || 'Dữ liệu local', reviewStatus: 'reviewed-local' }));
   if (single) {
@@ -191,10 +247,41 @@ function panelTitle(icon, text) {
   return `<h2 class="panel-title"><span class="tag"></span>${icon ? `<span>${icon}</span>` : ''}${escapeHtml(text)}</h2>`;
 }
 
-async function fetchJson(url) {
-  const response = await fetch(url, { cache: 'no-store' });
-  if (!response.ok) throw new Error(`Không tải được ${url}`);
-  return response.json();
+async function fetchJson(url, options = {}) {
+  const absoluteUrl = new URL(url, SCRIPT_BASE_URL).href;
+  const attempts = Math.max(1, Number(options.attempts || 2));
+  const timeoutMs = Math.max(1000, Number(options.timeoutMs || 15000));
+  let lastError = null;
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const response = await fetch(absoluteUrl, {
+        cache: attempt === 1 ? 'no-store' : 'reload',
+        signal: controller.signal
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status} ${response.statusText}`);
+      }
+      const text = await response.text();
+      try {
+        return JSON.parse(text);
+      } catch (error) {
+        throw new Error(`JSON không hợp lệ: ${error.message}`);
+      }
+    } catch (error) {
+      lastError = error;
+      if (attempt < attempts) await new Promise(resolve => setTimeout(resolve, 180));
+    } finally {
+      clearTimeout(timeoutId);
+    }
+  }
+
+  const reason = lastError?.name === 'AbortError'
+    ? `quá thời gian ${timeoutMs}ms`
+    : (lastError?.message || 'lỗi mạng không xác định');
+  throw new Error(`Không tải được dữ liệu Tra: ${absoluteUrl} (${reason})`);
 }
 
 async function loadHskLookup() {
@@ -832,10 +919,91 @@ function sentenceCards(items = [], initialLimit = 3) {
   return `<div class="card-list sentence-card-list">${cards}</div>${more}`;
 }
 
-function grammarCards(items = [], limit = 4) {
-  const list = items.filter(item => reviewed(item) && (item.title || item.grammarTopic || item.partOfSpeech || item.usageNoteVi || item.explanationVi || item.matchedExample)).slice(0,limit);
-  if (!list.length) return '<div class="empty-state">Chưa có ghi chú ngữ pháp hoặc cách dùng đã kiểm duyệt.</div>';
-  return `<div class="grammar-list">${list.map(item => `<article class="grammar-card"><h3>${escapeHtml(item.title || item.grammarTopic || 'Cách dùng')}</h3>${item.partOfSpeech || item.syntax ? `<p><strong>Loại từ:</strong> ${escapeHtml(item.partOfSpeech || item.syntax)}</p>` : ''}${item.usageNoteVi || item.matchedExample ? `<p>${escapeHtml(item.usageNoteVi || item.matchedExample)}</p>` : ''}${item.explanationVi ? `<p class="grammar-note">${escapeHtml(item.explanationVi)}</p>` : ''}</article>`).join('')}</div>`;
+function grammarMetaLabel(item) {
+  const parts = [];
+  if (item.curriculum) parts.push(item.curriculum === 'new-hsk' ? 'New HSK' : item.curriculum.toUpperCase());
+  if (item.level) parts.push(`Cấp ${item.level}`);
+  if (item.chapter) parts.push(`Bài ${item.chapter}`);
+  return parts.join(' · ');
+}
+
+function grammarCards(items = [], limit = 8) {
+  const list = items
+    .filter(item => reviewed(item) && (item.title || item.grammarTopic || item.syntax || item.explanationVi || item.examples?.length))
+    .slice(0, limit);
+  if (!list.length) return '';
+
+  return `<div class="grammar-list hsk-style-grammar-list">${list.map((item, index) => {
+    const title = item.title || item.grammarTopic || 'Cách dùng';
+    const meta = grammarMetaLabel(item);
+    const examples = item.examples?.length || (item.matchedExample ? 1 : 0);
+    const preview = item.syntax || item.explanationVi || '';
+    return `<button class="grammar-preview-card" type="button" data-open-grammar="${index}" aria-label="Mở chi tiết ${escapeHtml(title)}">
+      <span class="grammar-preview-meta">
+        ${meta ? `<span class="grammar-level-badge">${escapeHtml(meta)}</span>` : '<span class="grammar-level-badge">NGỮ PHÁP</span>'}
+        <span class="grammar-example-count">${examples} ví dụ</span>
+      </span>
+      <strong class="grammar-preview-title">${escapeHtml(title)}</strong>
+      ${preview ? `<span class="grammar-preview-text">${escapeHtml(preview)}</span>` : '<span class="grammar-preview-text is-muted">Mở để xem dữ liệu nguồn.</span>'}
+      <span class="grammar-preview-arrow" aria-hidden="true">›</span>
+    </button>`;
+  }).join('')}</div>`;
+}
+
+function ensureGrammarDialog() {
+  let dialog = document.querySelector('#grammarDetailDialog');
+  if (dialog) return dialog;
+  dialog = document.createElement('dialog');
+  dialog.id = 'grammarDetailDialog';
+  dialog.className = 'grammar-detail-dialog';
+  document.body.appendChild(dialog);
+  dialog.addEventListener('click', event => {
+    if (event.target === dialog || event.target.closest('[data-close-grammar]')) dialog.close();
+  });
+  dialog.addEventListener('close', () => window.speechSynthesis?.cancel());
+  return dialog;
+}
+
+function grammarDetailBlock(label, text, tone = '') {
+  if (!clean(text)) return '';
+  return `<section class="grammar-popup-block ${tone ? `is-${tone}` : ''}"><h4>${escapeHtml(label)}</h4><p>${escapeHtml(text)}</p></section>`;
+}
+
+function openGrammarDetail(index) {
+  const items = (state.current?.grammarLinks || []).filter(item => reviewed(item));
+  const item = items[Number(index)];
+  if (!item) return;
+  const dialog = ensureGrammarDialog();
+  const title = item.title || item.grammarTopic || 'Ngữ pháp';
+  const meta = grammarMetaLabel(item);
+  const examples = item.examples?.length
+    ? item.examples
+    : (item.matchedExample ? [{ chinese: item.matchedExample, pinyin: item.examplePinyin || '', meaningVi: item.exampleMeaningVi || '' }] : []);
+
+  dialog.innerHTML = `<div class="grammar-dialog-shell">
+    <div class="grammar-dialog-topbar">
+      <button type="button" class="grammar-dialog-back" data-close-grammar>← Quay về Ngữ pháp</button>
+      <button type="button" class="grammar-dialog-close" data-close-grammar aria-label="Đóng">×</button>
+    </div>
+    <section class="grammar-dialog-hero">
+      <span class="grammar-dialog-kicker">NGỮ PHÁP / CÁCH DÙNG</span>
+      <h3>${escapeHtml(title)}</h3>
+      ${meta ? `<div class="grammar-dialog-meta"><span>${escapeHtml(meta)}</span></div>` : ''}
+    </section>
+    <div class="grammar-dialog-content">
+      ${grammarDetailBlock('Loại từ', item.partOfSpeech, 'type')}
+      ${grammarDetailBlock('Cấu trúc', item.syntax, 'syntax')}
+      ${grammarDetailBlock('Cách dùng', item.usageNoteVi, 'usage')}
+      ${item.explanationVi && item.explanationVi !== item.usageNoteVi ? grammarDetailBlock('Giải thích', item.explanationVi, 'explanation') : ''}
+      ${grammarDetailBlock('Mẹo nhớ', item.tipsVi, 'tips')}
+      ${grammarDetailBlock('Lưu ý', item.attentionsVi, 'attention')}
+      ${examples.length ? `<section class="grammar-popup-examples"><div class="grammar-popup-examples-head"><h4>Ví dụ</h4><span>${examples.length} câu</span></div><div class="grammar-popup-example-list">${examples.map((row, i) => `<article class="grammar-popup-example-card"><span class="grammar-popup-example-index">${String(i + 1).padStart(2, '0')}</span><div class="grammar-popup-example-main"><strong>${escapeHtml(row.chinese)}</strong>${row.pinyin ? `<em>${escapeHtml(row.pinyin)}</em>` : ''}${row.meaningVi ? `<span>${escapeHtml(row.meaningVi)}</span>` : ''}</div><button class="word-speak-btn icon-audio-btn" type="button" data-speak="${escapeHtml(row.chinese)}" aria-label="Nghe ví dụ">${audioIcon()}</button></article>`).join('')}</div></section>` : ''}
+      ${!item.syntax && !item.explanationVi && !item.usageNoteVi && !examples.length ? '<p class="grammar-popup-empty">Nguồn hiện chỉ xác định tên chủ điểm; chưa có nội dung chi tiết.</p>' : ''}
+      <div class="grammar-popup-source">${item.source ? `<span>Nguồn: ${escapeHtml(item.source)}</span>` : ''}</div>
+    </div>
+  </div>`;
+  dialog.querySelectorAll('[data-speak]').forEach(button => button.addEventListener('click', () => speak(button.dataset.speak)));
+  if (!dialog.open) dialog.showModal();
 }
 
 async function loadRadicalNotes() {
@@ -1214,6 +1382,7 @@ function bindDynamicEvents() {
   }));
   el.view.querySelectorAll('[data-writer-action]').forEach(button => button.addEventListener('click', () => writerAction(button.dataset.writerAction)));
   el.view.querySelectorAll('[data-open-radical]').forEach(button => button.addEventListener('click', () => openRadicalDetails(button.dataset.openRadical)));
+  el.view.querySelectorAll('[data-open-grammar]').forEach(button => button.addEventListener('click', () => openGrammarDetail(button.dataset.openGrammar)));
 }
 
 async function runSearch(value, options = {}) {
