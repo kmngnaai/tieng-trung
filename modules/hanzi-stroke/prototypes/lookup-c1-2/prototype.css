@@ -700,3 +700,51 @@ body.radical-dialog-open { overflow: hidden; }
   .component-char { font-size:2.2rem; }
   .word-card-search,.sentence-card { min-width:0; }
 }
+
+/* C2A.21.1: context navigation, multi-character writing, sentence expansion */
+.lookup-context-back-wrap {
+  position: sticky;
+  top: 58px;
+  z-index: 8;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 0 10px;
+  pointer-events: none;
+}
+.lookup-context-back {
+  pointer-events: auto;
+  min-height: 38px;
+  padding: 8px 13px;
+  border: 1px solid var(--line, #ead8c5);
+  border-radius: 999px;
+  background: rgba(255, 253, 249, 0.96);
+  color: var(--accent, #c85f43);
+  font: inherit;
+  font-weight: 750;
+  box-shadow: 0 6px 18px rgba(74, 54, 39, 0.10);
+  backdrop-filter: blur(8px);
+}
+.lookup-context-back:active { transform: translateY(1px); }
+body.dark .lookup-context-back { background: rgba(37, 43, 52, 0.96); }
+
+.sentence-show-more {
+  display: block;
+  width: 100%;
+  min-height: 42px;
+  margin-top: 10px;
+  border: 1px solid var(--line, #ead8c5);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--accent, #c85f43);
+  font: inherit;
+  font-weight: 750;
+}
+.sentence-show-more:active { transform: scale(.99); }
+.sentence-extra[hidden] { display: none !important; }
+
+@media (max-width: 430px) {
+  .lookup-context-back-wrap { top: 54px; margin-bottom: 8px; }
+  .lookup-context-back { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .writing-char-tabs { overflow-x: auto; justify-content: flex-start; scrollbar-width: none; }
+  .writing-char-tabs::-webkit-scrollbar { display: none; }
+}
