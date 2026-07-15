@@ -198,14 +198,14 @@ function adaptUnifiedRecord(raw) {
     const memoryText = raw.memory?.reviewedStory?.memoryStoryVi || raw.memory?.reviewedStory?.textVi || raw.memory?.characterStructure?.conclusion || '';
     return {
       schemaVersion: raw.schemaVersion, type: 'character', char: raw.target, pronunciation, meaningSenses,
-      characterInfo: { strokeCount: raw.characters?.[0]?.strokeCount ?? null, structureVi: '', formationTypeVi: '', radical: adaptUnifiedRadical(raw.radical) },
+      characterInfo: { strokeCount: raw.strokeCount ?? raw.characters?.[0]?.strokeCount ?? null, structureVi: '', formationTypeVi: '', radical: adaptUnifiedRadical(raw.radical) },
       components,
       etymology: { standardExplanationVi: raw.memory?.characterStructure?.explanation?.join(' ') || '', confidence: components.length ? 'source-backed' : 'not-available' },
       learningStory: { memoryStoryVi: memoryText, reviewStatus: memoryText ? 'reviewed-local' : 'not-available' },
       vocabulary: { compounds: [], relatedWords: raw.relatedWords || [], collocations: raw.collocations || [] },
       sentences: raw.sentences || [], grammarLinks,
       sameRadicalCharacters: (raw.radicalComponentOf || []).map(item => ({ word: item.char, pinyin: item.pinyin || '', meaningVi: item.meaningVi || '', reviewStatus: 'reviewed-local' })),
-      sources, review: { status: 'unified-source-backed', warnings: [] }
+      sources, review: { status: raw.dataTier ? `Mức ${raw.dataTier}` : 'unified-source-backed', warnings: [] }
     };
   }
   return {
@@ -998,8 +998,7 @@ function openGrammarDetail(index) {
       ${grammarDetailBlock('Mẹo nhớ', item.tipsVi, 'tips')}
       ${grammarDetailBlock('Lưu ý', item.attentionsVi, 'attention')}
       ${examples.length ? `<section class="grammar-popup-examples"><div class="grammar-popup-examples-head"><h4>Ví dụ</h4><span>${examples.length} câu</span></div><div class="grammar-popup-example-list">${examples.map((row, i) => `<article class="grammar-popup-example-card"><span class="grammar-popup-example-index">${String(i + 1).padStart(2, '0')}</span><div class="grammar-popup-example-main"><div class="grammar-popup-example-han-row"><strong>${escapeHtml(row.chinese)}</strong><button class="grammar-example-audio icon-audio-btn" type="button" data-speak="${escapeHtml(row.chinese)}" aria-label="Nghe câu ví dụ">${audioIcon()}</button></div>${row.pinyin ? `<em>${escapeHtml(row.pinyin)}</em>` : ''}${row.meaningVi ? `<span>${escapeHtml(row.meaningVi)}</span>` : ''}</div></article>`).join('')}</div></section>` : ''}
-      ${!item.syntax && !item.explanationVi && !item.usageNoteVi && !examples.length ? '<p class="grammar-popup-empty">Nguồn hiện chỉ xác định tên chủ điểm; chưa có nội dung chi tiết.</p>' : ''}
-      <div class="grammar-popup-source">${item.source ? `<span>Nguồn: ${escapeHtml(item.source)}</span>` : ''}</div>
+      ${!item.syntax && !item.explanationVi && !item.usageNoteVi && !examples.length ? '<p class="grammar-popup-empty">Chủ điểm này chưa có nội dung chi tiết.</p>' : ''}
     </div>
   </div>`;
   dialog.querySelectorAll('[data-speak]').forEach(button => button.addEventListener('click', () => speak(button.dataset.speak)));
@@ -1104,19 +1103,6 @@ function radicalSentencesHtml(items = []) {
   }).join('')}</div>`;
 }
 
-function radicalSourcesHtml(source = {}) {
-  const urls = source.sourceUrls || [];
-  const rows = [
-    source.primary ? `<li><b>Nguồn chính:</b> ${escapeHtml(source.primary)}</li>` : '',
-    (source.supplement || []).length ? `<li><b>Nguồn bổ sung:</b> ${escapeHtml(source.supplement.join(', '))}</li>` : '',
-    source.hasManualOverride ? '<li><b>Hiệu chỉnh thủ công:</b> Có</li>' : '',
-    source.needsManualReview ? '<li><b>Trạng thái:</b> Cần kiểm tra thêm</li>' : '<li><b>Trạng thái:</b> Đã tổng hợp</li>',
-    ...(source.notes || []).map(note => `<li>${escapeHtml(note)}</li>`),
-    ...urls.map(url => `<li class="prototype-radical-source-url">${escapeHtml(url)}</li>`)
-  ].filter(Boolean);
-  return rows.length ? `<ul>${rows.join('')}</ul>` : '';
-}
-
 function ensureRadicalDialog() {
   let dialog = document.querySelector('#prototypeRadicalDialog');
   if (dialog) return dialog;
@@ -1180,7 +1166,6 @@ function renderRadicalDialog(note) {
     ${radicalAccordion('Từ ghép', radicalSearchCards(words, 'word'))}
     ${radicalAccordion('Câu mẫu', radicalSentencesHtml(sentences))}
     ${radicalAccordion('Dễ nhầm', (detail.avoidConfusion || []).length ? `<ul>${detail.avoidConfusion.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>` : '')}
-    ${radicalAccordion('Nguồn dữ liệu', radicalSourcesHtml(note.source || {}))}
   `;
   body.querySelectorAll('[data-speak]').forEach(button => button.addEventListener('click', event => {
     event.stopPropagation();
@@ -1240,10 +1225,10 @@ function render(data) {
   const radical = data.characterInfo?.radical || null;
   const vocabulary = data.vocabulary || {};
   const pinyin = first(data.pronunciation?.pinyin);
-  const formation = data.characterInfo?.formationTypeVi || '';
+  const rawFormation = data.characterInfo?.formationTypeVi || '';
+  const formation = ['chưa chuẩn hóa', 'not-available', 'unknown'].includes(String(rawFormation).trim().toLowerCase()) ? '' : rawFormation;
   const structure = data.characterInfo?.structureType === 'left-right' ? 'trái – phải' : (data.characterInfo?.structureType || '');
   const warning = warningFor(data);
-  const sources = (data.sources || []).filter(item => item.reviewStatus !== 'rejected');
   const story = clean(data.learningStory?.memoryStoryVi);
   const primaryChar = writingCharacters(data)[0] || '';
   const components = (data.components || []).filter(item => item.char);
@@ -1263,14 +1248,14 @@ function render(data) {
   if (parent) sections.push(`<div class="lookup-context-back-wrap"><button type="button" class="lookup-context-back" data-back-parent>← Quay lại ${escapeHtml(parent.target)}</button></div>`);
   sections.push(`<section id="lookup-hero-section" class="panel hero-card full-width"><div class="panel-inner">
       <div class="hero-grid"><div class="main-char">${escapeHtml(target)}</div><div><div class="pinyin">${escapeHtml(pinyin)}</div><div class="hanviet">${data.pronunciation?.hanViet ? `Hán Việt: ${escapeHtml(data.pronunciation.hanViet)}` : ''}</div><p class="primary-meaning">${escapeHtml(meaningSummary(data))}</p></div><button class="speak-btn icon-audio-btn" type="button" data-speak="${escapeHtml(target)}" aria-label="Nghe phát âm">${audioIcon()}</button></div>
-      <div class="meta-row">${formation ? `<span class="meta-chip">${escapeHtml(formation)}</span>` : ''}${structure ? `<span class="meta-chip">${escapeHtml(structure)}</span>` : ''}${data.characterInfo?.strokeCount ? `<span class="meta-chip">${escapeHtml(data.characterInfo.strokeCount)} nét</span>` : ''}${radicalVisible && radical.nameVi ? `<span class="meta-chip">${escapeHtml(radical.nameVi)} · local</span>` : ''}${data.review?.status && !['local-fallback','PARTIAL'].includes(data.review.status) ? `<span class="meta-chip">${escapeHtml(data.review.status)}</span>` : ''}</div>
+      <div class="meta-row">${formation ? `<span class="meta-chip">${escapeHtml(formation)}</span>` : ''}${structure ? `<span class="meta-chip">${escapeHtml(structure)}</span>` : ''}${data.characterInfo?.strokeCount ? `<span class="meta-chip">${escapeHtml(data.characterInfo.strokeCount)} nét</span>` : ''}${radicalVisible && radical.nameVi ? `<span class="meta-chip">${escapeHtml(radical.nameVi)}</span>` : ''}</div>
     </div></section>`);
 
   if (components.length || explanation) {
-    sections.push(`<section id="component-characters" class="panel decomp-panel full-width"><div class="panel-inner">${panelTitle('◫', data.type === 'word' ? 'Từng chữ trong từ' : 'Cấu tạo chữ')}${components.length ? `<div class="decomposition">${componentCards(data)}</div>` : ''}${explanation ? `<div class="explanation">${escapeHtml(explanation)}</div>` : ''}${warning ? `<div class="warning">${escapeHtml(warning)}</div>` : ''}</div></section>`);
+    sections.push(`<section id="component-characters" class="panel decomp-panel full-width"><div class="panel-inner">${panelTitle('◫', data.type === 'word' ? 'Từng chữ trong từ' : 'Cấu tạo chữ')}${components.length ? `<div class="decomposition">${componentCards(data)}</div>` : ''}${explanation ? `<div class="explanation">${escapeHtml(explanation)}</div>` : ''}</div></section>`);
   }
   if (story) sections.push(`<section class="panel story-panel full-width"><div class="panel-inner">${panelTitle('💡', 'Câu chuyện ghi nhớ')}<div class="story-card"><div class="story-icon">✦</div><div><p class="story-text">${escapeHtml(story)}</p><div class="story-note">Mẹo học theo cấu tạo, không phải khẳng định lịch sử chữ.</div></div></div></div></section>`);
-  if (radicalVisible) sections.push(`<section class="panel"><div class="panel-inner">${panelTitle('部', 'Bộ thủ')}<button class="radical-card radical-card-button" type="button" data-open-radical="${escapeHtml(radical.variant || radical.mainForm || '')}" aria-label="Mở chi tiết ${escapeHtml(radical.nameVi || 'bộ thủ')}"><div class="radical-char">${escapeHtml(radical.variant || radical.mainForm || '')}</div><div><strong>${escapeHtml(radical.nameVi || 'Bộ thủ')}</strong><span>${escapeHtml(radical.mainForm || '')}${radical.pinyin ? ` · ${escapeHtml(radical.pinyin)}` : ''}${radical.meaningVi ? ` · ${escapeHtml(radical.meaningVi)}` : ''}</span><small>${escapeHtml(radical.evidenceLabel || 'Theo dữ liệu local')} · Chạm để xem chi tiết →</small></div></button></div></section>`);
+  if (radicalVisible) sections.push(`<section class="panel"><div class="panel-inner">${panelTitle('部', 'Bộ thủ')}<button class="radical-card radical-card-button" type="button" data-open-radical="${escapeHtml(radical.variant || radical.mainForm || '')}" aria-label="Mở chi tiết ${escapeHtml(radical.nameVi || 'bộ thủ')}"><div class="radical-char">${escapeHtml(radical.variant || radical.mainForm || '')}</div><div><strong>${escapeHtml(radical.nameVi || 'Bộ thủ')}</strong><span>${escapeHtml(radical.mainForm || '')}${radical.pinyin ? ` · ${escapeHtml(radical.pinyin)}` : ''}${radical.meaningVi ? ` · ${escapeHtml(radical.meaningVi)}` : ''}</span><small>Chạm để xem chi tiết →</small></div></button></div></section>`);
 
   const writingHtml = writingPanel(data);
   if (writingHtml) sections.push(`<section id="writing-section" class="panel writing-panel full-width"><div class="panel-inner">${panelTitle('✎', 'Cách viết và luyện cơ bản')}${writingHtml}</div></section>`);
@@ -1282,7 +1267,6 @@ function render(data) {
   if (grammar.length) sections.push(`<section class="panel"><div class="panel-inner">${panelTitle('语', 'Ngữ pháp / cách dùng')}${grammarCards(grammar, 5)}</div></section>`);
   if (data.type === 'character' && peerChars.length) sections.push(`<section class="panel"><div class="panel-inner">${panelTitle('同', 'Chữ cùng bộ')}${componentWordCards(peerChars, 12)}</div></section>`);
   if (data.type === 'word' && componentChars.length) sections.push(`<section class="panel"><div class="panel-inner">${panelTitle('字', 'Chữ thành phần')}${componentWordCards(componentChars, 8)}</div></section>`);
-  if (sources.length || warning) sections.push(`<section class="panel details-panel full-width"><details><summary>Nguồn dữ liệu và ghi chú kiểm duyệt</summary>${warning ? `<p class="source-warning">${escapeHtml(warning)}</p>` : ''}<ul class="source-list">${sources.map(item => `<li>${escapeHtml(item.title || item.sourceId || String(item))}</li>`).join('')}</ul></details></section>`);
 
   el.view.innerHTML = sections.join('');
   updateStrokeLinks(primaryChar);

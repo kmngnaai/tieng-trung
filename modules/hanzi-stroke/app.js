@@ -4237,15 +4237,10 @@ if(window.HanziWriter){
   function getRelatedWords(item){
     const related = [];
     const self = getHskWordKey(item);
-    if(!self){
-      return related;
-    }
-    const targetChars = getHanziChars(self);
-    const isSingleCharacter = targetChars.length === 1 && targetChars[0] === self;
-    const containsExactTarget = word => Boolean(word && word !== self && word.includes(self));
+    const chars = normalizePopupCharRows(item).map(row => row.char).filter(Boolean);
     const add = row => {
       const word = String(row?.word || row?.s || row?.simplified || row?.char || '').trim();
-      if(!containsExactTarget(word) || related.some(entry => entry.word === word)) return;
+      if(!word || word === self || related.some(item => item.word === word)) return;
       const known = findHskItem(word);
       const meaningVi = String(known?.meaningVi || row?.meaningVi || row?.vi || '').trim();
       if(!meaningVi) return;
@@ -4253,13 +4248,10 @@ if(window.HanziWriter){
         word,
         pinyin: known?.pinyin || row?.pinyin || row?.p || '',
         meaningVi,
-        knownItem: known,
-        relationType: isSingleCharacter ? 'contains-target-character' : 'contains-exact-target-word'
+        knownItem: known
       });
     };
 
-    // Chỉ nhận mục liên quan có chứa đúng target. Không dùng chữ cùng bộ
-    // hoặc chỉ chung một thành phần để lấp danh sách "Từ liên quan".
     (Array.isArray(item?.relatedWords) ? item.relatedWords : []).forEach(add);
     normalizePopupCharRows(item).forEach(charInfo => {
       (Array.isArray(charInfo?.relatedWords) ? charInfo.relatedWords : []).forEach(add);
@@ -4268,7 +4260,8 @@ if(window.HanziWriter){
     getAllKnownHskItems().forEach(candidate => {
       if(related.length >= 12) return;
       const word = getHskWordKey(candidate);
-      if(containsExactTarget(word)){
+      if(!word || word === self) return;
+      if(chars.some(char => word.includes(char))){
         add({ word, pinyin: candidate.pinyin, meaningVi: candidate.meaningVi });
       }
     });
@@ -4325,10 +4318,8 @@ if(window.HanziWriter){
   }
 
   function renderPopupCharacters(item){
-    const word = getHskWordKey(item);
     const chars = normalizePopupCharRows(item);
-    // Chữ đơn không cần lặp lại chính nó trong "Từng chữ trong từ".
-    if(getHanziChars(word).length <= 1 || chars.length <= 1) return '';
+    if(!chars.length) return '';
     return `
       <section class="hsk-popup-section hsk-popup-character-section">
         <h4>Từng chữ trong từ</h4>
@@ -4358,72 +4349,20 @@ if(window.HanziWriter){
     return rows;
   }
 
-  function getRelatedSentenceGroups(item){
-    const related = getRelatedWords(item);
-    const groups = [];
-    const usedSentences = new Set();
-
-    related.forEach(relatedWord => {
-      if(groups.length >= 5) return;
-      const knownItem = relatedWord.knownItem || findHskItem(relatedWord.word);
-      if(!knownItem) return;
-      const sentence = normalizePopupSentences(collectPopupSentenceRows(knownItem))
-        .find(row => {
-          const zh = String(row?.zh || '').trim();
-          return zh.includes(relatedWord.word) && !usedSentences.has(zh);
-        });
-      if(!sentence) return;
-      usedSentences.add(sentence.zh);
-      groups.push({
-        word: relatedWord.word,
-        pinyin: relatedWord.pinyin || knownItem.pinyin || '',
-        meaningVi: relatedWord.meaningVi || knownItem.meaningVi || '',
-        sentence
-      });
-    });
-
-    return groups;
-  }
-
   function renderPopupSampleSentences(item){
-    const target = getHskWordKey(item);
-    const relatedGroups = getRelatedSentenceGroups(item);
-    const directRows = normalizePopupSentences(collectPopupSentenceRows(item))
-      .filter(row => !target || String(row?.zh || '').includes(target));
-
-    if(relatedGroups.length){
-      return `
-        <section class="hsk-popup-section hsk-popup-sentences hsk-popup-related-sentences">
-          <h4>Câu liên quan</h4>
-          <div class="hsk-popup-sentence-list">
-            ${relatedGroups.map(group => `
-              <article class="hsk-popup-sentence-item" data-copy-text="${escapeHtml(group.sentence.zh)}">
-                <div class="hsk-popup-sentence-target">
-                  <strong>${escapeHtml(group.word)}</strong>
-                  ${group.pinyin ? `<em>${escapeHtml(formatPinyin(group.pinyin))}</em>` : ''}
-                  ${group.meaningVi ? `<small>${escapeHtml(formatSlashMeaning(group.meaningVi, 2))}</small>` : ''}
-                </div>
-                <strong>${escapeHtml(group.sentence.zh)}</strong>
-                ${group.sentence.pinyin ? `<em>${escapeHtml(formatPinyin(group.sentence.pinyin))}</em>` : ''}
-                ${group.sentence.vi ? `<span>${escapeHtml(group.sentence.vi)}</span>` : ''}
-              </article>
-            `).join('')}
-          </div>
-        </section>
-      `;
-    }
-
-    if(!directRows.length) return '';
+    const rows = normalizePopupSentences(collectPopupSentenceRows(item));
+    if(!rows.length) return '';
     return `
       <section class="hsk-popup-section hsk-popup-sentences">
         <h4>Câu mẫu</h4>
         <div class="hsk-popup-sentence-list">
-          ${directRows.map(row => `
-            <article class="hsk-popup-sentence-item" data-copy-text="${escapeHtml(row.zh)}">
+          ${rows.map(row => `
+            <button type="button" class="hsk-popup-sentence-item" data-copy-text="${escapeHtml(row.zh)}" data-hsk-speak="${escapeHtml(row.zh)}">
               <strong>${escapeHtml(row.zh)}</strong>
               ${row.pinyin ? `<em>${escapeHtml(formatPinyin(row.pinyin))}</em>` : ''}
               ${row.vi ? `<span>${escapeHtml(row.vi)}</span>` : ''}
-            </article>
+              <b aria-hidden="true">🔊</b>
+            </button>
           `).join('')}
         </div>
       </section>
@@ -4434,8 +4373,7 @@ if(window.HanziWriter){
     const rows = [
       item?.hsk ? ['HSK', `HSK ${item.hsk}`] : null,
       item?.hanViet ? ['Hán Việt', item.hanViet] : null,
-      getPrimarySection(item) ? ['Lộ trình', getPrimarySection(item)] : null,
-      Array.isArray(item?.libraries) && item.libraries.length ? ['Nguồn', item.libraries.slice(0, 3).join(', ')] : null
+      getPrimarySection(item) ? ['Lộ trình', getPrimarySection(item)] : null
     ].filter(Boolean);
     if(!rows.length){
       return '';
@@ -6829,7 +6767,7 @@ if(window.HanziWriter){
   }
 
   function getExampleLabel(row){
-    return row?.char || row?.word || row?.zh || row?.chinese || '';
+    return row?.char || row?.word || row?.zh || '';
   }
 
   function formatRadicalMeaningSnippet(value, limit = 3){
@@ -6848,7 +6786,7 @@ if(window.HanziWriter){
     const rows = note?.examples?.sentences || [];
     return (Array.isArray(rows) ? rows : [])
       .map(row => ({
-        zh: String(row?.zh || row?.chinese || '').trim(),
+        zh: String(row?.zh || '').trim(),
         pinyin: String(row?.pinyin || '').trim(),
         vi: String(row?.vi || row?.meaningVi || '').trim()
       }))
@@ -6895,14 +6833,13 @@ if(window.HanziWriter){
           const pinyin = row?.pinyin || '';
           const meaning = row?.meaningVi || row?.vi || '';
           if(kind === 'sentence'){
-            const sentenceText = row?.zh || row?.chinese || label;
             return `
-              <article class="radical-sentence-item" data-copy-text="${escapeHtml(sentenceText)}">
-                <strong>${escapeHtml(sentenceText)}</strong>
-                <b type="button" role="button" tabindex="0" data-radical-speak="${escapeHtml(sentenceText)}" aria-label="Nghe câu ${escapeHtml(sentenceText)}" title="Nghe câu">🔊</b>
+              <button type="button" class="radical-sentence-item" data-radical-speak="${escapeHtml(row.zh || label)}" data-copy-text="${escapeHtml(row.zh || label)}">
+                <strong>${escapeHtml(row.zh || label)}</strong>
                 ${pinyin ? `<em>${escapeHtml(formatPinyin(pinyin))}</em>` : ''}
                 ${meaning ? `<span>${escapeHtml(meaning)}</span>` : ''}
-              </article>
+                <b aria-hidden="true">🔊</b>
+              </button>
             `;
           }
           return `
@@ -7133,7 +7070,9 @@ if(window.HanziWriter){
       const word = openWord.dataset.radicalOpenWord || '';
       const seed = {
         pinyin: openWord.dataset.radicalOpenPinyin || '',
-        meaningVi: openWord.dataset.radicalOpenMeaning || ''
+        meaningVi: openWord.dataset.radicalOpenMeaning || '',
+        sampleSentences: getActiveRadicalSentences(),
+        relatedWords: getActiveRadicalRelatedWords(word)
       };
       const returnContext = state.activeId ? { type: 'radical', id: state.activeId, label: 'Quay lại Bộ thủ' } : null;
       closeRadicalPopup();

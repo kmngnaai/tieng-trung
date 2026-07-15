@@ -2699,7 +2699,7 @@ ${renderTopHeroV21('Tiến độ', 'Tóm tắt từ localStorage hiện có. Kh�
     const q = state.quiz;
     const item = q ? syllableBySafeV21(q.safe) : null;
     return appShell(`
-${renderTopHeroV21('Quiz nghe theo nhóm', `Nguồn câu hỏi hiện tại: ${group ? group.title : 'toàn bộ âm tiết'}.`, `
+${renderTopHeroV21('Quiz nghe theo nhóm', `Phạm vi câu hỏi hiện tại: ${group ? group.title : 'toàn bộ âm tiết'}.`, `
   <button class="btn primary" onclick="startGroupQuizV21('${esc(group ? group.id : '')}')">Câu mới</button>
   <button class="btn" onclick="setTab('learn')">Chọn nhóm khác</button>
 `)}
@@ -3610,7 +3610,7 @@ ${renderTopHeroV21('Quiz nghe theo nhóm', `Nguồn câu hỏi hiện tại: ${g
     const item = q ? syllableBySafeV23(q.safe) : null;
 
     return appShell(`
-${renderTopHeroV23('Quiz nghe theo nhóm', `Nguồn câu hỏi hiện tại: ${group ? group.title : 'toàn bộ âm tiết'}.`, `
+${renderTopHeroV23('Quiz nghe theo nhóm', `Phạm vi câu hỏi hiện tại: ${group ? group.title : 'toàn bộ âm tiết'}.`, `
   <button class="btn primary" onclick="startGroupQuizV21('${escV23(group ? group.id : '')}')">Câu mới</button>
   <button class="btn" onclick="setTab('learn')">Chọn nhóm khác</button>
 `)}
