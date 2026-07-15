@@ -45,7 +45,11 @@ const state = {
   catalogList: null,
   catalogListSnapshot: null,
   catalogLazyObserver: null,
-  unifiedSearchMap: null
+  unifiedSearchMap: null,
+  traView: 'landing',
+  traHistoryReady: false,
+  handlingPopState: false,
+  swipe: null
 };
 
 const el = {
@@ -72,6 +76,196 @@ const normalizePinyin = value => String(value || '').toLowerCase().normalize('NF
 const normalizeViText = value => String(value || '').toLowerCase().replace(/[^a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ0-9\u3400-\u9fff]+/g, ' ').replace(/\s+/g, ' ').trim();
 const normalizeSearchText = value => String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/\s+/g, ' ').trim();
 
+
+const TRA_HISTORY_KEY = 'lookup-c1-2-tra';
+const TRA_SWIPE_THRESHOLD = 84;
+const TRA_SWIPE_MAX_VERTICAL = 52;
+const TRA_SWIPE_MAX_DURATION = 560;
+const TRA_SWIPE_EDGE_GUARD = 22;
+
+function traHistoryState(view = state.traView) {
+  return { namespace: TRA_HISTORY_KEY, view, stamp: Date.now() };
+}
+
+function initTraHistoryBoundary() {
+  if (state.traHistoryReady) return;
+  const current = history.state;
+  if (!current || current.namespace !== TRA_HISTORY_KEY) {
+    history.replaceState(traHistoryState('landing'), '', window.location.href);
+  }
+  state.traView = current?.namespace === TRA_HISTORY_KEY ? (current.view || 'landing') : 'landing';
+  state.traHistoryReady = true;
+}
+
+function pushTraHistory(view) {
+  state.traView = view;
+  if (!state.traHistoryReady || state.handlingPopState) return;
+  history.pushState(traHistoryState(view), '', window.location.href);
+}
+
+function replaceTraHistory(view) {
+  state.traView = view;
+  if (!state.traHistoryReady) return;
+  history.replaceState(traHistoryState(view), '', window.location.href);
+}
+
+function isTraLanding() {
+  return state.traView === 'landing' && !state.catalogList && !state.catalogListSnapshot && !state.current && !el.view?.querySelector('.radical-directory-screen');
+}
+
+function openDialogElement() {
+  return document.querySelector('dialog[open], .grammar-dialog[open], [role="dialog"][data-open="true"]');
+}
+
+async function applyTraBackStep() {
+  const dialog = openDialogElement();
+  if (dialog) {
+    if (typeof dialog.close === 'function') dialog.close();
+    else dialog.removeAttribute('open');
+    return true;
+  }
+  if (state.navigationStack.length) {
+    await restoreParentTarget();
+    state.traView = 'detail';
+    return true;
+  }
+  if (state.catalogListSnapshot) {
+    restoreCatalogList({ fromHistory: true });
+    state.traView = 'catalog-list';
+    return true;
+  }
+  if (state.catalogList || el.view?.querySelector('.catalog-list-screen')) {
+    await returnToCatalogLanding({ fromHistory: true });
+    return true;
+  }
+  if (state.current || !el.view?.hidden) {
+    state.current = null;
+    state.navigationStack = [];
+    el.view.hidden = true;
+    el.view.innerHTML = '';
+    el.message.hidden = true;
+    if (el.catalog) el.catalog.hidden = false;
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    state.traView = 'landing';
+    return true;
+  }
+  return false;
+}
+
+async function requestTraBack() {
+  if (openDialogElement()) return applyTraBackStep();
+  if (isTraLanding()) return false;
+  const current = history.state;
+  if (state.traHistoryReady && current?.namespace === TRA_HISTORY_KEY && history.length > 1) {
+    history.back();
+    return true;
+  }
+  return applyTraBackStep();
+}
+
+function shouldIgnoreTraSwipe(target) {
+  if (!(target instanceof Element)) return true;
+  return Boolean(target.closest([
+    'input', 'textarea', 'select', 'button', 'a', 'dialog', '[role="dialog"]',
+    '.writer-mount', '.hanzi-writer', '.writing-stage', '.catalog-list-filters',
+    '.horizontal-scroll', '[data-no-swipe]', '[contenteditable="true"]'
+  ].join(',')));
+}
+
+function clearTraSwipeVisual() {
+  const main = document.querySelector('.main-content');
+  if (!main) return;
+  main.classList.remove('tra-swipe-tracking', 'tra-swipe-ready');
+  main.style.removeProperty('--tra-swipe-x');
+  document.querySelector('#traSwipeIndicator')?.remove();
+}
+
+function ensureTraSwipeIndicator(direction) {
+  let node = document.querySelector('#traSwipeIndicator');
+  if (!node) {
+    node = document.createElement('div');
+    node.id = 'traSwipeIndicator';
+    node.className = 'tra-swipe-indicator';
+    node.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(node);
+  }
+  node.textContent = direction > 0 ? '← Quay lại' : 'Quay lại →';
+  node.classList.toggle('from-right', direction < 0);
+  return node;
+}
+
+function bindTraSwipeNavigation() {
+  const main = document.querySelector('.main-content');
+  if (!main || main.dataset.traSwipeBound) return;
+  main.dataset.traSwipeBound = 'true';
+
+  main.addEventListener('touchstart', event => {
+    if (event.touches.length !== 1 || shouldIgnoreTraSwipe(event.target) || isTraLanding()) {
+      state.swipe = null;
+      return;
+    }
+    const touch = event.touches[0];
+    const width = window.innerWidth || document.documentElement.clientWidth;
+    if (touch.clientX <= TRA_SWIPE_EDGE_GUARD || touch.clientX >= width - TRA_SWIPE_EDGE_GUARD) {
+      state.swipe = null;
+      return;
+    }
+    state.swipe = {
+      startX: touch.clientX,
+      startY: touch.clientY,
+      startAt: performance.now(),
+      horizontal: false,
+      eligible: true
+    };
+  }, { passive: true });
+
+  main.addEventListener('touchmove', event => {
+    const swipe = state.swipe;
+    if (!swipe || !swipe.eligible || event.touches.length !== 1) return;
+    const touch = event.touches[0];
+    const dx = touch.clientX - swipe.startX;
+    const dy = touch.clientY - swipe.startY;
+    if (!swipe.horizontal) {
+      if (Math.abs(dy) > TRA_SWIPE_MAX_VERTICAL && Math.abs(dy) > Math.abs(dx)) {
+        swipe.eligible = false;
+        clearTraSwipeVisual();
+        return;
+      }
+      if (Math.abs(dx) < 14) return;
+      if (Math.abs(dx) <= Math.abs(dy) * 1.25) return;
+      swipe.horizontal = true;
+    }
+    event.preventDefault();
+    const limited = Math.max(-132, Math.min(132, dx * 0.48));
+    main.classList.add('tra-swipe-tracking');
+    main.style.setProperty('--tra-swipe-x', `${limited}px`);
+    const ready = Math.abs(dx) >= TRA_SWIPE_THRESHOLD;
+    main.classList.toggle('tra-swipe-ready', ready);
+    ensureTraSwipeIndicator(dx || 1).classList.toggle('ready', ready);
+  }, { passive: false });
+
+  main.addEventListener('touchend', async event => {
+    const swipe = state.swipe;
+    state.swipe = null;
+    if (!swipe || !swipe.horizontal || !swipe.eligible) {
+      clearTraSwipeVisual();
+      return;
+    }
+    const touch = event.changedTouches[0];
+    const dx = touch.clientX - swipe.startX;
+    const dy = touch.clientY - swipe.startY;
+    const elapsed = performance.now() - swipe.startAt;
+    const shouldBack = Math.abs(dx) >= TRA_SWIPE_THRESHOLD && Math.abs(dy) <= TRA_SWIPE_MAX_VERTICAL && elapsed <= TRA_SWIPE_MAX_DURATION;
+    clearTraSwipeVisual();
+    if (shouldBack) await requestTraBack();
+  }, { passive: true });
+
+  main.addEventListener('touchcancel', () => {
+    state.swipe = null;
+    clearTraSwipeVisual();
+  }, { passive: true });
+}
+
 const targetOf = data => clean(data?.char || data?.word || data?.target || '');
 const extractHanCharacters = value => [...new Set([...String(value || '')].filter(ch => isSingleHan(ch)))];
 
@@ -96,6 +290,7 @@ async function openTargetWithContext(target, sourceElement = null) {
   const current = targetOf(state.current);
   if (current && current !== next) pushNavigationContext(sourceElement);
   await runSearch(next, { skipHistory: true });
+  pushTraHistory('detail');
 }
 
 async function restoreParentTarget() {
@@ -285,7 +480,7 @@ function debounceCatalogInput(callback, delay = 160) {
 
 function bindCatalogListEvents() {
   const back = el.view.querySelector('[data-catalog-back]');
-  if (back) back.addEventListener('click', returnToCatalogLanding);
+  if (back) back.addEventListener('click', requestTraBack);
 
   const input = el.view.querySelector('#catalogListSearch');
   if (input) input.addEventListener('input', debounceCatalogInput(() => {
@@ -382,6 +577,8 @@ function renderCatalogList(list, options = {}) {
   updateCatalogListResults();
   const restoreScroll = Number(options.restoreScroll ?? list.scrollY ?? 0);
   requestAnimationFrame(() => window.scrollTo({ top: restoreScroll, behavior: 'auto' }));
+  state.traView = 'catalog-list';
+  if (!options.fromHistory && !options.skipHistoryPush) pushTraHistory('catalog-list');
 }
 
 async function openCatalogSelection(group, key, sourceButton = null) {
@@ -432,12 +629,14 @@ async function renderRadicalDirectory(catalog, options = {}) {
     box.innerHTML = filtered.map(item => `<button type="button" class="radical-directory-card" data-radical-catalog-id="${escapeHtml(item.id)}"><strong>${escapeHtml(item.sideForm || item.mainForm)}</strong><span><b>${escapeHtml(item.displayNameVi || '')}</b><small>${escapeHtml([item.pinyin, item.hanViet, item.meaningVi].filter(Boolean).join(' · '))}</small></span><em>${Number(item.count || 0).toLocaleString('vi-VN')} chữ</em><i>›</i></button>`).join('');
     box.querySelectorAll('[data-radical-catalog-id]').forEach(button => button.addEventListener('click', () => openCatalogSelection('radical', button.dataset.radicalCatalogId, button)));
   };
-  el.view.querySelector('[data-catalog-back]').addEventListener('click', returnToCatalogLanding);
+  el.view.querySelector('[data-catalog-back]').addEventListener('click', requestTraBack);
   const input = el.view.querySelector('#radicalDirectorySearch');
   input.value = options.query || '';
   input.addEventListener('input', () => draw(input.value));
   draw(input.value);
   requestAnimationFrame(() => window.scrollTo({ top: Number(options.scrollY || 0), behavior: 'auto' }));
+  state.traView = 'radical-directory';
+  if (!options.fromHistory && !options.skipHistoryPush) pushTraHistory('radical-directory');
 }
 
 function renderNextCatalogBatch() {
@@ -458,20 +657,21 @@ async function openTargetFromCatalog(target, sourceButton) {
   };
   state.navigationStack = [];
   await runSearch(target, { skipHistory: true, preserveCatalogContext: true });
+  pushTraHistory('detail');
 }
 
-function restoreCatalogList() {
+function restoreCatalogList(options = {}) {
   const snapshot = state.catalogListSnapshot;
   if (!snapshot) return;
   state.catalogListSnapshot = null;
-  renderCatalogList(snapshot, { restoreScroll: snapshot.scrollY });
+  renderCatalogList(snapshot, { restoreScroll: snapshot.scrollY, fromHistory: Boolean(options.fromHistory), skipHistoryPush: true });
   requestAnimationFrame(() => {
     const focus = [...el.view.querySelectorAll('[data-catalog-target]')].find(item => item.dataset.catalogTarget === (snapshot.focusTarget || ''));
     focus?.focus({ preventScroll: true });
   });
 }
 
-async function returnToCatalogLanding() {
+async function returnToCatalogLanding(options = {}) {
   stopCatalogObserver();
   const previous = state.catalogList;
   const landingScroll = previous?.landingScrollY || 0;
@@ -482,13 +682,15 @@ async function returnToCatalogLanding() {
   el.message.hidden = true;
   if (previous?.returnMode === 'radical-directory') {
     const catalog = await loadCatalogIndex();
-    await renderRadicalDirectory(catalog, { query: previous.radicalDirectoryQuery || '', scrollY: landingScroll });
+    await renderRadicalDirectory(catalog, { query: previous.radicalDirectoryQuery || '', scrollY: landingScroll, fromHistory: Boolean(options.fromHistory), skipHistoryPush: true });
     return;
   }
   el.view.hidden = true;
   el.view.innerHTML = '';
   if (el.catalog) el.catalog.hidden = false;
   requestAnimationFrame(() => window.scrollTo({ top: landingScroll, behavior: 'auto' }));
+  state.traView = 'landing';
+  if (!options.fromHistory) replaceTraHistory('landing');
 }
 
 async function initCatalog() {
@@ -1739,8 +1941,8 @@ function writerAction(action) {
 function bindDynamicEvents() {
   el.view.querySelectorAll('[data-speak]').forEach(button => button.addEventListener('click', () => speak(button.dataset.speak)));
   el.view.querySelectorAll('[data-search-char]').forEach(button => button.addEventListener('click', () => openTargetWithContext(button.dataset.searchChar, button)));
-  el.view.querySelectorAll('[data-back-parent]').forEach(button => button.addEventListener('click', restoreParentTarget));
-  el.view.querySelectorAll('[data-back-catalog-list]').forEach(button => button.addEventListener('click', restoreCatalogList));
+  el.view.querySelectorAll('[data-back-parent]').forEach(button => button.addEventListener('click', requestTraBack));
+  el.view.querySelectorAll('[data-back-catalog-list]').forEach(button => button.addEventListener('click', requestTraBack));
   el.view.querySelectorAll('[data-show-more-sentences]').forEach(button => button.addEventListener('click', () => {
     const expanded = button.getAttribute('aria-expanded') === 'true';
     el.view.querySelectorAll('.sentence-extra').forEach(card => { card.hidden = expanded; });
@@ -1779,6 +1981,8 @@ async function runSearch(value, options = {}) {
     el.input.value = query;
     if (data?.type === 'search-results') renderSearchResults(data);
     else render(data);
+    state.traView = 'detail';
+    if (!options.skipHistory && !options.fromHistory) pushTraHistory('detail');
     if (state.pendingRestore) {
       const restore = state.pendingRestore;
       state.pendingRestore = null;
@@ -1819,7 +2023,20 @@ function closeMenu() {
 
 async function bootstrapLookupPage() {
   try {
+    initTraHistoryBoundary();
     await initCatalog();
+    replaceTraHistory('landing');
+    bindTraSwipeNavigation();
+    window.addEventListener('popstate', async event => {
+      if (state.handlingPopState) return;
+      state.handlingPopState = true;
+      try {
+        const handled = await applyTraBackStep();
+        if (!handled) replaceTraHistory('landing');
+      } finally {
+        state.handlingPopState = false;
+      }
+    });
     el.form?.addEventListener('submit', event => { event.preventDefault(); state.navigationStack = []; runSearch(el.input.value); });
     document.querySelectorAll('[data-char]').forEach(button => button.addEventListener('click', () => { state.navigationStack = []; runSearch(button.dataset.char); }));
     el.theme?.addEventListener('click', () => setDark());
