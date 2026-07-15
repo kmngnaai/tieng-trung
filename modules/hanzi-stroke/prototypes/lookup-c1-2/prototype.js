@@ -1,3 +1,6 @@
+const UNIFIED_BASE_URL = '../../data/learning/unified-lookup/all-sources/';
+const UNIFIED_INDEX_URL = `${UNIFIED_BASE_URL}unified-target-index.json`;
+const UNIFIED_SEARCH_URL = `${UNIFIED_BASE_URL}search-index.json`;
 const SINGLE_CHAR_INDEX_URL = '../../data/learning/character-enrichment/hsk1-3-single/index.json';
 const SINGLE_CHAR_BASE_URL = '../../data/learning/character-enrichment/hsk1-3-single/';
 const SINGLE_CHAR_RADICAL_INDEX_URL = '../../data/learning/character-enrichment/hsk1-3-single/radical-character-index.json';
@@ -25,7 +28,10 @@ const state = {
   writerChar: '',
   outlineVisible: true,
   radicalNotes: null,
-  curatedCharacterIndex: null
+  curatedCharacterIndex: null,
+  unifiedIndex: null,
+  unifiedSearch: null,
+  unifiedBuckets: {}
 };
 
 const el = {
@@ -51,6 +57,77 @@ const normalizePinyin = value => String(value || '').toLowerCase().normalize('NF
 const normalizeViText = value => String(value || '').toLowerCase().replace(/[^a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ0-9\u3400-\u9fff]+/g, ' ').replace(/\s+/g, ' ').trim();
 const normalizeSearchText = value => String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/\s+/g, ' ').trim();
 
+
+async function loadUnifiedIndex() {
+  if (state.unifiedIndex) return state.unifiedIndex;
+  const payload = await fetchJson(UNIFIED_INDEX_URL);
+  state.unifiedIndex = payload?.targets || {};
+  return state.unifiedIndex;
+}
+async function loadUnifiedSearch() {
+  if (state.unifiedSearch) return state.unifiedSearch;
+  const payload = await fetchJson(UNIFIED_SEARCH_URL);
+  state.unifiedSearch = payload?.items || [];
+  return state.unifiedSearch;
+}
+async function loadUnifiedRecord(target) {
+  const index = await loadUnifiedIndex();
+  const bucket = index[target];
+  if (!bucket) return null;
+  if (!state.unifiedBuckets[bucket]) {
+    const payload = await fetchJson(`${UNIFIED_BASE_URL}records/${bucket}.json`);
+    state.unifiedBuckets[bucket] = payload?.records || {};
+  }
+  const raw = state.unifiedBuckets[bucket]?.[target];
+  return raw ? adaptUnifiedRecord(raw) : null;
+}
+function adaptUnifiedRadical(raw) {
+  if (!raw || raw.status !== 'resolved') return null;
+  return {
+    status: 'verified-local', radicalId: raw.id || '', mainForm: raw.mainForm || '', variant: raw.inputForm || '',
+    nameVi: raw.displayNameVi || '', pinyin: raw.pinyin || '', hanViet: raw.hanViet || '', meaningVi: raw.meaningVi || '',
+    kangxiNo: raw.kangxiNo || null, evidenceLabel: `Đối chiếu 214 bộ · ${raw.resolutionType || ''}`
+  };
+}
+function adaptUnifiedRecord(raw) {
+  const single = raw.targetType === 'single-character';
+  const pronunciation = { pinyin: raw.pinyin ? [raw.pinyin] : [], hanViet: raw.hanViet || '' };
+  const meaningSenses = [{ meaningShortVi: raw.meaningShortVi || '', meaningFullVi: raw.meaningFullVi || '', reviewStatus: 'reviewed-local' }];
+  const components = (raw.components || []).map(item => ({
+    char: item.char || item.character || '', role: item.role || 'source-component',
+    roleVi: item.roleVi || (item.role === 'semantic' ? 'biểu nghĩa' : item.role === 'phonetic' ? 'biểu âm' : 'thành phần'),
+    pinyin: item.pinyin || '', hanViet: item.hanViet || '', meaningVi: item.meaningVi || '', reviewStatus: 'reviewed-local'
+  })).filter(item => item.char);
+  const grammarLinks = (raw.grammar || []).map(item => ({
+    grammarTopic: item.topic || 'Cách dùng', syntax: item.syntax || '', usageNoteVi: item.explanationVi || '',
+    title: item.topic || 'Cách dùng', reviewStatus: 'reviewed-local', source: item.sourceFile || ''
+  }));
+  const sources = (raw.sources || []).map((item, index) => ({ sourceId: `${item.file || 'source'}-${index}`, title: item.file || 'Dữ liệu local', reviewStatus: 'reviewed-local' }));
+  if (single) {
+    const memoryText = raw.memory?.reviewedStory?.memoryStoryVi || raw.memory?.reviewedStory?.textVi || raw.memory?.characterStructure?.conclusion || '';
+    return {
+      schemaVersion: raw.schemaVersion, type: 'character', char: raw.target, pronunciation, meaningSenses,
+      characterInfo: { strokeCount: raw.characters?.[0]?.strokeCount ?? null, structureVi: '', formationTypeVi: '', radical: adaptUnifiedRadical(raw.radical) },
+      components,
+      etymology: { standardExplanationVi: raw.memory?.characterStructure?.explanation?.join(' ') || '', confidence: components.length ? 'source-backed' : 'not-available' },
+      learningStory: { memoryStoryVi: memoryText, reviewStatus: memoryText ? 'reviewed-local' : 'not-available' },
+      vocabulary: { compounds: [], relatedWords: raw.relatedWords || [], collocations: raw.collocations || [] },
+      sentences: raw.sentences || [], grammarLinks,
+      sameRadicalCharacters: (raw.radicalComponentOf || []).map(item => ({ word: item.char, pinyin: item.pinyin || '', meaningVi: item.meaningVi || '', reviewStatus: 'reviewed-local' })),
+      sources, review: { status: 'unified-source-backed', warnings: [] }
+    };
+  }
+  return {
+    schemaVersion: raw.schemaVersion, type: 'word', word: raw.target, pronunciation, meaningSenses,
+    characterInfo: { structureVi: 'Từ nhiều chữ', radical: null }, components,
+    etymology: { standardExplanationVi: raw.wordTypeExplanation || '', confidence: raw.wordTypeExplanation ? 'source-backed' : 'not-available' },
+    learningStory: { memoryStoryVi: '', reviewStatus: 'not-available' },
+    vocabulary: { compounds: raw.relatedWords || [], relatedWords: [], collocations: raw.collocations || [] },
+    sentences: raw.sentences || [], grammarLinks,
+    sameRadicalCharacters: (raw.characters || []).map(item => ({ word: item.char, pinyin: item.pinyin || '', meaningVi: item.meaningVi || '', reviewStatus: 'reviewed-local' })),
+    sources, review: { status: 'unified-source-backed', warnings: [] }
+  };
+}
 async function safeFetchJson(url, fallback = null) {
   try { return await fetchJson(url); } catch { return fallback; }
 }
@@ -612,82 +689,24 @@ function radicalSearchText(note = {}) {
 }
 
 async function searchExistingData(query) {
-  const qVi = normalizeViText(query);
-  const q = normalizeSearchText(query);
-  if (!q) return [];
-  const results = [];
-  const searchItems = await loadWordSearchIndex();
-
-  const scoreItem = item => {
-    const word = normalizeSearchText(item.word);
-    const py = normalizeSearchText(item.pinyinNormalized || item.pinyin);
-    const meaningVi = normalizeViText(item.meaningShortVi || '');
-    const meaning = normalizeSearchText(item.meaningNormalized || item.meaningShortVi);
-    const fullVi = normalizeViText(item.meaningFullVi || item.meaningShortVi || '');
-    const full = normalizeSearchText(item.meaningFullNormalized || '');
-    if (word === q) return 1000;
-    if (py === q) return 950;
-    if (meaningVi === qVi) return 920;
-    if (meaningVi.startsWith(`${qVi} `) || meaningVi.startsWith(qVi)) return 850;
-    if (meaning === q) return 780;
-    if (meaning.startsWith(`${q} `) || meaning.startsWith(q)) return 700;
-    if (word.startsWith(q)) return 780;
-    if (py.startsWith(q)) return 740;
-    if (` ${meaningVi} `.includes(` ${qVi} `)) return 680;
-    if (fullVi.includes(qVi)) return 520;
-    if (` ${meaning} `.includes(` ${q} `)) return 400;
-    if (full.includes(q)) return 250;
-    return 0;
-  };
-
-  for (const item of searchItems) {
-    const score = scoreItem(item);
-    if (!score || item.qualityStatus === 'BLOCKED') continue;
-    results.push({
-      kind: 'word', target: item.word, title: item.word,
-      pinyin: item.pinyin || '', meaningVi: item.meaningShortVi || '',
-      meta: item.hskLevel ? `HSK ${item.hskLevel}` : 'Dữ liệu HSK local', score
-    });
-  }
-
-  const singleIndex = await loadSingleCharacterIndex();
-  for (const [char, meta] of Object.entries(singleIndex)) {
-    const word = normalizeSearchText(char);
-    const py = normalizeSearchText(meta.pinyin || '');
-    const meaningVi = normalizeViText(meta.meaningVi || '');
+  const qVi = normalizeViText(query); const q = normalizeSearchText(query); if (!q) return [];
+  const items = await loadUnifiedSearch(); const results = [];
+  for (const item of items) {
+    const word = normalizeSearchText(item.target); const p = normalizeSearchText(item.pinyin || ''); const mVi = normalizeViText(item.meaningVi || ''); const m = normalizeSearchText(item.meaningVi || '');
     let score = 0;
-    if (word === q) score = 995;
-    else if (py === q) score = 940;
-    else if (meaningVi === qVi) score = 910;
-    else if (meaningVi.startsWith(qVi)) score = 820;
-    else if (py.startsWith(q)) score = 720;
-    else if (` ${meaningVi} `.includes(` ${qVi} `)) score = 650;
+    if (word === q) score = 1000; else if (p === q) score = 950; else if (mVi === qVi) score = 920;
+    else if (word.startsWith(q)) score = 820; else if (p.startsWith(q)) score = 780; else if (mVi.startsWith(qVi)) score = 740;
+    else if (` ${mVi} `.includes(` ${qVi} `)) score = 650; else if (m.includes(q)) score = 420;
     if (!score) continue;
-    results.push({
-      kind: 'word', target: char, title: char,
-      pinyin: meta.pinyin || '', meaningVi: meta.meaningVi || '',
-      meta: `${(meta.hskLevels || []).map(level => `HSK ${level}`).join(', ') || 'Chữ Hán'} · ${meta.qualityStatus || 'local'}`,
-      score
-    });
+    results.push({ kind:'word', target:item.target, title:item.target, pinyin:item.pinyin || '', meaningVi:item.meaningVi || '', meta:[...(item.libraries || []),...(item.levels || []).map(x=>`Cấp ${x}`)].join(' · '), score });
   }
-
   const notes = await safeFetchJson(RADICAL_NOTES_URL, {});
   for (const note of Object.values(notes || {})) {
-    if (!note) continue;
-    const text = radicalSearchText(note);
-    let score = 0;
-    const form = note.sideForm || note.mainForm || first(note.variants) || '';
-    const title = normalizeSearchText(note.displayNameVi || '');
-    const meaning = normalizeSearchText(note.shortMeaningVi || note.meaningVi || '');
-    const py = normalizeSearchText(note.pinyin || '');
-    if (normalizeSearchText(form) === q || title === q || meaning === q || py === q) score = 880;
-    else if (title.startsWith(q) || meaning.startsWith(q)) score = 620;
-    else if (text.includes(q)) score = 300;
-    if (!score) continue;
-    results.push({kind:'radical',target:form,title:form,pinyin:note.pinyin || '',meaningVi:note.displayNameVi || note.shortMeaningVi || note.meaningVi || 'Bộ thủ',meta:note.kangxiNo ? `Bộ Khang Hy số ${note.kangxiNo}` : 'Bộ thủ',score});
+    if (!note) continue; const form = note.sideForm || note.mainForm || first(note.variants) || ''; const text = radicalSearchText(note); let score=0;
+    if ([form,note.displayNameVi,note.pinyin,note.hanViet].some(x=>normalizeSearchText(x)===q)) score=880; else if (text.includes(q)) score=280;
+    if (score) results.push({kind:'radical',target:form,title:form,pinyin:note.pinyin||'',meaningVi:note.displayNameVi||'',meta:note.kangxiNo?`Bộ Khang Hy số ${note.kangxiNo}`:'Bộ thủ',score});
   }
-
-  return uniqueBy(results.sort((a,b) => b.score-a.score || (a.meta||'').localeCompare(b.meta||'') || a.title.localeCompare(b.title)), item => `${item.kind}:${item.target}`).slice(0,24);
+  return uniqueBy(results.sort((a,b)=>b.score-a.score||a.title.localeCompare(b.title)),x=>`${x.kind}:${x.target}`).slice(0,24);
 }
 
 function renderSearchResults(payload) {
@@ -711,45 +730,15 @@ function renderSearchResults(payload) {
 }
 
 async function resolveQuery(rawQuery) {
-  const query = clean(rawQuery);
-  if (!query) throw new Error('Hãy nhập chữ, từ hoặc pinyin cần tra.');
-  const lookup = await loadHskLookup();
-
-  if (isSingleHan(query)) {
-    const record = await loadCharacterRecord(query, lookup);
-    if (record) return record;
-    const results = await searchExistingData(query);
-    if (results.length) return { type: 'search-results', query, results };
-    throw new Error(`Không tìm thấy “${query}” trong dữ liệu hiện có.`);
-  }
-
+  const query = clean(rawQuery); if (!query) throw new Error('Hãy nhập chữ, từ hoặc pinyin cần tra.');
   if (isHanText(query)) {
-    const normalizedWord = await loadNormalizedWordRecord(query);
-    if (normalizedWord) return buildFallbackWord(query, lookup[query] || null);
-    const hsk = lookup[query];
-    if (hsk) return buildFallbackWord(query, hsk);
-    const results = await searchExistingData(query);
-    if (results.length) return { type: 'search-results', query, results };
+    const exact = await loadUnifiedRecord(query); if (exact) return exact;
+    const results = await searchExistingData(query); if (results.length) return { type:'search-results', query, results };
     throw new Error(`Không tìm thấy “${query}” trong dữ liệu hiện có.`);
-  }
-
-  const target = normalizePinyin(query);
-  const singleIndex = await loadSingleCharacterIndex();
-  const indexedSingle = Object.entries(singleIndex).find(([, meta]) => normalizePinyin(meta.pinyin) === target)?.[0];
-  if (indexedSingle) {
-    const record = await loadCharacterRecord(indexedSingle, lookup);
-    if (record) return record;
-  }
-  const match = Object.values(lookup).find(item => normalizePinyin(item.pinyin) === target);
-  if (match) {
-    if (isSingleHan(match.word)) {
-      const record = await loadCharacterRecord(match.word, lookup);
-      if (record) return record;
-    }
-    return buildFallbackWord(match.word, match);
   }
   const results = await searchExistingData(query);
-  if (results.length) return { type: 'search-results', query, results };
+  if (results.length === 1 && results[0].kind === 'word') { const exact = await loadUnifiedRecord(results[0].target); if (exact) return exact; }
+  if (results.length) return { type:'search-results', query, results };
   throw new Error(`Không tìm thấy “${query}” trong dữ liệu hiện có.`);
 }
 
