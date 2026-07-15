@@ -974,3 +974,55 @@ body.dark .lookup-context-back { background: rgba(37, 43, 52, 0.96); }
   .grammar-popup-example-card { grid-template-columns: auto minmax(0,1fr); }
   .grammar-popup-example-card .word-speak-btn { grid-column: 2; justify-self: end; margin-top: 2px; }
 }
+
+/* C2A.21.5 - compact grammar example audio placement */
+.grammar-popup-example-card {
+  grid-template-columns: auto minmax(0, 1fr);
+}
+.grammar-popup-example-han-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 32px;
+  align-items: start;
+  gap: 8px;
+  min-width: 0;
+}
+.grammar-popup-example-han-row strong {
+  min-width: 0;
+}
+.grammar-example-audio {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  padding: 0;
+  align-self: start;
+  border-radius: 50%;
+}
+.grammar-example-audio svg {
+  width: 17px;
+  height: 17px;
+}
+.grammar-example-audio:active {
+  transform: scale(.94);
+}
+@media (max-width: 520px) {
+  .grammar-popup-example-card {
+    grid-template-columns: 26px minmax(0, 1fr);
+    gap: 8px;
+    padding: 11px;
+  }
+  .grammar-popup-example-index {
+    width: 26px;
+    height: 26px;
+  }
+  .grammar-popup-example-han-row {
+    grid-template-columns: minmax(0, 1fr) 30px;
+    gap: 7px;
+  }
+  .grammar-example-audio {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
+  }
+}
