@@ -12,7 +12,7 @@ const tests = [
   ['correct result shows Vietnamese meaning when available', app.includes('hsk-flashcard-typing-result-meaning') && app.includes('card.meaningVi')],
   ['answer result is hidden until completion', app.includes("state.isCompleting ? '' : 'hidden'")],
   ['hint button stays available before completion', app.includes('data-hsk-flashcard-typing-reveal')],
-  ['completion delay allows answer review', app.includes('HSK_FLASHCARD_TYPING_COMPLETION_DELAY_MS = 2500')],
+  ['completion delay allows extended answer review', app.includes('HSK_FLASHCARD_TYPING_SHORT_COMPLETION_DELAY_MS = 30000') && app.includes('HSK_FLASHCARD_TYPING_LONG_COMPLETION_DELAY_MS = 120000')],
   ['tap can skip the remaining delay', app.includes('completeFlashcardTypingTransitionNow')],
   ['green success styling exists', css.includes('.hsk-flashcard-typing-result{') && css.includes('#edf9f3')],
   ['green word and pinyin styling exist', css.includes('.hsk-flashcard-typing-result-word{') && css.includes('.hsk-flashcard-typing-result-pinyin{')],

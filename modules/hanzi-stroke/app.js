@@ -1309,7 +1309,8 @@ if(window.HanziWriter){
   let flashcardStrokePlayId = 0;
   let flashcardTypingCompletionTimer = 0;
   let flashcardTypingClockTimer = 0;
-  const HSK_FLASHCARD_TYPING_COMPLETION_DELAY_MS = 2500;
+  const HSK_FLASHCARD_TYPING_SHORT_COMPLETION_DELAY_MS = 30000;
+  const HSK_FLASHCARD_TYPING_LONG_COMPLETION_DELAY_MS = 120000;
   let tabFlashcards = null;
   let flashcardLibraryView = null;
   const flashcardLibraryState = { decks: [], editingDeck: null, detailDeckId: '', detailSearch: '', editingCardId: '', selectedCardIds: new Set(), message: '', quickImportBusy: false, searchQuery: '', sortMode: readFlashcardLibrarySort(), undoTrashId: '', undoTimer: null, trashOpen: false, trashItems: [] };
@@ -5238,7 +5239,13 @@ if(window.HanziWriter){
       answerRevealUsed: false,
       answerRevealCount: 0,
       answerRevealedAt: 0,
-      answerVisible: false
+      answerVisible: false,
+      completionPending: false,
+      completionTapArmed: false,
+      keyboardDismissedAfterComplete: false,
+      completionDelayMs: 0,
+      completionDueAt: 0,
+      completionCardKey: ''
     };
   }
 
@@ -5309,10 +5316,12 @@ if(window.HanziWriter){
             ${hintVisible ? `<span class="is-hint">Gợi ý: ${escapeHtml(state.answerTokens[hintIndex] || '')}</span>` : ''}
             ${state.isCompleting ? '<span class="is-success">✓ Chính xác</span>' : ''}
           </div>
-          <div class="hsk-flashcard-typing-result" data-hsk-flashcard-typing-result aria-live="polite" ${state.isCompleting ? '' : 'hidden'}>
+          <div class="hsk-flashcard-typing-result" data-hsk-flashcard-typing-result data-hsk-flashcard-typing-complete aria-live="polite" ${state.isCompleting ? '' : 'hidden'}>
             <span class="hsk-flashcard-typing-result-word" data-hsk-flashcard-typing-result-word>${escapeHtml(card.word)}</span>
             <strong class="hsk-flashcard-typing-result-pinyin" data-hsk-flashcard-typing-result-pinyin>${escapeHtml(card.pinyin)}</strong>
             <p class="hsk-flashcard-typing-result-meaning" data-hsk-flashcard-typing-result-meaning ${card.meaningVi ? '' : 'hidden'}>${escapeHtml(card.meaningVi || '')}</p>
+            <p class="hsk-flashcard-typing-continue-hint" data-hsk-flashcard-typing-continue-hint ${state.completionTapArmed ? '' : 'hidden'}>Chạm vào đáp án để tiếp tục</p>
+            <button type="button" class="hsk-flashcard-typing-continue" data-hsk-flashcard-typing-continue>Tiếp tục →</button>
           </div>
           <div class="hsk-flashcard-typing-controls" data-hsk-flashcard-typing-controls ${state.isCompleting ? 'hidden' : ''}>
             <button type="button" class="hsk-flashcard-typing-hint" data-hsk-flashcard-typing-reveal aria-expanded="${state.answerVisible}">💡 Đáp án</button>
@@ -5413,8 +5422,10 @@ if(window.HanziWriter){
     if(typingCard) typingCard.classList.toggle('is-complete', Boolean(state.isCompleting));
     const result = body.querySelector('[data-hsk-flashcard-typing-result]');
     const controls = body.querySelector('[data-hsk-flashcard-typing-controls]');
+    const continueHint = body.querySelector('[data-hsk-flashcard-typing-continue-hint]');
     if(result) result.hidden = !state.isCompleting;
     if(controls) controls.hidden = Boolean(state.isCompleting);
+    if(continueHint) continueHint.hidden = !state.completionTapArmed;
 
     const setText = (selector, value) => {
       const node = body.querySelector(selector);
@@ -5438,9 +5449,42 @@ if(window.HanziWriter){
     input.value = '';
     input.readOnly = false;
     input.setAttribute('aria-disabled', 'false');
-    if(document.activeElement !== input){
+    if(options.keepFocus !== false && document.activeElement !== input){
       try{ input.focus({ preventScroll: true }); }catch(_err){ input.focus(); }
     }
+    return true;
+  }
+
+  function countFlashcardHanCharacters(word){
+    let count = 0;
+    for(const character of Array.from(String(word || ''))){
+      if(/\p{Script=Han}/u.test(character)) count += 1;
+    }
+    return count;
+  }
+
+  function getFlashcardTypingCompletionDelayMs(card){
+    return countFlashcardHanCharacters(card?.word) > 5
+      ? HSK_FLASHCARD_TYPING_LONG_COMPLETION_DELAY_MS
+      : HSK_FLASHCARD_TYPING_SHORT_COMPLETION_DELAY_MS;
+  }
+
+  function resetFlashcardTypingCompletionTimer(session, state){
+    if(!session || !state?.isCompleting) return;
+    const delay = Number(state.completionDelayMs || getFlashcardTypingCompletionDelayMs(session.cards?.[session.index]));
+    state.completionDelayMs = delay;
+    state.completionDueAt = Date.now() + delay;
+    scheduleFlashcardTypingNextCard(session, state.cardId, delay);
+  }
+
+  function armFlashcardTypingCompletionAfterKeyboardDismiss(session, state, input){
+    if(!session || !state?.isCompleting || !input || document.activeElement !== input) return false;
+    input.blur();
+    state.keyboardDismissedAfterComplete = true;
+    state.completionTapArmed = true;
+    resetFlashcardTypingCompletionTimer(session, state);
+    persistFlashcardSession();
+    patchFlashcardTypingView(session, { keepFocus: false });
     return true;
   }
 
@@ -5449,17 +5493,20 @@ if(window.HanziWriter){
     if(!session || session.phase !== 'study' || getCurrentFlashcardType(session) !== 'typing') return;
     const state = ensureFlashcardTypingState(session);
     if(!state?.isCompleting) return;
+    state.completionPending = false;
     cancelFlashcardTypingCompletionTimer();
     moveFlashcard(1);
   }
 
-  function scheduleFlashcardTypingNextCard(session, cardId){
+  function scheduleFlashcardTypingNextCard(session, cardId, delayMs){
     cancelFlashcardTypingCompletionTimer();
+    const delay = Number(delayMs || HSK_FLASHCARD_TYPING_SHORT_COMPLETION_DELAY_MS);
     flashcardTypingCompletionTimer = window.setTimeout(() => {
       flashcardTypingCompletionTimer = 0;
-      if(hskState.flashcardSession !== session || session.typing?.cardId !== cardId) return;
+      const state = session?.typing;
+      if(hskState.flashcardSession !== session || state?.cardId !== cardId || !state?.completionPending) return;
       completeFlashcardTypingTransitionNow();
-    }, HSK_FLASHCARD_TYPING_COMPLETION_DELAY_MS);
+    }, delay);
   }
 
   function submitFlashcardTypingInput(rawValue){
@@ -5481,14 +5528,20 @@ if(window.HanziWriter){
         if(state.currentIndex >= state.answerTokens.length){
           state.isCompleting = true;
           state.completedAt = Date.now();
+          state.completionPending = true;
+          state.completionTapArmed = false;
+          state.keyboardDismissedAfterComplete = false;
           const card = session.cards[session.index];
+          state.completionDelayMs = getFlashcardTypingCompletionDelayMs(card);
+          state.completionDueAt = Date.now() + state.completionDelayMs;
+          state.completionCardKey = String(card?.id || state.cardId || '');
           const rating = state.answerRevealUsed ? 'hard' : (state.totalMistakes > 0 ? 'review' : 'easy');
           const previousRating = session.ratings[card.id] || '';
           session.ratings[card.id] = rating;
           saveFlashcardRatingResult(card, rating, previousRating);
           persistFlashcardSession();
           patchFlashcardTypingView(session);
-          scheduleFlashcardTypingNextCard(session, card.id);
+          scheduleFlashcardTypingNextCard(session, card.id, state.completionDelayMs);
           return;
         }
       }else{
@@ -5619,28 +5672,40 @@ if(window.HanziWriter){
     overlay.innerHTML = '<section class="hsk-flashcard-shell" role="dialog" aria-modal="true" aria-label="Học Flashcard"><div id="hskFlashcardBody"></div></section>';
     document.body.appendChild(overlay);
     overlay.addEventListener('click', event => {
-      if(event.target === overlay){
-        closeFlashcardOverlay();
-        return;
-      }
-      const typingCard = event.target.closest('[data-hsk-flashcard-typing-card]');
       const session = hskState.flashcardSession;
-      if(typingCard && session && getCurrentFlashcardType(session) === 'typing'){
-        const state = ensureFlashcardTypingState(session);
-        if(state?.isCompleting && !event.target.closest('button, a, input, select, textarea')){
+      const state = session && getCurrentFlashcardType(session) === 'typing'
+        ? ensureFlashcardTypingState(session)
+        : null;
+      const typingInput = overlay.querySelector('[data-hsk-flashcard-typing-input]');
+
+      if(event.target.closest('[data-hsk-flashcard-typing-continue]')){
+        if(state?.isCompleting){
           event.preventDefault();
           completeFlashcardTypingTransitionNow();
         }
+        return;
       }
-    });
-    overlay.addEventListener('pointerdown', event => {
+
+      const completeResult = event.target.closest('[data-hsk-flashcard-typing-complete]');
+      if(completeResult && state?.isCompleting && !event.target.closest('button, a, input, select, textarea')){
+        event.preventDefault();
+        if(armFlashcardTypingCompletionAfterKeyboardDismiss(session, state, typingInput)) return;
+        if(state.completionTapArmed) completeFlashcardTypingTransitionNow();
+        return;
+      }
+
       const typingCard = event.target.closest('[data-hsk-flashcard-typing-card]');
-      const session = hskState.flashcardSession;
-      if(!typingCard || !session || getCurrentFlashcardType(session) !== 'typing') return;
-      const state = ensureFlashcardTypingState(session);
-      if(!state?.isCompleting || event.target.closest('button, a, input, select, textarea')) return;
-      event.preventDefault();
-      completeFlashcardTypingTransitionNow();
+      if(typingCard && state?.isCompleting && !event.target.closest('button, a, input, select, textarea')){
+        if(armFlashcardTypingCompletionAfterKeyboardDismiss(session, state, typingInput)){
+          event.preventDefault();
+          return;
+        }
+      }
+
+      if(event.target === overlay){
+        if(state?.isCompleting && armFlashcardTypingCompletionAfterKeyboardDismiss(session, state, typingInput)) return;
+        closeFlashcardOverlay();
+      }
     });
     overlay.addEventListener('input', event => {
       const input = event.target.closest('[data-hsk-flashcard-typing-input]');

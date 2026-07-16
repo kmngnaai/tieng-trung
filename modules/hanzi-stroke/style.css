@@ -9312,3 +9312,11 @@ body.hsk-flashcard-open{
 .hsk-flashcard-typing-card.is-complete{cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .hsk-flashcard-typing-card.is-complete:active{transform:scale(.998)}
 @media (prefers-reduced-motion:reduce){.hsk-flashcard-typing-card.is-complete:active{transform:none}}
+
+/* FC-TYPE.5.2: safe two-step completion and Han-character-based delay */
+.hsk-flashcard-typing-result[data-hsk-flashcard-typing-complete]{cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.hsk-flashcard-typing-continue-hint{margin:4px 0 0;color:#3f6f5d;font-size:.88rem;font-weight:700}
+.hsk-flashcard-typing-continue-hint[hidden]{display:none!important}
+.hsk-flashcard-typing-continue{min-height:44px;margin-top:4px;border:1px solid #82bda7;border-radius:999px;background:#fff;color:#185d43;padding:9px 18px;font:inherit;font-weight:800}
+.hsk-flashcard-typing-continue:active{transform:translateY(1px)}
+@media (prefers-reduced-motion:reduce){.hsk-flashcard-typing-continue:active{transform:none}}
