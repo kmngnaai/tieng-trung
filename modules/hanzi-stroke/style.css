@@ -9302,3 +9302,13 @@ body.hsk-flashcard-open{
   font-size:1rem;
   line-height:1.45;
 }
+
+
+/* FC-TYPE.5.1: stable mobile keyboard and tap-to-continue */
+.hsk-flashcard-typing-controls{display:grid;gap:12px;justify-items:center}
+.hsk-flashcard-typing-result[hidden],
+.hsk-flashcard-typing-controls[hidden],
+.hsk-flashcard-typing-answer[hidden]{display:none!important}
+.hsk-flashcard-typing-card.is-complete{cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.hsk-flashcard-typing-card.is-complete:active{transform:scale(.998)}
+@media (prefers-reduced-motion:reduce){.hsk-flashcard-typing-card.is-complete:active{transform:none}}
