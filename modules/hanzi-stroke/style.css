@@ -9234,83 +9234,71 @@ body.hsk-flashcard-open{
   }
 }
 
-/* STEP C1.2.4 - Global 5-item navigation + Học menu */
-.hanzi-bottom-nav {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+/* FC-TYPE.4 — Gõ Pinyin trong tab Thẻ */
+.hsk-flashcard-typing-setup{display:grid;gap:12px}
+.hsk-flashcard-typing-prompt-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.hsk-flashcard-typing-prompt-grid button{min-height:44px;border:1px solid var(--border,#eadfd7);border-radius:12px;background:var(--surface,#fff);padding:10px;font:inherit;color:inherit}
+.hsk-flashcard-typing-prompt-grid button.active{border-color:#f08a5d;background:#fff3ec;color:#b84f25;font-weight:700}
+.hsk-flashcard-typing-eligible{margin:0;color:var(--muted,#786c66);font-size:.9rem}
+.hsk-flashcard-typing-study{padding-bottom:calc(92px + env(safe-area-inset-bottom))}
+.hsk-flashcard-typing-card{display:grid;gap:18px;padding:20px 16px;border:1px solid var(--border,#eadfd7);border-radius:20px;background:var(--surface,#fff);box-shadow:0 12px 32px rgba(78,55,42,.08);text-align:center;min-width:0}
+.hsk-flashcard-typing-prompt{display:grid;gap:8px;justify-items:center}
+.hsk-flashcard-typing-prompt small{font-weight:700;letter-spacing:.08em;color:var(--muted,#786c66)}
+.hsk-flashcard-typing-prompt-hanzi{font-size:clamp(2.8rem,16vw,5rem);line-height:1.1;font-weight:700}
+.hsk-flashcard-typing-prompt-text{font-size:clamp(1.35rem,7vw,2rem);line-height:1.35}
+.hsk-flashcard-typing-slots{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;min-height:56px}
+.hsk-flashcard-typing-slot{display:grid;place-items:center;min-width:34px;height:48px;padding:0 6px;border-bottom:3px solid #daccc3;font-size:1.65rem;font-weight:800;line-height:1;color:#443932}
+.hsk-flashcard-typing-slot.is-current{border-bottom-color:#f08a5d}
+.hsk-flashcard-typing-slot.is-correct{color:#237a57;border-bottom-color:#91cdb6}
+.hsk-flashcard-typing-slot.is-wrong{color:#c93e3e;border-bottom-color:#e66a6a;background:#fff0f0;border-radius:8px 8px 0 0}
+.hsk-flashcard-typing-input{width:100%;min-height:48px;border:1px solid #dfd3cb;border-radius:14px;background:#fff;padding:10px 14px;font-size:16px;color:#2f2925;text-align:center;outline:none}
+.hsk-flashcard-typing-input:focus{border-color:#f08a5d;box-shadow:0 0 0 3px rgba(240,138,93,.16)}
+.hsk-flashcard-typing-feedback{min-height:24px;display:grid;place-items:center;font-size:.95rem;font-weight:700}
+.hsk-flashcard-typing-feedback .is-error{color:#c93e3e}
+.hsk-flashcard-typing-feedback .is-hint{color:#a65a16}
+.hsk-flashcard-typing-feedback .is-success{color:#237a57}
+.hsk-flashcard-typing-hint{justify-self:center;min-height:44px;border:1px solid #ead7a4;border-radius:999px;background:#fff9df;padding:8px 16px;font:inherit;font-weight:700;color:#7d5b08}
+.hsk-flashcard-typing-answer{display:grid;gap:4px;padding:12px;border-radius:14px;background:#fff9e9;border:1px solid #eedda8}
+.hsk-flashcard-typing-answer strong{font-size:1.25rem;color:#7d5b08}
+.hsk-flashcard-typing-answer span{font-size:1.5rem;font-weight:700}
+.hsk-flashcard-typing-answer p{margin:0;color:var(--muted,#786c66)}
+.hsk-flashcard-typing-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.hsk-flashcard-typing-stats div{display:grid;gap:2px;padding:10px 6px;border-radius:12px;background:#faf7f4}
+.hsk-flashcard-typing-stats b{font-size:1.05rem}
+.hsk-flashcard-typing-stats span{font-size:.75rem;color:var(--muted,#786c66)}
+@media (max-width:430px){
+  .hsk-flashcard-typing-prompt-grid{grid-template-columns:1fr}
+  .hsk-flashcard-typing-card{padding:18px 12px;gap:14px}
+  .hsk-flashcard-typing-slots{gap:6px}
+  .hsk-flashcard-typing-slot{min-width:30px;height:44px;font-size:1.45rem}
 }
-.hanzi-bottom-nav-item {
-  appearance: none;
-  border: 0;
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  cursor: pointer;
-  min-width: 0;
+@media (prefers-reduced-motion:reduce){.hsk-flashcard-typing-card,.hsk-flashcard-typing-slot{transition:none!important}}
+
+/* FC-TYPE.4.1: show the full verified answer after a correct typing response. */
+.hsk-flashcard-typing-result{
+  display:grid;
+  justify-items:center;
+  gap:5px;
+  padding:14px 16px;
+  border:1px solid #9fd1bd;
+  border-radius:16px;
+  background:#edf9f3;
+  box-shadow:0 8px 22px rgba(35,122,87,.10);
 }
-.global-menu-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 1190;
-  background: rgba(24, 31, 42, 0.38);
-  backdrop-filter: blur(2px);
+.hsk-flashcard-typing-result-word{
+  font-size:clamp(1.8rem,9vw,2.8rem);
+  line-height:1.15;
+  font-weight:800;
+  color:#185d43;
 }
-.global-menu-sheet {
-  position: fixed;
-  left: 50%;
-  bottom: 0;
-  z-index: 1200;
-  width: min(100%, 520px);
-  padding: 14px 16px calc(18px + env(safe-area-inset-bottom));
-  border: 1px solid var(--border, #eadaca);
-  border-bottom: 0;
-  border-radius: 24px 24px 0 0;
-  background: var(--surface, #fffaf4);
-  box-shadow: 0 -18px 44px rgba(65, 48, 34, 0.18);
-  transform: translate(-50%, 105%);
-  transition: transform 180ms ease;
+.hsk-flashcard-typing-result-pinyin{
+  font-size:1.3rem;
+  line-height:1.3;
+  color:#237a57;
 }
-.global-menu-sheet.is-open { transform: translate(-50%, 0); }
-.global-menu-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--border, #eadaca);
-}
-.global-menu-head strong { font-size: 18px; }
-.global-menu-head button {
-  width: 38px;
-  height: 38px;
-  border: 1px solid var(--border, #eadaca);
-  border-radius: 50%;
-  background: transparent;
-  font-size: 22px;
-  cursor: pointer;
-}
-.global-menu-links {
-  display: grid;
-  gap: 8px;
-  padding-top: 12px;
-}
-.global-menu-links a {
-  display: grid;
-  grid-template-columns: 32px 1fr;
-  align-items: center;
-  min-height: 48px;
-  padding: 8px 12px;
-  border: 1px solid var(--border, #eadaca);
-  border-radius: 14px;
-  color: inherit;
-  text-decoration: none;
-  background: color-mix(in srgb, var(--surface, #fffaf4) 86%, #fff 14%);
-}
-.global-menu-links a[aria-current="page"] {
-  border-color: #edb39a;
-  background: #fff0e9;
-}
-body.global-menu-open { overflow: hidden; }
-@media (max-width: 430px) {
-  .hanzi-bottom-nav-item small { font-size: 10px; }
-  .hanzi-bottom-nav-item span { font-size: 16px; }
+.hsk-flashcard-typing-result-meaning{
+  margin:0;
+  color:#365f50;
+  font-size:1rem;
+  line-height:1.45;
 }

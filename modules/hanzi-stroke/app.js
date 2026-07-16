@@ -4373,7 +4373,8 @@ if(window.HanziWriter){
     const rows = [
       item?.hsk ? ['HSK', `HSK ${item.hsk}`] : null,
       item?.hanViet ? ['Hán Việt', item.hanViet] : null,
-      getPrimarySection(item) ? ['Lộ trình', getPrimarySection(item)] : null
+      getPrimarySection(item) ? ['Lộ trình', getPrimarySection(item)] : null,
+      Array.isArray(item?.libraries) && item.libraries.length ? ['Nguồn', item.libraries.slice(0, 3).join(', ')] : null
     ].filter(Boolean);
     if(!rows.length){
       return '';
@@ -4996,7 +4997,12 @@ if(window.HanziWriter){
       index: 0,
       flipped: false,
       ratings: {},
-      mixedTypes: []
+      mixedTypes: [],
+      origin: 'library',
+      contextKey: `library:${String(title || 'flashcards')}`,
+      contextLabel: String(title || 'Ôn Flashcard'),
+      typing: null,
+      typingPromptTypes: []
     };
     renderFlashcardOverlay();
     return true;
@@ -5079,12 +5085,18 @@ if(window.HanziWriter){
         showPinyin: session.settings?.showPinyin !== false,
         autoPlay: Boolean(session.settings?.autoPlay),
         shuffle: Boolean(session.settings?.shuffle),
-        showStroke: Boolean(session.settings?.showStroke)
+        showStroke: Boolean(session.settings?.showStroke),
+        typingPromptType: session.settings?.typingPromptType || 'hanzi-to-pinyin'
       },
       index: Number(session.index || 0),
       flipped: Boolean(session.flipped),
       ratings: session.ratings && typeof session.ratings === 'object' ? session.ratings : {},
-      mixedTypes: Array.isArray(session.mixedTypes) ? session.mixedTypes : []
+      mixedTypes: Array.isArray(session.mixedTypes) ? session.mixedTypes : [],
+      origin: session.origin || 'lesson',
+      contextKey: String(session.contextKey || ''),
+      contextLabel: String(session.contextLabel || ''),
+      typingPromptTypes: Array.isArray(session.typingPromptTypes) ? session.typingPromptTypes : [],
+      typing: session.typing && typeof session.typing === 'object' ? session.typing : null
     };
   }
 
@@ -5126,18 +5138,24 @@ if(window.HanziWriter){
         title: String(saved.title || 'Phiên Flashcard'),
         cards,
         settings: {
-          mode: ['flashcard', 'reverse', 'listen', 'mixed'].includes(settings.mode) ? settings.mode : 'flashcard',
+          mode: ['flashcard', 'reverse', 'listen', 'typing', 'mixed'].includes(settings.mode) ? settings.mode : 'flashcard',
           showPinyin: settings.showPinyin !== false,
           autoPlay: Boolean(settings.autoPlay),
           shuffle: Boolean(settings.shuffle),
-          showStroke: Boolean(settings.showStroke)
+          showStroke: Boolean(settings.showStroke),
+          typingPromptType: ['hanzi-to-pinyin', 'meaning-to-pinyin', 'mixed'].includes(settings.typingPromptType) ? settings.typingPromptType : 'hanzi-to-pinyin'
         },
         index,
         flipped: Boolean(saved.flipped),
         ratings: saved.ratings && typeof saved.ratings === 'object' ? saved.ratings : {},
         mixedTypes: Array.isArray(saved.mixedTypes) && saved.mixedTypes.length === cards.length
           ? saved.mixedTypes
-          : cards.map((_, cardIndex) => ['flashcard', 'reverse', 'listen'][cardIndex % 3])
+          : cards.map((_, cardIndex) => ['flashcard', 'reverse', 'listen'][cardIndex % 3]),
+        origin: saved.origin || 'lesson',
+        contextKey: String(saved.contextKey || ''),
+        contextLabel: String(saved.contextLabel || ''),
+        typingPromptTypes: Array.isArray(saved.typingPromptTypes) ? saved.typingPromptTypes : [],
+        typing: saved.typing && typeof saved.typing === 'object' ? saved.typing : null
       };
       renderFlashcardOverlay();
       if(hskState.flashcardSession.phase === 'study' && !hskState.flashcardSession.flipped){
@@ -5151,22 +5169,254 @@ if(window.HanziWriter){
   }
 
 
+  const PINYIN_TONE_BASE_MAP = Object.freeze({
+    'ā':'a','á':'a','ǎ':'a','à':'a','ē':'e','é':'e','ě':'e','è':'e',
+    'ī':'i','í':'i','ǐ':'i','ì':'i','ō':'o','ó':'o','ǒ':'o','ò':'o',
+    'ū':'u','ú':'u','ǔ':'u','ù':'u','ǖ':'ü','ǘ':'ü','ǚ':'ü','ǜ':'ü',
+    'ń':'n','ň':'n','ǹ':'n','ḿ':'m'
+  });
+
+  function tokenizeFlashcardPinyin(value){
+    const chars = Array.from(String(value || '').trim().toLowerCase());
+    const tokens = [];
+    for(let i = 0; i < chars.length; i += 1){
+      let char = PINYIN_TONE_BASE_MAP[chars[i]] || chars[i];
+      if(/[\s'’·-]/u.test(char)) continue;
+      if(/[1-5]/.test(char)) continue;
+      if(char === 'u' && chars[i + 1] === ':'){
+        tokens.push('u:');
+        i += 1;
+        continue;
+      }
+      if(char === ':') continue;
+      if(/[a-züv]/u.test(char)) tokens.push(char);
+    }
+    return tokens;
+  }
+
+  function isFlashcardTypingTokenAccepted(expected, actual){
+    if(expected === 'ü') return ['ü', 'u', 'v', 'u:'].includes(actual);
+    return expected === actual;
+  }
+
+  function getTypingEligibleCards(cards, promptType){
+    return (cards || []).filter(card => {
+      if(!String(card?.pinyin || '').trim()) return false;
+      if(promptType === 'meaning-to-pinyin') return Boolean(String(card?.meaningVi || '').trim());
+      return true;
+    });
+  }
+
+  function resolveTypingPromptType(session, index){
+    const configured = session.settings?.typingPromptType || 'hanzi-to-pinyin';
+    if(configured !== 'mixed') return configured;
+    const stored = session.typingPromptTypes?.[index];
+    if(stored) return stored;
+    const card = session.cards[index];
+    return index % 2 === 1 && String(card?.meaningVi || '').trim() ? 'meaning-to-pinyin' : 'hanzi-to-pinyin';
+  }
+
+  function createFlashcardTypingState(session, card){
+    const answerTokens = tokenizeFlashcardPinyin(card?.pinyin || '');
+    return {
+      cardId: String(card?.id || ''),
+      promptType: resolveTypingPromptType(session, session.index),
+      answerTokens,
+      currentIndex: 0,
+      committedTokens: [],
+      currentWrongToken: '',
+      mistakesByIndex: answerTokens.map(() => 0),
+      hintShownByIndex: answerTokens.map(() => false),
+      totalMistakes: 0,
+      correctInputs: 0,
+      startedAt: Date.now(),
+      completedAt: 0,
+      isCompleting: false,
+      answerRevealUsed: false,
+      answerRevealCount: 0,
+      answerRevealedAt: 0,
+      answerVisible: false
+    };
+  }
+
+  function ensureFlashcardTypingState(session){
+    const card = session?.cards?.[session.index];
+    if(!session || !card) return null;
+    if(!session.typing || session.typing.cardId !== card.id){
+      session.typing = createFlashcardTypingState(session, card);
+    }
+    return session.typing;
+  }
+
+  function getFlashcardTypingStats(state){
+    const correct = Number(state?.correctInputs || 0);
+    const mistakes = Number(state?.totalMistakes || 0);
+    const total = correct + mistakes;
+    return {
+      elapsedMs: Math.max(0, (state?.completedAt || Date.now()) - Number(state?.startedAt || Date.now())),
+      accuracy: total ? Math.round((correct / total) * 100) : 100,
+      mistakes
+    };
+  }
+
+  function formatFlashcardTypingTime(ms){
+    const totalSeconds = Math.floor(Math.max(0, Number(ms || 0)) / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    return `${minutes}:${String(seconds).padStart(2, '0')}`;
+  }
+
+  function renderFlashcardTypingSlots(state){
+    return state.answerTokens.map((expected, index) => {
+      const isDone = index < state.currentIndex;
+      const isCurrent = index === state.currentIndex && !state.isCompleting;
+      const value = isDone ? (state.committedTokens[index] || expected) : (isCurrent && state.currentWrongToken ? state.currentWrongToken : '_');
+      const classes = [
+        'hsk-flashcard-typing-slot',
+        isDone ? 'is-correct' : '',
+        isCurrent ? 'is-current' : '',
+        isCurrent && state.currentWrongToken ? 'is-wrong' : ''
+      ].filter(Boolean).join(' ');
+      return `<span class="${classes}">${escapeHtml(value)}</span>`;
+    }).join('');
+  }
+
+  function renderFlashcardTypingStudy(session, card){
+    const state = ensureFlashcardTypingState(session);
+    const stats = getFlashcardTypingStats(state);
+    const hintIndex = state.currentIndex;
+    const hintVisible = Boolean(state.hintShownByIndex?.[hintIndex]);
+    const prompt = state.promptType === 'meaning-to-pinyin'
+      ? `<small>NGHĨA VIỆT → PINYIN</small><strong class="hsk-flashcard-typing-prompt-text">${escapeHtml(card.meaningVi)}</strong>`
+      : `<small>CHỮ TRUNG → PINYIN</small><strong class="hsk-flashcard-typing-prompt-hanzi">${escapeHtml(card.word)}</strong>`;
+    return `
+      <header class="hsk-flashcard-header">
+        <button type="button" class="hsk-flashcard-back" data-hsk-flashcard-to-setup>← Thiết lập</button>
+        <span class="hsk-flashcard-progress">${session.index + 1} / ${session.cards.length}</span>
+        <button type="button" class="hsk-flashcard-close" data-hsk-flashcard-close aria-label="Đóng">×</button>
+      </header>
+      <div class="hsk-flashcard-study hsk-flashcard-typing-study">
+        <div class="hsk-flashcard-study-meta"><b>Gõ Pinyin</b><span>${escapeHtml(session.title)}</span></div>
+        <section class="hsk-flashcard-typing-card ${state.isCompleting ? 'is-complete' : ''}">
+          <div class="hsk-flashcard-typing-prompt">${prompt}</div>
+          <div class="hsk-flashcard-typing-slots" aria-label="Nhập pinyin">${renderFlashcardTypingSlots(state)}</div>
+          <input class="hsk-flashcard-typing-input" data-hsk-flashcard-typing-input type="text" inputmode="text" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Nhập ký tự pinyin hiện tại" ${state.isCompleting ? 'disabled' : ''}>
+          <div class="hsk-flashcard-typing-feedback" aria-live="polite">
+            ${state.currentWrongToken ? '<span class="is-error">Ký tự chưa đúng</span>' : ''}
+            ${hintVisible ? `<span class="is-hint">Gợi ý: ${escapeHtml(state.answerTokens[hintIndex] || '')}</span>` : ''}
+            ${state.isCompleting ? '<span class="is-success">✓ Chính xác</span>' : ''}
+          </div>
+          ${state.isCompleting ? `
+            <div class="hsk-flashcard-typing-result" aria-live="polite">
+              <span class="hsk-flashcard-typing-result-word">${escapeHtml(card.word)}</span>
+              <strong class="hsk-flashcard-typing-result-pinyin">${escapeHtml(card.pinyin)}</strong>
+              ${card.meaningVi ? `<p class="hsk-flashcard-typing-result-meaning">${escapeHtml(card.meaningVi)}</p>` : ''}
+            </div>
+          ` : `
+            <button type="button" class="hsk-flashcard-typing-hint" data-hsk-flashcard-typing-reveal aria-expanded="${state.answerVisible}">💡 Đáp án</button>
+            ${state.answerVisible ? `
+              <div class="hsk-flashcard-typing-answer">
+                <strong>${escapeHtml(card.pinyin)}</strong>
+                <span>${escapeHtml(card.word)}</span>
+                ${card.meaningVi ? `<p>${escapeHtml(card.meaningVi)}</p>` : ''}
+              </div>
+            ` : ''}
+          `}
+          <div class="hsk-flashcard-typing-stats">
+            <div><b>${formatFlashcardTypingTime(stats.elapsedMs)}</b><span>Thời gian</span></div>
+            <div><b>${stats.accuracy}%</b><span>Chính xác</span></div>
+            <div><b>${stats.mistakes}</b><span>Lỗi</span></div>
+          </div>
+        </section>
+        <div class="hsk-flashcard-nav">
+          <button type="button" data-hsk-flashcard-prev ${session.index === 0 ? 'disabled' : ''}>← Trước</button>
+          <button type="button" data-hsk-flashcard-next>${session.index === session.cards.length - 1 ? 'Hoàn thành' : 'Bỏ qua →'}</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function submitFlashcardTypingInput(rawValue){
+    const session = hskState.flashcardSession;
+    if(!session || session.phase !== 'study' || getCurrentFlashcardType(session) !== 'typing') return;
+    const state = ensureFlashcardTypingState(session);
+    if(!state || state.isCompleting) return;
+    const tokens = tokenizeFlashcardPinyin(rawValue);
+    if(!tokens.length) return;
+    for(const token of tokens){
+      if(state.isCompleting) break;
+      const expected = state.answerTokens[state.currentIndex];
+      if(expected === undefined) break;
+      if(isFlashcardTypingTokenAccepted(expected, token)){
+        state.committedTokens[state.currentIndex] = token;
+        state.currentWrongToken = '';
+        state.correctInputs += 1;
+        state.currentIndex += 1;
+        if(state.currentIndex >= state.answerTokens.length){
+          state.isCompleting = true;
+          state.completedAt = Date.now();
+          const card = session.cards[session.index];
+          const rating = state.answerRevealUsed ? 'hard' : (state.totalMistakes > 0 ? 'review' : 'easy');
+          const previousRating = session.ratings[card.id] || '';
+          session.ratings[card.id] = rating;
+          saveFlashcardRatingResult(card, rating, previousRating);
+          persistFlashcardSession();
+          renderFlashcardOverlay();
+          window.setTimeout(() => {
+            if(hskState.flashcardSession === session && session.typing?.cardId === card.id){
+              moveFlashcard(1);
+            }
+          }, 1150);
+          return;
+        }
+      }else{
+        state.currentWrongToken = token;
+        state.totalMistakes += 1;
+        state.mistakesByIndex[state.currentIndex] = Number(state.mistakesByIndex[state.currentIndex] || 0) + 1;
+        if(state.mistakesByIndex[state.currentIndex] >= 5){
+          state.hintShownByIndex[state.currentIndex] = true;
+        }
+        break;
+      }
+    }
+    persistFlashcardSession();
+    renderFlashcardOverlay();
+  }
+
+  function deleteFlashcardTypingToken(){
+    const session = hskState.flashcardSession;
+    if(!session || getCurrentFlashcardType(session) !== 'typing') return;
+    const state = ensureFlashcardTypingState(session);
+    if(!state || state.isCompleting) return;
+    if(state.currentWrongToken){
+      state.currentWrongToken = '';
+    }else if(state.currentIndex > 0){
+      state.currentIndex -= 1;
+      state.committedTokens.splice(state.currentIndex, 1);
+    }
+    persistFlashcardSession();
+    renderFlashcardOverlay();
+  }
+
+
   function getFlashcardSettings(){
     const defaults = {
       mode: 'flashcard',
       showPinyin: true,
       autoPlay: false,
       shuffle: false,
-      showStroke: false
+      showStroke: false,
+      typingPromptType: 'hanzi-to-pinyin'
     };
     try{
       const saved = JSON.parse(window.localStorage?.getItem(HSK_FLASHCARD_SETTINGS_KEY) || '{}');
       return {
-        mode: ['flashcard', 'reverse', 'listen', 'mixed'].includes(saved.mode) ? saved.mode : defaults.mode,
+        mode: ['flashcard', 'reverse', 'listen', 'typing', 'mixed'].includes(saved.mode) ? saved.mode : defaults.mode,
         showPinyin: saved.showPinyin !== false,
         autoPlay: Boolean(saved.autoPlay),
         shuffle: Boolean(saved.shuffle),
-        showStroke: Boolean(saved.showStroke)
+        showStroke: Boolean(saved.showStroke),
+        typingPromptType: ['hanzi-to-pinyin', 'meaning-to-pinyin', 'mixed'].includes(saved.typingPromptType) ? saved.typingPromptType : defaults.typingPromptType
       };
     }catch(_err){
       return defaults;
@@ -5249,9 +5499,24 @@ if(window.HanziWriter){
     overlay.addEventListener('click', event => {
       if(event.target === overlay) closeFlashcardOverlay();
     });
+    overlay.addEventListener('input', event => {
+      const input = event.target.closest('[data-hsk-flashcard-typing-input]');
+      if(!input) return;
+      const value = input.value;
+      input.value = '';
+      submitFlashcardTypingInput(value);
+    });
+    overlay.addEventListener('keydown', event => {
+      const input = event.target.closest('[data-hsk-flashcard-typing-input]');
+      if(!input) return;
+      if(event.key === 'Backspace' && !input.value){
+        event.preventDefault();
+        deleteFlashcardTypingToken();
+      }
+    });
     overlay.addEventListener('touchstart', event => {
       const card = event.target.closest('[data-hsk-flashcard-flip]');
-      if(!card || event.touches.length !== 1 || event.target.closest('button, .hsk-flashcard-stroke-section')){
+      if(!card || event.touches.length !== 1 || event.target.closest('button, input, .hsk-flashcard-stroke-section, .hsk-flashcard-typing-card')){
         flashcardTouchStart = null;
         return;
       }
@@ -5302,7 +5567,12 @@ if(window.HanziWriter){
       index: 0,
       flipped: false,
       ratings: {},
-      mixedTypes: []
+      mixedTypes: [],
+      origin: hskState.groupMode === 'topics' ? 'topic' : 'lesson',
+      contextKey: `${hskState.sourceKey}:${hskState.currentLevel}:${hskState.groupMode}:${hskState.topicKey}`,
+      contextLabel: getSelectedLearningLabel() || '',
+      typing: null,
+      typingPromptTypes: []
     };
     renderFlashcardOverlay();
   }
@@ -5312,28 +5582,32 @@ if(window.HanziWriter){
       flashcard: 'Flashcard',
       reverse: 'Đảo ngược',
       listen: 'Nghe',
+      typing: 'Gõ Pinyin',
       mixed: 'Hỗn hợp'
     })[mode] || 'Flashcard';
   }
 
   function renderFlashcardSetup(session){
     const settings = session.settings;
+    const contextNoun = session.origin === 'topic' ? 'chủ đề' : (session.origin === 'lesson' ? 'bài' : 'bộ thẻ');
+    const backLabel = session.origin === 'topic' ? '← Quay lại chủ đề' : (session.origin === 'lesson' ? '← Quay lại bài' : '← Quay lại Thẻ');
     const modes = [
       ['flashcard', 'Flashcard', 'Hán tự → lật xem pinyin và nghĩa'],
       ['reverse', 'Đảo ngược', 'Nghĩa Việt → đoán chữ Hán'],
       ['listen', 'Nghe', 'Nghe phát âm → nhớ lại từ và nghĩa'],
+      ['typing', 'Gõ Pinyin', 'Nhập tuần tự từng ký tự pinyin'],
       ['mixed', 'Hỗn hợp', 'Flashcard → Đảo ngược → Nghe']
     ];
     return `
       <header class="hsk-flashcard-header">
-        <button type="button" class="hsk-flashcard-back" data-hsk-flashcard-close>← Quay lại bài</button>
+        <button type="button" class="hsk-flashcard-back" data-hsk-flashcard-close>${backLabel}</button>
         <button type="button" class="hsk-flashcard-close" data-hsk-flashcard-close aria-label="Đóng">×</button>
       </header>
       <div class="hsk-flashcard-setup">
         <div class="hsk-flashcard-title-block">
           <span>HỌC FLASHCARD</span>
           <h2>${escapeHtml(session.title)}</h2>
-          <p>${session.cards.length.toLocaleString('vi-VN')} thẻ trong bài</p>
+          <p>${session.cards.length.toLocaleString('vi-VN')} thẻ trong ${contextNoun}</p>
         </div>
         <section class="hsk-flashcard-panel">
           <h3>Chọn cách học</h3>
@@ -5345,13 +5619,26 @@ if(window.HanziWriter){
             `).join('')}
           </div>
         </section>
+        ${settings.mode === 'typing' ? `
+          <section class="hsk-flashcard-panel hsk-flashcard-typing-setup">
+            <h3>Kiểu câu hỏi</h3>
+            <div class="hsk-flashcard-typing-prompt-grid">
+              ${[
+                ['hanzi-to-pinyin', 'Chữ Trung → Pinyin'],
+                ['meaning-to-pinyin', 'Nghĩa Việt → Pinyin'],
+                ['mixed', 'Hỗn hợp hai kiểu']
+              ].map(([key, label]) => `<button type="button" class="${settings.typingPromptType === key ? 'active' : ''}" data-hsk-flashcard-typing-prompt="${key}">${label}</button>`).join('')}
+            </div>
+            <p class="hsk-flashcard-typing-eligible">${getTypingEligibleCards(session.cards, settings.typingPromptType).length.toLocaleString('vi-VN')} thẻ đủ pinyin để luyện.</p>
+          </section>
+        ` : ''}
         <section class="hsk-flashcard-panel hsk-flashcard-options">
           <label><span><b>Hiện pinyin</b><small>Hiển thị pinyin sau khi mở đáp án.</small></span><input type="checkbox" data-hsk-flashcard-option="showPinyin" ${settings.showPinyin ? 'checked' : ''}></label>
           <label><span><b>Tự phát âm</b><small>Tự đọc theo chế độ học hiện tại.</small></span><input type="checkbox" data-hsk-flashcard-option="autoPlay" ${settings.autoPlay ? 'checked' : ''}></label>
           <label><span><b>Xáo trộn thứ tự</b><small>Trộn bộ thẻ một lần khi bắt đầu.</small></span><input type="checkbox" data-hsk-flashcard-option="shuffle" ${settings.shuffle ? 'checked' : ''}></label>
           <label><span><b>Hiện cách viết từng chữ</b><small>Hiển thị ô thứ tự nét ở mặt đáp án.</small></span><input type="checkbox" data-hsk-flashcard-option="showStroke" ${settings.showStroke ? 'checked' : ''}></label>
         </section>
-        <button type="button" class="hsk-flashcard-start" data-hsk-flashcard-start>Bắt đầu học · ${session.cards.length.toLocaleString('vi-VN')} thẻ</button>
+        <button type="button" class="hsk-flashcard-start" data-hsk-flashcard-start>Bắt đầu học · ${(settings.mode === 'typing' ? getTypingEligibleCards(session.cards, settings.typingPromptType).length : session.cards.length).toLocaleString('vi-VN')} thẻ</button>
       </div>
     `;
   }
@@ -5370,12 +5657,23 @@ if(window.HanziWriter){
     if(!session) return;
     saveFlashcardSettings(session.settings);
     session.phase = 'study';
+    if(session.settings.mode === 'typing'){
+      session.cards = getTypingEligibleCards(session.cards, session.settings.typingPromptType);
+      if(!session.cards.length){
+        session.phase = 'setup';
+        session.typing = null;
+        renderFlashcardOverlay();
+        return;
+      }
+    }
     session.cards = session.settings.shuffle ? shuffleCards(session.cards) : [...session.cards];
     session.index = 0;
     session.flipped = false;
     session.strokeExpanded = false;
     session.ratings = {};
     session.mixedTypes = session.cards.map((_, index) => ['flashcard', 'reverse', 'listen'][index % 3]);
+    session.typingPromptTypes = session.cards.map((card, index) => session.settings.typingPromptType === 'mixed' && card.meaningVi && index % 2 === 1 ? 'meaning-to-pinyin' : 'hanzi-to-pinyin');
+    session.typing = session.settings.mode === 'typing' ? createFlashcardTypingState(session, session.cards[0]) : null;
     persistFlashcardSession();
     renderFlashcardOverlay();
     maybeAutoPlayFlashcard();
@@ -5658,6 +5956,7 @@ if(window.HanziWriter){
   function renderFlashcardStudy(session){
     const card = session.cards[session.index];
     const type = getCurrentFlashcardType(session);
+    if(type === 'typing') return renderFlashcardTypingStudy(session, card);
     const rating = session.ratings[card.id] || '';
     return `
       <header class="hsk-flashcard-header">
@@ -5797,7 +6096,13 @@ if(window.HanziWriter){
     overlay.hidden = false;
     document.body.classList.add('hsk-flashcard-open');
     persistFlashcardSession();
-    window.requestAnimationFrame(() => mountFlashcardStrokeWriters());
+    window.requestAnimationFrame(() => {
+      mountFlashcardStrokeWriters();
+      const typingInput = body.querySelector('[data-hsk-flashcard-typing-input]');
+      if(typingInput && !typingInput.disabled){
+        try{ typingInput.focus({ preventScroll: true }); }catch(_err){ typingInput.focus(); }
+      }
+    });
   }
 
   function moveFlashcard(step){
@@ -5813,6 +6118,9 @@ if(window.HanziWriter){
     session.index = next;
     session.flipped = false;
     session.strokeExpanded = false;
+    session.typing = getCurrentFlashcardType(session) === 'typing'
+      ? createFlashcardTypingState(session, session.cards[next])
+      : null;
     renderFlashcardOverlay();
     maybeAutoPlayFlashcard();
   }
@@ -6085,6 +6393,14 @@ if(window.HanziWriter){
       const modeButton = event.target.closest('[data-hsk-flashcard-mode]');
       if(modeButton && session.phase === 'setup'){
         session.settings.mode = modeButton.dataset.hskFlashcardMode || 'flashcard';
+        saveFlashcardSettings(session.settings);
+        renderFlashcardOverlay();
+        return;
+      }
+      const typingPromptButton = event.target.closest('[data-hsk-flashcard-typing-prompt]');
+      if(typingPromptButton && session.phase === 'setup'){
+        session.settings.typingPromptType = typingPromptButton.dataset.hskFlashcardTypingPrompt || 'hanzi-to-pinyin';
+        saveFlashcardSettings(session.settings);
         renderFlashcardOverlay();
         return;
       }
@@ -6162,6 +6478,20 @@ if(window.HanziWriter){
         speakChar(session.cards[session.index]?.word || '');
         return;
       }
+      if(event.target.closest('[data-hsk-flashcard-typing-reveal]')){
+        const state = ensureFlashcardTypingState(session);
+        if(state){
+          state.answerVisible = !state.answerVisible;
+          if(state.answerVisible){
+            state.answerRevealUsed = true;
+            state.answerRevealCount += 1;
+            state.answerRevealedAt = Date.now();
+          }
+          persistFlashcardSession();
+          renderFlashcardOverlay();
+        }
+        return;
+      }
       if(event.target.closest('[data-hsk-flashcard-flip]')){
         if(Date.now() < flashcardSuppressClickUntil) return;
         session.flipped = !session.flipped;
@@ -6196,6 +6526,7 @@ if(window.HanziWriter){
         session.flipped = false;
         session.strokeExpanded = false;
         session.ratings = {};
+        session.typing = getCurrentFlashcardType(session) === 'typing' ? createFlashcardTypingState(session, session.cards[0]) : null;
         renderFlashcardOverlay();
         maybeAutoPlayFlashcard();
         return;
