@@ -1,7 +1,7 @@
 # Bài 36 · 我要回国了
 
 - Type: `standard_301_course`
-- Source: 36第三十六课_我要回国了.md, pdf-301-cau-dam-thoai.md, 36第三十六课_我要回国了.pptx
+- Source: 36第三十六课_我要回国了.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

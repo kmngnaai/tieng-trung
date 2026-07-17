@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape69p1.jpg)
 I
 
@@ -20,9 +18,6 @@ Không tiễn bạn ra sân bay được
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape79p2.jpg)
 目录
 
@@ -46,9 +41,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape113p3.jpg)
 
 ![](GoogleShape111p3.jpg)
@@ -67,8 +59,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 替 | tí | 机场 | jīchǎng | 鞋 | xié |
 | --- | --- | --- | --- | --- | --- |
 | 冲洗 | chōngxǐ | 或者 | huózhě | 结实 | jiēshi |
@@ -82,8 +72,6 @@ Minliang
 ![](GoogleShape127p4.jpg)
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 替 | tí | 动，介 | thay |
@@ -93,8 +81,6 @@ Minliang
 ![](GoogleShape133p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 冲洗 | chōngxǐ | 动 | tráng, rửa |
@@ -104,8 +90,6 @@ Minliang
 ![](GoogleShape141p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 正 | zhèng | 副 | đang |
@@ -115,8 +99,6 @@ Minliang
 ![](GoogleShape149p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 不如 | bùrú | 动 | không như |
@@ -126,8 +108,6 @@ Minliang
 ![](GoogleShape157p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 添 | tiān | 动 | thêm, nữa |
@@ -137,8 +117,6 @@ Minliang
 ![](GoogleShape165p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 乱 | luàn | 形 | loạn |
@@ -148,8 +126,6 @@ Minliang
 ![](GoogleShape173p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 手提包 | shǒutíbāo | 名 | túi xách tay |
@@ -159,8 +135,6 @@ Minliang
 ![](GoogleShape181p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 随身 | suíshēn |  | tùy thân |
@@ -170,8 +144,6 @@ Minliang
 ![](GoogleShape189p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 机场 | jīchǎng | 名 | sân bay |
@@ -181,8 +153,6 @@ Minliang
 ![](GoogleShape197p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 或者 | huòzhě | 连，副 | hoặc là |
@@ -192,8 +162,6 @@ Minliang
 ![](GoogleShape205p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 特别 | tèbié | 形，副 | đặc biệt |
@@ -203,8 +171,6 @@ Minliang
 ![](GoogleShape213p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 轻 | qīng | 形 | nhẹ |
@@ -214,8 +180,6 @@ Minliang
 ![](GoogleShape221p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 注意 | zhǔyì | 名 | chủ ý, ý định |
@@ -225,8 +189,6 @@ Minliang
 ![](GoogleShape229p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 重新 | chóngxīn | 副 | lặp lại |
@@ -236,8 +198,6 @@ Minliang
 ![](GoogleShape237p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 另外 | lìngwài | 形，副 | ngoài ra |
@@ -245,8 +205,6 @@ Minliang
 ![](GoogleShape245p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 报名 | bàomíng |  | báo danh |
@@ -254,8 +212,6 @@ Minliang
 ![](GoogleShape252p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 鞋 | xié | 名 | giày |
@@ -265,8 +221,6 @@ Minliang
 ![](GoogleShape259p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 结实 | jiēshi | 形 | chắc chắn |
@@ -276,8 +230,6 @@ Minliang
 ![](GoogleShape267p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 街 | jiē | 名 | phố |
@@ -287,8 +239,6 @@ Minliang
 ![](GoogleShape275p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 20 | 安静 | ānjìng | 形 | yên tĩnh |
@@ -298,8 +248,6 @@ Minliang
 ![](GoogleShape283p24.jpg)
 
 ### Notes:
-
-<!-- Slide number: 25 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 21 | 了解 | liǎojiě | 动 | tìm hiểu, hiểu, biết |
@@ -309,8 +257,6 @@ Minliang
 ![](GoogleShape291p25.jpg)
 
 ### Notes:
-
-<!-- Slide number: 26 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 22 | 病房 | bìngfáng | 名 | phòng bệnh |
@@ -320,9 +266,6 @@ Minliang
 ![](GoogleShape299p26.jpg)
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape307p27.jpg)
 
 ![](GoogleShape309p27.jpg)
@@ -341,9 +284,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape324p28.jpg)
 1. 你准备得怎么样了？
 /Nǐ zhǔnbèi de zěnme yàng le?/ - Bạn chuẩn bị thế nào rồi?
@@ -355,9 +295,6 @@ Minliang
 /Wǒ zhèng děngzhe nǐ ne./ - Tôi đang đợi bạn đây.
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape332p29.jpg)
 5. 你的东西收拾好了吗？
 /Nǐ de dōngxi shōushí hǎo le ma?/ - Đồ đạc của bạn đã thu xếp xong chưa?
@@ -369,9 +306,6 @@ Minliang
 /Yòu gěi nǐ tiān máfan le./ - Lại thêm phiền phức cho bạn.
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape338p30.jpg)
 
 ![](GoogleShape340p30.jpg)
@@ -390,8 +324,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 31 -->
 王兰：准备得怎么样了？
 玛丽：我正收拾东西呢。你看，多乱啊！
 王兰：路上要用的东西放在手提包里,这样用起来方便。
@@ -405,9 +337,6 @@ Minliang
 ![](GoogleShape353p31.jpg)
 
 ### Notes:
-
-<!-- Slide number: 32 -->
-
 ![](GoogleShape360p32.jpg)
 大卫：你来了，我正等着你呢！
 刘京：你的东西收拾好了吗？
@@ -423,9 +352,6 @@ Minliang
 刘京：没问题。
 
 ### Notes:
-
-<!-- Slide number: 33 -->
-
 ![](GoogleShape369p33.jpg)
 
 ![](GoogleShape367p33.jpg)
@@ -444,8 +370,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 34 -->
 哥哥    我     报名
 我      妈妈   接入
 我朋友  我     交电费
@@ -465,17 +389,12 @@ Minliang
 没卖的东西      帮你买
 
 ### Notes:
-
-<!-- Slide number: 35 -->
 1.我走进病房看他的时候，他正安静地躺着呢。
 2.离开车还有二十分钟，我来不及回去关窗户了，麻烦你替我关一下儿
 
 ![](GoogleShape390p35.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
-
 ![](GoogleShape399p36.jpg)
 
 ![](GoogleShape397p36.jpg)
@@ -494,8 +413,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 1. 动作的持续与进行  Sự kéo dài và tiến hành của động tác
 Động tác đang tiếp diễn cũng có nghĩa là động tác đang tiến hành, cho nên“着”thường dùng kèm với“正在，正，在，呢”.Ví dụ:
 (1) 我正等着你呢。
@@ -505,8 +422,6 @@ Minliang
 ![](GoogleShape413p37.jpg)
 
 ### Notes:
-
-<!-- Slide number: 38 -->
 2. 用“不如”表示比较  Dùng“不如”để so sánh
 “A 不如 B”tức là“A 没有 B 好”(A không tốt bằng B). Ví dụ:
 (1) 我的汉语水平歹如他高。
@@ -515,9 +430,6 @@ Minliang
 ![](GoogleShape420p38.jpg)
 
 ### Notes:
-
-<!-- Slide number: 39 -->
-
 ![](GoogleShape428p39.jpg)
 
 ![](GoogleShape426p39.jpg)
@@ -536,8 +448,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 1. 用“还是”或“或者”填空
 
 ![](GoogleShape441p40.jpg)
@@ -549,8 +459,6 @@ Minliang
 (6)	现在我们收拾行李...................去和同学们告别？
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 2. 用“不如”改写下面的句子
 (1) 你的手提包比我的室亮。
 (2) 北京的春天冷，我们那儿的登天暖和。
@@ -560,8 +468,6 @@ Minliang
 ![](GoogleShape447p41.jpg)
 
 ### Notes:
-
-<!-- Slide number: 42 -->
 3. 用“替”完成句子
 
 ![](GoogleShape454p42.jpg)
@@ -571,9 +477,6 @@ Minliang
 (4)	我头疼，不去上课了，你看见老师的时候..........。
 
 ### Notes:
-
-<!-- Slide number: 43 -->
-
 ![](GoogleShape460p43.jpg)
 4. 完成对话
 A：小刘，你去广州参加排球赛,祝你们..........!
@@ -585,8 +488,6 @@ B：不是他要,是给他女朋友。
 C：..............................。
 
 ### Notes:
-
-<!-- Slide number: 44 -->
 你的中国朋友要去你们国家留学，你去宿色看他，两人会话。
 提示：准备的情况怎样，需要什么帮助,介绍那的一些情况。
 Một người bạn Trung Quốc sẽ đến nước bạn du học, bạn đến ký túc xá thăm anh ta và hai người nói chuyện với nhau.
@@ -596,17 +497,11 @@ Gợi ý: Tình hình chuẩn bị ra sao ? Cân sự giúp đỡ gì ? Giới t
 ![](GoogleShape466p44.jpg)
 
 ### Notes:
-
-<!-- Slide number: 45 -->
-
 ![](GoogleShape473p45.jpg)
 6. 听述
 尼娜今本要回国，我们去她的宿舍给她送行。她把行李都收拾好了，正等出租汽车呢。我看见墙上还挂着她的大衣，问她是不是忘了，她说不是，走的时候再穿。问她没用完的人民币换了没有，她说到机场能换。这样我们就放心了。出租汽车一到，我们就帮她拿行李，送她上车，跟她告别了。
 
 ### Notes:
-
-<!-- Slide number: 46 -->
-
 ![](GoogleShape480p46.jpg)
 6.语音练习 Bài tập ngữ âm
 (1) 常用音节练习  Luyện tập các âm tiết thường dùng
@@ -620,8 +515,6 @@ chuántǒng       传统
 tong
 
 ### Notes:
-
-<!-- Slide number: 47 -->
 （2）朗读会话 Đọc to mẩu đàm thoại.
 A : À, nǐmen dōu zài zhèr ne !
 B : Wǒmen yě shì gāng lái.
@@ -634,8 +527,6 @@ A B : Zhù nǐ yí lù píng’ān !
 ![](GoogleShape495p47.jpg)
 
 ### Notes:
-
-<!-- Slide number: 48 -->
 The End
 Minliang
 

@@ -1,7 +1,7 @@
 # Bài 17 · 去动物园
 
 - Type: `standard_301_course`
-- Source: 17第十七课_去动物园.md, pdf-301-cau-dam-thoai.md, 17第十七课_去动物园.pptx
+- Source: 17第十七课_去动物园.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

@@ -1,7 +1,7 @@
 # Bài 12 · 我想买毛衣
 
 - Type: `standard_301_course`
-- Source: 12第十二课_我想买毛衣.md, pdf-301-cau-dam-thoai.md, 12第十二课_我想买毛衣.pptx
+- Source: 12第十二课_我想买毛衣.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

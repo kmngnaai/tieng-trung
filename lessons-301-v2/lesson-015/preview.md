@@ -1,7 +1,7 @@
 # Bài 15 · 我要打国际电话
 
 - Type: `standard_301_course`
-- Source: 15第十五课_我要打国际电话.md, pdf-301-cau-dam-thoai.md, 15第十五课_我要打国际电话.pptx
+- Source: 15第十五课_我要打国际电话.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

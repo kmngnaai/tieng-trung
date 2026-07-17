@@ -1,7 +1,7 @@
 # Bài 30 · 请你慢点儿说
 
 - Type: `standard_301_course`
-- Source: 30第三十课_请你慢点儿说.md, pdf-301-cau-dam-thoai.md, 30第三十课_请你慢点儿说.pptx
+- Source: 30第三十课_请你慢点儿说.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

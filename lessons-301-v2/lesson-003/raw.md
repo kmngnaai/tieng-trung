@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape96p1.jpg)
 
  第三课
@@ -20,9 +18,6 @@ Công việc của bạn bận không ?
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape106p2.jpg)
 目录
 
@@ -48,9 +43,6 @@ Minliang
 生词
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape142p3.jpg)
 01
 生词
@@ -67,8 +59,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 工作 | gōngzuò | 弟弟 | dìdi |
 | --- | --- | --- | --- |
 | 忙 | máng | 妹妹 | mèimei |
@@ -80,8 +70,6 @@ Minliang
 | 姐姐 | jiějie | 明年 | míngnián |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 工作 | gōngzuò | 名 | làm việc, công việc |
@@ -93,8 +81,6 @@ Minliang
 ![C:\Users\ad\Downloads\1249.gif](GoogleShape163p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 忙 | máng | 形 | bận |
@@ -104,8 +90,6 @@ Minliang
 ![](GoogleShape170p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 呢 | ne | 副 | (trợ từ nghi vấn) |
@@ -115,8 +99,6 @@ Minliang
 ![](GoogleShape178p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 不 | bù | 副 | không |
@@ -126,8 +108,6 @@ Minliang
 ![](GoogleShape186p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 太 | tài | 形 | rất, lắm, quá |
@@ -137,8 +117,6 @@ Minliang
 ![](GoogleShape194p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 累 | lèi | 形 | mệt |
@@ -148,8 +126,6 @@ Minliang
 ![](GoogleShape202p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 姐姐 | jiějie | 名 | chị gái |
@@ -162,8 +138,6 @@ Minliang
 ![C:\Users\ad\Downloads\3994.gif](GoogleShape213p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 弟弟 | dìdi | 名 | em trai |
@@ -176,8 +150,6 @@ Minliang
 ![妹的笔顺动画](GoogleShape222p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 月 | yuè | 名 | tháng |
@@ -187,8 +159,6 @@ Minliang
 ![](GoogleShape228p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 明天 | míngtiān | 名 | ngày mai |
@@ -198,8 +168,6 @@ Minliang
 ![](GoogleShape236p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 今天 | jīnnián | 名 | năm nay |
@@ -211,8 +179,6 @@ Minliang
 ![年的笔顺动画](GoogleShape246p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 零 | líng | 数 | số 0, lẻ |
@@ -222,9 +188,6 @@ Minliang
 ![](GoogleShape252p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
-
 ![](GoogleShape261p17.jpg)
 02
 句子
@@ -241,9 +204,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 18 -->
-
 ![](GoogleShape275p18.jpg)
 1.你工作忙吗？
 /Nǐ gōngzuò máng ma?/ - Công việc của bạn có bận không ?
@@ -257,9 +217,6 @@ Minliang
 ![](GoogleShape276p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
-
 ![](GoogleShape283p19.jpg)
 03
 课文
@@ -276,9 +233,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 20 -->
-
 ![](GoogleShape296p20.jpg)
 李：你 好 ！
 /Lǐ: Nǐ hǎo!/
@@ -294,9 +248,6 @@ Minliang
 ![](GoogleShape298p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
-
 ![](GoogleShape304p21.jpg)
 大卫：您 早 ！
 /Dàwèi: Nín zǎo!/
@@ -316,9 +267,6 @@ Minliang
 ![](GoogleShape307p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
-
 ![](GoogleShape315p22.jpg)
 王兰：刘京 ，你好！/Wáng lán: Liú jīng, nǐ hǎo!/刘京：你好！
 /Liú jīng: Nǐ hǎo!/王兰：你爸爸，妈妈身体好吗？
@@ -326,9 +274,6 @@ Minliang
 /Liú jīng: Tāmen dōu hěn hǎo. Xièxie!/
 
 ### Notes:
-
-<!-- Slide number: 23 -->
-
 ![](GoogleShape322p23.jpg)
 04
 注释
@@ -345,8 +290,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 “你呢?” - Còn bạn ?
 Đặt câu hỏi tiếp theo một ý đã nói ra trước đó.
  Ví dụ:
@@ -356,9 +299,6 @@ Trong câu “我很 忙，你呢？” (Tôi rất bận, còn bạn ?)“你�
 ![](GoogleShape336p24.jpg)
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape343p25.jpg)
 替换与扩展
 05
@@ -374,8 +314,6 @@ Trong câu “我很 忙，你呢？” (Tôi rất bận, còn bạn ?)“你�
 ![](GoogleShape345p25.jpg)
 
 ### Notes:
-
-<!-- Slide number: 26 -->
 老师忙吗！
 你爸爸，妈妈身体好吗？
   他们都很好。
@@ -392,9 +330,6 @@ Trong câu “我很 忙，你呢？” (Tôi rất bận, còn bạn ?)“你�
 ![](GoogleShape355p26.jpg)
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape367p27.jpg)
 06
 语音
@@ -411,9 +346,6 @@ Trong câu “我很 忙，你呢？” (Tôi rất bận, còn bạn ?)“你�
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape381p28.jpg)
 韵母
 
@@ -424,8 +356,6 @@ Minliang
 |  | üe | üan | ün |  |
 
 ### Notes:
-
-<!-- Slide number: 29 -->
 |  | u | ua | uo | uai | uei (-ui) | uan | uen(-un) | uang |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | d | du |  | duo |  | dui | duan | dun |  |
@@ -445,8 +375,6 @@ Minliang
 拼音
 
 ### Notes:
-
-<!-- Slide number: 30 -->
 |  | ü | üe | üan | ün |
 | --- | --- | --- | --- | --- |
 | n | nü | nüe |  |  |
@@ -457,9 +385,6 @@ Minliang
 拼音
 
 ### Notes:
-
-<!-- Slide number: 31 -->
-
 ![](GoogleShape405p31.jpg)
 拼写说明
 （1）Khi ü tự thành một âm tiết (tiếng) hay đứng đầu một âm tiết, nó được viết thành yu.
@@ -474,8 +399,6 @@ Minliang
 ![](GoogleShape404p31.jpg)
 
 ### Notes:
-
-<!-- Slide number: 32 -->
 “不” “一” 的变调. Biến âm của “不” và  “一”
 • “不”（bù） khi đứng trước chữ mang thanh 4 hay thanh nhẹ thì biến từ thanh 4 thì “不” sẽ đọc thành thanh 2 “bú” .
                Ví dụ: búxiè （不谢：không có chi）
@@ -489,9 +412,6 @@ Minliang
              Ví dụ： yì tiàn （一天：một ngày）, yì nián （一年：một năm）, yì qǐ（一起：cùng nhau）.
 
 ### Notes:
-
-<!-- Slide number: 33 -->
-
 ![](GoogleShape420p33.jpg)
 （5）儿化 Âm cuốn lưỡi‘’儿”
 “er” thường được ghép chung vần với âm tiết đứng trước nó, làm cho vần đó trở thành âm cuốn lưỡi. Khi viết, ta thêm "r" vào sau vần đó.
@@ -505,9 +425,6 @@ Khi một âm tiết bắt đâu bằng a, o, e được đặt sau một âm ti
 ![](GoogleShape421p33.jpg)
 
 ### Notes:
-
-<!-- Slide number: 34 -->
-
 ![](GoogleShape428p34.jpg)
 07
 练习
@@ -524,8 +441,6 @@ Khi một âm tiết bắt đâu bằng a, o, e được đặt sau một âm ti
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 35 -->
 熟读下列词语并造句 Đọc thuộc và đặt câu với các từ sau
  不好		不太好	也很忙	都很忙
  都不忙	不累		不太累	都不累
@@ -535,8 +450,6 @@ Minliang
 ![](GoogleShape440p35.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
 用所给的词完成对话 Dùng từ trong ngoặc hoàn thành đối thoại
 （1） A:今天你来吗？
 B: ........................。（来）
@@ -557,9 +470,7 @@ A: ........................。              （不）
 ![](GoogleShape447p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 37 -->
- III.  根据实际情况回答下列问题• Dựa vào thực tế trả lời những câu hỏi sau đây:
+III.  根据实际情况回答下列问题• Dựa vào thực tế trả lời những câu hỏi sau đây:
 (1) 你身体好吗？
 (2) 你忙吗？
 (3) 今天你累吗？
@@ -574,8 +485,6 @@ A: ........................。              （不）
 ![](GoogleShape455p37.jpg)
 
 ### Notes:
-
-<!-- Slide number: 38 -->
 辨音
 
 ![](GoogleShape463p38.jpg)
@@ -588,8 +497,6 @@ A: ........................。              （不）
 | tuīxiāo（推销） | tuìxiū（退休） |
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 辨调
 
 ![](GoogleShape470p39.jpg)
@@ -601,8 +508,6 @@ A: ........................。              （不）
 | huíyì（回忆） | huìyì（会议） |
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 “er” và âm cuốn lưỡi
 
 ![](GoogleShape477p40.jpg)
@@ -615,8 +520,6 @@ A: ........................。              （不）
 | xiǎoháir (小孩儿) | bīnggùnr (冰棍儿) |
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 THE END
 Minliang
 

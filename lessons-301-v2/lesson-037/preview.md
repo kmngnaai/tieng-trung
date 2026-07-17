@@ -1,7 +1,7 @@
 # Bài 37 · 真舍不得你们走
 
 - Type: `standard_301_course`
-- Source: 37第三十七课_真舍不得你们走.md, pdf-301-cau-dam-thoai.md, 37第三十七课_真舍不得你们走.pptx
+- Source: 37第三十七课_真舍不得你们走.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

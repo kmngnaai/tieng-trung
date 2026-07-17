@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape77p1.jpg)
 
 第十二课
@@ -20,9 +18,6 @@ Tôi muốn mua áo len
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape87p2.jpg)
 目录
 
@@ -49,9 +44,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape124p3.jpg)
 01
 生词
@@ -68,8 +60,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 天 | tiān | 极了 | jíle |
 | --- | --- | --- | --- |
 | 冷 | lěng | 短 | duǎn |
@@ -83,8 +73,6 @@ Minliang
 | 小 | xiǎo |  |  |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 天 | tiān | 名 | Trời, ngày |
@@ -94,8 +82,6 @@ Minliang
 ![](GoogleShape143p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 冷 | lěng | 形 | Lạnh |
@@ -105,8 +91,6 @@ Minliang
 ![](GoogleShape151p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 想 | xiǎng | 能愿，动 | Muốn, định , nghĩ |
@@ -116,8 +100,6 @@ Minliang
 ![](GoogleShape159p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 件 | jiàn | 量 | Chiếc, cái |
@@ -127,8 +109,6 @@ Minliang
 ![](GoogleShape167p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 毛衣 | Máoyī | 名 | Áo len |
@@ -136,8 +116,6 @@ Minliang
 ![C:\Users\ad\Downloads\20693.gif](GoogleShape176p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 怎么样 | zěnmeyàng | 代 | Như thế nào |
@@ -147,8 +125,6 @@ Minliang
 ![](GoogleShape182p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 可以 | kěyǐ | 能愿 | Có thể, được, khả dĩ |
@@ -158,8 +134,6 @@ Minliang
 ![](GoogleShape190p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 试 | shì | 动 | Thi, thử |
@@ -169,8 +143,6 @@ Minliang
 ![](GoogleShape198p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 大 | dà | 形 | To |
@@ -180,8 +152,6 @@ Minliang
 ![](GoogleShape206p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 小 | xiǎo | 形 | Nhỏ |
@@ -191,8 +161,6 @@ Minliang
 ![](GoogleShape214p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 极了 | jí le |  | Vô cùng, lắm, quá |
@@ -202,8 +170,6 @@ Minliang
 ![C:\Users\ad\Downloads\9786.gif](GoogleShape224p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 短 | duǎn | 形 | Ngắn |
@@ -213,8 +179,6 @@ Minliang
 ![](GoogleShape230p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 再 | zài | 副 | Lại, một lần nữa |
@@ -224,8 +188,6 @@ Minliang
 ![](GoogleShape238p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 练习 | liànxí | 动,动 | Luyện tập, bài tập |
@@ -235,8 +197,6 @@ Minliang
 ![](GoogleShape246p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 穿 | chuān | 动 | Mặc, mang |
@@ -246,8 +206,6 @@ Minliang
 ![](GoogleShape254p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 衣服 | yīfu | 名 | Quần áo |
@@ -257,8 +215,6 @@ Minliang
 ![](GoogleShape262p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 长 | cháng | 形 | dài |
@@ -268,8 +224,6 @@ Minliang
 ![](GoogleShape270p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 生词 | shēngcí | 名 | từ mới |
@@ -279,8 +233,6 @@ Minliang
 ![](GoogleShape278p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 少 | shǎo | 形 | ít |
@@ -290,9 +242,6 @@ Minliang
 ![](GoogleShape286p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
-
 ![](GoogleShape295p24.jpg)
 02
 句子
@@ -309,9 +258,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape310p25.jpg)
 1.天冷了。
 /Tiān lěngle./ - Trời lạnh rồi.
@@ -323,9 +269,6 @@ Minliang
 /Xīngqītiān rén tài duō./ - Chủ nhật người đông lắm.
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape318p26.jpg)
 5.我看看那件毛衣。
 /Wǒ kànkan nà jiàn máoyī./ - Tôi xem chiếc áo len kia.
@@ -337,9 +280,6 @@ Minliang
 /Hǎo jí le./ - Tốt quá (vô cùng).
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape325p27.jpg)
 03
 课文
@@ -356,8 +296,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 28 -->
 大卫：天冷了。我想买件毛衣。
 Dàwèi: Tiān lěng le. Wǒ xiǎng mǎi jiàn máoyī.
 玛丽：我也要买东西。我们什么时候去？
@@ -372,8 +310,6 @@ Dàwèi: Nà míngtiān xiàwǔ qù ba.
 ![](GoogleShape338p28.jpg)
 
 ### Notes:
-
-<!-- Slide number: 29 -->
 大卫：同志，我看看那件毛衣。
 Dàwèi: Tóngzhì, wǒ kànkan nà jiàn máoyī.
 售货员：好。
@@ -396,9 +332,6 @@ Dàwèi: Hǎo jí le, wǒ jiù mǎi zhè jiàn.
 ![](GoogleShape346p29.jpg)
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape353p30.jpg)
 04
 注释
@@ -415,8 +348,6 @@ Dàwèi: Hǎo jí le, wǒ jiù mǎi zhè jiàn.
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 31 -->
 1. “我想买件毛衣” “Tôi muốn mua chiếc áo len”
 Số từ “一” đứng trước lượng từ nếu không ở đầu câu thì có thể lược bỏ. Cho nên “买一件毛衣” có thể nói là “买件毛衣”.
 2.  “这件太短 了”
@@ -425,9 +356,6 @@ Từ trung tâm của câu là “毛衣” đã được lược bỏ. Khi ng�
 “极了” đặt sau hình dung từ hoặc một số động từ chỉ trạng thái sẽ chỉ mức độ đạt đên mức cao nhất. Ví dụ: 累极了 ，高兴极了 ，喜欢，极了 ...
 
 ### Notes:
-
-<!-- Slide number: 32 -->
-
 ![](GoogleShape373p32.jpg)
 05
 替换与扩展
@@ -444,8 +372,6 @@ Từ trung tâm của câu là “毛衣” đã được lược bỏ. Khi ng�
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 33 -->
 1.我想买毛衣。
 
 2.我看看那件 毛衣。
@@ -462,9 +388,6 @@ Minliang
 3.请你介绍介绍北京吧。
 
 ### Notes:
-
-<!-- Slide number: 34 -->
-
 ![](GoogleShape396p34.jpg)
 06
 语法
@@ -481,9 +404,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 35 -->
-
 ![](GoogleShape409p35.jpg)
 1.  主谓谓语句 Câu vị ngữ chủ vị
 Câu có thành phần vị ngữ là một ngữ chủ-vị, gọi là câu vị ngữ chủ vị. Chủ ngữ của ngữ chủ-vị ấy là người hay sự vật có quan hệ với chủ ngữ toàn câu. Ví dụ:
@@ -494,8 +414,6 @@ Câu có thành phần vị ngữ là một ngữ chủ-vị, gọi là câu v�
 ![](GoogleShape410p35.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
 2.  能愿动词 Động từ năng nguyện
 Động từ năng nguyện “想、要、可以、会...” thường đặt trước động từ khác để chỉ khả năng, nguyện vọng hay năng lực. Dạng phủ định của động từ năng nguyện là thêm “不” vào trước các  động từ năng nguyện đó. Ví dụ:
 （1）他要买书。
@@ -509,8 +427,6 @@ Dạng phủ định của động từ năng nguyện “要”thường là �
 ![](GoogleShape418p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 Câu có động từ năng nguyện nếu muốn thành lập câu hỏi dạng chính phản, ta chỉ cần đặt hình thức khẳng định và phủ định của động từ năng nguyện ấy liền nhau. Ví dụ:
 (6) 你想不想去长城？
 (7) 你要不要吃个苹果？
@@ -518,9 +434,6 @@ Câu có động từ năng nguyện nếu muốn thành lập câu hỏi dạng
 ![](GoogleShape425p37.jpg)
 
 ### Notes:
-
-<!-- Slide number: 38 -->
-
 ![](GoogleShape432p38.jpg)
 07
 练习
@@ -537,9 +450,7 @@ Câu có động từ năng nguyện nếu muốn thành lập câu hỏi dạng
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 39 -->
- 填入适当的量词，然后用 ”几” 或 ”多少” 提问 Điền lượng từ thích hợp, saú đó dùng ”几” hoặc ”多少”  để đặt câu hỏi.
+填入适当的量词，然后用 ”几” 或 ”多少” 提问 Điền lượng từ thích hợp, saú đó dùng ”几” hoặc ”多少”  để đặt câu hỏi.
 例：我要三................桔子。
         →我要三斤桔子。
             你要几斤桔子？
@@ -556,8 +467,6 @@ Minliang
 ![](GoogleShape446p39.jpg)
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 用括号中的词语完成句子 Dùng từ trong ngoặc để hoàn thành câu
 (不...也不…、太...了，...极了、可以、想)
 (1)	这种.............,那种便宜,我买那种。
@@ -569,8 +478,6 @@ Minliang
 ![](GoogleShape452p40.jpg)
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 3. 谈谈你头的一件东西 Hãy nói về món đồ mà bạn mua
 提示: 多少钱？贵不贵？买的时候有几种？那几种怎么样？
 4. 听述 Nghe và kể lại
@@ -583,9 +490,6 @@ A : 现在小张不在，下午再去问吧。
 ![](GoogleShape457p41.jpg)
 
 ### Notes:
-
-<!-- Slide number: 42 -->
-
 ![](GoogleShape468p42.jpg)
 5.语音练习 Bài tập ngữ âm
 (1)读下列词语: 第2声+第4声
@@ -599,9 +503,6 @@ wénhuà	（文化）	dédào		（得到）
 ![](GoogleShape464p42.jpg)
 
 ### Notes:
-
-<!-- Slide number: 43 -->
-
 ![](GoogleShape482p43.jpg)
 (2) 常用音节练习  Luyện tập các âm tiết thường dùng
 	jǐ gè	    几个		   	 yóuyǒng   游泳
@@ -614,14 +515,10 @@ yong
 ![](GoogleShape474p43.jpg)
 
 ### Notes:
-
-<!-- Slide number: 44 -->
 THE END
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 45 -->
 Minliang
 
 ### Notes:

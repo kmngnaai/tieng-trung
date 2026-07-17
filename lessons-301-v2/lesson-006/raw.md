@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape77p1.jpg)
 
 ![](GoogleShape74p1.jpg)
@@ -19,9 +17,6 @@ Sinh nhật của bạn ngày nào ?
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape87p2.jpg)
 目录
 
@@ -45,9 +40,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape120p3.jpg)
 01
 生词
@@ -64,8 +56,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 几 | jǐ | 电视 | diànshì |
 | --- | --- | --- | --- |
 | 星期 | xīngqī | 星期天/星期日 | xīngqī tiān/xīngqī rì |
@@ -78,8 +68,6 @@ Minliang
 | 信 | xìn | 张丽英 | zhānglìyīng |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 几 | jǐ | 数 | Mấy |
@@ -89,8 +77,6 @@ Minliang
 ![](GoogleShape139p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 星期 | xīngqī | 名 | Tuần, thứ |
@@ -103,8 +89,6 @@ Minliang
 ![C:\Users\ad\Downloads\12358.gif](GoogleShape149p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 昨天 | zuó tiān | 名 | Hôm qua |
@@ -114,8 +98,6 @@ Minliang
 ![](GoogleShape156p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 晚上 | wăn shàng | 名 | Buổi tối |
@@ -125,8 +107,6 @@ Minliang
 ![](GoogleShape164p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 做 | zuò | 动 | làm |
@@ -136,8 +116,6 @@ Minliang
 ![](GoogleShape172p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 生日 | shēngrì | 名 | Sinh nhật |
@@ -147,8 +125,6 @@ Minliang
 ![](GoogleShape180p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT2 | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 上午 | shàngwǔ | 名 | Buổi sáng |
@@ -158,8 +134,6 @@ Minliang
 ![](GoogleShape188p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 写 | xiě | 动 | tôi, ta, tao |
@@ -169,8 +143,6 @@ Minliang
 ![](GoogleShape196p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 信 | xìn | 名 | thư |
@@ -180,8 +152,6 @@ Minliang
 ![](GoogleShape204p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 电视 | diànshì | 名 | Tivi |
@@ -193,8 +163,6 @@ Minliang
 ![C:\Users\ad\Downloads\9653.gif](GoogleShape215p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 书 | shū | 名 | sách |
@@ -204,8 +172,6 @@ Minliang
 ![](GoogleShape221p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 音乐 | yīnyuè | 名 | Âm nhạc |
@@ -217,8 +183,6 @@ Minliang
 ![C:\Users\ad\Downloads\45.gif](GoogleShape231p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 下午 | xiàwǔ | 名 | buổi chiều |
@@ -226,8 +190,6 @@ Minliang
 ![](GoogleShape238p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 买 | mǎi | 动 | mua |
@@ -237,8 +199,6 @@ Minliang
 ![](GoogleShape245p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 东西 | dōngxī | 名 | Đồ, đồ vật |
@@ -250,8 +210,6 @@ Minliang
 ![C:\Users\ad\Downloads\15836.gif](GoogleShape255p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 岁 | suì | 量 | tuổi |
@@ -261,9 +219,6 @@ Minliang
 ![](GoogleShape262p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
-
 ![](GoogleShape269p21.jpg)
 
 ![](GoogleShape271p21.jpg)
@@ -283,9 +238,6 @@ Minliang
 ![](GoogleShape275p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
-
 ![](GoogleShape287p22.jpg)
 1.今天几号？
 /Jīntiān jǐ hào/  -  Hôm nay ngày mấy (bao nhiêu) ?
@@ -301,9 +253,6 @@ Nǐ de shēngrì shì jǐ yuè jǐ hào？ - Sinh nhật bạn là ngày mấy t
 Wǒmen shàngwǔ qù tā jiā, hǎo ma? - Buổi sáng chúng ta đến nhà anh ấy được không?
 
 ### Notes:
-
-<!-- Slide number: 23 -->
-
 ![](GoogleShape294p23.jpg)
 03
 课文
@@ -319,9 +268,6 @@ Wǒmen shàngwǔ qù tā jiā, hǎo ma? - Buổi sáng chúng ta đến nhà anh
 ![](GoogleShape296p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
-
 ![](GoogleShape308p24.jpg)
 玛丽：今天几号？
 Mǎlì: Jīntiān jǐ hào?
@@ -341,9 +287,6 @@ Mǎlì: Wǒ kàn diànshì.
 ![](GoogleShape306p24.jpg)
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape315p25.jpg)
 玛丽：你的生日是几月几号？
 Mǎlì: Nǐ de shēngrì shì jǐ yuè jǐ hào?
@@ -369,9 +312,6 @@ Wáng lán: Wǒmen shàngwǔ qù, hǎo ma?
 玛丽：好。
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape323p26.jpg)
 04
 语法
@@ -388,8 +328,6 @@ Wáng lán: Wǒmen shàngwǔ qù, hǎo ma?
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 27 -->
 1. 名词谓语句 Câu vị ngữ danh từ
 Câu có danh từ, ngữ danh từ hay số lượng từ... làm vị ngữ, gọi là câu vị ngữ danh từ. Câu khẳng định không dùng từ “是” (nếu dùng từ “是” thì sẽ là câu vị ngữ động từ). Loại câu này chủ yếu dùng để nói về thời gian, tuổi tác, quê quán và số lượng. Ví dụ:
 (1) 今天星期天。
@@ -400,8 +338,6 @@ Muốn diễn đạt ý phủ định, ta thêm “不是”  trước danh từ
 (5) 他不是北京人。
 
 ### Notes:
-
-<!-- Slide number: 28 -->
 2.年、日、月、星期的表示法  Cách diễn đạt ngày, tháng, năm
  Tên năm phải đọc từng con số một. Ví dụ:
 一九八九年		    一九九零年
@@ -415,8 +351,6 @@ Muốn diễn đạt ý phủ định, ta thêm “不是”  trước danh từ
 ![](GoogleShape341p28.jpg)
 
 ### Notes:
-
-<!-- Slide number: 29 -->
 (3) Tên ngày cũng giống như tên của tháng, nhưng thêm “日” hoặc “号” vào sau số từ 1-31. “ 日 ” thường dùng để viết, “号” thường dùng để nói.
 (4) Cách chỉ thứ trong tuần là thêm số từ 1-6  vào sau từ “星期”. Riêng ngày chủ nhật là “星期日”hoặc “星期天”.
 (5) Thứ tự viết thứ, ngày, tháng, năm như sau:
@@ -426,9 +360,6 @@ Muốn diễn đạt ý phủ định, ta thêm “不是”  trước danh từ
 ![](GoogleShape347p29.jpg)
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape354p30.jpg)
 3.“..,好吗？” “.., được không ?”
 Đây là cách dùng để hỏi ý kiến của người khác sau khi đã đưa ra một đề nghị. Phần trước của câu hỏi là một câu kể. Ví dụ:
@@ -439,9 +370,6 @@ Nếu đồng ý thì dùng “好”, “好啊”  để trả lời.
 ![](GoogleShape353p30.jpg)
 
 ### Notes:
-
-<!-- Slide number: 31 -->
-
 ![](GoogleShape361p31.jpg)
 替换与扩展
 05
@@ -458,8 +386,6 @@ Nếu đồng ý thì dùng “好”, “好啊”  để trả lời.
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 32 -->
 1. 今天几号？
 
 2. 晚上你做什么？
@@ -473,18 +399,13 @@ Minliang
 星期天听音乐   明天去买东西
 
 ### Notes:
-
-<!-- Slide number: 33 -->
-  A：明天是几月几号星期几？
+A：明天是几月几号星期几？
       B：明天是十一月二十八号，星期日。
 2.  这个星期五是我朋友的生日。他今年二十岁。下午我去她家看他。
 
 ![](GoogleShape382p33.jpg)
 
 ### Notes:
-
-<!-- Slide number: 34 -->
-
 ![](GoogleShape389p34.jpg)
 06
 练习
@@ -501,8 +422,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 35 -->
 熟读下列短语并选四个造句
     Đọc thuộc các ngữ sau và lựa 4 ngữ để đặt câu
 
@@ -513,9 +432,6 @@ Minliang
 ![](GoogleShape403p35.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
-
 ![](GoogleShape409p36.jpg)
 2.完成对话 Hoàn thành đối thoại.
 A:今天星期儿？
@@ -531,8 +447,6 @@ B:..................,你呢？
 A:....................。
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 3. 谈一谈 Tập nói chuyện
 （1）同学们互相介绍自己的生日。
 Học sinh giới thiệu cho nhau về ngày sinh của mình.
@@ -545,8 +459,6 @@ Giới thiệu giờ giấc mà bạn làm các việc dưới đây:
 ![](GoogleShape415p37.jpg)
 
 ### Notes:
-
-<!-- Slide number: 38 -->
 辨音 Phân biệt phụ âm đầu
 zhuànglì	（壮丽）	chuànglì 	 （创立）
 zăoyuán	（枣园）	căoyuán	 （草原）
@@ -556,8 +468,6 @@ niúnăi	         （牛奶）	yóulǎn	 （游览）
 qǐ zǎo          （起早）    xǐ zăo	           （洗澡）
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 辨调 Phân biệt dấu giọng
 túdì		（徒弟）.	tǔdì		（土地）
 xüěyè		（血液）	xuéyè		（学业）
@@ -567,8 +477,6 @@ jiănzhí	（简直）	jiānzhí	（兼职）
 jiǎngqíng	（讲情）	jiǎng qīng	（讲清）
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 读下列词语：第1声+第3声
 Đọc các từ sau : Thanh 1 + thanh 3
 qiānbǐ	          （铅笔）		jīchǎng	（机场）
@@ -578,8 +486,6 @@ hēibǎn 	（黑板）		kāishǐ		（开始）
 fāngfǎ		（方法）		gēwǔ		（歌舞）
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 THE END
 Minliang
 

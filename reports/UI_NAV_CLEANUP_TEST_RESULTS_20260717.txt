@@ -1,0 +1,25 @@
+UI NAV CLEANUP TEST RESULTS
+Date: 2026-07-17
+
+Automated regression tests:
+- 28/28 PASSED
+
+New targeted tests:
+- study sub-navigation does not contain studyTabHub
+- study sub-navigation does not contain visible "Tổng quan"
+- study sub-navigation does not contain the decorative 学 item
+- Học breadcrumb remains the return path
+- 301 list no longer renders the long instruction note
+- unused .hsk-dialogue301-note CSS is removed
+
+JavaScript syntax checks:
+- modules/hanzi-stroke/app.js: PASS
+- modules/shared/app-shell.js: PASS
+- app.js: PASS
+
+HTTP route smoke tests:
+- /modules/hanzi-stroke/index.html?study=hub: 200
+- /modules/hanzi-stroke/index.html?study=hsk: 200
+- /modules/hanzi-stroke/index.html?study=hsk&curriculum=dialogue301: 200
+
+Result: PASS

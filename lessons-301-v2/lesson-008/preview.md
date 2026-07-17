@@ -1,7 +1,7 @@
 # Bài 8 · 现在几点
 
 - Type: `standard_301_course`
-- Source: 8第八课-现在几点.md, lesson-008/data.json, 8第八课-现在几点.pptx
+- Source: 8第八课-现在几点.md, lesson-008/data.json
 
 ## Mẫu câu
 

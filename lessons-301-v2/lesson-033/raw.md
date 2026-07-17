@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape69p1.jpg)
 I
 
@@ -20,9 +18,6 @@ Có phòng trống không ?
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape79p2.jpg)
 目录
 
@@ -46,9 +41,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape113p3.jpg)
 
 ![](GoogleShape111p3.jpg)
@@ -67,8 +59,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 终于 | zhōngyú | 包 | bāo | 裙子 | qúnzi |
 | --- | --- | --- | --- | --- | --- |
 | 死 | sǐ | 地 | de | 箱子 | xiāngzi |
@@ -82,8 +72,6 @@ Minliang
 ![](GoogleShape126p4.jpg)
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 终于 | zhōngyú | 副 | cuối, kết thúc |
@@ -93,8 +81,6 @@ Minliang
 ![](GoogleShape133p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 死 | sǐ | 动，形 | chết |
@@ -104,8 +90,6 @@ Minliang
 ![](GoogleShape141p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 只要...就 | zhǐyào ....jiù |  | chỉ cần...thì |
@@ -115,8 +99,6 @@ Minliang
 ![](GoogleShape149p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 市 | shì | 名 | thành phố |
@@ -126,8 +108,6 @@ Minliang
 ![](GoogleShape157p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 中心 | zhōngxīn | 名 | trung tâm |
@@ -135,8 +115,6 @@ Minliang
 ![](GoogleShape165p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 旅馆 | lǚguǎn | 名 | khách sạn |
@@ -146,8 +124,6 @@ Minliang
 ![](GoogleShape172p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 空 | kōng | 形 | trống, trống không |
@@ -157,8 +133,6 @@ Minliang
 ![](GoogleShape180p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 满 | mǎn | 形 | đầy, chật |
@@ -168,8 +142,6 @@ Minliang
 ![](GoogleShape188p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 包 | bāo | 名 | cái bao, cái bọc |
@@ -177,8 +149,6 @@ Minliang
 ![](GoogleShape196p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 地 | de | 助 | (trợ từ) |
@@ -188,8 +158,6 @@ Minliang
 ![](GoogleShape203p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 位 | wèi | 量 | vị (lượng từ) |
@@ -199,8 +167,6 @@ Minliang
 ![](GoogleShape211p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 客人 | kèrén | 名 | khách |
@@ -210,8 +176,6 @@ Minliang
 ![](GoogleShape219p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 洗澡 | xǐzǎo | 动 | tắm |
@@ -221,8 +185,6 @@ Minliang
 ![](GoogleShape227p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 哦 | è | 形 | đói |
@@ -232,8 +194,6 @@ Minliang
 ![](GoogleShape235p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 衬衫 | chènshān | 名 | sơ mi |
@@ -243,8 +203,6 @@ Minliang
 ![](GoogleShape243p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 椅子 | yǐzi | 名 | cái ghế |
@@ -254,8 +212,6 @@ Minliang
 ![](GoogleShape251p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 裙子 | qúnzi | 名 | cái váy |
@@ -268,8 +224,6 @@ Minliang
 ![](GoogleShape259p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 箱子 | xiāngzi | 名 | cái rương |
@@ -279,8 +233,6 @@ Minliang
 ![](GoogleShape268p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 20 | 渴 | kě | 形 | khát |
@@ -290,8 +242,6 @@ Minliang
 ![](GoogleShape276p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 21 | 餐厅 | cāntīng | 名 | nhà ăn |
@@ -301,8 +251,6 @@ Minliang
 ![](GoogleShape284p24.jpg)
 
 ### Notes:
-
-<!-- Slide number: 25 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 22 | 再说 | zàishuō | 动，连 | hãng hay |
@@ -310,9 +258,6 @@ Minliang
 ![](GoogleShape292p25.jpg)
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape299p26.jpg)
 
 ![](GoogleShape301p26.jpg)
@@ -331,9 +276,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape316p27.jpg)
 1. 终于到了桂林了。
 /Zhōngyú dào le Guìlín le./ - Rốt cuộc cũng đến Quế Lâm rồi.
@@ -345,9 +287,6 @@ Minliang
 /Nǐmen zài qiánbian nàgè qìchē zhàn děng wǒ./ - Các bạn đợi tôi ở trạm xe bus phía trước nhé.
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape324p28.jpg)
 5. 请问，有空房间吗。
 /Qǐngwèn, yǒu kōng fángjiān ma./- Xin hỏi, có phòng trống không ?
@@ -359,9 +298,6 @@ Minliang
 /Nàgè bāo hěn dà, fàng de jìnqù fàng bù jìnqù./ - Cái túi đó rất to, để vào được hay không ?
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape330p29.jpg)
 
 ![](GoogleShape332p29.jpg)
@@ -380,9 +316,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape345p30.jpg)
 大卫：终于到了桂林了。
 尼娜：哎呀，累死了！
@@ -392,9 +325,6 @@ Minliang
 大卫：那你们慢慢地走，在前边那个汽车站等我。我去看看。
 
 ### Notes:
-
-<!-- Slide number: 31 -->
-
 ![](GoogleShape352p31.jpg)
 大卫：请问，有空房间吗？
 服务员：现在没有，都住满了。
@@ -404,9 +334,6 @@ Minliang
 服务员：你们等一会儿看看，可能有客人要走。
 
 ### Notes:
-
-<!-- Slide number: 32 -->
-
 ![](GoogleShape359p32.jpg)
 玛丽：这个房间很不错。窗户很大。
 尼娜：我想洗澡。
@@ -420,9 +347,6 @@ Minliang
 尼娜：啊！刚放的就忘了。
 
 ### Notes:
-
-<!-- Slide number: 33 -->
-
 ![](GoogleShape366p33.jpg)
 
 ![](GoogleShape368p33.jpg)
@@ -441,9 +365,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 34 -->
-
 ![](GoogleShape383p34.jpg)
 麻烦  忙    饿
 渴    高兴  难
@@ -461,8 +382,6 @@ Minliang
 瓶啤酒
 
 ### Notes:
-
-<!-- Slide number: 35 -->
 1.餐厅在大门的旁边。.
 2.A：你疏个澡吧。
   B：不，或饿死了，先吃点儿东西再说。
@@ -470,9 +389,6 @@ Minliang
 ![](GoogleShape389p35.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
-
 ![](GoogleShape398p36.jpg)
 
 ![](GoogleShape396p36.jpg)
@@ -491,8 +407,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 1. 形容词重叠与结构助词“地”
 Một số tính từ có thể trùng điệp, để chỉ mức độ gia tăng. Tính từ đơn âm tiết khi trùng điệp thì âm thứ hai đọc thành thanh 1 và cũng có thể dùng âm cuốn lưỡi. Như“好好儿”，“慢慢儿”...
 Tính từ song âm tiết có dạng trùng điệp là “AABB”, hai âm tiết lặp lại đọc thanh nhẹ. Ví dụ:“高高兴兴” ，“干干净净”...
@@ -504,8 +418,6 @@ Tính từ đơn âm tiết sau khi trùng điệp, đứng làm trạng ngữ t
 ![](GoogleShape411p37.jpg)
 
 ### Notes:
-
-<!-- Slide number: 38 -->
 2. 可能补语(二)
 Giữa động từ và bổ ngữ xu hướng thêm“得”hoặc“不”sẽ thành bổ ngữ khả năng. Ví dụ:
 (1) 他们去公园了，十二点以前回得来。
@@ -517,9 +429,6 @@ Câu hỏi chính phản của loại bổ ngữ này là đặt liền hai dạ
 ![](GoogleShape418p38.jpg)
 
 ### Notes:
-
-<!-- Slide number: 39 -->
-
 ![](GoogleShape425p39.jpg)
 
 ![](GoogleShape427p39.jpg)
@@ -538,8 +447,6 @@ Câu hỏi chính phản của loại bổ ngữ này là đặt liền hai dạ
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 1. 填上适当的量词。
 
 ![](GoogleShape440p40.jpg)
@@ -550,8 +457,6 @@ Minliang
 | 三...圆珠笔 | 一...小狗 | 三....客人 |
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 2. 把下面的句子改成正反疑问句。
 例：今天晚上六点你回得来吗？
    → 今天晚上六点你回得来回不来？
@@ -563,8 +468,6 @@ Minliang
 ![](GoogleShape446p41.jpg)
 
 ### Notes:
-
-<!-- Slide number: 42 -->
 3. 用”只要…就”回答问题
 例：明天你去公园吗？
    → 只要天气好，我就去。
@@ -576,9 +479,6 @@ Minliang
 ![](GoogleShape452p42.jpg)
 
 ### Notes:
-
-<!-- Slide number: 43 -->
-
 ![](GoogleShape458p43.jpg)
 4. 完成对话
 A：请问，一个房间..........?
@@ -592,8 +492,6 @@ B：.......................。
 A：好,我要一个房间。
 
 ### Notes:
-
-<!-- Slide number: 44 -->
 5. 会话
 在饭店看房间，服务员说这个房间很好，你觉得太贵了，想换一个。
 提示：房间大小，有什么东西，能不能洗澡，是不是干净，一天多少钱，住几个人。
@@ -604,17 +502,11 @@ Gợi ý: phòng lớn hay nhỏ, có đồ đạc gì, có thể tắm rửa ha
 ![](GoogleShape464p44.jpg)
 
 ### Notes:
-
-<!-- Slide number: 45 -->
-
 ![](GoogleShape471p45.jpg)
 6. 听述
 这个饭店不错。房间不太大，可是很干净。每个房间都能洗澡很方便。晚上可以有电视，听音乐。饭店的楼上有咖啡和舞厅。客人们白天在外边参观游览了一天,晚上喝杯咖啡，跳跳舞，可以好好地休息休息。
 
 ### Notes:
-
-<!-- Slide number: 46 -->
-
 ![](GoogleShape478p46.jpg)
 6.语音练习 Bài tập ngữ âm
 (1) 常用音节练习  Luyện tập các âm tiết thường dùng
@@ -628,9 +520,6 @@ huīfù              恢复
 hui
 
 ### Notes:
-
-<!-- Slide number: 47 -->
-
 ![](GoogleShape493p47.jpg)
 （2）朗读会话 Đọc to mẩu đàm thoại.
 A：Qǐngwèn , yǒu kōng fángjiān ma .
@@ -640,8 +529,6 @@ B：Xiàwǔ liù diǎn.
 A：Hǎo，liù diǎn zài lái ？
 
 ### Notes:
-
-<!-- Slide number: 48 -->
 The End
 Minliang
 

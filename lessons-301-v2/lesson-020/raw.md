@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape78p1.jpg)
 
 ![](GoogleShape76p1.jpg)
@@ -21,9 +19,6 @@ Hãy cạn ly vì tình hữu nghị của chúng ta
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape88p2.jpg)
 目录
 
@@ -50,9 +45,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape124p3.jpg)
 
 ![](GoogleShape126p3.jpg)
@@ -71,8 +63,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 过 | guò | 象 | xiàng | 人民 | rén mín |
 | --- | --- | --- | --- | --- | --- |
 | 得 | dé | 一样 | yí yàng | 健康 | jiàn kāng |
@@ -84,8 +74,6 @@ Minliang
 | 好吃 | hǎo chī | 晚 | wǎn |  |  |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 过 | guò | 动 | qua |
@@ -95,8 +83,6 @@ Minliang
 ![](GoogleShape145p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 得 | dé | 助 | được |
@@ -106,8 +92,6 @@ Minliang
 ![](GoogleShape153p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 愉快 | yú kuài | 形 | Vui vẻ, thoải mái |
@@ -119,8 +103,6 @@ Minliang
 ![C:\Users\ad\Downloads\8383.gif](GoogleShape164p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 喜欢 | xǐ huan | 动 | Thích |
@@ -132,8 +114,6 @@ Minliang
 ![C:\Users\ad\Downloads\10987.gif](GoogleShape173p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 为...干杯 | wèi... gānbēi |  | Cạn ly vì .... |
@@ -145,8 +125,6 @@ Minliang
 ![C:\Users\ad\Downloads\9820.gif](GoogleShape181p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 友谊 | yǒu yì | 名 | Hữu nghị |
@@ -158,8 +136,6 @@ Minliang
 ![C:\Users\ad\Downloads\1915.gif](GoogleShape191p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 鱼 | yú | 名 | Cá |
@@ -169,8 +145,6 @@ Minliang
 ![](GoogleShape197p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 好吃 | hǎo chī | 形 | ngon |
@@ -180,8 +154,6 @@ Minliang
 ![](GoogleShape205p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 象 | xiàng | 动 | Giống |
@@ -191,8 +163,6 @@ Minliang
 ![](GoogleShape213p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 一样 | yí yàng | 形 | Như nhau |
@@ -202,8 +172,6 @@ Minliang
 ![](GoogleShape221p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 饺子 | jiǎo zi | 名 | Bánh cảo |
@@ -213,8 +181,6 @@ Minliang
 ![](GoogleShape229p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 饱 | bǎo | 形 | No |
@@ -224,8 +190,6 @@ Minliang
 ![](GoogleShape237p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 生活 | shēng huó | 动，名 | Sống , sinh sống |
@@ -235,8 +199,6 @@ Minliang
 ![](GoogleShape245p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 不错 | bú cuò | 形 | Không sai, không tồi, tốt |
@@ -247,8 +209,6 @@ Minliang
 .
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 睡 | shuì | 动 | Ngủ |
@@ -258,8 +218,6 @@ Minliang
 ![](GoogleShape262p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 晚 | wǎn | 形 | Muộn |
@@ -269,8 +227,6 @@ Minliang
 ![](GoogleShape270p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 人民 | rén mín | 名 | Nhân dân |
@@ -280,8 +236,6 @@ Minliang
 ![](GoogleShape278p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 健康 | jiàn kāng | 形 | Mạnh khoẻ |
@@ -293,8 +247,6 @@ Minliang
 ![C:\Users\ad\Downloads\3530.gif](GoogleShape289p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 洗 | xǐ | 动 | Rửa, giặt |
@@ -304,8 +256,6 @@ Minliang
 ![](GoogleShape295p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 20 | 干净 | gān jìng | 形 | Sạch sẽ |
@@ -315,8 +265,6 @@ Minliang
 ![](GoogleShape303p24.jpg)
 
 ### Notes:
-
-<!-- Slide number: 25 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 21 | 照片 | zhào piàn | 名 | Hình ảnh, ảnh chụp |
@@ -326,8 +274,6 @@ Minliang
 ![](GoogleShape311p25.jpg)
 
 ### Notes:
-
-<!-- Slide number: 26 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 22 | 照 | zhào | 动 | Chụp |
@@ -337,8 +283,6 @@ Minliang
 ![](GoogleShape319p26.jpg)
 
 ### Notes:
-
-<!-- Slide number: 27 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 23 | 辆 | liàng | 量 | Chiếc(xe) |
@@ -348,9 +292,6 @@ Minliang
 ![](GoogleShape327p27.jpg)
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape335p28.jpg)
 
 ![](GoogleShape337p28.jpg)
@@ -369,8 +310,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 29 -->
 1.请这儿坐。
 /Qǐng zhèr zuò/ - Mời ngồi chỗ này.
 2.我过得很愉快。
@@ -383,8 +322,6 @@ Minliang
 ![](GoogleShape352p29.jpg)
 
 ### Notes:
-
-<!-- Slide number: 30 -->
 5.这个鱼做得真好吃。
 /Zhège yú zuò de zhēn hǎo chī ./ Món cá này nấu thật ngon.
 6.你们别客气，像在家一样。
@@ -397,9 +334,6 @@ Minliang
 ![](GoogleShape360p30.jpg)
 
 ### Notes:
-
-<!-- Slide number: 31 -->
-
 ![](GoogleShape368p31.jpg)
 
 ![](GoogleShape366p31.jpg)
@@ -418,8 +352,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 32 -->
 翻译：西川先生请这儿坐。
 西川: 谢谢
 经理：这两天过得怎么样 ?
@@ -437,8 +369,6 @@ Minliang
 ![](GoogleShape382p32.jpg)
 
 ### Notes:
-
-<!-- Slide number: 33 -->
 刘京: 我们先喝酒吧。
 西川: 这个鱼做得真好吃。
 刘母：你们别客气，像在家一样。
@@ -455,9 +385,6 @@ Minliang
 ![](GoogleShape389p33.jpg)
 
 ### Notes:
-
-<!-- Slide number: 34 -->
-
 ![](GoogleShape396p34.jpg)
 
 ![](GoogleShape398p34.jpg)
@@ -476,8 +403,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 35 -->
 1.“为我们的友谊干杯”Hãy cạn ly vì tình hữu nghị của chúng ta !
 Giới từ “为”dùng để nói rõ mục đích của hành động,nên phải đặt trước động từ.
 2.  “哪儿啊”  “Đâu có”.
@@ -486,9 +411,6 @@ Giới từ “为”dùng để nói rõ mục đích của hành động,nên 
 Đây là lời nói khách sáo, mình đã ăn no mà người khác vẫn chưa ăn xong, thì nói  “ 慢吃”.
 
 ### Notes:
-
-<!-- Slide number: 36 -->
-
 ![](GoogleShape416p36.jpg)
 
 ![](GoogleShape418p36.jpg)
@@ -507,8 +429,6 @@ Giới từ “为”dùng để nói rõ mục đích của hành động,nên 
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 我们	   生活  好，  他    说   快
 张先生  休息  不错，大卫  睡   晚
 1.我 过得很愉快。
@@ -524,9 +444,6 @@ X中人民的友谊	 您的健康
 你说得太快，我没听懂，请你说得慢一点。
 
 ### Notes:
-
-<!-- Slide number: 38 -->
-
 ![](GoogleShape440p38.jpg)
 
 ![](GoogleShape442p38.jpg)
@@ -545,9 +462,6 @@ X中人民的友谊	 您的健康
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 39 -->
-
 ![](GoogleShape455p39.jpg)
 1. 程度补语 Bổ ngữ trình độ
 Bổ ngữ dùng để nói rõ tính chất của sự vật hoặc động tác đạt đến mức độ nào đó gọi là bổ ngữ trình độ. Bổ ngữ trình độ đơn giản thường do tính từ đàm nhận. Giữa động từ và bổ ngữ trình độ phải dùng trợ từ kết cấu “得” để nối.
@@ -557,9 +471,7 @@ Bổ ngữ dùng để nói rõ tính chất của sự vật hoặc động tá
 ![](GoogleShape456p39.jpg)
 
 ### Notes:
-
-<!-- Slide number: 40 -->
- Dạng phủ định của bổ ngữ trình độ là thêm phó từ phủ định“不”vào trước bổ ngữ trình độ. Chú ý không thể thêm “不”vào trước động từ. Ví dụ:
+Dạng phủ định của bổ ngữ trình độ là thêm phó từ phủ định“不”vào trước bổ ngữ trình độ. Chú ý không thể thêm “不”vào trước động từ. Ví dụ:
 (4) 他生活得不太好
    Câu hỏi chính phản của câu có bổ ngữ trình độ là đặt thể khẳng định và phủ định của bổ ngữ trình độ liền nhau. Ví dụ:
 (5) 你休息得好不好？
@@ -568,9 +480,6 @@ Bổ ngữ dùng để nói rõ tính chất của sự vật hoặc động tá
 ![](GoogleShape463p40.jpg)
 
 ### Notes:
-
-<!-- Slide number: 41 -->
-
 ![](GoogleShape470p41.jpg)
 2.程度补语与宾语  Bổ ngữ trình độ và tân ngữ
 Khi sau động từ mang tân ngữ mà còn có bổ ngữ trình độ thì phải lặp lại động từ. Động từ lặp lại ở sau tân ngữ, ở trước “得”và bổ ngữ trình độ. Ví dụ:
@@ -581,9 +490,6 @@ Khi sau động từ mang tân ngữ mà còn có bổ ngữ trình độ thì p
 ![](GoogleShape471p41.jpg)
 
 ### Notes:
-
-<!-- Slide number: 42 -->
-
 ![](GoogleShape478p42.jpg)
 
 ![](GoogleShape480p42.jpg)
@@ -602,9 +508,6 @@ Khi sau động từ mang tân ngữ mà còn có bổ ngữ trình độ thì p
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 43 -->
-
 ![](GoogleShape494p43.jpg)
 1.  熟读下列短语并选五个造句 Đọc các nhóm từ sau và chọn ra 5 nhóm để đặt câu:
 起得很早			走得很快		玩儿得很高兴
@@ -614,8 +517,6 @@ Minliang
 ![](GoogleShape493p43.jpg)
 
 ### Notes:
-
-<!-- Slide number: 44 -->
 2 完成对话(注意用上带 “ 得 ” 的程度补语) Hoàn thành đối
 thoại (Chú ý dùng bổ ngữ trình độ có từ  “得")
 （1）A :你喜欢吃鱼吗？这鱼做.............?
@@ -630,17 +531,12 @@ thoại (Chú ý dùng bổ ngữ trình độ có từ  “得")
 ![](GoogleShape500p44.jpg)
 
 ### Notes:
-
-<!-- Slide number: 45 -->
-
 ![](GoogleShape505p45.jpg)
 3. 用“在”、“给”，“得”，“象...一样”、“跟…一起”填空。
 Dùng “在”、“给”，“得”、“象...一样”、“跟…一起”điền vào chỗ trống.
 王兰和和子都..........语言学院学习，她们是好朋友, ..........姐姐、妹妹..........。上星期我..........她们 ..........去北海公园玩儿，我..........她们照相，照得很多，都照..........很好。那天我们玩儿..........很愉快。
 
 ### Notes:
-
-<!-- Slide number: 46 -->
 4.  谈谈你的一5天 (用上带”得”的程度补语) Hãy nói về 1 ngày của bạn (Chú ý dùng bổ ngữ trình độ có từ “得")
 提示：(1) 你什么时候起床？什么时候去教室？ 什么时候睡觉？早还 是晚？
 	  (2)在这儿学汉语，你学得怎么样？生活偷快不愉快？
@@ -650,17 +546,11 @@ Gợi ý： (1) Bạn ngủ dậy lúc nào ? Lúc nào thì đếh lớp ? Khi 
 ![](GoogleShape511p46.jpg)
 
 ### Notes:
-
-<!-- Slide number: 47 -->
-
 ![](GoogleShape518p47.jpg)
 5.  听述 Nghe và kể lại
 昨天我和几个小朋友去划船了。孩子们很喜欢 划船。他们划得很好。我坐在船上高兴极了，也想孩子一样玩儿。这一天过得真有意思。
 
 ### Notes:
-
-<!-- Slide number: 48 -->
-
 ![](GoogleShape527p48.jpg)
 6.语音练习 Bài tập ngữ âm
 (1)读下列词语: 第4声+第2声
@@ -672,8 +562,6 @@ xìngmíng	（姓名）		gàobié	（告别）
 sòngxíng	（送行）		kètáng	（课堂）
 
 ### Notes:
-
-<!-- Slide number: 49 -->
 (2) 常用音节练习  Luyện tập các âm tiết thường dùng
 gōngrén	工人gǒnggù	巩固
 yīgòng	一共
@@ -686,14 +574,10 @@ gong
 ![](GoogleShape533p49.jpg)
 
 ### Notes:
-
-<!-- Slide number: 50 -->
 THE END
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 51 -->
 Minliang
 
 ### Notes:

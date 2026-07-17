@@ -1,7 +1,7 @@
 # Bài 14 · 我要去换钱
 
 - Type: `standard_301_course`
-- Source: 14第十四课_我要去换钱.md, pdf-301-cau-dam-thoai.md, 14第十四课_我要去换钱.pptx
+- Source: 14第十四课_我要去换钱.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

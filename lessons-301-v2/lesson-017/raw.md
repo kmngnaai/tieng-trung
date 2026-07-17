@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape78p1.jpg)
 
 ![](GoogleShape76p1.jpg)
@@ -21,9 +19,6 @@ Bài 17:
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape88p2.jpg)
 目录
 
@@ -50,9 +45,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape124p3.jpg)
 
 ![](GoogleShape126p3.jpg)
@@ -71,8 +63,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 天气 | tiān qì | 上 | shàng |
 | --- | --- | --- | --- |
 | 出 | chū | 动物园 | dòng wù yuán |
@@ -86,8 +76,6 @@ Minliang
 | 跟 | gēn | 最 | zuì |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 天气 | tiān qì | 名 | Thời tiết |
@@ -97,8 +85,6 @@ Minliang
 ![](GoogleShape145p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 出 | chū | 动 | ra, ra ngoài |
@@ -106,8 +92,6 @@ Minliang
 ![](GoogleShape153p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 花儿 | huār | 名 | Hoa , bông |
@@ -117,8 +101,6 @@ Minliang
 ![](GoogleShape160p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 划 | huá | 动 | (bơi)chèo |
@@ -128,8 +110,6 @@ Minliang
 ![](GoogleShape168p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 船 | chuán | 名 | xuồng, ghe, tàu, thuyền |
@@ -137,8 +117,6 @@ Minliang
 ![C:\Users\ad\Downloads\15987.gif](GoogleShape177p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 啊 | a | 叹，助 | Thán từ/ trợ từ ngữ khí |
@@ -148,8 +126,6 @@ Minliang
 ![](GoogleShape183p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 去年 | qù nián | 名 | Năm ngoái |
@@ -159,8 +135,6 @@ Minliang
 ![](GoogleShape191p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 学 | xué | 动 | Học |
@@ -168,8 +142,6 @@ Minliang
 ![](GoogleShape199p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 还是 | hái shì | 连 | Hay là |
@@ -179,8 +151,6 @@ Minliang
 ![](GoogleShape206p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 跟 | gēn | 介 | Cùng, với |
@@ -190,8 +160,6 @@ Minliang
 ![](GoogleShape214p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 上 | shàng | 名 | Trên |
@@ -200,8 +168,6 @@ Minliang
 ![](GoogleShape222p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 动物园 | dòng wù yuán | 名 | Sở thú |
@@ -213,8 +179,6 @@ Minliang
 ![C:\Users\ad\Downloads\10793.gif](GoogleShape232p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 熊猫 | xióng māo | 名 | Gấu trúc |
@@ -226,8 +190,6 @@ Minliang
 ![猫的笔顺动画](GoogleShape241p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 机场 | jī chǎng | 名 | Sân bay |
@@ -238,8 +200,6 @@ Minliang
 .
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 考试 | kǎo shì | 动，名 | Thi,kỳ thi |
@@ -249,8 +209,6 @@ Minliang
 ![](GoogleShape256p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 骑 | qí | 动 | Cưỡi |
@@ -260,8 +218,6 @@ Minliang
 ![](GoogleShape264p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 自行车 | zì xíng chē | 名 | Xe đạp |
@@ -271,8 +227,6 @@ Minliang
 ![](GoogleShape272p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 条 | tiáo | 量 | Con (đường) |
@@ -282,8 +236,6 @@ Minliang
 ![](GoogleShape280p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 20 | 最 | zuì | 副 | Nhất |
@@ -293,8 +245,6 @@ Minliang
 ![](GoogleShape288p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 专名 ： Danh từ riêng
 1. 北海公园 /běi hǎi gōng yuán/: công viên Bắc Hải
 
@@ -304,9 +254,6 @@ Minliang
 ![](GoogleShape297p24.jpg)
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape303p25.jpg)
 
 ![](GoogleShape305p25.jpg)
@@ -325,9 +272,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape320p26.jpg)
 1.这两天天气很好。
 /Zhè liǎng tiān tiānqì hěn hǎo./ - Hai hôm nay thời tiết rất tốt.
@@ -339,9 +283,6 @@ Minliang
 /Qù běi hǎi gōng yuán kànkan huār , huáhua chuán./ - Đi công viên Bắc Hải ngắm hoa và bơi thuyền.
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape328p27.jpg)
 5.今天天气多好啊!
 /Jīn tiān tiān qì duō hǎo a !/ - Hôm nay thời tiết đẹp biết bao.
@@ -353,9 +294,6 @@ Minliang
 /Wǒ gēn nǐ yì qǐ qù./ - Tôi đi cùng với anh.
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape334p28.jpg)
 
 ![](GoogleShape336p28.jpg)
@@ -374,9 +312,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape350p29.jpg)
 张：这两天天气很好。我们出去玩儿玩儿吧。
 和子：去哪儿玩儿, 好呢?
@@ -388,8 +323,6 @@ Minliang
 和子：星期天吧。
 
 ### Notes:
-
-<!-- Slide number: 30 -->
 和子：你认识西川一郎吗?
 刘京：当然认识。去年他在这儿学过汉语。
 和子：你知道吗? 明天他来北京。
@@ -405,9 +338,6 @@ Minliang
 ![](GoogleShape356p30.jpg)
 
 ### Notes:
-
-<!-- Slide number: 31 -->
-
 ![](GoogleShape364p31.jpg)
 
 ![](GoogleShape366p31.jpg)
@@ -426,9 +356,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 32 -->
-
 ![](GoogleShape380p32.jpg)
 “这两天天气很好。”  “Hai hôm nay thời tiết rất tốt.
 “两天” chỉ  “gần đây （最近）”, “两” là số ước lượng.
@@ -436,9 +363,6 @@ Minliang
 ![](GoogleShape378p32.jpg)
 
 ### Notes:
-
-<!-- Slide number: 33 -->
-
 ![](GoogleShape386p33.jpg)
 
 ![](GoogleShape388p33.jpg)
@@ -457,8 +381,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 34 -->
 我没事	他很忙
 销往身体不好
 他们有考试
@@ -477,9 +399,6 @@ Minliang
    ----这条路最近。
 
 ### Notes:
-
-<!-- Slide number: 35 -->
-
 ![](GoogleShape410p35.jpg)
 
 ![](GoogleShape412p35.jpg)
@@ -498,9 +417,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 36 -->
-
 ![](GoogleShape425p36.jpg)
 1.   选择疑问句Câu hỏi lựa chọn:
 Dùng liên từ 还是  nối liền hai đáp án có khả năng với nhau để người trả lời chọn lấy một, loại câu hỏi này gọi là câu hỏi lựa chọn. Ví dụ:
@@ -511,8 +427,6 @@ Dùng liên từ 还是  nối liền hai đáp án có khả năng với nhau �
 ![](GoogleShape426p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 2. 表示动作方式的连动句  Câu liên động chỉ phương thức của động tác.
 Trong loại câu này, động từ hay ngữ động từ đứng trước chỉ phương thức của động tác, như câu 用汉语介绍，骑自行车去.....
 3. 趋向补语(一)  Bổ ngữ xu hướng 1
@@ -524,9 +438,6 @@ Phía sau một số động từ thường dùng 来，去 làm bổ ngữ ch�
 ![](GoogleShape433p37.jpg)
 
 ### Notes:
-
-<!-- Slide number: 38 -->
-
 ![](GoogleShape440p38.jpg)
 
 ![](GoogleShape442p38.jpg)
@@ -545,8 +456,6 @@ Phía sau một số động từ thường dùng 来，去 làm bổ ngữ ch�
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 1.  给下面的词配上适当兵语并造句 Cho các động từ dưới đây một tân ngữ thích hợp rồi đặt câu.
 	坐.............	划.............	 骑.............	 演.............
 	拿.............	换.............	穿.............	 打.............
@@ -556,8 +465,6 @@ Minliang
 ![](GoogleShape456p39.jpg)
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 2.  根据所给的内容用“还是”提问      Căn cứ nội dung đã cho, dùng“还是”để đặt câu hỏi
 例:六点半起床 ..........七点起床
 → 你六点半起床还是七点起床?
@@ -570,8 +477,6 @@ Minliang
 （5）今年回国		明年回国
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 3.仿照下面的例子会话  Dựa theo ví dụ dưới đây để đàm thoại
  例： A：你去哪儿？
 B：我去北京大学。
@@ -584,8 +489,6 @@ B：我去北京大学看朋友。
 ![](GoogleShape468p41.jpg)
 
 ### Notes:
-
-<!-- Slide number: 42 -->
 4.  听述 Nghe và kể lại
 小张告诉我,离我们学院不远有一个果园。 那个果园有很多水果，可以看，可以吃，也可以买。我们应 该去看看.	.
 我们想星期日去。我们骑自行车去。
@@ -593,8 +496,6 @@ B：我去北京大学看朋友。
 ![](GoogleShape474p42.jpg)
 
 ### Notes:
-
-<!-- Slide number: 43 -->
 5.语音练习 Bài tập ngữ âm
 (1) 读下列词语: 第3声+第4声
 Đọc các từ sau : Thanh 3 + Thanh 4
@@ -607,8 +508,6 @@ mǎi dào	（广场）		yǒushì	（永远）
 ![](GoogleShape484p43.jpg)
 
 ### Notes:
-
-<!-- Slide number: 44 -->
 (2) 常用音节练习  Luyện tập các âm tiết thường dùng
 rénmín	人民
 rěnràng 	忍让
@@ -622,14 +521,10 @@ ren
 ![](GoogleShape490p44.jpg)
 
 ### Notes:
-
-<!-- Slide number: 45 -->
 THE END
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 46 -->
 Minliang
 
 ### Notes:

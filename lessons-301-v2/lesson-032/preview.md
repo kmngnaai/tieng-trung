@@ -1,7 +1,7 @@
 # Bài 32 · 你的钱包忘在这儿了
 
 - Type: `standard_301_course`
-- Source: 32第三十二课_你的钱包忘在这儿了.md, pdf-301-cau-dam-thoai.md, 32第三十二课_你的钱包忘在这儿了.pptx
+- Source: 32第三十二课_你的钱包忘在这儿了.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

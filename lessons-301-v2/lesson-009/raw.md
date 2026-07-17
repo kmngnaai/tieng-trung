@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape77p1.jpg)
 
 第九课
@@ -20,9 +18,6 @@ Bạn ở tại đâu?
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape87p2.jpg)
 目录
 
@@ -49,9 +44,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape124p3.jpg)
 01
 生词
@@ -68,8 +60,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 住 | zhù | 知道 | zhīdào |
 | --- | --- | --- | --- |
 | 多少 | duōshǎo | 问 | wèn |
@@ -81,8 +71,6 @@ Minliang
 | 楼 | lóu | 层 | céng |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 住 | zhù | 动 | ở, cư ngụ |
@@ -92,8 +80,6 @@ Minliang
 ![](GoogleShape143p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 多少 | duōshǎo | 代 | Bao nhiêu |
@@ -105,8 +91,6 @@ Minliang
 ![C:\Users\ad\Downloads\8339.gif](GoogleShape154p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 房间 | fángjiān | 名 | Phòng |
@@ -118,8 +102,6 @@ Minliang
 ![C:\Users\ad\Downloads\4553.gif](GoogleShape162p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 欢迎 | huānyíng | 动 | Chào mừng, hoan nghênh |
@@ -131,8 +113,6 @@ Minliang
 ![C:\Users\ad\Downloads\3097.gif](GoogleShape172p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 玩儿 | wán | 动 | Chơi |
@@ -142,8 +122,6 @@ Minliang
 ![](GoogleShape178p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 常（常） | cháng | 副 | Thường, luôn luôn |
@@ -153,8 +131,6 @@ Minliang
 ![](GoogleShape186p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 一起 | yīqǐ | 副，名 | Cùng, cùng nhau |
@@ -164,8 +140,6 @@ Minliang
 ![](GoogleShape194p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 楼 | lóu | 名 | lầu, nhà lầu |
@@ -175,8 +149,6 @@ Minliang
 ![](GoogleShape202p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 知道 | zhīdào | 动 | Biết |
@@ -188,8 +160,6 @@ Minliang
 ![C:\Users\ad\Downloads\3206.gif](GoogleShape213p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 问 | wèn | 动 | Hỏi |
@@ -199,8 +169,6 @@ Minliang
 ![](GoogleShape219p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 对 | duì | 形，介，动 | Đúng, đối với |
@@ -210,8 +178,6 @@ Minliang
 ![](GoogleShape227p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 路 | lù | 路 | Đường |
@@ -221,8 +187,6 @@ Minliang
 ![](GoogleShape235p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 邮局 | yóujú | 名 | Bưu điện |
@@ -234,8 +198,6 @@ Minliang
 ![C:\Users\ad\Downloads\5776.gif](GoogleShape245p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 学校 | xuéxiào | 名 | Trường học |
@@ -245,8 +207,6 @@ Minliang
 ![](GoogleShape252p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 邮票 | yóupiào | 名 | Tem |
@@ -256,8 +216,6 @@ Minliang
 ![](GoogleShape260p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 层 | céng | 名 | Tầng (lầu) |
@@ -267,8 +225,6 @@ Minliang
 ![](GoogleShape268p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | 17 | 学院路 | Xuéyuàn lù | Đường Học viện |
 | --- | --- | --- | --- |
 | 18 | 东四大路 | Dōng sì dàlù | Đại lộ Đông Tứ |
@@ -279,9 +235,6 @@ Minliang
 ![](GoogleShape276p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
-
 ![](GoogleShape284p22.jpg)
 02
 句子
@@ -298,9 +251,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 23 -->
-
 ![](GoogleShape299p23.jpg)
 1.你住在哪儿？
 /Nǐ zhù zài nǎr?/ - Bạn sống ở đâu?
@@ -320,9 +270,6 @@ Minliang
 /Nà tài hǎo le/ - Thế thì tốt quá.
 
 ### Notes:
-
-<!-- Slide number: 24 -->
-
 ![](GoogleShape307p24.jpg)
 03
 课文
@@ -339,9 +286,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape322p25.jpg)
 刘京：你住在哪儿？
 Liú Jīng: Nǐ zhù zài nǎr?
@@ -363,9 +307,6 @@ Dàwèi: Xièxie.
 ![](GoogleShape320p25.jpg)
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape328p26.jpg)
 大卫：张丽英家在哪儿？
 Dàwèi: Zhāng Lìyīng jiā zài nǎr?
@@ -377,9 +318,6 @@ Dàwèi: Hǎo, wǒ qù wèn tā.
 ![](GoogleShape331p26.jpg)
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape337p27.jpg)
 大卫：王兰，张丽英家在哪儿？
 Dàwèi: Wáng Lán, zhānglìyīng jiā zài nǎr?
@@ -395,9 +333,6 @@ Dàwèi: Nà tài hǎo le!
 ![](GoogleShape340p27.jpg)
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape347p28.jpg)
 04
 注释
@@ -414,8 +349,6 @@ Dàwèi: Nà tài hǎo le!
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 29 -->
 1.几号楼？Dãy nhà lầu số mấy? ，多少号房间? Phòng số bao nhiêu
 “几” và “多少” trong 2 câu trên đều dùng để hỏi con số. Nếu số định hỏi dưới 10 thì dùng “几”, trên 10 thì dùng “多少” .
 2. 那 太好了！Thế thì tốt quá
@@ -426,9 +359,6 @@ Minliang
 ![](GoogleShape361p29.jpg)
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape368p30.jpg)
 05
 替换与扩展
@@ -445,8 +375,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 31 -->
 九楼308号房间
 五楼204号房间
 上海	   北京饭店
@@ -469,9 +397,6 @@ B：我去邮局买邮票。
 A：他住在学生宿舍2层234号房间。
 
 ### Notes:
-
-<!-- Slide number: 32 -->
-
 ![](GoogleShape392p32.jpg)
 06
 语法
@@ -488,9 +413,6 @@ A：他住在学生宿舍2层234号房间。
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 33 -->
-
 ![](GoogleShape405p33.jpg)
 1.连动句Câu liên động:
 Trong câu vị ngữ động từ,có nhiều động từ hoặc nhiều ngữ động từ dùng liền nhau, cùng có chung một chủ ngữ, ta gọi đó là câu liên động. Ví dụ:
@@ -502,9 +424,6 @@ Trong câu vị ngữ động từ,có nhiều động từ hoặc nhiều ngữ
 ![](GoogleShape406p33.jpg)
 
 ### Notes:
-
-<!-- Slide number: 34 -->
-
 ![](GoogleShape413p34.jpg)
 2.状语 Trạng ngữ:
 Thành phần đứng trước để bổ nghĩa cho động từ hoặc hình dung từ vị ngữ được gọi là trạng ngữ. Phó từ, hình dung từ, từ chỉ thời gian, kết cấu giới từ… đều có thể làm trạng ngữ.
@@ -516,9 +435,6 @@ Thành phần đứng trước để bổ nghĩa cho động từ hoặc hình d
 ![](GoogleShape414p34.jpg)
 
 ### Notes:
-
-<!-- Slide number: 35 -->
-
 ![](GoogleShape422p35.jpg)
 07
 练习
@@ -535,8 +451,6 @@ Thành phần đứng trước để bổ nghĩa cho động từ hoặc hình d
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 36 -->
 1.熟读下列词语并选择造句 Đọc thuộc các từ ngữ sau và chọn ra để đặt câu.
 玩儿
 看
@@ -567,9 +481,6 @@ Minliang
           你常写信吗？
 
 ### Notes:
-
-<!-- Slide number: 37 -->
-
 ![](GoogleShape460p37.jpg)
 3. 用下列词语造句 Dùng các từ ngữ sau để đặt câu :
 例:	家		在
@@ -582,8 +493,6 @@ Minliang
 Gợi ý: Nhà anh (cô) ấy ở đâu? cư ngụ nơi nào ? Học tập hoặc làm việc ở đâu ? v.v...
 
 ### Notes:
-
-<!-- Slide number: 38 -->
 5.语音练习 Bài tập ngữ âm
 (1)读下列词语:第2声+第I声
 Đọc các từ sau : Thanh thứ 2 + Thanh thứ 1
@@ -596,8 +505,6 @@ hóng huā	 红花		huí jiā 	回家
 ![](GoogleShape468p38.jpg)
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 (2)  常用音节练习 Luyện tập các âm tiết thường dùng
 	wǒmen 我们		rúguǒ 如果
 	wò shǒu 握手		rù xué 入学

@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape78p1.jpg)
 
 ![](GoogleShape76p1.jpg)
@@ -21,9 +19,6 @@ Bài 18:
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape88p2.jpg)
 目录
 
@@ -47,9 +42,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape122p3.jpg)
 
 ![](GoogleShape120p3.jpg)
@@ -68,8 +60,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 从 | cóng | 一会儿 | yí huìr |
 | --- | --- | --- | --- |
 | 飞机 | fēi jī | 感谢 | gǎn xiè |
@@ -83,8 +73,6 @@ Minliang
 | 为什么 | wèi shén me |  |  |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 从 | cóng | 介 | Từ |
@@ -94,8 +82,6 @@ Minliang
 ![](GoogleShape141p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 飞机 | fēi jī | 名 | Máy bay |
@@ -105,8 +91,6 @@ Minliang
 ![](GoogleShape149p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 晚点 | wǎn diǎn |  | Trễ giờ |
@@ -116,8 +100,6 @@ Minliang
 ![](GoogleShape157p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 要...了 | yào...le |  | Sắp ...rồi |
@@ -127,8 +109,6 @@ Minliang
 ![](GoogleShape165p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 起飞 | qǐ fēi | 动 | Cất cánh |
@@ -136,8 +116,6 @@ Minliang
 ![C:\Users\ad\Downloads\17551.gif](GoogleShape174p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 大概 | dà gài | 副 | Khoảng |
@@ -147,8 +125,6 @@ Minliang
 ![](GoogleShape180p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 水 | shuǐ | 名 | Nước |
@@ -158,8 +134,6 @@ Minliang
 ![](GoogleShape188p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 辛苦 | xué | 形 | Vất vả |
@@ -171,8 +145,6 @@ Minliang
 ![C:\Users\ad\Downloads\2098.gif](GoogleShape198p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 服务员 | fú wù yuán | 名 | Nhân viên phục vụ |
@@ -182,8 +154,6 @@ Minliang
 ![](GoogleShape205p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 为什么 | wèi shén me | 代 | Tại sao |
@@ -193,8 +163,6 @@ Minliang
 ![](GoogleShape213p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 一会儿 | yí huìr | 名 | Một lúc |
@@ -204,8 +172,6 @@ Minliang
 ![](GoogleShape221p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 感谢 | gǎn xiè | 动 | Cảm ơn |
@@ -215,8 +181,6 @@ Minliang
 ![](GoogleShape229p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 贸易 | mào yì | 名 | Buôn bán trao đổi, mậu dịch |
@@ -228,8 +192,6 @@ Minliang
 ![易的笔顺动画](GoogleShape240p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 公司 | gōng sī | 名 | Công ty |
@@ -242,8 +204,6 @@ Minliang
 .
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 开 | kāi | 动 | Mở, chạy(tàu, xe) |
@@ -253,8 +213,6 @@ Minliang
 ![](GoogleShape256p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 毕业 | bì yè | 动 | Tốt nghiệp |
@@ -266,8 +224,6 @@ Minliang
 ![C:\Users\ad\Downloads\82.gif](GoogleShape267p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 啤酒 | pí jiǔ | 名 | Bia |
@@ -279,8 +235,6 @@ Minliang
 ![C:\Users\ad\Downloads\17388.gif](GoogleShape276p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 出租汽车 | chū zū qì chē | 名 | Taxi |
@@ -292,8 +246,6 @@ Minliang
 ![C:\Users\ad\Downloads\6656.gif](GoogleShape285p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 火车 | huǒ chē | 名 | Tàu hoả |
@@ -303,9 +255,6 @@ Minliang
 ![](GoogleShape291p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
-
 ![](GoogleShape299p24.jpg)
 
 ![](GoogleShape301p24.jpg)
@@ -324,9 +273,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape316p25.jpg)
 1. 从东京来的飞机到了吗?
 /Cóng Dōng Jīng lái de fēijī dào le ma ?/  - Máy bay từ Đông Kinh (Tokyo) đã tới chưa?
@@ -338,8 +284,6 @@ Minliang
 /Fēijī dàgài sān diǎn bàn néng dào./ - Máy bay có thể khoảng 3 giờ rưỡi tới.
 
 ### Notes:
-
-<!-- Slide number: 26 -->
 5. 我们先去喝点儿水，一会儿再来这儿吧。
 /Wǒ men xiān qù hē diǎnr shuǐ , yí huìr zài lái zhèr ba./
 6. 路上辛苦了?
@@ -352,9 +296,6 @@ Minliang
 ![](GoogleShape324p26.jpg)
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape332p27.jpg)
 
 ![](GoogleShape330p27.jpg)
@@ -373,9 +314,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape346p28.jpg)
 和子：从东京来的飞机到了吗?
 服务员：还没到。
@@ -388,9 +326,6 @@ Minliang
 和子：刘京，我们先去喝点儿水，一会儿再来这儿吧。
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape353p29.jpg)
 和子：你看，西川来了。
 刘京：你好！路上幸苦了。
@@ -404,9 +339,6 @@ Minliang
 ![](GoogleShape354p29.jpg)
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape360p30.jpg)
 
 ![](GoogleShape362p30.jpg)
@@ -425,8 +357,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 31 -->
 我没事	他很忙
 销往身体不好
 他们有考试
@@ -443,9 +373,6 @@ Minliang
 2. 去动物园哪儿条路近？...............这条路最近。
 
 ### Notes:
-
-<!-- Slide number: 32 -->
-
 ![](GoogleShape384p32.jpg)
 
 ![](GoogleShape386p32.jpg)
@@ -464,9 +391,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 33 -->
-
 ![](GoogleShape399p33.jpg)
 1. “要...了”  “Sắp ... rồi”
 Kiểu câu “要...了” chỉ một động tác hoặc một tình huống sắp sửa xảy ra. Phó từ “要” biểu thị “sắp sửa”. Đặt trước động từ hoặc hình dung từ, cuối câu thêm trợ từ ngữ khí “了”. Trước từ“要” còn có thể thêm từ “就”，hoặc “快” để chỉ thời gian cấp bách. Ví dụ:
@@ -476,9 +400,6 @@ Kiểu câu “要...了” chỉ một động tác hoặc một tình huống 
 Trước “就要...了”có thể thêm từ ngữ chỉ thời gian làm trạng ngữ, nhưng trước“快要...了” không được. Ví dụ:“他明天就要走了”，mà không thể nói “他明天快要走了”.
 
 ### Notes:
-
-<!-- Slide number: 34 -->
-
 ![](GoogleShape406p34.jpg)
 2.	“是...的”“ (Là)... đó”
 Câu có “是…的”dùng để nhấn mạnh thời gian, địa điểm, phương thức ... của động tác đã xảy ra. “是” đặt trước bộ phận được nhấn mạnh, nhưng đôi khi được lược bỏ,“的”đặt ở cuối câu. Ví dụ :
@@ -491,9 +412,6 @@ Câu có “是...的”đôi khi còn có thể dùng để nhấn mạnh chủ
 ![](GoogleShape407p34.jpg)
 
 ### Notes:
-
-<!-- Slide number: 35 -->
-
 ![](GoogleShape414p35.jpg)
 
 ![](GoogleShape416p35.jpg)
@@ -512,9 +430,6 @@ Câu có “是...的”đôi khi còn có thể dùng để nhấn mạnh chủ
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 36 -->
-
 ![](GoogleShape430p36.jpg)
 用“要...了” 或“快要...了”、“就要…了”改写句子
 Dùng “要...了” hoặc “快要...了”、“就要…了”viết lại câu
@@ -528,8 +443,6 @@ Dùng “要...了” hoặc “快要...了”、“就要…了”viết lại
 ![](GoogleShape429p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 2. 用“大概”、“应该” 完成对话  Hoàn thành đối thoại
 （1）A：你们一天学多少生词？
 B ：.....................。
@@ -543,8 +456,6 @@ A :现在商店还有没有？
 ![](GoogleShape436p37.jpg)
 
 ### Notes:
-
-<!-- Slide number: 38 -->
 3. 按照实际情况回答问题 Theo tình hình thực tế trả lời câu hỏi
 （1）你从哪儿来中国？你是怎么来的？
 （2）你为什么来中国？
@@ -554,8 +465,6 @@ A :现在商店还有没有？
 ![](GoogleShape442p38.jpg)
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 5.语音练习 Bài tập ngữ âm
 
 ![](GoogleShape452p39.jpg)
@@ -570,9 +479,6 @@ shǒu shang	（广场）		běnzi		（永远）
 ![](GoogleShape448p39.jpg)
 
 ### Notes:
-
-<!-- Slide number: 40 -->
-
 ![](GoogleShape458p40.jpg)
 (2) 常用音节练习  Luyện tập các âm tiết thường dùng
 hējiǔ		喝酒
@@ -587,14 +493,10 @@ he
 wei
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 THE END
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 42 -->
 Minliang
 
 ### Notes:

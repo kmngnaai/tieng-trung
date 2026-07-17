@@ -1,7 +1,7 @@
 # Bài 29 · 我也喜欢游泳
 
 - Type: `standard_301_course`
-- Source: 29第二十九课_我也喜欢游泳.md, pdf-301-cau-dam-thoai.md, 29第二十九课_我也喜欢游泳.pptx
+- Source: 29第二十九课_我也喜欢游泳.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

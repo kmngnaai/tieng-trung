@@ -1,7 +1,7 @@
 # Bài 35 · 你好点儿了吗
 
 - Type: `standard_301_course`
-- Source: 35第三十五课_你好点儿了吗.md, pdf-301-cau-dam-thoai.md, 35第三十五课_你好点儿了吗.pptx
+- Source: 35第三十五课_你好点儿了吗.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

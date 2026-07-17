@@ -1,7 +1,7 @@
 # Bài 40 · 祝你一路平安
 
 - Type: `standard_301_course`
-- Source: 40第四十课_祝你一路平安.md, pdf-301-cau-dam-thoai.md, 40第四十课_祝你一路平安.pptx
+- Source: 40第四十课_祝你一路平安.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

@@ -18,7 +18,7 @@ from typing import Any
 # 2) Phan loai lesson_type.
 # 3) Tao JSON moi co sentences/dialogue/vocabulary ro rang nhat co the.
 # 4) Tao debug_report + preview.md de kiem tra bang mat.
-# 5) Khong be nguyen PPT nang vao web; PPT chi dung metadata neu co.
+# 5) Khong dua du lieu trinh chieu vao output.
 #
 # Dat file tai:
 #   tieng-trung-web/scripts/build_301_structured_data.py
@@ -208,8 +208,7 @@ def clean_lines(text: str, keep_tables: bool = True) -> list[str]:
             if out and out[-1] != "":
                 out.append("")
             continue
-        if line.startswith("<!-- Slide number:"):
-            # Giữ marker nhẹ để raw/debug, parser section có thể bỏ qua.
+        if line.startswith("<!--") and line.endswith("-->"):
             continue
         if line.startswith("### Notes"):
             continue
@@ -783,7 +782,7 @@ def read_old_lessons_metadata(source_root: Path) -> dict[str, Any]:
             for lesson_dir in folder.glob("lesson-*"):
                 if lesson_dir.is_dir():
                     files = [str(p.relative_to(lesson_dir)).replace("\\", "/") for p in lesson_dir.rglob("*") if p.is_file()]
-                    meta["media"][lesson_dir.name] = [f for f in files if f.startswith(("slides/", "images/"))]
+                    meta["media"][lesson_dir.name] = [f for f in files if f.startswith("images/")]
         elif zip_path.exists():
             meta["available"] = True
             with zipfile.ZipFile(zip_path) as zf:
@@ -794,7 +793,7 @@ def read_old_lessons_metadata(source_root: Path) -> dict[str, Any]:
                     for it in items:
                         meta["lessons"][it.get("lesson_id", "")] = it
                 for name in names:
-                    m = re.match(r"lessons-301/(lesson-\d{3})/(slides|images)/(.+)$", name)
+                    m = re.match(r"lessons-301/(lesson-\d{3})/(images)/(.+)$", name)
                     if m and not name.endswith("/"):
                         meta["media"].setdefault(m.group(1), []).append(f"{m.group(2)}/{m.group(3)}")
     except Exception as exc:
@@ -802,24 +801,7 @@ def read_old_lessons_metadata(source_root: Path) -> dict[str, Any]:
     return meta
 
 
-def read_ppt_metadata(source_root: Path) -> dict[str, Any]:
-    folder = source_root / "PPT 301 CÂU ĐÀM THOẠI"
-    zip_path = source_root / "PPT 301 CÂU ĐÀM THOẠI.zip"
-    rows = []
-    if folder.exists():
-        for path in folder.glob("*.pptx"):
-            rows.append({"file": path.name, "size_bytes": path.stat().st_size})
-    elif zip_path.exists():
-        with zipfile.ZipFile(zip_path) as zf:
-            for info in zf.infolist():
-                if info.is_dir() or not info.filename.lower().endswith(".pptx"):
-                    continue
-                rows.append({"file": decode_zip_u_name(Path(info.filename).name), "size_bytes": info.file_size})
-    rows.sort(key=lambda r: int(re.match(r"^(\d+)", r["file"]).group(1)) if re.match(r"^(\d+)", r["file"]) else 999)
-    return {"count": len(rows), "files": rows, "note": "metadata_only_no_pptx_copied"}
-
-
-def build_data_for_lesson(lesson: LessonSource, pdf_sections_by_no: dict[Any, dict[str, str]], old_meta: dict[str, Any], ppt_meta: dict[str, Any]) -> dict[str, Any]:
+def build_data_for_lesson(lesson: LessonSource, pdf_sections_by_no: dict[Any, dict[str, str]], old_meta: dict[str, Any]) -> dict[str, Any]:
     md_sections = split_markdown_sections(lesson.md_text)
     pdf_exact_sections = pdf_sections_by_no.get(lesson.lesson_no, {})
     warnings: list[str] = []
@@ -846,7 +828,7 @@ def build_data_for_lesson(lesson: LessonSource, pdf_sections_by_no: dict[Any, di
     if use_pdf_primary and pdf_exact_sections:
         sentences = parse_triple_items(pdf_exact_sections.get("sentences", ""), "pdf_md", allow_dialogue=False)
         dialogue = parse_triple_items(pdf_exact_sections.get("dialogue", ""), "pdf_md", allow_dialogue=True)
-        # Từ vựng ưu tiên MD/PPT-derived vì bảng PDF bị vỡ dòng khá nhiều.
+        # Từ vựng ưu tiên Markdown vì bảng PDF bị vỡ dòng khá nhiều.
         # PDF vẫn có thể dùng fallback nếu MD không có.
         vocabulary = parse_vocab_from_tables(md_sections.get("vocabulary", "")) or parse_pdf_vocab(pdf_exact_sections.get("vocabulary", ""))
         notes = parse_numbered_notes(pdf_exact_sections.get("notes", ""), "pdf_md")
@@ -877,7 +859,7 @@ def build_data_for_lesson(lesson: LessonSource, pdf_sections_by_no: dict[Any, di
         if lesson.lesson_no == 40:
             pdf_phrases = parse_phrase_list(pdf_exact_sections.get("main", ""), "pdf_md")
             if pdf_phrases:
-                # Đây là dữ liệu tham khảo từ PDF khác hệ bài; không đưa vào main lesson để tránh lệch với PPT/MD.
+                # Đây là dữ liệu tham khảo từ PDF khác hệ bài; không đưa vào main lesson để tránh lệch với Markdown.
                 pdf_reference["phrases"] = pdf_phrases
                 warnings.append("pdf_phrase_list_reference_available_not_used_as_main")
 
@@ -943,32 +925,17 @@ def build_data_for_lesson(lesson: LessonSource, pdf_sections_by_no: dict[Any, di
         "phrases": phrases,
         "pdf_reference": pdf_reference,
         "media": {
-            "slides": [],
             "images": [],
             "old_media_available_count": len(old_meta.get("media", {}).get(lesson.lesson_id, [])),
-        },
-        "ppt": {
-            "used_for": ["metadata_only"],
-            "matched_file": "",
-            "note": "PPTX is not copied into output.",
         },
         "sources": {
             "lesson_md": lesson.md_name,
             "pdf_md": "pdf-301-cau-dam-thoai.md" if pdf_exact_sections else "",
             "old_data": f"{lesson.lesson_id}/data.json" if lesson.lesson_id in old_meta.get("lessons", {}) else "",
-            "pptx": "",
         },
         "warnings": warnings,
         "raw_sections": md_sections,
     }
-    # match ppt by lesson number if available
-    for row in ppt_meta.get("files", []):
-        m = re.match(r"^(\d+)", row.get("file", ""))
-        if m and int(m.group(1)) == lesson.lesson_no:
-            data["ppt"]["matched_file"] = row["file"]
-            data["ppt"]["size_bytes"] = row.get("size_bytes")
-            data["sources"]["pptx"] = row["file"]
-            break
 
     data["lesson_type"] = determine_lesson_type(lesson.lesson_no, data, grouped_key)
     data["summary"] = {
@@ -1075,12 +1042,11 @@ def main() -> None:
     pdf_blocks = split_pdf_lessons(pdf_text)
     pdf_sections_by_no = {k: split_pdf_sections(v) for k, v in pdf_blocks.items()}
     old_meta = read_old_lessons_metadata(source_root)
-    ppt_meta = read_ppt_metadata(source_root)
 
     all_data = []
     lesson_index = []
     for lesson in md_lessons:
-        data = build_data_for_lesson(lesson, pdf_sections_by_no, old_meta, ppt_meta)
+        data = build_data_for_lesson(lesson, pdf_sections_by_no, old_meta)
         lesson_dir = out_dir / lesson.lesson_id
         lesson_dir.mkdir(parents=True, exist_ok=True)
         write_json(lesson_dir / "data.json", data)
@@ -1110,19 +1076,15 @@ def main() -> None:
         "pdf_md": str(pdf_path),
         "md_source": str(source_root / "MD_301_CAU_DAM_THOAI") if (source_root / "MD_301_CAU_DAM_THOAI").exists() else str(source_root / "MD_301_CAU_DAM_THOAI.zip"),
         "old_lessons": str(source_root / "lessons-301") if (source_root / "lessons-301").exists() else str(source_root / "lessons-301.zip"),
-        "ppt_source": str(source_root / "PPT 301 CÂU ĐÀM THOẠI") if (source_root / "PPT 301 CÂU ĐÀM THOẠI").exists() else str(source_root / "PPT 301 CÂU ĐÀM THOẠI.zip"),
-        "ppt_policy": "metadata_only_no_pptx_copied",
     }
     debug_md, debug_json = build_debug_report(all_data, source_files)
     (out_dir / "debug_report.md").write_text(debug_md, encoding="utf-8")
     write_json(out_dir / "debug_report.json", debug_json)
-    write_json(out_dir / "ppt_metadata.json", ppt_meta)
 
     print("Done: built structured Dialogue 301 data")
     print(f"- Lessons: {len(all_data)}")
     print(f"- Output: {out_dir}")
     print(f"- Debug: {out_dir / 'debug_report.md'}")
-    print("- PPT policy: metadata only, no PPTX copied")
 
 
 if __name__ == "__main__":

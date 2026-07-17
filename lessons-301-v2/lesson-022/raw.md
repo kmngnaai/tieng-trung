@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape70p1.jpg)
 I
 
@@ -22,9 +20,6 @@ Tôi không thể đi được
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape80p2.jpg)
 目录
 
@@ -51,9 +46,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape116p3.jpg)
 
 ![](GoogleShape118p3.jpg)
@@ -72,8 +64,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 巧 | qiǎo | 好 | hǎo | 陪 | péi |
 | --- | --- | --- | --- | --- | --- |
 | 再说 | zàishuō | 见面 | jiànmiàn | 句子 | jùzi |
@@ -84,8 +74,6 @@ Minliang
 | 空儿 | kòngr | 刚 | gāng | 男 | nán |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 巧 | qiǎo | 形 | May mắn, khéo |
@@ -95,8 +83,6 @@ Minliang
 ![](GoogleShape137p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 再说 | zài shuō | 连，动 | Để sau hẵng hay,hơn nữa |
@@ -106,8 +92,6 @@ Minliang
 ![](GoogleShape145p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 可是 | kě shì | 连 | nhưng |
@@ -115,8 +99,6 @@ Minliang
 ![](GoogleShape154p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 约会 | yuè huì | 名，动 | Hẹn, cuộc hẹn |
@@ -126,8 +108,6 @@ Minliang
 ![](GoogleShape162p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 女 | nǚ | 名 | Nữ |
@@ -137,8 +117,6 @@ Minliang
 ![](GoogleShape170p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 同学 | tóng xué | 名 | Bạn học |
@@ -146,8 +124,6 @@ Minliang
 ![](GoogleShape176p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 空儿 | kòngr | 名 | Lúc rảnh, chỗ trống |
@@ -157,8 +133,6 @@ Minliang
 ![](GoogleShape183p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 好 | hǎo | 副 | Quá, biết bao, hàng(mấy...) |
@@ -166,8 +140,6 @@ Minliang
 ![](GoogleShape191p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 见面 | jiàn miàn | 名 | Gặp mặt |
@@ -175,8 +147,6 @@ Minliang
 ![](GoogleShape199p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 话剧 | huà jù | 名 | Kịch nói |
@@ -188,8 +158,6 @@ Minliang
 ![C:\Users\ad\Downloads\419.gif](GoogleShape207p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 哎呀 | āi yā | 叹 | Ái chà, chao ôi |
@@ -201,8 +169,6 @@ Minliang
 ![C:\Users\ad\Downloads\3823.gif](GoogleShape217p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 复习 | fù xí | 动 | ôn tập |
@@ -212,8 +178,6 @@ Minliang
 ![](GoogleShape223p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 画展 | huà zhǎn | 名 | Triển lãm hội hoạ |
@@ -225,8 +189,6 @@ Minliang
 ![C:\Users\ad\Downloads\5796.gif](GoogleShape233p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 刚 | gāng | 副 | Vừa mới |
@@ -237,8 +199,6 @@ Minliang
 .
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 陪 | péi | 动 | Đưa đi |
@@ -248,8 +208,6 @@ Minliang
 ![](GoogleShape251p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 封 | fēng | 量 | Bức, phong |
@@ -259,8 +217,6 @@ Minliang
 ![](GoogleShape257p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 会 | huì | 名 | Họp, buổi họp |
@@ -270,8 +226,6 @@ Minliang
 ![](GoogleShape267p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 正 | zhèng | 副 | Đang |
@@ -281,8 +235,6 @@ Minliang
 ![](GoogleShape273p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 高 | gāo | 形 | Cao |
@@ -292,8 +244,6 @@ Minliang
 ![](GoogleShape283p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 20 | 男 | kāi | 名 | Nam |
@@ -303,9 +253,6 @@ Minliang
 ![](GoogleShape289p24.jpg)
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape299p25.jpg)
 
 ![](GoogleShape297p25.jpg)
@@ -324,8 +271,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 26 -->
 1.我买了两张票。
 /Wǒ mǎi le liǎng zhāng piào/ - Tôi đã mua 2 vé.
 2.真不巧，我不能去。
@@ -338,8 +283,6 @@ Minliang
 ![](GoogleShape314p26.jpg)
 
 ### Notes:
-
-<!-- Slide number: 27 -->
 5.你是跟女朋友约会吗 ?
 /Nǐ shì gēn nǚ péngyou yuè huì ma ?/ - Bạn có hẹn với bạn gái phải không?
 6.有一个同学来看我，我要等他。
@@ -352,9 +295,6 @@ Minliang
 ![](GoogleShape322p27.jpg)
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape328p28.jpg)
 
 ![](GoogleShape330p28.jpg)
@@ -373,8 +313,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 29 -->
 张丽英：我买了两张票。请你看话剧。
 玛丽：是吗 ? 什么时候的 ?
 张丽英：今天晚上七点一刻的。
@@ -384,9 +322,6 @@ Minliang
 ![](GoogleShape344p29.jpg)
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape351p30.jpg)
 玛丽：明天有一个画展，你能去吗?
 大卫：我很想去，可是明天有一个约会。
@@ -400,9 +335,6 @@ Minliang
 大卫：好。
 
 ### Notes:
-
-<!-- Slide number: 31 -->
-
 ![](GoogleShape359p31.jpg)
 
 ![](GoogleShape357p31.jpg)
@@ -421,8 +353,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 32 -->
 1.“是吗？” “Thật sao ?”
 Biểu thị một sự việc nào đó vốn không hay biết, sau khi nghe nói cảm thấy hơi bất ngờ. Có khi còn dùng để tỏ ý không tin lắm.
 2. “怎么？是女女朋友约会吗”“Sao? Có hẹn với bạn gái phải không?”
@@ -431,9 +361,6 @@ Biểu thị một sự việc nào đó vốn không hay biết, sau khi nghe n
 “再说”chỉ ý gác một việc nào đó lại, sau này giải quyết hay xem xét.
 
 ### Notes:
-
-<!-- Slide number: 33 -->
-
 ![](GoogleShape379p33.jpg)
 
 ![](GoogleShape377p33.jpg)
@@ -452,8 +379,6 @@ Biểu thị một sự việc nào đó vốn không hay biết, sau khi nghe n
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 34 -->
 1.我买了两张票。
 
 2.我们好几年没见面了。
@@ -472,9 +397,6 @@ A：那个很高的人是谁？
 B：他是小李的男朋友。
 
 ### Notes:
-
-<!-- Slide number: 35 -->
-
 ![](GoogleShape402p35.jpg)
 
 ![](GoogleShape404p35.jpg)
@@ -493,8 +415,6 @@ B：他是小李的男朋友。
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 36 -->
 1. 时段词语作状语 Từ ngữ chỉ thời đoạn làm trạng ngữ
 Từ ngữ chỉ thời đoạn làm trạng ngữ chỉ rõ trong một khoảng thời gian như vậy hoàn thành một động tác hay xuất hiện một tình huống nào đó. Ví dụ:
 (1)	他两天看了一本书
@@ -503,8 +423,6 @@ Từ ngữ chỉ thời đoạn làm trạng ngữ chỉ rõ trong một khoản
 ![](GoogleShape419p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 2. 动态助词“了” Trợ từ động thái “了”
 Trợ từ đứng sau động từ chỉ động tác đang ở giai đoạn nào đó gọi là trợ từ động thái. Trợ từ động thái“了”đặt sau động từ chỉ động tác đã hoàn thành. Khi có tân ngữ thì tân ngữ thường mang số lượng từ hoặc một định ngữ khác. Ví dụ:
 (1)我昨天看了一个电影。
@@ -517,9 +435,6 @@ Dạng phủ định của động tác hoàn thành là thêm“没(有)” v�
 ![](GoogleShape425p37.jpg)
 
 ### Notes:
-
-<!-- Slide number: 38 -->
-
 ![](GoogleShape434p38.jpg)
 
 ![](GoogleShape432p38.jpg)
@@ -538,9 +453,6 @@ Dạng phủ định của động tác hoàn thành là thêm“没(有)” v�
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 39 -->
-
 ![](GoogleShape447p39.jpg)
 1.用“可是”完成句子 Dùng“可是”hoàn thành câu:
 (1) 他六十岁了，................................................。
@@ -550,8 +462,6 @@ Minliang
 (5) 我请小王去看电影, .........................................。
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 2.  仿照例子用动态助词“了”造句. Dựa theo ví dụ, dùng trợ từ động thái“了” để đặt câu.
 例：买	词典
         → 昨天我买了一本词典。
@@ -562,9 +472,6 @@ Minliang
 ![](GoogleShape452p40.jpg)
 
 ### Notes:
-
-<!-- Slide number: 41 -->
-
 ![](GoogleShape460p41.jpg)
 3.完成对话 Hoàn thành đối thoại.
 (1)	A：今天晚上有舞会，..................?
@@ -585,8 +492,6 @@ Minliang
 ![](GoogleShape459p41.jpg)
 
 ### Notes:
-
-<!-- Slide number: 42 -->
 4. 会话 Đàm thoại
 1. 你请朋友星期日去长城，他说星期日有约会，不能去。
 2. 你请朋友跟你跳舞，他说他不会跳舞。
@@ -597,9 +502,6 @@ Minliang
 京剧...............得很好，很有意思。
 
 ### Notes:
-
-<!-- Slide number: 43 -->
-
 ![](GoogleShape480p43.jpg)
 6.语音练习 Bài tập ngữ âm
 (1) 常用音节练习  Luyện tập các âm tiết thường dùng
@@ -613,9 +515,6 @@ hòulái		后来
 lai
 
 ### Notes:
-
-<!-- Slide number: 44 -->
-
 ![](GoogleShape487p44.jpg)
 （2）朗读会话 Đọc to mẩu đàm thoại.
 A : Nǐ hē píjiǔ ma?
@@ -627,8 +526,6 @@ B：Hǎo, shǎo hè yīdiǎnr.
 A：Lái, gānbēi!
 
 ### Notes:
-
-<!-- Slide number: 45 -->
 The End
 Minliang
 

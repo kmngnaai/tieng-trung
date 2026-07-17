@@ -332,3 +332,42 @@ body.has-tt-module-top-nav .shell {
     font-size: 12px;
   }
 }
+
+/* UI 2026-07-17: legacy reference module inside the shared shell */
+body { padding-top: calc(var(--ui-header-height) + var(--ui-safe-top)); padding-bottom: calc(var(--ui-bottom-nav-height) + var(--ui-safe-bottom)); background: var(--ui-bg); }
+.legacy-reference-note {
+  width: min(calc(100% - 24px), 1180px);
+  margin: 14px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid color-mix(in srgb, var(--ui-warning) 28%, var(--ui-border));
+  border-radius: 16px;
+  background: var(--ui-warning-soft);
+  color: var(--ui-warning);
+  padding: 11px 14px;
+  font-size: .86rem;
+}
+.legacy-reference-note span { color: color-mix(in srgb, var(--ui-warning) 78%, var(--ui-text)); }
+#themeBtn { display: none !important; }
+.app-shell { min-height: calc(100dvh - var(--ui-header-height) - var(--ui-bottom-nav-height)); }
+@media (max-width: 760px) {
+  .legacy-reference-note { align-items: flex-start; flex-direction: column; }
+}
+@media (min-width: 900px) {
+  body { padding-bottom: 0; }
+}
+
+/* Reference module uses the same shell palette without changing its lesson logic. */
+:root {
+  --bg: var(--ui-bg);
+  --panel: var(--ui-surface);
+  --panel2: var(--ui-surface-muted);
+  --text: var(--ui-text);
+  --muted: var(--ui-text-secondary);
+  --line: var(--ui-border);
+  --blue: var(--ui-accent);
+  --blue2: var(--ui-accent-soft);
+  --shadow: var(--ui-shadow-md);
+}

@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape69p1.jpg)
 I
 
@@ -20,9 +18,6 @@ Bạn đã đỡ chút nào chưa ?
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape79p2.jpg)
 目录
 
@@ -46,9 +41,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape111p3.jpg)
 
 ![](GoogleShape113p3.jpg)
@@ -67,8 +59,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 点心 | diǎnxīn | 着急 | zháojí | 画报 | huàbào |
 | --- | --- | --- | --- | --- | --- |
 | 小卖部 | xiǎomàibù | 补 | bǔ | 录相 | lùxiàng |
@@ -82,8 +72,6 @@ Minliang
 ![](GoogleShape126p4.jpg)
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 点心 | diǎnxīn | 名 | điểm tâm |
@@ -91,8 +79,6 @@ Minliang
 ![](GoogleShape133p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 小卖部 | xiǎomàibù | 名 | căng tin |
@@ -102,8 +88,6 @@ Minliang
 ![](GoogleShape140p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 了 | liǎo | 动 | biết, hiểu, hết |
@@ -111,8 +95,6 @@ Minliang
 ![](GoogleShape148p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 门口 | ménkǒu | 名 | cửa, cổng vào |
@@ -120,8 +102,6 @@ Minliang
 ![](GoogleShape155p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 看样子 | kànyàngzi |  | coi bộ, dáng bộ |
@@ -131,8 +111,6 @@ Minliang
 ![](GoogleShape162p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 病人 | bìngrén | 名 | bệnh nhân |
@@ -140,8 +118,6 @@ Minliang
 ![](GoogleShape170p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 罐头 | guàntou | 名 | đồ hộp |
@@ -151,8 +127,6 @@ Minliang
 ![](GoogleShape177p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 眼镜 | yǎnjìng | 名 | mắt kính |
@@ -162,8 +136,6 @@ Minliang
 ![](GoogleShape185p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 着急 | zháojí | 形 | sốt ruột |
@@ -173,8 +145,6 @@ Minliang
 ![](GoogleShape193p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 补 | bǔ | 动 | tu bổ |
@@ -184,8 +154,6 @@ Minliang
 ![](GoogleShape201p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 广播 | guǎngbō | 名，动 | phát thanh |
@@ -195,8 +163,6 @@ Minliang
 ![](GoogleShape209p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 面条 | miàntiáo | 名 | mì sợi |
@@ -205,8 +171,6 @@ Minliang
 ![](GoogleShape217p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 节目 | jiémù | 名 | tiết mục |
@@ -214,8 +178,6 @@ Minliang
 ![](GoogleShape224p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 糖 | táng | 名 | đường |
@@ -225,8 +187,6 @@ Minliang
 ![](GoogleShape231p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 杂志 | zázhì | 名 | tạp chí |
@@ -234,8 +194,6 @@ Minliang
 ![](GoogleShape239p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 画报 | huàbào | 名 | họa báo |
@@ -243,8 +201,6 @@ Minliang
 ![](GoogleShape246p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 录相 | lùxiàng | 名 | video |
@@ -256,8 +212,6 @@ Minliang
 ![磁的笔顺动画](GoogleShape255p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 21 | 黑 | hēi | 形 | đen |
@@ -267,8 +221,6 @@ Minliang
 ![](GoogleShape261p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 22 | 戴 | dài | 动 | đội |
@@ -278,9 +230,6 @@ Minliang
 ![](GoogleShape269p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
-
 ![](GoogleShape277p24.jpg)
 
 ![](GoogleShape279p24.jpg)
@@ -299,9 +248,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape294p25.jpg)
 1. 我想买点儿点心什么的。
 /Wǒ xiǎng mǎi diǎnr diǎnxīn shénme de./ - Tôi muốn mua một chút điểm tâm gì đó.
@@ -313,8 +259,6 @@ Minliang
 /Yīyuàn qiánbian xiū lù, qìchē dào bù liǎo yīyuàn ménkǒu./ - Phía trước bệnh viện đang sửa đường, ô tô không tới cửa bệnh viện được.
 
 ### Notes:
-
-<!-- Slide number: 26 -->
 5. 你好点儿了吗？
 /Nǐ hǎo diǎnr le ma?./- Bạn đã đỡ chút nào chưa ?
 6. 看样子，你好多了。
@@ -327,9 +271,6 @@ Minliang
 ![](GoogleShape302p26.jpg)
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape310p27.jpg)
 
 ![](GoogleShape308p27.jpg)
@@ -348,9 +289,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape323p28.jpg)
 玛丽：今天下午我们去看王兰，好吗？
 刘京：不行，今天不能着病人。明天下午可以。
@@ -363,9 +301,6 @@ Minliang
 大卫：我们在前一站下车，从那儿走着去很近。
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape330p29.jpg)
 玛丽：王兰，你好点儿了吗？
 刘京：看样子，你好多了。
@@ -380,9 +315,6 @@ Minliang
 三人：再见！
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape339p30.jpg)
 
 ![](GoogleShape337p30.jpg)
@@ -401,9 +333,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 31 -->
-
 ![](GoogleShape354p31.jpg)
 带  花  ，听   音乐
 吃  面条，买   面包
@@ -420,8 +349,6 @@ Minliang
 拿   英语书，买   磁带
 
 ### Notes:
-
-<!-- Slide number: 32 -->
 天很黑，看样子要下雨了。
 人民的生活一年比一年幸福。
 那个戴眼镜的人是谁？
@@ -429,9 +356,6 @@ Minliang
 ![](GoogleShape360p32.jpg)
 
 ### Notes:
-
-<!-- Slide number: 33 -->
-
 ![](GoogleShape369p33.jpg)
 
 ![](GoogleShape367p33.jpg)
@@ -450,8 +374,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 34 -->
 1. 疑问代词“什么”Đại từ nghi vấn “什么”
 Đại từ nghi vấn“什么”ngoài cách dùng trong câu hỏi, còn có mấy cách dùng sau đây:
 • “什么”thêm“的”đặt sau một hoặc nhiều thành phần ngang hàng biểu thị ý“等等”hoặc“之类”.Ví dụ:
@@ -464,8 +386,6 @@ Minliang
 ![](GoogleShape382p34.jpg)
 
 ### Notes:
-
-<!-- Slide number: 35 -->
 •“什么”khi được đặt trước“都”,“也”sẽ đề cập đến tất cả sự vật trong phạm vi đang được đề cập, không có ngoại lệ. Ví dụ:
 (5) 王兰病了，什么新不想底。
 (6) 我什么也不知道。
@@ -476,8 +396,6 @@ Minliang
 ![](GoogleShape389p35.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
 2. 动词“了”作可能补语  Động từ“了”làm bổ ngữ khả năng
 Động từ“了”có nghĩa là hoàn tất, kết thúc, thường được đặt sau một động từ khác, tạo thành bổ ngữ khả năng, đánh giá khả năng thực hiện của hành vi (có thể hoặc không thể). Ví dụ:
 (1) 明天你去得了公园吗？
@@ -489,9 +407,6 @@ Có khi làm bổ ngữ khả năng, nó vẫn có ý chỉ sự hoàn tất (k
 ![](GoogleShape396p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 37 -->
-
 ![](GoogleShape405p37.jpg)
 
 ![](GoogleShape403p37.jpg)
@@ -510,8 +425,6 @@ Có khi làm bổ ngữ khả năng, nó vẫn có ý chỉ sự hoàn tất (k
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 38 -->
 1. 把下面句子改成用“什么”的问句。
 
 ![](GoogleShape418p38.jpg)
@@ -521,8 +434,6 @@ Minliang
 (4)	他要去桂林旅行。
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 2. 仿照例子，用“什么”改写句子。
 例：水果好就买水果，罐头好就买罐头。
    → 什么好就买什么。.
@@ -534,8 +445,6 @@ Minliang
 ![](GoogleShape424p39.jpg)
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 3. 完成对话
 (1) 用上“什么”
 A：.......................。
@@ -555,8 +464,6 @@ B：........................。(看样子)
 ![](GoogleShape430p40.jpg)
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 4. 会话
 
 ![](GoogleShape436p41.jpg)
@@ -566,17 +473,11 @@ B：........................。(看样子)
 Gợi ý: Sinh hoạt ở bệnh viện thế nào, bệnh tình ra sao, cần thứ gì ?...
 
 ### Notes:
-
-<!-- Slide number: 42 -->
-
 ![](GoogleShape443p42.jpg)
 5. 听述
 小王住院了，上星期六我们去看她了。她住的病房有四张病床。有一张是空的，三张病床都有人。我们去看她的时候，她正躺着看书呢。她看见我们她高兴极了。她说想出院，我们劝她不要着急，出院后我们帮她补英语，想吃什么就给她送去。她很高兴，不再说出院的事了。
 
 ### Notes:
-
-<!-- Slide number: 43 -->
-
 ![](GoogleShape450p43.jpg)
 6.语音练习 Bài tập ngữ âm
 (1) 常用音节练习  Luyện tập các âm tiết thường dùng
@@ -590,8 +491,6 @@ fā shāo          发烧
 fa
 
 ### Notes:
-
-<!-- Slide number: 44 -->
 （2）朗读会话 Đọc to mẩu đàm thoại.
 A：Qǐngwèn ,,Wáng Lán zhùzài jǐ hào bìngfáng .
 B：Tā zài wǔ hào dì yī chuáng, kěshì jīntiān bùnéng kàn bìngrén .
@@ -603,8 +502,6 @@ B：Méiguānxi, wǒ kěyǐ gěi tā fàng zài bīngxiāng.
 ![](GoogleShape465p44.jpg)
 
 ### Notes:
-
-<!-- Slide number: 45 -->
 The End
 Minliang
 

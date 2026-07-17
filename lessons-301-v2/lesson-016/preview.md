@@ -1,7 +1,7 @@
 # Bài 16 · 你看过京剧吗
 
 - Type: `standard_301_course`
-- Source: 16第十六课_你看过京剧吗_.md, pdf-301-cau-dam-thoai.md, 16第十六课_你看过京剧吗_.pptx
+- Source: 16第十六课_你看过京剧吗_.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

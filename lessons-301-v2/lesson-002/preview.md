@@ -1,7 +1,7 @@
 # Bài 2 · 你身体好吗
 
 - Type: `full_course`
-- Source: 2第二课 -你身体好吗.md, pdf-301-cau-dam-thoai.md, lesson-002/data.json, 2第二课 -你身体好吗.pptx
+- Source: 2第二课 -你身体好吗.md, pdf-301-cau-dam-thoai.md, lesson-002/data.json
 
 ## Mẫu câu
 

@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape76p1.jpg)
 
 第四课
@@ -18,8 +16,6 @@ Ngài họ gì ?
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
 Nhiều giáo trình hán ngữ, kèm file audio, power point, Pdf… từ cơ bản đến nâng cao. Mọi người có thể tải miễn phí trong ứng dụng “ Hán ngữ lý thú” trên CH Play về tham khảo nhé.
 
 ![](GoogleShape88g2ec69dd95d0_0_0.jpg)
@@ -31,9 +27,6 @@ Nhiều giáo trình hán ngữ, kèm file audio, power point, Pdf… từ cơ b
 ![](GoogleShape90g2ec69dd95d0_0_0.jpg)
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape96p2.jpg)
 目录
 
@@ -59,9 +52,6 @@ Nhiều giáo trình hán ngữ, kèm file audio, power point, Pdf… từ cơ b
 生词
 
 ### Notes:
-
-<!-- Slide number: 4 -->
-
 ![](GoogleShape140p3.jpg)
 
 ![](GoogleShape132p3.jpg)
@@ -80,8 +70,6 @@ Nhiều giáo trình hán ngữ, kèm file audio, power point, Pdf… từ cơ b
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | 叫 | jiào | 那 | nà |
 | --- | --- | --- | --- |
 | 认识 | rènshi | 个 | gè |
@@ -93,8 +81,6 @@ Minliang
 | 是 | shì |  |  |
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 叫 | jiào | 动 | Gọi, tên là |
@@ -104,8 +90,6 @@ Minliang
 ![](GoogleShape152p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 认识 | rènshi | 动 | Quen , quen biết |
@@ -119,8 +103,6 @@ Minliang
 ![C:\Users\ad\Pictures\1854.gif](GoogleShape162p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 高兴 | gāo xìng | 形 | Vui, vui mừng, hân hạnh |
@@ -132,8 +114,6 @@ Minliang
 ![C:\Users\ad\Pictures\157.gif](GoogleShape172p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 贵 | guì | 形 | xưng hô tôn trọng; quý, đắt |
@@ -143,8 +123,6 @@ Minliang
 ![](GoogleShape179p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 姓 | xìng | 动 | họ |
@@ -154,8 +132,6 @@ Minliang
 ![](GoogleShape187p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 什么 | shén me | 代 | cái gì, gì |
@@ -167,8 +143,6 @@ Minliang
 ![么的笔顺动画](GoogleShape198p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 名字 | míngzi | 名 | Tên |
@@ -180,8 +154,6 @@ Minliang
 ![C:\Users\ad\Pictures\8828.gif](GoogleShape207p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 是 | shì | 动 | là |
@@ -191,8 +163,6 @@ Minliang
 ![](GoogleShape213p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 那 | nà | 代 | kia, đó |
@@ -205,8 +175,6 @@ Minliang
 ![这的笔顺动画](GoogleShape224p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 个 | gè | 量 | cái |
@@ -216,8 +184,6 @@ Minliang
 ![](GoogleShape230p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 人 | rén | 名 | người |
@@ -227,8 +193,6 @@ Minliang
 ![](GoogleShape238p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 大夫 | dàifu | 名 | bác sĩ, đại phu |
@@ -238,8 +202,6 @@ Minliang
 ![](GoogleShape246p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 留学生 | liúxuéshēng | 名 | Lưu học sinh |
@@ -249,8 +211,6 @@ Minliang
 ![](GoogleShape254p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 朋友 | péngyou | 名 | bạn |
@@ -262,9 +222,6 @@ Minliang
 ![友的笔顺动画](GoogleShape265p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
-
 ![](GoogleShape272p19.jpg)
 02
 句子
@@ -281,8 +238,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 1.我叫玛丽。-
 /Wǒ jiào Mǎlì/ - Tôi là Mary
 2.认识你，很高兴。-
@@ -297,9 +252,6 @@ Minliang
 /Tā bùshì lǎoshī, tā shì xuéshēng/ - Cô ấy không phải là giáo viên, cô ấy là học sinh.
 
 ### Notes:
-
-<!-- Slide number: 22 -->
-
 ![](GoogleShape292p21.jpg)
 03
 课文
@@ -316,9 +268,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 23 -->
-
 ![](GoogleShape306p22.jpg)
 
 ![](GoogleShape305p22.jpg)
@@ -335,9 +284,6 @@ Wáng Lán: Rènshì nǐ, wǒ yě hěn gāoxìng.
 -----------------------------
 
 ### Notes:
-
-<!-- Slide number: 24 -->
-
 ![](GoogleShape314p23.jpg)
 
 ![](GoogleShape315p23.jpg)
@@ -358,9 +304,6 @@ Zhāng   :   Tā bùshì lǎoshī, tā shì xuéshēng.
 ![](GoogleShape317p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape324p24.jpg)
 04
 注释
@@ -377,8 +320,6 @@ Zhāng   :   Tā bùshì lǎoshī, tā shì xuéshēng.
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 26 -->
 1. 您贵姓？ Họ của ông là gì?
 Đây là cách hỏi lịch sự, tôn kính để hỏi họ của một người. Khi trả lời phải nói là 我姓....chứ không thể nói là 我贵姓...
 2. 你叫什么名字？ Bạn tên là gì?
@@ -389,9 +330,6 @@ Dùng khi hỏi họ của người thứ 3. Không thể dùng 他贵姓？
 ![](GoogleShape338p25.jpg)
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape345p26.jpg)
 05
 替换与扩展
@@ -408,8 +346,6 @@ Dùng khi hỏi họ của người thứ 3. Không thể dùng 他贵姓？
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 28 -->
 我认识你！
 
 2.  她是老师吗？
@@ -429,9 +365,6 @@ B: 是，她是美国人。
 ![](GoogleShape358p27.jpg)
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape369p28.jpg)
 06
 语法
@@ -448,8 +381,6 @@ B: 是，她是美国人。
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 30 -->
 1.用“吗”的问句：Câu hỏi dùng "吗"
 Thêm trợ lừ nghi vấn “吗”vào cuối một câu kể, ta sẽ có một câu hỏi thông thường.
 Ví dụ:          (1) 你好吗？
@@ -465,8 +396,6 @@ Câu hỏi dùng đại từ nghi vấn (谁，什么，哪儿...), có trật t
 ![](GoogleShape384p29.jpg)
 
 ### Notes:
-
-<!-- Slide number: 31 -->
 3. 形容词谓语句：Câu vị ngữ hình dung từ
 Câu có thành phần chủ yếu của vị ngữ là hình dung từ (tính từ) gọi là câu vị ngữ hình dung từ.
 Ví dụ: (1) 他很忙。
@@ -475,9 +404,6 @@ Ví dụ: (1) 他很忙。
 ![](GoogleShape392p30.jpg)
 
 ### Notes:
-
-<!-- Slide number: 32 -->
-
 ![](GoogleShape399p31.jpg)
 07
 练习
@@ -494,9 +420,6 @@ Ví dụ: (1) 他很忙。
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 33 -->
-
 ![](GoogleShape413p32.jpg)
 1 完成对话 Hoàn thành đối thoại.
 （1）A:大夫 ………………?
@@ -518,8 +441,6 @@ Minliang
           A: ……………。
 
 ### Notes:
-
-<!-- Slide number: 34 -->
 2.根据情境会话 Đàm thoại theo tình huống
 (1) 你和一个中国朋友初次见而，互相问候，问姓名，表现出高兴的心情。
 Bạn và một người bạn Trung Quốc gặp nhau lần đầu, cùng chào hỏi, hỏi tên nhau và thể hiện sự vui thích.
@@ -529,9 +450,6 @@ Bạn không quen biết với bạn của em trai, bạn hỏi em bạn về t�
 ![](GoogleShape420p33.jpg)
 
 ### Notes:
-
-<!-- Slide number: 35 -->
-
 ![](GoogleShape428p34.jpg)
 3. 听述：Nghe và kể lại
 我认识王英，她是学生，认识她我很高兴。她爸爸是大夫，妈妈是老师， 他们身体都很好，工作也很忙。她妹妹也是学生，诫示人忙。
@@ -541,9 +459,6 @@ Bạn không quen biết với bạn của em trai, bạn hỏi em bạn về t�
 ![](GoogleShape427p34.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
-
 ![](GoogleShape434p35.jpg)
 辨音
 | piāoyáng（飘扬） | Biǎoyáng（表扬） |
@@ -554,8 +469,6 @@ Bạn không quen biết với bạn của em trai, bạn hỏi em bạn về t�
 | shǎo chī（少吃） | xiǎochī （小吃） |
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 辨调
 | běi fāng | 北方 | běi fáng | 北房 |
 | --- | --- | --- | --- |
@@ -568,8 +481,6 @@ Bạn không quen biết với bạn của em trai, bạn hỏi em bạn về t�
 ![](GoogleShape441p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 38 -->
 读下列词语：第一声+第一声
 | fēijī | 飞机 | cānjiā | 参加 |
 | --- | --- | --- | --- |
@@ -581,8 +492,6 @@ Bạn không quen biết với bạn của em trai, bạn hỏi em bạn về t�
 ![](GoogleShape448p37.jpg)
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 THE END
 Minliang
 

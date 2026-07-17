@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape69p1.jpg)
 I
 
@@ -20,9 +18,6 @@ Phong cảnh ở đó rất đẹp
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape79p2.jpg)
 目录
 
@@ -46,9 +41,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape113p3.jpg)
 
 ![](GoogleShape111p3.jpg)
@@ -67,8 +59,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 名胜古迹 | míngshèng gǔjī | 办 | bàn | 城市 | chéngshì |
 | --- | --- | --- | --- | --- | --- |
 | 来得及 | lái de jí | 热闹 | rènao | 工业 | gōngyè |
@@ -79,8 +69,6 @@ Minliang
 | 计划 | jìhuà | 顺便 | shùnbiàn | 圆珠笔 | yuánzhūbǐ |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 名胜古迹 | míngshèng gǔjī | 名 | danh lam thắng cảnh |
@@ -90,8 +78,6 @@ Minliang
 ![](GoogleShape132p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 来得及 | lái de jí |  | kịp |
@@ -100,8 +86,6 @@ Minliang
 ![](GoogleShape140p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 游览 | yóulǎn | 动 | du lịch |
@@ -111,8 +95,6 @@ Minliang
 ![](GoogleShape147p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 风景 | fēngjǐng | 名 | phong cảnh |
@@ -122,8 +104,6 @@ Minliang
 ![](GoogleShape155p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 然后 | ránhòu | 副 | sau đó |
@@ -133,8 +113,6 @@ Minliang
 ![](GoogleShape163p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 计划 | jìhuà | 名，动 | kế hoạch |
@@ -144,8 +122,6 @@ Minliang
 ![](GoogleShape171p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 办 | bàn | 动 | làm |
@@ -153,8 +129,6 @@ Minliang
 ![](GoogleShape179p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 热闹 | rènao | 形 | náo nhiệt |
@@ -164,8 +138,6 @@ Minliang
 ![](GoogleShape186p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 各 | gè | 代 | các |
@@ -175,8 +147,6 @@ Minliang
 ![](GoogleShape194p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 非常 | fēicháng | 形，副 | cực kỳ, rất |
@@ -186,8 +156,6 @@ Minliang
 ![](GoogleShape202p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 小吃 | xiǎochī | 名 | đồ ăn vặt |
@@ -195,8 +163,6 @@ Minliang
 ![](GoogleShape210p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 有名 | yǒumíng | 形 | nổi tiếng, có tiếng |
@@ -204,8 +170,6 @@ Minliang
 ![](GoogleShape217p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 顺便 | shùnbiàn | 副 | thuận tiện, nhân tiện |
@@ -215,8 +179,6 @@ Minliang
 ![](GoogleShape224p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 城市 | chéngshì | 名 | thành thị |
@@ -226,8 +188,6 @@ Minliang
 ![](GoogleShape232p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 工业 | gōngyè | 名 | công nghiệp |
@@ -235,8 +195,6 @@ Minliang
 ![](GoogleShape240p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 展览馆 | zhǎnlǎnguǎn | 名 | nhà triển lãm |
@@ -246,8 +204,6 @@ Minliang
 ![](GoogleShape247p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 手续 | shǒuxù | 名 | thủ tục |
@@ -257,8 +213,6 @@ Minliang
 ![](GoogleShape255p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 水果 | shuǐguǒ | 名 | trái cây, hoa quả |
@@ -266,8 +220,6 @@ Minliang
 ![](GoogleShape263p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 20 | 之一 | zhīyī |  | một trong số |
@@ -275,8 +227,6 @@ Minliang
 ![](GoogleShape270p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 21 | 圆珠笔 | yuánzhūbǐ | 名 | bút bi |
@@ -286,8 +236,6 @@ Minliang
 ![](GoogleShape277p24.jpg)
 
 ### Notes:
-
-<!-- Slide number: 25 -->
 | STT | Tiếng Trung | Phiên âm | Nghĩa của từ |
 | --- | --- | --- | --- |
 | 22 | 桂林 | Guìlín | Quế Lâm (Quảng Tây) |
@@ -297,9 +245,6 @@ Minliang
 ![](GoogleShape285p25.jpg)
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape292p26.jpg)
 
 ![](GoogleShape294p26.jpg)
@@ -318,9 +263,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape309p27.jpg)
 1. 中国的名胜古迹多得很。
 /Zhōngguó de míngshèng gǔjī duō de hěn/ - Danh lam thắng cảnh của Trung Quốc nhiều vô kể.
@@ -332,8 +274,6 @@ Minliang
 /Qī diǎn yǒu diànyǐng, xiànzài qù lái de jí lái bu jí?./ - 7 giờ có phim, đi bây giờ có kịp không?
 
 ### Notes:
-
-<!-- Slide number: 28 -->
 5. 我们看电影去。
 /Wǒmen kàn diànyǐng qù?/- Chúng ta đi xem phim.
 6. 我想买些礼物寄回家去。
@@ -346,9 +286,6 @@ Minliang
 ![](GoogleShape317p28.jpg)
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape323p29.jpg)
 
 ![](GoogleShape325p29.jpg)
@@ -367,9 +304,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape338p30.jpg)
 大卫：快放假了，你想不想去旅行？
 玛丽：当然想：
@@ -384,8 +318,6 @@ Minliang
 大卫：走吧。
 
 ### Notes:
-
-<!-- Slide number: 31 -->
 和子：去上海的时候，我想买些礼物寄回家去。
 王兰：对，上海的东茜比这儿多得多。
 和了：上海哪儿最热闹？
@@ -398,9 +330,6 @@ Minliang
 ![](GoogleShape345p31.jpg)
 
 ### Notes:
-
-<!-- Slide number: 32 -->
-
 ![](GoogleShape352p32.jpg)
 
 ![](GoogleShape354p32.jpg)
@@ -419,9 +348,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 33 -->
-
 ![](GoogleShape369p33.jpg)
 开会           参观学校
 游览名胜古迹   看话剧
@@ -437,8 +363,6 @@ Minliang
 水果   带
 
 ### Notes:
-
-<!-- Slide number: 34 -->
 1.王府井是北京最热闹的地方之一。
 2.A：我的圆珠笔找不到了。
 B：那不是你的圆珠笔吗？
@@ -447,9 +371,6 @@ A：啊！找到了。
 ![](GoogleShape375p34.jpg)
 
 ### Notes:
-
-<!-- Slide number: 35 -->
-
 ![](GoogleShape382p35.jpg)
 
 ![](GoogleShape384p35.jpg)
@@ -468,8 +389,6 @@ A：啊！找到了。
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 36 -->
 1. 趋向床补语(三)  Bổ ngữ xu hướng (3)
 Các động từ“上，下，进,出，回，过，起”phía sau thêm “来” hoặc“去”có thể làm bổ ngữ cho động từ khác chỉ phương hướng của động tác. Loại bổ ngữ này gọi là bổ ngữ xu hướng kép. Ví dụ:
 (1) 他从教空走出来了。
@@ -481,8 +400,6 @@ Quan hệ giữa người nói (hay sự vật được đề cập tới) với
 ![](GoogleShape398p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 2.“不是...吗？” “Chẳng phải... sao ?”
 “不是...吗？”tạo thành một câu phản vấn dùng để chỉ ý khẳng định, đồng thời lại có ý nhấn mạnh. Ví dụ:
 (1) 你不是要去麽行吗？	(你要去旅行)
@@ -491,9 +408,6 @@ Quan hệ giữa người nói (hay sự vật được đề cập tới) với
 ![](GoogleShape405p37.jpg)
 
 ### Notes:
-
-<!-- Slide number: 38 -->
-
 ![](GoogleShape410p38.jpg)
 
 ![](GoogleShape412p38.jpg)
@@ -514,8 +428,6 @@ Quan hệ giữa người nói (hay sự vật được đề cập tới) với
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 1. 选择适当的动词组成动宾结构并造句.
 例：字
 (a) 写    那个孩子正在写字。
@@ -531,9 +443,6 @@ Minliang
 | (b) 练好 | (b) 开 | (b) 骑 |
 
 ### Notes:
-
-<!-- Slide number: 40 -->
-
 ![](GoogleShape435p40.jpg)
 2. 用动词及趋向补语完成句子。
 (1) 注意，前边..........一辆汽车。(开)
@@ -542,8 +451,6 @@ Minliang
 (4) 山上的风景很好，你们快...........吧。(爬)
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 3. 仿照例子，把下面的句子改成疑问句。
 例：昨天我们跳舞跳了两个小时。
    → 昨天你们跳舞跳了几个小时？
@@ -557,9 +464,6 @@ Minliang
 ![](GoogleShape440p41.jpg)
 
 ### Notes:
-
-<!-- Slide number: 42 -->
-
 ![](GoogleShape447p42.jpg)
 4. 说话 Nói chuyên
 介绍一个你游/过的名胜古迹、
@@ -570,17 +474,11 @@ Gợi ý : Phong cảnh như thế nào ? Có gì nổi tiếng ?
 Bạn thích nhất cái gì ? Đã du ngoạn trong bao lâu ?
 
 ### Notes:
-
-<!-- Slide number: 43 -->
-
 ![](GoogleShape452p43.jpg)
 5. 听述 Nghe và kể lại
 我喜欢旅行，旅行可以游览名胜古迹，旅行还是一种学习汉语的好方法。在学校，我习惯听老师说话，换二个人就不习惯。可是旅行的时候要跟各种各样的人说话，要问路、要参观、要买东西......，这是学习汉语的好机会。放假的时候我就去旅行，提高我的听说能力。
 
 ### Notes:
-
-<!-- Slide number: 44 -->
-
 ![](GoogleShape459p44.jpg)
 6.语音练习 Bài tập ngữ âm
 (1) 常用音节练习  Luyện tập các âm tiết thường dùng
@@ -592,9 +490,6 @@ qǔdé              取得
 qu
 
 ### Notes:
-
-<!-- Slide number: 45 -->
-
 ![](GoogleShape474p45.jpg)
 （2）朗读会话 Đọc to mẩu đàm thoại.
 A：Fàngjià yǐhòu nǐ jìhuà zuò shénme.
@@ -605,8 +500,6 @@ A：Xiànzài Dōngběi duō lěng a ？
 B：Lěng hǎo a, kěyǐ kàn bīngdēng.
 
 ### Notes:
-
-<!-- Slide number: 46 -->
 The End
 Minliang
 

@@ -1,7 +1,7 @@
 # Bài 27 · 你别抽烟了
 
 - Type: `standard_301_course`
-- Source: 27第二十七课_你别抽烟了.md, pdf-301-cau-dam-thoai.md, 27第二十七课_你别抽烟了.pptx
+- Source: 27第二十七课_你别抽烟了.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

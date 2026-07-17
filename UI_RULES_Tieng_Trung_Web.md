@@ -39,7 +39,7 @@ Không tự ý đổi sang:
 
 ## 3. Design token
 
-Mọi màu, shadow, radius nên lấy từ `assets/css/theme.css`.
+Mọi màu, shadow, radius của app shell mới lấy từ `modules/shared/ui-tokens.css`. `assets/css/theme.css` chỉ còn là lớp tương thích cho giao diện cũ.
 
 Ưu tiên dùng các biến:
 
@@ -73,19 +73,20 @@ Nếu cần thêm màu mới, thêm vào `theme.css` trước rồi mới dùng.
 
 ## 4. Layout chung toàn app
 
-Mọi trang/module nên đi theo cấu trúc:
+Mọi trang/module phải dùng app shell chung:
 
 ```text
-.app-frame
-  app-header
-  app-main
-    module content
-  bottom-nav mobile
+[data-ui-app-shell]
+  ui-app-header
+  desktop navigation
+  ui-app-drawer
+  module content
+  ui-bottom-nav (chỉ mobile)
 ```
 
 ### Mobile
 
-- App width khoảng `430px`.
+- Nội dung dùng toàn bộ chiều rộng thiết bị, có padding an toàn.
 - Nội dung giống app điện thoại.
 - Bottom nav cố định ở dưới.
 - Card công cụ có thể dùng 2 cột nếu đủ rộng.
@@ -105,7 +106,8 @@ Mọi trang/module nên đi theo cấu trúc:
 Header chuẩn:
 
 ```text
-[中] Tiếng Trung                  [search] [menu]
+[中] Tiếng Trung                         [◐] [☰]
+Desktop: [中] Tiếng Trung | Trang chủ | Tra | Học | Menu | [◐]
 ```
 
 Quy tắc:
@@ -113,14 +115,14 @@ Quy tắc:
 - Logo nằm bên trái.
 - Tên app là `Tiếng Trung`.
 - Không dùng subtitle trong brand, ví dụ không dùng `Học gọn mỗi ngày`.
-- Không thêm icon nếu chưa có chức năng thật.
+- Nút `◐` đổi sáng/tối luôn nằm trên header.
 - Mobile ưu tiên header gọn.
 - Desktop có thể hiện nav ngang gọn.
 
-Desktop nav nếu dùng:
+Desktop nav bắt buộc:
 
 ```text
-Trang chủ | Pinyin | Bút thuận | 301 Đàm thoại
+Trang chủ | Tra | Học | Menu
 ```
 
 Không dùng link gạch chân kiểu HTML mặc định.
@@ -132,12 +134,12 @@ Không dùng link gạch chân kiểu HTML mặc định.
 Bottom nav mobile thống nhất:
 
 ```text
-Trang chủ | Pinyin | Bút thuận | 301
+Trang chủ | Tra | Học | Menu
 ```
 
 Quy tắc:
 
-- Chỉ hiện trên mobile.
+- Chỉ hiện trên mobile; desktop không có bottom nav cố định.
 - Fixed ở dưới màn hình.
 - Tab hiện tại phải active nhẹ bằng màu cam.
 - Nội dung trang phải có padding-bottom đủ lớn để không bị bottom nav che.
@@ -211,6 +213,39 @@ Hanzi lớn: tùy ngữ cảnh, thường 28–42px
 
 ---
 
+
+## 8A. Kiến trúc khu Học đã chốt
+
+```text
+Học
+├── Giáo trình
+│   ├── 301
+│   ├── HSK 6 cấp
+│   ├── HSK 9 cấp
+│   ├── YCT
+│   └── Boya
+├── Bộ thủ
+├── Thẻ
+├── Bút thuận
+└── Pinyin
+```
+
+Quy tắc:
+
+- Lần đầu mở Giáo trình chọn `301`.
+- Các lần sau nhớ chương trình gần nhất trong localStorage.
+- `301` chỉ có Bài học; không tạo tab Ngữ pháp giả.
+- Bộ thủ chính là Bộ thủ 214 hiện tại.
+- Bộ thủ 50 nằm tại `Menu → Tham khảo` và không chuyển tiến độ cũ.
+- Pinyin là một phần của Học, không nằm trong điều hướng cấp cao.
+- Tra giữ nguyên chức năng hiện tại, chỉ thay app shell và tông giao diện.
+
+## 8B. Mascot
+
+- Mascot hiện tại nằm tại `assets/brand/mascot.png`.
+- Không nhúng ảnh dạng base64 hoặc viết cứng trong JavaScript.
+- Khi đổi mascot, thay file cùng tên để không phải sửa logic giao diện.
+
 # Rules riêng cho 301 Đàm thoại
 
 ## 9. Mục tiêu của 301
@@ -223,7 +258,7 @@ Mục tiêu:
 - Xem từ vựng gọn.
 - Câu mẫu dễ đọc.
 - Hội thoại rõ vai A/B.
-- Slide/bảng gốc chỉ là tham khảo.
+- Không còn phần Nội dung tham khảo; dữ liệu Nội dung tham khảo/PPT không được tạo trong output.
 - Không làm vỡ mobile.
 
 ---
@@ -234,7 +269,7 @@ Mobile nên đi theo bố cục:
 
 ```text
 301 Đàm thoại
-Từ vựng · Câu mẫu · Hội thoại · Slide
+Từ vựng · Câu mẫu · Hội thoại · Chú thích
 
 [Tìm bài học...]
 
@@ -242,7 +277,7 @@ Từ vựng · Câu mẫu · Hội thoại · Slide
 
 Bài 1 · 你好
 
-[Tất cả] [Từ vựng] [Câu mẫu] [Hội thoại] [Slide]
+[Tất cả] [Từ vựng] [Câu mẫu] [Hội thoại] [Chú thích]
 
 1. Từ vựng
 你      nǐ      bạn      🔊
@@ -258,7 +293,7 @@ Xin chào!
 A: 你好！
 B: 你好！
 
-4. Slide gốc
+4. Nội dung tham khảo gốc
 ```
 
 Không nên hiện quá nhiều bài dọc trước nội dung vì sẽ đẩy bài học xuống quá xa.
@@ -302,7 +337,7 @@ Active lesson:
 Tabs chuẩn:
 
 ```text
-Tất cả | Từ vựng | Câu mẫu | Hội thoại | Slide
+Tất cả | Từ vựng | Câu mẫu | Hội thoại | Nội dung tham khảo
 ```
 
 Quy tắc:
@@ -404,14 +439,14 @@ Quy tắc:
 
 ---
 
-## 16. Slide / bảng gốc
+## 16. Nội dung tham khảo / bảng gốc
 
-Slide và bảng gốc chỉ là tham khảo.
+Nội dung tham khảo và bảng gốc chỉ là tham khảo.
 
 Quy tắc:
 
 - Luôn nằm dưới cùng.
-- Có tiêu đề `Slide gốc` hoặc `Bảng gốc`.
+- Có tiêu đề `Nội dung tham khảo gốc` hoặc `Bảng gốc`.
 - Bảng phải nằm trong wrapper `overflow-x:auto`.
 - Không làm body tràn ngang.
 - Không ưu tiên hơn Từ vựng / Câu mẫu / Hội thoại.

@@ -1,7 +1,7 @@
 # Bài 22 · 我不能去
 
 - Type: `standard_301_course`
-- Source: 22第二十二课_我不能去.md, pdf-301-cau-dam-thoai.md, 22第二十二课_我不能去.pptx
+- Source: 22第二十二课_我不能去.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape69p1.jpg)
 I
 
@@ -20,9 +18,6 @@ Tôi cũng thích bơi lội
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape79p2.jpg)
 目录
 
@@ -46,9 +41,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape111p3.jpg)
 
 ![](GoogleShape113p3.jpg)
@@ -67,8 +59,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 运动 | yùndòng | 毛笔 | máobǐ | 跑步 | pǎobù |
 | --- | --- | --- | --- | --- | --- |
 | 爬 | pá | 练 | liàn | 网球 | wǎngqiú |
@@ -79,8 +69,6 @@ Minliang
 | 队 | duì | 散步 | sànbù | 钥匙 | yàoshi |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 运动 | yùndòng | 名，动 | thể thao, vận động |
@@ -90,8 +78,6 @@ Minliang
 ![](GoogleShape132p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 爬 | pá | 动 | leo |
@@ -101,8 +87,6 @@ Minliang
 ![](GoogleShape140p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 山 | shān | 名 | núi |
@@ -112,8 +96,6 @@ Minliang
 ![](GoogleShape148p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 游泳 | yóuyǒng | 动 | bơi lội |
@@ -126,8 +108,6 @@ Minliang
 ![泳的笔顺动画](GoogleShape159p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 比赛 | bǐsài | 动，名 | đua, đấu |
@@ -137,8 +117,6 @@ Minliang
 ![](GoogleShape165p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 队 | duì | 名 | đội |
@@ -148,8 +126,6 @@ Minliang
 ![](GoogleShape173p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 毛笔 | máobǐ | 名 | bút lông |
@@ -157,8 +133,6 @@ Minliang
 ![](GoogleShape181p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 练 | liàn | 动 | luyện |
@@ -168,8 +142,6 @@ Minliang
 ![](GoogleShape188p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 打 | dǎ | 动 | đánh |
@@ -177,8 +149,6 @@ Minliang
 ![](GoogleShape196p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 篮球 | lánqiú | 名 | bóng rổ |
@@ -190,8 +160,6 @@ Minliang
 ![篮的笔顺动画](GoogleShape205p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 教 | jiāo | 动 | dạy |
@@ -201,8 +169,6 @@ Minliang
 ![](GoogleShape211p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 散步 | sànbù |  | đi bộ |
@@ -211,8 +177,6 @@ Minliang
 ![](GoogleShape219p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 躺 | tǎng | 动 | nằm |
@@ -222,8 +186,6 @@ Minliang
 ![](GoogleShape226p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 放假 | fàngjià |  | nghỉ hè |
@@ -233,8 +195,6 @@ Minliang
 ![](GoogleShape234p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 旅行 | lǚxíng | 动 | du lịch |
@@ -244,8 +204,6 @@ Minliang
 ![](GoogleShape242p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 20 | 太极拳 | Tàijíquán | 名 | Thái Cực Quyền |
@@ -255,8 +213,6 @@ Minliang
 ![](GoogleShape250p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 21 | 钥匙 | yàoshi | 名 | chìa khóa |
@@ -266,9 +222,6 @@ Minliang
 ![](GoogleShape258p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
-
 ![](GoogleShape266p22.jpg)
 
 ![](GoogleShape268p22.jpg)
@@ -287,9 +240,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 23 -->
-
 ![](GoogleShape283p23.jpg)
 1. 你喜欢什么运动？
 /Nǐ xǐhuān shénme yùndòng?/ - Bạn thích môn thể thao nào?
@@ -301,9 +251,6 @@ Minliang
 /Wǒ yóu de bù hǎo, méiyǒu nǐ yóu de hǎo./ - Tôi bơi tồi, không bơi giỏi bằng anh.
 
 ### Notes:
-
-<!-- Slide number: 24 -->
-
 ![](GoogleShape291p24.jpg)
 5. 谁跟谁比赛？
 /Shéi gēn shéi bǐsài?/ - Ai thi đấu với ai?
@@ -315,9 +262,6 @@ Minliang
 /Wǒ xiǎng xiūxi yīhuǐr./ - Tôi muốn nghỉ ngơi một lúc.
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape297p25.jpg)
 
 ![](GoogleShape299p25.jpg)
@@ -336,9 +280,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape312p26.jpg)
 刘京：你喜欢什么运动。
 大卫：爬山，滑冰，游泳我都喜欢。你呢？
@@ -351,8 +292,6 @@ Minliang
 刘京：现在去买可能买得着。
 
 ### Notes:
-
-<!-- Slide number: 27 -->
 玛丽：你在画画儿吗？
 大卫：再写毛笔字，没画画儿。
 玛丽：你写的真不错。
@@ -366,9 +305,6 @@ Minliang
 ![](GoogleShape319p27.jpg)
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape326p28.jpg)
 
 ![](GoogleShape328p28.jpg)
@@ -387,9 +323,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape343p29.jpg)
 跑步     快， 打网球  好
 洗衣服   干净
@@ -406,9 +339,6 @@ Minliang
 糟糕，我的钥匙丢了。
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape351p30.jpg)
 
 ![](GoogleShape353p30.jpg)
@@ -427,8 +357,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 31 -->
 1. 用“有”或“没有”表示比较：Dùng“有”hoặc“没有”để so sánh.
 Động từ“有”và dạng phủ định“没有”của nó có thể dùng để so sánh, biểu thị dạt tới hoặc chưa đạt tới một mức độ nào đó. Loại so sánh này thường dùng trong câu nghi vấn và dạng phủ định. Ví dụ：
 (1) 你有他高吗？
@@ -439,8 +367,6 @@ Minliang
 ![](GoogleShape366p31.jpg)
 
 ### Notes:
-
-<!-- Slide number: 32 -->
 2. 时量补语(一)  Bổ ngữ thời lượng (1)
 Bổ ngữ thời lượng dùng để nói rõ một động tác hoặc một trạng thái kéo dài trong một khoảng thời gian bao lâu. Ví dụ:
 (1) 我练了两个潭期亍。
@@ -451,8 +377,6 @@ Bổ ngữ thời lượng dùng để nói rõ một động tác hoặc một 
 ![](GoogleShape374p32.jpg)
 
 ### Notes:
-
-<!-- Slide number: 33 -->
 3.	用“吧”的疑问句：Câu nghi vấn dùng“吧”
 Khi đối với một sự việc nào đó đã có sự ước đoán nhưng chưa khẳng định được thì dùng trợ từ ngữ khí“吧”để hỏi. Ví dụ:
 (1) 你最近很忙吧？
@@ -462,9 +386,6 @@ Khi đối với một sự việc nào đó đã có sự ước đoán nhưng 
 ![](GoogleShape381p33.jpg)
 
 ### Notes:
-
-<!-- Slide number: 34 -->
-
 ![](GoogleShape387p34.jpg)
 
 ![](GoogleShape389p34.jpg)
@@ -483,8 +404,6 @@ Khi đối với một sự việc nào đó đã có sự ước đoán nhưng 
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 35 -->
 1. 给下面的词配上适当的动词，组成动宾短语，并选择造句
 
 ![](GoogleShape402p35.jpg)
@@ -495,9 +414,6 @@ Minliang
 | 生词 | 饭 | 歌 |
 
 ### Notes:
-
-<!-- Slide number: 36 -->
-
 ![](GoogleShape409p36.jpg)
 2. 把下面的句子改成正反疑问句。
 例：你睡得好吗？
@@ -508,8 +424,6 @@ Minliang
 (4) 你走得快吗？
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 3. 把下面用"比”的句子改成用''没有''的否定句。
 (1) 他滑冰比我滑得好。
 (2) 王兰爬山比张老师爬得快。
@@ -519,9 +433,6 @@ Minliang
 ![](GoogleShape415p37.jpg)
 
 ### Notes:
-
-<!-- Slide number: 38 -->
-
 ![](GoogleShape421p38.jpg)
 4. 完成对话。
 (1) A：............................。
@@ -535,9 +446,6 @@ A：................？少喝一点儿没关系。
 B：我开车，喝酒不安全。
 
 ### Notes:
-
-<!-- Slide number: 39 -->
-
 ![](GoogleShape427p39.jpg)
 5.回答问题
 (1) 你喜欢吃什么饭菜？喜欢不喜欢做饭？
@@ -545,17 +453,11 @@ B：我开车，喝酒不安全。
 (3) 你喜欢喝什么？为什么？
 
 ### Notes:
-
-<!-- Slide number: 40 -->
-
 ![](GoogleShape432p40.jpg)
 6. 听述 Nghe và kể lại
 汉斯有很多爱好，他喜欢运动。冬天滑吟夏天游泳。到中国以后他还学会打太极拳了。他画画儿也不错。他房间当的那张画的。可是他自己画的。可是他也有一个不好的爱好，那就是抽烟。现在他身体不太好，要是不抽烟，他的身体一定比现在好。
 
 ### Notes:
-
-<!-- Slide number: 41 -->
-
 ![](GoogleShape439p41.jpg)
 7.语音练习 Bài tập ngữ âm
 (1) 常用音节练习  Luyện tập các âm tiết thường dùng
@@ -569,9 +471,6 @@ shūjià         书架
 jia
 
 ### Notes:
-
-<!-- Slide number: 42 -->
-
 ![](GoogleShape454p42.jpg)
 （2）朗读会话 Đọc to mẩu đàm thoại.
 A：Nǐ xǐhuān shénme.
@@ -582,8 +481,6 @@ A：Wǒ xǐhuān xiǎogǒu, nǐ ne？
 B：Wǒ xǐhuān xióngmāo。
 
 ### Notes:
-
-<!-- Slide number: 43 -->
 The End
 Minliang
 

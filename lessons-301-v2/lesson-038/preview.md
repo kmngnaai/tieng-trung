@@ -1,7 +1,7 @@
 # Bài 38 · 这儿托运行李吗？
 
 - Type: `standard_301_course`
-- Source: 38第三十八课_这儿托运行李吗？.md, pdf-301-cau-dam-thoai.md, 38第三十八课_这儿托运行李吗？.pptx
+- Source: 38第三十八课_这儿托运行李吗？.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

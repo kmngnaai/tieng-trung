@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape78p1.jpg)
 
 ![](GoogleShape75p1.jpg)
@@ -20,9 +18,6 @@ Bạn khỏe không ?
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape89p2.jpg)
 目录
 
@@ -50,9 +45,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape126p3.jpg)
 01
 生词
@@ -69,8 +61,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 早 | zăo | 四 | sì |
 | --- | --- | --- | --- |
 | 身体 | shēntǐ | 五 | wǔ |
@@ -84,8 +74,6 @@ Minliang
 | 三 | sān |  |  |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 早 | zǎo | 形 | sớm |
@@ -97,8 +85,6 @@ Minliang
 ![](GoogleShape148p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 身体 | shēntǐ | 名 | sức khỏe, thân thể |
@@ -112,8 +98,6 @@ Minliang
 ![C:\Users\ad\Downloads\1241.gif](GoogleShape156p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 谢谢 | xièxie | 动 | cám ơn |
@@ -123,8 +107,6 @@ Minliang
 ![](GoogleShape164p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 再见 | zàijiàn | 名 | gặp lại, tạm biệt |
@@ -136,8 +118,6 @@ Minliang
 ![](GoogleShape172p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 老师 | lǎoshī | 名 | thầy, cô giáo |
@@ -151,8 +131,6 @@ Minliang
 ![C:\Users\ad\Downloads\3624.gif](GoogleShape184p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 学生 | xuéshēng | 名 | học sinh,học trò |
@@ -164,8 +142,6 @@ Minliang
 ![C:\Users\ad\Downloads\13734.gif](GoogleShape194p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 您 | nín | 代 | ông, bà, ngài |
@@ -175,8 +151,6 @@ Minliang
 ![](GoogleShape200p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 一 | yī | 数 | số 1 |
@@ -186,8 +160,6 @@ Minliang
 | 12 | 五 | wǔ | 数 | số 5 |
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 六 | liù | 数 | số 6 |
@@ -197,8 +169,6 @@ Minliang
 | 17 | 十 | shí | 数 | số 10 |
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 号 | hào | 名 | ngày |
@@ -208,8 +178,6 @@ Minliang
 ![号的笔顺动画](GoogleShape222p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 今天 | jīntiān | 名 | hôm nay |
@@ -221,9 +189,6 @@ Minliang
 ![天的笔顺动画](GoogleShape231p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
-
 ![](GoogleShape238p16.jpg)
 专名 DANH TỪ RIÊNG
 | 1 | 李 | Lǐ | họ Lý |
@@ -234,9 +199,6 @@ Minliang
 ![](GoogleShape237p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
-
 ![](GoogleShape247p17.jpg)
 02
 句子
@@ -253,8 +215,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 1.你早！
   /nǐ zǎo/
 Chào bạn ! (chỉ dùng cho buổi sáng)
@@ -272,9 +232,6 @@ Cảm ơn , Tôi rất khoẻ
 Tạm biệt/ Hẹn gặp lại
 
 ### Notes:
-
-<!-- Slide number: 19 -->
-
 ![](GoogleShape270p19.jpg)
 03
 课文
@@ -291,8 +248,6 @@ Tạm biệt/ Hẹn gặp lại
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 李老师：你早！
 Lǐ lǎoshī: Nǐ zǎo
 王 老 师：你早！Wáng lǎoshī: Nǐ zǎo!
@@ -304,9 +259,6 @@ Lǐ lǎoshī: Nǐ zǎo
 ![](GoogleShape283p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
-
 ![](GoogleShape294p21.jpg)
 04
 注释
@@ -323,9 +275,6 @@ Lǐ lǎoshī: Nǐ zǎo
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 22 -->
-
 ![](GoogleShape308p22.jpg)
 1. “你早” - Chào bạn !
 Câu chào hỏi. Chỉ chào nhau khi gặp gỡ vào buổi sáng.
@@ -334,9 +283,6 @@ Câu chào hỏi. Chỉ chào nhau khi gặp gỡ vào buổi sáng.
 Dạng kính trọng của "你", thường dùng để xưng hô với người lớn tuổi, già cả. Trong giao tiếp, để tỏ ra lịch sự, đối với người ngang hàng, nhất là những người mới gặp lần đầu cũng có thể dùng từ này.
 
 ### Notes:
-
-<!-- Slide number: 23 -->
-
 ![](GoogleShape315p23.jpg)
 替换与扩展
 05
@@ -353,8 +299,6 @@ Dạng kính trọng của "你", thường dùng để xưng hô với người
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 你早！
 你好吗？
 您  你们  张老师  李老师
@@ -375,9 +319,6 @@ Minliang
 ![](GoogleShape327p24.jpg)
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape342p25.jpg)
 06
 语音
@@ -394,9 +335,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape356p26.jpg)
 声母，韵母
 
@@ -410,8 +348,6 @@ Minliang
 |  | -i | er |  |  |  |  |
 
 ### Notes:
-
-<!-- Slide number: 27 -->
 2. 拼音 Ghép vần
 |  | i | ia | iao | ie | iou | ian | in | iang | ing | iong |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -429,8 +365,6 @@ Minliang
 | r |  | re | ri |  |  | rao | rou | ran | ren | rang | reng | rong |
 
 ### Notes:
-
-<!-- Slide number: 28 -->
 3. 拼写说明 Thuyết minh khi viết vần
 
 ![](GoogleShape373p28.jpg)
@@ -441,9 +375,6 @@ Ví dụ: i → yi và u → wu
  Ví dụ: jiǔ ( số chín)
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape381p29.jpg)
 07
 练习
@@ -460,9 +391,6 @@ Ví dụ: i → yi và u → wu
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape393p30.jpg)
 Hoàn thành hội thoại
 （1）  A, B: 老师，.......................！
@@ -479,8 +407,6 @@ Hoàn thành hội thoại
 ![](GoogleShape394p30.jpg)
 
 ### Notes:
-
-<!-- Slide number: 31 -->
 Nhận biết chữ Hán
 | 他来 | 都来 | 再来 |
 | --- | --- | --- |
@@ -491,8 +417,6 @@ Nhận biết chữ Hán
 ![](GoogleShape402p31.jpg)
 
 ### Notes:
-
-<!-- Slide number: 32 -->
 Đàm thoại theo tình huống
 (1) 两人互相问候并问候对方的爸爸、妈妈。
 Hai người chào hỏi nhau và thăm hỏi ba má của nhau.
@@ -502,9 +426,6 @@ Học sinh và thầy giáo gặp mặt nhau, chào hỏi lẫn nhau (học sinh
 ![](GoogleShape410p32.jpg)
 
 ### Notes:
-
-<!-- Slide number: 33 -->
-
 ![](GoogleShape419p33.jpg)
 1. 辨音 Phân biệt âm
 | shāngliáng  (商量) | xiàngliàng (向量) |
@@ -518,9 +439,7 @@ Học sinh và thầy giáo gặp mặt nhau, chào hỏi lẫn nhau (học sinh
 ![](GoogleShape418p33.jpg)
 
 ### Notes:
-
-<!-- Slide number: 34 -->
- 2. Phân biệt thanh điệu
+2. Phân biệt thanh điệu
 | bā kē (八棵) | bàkè (罢课) |
 | --- | --- |
 | bù gāo (不高) | bùgào (布告) |
@@ -531,8 +450,6 @@ Học sinh và thầy giáo gặp mặt nhau, chào hỏi lẫn nhau (học sinh
 ![](GoogleShape426p34.jpg)
 
 ### Notes:
-
-<!-- Slide number: 35 -->
 3. Đọc các từ ngữ sau
 | zǒulù (走路) | chūfā  (出发) |
 | --- | --- |
@@ -542,8 +459,6 @@ Học sinh và thầy giáo gặp mặt nhau, chào hỏi lẫn nhau (học sinh
 ![](GoogleShape433p35.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
 Minliang
 
 ### Notes:

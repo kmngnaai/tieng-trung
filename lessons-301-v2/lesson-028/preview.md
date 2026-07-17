@@ -1,7 +1,7 @@
 # Bài 28 · 今天比昨天冷
 
 - Type: `standard_301_course`
-- Source: 28第二十八课_今天比昨天冷.md, pdf-301-cau-dam-thoai.md, 28第二十八课_今天比昨天冷.pptx
+- Source: 28第二十八课_今天比昨天冷.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

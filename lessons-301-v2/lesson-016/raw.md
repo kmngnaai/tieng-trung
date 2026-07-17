@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape79p1.jpg)
 
 ![](GoogleShape77p1.jpg)
@@ -21,9 +19,6 @@ Bạn từng xem qua Kinh kịch chưa?
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape89p2.jpg)
 目录
 
@@ -47,9 +42,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape121p3.jpg)
 
 ![](GoogleShape123p3.jpg)
@@ -68,8 +60,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 过 | guò | 名菜 | míng cài |
 | --- | --- | --- | --- |
 | 京剧 | jīng jù | 事 | shì |
@@ -83,8 +73,6 @@ Minliang
 | 当然 | dāng rán | 人民剧场 | rén mín jù chǎng |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 过 | guò | 助 | Qua |
@@ -94,8 +82,6 @@ Minliang
 ![](GoogleShape142p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 京剧 | jīng jù | 名 | Kinh kịch |
@@ -108,8 +94,6 @@ Minliang
 ![C:\Users\ad\Downloads\419.gif](GoogleShape153p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 演 | yǎn | 动 | Diễn |
@@ -119,8 +103,6 @@ Minliang
 ![](GoogleShape160p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 以后 | yǐ hòu | 名 | Sau , sau khi |
@@ -130,8 +112,6 @@ Minliang
 ![](GoogleShape168p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 告诉 | gào sù | 动 | bảo, nói cho biết |
@@ -142,8 +122,6 @@ Minliang
 ![C:\Users\ad\Downloads\1855.gif](GoogleShape178p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 烤鸭 | kǎo yā | 名 | Vịt quay |
@@ -155,8 +133,6 @@ Minliang
 ![C:\Users\ad\Downloads\13652.gif](GoogleShape187p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 应该 | yīng gāi | 能愿 | Nên , cần phải |
@@ -166,8 +142,6 @@ Minliang
 ![](GoogleShape194p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 行 | xíng | 形，动 | Được |
@@ -177,8 +151,6 @@ Minliang
 ![](GoogleShape202p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 有意思 | yǒu yì si |  | Có ý nghĩa, hay, thú vị |
@@ -190,8 +162,6 @@ Minliang
 ![C:\Users\ad\Downloads\11985.gif](GoogleShape213p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 当然 | dāng rán | 副，形 | Đương nhiên |
@@ -201,8 +171,6 @@ Minliang
 ![](GoogleShape219p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 名菜 | míng cài | 名 | Món ăn nổi tiếng |
@@ -212,8 +180,6 @@ Minliang
 ![](GoogleShape227p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 事 | shì | 名 | Việc |
@@ -223,8 +189,6 @@ Minliang
 ![](GoogleShape235p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 茶 | chá | 名 | Trà |
@@ -234,8 +198,6 @@ Minliang
 ![](GoogleShape243p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 菜 | cài | 名 | Món ăn |
@@ -244,8 +206,6 @@ Minliang
 .
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 酒 | zhào xiàng jī | 名 | Rượu |
@@ -255,8 +215,6 @@ Minliang
 ![](GoogleShape259p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 收 | shōu | 动 | Thâu , nhận |
@@ -266,8 +224,6 @@ Minliang
 ![](GoogleShape267p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 词典 | cí diǎn | 名 | Từ điển |
@@ -279,8 +235,6 @@ Minliang
 ![C:\Users\ad\Downloads\162.gif](GoogleShape277p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 咖啡 | kā fēi | 名 | Cà phê |
@@ -292,8 +246,6 @@ Minliang
 ![C:\Users\ad\Downloads\4065.gif](GoogleShape287p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 杂技 | zá jì | 名 | Xiếc |
@@ -305,9 +257,6 @@ Minliang
 ![C:\Users\ad\Downloads\5943.gif](GoogleShape296p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
-
 ![](GoogleShape302p24.jpg)
 
 ![](GoogleShape304p24.jpg)
@@ -326,8 +275,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 25 -->
 1. 你看过京剧吗?
 /Nǐ kàn guò jīng jù ma ?/ - Bạn đã từng xem Kinh Kịch chưa?
 2. 我没看过京剧。
@@ -340,9 +287,6 @@ Minliang
 ![](GoogleShape319p25.jpg)
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape327p26.jpg)
 5.我还没吃过北京烤鸭呢 !
 /Wǒ hái méi chī guò Běijīng kǎoyā ne !/ - Tôi vẫn chưa được ăn vịt quay Bắc Kinh.
@@ -354,9 +298,6 @@ Minliang
 /Yǒu péngyou lái kàn wǒ./ - Có bạn tới thăm tôi.
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape335p27.jpg)
 
 ![](GoogleShape333p27.jpg)
@@ -375,8 +316,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 28 -->
 玛丽：你看过京剧吗?
 大卫：没看过。
 玛丽：听说很有意思。
@@ -393,8 +332,6 @@ Minliang
 ![](GoogleShape348p28.jpg)
 
 ### Notes:
-
-<!-- Slide number: 29 -->
 和子：听说，烤鸭是北京的名菜。
 玛丽：我还没吃过呢！
 和子：我们应该去尝一尝。
@@ -408,9 +345,6 @@ Minliang
 ![](GoogleShape357p29.jpg)
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape364p30.jpg)
 
 ![](GoogleShape366p30.jpg)
@@ -429,8 +363,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 31 -->
 去 	长城,	喝	那种咖啡
 吃	那种菜,	喝	那种酒
 1.你看过京剧吗？
@@ -447,9 +379,6 @@ Minliang
 B: 不看。昨天的练习我还没作了。
 
 ### Notes:
-
-<!-- Slide number: 32 -->
-
 ![](GoogleShape388p32.jpg)
 
 ![](GoogleShape390p32.jpg)
@@ -468,9 +397,6 @@ B: 不看。昨天的练习我还没作了。
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 33 -->
-
 ![](GoogleShape403p33.jpg)
 动态助词 “过” Trợ từ động thái “过”
 	Trợ từ động thái “过” đặt sau một động từ nói rõ hành động đó đã từng xảy ra trong quá khứ, thường dùng để nhấn mạnh trong quá khứ đã từng xảy ra việc như thế. Ví dụ:
@@ -481,9 +407,6 @@ Minliang
 ![](GoogleShape404p33.jpg)
 
 ### Notes:
-
-<!-- Slide number: 34 -->
-
 ![](GoogleShape411p34.jpg)
 Dạng câu hỏi chính phản của nó là “....过...没有”. Ví dụ:
 (4) 你去过美国没有？
@@ -494,9 +417,6 @@ Trong câu liên dộng khi muốn chỉ sự từng trải trong quá khứ “
 ![](GoogleShape412p34.jpg)
 
 ### Notes:
-
-<!-- Slide number: 35 -->
-
 ![](GoogleShape419p35.jpg)
 2.  无主句  Câu vô chủ。
 Hầu hết các câu đều được hợp thành bởi hai thành phần chủ ngữ và vị ngữ, nhưng cũng có một số câu chỉ có vị ngữ mà không có chủ ngữ nên gọi là câu vô chủ. Ví dụ:
@@ -510,9 +430,6 @@ Biểu thị một động tác hiện còn chưa xảy ra hoặc chưa hoàn th
 ![](GoogleShape421p35.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
-
 ![](GoogleShape427p36.jpg)
 
 ![](GoogleShape429p36.jpg)
@@ -531,8 +448,6 @@ Biểu thị một động tác hiện còn chưa xảy ra hoặc chưa hoàn th
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 1.用 “了”或“过”，完成句子。Dùng “了” hoặc “过” để hoàn thành câu.
 （1）听说中国的杂技很有意思，我还................。
 （2）昨天我................。这个电影很好。
@@ -545,9 +460,6 @@ Minliang
 ![](GoogleShape443p37.jpg)
 
 ### Notes:
-
-<!-- Slide number: 38 -->
-
 ![](GoogleShape449p38.jpg)
 2. 用“了 ”或“过”回答问题 Dùng “了”hoặc “过”để trả lời câu hỏi
 （1）你来过中国吗？来中国以后去过什么地方？
@@ -556,8 +468,6 @@ Minliang
 （4）你常听录音吗？昨天听录音了没有？
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 3. 把下列句子改成否定句  Đổi các câu sau sang thể phủ định
 (1)	我找到那个本子了。
 (2)	我看过京剧。
@@ -571,8 +481,6 @@ Minliang
 ![](GoogleShape454p39.jpg)
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 5.语音练习 Bài tập ngữ âm
 (1)读下列词语: 第3声+第3声
 Đọc các từ sau : Thanh 3 + Thanh 3
@@ -585,8 +493,6 @@ guǎngchǎng	（广场）		yǒngyuǎn	（永远）
 ![](GoogleShape464p40.jpg)
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 (2)常用音节练习  Luyện tập các âm tiết thường dùng
 shāngdiàn   商店
 shànghǎi     上海
@@ -602,14 +508,10 @@ shang
 ![](GoogleShape471p41.jpg)
 
 ### Notes:
-
-<!-- Slide number: 42 -->
 THE END
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 43 -->
 Minliang
 
 ### Notes:

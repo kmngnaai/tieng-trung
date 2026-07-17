@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape77p1.jpg)
 
 第十一课
@@ -20,9 +18,6 @@ Tôi muốn mua quýt
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape87p2.jpg)
 目录
 
@@ -49,9 +44,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape124p3.jpg)
 01
 生词
@@ -68,8 +60,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 要 | yào | 售货员 | shòu huò yuán |
 | --- | --- | --- | --- |
 | 苹果 | píng guǒ | 种 | zhǒng |
@@ -83,8 +73,6 @@ Minliang
 | 尝 | cháng |  |  |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 要 | yào | 动，能愿 | Cần ,muốn, phải |
@@ -94,8 +82,6 @@ Minliang
 ![](GoogleShape143p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 苹果 | píng guǒ | 名 | táo |
@@ -107,8 +93,6 @@ Minliang
 ![C:\Users\ad\Downloads\9831.gif](GoogleShape154p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 钱 | qián | 名 | Tiền |
@@ -118,8 +102,6 @@ Minliang
 ![](GoogleShape160p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 斤 | jīn | 量 | Cân |
@@ -132,8 +114,6 @@ Minliang
 ![C:\Users\ad\Downloads\7821.gif](GoogleShape171p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 毛（角） | máo (jiǎo) | 量 | Hào |
@@ -144,8 +124,6 @@ Minliang
 ![C:\Users\ad\Downloads\16819.gif](GoogleShape179p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 还 | hái | 副 | Vẫn |
@@ -155,8 +133,6 @@ Minliang
 ![](GoogleShape185p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 别的 | biéde | 代 | Cái khác, người khác |
@@ -166,8 +142,6 @@ Minliang
 ![C:\Users\ad\Downloads\368.gif](GoogleShape195p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 桔子 | jú zi | 名 | Quả quýt |
@@ -177,8 +151,6 @@ Minliang
 ![](GoogleShape201p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 尝 | cháng | 动 | Nếm, thử |
@@ -188,8 +160,6 @@ Minliang
 ![](GoogleShape209p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 售货员 | shòu huò yuán | 名 | Người bán hàng |
@@ -201,8 +171,6 @@ Minliang
 ![C:\Users\ad\Downloads\8877.gif](GoogleShape220p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 种 | zhǒng | 量 | Chủng loại |
@@ -212,8 +180,6 @@ Minliang
 ![](GoogleShape226p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 便宜 | pián yi | 形 | Rẻ |
@@ -225,8 +191,6 @@ Minliang
 ![C:\Users\ad\Downloads\4624.gif](GoogleShape237p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 录音 | lù yīn | 名 | ghi âm, thu băng |
@@ -238,8 +202,6 @@ Minliang
 ![音的笔顺动画](GoogleShape246p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 喝 | hē | 名 | Uống |
@@ -249,8 +211,6 @@ Minliang
 ![](GoogleShape252p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 汽水 | qìshuǐ | 名 | nước ngọt (có gas) |
@@ -260,8 +220,6 @@ Minliang
 ![](GoogleShape260p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 多 | duō | 形 | nhiều, hơn |
@@ -271,8 +229,6 @@ Minliang
 ![](GoogleShape268p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 瓶 | píng | 名 | chai, bình |
@@ -282,9 +238,6 @@ Minliang
 ![](GoogleShape276p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
-
 ![](GoogleShape285p22.jpg)
 02
 句子
@@ -302,9 +255,6 @@ https://www.ypppt.com/
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 23 -->
-
 ![](GoogleShape301p23.jpg)
 1.您要什么？
 /Nín yào shénme?/ - Ông cần gì?
@@ -316,8 +266,6 @@ Minliang
 /Nín yào duōshao?/ - Ông cần bao nhiêu?
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 5.您还要别的吗？
 /Nín hái yào biéde ma?/ - Ông còn cần thứ khác nữa không?
 6.我要买桔子。
@@ -328,9 +276,6 @@ Minliang
 /Nín cháng cháng./ - Ông nếm thử xem.
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape316p25.jpg)
 03
 课文
@@ -348,8 +293,6 @@ https://www.ypppt.com/
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 26 -->
 售货员：您要买什么？
 Shòuhuòyuán: Nín yāomǎi shénme?
 大卫：我要苹果。多少钱一斤？
@@ -374,9 +317,6 @@ Dàwèi: Bùyào le.
 ![](GoogleShape330p26.jpg)
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape341p27.jpg)
 售货员：您要买什么？
 Shòuhuòyuán: Nín yāomǎi shénme?
@@ -402,9 +342,6 @@ Mǎlì: Bùyàole.
 ![](GoogleShape340p27.jpg)
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape348p28.jpg)
 04
 注释
@@ -422,8 +359,6 @@ https://www.ypppt.com/
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 29 -->
 1.“（苹果）多少钱一斤？” 与 “（句子）一斤多少钱？”
 Hai câu trên đều dùng để hỏi giá tiền của một loại trái cây. Chỉ có điều câu trước thì nhấn mạnh “ bao nhiêu tiền “ mới mua được một cân; còn câu sau nhấn mạnh “ một cân “ bao nhiêu tiền.
 
@@ -432,8 +367,6 @@ Hai câu trên đều dùng để hỏi giá tiền của một loại trái câ
 1.30元 → 一块三		2.85元 →  两块八八毛五
 
 ### Notes:
-
-<!-- Slide number: 30 -->
 3. “两斤”  “ Hai cân ”
 “两” ，“二”  đều chỉ 2. Trước một lượng từ (hoặc trước một danh từ không dùng lượng từ) thường đều dùng “两” , không dùng “二” . Ví dụ:
 “两个朋友”，“梁金苹果”. Nhưng số 2 ở phía sau số từ 10 trở lên như 12, 32...bất kể là sau đó có hay không có lượng từ thì đều dùng “二” không dùng “两” . Ví dụ:
@@ -442,9 +375,6 @@ Hai câu trên đều dùng để hỏi giá tiền của một loại trái câ
 ![](GoogleShape368p30.jpg)
 
 ### Notes:
-
-<!-- Slide number: 31 -->
-
 ![](GoogleShape375p31.jpg)
 替换与扩展
 05
@@ -462,9 +392,6 @@ https://www.ypppt.com/
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 32 -->
-
 ![](GoogleShape392p32.jpg)
 看		看汉语书
 吃		吃桔子
@@ -480,8 +407,6 @@ Minliang
 看电视	吃苹果	喝汽水
 
 ### Notes:
-
-<!-- Slide number: 33 -->
 1.我常去百货大楼买东西。那儿的东西很多，                      也很便宜。
 2.A：你要喝什么？
   B：有汽水吗？
@@ -491,9 +416,6 @@ Minliang
 ![](GoogleShape398p33.jpg)
 
 ### Notes:
-
-<!-- Slide number: 34 -->
-
 ![](GoogleShape405p34.jpg)
 06
 语法
@@ -511,9 +433,6 @@ https://www.ypppt.com/
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 35 -->
-
 ![](GoogleShape419p35.jpg)
 1.语气助词“了” Trợ từ ngữ khí“了”
  Trợ từ ngữ khí “le” có khi chỉ tình huống đã có sự thay đổi. Ví dụ:
@@ -523,17 +442,12 @@ Minliang
 ![](GoogleShape420p35.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
 2. 动词重叠 Động từ trùng điệp (lặp lại)
     Trong tiếng Hoa có những động từ có thể lặp lại, gọi là động từ trùng điệp. Động từ trùng điệp chỉ động tác xảy ra trong thời gian ngắn, hoặc rất nhẹ ngàng, tuỳ tiện, có khi có thêm nghĩa là “thử”. Hình thức của động từ 1 âm tiết lặp lại là “ AA”. Ví dụ   “看看”,  “听听”，“尝尝”，còn động từ 2 âm tiết là “ABAB”. Ví dụ: “休息休息”，“介绍介绍”。
 
 ![](GoogleShape428p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 37 -->
-
 ![](GoogleShape435p37.jpg)
 07
 练习
@@ -551,8 +465,6 @@ https://www.ypppt.com/
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 38 -->
 用汉语读出下列钱数 Dùng tiếng Hoa đọc các số tiền sau:
       6.54元		10.05元	2.30元	8.20元	42.52元
      1.32元		9.06元	57.04元	100元		142.92元
@@ -567,8 +479,6 @@ Minliang
 ![](GoogleShape450p38.jpg)
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 3.完成对话 Hoàn thành đối thoại
 （1）A：.....................？
 	B：.......瓶汽水八毛钱。
@@ -579,16 +489,12 @@ Minliang
 	A：......................,还要买别的吗？
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 4. 听述 Nghe và kể lại
 我要买汉语书，不知道去哪儿买。今天我问小王，他说，新华书店有，那儿的汉语书很多。明天下午我去看看。
 
 ![](GoogleShape461p40.jpg)
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 5.语音练习 Bài tập ngữ âm
 (1)读下列词语: 第2声+第3声
 Đọc các từ sau : Thanh 2 + Thanh 3
@@ -601,9 +507,6 @@ Cídiǎn	词典		shípǐn 	食品
 ![](GoogleShape467p41.jpg)
 
 ### Notes:
-
-<!-- Slide number: 42 -->
-
 ![](GoogleShape478p42.jpg)
 (2) 常用音节练习  Luyện tập các âm tiết thường dùng
 	yǒuhǎo    友好		   zhīshì    知识
@@ -616,14 +519,10 @@ zhi
 ![](GoogleShape476p42.jpg)
 
 ### Notes:
-
-<!-- Slide number: 43 -->
 THE END
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 44 -->
 Minliang
 
 ### Notes:

@@ -1,7 +1,7 @@
 # Bài 23 · 对不起
 
 - Type: `standard_301_course`
-- Source: 23第二十三课_对不起.md, pdf-301-cau-dam-thoai.md, 23第二十三课_对不起.pptx
+- Source: 23第二十三课_对不起.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

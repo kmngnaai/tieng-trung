@@ -1,7 +1,7 @@
 # Bài 1 · 你好
 
 - Type: `full_course`
-- Source: 1第一课_你好.md, pdf-301-cau-dam-thoai.md, lesson-001/data.json, 1第一课_你好.pptx
+- Source: 1第一课_你好.md, pdf-301-cau-dam-thoai.md, lesson-001/data.json
 
 ## Mẫu câu
 

@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape70p1.jpg)
 I
 
@@ -22,9 +20,6 @@ Chúc mừng bạn
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape80p2.jpg)
 目录
 
@@ -48,9 +43,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape112p3.jpg)
 
 ![](GoogleShape114p3.jpg)
@@ -69,8 +61,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 成绩 | chéngjī | 打 | dǎ | 蛋糕 | dàngāo |
 | --- | --- | --- | --- | --- | --- |
 | 全 | quán | 开 | kāi | 只 | zhǐ |
@@ -82,8 +72,6 @@ Minliang
 | 着 | zháo | 话 | huà |  |  |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 成绩 | chéngjī | 名 | thành tích, kết quả |
@@ -93,8 +81,6 @@ Minliang
 ![](GoogleShape133p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 全 | quán | 形，副 | hoàn toàn, tất cả |
@@ -104,8 +90,6 @@ Minliang
 ![](GoogleShape141p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 班 | bān | 名 | lớp |
@@ -115,8 +99,6 @@ Minliang
 ![](GoogleShape149p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 考 | kǎo | 动 | thi |
@@ -126,8 +108,6 @@ Minliang
 ![](GoogleShape157p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 祝贺 | zhùhè | 动 | chúc mừng |
@@ -138,8 +118,6 @@ Minliang
 ![贺的笔顺动画](GoogleShape167p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 猜 | cāi | 动 | đoán |
@@ -149,8 +127,6 @@ Minliang
 ![](GoogleShape173p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 着 | zháo | 动 | được |
@@ -160,8 +136,6 @@ Minliang
 ![](GoogleShape181p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 打 | dǎ | 动 | đánh |
@@ -171,8 +145,6 @@ Minliang
 ![](GoogleShape189p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 开 | kāi | 动 | mở |
@@ -182,8 +154,6 @@ Minliang
 ![](GoogleShape197p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 盒子 | hézi | 名 | cái hộp |
@@ -193,8 +163,6 @@ Minliang
 ![](GoogleShape205p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 礼物 | lǐwù | 名 | quà |
@@ -204,8 +172,6 @@ Minliang
 ![](GoogleShape213p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 笔试 | bǐshì | 名 | thi viết |
@@ -215,8 +181,6 @@ Minliang
 ![](GoogleShape221p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 分 | fēn | 名 | điểm |
@@ -224,8 +188,6 @@ Minliang
 ![](GoogleShape229p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 口试 | kǒushì | 名 | thi nói, vấn đáp |
@@ -233,8 +195,6 @@ Minliang
 ![](GoogleShape236p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 话 | huà | 名 | tiếng |
@@ -244,8 +204,6 @@ Minliang
 ![](GoogleShape243p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 蛋糕 | dàngāo | 名 | bánh ngọt |
@@ -255,8 +213,6 @@ Minliang
 ![](GoogleShape251p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 只 | zhǐ | 量 | con (lượng từ) |
@@ -267,8 +223,6 @@ Minliang
 ![狗的笔顺动画](GoogleShape261p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 20 | 可爱 | kě’ài | 形 | đáng yêu |
@@ -278,8 +232,6 @@ Minliang
 ![](GoogleShape267p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 21 | 幸福 | xìngfú | 形，名 | hạnh phúc |
@@ -291,8 +243,6 @@ Minliang
 ![福的笔顺动画](GoogleShape278p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 22 | 窗户 | chuānghu | 名 | cửa sổ |
@@ -302,8 +252,6 @@ Minliang
 ![](GoogleShape284p24.jpg)
 
 ### Notes:
-
-<!-- Slide number: 25 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 23 | 门 | mén | 名 | cửa |
@@ -311,9 +259,6 @@ Minliang
 ![](GoogleShape292p25.jpg)
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape299p26.jpg)
 
 ![](GoogleShape301p26.jpg)
@@ -332,9 +277,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape316p27.jpg)
 1. 这次考试，成绩还可以。
 /Zhè cì kǎoshì, chéngjī hái kěyǐ./ - Kỳ thi này, thành tích cũng tạm được.
@@ -346,8 +288,6 @@ Minliang
 /Zhù nǐ shēngrì kuài lè./ - Chúc bạn sinh nhật vui vẻ.
 
 ### Notes:
-
-<!-- Slide number: 28 -->
 5. 祝你身体健康！
 /Zhù nǐ shēntǐ jiànkāng/ - Chúc bạn dồi dào sức khỏe.
 6. 我猜不着。
@@ -360,9 +300,6 @@ Minliang
 ![](GoogleShape324p28.jpg)
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape330p29.jpg)
 
 ![](GoogleShape332p29.jpg)
@@ -381,8 +318,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 30 -->
 刘京：这次考试成绩怎么样？
 大卫：还可以。笔试九十分，口试八十五分。
 玛丽：你知道吗？他的成绩全班第一。
@@ -393,8 +328,6 @@ Minliang
 ![](GoogleShape345p30.jpg)
 
 ### Notes:
-
-<!-- Slide number: 31 -->
 玛丽：王兰，祝你生日快乐！
 刘京：我们送你一个生日蛋糕。祝你身体健康！
 王兰：谢谢！
@@ -410,9 +343,6 @@ Minliang
 ![](GoogleShape352p31.jpg)
 
 ### Notes:
-
-<!-- Slide number: 32 -->
-
 ![](GoogleShape359p32.jpg)
 
 ![](GoogleShape361p32.jpg)
@@ -431,8 +361,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 33 -->
 生日愉快 ，身体健康
 生活幸福 ，工作顺利
 1.祝你生日快乐。
@@ -449,9 +377,6 @@ Minliang
 下个月玛丽的姐姐结婚。玛丽写信祝贺他们生活幸福，新婚愉快
 
 ### Notes:
-
-<!-- Slide number: 34 -->
-
 ![](GoogleShape384p34.jpg)
 
 ![](GoogleShape386p34.jpg)
@@ -470,8 +395,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 35 -->
 1. “开”,“下”作结果补语：“开” và“下” làm bổ ngữ kết quả.
 Động từ“开”làm bổ ngữ kết quả.
 a. Chỉ qua động tác làm những vật khép lại, nối liền nhau phải mở ra hoặc tách rời nhau.
@@ -484,8 +407,6 @@ b. Biểu thị thông qua động tác làm cho người hoặc vật phải r
 ![](GoogleShape400p35.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
 1. “开”,“下”作结果补语：“开” và“下” làm bổ ngữ kết quả.
 Động từ“下”làm bổ ngữ kết quả.
 a. Chỉ người hay vật theo động tác mà chuyển từ chỗ cao xuống chỗ thấp. Ví dụ:
@@ -498,16 +419,12 @@ b. Làm cho người hoặc vật nào đó cố định ở một nơi nào đ
 ![](GoogleShape407p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 2. 可能补语(一) Bổ ngữ khả nâng ⑴
 Giữa động từ và bổ ngữ kết quả thêm trợ từ kết cấu“得”vào thì sẽ tạo thành bổ ngữ khả năng. Như“修得好”，“打得开”có nghĩa là“能修好”, “能打开”.Dạng phủ định của nó là thay “得” thành “不”. Như：“修不好”，“打不开”.....
 
 ![](GoogleShape413p37.jpg)
 
 ### Notes:
-
-<!-- Slide number: 38 -->
 3. 动词“着”作结果补语或可能补语
 Động từ“着”làm bổ ngữ kết quả hay bổ ngữ khả năng.
 a. Động từ“着”làm bổ ngữ kết quả chỉ động tác đạt đếh mục đích hoặc có kết quả. Ví dụ:
@@ -520,9 +437,6 @@ b.“着”làm bổ ngữ khả năng chỉ ý“能...到” (có thể ...đ�
 ![](GoogleShape421p38.jpg)
 
 ### Notes:
-
-<!-- Slide number: 39 -->
-
 ![](GoogleShape427p39.jpg)
 
 ![](GoogleShape429p39.jpg)
@@ -541,8 +455,6 @@ b.“着”làm bổ ngữ khả năng chỉ ý“能...到” (có thể ...đ�
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 1.熟读下列词语并选择造句
 | 全班 | 生活幸福 | 买礼物 | 猜不着 |
 | --- | --- | --- | --- |
@@ -551,8 +463,6 @@ Minliang
 | 全国 | 幸福的孩子 | 结婚礼物 | 吃不着 |
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 2.	用“多…啊”完成句子：Dùng“多…啊”để hoàn thành câu
 (1) 这件衣服的颜色............，孩子们穿最好看。
 (2) 上课的时候，我去晚了，你知道我...............!
@@ -563,9 +473,6 @@ Minliang
 ![](GoogleShape449p41.jpg)
 
 ### Notes:
-
-<!-- Slide number: 42 -->
-
 ![](GoogleShape455p42.jpg)
 3. 完成对话 (用上祝愿、祝贺的话)
 Hoàn thành đổi thoại (dùng lời cầu chúc, mong ước)
@@ -577,9 +484,6 @@ B：............。
 B：.........................!
 
 ### Notes:
-
-<!-- Slide number: 43 -->
-
 ![](GoogleShape461p43.jpg)
 4. 会话 Đàm thoại.
 (1) 你朋友考试的成绩很好，你向他祝贺。
@@ -589,9 +493,6 @@ B：.........................!
 刘京他们班演的话剧是全系第一。王兰唱歌是第三，我们高兴极了。 都去祝贺他们。
 
 ### Notes:
-
-<!-- Slide number: 44 -->
-
 ![](GoogleShape467p44.jpg)
 6.语音练习 Bài tập ngữ âm
 (1) 常用音节练习  Luyện tập các âm tiết thường dùng
@@ -605,9 +506,6 @@ fúwùyuán           服务员
 wu
 
 ### Notes:
-
-<!-- Slide number: 45 -->
-
 ![](GoogleShape482p45.jpg)
 （2）朗读会话 Đọc to mẩu đàm thoại.
 A：Xīnnián hǎo！
@@ -617,8 +515,6 @@ B：Zhù nǐmen shēntǐ jiànkāng, shēnghuó yúkuài.
 A：Xièxie.
 
 ### Notes:
-
-<!-- Slide number: 46 -->
 The End
 Minliang
 

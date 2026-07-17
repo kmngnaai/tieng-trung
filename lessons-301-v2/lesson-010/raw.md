@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape77p1.jpg)
 
 第十课
@@ -20,9 +18,6 @@ Bưu điện ở đâu?
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape87p2.jpg)
 目录
 
@@ -49,9 +44,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape124p3.jpg)
 01
 生词
@@ -68,8 +60,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 旁边 | pángbiān | 远 | yuǎn |
 | --- | --- | --- | --- |
 | 怎么 | zěnme | 地方 | dìfang |
@@ -82,8 +72,6 @@ Minliang
 | 这儿 | zhèr |  |  |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 旁边 | pángbiān | 名 | bên cạnh |
@@ -95,8 +83,6 @@ Minliang
 ![C:\Users\ad\Downloads\3069.gif](GoogleShape146p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 怎么 | zěnme | 代 | Như nào, sao, làm sao |
@@ -106,8 +92,6 @@ Minliang
 ![C:\Users\ad\Downloads\11988.gif](GoogleShape154p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 走 | zǒu | 动 | đi |
@@ -117,8 +101,6 @@ Minliang
 ![](GoogleShape160p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 就 | jiù | 副 | Thì, bèn |
@@ -128,8 +110,6 @@ Minliang
 ![](GoogleShape168p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 请问 | qǐngwèn | 动 | xin hỏi |
@@ -139,8 +119,6 @@ Minliang
 ![](GoogleShape176p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 往 | wǎng | 介 | Hướng về, về phía |
@@ -150,8 +128,6 @@ Minliang
 ![C:\Users\ad\Downloads\2990.gif](GoogleShape186p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 前 | qián | 名 | Trước |
@@ -161,8 +137,6 @@ Minliang
 ![](GoogleShape192p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 离 | lí | 介 | Cách |
@@ -172,8 +146,6 @@ Minliang
 ![](GoogleShape200p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 这儿 | zhèr | 名 | ở đây |
@@ -183,8 +155,6 @@ Minliang
 ![](GoogleShape208p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 远 | yuǎn | 形 | Xa |
@@ -194,8 +164,6 @@ Minliang
 ![](GoogleShape216p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 地方 | dìfang | 名 | Chỗ, nơi, địa phương |
@@ -205,8 +173,6 @@ Minliang
 ![](GoogleShape224p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 坐 | zuò | 动 | Ngồi |
@@ -216,8 +182,6 @@ Minliang
 ![](GoogleShape232p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 汽车 | Qìchē | 名 | Xe hơi |
@@ -229,8 +193,6 @@ Minliang
 ![C:\Users\ad\Downloads\8988.gif](GoogleShape243p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 同志 | tóngzhì | 名 | Đồng chí |
@@ -240,8 +202,6 @@ Minliang
 ![](GoogleShape249p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 前边 | qiánbiān | 名 | Phía trước, dằng trước |
@@ -249,8 +209,6 @@ Minliang
 ![](GoogleShape257p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 那儿 | nàr | 名 | Chỗ đó, ở đó, chỗ kia |
@@ -260,8 +218,6 @@ Minliang
 ![C:\Users\ad\Downloads\585.gif](GoogleShape266p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 近 | jìn | 形 | gần |
@@ -271,8 +227,6 @@ Minliang
 ![](GoogleShape272p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 专名 ： Danh từ riêng
 百货大楼  /Bǎihuò Dà lóu/ :Tòa nhà bách hóa
                            (tên một siêu thị ở Bắc Kinh)
@@ -284,9 +238,6 @@ Minliang
 ![](GoogleShape280p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
-
 ![](GoogleShape289p23.jpg)
 02
 句子
@@ -303,8 +254,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 1.八楼在九楼旁边。
 /Bā lóu zài jiǔ lóu páng biān./ - Dãy nhà số 8 ở bên cạnh dãy số 9
 2.去八楼怎么走？
@@ -315,8 +264,6 @@ Minliang
 /Qǐngwèn, yóujú zài nǎr?/ - Xin hỏi, bưu điện ở đâu?
 
 ### Notes:
-
-<!-- Slide number: 25 -->
 4.往前走，就是邮局。
 /Wǎng qián zǒu, jiùshì yóujú./ - Đi thẳng về phía trước là bưu điện.
 5.邮局离这儿远不远？
@@ -327,9 +274,6 @@ Minliang
 /Zài nǎr zuò qìchē?/ - Đón (đi) xe bus ở đâu?
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape317p26.jpg)
 03
 课文
@@ -346,9 +290,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape332p27.jpg)
 学生：同志，八楼在哪儿？
 Xuéshēng: Tóngzhì, bā lóu zài nǎr?
@@ -362,8 +303,6 @@ Liú Jīng: Nǐ kàn, nàgè lóu jiùshì.
 ![](GoogleShape330p27.jpg)
 
 ### Notes:
-
-<!-- Slide number: 28 -->
 和子：请问，邮局在哪儿？
 Hézǐ: Qǐngwèn, yóujú zài nǎr?
 A: 在前边。
@@ -380,8 +319,6 @@ A: Bù tài yuǎn. Jiù zài yínháng pángbiān.
 ![](GoogleShape341p28.jpg)
 
 ### Notes:
-
-<!-- Slide number: 29 -->
 玛丽：请问，百货大楼在什么地方？
 Mǎlì: Qǐngwèn, Bǎihuò Dàlóu zài shénme dìfang?
 B：王府井。
@@ -400,9 +337,6 @@ Mǎlì: Xièxiè!
 ![](GoogleShape348p29.jpg)
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape356p30.jpg)
 04
 注释
@@ -419,8 +353,6 @@ Mǎlì: Xièxiè!
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 31 -->
 1.请问，邮局在哪儿？ ” Xin hỏi bưu điện ở đâu?
 请问 là lời nói lịch sự khi muốn hỏi người khác việc gì đó. Nó luôn được đặt trước câu hỏi.
 
@@ -430,9 +362,6 @@ Phó từ 就 trong 2 câu trên đều dùng để nhấn mạnh ngữ khí kh�
 ![](GoogleShape369p31.jpg)
 
 ### Notes:
-
-<!-- Slide number: 32 -->
-
 ![](GoogleShape377p32.jpg)
 05
 替换与扩展
@@ -449,8 +378,6 @@ Phó từ 就 trong 2 câu trên đều dùng để nhấn mạnh ngữ khí kh�
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 33 -->
 留学生食堂		那个楼前边
 他的宿舍上海	 	302好旁边
 1.八楼在哪儿？
@@ -470,9 +397,6 @@ Minliang
 他爸爸早上七点半去工作，下午五点半回家。
 
 ### Notes:
-
-<!-- Slide number: 34 -->
-
 ![](GoogleShape401p34.jpg)
 06
 语法
@@ -489,16 +413,11 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 35 -->
-
 ![](GoogleShape414p35.jpg)
 1.Phương vị từ
 旁边，前面，.... đều là phương vị từ. Phương vị từ là một loại danh từ có thể làm chủ ngữ, tân ngữ, định ngữ,.. khi phương vị từ làm định ngữ, thì thường phải dùng từ 的 để nối với danh từ trung tâm. Ví dụ     “东边的房间” (căn phòng phía đông), “前面的商店” (cửa hàng phía trước)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
 2.Câu hỏi chính phản
 Khi đặt liền dạng khẳng định và phủ định của động từ hoặc hình dung từ trong vị ngữ, ta sẽ có câu hỏi chính phản. Ví dụ：
 （1）你今天来不来？
@@ -509,9 +428,6 @@ Khi đặt liền dạng khẳng định và phủ định của động từ ho
 ![](GoogleShape421p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 37 -->
-
 ![](GoogleShape429p37.jpg)
 07
 练习
@@ -528,8 +444,6 @@ Khi đặt liền dạng khẳng định và phủ định của động từ ho
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 38 -->
 1.选词填空 Chọn từ điền vào chỗ trống
    （去	在	  离	   回	   买	   往）
 （1）八楼.............九楼不太远。
@@ -540,8 +454,6 @@ Minliang
 （6）	这本书很好，你............不............?
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 2. 按照实际情况回答问题 Dựa theo tình hình thực tế trả lời câu hỏi
 （1）谁在你旁边？谁在你前边？
 （2）谁住在你旁边的房间？
@@ -552,8 +464,6 @@ Minliang
 ![](GoogleShape447p39.jpg)
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 4.语音练习 Bài tập ngữ âm
 (1)读下列词语: 第2声+第2声
 Đọc các từ sau : Thanh 2 + Thanh 2
@@ -566,8 +476,6 @@ wénmíng	文明		értóng 	儿童
 ![](GoogleShape453p40.jpg)
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 (2) 常用音节练习  Luyện tập các âm tiết thường dùng
 	yīshēng  医生		  bù xīn        不新
 	yīgè        一个		  bù qù         不去
@@ -580,8 +488,6 @@ ru
 ![](GoogleShape462p41.jpg)
 
 ### Notes:
-
-<!-- Slide number: 42 -->
 （3）朗读会话  Đọc to đoạn đàm thoại sau
 A: Qǐngwèn, Běijīng Dàxué zài nǎr?
 B: Zài Qīnghuá Dàxué xībiān.
@@ -593,8 +499,6 @@ B: Shì de.
 ![](GoogleShape475p42.jpg)
 
 ### Notes:
-
-<!-- Slide number: 43 -->
 THE END
 Minliang
 

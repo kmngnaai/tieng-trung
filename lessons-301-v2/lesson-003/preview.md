@@ -1,7 +1,7 @@
 # Bài 3 · 你工作忙吗
 
 - Type: `full_course`
-- Source: 3第三课-你工作忙吗.md, pdf-301-cau-dam-thoai.md, lesson-003/data.json, 3第三课-你工作忙吗.pptx
+- Source: 3第三课-你工作忙吗.md, pdf-301-cau-dam-thoai.md, lesson-003/data.json
 
 ## Mẫu câu
 

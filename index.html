@@ -5,9 +5,13 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Tiếng Trung</title>
   <link rel="stylesheet" href="assets/css/theme.css" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=20260717-compact1" />
+  <link rel="stylesheet" href="modules/shared/ui-tokens.css?v=20260717-tra1" />
+  <link rel="stylesheet" href="modules/shared/ui-components.css?v=20260717-tra1" />
+  <link rel="stylesheet" href="modules/shared/ui-utils.css?v=20260717-tra1" />
+  <link rel="stylesheet" href="modules/shared/app-shell.css?v=20260717-tra1" />
 </head>
-<body>
+<body data-ui-shell-context="home" data-nav-context="home">
   <div class="app-frame">
     <header class="app-header">
       <div class="app-header-inner">
@@ -21,90 +25,86 @@
         <nav class="desktop-nav" aria-label="Điều hướng chính">
           <a class="desktop-nav-link active" data-page="home" href="index.html">Trang chủ</a>
           <a class="desktop-nav-link" data-go="pinyin" href="modules/pinyin/index.html">Pinyin</a>
-          <a class="desktop-nav-link" data-go="hanziStroke" href="modules/hanzi-stroke/index.html">Tra chữ</a>
+          <a class="desktop-nav-link" href="modules/lookup/index.html">Tra</a>
           <a class="desktop-nav-link" data-go="dialogue301" href="#dialogue301">301 Đàm thoại</a>
         </nav>
 
         <div class="header-actions" aria-label="Tác vụ nhanh">
-          <a class="icon-btn" data-go="hanziStroke" href="modules/hanzi-stroke/index.html" aria-label="Tra chữ Hán hoặc luyện viết">⌕</a>
+          <a class="icon-btn" href="modules/lookup/index.html" aria-label="Tra chữ, từ hoặc Pinyin">⌕</a>
           <button class="icon-btn" type="button" aria-label="Menu">☰</button>
         </div>
       </div>
     </header>
 
-    <main class="app-main" id="appRoot">
-      <section class="welcome-card">
-        <div>
-          <h1 id="pageTitle">Tiếng Trung</h1>
-          <p id="pageSubtitle">Pinyin · Tra chữ Hán · Bộ thủ · 301 Đàm thoại</p>
-        </div>
-        <a class="search-entry" data-go="hanziStroke" href="modules/hanzi-stroke/index.html" aria-label="Tra chữ Hán hoặc luyện viết">
-          <span aria-hidden="true">⌕</span>
-          <span>Tra chữ Hán hoặc luyện viết...</span>
-        </a>
-      </section>
+    <main class="app-main" id="appRoot" data-ui-shell-main>
+      <div class="ui-sr-only" aria-live="polite">
+        <h1 id="pageTitle">Tiếng Trung</h1>
+        <p id="pageSubtitle">Tra nhanh · Học tiếp · Khám phá</p>
+      </div>
 
       <div id="pageContent">
-        <section class="tool-section">
-          <div class="section-title-row">
-            <h2>Công cụ học</h2>
-          </div>
-
-          <div class="module-grid">
-            <a class="module-card module-red" data-go="hanziStroke" href="modules/hanzi-stroke/index.html">
-              <div class="module-card-top">
-                <span class="module-icon">写</span>
+        <section class="home-dashboard" aria-label="Trang chủ học tiếng Trung">
+          <section class="home-dashboard-card home-quick-lookup" aria-labelledby="homeQuickLookupTitle">
+            <div class="home-dashboard-heading">
+              <div>
+                <p class="home-dashboard-kicker">Tra cứu</p>
+                <h2 id="homeQuickLookupTitle">Tra nhanh</h2>
               </div>
-              <h3>Tra chữ Hán</h3>
-              <p>Xem nghĩa, pinyin, Hán Việt và luyện viết.</p>
-              <span class="module-arrow" aria-hidden="true">›</span>
-            </a>
+            </div>
+            <form id="homeLookupForm" class="home-lookup-form" action="modules/lookup/index.html" method="get" role="search">
+              <span class="home-lookup-icon" aria-hidden="true">⌕</span>
+              <input id="homeLookupInput" name="q" type="search" autocomplete="off" placeholder="Nhập chữ Hán, từ hoặc Pinyin..." aria-label="Tra chữ Hán, từ hoặc Pinyin" />
+              <button type="submit">Tra</button>
+            </form>
+            <div class="home-lookup-types" aria-label="Loại nội dung có thể tra">
+              <span>字 Hán tự</span>
+              <span>词 Từ nhiều chữ</span>
+              <span>ā Pinyin</span>
+            </div>
+          </section>
 
-            <a class="module-card module-green" data-go="pinyin" href="modules/pinyin/index.html">
-              <div class="module-card-top">
-                <span class="module-icon">拼</span>
-              </div>
-              <h3>Pinyin</h3>
-              <p>Luyện âm và thanh điệu.</p>
-              <span class="module-arrow" aria-hidden="true">›</span>
-            </a>
+          <section class="home-dashboard-section" aria-labelledby="homeResumeTitle">
+            <div class="home-dashboard-heading">
+              <h2 id="homeResumeTitle">Học tiếp</h2>
+            </div>
+            <div class="home-resume-empty" role="status">
+              <span class="home-resume-empty__icon" aria-hidden="true">↻</span>
+              <span><strong>Chưa có nội dung gần đây</strong><small>Mở một bài học hoặc công cụ để bắt đầu.</small></span>
+            </div>
+          </section>
 
-            <a class="module-card module-blue" data-go="radicals" href="modules/bo-thu-50/index.html">
-              <div class="module-card-top">
-                <span class="module-icon">部</span>
-              </div>
-              <h3>Bộ thủ 50</h3>
-              <p>Nhớ bộ thủ thường gặp.</p>
-              <span class="module-arrow" aria-hidden="true">›</span>
-            </a>
-
-            <a class="module-card module-purple" data-go="dialogue301" href="#dialogue301">
-              <div class="module-card-top">
-                <span class="module-icon">会</span>
-              </div>
-              <h3>301 Đàm thoại</h3>
-              <p>Từ vựng, câu mẫu, hội thoại.</p>
-              <span class="module-arrow" aria-hidden="true">›</span>
-            </a>
-
-            <article id="tool-tra-chu" class="module-card module-orange is-disabled" aria-disabled="true">
-              <div class="module-card-top">
-                <span class="module-icon">查</span>
-              </div>
-              <h3>Tra chữ Hán</h3>
-              <p>Pinyin, nghĩa, bộ thủ.</p>
-              <span class="module-arrow" aria-hidden="true">›</span>
-            </article>
-
-            <article class="module-card module-brown is-disabled" aria-disabled="true">
-              <div class="module-card-top">
-                <span class="module-icon">复</span>
-              </div>
-              <h3>Ôn tập</h3>
-              <p>Ôn lại nội dung đã học.</p>
-              <span class="module-arrow" aria-hidden="true">›</span>
-            </article>
-          </div>
+          <section class="home-dashboard-section" aria-labelledby="homeExploreTitle">
+            <div class="home-dashboard-heading">
+              <h2 id="homeExploreTitle">Khám phá</h2>
+            </div>
+            <div class="home-explore-grid">
+              <a class="home-explore-card home-explore-card--curriculum" href="modules/hanzi-stroke/index.html?study=hsk">
+                <span class="home-explore-card__icon" aria-hidden="true">课</span>
+                <span><strong>Giáo trình</strong><small>301 · HSK · YCT · Boya</small></span>
+                <b aria-hidden="true">›</b>
+              </a>
+              <a class="home-explore-card home-explore-card--radicals" href="modules/hanzi-stroke/index.html?study=radicals">
+                <span class="home-explore-card__icon" aria-hidden="true">部</span>
+                <span><strong>Bộ thủ</strong><small>214 bộ thủ hiện tại</small></span>
+                <b aria-hidden="true">›</b>
+              </a>
+              <a class="home-explore-card home-explore-card--cards" href="modules/hanzi-stroke/index.html?study=flashcards">
+                <span class="home-explore-card__icon" aria-hidden="true">卡</span>
+                <span><strong>Thẻ</strong><small>Flashcard và ôn tập</small></span>
+                <b aria-hidden="true">›</b>
+              </a>
+              <a class="home-explore-card home-explore-card--writing" href="modules/hanzi-stroke/index.html?study=writing">
+                <span class="home-explore-card__icon" aria-hidden="true">✍</span>
+                <span><strong>Bút thuận</strong><small>Luyện viết đúng thứ tự nét</small></span>
+                <b aria-hidden="true">›</b>
+              </a>
+              <a class="home-explore-card home-explore-card--pinyin" href="modules/pinyin/index.html">
+                <span class="home-explore-card__icon" aria-hidden="true">拼</span>
+                <span><strong>Pinyin</strong><small>Học · Nghe · Quiz · Ôn</small></span>
+                <b aria-hidden="true">›</b>
+              </a>
+            </div>
+          </section>
         </section>
       </div>
     </main>
@@ -129,6 +129,7 @@
     </nav>
   </div>
 
-  <script src="app.js?v=20260706-layer5-hanzi-lookup"></script>
+  <script src="app.js?v=20260717-compact1"></script>
+  <script src="modules/shared/app-shell.js?v=20260717-compact1"></script>
 </body>
 </html>

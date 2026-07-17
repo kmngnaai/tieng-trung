@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape70p1.jpg)
 I
 
@@ -22,9 +20,6 @@ Tôi bị đau đầu
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape80p2.jpg)
 目录
 
@@ -48,9 +43,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape112p3.jpg)
 
 ![](GoogleShape114p3.jpg)
@@ -69,8 +61,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 开始 | kāishǐ | 表 | biǎo | 锁 | suǒ |
 | --- | --- | --- | --- | --- | --- |
 | 把 | bǎ | 发烧 | fā shāo | 关 | guān |
@@ -84,8 +74,6 @@ Minliang
 ![](GoogleShape127p4.jpg)
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 开始 | kāishǐ | 动 | bắt đầu |
@@ -95,8 +83,6 @@ Minliang
 ![](GoogleShape134p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 把 | bǎ | 介 | mang, đem (giới từ) |
@@ -106,8 +92,6 @@ Minliang
 ![](GoogleShape142p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 嘴 | zuǐ | 名 | cái miệng |
@@ -117,8 +101,6 @@ Minliang
 ![](GoogleShape150p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 张 | zhāng | 动 | mở, há to |
@@ -128,8 +110,6 @@ Minliang
 ![](GoogleShape158p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 一...就 | yī ....jiù |  | hễ...là |
@@ -137,8 +117,6 @@ Minliang
 ![](GoogleShape166p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 摔 | shuāi | 动 | ngã, té |
@@ -149,8 +127,6 @@ Minliang
 ![摔的笔顺动画](GoogleShape175p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 嗓子 | sǎngzi | 名 | họng |
@@ -160,8 +136,6 @@ Minliang
 ![](GoogleShape181p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 表 | biǎo | 名 | đồng hồ |
@@ -169,8 +143,6 @@ Minliang
 ![](GoogleShape189p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 发烧 | fā shāo |  | sốt |
@@ -180,8 +152,6 @@ Minliang
 ![](GoogleShape196p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 打针 | dǎ zhēn |  | tiêm, chích |
@@ -191,8 +161,6 @@ Minliang
 ![](GoogleShape204p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 受 | shòu | 动 | nhận, chịu, bị |
@@ -202,8 +170,6 @@ Minliang
 ![](GoogleShape212p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 伤 | shāng | 名，动 | vết thương, bị thương |
@@ -213,8 +179,6 @@ Minliang
 ![](GoogleShape220p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 情况 | qíngkuàng | 名 | tình huống |
@@ -224,8 +188,6 @@ Minliang
 ![](GoogleShape228p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 重 | zhòng | 形 | nặng |
@@ -235,8 +197,6 @@ Minliang
 ![](GoogleShape236p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 铅笔 | qiānbǐ | 名 | bút chì |
@@ -244,8 +204,6 @@ Minliang
 ![](GoogleShape244p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 锁 | suǒ | 动，名 | khóa, ổ khóa |
@@ -255,8 +213,6 @@ Minliang
 ![](GoogleShape251p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 关 | guān | 动 | đóng, khép |
@@ -266,8 +222,6 @@ Minliang
 ![](GoogleShape259p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 灯 | dēng | 名 | đèn |
@@ -277,8 +231,6 @@ Minliang
 ![](GoogleShape267p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 20 | 锻炼 | duànliàn | 动 | rèn luyện |
@@ -290,8 +242,6 @@ Minliang
 ![炼的笔顺动画](GoogleShape278p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 21 | 住院 | zhùyuàn |  | nằm viện |
@@ -302,9 +252,6 @@ Minliang
 ![住的笔顺动画](GoogleShape286p24.jpg)
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape292p25.jpg)
 
 ![](GoogleShape294p25.jpg)
@@ -323,9 +270,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape309p26.jpg)
 1. 你怎么了？
 /Nǐ zěnme le./ - Bạn làm sao thế?
@@ -337,8 +281,6 @@ Minliang
 /Nǐ bǎ zuǐ zhāng kāi, wǒ kànkan./ - Bạn há miệng ra, tôi xem thử.
 
 ### Notes:
-
-<!-- Slide number: 27 -->
 5. 吃两天药，就会好的。
 /Chī liǎng tiān yào, jiù huì hǎo de./- Uống 2 ngày thuốc sẽ khỏi thôi.
 6. 王兰呢？
@@ -351,9 +293,6 @@ Minliang
 ![](GoogleShape317p27.jpg)
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape323p28.jpg)
 
 ![](GoogleShape325p28.jpg)
@@ -372,8 +311,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 29 -->
 大夫：你怎么了？
 玛丽：我头疼，咳嗽。
 大夫：几天了？
@@ -391,9 +328,6 @@ Minliang
 ![](GoogleShape338p29.jpg)
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape345p30.jpg)
 和子：王兰呢？我找了她两次，都不在。
 刘京：到医院去了。
@@ -405,9 +339,6 @@ Minliang
 刘京：还不清楚，检查了才能知道。
 
 ### Notes:
-
-<!-- Slide number: 31 -->
-
 ![](GoogleShape354p31.jpg)
 
 ![](GoogleShape352p31.jpg)
@@ -426,9 +357,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 32 -->
-
 ![](GoogleShape369p32.jpg)
 窗户  开开，他的信  送去
 冰箱  打开，铅笔    放好
@@ -443,17 +371,12 @@ Minliang
 关灯  睡觉，起床  去锻炼
 
 ### Notes:
-
-<!-- Slide number: 33 -->
 1.他发了两天烧，吃药以后，今天好多了。
 2.他住院亍，每天打两针，上午一针，下午一针。下星期可以出院了。
 
 ![](GoogleShape375p33.jpg)
 
 ### Notes:
-
-<!-- Slide number: 34 -->
-
 ![](GoogleShape384p34.jpg)
 
 ![](GoogleShape382p34.jpg)
@@ -472,8 +395,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 35 -->
 1. 动量补语 Bổ ngữ động lượng
 Động lượng từ kết hợp với số từ đặt sau động từ để nói rõ số lần xảy ra của động tác, tạo thành bổ ngữ động lượng. Ví dụ:
 (1) 他只来过一次。
@@ -485,8 +406,6 @@ Minliang
 ![](GoogleShape397p35.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
 2.“把”字句(一) Câu động từ“把” (1)
 Câu có từ“把”thường dùng để nhấn mạnh thêm sự xử trí và kết quả xử trí của động từ đối với sự vật nào đó. Trong câu có từ “把”, giới từ“把”và tân ngữ của nó (vật bị xử trí) phải được đặt sau chủ ngữ và trước động từ, có tác dụng như một trạng ngữ. Ví dụ:
 (1) 你把门开开。
@@ -497,17 +416,12 @@ Câu có từ“把”thường dùng để nhấn mạnh thêm sự xử trí v
 ![](GoogleShape404p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 Câu có từ“把”có các đặc điểm sau:
 ① Tân ngữ của từ“把” đã được người nói xác định ngầm. Vì thế không thể nói“把一杯茶喝 了”, mà chỉ có thể nói “把那杯茶喝了”.
 ② Động từ chủ yếu của câu có từ“把” phải là động từ cập vật, có ý nghĩa xử trí hoặc chi phối. Các động từ không có ý nghĩa xử trí như“有，是，在，来，去，回，喜欢，知道...”thì không thể dùng trong câu có từ“把”.
 ③ Sau động từ trong câu có từ“把”cần phải có các thành phần khác, ví dụ như không thể nói“我把门开”mà phải nói“把门开开”.
 
 ### Notes:
-
-<!-- Slide number: 38 -->
-
 ![](GoogleShape418p38.jpg)
 3. “一....就...”  Vừa ... thì... (Hễ...thì.„)
 Có khi chỉ hai sự vật phát sinh liền nhau. Ví dụ:
@@ -518,9 +432,6 @@ Có khi phần đầu câu chỉ điều kiện, phần sau chỉ kết quả. V
 (4) 一下雪,路就很滑。
 
 ### Notes:
-
-<!-- Slide number: 39 -->
-
 ![](GoogleShape424p39.jpg)
 
 ![](GoogleShape426p39.jpg)
@@ -539,8 +450,6 @@ Có khi phần đầu câu chỉ điều kiện, phần sau chỉ kết quả. V
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 1. 填上适当的量词。
 
 ![](GoogleShape439p40.jpg)
@@ -550,8 +459,6 @@ Minliang
 | 洗...衣服 | 接...一个电话 |  |
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 2. 仿照例子，把下面的句子改成“把”字句。
 例：他画蓍了一张画儿。
    → 他把那张画儿画蚯了。
@@ -563,9 +470,6 @@ Minliang
 ![](GoogleShape445p41.jpg)
 
 ### Notes:
-
-<!-- Slide number: 42 -->
-
 ![](GoogleShape451p42.jpg)
 3. 完成对话
 A：..................................。
@@ -578,8 +482,6 @@ A：我..................................带来了。（把，书）
 B：谢谢。
 
 ### Notes:
-
-<!-- Slide number: 43 -->
 4. 会话
 
 ![](GoogleShape457p43.jpg)
@@ -587,18 +489,12 @@ B：谢谢。
 Bác sĩ và bệnh nhân nói chuyện với nhau (trong lúc chơi banh, tay bị chấn thương, đi bệnh viện khám).
 
 ### Notes:
-
-<!-- Slide number: 44 -->
-
 ![](GoogleShape464p44.jpg)
 5. 听述
 今天小王一起床就头疼，不想吃东西，他没去上课，去医院看病了。大夫给他检查了身体，问了他的情况。
 他不发烧，嗓子也不红，不是感冒。昨天晚上他睡得很晚，很长时间睡不着，头疼是因为睡得太少了。大夫没给他药，告诉他回去好好睡一觉就会好的。
 
 ### Notes:
-
-<!-- Slide number: 45 -->
-
 ![](GoogleShape471p45.jpg)
 6.语音练习 Bài tập ngữ âm
 (1) 常用音节练习  Luyện tập các âm tiết thường dùng
@@ -612,9 +508,6 @@ xǐzǎo                 洗澡
 xi
 
 ### Notes:
-
-<!-- Slide number: 46 -->
-
 ![](GoogleShape486p46.jpg)
 （2）朗读会话 Đọc to mẩu đàm thoại.
 A：Dàifu, wǒ dùzi téng.
@@ -625,8 +518,6 @@ A：Hē le hěnduō bīngshuǐ ？
 B：Kěnéng shì yīnwèi hē de tài duō le, chī diǎnr yào ba.
 
 ### Notes:
-
-<!-- Slide number: 47 -->
 The End
 Minliang
 

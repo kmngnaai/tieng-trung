@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape69p1.jpg)
 I
 
@@ -20,9 +18,6 @@ Chúc bạn thượng lộ bình an
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape79p2.jpg)
 目录
 
@@ -46,9 +41,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape111p3.jpg)
 
 ![](GoogleShape113p3.jpg)
@@ -67,8 +59,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 冷饮 | lěngyǐn | 耽误 | dānwù | 考虑 | kǎolǜ |
 | --- | --- | --- | --- | --- | --- |
 | 出境 | chūjìng | 合适 | héshì | 进步 | jìnbù |
@@ -82,8 +72,6 @@ Minliang
 ![](GoogleShape127p4.jpg)
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 冷饮 | lěngyǐn | 名 | nước giải khát, đồ uống lạnh |
@@ -95,8 +83,6 @@ Minliang
 ![饮的笔顺动画](GoogleShape136p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 出境 | chūjìng | 动 | xuất cảnh |
@@ -107,8 +93,6 @@ Minliang
 ![境的笔顺动画](GoogleShape144p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 保重 | bǎozhòng | 动 | bảo trọng |
@@ -118,8 +102,6 @@ Minliang
 ![](GoogleShape150p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 希望 | xīwàng | 动，名 | hy vọng |
@@ -131,8 +113,6 @@ Minliang
 ![望的笔顺动画](GoogleShape161p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 可 | kě | 副 | có thể |
@@ -140,8 +120,6 @@ Minliang
 ![](GoogleShape167p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 平安 | píng’ān | 形 | bình an |
@@ -149,8 +127,6 @@ Minliang
 ![](GoogleShape174p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 候机室 | hòujīshì | 名 | phòng chờ máy bay |
@@ -158,8 +134,6 @@ Minliang
 ![](GoogleShape181p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 挤 | jǐ | 动 | chen, chật |
@@ -169,8 +143,6 @@ Minliang
 ![](GoogleShape188p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 耽误 | dānwù | 动 | lỡ, để lễ, trễ |
@@ -180,8 +152,6 @@ Minliang
 ![](GoogleShape196p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 合适 | héshì | 形 | thích hợp |
@@ -191,8 +161,6 @@ Minliang
 ![](GoogleShape204p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 汗 | hàn | 名 | mồ hôi |
@@ -202,8 +170,6 @@ Minliang
 ![](GoogleShape212p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 海关 | hǎiguān | 名 | hải quan |
@@ -211,8 +177,6 @@ Minliang
 ![](GoogleShape220p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 问候 | wènhòu | 动 | hỏi thăm |
@@ -220,8 +184,6 @@ Minliang
 ![](GoogleShape227p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 帽子 | màozi | 名 | mũ, cái mũ/nón |
@@ -231,8 +193,6 @@ Minliang
 ![](GoogleShape234p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 牛奶 | niúnǎi | 名 | sữa bò |
@@ -242,8 +202,6 @@ Minliang
 ![](GoogleShape242p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 认真 | rènzhēn | 形 | nghiêm túc |
@@ -253,8 +211,6 @@ Minliang
 ![](GoogleShape250p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 考虑 | kǎolǜ | 动 | xem xét |
@@ -262,8 +218,6 @@ Minliang
 ![](GoogleShape258p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 进步 | jìnbù |  | tiến bộ |
@@ -271,8 +225,6 @@ Minliang
 ![](GoogleShape265p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 20 | 努力 | nǔlì | 形 | nỗ lực |
@@ -280,8 +232,6 @@ Minliang
 ![](GoogleShape272p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 21 | 下班 | xiàbān |  | tan ca, tan làm |
@@ -290,8 +240,6 @@ Minliang
 ![](GoogleShape279p24.jpg)
 
 ### Notes:
-
-<!-- Slide number: 25 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 23 | 展览 | zhǎnlǎn | 名 | triển lãm |
@@ -301,9 +249,6 @@ Minliang
 ![](GoogleShape286p25.jpg)
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape294p26.jpg)
 
 ![](GoogleShape296p26.jpg)
@@ -322,9 +267,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape311p27.jpg)
 1. 离起飞还早着呢。
 /Lí qǐfēi hái zǎo zhe ne./ - Cách giờ cất cánh còn lâu.
@@ -336,8 +278,6 @@ Minliang
 /Yīhuìr hái yào bàn chūjìng shǒuxù ne./ - Lát nữa còn phải làm thủ tục xuất cảnh.
 
 ### Notes:
-
-<!-- Slide number: 28 -->
 5. 一路上多保重。
 /Yī lùshàng duō bǎozhòng./ - Đi đường bảo trọng nhé.
 6. 希望你常来信。
@@ -352,9 +292,6 @@ Minliang
 ![](GoogleShape319p28.jpg)
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape325p29.jpg)
 
 ![](GoogleShape327p29.jpg)
@@ -373,8 +310,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 30 -->
 刘京：离起飞还早着呢。
 玛丽：我们去候机室坐一会儿。
 李红：张丽英还没来。
@@ -391,9 +326,6 @@ Minliang
 ![](GoogleShape340p30.jpg)
 
 ### Notes:
-
-<!-- Slide number: 31 -->
-
 ![](GoogleShape347p31.jpg)
 李红：给你行李，拿好。准备海关检查。
 张：一路上多保重。
@@ -407,9 +339,6 @@ Minliang
 大家：再见。
 
 ### Notes:
-
-<!-- Slide number: 32 -->
-
 ![](GoogleShape356p32.jpg)
 
 ![](GoogleShape354p32.jpg)
@@ -428,8 +357,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 33 -->
 帽子   忘   汽车上
 钥匙   锁   房间里
 牛奶   放   冰箱里
@@ -447,17 +374,12 @@ Minliang
 继续进步    努力工作
 
 ### Notes:
-
-<!-- Slide number: 34 -->
 1.今天我们下了班就去看展览了。
 2.昨天我没上班，我去接朋友了。我去的时候，他正在办入境手续。
 
 ![](GoogleShape377p34.jpg)
 
 ### Notes:
-
-<!-- Slide number: 35 -->
-
 ![](GoogleShape384p35.jpg)
 
 ![](GoogleShape386p35.jpg)
@@ -476,8 +398,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 36 -->
 1.“把”字句(三)    Câu dùng“把” (3)
 Thể phủ định của câu dùng“把”được tạo thành bằng cách thêm phó từ phủ định“不”hoặc“没”vào trước giới từ“把”.Ví dụ:
 (1) 安娜没把这课练习作完。
@@ -491,8 +411,6 @@ Nếu có trạng ngữ chỉ thời gian thì cũng phải đặt trước“�
 ![](GoogleShape400p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 2.“…了 …就”“xong... liền”, “... rồi... liền”
 Chỉ một động tác xảy ra ngay sau khi một động tác khác vừa mới hoàn thành. Ví dụ:
 (1) 昨天我们下了课就去参观了。
@@ -501,9 +419,6 @@ Chỉ một động tác xảy ra ngay sau khi một động tác khác vừa m�
 ![](GoogleShape407p37.jpg)
 
 ### Notes:
-
-<!-- Slide number: 38 -->
-
 ![](GoogleShape413p38.jpg)
 
 ![](GoogleShape415p38.jpg)
@@ -522,8 +437,6 @@ Chỉ một động tác xảy ra ngay sau khi một động tác khác vừa m�
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 1. 熟读下列词组并选择造句
 
 ![](GoogleShape428p39.jpg)
@@ -534,8 +447,6 @@ Minliang
 | 努力工作 | 很努力 | 继续努力 |
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 2. 用“希望”完成句子
 (1)	这次支试.......................。
 (2)	你回国以后....................。
@@ -547,8 +458,6 @@ Minliang
 ![](GoogleShape434p40.jpg)
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 3. 选择适当的词语填空
 
 ![](GoogleShape441p41.jpg)
@@ -556,9 +465,6 @@ Minliang
 尼娜.......回国......，我们..........她开了一个欢送会。那天.........热闹，同学们.........谈话........喝茶，还......了不少节日。我们说她回国以后常来信，而且...........我们问候她全家，祝她一路...................。
 
 ### Notes:
-
-<!-- Slide number: 42 -->
-
 ![](GoogleShape447p42.jpg)
 4. 完成对话
 A：小李，你这次出差去多长时间？
@@ -571,8 +477,6 @@ A：不用了。祝你...................!
 B：谢谢!
 
 ### Notes:
-
-<!-- Slide number: 43 -->
 5. 会话
 
 ![](GoogleShape453p43.jpg)
@@ -580,17 +484,12 @@ B：谢谢!
 Hãy nói về việc bạn bè hay người nhà tiễn bạn đi Trung Quốc.
 
 ### Notes:
-
-<!-- Slide number: 44 -->
 6. 听述
 妹妹第一次出远门，要到中国去留学。我们全家送她到机场。她有两件行李，我和爸爸替她拿。妈妈很不放心，让她路上要注意安全，别感冒，到了中国就来信，把那儿的情况告诉我们。爸爸说妈妈说得太多了，妹妹已经不是小孩子了。应该让她到外边锻炼锻炼。妈妈说：“中国有句话说，儿行千里母担忧意思是，孩子到很远的地方去，妈妈不放心。我怎么能不说呢?”
 
 ![](GoogleShape460p44.jpg)
 
 ### Notes:
-
-<!-- Slide number: 45 -->
-
 ![](GoogleShape467p45.jpg)
 6.语音练习 Bài tập ngữ âm
 (1) 常用音节练习  Luyện tập các âm tiết thường dùng
@@ -604,8 +503,6 @@ shuìjiào             睡觉
 jiao
 
 ### Notes:
-
-<!-- Slide number: 46 -->
 （2）朗读会话 Đọc to mẩu đàm thoại.
 A : Qíng kàn yíxiàr nín de hùzhào hé jīpiào.
 B : Zěnme tuōyùn xíngli ?
@@ -617,8 +514,6 @@ B : Hǎo, xièxie !
 ![](GoogleShape482p46.jpg)
 
 ### Notes:
-
-<!-- Slide number: 47 -->
 The End
 Minliang
 

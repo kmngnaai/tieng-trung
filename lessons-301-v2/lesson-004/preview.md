@@ -1,7 +1,7 @@
 # Bài 4 · 您贵姓
 
 - Type: `full_course`
-- Source: 4第四课-您贵姓.md, pdf-301-cau-dam-thoai.md, lesson-004/data.json, 4第四课-您贵姓.pptx
+- Source: 4第四课-您贵姓.md, pdf-301-cau-dam-thoai.md, lesson-004/data.json
 
 ## Mẫu câu
 

@@ -9320,3 +9320,127 @@ body.hsk-flashcard-open{
 .hsk-flashcard-typing-continue{min-height:44px;margin-top:4px;border:1px solid #82bda7;border-radius:999px;background:#fff;color:#185d43;padding:9px 18px;font:inherit;font-weight:800}
 .hsk-flashcard-typing-continue:active{transform:translateY(1px)}
 @media (prefers-reduced-motion:reduce){.hsk-flashcard-typing-continue:active{transform:none}}
+
+/* UI 2026-07-17: learning hub and curriculum shell */
+.ui-learning-hero {
+  margin-top: 14px;
+  border: 1px solid var(--ui-border);
+  background: linear-gradient(135deg, var(--ui-surface), var(--ui-accent-soft));
+  box-shadow: var(--ui-shadow-sm);
+}
+.ui-module-grid--learning-home { gap: 11px; }
+.ui-module-grid--learning-home .ui-module-card {
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface);
+  box-shadow: var(--ui-shadow-sm);
+}
+.ui-module-card--curriculum .ui-module-card__icon { background: #fff1e5; color: #d96f23; }
+.ui-module-card--radicals .ui-module-card__icon { background: #eaf8ee; color: #27834e; }
+.ui-module-card--cards .ui-module-card__icon { background: #eaf6ff; color: #1685c5; }
+.ui-module-card--writing .ui-module-card__icon { background: #f2ecff; color: #7751c8; }
+.ui-module-card--pinyin .ui-module-card__icon { background: #e8f8f1; color: #16805b; }
+.hsk-source-btn[data-hsk-source="dialogue301"] { border-color: color-mix(in srgb, var(--ui-accent) 42%, var(--ui-border)); }
+.hsk-dialogue301-list { display: grid; gap: 9px; }
+.hsk-dialogue301-item {
+  min-height: 68px;
+  display: grid;
+  grid-template-columns: 42px minmax(0,1fr) auto;
+  align-items: center;
+  gap: 11px;
+  border: 1px solid var(--ui-border);
+  border-radius: 15px;
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  padding: 10px 12px;
+  text-decoration: none;
+  box-shadow: var(--ui-shadow-sm);
+}
+.hsk-dialogue301-item__no { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 13px; background: var(--ui-accent-soft); color: var(--ui-accent-hover); font-weight: 900; }
+.hsk-dialogue301-item__copy { display: grid; min-width: 0; }
+.hsk-dialogue301-item__copy strong { font-family: var(--ui-font-han); font-size: .98rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hsk-dialogue301-item__copy small { color: var(--ui-text-secondary); }
+.hsk-card.is-dialogue301 .hsk-path-row:nth-child(2),
+.hsk-card.is-dialogue301 .hsk-search,
+.hsk-card.is-dialogue301 .hsk-filter-panel { display: none; }
+@media (min-width: 760px) {
+  .ui-module-grid--learning-home { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .ui-module-grid--learning-home .ui-module-card--pinyin { grid-column: 1 / -1; }
+}
+
+/* Học overview follows the approved card-first layout. */
+.hanzi-app.is-hub-view .study-tabs { display: none; }
+.hanzi-app.is-hub-view .ui-learning-hero { margin-bottom: 14px; }
+
+/* Shared visual tone: keep module logic, map its legacy palette to global tokens. */
+:root {
+  --bg: var(--ui-bg);
+  --page: var(--ui-bg);
+  --panel: var(--ui-surface);
+  --panel-soft: var(--ui-surface-soft);
+  --text: var(--ui-text);
+  --muted: var(--ui-text-secondary);
+  --line: var(--ui-border);
+  --line-cool: var(--ui-border);
+  --accent: var(--ui-accent-hover);
+  --accent-2: var(--ui-accent);
+  --focus: color-mix(in srgb, var(--ui-accent) 22%, transparent);
+  --shadow: var(--ui-shadow-md);
+  --font-ui: var(--ui-font-sans);
+  --font-zh: var(--ui-font-han);
+}
+html, body, .hanzi-app { background: var(--ui-bg); color: var(--ui-text); }
+
+/* Compact learning header: content appears sooner on mobile */
+@media (max-width: 620px) {
+  .study-hero {
+    display: block;
+    margin: 0 0 7px;
+    padding: 5px 2px 7px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  .study-hero .eyebrow,
+  .study-hero-mark { display: none; }
+  .study-hero h1 { font-size: 22px; line-height: 1.2; }
+  .study-subtitle { margin: 2px 0 0; font-size: 12px; line-height: 1.35; }
+  .study-tabs { margin-bottom: 8px; }
+}
+
+/* UI 2026-07-17 compact study pages: remove decorative hero space */
+.ui-learn-hub {
+  margin-top: 0;
+}
+.ui-learn-hub-heading {
+  margin: 0 0 10px;
+  padding: 0 2px;
+}
+.ui-learn-hub-title {
+  margin: 0;
+  color: var(--ui-text);
+  font-size: 1rem;
+  line-height: 1.25;
+  font-weight: 900;
+  letter-spacing: .015em;
+  text-transform: uppercase;
+}
+.hanzi-app:not(.is-hub-view) .study-tabs {
+  margin-top: 0;
+}
+.hsk-source-btn[data-hsk-source="dialogue301"] {
+  justify-content: center;
+}
+.hsk-source-btn[data-hsk-source="dialogue301"] strong {
+  width: 100%;
+  text-align: center;
+}
+@media (max-width: 620px) {
+  .hanzi-app { padding-top: 0; }
+  .ui-learn-hub-heading { margin-bottom: 8px; }
+  .ui-module-grid--learning-home { gap: 8px; }
+  .ui-module-grid--learning-home .ui-module-card { min-height: 68px; }
+  .study-tabs { margin-top: 0; margin-bottom: 8px; }
+  .radical-study-view,
+  .hsk-study-view { margin-top: 0; }
+}

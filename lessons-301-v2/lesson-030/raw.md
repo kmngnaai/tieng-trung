@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape69p1.jpg)
 I
 
@@ -20,9 +18,6 @@ Xin nói chậm một chút
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape79p2.jpg)
 目录
 
@@ -46,9 +41,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape111p3.jpg)
 
 ![](GoogleShape113p3.jpg)
@@ -67,8 +59,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 发音 | fāyīn | 收拾 | shōushi | 手表 | shǒubiǎo |
 | --- | --- | --- | --- | --- | --- |
 | 比较 | bǐjiào | 当 | dāng | 冰箱 | bīngxiāng |
@@ -82,8 +72,6 @@ Minliang
 ![](GoogleShape127p4.jpg)
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 发音 | fāyīn |  | phát âm |
@@ -93,8 +81,6 @@ Minliang
 ![](GoogleShape133p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 比较 | bǐjiào | 副，动 | tương đối |
@@ -104,8 +90,6 @@ Minliang
 ![](GoogleShape141p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 父亲 | fùqīn | 名 | ba, cha, bố |
@@ -115,8 +99,6 @@ Minliang
 ![](GoogleShape149p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 除了...以外 | chúle...yǐwài |  | ngoài...ra |
@@ -126,8 +108,6 @@ Minliang
 ![](GoogleShape157p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 清楚 | qīngchu | 形 | rõ ràng |
@@ -137,8 +117,6 @@ Minliang
 ![](GoogleShape165p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 谈 | tán | 动 | nói |
@@ -148,8 +126,6 @@ Minliang
 ![](GoogleShape173p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 提高 | tígāo | 动，名 | nâng cao |
@@ -159,8 +135,6 @@ Minliang
 ![](GoogleShape181p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 能力 | nénglì | 名 | năng lực |
@@ -170,8 +144,6 @@ Minliang
 ![](GoogleShape189p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 收拾 | shōushi | 动 | dọn dẹp, sắp |
@@ -183,8 +155,6 @@ Minliang
 ![拾的笔顺动画](GoogleShape200p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 当 | dāng | 动 | làm |
@@ -194,8 +164,6 @@ Minliang
 ![](GoogleShape206p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 导游 | dǎoyóu | 名 | người hướng dẫn tham quan |
@@ -205,8 +173,6 @@ Minliang
 ![](GoogleShape214p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 普通话 | pǔtōnghuà | 名 | tiếng phổ thông |
@@ -216,8 +182,6 @@ Minliang
 ![](GoogleShape222p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 放心 | fàngxīn |  | yên tâm |
@@ -225,8 +189,6 @@ Minliang
 ![](GoogleShape230p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 完 | wán | 动 | xong, hết |
@@ -236,8 +198,6 @@ Minliang
 ![](GoogleShape237p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 包子 | bāozi | 名 | cái gói, bao, túi |
@@ -245,8 +205,6 @@ Minliang
 ![](GoogleShape245p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 录相 | lùxiàng |  | ghi hình |
@@ -256,8 +214,6 @@ Minliang
 ![](GoogleShape252p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 手表 | shǒubiǎo | 名 | đồng hồ đeo tay |
@@ -267,8 +223,6 @@ Minliang
 ![](GoogleShape260p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 冰箱 | bīngxiāng | 名 | tủ lạnh |
@@ -278,8 +232,6 @@ Minliang
 ![](GoogleShape268p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 语法 | yǔfǎ | 名 | ngữ pháp |
@@ -287,8 +239,6 @@ Minliang
 ![](GoogleShape276p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 20 | 预习 | yùxí | 动 | (học ôn), chuẩn bị bài |
@@ -298,8 +248,6 @@ Minliang
 ![](GoogleShape283p24.jpg)
 
 ### Notes:
-
-<!-- Slide number: 25 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 21 | 小时 | xiǎoshī | 名 | giờ |
@@ -307,8 +255,6 @@ Minliang
 ![](GoogleShape291p25.jpg)
 
 ### Notes:
-
-<!-- Slide number: 26 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 22 | 记 | jì | 动 | ghi |
@@ -318,8 +264,6 @@ Minliang
 ![](GoogleShape298p26.jpg)
 
 ### Notes:
-
-<!-- Slide number: 27 -->
 | STT | Tiếng Trung | Phiên âm | Nghĩa của từ |
 | --- | --- | --- | --- |
 | 23 | 广州 | Guǎngzhōu | Quảng Châu |
@@ -328,9 +272,6 @@ Minliang
 ![](GoogleShape306p27.jpg)
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape313p28.jpg)
 
 ![](GoogleShape315p28.jpg)
@@ -349,9 +290,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape330p29.jpg)
 1. 我的发音还差得远呢。
 /Wǒ de fāyīn hái chà de yuǎn ne/ - Phát âm của tôi còn kém lắm.
@@ -363,9 +301,6 @@ Minliang
 /Tīng hē shuō bǐjiào nán, kàn bǐjiào róngyì./ - Nghe và nói hơi khó, đọc tương đối dễ.
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape338p30.jpg)
 5. 你慢点儿说，我听得懂？
 /Nǐ màn diǎnr shuō, wǒ tīng de dǒng?/- Bạn nói chậm một chút, tôi nghe có thể hiểu.
@@ -377,9 +312,6 @@ Minliang
 /Chúle Guǎngzhōu, Shànghǎi yǐwài, wǒmen hái yào qù Xiānggǎng./ - Ngoài Quảng Châu, Thượng Hải, chúng tôi còn muốn đi Hồng Kông nữa.
 
 ### Notes:
-
-<!-- Slide number: 31 -->
-
 ![](GoogleShape346p31.jpg)
 
 ![](GoogleShape344p31.jpg)
@@ -398,9 +330,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 32 -->
-
 ![](GoogleShape359p32.jpg)
 李红：你汉语说得很不错，发音很清楚。
 大卫：哪儿啊，还差得远呢。
@@ -416,8 +345,6 @@ Minliang
 大卫：对，这样可以提高听和说的能力。
 
 ### Notes:
-
-<!-- Slide number: 33 -->
 王兰：你忙什么呢？
 和子：我在收拾东西呢，我父亲来了，我要陪他去旅行。
 王兰：去哪儿啊？
@@ -432,9 +359,6 @@ Minliang
 ![](GoogleShape366p33.jpg)
 
 ### Notes:
-
-<!-- Slide number: 34 -->
-
 ![](GoogleShape373p34.jpg)
 
 ![](GoogleShape375p34.jpg)
@@ -453,9 +377,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 35 -->
-
 ![](GoogleShape390p35.jpg)
 下午  布置好   教室
 明天  修好     电视
@@ -474,17 +395,12 @@ Minliang
 手表  电视  买冰箱
 
 ### Notes:
-
-<!-- Slide number: 36 -->
 汉语的发音不太难，语法比较容易。
 我预习一个小时生词，现在这些生词都记住了。
 
 ![](GoogleShape397p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 37 -->
-
 ![](GoogleShape403p37.jpg)
 
 ![](GoogleShape405p37.jpg)
@@ -503,8 +419,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 38 -->
 1. 时量补语(二) Bổ ngữ thời lượng (2)
 Khi sau động từ vừa có bổ ngữ thời lượng, lại vừa có tân ngữ, thì thường phải lặp lại động từ, bổ ngữ thời lượng được đặt sau động từ lặp lại.
 Ví dụ:
@@ -515,8 +429,6 @@ Ví dụ:
 ![](GoogleShape418p38.jpg)
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 Nếu tân ngữ không phải là đại từ nhân xưng, thì bổ ngữ thời lượng có thể đặt giữa động từ và tân ngữ. Giữa bổ ngữ thời lượng và tân ngữ có thể thêm“的”. Ví dụ：
 （4）他每天看半个小时电视。
 （5）他跳了半个多小时的舞。
@@ -528,8 +440,6 @@ Nếu tân ngữ hơi phức tạp hoặc cân nhấn mạnh tân ngữ, ta cũ
 ![](GoogleShape425p39.jpg)
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 2. “除了 …以外”“Ngoài... ra”
 a. Biểu thị ý ngoài những thứ (sự việc, người) này, còn có những thứ (sự việc, người) khác. Đằng sau thường có“还，也”.Ví dụ:
 (1) 和子和他父亲涂了去上威外,只£孑州，蕃港。
@@ -541,9 +451,6 @@ b. Chỉ người và sự vật được đề cập không bao gồm trong đ
 ![](GoogleShape433p40.jpg)
 
 ### Notes:
-
-<!-- Slide number: 41 -->
-
 ![](GoogleShape439p41.jpg)
 
 ![](GoogleShape441p41.jpg)
@@ -562,8 +469,6 @@ b. Chỉ người và sự vật được đề cập không bao gồm trong đ
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 42 -->
 1. 给下面的词配上适当的动词，组成动宾短语，并选择造句
 
 ![](GoogleShape454p42.jpg)
@@ -574,9 +479,6 @@ Minliang
 | 说不快 | 起不早 |
 
 ### Notes:
-
-<!-- Slide number: 43 -->
-
 ![](GoogleShape461p43.jpg)
 2. 仿照例子改写句子
 例：我喜欢小狗,还喜欢熊猫。
@@ -587,8 +489,6 @@ Minliang
 (4) 我们学发音，还学汉字。
 
 ### Notes:
-
-<!-- Slide number: 44 -->
 3. 按照实际情况回答问题
 (1) 你什冬时候来北京的？来北京多长时间了？
 (2) 来中国以前你学过汉语吗?学了多长时间？
@@ -599,9 +499,6 @@ Minliang
 ![](GoogleShape466p44.jpg)
 
 ### Notes:
-
-<!-- Slide number: 45 -->
-
 ![](GoogleShape473p45.jpg)
 4. 完成对话。
 A：昨天的电影你看了吗？
@@ -612,17 +509,11 @@ A：我也是................。（要是…能…）
 B：我们还要多练习听和说。
 
 ### Notes:
-
-<!-- Slide number: 46 -->
-
 ![](GoogleShape478p46.jpg)
 5. 听述 Nghe và kể lại
 者二个小孩四学认字。 老师在他的本子上写“人”字, 他学会了。第二天，老师见到他，在地上写的“人”字很大，他不认识了。老师说：“这不是”人“字吗？你怎么忘了？”他说：“这个人比昨天那个人大多了，我不认识他。”
 
 ### Notes:
-
-<!-- Slide number: 47 -->
-
 ![](GoogleShape485p47.jpg)
 6.语音练习 Bài tập ngữ âm
 (1) 常用音节练习  Luyện tập các âm tiết thường dùng
@@ -635,9 +526,6 @@ tàijíquán          太极拳
 quan
 
 ### Notes:
-
-<!-- Slide number: 48 -->
-
 ![](GoogleShape500p48.jpg)
 （2）朗读会话 Đọc to mẩu đàm thoại.
 A：Nā ná nǎ nà .
@@ -648,8 +536,6 @@ A：Hái chà de yuǎn ne ？
 B：Yàoshi nǐ měitiān liànxí ,,jiù néng xué de hěn hǎo.
 
 ### Notes:
-
-<!-- Slide number: 49 -->
 The End
 Minliang
 

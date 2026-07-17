@@ -1,7 +1,7 @@
 # Bài 34 · 我头疼
 
 - Type: `standard_301_course`
-- Source: 34第三十四课_我头疼.md, pdf-301-cau-dam-thoai.md, 34第三十四课_我头疼.pptx
+- Source: 34第三十四课_我头疼.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

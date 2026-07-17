@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape77p1.jpg)
 
 ![](GoogleShape74p1.jpg)
@@ -19,9 +17,6 @@ Tôi muốn gọi điện ra nước ngoài
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape87p2.jpg)
 目录
 
@@ -48,9 +43,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape123p3.jpg)
 
 ![](GoogleShape125p3.jpg)
@@ -69,8 +61,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 新 | xīn | 接 | jiē |
 | --- | --- | --- | --- |
 | 出 | chū | 通 | tōng |
@@ -84,8 +74,6 @@ Minliang
 | 国际 | guó jì | 东京 | dōng jīng |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 新 | xīn | 形 | mới |
@@ -95,8 +83,6 @@ Minliang
 ![](GoogleShape144p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 出 | chū | 动 | ra, xuất bản |
@@ -106,8 +92,6 @@ Minliang
 ![](GoogleShape154p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 纪念 | jì niàn | 名，动 | kỉ niệm |
@@ -117,8 +101,6 @@ Minliang
 ![](GoogleShape162p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 好看 | hǎo kàn | 形 | đẹp |
@@ -128,8 +110,6 @@ Minliang
 ![](GoogleShape170p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 帮 | bāng | 动 | giúp đỡ |
@@ -139,8 +119,6 @@ Minliang
 ![](GoogleShape178p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 挑 | tiāo | 动 | chọn |
@@ -150,8 +128,6 @@ Minliang
 ![](GoogleShape186p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 样 | yàng | 量，名 | Kiểu, dáng |
@@ -161,8 +137,6 @@ Minliang
 ![](GoogleShape194p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 套 | tào | 数 | Bộ |
@@ -172,8 +146,6 @@ Minliang
 ![](GoogleShape202p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 打 | dǎ | 动 | Đánh(gọi) |
@@ -183,8 +155,6 @@ Minliang
 ![](GoogleShape210p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 国际 | guó jì | 名 | Quốc tế |
@@ -194,8 +164,6 @@ Minliang
 ![](GoogleShape218p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 接 | jiē | 动 | Đón, nhận, nối |
@@ -205,8 +173,6 @@ Minliang
 ![](GoogleShape226p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 通 | tōng | 动 | Thông , nối liền |
@@ -216,8 +182,6 @@ Minliang
 ![](GoogleShape234p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 先 | xiān | 副 | Trước |
@@ -227,8 +191,6 @@ Minliang
 ![](GoogleShape242p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 交 | jiāo | 动 | Nộp, đưa, giao |
@@ -239,8 +201,6 @@ Minliang
 .
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 照相机 | zhào xiàng jī | 名 | Máy ảnh |
@@ -252,8 +212,6 @@ Minliang
 ![C:\Users\ad\Downloads\13188.gif](GoogleShape259p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 做 | zuò | 动 | làm |
@@ -263,8 +221,6 @@ Minliang
 ![](GoogleShape268p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 拿 | ná | 动 | Cầm, lấy |
@@ -274,8 +230,6 @@ Minliang
 ![](GoogleShape276p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 照相 | zhào xiàng | 动 | Chụp hình |
@@ -283,8 +237,6 @@ Minliang
 ![](GoogleShape283p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 寄 | jì | 动 | Gởi |
@@ -294,9 +246,6 @@ Minliang
 ![](GoogleShape291p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
-
 ![](GoogleShape297p24.jpg)
 
 ![](GoogleShape299p24.jpg)
@@ -315,9 +264,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape314p25.jpg)
 1. 这是新出的纪念邮票。
 /Zhè shì xīn chū de jì niàn yóu piào./ - Đây là con tem kỷ niệm mới phát hành.
@@ -329,9 +275,6 @@ Minliang
 /Qǐng nǐ bāng wǒ tiāotiao/ - Xin cô chọn dùm tôi.
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape322p26.jpg)
 5. 一样买一套吧。
 /Yí yàng mǎi yí tào ba/ - Mỗi kiểu mua một bộ.
@@ -343,9 +286,6 @@ Minliang
 /Nín de diàn huà jiē tōng le./ - Điện thoại của ông đã nối thông rồi.
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape330p27.jpg)
 
 ![](GoogleShape328p27.jpg)
@@ -365,9 +305,6 @@ https://www.ypppt.com/
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape346p28.jpg)
 和子：有纪念邮票吗？
 营业员：有，这是新出的。
@@ -381,9 +318,6 @@ Minliang
 ![](GoogleShape344p28.jpg)
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape353p29.jpg)
 和子：我要打国际电话。
 营业员：打到哪儿？
@@ -398,9 +332,6 @@ Minliang
 和子：好，谢谢。
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape359p30.jpg)
 
 ![](GoogleShape361p30.jpg)
@@ -419,9 +350,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 31 -->
-
 ![](GoogleShape375p31.jpg)
 “这几种怎么样?”  “Mấy loại này thế nào?”
 “几”ở đây không phải dùng để hỏi mà chỉ một số không xác định trong phạm vi dưới 10.
@@ -429,9 +357,6 @@ Ví dụ: 1. 我有十几张邮票。
 2.教室里有几十个学生。
 
 ### Notes:
-
-<!-- Slide number: 32 -->
-
 ![](GoogleShape381p32.jpg)
 
 ![](GoogleShape383p32.jpg)
@@ -450,8 +375,6 @@ Ví dụ: 1. 我有十几张邮票。
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 33 -->
 买		照相机
 做		衣服
 来		老师
@@ -467,9 +390,6 @@ Minliang
 3.我给东京的朋友打电话。我说汉语，他不懂，说日语，他懂了。
 
 ### Notes:
-
-<!-- Slide number: 34 -->
-
 ![](GoogleShape405p34.jpg)
 
 ![](GoogleShape407p34.jpg)
@@ -488,9 +408,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 35 -->
-
 ![](GoogleShape420p35.jpg)
 1.  “是”字句(二) Câu dùng “是”(2)
 Phía sau danh từ, đại từ, hình dung từ thêm từ “的”vào, ta sẽ có một kết cấu chữ “的” mang tính chất và tác dụng của một danh từ, có thể sử dụng độc lập. Loại kết cấu chữ “的” nay thường xuất hiện trong câu có từ “是”. Ví dụ:
@@ -501,8 +418,6 @@ Phía sau danh từ, đại từ, hình dung từ thêm từ “的”vào, ta s
 ![](GoogleShape421p35.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
 2.  结果补语 Bổ ngữ kết quả
 Bổ ngữ nói rõ kết quả của động tác gọi là bổ ngữ kết quả. Bổ ngữ kết quả thường do động từ hoặc hình dung từ đảm nhiệm. Ví dụ: “接通”, “写对”...
 Động từ “到”làm bổ ngữ kết quả thường chỉ người hoặc phương tiện di chuyển thông qua động tác đạt đếh một địa điểm nào đó hoặc kéo dài đến một thời điểm nào đó, cũng có thể chỉ động tác tiến hành đến một mức độ nào đó. Ví dụ:
@@ -514,9 +429,6 @@ Dạng phủ định của câu có bổ ngữ kết quả là thêm “没(有)
 (5) 大卫没找到玛丽。
 
 ### Notes:
-
-<!-- Slide number: 37 -->
-
 ![](GoogleShape434p37.jpg)
 
 ![](GoogleShape436p37.jpg)
@@ -535,8 +447,6 @@ Dạng phủ định của câu có bổ ngữ kết quả là thêm “没(有)
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 38 -->
 1. 熟读下列词组，每组选择一个造句
     Đọc thuộc các nhóm từ sau và chọn một trong mỗi nhóm để đặt câu:
 书
@@ -557,8 +467,6 @@ Minliang
 ![](GoogleShape450p38.jpg)
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 仿照例句改写句子 (用上适当的量词) Dựa theo ví dụ viết lại câu (chú ý dùng lượng từ thích hợp)
 例：这是一件新毛衣。
          → 这 件毛衣是新的。
@@ -570,8 +478,6 @@ Minliang
 ![](GoogleShape466p39.jpg)
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 3.  完成对话 Hoàn thành đối thoại
 (1)	A:  你找什么？
 	B:  ........................。
@@ -592,16 +498,12 @@ Minliang
 ![](GoogleShape472p40.jpg)
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 4.   听述 Nghe và kể lại
 	这个照相机是大卫的。他新买的。昨天北京大学的两个中国学生来玩儿,我们一起照相了。北京大学的朋友说，星期日请我们去玩儿。北京大学很大， 也很好看。我们去的时候,要先给他们打电话。
 
 ![](GoogleShape479p41.jpg)
 
 ### Notes:
-
-<!-- Slide number: 42 -->
 5.语音练习 Bài tập ngữ âm
 
 ![](GoogleShape488p42.jpg)
@@ -614,8 +516,6 @@ hěn cháng	（很长）		jǔxíng		（举行）
 jiǎnchá	（检查）		zǎochén	（早晨）
 
 ### Notes:
-
-<!-- Slide number: 43 -->
 (2) 常用音节练习  Luyện tập các âm tiết thường dùng
 yī zhǒng	一种
 fēnzhōng	分钟
@@ -629,14 +529,10 @@ zi
 ![](GoogleShape502p43.jpg)
 
 ### Notes:
-
-<!-- Slide number: 44 -->
 THE END
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 45 -->
 Minliang
 
 ### Notes:

@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape70p1.jpg)
 I
 
@@ -21,9 +19,6 @@ Mời bạn tham gia
 ![](GoogleShape63p1.jpg)
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape79p2.jpg)
 目录
 
@@ -50,9 +45,6 @@ Mời bạn tham gia
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape117p3.jpg)
 
 ![](GoogleShape115p3.jpg)
@@ -71,8 +63,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 喂 | wèi | 圣诞节 | shèng dàn jié | 舞会 | wǔhuì |
 | --- | --- | --- | --- | --- | --- |
 | 转 | zhuǎn | 晚会 | wǎn huì | 里边 | lǐbiān |
@@ -84,8 +74,6 @@ Minliang
 | 刚才 | gāngcái | 新年 | xīnnián | 李红 | LǐHóng |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 喂 | wèi | 叹 | A lô |
@@ -95,8 +83,6 @@ Minliang
 ![](GoogleShape136p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 转 | zhuǎn | 动 | Chuyển |
@@ -106,8 +92,6 @@ Minliang
 ![](GoogleShape144p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 分机 | fēnjī | 名 | Máy phụ |
@@ -115,8 +99,6 @@ Minliang
 ![](GoogleShape152p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 一定 | yí dìng | 副 | Nhất định |
@@ -126,8 +108,6 @@ Minliang
 ![](GoogleShape159p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 转告 | zhuǎn gào | 动 | Chuyển lời, nhắn lại |
@@ -137,8 +117,6 @@ Minliang
 ![C:\Users\ad\Downloads\3799.gif](GoogleShape169p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 中文 | zhōng wén | 名 | Tiếng Trung |
@@ -148,8 +126,6 @@ Minliang
 ![](GoogleShape175p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 系 | xì | 名 | Khoa (đại học) |
@@ -159,8 +135,6 @@ Minliang
 ![](GoogleShape183p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 刚才 | gāng cái | 名 | Lúc nãy, vừa rồi |
@@ -170,8 +144,6 @@ Minliang
 ![](GoogleShape191p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 圣诞节 | shèng dàn jié | 名 | Lễ giáng sinh |
@@ -181,8 +153,6 @@ Minliang
 ![](GoogleShape201p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 晚会 | wǎn huì | 名 | Dạ hội |
@@ -192,8 +162,6 @@ Minliang
 ![](GoogleShape209p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 参加 | cān jiā | 动 | Tham gia |
@@ -203,8 +171,6 @@ Minliang
 ![](GoogleShape217p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 通知 | tōng zhī | 动 | Thông báo |
@@ -214,8 +180,6 @@ Minliang
 ![](GoogleShape223p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 帮助 | bāng zhù | 动，名 | Giúp, giúp đỡ |
@@ -227,8 +191,6 @@ Minliang
 ![C:\Users\ad\Downloads\973.gif](GoogleShape234p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 报 | bào | 名 | Báo |
@@ -239,8 +201,6 @@ Minliang
 .
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 跳舞 | tiào wǔ | 动 | Khiêu vũ, múa |
@@ -252,8 +212,6 @@ Minliang
 ![C:\Users\ad\Downloads\8334.gif](GoogleShape250p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 新年 | xīnnián | 名 | Năm mới |
@@ -263,8 +221,6 @@ Minliang
 ![](GoogleShape260p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 舞会 | wǔ huì | 名 | Vũ hội |
@@ -274,8 +230,6 @@ Minliang
 ![](GoogleShape268p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 里边 | lǐ biān | 名 | Bên trong |
@@ -285,8 +239,6 @@ Minliang
 ![](GoogleShape276p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 正在 | zhèng zài | 副 | Đang |
@@ -296,8 +248,6 @@ Minliang
 ![](GoogleShape284p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 20 | 开 | kāi | 动 | Mở, diễn ra |
@@ -307,8 +257,6 @@ Minliang
 ![](GoogleShape292p24.jpg)
 
 ### Notes:
-
-<!-- Slide number: 25 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 21 | 唱 | chàng | 动 | Hát |
@@ -318,8 +266,6 @@ Minliang
 ![](GoogleShape300p25.jpg)
 
 ### Notes:
-
-<!-- Slide number: 26 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 22 | 歌 | gē | 名 | Bài hát |
@@ -329,8 +275,6 @@ Minliang
 ![](GoogleShape306p26.jpg)
 
 ### Notes:
-
-<!-- Slide number: 27 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 23 | 参观 | cān guān | 动 | Tham quan |
@@ -342,9 +286,6 @@ Minliang
 ![C:\Users\ad\Downloads\9649.gif](GoogleShape316p27.jpg)
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape323p28.jpg)
 
 ![](GoogleShape325p28.jpg)
@@ -363,9 +304,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape340p29.jpg)
 1.喂，北京大学吗 ?
 /Wèi, Běijīng dà xué ma ?/ - Alo, Đại học Bắc Kinh phải không ?
@@ -377,9 +315,6 @@ Minliang
 /Qǐng tā gěi wǒ huí gè diàn huà/ - Xin cô ấy gọi lại cho tôi nhé.
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape348p30.jpg)
 5.我一定转告她。
 /Wǒ yídìng zhuǎn gào tā./ - Tôi nhất định sẽ chuyển lời tới cô ấy.
@@ -391,9 +326,6 @@ Minliang
 /Xiàn zài wǒ xiūxi ne./ - Bây giờ tôi đang nghỉ ngơi.
 
 ### Notes:
-
-<!-- Slide number: 31 -->
-
 ![](GoogleShape356p31.jpg)
 
 ![](GoogleShape354p31.jpg)
@@ -412,8 +344,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 32 -->
 玛丽：中文系吗?
 中文系：对，您找谁 ?
 玛丽：李红老师在吗 ?
@@ -430,8 +360,6 @@ Minliang
 ![](GoogleShape372p32.jpg)
 
 ### Notes:
-
-<!-- Slide number: 33 -->
 李红：留学生楼吗 ? 请420玛丽接电话。
 服务员：420 玛丽，电话 !
 玛丽：喂，我是玛丽，您是谁啊?
@@ -448,9 +376,6 @@ Minliang
 ![](GoogleShape380p33.jpg)
 
 ### Notes:
-
-<!-- Slide number: 34 -->
-
 ![](GoogleShape386p34.jpg)
 
 ![](GoogleShape388p34.jpg)
@@ -469,8 +394,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 35 -->
 1.“我是北大”“Đại học Bắc Kinh đây”
 Lời nói chỉ dùng cho điện thoại, chỉ cơ quan, đơn vị sở tại của người nghe điện thoại.
 2. “420 玛丽 , 电话！”“Mary phòng 420, có điện thoại”
@@ -480,9 +403,6 @@ Câu“玛丽,电话!”có nghĩa là“玛丽，你的电话”.Dùng khi gọ
 ![](GoogleShape401p35.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
-
 ![](GoogleShape409p36.jpg)
 
 ![](GoogleShape407p36.jpg)
@@ -501,8 +421,6 @@ Câu“玛丽,电话!”có nghĩa là“玛丽，你的电话”.Dùng khi gọ
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 1.我一定转告她。
 
 2.现在你作什么呢？休息呢？
@@ -518,9 +436,6 @@ Minliang
 明天上午去参观，八点在留学生楼前边上车，请通知一下儿。
 
 ### Notes:
-
-<!-- Slide number: 38 -->
-
 ![](GoogleShape433p38.jpg)
 
 ![](GoogleShape431p38.jpg)
@@ -539,8 +454,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 1. Giới từ“给”dùng để giới thiệu đối tượng tiếp nhận của động tác, hành vi.
 Ví dụ:
 (1) 昨天我给你打电话了。
@@ -551,8 +464,6 @@ Một động tác có thể ở các giai đoạn khác nhau như tiến hành,
 ![](GoogleShape446p39.jpg)
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 Ví dụ:
 (1) 学生正在上课(呢)。
 (2) 他来的时候，我正看报(呢)。
@@ -570,9 +481,6 @@ Ví dụ:
 ![](GoogleShape455p40.jpg)
 
 ### Notes:
-
-<!-- Slide number: 41 -->
-
 ![](GoogleShape462p41.jpg)
 
 ![](GoogleShape464p41.jpg)
@@ -591,8 +499,6 @@ Ví dụ:
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 42 -->
 1.    用“正在...呢”完成句子并用上括号里的词语.
 Dùng“正在...呢”và các từ ngữ trong ngoặc hoàn thành câu
 (1)	今天有舞会，他们................。(跳舞)
@@ -605,9 +511,6 @@ Dùng“正在...呢”và các từ ngữ trong ngoặc hoàn thành câu
 ![](GoogleShape478p42.jpg)
 
 ### Notes:
-
-<!-- Slide number: 43 -->
-
 ![](GoogleShape492p43.jpg)
 2.	仿照例子，造 ”正在...呢'‘ 的句子.
           Dựa theo ví dụ, đặt câu với”正在…呢”
@@ -620,9 +523,6 @@ Dùng“正在...呢”và các từ ngữ trong ngoặc hoàn thành câu
 	看熊猫		 等汽车		       换钱
 
 ### Notes:
-
-<!-- Slide number: 44 -->
-
 ![](GoogleShape498p44.jpg)
 3.完成对话 Hoàn thành đối thoại.
 A:...................?
@@ -637,8 +537,6 @@ A:...................。什么时候去？
 B :...................。
 
 ### Notes:
-
-<!-- Slide number: 45 -->
 4. 练习打电话  Tập gọi điện thoại
 (1) A 邀请 B 去听音乐会 A mời B đi nghe hòa nhạc
  提示：时间、地点，音乐会怎么样？怎么去?
@@ -650,9 +548,6 @@ Gợi ý: Thời gian, địa điểm, ăn món gì ? đi bằng gì ?
 ![](GoogleShape504p45.jpg)
 
 ### Notes:
-
-<!-- Slide number: 46 -->
-
 ![](GoogleShape510p46.jpg)
 5.  听述 Nghe và kể lại
 汉斯来了，今天我们公司请他参加欢迎会。
@@ -660,8 +555,6 @@ Gợi ý: Thời gian, địa điểm, ăn món gì ? đi bằng gì ?
 欢迎会开得很好，大家为友谊干杯，为健康干杯，象 家人一样。
 
 ### Notes:
-
-<!-- Slide number: 47 -->
 6.语音练习 Bài tập ngữ âm
 
 ![](GoogleShape521p47.jpg)
@@ -678,8 +571,6 @@ jian
 ![](GoogleShape516p47.jpg)
 
 ### Notes:
-
-<!-- Slide number: 48 -->
 （2）朗读会话 Đọc rõ mẩu đàm thoại.
 A : Wèi, nǐ yào nǎr ?
 B : Wǒ yào jiǔ lóu.
@@ -691,8 +582,6 @@ B : Máfan nǐ le, xièxie !
 ![](GoogleShape532p48.jpg)
 
 ### Notes:
-
-<!-- Slide number: 49 -->
 The End
 
 ### Notes:

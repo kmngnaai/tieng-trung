@@ -1142,9 +1142,12 @@ async function shareCurrentView(){
 function restoreUrlState(){
   const params = new URLSearchParams(window.location.search);
   const chars = params.get('chars');
+  const word = params.get('word');
   const size = params.get('size');
 
-  if(chars){
+  if(word){
+    els.input.value = word;
+  }else if(chars){
     els.input.value = chars;
   }
 
@@ -1245,6 +1248,8 @@ if(window.HanziWriter){
   const lookupView = document.getElementById('lookupView');
   const hskView = document.getElementById('hskView');
   const radicalsView = document.getElementById('radicalsView');
+  const tabHub = document.getElementById('studyTabHub');
+  const learnHubView = document.getElementById('learnHubView');
   const tabLookup = document.getElementById('studyTabLookup');
   const tabHsk = document.getElementById('studyTabHsk');
   const tabRadicals = document.getElementById('studyTabRadicals');
@@ -1264,7 +1269,24 @@ if(window.HanziWriter){
   const HSK_DATA_BASE = 'data/learning/hsk/';
   const HSK_QUICK_LOOKUP_PATH = `${HSK_DATA_BASE}hsk_flashcard_lookup.json`;
   const GRAMMAR_DATA_BASE = 'data/learning/grammar/';
+  const DIALOGUE301_LESSONS_PATH = '../../lessons-301-v2/lessons.json';
+  const HSK_CURRICULUM_STORAGE_KEY = 'hanziStroke.lastCurriculum.v1';
   const hskCache = new Map();
+  let dialogue301CurriculumPromise = null;
+
+  function readLastCurriculum(){
+    try{
+      return window.localStorage.getItem(HSK_CURRICULUM_STORAGE_KEY) || 'dialogue301';
+    }catch(_error){
+      return 'dialogue301';
+    }
+  }
+
+  function saveLastCurriculum(sourceKey){
+    try{
+      window.localStorage.setItem(HSK_CURRICULUM_STORAGE_KEY, sourceKey);
+    }catch(_error){}
+  }
   let hskQuickLookupPromise = null;
   const grammarCache = new Map();
   const hskState = {
@@ -1285,7 +1307,7 @@ if(window.HanziWriter){
     groupMode: 'lessons',
     topicKey: 'all',
     wordFilter: 'all',
-    sourceKey: 'hsk',
+    sourceKey: readLastCurriculum(),
     levelLoading: false,
     vocabViewMode: 'list',
     flashcardSession: null,
@@ -1312,6 +1334,7 @@ if(window.HanziWriter){
   const HSK_FLASHCARD_TYPING_SHORT_COMPLETION_DELAY_MS = 30000;
   const HSK_FLASHCARD_TYPING_LONG_COMPLETION_DELAY_MS = 120000;
   let tabFlashcards = null;
+  let tabDialogue301 = null;
   let flashcardLibraryView = null;
   const flashcardLibraryState = { decks: [], editingDeck: null, detailDeckId: '', detailSearch: '', editingCardId: '', selectedCardIds: new Set(), message: '', quickImportBusy: false, searchQuery: '', sortMode: readFlashcardLibrarySort(), undoTrashId: '', undoTimer: null, trashOpen: false, trashItems: [] };
 
@@ -1818,6 +1841,17 @@ if(window.HanziWriter){
     });
   }
 
+  function navigateStudyRoute(routeName, tabName){
+    const currentRoute = new URLSearchParams(window.location.search).get('study') || 'hub';
+    if(currentRoute === routeName){
+      setStudyTab(tabName);
+      return;
+    }
+    const url = new URL(window.location.href);
+    url.searchParams.set('study', routeName);
+    window.location.href = url.href;
+  }
+
   function ensureFlashcardLibraryUi(){
     if(tabFlashcards && flashcardLibraryView) return;
     const tabHost = tabHsk.parentElement;
@@ -1831,12 +1865,14 @@ if(window.HanziWriter){
     tabFlashcards.setAttribute('aria-selected', 'false');
     tabFlashcards.textContent = 'Thẻ';
     tabHost.appendChild(tabFlashcards);
+    tabHost.querySelectorAll('[data-study-tab="dialogue301"], #studyTabDialogue301, a[href*="dialogue301"]').forEach(node => node.remove());
+    tabDialogue301 = null;
     flashcardLibraryView = document.createElement('section');
     flashcardLibraryView.id = 'flashcardLibraryView';
     flashcardLibraryView.className = hskView.className;
     flashcardLibraryView.hidden = true;
     viewHost.appendChild(flashcardLibraryView);
-    tabFlashcards.addEventListener('click', () => setStudyTab('flashcards'));
+    tabFlashcards.addEventListener('click', () => navigateStudyRoute('flashcards', 'flashcards'));
     flashcardLibraryView.addEventListener('click', event => { event.stopPropagation(); handleFlashcardLibraryClick(event); });
     flashcardLibraryView.addEventListener('change', handleFlashcardLibraryChange);
     flashcardLibraryView.addEventListener('input', handleFlashcardLibraryInput);
@@ -3166,24 +3202,31 @@ if(window.HanziWriter){
 
   function setStudyTab(tabName){
     ensureFlashcardLibraryUi();
+    const isHub = tabName === 'hub';
     const isLookup = tabName === 'lookup';
     const isHsk = tabName === 'hsk';
     const isRadicals = tabName === 'radicals';
     const isFlashcards = tabName === 'flashcards';
+    document.querySelector('.hanzi-app')?.classList.toggle('is-hub-view', isHub);
+    if(learnHubView){ learnHubView.hidden = !isHub; }
     lookupView.hidden = !isLookup;
     hskView.hidden = !isHsk;
     if(radicalsView){ radicalsView.hidden = !isRadicals; }
     if(flashcardLibraryView){ flashcardLibraryView.hidden = !isFlashcards; }
+    tabHub?.classList.toggle('active', isHub);
     tabLookup.classList.toggle('active', isLookup);
     tabHsk.classList.toggle('active', isHsk);
     tabRadicals?.classList.toggle('active', isRadicals);
     tabFlashcards?.classList.toggle('active', isFlashcards);
+    tabHub?.setAttribute('aria-selected', String(isHub));
     tabLookup.setAttribute('aria-selected', String(isLookup));
     tabHsk.setAttribute('aria-selected', String(isHsk));
     tabRadicals?.setAttribute('aria-selected', String(isRadicals));
     tabFlashcards?.setAttribute('aria-selected', String(isFlashcards));
 
-    if(isHsk){
+    if(isHub){
+      stopAutoplayLoop();
+    }else if(isHsk){
       stopAutoplayLoop();
       loadHskSummary();
       loadGrammarSummary();
@@ -3309,6 +3352,42 @@ if(window.HanziWriter){
     return data;
   }
 
+  function setDialogue301CurriculumMode(active){
+    const card = hskView.querySelector('.hsk-card');
+    card?.classList.toggle('is-dialogue301', Boolean(active));
+  }
+
+  async function loadDialogue301Curriculum(){
+    if(dialogue301CurriculumPromise) return dialogue301CurriculumPromise;
+    dialogue301CurriculumPromise = fetchJson(DIALOGUE301_LESSONS_PATH).then(data => Array.isArray(data) ? data : (data?.lessons || []));
+    return dialogue301CurriculumPromise;
+  }
+
+  async function renderDialogue301Curriculum(){
+    setDialogue301CurriculumMode(true);
+    renderHskSourceTabs();
+    renderHskLevelTabs();
+    hskStatus.textContent = '301 Đàm thoại · đang tải danh sách bài...';
+    hskList.className = 'hsk-list hsk-dialogue301-list';
+    try{
+      const lessons = await loadDialogue301Curriculum();
+      if(hskState.sourceKey !== 'dialogue301') return;
+      hskStatus.textContent = `301 Đàm thoại · ${lessons.length.toLocaleString('vi-VN')} bài.`;
+      hskList.innerHTML = `
+        ${lessons.map(lesson => `
+          <a class="hsk-dialogue301-item" href="../../index.html?lesson=${encodeURIComponent(lesson.lesson_id || '')}#dialogue301">
+            <span class="hsk-dialogue301-item__no">${escapeHtml(lesson.lesson_no || '')}</span>
+            <span class="hsk-dialogue301-item__copy"><strong>${escapeHtml(lesson.title || lesson.title_zh || `Bài ${lesson.lesson_no || ''}`)}</strong><small>${escapeHtml(lesson.title_zh || '301 Đàm thoại')}</small></span>
+            <b aria-hidden="true">›</b>
+          </a>`).join('')}
+      `;
+    }catch(err){
+      console.warn('Cannot load 301 curriculum:', err);
+      hskStatus.textContent = 'Không tải được danh sách 301 Đàm thoại.';
+      hskList.innerHTML = '<p class="hsk-empty">Kiểm tra thư mục lessons-301-v2.</p>';
+    }
+  }
+
   async function loadHskSummary(){
     if(!hskState.currentItems.length){
       hskState.levelLoading = true;
@@ -3318,7 +3397,9 @@ if(window.HanziWriter){
       renderHskSourceTabs();
       renderHskLevelTabs();
       loadGrammarSummary();
-      if(!hskState.currentItems.length){
+      if(hskState.sourceKey === 'dialogue301'){
+        await renderDialogue301Curriculum();
+      }else if(!hskState.currentItems.length){
         await loadHskLevel(hskState.currentLevel);
       }
       return;
@@ -3335,7 +3416,8 @@ if(window.HanziWriter){
       normalizeHskSourceAndLevel();
       renderHskSourceTabs();
       renderHskLevelTabs();
-      await loadHskLevel(hskState.currentLevel);
+      if(hskState.sourceKey === 'dialogue301') await renderDialogue301Curriculum();
+      else await loadHskLevel(hskState.currentLevel);
     }catch(err){
       console.warn('Cannot load HSK summary:', err);
       hskState.levelLoading = false;
@@ -3345,6 +3427,10 @@ if(window.HanziWriter){
 
   function renderHskLevelTabs(){
     normalizeHskSourceAndLevel();
+    if(hskState.sourceKey === 'dialogue301'){
+      levelTabs.innerHTML = '';
+      return;
+    }
     const levels = getAvailableLevelsForSource(hskState.sourceKey);
     if(!levels.length){
       levelTabs.innerHTML = '';
@@ -3450,14 +3536,16 @@ if(window.HanziWriter){
   }
 
 
-  const HSK_LIBRARY_PRIORITY = ['hsk', 'new_hsk', 'yct', 'boya'];
+  const HSK_LIBRARY_PRIORITY = ['dialogue301', 'hsk', 'new_hsk', 'yct', 'boya'];
   const HSK_LIBRARY_LABELS = {
-    new_hsk: 'New HSK 9 cấp',
+    dialogue301: '301',
+    new_hsk: 'HSK 9 cấp',
     hsk: 'HSK 6 cấp',
     yct: 'YCT',
     boya: 'Boya'
   };
   const HSK_LEVEL_LABEL_PREFIX = {
+    dialogue301: 'Bài',
     new_hsk: 'HSK',
     hsk: 'HSK',
     yct: 'YCT',
@@ -3530,7 +3618,7 @@ if(window.HanziWriter){
   }
 
   function getAvailableHskSources(){
-    const sourceSet = new Set();
+    const sourceSet = new Set(['dialogue301']);
     getSummaryLevels().forEach(level => {
       const libs = level?.libraries || {};
       Object.keys(libs).forEach(key => {
@@ -3553,6 +3641,9 @@ if(window.HanziWriter){
   }
 
   function getAvailableLevelsForSource(sourceKey = hskState.sourceKey){
+    if(sourceKey === 'dialogue301'){
+      return [{ level: 1, count: 40, grammarTotal: 0, hasGrammar: false, file: '' }];
+    }
     const rows = [];
     const seen = new Set();
     getSummaryLevels().forEach(level => {
@@ -3616,30 +3707,50 @@ if(window.HanziWriter){
       const grammarCount = levels.filter(row => row.hasGrammar).length;
       const partialCount = levels.filter(row => getSourceLevelMeta(key, row.level)?.status === 'PARTIAL').length;
       const unit = getHskSourceLevelUnit(key);
+      const detail = key === 'dialogue301' ? ''
+        : `${levelCount ? `${levelCount} ${unit}` : 'Đang tải'}${grammarCount ? ` · ${grammarCount} có ngữ pháp` : ''}`;
       return `
         <button type="button" class="hsk-source-btn ${active ? 'active' : ''} ${partialCount ? 'is-partial' : ''}" data-hsk-source="${escapeHtml(key)}" aria-pressed="${active}" title="${escapeHtml(partialCount ? 'Có cấp dữ liệu chưa đủ' : '')}">
           <strong>${escapeHtml(getHskSourceLabel(key))}</strong>
-          <small>${levelCount ? `${levelCount} ${unit}` : 'Đang tải'}${grammarCount ? ` · ${grammarCount} có ngữ pháp` : ''}</small>
+          ${detail ? `<small>${escapeHtml(detail)}</small>` : ''}
         </button>
       `;
     }).join('');
   }
 
   function getHskSourceLevelUnit(sourceKey = hskState.sourceKey){
+    if(sourceKey === 'dialogue301') return 'chương trình';
     if(sourceKey === 'boya') return 'quyển';
     return 'cấp';
   }
 
+  function formatLoadedDeclared(loaded, declared, unit){
+    const loadedCount = Number(loaded || 0);
+    const declaredCount = Number(declared || 0);
+    if(!loadedCount && !declaredCount) return '';
+    if(declaredCount > 0 && loadedCount !== declaredCount){
+      return `${loadedCount}/${declaredCount} ${unit}`;
+    }
+    return `${loadedCount || declaredCount} ${unit}`;
+  }
+
   function getHskLevelCountText(levelRow, meta = null){
-    const count = Number(levelRow?.count || meta?.uniqueItemCount || 0);
-    if(count > 0){
-      return `${count.toLocaleString('vi-VN')} từ`;
+    const parts = [];
+    if(meta?.hasLesson){
+      const lessonText = formatLoadedDeclared(meta.loadedLessonCount, meta.declaredLessonCount, 'bài');
+      if(lessonText) parts.push(lessonText);
+    }
+    if(meta?.hasTopic){
+      const topicText = formatLoadedDeclared(meta.loadedTopicCount, meta.declaredTopicCount, 'chủ đề');
+      if(topicText) parts.push(topicText);
     }
     const grammarTotal = Number(levelRow?.grammarTotal || meta?.grammarTotal || 0);
-    if(grammarTotal > 0){
-      return `${grammarTotal.toLocaleString('vi-VN')} ngữ pháp`;
-    }
-    return '0 mục';
+    if(grammarTotal > 0) parts.push(`${grammarTotal.toLocaleString('vi-VN')} ngữ pháp`);
+    if(parts.length) return parts.join(' · ');
+
+    const count = Number(levelRow?.count || meta?.uniqueItemCount || 0);
+    if(count > 0) return `${count.toLocaleString('vi-VN')} từ`;
+    return 'Chưa có dữ liệu';
   }
 
   function getHskLevelLabel(levelNo, sourceKey = hskState.sourceKey){
@@ -6346,6 +6457,11 @@ if(window.HanziWriter){
   }
 
   function renderHskList(){
+    if(hskState.sourceKey === 'dialogue301'){
+      renderDialogue301Curriculum();
+      return;
+    }
+    setDialogue301CurriculumMode(false);
     renderHskFilters();
     hskList.classList.remove('hsk-list--vocab-list', 'hsk-list--vocab-grid');
     if(hskState.groupMode === 'grammar'){
@@ -6394,25 +6510,29 @@ if(window.HanziWriter){
 
 
   function openHskWord(word){
-    const target = getHanziChars(word).join('');
-    if(!target){
-      return;
-    }
+    const target = String(word || '').trim();
+    if(!target) return;
     closeHskPopup();
-    stopAutoplayLoop();
-    els.input.value = target;
-    setStudyTab('lookup');
-    renderWriters();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const url = new URL('../lookup/index.html', window.location.href);
+    url.searchParams.set('q', target);
+    window.location.href = url.href;
   }
 
   window.openHanziLearningPopup = openHskPopup;
   window.openHanziLookupWord = openHskWord;
   ensureFlashcardLibraryUi();
 
-  tabLookup.addEventListener('click', () => setStudyTab('lookup'));
-  tabHsk.addEventListener('click', () => setStudyTab('hsk'));
-  tabRadicals?.addEventListener('click', () => setStudyTab('radicals'));
+  tabHub?.addEventListener('click', () => navigateStudyRoute('hub', 'hub'));
+  learnHubView?.addEventListener('click', event => {
+    const trigger = event.target.closest('[data-open-study]');
+    if(!trigger) return;
+    const tabName = trigger.dataset.openStudy;
+    const routeName = tabName === 'lookup' ? 'writing' : tabName;
+    navigateStudyRoute(routeName, tabName);
+  });
+  tabLookup.addEventListener('click', () => navigateStudyRoute('writing', 'lookup'));
+  tabHsk.addEventListener('click', () => navigateStudyRoute('hsk', 'hsk'));
+  tabRadicals?.addEventListener('click', () => navigateStudyRoute('radicals', 'radicals'));
 
   sourceTabs.addEventListener('click', event => {
     const button = event.target.closest('[data-hsk-source]');
@@ -6424,12 +6544,14 @@ if(window.HanziWriter){
       return;
     }
     hskState.sourceKey = nextSource;
+    saveLastCurriculum(nextSource);
     hskState.topicKey = 'all';
     hskState.wordFilter = 'all';
     normalizeHskSourceAndLevel();
     renderHskSourceTabs();
     renderHskLevelTabs();
-    loadHskLevel(hskState.currentLevel);
+    if(nextSource === 'dialogue301') renderDialogue301Curriculum();
+    else { setDialogue301CurriculumMode(false); loadHskLevel(hskState.currentLevel); }
   });
 
   levelTabs.addEventListener('click', event => {

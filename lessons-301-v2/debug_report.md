@@ -7,8 +7,6 @@ Generated at: 2026-07-04T12:53:02
 - pdf_md: `D:\01.AutobyNgan\00.Build.App\12.Obsidian\Tieng-Trung\pdf-301-cau-dam-thoai.md`
 - md_source: `D:\01.AutobyNgan\00.Build.App\12.Obsidian\Tieng-Trung\MD_301_CAU_DAM_THOAI`
 - old_lessons: `D:\01.AutobyNgan\00.Build.App\12.Obsidian\Tieng-Trung\lessons-301`
-- ppt_source: `D:\01.AutobyNgan\00.Build.App\12.Obsidian\Tieng-Trung\PPT 301 CÂU ĐÀM THOẠI`
-- ppt_policy: `metadata_only_no_pptx_copied`
 
 ## Lesson summary
 

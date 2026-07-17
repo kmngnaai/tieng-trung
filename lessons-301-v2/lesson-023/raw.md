@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape70p1.jpg)
 I
 
@@ -22,9 +20,6 @@ Xin lỗi
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape80p2.jpg)
 目录
 
@@ -48,9 +43,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape112p3.jpg)
 
 ![](GoogleShape114p3.jpg)
@@ -69,8 +61,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 对不起 | duìbuqǐ | 电影院 | diànyǐngyuàn | 没关系 | méiguānxi |
 | --- | --- | --- | --- | --- | --- |
 | 让 | ràng | 小说 | xiǎoshuō | 英文 | Yīngwén |
@@ -81,8 +71,6 @@ Minliang
 | 修 | xiū | 原谅 | yuánliàng | 脏 | zāng |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 对不起 | duìbuqǐ |  | xin lỗi |
@@ -91,8 +79,6 @@ Minliang
 ![](GoogleShape133p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 让 | ràng | 动，介 | để cho |
@@ -102,8 +88,6 @@ Minliang
 ![](GoogleShape140p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 久 | jiǔ | 形 | lâu |
@@ -113,8 +97,6 @@ Minliang
 ![](GoogleShape148p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 才 | cái | 副 | mới |
@@ -124,8 +106,6 @@ Minliang
 ![](GoogleShape156p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 抱歉 | bàoqiàn | 形 | có lỗi |
@@ -137,8 +117,6 @@ Minliang
 ![歉的笔顺动画](GoogleShape167p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 坏 | huài | 形 | hư |
@@ -148,8 +126,6 @@ Minliang
 ![](GoogleShape173p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 修 | xiū | 动 | sửa |
@@ -159,8 +135,6 @@ Minliang
 ![](GoogleShape181p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 电影院 | diànyǐngyuàn | 名 | rạp phim |
@@ -170,8 +144,6 @@ Minliang
 ![](GoogleShape189p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 小说 | xiǎoshuō | 名 | truyện, tiểu thuyết |
@@ -181,8 +153,6 @@ Minliang
 ![](GoogleShape197p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 约 | yuē | 动 | hẹn |
@@ -192,8 +162,6 @@ Minliang
 ![](GoogleShape205p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 可能 | kěnéng |  | có khả năng |
@@ -203,8 +171,6 @@ Minliang
 ![](GoogleShape213p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 还 | huán | 动 | còn |
@@ -214,8 +180,6 @@ Minliang
 ![](GoogleShape221p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 用 | yòng | 动 | dùng |
@@ -225,8 +189,6 @@ Minliang
 ![](GoogleShape229p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 原谅 | yuánliàng | 动 | tha thứ |
@@ -238,8 +200,6 @@ Minliang
 ![谅的笔顺动画](GoogleShape240p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 英文 | Yīngwén | 名 | tiếng Anh |
@@ -249,8 +209,6 @@ Minliang
 ![](GoogleShape246p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 借 | jiè | 动 | mượn |
@@ -260,8 +218,6 @@ Minliang
 ![](GoogleShape254p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 支 | zhī | 量 | cái |
@@ -271,8 +227,6 @@ Minliang
 ![](GoogleShape262p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 收录机 | shōulùjī | 名 | máy ghi âm |
@@ -282,8 +236,6 @@ Minliang
 ![](GoogleShape270p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 20 | 弄 | nòng | 动 | làm |
@@ -293,8 +245,6 @@ Minliang
 ![](GoogleShape278p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 21 | 脏 | zāng | 形 | bẩn |
@@ -304,9 +254,6 @@ Minliang
 ![](GoogleShape286p24.jpg)
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape294p25.jpg)
 
 ![](GoogleShape296p25.jpg)
@@ -325,8 +272,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 26 -->
 1. 对不起，让你久等了。
 /Duìbùqǐ, ràng nǐ jiǔ děng le./ - Xin lỗi, để bạn phải đợi lâu.
 2. 你怎么八点半才来？
@@ -339,8 +284,6 @@ Minliang
 ![](GoogleShape311p26.jpg)
 
 ### Notes:
-
-<!-- Slide number: 27 -->
 5. 自行车修好了吗?
 /Zìxíngchē xiūhǎo le ma?/ - Xe đạp đã sửa xong chưa?
 6. 我怎么能不来呢？
@@ -353,9 +296,6 @@ Minliang
 ![](GoogleShape319p27.jpg)
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape325p28.jpg)
 
 ![](GoogleShape327p28.jpg)
@@ -374,8 +314,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 29 -->
 大卫：对不起，让你久等了。
 玛丽：我们约好八点，你怎么八点半才来？
 大卫：真抱歉，我来晚了，半路上我的自行车坏了。
@@ -389,8 +327,6 @@ Minliang
 ![](GoogleShape341p29.jpg)
 
 ### Notes:
-
-<!-- Slide number: 30 -->
 玛丽：刘京，还你词典，用得时间太长了 ,请原谅！
 刘京：没关系，你用吧。
 玛丽：谢谢，不用了。星期日我买到一本新小说。
@@ -404,9 +340,6 @@ Minliang
 ![](GoogleShape347p30.jpg)
 
 ### Notes:
-
-<!-- Slide number: 31 -->
-
 ![](GoogleShape356p31.jpg)
 
 ![](GoogleShape354p31.jpg)
@@ -425,8 +358,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 32 -->
 进教室   进食堂   同学校
 上楼     回家     下楼
 1.我们快进电影院去吧。
@@ -442,9 +373,6 @@ A: 对不起，弄脏你的本子了。
    B：没什么。
 
 ### Notes:
-
-<!-- Slide number: 33 -->
-
 ![](GoogleShape378p33.jpg)
 
 ![](GoogleShape380p33.jpg)
@@ -463,8 +391,6 @@ A: 对不起，弄脏你的本子了。
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 34 -->
 1. 形容词“好”作结果补语 Tính từ “好”làm bổ ngữ kết quả.
 Biểu thị động tác đã hoàn thành hoặc đạt tới mức độ hoàn thiện. Ví dụ:
 (1) 饭已经做好了。
@@ -476,8 +402,6 @@ Biểu thị động tác đã hoàn thành hoặc đạt tới mức độ hoà
 ![](GoogleShape395p34.jpg)
 
 ### Notes:
-
-<!-- Slide number: 35 -->
 2. 副词“就”、“才”Phótừ “就”、“才”
 Phó từ“就”，“才”đôi khi có thể biểu thị thời gian sớm, muộn, nhanh, chậm.....“就”thường diễn tả sự việc xảy ra sớm, nhanh hoặc tiến hành thuận lợi,“才”ngược lại, thường chỉ sự việc xảy ra chậm, muộn hoặc tiến hành không thuận lợi. Ví dụ:
 (1) 八点上课,他七点半就来了。
@@ -488,8 +412,6 @@ Phó từ“就”，“才”đôi khi có thể biểu thị thời gian sớm
 ![](GoogleShape401p35.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
 3. 趋向补语(二) Bổ ngữ xu hướng (2)
 Nếu sau động từ vừa có bổ ngữ chỉ xu hướng vừa có tân ngữ chỉ nơi chốn, thì tân ngữ chỉ nơi chốn nhất định phải đặt giữa động từ và bổ ngữ. Ví dụ:
 (1) 你快下楼来吧。
@@ -505,9 +427,6 @@ Những tân ngữ không chỉ nơi chốn có thể đặt giữa động từ
 ![](GoogleShape409p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 37 -->
-
 ![](GoogleShape415p37.jpg)
 
 ![](GoogleShape417p37.jpg)
@@ -526,9 +445,6 @@ Những tân ngữ không chỉ nơi chốn có thể đặt giữa động từ
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 38 -->
-
 ![](GoogleShape430p38.jpg)
 1. 给下面的对话填上塑当的结果补语并朗读:
 A：小王，你的自行车修...........了吗？
@@ -539,8 +455,6 @@ A：问过了，他的自行车也弄.............了。
 B：真不巧。
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 2. 用动词加“来”或“去”填空：
 ⑴ 王：小刘，你快............吧，我在楼下等你。
 刘：现在我就................。
@@ -556,9 +470,6 @@ B：刚.............., 一会儿再................吧。
 ![](GoogleShape436p39.jpg)
 
 ### Notes:
-
-<!-- Slide number: 40 -->
-
 ![](GoogleShape443p40.jpg)
 3. 完成对话 Hoàn thành đối thoại
 (1) A：................., 我来晚了。
@@ -576,9 +487,6 @@ B：..............................。
 ![](GoogleShape442p40.jpg)
 
 ### Notes:
-
-<!-- Slide number: 41 -->
-
 ![](GoogleShape449p41.jpg)
 4. 会话 Đàm thoại
 提示1 :你借了同学的自行车，还车的时候你说你骑坏了自行车，表示 道歉。
@@ -587,17 +495,12 @@ Gợi ý: Bạn mượn xe đạp của bạn học, khi trả xe, bạn nói b�
 Gợi ý: Một người bạn muốn mượn máy chụp hình của bạn, bạn nói người khác đã mượn rồi.
 
 ### Notes:
-
-<!-- Slide number: 42 -->
 5. 听述 Nghe và kể lại
 我和小王约好今天晚上去北京饭店跳舞。下午我们两个人先去友谊商 店买东西。从友谊商店出来以后，我去看一个朋友，小王去王府井。我在朋友家吃晚饭，六点半我才从朋友家出来。到北京饭店的时候，七点多了，小王正在门口等我。我说：“来得太晚了，真抱歉，请原谅。”。他说：“没关系。”我们就一起进北京饭店去了。
 
 ![](GoogleShape455p42.jpg)
 
 ### Notes:
-
-<!-- Slide number: 43 -->
-
 ![](GoogleShape461p43.jpg)
 6.语音练习 Bài tập ngữ âm
 (1) 常用音节练习  Luyện tập các âm tiết thường dùng
@@ -611,8 +514,6 @@ dǒng shì       懂事
 dong
 
 ### Notes:
-
-<!-- Slide number: 44 -->
 （2）朗读会话 Đọc to mẩu đàm thoại.
 A：Māma, xiànzài wǒ chūqù kàn péngyou.
 B：Shénme shíhou huílai ?
@@ -624,8 +525,6 @@ B：Hăo ba, bié tài wăn le.
 ![](GoogleShape476p44.jpg)
 
 ### Notes:
-
-<!-- Slide number: 45 -->
 The End
 Minliang
 

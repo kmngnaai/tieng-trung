@@ -3255,3 +3255,92 @@ body{
     font-size:11.5px!important;
   }
 }
+
+/* UI 2026-07-17: shared app shell and replaceable mascot asset */
+:root { --pinyin-mascot-url: url("../../assets/brand/mascot.png"); }
+body { padding-top: calc(var(--ui-header-height) + var(--ui-safe-top)); background: var(--ui-bg); color: var(--ui-text); }
+.app { width: min(100%, var(--ui-content-max)); margin-inline: auto; }
+.tt-module-top-nav { display: none !important; }
+.v23-shell { min-height: auto; background: transparent; }
+.pinyin-mascot {
+  width: 118px;
+  height: 92px;
+  object-fit: contain;
+  object-position: center;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 8px 16px rgba(68, 57, 52, .08));
+}
+.v22-home-head {
+  background: linear-gradient(135deg, var(--ui-surface), color-mix(in srgb, #eaf8ee 68%, var(--ui-surface)));
+  border-color: var(--ui-border);
+}
+.v22-home-head > span { display: none !important; }
+
+@media (max-width: 767px) {
+  body { padding-bottom: calc(var(--ui-bottom-nav-height) + var(--ui-safe-bottom)); }
+  .app-shell.v21-shell { display: block; min-height: 0; }
+  .v21-shell .v21-sidebar {
+    position: static !important;
+    inset: auto !important;
+    width: auto !important;
+    height: auto !important;
+    display: flex !important;
+    gap: 7px !important;
+    overflow-x: auto !important;
+    padding: 10px 12px 4px !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    z-index: auto !important;
+    scrollbar-width: none;
+  }
+  .v21-shell .v21-sidebar::-webkit-scrollbar { display: none; }
+  .v21-shell .v21-sidebar .brand,
+  .v21-shell .v21-sidebar .side-card { display: none !important; }
+  .v21-shell .v21-sidebar .nav-btn {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-width: 74px !important;
+    min-height: 42px !important;
+    margin: 0 !important;
+    padding: 8px 11px !important;
+    border: 1px solid var(--ui-border) !important;
+    border-radius: 999px !important;
+    background: var(--ui-surface) !important;
+    color: var(--ui-text-secondary) !important;
+    box-shadow: none !important;
+  }
+  .v21-shell .v21-sidebar .nav-btn.active {
+    background: var(--ui-accent-soft) !important;
+    color: var(--ui-accent-hover) !important;
+    border-color: color-mix(in srgb, var(--ui-accent) 34%, var(--ui-border)) !important;
+  }
+  .v21-content { padding: 8px 12px 26px !important; }
+  .v22-home-head { align-items: center; }
+  .pinyin-mascot { width: 82px; height: 68px; }
+}
+
+@media (min-width: 768px) {
+  .v23-shell { padding-top: 18px; }
+  .v21-sidebar { top: calc(var(--ui-header-height) + var(--ui-safe-top) + 18px) !important; max-height: calc(100vh - var(--ui-header-height) - 36px); }
+}
+
+/* Shared visual tone: retain Pinyin behavior while using the global design tokens. */
+:root {
+  --bg: var(--ui-bg);
+  --paper: var(--ui-surface-soft);
+  --panel: var(--ui-surface);
+  --soft: var(--ui-surface-muted);
+  --line: var(--ui-border);
+  --line2: color-mix(in srgb, var(--ui-border) 58%, transparent);
+  --text: var(--ui-text);
+  --muted: var(--ui-text-secondary);
+  --blue: var(--ui-accent);
+  --blueDark: var(--ui-accent-hover);
+  --green: var(--ui-success);
+  --yellow: var(--ui-warning);
+  --red: var(--ui-danger);
+  --purple: #7c5ac7;
+  --shadow: var(--ui-shadow-md);
+}
+html, body { background: var(--ui-bg); color: var(--ui-text); }

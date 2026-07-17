@@ -1,7 +1,7 @@
 # Bài 20 · 为我们的友谊干杯
 
 - Type: `standard_301_course`
-- Source: 20第二十课_为我们的友谊干杯.md, pdf-301-cau-dam-thoai.md, 20第二十课_为我们的友谊干杯.pptx
+- Source: 20第二十课_为我们的友谊干杯.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

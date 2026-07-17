@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape69p1.jpg)
 I
 
@@ -20,9 +18,6 @@ Tôi rất lấy làm tiếc
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape79p2.jpg)
 目录
 
@@ -46,9 +41,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape111p3.jpg)
 
 ![](GoogleShape113p3.jpg)
@@ -67,8 +59,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 糟糕 | zāogāo | 胶卷儿 | jiāojuǎnr | 问题 | wèntí |
 | --- | --- | --- | --- | --- | --- |
 | 可惜 | kěxī | 白 | bái | 查 | chá |
@@ -79,8 +69,6 @@ Minliang
 | 见 | jiàn | 回答 | huídá | 黄 | huáng |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 糟糕 | zāogāo | 形 | hỏng bét |
@@ -92,8 +80,6 @@ Minliang
 ![糕的笔顺动画](GoogleShape135p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 可惜 | kěxī | 形 | đáng tiếc |
@@ -103,8 +89,6 @@ Minliang
 ![](GoogleShape141p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 觉得 | juéde | 动 | cảm thấy, thấy |
@@ -114,8 +98,6 @@ Minliang
 ![](GoogleShape149p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 遗憾 | yíhàn | 形 | đáng tiếc, lấy làm tiếc |
@@ -127,8 +109,6 @@ Minliang
 ![憾的笔顺动画](GoogleShape160p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 急 | jí | 形 | gấp rút, khẩn |
@@ -138,8 +118,6 @@ Minliang
 ![](GoogleShape166p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 马上 | mǎshàng | 副 | lập tức, ngay |
@@ -147,8 +125,6 @@ Minliang
 ![](GoogleShape174p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 见 | jiàn | 动 | kiến |
@@ -158,8 +134,6 @@ Minliang
 ![](GoogleShape181p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 胶卷儿 | jiāojuǎnr | 名 | phim, cuộn phim |
@@ -171,8 +145,6 @@ Minliang
 ![卷的笔顺动画](GoogleShape192p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 白 | bái | 形 | trắng |
@@ -182,8 +154,6 @@ Minliang
 ![](GoogleShape198p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 漂亮 | piàoliang | 形 | đẹp |
@@ -193,8 +163,6 @@ Minliang
 ![](GoogleShape205p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 难 | nán | 形 | khó |
@@ -204,8 +172,6 @@ Minliang
 ![](GoogleShape213p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 容易 | róngyì | 形 | dễ |
@@ -215,8 +181,6 @@ Minliang
 ![](GoogleShape221p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 检查 | jiǎnchá | 动 | kiểm tra |
@@ -228,8 +192,6 @@ Minliang
 ![查的笔顺动画](GoogleShape232p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 回答 | huídá | 动 | trả lời |
@@ -239,8 +201,6 @@ Minliang
 ![](GoogleShape238p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 问题 | wèntí | 名 | vấn đề, câu hỏi |
@@ -250,8 +210,6 @@ Minliang
 ![](GoogleShape246p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 查 | chá | 动 | kiểm soát, tra, xem xét |
@@ -259,8 +217,6 @@ Minliang
 ![](GoogleShape254p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 后天 | hòutiān | 名 | ngày kia |
@@ -268,8 +224,6 @@ Minliang
 ![](GoogleShape261p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 20 | 丢 | diū | 动 | đâu |
@@ -279,8 +233,6 @@ Minliang
 ![](GoogleShape268p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 21 | 大家 | dàjiā | 代 | mọi người |
@@ -290,9 +242,6 @@ Minliang
 ![](GoogleShape276p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
-
 ![](GoogleShape284p24.jpg)
 
 ![](GoogleShape286p24.jpg)
@@ -311,9 +260,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape301p25.jpg)
 1. 真糟糕在长城照的照片都没照上。
 /Zhēn zāogāo zài Chángchéng zhào de zhàopiàn dōu méi zhào shàng/ - Tệ thật, những tấm hình chụp ở Vạn Lý Trường Thành đều hư cả.
@@ -325,8 +271,6 @@ Minliang
 /Āiyā, tài kěxī le./ - Ái chà, thật đáng tiếc.
 
 ### Notes:
-
-<!-- Slide number: 26 -->
 5. 我觉得很遗憾。
 /Wǒ juéde hěn yíhàn/ - Tôi rất lấy làm tiếc.
 6. 公司有急事，让他马上回国。
@@ -339,9 +283,6 @@ Minliang
 ![](GoogleShape309p26.jpg)
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape315p27.jpg)
 
 ![](GoogleShape317p27.jpg)
@@ -360,8 +301,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 28 -->
 王兰：在长城照的照片洗了吗？
 和子：洗了。真糟糕都没照上。
 王兰：那天天气不错，为什么没照上呢？是不是你的照相机坏了？
@@ -374,9 +313,6 @@ Minliang
 ![](GoogleShape331p28.jpg)
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape337p29.jpg)
 刘京：昨天西川回国了。
 和子：我怎么不知道？
@@ -388,9 +324,6 @@ Minliang
 和子：真遗憾，我没见到他。
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape344p30.jpg)
 
 ![](GoogleShape346p30.jpg)
@@ -409,8 +342,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 31 -->
 1.我觉得很遗憾。
 
 2.公司让他马上回国。
@@ -430,9 +361,6 @@ A：李大夫是不是让女同学去检查身体？
 3. 我家的花都开了。看红的、黄的、白的，漂竟极了。
 
 ### Notes:
-
-<!-- Slide number: 32 -->
-
 ![](GoogleShape369p32.jpg)
 
 ![](GoogleShape371p32.jpg)
@@ -451,8 +379,6 @@ A：李大夫是不是让女同学去检查身体？
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 33 -->
 1. 用动词“让”的兼语句 Câu kiêm ngữ dùng động từ “让”
 Cũng giống như câu kiêm ngữ dùng động từ “请”, câu kiêm ngữ dùng động từ“让” cũng có nghĩa yêu cầu người khác làm một việc gì đó. Có điều câu kiêm ngữ dùng“请”thường dùng trong trường hợp tương đối khách khí hơn. Ví dụ:
 (1) 他让我带东西。
@@ -463,8 +389,6 @@ Cũng giống như câu kiêm ngữ dùng động từ “请”, câu kiêm ng�
 ![](GoogleShape385p33.jpg)
 
 ### Notes:
-
-<!-- Slide number: 34 -->
 2.“是不是”构成的正反疑问句  Câu hỏi chính phản bằng“是不是”
 Đối với một sự thật hay một tình huống đã biết, vì muốn khẳng định thêm một bước, ta dùng “是不是”để hỏi, “是不是”có thể ở trước vị ngữ, cũng có thể ở đâu câu hoặc cuối câu. Ví dụ:
 (1) 是不是你的照如机买了 ？
@@ -474,8 +398,6 @@ Cũng giống như câu kiêm ngữ dùng động từ “请”, câu kiêm ng�
 ![](GoogleShape391p34.jpg)
 
 ### Notes:
-
-<!-- Slide number: 35 -->
 3. “上”作结果补语 “上”làm bổ ngữkết quả
 “上” làm bổ ngữ kết quả có nhiều nghĩa. Bổ ngữ kết quả “上”của bài này nghĩa là thông qua động tác làm cho một sự vật (hay một hình ảnh) nào đó được giữ lại ở một nơi nào đó. Ví dụ:
 (1) 照上了吗？
@@ -484,9 +406,6 @@ Cũng giống như câu kiêm ngữ dùng động từ “请”, câu kiêm ng�
 ![](GoogleShape399p35.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
-
 ![](GoogleShape405p36.jpg)
 
 ![](GoogleShape407p36.jpg)
@@ -505,8 +424,6 @@ Cũng giống như câu kiêm ngữ dùng động từ “请”, câu kiêm ng�
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 1.熟读下列词组并选择造句
 很可惜
 很遗憾
@@ -523,9 +440,6 @@ Minliang
 让
 
 ### Notes:
-
-<!-- Slide number: 38 -->
-
 ![](GoogleShape433p38.jpg)
 2.完成对话(用上表示遗憾的词语)
 (1) A：听说今天食堂有饺子，
@@ -537,8 +451,6 @@ A：听说这个星期六还演呢。
 B：那我一定去看。
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 3. 按照实际情况回答问题
 (1) 你汉语说得怎么样？
 (2) 第二十三课的等习你觉得难不难？
@@ -548,9 +460,6 @@ B：那我一定去看。
 ![](GoogleShape439p39.jpg)
 
 ### Notes:
-
-<!-- Slide number: 40 -->
-
 ![](GoogleShape444p40.jpg)
 4.把下面对话中B的话改成“是不是”的问句
  (1) A：今天我去找小王,他不在。
@@ -559,8 +468,6 @@ B：大概他回家了。
 B：我想可能是天气不好。
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 5. 听述 Nghe và kể lại
 昨天想星期日，张老师的爱人让张老师洗衣服,张老师的爱人做饭。
 张老师炊咨性他觉得竺的、白的、黄的衣服一起就一起洗了。他爱人新买的一条裙子和他的一件白衬衫都洗坏了。他正看的时候，他爱人问：“衣服洗得怎么样了？”他不知道说什么，他爱人看了说：“哎呀！真糟糕！”
@@ -568,9 +475,6 @@ B：我想可能是天气不好。
 ![](GoogleShape450p41.jpg)
 
 ### Notes:
-
-<!-- Slide number: 42 -->
-
 ![](GoogleShape457p42.jpg)
 6.语音练习 Bài tập ngữ âm
 (1) 常用音节练习  Luyện tập các âm tiết thường dùng
@@ -583,9 +487,6 @@ nílóng        尼龙
 ni
 
 ### Notes:
-
-<!-- Slide number: 43 -->
-
 ![](GoogleShape472p43.jpg)
 （2）朗读会话 Đọc to mẩu đàm thoại.
 A：Nǐ de xīn zìxíngchē zhēn piàoliang.
@@ -596,8 +497,6 @@ A：Xiūxi ba, kàn zěnmeyàng .
 B：Hăo.
 
 ### Notes:
-
-<!-- Slide number: 44 -->
 The End
 Minliang
 

@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape77p1.jpg)
 
 第十四课
@@ -20,9 +18,6 @@ Tôi phải đi đổi tiền
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape87p2.jpg)
 目录
 
@@ -49,9 +44,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape124p3.jpg)
 01
 生词
@@ -68,8 +60,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 听说 | tīng shuō | 营业员 | yíng yè yuán |
 | --- | --- | --- | --- |
 | 饭店 | fàn diàn | 美元 | měi yuán |
@@ -83,8 +73,6 @@ Minliang
 | 花 | huā | 等 | děng |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 听说 | tīng shuō | 动 | Nghe nói |
@@ -94,8 +82,6 @@ Minliang
 ![](GoogleShape143p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 饭店 | fàn diàn | 动 | Khác sạn, tiệm cơm |
@@ -107,8 +93,6 @@ Minliang
 ![C:\Users\ad\Downloads\3501.gif](GoogleShape154p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 里 | lǐ | 量 | Trong, ở trong |
@@ -118,8 +102,6 @@ Minliang
 ![](GoogleShape160p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 能 | néng | 名 | Có thể, được |
@@ -129,8 +111,6 @@ Minliang
 ![](GoogleShape168p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 带 | dài | 名 | Mang, đem |
@@ -138,8 +118,6 @@ Minliang
 ![C:\Users\ad\Downloads\3646.gif](GoogleShape177p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 数 | shù | 名,动 | Con số, đếm |
@@ -149,8 +127,6 @@ Minliang
 ![](GoogleShape183p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 时间 | shí jiān | 名 | thời gian |
@@ -160,8 +136,6 @@ Minliang
 ![](GoogleShape191p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 快 | kuài | 形 | Nhanh |
@@ -171,8 +145,6 @@ Minliang
 ![](GoogleShape199p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 花 | huā | 动 | Tiêu, xài |
@@ -182,8 +154,6 @@ Minliang
 ![](GoogleShape207p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 营业员 | yíng yè yuán | 名 | Nhân viên bán hàng |
@@ -193,8 +163,6 @@ Minliang
 ![](GoogleShape215p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 美元 | měi yuán | 名 | Mỹ kim, đô la Mỹ |
@@ -204,8 +172,6 @@ Minliang
 ![](GoogleShape223p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 百 | bǎi | 数 | trăm |
@@ -215,8 +181,6 @@ Minliang
 ![](GoogleShape231p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 外汇券 | wài huì quàn | 名 | hối đoái |
@@ -226,8 +190,6 @@ Minliang
 ![](GoogleShape239p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 这样 | zhè yàng | 代 | thế này |
@@ -237,8 +199,6 @@ Minliang
 ![](GoogleShape247p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 电话 | diàn huà | 名 | điện thoại |
@@ -249,8 +209,6 @@ Minliang
 ![](GoogleShape255p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 念 | niàn | 动 | Đọc, đọc nhẩm |
@@ -261,8 +219,6 @@ Minliang
 .
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 汉子 | hàn zì | 名 | Chữ Hán |
@@ -271,8 +227,6 @@ Minliang
 .
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 等 | děng | 动 | đợi，vân vân |
@@ -282,9 +236,6 @@ Minliang
 ![](GoogleShape280p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
-
 ![](GoogleShape289p23.jpg)
 02
 句子
@@ -301,8 +252,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 1.我没钱了。
 /Wǒ méi qián le./ - Tôi hết tiền rồi.
 2.听说，饭店里可以换钱。
@@ -313,8 +262,6 @@ Minliang
 /Nín dài de shénme qián ?/ - Tiền ông mang theo là tiền gì?
 
 ### Notes:
-
-<!-- Slide number: 25 -->
 5.请您写一下儿钱数。
 /Qǐng nín xiě yí xiàr qián shù/ - Xin ông viết số tiền ra.
 6.请数一数。
@@ -325,9 +272,6 @@ Minliang
 /Wǒ men kuài zǒu ba ./ Chúng ta đi nhanh lên.
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape317p26.jpg)
 03
 课文
@@ -344,9 +288,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape332p27.jpg)
 玛丽：钱都花了，我没钱了。我要去换钱。
 大卫：听说， 饭店里可以换钱。
@@ -355,8 +296,6 @@ Minliang
 ![](GoogleShape330p27.jpg)
 
 ### Notes:
-
-<!-- Slide number: 28 -->
 玛丽：请问，这儿能不能换钱？
 营业员：能，您带的什么钱？
 玛丽：美元。
@@ -372,9 +311,6 @@ Minliang
 ![](GoogleShape339p28.jpg)
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape346p29.jpg)
 04
 注释
@@ -391,16 +327,11 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 30 -->
 “请数数”   “Xin đếm lại”
 “数一数” đồng nghĩa với  “数数”  Động từ đơn âm tiết sau khi dùng cách trùng điệp thì ở giữa có thể xen “一”vào. Ví dụ:
    “听一听”,  “问一问”
 
 ### Notes:
-
-<!-- Slide number: 31 -->
-
 ![](GoogleShape366p31.jpg)
 05
 替换与扩展
@@ -417,8 +348,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 32 -->
 1.听说，饭店里可以换钱。
 
 2. 请您写一下儿钱数。
@@ -437,9 +366,6 @@ Minliang
 2. 这是他的信，请你给他。
 
 ### Notes:
-
-<!-- Slide number: 33 -->
-
 ![](GoogleShape389p33.jpg)
 06
 语法
@@ -456,8 +382,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 34 -->
 1. Câu kiêm ngữ :
 Vị ngữ do hai ngữ động từ tạo thành, tân ngữ của động từ đứng trước đồng thời cũng là chủ ngữ của đông từ đứng sau. Loại câu này gọi là câu kiêm ngữ. Động từ thứ nhất của câu kiêm ngữ thường mang ý nghĩa cầu khiến, như: 请，让，叫........
 (1) 请您写一下儿名字
@@ -466,9 +390,6 @@ Vị ngữ do hai ngữ động từ tạo thành, tân ngữ của động từ
 ![](GoogleShape402p34.jpg)
 
 ### Notes:
-
-<!-- Slide number: 35 -->
-
 ![](GoogleShape409p35.jpg)
 2. Trợ từ ngữ khí 了
    Có khi “了” chỉ một sự việc hay 1 tình huống nào đó đã xảy ra. Ta thử so sánh 2 mẩu câu đối thoại sau :
@@ -488,9 +409,6 @@ Trong đoạn đối thoại (1) không dùng “了”, chỉ hai sự việc �
 ![](GoogleShape418p35.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
-
 ![](GoogleShape424p36.jpg)
 Dạng phủ định của câu mang trợ từ ngữ khí “了” là đặt phó từ “没(有)” trước dộng từ đồng thời bỏ “了” ở cuối câu. Còn câu hỏi chính phản của nó thì thêm “... 了没有” ở cuối câu hoặc cùng đưa ra dạng khẳng định và phủ định của động từ “...没...” . Ví dụ:
 （1）他没去商店。
@@ -501,9 +419,6 @@ Dạng phủ định của câu mang trợ từ ngữ khí “了” là đặt 
 ![](GoogleShape425p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 37 -->
-
 ![](GoogleShape433p37.jpg)
 07
 练习
@@ -520,8 +435,6 @@ Dạng phủ định của câu mang trợ từ ngữ khí “了” là đặt 
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 38 -->
 1. 用“要，想，能，会，可以”和括号中的词语完成子.
 Dùng  要, 想, 能, 会, 可以 và từ ngữ trong ngoặc để hoàn thành câu:
 （1）	明天我有课....................。（玩儿）
@@ -535,8 +448,6 @@ Dùng  要, 想, 能, 会, 可以 và từ ngữ trong ngoặc để hoàn thàn
 ![](GoogleShape446p38.jpg)
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 2.   用 “再，可以，会，想”填空
 Dùng 再, 可以, 会, 想 điền vào chỗ trống
 这个汉字我不..........写，张老师说，我..........去问他。我..........明天去。 大卫说,张老师很忙，明天不要去，星期天..........去吧。.
@@ -544,8 +455,6 @@ Dùng 再, 可以, 会, 想 điền vào chỗ trống
 ![](GoogleShape453p39.jpg)
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 3.  完成对话 Hoàn thành đối thoại
 （1）	A：...........................?
 	B：我去看朋友了。
@@ -558,17 +467,12 @@ Dùng 再, 可以, 会, 想 điền vào chỗ trống
 	A:很好，我们走吧。
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 4.  听述 Nghe và kể lại
 和子想换钱。她听说学校的银行能换，就去了。营业员问她带的什么钱，要换多少，还说要写一下钱数和名字，和子都写了。还钱的时候营业员笑了。和子给营业员的不是钱，是食堂 的饭票，和子也笑了，她回宿舍去拿钱。
 
 ![](GoogleShape464p41.jpg)
 
 ### Notes:
-
-<!-- Slide number: 42 -->
-
 ![](GoogleShape473p42.jpg)
 5.语音练习 Bài tập ngữ âm
 (1)读下列词语: 第3声+第1声
@@ -580,8 +484,6 @@ qǐfēi		（简单）		jiǎndān	（简单）
 hěn gāo	（很高）		huǒchē	（火车）
 
 ### Notes:
-
-<!-- Slide number: 43 -->
 (2) 常用音节练习  Luyện tập các âm tiết thường dùng
 zhīdào      知道
 dàole        到了
@@ -597,14 +499,10 @@ dao
 ![](GoogleShape479p43.jpg)
 
 ### Notes:
-
-<!-- Slide number: 44 -->
 THE END
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 45 -->
 Minliang
 
 ### Notes:

@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape69p1.jpg)
 I
 
@@ -20,9 +18,6 @@ Bài 38:
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape79p2.jpg)
 目录
 
@@ -46,9 +41,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape111p3.jpg)
 
 ![](GoogleShape113p3.jpg)
@@ -67,8 +59,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 打听 | dǎtīng | 搬 | bān | 包裹 | bāoguǒ |
 | --- | --- | --- | --- | --- | --- |
 | 托运 | tuōyùn | 动 | dòng | 手表 | shǒubiǎo |
@@ -82,8 +72,6 @@ Minliang
 ![](GoogleShape127p4.jpg)
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 打听 | dǎtīng | 动 | hỏi thăm |
@@ -91,8 +79,6 @@ Minliang
 ![](GoogleShape133p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 托运 | tuōyùn | 动 | vận chuyển, ký gửi |
@@ -102,8 +88,6 @@ Minliang
 ![](GoogleShape140p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 不但...而且 | búdàn ....érqiě |  | không những...mà còn |
@@ -111,8 +95,6 @@ Minliang
 ![](GoogleShape148p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 运 | yùn | 名 | vận chuyển |
@@ -123,8 +105,6 @@ Minliang
 ![海的笔顺动画](GoogleShape157p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 费 | fèi | 动 | phí (vận chuyển) |
@@ -134,8 +114,6 @@ Minliang
 ![](GoogleShape163p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 算 | suàn | 动 | tính toán |
@@ -143,8 +121,6 @@ Minliang
 ![](GoogleShape171p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 按照 | ānzhào | 介 | theo, chiếu theo |
@@ -154,8 +130,6 @@ Minliang
 ![](GoogleShape178p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 价目表 | jiàmùbiǎo | 名 | bảng giá |
@@ -165,8 +139,6 @@ Minliang
 ![](GoogleShape186p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 搬 | bān | 动 | dời, chuyển dời |
@@ -176,8 +148,6 @@ Minliang
 ![](GoogleShape194p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 动 | dòng | 动 | động |
@@ -187,8 +157,6 @@ Minliang
 ![](GoogleShape202p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 的话 | dehuà | 助 | (trợ từ) |
@@ -196,8 +164,6 @@ Minliang
 ![](GoogleShape210p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 超重 | chāozhòng |  | vượt quá trọng lượng |
@@ -207,8 +173,6 @@ Minliang
 ![](GoogleShape217p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 为了 | wèile | 介 | vì, để |
@@ -218,8 +182,6 @@ Minliang
 ![](GoogleShape225p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 顾客 | gùkè | 名 | khách hàng |
@@ -227,8 +189,6 @@ Minliang
 ![](GoogleShape233p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 取 | qǔ | 动 | lấy, giành |
@@ -236,8 +196,6 @@ Minliang
 ![](GoogleShape240p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 包裹 | bāoguǒ | 名 | bao, bọc |
@@ -247,8 +205,6 @@ Minliang
 ![](GoogleShape247p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 手表 | shǒubiǎo | 名 | đồng hồ đeo tay |
@@ -256,8 +212,6 @@ Minliang
 ![](GoogleShape255p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 电 | diàn | 名 | điện |
@@ -267,8 +221,6 @@ Minliang
 ![](GoogleShape262p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 20 | 大使馆 | dàshǐguǎn | 名 | đại sứ quán |
@@ -278,8 +230,6 @@ Minliang
 ![](GoogleShape270p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 21 | 办公 | bàngōng |  | làm việc |
@@ -287,9 +237,6 @@ Minliang
 ![](GoogleShape278p24.jpg)
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape287p25.jpg)
 
 ![](GoogleShape285p25.jpg)
@@ -308,8 +255,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 26 -->
 1. 我打听一下儿，这儿托运行李吗？
 /Wǒ dǎtīng yīxiàr, zhèr tuōyùn xínglǐ ma?/ - Tôi hỏi thăm một chút, ở đây có nhận vận chuyển hành lý không?
 2. 邮局寄不但太贵，而且这么大的行李也不能寄。
@@ -322,8 +267,6 @@ Minliang
 ![](GoogleShape302p26.jpg)
 
 ### Notes:
-
-<!-- Slide number: 27 -->
 5. 运费怎么算？
 /Yùnfèi zěnme suàn?/ - Phí vận chuyển tính thế nào?
 6. 按照这个价目表收费。
@@ -336,9 +279,6 @@ Minliang
 ![](GoogleShape310p27.jpg)
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape318p28.jpg)
 
 ![](GoogleShape316p28.jpg)
@@ -357,9 +297,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape331p29.jpg)
 刘京：你这么多行李，坐飞机的话，一定超重。
 和子：那怎么办。
@@ -371,9 +308,6 @@ Minliang
 和子：那好，明天我去问一下儿。
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape338p30.jpg)
 和子：我打听一下儿，这儿托运行李吗？
 服务员：托运。你要运到哪儿？
@@ -386,9 +320,6 @@ Minliang
 和子：那太麻烦你们了。
 
 ### Notes:
-
-<!-- Slide number: 31 -->
-
 ![](GoogleShape345p31.jpg)
 
 ![](GoogleShape347p31.jpg)
@@ -407,8 +338,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 32 -->
 开车    你们    要注意安全
 坐软卧  我们    觉得很舒服
 寄包裹  你      要包好
@@ -425,8 +354,6 @@ Minliang
 修好手表     取来
 
 ### Notes:
-
-<!-- Slide number: 33 -->
 1.一个月的水费、电费、房费不少。
 2.我想起来了，这个人是大平，以前我在东京见过他。
 3.我打听一下儿，星期六大使馆办公不办公？
@@ -434,9 +361,6 @@ Minliang
 ![](GoogleShape367p33.jpg)
 
 ### Notes:
-
-<!-- Slide number: 34 -->
-
 ![](GoogleShape374p34.jpg)
 
 ![](GoogleShape376p34.jpg)
@@ -455,8 +379,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 35 -->
 1.“不但…而且…”复句 Câu phức“Chẳng những...mà còn...”
 “不但...而且...”chỉ quan hệ tăng tiến. Khi chủ ngữ của hai mệnh đề trong câu phức giống nhau,“不但”đặt sau chủ ngữ mệnh đề đầu (thứ nhất). Nếu chủ ngữ của hai mệnh đề không giống nhau,“不但”đặt trước chủ ngữ của mệnh đề thứ nhất. Ví dụ:
 (1) 他不但是我的老师，而且也是我的朋友。
@@ -466,8 +388,6 @@ Minliang
 ![](GoogleShape390p35.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
 2.“动”作可能补语 “动” làm bổ ngữ khả năng
 Động từ“动”làm bổ ngữ khả năng, biểu thị có đủ hoặc không đủ sức làm một việc gì đó. Ví dụ:
 (1) 这只箱子不重，我拿得动。
@@ -477,8 +397,6 @@ Minliang
 ![](GoogleShape397p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 3. 能愿动词在“把”字句中的位置  Vị trí của đông từ năng nguyện trong câu dùng“把”
 Động từ năng nguyện luôn luôn đứng trước giới từ“把”.Ví dụ:
 (1) 我可以收录机带来。
@@ -487,9 +405,6 @@ Minliang
 ![](GoogleShape404p37.jpg)
 
 ### Notes:
-
-<!-- Slide number: 38 -->
-
 ![](GoogleShape410p38.jpg)
 
 ![](GoogleShape412p38.jpg)
@@ -508,8 +423,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 1. 用动词加可能补语填空
 
 ![](GoogleShape425p39.jpg)
@@ -521,8 +434,6 @@ Minliang
 (6)	今天的天气，照相........................吗？
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 2. 用“不但…而且…”完成句子
 (1) 那儿不但名胜古迹很多...................。
 (2) 抽而..........，而且对别人的身体也不好。
@@ -532,8 +443,6 @@ Minliang
 ![](GoogleShape431p40.jpg)
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 3. 用“为了”完成句子
 
 ![](GoogleShape438p41.jpg)
@@ -543,9 +452,6 @@ Minliang
 (4).......................，我买了一张画了。
 
 ### Notes:
-
-<!-- Slide number: 42 -->
-
 ![](GoogleShape444p42.jpg)
 4. 完成对话
 A：......................................?
@@ -560,8 +466,6 @@ A：你拿得动吗？要不要我帮忙？
 B：......................................。
 
 ### Notes:
-
-<!-- Slide number: 43 -->
 5. 会话
 
 ![](GoogleShape450p43.jpg)
@@ -571,17 +475,11 @@ B：......................................。
 Gợi ý: Đồ đạc có quá trọng lượng quy định không ? Cước phí bưu điện bao nhiêu ? Bao lâu có thể tới ?
 
 ### Notes:
-
-<!-- Slide number: 44 -->
-
 ![](GoogleShape457p44.jpg)
 5. 听述
 小刘要去日本，他不知道可以托运多少行李。小王去过法国，去法国和去日本一样，可以托运二十公斤。还可以带一个五公斤的小包。小刘东西比较多，从邮局寄太贵。小张让他海运，海运可以寄很多，而且比较便宜。小刘觉得这是个好主意。
 
 ### Notes:
-
-<!-- Slide number: 45 -->
-
 ![](GoogleShape464p45.jpg)
 6.语音练习 Bài tập ngữ âm
 (1) 常用音节练习  Luyện tập các âm tiết thường dùng
@@ -595,8 +493,6 @@ zhème                这么
 me
 
 ### Notes:
-
-<!-- Slide number: 46 -->
 （2）朗读会话 Đọc to mẩu đàm thoại.
 A : Tóngzhì, wǒ  yào jì shū hǎi yùn.
 B : Wǒ kànkan, a, chāo zhòng le.
@@ -608,8 +504,6 @@ B : Hǎo
 ![](GoogleShape479p46.jpg)
 
 ### Notes:
-
-<!-- Slide number: 47 -->
 The End
 Minliang
 

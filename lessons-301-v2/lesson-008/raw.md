@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape77p1.jpg)
 
 ![](GoogleShape74p1.jpg)
@@ -19,9 +17,6 @@ Bây giờ mấy giờ?
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape87p2.jpg)
 目录
 
@@ -45,9 +40,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape120p3.jpg)
 01
 生词
@@ -64,8 +56,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 现在 | xiànzài | 床 | chuáng |
 | --- | --- | --- | --- |
 | 点 | diǎn | 早上 | zǎoshang |
@@ -79,8 +69,6 @@ Minliang
 | 起 | qǐ |  |  |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 现在 | xiànzài | 名 | Hiện tại, bây giờ |
@@ -90,8 +78,6 @@ Minliang
 ![C:\Users\ad\Downloads\9654.gif](GoogleShape141p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 点 | diǎn | 量 | Giờ |
@@ -101,8 +87,6 @@ Minliang
 ![](GoogleShape147p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 分 | fēn | 量 | phút |
@@ -112,8 +96,6 @@ Minliang
 ![](GoogleShape155p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 差 | chà | 动 | kém, chênh lệch |
@@ -123,8 +105,6 @@ Minliang
 ![](GoogleShape163p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 刻 | kè | 量 | 15 phút , khắc |
@@ -134,8 +114,6 @@ Minliang
 ![](GoogleShape171p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 吃 | chī | 动 | Ăn |
@@ -145,8 +123,6 @@ Minliang
 ![](GoogleShape179p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 饭 | fàn | 动 | cơm |
@@ -156,8 +132,6 @@ Minliang
 ![](GoogleShape187p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 时候 | shíhòu | 名 | Khi, lúc |
@@ -169,8 +143,6 @@ Minliang
 ![C:\Users\ad\Downloads\1415.gif](GoogleShape198p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 半 | bàn | 数 | Nửa , rưỡi |
@@ -180,8 +152,6 @@ Minliang
 ![](GoogleShape204p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 起 | qǐ | 动 | dậy |
@@ -191,8 +161,6 @@ Minliang
 ![](GoogleShape212p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 床 | chuáng | 动 | cái giường |
@@ -202,8 +170,6 @@ Minliang
 ![](GoogleShape220p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 早上 | zǎoshang | 名 | Buổi sáng |
@@ -213,8 +179,6 @@ Minliang
 ![](GoogleShape228p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 吧 | ba | 助 | Nhé ( trợ từ ngữ khí) |
@@ -224,8 +188,6 @@ Minliang
 ![](GoogleShape236p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 两 | liǎng | 数 | hai |
@@ -235,8 +197,6 @@ Minliang
 ![](GoogleShape244p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 食堂 | shítáng | 名 | Nhà ăn |
@@ -248,8 +208,6 @@ Minliang
 ![C:\Users\ad\Downloads\7992.gif](GoogleShape255p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 电影 | diànyǐng | 名 | Chiếu bóng, phim |
@@ -261,8 +219,6 @@ Minliang
 ![C:\Users\ad\Downloads\5766 (1).gif](GoogleShape263p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 睡觉 | shuìjiào | 动 | Ngủ |
@@ -274,8 +230,6 @@ Minliang
 ![C:\Users\ad\Downloads\9656.gif](GoogleShape272p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 早饭 | zǎofàn | 名 | bữa sáng |
@@ -283,9 +237,6 @@ Minliang
 ![](GoogleShape279p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
-
 ![](GoogleShape287p23.jpg)
 02
 句子
@@ -302,9 +253,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 24 -->
-
 ![](GoogleShape302p24.jpg)
 1.现在几点？
 /Xiànzài jǐ diǎn?/ - Bây giờ là mấy giờ?
@@ -324,9 +272,6 @@ Minliang
 /Wǒ yě liù diǎn bàn qǐchuáng./ - Tôi cũng dậy lúc 6 rưỡi.
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape310p25.jpg)
 03
 课文
@@ -343,9 +288,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape323p26.jpg)
 玛丽：现在几点？
 王兰：现在七点二十五分。
@@ -363,9 +305,6 @@ Minliang
 大卫：我也六点半起床。
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape333p27.jpg)
 04
 替换与扩展
@@ -382,8 +321,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 28 -->
 现在几点？
 现在七点二十五分。
 
@@ -409,9 +346,6 @@ Minliang
 ![](GoogleShape346p28.jpg)
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape358p29.jpg)
 05
 语法
@@ -428,8 +362,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 30 -->
 1.钟点的读法Cách đọc giờ.
 2: 00	两点	            6 : 05 六点五分
 	/Liǎng diǎn/	                /Liù diǎn wǔ fēn/
@@ -445,8 +377,6 @@ Minliang
 ![](GoogleShape370p30.jpg)
 
 ### Notes:
-
-<!-- Slide number: 31 -->
 2. 时间词 Từ chỉ thời gian
 Danh từ hay số lượng từ chỉ thời gian đều có thể đứng làm chủ ngữ, vị ngữ, định ngữ. Ví dụ:
 (1) 现在八点。			(Chủ ngữ)
@@ -460,8 +390,6 @@ Từ chỉ thời gian khi làm trạng ngữ, có thể đặt sạu chủ ng�
 ![](GoogleShape376p31.jpg)
 
 ### Notes:
-
-<!-- Slide number: 32 -->
 Khi có hai từ chỉ thời gian trở lên làm trạng ngữ, thì từ nào chỉ thời gian dài hơn sẽ được đặt trước từ chỉ thời gian ngắn. Ví dụ:
 (7) 今天晚上八点二十分我看电影。
 Khi từ chỉ thời gian và từ chỉ nơi chốn cùng làm trạng ngữ, thì từ chỉ thời gian thường đặt trước từ chỉ nơi chốn. Ví dụ:
@@ -472,9 +400,6 @@ Khi từ chỉ thời gian và từ chỉ nơi chốn cùng làm trạng ngữ, 
 ![](GoogleShape384p32.jpg)
 
 ### Notes:
-
-<!-- Slide number: 33 -->
-
 ![](GoogleShape391p33.jpg)
 06
 练习
@@ -491,9 +416,6 @@ Khi từ chỉ thời gian và từ chỉ nơi chốn cùng làm trạng ngữ, 
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 34 -->
-
 ![](GoogleShape404p34.jpg)
 1. 用汉语说出下列时间并选择五个造句
 Nói bằng tiếng Hoa những số chỉ giờ sau đây rồi chọn 5 từ để đặt câu:
@@ -501,9 +423,6 @@ Nói bằng tiếng Hoa những số chỉ giờ sau đây rồi chọn 5 từ �
 9 : 25		11: 45		2 : 55		3 : 20		12 : 10
 
 ### Notes:
-
-<!-- Slide number: 35 -->
-
 ![](GoogleShape410p35.jpg)
 2.	把下歹短语扩展成对语Dùng những ngữ sau để mở rộng thành đàm thoại
 例     ： 七点四十去教室。
@@ -516,8 +435,6 @@ Nói bằng tiếng Hoa những số chỉ giờ sau đây rồi chọn 5 từ �
 (2)	十点半回宿舍睡觉。
 
 ### Notes:
-
-<!-- Slide number: 36 -->
 按照实际情况回答问题 Dựa theo tình hình thực tế để trả lài câu hỏi
 (1)      你几点起床？几点吃早饭?
 (2)	你几点上课? 几点下课？几点吃饭？
@@ -529,9 +446,6 @@ Nói bằng tiếng Hoa những số chỉ giờ sau đây rồi chọn 5 từ �
 ![](GoogleShape416p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 37 -->
-
 ![](GoogleShape424p37.jpg)
 4. 说说你的一天 Nói về một ngày của bạn.
 
@@ -540,9 +454,6 @@ Nói bằng tiếng Hoa những số chỉ giờ sau đây rồi chọn 5 từ �
 下午六点我去食堂吃饭，六点半去小王的宿舍,七点我们去看电影。
 
 ### Notes:
-
-<!-- Slide number: 38 -->
-
 ![](GoogleShape431p38.jpg)
 6. 语音练习 Bài tập ngữ âm
 ⑴读下列词语:在1声+轻声
@@ -554,8 +465,6 @@ dāozi		（刀子）		bōlí	     （玻璃）
 māma		（妈妈）		zhuōzi     （桌子）
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 6. 语音练习 Bài tập ngữ âm	•
 (2)常用音节练习 Luyện tập các âm tiết thường dùng.
 
@@ -572,8 +481,6 @@ zhīshì		知识
 shi
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 THE END
 Minliang
 

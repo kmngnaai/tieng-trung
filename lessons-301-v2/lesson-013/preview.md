@@ -1,7 +1,7 @@
 # Bài 13 · 要转车
 
 - Type: `standard_301_course`
-- Source: 13第十三课_要转车.md, pdf-301-cau-dam-thoai.md, 13第十三课_要转车.pptx
+- Source: 13第十三课_要转车.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

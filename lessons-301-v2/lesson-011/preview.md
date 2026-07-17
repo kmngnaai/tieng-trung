@@ -1,7 +1,7 @@
 # Bài 11 · 我要买桔子
 
 - Type: `standard_301_course`
-- Source: 11第十一课_我要买桔子.md, 11第十一课_我要买桔子.pptx
+- Source: 11第十一课_我要买桔子.md
 
 ## Mẫu câu
 

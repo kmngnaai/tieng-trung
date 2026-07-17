@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tra chữ Hán</title>
+  <link rel="stylesheet" href="style.css?v=20260709-step8-radicals" />
+</head>
+<body>
+  <main class="hanzi-app">
+    <header class="app-header">
+      <a class="brand-link" href="../../index.html" aria-label="Về trang chủ">
+        <span class="brand-mark" aria-hidden="true">字</span>
+        <span>Tra chữ Hán</span>
+      </a>
+      <nav class="header-actions" aria-label="Điều hướng">
+        <a class="header-icon" href="../../index.html" aria-label="Trang chủ">⌂</a>
+        <button class="header-icon" id="themeBtn" type="button" aria-label="Đổi giao diện">◐</button>
+        <button class="header-icon" type="button" aria-label="Menu">☰</button>
+      </nav>
+    </header>
+
+    <section class="study-hero" aria-labelledby="studyTitle">
+      <div class="study-hero-copy">
+        <p class="eyebrow">Tra chữ · luyện viết</p>
+        <h1 id="studyTitle">Tra chữ Hán</h1>
+        <p class="study-subtitle">Xem nghĩa, pinyin, Hán Việt, từng chữ trong cụm và luyện viết từng nét.</p>
+      </div>
+      <div class="study-hero-mark" aria-hidden="true">写</div>
+    </section>
+
+    <nav class="study-tabs" aria-label="Khu học chữ Hán">
+      <button id="studyTabLookup" class="study-tab active" type="button" data-study-tab="lookup" aria-selected="true">
+        <span aria-hidden="true">🔎</span>
+        <b>Tra</b>
+      </button>
+      <button id="studyTabHsk" class="study-tab" type="button" data-study-tab="hsk" aria-selected="false">
+        <span aria-hidden="true">HSK</span>
+        <b>Theo cấp</b>
+      </button>
+      <button id="studyTabRadicals" class="study-tab" type="button" data-study-tab="radicals" aria-selected="false">
+        <span aria-hidden="true">部</span>
+        <b>Bộ thủ</b>
+      </button>
+    </nav>
+
+    <div id="lookupView" class="hanzi-layout study-layout">
+      <section class="options-card study-panel" aria-label="Bài học chữ Hán">
+        <div class="panel-title-row">
+          <div>
+            <h2>Chọn chữ để học</h2>
+          </div>
+          <span class="learning-badge">Canvas luyện viết</span>
+        </div>
+
+        <label class="field-group study-input-group" for="hanziInput">
+          <span>Các ký tự chữ Hán</span>
+          <input
+            id="hanziInput"
+            class="hanzi-input"
+            type="search"
+            value="写汉字"
+            placeholder="Nhập chữ Hán, ví dụ: 写汉字"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </label>
+
+        <div class="quick-toggle-row study-toggle-row study-toggle-row--simple" aria-label="Tùy chọn học nhanh">
+          <label class="quick-toggle" title="Tự động phát nét khi nhập chữ" aria-label="Tự động phát nét khi nhập chữ">
+            <input id="autoplayToggle" type="checkbox" />
+            <span aria-hidden="true">▶</span>
+            <b>Tự phát</b>
+          </label>
+          <label class="quick-toggle" title="Hiển thị thứ tự nét dưới mỗi chữ" aria-label="Hiển thị thứ tự nét dưới mỗi chữ">
+            <input id="strokeOrderToggle" type="checkbox" checked />
+            <span aria-hidden="true">①</span>
+            <b>Thứ tự nét</b>
+          </label>
+        </div>
+
+        <details class="advanced-settings study-settings">
+          <summary>Cài đặt nâng cao</summary>
+          <div class="advanced-grid">
+            <div class="advanced-action-group" aria-label="Thao tác nâng cao">
+              <button id="playBtn" class="practice-btn primary-practice" type="button"><span aria-hidden="true">▶</span><span>Phát nét tất cả</span></button>
+              <button id="quizBtn" class="practice-btn" type="button"><span aria-hidden="true">✎</span><span>Luyện viết tất cả</span></button>
+              <button id="quizNoOutlineBtn" class="practice-btn ghost-practice" type="button"><span aria-hidden="true">◌</span><span>Luyện không viền</span></button>
+            </div>
+
+            <label class="check-row">
+              <input id="horizontalToggle" type="checkbox" />
+              <span>Xem các chữ theo hàng ngang</span>
+            </label>
+
+            <label class="range-control size-control" for="sizeRange">
+              <span>Kích thước canvas <b id="sizeValue">200px</b></span>
+              <input id="sizeRange" type="range" min="120" max="320" value="200" step="10" />
+            </label>
+
+            <label class="check-row">
+              <input id="showGridToggle" type="checkbox" checked />
+              <span>Hiển thị ô lưới</span>
+            </label>
+
+            <div class="preset-section">
+              <div class="preset-title">Màu nhanh</div>
+              <div class="preset-grid" aria-label="Màu nhanh">
+                <button id="presetBrightBtn" type="button" class="preset-btn" title="Kiểu học dịu, nét chính navy" aria-label="Kiểu học dịu, nét chính navy">
+                  <span class="preset-swatch" style="--c1:#c96f4d;--c2:#172033;--c3:#d97706"></span>
+                </button>
+
+                <button id="presetClassicBtn" type="button" class="preset-btn" title="Kiểu cổ điển, nét chính đỏ nâu" aria-label="Kiểu cổ điển, nét chính đỏ nâu">
+                  <span class="preset-swatch" style="--c1:#8b5a3c;--c2:#9f2d20;--c3:#d97706"></span>
+                </button>
+              </div>
+            </div>
+
+            <label class="range-control" for="animationSpeedRange">
+              <span>Tốc độ nét vẽ <b id="animationSpeedValue">1.0</b></span>
+              <input id="animationSpeedRange" type="range" min="0.3" max="5" step="0.1" value="1" />
+            </label>
+
+            <label class="range-control" for="strokeDelayRange">
+              <span>Độ trễ giữa nét <b id="strokeDelayValue">180ms</b></span>
+              <input id="strokeDelayRange" type="range" min="0" max="1500" step="50" value="180" />
+            </label>
+
+            <label class="range-control" for="drawingWidthRange">
+              <span>Độ dày nét luyện viết <b id="drawingWidthValue">34</b></span>
+              <input id="drawingWidthRange" type="range" min="4" max="40" step="1" value="34" />
+            </label>
+
+            <div class="color-grid">
+              <label class="color-control" for="strokeColorInput">
+                <span>Nét chính</span>
+                <input id="strokeColorInput" type="color" value="#172033" />
+              </label>
+              <label class="color-control" for="radicalColorInput">
+                <span>Bộ thủ</span>
+                <input id="radicalColorInput" type="color" value="#c96f4d" />
+              </label>
+              <label class="color-control" for="outlineColorInput">
+                <span>Viền</span>
+                <input id="outlineColorInput" type="color" value="#d8c9b8" />
+              </label>
+              <label class="color-control" for="drawingColorInput">
+                <span>Nét viết</span>
+                <input id="drawingColorInput" type="color" value="#c96f4d" />
+              </label>
+              <label class="color-control" for="highlightColorInput">
+                <span>Gợi ý</span>
+                <input id="highlightColorInput" type="color" value="#d97706" />
+              </label>
+            </div>
+
+            <label class="range-control" for="hintAfterMissesRange">
+              <span>Gợi ý sau khi sai <b id="hintAfterMissesValue">2</b></span>
+              <input id="hintAfterMissesRange" type="range" min="1" max="5" step="1" value="2" />
+            </label>
+
+            <div class="share-actions" aria-label="Thao tác phụ">
+              <button id="shareBtn" type="button">Chia sẻ</button>
+              <button id="embedBtn" type="button">Mã nhúng</button>
+              <button id="resetBtn" class="primary-btn" type="button">Đặt lại chữ</button>
+            </div>
+
+            <button id="resetSettingsBtn" class="wide-btn" type="button">Khôi phục mặc định</button>
+          </div>
+        </details>
+
+        <div id="embedBox" class="embed-box" hidden>
+          <label class="field-group" for="embedCode">
+            <span>Mã iframe</span>
+            <textarea id="embedCode" readonly rows="4"></textarea>
+          </label>
+          <p id="embedStatus" class="status"></p>
+        </div>
+      </section>
+
+      <section class="preview-section practice-canvas-section" aria-live="polite" aria-label="Luyện viết">
+        <div class="panel-title-row canvas-title-row">
+          <div>
+            <h2>Luyện nét từng chữ</h2>
+          </div>
+          <span class="learning-badge">Bấm từng chữ để luyện</span>
+        </div>
+        <section id="compoundInfo" class="compound-info" hidden aria-live="polite"></section>
+        <div id="emptyState" class="empty-state" hidden>Nhập chữ Hán để xem bút thuận.</div>
+        <div id="writerList" class="writer-list"></div>
+      </section>
+    </div>
+
+
+    <section id="hskView" class="hsk-study-view" hidden aria-label="Học chữ theo HSK">
+      <div class="hsk-card hsk-card--intro">
+        <div>
+          <p class="panel-kicker">Học theo lộ trình</p>
+          <h2>HSK trong Tra chữ Hán</h2>
+          <p class="hsk-intro-text">Chọn nguồn học, cấp độ, rồi xem từ/chữ, bài học, chủ đề hoặc ngữ pháp. Bấm một mục để xem chi tiết. Dùng nút Tra & luyện để mở phần Tra chữ Hán và luyện viết.</p>
+        </div>
+        <span id="hskTotalBadge" class="learning-badge">Đang tải...</span>
+      </div>
+
+      <div class="hsk-card">
+        <div class="hsk-toolbar hsk-toolbar--stacked">
+          <div class="hsk-path-panel" aria-label="Chọn lộ trình HSK">
+            <div class="hsk-path-row">
+              <span class="hsk-filter-label">Nguồn học</span>
+              <div id="hskSourceTabs" class="hsk-source-tabs" role="group" aria-label="Chọn nguồn học"></div>
+            </div>
+            <div class="hsk-path-row">
+              <span class="hsk-filter-label">Cấp độ</span>
+              <div id="hskLevelTabs" class="hsk-level-tabs" aria-label="Chọn cấp độ"></div>
+            </div>
+          </div>
+          <label class="hsk-search" for="hskSearchInput">
+            <span>Tìm trong nguồn/cấp đang chọn</span>
+            <input id="hskSearchInput" type="search" placeholder="Tìm chữ, pinyin, nghĩa, ngữ pháp..." autocomplete="off" spellcheck="false" />
+          </label>
+        </div>
+        <div class="hsk-filter-panel" aria-label="Lọc danh sách HSK">
+          <div class="hsk-filter-row">
+            <span class="hsk-filter-label">Nội dung</span>
+            <div id="hskGroupModes" class="hsk-group-modes" role="group" aria-label="Chia nhóm HSK">
+              <button type="button" class="active" data-hsk-group-mode="all">Tất cả</button>
+              <button type="button" data-hsk-group-mode="lessons">Bài học</button>
+              <button type="button" data-hsk-group-mode="topics">Chủ đề</button>
+              <button type="button" data-hsk-group-mode="grammar">Ngữ pháp</button>
+              <button type="button" data-hsk-group-mode="char1">1 chữ</button>
+              <button type="button" data-hsk-group-mode="char2">2 chữ</button>
+              <button type="button" data-hsk-group-mode="char3plus">3+ chữ</button>
+            </div>
+          </div>
+          <div id="hskTopicFilters" class="hsk-topic-filters" hidden aria-label="Chọn bài học hoặc chủ đề HSK"></div>
+        </div>
+        <p id="hskStatus" class="hsk-status">Đang tải dữ liệu HSK...</p>
+        <div id="hskList" class="hsk-list" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="radicalsView" class="radical-study-view" hidden aria-label="Học bộ thủ và thành phần nghĩa">
+      <div class="radical-card radical-card--intro">
+        <div>
+          <p class="panel-kicker">Bộ thủ · thành phần nghĩa</p>
+          <h2>Bộ thủ trong Tra chữ Hán</h2>
+          <p class="radical-intro-text">Học bộ thủ để đoán nghĩa, nhớ chữ dễ hơn và liên kết với chữ/từ đã học. Bấm một bộ thủ để xem nguồn gốc, biến thể, ý nghĩa mở rộng, chữ cùng bộ, từ vựng và ví dụ.</p>
+        </div>
+        <span id="radicalTotalBadge" class="learning-badge">Đang tải...</span>
+      </div>
+
+      <div class="radical-card">
+        <div class="radical-toolbar">
+          <label class="radical-search" for="radicalSearchInput">
+            <span>Tìm bộ thủ</span>
+            <input id="radicalSearchInput" type="search" placeholder="Tìm 氵, thủy, nước, shuǐ..." autocomplete="off" spellcheck="false" />
+          </label>
+          <div class="radical-group-picker">
+            <span class="radical-group-label">Nhóm bộ thủ</span>
+            <button type="button" id="radicalGroupTrigger" class="radical-group-trigger" aria-haspopup="listbox" aria-expanded="false">
+              <span class="radical-group-trigger-main"><strong>Tất cả nhóm</strong><small>Đang tải...</small></span>
+              <span class="radical-group-trigger-icon" aria-hidden="true">⌄</span>
+            </button>
+            <div id="radicalGroupPanel" class="radical-group-panel" role="listbox" hidden></div>
+            <p id="radicalGroupSummary" class="radical-group-summary">Chọn nhóm để học bộ thủ theo chủ đề nghĩa.</p>
+          </div>
+        </div>
+        <p id="radicalStatus" class="radical-status">Đang tải dữ liệu bộ thủ...</p>
+        <div id="radicalList" class="radical-list" aria-live="polite"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <dialog id="charInfoDialog" class="char-info-dialog">
+    <form method="dialog">
+      <button class="dialog-close" type="submit" aria-label="Đóng">×</button>
+    </form>
+    <div class="char-info-content">
+      <p class="dict-empty">Đang tải dữ liệu từ điển...</p>
+    </div>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.7/dist/hanzi-writer.min.js"></script>
+  <nav class="hanzi-bottom-nav" aria-label="Điều hướng nhanh">
+    <a class="hanzi-bottom-nav-item" href="../../index.html">
+      <span aria-hidden="true">⌂</span>
+      <small>Trang chủ</small>
+    </a>
+    <a class="hanzi-bottom-nav-item" href="../pinyin/index.html">
+      <span aria-hidden="true">拼</span>
+      <small>Pinyin</small>
+    </a>
+    <a class="hanzi-bottom-nav-item active" href="index.html" aria-current="page">
+      <span aria-hidden="true">字</span>
+      <small>Tra chữ</small>
+    </a>
+    <a class="hanzi-bottom-nav-item" href="../../index.html#dialogue301">
+      <span aria-hidden="true">☵</span>
+      <small>301</small>
+    </a>
+  </nav>
+
+  <script src="app.js?v=20260710-step8-radicals-popup-fix"></script>
+</body>
+</html>

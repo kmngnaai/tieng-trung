@@ -1,7 +1,7 @@
 # Bài 31 · 那儿的风景美极了
 
 - Type: `standard_301_course`
-- Source: 31第三十一课_那儿的风景美极了.md, pdf-301-cau-dam-thoai.md, 31第三十一课_那儿的风景美极了.pptx
+- Source: 31第三十一课_那儿的风景美极了.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

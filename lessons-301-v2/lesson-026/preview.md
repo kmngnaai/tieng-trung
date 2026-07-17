@@ -1,7 +1,7 @@
 # Bài 26 · 祝贺你
 
 - Type: `standard_301_course`
-- Source: 26第二十六课_祝贺你.md, pdf-301-cau-dam-thoai.md, 26第二十六课_祝贺你.pptx
+- Source: 26第二十六课_祝贺你.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

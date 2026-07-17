@@ -1,7 +1,7 @@
 # Bài 9 · 你住在哪儿
 
 - Type: `standard_301_course`
-- Source: 9第九课_你住在哪儿.md, lesson-009/data.json, 9第九课_你住在哪儿.pptx
+- Source: 9第九课_你住在哪儿.md, lesson-009/data.json
 
 ## Mẫu câu
 

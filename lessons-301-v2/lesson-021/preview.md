@@ -1,7 +1,7 @@
 # Bài 21 · 请你参加
 
 - Type: `standard_301_course`
-- Source: 21第二十一课_请你参加.md, pdf-301-cau-dam-thoai.md, 21第二十一课_请你参加.pptx
+- Source: 21第二十一课_请你参加.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

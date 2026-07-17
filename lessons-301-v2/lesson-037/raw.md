@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape69p1.jpg)
 I
 
@@ -20,9 +18,6 @@ Tôi không muốn xa các bạn
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape79p2.jpg)
 目录
 
@@ -46,9 +41,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape111p3.jpg)
 
 ![](GoogleShape113p3.jpg)
@@ -67,8 +59,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 越来越 | yuèláiyuè | 留 | liú | 水平 | shuǐpíng |
 | --- | --- | --- | --- | --- | --- |
 | 虽然...但是 | suīrán..dānshì | 欢送会 | huānsònghuì | 黑板 | hēibǎn |
@@ -82,8 +72,6 @@ Minliang
 ![](GoogleShape126p4.jpg)
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 越来越 | yuèláiyuè |  | càng ngày...càng |
@@ -93,8 +81,6 @@ Minliang
 ![](GoogleShape133p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 虽然...但是 | suīrán..dānshì |  | tuy...nhưng |
@@ -104,8 +90,6 @@ Minliang
 ![](GoogleShape141p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 深 | shēn | 形 | sâu |
@@ -115,8 +99,6 @@ Minliang
 ![](GoogleShape149p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 地址 | dìzhǐ | 名 | địa chỉ |
@@ -126,8 +108,6 @@ Minliang
 ![](GoogleShape157p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 实习 | shíxí | 动 | thực tập |
@@ -137,8 +117,6 @@ Minliang
 ![](GoogleShape165p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 用 | yòng | 动 | dùng |
@@ -148,8 +126,6 @@ Minliang
 ![](GoogleShape173p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 该 | gāi | 动，能愿 | nên |
@@ -159,8 +135,6 @@ Minliang
 ![](GoogleShape181p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 舍不得 | shěbude |  | không nỡ nào...lưu luyến |
@@ -170,8 +144,6 @@ Minliang
 ![](GoogleShape189p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 留 | liú | 动 | lưu lại |
@@ -181,8 +153,6 @@ Minliang
 ![](GoogleShape197p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 欢送会 | huānsònghuì | 名 | liên hoan đưa tiễn |
@@ -193,8 +163,6 @@ Minliang
 ![](GoogleShape205p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 精彩 | jīngcǎi | 形 | đặc sắc |
@@ -206,8 +174,6 @@ Minliang
 ![彩的笔顺动画](GoogleShape216p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 热情 | rèqíng | 形 | nhiệt tình |
@@ -215,8 +181,6 @@ Minliang
 ![](GoogleShape222p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 取得 | qǔdé | 动 | đạt được |
@@ -226,8 +190,6 @@ Minliang
 ![](GoogleShape229p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 旅游 | lǚyóu | 动 | du lịch |
@@ -235,8 +197,6 @@ Minliang
 ![](GoogleShape237p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 年纪 | niánjì | 名 | tuổi |
@@ -246,8 +206,6 @@ Minliang
 ![](GoogleShape244p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 水平 | shuǐpíng | 名 | trình độ |
@@ -255,8 +213,6 @@ Minliang
 ![](GoogleShape252p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 黑板 | hēibǎn | 名 | bản đen |
@@ -266,8 +222,6 @@ Minliang
 ![](GoogleShape259p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 右边 | yòubiān | 名 | bên phải |
@@ -276,8 +230,6 @@ Minliang
 ![](GoogleShape267p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 21 | 地图 | dìtú | 名 | bản đồ |
@@ -287,8 +239,6 @@ Minliang
 ![](GoogleShape274p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 22 | 墙 | qiáng | 名 | tường |
@@ -298,8 +248,6 @@ Minliang
 ![](GoogleShape282p24.jpg)
 
 ### Notes:
-
-<!-- Slide number: 25 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 23 | 贴 | tiē | 动 | dán |
@@ -309,9 +257,6 @@ Minliang
 ![](GoogleShape290p25.jpg)
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape298p26.jpg)
 
 ![](GoogleShape300p26.jpg)
@@ -330,9 +275,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape315p27.jpg)
 1. 回国的日子越来越近了。
 /Huíguó de rìzi yuè lái yuè jìn le./ - Ngày về nước mỗi lúc một gần rồi.
@@ -344,9 +286,6 @@ Minliang
 /Ràng wǒmen yīqǐ zhǎo zhǎngxiàng ba./ - Chúng ta cùng chụp một bức hình đi.
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape323p28.jpg)
 5. 除了去实习的以外都来了。
 /Chúle qù shíxí de yǐwài dōu lái le./ - Ngoài những người đi thực tập ra tất cả đều đến rồi.
@@ -358,9 +297,6 @@ Minliang
 /Zhēn bù zhīdào shuō shénme hǎo./ - Thật không biết nói gì cho phải đây.
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape329p29.jpg)
 
 ![](GoogleShape331p29.jpg)
@@ -379,9 +315,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape344p30.jpg)
 和子：回国的日子越来越近了。
 王兰：真舍不得你们走。
@@ -393,9 +326,6 @@ Minliang
 玛丽：好，多照几张，留作纪念。
 
 ### Notes:
-
-<!-- Slide number: 31 -->
-
 ![](GoogleShape351p31.jpg)
 玛丽：参加欢送会的人真多
 刘京：除了去实习的以外，都来了。
@@ -408,9 +338,6 @@ Minliang
 王兰：祝你们更快地提高中文水平。
 
 ### Notes:
-
-<!-- Slide number: 32 -->
-
 ![](GoogleShape358p32.jpg)
 
 ![](GoogleShape360p32.jpg)
@@ -429,8 +356,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 33 -->
 1.回国的日子越来越近了。
 
 2.虽然时间不长，但是我们的友谊很深。
@@ -445,17 +370,12 @@ Minliang
 地图 挂  墙上  ，通知   贴 黑板左边
 
 ### Notes:
-
-<!-- Slide number: 34 -->
 1.他除了英语以外都不会，从这个月开始学习汉语。
 2.这次篮球赛非常精彩，你没去看，真遗憾。
 
 ![](GoogleShape380p34.jpg)
 
 ### Notes:
-
-<!-- Slide number: 35 -->
-
 ![](GoogleShape387p35.jpg)
 
 ![](GoogleShape389p35.jpg)
@@ -474,8 +394,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 36 -->
 1.“虽然…但是…”复句 Câu phức:“Mặc dù ... nhưng mà...”
 Cặp liên từ“虽然”và“但是”(hoặc“可是”) có thể tạo thành một câu phức chỉ sự chuyển ngoặt.“虽然”có thể đứng trước hoặc sau chủ ngữ của mệnh đề trước,“但是”(hoặc“可是”) đặt ở đầu của mệnh đề sau. Ví dụ :
 (1) 虽然下雪，但是天气不太冷。
@@ -485,8 +403,6 @@ Cặp liên từ“虽然”và“但是”(hoặc“可是”) có thể tạo 
 ![](GoogleShape403p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 2.“把”字句(二) Câu dùng từ“把”(2)
 Muốn nói rõ người hay sự vật bị xử trí thông qua động tác mà bị đặt vào một chỗ nào đó, thì phải dùng câu có từ“把”.Ví dụ:
 (1) 我们把地址写茬本子上了。
@@ -499,9 +415,6 @@ Khi muốn nói rõ sự vật bị xử trí thông qua động tác được g
 ![](GoogleShape410p37.jpg)
 
 ### Notes:
-
-<!-- Slide number: 38 -->
-
 ![](GoogleShape416p38.jpg)
 
 ![](GoogleShape418p38.jpg)
@@ -520,8 +433,6 @@ Khi muốn nói rõ sự vật bị xử trí thông qua động tác được g
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 1. 选词填空
 
 ![](GoogleShape431p39.jpg)
@@ -534,8 +445,6 @@ Minliang
 (6)	这块蛋糕她.........吃，因为妹妹喜欢吃 她要留给妹妹。
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 2. 仿照例子，用“越来越...”改写句子
 例：刚才雪很大，现在更大。
    → 雪越来越大了。
@@ -549,8 +458,6 @@ Minliang
 ![](GoogleShape437p40.jpg)
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 3. 用所给的词语造“把”字句
 
 ![](GoogleShape444p41.jpg)
@@ -562,9 +469,6 @@ Minliang
 (4)	衬杉	挂	衣柜里
 
 ### Notes:
-
-<!-- Slide number: 42 -->
-
 ![](GoogleShape450p42.jpg)
 4. 完成对话
 A：小张，你这次去法国留学，祝你顺利！
@@ -576,8 +480,6 @@ B：.............................。
 C：我一定注意身体。谢谢！
 
 ### Notes:
-
-<!-- Slide number: 43 -->
 5. 会话
 
 ![](GoogleShape456p43.jpg)
@@ -587,17 +489,11 @@ Nói về một buổi tiệc trà tiễn bạn về nước.
 Gợi ý: Vừa uống trà vừa nói chuyện, bạn đã nói gì, bạn của bạn đã nói gì.
 
 ### Notes:
-
-<!-- Slide number: 44 -->
-
 ![](GoogleShape463p44.jpg)
 5. 听述
 我在这儿学了三个月汉语，下星期一要回国了。虽然我在中国的时间不长，可是认识了不少中国朋友和别的国家的朋友。我们的友谊越来越深。 我真舍不得离开他们。要是以后有机会，我一定再来中国。
 
 ### Notes:
-
-<!-- Slide number: 45 -->
-
 ![](GoogleShape470p45.jpg)
 6.语音练习 Bài tập ngữ âm
 (1) 常用音节练习  Luyện tập các âm tiết thường dùng
@@ -611,8 +507,6 @@ yánjiū              研究
 yan
 
 ### Notes:
-
-<!-- Slide number: 46 -->
 （2）朗读会话 Đọc to mẩu đàm thoại.
 A : Míngtiān wǒmen gěi Lǐ Hóng kāi ge huānsònghuì ba!
 B : Duì, tà chū guó liúxué shíjiān bǐjiào cháng.
@@ -623,8 +517,6 @@ A : Zhè cì xiàn jiǎnchá yíxiàr jiāojuǎnr shànghǎo le méiyǒu .
 ![](GoogleShape485p46.jpg)
 
 ### Notes:
-
-<!-- Slide number: 47 -->
 The End
 
 ### Notes:

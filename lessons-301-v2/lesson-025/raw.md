@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape69p1.jpg)
 I
 
@@ -20,9 +18,6 @@ Bức tranh này đẹp thật
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape79p2.jpg)
 目录
 
@@ -46,9 +41,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape111p3.jpg)
 
 ![](GoogleShape113p3.jpg)
@@ -67,8 +59,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 布置 | bùzhì | 马虎 | mǎhu | 颜色 | yánsè |
 | --- | --- | --- | --- | --- | --- |
 | 画儿 | huàr | 桌子 | zhuōzi | 自己 | zìjǐ |
@@ -79,8 +69,6 @@ Minliang
 | 要是 | yàoshi | 样子 | yàngzi | 这么 | zhème |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 布置 | bùzhì | 动 | bố trí, trang trí |
@@ -90,8 +78,6 @@ Minliang
 ![](GoogleShape132p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 画儿 | huàr | 名 | bức tranh |
@@ -102,8 +88,6 @@ Minliang
 ![画的笔顺动画](GoogleShape142p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 美 | měi | 形 | đẹp |
@@ -113,8 +97,6 @@ Minliang
 ![](GoogleShape148p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 又 | yòu | 副 | lại |
@@ -124,8 +106,6 @@ Minliang
 ![](GoogleShape156p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 更 | gèng | 副 | càng |
@@ -135,8 +115,6 @@ Minliang
 ![](GoogleShape164p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 手 | shǒu | 名 | tay |
@@ -146,8 +124,6 @@ Minliang
 ![](GoogleShape172p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 要是 | yàoshi | 连 | nếu như |
@@ -155,8 +131,6 @@ Minliang
 ![](GoogleShape180p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 马虎 | mǎhu | 形 | tùy tiện |
@@ -166,8 +140,6 @@ Minliang
 ![](GoogleShape187p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 桌子 | zhuōzi | 名 | cái bàn |
@@ -177,8 +149,6 @@ Minliang
 ![](GoogleShape195p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 放 | fàng | 动 | đặt để |
@@ -188,8 +158,6 @@ Minliang
 ![](GoogleShape203p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 衣柜 | yīguì | 名 | tủ áo |
@@ -199,8 +167,6 @@ Minliang
 ![](GoogleShape211p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 方便 | fángbiàn | 形 | tiện lợi |
@@ -208,8 +174,6 @@ Minliang
 ![](GoogleShape219p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 嘛 | ma | 助 |  |
@@ -219,8 +183,6 @@ Minliang
 ![](GoogleShape226p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 样子 | yàngzi | 名 | dáng, kiểu |
@@ -230,8 +192,6 @@ Minliang
 ![](GoogleShape234p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 颜色 | yánsè | 名 | màu sắc |
@@ -241,8 +201,6 @@ Minliang
 ![](GoogleShape242p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 自己 | zìjǐ | 代 | tự kỷ |
@@ -250,8 +208,6 @@ Minliang
 ![](GoogleShape250p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 些 | xiē | 量 | một số, những |
@@ -261,8 +217,6 @@ Minliang
 ![](GoogleShape257p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 铅笔 | qiānbǐ | 名 | bút chì |
@@ -272,8 +226,6 @@ Minliang
 ![](GoogleShape265p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 20 | 公园 | gōngyuán | 名 | công viên |
@@ -281,8 +233,6 @@ Minliang
 ![](GoogleShape273p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 21 | 这么 | zhème | 代 | như vậy |
@@ -290,9 +240,6 @@ Minliang
 ![](GoogleShape280p24.jpg)
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape287p25.jpg)
 
 ![](GoogleShape289p25.jpg)
@@ -311,9 +258,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape304p26.jpg)
 1. 你的房间布置的好极了。
 /Nǐ de fángjiān bùzhì de hǎo jí le./ - Phòng của bạn trang trí đẹp thật.
@@ -325,8 +269,6 @@ Minliang
 /Jīntiān méiyǒu rén lái./ - Hôm nay không có ai đến cả.
 
 ### Notes:
-
-<!-- Slide number: 27 -->
 5. 你的衣服更漂亮。
 /Nǐ de yīfu gèng piàoliang/ - Quần áo của bạn càng đẹp hơn.
 6. 这件衣服不是买的，是我妈妈做的。
@@ -339,9 +281,6 @@ Minliang
 ![](GoogleShape312p27.jpg)
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape320p28.jpg)
 
 ![](GoogleShape318p28.jpg)
@@ -360,8 +299,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 29 -->
 王兰：你的房间布置得好极了。
 玛丽：哪儿啊，马马虎虎。
 王兰：桌子放在这儿，写字看书都很好。
@@ -376,8 +313,6 @@ Minliang
 ![](GoogleShape334p29.jpg)
 
 ### Notes:
-
-<!-- Slide number: 30 -->
 王兰：你今天穿得真漂亮！
 玛丽：是吗？过新年了嘛。你的衣服更漂亮，在哪儿买的？
 王兰：不是买的，是我妈妈做的。
@@ -390,9 +325,6 @@ Minliang
 ![](GoogleShape340p30.jpg)
 
 ### Notes:
-
-<!-- Slide number: 31 -->
-
 ![](GoogleShape347p31.jpg)
 
 ![](GoogleShape349p31.jpg)
@@ -411,8 +343,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 32 -->
 英文书    容易   很意思
 纪念邮票  多     好看
 自行车    漂亮   好骑
@@ -430,8 +360,6 @@ Minliang
 支   铅笔
 
 ### Notes:
-
-<!-- Slide number: 33 -->
 要是明天天气好，我们就去公园看花展。
 A：今天他们两个怎么穿的这么漂亮？
    B：结婚嘛。
@@ -439,9 +367,6 @@ A：今天他们两个怎么穿的这么漂亮？
 ![](GoogleShape369p33.jpg)
 
 ### Notes:
-
-<!-- Slide number: 34 -->
-
 ![](GoogleShape376p34.jpg)
 
 ![](GoogleShape378p34.jpg)
@@ -460,8 +385,6 @@ A：今天他们两个怎么穿的这么漂亮？
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 35 -->
 1. “又...又...” “Vừa ... vừa”
 Chỉ hai tình huống hay hai tính chất đồng thời tồn tại. Ví dụ:
 （1）你的房间又干净又漂亮。
@@ -471,8 +394,6 @@ Chỉ hai tình huống hay hai tính chất đồng thời tồn tại. Ví d�
 ![](GoogleShape392p35.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
 2.“要是...就...”“Nếu ... thì”
 “要是”chỉ giả thiết, ở phân câu sau dùng“就”để tiếp nối ý phần trước và nêu ra kết luận.Ví dụ:
 （1）你要是有"英汉词典"，就带来。
@@ -482,9 +403,6 @@ Chỉ hai tình huống hay hai tính chất đồng thời tồn tại. Ví d�
 ![](GoogleShape398p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 37 -->
-
 ![](GoogleShape405p37.jpg)
 
 ![](GoogleShape407p37.jpg)
@@ -503,8 +421,6 @@ Chỉ hai tình huống hay hai tính chất đồng thời tồn tại. Ví d�
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 38 -->
 1.回答问题：（用上所给的词语）
 （1） 或海公园怎么样？（又...又...）
 （2）	这个星期天你去公园玩儿吗？（要是...就）
@@ -512,8 +428,6 @@ Minliang
 （4）	这本词典是你买的吗？（不是...是...）
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 2. 完成句子（用上“很”、“真”、“极了”、“更”、“太…了）
 （1）	这个句子............，大家都不懂，去问老师吧。
 （2）	她很会做中国饭，她做的饺子...............。
@@ -524,8 +438,6 @@ Minliang
 ![](GoogleShape426p39.jpg)
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 3.完成对话 Hoàn thành đối thoại
 (1) A：你看，这件毛衣怎么样？
 B：.............，贵吗？
@@ -540,17 +452,12 @@ A：...................，我刚学。
 ![](GoogleShape432p40.jpg)
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 5. 听述 Nghe và kể lại
 玛丽的毛衣是新疆的，样子好看，颜色也漂亮。大卫说，新疆的水果和饭菜也好吃极了。玛丽听了很高兴。她约大卫今年七月去新疆。在新疆可以参观，可以吃很多好吃的东西。大卫说，你不能吃得太多，要是吃得太多，你回来以后，就不能穿这件毛衣了。
 
 ![](GoogleShape437p41.jpg)
 
 ### Notes:
-
-<!-- Slide number: 42 -->
-
 ![](GoogleShape444p42.jpg)
 6.语音练习 Bài tập ngữ âm
 (1) 常用音节练习  Luyện tập các âm tiết thường dùng
@@ -564,9 +471,6 @@ kēxué                 科学
 ke
 
 ### Notes:
-
-<!-- Slide number: 43 -->
-
 ![](GoogleShape459p43.jpg)
 （2）朗读会话 Đọc to mẩu đàm thoại.
 A：Zhè xiē huār shì mǎi de ma ?
@@ -577,8 +481,6 @@ A：Shì gēn Hézǐ xué de ma.
 B：Bú shì, shì gēn yí gè Zhōngguó tóngxué de.
 
 ### Notes:
-
-<!-- Slide number: 44 -->
 The End
 Minliang
 

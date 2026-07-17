@@ -1,7 +1,7 @@
 # Bài 7 · 你家有几口人
 
 - Type: `full_course`
-- Source: 7第七课_你家有几口人.md, pdf-301-cau-dam-thoai.md, lesson-007/data.json, 7第七课_你家有几口人.pptx
+- Source: 7第七课_你家有几口人.md, pdf-301-cau-dam-thoai.md, lesson-007/data.json
 
 ## Mẫu câu
 

@@ -1,4 +1,3 @@
-<!-- Slide number: 1 -->
 Minliang
 
 你好
@@ -21,8 +20,6 @@ Chào bạn
 
 ### Notes:
 Minliang
-
-<!-- Slide number: 2 -->
 Minliang
 
 ![](GoogleShape94p2.jpg)
@@ -50,8 +47,6 @@ Minliang
 生词
 
 ### Notes:
-
-<!-- Slide number: 3 -->
 Minliang
 
 ![](GoogleShape131p3.jpg)
@@ -69,8 +64,6 @@ Minliang
 ![](GoogleShape133p3.jpg)
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 你 | nǐ | 我们 | wǒmen |
 | --- | --- | --- | --- |
 | 好 | hǎo | 都 | dōu |
@@ -84,8 +77,6 @@ Minliang
 | 他们 | tāmen |  |  |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 你 | nǐ | 代 | ông, bà, bạn, anh, chị ….. |
@@ -98,8 +89,6 @@ Minliang
 ![我的笔顺动画](GoogleShape153p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 好 | hǎo | 形 | tốt, khoẻ |
@@ -109,8 +98,6 @@ Minliang
 ![](GoogleShape159p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 吗 | ma | 助 | không, chứ |
@@ -120,8 +107,6 @@ Minliang
 ![](GoogleShape167p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 很 | hěn | 副 | rất |
@@ -131,8 +116,6 @@ Minliang
 ![](GoogleShape175p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 也 | yě | 副 | cũng |
@@ -142,8 +125,6 @@ Minliang
 ![](GoogleShape183p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 她 | tā | 代 | bà ấy, cô ấy (nữ giới |
@@ -156,8 +137,6 @@ Minliang
 ![他的笔顺](GoogleShape193p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 你们 | nǐmen | 代 | các anh/chị/bạn |
@@ -169,8 +148,6 @@ Minliang
 ![们的笔顺动画](GoogleShape202p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 都 | dōu | 副 | đều |
@@ -180,8 +157,6 @@ Minliang
 ![都的笔顺动画](GoogleShape210p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 来 | lái | 动 | lại, đến, tới |
@@ -191,8 +166,6 @@ Minliang
 ![](GoogleShape216p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 爸爸 | bàba | 名 | ba, bố, cha |
@@ -205,8 +178,6 @@ Minliang
 ![妈的笔顺动画](GoogleShape227p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Nghĩa của từ |
 | --- | --- | --- | --- |
 | 16 | 大卫 | Dàwèi | David |
@@ -217,8 +188,6 @@ Minliang
 ![](GoogleShape233p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 Minliang
 
 ![](GoogleShape242p16.jpg)
@@ -237,9 +206,6 @@ Minliang
 
 ### Notes:
 minliang
-
-<!-- Slide number: 17 -->
-
 ![](GoogleShape259p17.jpg)
 /nǐ hǎo/  - Chào bạn !
 /nǐ hǎo ma/ - Bạn có khỏe không ?
@@ -251,8 +217,6 @@ minliang
 我也很好。
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 Minliang
 
 ![](GoogleShape267p18.jpg)
@@ -271,9 +235,6 @@ Minliang
 
 ### Notes:
 minliang
-
-<!-- Slide number: 19 -->
-
 ![](GoogleShape282p19.jpg)
 大卫：玛丽，你好！
 Dàwèi: Mǎlì, nǐ hǎo!
@@ -289,8 +250,6 @@ Wánglán: Wǒ yě hěn hǎo.
 ![](GoogleShape280p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 Minliang
 
 ![](GoogleShape291p20.jpg)
@@ -308,16 +267,11 @@ Minliang
 ![](GoogleShape293p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
-
 ![](GoogleShape305p21.jpg)
 • 你好!：chào bạn/anh/ông/bà/chị/cô……        Lời chào hỏi thường ngày. Bất cứ lúc nào, trường hợp nào và bất cứ đối tượng  nào cũng đều dung được cả. Câu đáp lại cũng là 你好.
 • 你好吗？：bạn khoẻ không?       Cũng là câu hỏi thăm thường ngày. Câu đáp lại thường là 我很好. Câu này thường dung chào hỏi người đã quen biết.
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 Minliang
 
 ![](GoogleShape312p22.jpg)
@@ -335,8 +289,6 @@ Minliang
 ![](GoogleShape314p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 你好！
 你好吗？
 你们
@@ -356,8 +308,6 @@ Minliang
 ![](GoogleShape326p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 Minliang
 
 ![](GoogleShape337p24.jpg)
@@ -375,9 +325,6 @@ Minliang
 ![](GoogleShape339p24.jpg)
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape351p25.jpg)
 声母，韵母
 | Thanh mẫu | b | p | m | f |  |  |
@@ -391,8 +338,6 @@ Minliang
 ![](GoogleShape352p25.jpg)
 
 ### Notes:
-
-<!-- Slide number: 26 -->
 |  | a | o | e | ai | ei | ao | ou | an | en | ang |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | b | ba | bo |  | bai | bei | bao |  | ban | ben | bang |
@@ -409,9 +354,6 @@ Minliang
 拼音
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape365p27.jpg)
 
 ![](GoogleShape366p27.jpg)
@@ -425,8 +367,6 @@ Ngữ âm tiếng Hán có 4 dấu giọng cơ bản. Phân biệt bằng 4 ký 
 “ \ ” (thanh 4)
 
 ### Notes:
-
-<!-- Slide number: 28 -->
 Thanh 1
 5
 4
@@ -443,17 +383,11 @@ Thanh 4
 Thanh 3
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape417p29.jpg)
 轻声
        Trong tiếng Hán có một số âm tiết được phát âm vừa nhẹ vừa ngắn gọi là thanh nhẹ. Khi viết thì thanh nhẹ sẽ được để trống (không mang ký hiệu gì): bàba, tāmen.
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape425p30.jpg)
 变调
        • Khi hai âm tiết cùng mang thanh thứ 3 đi liền nhau, âm tiết thứ nhất sẽ biến thành thanh 2 (nhưng chú âm vẫn giữ nguyên dấu thanh 3): nǐhǎo đọc thành níhǎo.
@@ -462,8 +396,6 @@ Thanh 3
 ![](GoogleShape427p30.jpg)
 
 ### Notes:
-
-<!-- Slide number: 31 -->
 拼写说明
           Khi vận mẫu bắt đầu bằng i hoặc u, mà trước nó không có thanh mấu (phụ âm) thì đổi i thành y và u thành w.
 ie → ye
@@ -474,8 +406,6 @@ uo → wo
 ![](GoogleShape435p31.jpg)
 
 ### Notes:
-
-<!-- Slide number: 32 -->
 Minliang
 
 ![](GoogleShape443p32.jpg)
@@ -493,9 +423,6 @@ Minliang
 ![](GoogleShape445p32.jpg)
 
 ### Notes:
-
-<!-- Slide number: 33 -->
-
 ![](GoogleShape455p33.jpg)
 
 ![](GoogleShape456p33.jpg)
@@ -512,8 +439,6 @@ C: ………………。
 王兰:	……….我们……….。
 
 ### Notes:
-
-<!-- Slide number: 34 -->
 Đàm thoại theo tình huống
 (1) 你和你的同学见而，互相问候,
 Bạn cùng các bạn học gặp gỡ, chào hỏi nhau.
@@ -523,9 +448,6 @@ Bạn đếh nhà bạn của bạn, gặp ba má anh ta, bạn hãy chào hỏi
 ![](GoogleShape464p34.jpg)
 
 ### Notes:
-
-<!-- Slide number: 35 -->
-
 ![](GoogleShape473p35.jpg)
 Phân biệt các âm
 | bā （八） | pā （啪） | dā （搭） | tā （他） |
@@ -534,9 +456,6 @@ Phân biệt các âm
 | dào （到） | tào （套） | gǎi （改） | kǎi （凯） |
 
 ### Notes:
-
-<!-- Slide number: 36 -->
-
 ![](GoogleShape480p36.jpg)
 Biến âm
 | bǔ kǎo （补考） | hěn hǎo （很好） |
@@ -548,8 +467,6 @@ Biến âm
 | hěn hēi （很黑） | nǎ ge （哪个） |
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 Thanh nhẹ
 | tóufa （头发） | nà me （那么） |
 | --- | --- |
@@ -557,8 +474,6 @@ Thanh nhẹ
 | lái ba （来吧） | mèimei （妹妹） |
 
 ### Notes:
-
-<!-- Slide number: 38 -->
 The End
 
 ### Notes:

@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape77p1.jpg)
 
 你家有几口人
@@ -20,9 +18,6 @@ Nhà bạn có mấy người
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape87p2.jpg)
 目录
 
@@ -49,9 +44,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape124p3.jpg)
 01
 生词
@@ -68,8 +60,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 有 | yǒu | 英语 | yīngyǔ |
 | --- | --- | --- | --- |
 | 口 | kǒu | 职员 | zhíyuán |
@@ -82,8 +72,6 @@ Minliang
 | 学习 | xuéxí | 下 | xià |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 有 | yǒu | 动 | Có |
@@ -93,8 +81,6 @@ Minliang
 ![](GoogleShape143p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 口 | kǒu | 量 | (nhân) khẩu |
@@ -104,8 +90,6 @@ Minliang
 ![](GoogleShape151p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 大学 | dàxué | 名 | Đại học |
@@ -115,8 +99,6 @@ Minliang
 ![](GoogleShape159p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 和 | 和 | 连 | Và, với,cùng |
@@ -126,8 +108,6 @@ Minliang
 ![](GoogleShape167p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 结婚 | jié hūn | 动 | Kết hôn |
@@ -139,8 +119,6 @@ Minliang
 ![C:\Users\ad\Downloads\4918.gif](GoogleShape177p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 了 | le |  | Rồi |
@@ -148,8 +126,6 @@ Minliang
 ![](GoogleShape184p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 没 | méi | 副 | Không, chưa |
@@ -159,8 +135,6 @@ Minliang
 ![](GoogleShape191p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 孩子 | háizi | 名 | Con, con nít |
@@ -170,8 +144,6 @@ Minliang
 ![](GoogleShape199p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 学习 | xuéxí | 动 | Học, học tập |
@@ -181,8 +153,6 @@ Minliang
 ![](GoogleShape207p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 英语 | yīngyǔ | 名 | Tiếng Anh |
@@ -196,8 +166,6 @@ Minliang
 ![C:\Users\ad\Downloads\1900 (2).gif](GoogleShape217p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 职员 | zhíyuán | 名 | Viên chức |
@@ -209,8 +177,6 @@ Minliang
 ![C:\Users\ad\Downloads\3827 (1).gif](GoogleShape227p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 银行 | yínháng | 名 | Ngân hàng |
@@ -222,8 +188,6 @@ Minliang
 ![C:\Users\ad\Downloads\15848.gif](GoogleShape236p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 爱人 | àirén | 名 | Vợ, chồng, người yêu |
@@ -233,8 +197,6 @@ Minliang
 ![C:\Users\ad\Downloads\12526.gif](GoogleShape244p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 上 | shàng | 动 | Lên, đi lên |
@@ -244,8 +206,6 @@ Minliang
 ![](GoogleShape252p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 下 | xià | 动 | Xuống, đi xuống |
@@ -253,8 +213,6 @@ Minliang
 ![](GoogleShape259p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 课 | kè | 代 | Giờ học, bài học |
@@ -264,9 +222,6 @@ Minliang
 ![](GoogleShape267p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
-
 ![](GoogleShape274p21.jpg)
 02
 句子
@@ -283,9 +238,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 22 -->
-
 ![](GoogleShape289p22.jpg)
 1.你家有几口人 ？
 /Nǐ jiā yǒu jǐ kǒu rén?/ - Nhà bạn có mấy người?
@@ -303,9 +255,6 @@ Minliang
 ![](GoogleShape290p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
-
 ![](GoogleShape297p23.jpg)
 03
 课文
@@ -322,8 +271,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 大卫：刘京，你家有几口人？
 Dàwèi: Liú Jīng, nǐ jiā yǒu jǐ kǒu rén?
 刘京：四口人。你家呢？
@@ -348,9 +295,6 @@ Dàwèi: Nǐ māma gōngzuò ma?
 Hézi: Tā bù gōngzuò.
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape320p25.jpg)
 王兰：你家有谁？
 Wáng Lán: Nǐ jiā yǒu shéi?
@@ -372,9 +316,6 @@ Mǎlì: Tāmen yǒu háizi ma?
 Wáng Lán: Méiyǒu.
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape328p26.jpg)
 04
 注释
@@ -391,9 +332,6 @@ Wáng Lán: Méiyǒu.
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape342p27.jpg)
 1.“你家有几口人 ？” Nhà bạn có mấy người?
 “几口人 ”chỉ dùng để hỏi số người trong gia đình. Những trường hợp khác cần hỏi số người phải dùng lượng từ “个”.
@@ -402,9 +340,6 @@ Minliang
 Câu này cùng nghĩa với câu “你家有什么人”(Nhà bạn có những người nào?). “谁”có thể chỉ số ít (ai) hoặc số nhiều (những ai).
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape349p28.jpg)
 05
 
@@ -421,8 +356,6 @@ Câu này cùng nghĩa với câu “你家有什么人”(Nhà bạn có nhữn
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 29 -->
 他学习英语。
 他在银行工作。
 他们有孩子吗？
@@ -440,9 +373,6 @@ Minliang
 ![](GoogleShape362p29.jpg)
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape374p30.jpg)
 06
 语法
@@ -459,9 +389,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 31 -->
-
 ![](GoogleShape389p31.jpg)
 
 ![](GoogleShape387p31.jpg)
@@ -474,9 +401,6 @@ Minliang
 Giới từ và tân ngữ của nó kết hợp thành kết cấu giới từ. Nó thường được đặt trước động từ để làm trạng ngữ. Ví dụ như: “在银行” trong   “在在银行工作”  hoặc “在教室” trong “在教至上 课” đều do giới từ “在” cùng với tân ngữ của nó kết hợp thành một kết cấu giới từ.
 
 ### Notes:
-
-<!-- Slide number: 32 -->
-
 ![](GoogleShape396p32.jpg)
 07
 练习
@@ -493,8 +417,6 @@ Giới từ và tân ngữ của nó kết hợp thành kết cấu giới từ.
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 33 -->
 1.选用括号 中的动词填空
 Chọn từ trong ngoặc điền vào chỗ trống của các câu sau:
 （听	     写	          学习	         看	       有	  叫		是）
@@ -506,8 +428,6 @@ Chọn từ trong ngoặc điền vào chỗ trống của các câu sau:
 ![](GoogleShape410p33.jpg)
 
 ### Notes:
-
-<!-- Slide number: 34 -->
 2.用"几”提问，完成下列对话 Dùng "几"đặt câu hỏi để hoàn thành đối thoại sau
 (1)   A：——————?
        B：明天星期四。
@@ -521,8 +441,6 @@ Chọn từ trong ngoặc điền vào chỗ trống của các câu sau:
 ![](GoogleShape416p34.jpg)
 
 ### Notes:
-
-<!-- Slide number: 35 -->
 3. 谈一谈 Tập nói chuyện
 (1) 同学们互相介绍自己的家庭。
 Học sinh giới thiệu với nhau về gia đình mình.
@@ -534,9 +452,6 @@ Giới thiệu mình học ở đâu. học những gì.
 ![](GoogleShape422p35.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
-
 ![](GoogleShape428p36.jpg)
 5.语音练习 bài tập ngữ âm
 （1）音节连读：第1声十第4声
@@ -548,8 +463,6 @@ chīfàn		（吃饭）		bāngzhù	（帮助）
 gōngzuò	（工作）		xūyào		（需要）
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 （2）第三声的变调 biến điệu của thanh 3
 xīn （新）
 bái （白）
@@ -565,8 +478,6 @@ zuò （坐）
 nǐ（你）
 
 ### Notes:
-
-<!-- Slide number: 38 -->
 THE END
 Minliang
 

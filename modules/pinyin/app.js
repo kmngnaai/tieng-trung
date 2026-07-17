@@ -2525,7 +2525,7 @@ ${hero('Bảng tổng Pinyin', 'Mặc định dùng dạng thẻ dễ bấm trê
       <h1>Học Pinyin</h1>
       <p>${learnedCount}/${requiredTotal} âm đã học · ${dueCount} mục cần ôn</p>
     </div>
-    <span>拼</span>
+    <img class="pinyin-mascot" src="../../assets/brand/mascot.png" alt="Linh vật koala Kei" loading="eager" />
   </div>
   <div class="v22-action-grid">
     ${homeActionV21('Tiếp tục học', active ? active.title : 'Chọn nhóm Pinyin', 'openStudyGroupsV21()', 'green')}
@@ -3015,16 +3015,6 @@ ${renderTopHeroV21('Quiz nghe theo nhóm', `Phạm vi câu hỏi hiện tại: $
     const masteredTotal = recordsForReviewV23('mastered').length;
 
     return `
-<header class="tt-module-top-nav v22-top-nav">
-  <a class="tt-top-brand" href="../../index.html" target="_self"><span class="tt-top-logo">拼</span><span class="tt-top-name">Pinyin</span><span class="tt-top-meta"> · ${requiredTotal} âm · ${groups.length} nhóm</span></a>
-  <nav class="tt-top-links">
-    <a href="../../index.html" target="_self">Trang chủ</a>
-    <a href="../bo-thu-50/index.html" target="_self">Bộ thủ</a>
-    <a href="../pinyin/index.html" target="_self" class="active">Pinyin</a>
-    <a href="../../index.html#dialogue301" target="_self">301 Đàm thoại</a>
-  </nav>
-</header>
-
 <div class="app-shell v21-shell v23-shell">
   <aside class="sidebar v21-sidebar">
     <div class="brand"><div class="brand-logo">拼</div><div><h1>Pinyin</h1><p>Học nhanh · nghe đúng</p></div></div>
@@ -3517,7 +3507,7 @@ ${renderTopHeroV21('Quiz nghe theo nhóm', `Phạm vi câu hỏi hiện tại: $
       <h1>Học Pinyin</h1>
       <p><span data-v23-learned-total>${learnedCount}</span>/${requiredTotal} âm đã học · ${dueCount} mục cần ôn</p>
     </div>
-    <span>拼</span>
+    <img class="pinyin-mascot" src="../../assets/brand/mascot.png" alt="Linh vật koala Kei" loading="eager" />
   </div>
   <div class="v22-action-grid">
     ${homeActionV23('Tiếp tục học', active ? active.title : 'Chọn nhóm Pinyin', 'scrollToCurrentGroupV23()', 'green')}

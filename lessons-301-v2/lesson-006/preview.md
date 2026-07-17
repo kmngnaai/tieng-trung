@@ -1,7 +1,7 @@
 # Bài 6 · 你的生日几月几号
 
 - Type: `full_course`
-- Source: 6第六课_你的生日几月几号.md, pdf-301-cau-dam-thoai.md, lesson-006/data.json, 6第六课_你的生日几月几号.pptx
+- Source: 6第六课_你的生日几月几号.md, pdf-301-cau-dam-thoai.md, lesson-006/data.json
 
 ## Mẫu câu
 

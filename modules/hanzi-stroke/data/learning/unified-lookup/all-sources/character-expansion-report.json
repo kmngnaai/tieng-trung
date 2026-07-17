@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "c2a22-all-character-expansion-v1",
+  "summary": {
+    "characters": 10880,
+    "tierC": 5509,
+    "withPinyin": 10880,
+    "withMeaning": 10749,
+    "withRadical": 5413,
+    "withRelated": 5316,
+    "withSentences": 3200,
+    "withHanViet": 3340,
+    "tierB": 2994,
+    "tierA": 2377,
+    "totalUnifiedTargets": 21303,
+    "multiWordTargets": 10398,
+    "bucketFiles": 256
+  },
+  "tierRules": {
+    "A": "Có pinyin, nghĩa, bộ thủ giải được từ kho 214, ít nhất một từ liên quan chứa target và một câu chứa target.",
+    "B": "Có pinyin, nghĩa, bộ thủ giải được từ kho 214 và có cơ chế luyện viết runtime; chưa đủ cả từ và câu.",
+    "C": "Giữ nguyên dữ liệu ký tự cơ bản có trong data/chars; trường thiếu để trống, không suy đoán."
+  },
+  "sourceRules": {
+    "pinyinMeaning": "data/chars và record unified có sẵn",
+    "radical": "target là bộ chính -> target là alias/biến thể -> radical trong record ánh xạ duy nhất",
+    "relatedWords": "chỉ từ chứa nguyên target, lấy từ data/chars.relatedWords và target unified",
+    "sentences": "chỉ câu chứa nguyên target, lấy từ câu local đã có; ưu tiên câu chứa từ liên quan",
+    "advanced": "chỉ giữ phần đã tồn tại trong record unified; không sinh mới"
+  }
+}

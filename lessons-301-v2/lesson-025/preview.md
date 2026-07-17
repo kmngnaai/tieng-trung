@@ -1,7 +1,7 @@
 # Bài 25 · 这张画儿真美
 
 - Type: `standard_301_course`
-- Source: 25第二十五课_这张画儿真美.md, pdf-301-cau-dam-thoai.md, 25第二十五课_这张画儿真美.pptx
+- Source: 25第二十五课_这张画儿真美.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

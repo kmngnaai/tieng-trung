@@ -15,7 +15,6 @@ let dialogue301CurrentData = null;
 let dialogue301CurrentLesson = null;
 let dialogue301ExpandedSections = new Set();
 let dialogue301OverviewExpandedSections = new Set();
-let dialogue301VisibleSlideCount = 6;
 const DIALOGUE301_LESSON_CHIP_LIMIT = 8;
 const DIALOGUE301_OVERVIEW_LIMITS = { vocabulary: 8, sentences: 3, dialogue: 3 };
 const DIALOGUE301_SECONDARY_SECTIONS = new Set(['notes', 'grammar', 'extension', 'practice']);
@@ -48,8 +47,7 @@ const DIALOGUE301_FILTERS = [
   ['notes', 'Chú thích'],
   ['extension', 'Mở rộng'],
   ['grammar', 'Ngữ pháp'],
-  ['practice', 'Luyện tập'],
-  ['slides', 'Slide']
+  ['practice', 'Luyện tập']
 ];
 
 function escapeHtml(s){
@@ -182,7 +180,7 @@ function setPage(page){
   }
 
   if(page === 'hanziStroke'){
-    window.location.href = 'modules/hanzi-stroke/index.html';
+    window.location.href = 'modules/hanzi-stroke/index.html?study=writing';
     return;
   }
   updateNavActive(page);
@@ -195,7 +193,7 @@ function setPage(page){
 
 function renderHome(){
   pageTitle.textContent = 'Tiếng Trung';
-  pageSubtitle.textContent = 'Pinyin · Tra chữ Hán · Bộ thủ · 301 Đàm thoại';
+  pageSubtitle.textContent = 'Tra nhanh · Học theo giáo trình · Ôn tập chủ động';
   pageContent.innerHTML = homePageContent;
   updateNavActive('home');
 }
@@ -254,7 +252,7 @@ async function loadDialogue301Lessons(){
 
 async function renderDialogue301(){
   pageTitle.textContent = '301 Đàm thoại';
-  pageSubtitle.textContent = 'Từ vựng · Câu mẫu · Hội thoại · Slide';
+  pageSubtitle.textContent = 'Từ vựng · Câu mẫu · Hội thoại · Chú thích';
   pageContent.innerHTML = `
     <div class="card">
       <h3>Đang tải danh sách bài...</h3>
@@ -287,7 +285,9 @@ async function renderDialogue301(){
     `;
 
     renderDialogue301LessonList(lessons);
-    await openDialogue301Lesson(lessons[0]);
+    const requestedLessonId = new URLSearchParams(window.location.search).get('lesson') || '';
+    const initialLesson = lessons.find(item => item.lesson_id === requestedLessonId) || lessons[0];
+    await openDialogue301Lesson(initialLesson);
   }catch(err){
     console.error(err);
     pageContent.innerHTML = `
@@ -475,7 +475,6 @@ async function openDialogue301Lesson(lesson){
   dialogue301Filter = 'all';
   dialogue301ExpandedSections = new Set();
   dialogue301OverviewExpandedSections = new Set();
-  dialogue301VisibleSlideCount = 6;
   updateDialogue301ActiveLesson();
   if(dialogue301Lessons.length){
     renderDialogue301LessonList(dialogue301Lessons);
@@ -523,7 +522,6 @@ function getDialogue301LessonDir(data, lesson){
 }
 
 function renderDialogue301Lesson(data, lesson){
-  const lessonDir = getDialogue301LessonDir(data, lesson);
   const shortTitle = getDialogue301ShortTitle(data, lesson);
   const fullTitle = getDialogue301FullLessonTitle(data, lesson);
   const lessonNo = data.lesson_no || lesson?.lesson_no || '';
@@ -536,15 +534,7 @@ function renderDialogue301Lesson(data, lesson){
     }))
     .filter(entry => entry.html);
 
-  const slides = getDialogue301MediaItems(data, 'slides');
-  const videos = getDialogue301MediaItems(data, 'videos');
-  const slidesHtml = renderDialogue301MediaSection('slides', 'Slide gốc', slides, lessonDir, getDialogue301MediaBasePath(data, 'slides'));
-  const videosHtml = renderDialogue301VideoSection(videos, lessonDir, getDialogue301MediaBasePath(data, 'videos'));
   const availableFilters = new Set(['all', ...sectionEntries.map(entry => entry.key)]);
-
-  if(slidesHtml){
-    availableFilters.add('slides');
-  }
 
   if(!availableFilters.has(dialogue301Filter)){
     dialogue301Filter = 'all';
@@ -570,8 +560,6 @@ function renderDialogue301Lesson(data, lesson){
       ${filterHtml}
     </div>
     ${sectionEntries.length ? sectionEntries.map(entry => entry.html).join('') : '<div class="card"><p>Chưa có nội dung chữ cho bài này.</p></div>'}
-    ${videosHtml}
-    ${slidesHtml}
   `;
 }
 
@@ -877,7 +865,6 @@ function getDialogue301SectionSummary(key, items){
 }
 
 function renderDialogue301TextBlock(item, sectionKey){
-  const slide = item && typeof item === 'object' ? item.slide : '';
   const text = cleanLessonText(item && typeof item === 'object' ? stringifyDialogue301StructuredItem(item) : item);
 
   if(!text){
@@ -2270,83 +2257,6 @@ function renderDialogue301PipeTable(text){
   `;
 }
 
-function renderDialogue301MediaSection(type, label, items, lessonDir, basePath){
-  if(!Array.isArray(items) || !items.length || !lessonDir){
-    return '';
-  }
-
-  if(type !== 'slides'){
-    return '';
-  }
-
-  const visibleCount = Math.min(dialogue301VisibleSlideCount || 6, items.length);
-  const visibleItems = items.slice(0, visibleCount);
-  const remainingCount = Math.max(0, items.length - visibleCount);
-
-  return `
-    <section class="card dialogue301-section dialogue301-slide-section" data-section="slides">
-      <div class="dialogue301-section-head">
-        <h3>${escapeHtml(label)}</h3>
-        <p>Slide được xuất thành PNG nên là ảnh tĩnh, không chạy animation PowerPoint. Đang hiện ${escapeHtml(visibleCount)}/${escapeHtml(items.length)} slide.</p>
-      </div>
-      <div class="dialogue301-slide-gallery">
-        ${visibleItems.map((item, index) => {
-          const src = joinUrlPath(basePath || dialogue301BasePath || 'lessons-301-v2', lessonDir, item);
-          return `
-            <figure class="dialogue301-media-card">
-              <button class="dialogue301-slide-open" type="button" data-src="${escapeHtml(src)}" aria-label="Phóng to slide ${index + 1}">
-                <img src="${escapeHtml(src)}" alt="${escapeHtml(label)} ${index + 1}" loading="lazy" />
-              </button>
-              <figcaption>Slide ${index + 1}</figcaption>
-            </figure>
-          `;
-        }).join('')}
-      </div>
-      ${remainingCount ? `<button class="dialogue301-inline-more dialogue301-slide-more" type="button" data-action="show-more-dialogue301-slides">+ Xem thêm ${escapeHtml(Math.min(6, remainingCount))} slide</button>` : ''}
-    </section>
-  `;
-}
-
-function dialogue301MediaUrl(item, lessonDir, basePath){
-  const src = typeof item === 'string' ? item : (item?.src || item?.url || item?.path || '');
-  if(!src) return '';
-  if(/^[a-z][a-z0-9+.-]*:/i.test(src) || src.startsWith('/')){
-    return src;
-  }
-  return joinUrlPath(basePath || dialogue301BasePath || 'lessons-301-v2', lessonDir, src);
-}
-
-function renderDialogue301VideoSection(videos, lessonDir, basePath){
-  if(!Array.isArray(videos) || !videos.length || !lessonDir){
-    return '';
-  }
-
-  return `
-    <section class="card dialogue301-section dialogue301-video-section" data-section="slides">
-      <div class="dialogue301-section-head">
-        <h3>Video / animation</h3>
-        <p>Media động nếu dữ liệu bài học có field videos.</p>
-      </div>
-      <div class="dialogue301-video-grid">
-        ${videos.map((item, index) => {
-          const src = dialogue301MediaUrl(item, lessonDir, basePath);
-          const title = typeof item === 'object' ? (item.title || item.name || `Video ${index + 1}`) : `Video ${index + 1}`;
-          const poster = typeof item === 'object' && item.poster ? dialogue301MediaUrl(item.poster, lessonDir, basePath) : '';
-          if(!src) return '';
-
-          return `
-            <figure class="dialogue301-media-card">
-              <video controls preload="metadata" ${poster ? `poster="${escapeHtml(poster)}"` : ''}>
-                <source src="${escapeHtml(src)}" />
-              </video>
-              <figcaption>${escapeHtml(title)}</figcaption>
-            </figure>
-          `;
-        }).join('')}
-      </div>
-    </section>
-  `;
-}
 
 
 function scrollDialogue301ActiveChipIntoView(selector){
@@ -2407,12 +2317,6 @@ function bindDialogue301LessonUI(){
     });
   });
 
-  document.querySelectorAll('[data-action="show-more-dialogue301-slides"]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      dialogue301VisibleSlideCount += 6;
-      rerenderDialogue301CurrentLesson();
-    });
-  });
 
   document.querySelectorAll('.vocab-row[data-vocab-row]').forEach(row => {
     row.addEventListener('click', () => {
@@ -2446,9 +2350,6 @@ function bindDialogue301LessonUI(){
     });
   });
 
-  document.querySelectorAll('.dialogue301-slide-open').forEach(btn => {
-    btn.addEventListener('click', () => openDialogue301Lightbox(btn.dataset.src));
-  });
 
   applyDialogue301Filter();
 }
@@ -2480,7 +2381,7 @@ function applyDialogue301Filter(){
   document.querySelectorAll('.dialogue301-section').forEach(section => {
     const key = section.dataset.section || '';
     if(dialogue301Filter === 'all'){
-      section.hidden = key === 'slides';
+      section.hidden = false;
     }else{
       section.hidden = key !== dialogue301Filter;
     }
@@ -2499,37 +2400,6 @@ function applyDialogue301Filter(){
       }
     }
   });
-}
-
-function openDialogue301Lightbox(src){
-  if(!src) return;
-
-  let overlay = document.getElementById('dialogue301Lightbox');
-  if(!overlay){
-    overlay = document.createElement('div');
-    overlay.id = 'dialogue301Lightbox';
-    overlay.className = 'dialogue301-lightbox';
-    overlay.innerHTML = `
-      <button class="dialogue301-lightbox-close" type="button" aria-label="Đóng">×</button>
-      <img alt="Slide phóng to" />
-    `;
-    document.body.appendChild(overlay);
-
-    overlay.addEventListener('click', e => {
-      if(e.target === overlay || e.target.closest('.dialogue301-lightbox-close')){
-        overlay.classList.remove('show');
-      }
-    });
-
-    document.addEventListener('keydown', e => {
-      if(e.key === 'Escape'){
-        overlay.classList.remove('show');
-      }
-    });
-  }
-
-  overlay.querySelector('img').src = src;
-  overlay.classList.add('show');
 }
 
 
@@ -2789,6 +2659,20 @@ function updateNavActive(page){
   });
 }
 
+function bindHomeLookup(){
+  const form = document.getElementById('homeLookupForm');
+  const input = document.getElementById('homeLookupInput');
+  if(!form || !input) return;
+
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    const query = String(input.value || '').trim();
+    const url = new URL('modules/lookup/index.html', window.location.href);
+    if(query) url.searchParams.set('q', query);
+    window.location.href = url.href;
+  });
+}
+
 function bindRootNavigation(){
   // Một bộ điều hướng duy nhất cho cả sidebar, top nav và các nút trong trang chủ.
   document.addEventListener('click', event => {
@@ -2853,6 +2737,7 @@ async function loadPinyinAudioData(){
 
 async function init(){
   bindRootNavigation();
+  bindHomeLookup();
 
   setPage(location.hash === '#dialogue301' ? 'dialogue301' : 'home');
 

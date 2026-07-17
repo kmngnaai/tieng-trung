@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape69p1.jpg)
 I
 
@@ -20,9 +18,6 @@ Ví tiền của cô để quên ở đây
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape79p2.jpg)
 目录
 
@@ -46,9 +41,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape113p3.jpg)
 
 ![](GoogleShape111p3.jpg)
@@ -67,8 +59,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 大厅 | dàtīng | 南边 | nánbiān | 挂 | guà |
 | --- | --- | --- | --- | --- | --- |
 | 卖 | mài | 窗口 | chuāngkǒu | 停 | tíng |
@@ -82,8 +72,6 @@ Minliang
 ![](GoogleShape127p4.jpg)
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 大厅 | dàtīng | 名 | phòng lớn, đại sảnh |
@@ -91,8 +79,6 @@ Minliang
 ![](GoogleShape133p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 卖 | mài | 动 | bán |
@@ -102,8 +88,6 @@ Minliang
 ![](GoogleShape140p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 预订 | yùdìng | 动 | dự tính |
@@ -111,8 +95,6 @@ Minliang
 ![](GoogleShape148p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 帮忙 | bāngmáng |  | giúp được |
@@ -122,8 +104,6 @@ Minliang
 ![](GoogleShape155p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 着 | zhe | 助 | (trợ từ) |
@@ -133,8 +113,6 @@ Minliang
 ![](GoogleShape163p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 小姐 | xiǎojiě | 名 | tiểu thư, cô gái |
@@ -142,8 +120,6 @@ Minliang
 ![](GoogleShape171p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 忘 | wàng | 动 | quên |
@@ -153,8 +129,6 @@ Minliang
 ![](GoogleShape178p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 钱包 | qiánbāo | 名 | ví, bóp |
@@ -164,8 +138,6 @@ Minliang
 ![](GoogleShape186p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 南边 | nánbiān | 名 | nam, phía nam |
@@ -175,8 +147,6 @@ Minliang
 ![](GoogleShape194p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 窗口 | chuāngkǒu | 名 | cửa sổ |
@@ -184,8 +154,6 @@ Minliang
 ![](GoogleShape202p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 白天 | báitiān | 名 | ban ngày |
@@ -193,8 +161,6 @@ Minliang
 ![](GoogleShape209p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 硬卧 | yìng wò | 名 | giường cứng |
@@ -209,8 +175,6 @@ Minliang
 ![卧的笔顺动画](GoogleShape219p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 以内 | yǐnèi |  | trong vòng |
@@ -218,8 +182,6 @@ Minliang
 ![](GoogleShape226p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 护照 | hùzhào | 名 | hộ chiếu |
@@ -229,8 +191,6 @@ Minliang
 ![](GoogleShape233p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 行李 | xíngli | 名 | hành lý |
@@ -240,8 +200,6 @@ Minliang
 ![](GoogleShape241p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 挂 | guà | 动 | treo |
@@ -251,8 +209,6 @@ Minliang
 ![](GoogleShape249p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 停 | tíng | 动 | dừng |
@@ -262,8 +218,6 @@ Minliang
 ![](GoogleShape257p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 图书馆 | túshūguǎn | 名 | thư viện |
@@ -271,8 +225,6 @@ Minliang
 ![](GoogleShape265p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 20 | 礼堂 | lǐtáng | 名 | hội trường |
@@ -282,8 +234,6 @@ Minliang
 ![](GoogleShape272p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 21 | 讨论 | tǎolùn | 动 | thảo luận, bàn bạc |
@@ -293,8 +243,6 @@ Minliang
 ![](GoogleShape280p24.jpg)
 
 ### Notes:
-
-<!-- Slide number: 25 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 22 | 办法 | bànfǎ | 名 | cách, biện pháp |
@@ -302,9 +250,6 @@ Minliang
 ![](GoogleShape288p25.jpg)
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape295p26.jpg)
 
 ![](GoogleShape297p26.jpg)
@@ -323,9 +268,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape312p27.jpg)
 1. 你看见和子了吗？
 /Nǐ kànjiàn Hézi le ma?/ - Bạn đã gặp Hezi chưa?
@@ -337,9 +279,6 @@ Minliang
 /Míngtiān de piào mài wán le?/ - Vé ngày mai đã bán hết rồi.
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape320p28.jpg)
 5. 您应该早点儿预定飞机票。
 /Nín yīnggāi zǎodiǎnr yùdìng fēijī piào./- Ông nên đặt mua vé máy bay sớm hơn chút.
@@ -351,9 +290,6 @@ Minliang
 /Xiǎojiě, nǐ de qiánbāo wàng zài zhèr le./ - Thưa cô, ví tiền của cô bỏ quên ở đây.
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape328p29.jpg)
 
 ![](GoogleShape326p29.jpg)
@@ -372,8 +308,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 30 -->
 刘京：你看见和子了吗？
 玛丽：没看见。你进大厅去找她吧。
 *     *     *     *     *     *     *
@@ -391,8 +325,6 @@ Minliang
 ![](GoogleShape342p30.jpg)
 
 ### Notes:
-
-<!-- Slide number: 31 -->
 尼娜：到北京的飞机票有吗？
 售票员：三夫以内南的都没有了。你应该早点儿预订。
 尼娜：同志，我有急事，帮帮忙吧！
@@ -408,9 +340,6 @@ Minliang
 ![](GoogleShape348p31.jpg)
 
 ### Notes:
-
-<!-- Slide number: 32 -->
-
 ![](GoogleShape355p32.jpg)
 
 ![](GoogleShape357p32.jpg)
@@ -429,9 +358,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 33 -->
-
 ![](GoogleShape372p33.jpg)
 找到   钱包，拿到   护照
 办完   手续，带来   词典
@@ -446,8 +372,6 @@ Minliang
 到她家     进礼堂
 
 ### Notes:
-
-<!-- Slide number: 34 -->
 1.A:我的汉语书忘在宿舍里了，怎么办？
 B:现在马上回宿舍去拿来得及。
 2.大家讨论一下儿，哪个办法好？
@@ -455,9 +379,6 @@ B:现在马上回宿舍去拿来得及。
 ![](GoogleShape378p34.jpg)
 
 ### Notes:
-
-<!-- Slide number: 35 -->
-
 ![](GoogleShape387p35.jpg)
 
 ![](GoogleShape385p35.jpg)
@@ -476,8 +397,6 @@ B:现在马上回宿舍去拿来得及。
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 36 -->
 1. 动作的持续(一) Sự tiếp diễn của động tác.
 Trợ từ động thái“着”đặt sau động từ, chỉ sự tiếp diễn của động tác hay trạng thái, dạng phủ định của nó là“没(有)...着”.Ví dụ:
 (1) 窗户开着，门没开着。
@@ -491,17 +410,12 @@ Câu hỏi chính phản của nó, có dạng“着...没有”. Ví dụ:
 ![](GoogleShape400p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 2.“见”作结果补语：“见”làm bổ ngữ kết quả
 “见”thường đặt sau“看”hay“听”để làm bổ ngữ kết quả.“看见”có nghĩa là“看到”，“听见”có nghĩa là“听到”.
 
 ![](GoogleShape408p37.jpg)
 
 ### Notes:
-
-<!-- Slide number: 38 -->
-
 ![](GoogleShape414p38.jpg)
 
 ![](GoogleShape416p38.jpg)
@@ -520,8 +434,6 @@ Câu hỏi chính phản của nó, có dạng“着...没有”. Ví dụ:
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 1. 根据情况，用趋向补语和下边的词语造句。
 例：进  候机室   (说话人品外边)
    → 刚才他进候机室去了。
@@ -535,8 +447,6 @@ Minliang
 | (5) 回 | 家 | (说活人在外边) |
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 2. 用动词加“着”填空 。
 (1) 衣服在衣柜里.........呢。
 (2) 你找钱包？不是在你手里.........吗？
@@ -548,8 +458,6 @@ Minliang
 ![](GoogleShape436p40.jpg)
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 3. 用“从...到...”回答问题。
 (1)	每星期你什么时候上课・？
 (2)	你每天从几点到凡点上课？从几点到几点做什么？
@@ -558,9 +466,6 @@ Minliang
 ![](GoogleShape442p41.jpg)
 
 ### Notes:
-
-<!-- Slide number: 42 -->
-
 ![](GoogleShape449p42.jpg)
 4. 完成对话
 A：可以预订火车票吗？
@@ -572,8 +477,6 @@ B：.......................?
 A：要软卧。
 
 ### Notes:
-
-<!-- Slide number: 43 -->
 5. 根据下面的火车时刻表买票
 火车的时刻表
 
@@ -588,17 +491,11 @@ A：要软卧。
 (2) 去西安要提前三天预订。
 
 ### Notes:
-
-<!-- Slide number: 44 -->
-
 ![](GoogleShape463p44.jpg)
 6. 听述 Nghe và kể lại
 张三和李四去火车站，进去以后，离开车只有五分钟了。他们快跑，张三跑得快，先上了火车。他看见李四还在车下边，急了，就要下车。服务员说：“先生，不能下车，车就要开了，来不及了。”张三说：“不行、要走的是他，我是送他来的。”
 
 ### Notes:
-
-<!-- Slide number: 45 -->
-
 ![](GoogleShape470p45.jpg)
 6.语音练习 Bài tập ngữ âm
 (1) 常用音节练习  Luyện tập các âm tiết thường dùng
@@ -613,9 +510,6 @@ chu
 er
 
 ### Notes:
-
-<!-- Slide number: 46 -->
-
 ![](GoogleShape485p46.jpg)
 （2）朗读会话 Đọc to mẩu đàm thoại.
 A：Huǒchē shàng yóu diǎnr rè.
@@ -628,8 +522,6 @@ A：Máfan nǐ le.
 B：Búkèqi.
 
 ### Notes:
-
-<!-- Slide number: 47 -->
 The End
 
 ### Notes:

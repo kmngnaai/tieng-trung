@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape77p1.jpg)
 
 ![](GoogleShape74p1.jpg)
@@ -19,9 +17,6 @@ Phải chuyển xe
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape87p2.jpg)
 目录
 
@@ -48,9 +43,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape124p3.jpg)
 01
 生词
@@ -67,8 +59,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 车 | chē | 售票员 | shòu piào yuán |
 | --- | --- | --- | --- |
 | 到 | dào | 给 | gěi |
@@ -82,8 +72,6 @@ Minliang
 | 一点儿 | yì diǎnr |  |  |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 车 | chē | 名 | Xe |
@@ -93,8 +81,6 @@ Minliang
 ![](GoogleShape143p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 到 | dào | 动 | Đến |
@@ -104,8 +90,6 @@ Minliang
 ![](GoogleShape151p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 张 | zhāng | 量 | Tờ, tấm |
@@ -115,8 +99,6 @@ Minliang
 ![](GoogleShape159p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 票 | piào | 名 | Vé |
@@ -126,8 +108,6 @@ Minliang
 ![](GoogleShape167p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 站 | zhàn | 名 | bến, trạm, đứng |
@@ -137,8 +117,6 @@ Minliang
 ![C:\Users\ad\Downloads\13070.gif](GoogleShape176p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 上 | shàng | 动 | lên |
@@ -147,8 +125,6 @@ Minliang
 ![](GoogleShape184p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 换 | huàn | 动 | đổi, chuyển |
@@ -158,8 +134,6 @@ Minliang
 ![](GoogleShape191p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 会 | huì | 能愿，动 | biết |
@@ -169,8 +143,6 @@ Minliang
 ![](GoogleShape199p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 说 | shuō | 动 | nói |
@@ -180,8 +152,6 @@ Minliang
 ![](GoogleShape207p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 一点儿 | yì diǎnr |  | một ít, một chút |
@@ -189,8 +159,6 @@ Minliang
 ![](GoogleShape215p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 售票员 | shòu piào yuán | 名 | người bán vé |
@@ -200,8 +168,6 @@ Minliang
 ![](GoogleShape222p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 给 | gěi | 动，介 | cho, đưa |
@@ -211,8 +177,6 @@ Minliang
 ![](GoogleShape230p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 找 | zhǎo | 动 | tìm, trả |
@@ -222,8 +186,6 @@ Minliang
 ![](GoogleShape238p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 懂 | dǒng | 动 | hiểu |
@@ -233,8 +195,6 @@ Minliang
 ![](GoogleShape246p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 哪 | nǎ | 代 | ở đâu |
@@ -244,8 +204,6 @@ Minliang
 ![](GoogleShape254p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 国 | guó | 名 | Nước |
@@ -255,8 +213,6 @@ Minliang
 ![](GoogleShape261p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 本子 | běnzi | 名 | cuốn tập |
@@ -267,8 +223,6 @@ Minliang
 ![](GoogleShape269p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Nghĩa của từ |
 | --- | --- | --- | --- |
 | 20 | 天安门 | Tiān’ānmén | Thiên An Môn |
@@ -279,9 +233,6 @@ Minliang
 | 25 | 日本 | Rìběn | Nhật Bản |
 
 ### Notes:
-
-<!-- Slide number: 23 -->
-
 ![](GoogleShape284p23.jpg)
 02
 句子
@@ -298,8 +249,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 1.车路车到天安门吗？
 /Chē lù chē dào Tiān'ānmén ma?/ - Tuyến xe này có đến Thiên An Môn không?
 2.我买两张票。
@@ -310,8 +259,6 @@ Minliang
 /Tiān'ānmén dào le./ - Đến Thiên An Môn rồi.
 
 ### Notes:
-
-<!-- Slide number: 25 -->
 5.哪儿上的？
 /Nǎr shàng de?/ - Lên xe ở đâu?
 6.去语言学院要换车吗？
@@ -322,9 +269,6 @@ Minliang
 /Huàn jǐ lù chē?/ - Đổi tuyến xe số mấy ?
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape312p26.jpg)
 03
 课文
@@ -342,9 +286,6 @@ https://www.ypppt.com/
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape328p27.jpg)
 玛丽： 同志，这路车到天安门吗?
 售票员：到。上车吧。
@@ -364,8 +305,6 @@ A: 懂。你们是哪国人?
 ![](GoogleShape326p27.jpg)
 
 ### Notes:
-
-<!-- Slide number: 28 -->
 大卫：同志，我买一张票。
 售票员：哪儿上的?
 大卫：前一站。
@@ -382,9 +321,6 @@ A: 懂。你们是哪国人?
 ![](GoogleShape335p28.jpg)
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape342p29.jpg)
 04
 注释
@@ -401,9 +337,6 @@ A: 懂。你们是哪国人?
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape355p30.jpg)
 1.   “哪儿上的”  “ Lên xe ở đâu?”
 Từ “的” ở cuối câu nhân mạnh động tác đã phát sinh.
@@ -413,9 +346,6 @@ Từ “的” ở cuối câu nhân mạnh động tác đã phát sinh.
 Cuối câu dùng ngữ điệu lên để biểu thị nghi vấn.
 
 ### Notes:
-
-<!-- Slide number: 31 -->
-
 ![](GoogleShape363p31.jpg)
 05
 替换与扩展
@@ -432,8 +362,6 @@ Cuối câu dùng ngữ điệu lên để biểu thị nghi vấn.
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 32 -->
 1.买两张 票。
 
 2.给你 一块钱。
@@ -453,9 +381,6 @@ A：你们会说汉语吗？
 B：他会说一点儿。我不会。
 
 ### Notes:
-
-<!-- Slide number: 33 -->
-
 ![](GoogleShape387p33.jpg)
 06
 语法
@@ -472,9 +397,6 @@ B：他会说一点儿。我不会。
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 34 -->
-
 ![](GoogleShape400p34.jpg)
 1.双宾语动词谓语句  Câu vị ngữ động từ có hai tân ngữ
 Trong tiếng Hoa có một số động từ có thể mang hai tân ngữ, tân ngữ đứng trước là tân ngữ gián tiếp (thường chỉ người), tân ngữ đứng sau là tân ngữ trực tiếp (thường chỉ vật). Loại câu này gọi là câu vị ngữ động từ có hai tân ngữ.
@@ -484,8 +406,6 @@ Trong tiếng Hoa có một số động từ có thể mang hai tân ngữ, tâ
 ![](GoogleShape401p34.jpg)
 
 ### Notes:
-
-<!-- Slide number: 35 -->
 2.   能愿动词‘’会” Động từ năng nguyện “会”
 Động từ năng nguyện “会” biểu thị mấy ý nghĩa khác nhau? thường có hai nghĩa sau đây:
 Thông qua học tập mà có khả năng nào đó. Ví dụ:
@@ -499,9 +419,6 @@ Thông qua học tập mà có khả năng nào đó. Ví dụ:
 ![](GoogleShape409p35.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
-
 ![](GoogleShape415p36.jpg)
 3.   数量词作定语  Số lượng từ làm định ngữ
 Trong tiếng Hoa hiện đại, số từ thường không thể bổ nghĩa trực tiếp cho danh từ, mà phải xen một lượng từ thích hợp vào giữa danh từ và số từ đó. Ví dụ:
@@ -510,9 +427,6 @@ Trong tiếng Hoa hiện đại, số từ thường không thể bổ nghĩa tr
 ![](GoogleShape417p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 37 -->
-
 ![](GoogleShape424p37.jpg)
 07
 练习
@@ -529,8 +443,6 @@ Trong tiếng Hoa hiện đại, số từ thường không thể bổ nghĩa tr
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 38 -->
 1.   熟读下列短语并选择五个造句  Đọc thuộc các cụm từ sau và chọn năm cụm từ để đặt câu
 给你		找钱		  吃(一)点儿	  说英语
 作练习	穿衣服	  坐汽车		  去商店
@@ -540,8 +452,6 @@ Minliang
 ![](GoogleShape437p38.jpg)
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 2.  用上 在，往，去，完成句子 Dùng 在，往，去 để hoàn thành câu
 (1) 大卫..............学习汉语。
 (2) 我去王府井，不知道..............坐汽车。
@@ -552,8 +462,6 @@ Minliang
 ![](GoogleShape444p39.jpg)
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 3.  根据划线部分，用疑问代词提问 Căn cứ vào từ có gạch dưới, dùng đại từ nghi vấn để đặt câu hỏi
 (1)	由下和子是日本留学生。
 (2)	我有三个本了，两本书。
@@ -565,8 +473,6 @@ Minliang
 ![](GoogleShape450p40.jpg)
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 4.   听述 Nghe và kể lại
 	我认识一个中国朋友，他在北京大学学习。昨天我想去看他。问小刘 去北京大学怎么走。小刘说，北京大学离这儿很近，坐 331 路汽车可以到，我就去坐 331 路汽车。
 	331路车站就在前边，汽车来了，我问售票员，去不去北京大学，售票员 说去，我很高兴，就上车了。
@@ -574,8 +480,6 @@ Minliang
 ![](GoogleShape456p41.jpg)
 
 ### Notes:
-
-<!-- Slide number: 42 -->
 5.语音练习 Bài tập ngữ âm
 (1)读下列词语: 第2声+轻声
 Đọc các từ sau : Thanh 2 + Thanh nhẹ
@@ -588,9 +492,6 @@ tóufa		（头发）		liángkuai	（凉快）
 ![](GoogleShape462p42.jpg)
 
 ### Notes:
-
-<!-- Slide number: 43 -->
-
 ![](GoogleShape473p43.jpg)
 (2) 常用音节练习  Luyện tập các âm tiết thường dùng
 	liăng ge   两个		   	láodòng  劳动
@@ -603,14 +504,10 @@ lao
 ![](GoogleShape471p43.jpg)
 
 ### Notes:
-
-<!-- Slide number: 44 -->
 THE END
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 45 -->
 Minliang
 
 ### Notes:

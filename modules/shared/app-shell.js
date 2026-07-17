@@ -1,0 +1,363 @@
+(function () {
+  'use strict';
+
+  const currentScript = document.currentScript;
+  const scriptUrl = currentScript && currentScript.src
+    ? new URL(currentScript.src)
+    : new URL('../shared/app-shell.js', document.baseURI);
+  const rootUrl = new URL('../../', scriptUrl);
+  const SETTINGS_KEY = 'tiengTrung.navigation.v2';
+
+  const ROUTES = Object.freeze({
+    home: new URL('index.html', rootUrl).href,
+    lookup: new URL('modules/lookup/index.html', rootUrl).href,
+    learn: new URL('modules/hanzi-stroke/index.html?study=hub', rootUrl).href,
+    curriculum: new URL('modules/hanzi-stroke/index.html?study=hsk', rootUrl).href,
+    radicals: new URL('modules/hanzi-stroke/index.html?study=radicals', rootUrl).href,
+    cards: new URL('modules/hanzi-stroke/index.html?study=flashcards', rootUrl).href,
+    writing: new URL('modules/hanzi-stroke/index.html?study=writing', rootUrl).href,
+    pinyin: new URL('modules/pinyin/index.html', rootUrl).href,
+    dialogue301: new URL('index.html#dialogue301', rootUrl).href,
+    legacyRadicals: new URL('modules/bo-thu-50/index.html', rootUrl).href
+  });
+
+  const state = {
+    drawerOpen: false,
+    lastFocused: null,
+    settings: readSettings()
+  };
+
+  function readSettings() {
+    const defaults = { theme: 'system', fontScale: 'default' };
+    try {
+      const saved = JSON.parse(window.localStorage.getItem(SETTINGS_KEY) || '{}');
+      return Object.assign({}, defaults, saved && typeof saved === 'object' ? saved : {});
+    } catch (_error) {
+      return defaults;
+    }
+  }
+
+  function saveSettings() {
+    try {
+      window.localStorage.setItem(SETTINGS_KEY, JSON.stringify(state.settings));
+    } catch (_error) {}
+  }
+
+  function resolveContext() {
+    const path = window.location.pathname.toLowerCase();
+    const study = new URLSearchParams(window.location.search).get('study');
+
+    if (window.location.hash === '#dialogue301') return 'learn';
+    if (path.includes('/modules/bo-thu-50/')) return 'menu';
+    if (path.includes('/modules/lookup/')) return 'lookup';
+    if (path.includes('/modules/hanzi-stroke/') || path.includes('/modules/pinyin/')) return 'learn';
+
+    const explicit = document.body && document.body.dataset
+      ? document.body.dataset.uiShellContext || document.body.dataset.navContext
+      : '';
+    if (['home', 'lookup', 'learn', 'menu'].includes(explicit)) return explicit;
+    return 'home';
+  }
+
+  function applySettings() {
+    const root = document.documentElement;
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const dark = state.settings.theme === 'dark' || (state.settings.theme === 'system' && prefersDark);
+    root.dataset.theme = dark ? 'dark' : 'light';
+    root.classList.toggle('theme-dark', dark);
+    root.style.setProperty('--ui-user-scale', state.settings.fontScale === 'small' ? '.94' : state.settings.fontScale === 'large' ? '1.08' : '1');
+  }
+
+  function headerNavLink(label, href, active) {
+    return `<a class="ui-desktop-nav__item${active ? ' is-active' : ''}" href="${href}"${active ? ' aria-current="page"' : ''}>${label}</a>`;
+  }
+
+  function createHeader(context) {
+    const header = document.createElement('header');
+    header.className = 'ui-app-header';
+    header.dataset.uiAppHeader = '';
+    header.innerHTML = `
+      <div class="ui-app-header__inner">
+        <a class="ui-app-brand" href="${ROUTES.home}" aria-label="Về Trang chủ">
+          <span class="ui-app-brand__mark" aria-hidden="true">中</span>
+          <span class="ui-app-brand__copy"><strong>Tiếng Trung</strong></span>
+        </a>
+        <nav class="ui-desktop-nav" aria-label="Điều hướng chính">
+          ${headerNavLink('Trang chủ', ROUTES.home, context === 'home')}
+          ${headerNavLink('Tra', ROUTES.lookup, context === 'lookup')}
+          ${headerNavLink('Học', ROUTES.learn, context === 'learn')}
+          <button class="ui-desktop-nav__item${context === 'menu' ? ' is-active' : ''}" type="button" data-ui-menu-open aria-controls="uiGlobalDrawer" aria-expanded="false">Menu</button>
+        </nav>
+        <div class="ui-app-header__actions">
+          <button class="ui-app-icon-button" type="button" data-ui-theme-toggle aria-label="Đổi giao diện sáng hoặc tối">◐</button>
+          <button class="ui-app-icon-button ui-mobile-menu-button" type="button" data-ui-menu-open aria-label="Mở Menu" aria-controls="uiGlobalDrawer" aria-expanded="false">☰</button>
+        </div>
+      </div>`;
+    return header;
+  }
+
+  function drawerLink(icon, title, subtitle, href, active) {
+    return `<a class="ui-drawer-link${active ? ' is-active' : ''}" href="${href}"${active ? ' aria-current="page"' : ''}>
+      <span class="ui-drawer-link__icon" aria-hidden="true">${icon}</span>
+      <span class="ui-drawer-link__copy"><strong>${title}</strong>${subtitle ? `<small>${subtitle}</small>` : ''}</span>
+      <span class="ui-drawer-link__arrow" aria-hidden="true">›</span>
+    </a>`;
+  }
+
+  function createDrawer(context) {
+    const backdrop = document.createElement('div');
+    backdrop.className = 'ui-drawer-backdrop';
+    backdrop.dataset.uiDrawerBackdrop = '';
+
+    const drawer = document.createElement('aside');
+    drawer.className = 'ui-app-drawer';
+    drawer.id = 'uiGlobalDrawer';
+    drawer.setAttribute('aria-label', 'Menu toàn ứng dụng');
+    drawer.setAttribute('aria-hidden', 'true');
+    drawer.innerHTML = `
+      <div class="ui-app-drawer__header">
+        <div><p>Tiếng Trung</p><h2>Menu</h2></div>
+        <button class="ui-app-icon-button" type="button" data-ui-menu-close aria-label="Đóng Menu">×</button>
+      </div>
+      <div class="ui-app-drawer__body">
+        <nav class="ui-drawer-nav" aria-label="Điều hướng chính">
+          ${drawerLink('⌂', 'Trang chủ', 'Tra nhanh và học tiếp', ROUTES.home, context === 'home')}
+          ${drawerLink('⌕', 'Tra', 'Tra chữ, từ nhiều chữ hoặc Pinyin', ROUTES.lookup, context === 'lookup')}
+          ${drawerLink('学', 'Học', 'Giáo trình và các công cụ học', ROUTES.learn, context === 'learn')}
+        </nav>
+
+        <section class="ui-drawer-section" aria-labelledby="uiLearnGroupTitle">
+          <h3 id="uiLearnGroupTitle">Học tập</h3>
+          <div class="ui-drawer-subnav">
+            ${drawerLink('课', 'Giáo trình', '301 · HSK 6 cấp · HSK 9 cấp · YCT · Boya', ROUTES.curriculum, false)}
+            ${drawerLink('部', 'Bộ thủ', 'Bộ thủ 214 hiện tại', ROUTES.radicals, false)}
+            ${drawerLink('卡', 'Thẻ', 'Flashcard và ôn tập', ROUTES.cards, false)}
+            ${drawerLink('✍', 'Bút thuận', 'Luyện viết và thứ tự nét', ROUTES.writing, false)}
+            ${drawerLink('拼', 'Pinyin', 'Học · Nghe · Quiz · Ôn · Tiến độ', ROUTES.pinyin, false)}
+          </div>
+        </section>
+
+        <section class="ui-drawer-section" aria-labelledby="uiReferenceTitle">
+          <h3 id="uiReferenceTitle">Tham khảo</h3>
+          <div class="ui-drawer-subnav">
+            ${drawerLink('部', 'Bộ thủ 50', 'Phiên bản cũ chỉ dùng để tham khảo', ROUTES.legacyRadicals, context === 'menu')}
+          </div>
+        </section>
+
+        <section class="ui-drawer-section" aria-labelledby="uiQuickSettingsTitle">
+          <h3 id="uiQuickSettingsTitle">Giao diện</h3>
+          <label class="ui-settings-row">
+            <span><strong class="ui-settings-row__label">Chế độ</strong><small class="ui-settings-row__hint">Theo thiết bị, sáng hoặc tối</small></span>
+            <select class="ui-shell-select" data-ui-setting="theme">
+              <option value="system">Tự động</option><option value="light">Sáng</option><option value="dark">Tối</option>
+            </select>
+          </label>
+          <label class="ui-settings-row">
+            <span><strong class="ui-settings-row__label">Cỡ chữ</strong><small class="ui-settings-row__hint">Điều chỉnh phần khung chung</small></span>
+            <select class="ui-shell-select" data-ui-setting="fontScale">
+              <option value="small">Nhỏ</option><option value="default">Mặc định</option><option value="large">Lớn</option>
+            </select>
+          </label>
+          <button class="ui-button ui-button--secondary ui-drawer-reset" type="button" data-ui-settings-reset>Khôi phục mặc định</button>
+        </section>
+      </div>`;
+    return { backdrop, drawer };
+  }
+
+  function createBottomNavigation(context) {
+    const bottom = document.createElement('nav');
+    bottom.className = 'ui-bottom-nav';
+    bottom.setAttribute('aria-label', 'Điều hướng chính');
+    bottom.innerHTML = `
+      <a class="ui-bottom-nav__item${context === 'home' ? ' is-active' : ''}" href="${ROUTES.home}"${context === 'home' ? ' aria-current="page" data-ui-context-active' : ''}><span aria-hidden="true">⌂</span><small>Trang chủ</small></a>
+      <a class="ui-bottom-nav__item${context === 'lookup' ? ' is-active' : ''}" href="${ROUTES.lookup}"${context === 'lookup' ? ' aria-current="page" data-ui-context-active' : ''}><span aria-hidden="true">⌕</span><small>Tra</small></a>
+      <a class="ui-bottom-nav__item${context === 'learn' ? ' is-active' : ''}" href="${ROUTES.learn}"${context === 'learn' ? ' aria-current="page" data-ui-context-active' : ''}><span aria-hidden="true">学</span><small>Học</small></a>
+      <button class="ui-bottom-nav__item${context === 'menu' ? ' is-active' : ''}" type="button" data-ui-menu-open${context === 'menu' ? ' data-ui-context-active' : ''} aria-label="Mở Menu"><span aria-hidden="true">☰</span><small>Menu</small></button>`;
+    return bottom;
+  }
+
+  function breadcrumbItem(label, href, current = false) {
+    if (current) return `<strong aria-current="page">${label}</strong>`;
+    return `<a href="${href}">${label}</a>`;
+  }
+
+  function createHierarchyBreadcrumb(context) {
+    if (context === 'home' || context === 'lookup') return null;
+    const path = window.location.pathname.toLowerCase();
+    const study = new URLSearchParams(window.location.search).get('study') || 'hub';
+    const items = [breadcrumbItem('Trang chủ', ROUTES.home)];
+
+    if (path.includes('/modules/bo-thu-50/')) {
+      items.push(breadcrumbItem('Menu', '#', false));
+      items.push(breadcrumbItem('Tham khảo', '#', false));
+      items.push(breadcrumbItem('Bộ thủ 50', '', true));
+    } else {
+      const learnCurrent = study === 'hub' && !path.includes('/modules/pinyin/');
+      items.push(breadcrumbItem('Học', ROUTES.learn, learnCurrent));
+      if (!learnCurrent) {
+        const leaf = path.includes('/modules/pinyin/')
+          ? ['Pinyin', ROUTES.pinyin]
+          : ({
+              hsk: ['Giáo trình', ROUTES.curriculum],
+              radicals: ['Bộ thủ', ROUTES.radicals],
+              flashcards: ['Thẻ', ROUTES.cards],
+              writing: ['Bút thuận', ROUTES.writing]
+            }[study] || ['Học', ROUTES.learn]);
+        items.push(breadcrumbItem(leaf[0], leaf[1], true));
+      }
+    }
+
+    const nav = document.createElement('nav');
+    nav.className = 'ui-hierarchy-breadcrumb';
+    nav.setAttribute('aria-label', 'Đường dẫn hiện tại');
+    nav.innerHTML = items.join('<span aria-hidden="true">→</span>');
+    nav.querySelectorAll('a[href="#"]').forEach(link => link.addEventListener('click', event => { event.preventDefault(); openDrawer(); }));
+    return nav;
+  }
+
+  function installPageContainer(context) {
+    const target = document.querySelector('[data-ui-shell-main]') || document.querySelector('main');
+    if (!target) return;
+    target.classList.add('ui-shell-main');
+    target.setAttribute('data-ui-shell-main', '');
+    const breadcrumb = createHierarchyBreadcrumb(context);
+    if (breadcrumb) target.prepend(breadcrumb);
+  }
+
+  function hideLegacyChrome() {
+    document.querySelectorAll('.tt-shell-bottom-nav, .tt-shell-menu-trigger, .tt-shell-drawer, .tt-shell-backdrop').forEach(node => node.remove());
+    document.querySelectorAll('.app-header, .bottom-nav, .mobile-bottom-nav, .tt-module-top-nav').forEach(node => {
+      if (!node.closest('[data-ui-app-shell]')) node.classList.add('ui-shell-legacy-chrome');
+    });
+  }
+
+  function syncBottomNavigationForDrawer(open) {
+    const items = document.querySelectorAll('.ui-bottom-nav__item');
+    items.forEach(item => {
+      const active = open ? item.matches('[data-ui-menu-open]') : item.hasAttribute('data-ui-context-active');
+      item.classList.toggle('is-active', active);
+    });
+  }
+
+  function openDrawer() {
+    const drawer = document.getElementById('uiGlobalDrawer');
+    const backdrop = document.querySelector('[data-ui-drawer-backdrop]');
+    if (!drawer || !backdrop || state.drawerOpen) return;
+    state.lastFocused = document.activeElement;
+    state.drawerOpen = true;
+    document.body.classList.add('ui-shell-lock', 'ui-drawer-open');
+    syncBottomNavigationForDrawer(true);
+    drawer.classList.add('is-open');
+    backdrop.classList.add('is-open');
+    drawer.setAttribute('aria-hidden', 'false');
+    document.querySelectorAll('[data-ui-menu-open]').forEach(button => button.setAttribute('aria-expanded', 'true'));
+    window.requestAnimationFrame(() => {
+      const first = drawer.querySelector('[data-ui-menu-close], a, button, select');
+      if (first) first.focus({ preventScroll: true });
+    });
+  }
+
+  function closeDrawer() {
+    const drawer = document.getElementById('uiGlobalDrawer');
+    const backdrop = document.querySelector('[data-ui-drawer-backdrop]');
+    if (!drawer || !backdrop || !state.drawerOpen) return;
+    state.drawerOpen = false;
+    document.body.classList.remove('ui-shell-lock', 'ui-drawer-open');
+    syncBottomNavigationForDrawer(false);
+    drawer.classList.remove('is-open');
+    backdrop.classList.remove('is-open');
+    drawer.setAttribute('aria-hidden', 'true');
+    document.querySelectorAll('[data-ui-menu-open]').forEach(button => button.setAttribute('aria-expanded', 'false'));
+    if (state.lastFocused && typeof state.lastFocused.focus === 'function') state.lastFocused.focus({ preventScroll: true });
+  }
+
+  function trapFocus(event) {
+    if (!state.drawerOpen || event.key !== 'Tab') return;
+    const drawer = document.getElementById('uiGlobalDrawer');
+    const focusable = Array.from(drawer.querySelectorAll('a[href], button:not([disabled]), select:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  }
+
+  function bindEvents(drawer) {
+    document.addEventListener('click', event => {
+      if (event.target.closest('[data-ui-menu-open]')) { event.preventDefault(); openDrawer(); return; }
+      if (event.target.closest('[data-ui-menu-close]') || event.target.matches('[data-ui-drawer-backdrop]')) { event.preventDefault(); closeDrawer(); return; }
+      if (event.target.closest('[data-ui-theme-toggle]')) {
+        state.settings.theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        saveSettings(); applySettings(); syncSettings(drawer); return;
+      }
+      if (event.target.closest('[data-ui-settings-reset]')) {
+        state.settings = { theme: 'system', fontScale: 'default' };
+        saveSettings(); applySettings(); syncSettings(drawer);
+      }
+    });
+
+    drawer.addEventListener('change', event => {
+      const control = event.target.closest('[data-ui-setting]');
+      if (!control) return;
+      state.settings[control.dataset.uiSetting] = control.value;
+      saveSettings(); applySettings();
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && state.drawerOpen) closeDrawer();
+      trapFocus(event);
+    });
+  }
+
+  function syncSettings(drawer) {
+    drawer.querySelectorAll('[data-ui-setting]').forEach(control => {
+      if (state.settings[control.dataset.uiSetting] != null) control.value = state.settings[control.dataset.uiSetting];
+    });
+  }
+
+  function applyStudyQuery() {
+    if (!window.location.pathname.toLowerCase().includes('/modules/hanzi-stroke/')) return;
+    const study = new URLSearchParams(window.location.search).get('study') || 'hub';
+    const ids = {
+      hub: 'studyTabHub',
+      writing: 'studyTabLookup',
+      hsk: 'studyTabHsk',
+      radicals: 'studyTabRadicals',
+      flashcards: 'studyTabFlashcards'
+    };
+    if (!ids[study]) return;
+    let tries = 0;
+    const timer = window.setInterval(() => {
+      tries += 1;
+      const button = document.getElementById(ids[study]);
+      if (button) { window.clearInterval(timer); button.click(); }
+      else if (tries >= 70) window.clearInterval(timer);
+    }, 100);
+  }
+
+  function mount() {
+    if (!document.body || document.querySelector('[data-ui-app-shell]')) return;
+    const context = resolveContext();
+    document.body.classList.remove('is-dim');
+    applySettings();
+    hideLegacyChrome();
+    installPageContainer(context);
+
+    const shell = document.createElement('div');
+    shell.dataset.uiAppShell = '';
+    shell.className = 'ui-app-shell';
+    const header = createHeader(context);
+    const { backdrop, drawer } = createDrawer(context);
+    const bottom = createBottomNavigation(context);
+    shell.append(header, backdrop, drawer, bottom);
+    document.body.prepend(shell);
+
+    syncSettings(drawer);
+    bindEvents(drawer);
+    applyStudyQuery();
+  }
+
+  window.TiengTrungAppShell = Object.freeze({ mount, openDrawer, closeDrawer, routes: ROUTES });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount, { once: true });
+  else mount();
+})();

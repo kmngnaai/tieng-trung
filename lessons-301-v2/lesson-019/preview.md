@@ -1,7 +1,7 @@
 # Bài 19 · 欢迎你
 
 - Type: `standard_301_course`
-- Source: 19第十九课_欢迎你.md, pdf-301-cau-dam-thoai.md, 19第十九课_欢迎你.pptx
+- Source: 19第十九课_欢迎你.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

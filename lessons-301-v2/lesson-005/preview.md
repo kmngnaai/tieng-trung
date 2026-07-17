@@ -1,7 +1,7 @@
 # Bài 5 · 我介绍一下儿
 
 - Type: `full_course`
-- Source: 5第五课-我介绍一下儿.md, pdf-301-cau-dam-thoai.md, lesson-005/data.json, 5第五课-我介绍一下儿.pptx
+- Source: 5第五课-我介绍一下儿.md, pdf-301-cau-dam-thoai.md, lesson-005/data.json
 
 ## Mẫu câu
 

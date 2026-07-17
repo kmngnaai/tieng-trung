@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape153p1.jpg)
 
 第五课
@@ -20,9 +18,6 @@ Tôi xin được giới thiệu
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape163p2.jpg)
 目录
 
@@ -49,9 +44,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape201p3.jpg)
 01
 生词
@@ -68,8 +60,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 谁 | shuí/shéi | 看 | kàn |
 | --- | --- | --- | --- |
 | 介绍 | jièshào | 听 | tīng |
@@ -84,8 +74,6 @@ Minliang
 | 商店 | shāngdiàn |  |  |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 谁 | shuí/shéi | 代 | ai |
@@ -95,8 +83,6 @@ Minliang
 ![](GoogleShape220p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 介绍 | jièshào | 动 | giới thiệu |
@@ -108,8 +94,6 @@ Minliang
 ![C:\Users\ad\Downloads\7662.gif](GoogleShape231p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 一下儿 | yí xiàr |  | một chút, một lát |
@@ -121,8 +105,6 @@ Minliang
 ![儿的笔顺动画](GoogleShape240p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 去 | qù | 动 | đi |
@@ -132,8 +114,6 @@ Minliang
 ![](GoogleShape246p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 哪儿 | nǎr | 代 | đâu, ở đâu |
@@ -143,8 +123,6 @@ Minliang
 ![](GoogleShape254p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 在 | zài | 动，介 | ở tại |
@@ -154,8 +132,6 @@ Minliang
 ![](GoogleShape262p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 家 | jiā | 名 | Nhà |
@@ -165,8 +141,6 @@ Minliang
 ![](GoogleShape270p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 的 | de | 助 | của (trợ từ) |
@@ -176,8 +150,6 @@ Minliang
 ![](GoogleShape278p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 请 | qǐng | 动 | Mời |
@@ -187,8 +159,6 @@ Minliang
 ![](GoogleShape286p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 进 | jìn | 动 | Vào |
@@ -198,8 +168,6 @@ Minliang
 ![](GoogleShape294p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 商店 | shāngdiàn | 名 | cửa hàng |
@@ -211,8 +179,6 @@ Minliang
 ![店的笔顺动画](GoogleShape305p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 看 | kàn | 动 | Xem, nhìn, ngắm, thăm, khám |
@@ -222,8 +188,6 @@ Minliang
 ![C:\Users\ad\Downloads\13179.gif](GoogleShape313p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 听 | tīng | 动 | nghe |
@@ -233,8 +197,6 @@ Minliang
 ![](GoogleShape319p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 休息 | xiūxi | 动 | nghỉ |
@@ -246,8 +208,6 @@ Minliang
 ![息的笔顺动画](GoogleShape330p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 宿舍 | sùshè | 名 | ký túc xá |
@@ -259,8 +219,6 @@ Minliang
 ![舍的笔顺动画](GoogleShape339p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 教室 | jiàoshì | 名 | phòng học |
@@ -272,8 +230,6 @@ Minliang
 ![室的笔顺动画](GoogleShape348p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 回 | huí | 动 | đi về, trở về |
@@ -283,8 +239,6 @@ Minliang
 ![](GoogleShape354p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Nghĩa của từ |
 | --- | --- | --- | --- |
 | 18 | 王林 | Wáng Lín | Vương Lâm |
@@ -295,9 +249,6 @@ Minliang
 ![](GoogleShape362p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
-
 ![](GoogleShape370p23.jpg)
 02
 句子
@@ -314,9 +265,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 24 -->
-
 ![](GoogleShape385p24.jpg)
 1.他是谁？
 /Tā shì shuí?/ - Anh ấy là ai ?
@@ -332,9 +280,6 @@ Minliang
 /Qǐng jìn!/ - Mời vào !
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape392p25.jpg)
 03
 课文
@@ -351,9 +296,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape407p26.jpg)
 玛丽：王兰，他是谁？
 Mǎlì: Wáng lán, tā shì shéi?
@@ -377,9 +319,6 @@ Wáng Lán, Wáng Lín: Zàijiàn!
 ![](GoogleShape405p26.jpg)
 
 ### Notes:
-
-<!-- Slide number: 27 -->
-
 ![](GoogleShape414p27.jpg)
 
 ![](GoogleShape413p27.jpg)
@@ -395,9 +334,6 @@ Xiǎoyīng: Wǒ jiào Xiǎoyīng. Zhāng lǎoshī shì wǒ bàba. Qǐng jìn!
 Hézǐ: Xièxie!
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape423p28.jpg)
 04
 注释
@@ -414,9 +350,6 @@ Hézǐ: Xièxie!
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape437p29.jpg)
 1. “我介绍一下儿” “Tôi giới thiệu một chút”
 Đây là câu thường dùng khi giới thiệu với người khác. “一下儿” biểu thị động tác xảy ra nhanh chóng hay có ý nhẹ nhàng tùy tiện, câu trên biểu thị nghĩa thứ hai.
@@ -425,9 +358,6 @@ Minliang
 Có nghĩa “Ông là ai?” Sau “您是 …” người được hỏi sẽ tiếp lời để nói rõ tên họ và thân thế của mình. Câu này dùng để hỏi khi ta chưa biết người đối diện là ai. Chú ý: “你是谁？” là cách hỏi không được lịch sự. Do đó đối với người chưa quen, ta không trực diện dùng câu trên, mà dùng câu “您是 …”.
 
 ### Notes:
-
-<!-- Slide number: 30 -->
-
 ![](GoogleShape444p30.jpg)
 替换与扩展
 05
@@ -444,8 +374,6 @@ Có nghĩa “Ông là ai?” Sau “您是 …” người được hỏi sẽ 
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 31 -->
 你来		我看
 你听		我休息
 我 介绍一下！
@@ -467,9 +395,6 @@ B：不在，他在301教室。
 ![](GoogleShape457p31.jpg)
 
 ### Notes:
-
-<!-- Slide number: 32 -->
-
 ![](GoogleShape469p32.jpg)
 06
 语法
@@ -486,9 +411,6 @@ B：不在，他在301教室。
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 33 -->
-
 ![](GoogleShape481p33.jpg)
 
 ![](GoogleShape482p33.jpg)
@@ -502,9 +424,6 @@ Ví dụ:
 ![](GoogleShape484p33.jpg)
 
 ### Notes:
-
-<!-- Slide number: 34 -->
-
 ![](GoogleShape489p34.jpg)
 
 ![](GoogleShape490p34.jpg)
@@ -518,9 +437,6 @@ Ví dụ:
 Ví dụ:  我哥哥，我姐姐， 我学校.........
 
 ### Notes:
-
-<!-- Slide number: 35 -->
-
 ![](GoogleShape498p35.jpg)
 
 ![](GoogleShape500p35.jpg)
@@ -538,9 +454,6 @@ Ví dụ:
 ![](GoogleShape497p35.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
-
 ![](GoogleShape508p36.jpg)
 07
 练习
@@ -557,8 +470,6 @@ Ví dụ:
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 37 -->
 1.	熟读下列词语并造句 Đọc thuộc và đặt câu với các từ ngữ sau
            叫什么	            认识谁	     在哪儿 去商店
            妈妈的朋友	 王兰的哥哥
@@ -566,9 +477,6 @@ Minliang
 ![](GoogleShape520p37.jpg)
 
 ### Notes:
-
-<!-- Slide number: 38 -->
-
 2.	用所给的词完成对话 Dùng từ trong ngoặc hoàn thành đối thoại
 （1）	A：王兰在哪儿？
           B：...................。（ 教室）
@@ -587,8 +495,6 @@ Minliang
 ![](GoogleShape526p38.jpg)
 
 ### Notes:
-
-<!-- Slide number: 39 -->
 3. 根据句中的划线部分，把句子改成用疑问代词问句：Dùng đại từ nghi vấn thay cho các từ có gạch dưới tạo thành câu nghi vấn:
 （1）	他是我的老师。
 （2）	她姓玉。
@@ -600,17 +506,12 @@ Minliang
 ![](GoogleShape536p39.jpg)
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 4.听述： Nghe và kể lại
 我介绍一下儿，我叫玛丽，我是美国留学生。那是大卫，他是我的朋友，他 也是留学生,他是法国人。刘京、王兰是我们的朋友，认识他们我们很高兴。
 
 ![](GoogleShape543p40.jpg)
 
 ### Notes:
-
-<!-- Slide number: 41 -->
-
 ![](GoogleShape550p41.jpg)
 辨音
 | zhīdào | 知道 | chídào | 迟到 |
@@ -622,8 +523,6 @@ Minliang
 | jiāotì | 交替 | jiāodì | 浇地 |
 
 ### Notes:
-
-<!-- Slide number: 42 -->
 辨调
 | núlì | 奴隶 | nǔlì | 努力 |
 | --- | --- | --- | --- |
@@ -634,8 +533,6 @@ Minliang
 | wán le | 完了 | wǎn le | 晚了 |
 
 ### Notes:
-
-<!-- Slide number: 43 -->
 读下列词语：第一声+第二声
 | bā lóu | 八楼 | gōngrén | 工人 |
 | --- | --- | --- | --- |
@@ -645,8 +542,6 @@ Minliang
 | gōngyuán | 公园 | jiātíng | 家庭 |
 
 ### Notes:
-
-<!-- Slide number: 44 -->
 THE END
 Minliang
 

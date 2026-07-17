@@ -1,7 +1,7 @@
 # Bài 24 · 我觉得很遗憾
 
 - Type: `standard_301_course`
-- Source: 24第二十四课_我觉得很遗憾.md, pdf-301-cau-dam-thoai.md, 24第二十四课_我觉得很遗憾.pptx
+- Source: 24第二十四课_我觉得很遗憾.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

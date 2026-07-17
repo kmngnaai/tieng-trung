@@ -1,7 +1,7 @@
 # Bài 33 · 有空房间吗
 
 - Type: `standard_301_course`
-- Source: 33第三十三课_有空房间吗.md, pdf-301-cau-dam-thoai.md, 33第三十三课_有空房间吗.pptx
+- Source: 33第三十三课_有空房间吗.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

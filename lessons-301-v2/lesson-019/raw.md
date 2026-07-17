@@ -1,5 +1,3 @@
-<!-- Slide number: 1 -->
-
 ![](GoogleShape77p1.jpg)
 
 第十九课
@@ -20,9 +18,6 @@ Xin chào mừng ông
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 2 -->
-
 ![](GoogleShape87p2.jpg)
 目录
 
@@ -46,9 +41,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 3 -->
-
 ![](GoogleShape119p3.jpg)
 
 ![](GoogleShape121p3.jpg)
@@ -67,8 +59,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 4 -->
 | 别 | bié | 以前 | yǐ qián |
 | --- | --- | --- | --- |
 | 客气 | kè qì | 麻烦 | má fán |
@@ -82,8 +72,6 @@ Minliang
 | 送 | sòng | 句 | jù |
 
 ### Notes:
-
-<!-- Slide number: 5 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 1 | 别 | bié | 副 | đừng |
@@ -93,8 +81,6 @@ Minliang
 ![](GoogleShape140p5.jpg)
 
 ### Notes:
-
-<!-- Slide number: 6 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 2 | 客气 | kè qì | 形 | khách sáo |
@@ -104,8 +90,6 @@ Minliang
 ![](GoogleShape148p6.jpg)
 
 ### Notes:
-
-<!-- Slide number: 7 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 3 | 第 | dì |  | thứ (tự) |
@@ -115,8 +99,6 @@ Minliang
 ![](GoogleShape156p7.jpg)
 
 ### Notes:
-
-<!-- Slide number: 8 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 4 | 次 | cì | 名 | lần |
@@ -126,8 +108,6 @@ Minliang
 ![](GoogleShape164p8.jpg)
 
 ### Notes:
-
-<!-- Slide number: 9 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 5 | 经理 | jīng lǐ | 名 | giám đốc |
@@ -135,8 +115,6 @@ Minliang
 ![经的笔顺动画](GoogleShape173p9.jpg)
 
 ### Notes:
-
-<!-- Slide number: 10 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 6 | 先生 | xiānsheng | 名 | ông, tiên sinh |
@@ -146,8 +124,6 @@ Minliang
 ![](GoogleShape179p10.jpg)
 
 ### Notes:
-
-<!-- Slide number: 11 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 7 | 翻译 | fàn yì | 名 | phiên dịch |
@@ -159,8 +135,6 @@ Minliang
 ![C:\Users\ad\Downloads\1857.gif](GoogleShape189p11.jpg)
 
 ### Notes:
-
-<!-- Slide number: 12 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 8 | 顺利 | shùn lì | 形 | thuận lợi |
@@ -172,8 +146,6 @@ Minliang
 ![C:\Users\ad\Downloads\372.gif](GoogleShape199p12.jpg)
 
 ### Notes:
-
-<!-- Slide number: 13 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 9 | 外边 | wàibiān | 名 | bên ngoài |
@@ -181,8 +153,6 @@ Minliang
 ![](GoogleShape205p13.jpg)
 
 ### Notes:
-
-<!-- Slide number: 14 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 10 | 送 | sòng | 动 | đưa, tiễn |
@@ -192,8 +162,6 @@ Minliang
 ![](GoogleShape212p14.jpg)
 
 ### Notes:
-
-<!-- Slide number: 15 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 11 | 以前 | yǐ qián | 形，动 | khi trước, trước đây |
@@ -203,8 +171,6 @@ Minliang
 ![](GoogleShape220p15.jpg)
 
 ### Notes:
-
-<!-- Slide number: 16 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 12 | 麻烦 | má fán | 动 | phiền phức, cảm phiền |
@@ -216,8 +182,6 @@ Minliang
 ![C:\Users\ad\Downloads\9327.gif](GoogleShape230p16.jpg)
 
 ### Notes:
-
-<!-- Slide number: 17 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 13 | 真 | zhēn | 副 | thật |
@@ -227,8 +191,6 @@ Minliang
 ![C:\Users\ad\Downloads\13210.gif](GoogleShape239p17.jpg)
 
 ### Notes:
-
-<!-- Slide number: 18 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 14 | 不好意思 | bù hǎo yì si |  | ngần ngại, áy náy |
@@ -238,8 +200,6 @@ Minliang
 ![](GoogleShape245p18.jpg)
 
 ### Notes:
-
-<!-- Slide number: 19 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 15 | 不用 | bú yòng |  | không cần |
@@ -249,8 +209,6 @@ Minliang
 ![](GoogleShape253p19.jpg)
 
 ### Notes:
-
-<!-- Slide number: 20 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 16 | 热 | rè | 形 | nóng |
@@ -260,8 +218,6 @@ Minliang
 ![](GoogleShape261p20.jpg)
 
 ### Notes:
-
-<!-- Slide number: 21 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 17 | 钟 | zhōng | 名 | đồng hồ |
@@ -271,8 +227,6 @@ Minliang
 ![](GoogleShape269p21.jpg)
 
 ### Notes:
-
-<!-- Slide number: 22 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 18 | 慢 | màn | 形 | chậm |
@@ -282,8 +236,6 @@ Minliang
 ![](GoogleShape277p22.jpg)
 
 ### Notes:
-
-<!-- Slide number: 23 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 19 | 笔 | bǐ | 名 | bút |
@@ -293,8 +245,6 @@ Minliang
 ![](GoogleShape285p23.jpg)
 
 ### Notes:
-
-<!-- Slide number: 24 -->
 | STT | Tiếng Trung | Phiên âm | Từ loại | Nghĩa của từ |
 | --- | --- | --- | --- | --- |
 | 20 | 句 | jù | 量 | câu (lượng từ) |
@@ -304,9 +254,6 @@ Minliang
 ![](GoogleShape293p24.jpg)
 
 ### Notes:
-
-<!-- Slide number: 25 -->
-
 ![](GoogleShape301p25.jpg)
 
 ![](GoogleShape303p25.jpg)
@@ -325,9 +272,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 26 -->
-
 ![](GoogleShape318p26.jpg)
 1. 别客气。
 /Bié kè qì/ - Đừng khách sáo.
@@ -339,8 +283,6 @@ Minliang
 /Zhè shì wǒ men jīng lǐ gěi nín de xìn/ - Đây là thư của giám đốc chúng tôi gửi cho ông.
 
 ### Notes:
-
-<!-- Slide number: 27 -->
 5.他问您好 ?
 /Tā wèn nín hǎo ?/ - Anh ấy (gửi lời) hỏi thăm bạn.
 6.我们在北京饭店请您吃晚饭。
@@ -353,9 +295,6 @@ Minliang
 ![](GoogleShape326p27.jpg)
 
 ### Notes:
-
-<!-- Slide number: 28 -->
-
 ![](GoogleShape332p28.jpg)
 
 ![](GoogleShape334p28.jpg)
@@ -374,9 +313,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 29 -->
-
 ![](GoogleShape348p29.jpg)
 王：您好，西川先生。我是王大年，公司的翻译。
 西川：谢谢您来接我。
@@ -388,8 +324,6 @@ Minliang
 西川：谢谢
 
 ### Notes:
-
-<!-- Slide number: 30 -->
 经理：欢迎您! 西川先生。
 西川：谢谢。
 经理：您第一次来中国吗?
@@ -406,9 +340,6 @@ Minliang
 ![](GoogleShape355p30.jpg)
 
 ### Notes:
-
-<!-- Slide number: 31 -->
-
 ![](GoogleShape361p31.jpg)
 
 ![](GoogleShape363p31.jpg)
@@ -427,8 +358,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 32 -->
 一点儿	  不热，	一分钟	没休息
 一样东西	  没买， 一点儿	不满
 1.一点儿也不累。
@@ -446,9 +375,6 @@ Minliang
 我来中国的时候一句汉语不会说。
 
 ### Notes:
-
-<!-- Slide number: 33 -->
-
 ![](GoogleShape385p33.jpg)
 
 ![](GoogleShape387p33.jpg)
@@ -467,8 +393,6 @@ Minliang
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 34 -->
 1. “从”，“在” 的宾语与“这儿”、“那儿”.
 Tân ngữ của“从”、“在” với“这儿”và“那儿”
 Tân ngữ của “从”，“在” nếu là một danh từ hay một đại từ chỉ người, thì phải thêm“这儿”hoặc“那儿”ở sau nó mới có thể chỉ nơi chốn được. Ví dụ:
@@ -480,8 +404,6 @@ Tân ngữ của “从”，“在” nếu là một danh từ hay một đạ
 ![](GoogleShape400p34.jpg)
 
 ### Notes:
-
-<!-- Slide number: 35 -->
 2.  介词“从”、“离”。Giới từ“从”、“离”
 “从”，“离”ngoài khả năng kết hợp vối từ ngữ chỉ nơi chốn ra, còn có thể kết hợp với từ ngữ chỉ thời gian để chỉ thời gian. Ví dụ:
 (1) 上午我门从八点开始上课。
@@ -492,8 +414,6 @@ Tân ngữ của “从”，“在” nếu là một danh từ hay một đạ
 ![](GoogleShape408p35.jpg)
 
 ### Notes:
-
-<!-- Slide number: 36 -->
 3.  动词、动词短语、主谓短语等作定语. Động từ, ngữ động từ và ngữ chủ - vị... làm định ngữ
 Khi một động từ, ngữ động từ, ngữ chủ vị hoặc ngữ giới từ làm định ngữ thì cần phải thêm 的. Ví dụ:
 (1) 来的人很多。
@@ -504,9 +424,6 @@ Khi một động từ, ngữ động từ, ngữ chủ vị hoặc ngữ giới
 ![](GoogleShape414p36.jpg)
 
 ### Notes:
-
-<!-- Slide number: 37 -->
-
 ![](GoogleShape420p37.jpg)
 
 ![](GoogleShape422p37.jpg)
@@ -525,8 +442,6 @@ Khi một động từ, ngữ động từ, ngữ chủ vị hoặc ngữ giới
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 38 -->
 1 .用下列动词造句 Đặt câu với các động từ sau
 	接 	送 	给	收 	换
 2.用“一...也...”改写句子。 Dùng “一 ...也...” viết lại câu
@@ -543,9 +458,6 @@ Minliang
 ![](GoogleShape435p38.jpg)
 
 ### Notes:
-
-<!-- Slide number: 39 -->
-
 ![](GoogleShape442p39.jpg)
 3.按照实际情况回答问题 Dựa vào tình hình thực tế để trả lời câu hỏi
 （1）你来过中国吗？现在是第几次来？
@@ -554,8 +466,6 @@ Minliang
 （4）你们宿舍楼有几层？你往在儿层？
 
 ### Notes:
-
-<!-- Slide number: 40 -->
 4.  会话练习 Bài tập đàm thoại
 （1）去机场接朋友  Đến sân bay đón bạn
 Gợi ý: Hỏi thăm trên đường đi thế nào, nói cho anh ta biết bây giờ đi đâu, mấy ngày nay làm gì ? v.v
@@ -566,8 +476,6 @@ Gợi ý: Hỏi vì sao tàu chưa đến, chừng nào tàu đến v.v.
 ![](GoogleShape448p40.jpg)
 
 ### Notes:
-
-<!-- Slide number: 41 -->
 5. 听述 Nghe và kể lại
 上星期五我去大同了，我是坐火车去的，今天早上 回来的。我第一次去大同，我很喜欢这个遍方。
 从北京到大同很近，坐火车去大概要七个小时，现在去，天 气不冷也不热，下星期你也去吧。
@@ -575,9 +483,6 @@ Gợi ý: Hỏi vì sao tàu chưa đến, chừng nào tàu đến v.v.
 ![](GoogleShape454p41.jpg)
 
 ### Notes:
-
-<!-- Slide number: 42 -->
-
 ![](GoogleShape463p42.jpg)
 6.语音练习 Bài tập ngữ âm
 (1)读下列词语: 第4声+第1声
@@ -588,8 +493,6 @@ diàndēng	（展览）		dàjiā		（很短）
 hùxiāng	（海水）		hòutiān	（古典）
 
 ### Notes:
-
-<!-- Slide number: 43 -->
 (2) 常用音节练习  Luyện tập các âm tiết thường dùng
 qiān wàn	千万
 qiánbian	前边
@@ -605,14 +508,10 @@ qian
 ![](GoogleShape469p43.jpg)
 
 ### Notes:
-
-<!-- Slide number: 44 -->
 THE END
 Minliang
 
 ### Notes:
-
-<!-- Slide number: 45 -->
 Minliang
 
 ### Notes:

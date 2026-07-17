@@ -1,7 +1,7 @@
 # Bài 18 · 路上辛苦了
 
 - Type: `standard_301_course`
-- Source: 18第十八课_路上辛苦了.md, pdf-301-cau-dam-thoai.md, 18第十八课_路上辛苦了.pptx
+- Source: 18第十八课_路上辛苦了.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 

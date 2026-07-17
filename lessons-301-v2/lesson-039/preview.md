@@ -1,7 +1,7 @@
 # Bài 39 · 不能送你去机場了
 
 - Type: `standard_301_course`
-- Source: 39第三十九课_不能送你去机場了.md, pdf-301-cau-dam-thoai.md, 39第三十九课_不能送你去机場了.pptx
+- Source: 39第三十九课_不能送你去机場了.md, pdf-301-cau-dam-thoai.md
 
 ## Mẫu câu
 
