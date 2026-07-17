@@ -9457,3 +9457,279 @@ html, body, .hanzi-app { background: var(--ui-bg); color: var(--ui-text); }
   .radical-study-view,
   .hsk-study-view { margin-top: 0; }
 }
+
+/* FC-TYPE.6 — Compact adaptive typing cards and remembered auto-advance */
+.hsk-flashcard-typing-study{
+  padding-top:12px;
+}
+
+.hsk-flashcard-typing-study .hsk-flashcard-study-meta{
+  margin-bottom:8px;
+}
+
+.hsk-flashcard-typing-card{
+  gap:10px;
+  padding:14px;
+  border-radius:18px;
+  box-shadow:0 8px 22px rgba(78,55,42,.07);
+}
+
+.hsk-flashcard-typing-prompt{
+  gap:4px;
+  min-width:0;
+}
+
+.hsk-flashcard-typing-prompt small{
+  font-size:.72rem;
+  letter-spacing:.07em;
+}
+
+.hsk-flashcard-typing-prompt-hanzi,
+.hsk-flashcard-typing-prompt-text{
+  max-width:100%;
+  overflow-wrap:anywhere;
+  word-break:normal;
+  white-space:normal;
+}
+
+.hsk-flashcard-typing-card.is-prompt-single .hsk-flashcard-typing-prompt-hanzi{
+  font-size:clamp(2.6rem,11vw,3.8rem);
+  line-height:1.08;
+}
+
+.hsk-flashcard-typing-card.is-prompt-short .hsk-flashcard-typing-prompt-hanzi{
+  font-size:clamp(2.15rem,9vw,3.2rem);
+  line-height:1.14;
+  letter-spacing:.04em;
+}
+
+.hsk-flashcard-typing-card.is-prompt-phrase .hsk-flashcard-typing-prompt-hanzi{
+  font-size:clamp(1.7rem,7vw,2.5rem);
+  line-height:1.3;
+}
+
+.hsk-flashcard-typing-card.is-prompt-sentence .hsk-flashcard-typing-prompt-hanzi{
+  font-size:clamp(1.35rem,5.8vw,2rem);
+  line-height:1.42;
+  text-align:center;
+}
+
+.hsk-flashcard-typing-card.is-prompt-meaning .hsk-flashcard-typing-prompt-text{
+  font-size:clamp(1.2rem,5.5vw,1.7rem);
+  line-height:1.4;
+}
+
+.hsk-flashcard-typing-context-meaning{
+  max-width:34rem;
+  margin:0;
+  color:var(--muted,#786c66);
+  font-size:.92rem;
+  line-height:1.4;
+}
+
+.hsk-flashcard-typing-slots{
+  min-height:38px;
+  gap:5px;
+  align-items:center;
+}
+
+.hsk-flashcard-typing-slot{
+  min-width:26px;
+  height:36px;
+  padding:0 4px;
+  border-bottom-width:2px;
+  font-size:1.18rem;
+}
+
+.hsk-flashcard-typing-progress-copy{
+  width:100%;
+  color:var(--muted,#786c66);
+  font-size:.84rem;
+  font-weight:750;
+}
+
+.hsk-flashcard-typing-progress-track{
+  width:min(320px,100%);
+  height:7px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#eee5dd;
+}
+
+.hsk-flashcard-typing-progress-track i{
+  display:block;
+  height:100%;
+  border-radius:inherit;
+  background:#58a783;
+  transition:width .16s ease;
+}
+
+.hsk-flashcard-typing-input{
+  min-height:44px;
+  padding:9px 12px;
+  font-size:16px;
+}
+
+.hsk-flashcard-typing-feedback{
+  min-height:20px;
+  font-size:.9rem;
+}
+
+.hsk-flashcard-typing-controls{
+  gap:8px;
+}
+
+.hsk-flashcard-typing-hint{
+  min-height:38px;
+  padding:7px 13px;
+  font-size:.9rem;
+}
+
+.hsk-flashcard-typing-answer{
+  padding:10px;
+}
+
+.hsk-flashcard-typing-stats{
+  gap:6px;
+}
+
+.hsk-flashcard-typing-stats div{
+  padding:7px 5px;
+}
+
+.hsk-flashcard-typing-auto-status{
+  margin:3px 0 0;
+  color:#3f6f5d;
+  font-size:.84rem;
+  font-weight:750;
+}
+
+.hsk-flashcard-typing-timing{
+  display:grid;
+  gap:12px;
+}
+
+.hsk-flashcard-typing-timing-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.hsk-flashcard-typing-timing-head > span{
+  display:grid;
+  gap:3px;
+}
+
+.hsk-flashcard-typing-timing-head small{
+  color:var(--muted,#786c66);
+  line-height:1.35;
+}
+
+.hsk-flashcard-typing-timing-head input{
+  width:42px;
+  height:23px;
+  accent-color:#214f74;
+}
+
+.hsk-flashcard-typing-delay-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:7px;
+}
+
+.hsk-flashcard-typing-delay-grid button{
+  min-height:38px;
+  border:1px solid var(--border,#eadfd7);
+  border-radius:11px;
+  background:var(--surface,#fff);
+  color:inherit;
+  font:inherit;
+  font-size:.86rem;
+  font-weight:700;
+}
+
+.hsk-flashcard-typing-delay-grid button.active{
+  border-color:#f08a5d;
+  background:#fff3ec;
+  color:#b84f25;
+}
+
+.hsk-flashcard-typing-delay-grid[aria-disabled="true"]{
+  opacity:.48;
+}
+
+.hsk-flashcard-typing-custom-delay{
+  display:grid;
+  grid-template-columns:auto minmax(80px,120px) auto;
+  align-items:center;
+  justify-content:start;
+  gap:8px;
+}
+
+.hsk-flashcard-typing-custom-delay input{
+  width:100%;
+  min-height:38px;
+  border:1px solid var(--border,#eadfd7);
+  border-radius:10px;
+  padding:7px 9px;
+  background:#fff;
+  color:inherit;
+  font:inherit;
+}
+
+.hsk-flashcard-typing-custom-delay em{
+  color:var(--muted,#786c66);
+  font-style:normal;
+}
+
+.hsk-flashcard-typing-timing-note{
+  margin:0;
+  color:var(--muted,#786c66);
+  font-size:.82rem;
+  line-height:1.4;
+}
+
+@media (max-width:430px){
+  .hsk-flashcard-typing-study{
+    padding:10px 12px calc(82px + env(safe-area-inset-bottom));
+  }
+  .hsk-flashcard-typing-card{
+    gap:8px;
+    padding:12px 10px;
+    border-radius:16px;
+  }
+  .hsk-flashcard-typing-card.is-prompt-single .hsk-flashcard-typing-prompt-hanzi{
+    font-size:clamp(2.45rem,12vw,3.35rem);
+  }
+  .hsk-flashcard-typing-card.is-prompt-short .hsk-flashcard-typing-prompt-hanzi{
+    font-size:clamp(2rem,9.5vw,2.8rem);
+  }
+  .hsk-flashcard-typing-card.is-prompt-phrase .hsk-flashcard-typing-prompt-hanzi{
+    font-size:clamp(1.55rem,7.2vw,2.15rem);
+  }
+  .hsk-flashcard-typing-card.is-prompt-sentence .hsk-flashcard-typing-prompt-hanzi{
+    font-size:clamp(1.25rem,5.6vw,1.75rem);
+  }
+  .hsk-flashcard-typing-context-meaning{
+    font-size:.86rem;
+  }
+  .hsk-flashcard-typing-slots{
+    min-height:32px;
+    gap:4px;
+  }
+  .hsk-flashcard-typing-slot{
+    min-width:23px;
+    height:32px;
+    font-size:1.05rem;
+  }
+  .hsk-flashcard-typing-stats div{
+    padding:6px 4px;
+  }
+  .hsk-flashcard-typing-stats b{
+    font-size:.95rem;
+  }
+  .hsk-flashcard-typing-delay-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}

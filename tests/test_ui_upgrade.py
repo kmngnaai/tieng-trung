@@ -515,5 +515,60 @@ class UiUpgradeTests(unittest.TestCase):
         self.assertIn("runSearch(next, { skipHistory: true })", context.group(0))
 
 
+    def test_typing_card_uses_adaptive_prompt_layouts(self) -> None:
+        js = read("modules/hanzi-stroke/app.js")
+        css = read("modules/hanzi-stroke/style.css")
+        self.assertIn("function getFlashcardTypingPromptLayout", js)
+        for layout in ["single", "short", "phrase", "sentence", "meaning"]:
+            self.assertIn(f"is-prompt-{layout}", css)
+        self.assertIn("['single', 'short', 'phrase', 'sentence', 'meaning']", js)
+        self.assertIn("looksLikeSentence", js)
+        self.assertIn("[。！？!?；;，,]", js)
+        self.assertIn("hsk-flashcard-typing-context-meaning", js)
+        self.assertIn("font-size:clamp(2.6rem,11vw,3.8rem)", css)
+        self.assertIn("font-size:clamp(1.35rem,5.8vw,2rem)", css)
+
+    def test_long_pinyin_uses_compact_progress_instead_of_many_slots(self) -> None:
+        js = read("modules/hanzi-stroke/app.js")
+        css = read("modules/hanzi-stroke/style.css")
+        self.assertIn("if(state.answerTokens.length > 10)", js)
+        self.assertIn("Đã nhập ${completed} / ${state.answerTokens.length} ký tự", js)
+        self.assertIn("hsk-flashcard-typing-progress-track", js)
+        self.assertIn(".hsk-flashcard-typing-progress-track", css)
+        self.assertIn("Gõ pinyin (không cần dấu)", js)
+
+    def test_typing_auto_advance_has_default_presets_custom_and_toggle(self) -> None:
+        js = read("modules/hanzi-stroke/app.js")
+        self.assertIn("HSK_FLASHCARD_TYPING_DELAY_PRESETS", js)
+        self.assertIn("[1, 2, 3, 5, 10]", js)
+        self.assertIn('data-hsk-flashcard-option="typingAutoAdvanceEnabled"', js)
+        self.assertIn('data-hsk-flashcard-typing-delay="default"', js)
+        self.assertIn("data-hsk-flashcard-typing-custom-seconds", js)
+        self.assertIn("Mặc định hiện tại: 30 giây cho từ ngắn, 120 giây cho nội dung dài", js)
+        self.assertIn("Nhập 0 để chuyển ngay", js)
+
+    def test_typing_auto_advance_is_persisted_and_restored(self) -> None:
+        js = read("modules/hanzi-stroke/app.js")
+        for field in [
+            "typingAutoAdvanceEnabled",
+            "typingAutoAdvanceMode",
+            "typingAutoAdvanceSeconds",
+        ]:
+            self.assertGreaterEqual(js.count(field), 8)
+        self.assertIn("window.localStorage?.setItem(HSK_FLASHCARD_SETTINGS_KEY", js)
+        self.assertIn("normalizeFlashcardTypingAutoAdvanceSeconds", js)
+        self.assertIn("settings.typingAutoAdvanceEnabled !== false", js)
+        self.assertIn("settings.typingAutoAdvanceMode === 'custom'", js)
+
+    def test_typing_auto_advance_can_be_disabled_without_blocking_manual_continue(self) -> None:
+        js = read("modules/hanzi-stroke/app.js")
+        self.assertIn("if(settings.typingAutoAdvanceEnabled === false) return null;", js)
+        self.assertIn("if(session?.settings?.typingAutoAdvanceEnabled === false || delayMs === null) return;", js)
+        self.assertIn("Tự chuyển đang tắt", js)
+        self.assertIn("data-hsk-flashcard-typing-continue", js)
+        self.assertIn("Tiếp tục ngay →", js)
+
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
