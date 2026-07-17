@@ -1898,7 +1898,8 @@ if(window.HanziWriter){
 
   function navigateStudyRoute(routeName, tabName){
     const currentRoute = new URLSearchParams(window.location.search).get('study') || 'hub';
-    if(currentRoute === routeName){
+    const sameRoute = currentRoute === routeName || (routeName === 'radicals' && currentRoute === 'radical');
+    if(sameRoute){
       setStudyTab(tabName);
       return;
     }
@@ -3288,7 +3289,17 @@ if(window.HanziWriter){
       window.setTimeout(() => hskSearch?.focus(), 80);
     }else if(isRadicals){
       stopAutoplayLoop();
-      window.dispatchEvent(new CustomEvent('hanzi:radicals-tab-open'));
+      const radicalLoader = window.HanziRadicals;
+      if(radicalLoader?.ensureLoaded){
+        radicalLoader.ensureLoaded({ reason: 'setStudyTab' }).catch(error => console.error('[Bộ thủ] Tải trực tiếp thất bại:', error));
+      }else{
+        window.dispatchEvent(new CustomEvent('hanzi:radicals-tab-open'));
+      }
+      window.setTimeout(() => {
+        if(!radicalsView?.hidden && !window.HanziRadicals?.isLoaded?.()){
+          window.HanziRadicals?.ensureLoaded?.({ reason: 'route-visible-recheck' });
+        }
+      }, 350);
     }else if(isFlashcards){
       stopAutoplayLoop();
       renderFlashcardLibrary();
@@ -7153,6 +7164,8 @@ if(window.HanziWriter){
     }
   });
 
+  window.addEventListener('popstate', restoreHskRouteFromLocation);
+
   window.setTimeout(() => {
     restorePersistedFlashcardSession();
   }, 0);
@@ -7260,7 +7273,6 @@ if(window.HanziWriter){
     }
   }, true);
 
-  window.addEventListener('popstate', restoreHskRouteFromLocation);
 })();
 
 /* Step 8 - Radical learning tab for Tra chữ Hán */
@@ -7289,21 +7301,38 @@ if(window.HanziWriter){
   };
 
   const state = {
-    notes: null,
+    notes: {},
     items: [],
     groups: [],
     groupId: 'all',
     query: '',
     activeId: '',
-    popupExpanded: {}
+    popupExpanded: {},
+    catalogLoaded: false,
+    loadingPromise: null,
+    fullNotesPromise: null,
+    loadAttempt: 0,
+    loadStartedAt: 0
   };
 
-  async function fetchJsonLocal(path){
-    const response = await fetch(path);
-    if(!response.ok){
-      throw new Error(`${response.status} ${response.statusText}`);
+  async function fetchJsonLocal(path, options = {}){
+    const timeoutMs = Number(options.timeoutMs) || 12000;
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => controller.abort(), timeoutMs);
+    try{
+      const response = await fetch(path, { signal: controller.signal });
+      if(!response.ok){
+        throw new Error(`${response.status} ${response.statusText}`);
+      }
+      return await response.json();
+    }catch(error){
+      if(error?.name === 'AbortError'){
+        throw new Error('Quá thời gian tải dữ liệu. Vui lòng thử lại.');
+      }
+      throw error;
+    }finally{
+      window.clearTimeout(timer);
     }
-    return response.json();
   }
 
   function normalizeRadicalText(value){
@@ -7341,6 +7370,7 @@ if(window.HanziWriter){
       note.key,
       note.mainForm,
       note.sideForm,
+      Array.isArray(note.variants) ? note.variants.join(' ') : '',
       note.displayNameVi,
       note.pinyin,
       note.hanViet,
@@ -7531,37 +7561,159 @@ if(window.HanziWriter){
     groupPanel.hidden = true;
   }
 
-  async function loadRadicals(){
-    if(state.notes){
-      renderRadicals();
-      return;
+  function renderRadicalLoadError(error){
+    console.error('[Bộ thủ] Không tải được danh mục:', error);
+    if(status) status.textContent = 'Không tải được dữ liệu bộ thủ.';
+    list.innerHTML = `
+      <div class="radical-load-error" role="alert">
+        <strong>Không tải được danh sách bộ thủ.</strong>
+        <p>${escapeHtml(error?.message || 'Vui lòng kiểm tra kết nối rồi thử lại.')}</p>
+        <button type="button" class="radical-retry-btn" data-radical-retry>Thử lại</button>
+      </div>
+    `;
+  }
+
+  function normalizeRadicalCatalog(payload){
+    const rows = Array.isArray(payload) ? payload : payload?.items;
+    if(!Array.isArray(rows) || !rows.length){
+      throw new Error('Danh mục bộ thủ không hợp lệ hoặc đang trống.');
+    }
+    return rows.filter(note => note && note.id).sort((a, b) => {
+      const ar = getRadicalSortRank(a);
+      const br = getRadicalSortRank(b);
+      if(ar !== br) return ar - br;
+      return String(a.displayNameVi || '').localeCompare(String(b.displayNameVi || ''), 'vi');
+    });
+  }
+
+  async function loadLegacyRadicalNotes(){
+    if(state.fullNotesPromise){
+      return state.fullNotesPromise;
+    }
+    state.fullNotesPromise = fetchJsonLocal(`${RADICAL_DATA_BASE}radical_learning_notes.json`, { timeoutMs: 20000 })
+      .then(notes => {
+        const rows = notes && typeof notes === 'object' ? notes : {};
+        Object.assign(state.notes, rows);
+        return rows;
+      })
+      .finally(() => {
+        state.fullNotesPromise = null;
+      });
+    return state.fullNotesPromise;
+  }
+
+  async function loadRadicalDetail(id){
+    if(!id){
+      throw new Error('Thiếu mã bộ thủ.');
+    }
+    if(state.notes[id]?.detailForRadicalPopup){
+      return state.notes[id];
     }
     try{
-      if(status) status.textContent = 'Đang tải dữ liệu bộ thủ...';
-      const notes = await fetchJsonLocal(`${RADICAL_DATA_BASE}radical_learning_notes.json`);
-      state.notes = notes || {};
-      state.items = Object.values(state.notes)
-        .filter(note => note && note.id)
-        .sort((a, b) => {
-          const ar = getRadicalSortRank(a);
-          const br = getRadicalSortRank(b);
-          if(ar !== br) return ar - br;
-          return String(a.displayNameVi || '').localeCompare(String(b.displayNameVi || ''), 'vi');
-        });
-      try{
-        const groups = await fetchJsonLocal(`${RADICAL_DATA_BASE}radical_groups.json`);
-        state.groups = normalizeRadicalGroups(groups);
-      }catch(groupErr){
-        console.warn('Cannot load radical groups, fallback to common groups:', groupErr);
-        state.groups = normalizeRadicalGroups(getFallbackRadicalGroups());
+      const note = await fetchJsonLocal(`${RADICAL_DATA_BASE}details/${encodeURIComponent(id)}.json`, { timeoutMs: 12000 });
+      if(!note || !note.id){
+        throw new Error('Chi tiết bộ thủ không hợp lệ.');
       }
+      state.notes[id] = note;
+      return note;
+    }catch(detailError){
+      console.warn(`Cannot load radical detail ${id}, fallback to legacy file:`, detailError);
+      const notes = await loadLegacyRadicalNotes();
+      const note = notes?.[id];
+      if(!note){
+        throw detailError;
+      }
+      return note;
+    }
+  }
+
+  async function loadRadicals(options = {}){
+    const force = Boolean(options.force);
+    const reason = String(options.reason || 'unknown');
+    if(state.catalogLoaded && !force){
       renderRadicalGroupDropdown();
       renderRadicals();
-    }catch(err){
-      console.warn('Cannot load radical learning notes:', err);
-      if(status) status.textContent = 'Không tải được dữ liệu bộ thủ. Kiểm tra data/learning/radicals.';
-      list.innerHTML = '<p class="radical-empty">Chưa có dữ liệu bộ thủ.</p>';
+      return state.items;
     }
+    if(state.loadingPromise && !force){
+      return state.loadingPromise;
+    }
+
+    const attempt = ++state.loadAttempt;
+    state.loadStartedAt = Date.now();
+    if(force){
+      state.catalogLoaded = false;
+      state.items = [];
+      state.groups = [];
+    }
+    if(status) status.textContent = 'Đang tải dữ liệu bộ thủ...';
+    list.innerHTML = '<p class="radical-empty radical-loading-state">Đang tải danh mục 214 bộ thủ...</p>';
+    console.info(`[Bộ thủ] Bắt đầu tải (${reason}, lượt ${attempt}).`);
+
+    let watchdog = 0;
+    const task = (async () => {
+      try{
+        watchdog = window.setTimeout(() => {
+          if(attempt !== state.loadAttempt || state.catalogLoaded) return;
+          state.loadAttempt += 1;
+          state.loadingPromise = null;
+          const timeoutError = new Error('Quá thời gian tải toàn bộ dữ liệu bộ thủ. Vui lòng thử lại.');
+          console.error('[Bộ thủ] Watchdog timeout:', timeoutError);
+          renderRadicalLoadError(timeoutError);
+        }, 32000);
+
+        let catalog;
+        try{
+          catalog = await fetchJsonLocal(`${RADICAL_DATA_BASE}radical_catalog.json`, { timeoutMs: 10000 });
+          if(attempt !== state.loadAttempt) return [];
+          state.items = normalizeRadicalCatalog(catalog);
+          console.info(`[Bộ thủ] Đã tải catalog nhẹ: ${state.items.length} mục.`);
+        }catch(catalogError){
+          console.warn('[Bộ thủ] Catalog nhẹ lỗi, chuyển sang dữ liệu đầy đủ:', catalogError);
+          const notes = await loadLegacyRadicalNotes();
+          if(attempt !== state.loadAttempt) return [];
+          state.items = normalizeRadicalCatalog(Object.values(notes || {}));
+          console.info(`[Bộ thủ] Fallback dữ liệu đầy đủ thành công: ${state.items.length} mục.`);
+        }
+
+        try{
+          const groups = await fetchJsonLocal(`${RADICAL_DATA_BASE}radical_groups.json`, { timeoutMs: 10000 });
+          if(attempt !== state.loadAttempt) return [];
+          state.groups = normalizeRadicalGroups(groups);
+        }catch(groupErr){
+          console.warn('[Bộ thủ] Không tải được nhóm, dùng nhóm dự phòng:', groupErr);
+          state.groups = normalizeRadicalGroups(getFallbackRadicalGroups());
+        }
+        if(attempt !== state.loadAttempt) return [];
+        state.catalogLoaded = true;
+        renderRadicalGroupDropdown();
+        renderRadicals();
+        console.info(`[Bộ thủ] Hoàn tất ${state.items.length} bộ sau ${Date.now() - state.loadStartedAt} ms.`);
+        return state.items;
+      }catch(err){
+        if(attempt !== state.loadAttempt) return [];
+        state.catalogLoaded = false;
+        renderRadicalLoadError(err);
+        return [];
+      }finally{
+        if(watchdog) window.clearTimeout(watchdog);
+        if(attempt === state.loadAttempt) state.loadingPromise = null;
+      }
+    })();
+    state.loadingPromise = task;
+    return task;
+  }
+
+  function isRadicalRoute(){
+    const study = new URLSearchParams(window.location.search).get('study');
+    return study === 'radical' || study === 'radicals';
+  }
+
+  function ensureRadicalsLoaded(options = {}){
+    if(!options.force && !isRadicalRoute() && view.hidden){
+      return Promise.resolve(state.items);
+    }
+    return loadRadicals(options);
   }
 
   function ensureRadicalPopup(){
@@ -7790,20 +7942,62 @@ if(window.HanziWriter){
     document.body.classList.add('radical-popup-open');
   }
 
-  function openRadicalPopup(id){
-    const note = state.items.find(row => row.id === id) || state.notes?.[id];
-    if(!note){
+  async function openRadicalPopup(id){
+    const summary = state.items.find(row => row.id === id) || state.notes?.[id];
+    if(!summary){
       return;
     }
     state.activeId = id;
     state.popupExpanded = {};
-    renderRadicalPopup(note);
+    const popup = ensureRadicalPopup();
+    const body = document.getElementById('radicalDetailBody');
+    body.innerHTML = `
+      <div class="radical-popup-topbar">
+        <button type="button" class="radical-popup-back" data-radical-popup-close>← Quay về Bộ thủ</button>
+        <button type="button" class="radical-popup-close" data-radical-popup-close aria-label="Đóng">×</button>
+      </div>
+      <div class="radical-detail-loading" role="status">
+        <strong>${escapeHtml(summary.key || summary.mainForm || '')} · ${escapeHtml(summary.displayNameVi || 'Bộ thủ')}</strong>
+        <span>Đang tải chi tiết...</span>
+      </div>
+    `;
+    popup.hidden = false;
+    document.body.classList.add('radical-popup-open');
+    try{
+      const note = await loadRadicalDetail(id);
+      if(state.activeId !== id){
+        return;
+      }
+      renderRadicalPopup(note);
+    }catch(error){
+      console.warn('Cannot open radical detail:', error);
+      if(state.activeId !== id){
+        return;
+      }
+      body.innerHTML = `
+        <div class="radical-popup-topbar">
+          <button type="button" class="radical-popup-back" data-radical-popup-close>← Quay về Bộ thủ</button>
+          <button type="button" class="radical-popup-close" data-radical-popup-close aria-label="Đóng">×</button>
+        </div>
+        <div class="radical-load-error" role="alert">
+          <strong>Không tải được chi tiết ${escapeHtml(summary.displayNameVi || 'bộ thủ')}.</strong>
+          <p>${escapeHtml(error?.message || 'Vui lòng thử lại.')}</p>
+          <button type="button" class="radical-retry-btn" data-radical-detail-retry="${escapeHtml(id)}">Thử lại</button>
+        </div>
+      `;
+    }
   }
 
   window.openRadicalLearningPopup = openRadicalPopup;
+  window.HanziRadicals = Object.freeze({
+    ensureLoaded: ensureRadicalsLoaded,
+    retry: () => ensureRadicalsLoaded({ force: true, reason: 'manual-retry' }),
+    isLoaded: () => state.catalogLoaded,
+    isLoading: () => Boolean(state.loadingPromise)
+  });
 
   window.addEventListener('hanzi:radicals-tab-open', () => {
-    loadRadicals();
+    ensureRadicalsLoaded({ reason: 'legacy-event' });
     window.setTimeout(() => search?.focus(), 80);
   });
 
@@ -7840,6 +8034,13 @@ if(window.HanziWriter){
   });
 
   function handleRadicalCardClick(event){
+    const retry = event.target.closest('[data-radical-retry]');
+    if(retry && list.contains(retry)){
+      event.preventDefault();
+      event.stopPropagation();
+      ensureRadicalsLoaded({ force: true, reason: 'retry-button' });
+      return;
+    }
     const card = event.target.closest('.radical-item[data-radical-id]');
     if(!card || !list.contains(card)){
       return;
@@ -7864,6 +8065,12 @@ if(window.HanziWriter){
   document.addEventListener('click', event => {
     const popup = document.getElementById('radicalDetailOverlay');
     if(!popup || popup.hidden){
+      return;
+    }
+    const detailRetry = event.target.closest('[data-radical-detail-retry]');
+    if(detailRetry){
+      event.preventDefault();
+      openRadicalPopup(detailRetry.dataset.radicalDetailRetry || '');
       return;
     }
     const closeButton = event.target.closest('[data-radical-popup-close]');
@@ -7918,5 +8125,22 @@ if(window.HanziWriter){
       closeRadicalPopup();
     }
   });
+
+  const routeCheck = reason => {
+    if(isRadicalRoute() || !view.hidden){
+      ensureRadicalsLoaded({ reason });
+    }
+  };
+
+  const visibilityObserver = new MutationObserver(() => {
+    if(!view.hidden) routeCheck('view-visible');
+  });
+  visibilityObserver.observe(view, { attributes: true, attributeFilter: ['hidden'] });
+
+  window.addEventListener('popstate', () => routeCheck('popstate'));
+  window.addEventListener('tiengtrung:navigationchange', () => routeCheck('navigationchange'));
+  routeCheck('module-init');
+  window.setTimeout(() => routeCheck('route-recheck-250ms'), 250);
+  window.setTimeout(() => routeCheck('route-recheck-1200ms'), 1200);
 })();
 

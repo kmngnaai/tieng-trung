@@ -29,6 +29,14 @@
       <p id="searchMessage" class="search-message" hidden></p>
     </section>
 
+    <section id="lookupRecentSection" class="lookup-recent" aria-labelledby="lookupRecentTitle" hidden>
+      <div class="lookup-recent__head">
+        <h2 id="lookupRecentTitle">Tra gần đây</h2>
+        <button id="lookupRecentClear" type="button">Xóa lịch sử</button>
+      </div>
+      <div id="lookupRecentList" class="lookup-recent__list" aria-label="10 mục tra gần đây"></div>
+    </section>
+
     <section id="catalogView" class="catalog-view" aria-label="Khám phá kho tra cứu">
       <div class="catalog-loading">Đang tải danh mục tra cứu…</div>
     </section>
@@ -38,7 +46,8 @@
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.7/dist/hanzi-writer.min.js"></script>
-  <script src="app.js?v=20260717-lookupfix1"></script>
+  <script src="../shared/lookup-history.js?v=20260717-recent1"></script>
+  <script src="app.js?v=20260717-recent1"></script>
   <script src="../shared/app-shell.js?v=20260717-headercrumb1"></script>
 </body>
 </html>

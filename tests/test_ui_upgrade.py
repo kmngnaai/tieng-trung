@@ -373,7 +373,8 @@ class UiUpgradeTests(unittest.TestCase):
 
     def test_301_cache_version_is_refreshed(self) -> None:
         html = read("index.html")
-        self.assertIn("app.js?v=20260717-breadcrumb1", html)
+        self.assertIn("app.js?v=20260717-recent1", html)
+        self.assertIn("modules/shared/lookup-history.js?v=20260717-recent1", html)
         self.assertIn("modules/shared/app-shell.js?v=20260717-headercrumb1", html)
 
 
@@ -390,6 +391,128 @@ class UiUpgradeTests(unittest.TestCase):
         self.assertIn('class="lookup-breadcrumb ui-hierarchy-breadcrumb"', html)
         self.assertIn("tiengtrung:breadcrumbchange", js)
         self.assertIn("const shellItems = [{ label: 'Tra'", js)
+
+
+    def test_radical_tab_uses_lightweight_catalog_and_lazy_details(self) -> None:
+        catalog = json.loads(read("modules/hanzi-stroke/data/learning/radicals/radical_catalog.json"))
+        items = catalog["items"]
+        self.assertEqual(catalog["count"], 214)
+        self.assertEqual(len(items), 214)
+        detail_dir = ROOT / "modules/hanzi-stroke/data/learning/radicals/details"
+        detail_files = sorted(detail_dir.glob("*.json"))
+        self.assertEqual(len(detail_files), 214)
+        self.assertEqual({row["id"] for row in items}, {path.stem for path in detail_files})
+        female = json.loads((detail_dir / "nu_038.json").read_text(encoding="utf-8-sig"))
+        example_chars = {row.get("char") for row in female.get("examples", {}).get("chars", [])}
+        self.assertIn("姐", example_chars)
+
+    def test_radical_tab_cannot_stay_loading_forever(self) -> None:
+        js = read("modules/hanzi-stroke/app.js")
+        self.assertIn("radical_catalog.json", js)
+        self.assertIn("details/${encodeURIComponent(id)}.json", js)
+        self.assertIn("new AbortController()", js)
+        self.assertIn("Quá thời gian tải dữ liệu. Vui lòng thử lại.", js)
+        self.assertIn("data-radical-retry", js)
+        self.assertIn("ensureRadicalsLoaded({ force: true, reason: 'retry-button' })", js)
+        self.assertIn("function isRadicalRoute()", js)
+        self.assertIn("return study === 'radical' || study === 'radicals';", js)
+        self.assertIn("routeCheck('module-init')", js)
+        self.assertIn("window.HanziRadicals = Object.freeze", js)
+
+    def test_lookup_radical_examples_keep_parent_navigation_context(self) -> None:
+        js = read("modules/lookup/app.js")
+        dialog = re.search(r"function renderRadicalDialog\(note\).*?dialog\.hidden = false;", js, re.S)
+        self.assertIsNotNone(dialog)
+        block = dialog.group(0)
+        self.assertIn("openTargetWithContext(button.dataset.searchChar, button);", block)
+        self.assertNotIn("runSearch(button.dataset.searchChar);", block)
+        self.assertIn("state.navigationStack.push", js)
+        self.assertIn("const targets = current ? [...parents, current] : [];", js)
+
+
+    def test_hsk_popstate_listener_stays_inside_main_scope_before_radical_module(self) -> None:
+        js = read("modules/hanzi-stroke/app.js")
+        listener = "window.addEventListener('popstate', restoreHskRouteFromLocation);"
+        long_press_marker = "/* Shared long-press copy for HSK and Radical learning UI */"
+        radical_marker = "/* Step 8 - Radical learning tab for Tra chữ Hán */"
+        self.assertEqual(js.count(listener), 1)
+        self.assertLess(js.index(listener), js.index(long_press_marker))
+        self.assertLess(js.index(long_press_marker), js.index(radical_marker))
+        long_press_block = js[js.index(long_press_marker):js.index(radical_marker)]
+        self.assertNotIn("restoreHskRouteFromLocation", long_press_block)
+
+    def test_radical_loader_is_called_directly_and_supports_both_routes(self) -> None:
+        js = read("modules/hanzi-stroke/app.js")
+        shell = read("modules/shared/app-shell.js")
+        self.assertIn("window.HanziRadicals = Object.freeze", js)
+        self.assertIn("radicalLoader.ensureLoaded({ reason: 'setStudyTab' })", js)
+        self.assertIn("route-visible-recheck", js)
+        self.assertIn("return study === 'radical' || study === 'radicals';", js)
+        self.assertIn("routeName === 'radicals' && currentRoute === 'radical'", js)
+        self.assertIn("radical: 'studyTabRadicals'", shell)
+        self.assertIn("radicals: 'studyTabRadicals'", shell)
+
+    def test_radical_loader_has_watchdog_retry_fallback_and_console_diagnostics(self) -> None:
+        js = read("modules/hanzi-stroke/app.js")
+        self.assertIn("Catalog nhẹ lỗi, chuyển sang dữ liệu đầy đủ", js)
+        self.assertIn("radical_learning_notes.json", js)
+        self.assertIn("Watchdog timeout", js)
+        self.assertIn("32000", js)
+        self.assertIn("data-radical-retry", js)
+        self.assertIn("reason: 'retry-button'", js)
+        self.assertIn("new MutationObserver", js)
+        self.assertIn("route-recheck-250ms", js)
+        self.assertIn("route-recheck-1200ms", js)
+        self.assertIn("console.error('[Bộ thủ]", js)
+
+    def test_lookup_recent_history_shared_between_home_and_lookup(self) -> None:
+        shared = read("modules/shared/lookup-history.js")
+        home = read("index.html")
+        lookup = read("modules/lookup/index.html")
+        self.assertIn("tiengTrung.lookup.recent.v1", shared)
+        self.assertIn("const MAX_ITEMS = 10", shared)
+        self.assertIn("[value, ...read().filter(item => item !== value)]", shared)
+        self.assertLess(home.index("lookup-history.js"), home.index("app.js?v=20260717-recent1"))
+        self.assertLess(lookup.index("lookup-history.js"), lookup.index("app.js?v=20260717-recent1"))
+        self.assertIn('aria-label="5 mục tra gần đây"', home)
+        self.assertIn('aria-label="10 mục tra gần đây"', lookup)
+        self.assertIn("Xóa lịch sử", lookup)
+
+    def test_lookup_recent_is_saved_only_after_exact_success(self) -> None:
+        js = read("modules/lookup/app.js")
+        success = re.search(r"const data = await resolveQuery\(query\);.*?state\.traView = 'detail';", js, re.S)
+        self.assertIsNotNone(success)
+        block = success.group(0)
+        self.assertIn("if (data?.type === 'search-results')", block)
+        self.assertIn("recordSuccessfulLookup(targetOf(data))", block)
+        self.assertNotIn("recordSuccessfulLookup(payload.query)", js)
+        self.assertIn("recordRecent: false", js)
+        self.assertIn("state.navigationStack = [];", js)
+        self.assertIn("data-lookup-recent-target", js)
+
+    def test_home_shows_only_five_recent_lookup_items(self) -> None:
+        js = read("app.js")
+        css = read("style.css")
+        self.assertIn("historyApi.read().slice(0, 5)", js)
+        self.assertIn("home-recent-lookup__chip", js)
+        self.assertIn("home-recent-lookup__list", css)
+        self.assertIn("overflow-x: auto", css)
+        render_home = re.search(r"function renderHome\(\).*?\n\}", js, re.S)
+        self.assertIsNotNone(render_home)
+        self.assertIn("bindHomeLookup();", render_home.group(0))
+        self.assertIn("__homeLookupHistoryListenerBound", js)
+
+    def test_lookup_shows_up_to_ten_recent_items_without_touching_context_stack(self) -> None:
+        js = read("modules/lookup/app.js")
+        css = read("modules/lookup/style.css")
+        self.assertIn("api.read().slice(0, 10)", js)
+        self.assertIn("lookupRecentApi()?.clear()", js)
+        self.assertIn("lookup-recent__list", css)
+        self.assertIn("touch-action: pan-x", css)
+        context = re.search(r"async function openTargetWithContext\(.*?\n\}", js, re.S)
+        self.assertIsNotNone(context)
+        self.assertIn("pushNavigationContext", context.group(0))
+        self.assertIn("runSearch(next, { skipHistory: true })", context.group(0))
 
 
 if __name__ == "__main__":

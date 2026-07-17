@@ -196,6 +196,7 @@ function renderHome(){
   pageSubtitle.textContent = 'Tra nhanh · Học theo giáo trình · Ôn tập chủ động';
   pageContent.innerHTML = homePageContent;
   updateNavActive('home');
+  bindHomeLookup();
 }
 
 function renderRadicals(){
@@ -2680,6 +2681,20 @@ function updateNavActive(page){
   });
 }
 
+function renderHomeLookupHistory(){
+  const section = document.getElementById('homeRecentLookup');
+  const list = document.getElementById('homeRecentLookupList');
+  const historyApi = window.TiengTrungLookupHistory;
+  if(!section || !list || !historyApi) return;
+  const items = historyApi.read().slice(0, 5);
+  section.hidden = items.length === 0;
+  list.innerHTML = items.map(target => {
+    const url = new URL('modules/lookup/index.html', window.location.href);
+    url.searchParams.set('q', target);
+    return `<a class="home-recent-lookup__chip" href="${url.href}" aria-label="Tra lại ${escapeHtml(target)}">${escapeHtml(target)}</a>`;
+  }).join('');
+}
+
 function bindHomeLookup(){
   const form = document.getElementById('homeLookupForm');
   const input = document.getElementById('homeLookupInput');
@@ -2692,6 +2707,12 @@ function bindHomeLookup(){
     if(query) url.searchParams.set('q', query);
     window.location.href = url.href;
   });
+
+  renderHomeLookupHistory();
+  if(!window.__homeLookupHistoryListenerBound){
+    window.__homeLookupHistoryListenerBound = true;
+    window.addEventListener(window.TiengTrungLookupHistory?.eventName || 'tiengtrung:lookup-history-changed', renderHomeLookupHistory);
+  }
 }
 
 function bindRootNavigation(){
@@ -2767,7 +2788,6 @@ async function loadPinyinAudioData(){
 
 async function init(){
   bindRootNavigation();
-  bindHomeLookup();
 
   setPage(location.hash === '#dialogue301' ? 'dialogue301' : 'home');
 

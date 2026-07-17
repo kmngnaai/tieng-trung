@@ -2489,6 +2489,60 @@ body.is-dialogue301 .home-welcome-card::after { content: "301"; font-family: var
   font-size: .75rem;
   font-weight: 750;
 }
+.home-recent-lookup {
+  margin-top: 12px;
+  padding-top: 11px;
+  border-top: 1px solid var(--ui-border);
+}
+.home-recent-lookup__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.home-recent-lookup__head h3 {
+  margin: 0;
+  color: var(--ui-text-secondary);
+  font-size: .79rem;
+  font-weight: 850;
+}
+.home-recent-lookup__head a {
+  color: var(--ui-accent-hover);
+  font-size: .73rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+.home-recent-lookup__list {
+  display: flex;
+  gap: 7px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.home-recent-lookup__list::-webkit-scrollbar { display: none; }
+.home-recent-lookup__chip {
+  flex: 0 0 auto;
+  min-width: 38px;
+  min-height: 34px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid var(--ui-border);
+  border-radius: 11px;
+  background: var(--ui-surface-elevated);
+  color: var(--ui-text);
+  padding: .35rem .68rem;
+  font-size: .9rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+.home-recent-lookup__chip:hover,
+.home-recent-lookup__chip:focus-visible {
+  border-color: var(--ui-accent);
+  background: var(--ui-accent-soft);
+  outline: none;
+}
 .home-resume-empty {
   min-height: 70px;
   display: grid;

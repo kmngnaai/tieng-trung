@@ -65,7 +65,10 @@ const el = {
   menuSheet: document.querySelector('#menuSheet'),
   menuBackdrop: document.querySelector('#menuBackdrop'),
   breadcrumb: document.querySelector('#lookupBreadcrumb'),
-  breadcrumbTail: document.querySelector('#lookupBreadcrumbTail')
+  breadcrumbTail: document.querySelector('#lookupBreadcrumbTail'),
+  recentSection: document.querySelector('#lookupRecentSection'),
+  recentList: document.querySelector('#lookupRecentList'),
+  recentClear: document.querySelector('#lookupRecentClear')
 };
 
 const escapeHtml = (value = '') => String(value).replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
@@ -78,6 +81,29 @@ const normalizePinyin = value => String(value || '').toLowerCase().normalize('NF
 const normalizePinyinSearch = value => normalizePinyin(value).replace(/[1-5]/g, '');
 const normalizeViText = value => String(value || '').toLowerCase().replace(/[^a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ0-9\u3400-\u9fff]+/g, ' ').replace(/\s+/g, ' ').trim();
 const normalizeSearchText = value => String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/\s+/g, ' ').trim();
+
+
+function lookupRecentApi() {
+  return window.TiengTrungLookupHistory || null;
+}
+
+function renderLookupRecent() {
+  const api = lookupRecentApi();
+  if (!api || !el.recentSection || !el.recentList) return;
+  const items = api.read().slice(0, 10);
+  el.recentSection.hidden = items.length === 0;
+  el.recentList.innerHTML = items.map(target => `
+    <button type="button" class="lookup-recent__chip" data-lookup-recent-target="${escapeHtml(target)}" aria-label="Tra lại ${escapeHtml(target)}">${escapeHtml(target)}</button>
+  `).join('');
+}
+
+function recordSuccessfulLookup(target) {
+  const value = clean(target);
+  const api = lookupRecentApi();
+  if (!value || !api) return;
+  api.add(value);
+  renderLookupRecent();
+}
 
 function lookupUrlFor(view = state.traView, target = '') {
   const url = new URL(window.location.href);
@@ -115,7 +141,7 @@ async function openLookupBreadcrumbTarget(index) {
   const target = parents[index];
   if (!target) return;
   state.navigationStack = state.navigationStack.slice(0, index);
-  await runSearch(target, { skipHistory: true });
+  await runSearch(target, { skipHistory: true, recordRecent: false });
   pushTraHistory('detail');
 }
 
@@ -366,7 +392,7 @@ async function restoreParentTarget() {
   const parent = state.navigationStack.pop();
   if (!parent) return;
   state.pendingRestore = parent;
-  await runSearch(parent.target, { skipHistory: true });
+  await runSearch(parent.target, { skipHistory: true, recordRecent: false });
   renderLookupBreadcrumb();
 }
 
@@ -1853,7 +1879,7 @@ function renderRadicalDialog(note) {
   }));
   body.querySelectorAll('[data-search-char]').forEach(button => button.addEventListener('click', () => {
     closeRadicalDialog();
-    runSearch(button.dataset.searchChar);
+    openTargetWithContext(button.dataset.searchChar, button);
   }));
   dialog.hidden = false;
   document.body.classList.add('radical-dialog-open');
@@ -2069,8 +2095,12 @@ async function runSearch(value, options = {}) {
   try {
     const data = await resolveQuery(query);
     el.input.value = query;
-    if (data?.type === 'search-results') renderSearchResults(data);
-    else render(data);
+    if (data?.type === 'search-results') {
+      renderSearchResults(data);
+    } else {
+      render(data);
+      if (options.recordRecent !== false) recordSuccessfulLookup(targetOf(data));
+    }
     state.traView = 'detail';
     renderLookupBreadcrumb();
     if (!options.skipHistory && !options.fromHistory) pushTraHistory('detail');
@@ -2132,6 +2162,19 @@ async function bootstrapLookupPage() {
       }
     });
     el.form?.addEventListener('submit', event => { event.preventDefault(); state.navigationStack = []; runSearch(el.input.value); });
+    el.recentList?.addEventListener('click', event => {
+      const button = event.target.closest('[data-lookup-recent-target]');
+      if (!button) return;
+      state.navigationStack = [];
+      state.catalogListSnapshot = null;
+      runSearch(button.dataset.lookupRecentTarget || '');
+    });
+    el.recentClear?.addEventListener('click', () => {
+      lookupRecentApi()?.clear();
+      renderLookupRecent();
+    });
+    window.addEventListener(lookupRecentApi()?.eventName || 'tiengtrung:lookup-history-changed', renderLookupRecent);
+    renderLookupRecent();
     document.querySelector('[data-lookup-breadcrumb-home]')?.addEventListener('click', openLookupLanding);
     el.breadcrumb?.addEventListener('click', event => {
       const button = event.target.closest('[data-lookup-breadcrumb-target]');

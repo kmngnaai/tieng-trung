@@ -278,6 +278,7 @@
     }
 
     const leaf = ({
+      radical: 'Bộ thủ',
       radicals: 'Bộ thủ',
       flashcards: 'Thẻ',
       writing: 'Bút thuận'
@@ -439,6 +440,7 @@
       hub: 'studyTabHub',
       writing: 'studyTabLookup',
       hsk: 'studyTabHsk',
+      radical: 'studyTabRadicals',
       radicals: 'studyTabRadicals',
       flashcards: 'studyTabFlashcards'
     };
