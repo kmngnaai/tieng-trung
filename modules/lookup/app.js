@@ -87,16 +87,27 @@ function lookupUrlFor(view = state.traView, target = '') {
 }
 
 function renderLookupBreadcrumb() {
-  if (!el.breadcrumb || !el.breadcrumbTail) return;
   const parents = state.navigationStack.map(item => clean(item.target)).filter(Boolean);
   const current = clean(targetOf(state.current));
-  const items = current ? [...parents, current] : [];
-  el.breadcrumbTail.innerHTML = items.map((target, index) => {
-    const isCurrent = index === items.length - 1;
-    return `${'<span aria-hidden="true">→</span>'}${isCurrent
-      ? `<strong aria-current="page">${escapeHtml(target)}</strong>`
-      : `<button type="button" data-lookup-breadcrumb-target="${index}">${escapeHtml(target)}</button>`}`;
-  }).join('');
+  const targets = current ? [...parents, current] : [];
+
+  if (el.breadcrumb && el.breadcrumbTail) {
+    el.breadcrumbTail.innerHTML = targets.map((target, index) => {
+      const isCurrent = index === targets.length - 1;
+      return `${'<span aria-hidden="true">→</span>'}${isCurrent
+        ? `<strong aria-current="page">${escapeHtml(target)}</strong>`
+        : `<button type="button" data-lookup-breadcrumb-target="${index}">${escapeHtml(target)}</button>`}`;
+    }).join('');
+  }
+
+  const lookupHome = new URL('./index.html', window.location.href).href;
+  const shellItems = [{ label: 'Tra', href: lookupHome, current: targets.length === 0 }];
+  targets.forEach((target, index) => {
+    const isCurrent = index === targets.length - 1;
+    const href = isCurrent ? '' : `${lookupHome}?q=${encodeURIComponent(target)}`;
+    shellItems.push({ label: target, href, current: isCurrent });
+  });
+  window.dispatchEvent(new CustomEvent('tiengtrung:breadcrumbchange', { detail: { items: shellItems } }));
 }
 
 async function openLookupBreadcrumbTarget(index) {
@@ -130,6 +141,10 @@ const TRA_SWIPE_MAX_VERTICAL = 52;
 const TRA_SWIPE_MAX_DURATION = 560;
 const TRA_SWIPE_EDGE_GUARD = 22;
 
+function notifyShellNavigation() {
+  window.dispatchEvent(new CustomEvent('tiengtrung:navigationchange'));
+}
+
 function traHistoryState(view = state.traView) {
   return { namespace: TRA_HISTORY_KEY, view, stamp: Date.now() };
 }
@@ -148,12 +163,16 @@ function pushTraHistory(view) {
   state.traView = view;
   if (!state.traHistoryReady || state.handlingPopState) return;
   history.pushState(traHistoryState(view), '', lookupUrlFor(view, targetOf(state.current) || el.input?.value));
+  notifyShellNavigation();
+  renderLookupBreadcrumb();
 }
 
 function replaceTraHistory(view) {
   state.traView = view;
   if (!state.traHistoryReady) return;
   history.replaceState(traHistoryState(view), '', lookupUrlFor(view, targetOf(state.current) || el.input?.value));
+  notifyShellNavigation();
+  renderLookupBreadcrumb();
 }
 
 function isTraLanding() {
@@ -1941,8 +1960,8 @@ function render(data) {
 
 function updateStrokeLinks(char) {
   const href = `../hanzi-stroke/index.html?study=writing${char ? `&word=${encodeURIComponent(char)}` : ''}`;
-  el.strokeNavLink.href = href;
-  el.menuStrokeLink.href = href;
+  if (el.strokeNavLink) el.strokeNavLink.href = href;
+  if (el.menuStrokeLink) el.menuStrokeLink.href = href;
   const direct = document.querySelector('#openStrokeLink');
   if (direct) direct.href = href;
 }

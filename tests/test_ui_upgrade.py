@@ -39,7 +39,8 @@ class UiUpgradeTests(unittest.TestCase):
         desktop = re.search(r"@media \(min-width: 900px\) \{(.*?)\n\}", css, re.S)
         self.assertIsNotNone(desktop)
         self.assertIn(".ui-bottom-nav { display: none; }", desktop.group(0))
-        self.assertIn(".ui-desktop-nav { display: flex", desktop.group(0))
+        self.assertIn(".ui-app-header.is-context-home .ui-desktop-nav { display: flex", desktop.group(0))
+        self.assertIn(".ui-app-header.is-context-child .ui-mobile-menu-button { display: grid; }", desktop.group(0))
 
     def test_learning_home_card_order(self) -> None:
         html = read("modules/hanzi-stroke/index.html")
@@ -285,9 +286,111 @@ class UiUpgradeTests(unittest.TestCase):
     def test_learning_breadcrumb_is_the_return_path(self) -> None:
         shell = read("modules/shared/app-shell.js")
         html = read("modules/hanzi-stroke/index.html")
-        self.assertIn("items.push(breadcrumbItem('Học', ROUTES.learn, learnCurrent));", shell)
-        self.assertIn("hsk: ['Giáo trình', ROUTES.curriculum]", shell)
+        self.assertIn("items.push(breadcrumbItem('Học', ROUTES.learn", shell)
+        self.assertIn("items.push(breadcrumbItem('Giáo trình', ROUTES.curriculum", shell)
+        self.assertIn("radicals: 'Bộ thủ'", shell)
+        self.assertIn("flashcards: 'Thẻ'", shell)
+        self.assertIn("writing: 'Bút thuận'", shell)
         self.assertNotIn('id="studyTabHub"', html)
+
+    def test_301_detail_breadcrumb_keeps_full_hierarchy(self) -> None:
+        shell = read("modules/shared/app-shell.js")
+        self.assertIn("const isDialogue301 = window.location.hash === '#dialogue301';", shell)
+        self.assertIn("items.push(breadcrumbItem('Học', ROUTES.learn));", shell)
+        self.assertIn("items.push(breadcrumbItem('Giáo trình', ROUTES.curriculum));", shell)
+        self.assertIn("items.push(breadcrumbItem('301', ROUTES.dialogue301Curriculum, !lessonNumber));", shell)
+        self.assertIn("items.push(breadcrumbItem(`Bài ${lessonNumber}`, '', true));", shell)
+        self.assertIn("getDialogue301LessonNumber", shell)
+        self.assertIn("?study=hsk&curriculum=dialogue301", shell)
+        hanzi = read("modules/hanzi-stroke/app.js")
+        self.assertIn("get('curriculum')", hanzi)
+        self.assertIn("syncHskRoute({ sectionKey: 'all' });", hanzi)
+        self.assertIn("publishHskBreadcrumb", hanzi)
+
+    def test_301_lesson_click_updates_url_and_back_history(self) -> None:
+        js = read("app.js")
+        shell = read("modules/shared/app-shell.js")
+        self.assertIn("function updateDialogue301LessonRoute", js)
+        self.assertIn("url.searchParams.set('lesson', lessonId);", js)
+        self.assertIn("url.hash = 'dialogue301';", js)
+        self.assertIn("options.replaceRoute ? 'replaceState' : 'pushState'", js)
+        self.assertIn("openDialogue301Lesson(initialLesson, { replaceRoute: true })", js)
+        self.assertIn("openDialogue301Lesson(lesson, { skipRoute: true })", js)
+        self.assertIn("window.addEventListener('popstate'", js)
+        self.assertIn("tiengtrung:navigationchange", js)
+        self.assertIn("window.addEventListener('tiengtrung:navigationchange', refreshHierarchyBreadcrumb);", shell)
+
+    def test_header_breadcrumb_keeps_home_mark_and_fixed_actions(self) -> None:
+        shell = read("modules/shared/app-shell.js")
+        css = read("modules/shared/app-shell.css")
+        header = re.search(r"function createHeader\(context\).*?return header;", shell, re.S)
+        self.assertIsNotNone(header)
+        block = header.group(0)
+        self.assertLess(block.index("ui-app-brand"), block.index("data-ui-header-breadcrumb"))
+        self.assertLess(block.index("data-ui-header-breadcrumb"), block.index("ui-app-header__actions"))
+        self.assertIn('<span class="ui-app-brand__mark" aria-hidden="true">中</span>', block)
+        self.assertIn("grid-template-columns: auto minmax(0, 1fr) auto;", css)
+        self.assertIn(".ui-app-header.is-context-child .ui-app-brand__copy { display: none; }", css)
+        self.assertIn("overflow-x: auto;", css)
+        self.assertIn("touch-action: pan-x;", css)
+        self.assertIn("nav.scrollLeft = nav.scrollWidth;", shell)
+
+    def test_old_breadcrumb_row_is_removed_from_main_content(self) -> None:
+        shell = read("modules/shared/app-shell.js")
+        css = read("modules/shared/app-shell.css")
+        self.assertNotIn("target.prepend(breadcrumb)", shell)
+        self.assertNotIn("function createHierarchyBreadcrumb", shell)
+        self.assertNotIn(".ui-hierarchy-breadcrumb {", css)
+        self.assertIn("target.querySelectorAll(':scope > .ui-hierarchy-breadcrumb').forEach(node => node.remove());", shell)
+
+    def test_hsk_breadcrumb_contains_only_real_navigation_levels(self) -> None:
+        js = read("modules/hanzi-stroke/app.js")
+        publish = re.search(r"function publishHskBreadcrumb\(\).*?window\.dispatchEvent", js, re.S)
+        self.assertIsNotNone(publish)
+        block = publish.group(0)
+        for label in ["Học", "Giáo trình", "getHskSourceLabel", "getHskLevelLabel", "getHskSectionBreadcrumbLabel"]:
+            self.assertIn(label, block)
+        for small_tab in ["Từ vựng", "Câu mẫu", "Hội thoại", "Chú thích"]:
+            self.assertNotIn(small_tab, block)
+        self.assertIn("url.searchParams.set('level'", js)
+        self.assertIn("url.searchParams.set('section'", js)
+        self.assertIn("sectionMode", js)
+        self.assertIn("window.addEventListener('popstate', restoreHskRouteFromLocation);", js)
+
+    def test_hsk_section_breadcrumb_uses_short_lesson_or_topic_number(self) -> None:
+        js = read("modules/hanzi-stroke/app.js")
+        self.assertIn("return sectionType === 'topic' ? `Chủ đề ${index + 1}` : `Bài ${index + 1}`;", js)
+        self.assertIn("syncHskRoute();", js)
+        self.assertIn("applyPendingHskSection();", js)
+
+    def test_lookup_notifies_header_when_query_history_changes(self) -> None:
+        js = read("modules/lookup/app.js")
+        self.assertIn("function notifyShellNavigation()", js)
+        self.assertGreaterEqual(js.count("notifyShellNavigation();"), 2)
+        shell = read("modules/shared/app-shell.js")
+        self.assertIn("items.push(breadcrumbItem('Tra', ROUTES.lookup, !query));", shell)
+        self.assertIn("if (query) items.push(breadcrumbItem(query, '', true));", shell)
+
+    def test_301_cache_version_is_refreshed(self) -> None:
+        html = read("index.html")
+        self.assertIn("app.js?v=20260717-breadcrumb1", html)
+        self.assertIn("modules/shared/app-shell.js?v=20260717-headercrumb1", html)
+
+
+    def test_lookup_stroke_links_are_optional_after_shared_shell_replaces_legacy_nav(self) -> None:
+        js = read("modules/lookup/app.js")
+        self.assertIn("if (el.strokeNavLink) el.strokeNavLink.href = href;", js)
+        self.assertIn("if (el.menuStrokeLink) el.menuStrokeLink.href = href;", js)
+        self.assertNotIn("  el.strokeNavLink.href = href;", js)
+        self.assertNotIn("  el.menuStrokeLink.href = href;", js)
+
+    def test_lookup_uses_shared_header_breadcrumb_and_hides_legacy_row(self) -> None:
+        html = read("modules/lookup/index.html")
+        js = read("modules/lookup/app.js")
+        self.assertIn('class="lookup-breadcrumb ui-hierarchy-breadcrumb"', html)
+        self.assertIn("tiengtrung:breadcrumbchange", js)
+        self.assertIn("const shellItems = [{ label: 'Tra'", js)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

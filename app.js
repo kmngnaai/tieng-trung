@@ -287,7 +287,7 @@ async function renderDialogue301(){
     renderDialogue301LessonList(lessons);
     const requestedLessonId = new URLSearchParams(window.location.search).get('lesson') || '';
     const initialLesson = lessons.find(item => item.lesson_id === requestedLessonId) || lessons[0];
-    await openDialogue301Lesson(initialLesson);
+    await openDialogue301Lesson(initialLesson, { replaceRoute: true });
   }catch(err){
     console.error(err);
     pageContent.innerHTML = `
@@ -468,9 +468,30 @@ function updateDialogue301ActiveLesson(){
   scrollDialogue301ActiveChipIntoView('.dialogue301-lesson-chip.active');
 }
 
-async function openDialogue301Lesson(lesson){
+function updateDialogue301LessonRoute(lesson, options = {}){
+  const lessonId = String(lesson?.lesson_id || '').trim();
+  if(!lessonId || options.skipRoute) return;
+
+  const url = new URL(window.location.href);
+  url.searchParams.set('lesson', lessonId);
+  url.hash = 'dialogue301';
+  const nextUrl = `${url.pathname}${url.search}${url.hash}`;
+  const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+  if(nextUrl !== currentUrl){
+    const method = options.replaceRoute ? 'replaceState' : 'pushState';
+    window.history[method]({ dialogue301LessonId: lessonId }, '', nextUrl);
+  }
+
+  window.dispatchEvent(new CustomEvent('tiengtrung:navigationchange', {
+    detail: { page: 'dialogue301', lessonId }
+  }));
+}
+
+async function openDialogue301Lesson(lesson, options = {}){
   if(!lesson) return;
 
+  updateDialogue301LessonRoute(lesson, options);
   dialogue301SelectedId = lesson.lesson_id;
   dialogue301Filter = 'all';
   dialogue301ExpandedSections = new Set();
@@ -2704,6 +2725,15 @@ function bindRootNavigation(){
   window.addEventListener('hashchange', () => {
     if(location.hash === '#dialogue301'){
       setPage('dialogue301');
+    }
+  });
+
+  window.addEventListener('popstate', () => {
+    if(location.hash !== '#dialogue301' || currentPage !== 'dialogue301' || !dialogue301Lessons.length) return;
+    const requestedLessonId = new URLSearchParams(window.location.search).get('lesson') || '';
+    const lesson = dialogue301Lessons.find(item => item.lesson_id === requestedLessonId);
+    if(lesson && lesson.lesson_id !== dialogue301SelectedId){
+      openDialogue301Lesson(lesson, { skipRoute: true });
     }
   });
 }

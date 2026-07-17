@@ -18,13 +18,15 @@
     writing: new URL('modules/hanzi-stroke/index.html?study=writing', rootUrl).href,
     pinyin: new URL('modules/pinyin/index.html', rootUrl).href,
     dialogue301: new URL('index.html#dialogue301', rootUrl).href,
+    dialogue301Curriculum: new URL('modules/hanzi-stroke/index.html?study=hsk&curriculum=dialogue301', rootUrl).href,
     legacyRadicals: new URL('modules/bo-thu-50/index.html', rootUrl).href
   });
 
   const state = {
     drawerOpen: false,
     lastFocused: null,
-    settings: readSettings()
+    settings: readSettings(),
+    customBreadcrumbItems: null
   };
 
   function readSettings() {
@@ -74,7 +76,7 @@
 
   function createHeader(context) {
     const header = document.createElement('header');
-    header.className = 'ui-app-header';
+    header.className = `ui-app-header ${context === 'home' ? 'is-context-home' : 'is-context-child'}`;
     header.dataset.uiAppHeader = '';
     header.innerHTML = `
       <div class="ui-app-header__inner">
@@ -82,12 +84,15 @@
           <span class="ui-app-brand__mark" aria-hidden="true">中</span>
           <span class="ui-app-brand__copy"><strong>Tiếng Trung</strong></span>
         </a>
-        <nav class="ui-desktop-nav" aria-label="Điều hướng chính">
-          ${headerNavLink('Trang chủ', ROUTES.home, context === 'home')}
-          ${headerNavLink('Tra', ROUTES.lookup, context === 'lookup')}
-          ${headerNavLink('Học', ROUTES.learn, context === 'learn')}
-          <button class="ui-desktop-nav__item${context === 'menu' ? ' is-active' : ''}" type="button" data-ui-menu-open aria-controls="uiGlobalDrawer" aria-expanded="false">Menu</button>
-        </nav>
+        <div class="ui-app-header__center">
+          <nav class="ui-header-breadcrumb" data-ui-header-breadcrumb aria-label="Đường dẫn hiện tại" hidden></nav>
+          <nav class="ui-desktop-nav" aria-label="Điều hướng chính">
+            ${headerNavLink('Trang chủ', ROUTES.home, context === 'home')}
+            ${headerNavLink('Tra', ROUTES.lookup, context === 'lookup')}
+            ${headerNavLink('Học', ROUTES.learn, context === 'learn')}
+            <button class="ui-desktop-nav__item${context === 'menu' ? ' is-active' : ''}" type="button" data-ui-menu-open aria-controls="uiGlobalDrawer" aria-expanded="false">Menu</button>
+          </nav>
+        </div>
         <div class="ui-app-header__actions">
           <button class="ui-app-icon-button" type="button" data-ui-theme-toggle aria-label="Đổi giao diện sáng hoặc tối">◐</button>
           <button class="ui-app-icon-button ui-mobile-menu-button" type="button" data-ui-menu-open aria-label="Mở Menu" aria-controls="uiGlobalDrawer" aria-expanded="false">☰</button>
@@ -176,52 +181,159 @@
     return bottom;
   }
 
-  function breadcrumbItem(label, href, current = false) {
-    if (current) return `<strong aria-current="page">${label}</strong>`;
-    return `<a href="${href}">${label}</a>`;
+  function escapeHtml(value) {
+    return String(value ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 
-  function createHierarchyBreadcrumb(context) {
-    if (context === 'home' || context === 'lookup') return null;
-    const path = window.location.pathname.toLowerCase();
-    const study = new URLSearchParams(window.location.search).get('study') || 'hub';
-    const items = [breadcrumbItem('Trang chủ', ROUTES.home)];
+  function breadcrumbItem(label, href = '', current = false) {
+    return { label: String(label || ''), href: String(href || ''), current: Boolean(current) };
+  }
 
-    if (path.includes('/modules/bo-thu-50/')) {
-      items.push(breadcrumbItem('Menu', '#', false));
-      items.push(breadcrumbItem('Tham khảo', '#', false));
-      items.push(breadcrumbItem('Bộ thủ 50', '', true));
-    } else {
-      const learnCurrent = study === 'hub' && !path.includes('/modules/pinyin/');
-      items.push(breadcrumbItem('Học', ROUTES.learn, learnCurrent));
-      if (!learnCurrent) {
-        const leaf = path.includes('/modules/pinyin/')
-          ? ['Pinyin', ROUTES.pinyin]
-          : ({
-              hsk: ['Giáo trình', ROUTES.curriculum],
-              radicals: ['Bộ thủ', ROUTES.radicals],
-              flashcards: ['Thẻ', ROUTES.cards],
-              writing: ['Bút thuận', ROUTES.writing]
-            }[study] || ['Học', ROUTES.learn]);
-        items.push(breadcrumbItem(leaf[0], leaf[1], true));
-      }
+  function getDialogue301LessonNumber(lessonId) {
+    const match = String(lessonId || '').match(/(\d+)$/);
+    if (!match) return '';
+    const number = Number.parseInt(match[1], 10);
+    return Number.isFinite(number) ? String(number) : '';
+  }
+
+  function getCurriculumLabel(sourceKey) {
+    return ({
+      dialogue301: '301',
+      hsk: 'HSK 6 cấp',
+      new_hsk: 'HSK 9 cấp',
+      yct: 'YCT',
+      boya: 'Boya'
+    })[sourceKey] || '';
+  }
+
+  function getStoredCurriculum() {
+    try {
+      return window.localStorage.getItem('hanziStroke.lastCurriculum.v1') || 'dialogue301';
+    } catch (_error) {
+      return 'dialogue301';
+    }
+  }
+
+  function curriculumUrl(sourceKey, level = '') {
+    const url = new URL(ROUTES.curriculum);
+    url.searchParams.set('curriculum', sourceKey);
+    if (level) url.searchParams.set('level', String(level));
+    return url.href;
+  }
+
+  function createDefaultBreadcrumbItems(context) {
+    if (context === 'home') return [];
+    const path = window.location.pathname.toLowerCase();
+    const params = new URLSearchParams(window.location.search);
+    const study = params.get('study') || 'hub';
+    const isDialogue301 = window.location.hash === '#dialogue301';
+    const items = [];
+
+    if (context === 'lookup' || path.includes('/modules/lookup/')) {
+      const query = String(params.get('q') || '').trim();
+      items.push(breadcrumbItem('Tra', ROUTES.lookup, !query));
+      if (query) items.push(breadcrumbItem(query, '', true));
+      return items;
     }
 
-    const nav = document.createElement('nav');
-    nav.className = 'ui-hierarchy-breadcrumb';
-    nav.setAttribute('aria-label', 'Đường dẫn hiện tại');
-    nav.innerHTML = items.join('<span aria-hidden="true">→</span>');
-    nav.querySelectorAll('a[href="#"]').forEach(link => link.addEventListener('click', event => { event.preventDefault(); openDrawer(); }));
-    return nav;
+    if (path.includes('/modules/bo-thu-50/')) {
+      items.push(breadcrumbItem('Menu', '#menu'));
+      items.push(breadcrumbItem('Tham khảo', '#menu'));
+      items.push(breadcrumbItem('Bộ thủ 50', '', true));
+      return items;
+    }
+
+    if (isDialogue301) {
+      const lessonNumber = getDialogue301LessonNumber(params.get('lesson') || '');
+      items.push(breadcrumbItem('Học', ROUTES.learn));
+      items.push(breadcrumbItem('Giáo trình', ROUTES.curriculum));
+      items.push(breadcrumbItem('301', ROUTES.dialogue301Curriculum, !lessonNumber));
+      if (lessonNumber) items.push(breadcrumbItem(`Bài ${lessonNumber}`, '', true));
+      return items;
+    }
+
+    items.push(breadcrumbItem('Học', ROUTES.learn, study === 'hub' && !path.includes('/modules/pinyin/')));
+    if (path.includes('/modules/pinyin/')) {
+      items.push(breadcrumbItem('Pinyin', '', true));
+      return items;
+    }
+    if (study === 'hsk') {
+      const sourceKey = params.get('curriculum') || getStoredCurriculum();
+      const sourceLabel = getCurriculumLabel(sourceKey);
+      const level = params.get('level') || '';
+      items.push(breadcrumbItem('Giáo trình', ROUTES.curriculum, !sourceLabel));
+      if (sourceLabel) {
+        items.push(breadcrumbItem(sourceLabel, curriculumUrl(sourceKey), !level));
+        if (level && sourceKey !== 'dialogue301') {
+          const levelLabel = sourceKey === 'boya' ? `Quyển ${level}` : sourceKey === 'yct' ? `YCT ${level}` : sourceKey === 'new_hsk' && Number(level) === 7 ? 'HSK 7–9' : `HSK ${level}`;
+          items.push(breadcrumbItem(levelLabel, '', true));
+        }
+      }
+      return items;
+    }
+
+    const leaf = ({
+      radicals: 'Bộ thủ',
+      flashcards: 'Thẻ',
+      writing: 'Bút thuận'
+    })[study];
+    if (leaf) items.push(breadcrumbItem(leaf, '', true));
+    return items;
   }
 
-  function installPageContainer(context) {
+  function normalizeBreadcrumbItems(items) {
+    return (Array.isArray(items) ? items : [])
+      .map(item => breadcrumbItem(item?.label, item?.href, item?.current))
+      .filter(item => item.label);
+  }
+
+  function renderHeaderBreadcrumb(options = {}) {
+    const nav = document.querySelector('[data-ui-header-breadcrumb]');
+    if (!nav) return;
+    if (options.clearCustom) state.customBreadcrumbItems = null;
+    const context = resolveContext();
+    const items = state.customBreadcrumbItems || createDefaultBreadcrumbItems(context);
+    if (context === 'home' || !items.length) {
+      nav.hidden = true;
+      nav.innerHTML = '';
+      return;
+    }
+    nav.hidden = false;
+    nav.innerHTML = items.map((item, index) => {
+      const separator = index ? '<span class="ui-header-breadcrumb__separator" aria-hidden="true">→</span>' : '';
+      const label = escapeHtml(item.label);
+      if (item.current || !item.href) return `${separator}<strong title="${label}" aria-current="page">${label}</strong>`;
+      return `${separator}<a href="${escapeHtml(item.href)}" title="${label}">${label}</a>`;
+    }).join('');
+    nav.querySelectorAll('a[href="#menu"]').forEach(link => link.addEventListener('click', event => {
+      event.preventDefault();
+      openDrawer();
+    }));
+    window.requestAnimationFrame(() => {
+      nav.scrollLeft = nav.scrollWidth;
+    });
+  }
+
+  function refreshHierarchyBreadcrumb() {
+    renderHeaderBreadcrumb({ clearCustom: true });
+  }
+
+  function setHeaderBreadcrumb(items) {
+    state.customBreadcrumbItems = normalizeBreadcrumbItems(items);
+    renderHeaderBreadcrumb();
+  }
+
+  function installPageContainer() {
     const target = document.querySelector('[data-ui-shell-main]') || document.querySelector('main');
     if (!target) return;
     target.classList.add('ui-shell-main');
     target.setAttribute('data-ui-shell-main', '');
-    const breadcrumb = createHierarchyBreadcrumb(context);
-    if (breadcrumb) target.prepend(breadcrumb);
+    target.querySelectorAll(':scope > .ui-hierarchy-breadcrumb').forEach(node => node.remove());
   }
 
   function hideLegacyChrome() {
@@ -307,6 +419,11 @@
       if (event.key === 'Escape' && state.drawerOpen) closeDrawer();
       trapFocus(event);
     });
+
+    window.addEventListener('tiengtrung:navigationchange', refreshHierarchyBreadcrumb);
+    window.addEventListener('tiengtrung:breadcrumbchange', event => setHeaderBreadcrumb(event.detail?.items || []));
+    window.addEventListener('popstate', refreshHierarchyBreadcrumb);
+    window.addEventListener('hashchange', refreshHierarchyBreadcrumb);
   }
 
   function syncSettings(drawer) {
@@ -341,7 +458,7 @@
     document.body.classList.remove('is-dim');
     applySettings();
     hideLegacyChrome();
-    installPageContainer(context);
+    installPageContainer();
 
     const shell = document.createElement('div');
     shell.dataset.uiAppShell = '';
@@ -351,13 +468,14 @@
     const bottom = createBottomNavigation(context);
     shell.append(header, backdrop, drawer, bottom);
     document.body.prepend(shell);
+    renderHeaderBreadcrumb();
 
     syncSettings(drawer);
     bindEvents(drawer);
     applyStudyQuery();
   }
 
-  window.TiengTrungAppShell = Object.freeze({ mount, openDrawer, closeDrawer, routes: ROUTES });
+  window.TiengTrungAppShell = Object.freeze({ mount, openDrawer, closeDrawer, refreshHierarchyBreadcrumb, setBreadcrumb: setHeaderBreadcrumb, routes: ROUTES });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount, { once: true });
   else mount();
 })();

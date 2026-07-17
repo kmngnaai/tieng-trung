@@ -583,3 +583,42 @@ Quy tắc:
 - Luôn có cảnh báo: nội dung AI có thể không chính xác, chỉ để tham khảo.
 - Giữ nút `Copy prompt` và `Tạo lại` nếu có.
 
+
+---
+
+## 25. Breadcrumb cố định trong header
+
+Khung chung ở các trang con dùng một hàng duy nhất:
+
+```text
+[中] [breadcrumb cuộn ngang] [◐] [☰]
+```
+
+Quy tắc:
+
+- `中` luôn nhìn thấy và luôn quay về Trang chủ.
+- Nút giao diện và Menu luôn cố định bên phải.
+- Chỉ vùng breadcrumb ở giữa được cuộn ngang.
+- Trên mobile, breadcrumb tự cuộn tới cuối để ưu tiên cấp gần nhất.
+- Không xuống dòng và không tạo thêm một hàng breadcrumb trong nội dung.
+- Các cấp cũ vẫn tồn tại, có thể kéo ngang để xem và bấm quay lại.
+- Cấp hiện tại in đậm; cấp trước là liên kết thật.
+- Tên bài dài được rút gọn thành `Bài N` hoặc `Chủ đề N`.
+
+Breadcrumb chỉ phản ánh cấp điều hướng thật:
+
+```text
+Học → Giáo trình → Bộ giáo trình → Cấp độ → Bài học
+```
+
+Không đưa các tab nội dung bên trong bài như `Từ vựng`, `Câu mẫu`, `Hội thoại`, `Chú thích`, `Ngữ pháp` vào breadcrumb.
+
+Ví dụ:
+
+```text
+中 → Học → Giáo trình → 301 → Bài 1
+中 → Học → Giáo trình → HSK 6 cấp → HSK 1 → Bài 3
+中 → Học → Giáo trình → HSK 9 cấp → HSK 2 → Chủ đề 4
+中 → Học → Bộ thủ
+中 → Tra → 你好
+```

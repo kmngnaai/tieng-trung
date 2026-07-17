@@ -1,0 +1,23 @@
+UI 301 breadcrumb patch validation - 2026-07-17
+
+Automated regression tests: 31/31 PASS
+JavaScript syntax checks: 3/3 PASS
+  - app.js
+  - modules/shared/app-shell.js
+  - modules/hanzi-stroke/app.js
+HTTP route checks: 5/5 PASS
+  - index.html?lesson=lesson-001#dialogue301
+  - index.html?lesson=lesson-018#dialogue301
+  - modules/hanzi-stroke/index.html?study=hsk&curriculum=dialogue301
+  - modules/shared/app-shell.js
+  - app.js
+
+New regression coverage:
+  - Full 301 detail hierarchy exists.
+  - Lesson number is derived from lesson ID.
+  - Lesson click updates URL using pushState.
+  - Initial lesson uses replaceState.
+  - Back/Forward reloads the correct lesson without adding another history entry.
+  - Breadcrumb refreshes after internal route changes.
+  - 301 breadcrumb returns to curriculum=dialogue301.
+  - Cache versions are updated.

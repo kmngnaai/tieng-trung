@@ -1275,11 +1275,63 @@ if(window.HanziWriter){
   let dialogue301CurriculumPromise = null;
 
   function readLastCurriculum(){
+    const requested = new URLSearchParams(window.location.search).get('curriculum') || '';
+    if(['dialogue301', 'hsk', 'new_hsk', 'yct', 'boya'].includes(requested)){
+      return requested;
+    }
     try{
       return window.localStorage.getItem(HSK_CURRICULUM_STORAGE_KEY) || 'dialogue301';
     }catch(_error){
       return 'dialogue301';
     }
+  }
+
+  function readRequestedHskLevel(){
+    const value = Number(new URLSearchParams(window.location.search).get('level'));
+    return Number.isFinite(value) && value > 0 ? value : 1;
+  }
+
+  function readRequestedHskSection(){
+    const params = new URLSearchParams(window.location.search);
+    return {
+      key: params.get('section') || '',
+      mode: ['lessons', 'topics'].includes(params.get('sectionMode')) ? params.get('sectionMode') : 'lessons'
+    };
+  }
+
+  function buildHskRouteUrl(options = {}){
+    const sourceKey = options.sourceKey || hskState.sourceKey || 'dialogue301';
+    const hasExplicitLevel = Object.prototype.hasOwnProperty.call(options, 'level');
+    const level = hasExplicitLevel && options.level === null ? '' : (Number(options.level || hskState.currentLevel) || 1);
+    const sectionKey = options.sectionKey === undefined ? hskState.topicKey : options.sectionKey;
+    const sectionMode = options.sectionMode || hskState.groupMode || 'lessons';
+    const url = new URL(window.location.href);
+    url.hash = '';
+    url.searchParams.set('study', 'hsk');
+    url.searchParams.set('curriculum', sourceKey);
+    if(sourceKey === 'dialogue301'){
+      url.searchParams.delete('level');
+      url.searchParams.delete('section');
+      url.searchParams.delete('sectionMode');
+    }else{
+      if(level) url.searchParams.set('level', String(level));
+      else url.searchParams.delete('level');
+      if(sectionKey && sectionKey !== 'all' && ['lessons', 'topics'].includes(sectionMode)){
+        url.searchParams.set('section', sectionKey);
+        url.searchParams.set('sectionMode', sectionMode);
+      }else{
+        url.searchParams.delete('section');
+        url.searchParams.delete('sectionMode');
+      }
+    }
+    return url;
+  }
+
+  function syncHskRoute(options = {}){
+    const url = buildHskRouteUrl(options);
+    const method = options.replace ? 'replaceState' : 'pushState';
+    window.history[method](window.history.state, '', `${url.pathname}${url.search}${url.hash}`);
+    publishHskBreadcrumb();
   }
 
   function saveLastCurriculum(sourceKey){
@@ -1289,10 +1341,13 @@ if(window.HanziWriter){
   }
   let hskQuickLookupPromise = null;
   const grammarCache = new Map();
+  const requestedHskSection = readRequestedHskSection();
+  let pendingHskSectionKey = requestedHskSection.key;
+  let pendingHskSectionMode = requestedHskSection.mode;
   const hskState = {
     summary: null,
     grammarSummary: null,
-    currentLevel: 1,
+    currentLevel: readRequestedHskLevel(),
     currentItems: [],
     query: '',
     popupWord: '',
@@ -1304,7 +1359,7 @@ if(window.HanziWriter){
     popupSeed: null,
     popupRelatedExpanded: false,
     popupLoadId: 0,
-    groupMode: 'lessons',
+    groupMode: pendingHskSectionMode || 'lessons',
     topicKey: 'all',
     wordFilter: 'all',
     sourceKey: readLastCurriculum(),
@@ -3373,6 +3428,7 @@ if(window.HanziWriter){
       const lessons = await loadDialogue301Curriculum();
       if(hskState.sourceKey !== 'dialogue301') return;
       hskStatus.textContent = `301 Đàm thoại · ${lessons.length.toLocaleString('vi-VN')} bài.`;
+      publishHskBreadcrumb();
       hskList.innerHTML = `
         ${lessons.map(lesson => `
           <a class="hsk-dialogue301-item" href="../../index.html?lesson=${encodeURIComponent(lesson.lesson_id || '')}#dialogue301">
@@ -3384,6 +3440,7 @@ if(window.HanziWriter){
     }catch(err){
       console.warn('Cannot load 301 curriculum:', err);
       hskStatus.textContent = 'Không tải được danh sách 301 Đàm thoại.';
+      publishHskBreadcrumb();
       hskList.innerHTML = '<p class="hsk-empty">Kiểm tra thư mục lessons-301-v2.</p>';
     }
   }
@@ -3452,7 +3509,7 @@ if(window.HanziWriter){
     }).join('');
   }
 
-  async function loadHskLevel(level){
+  async function loadHskLevel(level, options = {}){
     const normalizedLevel = Number(level) || 1;
     hskState.currentLevel = normalizedLevel;
     hskState.levelLoading = true;
@@ -3461,6 +3518,11 @@ if(window.HanziWriter){
     normalizeHskSourceAndLevel();
     renderHskSourceTabs();
     renderHskLevelTabs();
+    if(options.updateRoute){
+      syncHskRoute({ sectionKey: 'all' });
+    }else{
+      publishHskBreadcrumb();
+    }
 
     if(hskCache.has(normalizedLevel)){
       const data = hskCache.get(normalizedLevel);
@@ -3468,10 +3530,12 @@ if(window.HanziWriter){
       normalizeHskSourceAndLevel();
       hskState.levelLoading = false;
       restoreHskModeForCurrentSourceLevel();
+      applyPendingHskSection();
       renderHskSourceTabs();
       renderHskLevelTabs();
       renderHskFilters();
       renderHskList();
+      publishHskBreadcrumb();
       return;
     }
 
@@ -3484,10 +3548,12 @@ if(window.HanziWriter){
       normalizeHskSourceAndLevel();
       hskState.levelLoading = false;
       restoreHskModeForCurrentSourceLevel();
+      applyPendingHskSection();
       renderHskSourceTabs();
       renderHskLevelTabs();
       renderHskFilters();
       renderHskList();
+      publishHskBreadcrumb();
     }catch(err){
       console.warn(`Cannot load HSK ${normalizedLevel}:`, err);
       hskState.currentItems = [];
@@ -3764,6 +3830,84 @@ if(window.HanziWriter){
     }
     const prefix = HSK_LEVEL_LABEL_PREFIX[sourceKey] || 'Cấp';
     return `${prefix} ${no}`;
+  }
+
+  function getHskSectionBreadcrumbLabel(){
+    if(!hskState.topicKey || hskState.topicKey === 'all') return '';
+    const sectionType = hskState.groupMode === 'topics' ? 'topic' : 'lesson';
+    const groups = getLearningSectionGroups(hskState.currentItems, sectionType);
+    const index = groups.findIndex(group => group.key === hskState.topicKey);
+    if(index < 0) return sectionType === 'topic' ? 'Chủ đề' : 'Bài học';
+    return sectionType === 'topic' ? `Chủ đề ${index + 1}` : `Bài ${index + 1}`;
+  }
+
+  function getHskRouteHref(options = {}){
+    return buildHskRouteUrl(options).href;
+  }
+
+  function publishHskBreadcrumb(){
+    if(new URLSearchParams(window.location.search).get('study') !== 'hsk') return;
+    const items = [
+      { label: 'Học', href: window.TiengTrungAppShell?.routes?.learn || './index.html?study=hub' },
+      { label: 'Giáo trình', href: window.TiengTrungAppShell?.routes?.curriculum || './index.html?study=hsk' }
+    ];
+    const sourceLabel = getHskSourceLabel();
+    const hasLevel = hskState.sourceKey !== 'dialogue301';
+    const hasSection = hasLevel && hskState.topicKey && hskState.topicKey !== 'all';
+    items.push({
+      label: sourceLabel,
+      href: getHskRouteHref({ sourceKey: hskState.sourceKey, level: null, sectionKey: 'all' }),
+      current: !hasLevel
+    });
+    if(hasLevel){
+      items.push({
+        label: getHskLevelLabel(hskState.currentLevel),
+        href: getHskRouteHref({ sourceKey: hskState.sourceKey, level: hskState.currentLevel, sectionKey: 'all' }),
+        current: !hasSection
+      });
+    }
+    if(hasSection){
+      items.push({ label: getHskSectionBreadcrumbLabel(), current: true });
+    }
+    window.dispatchEvent(new CustomEvent('tiengtrung:breadcrumbchange', { detail: { items } }));
+  }
+
+  function applyPendingHskSection(){
+    if(!pendingHskSectionKey) return;
+    const mode = ['lessons', 'topics'].includes(pendingHskSectionMode) ? pendingHskSectionMode : 'lessons';
+    if(!hskModeAvailable(mode)){
+      pendingHskSectionKey = '';
+      return;
+    }
+    const sectionType = mode === 'topics' ? 'topic' : 'lesson';
+    const exists = getLearningSectionGroups(hskState.currentItems, sectionType).some(group => group.key === pendingHskSectionKey);
+    if(exists){
+      hskState.groupMode = mode;
+      hskState.topicKey = pendingHskSectionKey;
+    }
+    pendingHskSectionKey = '';
+  }
+
+  async function restoreHskRouteFromLocation(){
+    const params = new URLSearchParams(window.location.search);
+    if(params.get('study') !== 'hsk') return;
+    const nextSource = params.get('curriculum') || readLastCurriculum();
+    const requestedSection = readRequestedHskSection();
+    hskState.sourceKey = nextSource;
+    hskState.currentLevel = readRequestedHskLevel();
+    pendingHskSectionKey = requestedSection.key;
+    pendingHskSectionMode = requestedSection.mode;
+    hskState.topicKey = 'all';
+    hskState.wordFilter = 'all';
+    if(!hskState.summary){
+      publishHskBreadcrumb();
+      return;
+    }
+    normalizeHskSourceAndLevel();
+    renderHskSourceTabs();
+    renderHskLevelTabs();
+    if(hskState.sourceKey === 'dialogue301') await renderDialogue301Curriculum();
+    else await loadHskLevel(hskState.currentLevel, { updateRoute: false });
   }
 
   function itemBelongsToSelectedSource(item){
@@ -6547,11 +6691,13 @@ if(window.HanziWriter){
     saveLastCurriculum(nextSource);
     hskState.topicKey = 'all';
     hskState.wordFilter = 'all';
+    pendingHskSectionKey = '';
     normalizeHskSourceAndLevel();
+    syncHskRoute({ sectionKey: 'all' });
     renderHskSourceTabs();
     renderHskLevelTabs();
     if(nextSource === 'dialogue301') renderDialogue301Curriculum();
-    else { setDialogue301CurriculumMode(false); loadHskLevel(hskState.currentLevel); }
+    else { setDialogue301CurriculumMode(false); loadHskLevel(hskState.currentLevel, { updateRoute: false }); }
   });
 
   levelTabs.addEventListener('click', event => {
@@ -6559,7 +6705,8 @@ if(window.HanziWriter){
     if(!button){
       return;
     }
-    loadHskLevel(button.dataset.hskLevel);
+    pendingHskSectionKey = '';
+    loadHskLevel(button.dataset.hskLevel, { updateRoute: true });
   });
 
   hskSearch?.addEventListener('input', () => {
@@ -6576,6 +6723,7 @@ if(window.HanziWriter){
       hskState.wordFilter = 'all';
       renderHskFilters();
       renderHskList();
+      syncHskRoute({ sectionKey: 'all' });
       return;
     }
     const viewButton = event.target.closest('[data-hsk-vocab-view]');
@@ -6614,6 +6762,7 @@ if(window.HanziWriter){
     }
     renderHskFilters();
     renderHskList();
+    syncHskRoute({ replace: true, sectionKey: 'all' });
   });
 
   hskTopicFilters?.addEventListener('click', event => {
@@ -6624,6 +6773,7 @@ if(window.HanziWriter){
       hskState.wordFilter = 'all';
       renderHskFilters();
       renderHskList();
+      syncHskRoute({ sectionKey: 'all' });
       return;
     }
     const filterButton = event.target.closest('[data-hsk-word-filter]');
@@ -6643,6 +6793,7 @@ if(window.HanziWriter){
       hskState.wordFilter = 'all';
       renderHskFilters();
       renderHskList();
+      syncHskRoute();
       return;
     }
     const speakButton = event.target.closest('[data-hsk-speak]');
@@ -7108,6 +7259,8 @@ if(window.HanziWriter){
       copiedDuringPress = false;
     }
   }, true);
+
+  window.addEventListener('popstate', restoreHskRouteFromLocation);
 })();
 
 /* Step 8 - Radical learning tab for Tra chữ Hán */
