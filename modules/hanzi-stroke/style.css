@@ -9733,3 +9733,110 @@ html, body, .hanzi-app { background: var(--ui-bg); color: var(--ui-text); }
     grid-template-columns:repeat(2,minmax(0,1fr));
   }
 }
+
+
+/* FC-TYPE.7 — Syllable-by-syllable typing with active Hanzi highlight. */
+.hsk-flashcard-typing-prompt-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+.hsk-flashcard-typing-slots[hidden]{
+  display:none!important;
+}
+.hsk-flashcard-typing-card .hsk-flashcard-typing-prompt-hanzi{
+  display:flex;
+  flex-wrap:nowrap;
+  justify-content:center;
+  align-items:center;
+  gap:0;
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  white-space:nowrap;
+  overflow:hidden;
+  font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC","Source Han Sans SC",system-ui,sans-serif;
+  font-size:28px!important;
+  line-height:1.22!important;
+  letter-spacing:0;
+}
+.hsk-flashcard-typing-card.is-hanzi-wrap .hsk-flashcard-typing-prompt-hanzi{
+  flex-wrap:wrap;
+  white-space:normal;
+  overflow:visible;
+  row-gap:2px;
+}
+.hsk-flashcard-typing-prompt-char{
+  display:inline-flex;
+  flex:0 0 auto;
+  align-items:center;
+  justify-content:center;
+  min-width:0;
+  padding:.04em .025em;
+  margin:0;
+  border-radius:.22em;
+  line-height:1.08;
+  transition:background-color .16s ease,color .16s ease,box-shadow .16s ease;
+}
+.hsk-flashcard-typing-prompt-char.is-current{
+  background:#fff0d8;
+  color:#9a4f18;
+  box-shadow:0 0 0 1px rgba(240,138,93,.28) inset;
+}
+.hsk-flashcard-typing-prompt-char.is-done{
+  background:transparent;
+  color:#1f6a4a;
+}
+.hsk-flashcard-typing-prompt-char.is-separator{
+  padding:0;
+  background:transparent;
+  box-shadow:none;
+  color:inherit;
+}
+.hsk-flashcard-typing-input{
+  direction:ltr;
+  text-align:center;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:clip;
+  font-size:1.08rem;
+  font-weight:700;
+  letter-spacing:.02em;
+  caret-color:#c85f32;
+}
+.hsk-flashcard-typing-input::placeholder{
+  font-weight:600;
+}
+.hsk-flashcard-typing-input.is-wrong{
+  border-color:#d94a4a;
+  background:#fff0f0;
+  color:#b42323;
+  box-shadow:0 0 0 3px rgba(217,74,74,.14);
+  animation:hsk-flashcard-typing-wrong-shake .18s ease-in-out 2;
+}
+.hsk-flashcard-typing-input.is-correct{
+  border-color:#65aa8d;
+  background:#f1fbf6;
+  color:#185d43;
+}
+@keyframes hsk-flashcard-typing-wrong-shake{
+  0%,100%{transform:translateX(0)}
+  50%{transform:translateX(3px)}
+}
+@media (max-width:560px){
+  .hsk-flashcard-typing-prompt-grid{grid-template-columns:1fr}
+  .hsk-flashcard-typing-card{padding:12px 10px}
+  .hsk-flashcard-typing-prompt{gap:3px}
+  .hsk-flashcard-typing-prompt-hanzi{gap:0}
+  .hsk-flashcard-typing-prompt-char{padding:.05em .025em}
+  .hsk-flashcard-typing-input{font-size:1rem}
+}
+.hsk-flashcard-typing-card.is-prompt-phrase .hsk-flashcard-typing-prompt-hanzi{
+  font-size:clamp(1.25rem,5.6vw,1.8rem);
+}
+.hsk-flashcard-typing-card.is-prompt-sentence .hsk-flashcard-typing-prompt-hanzi{
+  font-size:clamp(1.05rem,4.7vw,1.5rem);
+}
+
+@media (prefers-reduced-motion:reduce){
+  .hsk-flashcard-typing-prompt-char,
+  .hsk-flashcard-typing-input.is-wrong{animation:none;transition:none}
+}

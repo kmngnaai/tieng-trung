@@ -1,0 +1,46 @@
+FLASHCARD PINYIN LIVE INPUT TEST RESULTS — 2026-07-17
+
+1. JavaScript syntax: PASS
+   node --check modules/hanzi-stroke/app.js
+
+2. Python test syntax: PASS
+   python3 -m py_compile tests/test_ui_upgrade.py
+
+3. UI/regression suite: PASS — 55/55
+
+----------------------------------------------------------------------
+Ran 55 tests in 0.263s
+
+OK
+
+4. Pinyin prefix algorithm: PASS
+{
+  "answerLength": 18,
+  "validPrefixes": [
+    "w",
+    "wo",
+    "wo jin",
+    "wo jintian",
+    "wo jintian qu",
+    "wo jintian qu xue",
+    "wo jintian qu xuexiao"
+  ],
+  "wrongValues": [
+    "wa",
+    "wo jinz",
+    "wo jintian qi",
+    "wo jintian qu xuez"
+  ],
+  "toneNumberAccepted": true
+}
+
+5. Local HTTP routes: PASS
+   200 modules/hanzi-stroke/index.html
+   200 modules/hanzi-stroke/app.js
+   200 modules/hanzi-stroke/style.css
+
+6. Cache version: PASS
+7:  <link rel="stylesheet" href="style.css?v=20260717-pinyinlive1" />
+268:  <script src="app.js?v=20260717-pinyinlive1"></script>
+
+Note: Chromium in this container blocks localhost navigation with net::ERR_BLOCKED_BY_ADMINISTRATOR, so direct mobile-keyboard interaction was not emulated. Source-level behavior, algorithm, syntax, HTTP, and regression tests passed.

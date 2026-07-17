@@ -515,27 +515,61 @@ class UiUpgradeTests(unittest.TestCase):
         self.assertIn("runSearch(next, { skipHistory: true })", context.group(0))
 
 
-    def test_typing_card_uses_adaptive_prompt_layouts(self) -> None:
+    def test_typing_card_uses_one_fixed_hanzi_size_and_wraps_only_after_ten(self) -> None:
         js = read("modules/hanzi-stroke/app.js")
         css = read("modules/hanzi-stroke/style.css")
-        self.assertIn("function getFlashcardTypingPromptLayout", js)
-        for layout in ["single", "short", "phrase", "sentence", "meaning"]:
-            self.assertIn(f"is-prompt-{layout}", css)
-        self.assertIn("['single', 'short', 'phrase', 'sentence', 'meaning']", js)
-        self.assertIn("looksLikeSentence", js)
-        self.assertIn("[。！？!?；;，,]", js)
-        self.assertIn("hsk-flashcard-typing-context-meaning", js)
-        self.assertIn("font-size:clamp(2.6rem,11vw,3.8rem)", css)
-        self.assertIn("font-size:clamp(1.35rem,5.8vw,2rem)", css)
+        self.assertIn("function getFlashcardTypingHanziLengthClass", js)
+        self.assertIn("countFlashcardHanCharacters(card?.word || '') > 10", js)
+        self.assertIn("is-hanzi-wrap", js)
+        self.assertIn("is-hanzi-single-line", js)
+        self.assertIn("font-size:28px!important", css)
+        self.assertIn(".hsk-flashcard-typing-card.is-hanzi-wrap", css)
+        self.assertIn("flex-wrap:wrap", css)
+        self.assertIn("white-space:normal", css)
+        self.assertNotIn("function fitFlashcardTypingPromptHanzi", js)
 
-    def test_long_pinyin_uses_compact_progress_instead_of_many_slots(self) -> None:
+    def test_typing_input_keeps_current_syllable_centered(self) -> None:
         js = read("modules/hanzi-stroke/app.js")
         css = read("modules/hanzi-stroke/style.css")
-        self.assertIn("if(state.answerTokens.length > 10)", js)
-        self.assertIn("Đã nhập ${completed} / ${state.answerTokens.length} ký tự", js)
-        self.assertIn("hsk-flashcard-typing-progress-track", js)
-        self.assertIn(".hsk-flashcard-typing-progress-track", css)
-        self.assertIn("Gõ pinyin (không cần dấu)", js)
+        self.assertIn("typedValue: ''", js)
+        self.assertIn("submitFlashcardTypingInput(input.value, input)", js)
+        self.assertIn("if(input.value !== state.typedValue) input.value = state.typedValue;", js)
+        self.assertIn("return 'Nhập pinyin không dấu';", js)
+        self.assertIn("white-space:nowrap", css)
+        self.assertIn("overflow:hidden", css)
+        self.assertIn("text-align:center", css)
+
+    def test_typing_wrong_character_turns_red_then_removes_only_invalid_suffix(self) -> None:
+        js = read("modules/hanzi-stroke/app.js")
+        css = read("modules/hanzi-stroke/style.css")
+        self.assertIn("function trimFlashcardTypingTokensToValidPrefix", js)
+        self.assertIn("state.inputResetPending = true;", js)
+        self.assertIn("state.typedValue = formatFlashcardTypingDisplayFromTokens(trimmedTokens);", js)
+        self.assertIn("scheduleFlashcardTypingWrongReset(session, state)", js)
+        self.assertIn("}, 360);", js)
+        self.assertNotIn("currentState.typedValue = '';", js)
+        self.assertIn("Chưa đúng, nhập lại", js)
+        self.assertIn(".hsk-flashcard-typing-input.is-wrong", css)
+
+    def test_typing_highlight_maps_one_pinyin_syllable_to_one_hanzi(self) -> None:
+        js = read("modules/hanzi-stroke/app.js")
+        css = read("modules/hanzi-stroke/style.css")
+        self.assertIn("FLASHCARD_PINYIN_SYLLABLE_SET", js)
+        self.assertIn("function splitFlashcardPinyinGroupIntoSyllables", js)
+        self.assertIn("function buildFlashcardTypingAnswerTokens", js)
+        self.assertIn("const isCurrent = !state?.isCompleting && hanIndex === currentTokenIndex", js)
+        self.assertNotIn("function fitFlashcardTypingPromptHanzi", js)
+        self.assertIn("flex-wrap:nowrap", css)
+        self.assertIn("white-space:nowrap", css)
+        self.assertIn(".hsk-flashcard-typing-prompt-char.is-current", css)
+
+    def test_typing_has_separate_hanzi_and_hanzi_meaning_prompt_types(self) -> None:
+        js = read("modules/hanzi-stroke/app.js")
+        self.assertIn("hanzi-meaning-to-pinyin", js)
+        self.assertIn("Chữ Trung + Nghĩa Việt → Pinyin", js)
+        self.assertIn("CHỮ TRUNG + NGHĨA VIỆT → PINYIN", js)
+        self.assertIn("const showMeaning = state.promptType === 'hanzi-meaning-to-pinyin'", js)
+        self.assertIn("Hỗn hợp ba kiểu", js)
 
     def test_typing_auto_advance_has_default_presets_custom_and_toggle(self) -> None:
         js = read("modules/hanzi-stroke/app.js")
