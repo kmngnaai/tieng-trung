@@ -7,6 +7,9 @@
     : new URL('../shared/app-shell.js', document.baseURI);
   const rootUrl = new URL('../../', scriptUrl);
   const SETTINGS_KEY = 'tiengTrung.navigation.v2';
+  const LEARNING_HISTORY_KEY = 'tiengTrung.learning.recent.v1';
+  const LEARNING_HISTORY_MAX = 10;
+  const LEARNING_HISTORY_EVENT = 'tiengtrung:learning-history-changed';
 
   const ROUTES = Object.freeze({
     home: new URL('index.html', rootUrl).href,
@@ -43,6 +46,101 @@
     try {
       window.localStorage.setItem(SETTINGS_KEY, JSON.stringify(state.settings));
     } catch (_error) {}
+  }
+
+
+  function readLearningHistory() {
+    try {
+      const saved = JSON.parse(window.localStorage.getItem(LEARNING_HISTORY_KEY) || '[]');
+      return Array.isArray(saved) ? saved.filter(item => item && item.title && item.url).slice(0, LEARNING_HISTORY_MAX) : [];
+    } catch (_error) {
+      return [];
+    }
+  }
+
+  function writeLearningHistory(items) {
+    try {
+      window.localStorage.setItem(LEARNING_HISTORY_KEY, JSON.stringify((items || []).slice(0, LEARNING_HISTORY_MAX)));
+    } catch (_error) {}
+  }
+
+  function currentRelativeUrl() {
+    const url = new URL(window.location.href);
+    return `${url.pathname}${url.search}${url.hash}`;
+  }
+
+  function learningItemId(type, title) {
+    const params = new URLSearchParams(window.location.search);
+    const study = params.get('study') || '';
+    const curriculum = params.get('curriculum') || '';
+    const level = params.get('level') || '';
+    const section = params.get('section') || '';
+    const lesson = params.get('lesson') || '';
+    return [type, study, curriculum, level, section, lesson, title].filter(Boolean).join('|');
+  }
+
+  function buildCurrentLearningItem(customItems = null) {
+    const path = window.location.pathname.toLowerCase();
+    const params = new URLSearchParams(window.location.search);
+    const study = params.get('study') || 'hub';
+    const breadcrumbItems = normalizeBreadcrumbItems(customItems || state.customBreadcrumbItems || createDefaultBreadcrumbItems(resolveContext()));
+    const labels = breadcrumbItems.map(item => item.label).filter(Boolean);
+    let item = null;
+
+    if (window.location.hash === '#dialogue301') {
+      const lessonNumber = getDialogue301LessonNumber(params.get('lesson') || '');
+      item = {
+        type: 'curriculum',
+        icon: '课',
+        title: lessonNumber ? `301 · Bài ${lessonNumber}` : '301 Đàm thoại',
+        subtitle: lessonNumber ? 'Tiếp tục bài học gần nhất' : 'Giáo trình 301'
+      };
+    } else if (path.includes('/modules/pinyin/')) {
+      item = { type: 'pinyin', icon: '拼', title: 'Pinyin', subtitle: 'Học · Nghe · Quiz · Ôn · Tiến độ' };
+    } else if (path.includes('/modules/bo-thu-50/')) {
+      item = { type: 'legacy-radicals', icon: '部', title: 'Bộ thủ 50', subtitle: 'Tài liệu tham khảo' };
+    } else if (path.includes('/modules/hanzi-stroke/')) {
+      if (study === 'hub') return null;
+      if (study === 'writing') item = { type: 'writing', icon: '✍', title: 'Bút thuận', subtitle: 'Luyện viết và thứ tự nét' };
+      else if (study === 'radical' || study === 'radicals') item = { type: 'radicals', icon: '部', title: 'Bộ thủ', subtitle: '214 bộ thủ' };
+      else if (study === 'flashcards') item = { type: 'flashcards', icon: '卡', title: 'Thư viện bộ thẻ', subtitle: 'Flashcard và ôn tập' };
+      else if (study === 'hsk') {
+        const meaningful = labels.filter(label => !['Học', 'Giáo trình'].includes(label));
+        const title = meaningful[meaningful.length - 1] || 'Giáo trình';
+        const subtitle = meaningful.length > 1 ? meaningful.slice(0, -1).join(' · ') : 'Giáo trình tiếng Trung';
+        item = { type: 'curriculum', icon: '课', title, subtitle };
+      }
+    }
+
+    if (!item) return null;
+    return {
+      id: learningItemId(item.type, item.title),
+      type: item.type,
+      icon: item.icon,
+      title: item.title,
+      subtitle: item.subtitle,
+      url: currentRelativeUrl(),
+      updatedAt: new Date().toISOString()
+    };
+  }
+
+  function recordLearningItem(item) {
+    if (!item || !item.title || !item.url) return null;
+    const current = readLearningHistory();
+    const next = [item, ...current.filter(row => row.id !== item.id && row.url !== item.url)].slice(0, LEARNING_HISTORY_MAX);
+    writeLearningHistory(next);
+    window.dispatchEvent(new CustomEvent(LEARNING_HISTORY_EVENT, { detail: { items: next, current: item } }));
+    return item;
+  }
+
+  function recordCurrentLearningLocation(options = {}) {
+    const item = buildCurrentLearningItem(options.items || null);
+    return item ? recordLearningItem(item) : null;
+  }
+
+  function clearLearningHistory() {
+    writeLearningHistory([]);
+    window.dispatchEvent(new CustomEvent(LEARNING_HISTORY_EVENT, { detail: { items: [] } }));
   }
 
   function resolveContext() {
@@ -422,9 +520,20 @@
     });
 
     window.addEventListener('tiengtrung:navigationchange', refreshHierarchyBreadcrumb);
-    window.addEventListener('tiengtrung:breadcrumbchange', event => setHeaderBreadcrumb(event.detail?.items || []));
-    window.addEventListener('popstate', refreshHierarchyBreadcrumb);
-    window.addEventListener('hashchange', refreshHierarchyBreadcrumb);
+    window.addEventListener('tiengtrung:navigationchange', recordCurrentLearningLocation);
+    window.addEventListener('tiengtrung:breadcrumbchange', event => {
+      const items = event.detail?.items || [];
+      setHeaderBreadcrumb(items);
+      recordCurrentLearningLocation({ items });
+    });
+    window.addEventListener('popstate', () => {
+      refreshHierarchyBreadcrumb();
+      recordCurrentLearningLocation();
+    });
+    window.addEventListener('hashchange', () => {
+      refreshHierarchyBreadcrumb();
+      recordCurrentLearningLocation();
+    });
   }
 
   function syncSettings(drawer) {
@@ -475,8 +584,17 @@
     syncSettings(drawer);
     bindEvents(drawer);
     applyStudyQuery();
+    window.setTimeout(() => recordCurrentLearningLocation(), 0);
   }
 
+  window.TiengTrungLearningHistory = Object.freeze({
+    read: readLearningHistory,
+    record: recordLearningItem,
+    recordCurrent: recordCurrentLearningLocation,
+    clear: clearLearningHistory,
+    eventName: LEARNING_HISTORY_EVENT,
+    key: LEARNING_HISTORY_KEY
+  });
   window.TiengTrungAppShell = Object.freeze({ mount, openDrawer, closeDrawer, refreshHierarchyBreadcrumb, setBreadcrumb: setHeaderBreadcrumb, routes: ROUTES });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount, { once: true });
   else mount();

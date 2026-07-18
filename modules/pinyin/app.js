@@ -3516,9 +3516,6 @@ ${renderTopHeroV21('Quiz nghe theo nhóm', `Phạm vi câu hỏi hiện tại: $
     ${homeActionV23('Ôn âm yếu', `${dueCount} mục cần xem lại`, "setTab('review')", 'red')}
   </div>
 
-  ${renderGroupPickerV23(active)}
-  ${renderGroupDetailV23(active)}
-
   <section class="v22-lookup v23-lookup">
     <h2>Tra cứu</h2>
     <div class="v22-lookup-actions">
@@ -3527,6 +3524,9 @@ ${renderTopHeroV21('Quiz nghe theo nhóm', `Phạm vi câu hỏi hiện tại: $
       <button class="btn" type="button" onclick="setTab('rules')">Quy tắc</button>
     </div>
   </section>
+
+  ${renderGroupPickerV23(active)}
+  ${renderGroupDetailV23(active)}
 </section>`);
   };
 

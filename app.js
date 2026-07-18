@@ -191,12 +191,54 @@ function setPage(page){
   if(page === 'dialogue301') renderDialogue301();
 }
 
+function formatHomeResumeTime(value){
+  const timestamp = Date.parse(value || '');
+  if(!Number.isFinite(timestamp)) return 'Gần đây';
+  const elapsed = Math.max(0, Date.now() - timestamp);
+  const minutes = Math.floor(elapsed / 60000);
+  if(minutes < 1) return 'Vừa mở';
+  if(minutes < 60) return `${minutes} phút trước`;
+  const hours = Math.floor(minutes / 60);
+  if(hours < 24) return `${hours} giờ trước`;
+  const days = Math.floor(hours / 24);
+  return days === 1 ? 'Hôm qua' : `${days} ngày trước`;
+}
+
+function renderHomeResume(){
+  const host = document.getElementById('homeResumeContent');
+  if(!host) return;
+  const historyApi = window.TiengTrungLearningHistory;
+  const item = historyApi?.read?.()?.[0];
+  if(!item){
+    host.className = 'home-resume-empty';
+    host.setAttribute('role', 'status');
+    host.innerHTML = `
+      <span class="home-resume-empty__icon" aria-hidden="true">↻</span>
+      <span><strong>Chưa có nội dung gần đây</strong><small>Mở một bài học hoặc công cụ để bắt đầu.</small></span>`;
+    return;
+  }
+  host.className = 'home-resume-card';
+  host.removeAttribute('role');
+  const url = new URL(item.url, window.location.origin);
+  host.innerHTML = `
+    <a class="home-resume-card__link" href="${escapeHtml(`${url.pathname}${url.search}${url.hash}`)}">
+      <span class="home-resume-card__icon" aria-hidden="true">${escapeHtml(item.icon || '学')}</span>
+      <span class="home-resume-card__copy">
+        <small>${escapeHtml(item.subtitle || 'Nội dung học gần đây')}</small>
+        <strong>${escapeHtml(item.title || 'Học tiếp')}</strong>
+        <em>${escapeHtml(formatHomeResumeTime(item.updatedAt))}</em>
+      </span>
+      <span class="home-resume-card__action">Tiếp tục <b aria-hidden="true">›</b></span>
+    </a>`;
+}
+
 function renderHome(){
   pageTitle.textContent = 'Tiếng Trung';
   pageSubtitle.textContent = 'Tra nhanh · Học theo giáo trình · Ôn tập chủ động';
   pageContent.innerHTML = homePageContent;
   updateNavActive('home');
   bindHomeLookup();
+  window.setTimeout(renderHomeResume, 0);
 }
 
 function renderRadicals(){
@@ -2788,6 +2830,8 @@ async function loadPinyinAudioData(){
 
 async function init(){
   bindRootNavigation();
+  window.addEventListener('tiengtrung:learning-history-changed', renderHomeResume);
+  window.addEventListener('pageshow', renderHomeResume);
 
   setPage(location.hash === '#dialogue301' ? 'dialogue301' : 'home');
 

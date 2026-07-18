@@ -373,9 +373,9 @@ class UiUpgradeTests(unittest.TestCase):
 
     def test_301_cache_version_is_refreshed(self) -> None:
         html = read("index.html")
-        self.assertIn("app.js?v=20260717-recent1", html)
+        self.assertIn("app.js?v=20260718-resume1", html)
         self.assertIn("modules/shared/lookup-history.js?v=20260717-recent1", html)
-        self.assertIn("modules/shared/app-shell.js?v=20260717-headercrumb1", html)
+        self.assertIn("modules/shared/app-shell.js?v=20260718-resume1", html)
 
 
     def test_lookup_stroke_links_are_optional_after_shared_shell_replaces_legacy_nav(self) -> None:
@@ -472,7 +472,7 @@ class UiUpgradeTests(unittest.TestCase):
         self.assertIn("tiengTrung.lookup.recent.v1", shared)
         self.assertIn("const MAX_ITEMS = 10", shared)
         self.assertIn("[value, ...read().filter(item => item !== value)]", shared)
-        self.assertLess(home.index("lookup-history.js"), home.index("app.js?v=20260717-recent1"))
+        self.assertLess(home.index("lookup-history.js"), home.index("app.js?v=20260718-resume1"))
         self.assertLess(lookup.index("lookup-history.js"), lookup.index("app.js?v=20260717-recent1"))
         self.assertIn('aria-label="5 mục tra gần đây"', home)
         self.assertIn('aria-label="10 mục tra gần đây"', lookup)
@@ -602,6 +602,161 @@ class UiUpgradeTests(unittest.TestCase):
         self.assertIn("data-hsk-flashcard-typing-continue", js)
         self.assertIn("Tiếp tục ngay →", js)
 
+
+    def test_home_resume_is_backed_by_learning_history(self) -> None:
+        html = read("index.html")
+        js = read("app.js")
+        shell = read("modules/shared/app-shell.js")
+        css = read("style.css")
+        self.assertIn('id="homeResumeContent"', html)
+        self.assertIn("function renderHomeResume", js)
+        self.assertIn("window.TiengTrungLearningHistory", js)
+        self.assertIn("tiengtrung:learning-history-changed", js)
+        self.assertIn("tiengTrung.learning.recent.v1", shell)
+        self.assertIn("function recordCurrentLearningLocation", shell)
+        self.assertIn("function buildCurrentLearningItem", shell)
+        self.assertIn("flashcards", shell)
+        self.assertIn("curriculum", shell)
+        self.assertIn("home-resume-card__link", css)
+
+    def test_flashcard_library_uses_dashboard_first_navigation(self) -> None:
+        js = read("modules/hanzi-stroke/app.js")
+        css = read("modules/hanzi-stroke/style.css")
+        self.assertIn("Bộ thẻ của bạn", js)
+        self.assertIn("flashcard-library-quick", js)
+        self.assertIn("HSK & Giáo trình", js)
+        self.assertIn("Ôn hôm nay", js)
+        self.assertIn("data-flashcard-custom-open", js)
+        self.assertIn("flashcard-library-summary-strip", js)
+        self.assertIn("data-flashcard-tools-open", js)
+        self.assertIn("flashcard-library-data-entry", js)
+        self.assertIn("flashcard-quick-row", css)
+        self.assertIn("flashcard-library-data-entry", css)
+
+    def test_custom_decks_render_only_in_their_subpage(self) -> None:
+        js = read("modules/hanzi-stroke/app.js")
+        css = read("modules/hanzi-stroke/style.css")
+        self.assertIn("customDecksOpen: false", js)
+        self.assertIn("if(flashcardLibraryState.customDecksOpen)", js)
+        self.assertIn("data-flashcard-custom-back", js)
+        self.assertIn("flashcard-library-page--custom", js)
+        self.assertIn("flashcard-library-custom-browser", js)
+        self.assertIn("flashcard-library-custom-list", js)
+        self.assertIn("flashcard-custom-deck-card__study", js)
+        self.assertIn("flashcard-custom-deck-card__overview", js)
+        self.assertIn("flashcard-custom-deck-menu", js)
+        self.assertIn(".flashcard-library-page--custom", css)
+        self.assertIn(".flashcard-custom-deck-card", css)
+        self.assertIn(".flashcard-custom-deck-menu", css)
+
+
+    def test_flashcard_library_uses_custom_sort_sheet_and_data_manager(self) -> None:
+        js = read("modules/hanzi-stroke/app.js")
+        css = read("modules/hanzi-stroke/style.css")
+        self.assertIn("dataManagerOpen: false", js)
+        self.assertIn("sortSheetOpen: false", js)
+        self.assertIn("data-flashcard-tools-back", js)
+        self.assertIn("flashcard-library-page--data-manager", js)
+        self.assertIn("data-flashcard-sort-open", js)
+        self.assertIn("data-flashcard-sort-option", js)
+        self.assertIn("flashcard-sort-sheet", js)
+        self.assertNotIn("<select data-flashcard-library-sort>", js)
+        self.assertIn(".flashcard-sort-sheet-backdrop", css)
+        self.assertIn(".flashcard-data-action-list", css)
+        self.assertIn(".flashcard-custom-deck-card__study", css)
+
+    def test_learning_history_records_only_learning_routes(self) -> None:
+        shell = read("modules/shared/app-shell.js")
+        self.assertIn("if (study === 'hub') return null;", shell)
+        self.assertIn("study === 'writing'", shell)
+        self.assertIn("study === 'radical' || study === 'radicals'", shell)
+        self.assertIn("study === 'flashcards'", shell)
+        self.assertIn("study === 'hsk'", shell)
+        self.assertIn("path.includes('/modules/pinyin/')", shell)
+
+
+    def test_flashcard_learning_history_can_resume_active_session(self) -> None:
+        js = read("modules/hanzi-stroke/app.js")
+        self.assertIn("function recordFlashcardLearningHistory", js)
+        self.assertIn("url.searchParams.set('resume', 'flashcard')", js)
+        self.assertIn("flashcard-session:", js)
+        self.assertIn("get('resume') === 'flashcard'", js)
+        self.assertIn("renderFlashcardOverlay();", js)
+
+
+
+    def test_flashcard_library_search_has_single_visual_container(self) -> None:
+        css = read("modules/hanzi-stroke/style.css")
+        html = read("modules/hanzi-stroke/index.html")
+        self.assertIn("FC-LIBRARY-SEARCH.1", css)
+        self.assertIn('.flashcard-library-custom-browser .flashcard-library-search input[type="search"]', css)
+        self.assertIn("border:0!important", css)
+        self.assertIn("box-shadow:none!important", css)
+        self.assertIn("-webkit-appearance:none", css)
+        self.assertIn("grid-template-columns:18px minmax(0,1fr)", css)
+        self.assertIn("style.css?v=20260718-deckmultiselect1", html)
+
+
+    def test_flashcard_custom_decks_support_nested_groups(self) -> None:
+        js = read("modules/hanzi-stroke/app.js")
+        css = read("modules/hanzi-stroke/style.css")
+        html = read("modules/hanzi-stroke/index.html")
+        self.assertIn("FLASHCARD_GROUP_STORE = 'groups'", js)
+        self.assertIn("FLASHCARD_DB_VERSION = 3", js)
+        self.assertIn("getAllFlashcardGroups", js)
+        self.assertIn("saveFlashcardGroup", js)
+        self.assertIn("activeGroupId", js)
+        self.assertIn("data-flashcard-group-open", js)
+        self.assertIn("data-flashcard-group-new", js)
+        self.assertIn("data-flashcard-deck-move", js)
+        self.assertIn("data-flashcard-group-export", js)
+        self.assertIn("function exportFlashcardGroup", js)
+        self.assertIn("CHƯA PHÂN NHÓM", js)
+        self.assertIn("CÁC BỘ TRONG NHÓM", js)
+        self.assertIn(".flashcard-group-card", css)
+        self.assertIn(".flashcard-group-sheet", css)
+        self.assertIn("20260718-deckmultiselect1", html)
+
+    def test_flashcard_group_deletion_has_two_safe_choices(self) -> None:
+        js = read("modules/hanzi-stroke/app.js")
+        self.assertIn("function chooseFlashcardGroupDeletion", js)
+        self.assertIn("Đưa về Chưa phân nhóm", js)
+        self.assertIn("Xóa nhóm và các bộ", js)
+        self.assertIn("moveGroupDecksToUngrouped", js)
+        self.assertIn("moveGroupBundleToTrash", js)
+        self.assertIn("type: 'group-bundle'", js)
+        self.assertIn("item.type === 'group-bundle'", js)
+        self.assertIn("Nhóm đã xóa", js)
+
+    def test_flashcard_backup_keeps_groups_and_deck_group_ids(self) -> None:
+        js = read("modules/hanzi-stroke/app.js")
+        self.assertIn("version: 2, type: 'hanzi-flashcard-backup'", js)
+        self.assertIn("groups, decks, results", js)
+        self.assertIn("importFlashcardGroups", js)
+        self.assertIn("groupId: deck.groupId ? String(deck.groupId) : null", js)
+        self.assertIn("groupId: raw.groupId ? String(raw.groupId) : null", js)
+
+
+    def test_flashcard_custom_decks_support_multi_select_and_batch_move(self) -> None:
+        js = read("modules/hanzi-stroke/app.js")
+        css = read("modules/hanzi-stroke/style.css")
+        html = read("modules/hanzi-stroke/index.html")
+        self.assertIn("deckSelectionMode: false", js)
+        self.assertIn("selectedDeckIds: new Set()", js)
+        self.assertIn("FLASHCARD_DECK_LONG_PRESS_MS = 520", js)
+        self.assertIn("handleFlashcardDeckPointerDown", js)
+        self.assertIn("data-flashcard-deck-selection-start", js)
+        self.assertIn("data-flashcard-deck-select-all", js)
+        self.assertIn("data-flashcard-deck-move-selected", js)
+        self.assertIn("data-flashcard-deck-card", js)
+        self.assertIn("moveFlashcardDecksToGroup", js)
+        self.assertIn("movingDeckIds", js)
+        self.assertIn("DI CHUYỂN NHIỀU BỘ", js)
+        self.assertIn("flashcard-deck-selection-bar", js)
+        self.assertIn(".flashcard-custom-deck-card.is-selected", css)
+        self.assertIn(".flashcard-deck-selection-bar", css)
+        self.assertIn("FC-LIBRARY-MULTISELECT.1", css)
+        self.assertIn("20260718-deckmultiselect1", html)
 
 
 if __name__ == "__main__":

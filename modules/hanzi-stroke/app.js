@@ -1376,17 +1376,24 @@ if(window.HanziWriter){
   const HSK_FLASHCARD_ACTIVE_SESSION_KEY = 'hanziStroke.hskFlashcardActiveSession.v1';
   const FLASHCARD_LIBRARY_SORT_KEY = 'hanziStroke.flashcardLibrarySort.v1';
   const FLASHCARD_DB_NAME = 'hanziStrokeFlashcards';
-  const FLASHCARD_DB_VERSION = 2;
+  const FLASHCARD_DB_VERSION = 3;
   const FLASHCARD_DECK_STORE = 'decks';
+  const FLASHCARD_GROUP_STORE = 'groups';
   const FLASHCARD_TRASH_STORE = 'trash';
   let flashcardTouchStart = null;
   let flashcardSuppressClickUntil = 0;
+  let flashcardDeckLongPressTimer = 0;
+  let flashcardDeckLongPressPointerId = null;
+  let flashcardDeckLongPressStart = null;
+  let flashcardDeckLongPressTriggered = false;
+  const FLASHCARD_DECK_LONG_PRESS_MS = 520;
   let flashcardStrokeWriters = [];
   let flashcardStrokeRenderId = 0;
   let flashcardStrokePlayId = 0;
   let flashcardTypingCompletionTimer = 0;
   let flashcardTypingClockTimer = 0;
   let flashcardTypingErrorTimer = 0;
+  let flashcardLearningHistorySignature = '';
   const HSK_FLASHCARD_TYPING_SHORT_COMPLETION_DELAY_MS = 30000;
   const HSK_FLASHCARD_TYPING_LONG_COMPLETION_DELAY_MS = 120000;
   const HSK_FLASHCARD_TYPING_CUSTOM_DELAY_DEFAULT_SECONDS = 3;
@@ -1395,7 +1402,7 @@ if(window.HanziWriter){
   let tabFlashcards = null;
   let tabDialogue301 = null;
   let flashcardLibraryView = null;
-  const flashcardLibraryState = { decks: [], editingDeck: null, detailDeckId: '', detailSearch: '', editingCardId: '', selectedCardIds: new Set(), message: '', quickImportBusy: false, searchQuery: '', sortMode: readFlashcardLibrarySort(), undoTrashId: '', undoTimer: null, trashOpen: false, trashItems: [] };
+  const flashcardLibraryState = { decks: [], groups: [], activeGroupId: '', editingGroup: null, movingDeckId: '', movingDeckIds: [], deckSelectionMode: false, selectedDeckIds: new Set(), deletingGroupId: '', editingDeck: null, detailDeckId: '', detailSearch: '', editingCardId: '', selectedCardIds: new Set(), message: '', quickImportBusy: false, searchQuery: '', sortMode: readFlashcardLibrarySort(), customDecksOpen: false, dataManagerOpen: false, sortSheetOpen: false, undoTrashId: '', undoTimer: null, trashOpen: false, trashItems: [] };
 
   function makeLocalId(prefix = 'id'){
     if(window.crypto?.randomUUID) return `${prefix}-${window.crypto.randomUUID()}`;
@@ -1576,6 +1583,9 @@ if(window.HanziWriter){
         if(!db.objectStoreNames.contains(FLASHCARD_DECK_STORE)){
           db.createObjectStore(FLASHCARD_DECK_STORE, { keyPath: 'id' });
         }
+        if(!db.objectStoreNames.contains(FLASHCARD_GROUP_STORE)){
+          db.createObjectStore(FLASHCARD_GROUP_STORE, { keyPath: 'id' });
+        }
         if(!db.objectStoreNames.contains(FLASHCARD_TRASH_STORE)){
           const trashStore = db.createObjectStore(FLASHCARD_TRASH_STORE, { keyPath: 'id' });
           trashStore.createIndex('deletedAt', 'deletedAt', { unique: false });
@@ -1600,6 +1610,51 @@ if(window.HanziWriter){
     });
   }
 
+  async function withGroupStore(mode, callback){
+    const db = await openFlashcardDb();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(FLASHCARD_GROUP_STORE, mode);
+      const store = tx.objectStore(FLASHCARD_GROUP_STORE);
+      let value;
+      try{ value = callback(store); }catch(err){ db.close(); reject(err); return; }
+      tx.oncomplete = () => { db.close(); resolve(value); };
+      tx.onerror = () => { db.close(); reject(tx.error || new Error('Lỗi IndexedDB.')); };
+      tx.onabort = () => { db.close(); reject(tx.error || new Error('Giao dịch bị hủy.')); };
+    });
+  }
+
+  async function getAllFlashcardGroups(){
+    const db = await openFlashcardDb();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(FLASHCARD_GROUP_STORE, 'readonly');
+      const request = tx.objectStore(FLASHCARD_GROUP_STORE).getAll();
+      request.onsuccess = () => resolve((request.result || []).sort((a,b) => String(a.name || '').localeCompare(String(b.name || ''), 'vi', { sensitivity: 'base' })));
+      request.onerror = () => reject(request.error || new Error('Không đọc được nhóm bộ thẻ.'));
+      tx.oncomplete = () => db.close();
+    });
+  }
+
+  async function saveFlashcardGroup(group){
+    const now = new Date().toISOString();
+    const clean = {
+      id: String(group?.id || makeLocalId('group')),
+      name: String(group?.name || '').trim() || 'Nhóm chưa đặt tên',
+      description: String(group?.description || '').trim(),
+      createdAt: group?.createdAt || now,
+      updatedAt: now
+    };
+    await withGroupStore('readwrite', store => store.put(clean));
+    return clean;
+  }
+
+  async function deleteFlashcardGroupRecord(groupId){
+    await withGroupStore('readwrite', store => store.delete(groupId));
+  }
+
+  function getActiveFlashcardGroup(){
+    return flashcardLibraryState.groups.find(group => group.id === flashcardLibraryState.activeGroupId) || null;
+  }
+
   async function getAllCustomDecks(){
     const db = await openFlashcardDb();
     return new Promise((resolve, reject) => {
@@ -1617,6 +1672,7 @@ if(window.HanziWriter){
       id: String(deck.id || makeLocalId('deck')),
       name: String(deck.name || '').trim() || 'Bộ thẻ chưa đặt tên',
       description: String(deck.description || '').trim(),
+      groupId: deck.groupId ? String(deck.groupId) : null,
       createdAt: deck.createdAt || now,
       updatedAt: now,
       cards: (deck.cards || []).map(card => ({
@@ -1792,16 +1848,95 @@ if(window.HanziWriter){
     return trashItem;
   }
 
+  async function moveGroupDecksToUngrouped(groupId){
+    const decks = flashcardLibraryState.decks.filter(deck => deck.groupId === groupId);
+    const db = await openFlashcardDb();
+    await new Promise((resolve, reject) => {
+      const tx = db.transaction([FLASHCARD_DECK_STORE, FLASHCARD_GROUP_STORE], 'readwrite');
+      const deckStore = tx.objectStore(FLASHCARD_DECK_STORE);
+      const now = new Date().toISOString();
+      decks.forEach(deck => deckStore.put({ ...deck, groupId: null, updatedAt: now }));
+      tx.objectStore(FLASHCARD_GROUP_STORE).delete(groupId);
+      tx.oncomplete = resolve;
+      tx.onerror = () => reject(tx.error || new Error('Không thể xóa nhóm.'));
+      tx.onabort = () => reject(tx.error || new Error('Giao dịch bị hủy.'));
+    });
+    db.close();
+  }
+
+  async function moveGroupBundleToTrash(groupId){
+    const group = flashcardLibraryState.groups.find(item => item.id === groupId);
+    if(!group) return null;
+    const decks = flashcardLibraryState.decks.filter(deck => deck.groupId === groupId);
+    const deletedAt = new Date().toISOString();
+    const trashItem = {
+      id: makeLocalId('trash'),
+      type: 'group-bundle',
+      deletedAt,
+      expiresAt: makeTrashExpiry(deletedAt),
+      group: JSON.parse(JSON.stringify(group)),
+      decks: JSON.parse(JSON.stringify(decks))
+    };
+    const db = await openFlashcardDb();
+    await new Promise((resolve, reject) => {
+      const tx = db.transaction([FLASHCARD_DECK_STORE, FLASHCARD_GROUP_STORE, FLASHCARD_TRASH_STORE], 'readwrite');
+      const deckStore = tx.objectStore(FLASHCARD_DECK_STORE);
+      decks.forEach(deck => deckStore.delete(deck.id));
+      tx.objectStore(FLASHCARD_GROUP_STORE).delete(groupId);
+      tx.objectStore(FLASHCARD_TRASH_STORE).put(trashItem);
+      tx.oncomplete = resolve;
+      tx.onerror = () => reject(tx.error || new Error('Không thể chuyển nhóm vào Thùng rác.'));
+      tx.onabort = () => reject(tx.error || new Error('Giao dịch bị hủy.'));
+    });
+    db.close();
+    return trashItem;
+  }
+
+  function chooseFlashcardGroupDeletion(group, deckCount){
+    return new Promise(resolve => {
+      document.getElementById('flashcardGroupDeleteOverlay')?.remove();
+      const overlay = document.createElement('div');
+      overlay.id = 'flashcardGroupDeleteOverlay';
+      overlay.className = 'flashcard-confirm-overlay flashcard-group-delete-overlay';
+      overlay.innerHTML = `
+        <section class="flashcard-confirm-dialog flashcard-group-delete-dialog" role="dialog" aria-modal="true" aria-labelledby="flashcardGroupDeleteTitle">
+          <button type="button" class="flashcard-confirm-x" data-flashcard-group-delete-choice="cancel" aria-label="Đóng">×</button>
+          <div class="flashcard-confirm-icon">📁</div>
+          <h3 id="flashcardGroupDeleteTitle">Xóa nhóm “${escapeHtml(group?.name || 'Nhóm')}”?</h3>
+          <p>Nhóm này đang có ${deckCount} bộ thẻ. Chọn cách xử lý các bộ bên trong.</p>
+          <div class="flashcard-group-delete-actions">
+            <button type="button" class="primary" data-flashcard-group-delete-choice="ungroup"><b>Đưa về Chưa phân nhóm</b><span>Giữ nguyên bộ thẻ và lịch sử học.</span></button>
+            <button type="button" class="danger" data-flashcard-group-delete-choice="trash"><b>Xóa nhóm và các bộ</b><span>Chuyển tất cả vào Thùng rác trong 30 ngày.</span></button>
+            <button type="button" data-flashcard-group-delete-choice="cancel">Hủy</button>
+          </div>
+        </section>`;
+      const finish = value => { overlay.remove(); resolve(value); };
+      overlay.addEventListener('click', event => {
+        if(event.target === overlay) return finish('cancel');
+        const choice = event.target.closest('[data-flashcard-group-delete-choice]')?.dataset.flashcardGroupDeleteChoice;
+        if(choice) finish(choice);
+      });
+      document.body.appendChild(overlay);
+      overlay.querySelector('[data-flashcard-group-delete-choice="ungroup"]')?.focus();
+    });
+  }
+
   async function restoreTrashItem(id){
     const item = await getTrashItem(id);
     if(!item) return false;
     const db = await openFlashcardDb();
     await new Promise((resolve, reject) => {
-      const tx = db.transaction([FLASHCARD_DECK_STORE, FLASHCARD_TRASH_STORE], 'readwrite');
+      const tx = db.transaction([FLASHCARD_DECK_STORE, FLASHCARD_GROUP_STORE, FLASHCARD_TRASH_STORE], 'readwrite');
       const deckStore = tx.objectStore(FLASHCARD_DECK_STORE);
       const trashStore = tx.objectStore(FLASHCARD_TRASH_STORE);
       if(item.type === 'deck'){
         deckStore.put({ ...item.data, updatedAt: new Date().toISOString() });
+        trashStore.delete(item.id);
+      }else if(item.type === 'group-bundle'){
+        const groupStore = tx.objectStore(FLASHCARD_GROUP_STORE);
+        const now = new Date().toISOString();
+        groupStore.put({ ...item.group, updatedAt: now });
+        (item.decks || []).forEach(deck => deckStore.put({ ...deck, groupId: item.group?.id || deck.groupId || null, updatedAt: now }));
         trashStore.delete(item.id);
       }else if(item.type === 'cards'){
         const request = deckStore.get(item.sourceDeckId);
@@ -1884,6 +2019,7 @@ if(window.HanziWriter){
           id: String(raw.id || makeLocalId('deck')),
           name: String(raw.name || 'Bộ thẻ đã nhập'),
           description: String(raw.description || ''),
+          groupId: raw.groupId ? String(raw.groupId) : null,
           createdAt: raw.createdAt || new Date().toISOString(),
           updatedAt: new Date().toISOString(),
           cards: (raw.cards || []).map(card => ({
@@ -1898,6 +2034,27 @@ if(window.HanziWriter){
       tx.oncomplete = () => { db.close(); resolve(); };
       tx.onerror = () => { db.close(); reject(tx.error || new Error('Không nhập được dữ liệu.')); };
     });
+  }
+
+  async function importFlashcardGroups(groups){
+    if(!Array.isArray(groups) || !groups.length) return;
+    const db = await openFlashcardDb();
+    await new Promise((resolve, reject) => {
+      const tx = db.transaction(FLASHCARD_GROUP_STORE, 'readwrite');
+      const store = tx.objectStore(FLASHCARD_GROUP_STORE);
+      const now = new Date().toISOString();
+      groups.forEach(raw => store.put({
+        id: String(raw?.id || makeLocalId('group')),
+        name: String(raw?.name || 'Nhóm đã nhập'),
+        description: String(raw?.description || ''),
+        createdAt: raw?.createdAt || now,
+        updatedAt: raw?.updatedAt || now
+      }));
+      tx.oncomplete = resolve;
+      tx.onerror = () => reject(tx.error || new Error('Không nhập được nhóm bộ thẻ.'));
+      tx.onabort = () => reject(tx.error || new Error('Giao dịch bị hủy.'));
+    });
+    db.close();
   }
 
   function navigateStudyRoute(routeName, tabName){
@@ -1936,6 +2093,13 @@ if(window.HanziWriter){
     flashcardLibraryView.addEventListener('click', event => { event.stopPropagation(); handleFlashcardLibraryClick(event); });
     flashcardLibraryView.addEventListener('change', handleFlashcardLibraryChange);
     flashcardLibraryView.addEventListener('input', handleFlashcardLibraryInput);
+    flashcardLibraryView.addEventListener('pointerdown', handleFlashcardDeckPointerDown);
+    flashcardLibraryView.addEventListener('pointermove', handleFlashcardDeckPointerMove);
+    flashcardLibraryView.addEventListener('pointerup', cancelFlashcardDeckLongPress);
+    flashcardLibraryView.addEventListener('pointercancel', cancelFlashcardDeckLongPress);
+    flashcardLibraryView.addEventListener('contextmenu', event => {
+      if(event.target.closest('[data-flashcard-deck-card]')) event.preventDefault();
+    });
   }
 
   function ensureDeckEditorState(deck){
@@ -2568,14 +2732,21 @@ if(window.HanziWriter){
   }
 
   function renderFlashcardTrashPage(items){
+    const groupItems = items.filter(item => item.type === 'group-bundle');
     const deckItems = items.filter(item => item.type === 'deck');
     const cardItems = items.filter(item => item.type === 'cards');
     const renderItem = item => {
+      const isGroup = item.type === 'group-bundle';
       const isDeck = item.type === 'deck';
-      const title = isDeck ? (item.data?.name || 'Bộ thẻ') : `${item.entries?.length || 0} thẻ từ ${item.sourceDeckName || 'bộ cũ'}`;
-      const detail = isDeck ? `${item.data?.cards?.length || 0} thẻ` : (item.entries || []).slice(0,3).map(entry => entry.card?.word || '').filter(Boolean).join(' · ');
+      const title = isGroup
+        ? (item.group?.name || 'Nhóm bộ thẻ')
+        : (isDeck ? (item.data?.name || 'Bộ thẻ') : `${item.entries?.length || 0} thẻ từ ${item.sourceDeckName || 'bộ cũ'}`);
+      const detail = isGroup
+        ? `${item.decks?.length || 0} bộ · ${(item.decks || []).reduce((sum, deck) => sum + (deck.cards?.length || 0), 0)} thẻ`
+        : (isDeck ? `${item.data?.cards?.length || 0} thẻ` : (item.entries || []).slice(0,3).map(entry => entry.card?.word || '').filter(Boolean).join(' · '));
+      const label = isGroup ? 'NHÓM' : (isDeck ? 'BỘ THẺ' : 'THẺ');
       return `<article class="flashcard-trash-card">
-        <div><span>${isDeck ? 'BỘ THẺ' : 'THẺ'}</span><h4>${escapeHtml(title)}</h4><p>${escapeHtml(detail || 'Không có mô tả')}</p><small>Đã xóa ${escapeHtml(formatLibraryDate(item.deletedAt))} · còn ${getTrashDaysLeft(item)} ngày</small></div>
+        <div><span>${label}</span><h4>${escapeHtml(title)}</h4><p>${escapeHtml(detail || 'Không có mô tả')}</p><small>Đã xóa ${escapeHtml(formatLibraryDate(item.deletedAt))} · còn ${getTrashDaysLeft(item)} ngày</small></div>
         <div class="flashcard-trash-actions"><button type="button" data-flashcard-trash-restore="${escapeHtml(item.id)}">Khôi phục</button><button type="button" class="danger" data-flashcard-trash-delete="${escapeHtml(item.id)}">Xóa vĩnh viễn</button></div>
       </article>`;
     };
@@ -2583,9 +2754,216 @@ if(window.HanziWriter){
       <header class="flashcard-library-header"><button type="button" class="flashcard-library-back" data-flashcard-trash-back>← Thư viện</button><div><span>THÙNG RÁC</span><h2>Khôi phục dữ liệu đã xóa</h2><p>Các mục tự động bị xóa vĩnh viễn sau 30 ngày.</p></div></header>
       ${flashcardLibraryState.message ? `<p class="flashcard-library-message">${escapeHtml(flashcardLibraryState.message)}</p>` : ''}
       <section class="flashcard-trash-toolbar"><b>${items.length} mục</b><div><button type="button" data-flashcard-trash-restore-all ${items.length ? '' : 'disabled'}>Khôi phục tất cả</button><button type="button" class="danger" data-flashcard-trash-clear ${items.length ? '' : 'disabled'}>Dọn sạch</button></div></section>
+      <section class="flashcard-trash-group"><h3>Nhóm đã xóa <span>${groupItems.length}</span></h3>${groupItems.length ? groupItems.map(renderItem).join('') : '<p class="flashcard-library-empty">Không có nhóm đã xóa.</p>'}</section>
       <section class="flashcard-trash-group"><h3>Bộ đã xóa <span>${deckItems.length}</span></h3>${deckItems.length ? deckItems.map(renderItem).join('') : '<p class="flashcard-library-empty">Không có bộ thẻ đã xóa.</p>'}</section>
       <section class="flashcard-trash-group"><h3>Thẻ đã xóa <span>${cardItems.length}</span></h3>${cardItems.length ? cardItems.map(renderItem).join('') : '<p class="flashcard-library-empty">Không có thẻ đã xóa.</p>'}</section>
     </div>`;
+  }
+
+  function getFlashcardLibrarySortLabel(mode = flashcardLibraryState.sortMode){
+    return ({
+      'updated-desc': 'Mới sửa gần nhất',
+      'studied-desc': 'Học gần nhất',
+      'name-asc': 'Tên A–Z',
+      'cards-desc': 'Nhiều thẻ nhất',
+      'hard-desc': 'Nhiều thẻ Khó nhất',
+      'review-desc': 'Nhiều thẻ Ôn nhất'
+    })[mode] || 'Mới sửa gần nhất';
+  }
+
+  function getFlashcardDeckPriorityLabel(deckStats){
+    if(Number(deckStats?.review || 0) > 0) return { className: 'review', label: `Cần ôn ${deckStats.review}` };
+    if(Number(deckStats?.hard || 0) > 0) return { className: 'hard', label: `Khó ${deckStats.hard}` };
+    if(Number(deckStats?.unseen || 0) === Number(deckStats?.total || 0) && Number(deckStats?.total || 0) > 0) return { className: 'new', label: 'Chưa học' };
+    if(Number(deckStats?.total || 0) > 0 && Number(deckStats?.unseen || 0) === 0) return { className: 'done', label: 'Đã học' };
+    return { className: 'neutral', label: `${Number(deckStats?.total || 0)} thẻ` };
+  }
+
+
+  function clearFlashcardDeckSelection(){
+    flashcardLibraryState.deckSelectionMode = false;
+    flashcardLibraryState.selectedDeckIds.clear();
+  }
+
+  function toggleFlashcardDeckSelection(deckId, forceSelected){
+    if(!deckId) return;
+    const selected = flashcardLibraryState.selectedDeckIds;
+    const shouldSelect = typeof forceSelected === 'boolean' ? forceSelected : !selected.has(deckId);
+    if(shouldSelect) selected.add(deckId);
+    else selected.delete(deckId);
+  }
+
+  function getPendingMovingDeckIds(){
+    const ids = Array.isArray(flashcardLibraryState.movingDeckIds)
+      ? flashcardLibraryState.movingDeckIds.filter(Boolean)
+      : [];
+    if(ids.length) return [...new Set(ids)];
+    return flashcardLibraryState.movingDeckId ? [flashcardLibraryState.movingDeckId] : [];
+  }
+
+  function clearPendingMovingDecks(){
+    flashcardLibraryState.movingDeckId = '';
+    flashcardLibraryState.movingDeckIds = [];
+  }
+
+  async function moveFlashcardDecksToGroup(deckIds, groupId){
+    const ids = new Set((deckIds || []).filter(Boolean));
+    const decks = flashcardLibraryState.decks.filter(deck => ids.has(deck.id));
+    for(const deck of decks){
+      await saveCustomDeck({ ...deck, groupId: groupId || null });
+    }
+    return decks;
+  }
+
+  function cancelFlashcardDeckLongPress(){
+    if(flashcardDeckLongPressTimer){
+      window.clearTimeout(flashcardDeckLongPressTimer);
+      flashcardDeckLongPressTimer = 0;
+    }
+    flashcardDeckLongPressPointerId = null;
+    flashcardDeckLongPressStart = null;
+  }
+
+  function handleFlashcardDeckPointerDown(event){
+    if(event.button !== undefined && event.button !== 0) return;
+    if(flashcardLibraryState.deckSelectionMode) return;
+    if(event.target.closest('.flashcard-custom-deck-menu')) return;
+    const card = event.target.closest('[data-flashcard-deck-card]');
+    if(!card) return;
+    const deckId = card.dataset.flashcardDeckCard || '';
+    if(!deckId) return;
+    cancelFlashcardDeckLongPress();
+    flashcardDeckLongPressTriggered = false;
+    flashcardDeckLongPressPointerId = event.pointerId;
+    flashcardDeckLongPressStart = { x: event.clientX, y: event.clientY, deckId };
+    flashcardDeckLongPressTimer = window.setTimeout(async () => {
+      flashcardDeckLongPressTimer = 0;
+      flashcardDeckLongPressTriggered = true;
+      flashcardSuppressClickUntil = Date.now() + 800;
+      flashcardLibraryState.deckSelectionMode = true;
+      toggleFlashcardDeckSelection(deckId, true);
+      try{ window.navigator?.vibrate?.(25); }catch(_err){}
+      await renderFlashcardLibrary();
+    }, FLASHCARD_DECK_LONG_PRESS_MS);
+  }
+
+  function handleFlashcardDeckPointerMove(event){
+    if(!flashcardDeckLongPressTimer || event.pointerId !== flashcardDeckLongPressPointerId || !flashcardDeckLongPressStart) return;
+    const dx = Math.abs(event.clientX - flashcardDeckLongPressStart.x);
+    const dy = Math.abs(event.clientY - flashcardDeckLongPressStart.y);
+    if(dx > 12 || dy > 12) cancelFlashcardDeckLongPress();
+  }
+
+  function getFlashcardGroupSummary(groupId){
+    const decks = flashcardLibraryState.decks.filter(deck => deck.groupId === groupId);
+    return {
+      decks,
+      deckCount: decks.length,
+      cardCount: decks.reduce((sum, deck) => sum + (deck.cards?.length || 0), 0)
+    };
+  }
+
+  function renderFlashcardCustomDeckCard(row){
+    const { deck, stats: deckStats } = row;
+    const priority = getFlashcardDeckPriorityLabel(deckStats);
+    const group = flashcardLibraryState.groups.find(item => item.id === deck.groupId);
+    const selectionMode = flashcardLibraryState.deckSelectionMode;
+    const selected = flashcardLibraryState.selectedDeckIds.has(deck.id);
+    return `
+      <article class="flashcard-custom-deck-card ${selectionMode ? 'is-selection-mode' : ''} ${selected ? 'is-selected' : ''}" data-flashcard-deck-card="${escapeHtml(deck.id)}" aria-selected="${selected}">
+        <button type="button" class="flashcard-deck-select-toggle" data-flashcard-deck-select="${escapeHtml(deck.id)}" aria-label="${selected ? 'Bỏ chọn' : 'Chọn'} bộ ${escapeHtml(deck.name)}" aria-pressed="${selected}"><span aria-hidden="true">${selected ? '✓' : ''}</span></button>
+        <div class="flashcard-custom-deck-card__head">
+          <span class="flashcard-custom-deck-card__icon" aria-hidden="true">卡</span>
+          <button type="button" class="flashcard-custom-deck-card__title" data-flashcard-deck-open="${escapeHtml(deck.id)}">
+            <strong>${escapeHtml(deck.name)}</strong>
+            <span>${escapeHtml(deck.description || 'Không có mô tả')}</span>
+          </button>
+          <details class="flashcard-custom-deck-menu">
+            <summary aria-label="Mở tùy chọn bộ ${escapeHtml(deck.name)}">⋯</summary>
+            <div>
+              <button type="button" data-flashcard-deck-open="${escapeHtml(deck.id)}">Xem chi tiết</button>
+              <button type="button" data-flashcard-deck-edit="${escapeHtml(deck.id)}">Sửa bộ thẻ</button>
+              <button type="button" data-flashcard-deck-move="${escapeHtml(deck.id)}">Di chuyển vào nhóm</button>
+              <button type="button" class="danger" data-flashcard-deck-delete="${escapeHtml(deck.id)}">Chuyển vào thùng rác</button>
+            </div>
+          </details>
+        </div>
+        <div class="flashcard-custom-deck-card__overview">
+          <span>${deckStats.total} thẻ${group ? ` · ${escapeHtml(group.name)}` : ''}</span>
+          <span class="status ${priority.className}">${escapeHtml(priority.label)}</span>
+        </div>
+        <div class="flashcard-custom-deck-card__stats" aria-label="Thống kê bộ thẻ">
+          <span class="easy">Dễ <b>${deckStats.easy}</b></span>
+          <span class="review">Ôn <b>${deckStats.review}</b></span>
+          <span class="hard">Khó <b>${deckStats.hard}</b></span>
+          <span class="unseen">Mới <b>${deckStats.unseen}</b></span>
+        </div>
+        <div class="flashcard-custom-deck-card__meta">
+          <small>Học gần nhất ${escapeHtml(formatLibraryDate(deckStats.lastStudiedAt))}</small>
+          <small>Sửa ${escapeHtml(formatLibraryDate(deck.updatedAt))}</small>
+        </div>
+        <button type="button" class="flashcard-custom-deck-card__study" data-flashcard-deck-study="${escapeHtml(deck.id)}" ${deckStats.total ? '' : 'disabled'}>Học bộ này</button>
+      </article>`;
+  }
+
+  function renderFlashcardGroupCard(group){
+    const summary = getFlashcardGroupSummary(group.id);
+    return `
+      <article class="flashcard-group-card">
+        <button type="button" class="flashcard-group-card__open" data-flashcard-group-open="${escapeHtml(group.id)}">
+          <span class="flashcard-group-card__icon" aria-hidden="true">📁</span>
+          <span class="flashcard-group-card__copy">
+            <strong>${escapeHtml(group.name)}</strong>
+            <small>${escapeHtml(group.description || `${summary.deckCount} bộ · ${summary.cardCount} thẻ`)}</small>
+          </span>
+          <span class="flashcard-group-card__count">${summary.deckCount} bộ</span>
+          <i aria-hidden="true">›</i>
+        </button>
+        <details class="flashcard-group-menu">
+          <summary aria-label="Tùy chọn nhóm ${escapeHtml(group.name)}">⋯</summary>
+          <div>
+            <button type="button" data-flashcard-group-edit="${escapeHtml(group.id)}">Đổi tên nhóm</button>
+            <button type="button" data-flashcard-group-export="${escapeHtml(group.id)}">Xuất cả nhóm</button>
+            <button type="button" class="danger" data-flashcard-group-delete="${escapeHtml(group.id)}">Xóa nhóm</button>
+          </div>
+        </details>
+      </article>`;
+  }
+
+  function renderFlashcardGroupEditorOverlay(){
+    const editor = flashcardLibraryState.editingGroup;
+    if(!editor) return '';
+    return `
+      <div class="flashcard-group-sheet-backdrop" data-flashcard-group-editor-backdrop>
+        <section class="flashcard-group-sheet" role="dialog" aria-modal="true" aria-label="${editor.isNew ? 'Tạo nhóm' : 'Sửa nhóm'}">
+          <header><div><span>NHÓM BỘ THẺ</span><h3>${editor.isNew ? 'Tạo nhóm mới' : 'Đổi tên nhóm'}</h3></div><button type="button" data-flashcard-group-editor-cancel aria-label="Đóng">×</button></header>
+          <label>Tên nhóm<input type="text" data-flashcard-group-name value="${escapeHtml(editor.name || '')}" placeholder="Ví dụ: test"></label>
+          <label>Mô tả <small>không bắt buộc</small><textarea rows="2" data-flashcard-group-description placeholder="Ghi chú ngắn về nhóm">${escapeHtml(editor.description || '')}</textarea></label>
+          <div class="flashcard-group-sheet__actions"><button type="button" data-flashcard-group-editor-cancel>Hủy</button><button type="button" class="primary" data-flashcard-group-save>${editor.isNew ? 'Tạo nhóm' : 'Lưu thay đổi'}</button></div>
+        </section>
+      </div>`;
+  }
+
+  function renderFlashcardDeckMoveOverlay(){
+    if(flashcardLibraryState.editingGroup) return '';
+    const movingIds = getPendingMovingDeckIds();
+    const decks = flashcardLibraryState.decks.filter(item => movingIds.includes(item.id));
+    if(!decks.length) return '';
+    const currentGroupIds = new Set(decks.map(deck => deck.groupId || ''));
+    const sharedGroupId = currentGroupIds.size === 1 ? [...currentGroupIds][0] : null;
+    const heading = decks.length === 1 ? decks[0].name : `${decks.length} bộ đã chọn`;
+    return `
+      <div class="flashcard-group-sheet-backdrop" data-flashcard-deck-move-backdrop>
+        <section class="flashcard-group-sheet" role="dialog" aria-modal="true" aria-label="Di chuyển bộ thẻ">
+          <header><div><span>${decks.length === 1 ? 'DI CHUYỂN BỘ' : 'DI CHUYỂN NHIỀU BỘ'}</span><h3>${escapeHtml(heading)}</h3></div><button type="button" data-flashcard-deck-move-cancel aria-label="Đóng">×</button></header>
+          ${decks.length > 1 ? `<p class="flashcard-group-sheet__hint">Chọn một nhóm đích cho toàn bộ ${decks.length} bộ thẻ.</p>` : ''}
+          <div class="flashcard-group-target-list">
+            <button type="button" class="${sharedGroupId === '' ? 'active' : ''}" data-flashcard-deck-group-target=""><span>Không phân nhóm</span><i>${sharedGroupId === '' ? '✓' : ''}</i></button>
+            ${flashcardLibraryState.groups.map(group => `<button type="button" class="${sharedGroupId === group.id ? 'active' : ''}" data-flashcard-deck-group-target="${escapeHtml(group.id)}"><span>📁 ${escapeHtml(group.name)}</span><i>${sharedGroupId === group.id ? '✓' : ''}</i></button>`).join('')}
+          </div>
+          <button type="button" class="flashcard-group-create-inline" data-flashcard-group-new>＋ Tạo nhóm mới</button>
+        </section>
+      </div>`;
   }
 
   async function renderFlashcardLibrary(){
@@ -2654,10 +3032,18 @@ if(window.HanziWriter){
       return;
     }
     try{
-      flashcardLibraryState.decks = await getAllCustomDecks();
+      const [decks, groups] = await Promise.all([getAllCustomDecks(), getAllFlashcardGroups()]);
+      flashcardLibraryState.decks = decks;
+      flashcardLibraryState.groups = groups;
+      const validDeckIds = new Set(decks.map(deck => deck.id));
+      [...flashcardLibraryState.selectedDeckIds].forEach(id => { if(!validDeckIds.has(id)) flashcardLibraryState.selectedDeckIds.delete(id); });
+      if(flashcardLibraryState.activeGroupId && !groups.some(group => group.id === flashcardLibraryState.activeGroupId)){
+        flashcardLibraryState.activeGroupId = '';
+      }
     }catch(err){
       flashcardLibraryState.message = err.message || 'Không đọc được bộ thẻ tự tạo.';
       flashcardLibraryState.decks = [];
+      flashcardLibraryState.groups = [];
     }
     if(flashcardLibraryState.detailDeckId){
       const detailDeck = getDetailDeck();
@@ -2679,65 +3065,188 @@ if(window.HanziWriter){
     }
     const stats = getFlashcardStats();
     const libraryRows = prepareFlashcardLibraryDecks(flashcardLibraryState.decks);
+    const dueCount = stats.review + stats.hard;
+    const customCardTotal = flashcardLibraryState.decks.reduce((sum, deck) => sum + (Array.isArray(deck.cards) ? deck.cards.length : 0), 0);
+
+    if(flashcardLibraryState.dataManagerOpen){
+      flashcardLibraryView.innerHTML = `
+        <div class="flashcard-library-page flashcard-library-page--data-manager">
+          <header class="flashcard-library-subpage-header flashcard-library-subpage-header--plain">
+            <button type="button" class="flashcard-library-back" data-flashcard-tools-back aria-label="Quay lại trang Thẻ">←</button>
+            <div><span>FLASHCARD</span><h2>Quản lý dữ liệu</h2><p>Sao lưu, khôi phục và dọn dữ liệu bộ thẻ.</p></div>
+          </header>
+          ${flashcardLibraryState.message ? `<p class="flashcard-library-message">${escapeHtml(flashcardLibraryState.message)}</p>` : ''}
+          <section class="flashcard-data-section" aria-labelledby="flashcardBackupTitle">
+            <header><span class="flashcard-data-section__eyebrow">SAO LƯU</span><h3 id="flashcardBackupTitle">Dữ liệu của bạn</h3></header>
+            <div class="flashcard-data-action-list">
+              <button type="button" data-flashcard-export>
+                <span class="flashcard-data-action__icon export" aria-hidden="true">⇩</span>
+                <span class="flashcard-data-action__copy"><b>Xuất dữ liệu</b><small>Tải bộ thẻ và lịch sử học thành file JSON.</small></span>
+                <i aria-hidden="true">›</i>
+              </button>
+              <button type="button" data-flashcard-import-trigger>
+                <span class="flashcard-data-action__icon import" aria-hidden="true">⇧</span>
+                <span class="flashcard-data-action__copy"><b>Nhập dữ liệu</b><small>Khôi phục từ file JSON đã sao lưu.</small></span>
+                <i aria-hidden="true">›</i>
+              </button>
+              <input type="file" accept="application/json,.json" data-flashcard-import-file hidden>
+            </div>
+          </section>
+          <section class="flashcard-data-section" aria-labelledby="flashcardRestoreTitle">
+            <header><span class="flashcard-data-section__eyebrow">KHÔI PHỤC</span><h3 id="flashcardRestoreTitle">Nội dung đã xóa</h3></header>
+            <div class="flashcard-data-action-list">
+              <button type="button" data-flashcard-trash-open>
+                <span class="flashcard-data-action__icon trash" aria-hidden="true">♲</span>
+                <span class="flashcard-data-action__copy"><b>Thùng rác</b><small>Khôi phục bộ hoặc thẻ đã xóa trong 30 ngày.</small></span>
+                <i aria-hidden="true">›</i>
+              </button>
+            </div>
+          </section>
+          <section class="flashcard-data-section flashcard-data-section--danger" aria-labelledby="flashcardDangerTitle">
+            <header><span class="flashcard-data-section__eyebrow">VÙNG NGUY HIỂM</span><h3 id="flashcardDangerTitle">Đặt lại dữ liệu học</h3></header>
+            <div class="flashcard-data-action-list">
+              <button type="button" class="danger" data-flashcard-reset-history>
+                <span class="flashcard-data-action__icon danger" aria-hidden="true">×</span>
+                <span class="flashcard-data-action__copy"><b>Xóa lịch sử học</b><small>Xóa điểm Dễ, Ôn, Khó nhưng giữ nguyên bộ thẻ.</small></span>
+                <i aria-hidden="true">›</i>
+              </button>
+              <button type="button" class="danger" data-flashcard-reset-session>
+                <span class="flashcard-data-action__icon danger" aria-hidden="true">↺</span>
+                <span class="flashcard-data-action__copy"><b>Đặt lại phiên học dở</b><small>Xóa tiến độ phiên hiện tại, không xóa bộ thẻ.</small></span>
+                <i aria-hidden="true">›</i>
+              </button>
+            </div>
+          </section>
+        </div>`;
+      return;
+    }
+
+    if(flashcardLibraryState.customDecksOpen){
+      const sortOptions = [
+        ['updated-desc', 'Mới sửa gần nhất'],
+        ['studied-desc', 'Học gần nhất'],
+        ['name-asc', 'Tên A–Z'],
+        ['cards-desc', 'Nhiều thẻ nhất'],
+        ['hard-desc', 'Nhiều thẻ Khó nhất'],
+        ['review-desc', 'Nhiều thẻ Ôn nhất']
+      ];
+      const activeGroup = getActiveFlashcardGroup();
+      const activeGroupDeckIds = activeGroup
+        ? new Set(flashcardLibraryState.decks.filter(deck => deck.groupId === activeGroup.id).map(deck => deck.id))
+        : null;
+      const visibleDeckRows = activeGroupDeckIds
+        ? libraryRows.filter(row => activeGroupDeckIds.has(row.deck.id))
+        : libraryRows.filter(row => !row.deck.groupId || !flashcardLibraryState.groups.some(group => group.id === row.deck.groupId));
+      const query = normalizeLibrarySearch(flashcardLibraryState.searchQuery);
+      const visibleGroups = activeGroup ? [] : flashcardLibraryState.groups.filter(group => {
+        if(!query) return true;
+        if(normalizeLibrarySearch(`${group.name || ''} ${group.description || ''}`).includes(query)) return true;
+        return flashcardLibraryState.decks.some(deck => deck.groupId === group.id && getDeckSearchText(deck).includes(query));
+      });
+      const currentCardTotal = activeGroup
+        ? flashcardLibraryState.decks.filter(deck => deck.groupId === activeGroup.id).reduce((sum, deck) => sum + (deck.cards?.length || 0), 0)
+        : customCardTotal;
+      const currentDeckTotal = activeGroup
+        ? flashcardLibraryState.decks.filter(deck => deck.groupId === activeGroup.id).length
+        : flashcardLibraryState.decks.length;
+      flashcardLibraryView.innerHTML = `
+        <div class="flashcard-library-page flashcard-library-page--custom ${activeGroup ? 'is-group-view' : ''} ${flashcardLibraryState.deckSelectionMode ? 'is-deck-selection-mode' : ''}">
+          <header class="flashcard-library-subpage-header flashcard-library-subpage-header--plain">
+            <button type="button" class="flashcard-library-back" ${activeGroup ? 'data-flashcard-group-back' : 'data-flashcard-custom-back'} aria-label="Quay lại">←</button>
+            <div><span>${activeGroup ? 'NHÓM BỘ THẺ' : 'BỘ THẺ CỦA BẠN'}</span><h2>${escapeHtml(activeGroup?.name || 'Bộ tự tạo')}</h2><p>${currentDeckTotal} bộ · ${currentCardTotal} thẻ${activeGroup?.description ? ` · ${escapeHtml(activeGroup.description)}` : ''}</p></div>
+            <div class="flashcard-library-header-actions ${flashcardLibraryState.deckSelectionMode ? 'is-selecting' : ''}">
+              ${flashcardLibraryState.deckSelectionMode
+                ? '<button type="button" class="flashcard-library-secondary-compact flashcard-library-selection-cancel" data-flashcard-deck-selection-cancel>Hủy chọn</button>'
+                : `${activeGroup ? '<button type="button" class="flashcard-library-secondary-compact" data-flashcard-group-edit-active>Đổi tên</button>' : '<button type="button" class="flashcard-library-secondary-compact" data-flashcard-group-new>＋ Tạo nhóm</button>'}<button type="button" class="flashcard-library-secondary-compact" data-flashcard-deck-selection-start>Chọn</button><button type="button" class="flashcard-library-primary flashcard-library-primary--compact" data-flashcard-deck-new><span aria-hidden="true">＋</span> Tạo bộ</button>`}
+            </div>
+          </header>
+          ${flashcardLibraryState.message ? `<p class="flashcard-library-message">${escapeHtml(flashcardLibraryState.message)}</p>` : ''}
+          <section class="flashcard-library-custom-browser" aria-label="Tìm kiếm và sắp xếp">
+            <label class="flashcard-library-search"><span aria-hidden="true">⌕</span><input type="search" data-flashcard-library-search value="${escapeHtml(flashcardLibraryState.searchQuery)}" placeholder="${activeGroup ? 'Tìm trong nhóm này...' : 'Tìm nhóm, bộ thẻ, Hán tự, pinyin...'}"></label>
+            <button type="button" class="flashcard-library-sort-trigger" data-flashcard-sort-open aria-haspopup="dialog" aria-expanded="${flashcardLibraryState.sortSheetOpen}">
+              <span><small>Sắp xếp</small><b>${escapeHtml(getFlashcardLibrarySortLabel())}</b></span><i aria-hidden="true">⌄</i>
+            </button>
+          </section>
+          ${activeGroup ? '' : `
+            <section class="flashcard-library-group-section" aria-label="Nhóm bộ thẻ">
+              <header><span>NHÓM BỘ THẺ</span><small>${visibleGroups.length} nhóm</small></header>
+              <div class="flashcard-group-list">
+                ${visibleGroups.length ? visibleGroups.map(renderFlashcardGroupCard).join('') : '<p class="flashcard-library-empty flashcard-library-empty--compact">Chưa có nhóm phù hợp.</p>'}
+              </div>
+            </section>`}
+          <section class="flashcard-library-group-section" aria-label="${activeGroup ? `Các bộ trong nhóm ${escapeHtml(activeGroup.name)}` : 'Bộ chưa phân nhóm'}">
+            <header><span>${activeGroup ? 'CÁC BỘ TRONG NHÓM' : 'CHƯA PHÂN NHÓM'}</span><small>${visibleDeckRows.length} bộ</small></header>
+            <div class="flashcard-library-custom-list">
+              ${visibleDeckRows.length ? visibleDeckRows.map(renderFlashcardCustomDeckCard).join('') : `<div class="flashcard-library-empty flashcard-library-empty--custom"><b>${query ? 'Không tìm thấy bộ phù hợp' : (activeGroup ? 'Nhóm này chưa có bộ thẻ' : 'Không có bộ chưa phân nhóm')}</b><p>${query ? 'Thử đổi từ khóa hoặc cách sắp xếp.' : 'Tạo bộ mới hoặc di chuyển một bộ vào đây.'}</p><button type="button" class="flashcard-library-primary" data-flashcard-deck-new>＋ Tạo bộ</button></div>`}
+            </div>
+          </section>
+          ${flashcardLibraryState.sortSheetOpen ? `
+            <div class="flashcard-sort-sheet-backdrop" data-flashcard-sort-backdrop>
+              <section class="flashcard-sort-sheet" role="dialog" aria-modal="true" aria-label="Sắp xếp bộ thẻ" data-flashcard-sort-sheet>
+                <header><div><span>SẮP XẾP</span><h3>${activeGroup ? escapeHtml(activeGroup.name) : 'Bộ thẻ tự tạo'}</h3></div><button type="button" data-flashcard-sort-close aria-label="Đóng">×</button></header>
+                <div class="flashcard-sort-sheet__options">
+                  ${sortOptions.map(([value, label]) => `<button type="button" class="${flashcardLibraryState.sortMode === value ? 'active' : ''}" data-flashcard-sort-option="${value}"><span>${escapeHtml(label)}</span><i aria-hidden="true">${flashcardLibraryState.sortMode === value ? '✓' : ''}</i></button>`).join('')}
+                </div>
+              </section>
+            </div>` : ''}
+          ${flashcardLibraryState.deckSelectionMode ? `
+            <div class="flashcard-deck-selection-bar" role="region" aria-label="Hành động cho các bộ đã chọn">
+              <div class="flashcard-deck-selection-bar__count"><b>${flashcardLibraryState.selectedDeckIds.size} bộ đã chọn</b><small>Chạm thêm bộ để chọn hoặc bỏ chọn.</small></div>
+              <button type="button" class="flashcard-deck-selection-bar__all" data-flashcard-deck-select-all>${visibleDeckRows.length && visibleDeckRows.every(row => flashcardLibraryState.selectedDeckIds.has(row.deck.id)) ? 'Bỏ chọn tất cả' : 'Chọn tất cả'}</button>
+              <button type="button" class="flashcard-deck-selection-bar__move" data-flashcard-deck-move-selected ${flashcardLibraryState.selectedDeckIds.size ? '' : 'disabled'}>Di chuyển vào nhóm</button>
+            </div>` : ''}
+          ${renderFlashcardGroupEditorOverlay()}
+          ${renderFlashcardDeckMoveOverlay()}
+        </div>`;
+      if(restoreSearchFocus){
+        const searchInput = flashcardLibraryView.querySelector('[data-flashcard-library-search]');
+        if(searchInput){
+          searchInput.focus({ preventScroll: true });
+          const focusEnd = searchInput.value.length;
+          searchInput.setSelectionRange(restoreSearchStart ?? focusEnd, restoreSearchEnd ?? focusEnd);
+        }
+      }
+      return;
+    }
+
     flashcardLibraryView.innerHTML = `
-      <div class="flashcard-library-page">
-        <header class="flashcard-library-header">
-          <div><span>FLASHCARD</span><h2>Thư viện bộ thẻ</h2><p>Học lại thẻ HSK và quản lý bộ thẻ tự tạo.</p></div>
-          <button type="button" class="flashcard-library-primary" data-flashcard-deck-new>+ Tạo bộ</button>
+      <div class="flashcard-library-page flashcard-library-page--dashboard">
+        <header class="flashcard-library-header flashcard-library-header--dashboard">
+          <div><span>FLASHCARD</span><h2>Bộ thẻ của bạn</h2><p>Học, ôn tập và quản lý các bộ thẻ.</p></div>
+          <button type="button" class="flashcard-library-primary" data-flashcard-deck-new><span aria-hidden="true">＋</span> Tạo bộ</button>
         </header>
         ${flashcardLibraryState.message ? `<p class="flashcard-library-message">${escapeHtml(flashcardLibraryState.message)}</p>` : ''}
-        <section class="flashcard-library-tools">
-          <button type="button" data-flashcard-export>Xuất JSON</button>
-          <button type="button" data-flashcard-import-trigger>Nhập JSON</button>
-          <button type="button" data-flashcard-trash-open>🗑 Thùng rác</button>
-          <input type="file" accept="application/json,.json" data-flashcard-import-file hidden>
-          <button type="button" class="danger" data-flashcard-reset-history>Xóa lịch sử</button>
-          <button type="button" class="danger ghost" data-flashcard-reset-session>Đặt lại phiên dở</button>
+        <section class="flashcard-library-quick" aria-label="Học nhanh">
+          <a class="flashcard-quick-row" href="?study=hsk">
+            <span class="flashcard-quick-row__icon hsk" aria-hidden="true">课</span>
+            <span class="flashcard-quick-row__copy"><strong>HSK & Giáo trình</strong><small>Mở bài học hoặc tạo phiên ôn</small></span>
+            <span class="flashcard-quick-row__arrow" aria-hidden="true">›</span>
+          </a>
+          <button type="button" class="flashcard-quick-row" data-hsk-flashcard-study-group="review-hard" ${dueCount ? '' : 'disabled'}>
+            <span class="flashcard-quick-row__icon review" aria-hidden="true">↻</span>
+            <span class="flashcard-quick-row__copy"><strong>Ôn hôm nay</strong><small>${dueCount ? `${dueCount} thẻ cần ôn lại` : 'Bạn đã hoàn thành hôm nay'}</small></span>
+            <span class="flashcard-quick-row__action">${dueCount ? 'Ôn ngay' : '✓'}</span>
+          </button>
+          <button type="button" class="flashcard-quick-row" data-flashcard-custom-open>
+            <span class="flashcard-quick-row__icon custom" aria-hidden="true">＋</span>
+            <span class="flashcard-quick-row__copy"><strong>Bộ tự tạo</strong><small>${flashcardLibraryState.decks.length} bộ · ${flashcardLibraryState.groups.length} nhóm · ${customCardTotal} thẻ</small></span>
+            <span class="flashcard-quick-row__arrow" aria-hidden="true">›</span>
+          </button>
         </section>
-        <section class="flashcard-library-review">
-          <div class="flashcard-library-section-head"><div><h3>Ôn từ kết quả đã lưu</h3><p>${stats.total} thẻ đã học · ${stats.review} Ôn · ${stats.hard} Khó</p></div><button type="button" data-hsk-flashcard-stats>Xem thống kê</button></div>
-          <div class="flashcard-library-review-actions">
-            <button type="button" data-hsk-flashcard-study-group="review" ${stats.review ? '' : 'disabled'}>Ôn ${stats.review}</button>
-            <button type="button" data-hsk-flashcard-study-group="hard" ${stats.hard ? '' : 'disabled'}>Khó ${stats.hard}</button>
-            <button type="button" data-hsk-flashcard-study-group="review-hard" ${(stats.review + stats.hard) ? '' : 'disabled'}>Ôn + Khó ${stats.review + stats.hard}</button>
+        <section class="flashcard-library-summary" aria-label="Tổng quan học tập">
+          <div class="flashcard-library-summary__head"><h3>Tổng quan</h3><button type="button" data-hsk-flashcard-stats>Xem thống kê</button></div>
+          <div class="flashcard-library-summary-strip">
+            <button type="button" data-hsk-flashcard-stats><b>${stats.total}</b><span>Đã học</span></button>
+            <button type="button" class="easy" data-hsk-flashcard-stats><b>${stats.easy}</b><span>Dễ</span></button>
+            <button type="button" class="review" data-hsk-flashcard-study-group="review" ${stats.review ? '' : 'disabled'}><b>${stats.review}</b><span>Ôn</span></button>
+            <button type="button" class="hard" data-hsk-flashcard-study-group="hard" ${stats.hard ? '' : 'disabled'}><b>${stats.hard}</b><span>Khó</span></button>
           </div>
         </section>
-        <section class="flashcard-library-decks">
-          <div class="flashcard-library-section-head"><div><h3>Bộ thẻ tự tạo</h3><p>Lưu trên trình duyệt bằng IndexedDB.</p></div><span>${libraryRows.length}${flashcardLibraryState.searchQuery ? ` / ${flashcardLibraryState.decks.length}` : ''} bộ</span></div>
-          <div class="flashcard-library-browser">
-            <label class="flashcard-library-search"><span>⌕</span><input type="search" data-flashcard-library-search value="${escapeHtml(flashcardLibraryState.searchQuery)}" placeholder="Tìm tên bộ, Hán tự, pinyin hoặc nghĩa..."></label>
-            <label class="flashcard-library-sort"><span>Sắp xếp</span><select data-flashcard-library-sort>
-              <option value="updated-desc" ${flashcardLibraryState.sortMode === 'updated-desc' ? 'selected' : ''}>Mới sửa gần nhất</option>
-              <option value="studied-desc" ${flashcardLibraryState.sortMode === 'studied-desc' ? 'selected' : ''}>Học gần nhất</option>
-              <option value="name-asc" ${flashcardLibraryState.sortMode === 'name-asc' ? 'selected' : ''}>Tên A–Z</option>
-              <option value="cards-desc" ${flashcardLibraryState.sortMode === 'cards-desc' ? 'selected' : ''}>Nhiều thẻ nhất</option>
-              <option value="hard-desc" ${flashcardLibraryState.sortMode === 'hard-desc' ? 'selected' : ''}>Nhiều thẻ Khó nhất</option>
-              <option value="review-desc" ${flashcardLibraryState.sortMode === 'review-desc' ? 'selected' : ''}>Nhiều thẻ Ôn nhất</option>
-            </select></label>
-          </div>
-          <div class="flashcard-deck-grid">
-            ${libraryRows.length ? libraryRows.map(({ deck, stats: deckStats }) => `
-              <article class="flashcard-deck-card">
-                <div class="flashcard-deck-card-main">
-                  <div class="flashcard-deck-card-title"><h4>${escapeHtml(deck.name)}</h4><b>${deckStats.total} thẻ</b></div>
-                  <p>${escapeHtml(deck.description || 'Không có mô tả')}</p>
-                  <div class="flashcard-deck-stats" aria-label="Thống kê bộ thẻ">
-                    <span class="easy">Dễ <b>${deckStats.easy}</b></span>
-                    <span class="review">Ôn <b>${deckStats.review}</b></span>
-                    <span class="hard">Khó <b>${deckStats.hard}</b></span>
-                    <span class="unseen">Chưa học <b>${deckStats.unseen}</b></span>
-                  </div>
-                  <div class="flashcard-deck-dates"><small>Học gần nhất: ${escapeHtml(formatLibraryDate(deckStats.lastStudiedAt))}</small><small>Sửa: ${escapeHtml(formatLibraryDate(deck.updatedAt))}</small></div>
-                </div>
-                <div class="flashcard-deck-card-actions">
-                  <button type="button" data-flashcard-deck-open="${escapeHtml(deck.id)}">Mở bộ</button>
-                  <button type="button" data-flashcard-deck-study="${escapeHtml(deck.id)}" ${deckStats.total ? '' : 'disabled'}>Học</button>
-                  <button type="button" data-flashcard-deck-edit="${escapeHtml(deck.id)}">Sửa</button>
-                  <button type="button" class="danger" data-flashcard-deck-delete="${escapeHtml(deck.id)}">Xóa</button>
-                </div>
-              </article>`).join('') : `<p class="flashcard-library-empty">${flashcardLibraryState.decks.length ? 'Không tìm thấy bộ thẻ phù hợp.' : 'Chưa có bộ thẻ tự tạo.'}</p>`}
-          </div>
-        </section>
+        <button type="button" class="flashcard-library-data-entry" data-flashcard-tools-open>
+          <span class="flashcard-library-data-entry__icon" aria-hidden="true">↕</span>
+          <span><b>Quản lý dữ liệu</b><small>Xuất, nhập, khôi phục và đặt lại dữ liệu</small></span>
+          <i aria-hidden="true">›</i>
+        </button>
       </div>`;
     if(restoreSearchFocus){
       const searchInput = flashcardLibraryView.querySelector('[data-flashcard-library-search]');
@@ -2751,7 +3260,8 @@ if(window.HanziWriter){
 
   async function exportFlashcardBackup(){
     const decks = await getAllCustomDecks();
-    const payload = { version: 1, type: 'hanzi-flashcard-backup', exportedAt: new Date().toISOString(), decks, results: readFlashcardResults() };
+    const groups = await getAllFlashcardGroups();
+    const payload = { version: 2, type: 'hanzi-flashcard-backup', exportedAt: new Date().toISOString(), groups, decks, results: readFlashcardResults() };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -2765,7 +3275,9 @@ if(window.HanziWriter){
     const decks = Array.isArray(parsed)
       ? parsed
       : (Array.isArray(parsed.decks) ? parsed.decks : (parsed.deck && typeof parsed.deck === 'object' ? [parsed.deck] : []));
-    if(!decks.length && !parsed.results) throw new Error('File JSON không có dữ liệu Flashcard hợp lệ.');
+    const groups = Array.isArray(parsed?.groups) ? parsed.groups : [];
+    if(!decks.length && !groups.length && !parsed.results) throw new Error('File JSON không có dữ liệu Flashcard hợp lệ.');
+    if(groups.length) await importFlashcardGroups(groups);
     if(decks.length) await importCustomDecks(decks);
     if(parsed.results && typeof parsed.results === 'object'){
       const merged = { ...readFlashcardResults(), ...parsed.results };
@@ -2851,6 +3363,18 @@ if(window.HanziWriter){
     await renderFlashcardLibrary();
   }
 
+  function exportFlashcardGroup(group){
+    const decks = flashcardLibraryState.decks.filter(deck => deck.groupId === group.id);
+    const allResults = readFlashcardResults();
+    const results = {};
+    decks.forEach(deck => (deck.cards || []).forEach(card => {
+      const key = `custom:${deck.id}:${card.id}`;
+      if(allResults[key]) results[key] = allResults[key];
+    }));
+    const safeName = String(group.name || 'nhom-bo-the').replace(/[^a-z0-9\u00C0-\u024F\u4E00-\u9FFF]+/gi, '-').replace(/^-|-$/g, '') || 'nhom-bo-the';
+    downloadJsonFile({ version: 2, type: 'hanzi-flashcard-group', exportedAt: new Date().toISOString(), groups: [group], decks, results }, `hanzi-group-${safeName}.json`);
+  }
+
   function exportSingleDeck(deck){
     const allResults = readFlashcardResults();
     const results = {};
@@ -2863,6 +3387,10 @@ if(window.HanziWriter){
 
   async function handleFlashcardLibraryClick(event){
     const target = event.target;
+    if(Date.now() < flashcardSuppressClickUntil && target.closest('[data-flashcard-deck-card]')){
+      event.preventDefault();
+      return;
+    }
     if(target.closest('[data-flashcard-undo-close]')){ hideFlashcardUndoToast(); return; }
     if(target.closest('[data-flashcard-undo-delete]')){
       const trashId = flashcardLibraryState.undoTrashId;
@@ -2913,6 +3441,197 @@ if(window.HanziWriter){
     }
     const speakCard = target.closest('[data-flashcard-card-speak]');
     if(speakCard){ event.preventDefault(); event.stopPropagation(); speakChar(speakCard.dataset.flashcardCardSpeak || ''); return; }
+    if(target.closest('[data-flashcard-tools-open]')){
+      flashcardLibraryState.dataManagerOpen = true;
+      flashcardLibraryState.message = '';
+      await renderFlashcardLibrary(); return;
+    }
+    if(target.closest('[data-flashcard-tools-back]')){
+      flashcardLibraryState.dataManagerOpen = false;
+      flashcardLibraryState.message = '';
+      await renderFlashcardLibrary(); return;
+    }
+    if(target.closest('[data-flashcard-sort-open]')){
+      flashcardLibraryState.sortSheetOpen = true;
+      await renderFlashcardLibrary(); return;
+    }
+    if(target.closest('[data-flashcard-sort-close]') || target.matches('[data-flashcard-sort-backdrop]')){
+      flashcardLibraryState.sortSheetOpen = false;
+      await renderFlashcardLibrary(); return;
+    }
+    const sortOption = target.closest('[data-flashcard-sort-option]');
+    if(sortOption){
+      flashcardLibraryState.sortMode = sortOption.dataset.flashcardSortOption || 'updated-desc';
+      flashcardLibraryState.sortSheetOpen = false;
+      saveFlashcardLibrarySort(flashcardLibraryState.sortMode);
+      await renderFlashcardLibrary(); return;
+    }
+    if(target.closest('[data-flashcard-custom-open]')){
+      flashcardLibraryState.customDecksOpen = true;
+      flashcardLibraryState.activeGroupId = '';
+      clearFlashcardDeckSelection();
+      clearPendingMovingDecks();
+      flashcardLibraryState.message = '';
+      await renderFlashcardLibrary(); return;
+    }
+    if(target.closest('[data-flashcard-custom-back]')){
+      flashcardLibraryState.customDecksOpen = false;
+      flashcardLibraryState.activeGroupId = '';
+      flashcardLibraryState.editingGroup = null;
+      clearPendingMovingDecks();
+      clearFlashcardDeckSelection();
+      flashcardLibraryState.sortSheetOpen = false;
+      flashcardLibraryState.searchQuery = '';
+      flashcardLibraryState.message = '';
+      await renderFlashcardLibrary(); return;
+    }
+    if(target.closest('[data-flashcard-group-back]')){
+      flashcardLibraryState.activeGroupId = '';
+      clearFlashcardDeckSelection();
+      clearPendingMovingDecks();
+      flashcardLibraryState.searchQuery = '';
+      flashcardLibraryState.message = '';
+      await renderFlashcardLibrary(); return;
+    }
+    const groupOpen = target.closest('[data-flashcard-group-open]');
+    if(groupOpen){
+      flashcardLibraryState.activeGroupId = groupOpen.dataset.flashcardGroupOpen || '';
+      clearFlashcardDeckSelection();
+      clearPendingMovingDecks();
+      flashcardLibraryState.searchQuery = '';
+      flashcardLibraryState.message = '';
+      await renderFlashcardLibrary(); return;
+    }
+    if(target.closest('[data-flashcard-group-new]')){
+      flashcardLibraryState.editingGroup = { id: makeLocalId('group'), name: '', description: '', isNew: true };
+      await renderFlashcardLibrary(); return;
+    }
+    const groupEdit = target.closest('[data-flashcard-group-edit]');
+    if(groupEdit){
+      const group = flashcardLibraryState.groups.find(item => item.id === groupEdit.dataset.flashcardGroupEdit);
+      if(group) flashcardLibraryState.editingGroup = { ...group, isNew: false };
+      await renderFlashcardLibrary(); return;
+    }
+    if(target.closest('[data-flashcard-group-edit-active]')){
+      const group = getActiveFlashcardGroup();
+      if(group) flashcardLibraryState.editingGroup = { ...group, isNew: false };
+      await renderFlashcardLibrary(); return;
+    }
+    if(target.closest('[data-flashcard-group-editor-cancel]') || target.matches('[data-flashcard-group-editor-backdrop]')){
+      flashcardLibraryState.editingGroup = null;
+      await renderFlashcardLibrary(); return;
+    }
+    if(target.closest('[data-flashcard-group-save]')){
+      const editor = flashcardLibraryState.editingGroup;
+      if(!editor) return;
+      const name = flashcardLibraryView.querySelector('[data-flashcard-group-name]')?.value.trim() || '';
+      const description = flashcardLibraryView.querySelector('[data-flashcard-group-description]')?.value.trim() || '';
+      if(!name){ window.alert('Vui lòng nhập tên nhóm.'); return; }
+      const duplicate = flashcardLibraryState.groups.find(group => group.id !== editor.id && normalizeLibrarySearch(group.name) === normalizeLibrarySearch(name));
+      if(duplicate){ window.alert('Đã có nhóm cùng tên.'); return; }
+      const savedGroup = await saveFlashcardGroup({ ...editor, name, description });
+      const movingIds = getPendingMovingDeckIds();
+      if(movingIds.length){
+        await moveFlashcardDecksToGroup(movingIds, savedGroup.id);
+        clearPendingMovingDecks();
+        clearFlashcardDeckSelection();
+      }
+      flashcardLibraryState.editingGroup = null;
+      flashcardLibraryState.message = movingIds.length
+        ? `Đã tạo nhóm “${name}” và chuyển ${movingIds.length} bộ vào nhóm.`
+        : (editor.isNew ? `Đã tạo nhóm “${name}”.` : `Đã cập nhật nhóm “${name}”.`);
+      await renderFlashcardLibrary(); return;
+    }
+    const groupExport = target.closest('[data-flashcard-group-export]');
+    if(groupExport){
+      const group = flashcardLibraryState.groups.find(item => item.id === groupExport.dataset.flashcardGroupExport);
+      if(group) exportFlashcardGroup(group);
+      return;
+    }
+    const groupDelete = target.closest('[data-flashcard-group-delete]');
+    if(groupDelete){
+      const groupId = groupDelete.dataset.flashcardGroupDelete || '';
+      const group = flashcardLibraryState.groups.find(item => item.id === groupId);
+      if(!group) return;
+      const decks = flashcardLibraryState.decks.filter(deck => deck.groupId === groupId);
+      const choice = await chooseFlashcardGroupDeletion(group, decks.length);
+      if(choice === 'ungroup'){
+        await moveGroupDecksToUngrouped(groupId);
+        if(flashcardLibraryState.activeGroupId === groupId) flashcardLibraryState.activeGroupId = '';
+        flashcardLibraryState.message = `Đã xóa nhóm “${group.name}” và đưa ${decks.length} bộ về Chưa phân nhóm.`;
+        await renderFlashcardLibrary();
+      }else if(choice === 'trash'){
+        const trashItem = await moveGroupBundleToTrash(groupId);
+        if(flashcardLibraryState.activeGroupId === groupId) flashcardLibraryState.activeGroupId = '';
+        flashcardLibraryState.message = `Đã chuyển nhóm “${group.name}” và ${decks.length} bộ vào Thùng rác.`;
+        await renderFlashcardLibrary();
+        if(trashItem) showFlashcardUndoToast(`Đã chuyển nhóm “${group.name}” vào Thùng rác.`, trashItem.id);
+      }
+      return;
+    }
+    if(target.closest('[data-flashcard-deck-selection-start]')){
+      flashcardLibraryState.deckSelectionMode = true;
+      flashcardLibraryState.selectedDeckIds.clear();
+      flashcardLibraryState.message = '';
+      await renderFlashcardLibrary(); return;
+    }
+    if(target.closest('[data-flashcard-deck-selection-cancel]')){
+      clearFlashcardDeckSelection();
+      clearPendingMovingDecks();
+      await renderFlashcardLibrary(); return;
+    }
+    const selectedDeckToggle = target.closest('[data-flashcard-deck-select]');
+    if(selectedDeckToggle){
+      toggleFlashcardDeckSelection(selectedDeckToggle.dataset.flashcardDeckSelect || '');
+      await renderFlashcardLibrary(); return;
+    }
+    const selectionCard = target.closest('[data-flashcard-deck-card]');
+    if(flashcardLibraryState.deckSelectionMode && selectionCard){
+      toggleFlashcardDeckSelection(selectionCard.dataset.flashcardDeckCard || '');
+      await renderFlashcardLibrary(); return;
+    }
+    if(target.closest('[data-flashcard-deck-select-all]')){
+      const visibleIds = [...flashcardLibraryView.querySelectorAll('[data-flashcard-deck-card]')]
+        .map(card => card.dataset.flashcardDeckCard || '')
+        .filter(Boolean);
+      const allSelected = visibleIds.length > 0 && visibleIds.every(id => flashcardLibraryState.selectedDeckIds.has(id));
+      visibleIds.forEach(id => toggleFlashcardDeckSelection(id, !allSelected));
+      await renderFlashcardLibrary(); return;
+    }
+    if(target.closest('[data-flashcard-deck-move-selected]')){
+      const ids = [...flashcardLibraryState.selectedDeckIds];
+      if(ids.length){
+        flashcardLibraryState.movingDeckId = '';
+        flashcardLibraryState.movingDeckIds = ids;
+        await renderFlashcardLibrary();
+      }
+      return;
+    }
+    const moveDeck = target.closest('[data-flashcard-deck-move]');
+    if(moveDeck){
+      flashcardLibraryState.movingDeckId = moveDeck.dataset.flashcardDeckMove || '';
+      flashcardLibraryState.movingDeckIds = [];
+      await renderFlashcardLibrary(); return;
+    }
+    if(target.closest('[data-flashcard-deck-move-cancel]') || target.matches('[data-flashcard-deck-move-backdrop]')){
+      clearPendingMovingDecks();
+      await renderFlashcardLibrary(); return;
+    }
+    const groupTarget = target.closest('[data-flashcard-deck-group-target]');
+    if(groupTarget){
+      const movingIds = getPendingMovingDeckIds();
+      if(movingIds.length){
+        const groupId = groupTarget.dataset.flashcardDeckGroupTarget || null;
+        const movedDecks = await moveFlashcardDecksToGroup(movingIds, groupId);
+        const group = flashcardLibraryState.groups.find(item => item.id === groupId);
+        flashcardLibraryState.message = groupId
+          ? `Đã chuyển ${movedDecks.length} bộ vào nhóm “${group?.name || 'đã chọn'}”.`
+          : `Đã đưa ${movedDecks.length} bộ về Chưa phân nhóm.`;
+        clearFlashcardDeckSelection();
+      }
+      clearPendingMovingDecks();
+      await renderFlashcardLibrary(); return;
+    }
     if(target.closest('[data-flashcard-detail-back]')){
       flashcardLibraryState.detailDeckId = '';
       flashcardLibraryState.detailSearch = '';
@@ -2972,7 +3691,7 @@ if(window.HanziWriter){
     const reviewGroup = target.closest('[data-hsk-flashcard-study-group]');
     if(reviewGroup && !reviewGroup.disabled){ startFlashcardStatsGroup(reviewGroup.dataset.hskFlashcardStudyGroup || 'review-hard'); return; }
     if(target.closest('[data-flashcard-deck-new]')){
-      flashcardLibraryState.editingDeck = { id: makeLocalId('deck'), name: '', description: '', cards: [], isNew: true, entryMode: 'manual', quickImportText: '', quickImportRows: [], quickSegmentTokens: [], quickNewToken: '' };
+      flashcardLibraryState.editingDeck = { id: makeLocalId('deck'), name: '', description: '', groupId: flashcardLibraryState.activeGroupId || null, cards: [], isNew: true, entryMode: 'manual', quickImportText: '', quickImportRows: [], quickSegmentTokens: [], quickNewToken: '' };
       renderFlashcardLibrary(); return;
     }
     if(target.closest('[data-flashcard-library-cancel]')){ flashcardLibraryState.editingDeck = null; flashcardLibraryState.message = ''; renderFlashcardLibrary(); return; }
@@ -5380,11 +6099,34 @@ if(window.HanziWriter){
     };
   }
 
+  function recordFlashcardLearningHistory(session){
+    const api = window.TiengTrungLearningHistory;
+    if(!api?.record || !session?.cards?.length || session.phase !== 'study') return;
+    const index = Math.max(0, Math.min(Number(session.index || 0), session.cards.length - 1));
+    const signature = [session.contextKey || session.title || 'active', session.settings?.mode || '', index, session.cards.length].join('|');
+    if(signature === flashcardLearningHistorySignature) return;
+    flashcardLearningHistorySignature = signature;
+    const url = new URL(window.location.href);
+    url.hash = '';
+    url.searchParams.set('study', 'flashcards');
+    url.searchParams.set('resume', 'flashcard');
+    api.record({
+      id: `flashcard-session:${String(session.contextKey || session.title || 'active')}`,
+      type: 'flashcards',
+      icon: '卡',
+      title: String(session.title || 'Phiên Flashcard'),
+      subtitle: `${getFlashcardModeLabel(session.settings?.mode)} · Thẻ ${index + 1}/${session.cards.length}`,
+      url: `${url.pathname}${url.search}`,
+      updatedAt: new Date().toISOString()
+    });
+  }
+
   function persistFlashcardSession(){
     const payload = serializeFlashcardSession(hskState.flashcardSession);
     try{
       if(payload?.cards?.length){
         window.localStorage?.setItem(HSK_FLASHCARD_ACTIVE_SESSION_KEY, JSON.stringify(payload));
+        recordFlashcardLearningHistory(hskState.flashcardSession);
       }else{
         window.localStorage?.removeItem(HSK_FLASHCARD_ACTIVE_SESSION_KEY);
       }
@@ -7494,7 +8236,12 @@ if(window.HanziWriter){
   window.addEventListener('popstate', restoreHskRouteFromLocation);
 
   window.setTimeout(() => {
-    restorePersistedFlashcardSession();
+    const restored = restorePersistedFlashcardSession();
+    const shouldResume = new URLSearchParams(window.location.search).get('resume') === 'flashcard';
+    if(restored && shouldResume){
+      setStudyTab('flashcards');
+      renderFlashcardOverlay();
+    }
   }, 0);
 })();
 
