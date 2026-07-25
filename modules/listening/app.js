@@ -15,7 +15,11 @@
     rate: 1,
     rewindSeconds: 3,
     showPinyin: true,
-    showMeaning: true
+    showMeaning: true,
+    autoCheck: true,
+    autoRate: true,
+    autoNext: true,
+    autoNextSeconds: 2
   };
 
   const state = {
@@ -43,7 +47,8 @@
     speechCharIndex: 0,
     speechToken: 0,
     settingsOpen: false,
-    settings: loadJson(SETTINGS_KEY, DEFAULT_SETTINGS),
+    menuOpen: false,
+    settings: Object.assign({}, DEFAULT_SETTINGS, loadJson(SETTINGS_KEY, DEFAULT_SETTINGS)),
     progress: loadJson(PROGRESS_KEY, {}),
     customGroups: loadJson(CUSTOM_KEY, []),
     preparedNext: null,
@@ -52,6 +57,12 @@
     sessionCorrectIds: [],
     sessionAnswerIds: [],
     sessionName: '',
+    currentWrongChecks: 0,
+    viewedAnswer: false,
+    autoCheckSignature: '',
+    autoSuggestedRating: '',
+    autoAdvanceTimer: null,
+    autoAdvanceDeadline: 0,
     error: ''
   };
 
@@ -67,6 +78,7 @@
   function structuredCloneSafe(value) {
     return JSON.parse(JSON.stringify(value));
   }
+
 
   function saveJson(key, value) {
     try {
@@ -126,9 +138,11 @@
 
   function setScreen(screen) {
     stopSpeech();
+    clearAutoAdvance();
     state.screen = screen;
     state.error = '';
     state.settingsOpen = false;
+    state.menuOpen = false;
     window.scrollTo({ top: 0, behavior: 'instant' });
     render();
   }
@@ -168,6 +182,7 @@
     else if (state.screen === 'complete') renderComplete();
     else renderHome();
     bindCommonEvents();
+    syncOverlayState();
   }
 
   function renderHome() {
@@ -523,11 +538,16 @@
 
   function resetCurrentAnswer() {
     stopSpeech();
+    clearAutoAdvance();
     state.input = '';
     state.result = null;
     state.hint = null;
     state.showAnswer = false;
     state.usedHint = false;
+    state.viewedAnswer = false;
+    state.currentWrongChecks = 0;
+    state.autoCheckSignature = '';
+    state.autoSuggestedRating = '';
     state.listenCount = 0;
     state.speechStartIndex = 0;
     state.speechCharIndex = 0;
@@ -786,10 +806,14 @@
 
   function renderResult(item, comparison) {
     const ratingEntry = state.progress[progressKey(item, state.mode)];
+    const activeRating = ratingEntry && ratingEntry.rating || state.autoSuggestedRating;
+    const autoNextText = comparison.isCorrect && state.autoAdvanceDeadline
+      ? `Tự chuyển sau ${Math.max(0, Math.ceil((state.autoAdvanceDeadline - Date.now()) / 1000))} giây.`
+      : '';
     return `
       <section class="result-card ${comparison.isCorrect ? 'is-correct' : 'is-wrong'}">
-        <div><strong>${comparison.isCorrect ? 'Chính xác' : `Đúng ${comparison.correctCount}/${comparison.total} chữ`}</strong><span>${comparison.isCorrect ? 'Bạn có thể nghe lại hoặc chuyển tiếp.' : 'Các chữ sai đã được đánh dấu. Bạn có thể sửa trực tiếp.'}</span></div>
-        ${!comparison.isCorrect ? `<button data-action="focus-input">Sửa tiếp</button>` : ''}
+        <div><strong>${comparison.isCorrect ? 'Chính xác' : `Đúng ${comparison.correctCount}/${comparison.total} chữ`}</strong><span>${comparison.isCorrect ? `${autoNextText || 'Bạn có thể nghe lại hoặc chuyển tiếp.'}${state.autoSuggestedRating ? ` · Tự xếp ${ratingLabel(state.autoSuggestedRating)}.` : ''}` : 'Các chữ sai đã được đánh dấu. Bạn có thể sửa trực tiếp.'}</span></div>
+        ${!comparison.isCorrect ? `<button data-action="focus-input">Sửa tiếp</button>` : state.autoAdvanceDeadline ? `<button data-action="cancel-auto-next">Ở lại</button>` : ''}
       </section>
       ${!comparison.isCorrect && !item.isPassage ? `<div class="result-answer"><span>Đáp án</span><strong lang="zh-Hans">${escapeHtml(item.text)}</strong></div>` : ''}
       <div class="result-followup">
@@ -797,9 +821,9 @@
         <button data-action="switch-current-mode" data-mode="${item.isPassage ? 'passage-transcript' : 'transcript'}">Xem transcript</button>
       </div>
       <div class="rating-row" aria-label="Tự đánh giá">
-        <button data-action="rate-item" data-rating="easy" class="${ratingEntry && ratingEntry.rating === 'easy' ? 'active' : ''}">Dễ</button>
-        <button data-action="rate-item" data-rating="review" class="${ratingEntry && ratingEntry.rating === 'review' ? 'active' : ''}">Ôn</button>
-        <button data-action="rate-item" data-rating="hard" class="${ratingEntry && ratingEntry.rating === 'hard' ? 'active' : ''}">Khó</button>
+        <button data-action="rate-item" data-rating="easy" class="${activeRating === 'easy' ? 'active' : ''}">Dễ</button>
+        <button data-action="rate-item" data-rating="review" class="${activeRating === 'review' ? 'active' : ''}">Ôn</button>
+        <button data-action="rate-item" data-rating="hard" class="${activeRating === 'hard' ? 'active' : ''}">Khó</button>
       </div>
     `;
   }
@@ -871,16 +895,42 @@
         <a href="../../index.html" class="listen-bottom-nav__item">
           <span aria-hidden="true">⌂</span><small>Trang chủ</small>
         </a>
-        <a href="../../index.html#lookup" class="listen-bottom-nav__item">
+        <a href="../lookup/index.html" class="listen-bottom-nav__item">
           <span aria-hidden="true">⌕</span><small>Tra</small>
         </a>
-        <a href="../../index.html#learn" class="listen-bottom-nav__item">
+        <a href="../hanzi-stroke/index.html?study=hub" class="listen-bottom-nav__item">
           <span aria-hidden="true">学</span><small>Học</small>
         </a>
-        <a href="../../index.html#menu" class="listen-bottom-nav__item">
+        <button type="button" class="listen-bottom-nav__item" data-action="open-menu" aria-controls="listeningMenuDrawer" aria-expanded="${state.menuOpen ? 'true' : 'false'}">
           <span aria-hidden="true">☰</span><small>Menu</small>
-        </a>
+        </button>
       </nav>
+      ${menuDrawer()}
+    `;
+  }
+
+  function menuDrawer() {
+    if (!state.menuOpen) return '';
+    return `
+      <div class="listen-menu-backdrop" data-action="close-menu"></div>
+      <aside id="listeningMenuDrawer" class="listen-menu-drawer" role="dialog" aria-modal="true" aria-label="Menu">
+        <div class="listen-menu-head"><div><p class="eyebrow">Tiếng Trung</p><h2>Menu</h2></div><button data-action="close-menu" aria-label="Đóng menu">×</button></div>
+        <nav class="listen-menu-list" aria-label="Menu chính">
+          <a href="../../index.html"><span>⌂</span><span><strong>Trang chủ</strong><small>Trang chính và học tiếp</small></span><b>›</b></a>
+          <a href="../lookup/index.html"><span>⌕</span><span><strong>Tra</strong><small>Tra chữ, từ và pinyin</small></span><b>›</b></a>
+          <a href="../hanzi-stroke/index.html?study=hub"><span>学</span><span><strong>Học</strong><small>Các công cụ học tiếng Trung</small></span><b>›</b></a>
+        </nav>
+        <p class="listen-menu-section">Học tập</p>
+        <nav class="listen-menu-list" aria-label="Công cụ học">
+          <a href="../pinyin/index.html"><span>拼</span><span><strong>Pinyin</strong><small>Học · Nghe · Quiz · Ôn</small></span><b>›</b></a>
+          <a href="../hanzi-stroke/index.html?study=lookup"><span>写</span><span><strong>Bút thuận</strong><small>Luyện viết và thứ tự nét</small></span><b>›</b></a>
+          <a href="../hanzi-stroke/index.html?study=hsk"><span>课</span><span><strong>HSK & Giáo trình</strong><small>Bài học, từ vựng và ngữ pháp</small></span><b>›</b></a>
+          <a href="../hanzi-stroke/index.html?study=radicals"><span>部</span><span><strong>Bộ thủ</strong><small>214 bộ thủ và chữ liên quan</small></span><b>›</b></a>
+          <a href="../hanzi-stroke/index.html?study=flashcards"><span>卡</span><span><strong>Thẻ</strong><small>Flashcard và ôn tập</small></span><b>›</b></a>
+          <a href="./index.html" class="is-active"><span>听</span><span><strong>Nghe</strong><small>Chép chính tả và transcript</small></span><b>›</b></a>
+          <a href="../../index.html#dialogue301"><span>301</span><span><strong>Giáo trình 301</strong><small>Đàm thoại theo bài</small></span><b>›</b></a>
+        </nav>
+      </aside>
     `;
   }
 
@@ -927,6 +977,25 @@
         <fieldset class="setting-field"><legend>Lùi khi nghe lại đoạn</legend><div class="segmented">
           ${[3, 5].map((seconds) => `<button data-action="set-rewind" data-seconds="${seconds}" class="${Number(state.settings.rewindSeconds) === seconds ? 'active' : ''}">${seconds} giây</button>`).join('')}
         </div></fieldset>
+        <fieldset class="setting-field"><legend>Tự động khi chép chính tả</legend><div class="automation-settings">
+          <label><span><strong>Nhập đủ tự kiểm tra</strong><small>So sánh ngay khi đã nhập đủ số chữ.</small></span><input type="checkbox" data-action="toggle-auto-check" ${state.settings.autoCheck ? 'checked' : ''} /></label>
+          <label><span><strong>Tự xếp Dễ / Ôn / Khó</strong><small>Đúng ngay: Dễ · sửa sai: Ôn · dùng gợi ý/đáp án: Khó.</small></span><input type="checkbox" data-action="toggle-auto-rate" ${state.settings.autoRate ? 'checked' : ''} /></label>
+          <label><span><strong>Đúng tự sang câu sau</strong><small>Chỉ chuyển khi đáp án hoàn toàn chính xác.</small></span><input type="checkbox" data-action="toggle-auto-next" ${state.settings.autoNext ? 'checked' : ''} /></label>
+        </div></fieldset>
+        <fieldset class="setting-field"><legend>Thời gian chờ trước khi chuyển</legend>
+          <div class="segmented segmented--five">
+            ${[0, 1, 2, 3, 5].map((seconds) => `<button data-action="set-auto-next-seconds" data-seconds="${seconds}" class="${Number(state.settings.autoNextSeconds) === seconds ? 'active' : ''}">${seconds}s</button>`).join('')}
+          </div>
+          <div class="custom-seconds-row">
+            <label for="autoNextCustomSeconds">Tùy chỉnh</label>
+            <div class="custom-seconds-control">
+              <input id="autoNextCustomSeconds" type="number" inputmode="decimal" min="0" max="60" step="0.5" value="${escapeHtml(String(state.settings.autoNextSeconds ?? 2))}" aria-label="Nhập thời gian chờ tùy chỉnh" />
+              <span>giây</span>
+              <button type="button" data-action="apply-custom-auto-next">Áp dụng</button>
+            </div>
+            <small>Nhập từ 0 đến 60 giây. Có thể dùng số thập phân, ví dụ 1.5.</small>
+          </div>
+        </fieldset>
         <button class="primary-button full-width" data-action="close-settings">Xong</button>
       </section>
     `;
@@ -935,8 +1004,10 @@
   function bindCommonEvents() {
     app.querySelectorAll('[data-action]').forEach((element) => {
       const action = element.dataset.action;
-      if (action === 'open-settings') element.onclick = () => { state.settingsOpen = true; render(); };
+      if (action === 'open-settings') element.onclick = () => { clearAutoAdvance(); state.settingsOpen = true; state.menuOpen = false; render(); };
       else if (action === 'close-settings') element.onclick = () => { state.settingsOpen = false; render(); };
+      else if (action === 'open-menu') element.onclick = () => { clearAutoAdvance(); state.menuOpen = true; state.settingsOpen = false; render(); requestAnimationFrame(() => document.querySelector('.listen-menu-head button')?.focus()); };
+      else if (action === 'close-menu') element.onclick = () => { state.menuOpen = false; render(); };
       else if (action === 'open-301') element.onclick = open301Library;
       else if (action === 'open-custom') element.onclick = () => setScreen('custom');
       else if (action === 'open-review') element.onclick = openReview;
@@ -967,6 +1038,9 @@
       else if (action === 'rate-item') element.onclick = () => rateItem(element.dataset.rating);
       else if (action === 'set-gender') element.onclick = () => setGender(element.dataset.gender);
       else if (action === 'set-rewind') element.onclick = () => setRewind(Number(element.dataset.seconds));
+      else if (action === 'set-auto-next-seconds') element.onclick = () => setAutoNextSeconds(Number(element.dataset.seconds));
+      else if (action === 'apply-custom-auto-next') element.onclick = applyCustomAutoNextSeconds;
+      else if (action === 'cancel-auto-next') element.onclick = cancelAutoAdvance;
       else if (action === 'complete-session') element.onclick = completePractice;
       else if (action === 'retry-wrong') element.onclick = retryWrongItems;
       else if (action === 'return-mode') element.onclick = returnToModeChoice;
@@ -1016,6 +1090,22 @@
     if (pinyinToggle) pinyinToggle.onchange = () => { state.settings.showPinyin = pinyinToggle.checked; saveSettings(); render(); };
     const meaningToggle = app.querySelector('[data-action="toggle-meaning"]');
     if (meaningToggle) meaningToggle.onchange = () => { state.settings.showMeaning = meaningToggle.checked; saveSettings(); render(); };
+    const autoCheckToggle = app.querySelector('[data-action="toggle-auto-check"]');
+    if (autoCheckToggle) autoCheckToggle.onchange = () => setAutomationSetting('autoCheck', autoCheckToggle.checked);
+    const autoRateToggle = app.querySelector('[data-action="toggle-auto-rate"]');
+    if (autoRateToggle) autoRateToggle.onchange = () => setAutomationSetting('autoRate', autoRateToggle.checked);
+    const autoNextToggle = app.querySelector('[data-action="toggle-auto-next"]');
+    if (autoNextToggle) autoNextToggle.onchange = () => setAutomationSetting('autoNext', autoNextToggle.checked);
+
+    const customSecondsInput = document.getElementById('autoNextCustomSeconds');
+    if (customSecondsInput) {
+      customSecondsInput.onkeydown = (event) => {
+        if (event.key !== 'Enter') return;
+        event.preventDefault();
+        applyCustomAutoNextSeconds();
+      };
+      customSecondsInput.onfocus = () => customSecondsInput.select();
+    }
   }
 
   function bindLessonCards() {
@@ -1045,11 +1135,14 @@
         return false;
       }
 
+      clearAutoAdvance();
       state.input = next;
       state.result = null;
       state.showAnswer = false;
+      state.autoSuggestedRating = '';
       updateDictationDom({ keepNativeValue: true });
       moveCaretToEnd(input);
+      maybeAutoCheckCompleteInput();
       return true;
     };
 
@@ -1118,20 +1211,26 @@
     const nextInput = Core.appendDictationInput(state.input, value, item.text, max);
     if (nextInput === state.input) return;
 
+    clearAutoAdvance();
     state.input = nextInput;
     state.result = null;
     state.showAnswer = false;
+    state.autoSuggestedRating = '';
 
     // Không render lại toàn bộ màn hình sau mỗi chữ. Việc thay input DOM làm
     // bàn phím iPhone mất focus, nên người dùng chỉ nhập được một chữ.
     updateDictationDom();
+    maybeAutoCheckCompleteInput();
   }
 
   function deleteLastDictationUnit() {
     if (!state.input) return;
+    clearAutoAdvance();
     state.input = Core.removeLastAnswerUnit(state.input);
     state.result = null;
     state.showAnswer = false;
+    state.autoSuggestedRating = '';
+    state.autoCheckSignature = '';
     updateDictationDom();
   }
 
@@ -1203,15 +1302,86 @@
     markSessionWrong(item);
   }
 
-  function checkAnswer() {
+  function checkAnswer(options) {
+    const configured = options || {};
     const item = currentItem();
     if (!item) return;
+    clearAutoAdvance();
     state.result = Core.compareAnswers(state.input, item.text);
     const key = itemSessionKey(item);
     pushUniqueValue(state.sessionCheckedIds, key);
     if (state.result.isCorrect) pushUniqueValue(state.sessionCorrectIds, key);
-    else markSessionWrong(item);
+    else {
+      state.currentWrongChecks += 1;
+      markSessionWrong(item);
+    }
     updateAttemptProgress(item);
+
+    if (state.result.isCorrect && state.settings.autoRate) {
+      const rating = deriveAutomaticRating();
+      state.autoSuggestedRating = rating;
+      rateItem(rating, { render: false });
+    }
+
+    if (state.result.isCorrect && state.settings.autoNext) {
+      scheduleAutoAdvance();
+    }
+
+    render();
+    if (!state.result.isCorrect || !state.settings.autoNext) focusDictationInput();
+    if (!configured.auto) state.autoCheckSignature = Core.answerUnits(state.input).join('');
+  }
+
+  function deriveAutomaticRating() {
+    return Core.deriveAutomaticRating({
+      usedHint: state.usedHint,
+      viewedAnswer: state.viewedAnswer,
+      wrongChecks: state.currentWrongChecks
+    });
+  }
+
+  function ratingLabel(rating) {
+    if (rating === 'easy') return 'Dễ';
+    if (rating === 'review') return 'Ôn';
+    if (rating === 'hard') return 'Khó';
+    return '';
+  }
+
+  function maybeAutoCheckCompleteInput() {
+    if (!state.settings.autoCheck || state.result) return;
+    if (state.mode === 'transcript' || state.mode === 'passage-transcript') return;
+    const item = currentItem();
+    if (!item) return;
+    const inputUnits = Core.answerUnits(state.input);
+    if (!Core.isCompleteDictation(state.input, item.text)) return;
+    const signature = inputUnits.join('');
+    if (signature === state.autoCheckSignature) return;
+    state.autoCheckSignature = signature;
+    window.setTimeout(() => {
+      if (Core.answerUnits(state.input).join('') !== signature || state.result) return;
+      checkAnswer({ auto: true });
+    }, 120);
+  }
+
+  function scheduleAutoAdvance() {
+    clearAutoAdvance();
+    const seconds = Math.max(0, Number(state.settings.autoNextSeconds) || 0);
+    state.autoAdvanceDeadline = Date.now() + seconds * 1000;
+    if (seconds === 0) {
+      state.autoAdvanceTimer = window.setTimeout(() => moveItem(1), 80);
+      return;
+    }
+    state.autoAdvanceTimer = window.setTimeout(() => moveItem(1), seconds * 1000);
+  }
+
+  function clearAutoAdvance() {
+    if (state.autoAdvanceTimer) window.clearTimeout(state.autoAdvanceTimer);
+    state.autoAdvanceTimer = null;
+    state.autoAdvanceDeadline = 0;
+  }
+
+  function cancelAutoAdvance() {
+    clearAutoAdvance();
     render();
     focusDictationInput();
   }
@@ -1248,8 +1418,12 @@
   function toggleAnswer() {
     const item = currentItem();
     if (!item) return;
+    clearAutoAdvance();
     state.showAnswer = !state.showAnswer;
-    if (state.showAnswer) markSessionAnswer(item);
+    if (state.showAnswer) {
+      state.viewedAnswer = true;
+      markSessionAnswer(item);
+    }
     render();
     if (!state.showAnswer) focusDictationInput();
   }
@@ -1259,14 +1433,18 @@
     if (!item) return;
     state.usedHint = true;
     const max = Core.answerUnits(item.text).length;
+    clearAutoAdvance();
     state.input = Core.appendDictationInput(state.input, text, item.text, max);
     state.result = null;
     state.showAnswer = false;
+    state.autoSuggestedRating = '';
     updateDictationDom();
     focusDictationInput();
+    maybeAutoCheckCompleteInput();
   }
 
   function switchCurrentMode(mode) {
+    clearAutoAdvance();
     const item = currentItem();
     if (!item || !mode) return;
     stopSpeech();
@@ -1283,7 +1461,8 @@
     if (returningToDictation) focusDictationInput();
   }
 
-  function rateItem(rating) {
+  function rateItem(rating, options) {
+    const configured = options || {};
     const item = currentItem();
     if (!item) return;
     const key = progressKey(item, state.mode);
@@ -1300,10 +1479,11 @@
     if (rating === 'review' || rating === 'hard') markSessionWrong(item);
     state.listenCount = 0;
     saveProgress();
-    render();
+    if (configured.render !== false) render();
   }
 
   function moveItem(delta) {
+    clearAutoAdvance();
     const items = activeItems();
     const next = state.currentIndex + delta;
     if (next < 0) return;
@@ -1329,6 +1509,7 @@
   }
 
   function completePractice() {
+    clearAutoAdvance();
     stopSpeech();
     state.screen = 'complete';
     render();
@@ -1354,6 +1535,7 @@
   }
 
   function returnToModeChoice() {
+    clearAutoAdvance();
     stopSpeech();
     state.practiceItems = null;
     state.sessionName = '';
@@ -1387,6 +1569,16 @@
   }
 
   function goBack() {
+    if (state.menuOpen) {
+      state.menuOpen = false;
+      render();
+      return;
+    }
+    if (state.settingsOpen) {
+      state.settingsOpen = false;
+      render();
+      return;
+    }
     if (state.screen === 'practice' || state.screen === 'complete') {
       state.practiceItems = null;
       state.sessionName = '';
@@ -1407,6 +1599,39 @@
       return;
     }
     setScreen('home');
+  }
+
+  function syncOverlayState() {
+    document.body.classList.toggle('listen-overlay-open', Boolean(state.menuOpen || state.settingsOpen));
+  }
+
+  function setAutomationSetting(name, value) {
+    state.settings[name] = Boolean(value);
+    if (name === 'autoNext' && !value) clearAutoAdvance();
+    saveSettings();
+    render();
+  }
+
+  function setAutoNextSeconds(seconds) {
+    const normalized = Core.normalizeDelaySeconds(seconds, 60);
+    if (normalized === null) return false;
+    state.settings.autoNextSeconds = normalized;
+    saveSettings();
+    render();
+    return true;
+  }
+
+  function applyCustomAutoNextSeconds() {
+    const input = document.getElementById('autoNextCustomSeconds');
+    if (!input) return;
+    const normalized = Core.normalizeDelaySeconds(input.value, 60);
+    if (normalized === null) {
+      input.setCustomValidity('Nhập thời gian từ 0 đến 60 giây.');
+      input.reportValidity();
+      return;
+    }
+    input.setCustomValidity('');
+    setAutoNextSeconds(normalized);
   }
 
   function setGender(gender) {
@@ -1546,7 +1771,15 @@
     state.voicesReady = true;
   }
 
-  window.addEventListener('pagehide', stopSpeech);
+  window.addEventListener('pagehide', () => { stopSpeech(); clearAutoAdvance(); });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && (state.menuOpen || state.settingsOpen)) {
+      event.preventDefault();
+      state.menuOpen = false;
+      state.settingsOpen = false;
+      render();
+    }
+  });
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) pauseSpeech();
   });

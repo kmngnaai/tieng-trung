@@ -121,6 +121,19 @@
     };
   }
 
+  function isCompleteDictation(input, target) {
+    const expected = answerUnits(target);
+    const actual = answerUnits(input);
+    return expected.length > 0 && actual.length === expected.length;
+  }
+
+  function deriveAutomaticRating(meta) {
+    const value = meta || {};
+    if (value.usedHint || value.viewedAnswer) return 'hard';
+    if (Number(value.wrongChecks || 0) > 0) return 'review';
+    return 'easy';
+  }
+
   function stableId(text, prefix) {
     let hash = 2166136261;
     const input = String(text || '');
@@ -529,6 +542,13 @@
     return target;
   }
 
+  function normalizeDelaySeconds(value, maxSeconds) {
+    const parsed = Number(String(value ?? '').trim().replace(',', '.'));
+    if (!Number.isFinite(parsed)) return null;
+    const limit = Number.isFinite(Number(maxSeconds)) ? Math.max(0, Number(maxSeconds)) : 60;
+    return Math.min(limit, Math.max(0, Math.round(parsed * 10) / 10));
+  }
+
   function chooseVoice(voices, settings) {
     const available = toArray(voices);
     const configured = settings || {};
@@ -568,6 +588,8 @@
     layoutTokens,
     createPassageItem,
     compareAnswers,
+    isCompleteDictation,
+    deriveAutomaticRating,
     containsHan,
     normalizeItem,
     extract301Items,
@@ -579,6 +601,7 @@
     buildHint,
     extractVocabularyItems,
     findRewindStart,
+    normalizeDelaySeconds,
     chooseVoice,
     stableId
   };
