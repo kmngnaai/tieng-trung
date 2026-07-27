@@ -470,10 +470,9 @@ button { color: inherit; }
 @media (max-width: 420px) {
   .listen-main { padding-inline: 11px; }
   .hero-card, .audio-card, .dictation-card, .transcript-card { padding: 15px; }
-  .audio-controls { grid-template-columns: 42px 42px 60px 42px 42px; gap: 4px; }
-  .secondary-round { width: 42px; height: 42px; font-size: 12px; }
-  .secondary-round small { font-size: 8px; }
-  .play-button { width: 60px; height: 60px; }
+  .audio-controls { grid-template-columns: repeat(2, 54px) 68px 54px; gap: 5px; }
+  .secondary-round { width: 52px; height: 52px; }
+  .play-button { width: 66px; height: 66px; }
   .dictation-row { grid-template-columns: repeat(var(--slot-count), minmax(20px, 29px)); gap: 5px; }
   .dictation-slot { font-size: 20px; }
   .dictation-actions > * { flex: 1 1 120px; }
@@ -1122,64 +1121,98 @@ button { color: inherit; }
   line-height: 1.35;
 }
 
-/* V1.17 local MP3 + device voice */
-.segmented--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.setting-note, .audio-import-note { display:block; margin-top:8px; color:var(--muted,#66766f); font-size:12px; line-height:1.45; }
-.audio-setting-actions { display:grid; grid-template-columns:1fr; gap:8px; margin:12px 0; }
-.audio-setting-actions button { min-height:42px; border:1px solid var(--border); border-radius:12px; background:#fff; font-weight:650; }
-.audio-setting-actions--secondary { grid-template-columns:1fr 1fr; }
-.audio-cache-summary { display:grid; grid-template-columns:1fr auto; gap:4px 12px; padding:12px; border-radius:14px; background:#f3f8f6; }
-.audio-cache-summary small { grid-column:1 / -1; color:var(--muted,#66766f); }
-.audio-time { display:flex; justify-content:center; gap:5px; margin:-3px 0 10px; color:var(--muted); font-variant-numeric:tabular-nums; font-size:12px; }
-.audio-controls { grid-template-columns:52px 52px 72px 52px 52px; gap:6px; }
-.secondary-round { width:50px; height:50px; }
-.play-button { width:70px; height:70px; }
+/* V1.15 Azure audio */
+.segmented--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
 
+.setting-note {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted, #66766f);
+  line-height: 1.45;
+}
 
-/* Listening library v1.16 — one groups/decks/trash subsystem */
-.library-main { padding-bottom: calc(92px + env(safe-area-inset-bottom)); }
-.library-toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
-.library-action { min-height: 42px; padding: 9px 13px; border: 1px solid var(--line, #d6e7e1); border-radius: 13px; background: #fff; color: var(--ink, #18302b); font: inherit; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
-.library-action--primary { background: var(--primary, #168b78); color: #fff; border-color: transparent; }
-.library-action--danger { color: #a33b34; }
-.library-action:disabled { opacity: .45; cursor: default; }
-.library-list, .library-trash-list { display: grid; gap: 10px; }
-.library-count { color: var(--muted, #71827d); font-size: 12px; }
-.library-card, .library-trash-card { border: 1px solid var(--line, #d7e7e2); border-radius: 17px; background: #fff; overflow: hidden; box-shadow: 0 5px 16px rgba(35, 85, 72, .045); }
-.library-card__main { width: 100%; border: 0; background: transparent; display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: 11px; align-items: center; padding: 12px; text-align: left; color: inherit; font: inherit; cursor: pointer; }
-.library-card__icon { width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; background: #e5f6f1; color: #087765; font-family: var(--font-hanzi, serif); font-size: 21px; font-weight: 400; }
-.library-card__copy { min-width: 0; display: grid; gap: 3px; }
-.library-card__copy strong { font-size: 15px; line-height: 1.25; }
-.library-card__copy small { color: var(--muted, #72827e); font-size: 11px; line-height: 1.35; overflow-wrap: anywhere; }
-.library-card__main > b { font-size: 23px; color: #6f817c; }
-.library-card__actions { display: flex; flex-wrap: wrap; gap: 7px; padding: 0 12px 11px; }
-.library-card__actions button { min-height: 34px; border: 1px solid var(--line, #d6e7e1); border-radius: 10px; background: #fff; padding: 6px 10px; color: #176f61; font: inherit; font-size: 12px; font-weight: 700; }
-.library-card__actions .danger-text { color: #a43e37; }
-.library-card-manager { border-top: 1px dashed var(--line, #d6e7e1); padding: 7px 12px 12px; display: grid; gap: 3px; }
-.library-card-row { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 9px; align-items: start; padding: 8px 0; }
-.library-card-row span { display: grid; gap: 2px; min-width: 0; }
-.library-card-row strong { font-family: var(--font-hanzi, serif); font-weight: 400; font-size: 17px; line-height: 1.45; }
-.library-card-row small { color: var(--muted, #72827e); font-size: 11px; }
-.library-trash-card { padding: 13px; display: grid; gap: 10px; }
-.library-trash-card > div:first-child { display: grid; gap: 3px; }
-.library-trash-card small { color: var(--muted, #72827e); font-size: 12px; }
-.library-dialog-backdrop { position: fixed; inset: 0; z-index: 120; background: rgba(20, 38, 34, .42); display: grid; align-items: end; padding: 12px; }
-.library-dialog { width: min(520px, 100%); max-height: calc(100dvh - 24px); overflow: auto; margin: 0 auto; border-radius: 24px 24px 18px 18px; background: #fff; padding: 20px; box-shadow: 0 18px 60px rgba(0,0,0,.2); }
-.library-dialog h2 { margin: 3px 0 8px; font-size: 23px; }
-.library-dialog > p:not(.eyebrow) { color: var(--muted, #687a75); line-height: 1.5; }
-.library-dialog-option { width: 100%; display: grid; gap: 3px; text-align: left; margin-top: 10px; padding: 13px; border: 1px solid var(--line, #d6e7e1); border-radius: 14px; background: #f8fcfa; color: inherit; font: inherit; }
-.library-dialog-option small { color: var(--muted, #687a75); line-height: 1.4; }
-.library-dialog-option.is-danger { border-color: #efd3cf; background: #fff8f7; color: #9c332d; }
-.library-dialog-cancel { width: 100%; min-height: 43px; margin-top: 12px; border: 0; background: transparent; color: #526762; font: inherit; font-weight: 700; }
-.library-dialog-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 15px; }
-.library-dialog-actions button { min-height: 44px; border: 1px solid var(--line, #d6e7e1); border-radius: 13px; background: #fff; font: inherit; font-weight: 700; }
-.library-dialog-actions .is-danger { background: #a63e37; border-color: #a63e37; color: #fff; }
-@media (min-width: 700px) { .library-dialog-backdrop { align-items: center; } .library-dialog { border-radius: 22px; } }
+.azure-voice-list {
+  display: grid;
+  gap: 8px;
+}
 
+.azure-voice-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 52px;
+  padding: 10px 12px;
+  border: 1px solid var(--line, #dce9e3);
+  border-radius: 14px;
+  background: #fff;
+  text-align: left;
+}
 
-@media (max-width: 420px) {
-  .audio-controls { grid-template-columns: 42px 42px 60px 42px 42px; gap: 4px; }
-  .secondary-round { width: 42px; height: 42px; font-size: 12px; }
-  .secondary-round small { font-size: 8px; }
-  .play-button { width: 60px; height: 60px; }
+.azure-voice-option span:first-child {
+  display: grid;
+  gap: 2px;
+}
+
+.azure-voice-option strong {
+  font-size: 15px;
+}
+
+.azure-voice-option small {
+  color: var(--muted, #66766f);
+}
+
+.azure-voice-option.active {
+  border-color: var(--accent, #1f8f6a);
+  background: #eef9f5;
+}
+
+.azure-voice-check {
+  color: var(--accent, #1f8f6a);
+  font-weight: 700;
+}
+
+.audio-setting-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.audio-setting-actions button {
+  min-height: 42px;
+  border: 1px solid var(--line, #dce9e3);
+  border-radius: 12px;
+  background: #fff;
+  font-weight: 650;
+}
+
+.audio-setting-actions--secondary {
+  grid-template-columns: 1fr 1fr;
+}
+
+.audio-cache-summary {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 12px;
+  padding: 12px;
+  border-radius: 14px;
+  background: #f3f8f6;
+}
+
+.audio-cache-summary small {
+  grid-column: 1 / -1;
+  color: var(--muted, #66766f);
+}
+
+.settings-sheet input[type="url"] {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 6px;
+  padding: 10px 12px;
+  border: 1px solid var(--line, #dce9e3);
+  border-radius: 12px;
+  font-size: 16px;
 }

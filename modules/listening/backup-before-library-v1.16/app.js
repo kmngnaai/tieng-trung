@@ -1,17 +1,25 @@
 (() => {
   'use strict';
-  // Listening library v1.16 — groups/decks/trash replace the old flat custom list.
 
   const Core = window.ListeningCore;
-  const LibraryStore = window.ListeningLibraryStore;
   const app = document.getElementById('app');
   const SETTINGS_KEY = 'tieng-trung-listening-settings-v1';
   const PROGRESS_KEY = 'tieng-trung-listening-progress-v1';
+  const CUSTOM_KEY = 'tieng-trung-listening-custom-v1';
   const LAST_SESSION_KEY = 'tieng-trung-listening-last-session-v1';
-  const AudioStore = window.ListeningAudioStore;
+  const AzureAudio = window.ListeningAzureAudio;
+  const AZURE_VOICES = [
+    { id: 'zh-CN-XiaochenNeural', label: 'Xiaochen', gender: 'Nữ' },
+    { id: 'zh-CN-XiaoyiNeural', label: 'Xiaoyi', gender: 'Nữ' },
+    { id: 'zh-CN-YunxiNeural', label: 'Yunxi', gender: 'Nam' },
+    { id: 'zh-CN-XiaoxiaoNeural', label: 'Xiaoxiao', gender: 'Nữ' },
+    { id: 'zh-CN-YunyangNeural', label: 'Yunyang', gender: 'Nam' }
+  ];
 
   const DEFAULT_SETTINGS = {
     voiceSource: 'auto',
+    azureEndpoint: '',
+    azureVoice: 'zh-CN-XiaochenNeural',
     voiceGender: 'auto',
     voiceURI: '',
     rate: 1,
@@ -52,14 +60,7 @@
     menuOpen: false,
     settings: Object.assign({}, DEFAULT_SETTINGS, loadJson(SETTINGS_KEY, DEFAULT_SETTINGS)),
     progress: loadJson(PROGRESS_KEY, {}),
-    libraryGroups: [],
-    libraryDecks: [],
-    libraryTrash: [],
-    libraryReady: false,
-    activeLibraryGroupId: '',
-    libraryManagerDeckId: '',
-    libraryDialog: null,
-    libraryNotice: '',
+    customGroups: loadJson(CUSTOM_KEY, []),
     preparedNext: null,
     sessionWrongItems: [],
     sessionCheckedIds: [],
@@ -76,19 +77,10 @@
     audioPlayer: null,
     audioObjectUrl: '',
     audioLoading: false,
+    audioAbort: null,
     audioEntry: null,
-    audioCurrentTime: 0,
-    audioDuration: 0,
     audioStats: { count: 0, bytes: 0, maxBytes: 300 * 1024 * 1024 }
   };
-
-  // Chỉ giữ các khóa cài đặt đang được module Nghe hỗ trợ.
-  state.settings = Object.keys(DEFAULT_SETTINGS).reduce((settings, key) => {
-    settings[key] = state.settings[key] ?? DEFAULT_SETTINGS[key];
-    return settings;
-  }, {});
-  if (!['auto', 'import', 'device'].includes(state.settings.voiceSource)) state.settings.voiceSource = 'auto';
-  saveJson(SETTINGS_KEY, state.settings);
 
   function loadJson(key, fallback) {
     try {
@@ -140,7 +132,7 @@
       return [lessonNo, title].filter(Boolean).join(' · ');
     }
     if (state.source === 'review') return 'Câu cần ôn';
-    if (state.source === 'custom') return state.lesson && (state.lesson.name || state.lesson.title) || 'Bộ tự tạo';
+    if (state.source === 'custom') return state.lesson && state.lesson.title || 'Bộ tự tạo';
     return 'Luyện nghe';
   }
 
@@ -156,6 +148,9 @@
     saveJson(PROGRESS_KEY, state.progress);
   }
 
+  function saveCustomGroups() {
+    saveJson(CUSTOM_KEY, state.customGroups);
+  }
 
   function setScreen(screen) {
     stopSpeech();
@@ -197,8 +192,6 @@
     if (state.screen === 'home') renderHome();
     else if (state.screen === 'lessons301') render301Lessons();
     else if (state.screen === 'custom') renderCustomLibrary();
-    else if (state.screen === 'customGroup') renderCustomGroupScreen();
-    else if (state.screen === 'customTrash') renderLibraryTrash();
     else if (state.screen === 'mode') renderModeChoice();
     else if (state.screen === 'preview') renderContentPreview();
     else if (state.screen === 'practice') renderPractice();
@@ -350,275 +343,96 @@
     render();
   }
 
-
-  async function refreshListeningLibrary() {
-    if (!LibraryStore) throw new Error('Thiếu library-store.js.');
-    await LibraryStore.init();
-    const [groups, decks, trash] = await Promise.all([
-      LibraryStore.listGroups(),
-      LibraryStore.listDecks(),
-      LibraryStore.listTrash()
-    ]);
-    state.libraryGroups = groups;
-    state.libraryDecks = decks;
-    state.libraryTrash = trash;
-    state.libraryReady = true;
-  }
-
-  async function openCustomLibrary() {
-    state.screen = 'custom';
-    state.error = '';
-    state.libraryNotice = '';
-    render();
-    try {
-      await refreshListeningLibrary();
-    } catch (error) {
-      state.error = `Không mở được thư viện: ${error.message || error}`;
-    }
-    render();
-  }
-
-  function libraryGroupDecks(groupId) {
-    return state.libraryDecks.filter((deck) => deck.groupId === groupId);
-  }
-
-  function ungroupedDecks() {
-    return state.libraryDecks.filter((deck) => !deck.groupId || !state.libraryGroups.some((group) => group.id === deck.groupId));
-  }
-
-  function deckEnabledCount(deck) {
-    return (deck.cards || []).filter((card) => card.listenEnabled !== false).length;
-  }
-
-  function libraryToolbar() {
-    return `<div class="library-toolbar">
-      <label class="library-action library-action--primary">Nhập JSON<input id="libraryFileInput" type="file" accept="application/json,.json" hidden /></label>
-      <button class="library-action" data-action="export-library-all">Xuất tất cả</button>
-      <button class="library-action" data-action="open-library-trash">Thùng rác${state.libraryTrash.length ? ` (${state.libraryTrash.length})` : ''}</button>
-    </div>`;
-  }
-
   function renderCustomLibrary() {
-    const groups = state.libraryGroups || [];
-    const decks = state.libraryDecks || [];
-    const outside = ungroupedDecks();
     app.innerHTML = `
-      ${pageHeader('Bộ tự tạo', `${groups.length} nhóm · ${decks.length} bộ`, true)}
-      <main class="listen-main library-main">
-        ${libraryToolbar()}
-        ${state.libraryNotice ? `<section class="notice-card"><span>${escapeHtml(state.libraryNotice)}</span></section>` : ''}
+      ${pageHeader('Bộ tự tạo', 'Nhập JSON chứa chữ Hán, pinyin và nghĩa', true)}
+      <main class="listen-main">
+        <section class="import-card">
+          <div>
+            <p class="eyebrow">Nhập nhanh</p>
+            <h2>Thêm bộ câu để luyện nghe</h2>
+            <p>Hỗ trợ các trường thường gặp như <code>zh</code>, <code>text</code>, <code>chinese</code>, <code>pinyin</code>, <code>meaning</code> hoặc <code>vi</code>.</p>
+          </div>
+          <label class="primary-button file-button">
+            Chọn file JSON
+            <input id="customFileInput" type="file" accept="application/json,.json" hidden />
+          </label>
+        </section>
+
         ${state.error ? errorCard(state.error) : ''}
-        ${!state.libraryReady ? loadingCard('Đang mở thư viện bộ nghe...') : `
-          <section class="section-block section-block--first">
-            <div class="section-heading"><div><p class="eyebrow">Nhóm bộ</p><h2>Các nhóm đã nhập</h2></div></div>
-            <div class="library-list">
-              ${groups.length ? groups.map(renderLibraryGroupCard).join('') : emptyCard('Chưa có nhóm', 'File có groups/decks sẽ được giữ nguyên cấu trúc khi nhập.')}
-            </div>
-          </section>
-          <section class="section-block">
-            <div class="section-heading"><div><p class="eyebrow">Ngoài nhóm</p><h2>Chưa phân nhóm</h2></div><span class="library-count">${outside.length} bộ</span></div>
-            <div class="library-list">
-              ${outside.length ? outside.map(renderLibraryDeckCard).join('') : emptyCard('Không có bộ ngoài nhóm', 'Các bộ chưa gom sẽ xuất hiện tại đây.')}
-            </div>
-          </section>
-        `}
-      </main>
-      ${bottomNav()}
-      ${settingsSheet()}
-      ${renderLibraryDialog()}
-    `;
-  }
-
-  function renderLibraryGroupCard(group) {
-    const decks = libraryGroupDecks(group.id);
-    const cardCount = decks.reduce((sum, deck) => sum + (deck.cards || []).length, 0);
-    return `<article class="library-card library-card--group">
-      <button class="library-card__main" data-action="open-library-group" data-group-id="${escapeHtml(group.id)}">
-        <span class="library-card__icon">组</span>
-        <span class="library-card__copy"><strong>${escapeHtml(group.name)}</strong><small>${decks.length} bộ · ${cardCount} câu${group.description ? ` · ${escapeHtml(group.description)}` : ''}</small></span>
-        <b aria-hidden="true">›</b>
-      </button>
-      <div class="library-card__actions">
-        <button data-action="export-library-group" data-group-id="${escapeHtml(group.id)}">Xuất nhóm</button>
-        <button class="danger-text" data-action="request-delete-library-group" data-group-id="${escapeHtml(group.id)}">Xóa nhóm</button>
-      </div>
-    </article>`;
-  }
-
-  function renderLibraryDeckCard(deck) {
-    const enabledCount = deckEnabledCount(deck);
-    const group = deck.groupId ? state.libraryGroups.find((entry) => entry.id === deck.groupId) : null;
-    const isManaging = state.libraryManagerDeckId === deck.id;
-    return `<article class="library-card library-card--deck">
-      <button class="library-card__main" data-action="open-library-deck" data-deck-id="${escapeHtml(deck.id)}">
-        <span class="library-card__icon">段</span>
-        <span class="library-card__copy"><strong>${escapeHtml(deck.name)}</strong><small>${enabledCount}/${(deck.cards || []).length} câu luyện${group ? ` · ${escapeHtml(group.name)}` : ''}${deck.description ? ` · ${escapeHtml(deck.description)}` : ''}</small></span>
-        <b aria-hidden="true">›</b>
-      </button>
-      <div class="library-card__actions">
-        <button data-action="manage-library-deck" data-deck-id="${escapeHtml(deck.id)}">${isManaging ? 'Đóng danh sách' : 'Chọn câu'}</button>
-        <button data-action="export-library-deck" data-deck-id="${escapeHtml(deck.id)}">Xuất bộ</button>
-        <button class="danger-text" data-action="request-delete-library-deck" data-deck-id="${escapeHtml(deck.id)}">Xóa</button>
-      </div>
-      ${isManaging ? renderLibraryDeckManager(deck) : ''}
-    </article>`;
-  }
-
-  function renderLibraryDeckManager(deck) {
-    return `<div class="library-card-manager">
-      ${(deck.cards || []).map((card) => `<label class="library-card-row">
-        <input type="checkbox" data-action="toggle-library-card" data-deck-id="${escapeHtml(deck.id)}" data-card-id="${escapeHtml(card.id)}" ${card.listenEnabled === false ? '' : 'checked'} />
-        <span><strong lang="zh-Hans">${escapeHtml(card.speaker ? `${card.speaker}：${card.word}` : card.word)}</strong><small>${escapeHtml(card.pinyin || card.meaningVi || '')}</small></span>
-      </label>`).join('')}
-    </div>`;
-  }
-
-  function renderCustomGroupScreen() {
-    const group = state.libraryGroups.find((entry) => entry.id === state.activeLibraryGroupId);
-    if (!group) {
-      state.screen = 'custom';
-      renderCustomLibrary();
-      return;
-    }
-    const decks = libraryGroupDecks(group.id);
-    const cardCount = decks.reduce((sum, deck) => sum + (deck.cards || []).length, 0);
-    app.innerHTML = `
-      ${pageHeader(group.name, `${decks.length} bộ · ${cardCount} câu`, true)}
-      <main class="listen-main library-main">
-        <div class="library-toolbar">
-          <button class="library-action library-action--primary" data-action="export-library-group" data-group-id="${escapeHtml(group.id)}">Xuất nhóm</button>
-          <button class="library-action library-action--danger" data-action="request-delete-library-group" data-group-id="${escapeHtml(group.id)}">Xóa nhóm</button>
-        </div>
-        ${group.description ? `<section class="notice-card"><span>${escapeHtml(group.description)}</span></section>` : ''}
-        ${state.libraryNotice ? `<section class="notice-card"><span>${escapeHtml(state.libraryNotice)}</span></section>` : ''}
-        ${state.error ? errorCard(state.error) : ''}
-        <section class="section-block section-block--first">
-          <div class="section-heading"><div><p class="eyebrow">Các đoạn</p><h2>Chọn bộ để luyện</h2></div></div>
-          <div class="library-list">${decks.length ? decks.map(renderLibraryDeckCard).join('') : emptyCard('Nhóm chưa có bộ', 'Nhập lại file hoặc đưa bộ khác vào nhóm.')}</div>
+        <section class="section-block">
+          <div class="section-heading"><div><p class="eyebrow">Đã nhập</p><h2>Các bộ tự tạo</h2></div></div>
+          <div class="custom-list">
+            ${state.customGroups.length ? state.customGroups.map(renderCustomGroup).join('') : emptyCard('Chưa có bộ tự tạo', 'Chọn một file JSON để bắt đầu.')}
+          </div>
         </section>
       </main>
       ${bottomNav()}
       ${settingsSheet()}
-      ${renderLibraryDialog()}
     `;
   }
 
-  function renderLibraryTrash() {
-    const items = state.libraryTrash || [];
-    app.innerHTML = `
-      ${pageHeader('Thùng rác', `${items.length} mục · tự xóa sau 30 ngày`, true)}
-      <main class="listen-main library-main">
-        <div class="library-toolbar">
-          <button class="library-action library-action--primary" data-action="restore-library-trash-all" ${items.length ? '' : 'disabled'}>Khôi phục tất cả</button>
-          <button class="library-action library-action--danger" data-action="request-empty-library-trash" ${items.length ? '' : 'disabled'}>Dọn sạch</button>
+  function renderCustomGroup(group) {
+    const enabledCount = (group.items || []).filter((item) => item.listenEnabled !== false).length;
+    return `
+      <article class="custom-card">
+        <button class="custom-card-main" data-action="open-custom-group" data-group-id="${escapeHtml(group.id)}">
+          <span class="source-icon">自</span>
+          <span><strong>${escapeHtml(group.title)}</strong><small>${enabledCount}/${group.items.length} câu được dùng trong luyện nghe</small></span>
+          <b>›</b>
+        </button>
+        <div class="custom-card-actions">
+          <button data-action="manage-custom-group" data-group-id="${escapeHtml(group.id)}">Chọn câu</button>
+          <button class="danger-text" data-action="delete-custom-group" data-group-id="${escapeHtml(group.id)}">Xóa</button>
         </div>
-        ${state.libraryNotice ? `<section class="notice-card"><span>${escapeHtml(state.libraryNotice)}</span></section>` : ''}
-        ${state.error ? errorCard(state.error) : ''}
-        <div class="library-trash-list">
-          ${items.length ? items.map(renderLibraryTrashItem).join('') : emptyCard('Thùng rác đang trống', 'Bộ hoặc nhóm bị xóa sẽ được giữ ở đây trong 30 ngày.')}
-        </div>
-      </main>
-      ${bottomNav()}
-      ${renderLibraryDialog()}
+        ${group.manageOpen ? renderCustomItemManager(group) : ''}
+      </article>
     `;
   }
 
-  function renderLibraryTrashItem(item) {
-    const expires = Math.max(0, Math.ceil((new Date(item.expiresAt).getTime() - Date.now()) / 86400000));
-    const count = item.type === 'group'
-      ? (item.payload.decks || []).reduce((sum, deck) => sum + (deck.cards || []).length, 0)
-      : ((item.payload.deck && item.payload.deck.cards) || []).length;
-    return `<article class="library-trash-card">
-      <div><strong>${escapeHtml(item.name)}</strong><small>${item.type === 'group' ? 'Nhóm' : 'Bộ'} · ${count} câu · còn ${expires} ngày</small></div>
-      <div class="library-card__actions">
-        <button data-action="restore-library-trash" data-trash-id="${escapeHtml(item.id)}">Khôi phục</button>
-        <button class="danger-text" data-action="request-delete-library-trash" data-trash-id="${escapeHtml(item.id)}">Xóa vĩnh viễn</button>
-      </div>
-    </article>`;
-  }
-
-  function renderLibraryDialog() {
-    const dialog = state.libraryDialog;
-    if (!dialog) return '';
-    if (dialog.type === 'group') {
-      const group = state.libraryGroups.find((entry) => entry.id === dialog.id);
-      if (!group) return '';
-      const decks = libraryGroupDecks(group.id);
-      return `<div class="library-dialog-backdrop" data-action="close-library-dialog">
-        <section class="library-dialog" role="dialog" aria-modal="true" aria-labelledby="libraryDialogTitle" onclick="event.stopPropagation()">
-          <p class="eyebrow">Xóa nhóm</p><h2 id="libraryDialogTitle">${escapeHtml(group.name)}</h2>
-          <p>Nhóm có ${decks.length} bộ. Chọn cách xử lý các bộ bên trong.</p>
-          <button class="library-dialog-option" data-action="delete-library-group-ungroup" data-group-id="${escapeHtml(group.id)}"><strong>Đưa về Chưa phân nhóm</strong><small>Xóa nhóm nhưng giữ nguyên toàn bộ bộ và tiến độ.</small></button>
-          <button class="library-dialog-option is-danger" data-action="delete-library-group-all" data-group-id="${escapeHtml(group.id)}"><strong>Xóa nhóm và các bộ</strong><small>Chuyển cả nhóm vào Thùng rác trong 30 ngày.</small></button>
-          <button class="library-dialog-cancel" data-action="close-library-dialog">Hủy</button>
-        </section>
-      </div>`;
-    }
-    const title = dialog.type === 'deck' ? 'Xóa bộ?' : dialog.type === 'trash' ? 'Xóa vĩnh viễn?' : 'Dọn sạch Thùng rác?';
-    const body = dialog.type === 'deck'
-      ? 'Bộ sẽ được chuyển vào Thùng rác trong 30 ngày. Tiến độ học vẫn được giữ.'
-      : dialog.type === 'trash'
-        ? 'Mục này sẽ bị xóa vĩnh viễn và không thể khôi phục.'
-        : 'Toàn bộ mục trong Thùng rác sẽ bị xóa vĩnh viễn.';
-    const action = dialog.type === 'deck' ? 'confirm-delete-library-deck' : dialog.type === 'trash' ? 'confirm-delete-library-trash' : 'confirm-empty-library-trash';
-    const attr = dialog.type === 'deck' ? `data-deck-id="${escapeHtml(dialog.id)}"` : dialog.type === 'trash' ? `data-trash-id="${escapeHtml(dialog.id)}"` : '';
-    return `<div class="library-dialog-backdrop" data-action="close-library-dialog">
-      <section class="library-dialog" role="dialog" aria-modal="true" aria-labelledby="libraryDialogTitle" onclick="event.stopPropagation()">
-        <p class="eyebrow">Xác nhận</p><h2 id="libraryDialogTitle">${title}</h2><p>${body}</p>
-        <div class="library-dialog-actions"><button data-action="close-library-dialog">Hủy</button><button class="is-danger" data-action="${action}" ${attr}>Xác nhận</button></div>
-      </section>
+  function renderCustomItemManager(group) {
+    return `<div class="custom-item-manager">
+      ${(group.items || []).map((item, index) => `
+        <label class="custom-item-row">
+          <input type="checkbox" data-action="toggle-custom-item" data-group-id="${escapeHtml(group.id)}" data-item-index="${index}" ${item.listenEnabled === false ? '' : 'checked'} />
+          <span><strong lang="zh-Hans">${escapeHtml(item.text)}</strong><small>${escapeHtml(item.pinyin || item.meaning || '')}</small></span>
+        </label>
+      `).join('')}
     </div>`;
   }
 
   async function importCustomFile(file) {
     state.error = '';
-    state.libraryNotice = '';
     try {
-      const data = JSON.parse(await file.text());
-      const summary = await LibraryStore.importData(data, file.name);
-      await refreshListeningLibrary();
-      state.libraryNotice = `Đã nhập ${summary.groupCount} nhóm, ${summary.deckCount} bộ và ${summary.cardCount} câu.`;
+      const text = await file.text();
+      const data = JSON.parse(text);
+      const id = `custom-${Date.now().toString(36)}`;
+      const title = String(data.title || data.name || file.name.replace(/\.json$/i, '') || 'Bộ tự tạo');
+      const items = Core.extractCustomItems(data, { sourceType: 'custom', sourceId: id, sourceTitle: title });
+      if (!items.length) throw new Error('Không tìm thấy câu có chữ Hán trong file.');
+      state.customGroups.unshift({ id, title, importedAt: new Date().toISOString(), items, manageOpen: false });
+      saveCustomGroups();
     } catch (error) {
-      state.error = `Không nhập được JSON: ${error.message || error}`;
+      state.error = `Không nhập được JSON: ${error.message}`;
     }
     render();
   }
 
-  async function openLibraryGroup(groupId) {
-    state.activeLibraryGroupId = groupId;
-    state.libraryManagerDeckId = '';
-    state.libraryNotice = '';
-    state.screen = 'customGroup';
-    render();
-  }
-
-  async function openCustomDeck(deckId) {
-    const deck = await LibraryStore.getDeck(deckId);
-    if (!deck) {
-      state.error = 'Bộ không còn tồn tại.';
-      render();
-      return;
-    }
-    const enabled = (deck.cards || []).filter((card) => card.listenEnabled !== false);
+  function openCustomGroup(groupId) {
+    const group = state.customGroups.find((entry) => entry.id === groupId);
+    if (!group) return;
+    const enabled = (group.items || []).filter((item) => item.listenEnabled !== false);
     if (!enabled.length) {
       state.error = 'Bộ này chưa có câu nào được bật cho luyện nghe.';
       render();
       return;
     }
     state.source = 'custom';
-    state.lesson = { id: deck.id, title: deck.name, name: deck.name, groupId: deck.groupId, description: deck.description };
+    state.lesson = group;
     state.lessonData = null;
     state.practiceItems = null;
-    state.items = enabled.map((card) => ({
-      id: card.id,
-      text: card.word,
-      pinyin: card.pinyin || '',
-      meaning: card.meaningVi || '',
-      speaker: card.speaker || '',
-      sourceType: 'custom',
-      sourceId: deck.id,
-      sourceTitle: deck.name,
-      lessonId: deck.id
+    state.items = enabled.map((item) => Object.assign({}, item, {
+      sourceType: 'custom', sourceId: group.id, sourceTitle: group.title
     }));
     state.vocabulary = [];
     state.screen = 'mode';
@@ -626,72 +440,7 @@
     render();
   }
 
-  async function exportLibrary(kind, id) {
-    try {
-      const payload = kind === 'all'
-        ? await LibraryStore.exportAll()
-        : kind === 'group'
-          ? await LibraryStore.exportGroup(id)
-          : await LibraryStore.exportDeck(id);
-      const label = kind === 'all' ? 'tat-ca' : kind === 'group' ? `nhom-${id}` : `bo-${id}`;
-      LibraryStore.downloadJson(payload, `nghe-${label}-${new Date().toISOString().slice(0, 10)}.json`);
-      state.libraryNotice = 'Đã tạo file JSON để lưu hoặc chia sẻ.';
-    } catch (error) {
-      state.error = error.message || String(error);
-    }
-    render();
-  }
-
-  async function toggleLibraryCard(deckId, cardId, enabled) {
-    try {
-      await LibraryStore.toggleCard(deckId, cardId, enabled);
-      await refreshListeningLibrary();
-    } catch (error) {
-      state.error = error.message || String(error);
-    }
-    render();
-  }
-
-  async function executeLibraryDelete(type, id, mode) {
-    try {
-      if (type === 'group') await LibraryStore.deleteGroup(id, mode);
-      else if (type === 'deck') await LibraryStore.deleteDeck(id);
-      else if (type === 'trash') await LibraryStore.deleteTrashPermanently(id);
-      else if (type === 'empty') await LibraryStore.emptyTrash();
-      state.libraryDialog = null;
-      await refreshListeningLibrary();
-      if (type === 'group' && state.screen === 'customGroup') state.screen = 'custom';
-      state.libraryNotice = type === 'trash' || type === 'empty' ? 'Đã xóa vĩnh viễn.' : 'Đã chuyển dữ liệu vào Thùng rác.';
-    } catch (error) {
-      state.error = error.message || String(error);
-    }
-    render();
-  }
-
-  async function restoreLibraryTrash(id) {
-    try {
-      await LibraryStore.restoreTrash(id);
-      await refreshListeningLibrary();
-      state.libraryNotice = 'Đã khôi phục dữ liệu.';
-    } catch (error) {
-      state.error = error.message || String(error);
-    }
-    render();
-  }
-
-  async function restoreAllLibraryTrash() {
-    try {
-      await LibraryStore.restoreAllTrash();
-      await refreshListeningLibrary();
-      state.libraryNotice = 'Đã khôi phục toàn bộ.';
-    } catch (error) {
-      state.error = error.message || String(error);
-    }
-    render();
-  }
-
   function renderModeChoice() {
-
     app.innerHTML = `
       ${pageHeader(sessionTitle(), state.items.length ? `${state.items.length} câu có thể luyện` : 'Đang đọc dữ liệu...', true)}
       <main class="listen-main">
@@ -848,11 +597,9 @@
       return;
     }
     if (session.source === 'custom') {
-      await refreshListeningLibrary();
-      const deck = state.libraryDecks.find((entry) => entry.id === session.lessonId);
-      if (deck) {
-        if (deck.groupId) state.activeLibraryGroupId = deck.groupId;
-        await openCustomDeck(deck.id);
+      const group = state.customGroups.find((entry) => entry.id === session.lessonId);
+      if (group) {
+        openCustomGroup(group.id);
         startPractice(session.mode || 'dictation', session.currentIndex || 0);
       }
       return;
@@ -900,14 +647,6 @@
     return String(item && (item.speechText || item.text) || '');
   }
 
-  function formatAudioTime(seconds) {
-    const value = Number(seconds);
-    if (!Number.isFinite(value) || value < 0) return '--:--';
-    const whole = Math.floor(value);
-    const minutes = Math.floor(whole / 60);
-    return `${String(minutes).padStart(2, '0')}:${String(whole % 60).padStart(2, '0')}`;
-  }
-
   function renderPractice() {
     const item = currentItem();
     if (!item) {
@@ -934,7 +673,7 @@
 
         <section class="audio-card">
           <div class="audio-head">
-            <div><p class="eyebrow">${isPassage ? 'Đoạn nghe' : `Câu ${progress}`}</p><strong>${state.audioLoading ? 'Đang tải MP3...' : state.speaking ? 'Đang đọc...' : state.paused ? 'Đã tạm dừng' : isPassage ? 'Nghe toàn đoạn' : 'Nghe câu'}</strong></div>
+            <div><p class="eyebrow">${isPassage ? 'Đoạn nghe' : `Câu ${progress}`}</p><strong>${state.audioLoading ? 'Đang chuẩn bị giọng...' : state.speaking ? 'Đang đọc...' : state.paused ? 'Đã tạm dừng' : isPassage ? 'Nghe toàn đoạn' : 'Nghe câu'}</strong></div>
             <button class="icon-action" data-action="open-settings" aria-label="Cài đặt giọng">⚙</button>
           </div>
           <div class="audio-controls">
@@ -943,20 +682,16 @@
             <button class="play-button ${state.speaking ? 'is-speaking' : ''}" data-action="toggle-speech" aria-label="${state.speaking ? 'Tạm dừng' : 'Phát'}">
               ${state.audioLoading ? '◌' : state.speaking ? 'Ⅱ' : '▶'}
             </button>
-            <button class="secondary-round" data-action="forward-speech" aria-label="Tiến ${state.settings.rewindSeconds} giây">+${state.settings.rewindSeconds}s<small>Tiến</small></button>
-            <button class="secondary-round" data-action="next-item" aria-label="Câu sau">›<small>Câu sau</small></button>
-          </div>
-          <div class="audio-time" aria-live="polite">
-            <span id="audioCurrentTime">${formatAudioTime(state.audioCurrentTime)}</span>
-            <span>/</span>
-            <span id="audioDuration">${state.audioDuration > 0 ? formatAudioTime(state.audioDuration) : '--:--'}</span>
+            ${isPassage
+              ? `<button class="secondary-round" data-action="forward-speech" aria-label="Tiến ${state.settings.rewindSeconds} giây">+${state.settings.rewindSeconds}s<small>Tiến</small></button>`
+              : `<button class="secondary-round" data-action="next-item" aria-label="Câu sau">›<small>Câu sau</small></button>`}
           </div>
           <label class="speech-position">
-            <span>${state.audioPlayer ? 'Vị trí trong file audio' : `Vị trí gần đúng ${isPassage ? 'trong đoạn' : 'trong câu'}`}</span>
-            <input id="speechPosition" type="range" min="0" max="${state.audioPlayer && state.audioDuration > 0 ? state.audioDuration : Math.max(1, speechText.length)}" step="${state.audioPlayer ? '0.1' : '1'}" value="${state.audioPlayer ? Math.min(state.audioDuration || 0, state.audioCurrentTime) : Math.min(speechText.length, state.speechCharIndex)}" />
+            <span>Vị trí gần đúng ${isPassage ? 'trong đoạn' : 'trong câu'}</span>
+            <input id="speechPosition" type="range" min="0" max="${Math.max(1, speechText.length)}" value="${Math.min(speechText.length, state.speechCharIndex)}" />
           </label>
           <div class="speed-row" aria-label="Tốc độ đọc">
-            ${[0.5, 0.75, 1, 1.25, 1.5].map((rate) => `<button data-action="set-rate" data-rate="${rate}" class="${Number(state.settings.rate) === rate ? 'active' : ''}">${rate}×</button>`).join('')}
+            ${[0.75, 1, 1.25].map((rate) => `<button data-action="set-rate" data-rate="${rate}" class="${Number(state.settings.rate) === rate ? 'active' : ''}">${rate}×</button>`).join('')}
           </div>
         </section>
 
@@ -1248,25 +983,29 @@
         <div class="sheet-handle"></div>
         <div class="sheet-head"><div><p class="eyebrow">Âm thanh</p><h2>Cài đặt nghe</h2></div><button data-action="close-settings">×</button></div>
         <label class="setting-field"><span>Ngôn ngữ</span><select disabled><option>Phổ thông Trung Quốc · zh-CN</option></select></label>
-        <fieldset class="setting-field"><legend>Nguồn phát</legend><div class="segmented segmented--three">
-          ${[['auto', 'Tự động'], ['import', 'MP3 đã nhập'], ['device', 'Thiết bị']].map(([value, label]) => `<button data-action="set-voice-source" data-source="${value}" class="${state.settings.voiceSource === value ? 'active' : ''}">${label}</button>`).join('')}
-        </div><small class="setting-note">Tự động: ưu tiên MP3 đã nhập cho câu, nếu chưa có thì dùng giọng thiết bị.</small></fieldset>
+        <fieldset class="setting-field"><legend>Nguồn giọng</legend><div class="segmented segmented--three">
+          ${[['auto', 'Tự động'], ['azure', 'Azure'], ['device', 'Thiết bị']].map(([value, label]) => `<button data-action="set-voice-source" data-source="${value}" class="${state.settings.voiceSource === value ? 'active' : ''}">${label}</button>`).join('')}
+        </div><small class="setting-note">Tự động: audio đã nhập/cache → Azure → giọng thiết bị.</small></fieldset>
+        <fieldset class="setting-field azure-setting"><legend>Giọng Azure</legend><div class="azure-voice-list">
+          ${AZURE_VOICES.map((voice, index) => `<button type="button" data-action="set-azure-voice" data-voice="${voice.id}" class="azure-voice-option ${state.settings.azureVoice === voice.id ? 'active' : ''}"><span><strong>${voice.label}</strong><small>${voice.gender}${index === 0 ? ' · Mặc định' : ''}</small></span><span class="azure-voice-check">${state.settings.azureVoice === voice.id ? '✓' : ''}</span></button>`).join('')}
+        </div></fieldset>
+        <label class="setting-field azure-setting"><span>Azure Function endpoint</span><input id="azureEndpointInput" type="url" inputmode="url" placeholder="https://...azurewebsites.net/api/tts" value="${escapeHtml(state.settings.azureEndpoint || '')}" /><small>API key nằm trong Azure Function, không lưu trong website.</small></label>
         <div class="audio-setting-actions">
+          <button type="button" data-action="test-azure-voice">Nghe thử giọng đã chọn</button>
           <button type="button" data-action="import-current-audio">Nhập MP3 cho câu hiện tại</button>
-          <input id="currentAudioFileInput" type="file" accept=".mp3,audio/mpeg,audio/mp3" hidden />
-          <button type="button" data-action="export-current-audio">Xuất MP3 câu hiện tại</button>
+          <input id="currentAudioFileInput" type="file" accept="audio/mpeg,audio/mp3,audio/mp4,audio/x-m4a,audio/wav,audio/ogg" hidden />
+          <button type="button" data-action="export-current-audio">Xuất audio câu hiện tại</button>
         </div>
-        <p class="audio-import-note">Điều kiện: file MP3 không DRM, tối đa 20 MB, thời lượng 0,3–300 giây. File được sao chép vào bộ nhớ app và vẫn tự dọn sau 30 ngày hoặc khi vượt 300 MB.</p>
-        <div class="audio-cache-summary"><span>MP3 trong app</span><strong>${formatBytes(state.audioStats.bytes)} / ${formatBytes(state.audioStats.maxBytes)}</strong><small>${state.audioStats.count} file</small></div>
+        <div class="audio-cache-summary"><span>Cache audio</span><strong>${formatBytes(state.audioStats.bytes)} / ${formatBytes(state.audioStats.maxBytes)}</strong><small>${state.audioStats.count} file · tự xóa sau 30 ngày hoặc khi vượt 300 MB</small></div>
         <div class="audio-setting-actions audio-setting-actions--secondary"><button type="button" data-action="clear-expired-audio">Xóa audio đã quá hạn</button><button type="button" data-action="clear-all-audio">Xóa toàn bộ audio</button></div>
         <fieldset class="setting-field"><legend>Ưu tiên giọng thiết bị</legend><div class="segmented">
           ${[['auto', 'Tự động'], ['female', 'Nữ'], ['male', 'Nam']].map(([value, label]) => `<button data-action="set-gender" data-gender="${value}" class="${state.settings.voiceGender === value ? 'active' : ''}">${label}</button>`).join('')}
         </div></fieldset>
-        <label class="setting-field"><span>Chọn giọng thiết bị cụ thể</span><select id="voiceSelect">
+        <label class="setting-field"><span>Chọn giọng cụ thể</span><select id="voiceSelect">
           <option value="">Tự chọn theo ưu tiên trên</option>
           ${voices.map((voice) => `<option value="${escapeHtml(voice.voiceURI || voice.name)}" ${state.settings.voiceURI === (voice.voiceURI || voice.name) ? 'selected' : ''}>${escapeHtml(voice.name)} · ${escapeHtml(voice.lang || '')}</option>`).join('')}
         </select></label>
-        <fieldset class="setting-field"><legend>Lùi/tiến khi nghe lại</legend><div class="segmented">
+        <fieldset class="setting-field"><legend>Lùi khi nghe lại đoạn</legend><div class="segmented">
           ${[3, 5].map((seconds) => `<button data-action="set-rewind" data-seconds="${seconds}" class="${Number(state.settings.rewindSeconds) === seconds ? 'active' : ''}">${seconds} giây</button>`).join('')}
         </div></fieldset>
         <fieldset class="setting-field"><legend>Tự động khi chép chính tả</legend><div class="automation-settings">
@@ -1282,7 +1021,8 @@
             <label for="autoNextCustomSeconds">Tùy chỉnh</label>
             <div class="custom-seconds-control">
               <input id="autoNextCustomSeconds" type="number" inputmode="decimal" min="0" max="60" step="0.5" value="${escapeHtml(String(state.settings.autoNextSeconds ?? 2))}" aria-label="Nhập thời gian chờ tùy chỉnh" />
-              <span>giây</span><button type="button" data-action="apply-custom-auto-next">Áp dụng</button>
+              <span>giây</span>
+              <button type="button" data-action="apply-custom-auto-next">Áp dụng</button>
             </div>
             <small>Nhập từ 0 đến 60 giây. Có thể dùng số thập phân, ví dụ 1.5.</small>
           </div>
@@ -1300,34 +1040,18 @@
       else if (action === 'open-menu') element.onclick = () => { clearAutoAdvance(); state.menuOpen = true; state.settingsOpen = false; render(); requestAnimationFrame(() => document.querySelector('.listen-menu-head button')?.focus()); };
       else if (action === 'close-menu') element.onclick = () => { state.menuOpen = false; render(); };
       else if (action === 'open-301') element.onclick = open301Library;
-      else if (action === 'open-custom') element.onclick = openCustomLibrary;
+      else if (action === 'open-custom') element.onclick = () => setScreen('custom');
       else if (action === 'open-review') element.onclick = openReview;
       else if (action === 'resume-last') element.onclick = resumeLastSession;
       else if (action === 'go-back') element.onclick = goBack;
       else if (action === 'start-mode') element.onclick = () => startPractice(element.dataset.mode, 0);
       else if (action === 'open-content-preview') element.onclick = openContentPreview;
       else if (action === 'open-preview-item') element.onclick = () => startPractice('transcript', Number(element.dataset.index) || 0);
-      else if (action === 'open-library-group') element.onclick = () => openLibraryGroup(element.dataset.groupId);
-      else if (action === 'open-library-deck') element.onclick = () => openCustomDeck(element.dataset.deckId);
-      else if (action === 'manage-library-deck') element.onclick = () => { state.libraryManagerDeckId = state.libraryManagerDeckId === element.dataset.deckId ? '' : element.dataset.deckId; render(); };
-      else if (action === 'export-library-all') element.onclick = () => exportLibrary('all');
-      else if (action === 'export-library-group') element.onclick = () => exportLibrary('group', element.dataset.groupId);
-      else if (action === 'export-library-deck') element.onclick = () => exportLibrary('deck', element.dataset.deckId);
-      else if (action === 'open-library-trash') element.onclick = async () => { state.screen = 'customTrash'; await refreshListeningLibrary(); render(); };
-      else if (action === 'request-delete-library-group') element.onclick = () => { state.libraryDialog = { type: 'group', id: element.dataset.groupId }; render(); };
-      else if (action === 'request-delete-library-deck') element.onclick = () => { state.libraryDialog = { type: 'deck', id: element.dataset.deckId }; render(); };
-      else if (action === 'request-delete-library-trash') element.onclick = () => { state.libraryDialog = { type: 'trash', id: element.dataset.trashId }; render(); };
-      else if (action === 'request-empty-library-trash') element.onclick = () => { state.libraryDialog = { type: 'empty' }; render(); };
-      else if (action === 'close-library-dialog') element.onclick = () => { state.libraryDialog = null; render(); };
-      else if (action === 'delete-library-group-ungroup') element.onclick = () => executeLibraryDelete('group', element.dataset.groupId, 'ungroup');
-      else if (action === 'delete-library-group-all') element.onclick = () => executeLibraryDelete('group', element.dataset.groupId, 'delete');
-      else if (action === 'confirm-delete-library-deck') element.onclick = () => executeLibraryDelete('deck', element.dataset.deckId);
-      else if (action === 'confirm-delete-library-trash') element.onclick = () => executeLibraryDelete('trash', element.dataset.trashId);
-      else if (action === 'confirm-empty-library-trash') element.onclick = () => executeLibraryDelete('empty');
-      else if (action === 'restore-library-trash') element.onclick = () => restoreLibraryTrash(element.dataset.trashId);
-      else if (action === 'restore-library-trash-all') element.onclick = restoreAllLibraryTrash;
+      else if (action === 'open-custom-group') element.onclick = () => openCustomGroup(element.dataset.groupId);
+      else if (action === 'manage-custom-group') element.onclick = () => toggleCustomManager(element.dataset.groupId);
+      else if (action === 'delete-custom-group') element.onclick = () => deleteCustomGroup(element.dataset.groupId);
       else if (action === 'toggle-speech') element.onclick = toggleSpeech;
-      else if (action === 'restart-speech') element.onclick = () => { if (state.audioPlayer) { state.audioPlayer.currentTime = 0; updateAudioTimeUi(); resumeFileAudio(); } else if (state.settings.voiceSource !== 'device') playImportedAudio(currentItem(), { restart: true }); else speakFrom(0); };
+      else if (action === 'restart-speech') element.onclick = () => { if (state.audioPlayer) { state.audioPlayer.currentTime = 0; resumeFileAudio(); } else if (state.settings.voiceSource !== 'device') playFileAudio(currentItem(), { restart: true }); else speakFrom(0); };
       else if (action === 'rewind-speech') element.onclick = rewindSpeech;
       else if (action === 'forward-speech') element.onclick = forwardSpeech;
       else if (action === 'previous-item') element.onclick = () => moveItem(-1);
@@ -1345,6 +1069,8 @@
       else if (action === 'rate-item') element.onclick = () => rateItem(element.dataset.rating);
       else if (action === 'set-gender') element.onclick = () => setGender(element.dataset.gender);
       else if (action === 'set-voice-source') element.onclick = () => setVoiceSource(element.dataset.source);
+      else if (action === 'set-azure-voice') element.onclick = () => setAzureVoice(element.dataset.voice);
+      else if (action === 'test-azure-voice') element.onclick = testAzureVoice;
       else if (action === 'import-current-audio') element.onclick = () => document.getElementById('currentAudioFileInput')?.click();
       else if (action === 'export-current-audio') element.onclick = exportCurrentAudio;
       else if (action === 'clear-expired-audio') element.onclick = clearExpiredAudio;
@@ -1373,11 +1099,11 @@
       bindLessonCards();
     }
 
-    const fileInput = document.getElementById('libraryFileInput');
+    const fileInput = document.getElementById('customFileInput');
     if (fileInput) fileInput.onchange = () => { if (fileInput.files && fileInput.files[0]) importCustomFile(fileInput.files[0]); };
 
-    app.querySelectorAll('[data-action="toggle-library-card"]').forEach((input) => {
-      input.onchange = () => toggleLibraryCard(input.dataset.deckId, input.dataset.cardId, input.checked);
+    app.querySelectorAll('[data-action="toggle-custom-item"]').forEach((input) => {
+      input.onchange = () => toggleCustomItem(input.dataset.groupId, Number(input.dataset.itemIndex), input.checked);
     });
 
     const input = document.getElementById('dictationInput');
@@ -1385,23 +1111,8 @@
 
     const position = document.getElementById('speechPosition');
     if (position) {
-      position.onchange = () => {
-        if (state.audioPlayer) {
-          state.audioPlayer.currentTime = Number(position.value) || 0;
-          state.audioCurrentTime = state.audioPlayer.currentTime;
-          updateAudioTimeUi();
-        } else {
-          speakFrom(Number(position.value));
-        }
-      };
-      position.oninput = () => {
-        if (state.audioPlayer) {
-          state.audioCurrentTime = Number(position.value) || 0;
-          updateAudioTimeUi();
-        } else {
-          state.speechCharIndex = Number(position.value);
-        }
-      };
+      position.onchange = () => speakFrom(Number(position.value));
+      position.oninput = () => { state.speechCharIndex = Number(position.value); };
     }
 
     const voiceSelect = document.getElementById('voiceSelect');
@@ -1413,6 +1124,14 @@
       };
     }
 
+    const azureEndpointInput = document.getElementById('azureEndpointInput');
+    if (azureEndpointInput) {
+      azureEndpointInput.onchange = () => {
+        state.settings.azureEndpoint = azureEndpointInput.value.trim();
+        saveSettings();
+        stopSpeech();
+      };
+    }
     const currentAudioFileInput = document.getElementById('currentAudioFileInput');
     if (currentAudioFileInput) currentAudioFileInput.onchange = () => {
       if (currentAudioFileInput.files && currentAudioFileInput.files[0]) importCurrentAudio(currentAudioFileInput.files[0]);
@@ -1875,6 +1594,31 @@
     render();
   }
 
+
+  function toggleCustomManager(groupId) {
+    const group = state.customGroups.find((entry) => entry.id === groupId);
+    if (!group) return;
+    group.manageOpen = !group.manageOpen;
+    saveCustomGroups();
+    render();
+  }
+
+  function toggleCustomItem(groupId, index, enabled) {
+    const group = state.customGroups.find((entry) => entry.id === groupId);
+    if (!group || !group.items[index]) return;
+    group.items[index].listenEnabled = enabled;
+    saveCustomGroups();
+  }
+
+  function deleteCustomGroup(groupId) {
+    const group = state.customGroups.find((entry) => entry.id === groupId);
+    if (!group) return;
+    if (!window.confirm(`Xóa bộ “${group.title}” khỏi tab Nghe?`)) return;
+    state.customGroups = state.customGroups.filter((entry) => entry.id !== groupId);
+    saveCustomGroups();
+    render();
+  }
+
   function goBack() {
     if (state.menuOpen) {
       state.menuOpen = false;
@@ -1901,9 +1645,7 @@
     }
     if (state.screen === 'mode') {
       state.practiceItems = null;
-      if (state.source === '301') state.screen = 'lessons301';
-      else if (state.source === 'custom') state.screen = state.lesson && state.lesson.groupId ? 'customGroup' : 'custom';
-      else state.screen = 'home';
+      state.screen = state.source === '301' ? 'lessons301' : state.source === 'custom' ? 'custom' : 'home';
       render();
       return;
     }
@@ -1951,9 +1693,9 @@
   }
 
   async function refreshAudioStats() {
-    if (!AudioStore) return;
+    if (!AzureAudio) return;
     try {
-      state.audioStats = await AudioStore.stats();
+      state.audioStats = await AzureAudio.stats();
       if (state.settingsOpen) render();
     } catch (error) {
       console.warn('Không đọc được cache audio:', error);
@@ -1961,66 +1703,52 @@
   }
 
   function setVoiceSource(source) {
-    if (!['auto', 'import', 'device'].includes(source)) return;
+    if (!['auto', 'azure', 'device'].includes(source)) return;
     state.settings.voiceSource = source;
     saveSettings();
     stopSpeech();
     render();
   }
 
-  function readAudioDuration(file) {
-    return new Promise((resolve, reject) => {
-      const url = URL.createObjectURL(file);
-      const audio = new Audio();
-      const cleanup = () => URL.revokeObjectURL(url);
-      audio.preload = 'metadata';
-      audio.onloadedmetadata = () => {
-        const duration = Number(audio.duration);
-        cleanup();
-        if (!Number.isFinite(duration) || duration <= 0) reject(new Error('Không đọc được thời lượng MP3.'));
-        else resolve(duration);
-      };
-      audio.onerror = () => { cleanup(); reject(new Error('File MP3 bị lỗi hoặc trình duyệt không đọc được.')); };
-      audio.src = url;
-    });
+  function setAzureVoice(voice) {
+    if (!AZURE_VOICES.some((item) => item.id === voice)) return;
+    state.settings.azureVoice = voice;
+    saveSettings();
+    stopSpeech();
+    render();
   }
 
-  async function validateMp3File(file) {
-    if (!file) throw new Error('Chưa chọn file.');
-    const name = String(file.name || '').toLowerCase();
-    const type = String(file.type || '').toLowerCase();
-    if (!name.endsWith('.mp3') || (type && !['audio/mpeg', 'audio/mp3'].includes(type))) {
-      throw new Error('Chỉ hỗ trợ file .mp3 hợp lệ.');
-    }
-    if (file.size > 20 * 1024 * 1024) throw new Error('MP3 vượt quá 20 MB.');
-    const duration = await readAudioDuration(file);
-    if (duration < 0.3 || duration > 300) throw new Error('Thời lượng MP3 phải từ 0,3 đến 300 giây.');
-    return duration;
+  async function testAzureVoice() {
+    const sample = { text: '你好！你今天有时间吗？我们一起去学校吧。' };
+    await playFileAudio(sample, { forceAzure: true });
   }
 
   async function importCurrentAudio(file) {
     const item = currentItem();
-    if (!item || !AudioStore) return;
+    if (!item || !AzureAudio) return;
     try {
-      const duration = await validateMp3File(file);
-      await AudioStore.importForText({ file, text: speechTextFor(item), itemId: item.id || '', duration });
+      const text = speechTextFor(item);
+      await AzureAudio.importForText({ file, text, voice: state.settings.azureVoice, rate: Number(state.settings.rate) || 1, itemId: item.id || '' });
       state.error = '';
       await refreshAudioStats();
-      window.alert(`Đã nhập MP3 (${formatAudioTime(duration)}) cho câu hiện tại.`);
+      window.alert('Đã nhập audio cho câu hiện tại.');
     } catch (error) {
-      state.error = `Không nhập được MP3: ${error.message || error}`;
+      state.error = `Không nhập được audio: ${error.message || error}`;
       render();
     }
   }
 
   async function exportCurrentAudio() {
     const item = currentItem();
-    if (!item || !AudioStore) return;
+    if (!item || !AzureAudio) return;
     try {
-      const entry = await AudioStore.resolveImported({ text: speechTextFor(item), itemId: item.id || '' });
-      if (!entry?.blob) throw new Error('Câu này chưa có MP3 đã nhập.');
-      const fallbackId = String(item.id || state.currentIndex + 1).replace(/[^a-zA-Z0-9_-]+/g, '-');
-      AudioStore.downloadBlob(entry.blob, entry.originalName || `${fallbackId}.mp3`);
+      const text = speechTextFor(item);
+      const key = await AzureAudio.keyFor({ text, voice: state.settings.azureVoice, rate: Number(state.settings.rate) || 1 });
+      const entry = await AzureAudio.get(key);
+      if (!entry || !entry.blob) throw new Error('Câu này chưa có file audio trong cache. Hãy phát bằng Azure hoặc nhập MP3 trước.');
+      const voiceName = String(state.settings.azureVoice || 'audio').replace(/^zh-CN-/, '').replace(/Neural$/, '');
+      const fileId = String(item.id || state.currentIndex + 1).replace(/[^a-zA-Z0-9_-]+/g, '-');
+      AzureAudio.downloadBlob(entry.blob, `${fileId}-${voiceName}.mp3`);
     } catch (error) {
       state.error = error.message || String(error);
       render();
@@ -2028,15 +1756,15 @@
   }
 
   async function clearExpiredAudio() {
-    if (!AudioStore) return;
-    await AudioStore.clearExpired();
+    if (!AzureAudio) return;
+    await AzureAudio.clearExpired();
     await refreshAudioStats();
   }
 
   async function clearAllAudio() {
-    if (!AudioStore || !window.confirm('Xóa toàn bộ MP3 trong app? Tiến độ học vẫn được giữ nguyên.')) return;
+    if (!AzureAudio || !window.confirm('Xóa toàn bộ file audio trong app? Tiến độ học vẫn được giữ nguyên.')) return;
     stopSpeech();
-    await AudioStore.clearAll();
+    await AzureAudio.clearAll();
     await refreshAudioStats();
   }
 
@@ -2058,8 +1786,8 @@
     state.settings.rate = rate;
     saveSettings();
     if (state.audioPlayer) {
-      state.audioPlayer.playbackRate = rate;
-      render();
+      stopSpeech();
+      playFileAudio(currentItem()).catch(() => {});
     } else if (state.speaking || state.paused) speakFrom(state.speechCharIndex || 0);
     else render();
   }
@@ -2071,7 +1799,7 @@
       return;
     }
     if (state.settings.voiceSource !== 'device') {
-      playImportedAudio(currentItem()).catch(() => {});
+      playFileAudio(currentItem()).catch(() => {});
       return;
     }
     toggleDeviceSpeech();
@@ -2083,11 +1811,18 @@
       render();
       return;
     }
-    if (state.speaking) { pauseSpeech(); return; }
-    if (state.paused) { speakFrom(state.speechCharIndex || state.speechStartIndex || 0); return; }
+    if (state.speaking) {
+      pauseSpeech();
+      return;
+    }
+    if (state.paused) {
+      speakFrom(state.speechCharIndex || state.speechStartIndex || 0);
+      return;
+    }
     const item = currentItem();
-    const text = speechTextFor(item);
-    speakFrom(item && state.speechCharIndex >= text.length ? 0 : (state.speechCharIndex || 0));
+    const speechText = speechTextFor(item);
+    const start = item && state.speechCharIndex >= speechText.length ? 0 : (state.speechCharIndex || 0);
+    speakFrom(start);
   }
 
   function pauseSpeech() {
@@ -2108,6 +1843,8 @@
 
   function stopSpeech() {
     if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    if (state.audioAbort) state.audioAbort.abort();
+    state.audioAbort = null;
     if (state.audioPlayer) {
       state.audioPlayer.pause();
       state.audioPlayer.src = '';
@@ -2117,8 +1854,6 @@
     state.audioObjectUrl = '';
     state.audioEntry = null;
     state.audioLoading = false;
-    state.audioCurrentTime = 0;
-    state.audioDuration = 0;
     state.speaking = false;
     state.paused = false;
     state.speechToken += 1;
@@ -2127,23 +1862,20 @@
   function rewindSpeech() {
     if (state.audioPlayer) {
       state.audioPlayer.currentTime = Math.max(0, state.audioPlayer.currentTime - Number(state.settings.rewindSeconds || 3));
-      state.audioCurrentTime = state.audioPlayer.currentTime;
-      updateAudioTimeUi();
       resumeFileAudio();
       return;
     }
     const item = currentItem();
     if (!item) return;
     const text = speechTextFor(item);
-    const start = Core.findRewindStart(text, state.speechCharIndex || 0, state.settings.rewindSeconds, state.settings.rate);
+    const current = state.speechCharIndex > 0 ? state.speechCharIndex : 0;
+    const start = Core.findRewindStart(text, current, state.settings.rewindSeconds, state.settings.rate);
     speakFrom(start);
   }
 
   function forwardSpeech() {
     if (state.audioPlayer) {
-      state.audioPlayer.currentTime = Math.min(state.audioPlayer.duration || 0, state.audioPlayer.currentTime + Number(state.settings.rewindSeconds || 3));
-      state.audioCurrentTime = state.audioPlayer.currentTime;
-      updateAudioTimeUi();
+      state.audioPlayer.currentTime = Math.min(state.audioPlayer.duration || Infinity, state.audioPlayer.currentTime + Number(state.settings.rewindSeconds || 3));
       resumeFileAudio();
       return;
     }
@@ -2155,78 +1887,76 @@
     speakFrom(Math.min(text.length - 1, (state.speechCharIndex || 0) + advance));
   }
 
-  function updateAudioTimeUi() {
-    const current = document.getElementById('audioCurrentTime');
-    const duration = document.getElementById('audioDuration');
-    const slider = document.getElementById('speechPosition');
-    if (current) current.textContent = formatAudioTime(state.audioCurrentTime);
-    if (duration) duration.textContent = state.audioDuration > 0 ? formatAudioTime(state.audioDuration) : '--:--';
-    if (slider && state.audioPlayer) {
-      slider.max = String(state.audioDuration || 0);
-      slider.step = '0.1';
-      slider.value = String(state.audioCurrentTime || 0);
-    }
-  }
-
   function resumeFileAudio() {
     if (!state.audioPlayer) return;
-    state.audioPlayer.playbackRate = Number(state.settings.rate) || 1;
+    state.audioPlayer.playbackRate = 1;
     state.audioPlayer.play().then(() => {
       state.speaking = true;
       state.paused = false;
       render();
     }).catch((error) => {
-      state.error = `Không phát được MP3: ${error.message || error}`;
+      state.error = `Không phát được file audio: ${error.message || error}`;
       render();
     });
   }
 
-  async function playImportedAudio(item, options = {}) {
-    if (!item || !AudioStore || state.audioLoading) return;
+  async function playFileAudio(item, options = {}) {
+    if (!item || !AzureAudio || state.audioLoading) return;
+    const text = speechTextFor(item);
+    const voice = state.settings.azureVoice || 'zh-CN-XiaochenNeural';
+    const rate = Number(state.settings.rate) || 1;
     state.audioLoading = true;
     state.error = '';
     render();
+    const controller = new AbortController();
+    state.audioAbort = controller;
     try {
-      const entry = await AudioStore.resolveImported({ text: speechTextFor(item), itemId: item.id || '' });
-      if (!entry?.blob) {
-        state.audioLoading = false;
-        if (state.settings.voiceSource === 'auto') {
-          toggleDeviceSpeech();
-          return;
-        }
-        throw new Error('Câu này chưa có MP3 đã nhập.');
-      }
+      const entry = await AzureAudio.resolveAudio({
+        text,
+        voice,
+        rate,
+        endpoint: state.settings.azureEndpoint,
+        importedOnly: state.settings.voiceSource === 'device',
+        signal: controller.signal
+      });
+      if (!entry || !entry.blob) throw new Error('Không tìm thấy audio đã nhập.');
       stopSpeech();
       state.audioEntry = entry;
       state.audioObjectUrl = URL.createObjectURL(entry.blob);
       const player = new Audio(state.audioObjectUrl);
       state.audioPlayer = player;
-      player.preload = 'metadata';
-      player.playbackRate = Number(state.settings.rate) || 1;
+      player.preload = 'auto';
+      player.playbackRate = 1;
       player.onloadedmetadata = () => {
-        state.audioDuration = Number(player.duration) || Number(entry.duration) || 0;
         if (options.restart) player.currentTime = 0;
-        state.audioCurrentTime = player.currentTime || 0;
-        updateAudioTimeUi();
       };
       player.ontimeupdate = () => {
-        state.audioCurrentTime = player.currentTime || 0;
-        state.audioDuration = Number(player.duration) || state.audioDuration || 0;
-        updateAudioTimeUi();
+        const ratio = player.duration ? player.currentTime / player.duration : 0;
+        state.speechCharIndex = Math.round(text.length * ratio);
+        const slider = document.getElementById('speechPosition');
+        if (slider) slider.value = String(state.speechCharIndex);
       };
       player.onplay = () => { state.speaking = true; state.paused = false; };
       player.onpause = () => { if (!player.ended) { state.speaking = false; state.paused = true; } };
-      player.onended = () => { state.speaking = false; state.paused = false; state.audioCurrentTime = state.audioDuration; updateAudioTimeUi(); render(); };
-      player.onerror = () => { state.error = 'MP3 không phát được.'; state.speaking = false; render(); };
+      player.onended = () => { state.speaking = false; state.paused = false; state.speechCharIndex = text.length; render(); };
+      player.onerror = () => { state.error = 'File audio không phát được.'; state.speaking = false; render(); };
       state.listenCount += 1;
       await player.play();
-      state.audioLoading = false;
       state.speaking = true;
       state.paused = false;
-      await refreshAudioStats();
+      state.audioLoading = false;
+      refreshAudioStats();
       render();
     } catch (error) {
       state.audioLoading = false;
+      state.audioAbort = null;
+      if (error && error.name === 'AbortError') return;
+      if (state.settings.voiceSource === 'auto' && !options.forceAzure) {
+        state.error = 'Azure chưa sẵn sàng. Đang dùng giọng thiết bị.';
+        render();
+        toggleDeviceSpeech();
+        return;
+      }
       state.error = error.message || String(error);
       render();
     }
@@ -2294,9 +2024,6 @@
     state.voicesReady = true;
   }
 
-  if (LibraryStore) {
-    LibraryStore.init().then(refreshListeningLibrary).catch((error) => console.warn('Không khởi tạo được thư viện Nghe:', error));
-  }
   window.addEventListener('pagehide', () => { stopSpeech(); clearAutoAdvance(); });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && (state.menuOpen || state.settingsOpen)) {
