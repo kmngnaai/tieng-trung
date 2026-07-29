@@ -119,20 +119,39 @@
   }
 
   async function resolveImported({ text, itemId = '', scope = 'card' }) {
-    const key = await keyFor({ text, itemId, scope });
+    const normalizedText = String(text || '').trim();
+    const key = await keyFor({ text: normalizedText, itemId, scope });
     const entry = await get(key);
     if (entry?.source === 'import' && entry.blob) return entry;
 
-    // Tương thích MP3 đã nhập ở bản cũ, khi khóa còn chứa nguồn giọng và tốc độ.
+    // Tương thích mọi bản cũ: ưu tiên itemId + scope, rồi text + scope,
+    // cuối cùng mới nhận bản ghi chưa có scope. Không lấy MP3 của card cho passage.
     const legacyEntries = await all();
-    const legacy = legacyEntries.find((item) => item.source === 'import' && item.blob && (
-      (itemId && item.itemId === itemId && (!item.scope || item.scope === scope)) ||
-      (String(item.text || '').trim() === String(text || '').trim() && (!item.scope || item.scope === scope))
-    ));
+    const imported = legacyEntries.filter((item) => item.source === 'import' && item.blob);
+    const legacy =
+      imported.find((item) => itemId && item.itemId === itemId && item.scope === scope) ||
+      imported.find((item) => normalizedText && String(item.text || '').trim() === normalizedText && item.scope === scope) ||
+      imported.find((item) => !item.scope && itemId && item.itemId === itemId) ||
+      imported.find((item) => !item.scope && normalizedText && String(item.text || '').trim() === normalizedText);
     if (!legacy) return null;
-    const migrated = await put({ ...legacy, key, scope, source: 'import' });
+    const migrated = await put({ ...legacy, key, scope, text: normalizedText, itemId, source: 'import' });
     if (legacy.key !== key) await remove([legacy.key]);
     return migrated;
+  }
+
+  async function removeImported({ text, itemId = '', scope = 'card' }) {
+    const normalizedText = String(text || '').trim();
+    const exactKey = await keyFor({ text: normalizedText, itemId, scope });
+    const entries = await all();
+    const keys = entries.filter((item) => item.source === 'import' && (
+      item.key === exactKey ||
+      (item.scope === scope && itemId && item.itemId === itemId) ||
+      (item.scope === scope && normalizedText && String(item.text || '').trim() === normalizedText) ||
+      (!item.scope && itemId && item.itemId === itemId) ||
+      (!item.scope && normalizedText && String(item.text || '').trim() === normalizedText)
+    )).map((item) => item.key);
+    await remove([...new Set(keys)]);
+    return keys.length;
   }
 
   async function importForText({ file, text, itemId = '', duration = 0, scope = 'card' }) {
@@ -195,6 +214,7 @@
     clearAll,
     resolveImported,
     importForText,
+    removeImported,
     downloadBlob,
     constants: { MAX_BYTES, MAX_AGE_MS }
   };

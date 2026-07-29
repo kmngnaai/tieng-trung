@@ -1,0 +1,859 @@
+diff -ruN /mnt/data/listening_v118/listening/README_PASSAGE_MP3_V1.19.md listening/README_PASSAGE_MP3_V1.19.md
+--- /mnt/data/listening_v118/listening/README_PASSAGE_MP3_V1.19.md	1970-01-01 00:00:00.000000000 +0000
++++ listening/README_PASSAGE_MP3_V1.19.md	2026-07-29 08:16:16.474315747 +0000
+@@ -0,0 +1,22 @@
++# Listening MP3 toàn đoạn V1.19
++
++## Sửa triệt để lỗi iPhone không phát sau khi nhập
++
++- Dùng một `HTMLAudioElement` cố định thay vì tạo `new Audio()` sau khi đọc IndexedDB.
++- Chuẩn bị Blob URL và metadata trước khi người dùng chạm nút Phát.
++- `play()` được gọi trực tiếp trong sự kiện chạm trên Safari/iPhone.
++- Hiển thị thời lượng và trạng thái: đang chuẩn bị, sẵn sàng, đang phát, tạm dừng, lỗi.
++- Hiện lỗi Safari ngay trong thẻ âm thanh thay vì im lặng.
++- Thêm Thay/Xuất/Xóa MP3 cho đúng phạm vi toàn đoạn hoặc từng câu.
++- Giữ tương thích MP3 đã nhập ở V1.17/V1.18.
++- Bump query version trong `index.html` để tránh cache cũ trên GitHub Pages/Safari.
++
++## Kiểm tra nhanh
++
++1. Mở Chép đoạn.
++2. Nhập một MP3 toàn đoạn.
++3. Đóng cài đặt.
++4. Chờ dòng `MP3 đã sẵn sàng` và thời lượng hiện thật.
++5. Chạm Phát.
++
++Debug Console: `await ListeningAudioDebug.inspect()`
+diff -ruN /mnt/data/listening_v118/listening/app.js listening/app.js
+--- /mnt/data/listening_v118/listening/app.js	2026-07-29 08:01:41.000000000 +0000
++++ listening/app.js	2026-07-29 08:19:54.578323547 +0000
+@@ -79,9 +79,19 @@
+     audioEntry: null,
+     audioCurrentTime: 0,
+     audioDuration: 0,
+-    audioStats: { count: 0, bytes: 0, maxBytes: 300 * 1024 * 1024 }
++    audioStats: { count: 0, bytes: 0, maxBytes: 300 * 1024 * 1024 },
++    audioPreparedFingerprint: '',
++    audioStatus: 'idle',
++    audioMessage: '',
++    audioLoadToken: 0,
++    audioPrepareScheduled: false,
++    audioPreparePromise: null
+   };
+ 
++  // Dùng một phần tử audio cố định ở ngoài #app. Safari/iPhone cấp quyền phát
++  // theo từng media element; không tạo new Audio() sau một chuỗi await.
++  const importedAudioElement = createImportedAudioElement();
++
+   // Chỉ giữ các khóa cài đặt đang được module Nghe hỗ trợ.
+   state.settings = Object.keys(DEFAULT_SETTINGS).reduce((settings, key) => {
+     settings[key] = state.settings[key] ?? DEFAULT_SETTINGS[key];
+@@ -112,6 +122,37 @@
+     }
+   }
+ 
++  function createImportedAudioElement() {
++    let audio = document.getElementById('listeningImportedAudio');
++    if (audio) return audio;
++    audio = document.createElement('audio');
++    audio.id = 'listeningImportedAudio';
++    audio.preload = 'metadata';
++    audio.setAttribute('playsinline', '');
++    audio.setAttribute('webkit-playsinline', '');
++    audio.setAttribute('aria-hidden', 'true');
++    // Không dùng display:none để tránh các khác biệt tải metadata trên Safari.
++    Object.assign(audio.style, {
++      position: 'fixed',
++      width: '1px',
++      height: '1px',
++      left: '-9999px',
++      bottom: '0',
++      opacity: '0',
++      pointerEvents: 'none'
++    });
++    document.body.appendChild(audio);
++    return audio;
++  }
++
++  function mediaErrorText(error) {
++    const name = String(error && error.name || '');
++    const message = String(error && error.message || error || '');
++    if (name === 'NotAllowedError') return 'Safari đã chặn phát vì MP3 chưa sẵn sàng trong lần chạm này. Chờ hiện “MP3 đã sẵn sàng”, rồi chạm Phát lại.';
++    if (name === 'NotSupportedError') return 'Safari không đọc được định dạng của MP3 này.';
++    return message || 'Không phát được MP3.';
++  }
++
+   function escapeHtml(value) {
+     return String(value ?? '').replace(/[&<>"']/g, (char) => ({
+       '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+@@ -206,6 +247,7 @@
+     else renderHome();
+     bindCommonEvents();
+     syncOverlayState();
++    if (state.screen === 'practice' && state.settings.voiceSource !== 'device') schedulePrepareCurrentAudio();
+   }
+ 
+   function renderHome() {
+@@ -908,6 +950,30 @@
+     return item && item.isPassage ? 'toàn đoạn' : 'câu hiện tại';
+   }
+ 
++  function audioFingerprintFor(item) {
++    if (!item) return '';
++    return `${audioScopeFor(item)}|${String(item.id || '')}|${speechTextFor(item).trim()}`;
++  }
++
++  function currentAudioIsPrepared(item) {
++    return Boolean(
++      item &&
++      state.audioPlayer === importedAudioElement &&
++      state.audioEntry &&
++      state.audioPreparedFingerprint === audioFingerprintFor(item) &&
++      importedAudioElement.src
++    );
++  }
++
++  function currentAudioStatusText(item) {
++    if (state.audioLoading) return `Đang chuẩn bị MP3 ${audioScopeLabel(item)}...`;
++    if (currentAudioIsPrepared(item)) {
++      const duration = state.audioDuration || Number(state.audioEntry && state.audioEntry.duration) || 0;
++      return `Đã nhập · ${formatAudioTime(duration)} · ${formatBytes(state.audioEntry && state.audioEntry.size || 0)}`;
++    }
++    return state.audioMessage || `Chưa có MP3 ${audioScopeLabel(item)}.`;
++  }
++
+   function formatAudioTime(seconds) {
+     const value = Number(seconds);
+     if (!Number.isFinite(value) || value < 0) return '--:--';
+@@ -948,7 +1014,7 @@
+           <div class="audio-controls">
+             <button class="secondary-round" data-action="restart-speech" aria-label="Nghe từ đầu">↺<small>Từ đầu</small></button>
+             <button class="secondary-round" data-action="rewind-speech" aria-label="Lùi ${state.settings.rewindSeconds} giây">−${state.settings.rewindSeconds}s<small>Lùi</small></button>
+-            <button class="play-button ${state.speaking ? 'is-speaking' : ''}" data-action="toggle-speech" aria-label="${state.speaking ? 'Tạm dừng' : 'Phát'}">
++            <button class="play-button ${state.speaking ? 'is-speaking' : ''}" data-action="toggle-speech" aria-label="${state.speaking ? 'Tạm dừng' : 'Phát'}" ${state.audioLoading ? 'disabled' : ''}>
+               ${state.audioLoading ? '◌' : state.speaking ? 'Ⅱ' : '▶'}
+             </button>
+             <button class="secondary-round" data-action="forward-speech" aria-label="Tiến ${state.settings.rewindSeconds} giây">+${state.settings.rewindSeconds}s<small>Tiến</small></button>
+@@ -959,6 +1025,7 @@
+             <span>/</span>
+             <span id="audioDuration">${state.audioDuration > 0 ? formatAudioTime(state.audioDuration) : '--:--'}</span>
+           </div>
++          ${state.audioMessage ? `<div class="audio-runtime-status audio-runtime-status--${escapeHtml(state.audioStatus || 'info')}" role="status">${escapeHtml(state.audioMessage)}</div>` : ''}
+           <label class="speech-position">
+             <span>${state.audioPlayer ? 'Vị trí trong file audio' : `Vị trí gần đúng ${isPassage ? 'trong đoạn' : 'trong câu'}`}</span>
+             <input id="speechPosition" type="range" min="0" max="${state.audioPlayer && state.audioDuration > 0 ? state.audioDuration : Math.max(1, speechText.length)}" step="${state.audioPlayer ? '0.1' : '1'}" value="${state.audioPlayer ? Math.min(state.audioDuration || 0, state.audioCurrentTime) : Math.min(speechText.length, state.speechCharIndex)}" />
+@@ -1263,17 +1330,21 @@
+         </div><small class="setting-note">Tự động: ${isPassage ? 'ưu tiên MP3 toàn đoạn, nếu chưa có thì dùng giọng thiết bị đọc toàn đoạn.' : 'ưu tiên MP3 của câu hiện tại, nếu chưa có thì dùng giọng thiết bị.'}</small></fieldset>
+         ${isPassage ? `
+           <div class="audio-scope-heading"><strong>Âm thanh toàn đoạn</strong><small>Chỉ cần một MP3 cho toàn bộ ${item.segments?.length || 0} câu.</small></div>
+-          <div class="audio-setting-actions">
+-            <button type="button" data-action="import-current-audio">Nhập MP3 cho toàn đoạn</button>
++          <div class="current-audio-status ${currentAudioIsPrepared(item) ? 'is-ready' : ''}">${escapeHtml(currentAudioStatusText(item))}</div>
++          <div class="audio-setting-actions audio-setting-actions--three">
++            <button type="button" data-action="import-current-audio">${currentAudioIsPrepared(item) ? 'Thay MP3 toàn đoạn' : 'Nhập MP3 cho toàn đoạn'}</button>
+             <input id="currentAudioFileInput" type="file" accept=".mp3,audio/mpeg,audio/mp3" hidden />
+-            <button type="button" data-action="export-current-audio">Xuất MP3 toàn đoạn</button>
++            <button type="button" data-action="export-current-audio">Xuất MP3</button>
++            <button type="button" data-action="delete-current-audio" class="is-danger-soft">Xóa MP3</button>
+           </div>
+         ` : `
+           <div class="audio-scope-heading"><strong>Âm thanh từng câu</strong><small>MP3 này chỉ gắn với câu đang mở.</small></div>
+-          <div class="audio-setting-actions">
+-            <button type="button" data-action="import-current-audio">Nhập MP3 cho câu hiện tại</button>
++          <div class="current-audio-status ${currentAudioIsPrepared(item) ? 'is-ready' : ''}">${escapeHtml(currentAudioStatusText(item))}</div>
++          <div class="audio-setting-actions audio-setting-actions--three">
++            <button type="button" data-action="import-current-audio">${currentAudioIsPrepared(item) ? 'Thay MP3 câu này' : 'Nhập MP3 cho câu hiện tại'}</button>
+             <input id="currentAudioFileInput" type="file" accept=".mp3,audio/mpeg,audio/mp3" hidden />
+-            <button type="button" data-action="export-current-audio">Xuất MP3 câu hiện tại</button>
++            <button type="button" data-action="export-current-audio">Xuất MP3</button>
++            <button type="button" data-action="delete-current-audio" class="is-danger-soft">Xóa MP3</button>
+           </div>
+         `}
+         <p class="audio-import-note">Điều kiện: file MP3 không DRM, tối đa 20 MB, thời lượng 0,3–300 giây. File được sao chép vào bộ nhớ app và vẫn tự dọn sau 30 ngày hoặc khi vượt 300 MB.</p>
+@@ -1316,7 +1387,7 @@
+     app.querySelectorAll('[data-action]').forEach((element) => {
+       const action = element.dataset.action;
+       if (action === 'open-settings') element.onclick = () => { clearAutoAdvance(); state.settingsOpen = true; state.menuOpen = false; refreshAudioStats(); render(); };
+-      else if (action === 'close-settings') element.onclick = () => { state.settingsOpen = false; render(); };
++      else if (action === 'close-settings') element.onclick = () => { state.settingsOpen = false; render(); schedulePrepareCurrentAudio(); };
+       else if (action === 'open-menu') element.onclick = () => { clearAutoAdvance(); state.menuOpen = true; state.settingsOpen = false; render(); requestAnimationFrame(() => document.querySelector('.listen-menu-head button')?.focus()); };
+       else if (action === 'close-menu') element.onclick = () => { state.menuOpen = false; render(); };
+       else if (action === 'open-301') element.onclick = open301Library;
+@@ -1347,7 +1418,18 @@
+       else if (action === 'restore-library-trash') element.onclick = () => restoreLibraryTrash(element.dataset.trashId);
+       else if (action === 'restore-library-trash-all') element.onclick = restoreAllLibraryTrash;
+       else if (action === 'toggle-speech') element.onclick = toggleSpeech;
+-      else if (action === 'restart-speech') element.onclick = () => { if (state.audioPlayer) { state.audioPlayer.currentTime = 0; updateAudioTimeUi(); resumeFileAudio(); } else if (state.settings.voiceSource !== 'device') playImportedAudio(currentItem(), { restart: true }); else speakFrom(0); };
++      else if (action === 'restart-speech') element.onclick = () => {
++        const item = currentItem();
++        if (currentAudioIsPrepared(item)) {
++          state.audioPlayer.currentTime = 0;
++          updateAudioTimeUi();
++          resumeFileAudio();
++        } else if (state.settings.voiceSource !== 'device') {
++          prepareImportedAudio(item, { force: true }).then((entry) => {
++            if (entry) { state.audioMessage = 'MP3 đã sẵn sàng. Chạm Phát để nghe.'; state.audioStatus = 'ready'; render(); }
++          }).catch(() => {});
++        } else speakFrom(0);
++      };
+       else if (action === 'rewind-speech') element.onclick = rewindSpeech;
+       else if (action === 'forward-speech') element.onclick = forwardSpeech;
+       else if (action === 'previous-item') element.onclick = () => moveItem(-1);
+@@ -1367,6 +1449,7 @@
+       else if (action === 'set-voice-source') element.onclick = () => setVoiceSource(element.dataset.source);
+       else if (action === 'import-current-audio') element.onclick = () => document.getElementById('currentAudioFileInput')?.click();
+       else if (action === 'export-current-audio') element.onclick = exportCurrentAudio;
++      else if (action === 'delete-current-audio') element.onclick = deleteCurrentAudio;
+       else if (action === 'clear-expired-audio') element.onclick = clearExpiredAudio;
+       else if (action === 'clear-all-audio') element.onclick = clearAllAudio;
+       else if (action === 'set-rewind') element.onclick = () => setRewind(Number(element.dataset.seconds));
+@@ -1986,6 +2069,7 @@
+     saveSettings();
+     stopSpeech();
+     render();
++    if (source !== 'device') schedulePrepareCurrentAudio();
+   }
+ 
+   function readAudioDuration(file) {
+@@ -2024,11 +2108,21 @@
+     try {
+       const duration = await validateMp3File(file);
+       await AudioStore.importForText({ file, text: speechTextFor(item), itemId: item.id || '', duration, scope: audioScopeFor(item) });
++      state.settings.voiceSource = 'import';
++      saveSettings();
+       state.error = '';
++      state.audioMessage = `Đang chuẩn bị MP3 ${audioScopeLabel(item)}...`;
++      state.audioStatus = 'loading';
++      await prepareImportedAudio(item, { force: true });
+       await refreshAudioStats();
+-      window.alert(`Đã nhập MP3 (${formatAudioTime(duration)}) cho ${audioScopeLabel(item)}.`);
++      state.audioMessage = `MP3 ${audioScopeLabel(item)} đã sẵn sàng · ${formatAudioTime(duration)}.`;
++      state.audioStatus = 'ready';
++      render();
++      window.alert(`Đã nhập và chuẩn bị xong MP3 (${formatAudioTime(duration)}) cho ${audioScopeLabel(item)}.`);
+     } catch (error) {
+       state.error = `Không nhập được MP3: ${error.message || error}`;
++      state.audioMessage = state.error;
++      state.audioStatus = 'error';
+       render();
+     }
+   }
+@@ -2047,6 +2141,25 @@
+     }
+   }
+ 
++  async function deleteCurrentAudio() {
++    const item = currentItem();
++    if (!item || !AudioStore) return;
++    const label = audioScopeLabel(item);
++    if (!window.confirm(`Xóa MP3 ${label}? Tiến độ học vẫn được giữ nguyên.`)) return;
++    try {
++      await AudioStore.removeImported({ text: speechTextFor(item), itemId: item.id || '', scope: audioScopeFor(item) });
++      stopSpeech();
++      state.audioStatus = 'missing';
++      state.audioMessage = `Đã xóa MP3 ${label}.`;
++      await refreshAudioStats();
++      render();
++    } catch (error) {
++      state.audioStatus = 'error';
++      state.audioMessage = `Không xóa được MP3: ${error.message || error}`;
++      render();
++    }
++  }
++
+   async function clearExpiredAudio() {
+     if (!AudioStore) return;
+     await AudioStore.clearExpired();
+@@ -2077,21 +2190,49 @@
+   function setRate(rate) {
+     state.settings.rate = rate;
+     saveSettings();
+-    if (state.audioPlayer) {
++    if (currentAudioIsPrepared(currentItem())) {
+       state.audioPlayer.playbackRate = rate;
+       render();
+     } else if (state.speaking || state.paused) speakFrom(state.speechCharIndex || 0);
+     else render();
+   }
+ 
++  function schedulePrepareCurrentAudio() {
++    if (state.audioPrepareScheduled || state.screen !== 'practice' || state.settings.voiceSource === 'device') return;
++    state.audioPrepareScheduled = true;
++    window.setTimeout(() => {
++      state.audioPrepareScheduled = false;
++      const item = currentItem();
++      if (!item || state.screen !== 'practice' || state.settings.voiceSource === 'device') return;
++      prepareImportedAudio(item, { silent: false }).catch(() => {});
++    }, 0);
++  }
++
+   function toggleSpeech() {
+-    if (state.audioPlayer) {
++    const item = currentItem();
++    if (!item) return;
++
++    if (currentAudioIsPrepared(item)) {
+       if (state.speaking) pauseSpeech();
+       else resumeFileAudio();
+       return;
+     }
++
+     if (state.settings.voiceSource !== 'device') {
+-      playImportedAudio(currentItem()).catch(() => {});
++      if (state.audioLoading) return;
++      state.audioMessage = `Đang chuẩn bị MP3 ${audioScopeLabel(item)}...`;
++      state.audioStatus = 'loading';
++      render();
++      prepareImportedAudio(item, { force: true }).then((entry) => {
++        if (!entry) {
++          if (state.settings.voiceSource === 'auto') toggleDeviceSpeech();
++          return;
++        }
++        // Không tự play sau await trên iOS. Lần chạm tiếp theo sẽ gọi play() trực tiếp.
++        state.audioMessage = 'MP3 đã sẵn sàng. Chạm nút Phát một lần nữa.';
++        state.audioStatus = 'ready';
++        render();
++      }).catch(() => {});
+       return;
+     }
+     toggleDeviceSpeech();
+@@ -2100,6 +2241,8 @@
+   function toggleDeviceSpeech() {
+     if (!('speechSynthesis' in window)) {
+       state.error = 'Thiết bị không hỗ trợ speechSynthesis.';
++      state.audioMessage = state.error;
++      state.audioStatus = 'error';
+       render();
+       return;
+     }
+@@ -2115,6 +2258,8 @@
+       state.audioPlayer.pause();
+       state.speaking = false;
+       state.paused = true;
++      state.audioStatus = 'paused';
++      state.audioMessage = `Đã tạm dừng tại ${formatAudioTime(state.audioCurrentTime)}.`;
+       render();
+       return;
+     }
+@@ -2126,33 +2271,45 @@
+     render();
+   }
+ 
+-  function stopSpeech() {
+-    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+-    if (state.audioPlayer) {
+-      state.audioPlayer.pause();
+-      state.audioPlayer.src = '';
+-      state.audioPlayer = null;
++  function releasePreparedFileAudio() {
++    state.audioLoadToken += 1;
++    try {
++      importedAudioElement.pause();
++      importedAudioElement.removeAttribute('src');
++      importedAudioElement.load();
++    } catch (error) {
++      console.warn('Không thể đóng audio cũ:', error);
+     }
+     if (state.audioObjectUrl) URL.revokeObjectURL(state.audioObjectUrl);
+     state.audioObjectUrl = '';
++    state.audioPlayer = null;
+     state.audioEntry = null;
+-    state.audioLoading = false;
++    state.audioPreparedFingerprint = '';
+     state.audioCurrentTime = 0;
+     state.audioDuration = 0;
++    state.audioPreparePromise = null;
++  }
++
++  function stopSpeech() {
++    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
++    releasePreparedFileAudio();
++    state.audioLoading = false;
++    state.audioStatus = 'idle';
++    state.audioMessage = '';
+     state.speaking = false;
+     state.paused = false;
+     state.speechToken += 1;
+   }
+ 
+   function rewindSpeech() {
+-    if (state.audioPlayer) {
++    const item = currentItem();
++    if (currentAudioIsPrepared(item)) {
+       state.audioPlayer.currentTime = Math.max(0, state.audioPlayer.currentTime - Number(state.settings.rewindSeconds || 3));
+       state.audioCurrentTime = state.audioPlayer.currentTime;
+       updateAudioTimeUi();
+       resumeFileAudio();
+       return;
+     }
+-    const item = currentItem();
+     if (!item) return;
+     const text = speechTextFor(item);
+     const start = Core.findRewindStart(text, state.speechCharIndex || 0, state.settings.rewindSeconds, state.settings.rate);
+@@ -2160,14 +2317,14 @@
+   }
+ 
+   function forwardSpeech() {
+-    if (state.audioPlayer) {
+-      state.audioPlayer.currentTime = Math.min(state.audioPlayer.duration || 0, state.audioPlayer.currentTime + Number(state.settings.rewindSeconds || 3));
++    const item = currentItem();
++    if (currentAudioIsPrepared(item)) {
++      state.audioPlayer.currentTime = Math.min(state.audioPlayer.duration || state.audioDuration || 0, state.audioPlayer.currentTime + Number(state.settings.rewindSeconds || 3));
+       state.audioCurrentTime = state.audioPlayer.currentTime;
+       updateAudioTimeUi();
+       resumeFileAudio();
+       return;
+     }
+-    const item = currentItem();
+     if (!item) return;
+     const text = speechTextFor(item);
+     const speed = Math.max(0.5, Number(state.settings.rate) || 1);
+@@ -2188,68 +2345,227 @@
+     }
+   }
+ 
+-  function resumeFileAudio() {
+-    if (!state.audioPlayer) return;
+-    state.audioPlayer.playbackRate = Number(state.settings.rate) || 1;
+-    state.audioPlayer.play().then(() => {
++  function bindImportedAudioEvents(token) {
++    const player = importedAudioElement;
++    const isCurrent = () => token === state.audioLoadToken;
++    const syncDuration = () => {
++      if (!isCurrent()) return;
++      const duration = Number(player.duration);
++      state.audioDuration = Number.isFinite(duration) && duration > 0
++        ? duration
++        : Number(state.audioEntry && state.audioEntry.duration) || 0;
++      state.audioCurrentTime = Number(player.currentTime) || 0;
++      updateAudioTimeUi();
++    };
++
++    player.onloadedmetadata = syncDuration;
++    player.ondurationchange = syncDuration;
++    player.oncanplay = () => {
++      if (!isCurrent()) return;
++      syncDuration();
++      state.audioLoading = false;
++      state.audioStatus = 'ready';
++      state.audioMessage = `MP3 đã sẵn sàng · ${formatAudioTime(state.audioDuration)}.`;
++      updateAudioTimeUi();
++    };
++    player.ontimeupdate = () => {
++      if (!isCurrent()) return;
++      state.audioCurrentTime = Number(player.currentTime) || 0;
++      syncDuration();
++    };
++    player.onplay = () => {
++      if (!isCurrent()) return;
+       state.speaking = true;
+       state.paused = false;
++      state.audioStatus = 'playing';
++      state.audioMessage = `Đang phát · ${formatAudioTime(state.audioCurrentTime)} / ${formatAudioTime(state.audioDuration)}.`;
++    };
++    player.onpause = () => {
++      if (!isCurrent() || player.ended || !player.src) return;
++      state.speaking = false;
++      state.paused = true;
++    };
++    player.onended = () => {
++      if (!isCurrent()) return;
++      state.speaking = false;
++      state.paused = false;
++      state.audioCurrentTime = state.audioDuration;
++      state.audioStatus = 'ready';
++      state.audioMessage = 'Đã phát xong MP3.';
++      updateAudioTimeUi();
+       render();
+-    }).catch((error) => {
+-      state.error = `Không phát được MP3: ${error.message || error}`;
++    };
++    player.onerror = () => {
++      if (!isCurrent()) return;
++      const mediaError = player.error;
++      state.audioLoading = false;
++      state.speaking = false;
++      state.paused = false;
++      state.audioStatus = 'error';
++      state.audioMessage = `MP3 không phát được${mediaError && mediaError.code ? ` (mã ${mediaError.code})` : ''}. Hãy thử xuất MP3 rồi mở kiểm tra hoặc nhập lại file.`;
+       render();
++    };
++  }
++
++  function waitForImportedAudioReady(token, timeoutMs = 10000) {
++    const player = importedAudioElement;
++    if (player.readyState >= 1 && (Number.isFinite(player.duration) || Number(state.audioEntry && state.audioEntry.duration) > 0)) {
++      return Promise.resolve();
++    }
++    return new Promise((resolve, reject) => {
++      let finished = false;
++      const cleanup = () => {
++        player.removeEventListener('loadedmetadata', onReady);
++        player.removeEventListener('canplay', onReady);
++        player.removeEventListener('error', onError);
++        window.clearTimeout(timer);
++      };
++      const done = (callback) => {
++        if (finished) return;
++        finished = true;
++        cleanup();
++        callback();
++      };
++      const onReady = () => {
++        if (token !== state.audioLoadToken) return done(() => reject(new Error('Đã đổi câu trước khi tải xong MP3.')));
++        done(resolve);
++      };
++      const onError = () => done(() => reject(new Error('Safari không đọc được dữ liệu MP3 đã lưu.')));
++      const timer = window.setTimeout(() => done(() => reject(new Error('Hết thời gian chuẩn bị MP3. Hãy nhập lại file.'))), timeoutMs);
++      player.addEventListener('loadedmetadata', onReady);
++      player.addEventListener('canplay', onReady);
++      player.addEventListener('error', onError);
+     });
+   }
+ 
+-  async function playImportedAudio(item, options = {}) {
+-    if (!item || !AudioStore || state.audioLoading) return;
++  async function normalizePlaybackBlob(entry) {
++    const source = entry && entry.blob;
++    if (!source) throw new Error('Bản ghi MP3 không còn dữ liệu.');
++    if (typeof source.arrayBuffer !== 'function') throw new Error('Dữ liệu MP3 trong bộ nhớ không hợp lệ.');
++    const bytes = await source.arrayBuffer();
++    if (!bytes.byteLength) throw new Error('File MP3 trong bộ nhớ bị rỗng.');
++    return new Blob([bytes], { type: entry.mimeType || source.type || 'audio/mpeg' });
++  }
++
++  async function prepareImportedAudio(item, options = {}) {
++    if (!item || !AudioStore) return null;
++    const fingerprint = audioFingerprintFor(item);
++    if (!options.force && currentAudioIsPrepared(item)) return state.audioEntry;
++    if (!options.force && state.audioPreparePromise && state.audioPreparedFingerprint === fingerprint) return state.audioPreparePromise;
++
++    const token = ++state.audioLoadToken;
+     state.audioLoading = true;
+-    state.error = '';
+-    render();
+-    try {
+-      const entry = await AudioStore.resolveImported({ text: speechTextFor(item), itemId: item.id || '', scope: audioScopeFor(item) });
+-      if (!entry?.blob) {
+-        state.audioLoading = false;
+-        if (state.settings.voiceSource === 'auto') {
+-          toggleDeviceSpeech();
+-          return;
++    state.audioStatus = 'loading';
++    state.audioMessage = `Đang chuẩn bị MP3 ${audioScopeLabel(item)}...`;
++    state.audioPreparedFingerprint = fingerprint;
++    if (!options.silent) render();
++
++    const task = (async () => {
++      try {
++        const entry = await AudioStore.resolveImported({
++          text: speechTextFor(item),
++          itemId: item.id || '',
++          scope: audioScopeFor(item)
++        });
++        if (token !== state.audioLoadToken) return null;
++        if (!entry || !entry.blob) {
++          state.audioLoading = false;
++          state.audioEntry = null;
++          state.audioPlayer = null;
++          state.audioStatus = 'missing';
++          state.audioMessage = `Chưa có MP3 ${audioScopeLabel(item)}.`;
++          if (!options.silent) render();
++          return null;
+         }
+-        throw new Error(item.isPassage ? 'Đoạn này chưa có MP3 toàn đoạn.' : 'Câu này chưa có MP3 đã nhập.');
+-      }
+-      stopSpeech();
+-      state.audioEntry = entry;
+-      state.audioObjectUrl = URL.createObjectURL(entry.blob);
+-      const player = new Audio(state.audioObjectUrl);
+-      state.audioPlayer = player;
+-      player.preload = 'metadata';
+-      player.playbackRate = Number(state.settings.rate) || 1;
+-      player.onloadedmetadata = () => {
+-        state.audioDuration = Number(player.duration) || Number(entry.duration) || 0;
+-        if (options.restart) player.currentTime = 0;
+-        state.audioCurrentTime = player.currentTime || 0;
+-        updateAudioTimeUi();
+-      };
+-      player.ontimeupdate = () => {
+-        state.audioCurrentTime = player.currentTime || 0;
+-        state.audioDuration = Number(player.duration) || state.audioDuration || 0;
++
++        const playbackBlob = await normalizePlaybackBlob(entry);
++        if (token !== state.audioLoadToken) return null;
++
++        try {
++          importedAudioElement.pause();
++          importedAudioElement.removeAttribute('src');
++          importedAudioElement.load();
++        } catch (error) {
++          console.warn('Không thể làm mới audio element:', error);
++        }
++        if (state.audioObjectUrl) URL.revokeObjectURL(state.audioObjectUrl);
++
++        state.audioEntry = entry;
++        state.audioObjectUrl = URL.createObjectURL(playbackBlob);
++        state.audioPlayer = importedAudioElement;
++        state.audioCurrentTime = 0;
++        state.audioDuration = Number(entry.duration) || 0;
++        bindImportedAudioEvents(token);
++        importedAudioElement.preload = 'metadata';
++        importedAudioElement.src = state.audioObjectUrl;
++        importedAudioElement.playbackRate = Number(state.settings.rate) || 1;
++        importedAudioElement.load();
++
++        await waitForImportedAudioReady(token);
++        if (token !== state.audioLoadToken) return null;
++        state.audioLoading = false;
++        state.audioStatus = 'ready';
++        state.audioDuration = Number(importedAudioElement.duration) || Number(entry.duration) || 0;
++        state.audioMessage = `MP3 đã sẵn sàng · ${formatAudioTime(state.audioDuration)}.`;
+         updateAudioTimeUi();
+-      };
+-      player.onplay = () => { state.speaking = true; state.paused = false; };
+-      player.onpause = () => { if (!player.ended) { state.speaking = false; state.paused = true; } };
+-      player.onended = () => { state.speaking = false; state.paused = false; state.audioCurrentTime = state.audioDuration; updateAudioTimeUi(); render(); };
+-      player.onerror = () => { state.error = 'MP3 không phát được.'; state.speaking = false; render(); };
+-      state.listenCount += 1;
+-      await player.play();
+-      state.audioLoading = false;
+-      state.speaking = true;
+-      state.paused = false;
+-      await refreshAudioStats();
+-      render();
+-    } catch (error) {
+-      state.audioLoading = false;
+-      state.error = error.message || String(error);
++        if (!options.silent || state.settingsOpen) render();
++        return entry;
++      } catch (error) {
++        if (token !== state.audioLoadToken) return null;
++        state.audioLoading = false;
++        state.audioStatus = 'error';
++        state.audioMessage = `Không chuẩn bị được MP3: ${mediaErrorText(error)}`;
++        if (!options.silent || state.settingsOpen) render();
++        throw error;
++      } finally {
++        if (state.audioPreparePromise === task) state.audioPreparePromise = null;
++      }
++    })();
++
++    state.audioPreparePromise = task;
++    return task;
++  }
++
++  function resumeFileAudio() {
++    const item = currentItem();
++    if (!currentAudioIsPrepared(item)) {
++      state.audioStatus = 'loading';
++      state.audioMessage = 'MP3 chưa sẵn sàng. Đang chuẩn bị...';
++      render();
++      schedulePrepareCurrentAudio();
++      return;
++    }
++    const player = state.audioPlayer;
++    player.playbackRate = Number(state.settings.rate) || 1;
++    // play() được gọi ngay trong sự kiện chạm; đây là điểm quan trọng trên Safari/iPhone.
++    const playPromise = player.play();
++    if (playPromise && typeof playPromise.then === 'function') {
++      playPromise.then(() => {
++        state.speaking = true;
++        state.paused = false;
++        state.audioStatus = 'playing';
++        state.audioMessage = `Đang phát · ${formatAudioTime(state.audioCurrentTime)} / ${formatAudioTime(state.audioDuration)}.`;
++        render();
++      }).catch((error) => {
++        state.speaking = false;
++        state.paused = false;
++        state.audioStatus = 'error';
++        state.audioMessage = `Không phát được MP3: ${mediaErrorText(error)}`;
++        render();
++      });
++    }
++  }
++
++  async function playImportedAudio(item, options = {}) {
++    // Giữ API cũ cho các vị trí khác trong app, nhưng không tự phát sau await trên iOS.
++    const entry = await prepareImportedAudio(item, { force: Boolean(options.restart) });
++    if (entry) {
++      if (options.restart && state.audioPlayer) state.audioPlayer.currentTime = 0;
++      state.audioStatus = 'ready';
++      state.audioMessage = 'MP3 đã sẵn sàng. Chạm Phát để nghe.';
+       render();
+     }
++    return entry;
+   }
+ 
+   function speakFrom(index) {
+@@ -2330,5 +2646,23 @@
+     if (document.hidden) pauseSpeech();
+   });
+ 
++  window.ListeningAudioDebug = {
++    state,
++    currentItem,
++    prepare: () => prepareImportedAudio(currentItem(), { force: true }),
++    play: () => resumeFileAudio(),
++    inspect: async () => ({
++      item: currentItem(),
++      fingerprint: audioFingerprintFor(currentItem()),
++      prepared: currentAudioIsPrepared(currentItem()),
++      status: state.audioStatus,
++      message: state.audioMessage,
++      duration: state.audioDuration,
++      readyState: importedAudioElement.readyState,
++      networkState: importedAudioElement.networkState,
++      mediaError: importedAudioElement.error && { code: importedAudioElement.error.code, message: importedAudioElement.error.message }
++    })
++  };
++
+   render();
+ })();
+diff -ruN /mnt/data/listening_v118/listening/audio-store.js listening/audio-store.js
+--- /mnt/data/listening_v118/listening/audio-store.js	2026-07-29 08:01:23.000000000 +0000
++++ listening/audio-store.js	2026-07-29 08:16:16.474315747 +0000
+@@ -119,22 +119,41 @@
+   }
+ 
+   async function resolveImported({ text, itemId = '', scope = 'card' }) {
+-    const key = await keyFor({ text, itemId, scope });
++    const normalizedText = String(text || '').trim();
++    const key = await keyFor({ text: normalizedText, itemId, scope });
+     const entry = await get(key);
+     if (entry?.source === 'import' && entry.blob) return entry;
+ 
+-    // Tương thích MP3 đã nhập ở bản cũ, khi khóa còn chứa nguồn giọng và tốc độ.
++    // Tương thích mọi bản cũ: ưu tiên itemId + scope, rồi text + scope,
++    // cuối cùng mới nhận bản ghi chưa có scope. Không lấy MP3 của card cho passage.
+     const legacyEntries = await all();
+-    const legacy = legacyEntries.find((item) => item.source === 'import' && item.blob && (
+-      (itemId && item.itemId === itemId && (!item.scope || item.scope === scope)) ||
+-      (String(item.text || '').trim() === String(text || '').trim() && (!item.scope || item.scope === scope))
+-    ));
++    const imported = legacyEntries.filter((item) => item.source === 'import' && item.blob);
++    const legacy =
++      imported.find((item) => itemId && item.itemId === itemId && item.scope === scope) ||
++      imported.find((item) => normalizedText && String(item.text || '').trim() === normalizedText && item.scope === scope) ||
++      imported.find((item) => !item.scope && itemId && item.itemId === itemId) ||
++      imported.find((item) => !item.scope && normalizedText && String(item.text || '').trim() === normalizedText);
+     if (!legacy) return null;
+-    const migrated = await put({ ...legacy, key, scope, source: 'import' });
++    const migrated = await put({ ...legacy, key, scope, text: normalizedText, itemId, source: 'import' });
+     if (legacy.key !== key) await remove([legacy.key]);
+     return migrated;
+   }
+ 
++  async function removeImported({ text, itemId = '', scope = 'card' }) {
++    const normalizedText = String(text || '').trim();
++    const exactKey = await keyFor({ text: normalizedText, itemId, scope });
++    const entries = await all();
++    const keys = entries.filter((item) => item.source === 'import' && (
++      item.key === exactKey ||
++      (item.scope === scope && itemId && item.itemId === itemId) ||
++      (item.scope === scope && normalizedText && String(item.text || '').trim() === normalizedText) ||
++      (!item.scope && itemId && item.itemId === itemId) ||
++      (!item.scope && normalizedText && String(item.text || '').trim() === normalizedText)
++    )).map((item) => item.key);
++    await remove([...new Set(keys)]);
++    return keys.length;
++  }
++
+   async function importForText({ file, text, itemId = '', duration = 0, scope = 'card' }) {
+     const key = await keyFor({ text, itemId, scope });
+     return put({
+@@ -195,6 +214,7 @@
+     clearAll,
+     resolveImported,
+     importForText,
++    removeImported,
+     downloadBlob,
+     constants: { MAX_BYTES, MAX_AGE_MS }
+   };
+diff -ruN /mnt/data/listening_v118/listening/index.html listening/index.html
+--- /mnt/data/listening_v118/listening/index.html	2026-07-27 08:11:34.000000000 +0000
++++ listening/index.html	2026-07-29 08:16:16.474315747 +0000
+@@ -8,13 +8,13 @@
+   <link rel="preconnect" href="https://fonts.googleapis.com" />
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400&display=swap" rel="stylesheet" />
+-  <link rel="stylesheet" href="style.css?v=20260727-localaudio1-17" />
++  <link rel="stylesheet" href="style.css?v=20260729-localaudio1-19" />
+ </head>
+ <body>
+   <div id="app"><div class="loading-card"><span class="spinner"></span><span>Đang mở tab Nghe...</span></div></div>
+-  <script src="core.js?v=20260727-localaudio1-17"></script>
+-  <script src="library-store.js?v=20260727-localaudio1-17"></script>
+-  <script src="audio-store.js?v=20260727-localaudio1-17"></script>
+-  <script src="app.js?v=20260727-localaudio1-17"></script>
++  <script src="core.js?v=20260729-localaudio1-19"></script>
++  <script src="library-store.js?v=20260729-localaudio1-19"></script>
++  <script src="audio-store.js?v=20260729-localaudio1-19"></script>
++  <script src="app.js?v=20260729-localaudio1-19"></script>
+ </body>
+ </html>
+diff -ruN /mnt/data/listening_v118/listening/style.css listening/style.css
+--- /mnt/data/listening_v118/listening/style.css	2026-07-29 08:02:00.000000000 +0000
++++ listening/style.css	2026-07-29 08:16:16.474315747 +0000
+@@ -1199,3 +1199,61 @@
+   color: var(--muted, #66736f);
+   line-height: 1.45;
+ }
++
++
++/* V1.19 - phát MP3 ổn định trên Safari/iPhone */
++.audio-runtime-status {
++  width: min(100%, 560px);
++  margin: 10px auto 0;
++  padding: 9px 12px;
++  border: 1px solid rgba(15, 124, 108, .18);
++  border-radius: 12px;
++  background: rgba(238, 249, 246, .9);
++  color: var(--muted, #61716c);
++  font-size: .84rem;
++  line-height: 1.4;
++  text-align: center;
++}
++.audio-runtime-status--error {
++  border-color: rgba(180, 35, 24, .24);
++  background: rgba(255, 242, 240, .96);
++  color: #a12a20;
++}
++.audio-runtime-status--playing,
++.audio-runtime-status--ready {
++  color: var(--primary, #087f70);
++}
++.play-button:disabled {
++  opacity: .68;
++  cursor: wait;
++}
++.current-audio-status {
++  margin: 0 0 10px;
++  padding: 10px 12px;
++  border-radius: 12px;
++  background: #f3f7f5;
++  color: var(--muted, #61716c);
++  font-size: .9rem;
++  line-height: 1.4;
++}
++.current-audio-status.is-ready {
++  background: #e8f7f2;
++  color: var(--primary, #087f70);
++  font-weight: 700;
++}
++.audio-setting-actions--three {
++  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr);
++}
++.audio-setting-actions .is-danger-soft {
++  color: #a12a20;
++  border-color: rgba(180, 35, 24, .24);
++  background: #fff7f6;
++}
++@media (max-width: 520px) {
++  .audio-setting-actions--three {
++    grid-template-columns: 1fr 1fr;
++  }
++  .audio-setting-actions--three > :first-child {
++    grid-column: 1 / -1;
++  }
++}

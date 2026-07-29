@@ -1199,3 +1199,61 @@ button { color: inherit; }
   color: var(--muted, #66736f);
   line-height: 1.45;
 }
+
+
+/* V1.19 - phát MP3 ổn định trên Safari/iPhone */
+.audio-runtime-status {
+  width: min(100%, 560px);
+  margin: 10px auto 0;
+  padding: 9px 12px;
+  border: 1px solid rgba(15, 124, 108, .18);
+  border-radius: 12px;
+  background: rgba(238, 249, 246, .9);
+  color: var(--muted, #61716c);
+  font-size: .84rem;
+  line-height: 1.4;
+  text-align: center;
+}
+.audio-runtime-status--error {
+  border-color: rgba(180, 35, 24, .24);
+  background: rgba(255, 242, 240, .96);
+  color: #a12a20;
+}
+.audio-runtime-status--playing,
+.audio-runtime-status--ready {
+  color: var(--primary, #087f70);
+}
+.play-button:disabled {
+  opacity: .68;
+  cursor: wait;
+}
+.current-audio-status {
+  margin: 0 0 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #f3f7f5;
+  color: var(--muted, #61716c);
+  font-size: .9rem;
+  line-height: 1.4;
+}
+.current-audio-status.is-ready {
+  background: #e8f7f2;
+  color: var(--primary, #087f70);
+  font-weight: 700;
+}
+.audio-setting-actions--three {
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr);
+}
+.audio-setting-actions .is-danger-soft {
+  color: #a12a20;
+  border-color: rgba(180, 35, 24, .24);
+  background: #fff7f6;
+}
+@media (max-width: 520px) {
+  .audio-setting-actions--three {
+    grid-template-columns: 1fr 1fr;
+  }
+  .audio-setting-actions--three > :first-child {
+    grid-column: 1 / -1;
+  }
+}

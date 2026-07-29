@@ -1,0 +1,22 @@
+LISTENING V1.19 - TEST REPORT
+
+Static checks:
+- node --check app.js: PASS
+- node --check audio-store.js: PASS
+- node --check core.js: PASS
+- node --check library-store.js: PASS
+
+Verified changes:
+- Persistent HTMLAudioElement exists outside #app.
+- Imported MP3 is resolved from IndexedDB and prepared before user presses Play.
+- MP3 Blob is normalized through arrayBuffer -> Blob(audio/mpeg).
+- Duration is loaded before playback and shown in the UI.
+- play() is called directly from the user's tap when audio is ready.
+- Safari NotAllowedError/NotSupportedError is shown visibly.
+- Passage and card audio use separate scope keys.
+- Old imported MP3 records remain migratable.
+- Current passage/card MP3 can be replaced, exported, or deleted.
+- index.html asset query version bumped to 20260729-localaudio1-19.
+
+Limitation:
+- Real iPhone WebKit playback can only be confirmed after deploying to GitHub Pages and testing on the user's device.
