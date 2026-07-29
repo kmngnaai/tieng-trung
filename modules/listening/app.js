@@ -900,6 +900,14 @@
     return String(item && (item.speechText || item.text) || '');
   }
 
+  function audioScopeFor(item) {
+    return item && item.isPassage ? 'passage' : 'card';
+  }
+
+  function audioScopeLabel(item) {
+    return item && item.isPassage ? 'toàn đoạn' : 'câu hiện tại';
+  }
+
   function formatAudioTime(seconds) {
     const value = Number(seconds);
     if (!Number.isFinite(value) || value < 0) return '--:--';
@@ -1242,6 +1250,8 @@
   function settingsSheet() {
     if (!state.settingsOpen) return '';
     const voices = chineseVoices();
+    const item = currentItem();
+    const isPassage = Boolean(item && item.isPassage);
     return `
       <div class="sheet-backdrop" data-action="close-settings"></div>
       <section class="settings-sheet" role="dialog" aria-modal="true" aria-label="Cài đặt giọng đọc">
@@ -1250,12 +1260,22 @@
         <label class="setting-field"><span>Ngôn ngữ</span><select disabled><option>Phổ thông Trung Quốc · zh-CN</option></select></label>
         <fieldset class="setting-field"><legend>Nguồn phát</legend><div class="segmented segmented--three">
           ${[['auto', 'Tự động'], ['import', 'MP3 đã nhập'], ['device', 'Thiết bị']].map(([value, label]) => `<button data-action="set-voice-source" data-source="${value}" class="${state.settings.voiceSource === value ? 'active' : ''}">${label}</button>`).join('')}
-        </div><small class="setting-note">Tự động: ưu tiên MP3 đã nhập cho câu, nếu chưa có thì dùng giọng thiết bị.</small></fieldset>
-        <div class="audio-setting-actions">
-          <button type="button" data-action="import-current-audio">Nhập MP3 cho câu hiện tại</button>
-          <input id="currentAudioFileInput" type="file" accept=".mp3,audio/mpeg,audio/mp3" hidden />
-          <button type="button" data-action="export-current-audio">Xuất MP3 câu hiện tại</button>
-        </div>
+        </div><small class="setting-note">Tự động: ${isPassage ? 'ưu tiên MP3 toàn đoạn, nếu chưa có thì dùng giọng thiết bị đọc toàn đoạn.' : 'ưu tiên MP3 của câu hiện tại, nếu chưa có thì dùng giọng thiết bị.'}</small></fieldset>
+        ${isPassage ? `
+          <div class="audio-scope-heading"><strong>Âm thanh toàn đoạn</strong><small>Chỉ cần một MP3 cho toàn bộ ${item.segments?.length || 0} câu.</small></div>
+          <div class="audio-setting-actions">
+            <button type="button" data-action="import-current-audio">Nhập MP3 cho toàn đoạn</button>
+            <input id="currentAudioFileInput" type="file" accept=".mp3,audio/mpeg,audio/mp3" hidden />
+            <button type="button" data-action="export-current-audio">Xuất MP3 toàn đoạn</button>
+          </div>
+        ` : `
+          <div class="audio-scope-heading"><strong>Âm thanh từng câu</strong><small>MP3 này chỉ gắn với câu đang mở.</small></div>
+          <div class="audio-setting-actions">
+            <button type="button" data-action="import-current-audio">Nhập MP3 cho câu hiện tại</button>
+            <input id="currentAudioFileInput" type="file" accept=".mp3,audio/mpeg,audio/mp3" hidden />
+            <button type="button" data-action="export-current-audio">Xuất MP3 câu hiện tại</button>
+          </div>
+        `}
         <p class="audio-import-note">Điều kiện: file MP3 không DRM, tối đa 20 MB, thời lượng 0,3–300 giây. File được sao chép vào bộ nhớ app và vẫn tự dọn sau 30 ngày hoặc khi vượt 300 MB.</p>
         <div class="audio-cache-summary"><span>MP3 trong app</span><strong>${formatBytes(state.audioStats.bytes)} / ${formatBytes(state.audioStats.maxBytes)}</strong><small>${state.audioStats.count} file</small></div>
         <div class="audio-setting-actions audio-setting-actions--secondary"><button type="button" data-action="clear-expired-audio">Xóa audio đã quá hạn</button><button type="button" data-action="clear-all-audio">Xóa toàn bộ audio</button></div>
@@ -2003,10 +2023,10 @@
     if (!item || !AudioStore) return;
     try {
       const duration = await validateMp3File(file);
-      await AudioStore.importForText({ file, text: speechTextFor(item), itemId: item.id || '', duration });
+      await AudioStore.importForText({ file, text: speechTextFor(item), itemId: item.id || '', duration, scope: audioScopeFor(item) });
       state.error = '';
       await refreshAudioStats();
-      window.alert(`Đã nhập MP3 (${formatAudioTime(duration)}) cho câu hiện tại.`);
+      window.alert(`Đã nhập MP3 (${formatAudioTime(duration)}) cho ${audioScopeLabel(item)}.`);
     } catch (error) {
       state.error = `Không nhập được MP3: ${error.message || error}`;
       render();
@@ -2017,10 +2037,10 @@
     const item = currentItem();
     if (!item || !AudioStore) return;
     try {
-      const entry = await AudioStore.resolveImported({ text: speechTextFor(item), itemId: item.id || '' });
-      if (!entry?.blob) throw new Error('Câu này chưa có MP3 đã nhập.');
+      const entry = await AudioStore.resolveImported({ text: speechTextFor(item), itemId: item.id || '', scope: audioScopeFor(item) });
+      if (!entry?.blob) throw new Error(item.isPassage ? 'Đoạn này chưa có MP3 toàn đoạn.' : 'Câu này chưa có MP3 đã nhập.');
       const fallbackId = String(item.id || state.currentIndex + 1).replace(/[^a-zA-Z0-9_-]+/g, '-');
-      AudioStore.downloadBlob(entry.blob, entry.originalName || `${fallbackId}.mp3`);
+      AudioStore.downloadBlob(entry.blob, entry.originalName || `${fallbackId}${item.isPassage ? '-passage' : ''}.mp3`);
     } catch (error) {
       state.error = error.message || String(error);
       render();
@@ -2187,14 +2207,14 @@
     state.error = '';
     render();
     try {
-      const entry = await AudioStore.resolveImported({ text: speechTextFor(item), itemId: item.id || '' });
+      const entry = await AudioStore.resolveImported({ text: speechTextFor(item), itemId: item.id || '', scope: audioScopeFor(item) });
       if (!entry?.blob) {
         state.audioLoading = false;
         if (state.settings.voiceSource === 'auto') {
           toggleDeviceSpeech();
           return;
         }
-        throw new Error('Câu này chưa có MP3 đã nhập.');
+        throw new Error(item.isPassage ? 'Đoạn này chưa có MP3 toàn đoạn.' : 'Câu này chưa có MP3 đã nhập.');
       }
       stopSpeech();
       state.audioEntry = entry;

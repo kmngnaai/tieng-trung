@@ -28,8 +28,8 @@
     return Array.from(new Uint8Array(hash), (byte) => byte.toString(16).padStart(2, '0')).join('');
   }
 
-  async function keyFor({ text, itemId = '' }) {
-    return digest(`import\n${itemId}\n${String(text || '').trim()}`);
+  async function keyFor({ text, itemId = '', scope = 'card' }) {
+    return digest(`import\n${scope}\n${itemId}\n${String(text || '').trim()}`);
   }
 
   async function get(key) {
@@ -118,26 +118,28 @@
     await remove(toDelete);
   }
 
-  async function resolveImported({ text, itemId = '' }) {
-    const key = await keyFor({ text, itemId });
+  async function resolveImported({ text, itemId = '', scope = 'card' }) {
+    const key = await keyFor({ text, itemId, scope });
     const entry = await get(key);
     if (entry?.source === 'import' && entry.blob) return entry;
 
     // Tương thích MP3 đã nhập ở bản cũ, khi khóa còn chứa nguồn giọng và tốc độ.
     const legacyEntries = await all();
     const legacy = legacyEntries.find((item) => item.source === 'import' && item.blob && (
-      (itemId && item.itemId === itemId) || String(item.text || '').trim() === String(text || '').trim()
+      (itemId && item.itemId === itemId && (!item.scope || item.scope === scope)) ||
+      (String(item.text || '').trim() === String(text || '').trim() && (!item.scope || item.scope === scope))
     ));
     if (!legacy) return null;
-    const migrated = await put({ ...legacy, key, source: 'import' });
+    const migrated = await put({ ...legacy, key, scope, source: 'import' });
     if (legacy.key !== key) await remove([legacy.key]);
     return migrated;
   }
 
-  async function importForText({ file, text, itemId = '', duration = 0 }) {
-    const key = await keyFor({ text, itemId });
+  async function importForText({ file, text, itemId = '', duration = 0, scope = 'card' }) {
+    const key = await keyFor({ text, itemId, scope });
     return put({
       key,
+      scope,
       text,
       itemId,
       duration,
