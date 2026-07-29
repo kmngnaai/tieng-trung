@@ -1008,7 +1008,7 @@
 
         <section class="audio-card">
           <div class="audio-head">
-            <div><p class="eyebrow">${isPassage ? 'Đoạn nghe' : `Câu ${progress}`}</p><strong>${state.audioLoading ? 'Đang tải MP3...' : state.speaking ? 'Đang đọc...' : state.paused ? 'Đã tạm dừng' : isPassage ? 'Nghe toàn đoạn' : 'Nghe câu'}</strong></div>
+            <div><p class="eyebrow">${isPassage ? 'Đoạn nghe' : `Câu ${progress}`}</p><strong>${state.audioLoading ? 'Đang tải MP3...' : state.speaking ? (state.audioPlayer ? 'Đang phát...' : 'Đang đọc...') : state.paused ? 'Đã tạm dừng' : isPassage ? 'Nghe toàn đoạn' : 'Nghe câu'}</strong></div>
             <button class="icon-action" data-action="open-settings" aria-label="Cài đặt giọng">⚙</button>
           </div>
           <div class="audio-controls">
@@ -1025,7 +1025,7 @@
             <span>/</span>
             <span id="audioDuration">${state.audioDuration > 0 ? formatAudioTime(state.audioDuration) : '--:--'}</span>
           </div>
-          ${state.audioMessage ? `<div class="audio-runtime-status audio-runtime-status--${escapeHtml(state.audioStatus || 'info')}" role="status">${escapeHtml(state.audioMessage)}</div>` : ''}
+          ${state.audioMessage && ['error', 'missing'].includes(state.audioStatus) ? `<div class="audio-runtime-status audio-runtime-status--${escapeHtml(state.audioStatus || 'info')}" role="alert">${escapeHtml(state.audioMessage)}</div>` : ''}
           <label class="speech-position">
             <span>${state.audioPlayer ? 'Vị trí trong file audio' : `Vị trí gần đúng ${isPassage ? 'trong đoạn' : 'trong câu'}`}</span>
             <input id="speechPosition" type="range" min="0" max="${state.audioPlayer && state.audioDuration > 0 ? state.audioDuration : Math.max(1, speechText.length)}" step="${state.audioPlayer ? '0.1' : '1'}" value="${state.audioPlayer ? Math.min(state.audioDuration || 0, state.audioCurrentTime) : Math.min(speechText.length, state.speechCharIndex)}" />
