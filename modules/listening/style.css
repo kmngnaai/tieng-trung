@@ -1388,7 +1388,7 @@ button { color: inherit; }
   }
 }
 
-/* V1.28 — thanh nghe nổi dọc, nhỏ và có thể thu gọn. */
+/* V1.29 — tăng nhẹ kích thước thanh nghe nổi để dễ bấm hơn. */
 .dictation-audio-float {
   pointer-events: none;
 }
@@ -1411,7 +1411,7 @@ button { color: inherit; }
   .dictation-audio-float {
     position: fixed;
     top: var(--floating-audio-top, 48vh);
-    right: max(6px, env(safe-area-inset-right));
+    right: max(7px, env(safe-area-inset-right));
     z-index: 72;
     display: flex;
     align-items: center;
@@ -1419,8 +1419,8 @@ button { color: inherit; }
     filter: drop-shadow(0 5px 13px rgba(22, 74, 61, .18));
   }
   .dictation-audio-collapse {
-    width: 18px;
-    height: 30px;
+    width: 19px;
+    height: 34px;
     margin-right: -1px;
     padding: 0;
     border: 1px solid rgba(22, 127, 114, .38);
@@ -1428,13 +1428,13 @@ button { color: inherit; }
     border-radius: 10px 0 0 10px;
     background: rgba(239, 250, 246, .96);
     color: var(--accent-strong);
-    font: 900 14px/1 system-ui, sans-serif;
+    font: 900 15px/1 system-ui, sans-serif;
     touch-action: manipulation;
   }
   .dictation-audio-cluster {
     display: flex;
     flex-direction: column;
-    width: 34px;
+    width: 39px;
     overflow: hidden;
     border: 1px solid rgba(22, 127, 114, .55);
     border-radius: 11px;
@@ -1442,43 +1442,43 @@ button { color: inherit; }
     box-shadow: none;
   }
   .dictation-audio-control {
-    width: 34px;
-    min-width: 34px;
-    min-height: 32px;
-    height: 32px;
+    width: 39px;
+    min-width: 39px;
+    min-height: 37px;
+    height: 37px;
     padding: 0;
-    font-size: 10px;
+    font-size: 11px;
   }
   .dictation-audio-control + .dictation-audio-control {
     border-left: 0;
     border-top: 1px solid rgba(22, 127, 114, .22);
   }
   .dictation-audio-toggle {
-    min-width: 34px;
+    min-width: 39px;
     padding: 0;
     gap: 0;
   }
   .dictation-audio-toggle > span {
     min-width: 0;
-    font-size: 15px;
+    font-size: 17px;
   }
   .dictation-audio-toggle small { display: none; }
   .dictation-audio-float.is-collapsed .dictation-audio-skip { display: none; }
   .dictation-audio-float.is-collapsed .dictation-audio-cluster {
-    width: 32px;
+    width: 36px;
     border-radius: 50%;
   }
   .dictation-audio-float.is-collapsed .dictation-audio-toggle {
-    width: 32px;
-    min-width: 32px;
-    height: 32px;
-    min-height: 32px;
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+    min-height: 36px;
     border: 0;
     border-radius: 50%;
   }
   .dictation-audio-float.is-collapsed .dictation-audio-collapse {
-    width: 15px;
-    height: 27px;
-    font-size: 12px;
+    width: 17px;
+    height: 30px;
+    font-size: 13px;
   }
 }
