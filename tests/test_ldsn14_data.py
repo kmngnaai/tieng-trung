@@ -46,6 +46,13 @@ def main() -> None:
     require("drawerLink('译', 'LDSN1-4'" in shell_js, 'Drawer menu entry is missing')
     require('data-ui-shell-main' in module_html, 'Module does not use shared app shell')
     require("roleplayMode: 'typing'" in module_js and 'SETTINGS_KEY' in module_js, 'Persistent roleplay mode is missing')
+    require("vocabViewMode: 'cards'" in module_js and 'data-vocab-view' in module_js, 'Persistent card/list vocabulary view is missing')
+    require("vocabPracticeMode: 'mixed'" in module_js and 'data-vocab-practice-mode' in module_js, 'Persistent vocabulary practice mode is missing')
+    require('renderWordDetailPopup' in module_js and 'data-open-word-detail' in module_js, 'In-place vocabulary detail popup is missing')
+    require('data-open-flashcards' in module_js and "['flashcard', 'reverse', 'listening', 'typing', 'mixed']" in module_js, 'LDSN flashcard modes are missing')
+    hanzi_html = (ROOT / 'modules' / 'hanzi-stroke' / 'index.html').read_text(encoding='utf-8')
+    require('data-study-tab="ldsn14"' in hanzi_html, 'Học horizontal tab is missing LDSN1-4')
+    require('ui-module-card--ldsn' in hanzi_html, 'Học overview card is missing LDSN1-4')
     require('data-speak' in module_js and 'SpeechSynthesisUtterance' in module_js, 'Speech controls are missing')
     require(re.search(r"\['auto', 'Tự động'\].*\['custom', 'Tự chọn'\]", module_js, re.S), 'Vocabulary amount options are incomplete')
 

@@ -112,6 +112,21 @@ function lookupUrlFor(view = state.traView, target = '') {
   return `${url.pathname}${url.search}${url.hash}`;
 }
 
+
+function externalReturnContext() {
+  const params = new URLSearchParams(window.location.search);
+  const raw = clean(params.get('return') || '');
+  if (!raw) return null;
+  try {
+    const target = new URL(raw, window.location.href);
+    if (target.origin !== window.location.origin) return null;
+    const label = clean(params.get('returnLabel') || '') || 'nội dung trước';
+    return { href: `${target.pathname}${target.search}${target.hash}`, label };
+  } catch (_error) {
+    return null;
+  }
+}
+
 function renderLookupBreadcrumb() {
   const parents = state.navigationStack.map(item => clean(item.target)).filter(Boolean);
   const current = clean(targetOf(state.current));
@@ -1951,8 +1966,10 @@ function render(data) {
 
   const sections = [];
   const parent = state.navigationStack[state.navigationStack.length - 1];
+  const externalReturn = externalReturnContext();
   if (parent) sections.push(`<div class="lookup-context-back-wrap"><button type="button" class="lookup-context-back" data-back-parent>← Quay lại ${escapeHtml(parent.target)}</button></div>`);
   else if (state.catalogListSnapshot) sections.push(`<div class="lookup-context-back-wrap"><button type="button" class="lookup-context-back" data-back-catalog-list>← Quay lại ${escapeHtml(state.catalogListSnapshot.title || 'danh sách')}</button></div>`);
+  else if (externalReturn) sections.push(`<div class="lookup-context-back-wrap"><a class="lookup-context-back" href="${escapeHtml(externalReturn.href)}">← Quay lại ${escapeHtml(externalReturn.label)}</a></div>`);
   sections.push(`<section id="lookup-hero-section" class="panel hero-card full-width"><div class="panel-inner">
       <div class="hero-grid"><div class="main-char">${escapeHtml(target)}</div><div><div class="pinyin">${escapeHtml(pinyin)}</div><div class="hanviet">${data.pronunciation?.hanViet ? `Hán Việt: ${escapeHtml(data.pronunciation.hanViet)}` : ''}</div><p class="primary-meaning">${escapeHtml(meaningSummary(data))}</p></div><button class="speak-btn icon-audio-btn" type="button" data-speak="${escapeHtml(target)}" aria-label="Nghe phát âm">${audioIcon()}</button></div>
       <div class="meta-row">${formation ? `<span class="meta-chip">${escapeHtml(formation)}</span>` : ''}${structure ? `<span class="meta-chip">${escapeHtml(structure)}</span>` : ''}${data.characterInfo?.strokeCount ? `<span class="meta-chip">${escapeHtml(data.characterInfo.strokeCount)} nét</span>` : ''}${radicalVisible && radical.nameVi ? `<span class="meta-chip">${escapeHtml(radical.nameVi)}</span>` : ''}</div>

@@ -1399,7 +1399,7 @@ if(window.HanziWriter){
   const HSK_FLASHCARD_TYPING_CUSTOM_DELAY_DEFAULT_SECONDS = 3;
   const HSK_FLASHCARD_TYPING_CUSTOM_DELAY_MAX_SECONDS = 600;
   const HSK_FLASHCARD_TYPING_DELAY_PRESETS = Object.freeze([1, 2, 3, 5, 10]);
-  let tabFlashcards = null;
+  let tabFlashcards = document.getElementById('studyTabFlashcards');
   let tabDialogue301 = null;
   let flashcardLibraryView = null;
   const flashcardLibraryState = { decks: [], groups: [], activeGroupId: '', editingGroup: null, movingDeckId: '', movingDeckIds: [], deckSelectionMode: false, selectedDeckIds: new Set(), deletingGroupId: '', editingDeck: null, detailDeckId: '', detailSearch: '', editingCardId: '', selectedCardIds: new Set(), message: '', quickImportBusy: false, searchQuery: '', sortMode: readFlashcardLibrarySort(), customDecksOpen: false, dataManagerOpen: false, sortSheetOpen: false, undoTrashId: '', undoTimer: null, trashOpen: false, trashItems: [] };
@@ -2074,14 +2074,16 @@ if(window.HanziWriter){
     const tabHost = tabHsk.parentElement;
     const viewHost = hskView.parentElement;
     if(!tabHost || !viewHost) return;
-    tabFlashcards = document.createElement('button');
-    tabFlashcards.type = 'button';
-    tabFlashcards.id = 'studyTabFlashcards';
-    tabFlashcards.className = tabHsk.className;
-    tabFlashcards.setAttribute('role', 'tab');
-    tabFlashcards.setAttribute('aria-selected', 'false');
-    tabFlashcards.textContent = 'Thẻ';
-    tabHost.appendChild(tabFlashcards);
+    if(!tabFlashcards){
+      tabFlashcards = document.createElement('button');
+      tabFlashcards.type = 'button';
+      tabFlashcards.id = 'studyTabFlashcards';
+      tabFlashcards.className = tabHsk.className;
+      tabFlashcards.setAttribute('role', 'tab');
+      tabFlashcards.setAttribute('aria-selected', 'false');
+      tabFlashcards.textContent = 'Thẻ';
+      tabHost.appendChild(tabFlashcards);
+    }
     tabHost.querySelectorAll('[data-study-tab="dialogue301"], #studyTabDialogue301, a[href*="dialogue301"]').forEach(node => node.remove());
     tabDialogue301 = null;
     flashcardLibraryView = document.createElement('section');

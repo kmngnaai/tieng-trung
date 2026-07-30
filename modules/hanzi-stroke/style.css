@@ -11662,3 +11662,19 @@ html, body, .hanzi-app { background: var(--ui-bg); color: var(--ui-text); }
     padding-bottom:176px;
   }
 }
+
+/* LDSN1-4 joins the shared Học navigation. */
+.study-tabs { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.study-tab-link { text-decoration: none; }
+.ui-module-card--ldsn .ui-module-card__icon { background: #e8f5ef; color: #34765f; }
+@media (max-width: 520px) {
+  .study-tabs {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 3px;
+    padding: 4px;
+    overflow: visible;
+  }
+  .study-tab { min-width: 0; padding: 8px 2px; gap: 3px; }
+  .study-tab span { font-size: 12px; }
+  .study-tab b { max-width: 100%; font-size: 8.7px; white-space: nowrap; }
+}

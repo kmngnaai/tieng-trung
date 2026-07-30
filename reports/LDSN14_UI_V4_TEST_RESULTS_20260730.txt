@@ -1,0 +1,21 @@
+LDSN1-4 UI V4 TEST RESULTS
+Date: 2026-07-30
+
+PASS  node --check modules/ldsn14/app.js
+PASS  node --check modules/hanzi-stroke/app.js
+PASS  python -m unittest tests.test_ui_upgrade
+      67 tests passed
+PASS  python tests/test_ldsn14_data.py
+      10 lessons
+      474 vocabulary items
+      125 dialogue turns
+      133 grammar points
+PASS  node tests/test_ldsn14_runtime.js
+PASS  HTTP 200 /modules/ldsn14/?lesson=1
+PASS  HTTP 200 /modules/hanzi-stroke/
+
+Visual mobile checks:
+- All five Học navigation tabs fit in a 390 px viewport.
+- Multi-character vocabulary is kept on one line; measured example 国际教育学院 width 143.9 px with white-space nowrap.
+- Vocabulary detail opens as an in-place modal and returns to the lesson.
+- Grammar usage 1/2/3/4 is directly paired with its corresponding example.
