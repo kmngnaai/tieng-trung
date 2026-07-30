@@ -842,7 +842,9 @@
     rememberSession();
     prepareNextItem();
     render();
-    focusDictationInput();
+    // startPractice được gọi trực tiếp từ cú chạm của người dùng. Focus ngay
+    // trong cùng call stack để iOS cho phép mở bàn phím ảo.
+    focusDictationInput({ immediate: true });
   }
 
   function resetCurrentAnswer() {
@@ -1515,7 +1517,17 @@
       else if (action === 'next-item') element.onclick = () => moveItem(1);
       else if (action === 'set-rate') element.onclick = () => setRate(Number(element.dataset.rate));
       else if (action === 'switch-current-mode') element.onclick = () => switchCurrentMode(element.dataset.mode);
-      else if (action === 'focus-input') element.onclick = focusDictationInput;
+      else if (action === 'focus-input') {
+        // iOS chỉ mở bàn phím ổn định khi focus xảy ra trực tiếp trong
+        // pointer/touch gesture, không qua requestAnimationFrame hay setTimeout.
+        const focusNow = (event) => {
+          if (event && event.cancelable) event.preventDefault();
+          focusDictationInput({ immediate: true });
+        };
+        element.onpointerdown = focusNow;
+        element.ontouchstart = focusNow;
+        element.onclick = () => focusDictationInput({ immediate: true });
+      }
       else if (action === 'check-answer') element.onclick = checkAnswer;
       else if (action === 'show-hint') element.onclick = showHint;
       else if (action === 'hide-hint') element.onclick = () => { state.hint = null; renderPractice(); bindCommonEvents(); focusDictationInput(); };
@@ -1850,14 +1862,30 @@
     });
   }
 
-  function focusDictationInput() {
-    requestAnimationFrame(() => {
+  function focusDictationInput(options) {
+    const configured = options || {};
+
+    const applyFocus = () => {
       const input = document.getElementById('dictationInput');
-      if (!input) return;
+      if (!input || !input.isConnected) return false;
       if (!input.dataset.composing) input.value = state.input;
-      input.focus({ preventScroll: true });
+
+      try {
+        input.focus({ preventScroll: true });
+      } catch (error) {
+        input.focus();
+      }
+
       moveCaretToEnd(input);
-    });
+      return document.activeElement === input;
+    };
+
+    // immediate=true chỉ dùng trong sự kiện click/pointerdown thật. Đây là
+    // điều kiện cần để Safari iPhone mở bàn phím thay vì chỉ đặt focus ảo.
+    if (configured.immediate) return applyFocus();
+
+    requestAnimationFrame(applyFocus);
+    return false;
   }
 
   function moveCaretToEnd(input) {

@@ -351,7 +351,15 @@ button { color: inherit; }
 .dictation-audio-toggle small { font-size: 11px; font-weight: 800; white-space: nowrap; }
 .dictation-audio-toggle.is-speaking { background: var(--accent); color: #fff; }
 .dictation-audio-control:disabled { cursor: wait; opacity: .6; }
-.dictation-input-wrap { position: relative; margin-top: 22px; padding: 5px 0; cursor: text; }
+.dictation-input-wrap {
+  position: relative;
+  margin-top: 22px;
+  padding: 5px 0;
+  cursor: text;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.dictation-input-wrap:focus-within { outline: none; }
 .dictation-rows { display: grid; gap: 15px; pointer-events: none; }
 .dictation-row { display: grid; grid-template-columns: repeat(var(--slot-count), minmax(22px, 34px)); justify-content: center; gap: 7px; }
 .dictation-slot {
@@ -1340,13 +1348,15 @@ button { color: inherit; }
     position: fixed;
     inset: auto auto auto 50%;
     top: calc(env(safe-area-inset-top) + 86px);
-    width: 2px;
-    min-width: 2px;
-    height: 24px;
-    min-height: 24px;
+    width: 28px;
+    min-width: 28px;
+    height: 28px;
+    min-height: 28px;
     transform: translateX(-50%);
     opacity: .01;
     pointer-events: none;
+    font-size: 16px;
+    transform-origin: center;
     z-index: 23;
   }
 }
