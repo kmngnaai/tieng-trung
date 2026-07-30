@@ -310,7 +310,28 @@ button { color: inherit; }
 .dictation-card, .transcript-card { margin-top: 14px; padding: 18px; }
 .dictation-heading { display: flex; justify-content: space-between; align-items: end; gap: 10px; }
 .dictation-heading h2 { margin: 3px 0 0; font-size: 20px; }
-.dictation-heading > span { color: var(--muted); font-size: 13px; font-weight: 750; }
+.dictation-count { color: var(--muted); font-size: 13px; font-weight: 750; white-space: nowrap; }
+.dictation-heading__tools { display: flex; align-items: center; justify-content: flex-end; gap: 9px; }
+.dictation-audio-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 40px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  padding: 0 14px;
+  color: var(--accent-strong);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 7px 18px rgba(22, 127, 114, .12);
+}
+.dictation-audio-toggle > span { min-width: 14px; font-size: 17px; line-height: 1; text-align: center; }
+.dictation-audio-toggle small { font-size: 12px; font-weight: 800; white-space: nowrap; }
+.dictation-audio-toggle.is-speaking { background: var(--accent); color: #fff; }
+.dictation-audio-toggle:disabled { cursor: wait; opacity: .6; }
 .dictation-input-wrap { position: relative; margin-top: 22px; padding: 5px 0; cursor: text; }
 .dictation-rows { display: grid; gap: 15px; pointer-events: none; }
 .dictation-row { display: grid; grid-template-columns: repeat(var(--slot-count), minmax(22px, 34px)); justify-content: center; gap: 7px; }
@@ -433,6 +454,23 @@ button { color: inherit; }
   .listen-bottom-nav__item span { font-size: 18px; line-height: 1; }
   .listen-bottom-nav__item small { font-size: 10px; line-height: 1.2; }
   .listen-bottom-nav__item:active { background: var(--surface-soft); color: var(--accent-strong); }
+
+  .dictation-heading {
+    position: sticky;
+    top: 76px;
+    z-index: 24;
+    align-items: center;
+    margin: -7px -7px 0;
+    padding: 8px 7px 10px;
+    border-bottom: 1px solid rgba(202, 221, 214, .8);
+    border-radius: 15px 15px 10px 10px;
+    background: rgba(255, 255, 255, .94);
+    box-shadow: 0 8px 18px rgba(27, 74, 61, .08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .dictation-heading__tools { gap: 7px; }
+  .dictation-audio-toggle { min-height: 38px; padding: 0 12px; }
 }
 
 .sheet-backdrop { position: fixed; inset: 0; z-index: 80; background: rgba(13, 31, 25, .36); }

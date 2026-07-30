@@ -1097,12 +1097,30 @@
     const slots = item.isPassage
       ? renderPassageSlots(item, comparison, inputUnits, activeIndex)
       : renderShortSlots(item, comparison, inputUnits, activeIndex);
+    const miniAudioLabel = state.audioLoading
+      ? 'Đang tải'
+      : state.speaking
+        ? 'Tạm dừng'
+        : state.paused
+          ? 'Phát tiếp'
+          : 'Phát';
+    const miniAudioIcon = state.audioLoading ? '◌' : state.speaking ? 'Ⅱ' : '▶';
 
     return `
       <section class="dictation-card ${item.isPassage ? 'dictation-card--passage' : ''}">
         <div class="dictation-heading">
           <div><p class="eyebrow">Nhập chữ Hán</p><h2>${item.isPassage ? 'Chép lại đoạn vừa nghe' : 'Gõ lại câu vừa nghe'}</h2></div>
-          <span>${inputUnits.length}/${units.length}</span>
+          <div class="dictation-heading__tools">
+            <span class="dictation-count">${inputUnits.length}/${units.length}</span>
+            <button
+              type="button"
+              class="dictation-audio-toggle ${state.speaking ? 'is-speaking' : ''} ${state.paused ? 'is-paused' : ''}"
+              data-action="toggle-speech"
+              tabindex="-1"
+              aria-label="${miniAudioLabel}"
+              ${state.audioLoading ? 'disabled' : ''}
+            ><span aria-hidden="true">${miniAudioIcon}</span><small>${miniAudioLabel}</small></button>
+          </div>
         </div>
         <div class="dictation-input-wrap ${item.isPassage ? 'dictation-input-wrap--passage' : ''}" data-action="focus-input">
           <div class="${item.isPassage ? 'passage-lines' : 'dictation-rows'}" aria-hidden="true">${slots}</div>
@@ -1417,7 +1435,14 @@
       else if (action === 'confirm-empty-library-trash') element.onclick = () => executeLibraryDelete('empty');
       else if (action === 'restore-library-trash') element.onclick = () => restoreLibraryTrash(element.dataset.trashId);
       else if (action === 'restore-library-trash-all') element.onclick = restoreAllLibraryTrash;
-      else if (action === 'toggle-speech') element.onclick = toggleSpeech;
+      else if (action === 'toggle-speech') {
+        if (element.classList.contains('dictation-audio-toggle')) {
+          // Không chuyển focus khỏi ô nhập: bàn phím iPhone tiếp tục mở khi tạm dừng/phát tiếp.
+          element.onpointerdown = (event) => event.preventDefault();
+          element.onmousedown = (event) => event.preventDefault();
+        }
+        element.onclick = toggleSpeech;
+      }
       else if (action === 'restart-speech') element.onclick = () => {
         const item = currentItem();
         if (currentAudioIsPrepared(item)) {
@@ -2260,7 +2285,8 @@
       state.paused = true;
       state.audioStatus = 'paused';
       state.audioMessage = `Đã tạm dừng tại ${formatAudioTime(state.audioCurrentTime)}.`;
-      render();
+      updatePlaybackControlUi();
+      updateAudioTimeUi();
       return;
     }
     if (!('speechSynthesis' in window) || !state.speaking) return;
@@ -2332,6 +2358,43 @@
     speakFrom(Math.min(text.length - 1, (state.speechCharIndex || 0) + advance));
   }
 
+  function updatePlaybackControlUi() {
+    const label = state.audioLoading
+      ? 'Đang tải'
+      : state.speaking
+        ? 'Tạm dừng'
+        : state.paused
+          ? 'Phát tiếp'
+          : 'Phát';
+    const icon = state.audioLoading ? '◌' : state.speaking ? 'Ⅱ' : '▶';
+
+    document.querySelectorAll('[data-action="toggle-speech"]').forEach((button) => {
+      button.disabled = Boolean(state.audioLoading);
+      button.setAttribute('aria-label', label);
+      button.classList.toggle('is-speaking', Boolean(state.speaking));
+      button.classList.toggle('is-paused', Boolean(state.paused));
+      if (button.classList.contains('dictation-audio-toggle')) {
+        button.innerHTML = `<span aria-hidden="true">${icon}</span><small>${label}</small>`;
+      } else if (button.classList.contains('play-button')) {
+        button.textContent = icon;
+      }
+    });
+
+    const heading = document.querySelector('.audio-head strong');
+    if (heading) {
+      const item = currentItem();
+      heading.textContent = state.audioLoading
+        ? 'Đang tải MP3...'
+        : state.speaking
+          ? (state.audioPlayer ? 'Đang phát...' : 'Đang đọc...')
+          : state.paused
+            ? 'Đã tạm dừng'
+            : item && item.isPassage
+              ? 'Nghe toàn đoạn'
+              : 'Nghe câu';
+    }
+  }
+
   function updateAudioTimeUi() {
     const current = document.getElementById('audioCurrentTime');
     const duration = document.getElementById('audioDuration');
@@ -2379,11 +2442,13 @@
       state.paused = false;
       state.audioStatus = 'playing';
       state.audioMessage = `Đang phát · ${formatAudioTime(state.audioCurrentTime)} / ${formatAudioTime(state.audioDuration)}.`;
+      updatePlaybackControlUi();
     };
     player.onpause = () => {
       if (!isCurrent() || player.ended || !player.src) return;
       state.speaking = false;
       state.paused = true;
+      updatePlaybackControlUi();
     };
     player.onended = () => {
       if (!isCurrent()) return;
@@ -2393,7 +2458,7 @@
       state.audioStatus = 'ready';
       state.audioMessage = 'Đã phát xong MP3.';
       updateAudioTimeUi();
-      render();
+      updatePlaybackControlUi();
     };
     player.onerror = () => {
       if (!isCurrent()) return;
@@ -2545,7 +2610,8 @@
         state.paused = false;
         state.audioStatus = 'playing';
         state.audioMessage = `Đang phát · ${formatAudioTime(state.audioCurrentTime)} / ${formatAudioTime(state.audioDuration)}.`;
-        render();
+        updatePlaybackControlUi();
+        updateAudioTimeUi();
       }).catch((error) => {
         state.speaking = false;
         state.paused = false;
