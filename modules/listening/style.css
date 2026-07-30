@@ -1482,3 +1482,36 @@ button { color: inherit; }
     font-size: 13px;
   }
 }
+
+
+/* V1.31 — khóa chế độ xem tự do và nút quay lại vị trí đang gõ. */
+.dictation-return-active {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .dictation-return-active {
+    position: absolute;
+    top: 50%;
+    right: calc(100% + 8px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 0 10px;
+    border: 1px solid rgba(22, 127, 114, .45);
+    border-radius: 999px;
+    background: rgba(247, 253, 250, .97);
+    box-shadow: 0 4px 12px rgba(22, 74, 61, .14);
+    color: var(--accent-strong);
+    font: 800 12px/1 system-ui, sans-serif;
+    white-space: nowrap;
+    transform: translateY(-50%);
+    pointer-events: auto;
+    touch-action: manipulation;
+  }
+
+  .dictation-return-active[hidden] {
+    display: none !important;
+  }
+}

@@ -87,7 +87,8 @@
     audioLoadToken: 0,
     audioPrepareScheduled: false,
     audioPreparePromise: null,
-    floatingAudioCollapsed: loadJson(FLOATING_AUDIO_KEY, { collapsed: false }).collapsed === true
+    floatingAudioCollapsed: loadJson(FLOATING_AUDIO_KEY, { collapsed: false }).collapsed === true,
+    manualBrowseMode: false
   };
 
   // Dùng một phần tử audio cố định ở ngoài #app. Safari/iPhone cấp quyền phát
@@ -865,6 +866,7 @@
     state.listenCount = 0;
     state.speechStartIndex = 0;
     state.speechCharIndex = 0;
+    state.manualBrowseMode = false;
   }
 
   function rememberSession() {
@@ -1143,6 +1145,14 @@
             <span class="dictation-count">${inputUnits.length}/${units.length}</span>
           </div>
           <div class="dictation-audio-float ${state.floatingAudioCollapsed ? 'is-collapsed' : ''}" data-floating-audio role="group" aria-label="Điều khiển nghe khi đang nhập">
+            <button
+              type="button"
+              class="dictation-return-active"
+              data-action="return-to-active-slot"
+              tabindex="-1"
+              aria-label="Quay về vị trí chữ đang nhập"
+              ${state.manualBrowseMode ? '' : 'hidden'}
+            >↳ Về chỗ gõ</button>
             <button
               type="button"
               class="dictation-audio-collapse"
@@ -1491,6 +1501,11 @@
       else if (action === 'confirm-empty-library-trash') element.onclick = () => executeLibraryDelete('empty');
       else if (action === 'restore-library-trash') element.onclick = () => restoreLibraryTrash(element.dataset.trashId);
       else if (action === 'restore-library-trash-all') element.onclick = restoreAllLibraryTrash;
+      else if (action === 'return-to-active-slot') {
+        element.onpointerdown = (event) => event.preventDefault();
+        element.onmousedown = (event) => event.preventDefault();
+        element.onclick = returnToActiveDictationSlot;
+      }
       else if (action === 'toggle-floating-audio') {
         element.onpointerdown = (event) => event.preventDefault();
         element.onmousedown = (event) => event.preventDefault();
@@ -1734,6 +1749,7 @@
     input.onblur = scheduleSync;
     input.onfocus = () => {
       moveCaretToEnd(input);
+      if (state.manualBrowseMode) return;
       const activeIndex = Core.answerUnits(state.input).length;
       window.setTimeout(() => keepActiveDictationSlotVisible(activeIndex), 80);
     };
@@ -1840,18 +1856,45 @@
     const configured = options || {};
     if (!configured.keepNativeValue && !input.dataset.composing) input.value = state.input;
     moveCaretToEnd(input);
-    keepActiveDictationSlotVisible(activeIndex);
+    if (!state.manualBrowseMode) keepActiveDictationSlotVisible(activeIndex);
+    updateManualBrowseUi();
   }
 
   let activeSlotScrollFrame = 0;
-  let dictationPointerStartY = 0;
-  let dictationPointerStartX = 0;
-  let dictationPointerMoved = false;
   let userIsScrolling = false;
   let userScrollReleaseTimer = 0;
   let globalScrollGuardsBound = false;
+  let touchScrollTracking = false;
+  let touchScrollStartY = 0;
+  let touchScrollStartScrollY = 0;
+  let touchScrollMaxDistance = 0;
+  let userGestureScrollUntil = 0;
+  let programmaticScrollUntil = 0;
+  const MANUAL_BROWSE_DISTANCE = 64;
+  const MAX_AUTO_FOLLOW_SCROLL = 96;
 
-  function markUserScrolling() {
+  function updateManualBrowseUi() {
+    const button = document.querySelector('[data-action="return-to-active-slot"]');
+    if (button) button.hidden = !state.manualBrowseMode;
+    document.querySelector('.dictation-card')?.classList.toggle('is-manual-browse', state.manualBrowseMode);
+  }
+
+  function setManualBrowseMode(enabled) {
+    const next = Boolean(enabled);
+    if (state.manualBrowseMode === next) {
+      updateManualBrowseUi();
+      return;
+    }
+
+    state.manualBrowseMode = next;
+    if (next && activeSlotScrollFrame) {
+      cancelAnimationFrame(activeSlotScrollFrame);
+      activeSlotScrollFrame = 0;
+    }
+    updateManualBrowseUi();
+  }
+
+  function noteUserScrollActivity() {
     userIsScrolling = true;
     if (activeSlotScrollFrame) {
       cancelAnimationFrame(activeSlotScrollFrame);
@@ -1860,7 +1903,44 @@
     clearTimeout(userScrollReleaseTimer);
     userScrollReleaseTimer = window.setTimeout(() => {
       userIsScrolling = false;
-    }, 360);
+    }, 240);
+  }
+
+  function updateTouchScrollDistance(clientY) {
+    const touchDistance = Number.isFinite(clientY) ? Math.abs(clientY - touchScrollStartY) : 0;
+    const pageDistance = Math.abs(window.scrollY - touchScrollStartScrollY);
+    touchScrollMaxDistance = Math.max(touchScrollMaxDistance, touchDistance, pageDistance);
+    if (touchScrollMaxDistance > 8) noteUserScrollActivity();
+    if (touchScrollMaxDistance >= MANUAL_BROWSE_DISTANCE) setManualBrowseMode(true);
+  }
+
+  function handleDictationTouchStart(event) {
+    if (!document.getElementById('dictationInput') || !event.touches?.length) return;
+    touchScrollTracking = true;
+    touchScrollStartY = event.touches[0].clientY;
+    touchScrollStartScrollY = window.scrollY;
+    touchScrollMaxDistance = 0;
+    userGestureScrollUntil = 0;
+  }
+
+  function handleDictationTouchMove(event) {
+    if (!touchScrollTracking) return;
+    updateTouchScrollDistance(event.touches?.[0]?.clientY);
+  }
+
+  function handleDictationTouchEnd() {
+    if (!touchScrollTracking) return;
+    touchScrollTracking = false;
+    userGestureScrollUntil = Date.now() + 700;
+    updateTouchScrollDistance(NaN);
+    noteUserScrollActivity();
+  }
+
+  function handleDictationWindowScroll() {
+    if (Date.now() < programmaticScrollUntil) return;
+    if (!document.getElementById('dictationInput')) return;
+    if (!touchScrollTracking && Date.now() >= userGestureScrollUntil) return;
+    updateTouchScrollDistance(NaN);
   }
 
   function updateFloatingAudioPosition() {
@@ -1876,29 +1956,52 @@
   function ensureGlobalScrollGuards() {
     if (globalScrollGuardsBound) return;
     globalScrollGuardsBound = true;
-    window.addEventListener('touchmove', markUserScrolling, { passive: true });
-    window.addEventListener('scroll', markUserScrolling, { passive: true });
+    window.addEventListener('touchstart', handleDictationTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleDictationTouchMove, { passive: true });
+    window.addEventListener('touchend', handleDictationTouchEnd, { passive: true });
+    window.addEventListener('touchcancel', handleDictationTouchEnd, { passive: true });
+    window.addEventListener('scroll', handleDictationWindowScroll, { passive: true });
   }
 
   function bindDictationTapAndScroll(element) {
     ensureGlobalScrollGuards();
 
-    // Không gắn pointerdown/pointermove/pointerup vào vùng đoạn văn.
-    // Trên Safari iPhone, chuỗi pointer handler này có thể giữ gesture ở phần tử
-    // đang focus và làm trang không cuộn khi bàn phím mở. Sự kiện click chỉ phát
-    // sau một cú chạm hoàn chỉnh, còn thao tác vuốt tự nhiên sẽ không kích hoạt click.
+    // Không chặn pointer/touch ở vùng đoạn văn. Vuốt vẫn do Safari xử lý;
+    // click nhẹ chỉ dùng để mở hoặc giữ bàn phím.
     element.onclick = () => {
       focusDictationInput({ immediate: true });
     };
   }
 
-  function keepActiveDictationSlotVisible(activeIndex) {
-    if (activeIndex < 0 || userIsScrolling) return;
+  function returnToActiveDictationSlot() {
+    setManualBrowseMode(false);
+    userIsScrolling = false;
+    touchScrollTracking = false;
+    userGestureScrollUntil = 0;
+    clearTimeout(userScrollReleaseTimer);
+
+    const item = currentItem();
+    if (!item) return;
+    const units = Core.answerUnits(item.text);
+    const typed = Core.answerUnits(state.input).length;
+    const activeIndex = typed < units.length ? typed : Math.max(0, units.length - 1);
+
+    focusDictationInput({ immediate: true });
+    keepActiveDictationSlotVisible(activeIndex, { force: true });
+  }
+
+  function keepActiveDictationSlotVisible(activeIndex, options) {
+    const configured = options || {};
+    if (activeIndex < 0) return;
+    if (state.manualBrowseMode && !configured.force) return;
+    if (userIsScrolling && !configured.force) return;
     if (activeSlotScrollFrame) cancelAnimationFrame(activeSlotScrollFrame);
 
     activeSlotScrollFrame = requestAnimationFrame(() => {
       activeSlotScrollFrame = 0;
-      if (userIsScrolling) return;
+      if (state.manualBrowseMode && !configured.force) return;
+      if (userIsScrolling && !configured.force) return;
+
       const slot = document.querySelector(`[data-slot-index="${activeIndex}"]`);
       if (!slot) return;
 
@@ -1920,12 +2023,28 @@
         safeBottom = Math.min(safeBottom, bottomNavRect.top - 12);
       }
 
+      const usableHeight = Math.max(120, safeBottom - safeTop);
+      const lowerTrigger = safeTop + usableHeight * 0.78;
+      const followTarget = safeTop + usableHeight * 0.56;
+      const upperTarget = safeTop + Math.min(48, usableHeight * 0.18);
       const rect = slot.getBoundingClientRect();
-      if (rect.top < safeTop) {
-        window.scrollBy({ top: rect.top - safeTop, left: 0, behavior: 'auto' });
-      } else if (rect.bottom > safeBottom) {
-        window.scrollBy({ top: rect.bottom - safeBottom, left: 0, behavior: 'auto' });
+      let requiredScroll = 0;
+
+      if (configured.force) {
+        requiredScroll = (rect.top + rect.height / 2) - followTarget;
+      } else if (rect.bottom > lowerTrigger) {
+        requiredScroll = rect.bottom - followTarget;
+      } else if (rect.top < safeTop) {
+        requiredScroll = rect.top - upperTarget;
       }
+
+      if (Math.abs(requiredScroll) < 2) return;
+      if (!configured.force) {
+        requiredScroll = Math.max(-MAX_AUTO_FOLLOW_SCROLL, Math.min(MAX_AUTO_FOLLOW_SCROLL, requiredScroll));
+      }
+
+      programmaticScrollUntil = Date.now() + 180;
+      window.scrollBy({ top: requiredScroll, left: 0, behavior: 'auto' });
     });
   }
 
