@@ -21,6 +21,7 @@
     radicals: new URL('modules/hanzi-stroke/index.html?study=radicals', rootUrl).href,
     cards: new URL('modules/hanzi-stroke/index.html?study=flashcards', rootUrl).href,
     listening: new URL('modules/listening/index.html', rootUrl).href,
+    ldsn14: new URL('modules/ldsn14/index.html', rootUrl).href,
     writing: new URL('modules/hanzi-stroke/index.html?study=writing', rootUrl).href,
     pinyin: new URL('modules/pinyin/index.html', rootUrl).href,
     dialogue301: new URL('index.html#dialogue301', rootUrl).href,
@@ -98,6 +99,9 @@
         title: lessonNumber ? `301 · Bài ${lessonNumber}` : '301 Đàm thoại',
         subtitle: lessonNumber ? 'Tiếp tục bài học gần nhất' : 'Giáo trình 301'
       };
+    } else if (path.includes('/modules/ldsn14/')) {
+      const lessonNumber = params.get('lesson') || '';
+      item = { type: 'curriculum', icon: '译', title: lessonNumber ? `LDSN1-4 · Bài ${lessonNumber}` : 'LDSN1-4', subtitle: 'Luyện dịch song ngữ HSK 1–4' };
     } else if (path.includes('/modules/listening/')) {
       item = { type: 'listening', icon: '听', title: 'Nghe', subtitle: 'Chép chính tả · Có transcript' };
     } else if (path.includes('/modules/pinyin/')) {
@@ -155,7 +159,7 @@
     if (window.location.hash === '#dialogue301') return 'learn';
     if (path.includes('/modules/bo-thu-50/')) return 'menu';
     if (path.includes('/modules/lookup/')) return 'lookup';
-    if (path.includes('/modules/hanzi-stroke/') || path.includes('/modules/pinyin/') || path.includes('/modules/listening/')) return 'learn';
+    if (path.includes('/modules/hanzi-stroke/') || path.includes('/modules/pinyin/') || path.includes('/modules/listening/') || path.includes('/modules/ldsn14/')) return 'learn';
 
     const explicit = document.body && document.body.dataset
       ? document.body.dataset.uiShellContext || document.body.dataset.navContext
@@ -239,6 +243,7 @@
           <h3 id="uiLearnGroupTitle">Học tập</h3>
           <div class="ui-drawer-subnav">
             ${drawerLink('课', 'Giáo trình', '301 · HSK 6 cấp · HSK 9 cấp · YCT · Boya', ROUTES.curriculum, false)}
+            ${drawerLink('译', 'LDSN1-4', '10 bài luyện dịch song ngữ', ROUTES.ldsn14, path.includes('/modules/ldsn14/'))}
             ${drawerLink('部', 'Bộ thủ', 'Bộ thủ 214 hiện tại', ROUTES.radicals, false)}
             ${drawerLink('卡', 'Thẻ', 'Flashcard và ôn tập', ROUTES.cards, false)}
             ${drawerLink('听', 'Nghe', 'Chép chính tả và transcript', ROUTES.listening, path.includes('/modules/listening/'))}
@@ -363,6 +368,12 @@
     }
 
     items.push(breadcrumbItem('Học', ROUTES.learn, study === 'hub' && !path.includes('/modules/pinyin/') && !path.includes('/modules/listening/')));
+    if (path.includes('/modules/ldsn14/')) {
+      const lessonNumber = params.get('lesson') || '';
+      items.push(breadcrumbItem('LDSN1-4', ROUTES.ldsn14, !lessonNumber));
+      if (lessonNumber) items.push(breadcrumbItem(`Bài ${lessonNumber}`, '', true));
+      return items;
+    }
     if (path.includes('/modules/listening/')) {
       items.push(breadcrumbItem('Nghe', '', true));
       return items;
