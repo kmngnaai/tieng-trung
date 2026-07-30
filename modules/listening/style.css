@@ -1331,3 +1331,22 @@ button { color: inherit; }
   font-size: 11px;
   font-weight: 650;
 }
+
+
+/* V1.24: input IME mobile là một proxy cố định trong viewport.
+   Không để input thật phủ toàn bộ đoạn dài vì Safari sẽ tự cuộn trang khi caret đổi. */
+@media (max-width: 760px), (pointer: coarse) {
+  .dictation-ime-input {
+    position: fixed;
+    inset: auto auto auto 50%;
+    top: calc(env(safe-area-inset-top) + 86px);
+    width: 2px;
+    min-width: 2px;
+    height: 24px;
+    min-height: 24px;
+    transform: translateX(-50%);
+    opacity: .01;
+    pointer-events: none;
+    z-index: 23;
+  }
+}

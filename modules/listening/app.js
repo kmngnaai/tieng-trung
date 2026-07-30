@@ -1102,8 +1102,9 @@
         }
         if (token.type === 'space') return '<span class="passage-space"> </span>';
         if (token.type === 'break') return '<br />';
+        const punctuationAfterUnit = offset + precedingUnits - 1;
         const punctuationVisible = Boolean(state.showAnswer || state.result || (precedingUnits > 0 && typedInSegment >= precedingUnits));
-        return `<span class="passage-punctuation ${punctuationVisible ? 'is-visible' : 'is-hidden'}">${escapeHtml(token.char)}</span>`;
+        return `<span class="passage-punctuation ${punctuationVisible ? 'is-visible' : 'is-hidden'}" data-after-unit="${punctuationAfterUnit}">${escapeHtml(token.char)}</span>`;
       }).join('');
       offset += segmentUnitCount;
       return `<div class="passage-line" lang="zh-Hans">
@@ -1700,7 +1701,11 @@
 
     input.onchange = scheduleSync;
     input.onblur = scheduleSync;
-    input.onfocus = () => moveCaretToEnd(input);
+    input.onfocus = () => {
+      moveCaretToEnd(input);
+      const activeIndex = Core.answerUnits(state.input).length;
+      window.setTimeout(() => keepActiveDictationSlotVisible(activeIndex), 80);
+    };
     input.onclick = () => moveCaretToEnd(input);
 
     input.onkeyup = (event) => {
@@ -1751,7 +1756,7 @@
   function updateDictationDom(options) {
     const item = currentItem();
     const container = document.querySelector(item && item.isPassage ? '.passage-lines' : '.dictation-rows');
-    const countElement = document.querySelector('.dictation-heading > span');
+    const countElement = document.querySelector('.dictation-count');
     const input = document.getElementById('dictationInput');
     if (!item || !container || !input) return;
 
@@ -1759,9 +1764,38 @@
     const inputUnits = Core.answerUnits(state.input);
     const activeIndex = inputUnits.length < units.length ? inputUnits.length : -1;
     const comparison = Core.compareAnswers(state.input, item.text);
-    container.innerHTML = item.isPassage
-      ? renderPassageSlots(item, comparison, inputUnits, activeIndex)
-      : renderShortSlots(item, comparison, inputUnits, activeIndex);
+    const slotElements = Array.from(container.querySelectorAll('[data-slot-index]'));
+
+    // Không dựng lại toàn bộ đoạn sau mỗi chữ. Trên iPhone, thay innerHTML của
+    // một đoạn dài trong khi input đang focus khiến Safari tự cuộn tới vị trí
+    // khác. Chỉ cập nhật chữ và class của từng ô đã có sẵn.
+    if (slotElements.length !== units.length) {
+      container.innerHTML = item.isPassage
+        ? renderPassageSlots(item, comparison, inputUnits, activeIndex)
+        : renderShortSlots(item, comparison, inputUnits, activeIndex);
+    } else {
+      slotElements.forEach((slot) => {
+        const index = Number(slot.dataset.slotIndex);
+        const actual = inputUnits[index] || '';
+        slot.textContent = actual;
+        slot.classList.toggle('is-active', index === activeIndex);
+        slot.classList.remove('is-correct', 'is-wrong', 'is-empty-wrong');
+        if (state.result) {
+          const correct = Boolean(comparison.cells[index] && comparison.cells[index].correct);
+          if (correct) slot.classList.add('is-correct');
+          else slot.classList.add(actual ? 'is-wrong' : 'is-empty-wrong');
+        }
+      });
+
+      if (item.isPassage) {
+        container.querySelectorAll('[data-after-unit]').forEach((punctuation) => {
+          const afterUnit = Number(punctuation.dataset.afterUnit);
+          const visible = Boolean(state.showAnswer || state.result || inputUnits.length > afterUnit);
+          punctuation.classList.toggle('is-visible', visible);
+          punctuation.classList.toggle('is-hidden', !visible);
+        });
+      }
+    }
 
     if (countElement) countElement.textContent = `${inputUnits.length}/${units.length}`;
 
@@ -1775,6 +1809,45 @@
     const configured = options || {};
     if (!configured.keepNativeValue && !input.dataset.composing) input.value = state.input;
     moveCaretToEnd(input);
+    keepActiveDictationSlotVisible(activeIndex);
+  }
+
+  let activeSlotScrollFrame = 0;
+
+  function keepActiveDictationSlotVisible(activeIndex) {
+    if (activeIndex < 0) return;
+    if (activeSlotScrollFrame) cancelAnimationFrame(activeSlotScrollFrame);
+
+    activeSlotScrollFrame = requestAnimationFrame(() => {
+      activeSlotScrollFrame = 0;
+      const slot = document.querySelector(`[data-slot-index="${activeIndex}"]`);
+      if (!slot) return;
+
+      const viewport = window.visualViewport;
+      const viewportTop = viewport ? viewport.offsetTop : 0;
+      const viewportBottom = viewport ? viewport.offsetTop + viewport.height : window.innerHeight;
+      const stickyHeading = document.querySelector('.dictation-heading');
+      const headingRect = stickyHeading ? stickyHeading.getBoundingClientRect() : null;
+      const bottomNav = document.querySelector('.listen-bottom-nav');
+      const bottomNavRect = bottomNav ? bottomNav.getBoundingClientRect() : null;
+
+      let safeTop = viewportTop + 14;
+      if (headingRect && headingRect.bottom > viewportTop && headingRect.top < viewportBottom) {
+        safeTop = Math.max(safeTop, headingRect.bottom + 12);
+      }
+
+      let safeBottom = viewportBottom - 22;
+      if (bottomNavRect && bottomNavRect.top > viewportTop && bottomNavRect.top < viewportBottom) {
+        safeBottom = Math.min(safeBottom, bottomNavRect.top - 12);
+      }
+
+      const rect = slot.getBoundingClientRect();
+      if (rect.top < safeTop) {
+        window.scrollBy({ top: rect.top - safeTop, left: 0, behavior: 'auto' });
+      } else if (rect.bottom > safeBottom) {
+        window.scrollBy({ top: rect.bottom - safeBottom, left: 0, behavior: 'auto' });
+      }
+    });
   }
 
   function focusDictationInput() {
