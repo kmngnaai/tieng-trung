@@ -1,0 +1,160 @@
+/* Chinese serif rollout V1
+   Loaded after existing module CSS to keep layout and feature rules unchanged.
+   Listening remains the visual reference. */
+
+:root {
+  --ui-font-han-serif: "Songti SC", "Noto Serif SC", STSong, "Noto Serif CJK SC", SimSun, serif;
+  --ui-font-han-sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", Inter, system-ui, sans-serif;
+  --ui-font-han: var(--ui-font-han-serif);
+  --app-font-zh: var(--ui-font-han-serif);
+  --font-zh: var(--ui-font-han-serif);
+}
+
+.ui-han,
+.ui-list-item__han,
+.hanzi-text,
+[lang="zh-Hans"] {
+  font-family: var(--ui-font-han-serif) !important;
+  font-weight: 400 !important;
+  font-synthesis: none;
+}
+
+/* Root and 301 */
+.brand-mark,
+.module-icon,
+.vocab-hanzi,
+.vocab-row-hanzi,
+.sentence-main strong,
+.dialogue-main strong,
+.dialogue301-word-hanzi,
+.dialogue301-word-related-item strong,
+.dialogue301-word-example-card strong,
+.dialogue301-word-chip,
+.dialogue301-inline-char-hanzi,
+.dialogue301-char-related-item strong {
+  font-family: var(--ui-font-han-serif) !important;
+  font-weight: 400 !important;
+  font-synthesis: none;
+}
+
+/* Lookup */
+.main-char,
+.component-char,
+.radical-char,
+.stroke-char,
+.word-main strong,
+.sentence-card .zh,
+.writing-char-tab,
+.writer-fallback,
+.catalog-radical-btn strong,
+.catalog-result-word,
+.radical-directory-card > strong,
+.prototype-radical-glyph,
+.prototype-radical-form-head strong,
+.prototype-radical-item-search strong {
+  font-family: var(--ui-font-han-serif) !important;
+  font-weight: 400 !important;
+  font-synthesis: none;
+}
+
+/* Pinyin: only Han examples */
+.v21-hanzi,
+.v21-shadow-zh,
+.v21-hanzi-inline,
+.v21-review-row b,
+.v21-hanzi-card .hanzi {
+  font-family: var(--ui-font-han-serif) !important;
+  font-weight: 400 !important;
+  font-synthesis: none;
+}
+
+/* Radical 50 */
+.lesson-char,
+.hero-char,
+.legacy-radical {
+  font-family: var(--ui-font-han-serif) !important;
+  font-weight: 400 !important;
+  font-synthesis: none;
+}
+
+/* Hanzi Stroke, HSK and Flashcard */
+.char-label,
+.embed-char,
+.main-char,
+.component-char,
+.radical-char,
+.compound-head h3,
+.compound-word,
+.compound-char-row strong,
+.dict-title strong,
+.dict-related strong,
+.hsk-word,
+.hsk-popup-char-card strong,
+.hsk-related-word,
+.hsk-popup-sentence-item strong,
+.hsk-flashcard-front > strong,
+.hsk-flashcard-answer > strong,
+.hsk-flashcard-typing-prompt-hanzi,
+.hsk-flashcard-typing-prompt-char,
+.hsk-flashcard-typing-result-word,
+.hsk-flashcard-typing-answer span,
+.radical-glyph,
+.radical-popup-glyph,
+.radical-variant-head strong,
+.radical-example-item strong,
+.radical-sentence-item strong,
+.catalog-radical-btn strong,
+.catalog-result-word,
+.radical-directory-card > strong,
+.grammar-popup-example-main strong,
+.hsk-grammar-example-main strong,
+.hanzi-app .zh {
+  font-family: var(--ui-font-han-serif) !important;
+  font-weight: 400 !important;
+  font-synthesis: none;
+}
+
+/* Protect pinyin, meanings and controls from the Han serif override. */
+.vocab-pinyin,
+.vocab-row-pinyin,
+.sentence-main span,
+.dialogue-main span,
+.dialogue301-word-pinyin,
+.dialogue301-word-related-item span,
+.dialogue301-word-example-card span,
+.dialogue301-char-related-item span,
+.v21-shadow-pinyin,
+.v21-hanzi-meta,
+.chart-pinyin-raw,
+.chart-pinyin-tone,
+.lesson-pinyin,
+.legacy-reading,
+.char-pinyin,
+.dict-title span,
+.related-pinyin,
+.compound-pinyin,
+.compound-char-row span,
+.hsk-pinyin,
+.hsk-related-pinyin,
+.word-pinyin,
+.hsk-flashcard-typing-result-pinyin,
+.hsk-flashcard-typing-result-meaning {
+  font-family: var(--ui-font-sans, Inter, system-ui, sans-serif) !important;
+}
+
+/* Flashcard display sizing V2
+   Keep every Hanzi flashcard at one fixed size. This intentionally avoids
+   clamp()/viewport scaling so short and long cards use the same glyph size. */
+.hsk-flashcard-front--hanzi > strong,
+.hsk-flashcard-answer > strong {
+  width: 100%;
+  max-width: 18em;
+  font-size: 34px !important;
+  line-height: 1.42 !important;
+  letter-spacing: 0.02em;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  font-kerning: normal;
+}

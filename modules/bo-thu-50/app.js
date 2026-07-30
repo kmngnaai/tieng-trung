@@ -28,8 +28,13 @@ function escapeHtml(s){
   return (s||'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]));
 }
 
+function wrapHanziRuns(html){
+  return String(html || '').replace(/([\u3400-\u9fff\uf900-\ufaff⺀-⻿]+)/g,'<span class="hanzi-text" lang="zh-Hans">$1</span>');
+}
+
 function inline(s){
-  return escapeHtml(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/`(.+?)`/g,'<code>$1</code>');
+  const html=escapeHtml(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/`(.+?)`/g,'<code>$1</code>');
+  return wrapHanziRuns(html);
 }
 
 function mdToHtml(md){
@@ -242,7 +247,7 @@ function renderPractice(){
 
 function renderLegacyView(){
   const r=currentLegacy;
-  const examples=(r.examples||[]).map(x=>`<li>${escapeHtml(x)}</li>`).join('');
+  const examples=(r.examples||[]).map(x=>`<li>${wrapHanziRuns(escapeHtml(x))}</li>`).join('');
 
   return `<div class="card legacy-card">
     <div class="legacy-top">

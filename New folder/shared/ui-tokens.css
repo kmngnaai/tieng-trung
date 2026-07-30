@@ -1,0 +1,146 @@
+:root {
+  color-scheme: light;
+
+  /* Typography */
+  --ui-font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --ui-font-han: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", var(--ui-font-sans);
+  --ui-text-xs: 0.75rem;
+  --ui-text-sm: 0.875rem;
+  --ui-text-md: 1rem;
+  --ui-text-lg: 1.125rem;
+  --ui-text-xl: 1.375rem;
+  --ui-text-2xl: 1.625rem;
+  --ui-line-tight: 1.25;
+  --ui-line-normal: 1.55;
+  --ui-line-relaxed: 1.7;
+
+  /* Neutral surfaces */
+  --ui-bg: #fffaf5;
+  --ui-surface: #ffffff;
+  --ui-surface-soft: #fffdf9;
+  --ui-surface-muted: #f7f2ec;
+  --ui-surface-elevated: #ffffff;
+  --ui-text: #172033;
+  --ui-text-secondary: #675f59;
+  --ui-text-muted: #8a7f77;
+  --ui-border: #eadccf;
+  --ui-border-strong: #d8c8bb;
+
+  /* Brand and semantic */
+  --ui-accent: #e67e22;
+  --ui-accent-hover: #cf6817;
+  --ui-accent-soft: #fff2e5;
+  --ui-accent-contrast: #ffffff;
+  --ui-success: #247a56;
+  --ui-success-soft: #e8f6ef;
+  --ui-warning: #9b6a16;
+  --ui-warning-soft: #fff5d9;
+  --ui-danger: #b94747;
+  --ui-danger-soft: #fff0f0;
+  --ui-info: #2d6f9f;
+  --ui-info-soft: #edf6fc;
+
+  /* Spacing */
+  --ui-space-1: 0.25rem;
+  --ui-space-2: 0.5rem;
+  --ui-space-3: 0.75rem;
+  --ui-space-4: 1rem;
+  --ui-space-5: 1.25rem;
+  --ui-space-6: 1.5rem;
+  --ui-space-8: 2rem;
+  --ui-space-10: 2.5rem;
+
+  /* Shape */
+  --ui-radius-sm: 0.625rem;
+  --ui-radius-md: 0.875rem;
+  --ui-radius-lg: 1.125rem;
+  --ui-radius-xl: 1.375rem;
+  --ui-radius-pill: 999px;
+
+  /* Elevation */
+  --ui-shadow-sm: 0 1px 2px rgba(44, 31, 23, 0.06);
+  --ui-shadow-md: 0 8px 24px rgba(58, 38, 27, 0.08);
+  --ui-shadow-lg: 0 18px 48px rgba(45, 28, 18, 0.14);
+
+  /* Layout and layers */
+  --ui-content-max: 72rem;
+  --ui-reading-max: 46rem;
+  --ui-header-height: 3.5rem;
+  --ui-bottom-nav-height: 4.25rem;
+  --ui-safe-top: env(safe-area-inset-top, 0px);
+  --ui-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --ui-z-content: 1;
+  --ui-z-sticky: 100;
+  --ui-z-bottom-nav: 1080;
+  --ui-z-drawer-backdrop: 1090;
+  --ui-z-drawer: 1100;
+  --ui-z-dialog: 1200;
+  --ui-z-flashcard: 13000;
+
+  /* Motion */
+  --ui-motion-fast: 140ms;
+  --ui-motion-normal: 220ms;
+  --ui-ease: cubic-bezier(.2, .8, .2, 1);
+
+  /* Touch */
+  --ui-touch-min: 44px;
+}
+
+[data-theme="dark"],
+.theme-dark {
+  color-scheme: dark;
+  --ui-bg: #171513;
+  --ui-surface: #211e1b;
+  --ui-surface-soft: #27231f;
+  --ui-surface-muted: #2e2925;
+  --ui-surface-elevated: #302a25;
+  --ui-text: #f8f2ec;
+  --ui-text-secondary: #d5c9c0;
+  --ui-text-muted: #a99c92;
+  --ui-border: #443b34;
+  --ui-border-strong: #5b4d43;
+  --ui-accent: #f0a15c;
+  --ui-accent-hover: #f4ad6e;
+  --ui-accent-soft: #4b3020;
+  --ui-success: #75c79e;
+  --ui-success-soft: #183d2e;
+  --ui-warning: #e5be67;
+  --ui-warning-soft: #443714;
+  --ui-danger: #ef8b8b;
+  --ui-danger-soft: #472525;
+  --ui-info: #83bce2;
+  --ui-info-soft: #203849;
+  --ui-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.24);
+  --ui-shadow-md: 0 10px 28px rgba(0, 0, 0, 0.3);
+  --ui-shadow-lg: 0 20px 54px rgba(0, 0, 0, 0.42);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ui-motion-fast: 0ms;
+    --ui-motion-normal: 0ms;
+  }
+}
+
+/* Compatibility layer for screens that still use the original variable names. */
+:root {
+  --app-bg: var(--ui-bg);
+  --app-bg-soft: var(--ui-surface-soft);
+  --app-card: var(--ui-surface);
+  --app-card-warm: var(--ui-surface-soft);
+  --app-text: var(--ui-text);
+  --app-muted: var(--ui-text-secondary);
+  --app-primary: var(--ui-accent-hover);
+  --app-primary-soft: var(--ui-accent-soft);
+  --app-accent: var(--ui-accent);
+  --app-accent-soft: var(--ui-accent-soft);
+  --app-border: var(--ui-border);
+  --app-border-strong: var(--ui-border-strong);
+  --app-shadow-soft: var(--ui-shadow-sm);
+  --app-shadow: var(--ui-shadow-md);
+  --app-radius-sm: var(--ui-radius-sm);
+  --app-radius: var(--ui-radius-lg);
+  --app-radius-lg: var(--ui-radius-xl);
+  --app-font: var(--ui-font-sans);
+  --app-font-zh: var(--ui-font-han);
+}
