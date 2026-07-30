@@ -1518,15 +1518,9 @@
       else if (action === 'set-rate') element.onclick = () => setRate(Number(element.dataset.rate));
       else if (action === 'switch-current-mode') element.onclick = () => switchCurrentMode(element.dataset.mode);
       else if (action === 'focus-input') {
-        // iOS chỉ mở bàn phím ổn định khi focus xảy ra trực tiếp trong
-        // pointer/touch gesture, không qua requestAnimationFrame hay setTimeout.
-        const focusNow = (event) => {
-          if (event && event.cancelable) event.preventDefault();
-          focusDictationInput({ immediate: true });
-        };
-        element.onpointerdown = focusNow;
-        element.ontouchstart = focusNow;
-        element.onclick = () => focusDictationInput({ immediate: true });
+        // Phân biệt chạm nhẹ với kéo. Không preventDefault ở pointerdown/touchstart,
+        // để Safari vẫn cuộn trang tự nhiên khi bàn phím đang mở.
+        bindDictationTapAndScroll(element);
       }
       else if (action === 'check-answer') element.onclick = checkAnswer;
       else if (action === 'show-hint') element.onclick = showHint;
@@ -1825,13 +1819,51 @@
   }
 
   let activeSlotScrollFrame = 0;
+  let dictationPointerStartY = 0;
+  let dictationPointerStartX = 0;
+  let dictationPointerMoved = false;
+  let userIsScrolling = false;
+  let userScrollReleaseTimer = 0;
+  let globalScrollGuardsBound = false;
+
+  function markUserScrolling() {
+    userIsScrolling = true;
+    if (activeSlotScrollFrame) {
+      cancelAnimationFrame(activeSlotScrollFrame);
+      activeSlotScrollFrame = 0;
+    }
+    clearTimeout(userScrollReleaseTimer);
+    userScrollReleaseTimer = window.setTimeout(() => {
+      userIsScrolling = false;
+    }, 360);
+  }
+
+  function ensureGlobalScrollGuards() {
+    if (globalScrollGuardsBound) return;
+    globalScrollGuardsBound = true;
+    window.addEventListener('touchmove', markUserScrolling, { passive: true });
+    window.addEventListener('scroll', markUserScrolling, { passive: true });
+  }
+
+  function bindDictationTapAndScroll(element) {
+    ensureGlobalScrollGuards();
+
+    // Không gắn pointerdown/pointermove/pointerup vào vùng đoạn văn.
+    // Trên Safari iPhone, chuỗi pointer handler này có thể giữ gesture ở phần tử
+    // đang focus và làm trang không cuộn khi bàn phím mở. Sự kiện click chỉ phát
+    // sau một cú chạm hoàn chỉnh, còn thao tác vuốt tự nhiên sẽ không kích hoạt click.
+    element.onclick = () => {
+      focusDictationInput({ immediate: true });
+    };
+  }
 
   function keepActiveDictationSlotVisible(activeIndex) {
-    if (activeIndex < 0) return;
+    if (activeIndex < 0 || userIsScrolling) return;
     if (activeSlotScrollFrame) cancelAnimationFrame(activeSlotScrollFrame);
 
     activeSlotScrollFrame = requestAnimationFrame(() => {
       activeSlotScrollFrame = 0;
+      if (userIsScrolling) return;
       const slot = document.querySelector(`[data-slot-index="${activeIndex}"]`);
       if (!slot) return;
 

@@ -30,8 +30,22 @@
 }
 
 * { box-sizing: border-box; }
-html { min-height: 100%; background: var(--bg); }
-body { margin: 0; min-height: 100%; background: linear-gradient(180deg, #f2faf7 0, #fffaf4 100%); color: var(--ink); }
+html {
+  min-height: 100%;
+  overflow-y: auto;
+  background: var(--bg);
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+}
+body {
+  margin: 0;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: visible;
+  background: linear-gradient(180deg, #f2faf7 0, #fffaf4 100%);
+  color: var(--ink);
+  touch-action: pan-y;
+}
 button, input, select { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 button { color: inherit; }
@@ -356,7 +370,9 @@ button { color: inherit; }
   margin-top: 22px;
   padding: 5px 0;
   cursor: text;
-  touch-action: manipulation;
+  touch-action: pan-y;
+  overscroll-behavior-y: auto;
+  -webkit-overflow-scrolling: touch;
   -webkit-tap-highlight-color: transparent;
 }
 .dictation-input-wrap:focus-within { outline: none; }
@@ -1358,5 +1374,16 @@ button { color: inherit; }
     font-size: 16px;
     transform-origin: center;
     z-index: 23;
+  }
+}
+
+
+/* V1.27: để Safari iPhone nhận vuốt dọc là cuộn trang khi IME đang mở. */
+@media (max-width: 760px), (pointer: coarse) {
+  .dictation-card,
+  .dictation-input-wrap,
+  .passage-lines,
+  .dictation-rows {
+    touch-action: pan-y;
   }
 }
