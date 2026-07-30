@@ -9,6 +9,7 @@
   const PROGRESS_KEY = 'tieng-trung-listening-progress-v1';
   const LAST_SESSION_KEY = 'tieng-trung-listening-last-session-v1';
   const AudioStore = window.ListeningAudioStore;
+  const FLOATING_AUDIO_KEY = 'tieng-trung-listening-floating-audio-v1';
 
   const DEFAULT_SETTINGS = {
     voiceSource: 'auto',
@@ -85,7 +86,8 @@
     audioMessage: '',
     audioLoadToken: 0,
     audioPrepareScheduled: false,
-    audioPreparePromise: null
+    audioPreparePromise: null,
+    floatingAudioCollapsed: loadJson(FLOATING_AUDIO_KEY, { collapsed: false }).collapsed === true
   };
 
   // Dùng một phần tử audio cố định ở ngoài #app. Safari/iPhone cấp quyền phát
@@ -247,6 +249,7 @@
     else renderHome();
     bindCommonEvents();
     syncOverlayState();
+    requestAnimationFrame(updateFloatingAudioPosition);
     if (state.screen === 'practice' && state.settings.voiceSource !== 'device') schedulePrepareCurrentAudio();
   }
 
@@ -1138,7 +1141,16 @@
           <div><p class="eyebrow">Nhập chữ Hán</p><h2>${item.isPassage ? 'Chép lại đoạn vừa nghe' : 'Gõ lại câu vừa nghe'}</h2></div>
           <div class="dictation-heading__tools">
             <span class="dictation-count">${inputUnits.length}/${units.length}</span>
-            <div class="dictation-audio-cluster" role="group" aria-label="Điều khiển nghe khi đang nhập">
+          </div>
+          <div class="dictation-audio-float ${state.floatingAudioCollapsed ? 'is-collapsed' : ''}" data-floating-audio role="group" aria-label="Điều khiển nghe khi đang nhập">
+            <button
+              type="button"
+              class="dictation-audio-collapse"
+              data-action="toggle-floating-audio"
+              tabindex="-1"
+              aria-label="${state.floatingAudioCollapsed ? 'Mở rộng điều khiển nghe' : 'Thu gọn điều khiển nghe'}"
+            >${state.floatingAudioCollapsed ? '‹' : '›'}</button>
+            <div class="dictation-audio-cluster">
               <button
                 type="button"
                 class="dictation-audio-control dictation-audio-skip"
@@ -1479,6 +1491,19 @@
       else if (action === 'confirm-empty-library-trash') element.onclick = () => executeLibraryDelete('empty');
       else if (action === 'restore-library-trash') element.onclick = () => restoreLibraryTrash(element.dataset.trashId);
       else if (action === 'restore-library-trash-all') element.onclick = restoreAllLibraryTrash;
+      else if (action === 'toggle-floating-audio') {
+        element.onpointerdown = (event) => event.preventDefault();
+        element.onmousedown = (event) => event.preventDefault();
+        element.onclick = () => {
+          state.floatingAudioCollapsed = !state.floatingAudioCollapsed;
+          saveJson(FLOATING_AUDIO_KEY, { collapsed: state.floatingAudioCollapsed });
+          const floating = document.querySelector('[data-floating-audio]');
+          if (floating) floating.classList.toggle('is-collapsed', state.floatingAudioCollapsed);
+          element.textContent = state.floatingAudioCollapsed ? '‹' : '›';
+          element.setAttribute('aria-label', state.floatingAudioCollapsed ? 'Mở rộng điều khiển nghe' : 'Thu gọn điều khiển nghe');
+          updateFloatingAudioPosition();
+        };
+      }
       else if (action === 'toggle-speech') {
         if (element.classList.contains('dictation-audio-control')) {
           // Không chuyển focus khỏi ô nhập: bàn phím iPhone tiếp tục mở khi điều khiển audio.
@@ -1836,6 +1861,16 @@
     userScrollReleaseTimer = window.setTimeout(() => {
       userIsScrolling = false;
     }, 360);
+  }
+
+  function updateFloatingAudioPosition() {
+    const floating = document.querySelector('[data-floating-audio]');
+    if (!floating) return;
+    const viewport = window.visualViewport;
+    const visibleTop = viewport ? viewport.offsetTop : 0;
+    const visibleHeight = viewport ? viewport.height : window.innerHeight;
+    const targetTop = visibleTop + Math.max(92, Math.min(visibleHeight - 92, visibleHeight * 0.48));
+    floating.style.setProperty('--floating-audio-top', `${Math.round(targetTop)}px`);
   }
 
   function ensureGlobalScrollGuards() {
@@ -2918,6 +2953,9 @@
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) pauseSpeech();
   });
+  window.visualViewport?.addEventListener('resize', updateFloatingAudioPosition, { passive: true });
+  window.visualViewport?.addEventListener('scroll', updateFloatingAudioPosition, { passive: true });
+  window.addEventListener('orientationchange', updateFloatingAudioPosition, { passive: true });
 
   window.ListeningAudioDebug = {
     state,
