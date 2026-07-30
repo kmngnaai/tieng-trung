@@ -1147,19 +1147,11 @@
           <div class="dictation-audio-float ${state.floatingAudioCollapsed ? 'is-collapsed' : ''}" data-floating-audio role="group" aria-label="Điều khiển nghe khi đang nhập">
             <button
               type="button"
-              class="dictation-return-active"
-              data-action="return-to-active-slot"
-              tabindex="-1"
-              aria-label="Quay về vị trí chữ đang nhập"
-              ${state.manualBrowseMode ? '' : 'hidden'}
-            >↳ Về chỗ gõ</button>
-            <button
-              type="button"
               class="dictation-audio-collapse"
               data-action="toggle-floating-audio"
               tabindex="-1"
               aria-label="${state.floatingAudioCollapsed ? 'Mở rộng điều khiển nghe' : 'Thu gọn điều khiển nghe'}"
-            >${state.floatingAudioCollapsed ? '‹' : '›'}</button>
+            >${state.floatingAudioCollapsed ? '›' : '‹'}</button>
             <div class="dictation-audio-cluster">
               <button
                 type="button"
@@ -1186,6 +1178,15 @@
                 ${state.audioLoading ? 'disabled' : ''}
               >+${state.settings.rewindSeconds}s</button>
             </div>
+            <button
+              type="button"
+              class="dictation-return-active"
+              data-action="return-to-active-slot"
+              tabindex="-1"
+              aria-label="Quay về vị trí chữ đang nhập"
+              title="Về chỗ gõ"
+              ${state.manualBrowseMode ? '' : 'hidden'}
+            ><span aria-hidden="true">↳</span></button>
           </div>
         </div>
         <div class="dictation-input-wrap ${item.isPassage ? 'dictation-input-wrap--passage' : ''}" data-action="focus-input">
@@ -1514,7 +1515,7 @@
           saveJson(FLOATING_AUDIO_KEY, { collapsed: state.floatingAudioCollapsed });
           const floating = document.querySelector('[data-floating-audio]');
           if (floating) floating.classList.toggle('is-collapsed', state.floatingAudioCollapsed);
-          element.textContent = state.floatingAudioCollapsed ? '‹' : '›';
+          element.textContent = state.floatingAudioCollapsed ? '›' : '‹';
           element.setAttribute('aria-label', state.floatingAudioCollapsed ? 'Mở rộng điều khiển nghe' : 'Thu gọn điều khiển nghe');
           updateFloatingAudioPosition();
         };

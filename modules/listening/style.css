@@ -1515,3 +1515,66 @@ button { color: inherit; }
     display: none !important;
   }
 }
+
+
+/* V1.32 — xếp toàn bộ điều khiển nổi thành một cột: ‹ / -3s / ▶ / +3s / ↳. */
+@media (max-width: 760px) {
+  .dictation-audio-float {
+    width: 42px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 3px;
+  }
+
+  .dictation-audio-collapse {
+    position: static;
+    width: 42px;
+    height: 28px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid rgba(22, 127, 114, .42);
+    border-radius: 10px;
+    background: rgba(239, 250, 246, .97);
+    box-shadow: 0 2px 7px rgba(22, 74, 61, .10);
+    font-size: 16px;
+  }
+
+  .dictation-return-active {
+    position: static;
+    width: 42px;
+    min-width: 42px;
+    height: 34px;
+    min-height: 34px;
+    margin: 0;
+    padding: 0;
+    border-radius: 10px;
+    transform: none;
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .dictation-return-active span {
+    display: block;
+    transform: translateY(-1px);
+  }
+
+  .dictation-audio-float.is-collapsed {
+    width: 39px;
+  }
+
+  .dictation-audio-float.is-collapsed .dictation-audio-collapse,
+  .dictation-audio-float.is-collapsed .dictation-return-active {
+    width: 39px;
+    min-width: 39px;
+  }
+
+  .dictation-audio-float.is-collapsed .dictation-audio-collapse {
+    height: 26px;
+  }
+
+  .dictation-audio-float.is-collapsed .dictation-return-active {
+    height: 32px;
+    min-height: 32px;
+    font-size: 17px;
+  }
+}
