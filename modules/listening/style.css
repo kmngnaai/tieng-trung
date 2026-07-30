@@ -312,26 +312,45 @@ button { color: inherit; }
 .dictation-heading h2 { margin: 3px 0 0; font-size: 20px; }
 .dictation-count { color: var(--muted); font-size: 13px; font-weight: 750; white-space: nowrap; }
 .dictation-heading__tools { display: flex; align-items: center; justify-content: flex-end; gap: 9px; }
+.dictation-audio-cluster {
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  box-shadow: 0 7px 18px rgba(22, 127, 114, .12);
+}
+.dictation-audio-control {
+  min-height: 40px;
+  border: 0;
+  background: transparent;
+  color: var(--accent-strong);
+  font: inherit;
+  font-weight: 850;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.dictation-audio-control + .dictation-audio-control { border-left: 1px solid rgba(22, 127, 114, .24); }
+.dictation-audio-skip {
+  min-width: 47px;
+  padding: 0 9px;
+  font-size: 12px;
+  white-space: nowrap;
+}
 .dictation-audio-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  min-height: 40px;
-  border: 1px solid var(--accent);
-  border-radius: 999px;
-  background: var(--accent-soft);
-  padding: 0 14px;
-  color: var(--accent-strong);
-  font: inherit;
-  font-weight: 800;
-  cursor: pointer;
-  box-shadow: 0 7px 18px rgba(22, 127, 114, .12);
+  gap: 6px;
+  min-width: 72px;
+  padding: 0 11px;
 }
 .dictation-audio-toggle > span { min-width: 14px; font-size: 17px; line-height: 1; text-align: center; }
-.dictation-audio-toggle small { font-size: 12px; font-weight: 800; white-space: nowrap; }
+.dictation-audio-toggle small { font-size: 11px; font-weight: 800; white-space: nowrap; }
 .dictation-audio-toggle.is-speaking { background: var(--accent); color: #fff; }
-.dictation-audio-toggle:disabled { cursor: wait; opacity: .6; }
+.dictation-audio-control:disabled { cursor: wait; opacity: .6; }
 .dictation-input-wrap { position: relative; margin-top: 22px; padding: 5px 0; cursor: text; }
 .dictation-rows { display: grid; gap: 15px; pointer-events: none; }
 .dictation-row { display: grid; grid-template-columns: repeat(var(--slot-count), minmax(22px, 34px)); justify-content: center; gap: 7px; }
@@ -469,8 +488,11 @@ button { color: inherit; }
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
   }
-  .dictation-heading__tools { gap: 7px; }
-  .dictation-audio-toggle { min-height: 38px; padding: 0 12px; }
+  .dictation-heading__tools { gap: 6px; }
+  .dictation-audio-control { min-height: 38px; }
+  .dictation-audio-skip { min-width: 43px; padding: 0 7px; }
+  .dictation-audio-toggle { min-width: 62px; padding: 0 8px; }
+  .dictation-audio-toggle small { display: none; }
 }
 
 .sheet-backdrop { position: fixed; inset: 0; z-index: 80; background: rgba(13, 31, 25, .36); }
@@ -507,6 +529,12 @@ button { color: inherit; }
 
 @media (max-width: 420px) {
   .listen-main { padding-inline: 11px; }
+  .dictation-heading { align-items: center; }
+  .dictation-heading h2 { font-size: 16px; }
+  .dictation-count { font-size: 11px; }
+  .dictation-audio-skip { min-width: 39px; padding: 0 5px; font-size: 11px; }
+  .dictation-audio-toggle { min-width: 42px; padding: 0 7px; }
+
   .hero-card, .audio-card, .dictation-card, .transcript-card { padding: 15px; }
   .audio-controls { grid-template-columns: 42px 42px 60px 42px 42px; gap: 4px; }
   .secondary-round { width: 42px; height: 42px; font-size: 12px; }
@@ -1294,4 +1322,12 @@ button { color: inherit; }
   .audio-setting-actions--three > :first-child {
     grid-column: 1 / -1;
   }
+}
+
+/* V1.23: thời gian giọng thiết bị là ước tính; MP3 là thời gian thật. */
+.audio-time-kind {
+  margin-left: 4px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 650;
 }

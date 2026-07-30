@@ -982,6 +982,22 @@
     return `${String(minutes).padStart(2, '0')}:${String(whole % 60).padStart(2, '0')}`;
   }
 
+  function estimatedDeviceSpeechDuration(text) {
+    const content = String(text || '');
+    if (!content) return 0;
+    const rate = Math.max(0.5, Number(state.settings.rate) || 1);
+    const charsPerSecond = 3.6 * rate;
+    return content.length / charsPerSecond;
+  }
+
+  function estimatedDeviceSpeechTime(text, charIndex) {
+    const content = String(text || '');
+    if (!content) return 0;
+    const duration = estimatedDeviceSpeechDuration(content);
+    const ratio = Math.max(0, Math.min(1, (Number(charIndex) || 0) / content.length));
+    return duration * ratio;
+  }
+
   function renderPractice() {
     const item = currentItem();
     if (!item) {
@@ -994,6 +1010,12 @@
     const isTranscript = state.mode === 'transcript' || state.mode === 'passage-transcript';
     const progress = isPassage ? `${item.segments.length} câu` : `${state.currentIndex + 1}/${items.length}`;
     const speechText = speechTextFor(item);
+    const displayCurrentTime = state.audioPlayer
+      ? state.audioCurrentTime
+      : estimatedDeviceSpeechTime(speechText, state.speechCharIndex);
+    const displayDuration = state.audioPlayer
+      ? state.audioDuration
+      : estimatedDeviceSpeechDuration(speechText);
     app.innerHTML = `
       ${pageHeader(state.sessionName || sessionTitle(), `${practiceModeLabel()} · ${progress}`, true)}
       <main class="listen-main practice-main">
@@ -1021,9 +1043,10 @@
             <button class="secondary-round" data-action="next-item" aria-label="Câu sau">›<small>Câu sau</small></button>
           </div>
           <div class="audio-time" aria-live="polite">
-            <span id="audioCurrentTime">${formatAudioTime(state.audioCurrentTime)}</span>
+            <span id="audioCurrentTime">${formatAudioTime(displayCurrentTime)}</span>
             <span>/</span>
-            <span id="audioDuration">${state.audioDuration > 0 ? formatAudioTime(state.audioDuration) : '--:--'}</span>
+            <span id="audioDuration">${displayDuration > 0 ? formatAudioTime(displayDuration) : '--:--'}</span>
+            <small id="audioTimeKind" class="audio-time-kind">${state.audioPlayer ? '' : 'ước tính'}</small>
           </div>
           ${state.audioMessage && ['error', 'missing'].includes(state.audioStatus) ? `<div class="audio-runtime-status audio-runtime-status--${escapeHtml(state.audioStatus || 'info')}" role="alert">${escapeHtml(state.audioMessage)}</div>` : ''}
           <label class="speech-position">
@@ -1112,14 +1135,32 @@
           <div><p class="eyebrow">Nhập chữ Hán</p><h2>${item.isPassage ? 'Chép lại đoạn vừa nghe' : 'Gõ lại câu vừa nghe'}</h2></div>
           <div class="dictation-heading__tools">
             <span class="dictation-count">${inputUnits.length}/${units.length}</span>
-            <button
-              type="button"
-              class="dictation-audio-toggle ${state.speaking ? 'is-speaking' : ''} ${state.paused ? 'is-paused' : ''}"
-              data-action="toggle-speech"
-              tabindex="-1"
-              aria-label="${miniAudioLabel}"
-              ${state.audioLoading ? 'disabled' : ''}
-            ><span aria-hidden="true">${miniAudioIcon}</span><small>${miniAudioLabel}</small></button>
+            <div class="dictation-audio-cluster" role="group" aria-label="Điều khiển nghe khi đang nhập">
+              <button
+                type="button"
+                class="dictation-audio-control dictation-audio-skip"
+                data-action="rewind-speech"
+                tabindex="-1"
+                aria-label="Lùi ${state.settings.rewindSeconds} giây"
+                ${state.audioLoading ? 'disabled' : ''}
+              >−${state.settings.rewindSeconds}s</button>
+              <button
+                type="button"
+                class="dictation-audio-control dictation-audio-toggle ${state.speaking ? 'is-speaking' : ''} ${state.paused ? 'is-paused' : ''}"
+                data-action="toggle-speech"
+                tabindex="-1"
+                aria-label="${miniAudioLabel}"
+                ${state.audioLoading ? 'disabled' : ''}
+              ><span aria-hidden="true">${miniAudioIcon}</span><small>${miniAudioLabel}</small></button>
+              <button
+                type="button"
+                class="dictation-audio-control dictation-audio-skip"
+                data-action="forward-speech"
+                tabindex="-1"
+                aria-label="Tiến ${state.settings.rewindSeconds} giây"
+                ${state.audioLoading ? 'disabled' : ''}
+              >+${state.settings.rewindSeconds}s</button>
+            </div>
           </div>
         </div>
         <div class="dictation-input-wrap ${item.isPassage ? 'dictation-input-wrap--passage' : ''}" data-action="focus-input">
@@ -1436,8 +1477,8 @@
       else if (action === 'restore-library-trash') element.onclick = () => restoreLibraryTrash(element.dataset.trashId);
       else if (action === 'restore-library-trash-all') element.onclick = restoreAllLibraryTrash;
       else if (action === 'toggle-speech') {
-        if (element.classList.contains('dictation-audio-toggle')) {
-          // Không chuyển focus khỏi ô nhập: bàn phím iPhone tiếp tục mở khi tạm dừng/phát tiếp.
+        if (element.classList.contains('dictation-audio-control')) {
+          // Không chuyển focus khỏi ô nhập: bàn phím iPhone tiếp tục mở khi điều khiển audio.
           element.onpointerdown = (event) => event.preventDefault();
           element.onmousedown = (event) => event.preventDefault();
         }
@@ -1455,8 +1496,20 @@
           }).catch(() => {});
         } else speakFrom(0);
       };
-      else if (action === 'rewind-speech') element.onclick = rewindSpeech;
-      else if (action === 'forward-speech') element.onclick = forwardSpeech;
+      else if (action === 'rewind-speech') {
+        if (element.classList.contains('dictation-audio-control')) {
+          element.onpointerdown = (event) => event.preventDefault();
+          element.onmousedown = (event) => event.preventDefault();
+        }
+        element.onclick = rewindSpeech;
+      }
+      else if (action === 'forward-speech') {
+        if (element.classList.contains('dictation-audio-control')) {
+          element.onpointerdown = (event) => event.preventDefault();
+          element.onmousedown = (event) => event.preventDefault();
+        }
+        element.onclick = forwardSpeech;
+      }
       else if (action === 'previous-item') element.onclick = () => moveItem(-1);
       else if (action === 'next-item') element.onclick = () => moveItem(1);
       else if (action === 'set-rate') element.onclick = () => setRate(Number(element.dataset.rate));
@@ -1528,6 +1581,7 @@
           updateAudioTimeUi();
         } else {
           state.speechCharIndex = Number(position.value);
+          updateAudioTimeUi();
         }
       };
     }
@@ -2398,13 +2452,32 @@
   function updateAudioTimeUi() {
     const current = document.getElementById('audioCurrentTime');
     const duration = document.getElementById('audioDuration');
+    const kind = document.getElementById('audioTimeKind');
     const slider = document.getElementById('speechPosition');
-    if (current) current.textContent = formatAudioTime(state.audioCurrentTime);
-    if (duration) duration.textContent = state.audioDuration > 0 ? formatAudioTime(state.audioDuration) : '--:--';
-    if (slider && state.audioPlayer) {
-      slider.max = String(state.audioDuration || 0);
-      slider.step = '0.1';
-      slider.value = String(state.audioCurrentTime || 0);
+
+    if (state.audioPlayer) {
+      if (current) current.textContent = formatAudioTime(state.audioCurrentTime);
+      if (duration) duration.textContent = state.audioDuration > 0 ? formatAudioTime(state.audioDuration) : '--:--';
+      if (kind) kind.textContent = '';
+      if (slider) {
+        slider.max = String(state.audioDuration || 0);
+        slider.step = '0.1';
+        slider.value = String(state.audioCurrentTime || 0);
+      }
+      return;
+    }
+
+    const item = currentItem();
+    const text = item ? speechTextFor(item) : '';
+    const estimatedDuration = estimatedDeviceSpeechDuration(text);
+    const estimatedCurrent = estimatedDeviceSpeechTime(text, state.speechCharIndex);
+    if (current) current.textContent = formatAudioTime(estimatedCurrent);
+    if (duration) duration.textContent = estimatedDuration > 0 ? formatAudioTime(estimatedDuration) : '--:--';
+    if (kind) kind.textContent = estimatedDuration > 0 ? 'ước tính' : '';
+    if (slider) {
+      slider.max = String(Math.max(1, text.length));
+      slider.step = '1';
+      slider.value = String(Math.min(text.length, state.speechCharIndex || 0));
     }
   }
 
@@ -2658,13 +2731,13 @@
     state.paused = false;
     state.listenCount += 1;
     render();
+    requestAnimationFrame(updateAudioTimeUi);
 
     utterance.onboundary = (event) => {
       if (token !== state.speechToken) return;
       if (Number.isFinite(event.charIndex)) {
         state.speechCharIndex = Math.min(text.length, startIndex + event.charIndex);
-        const slider = document.getElementById('speechPosition');
-        if (slider) slider.value = String(state.speechCharIndex);
+        updateAudioTimeUi();
       }
     };
     utterance.onend = () => {
@@ -2673,6 +2746,7 @@
       state.paused = false;
       state.speechCharIndex = text.length;
       render();
+      requestAnimationFrame(updateAudioTimeUi);
     };
     utterance.onerror = (event) => {
       if (token !== state.speechToken || event.error === 'canceled' || event.error === 'interrupted') return;
