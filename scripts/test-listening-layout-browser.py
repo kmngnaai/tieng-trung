@@ -31,7 +31,7 @@ def load_app(page):
 
 def open_new_hsk_unit(page):
     page.locator('[data-action="open-new-hsk"]').click()
-    page.locator('[data-action="open-new-hsk-unit"]').first.click()
+    page.locator('[data-action="open-new-hsk-unit"][data-unit-id*="__lesson__2__"]').click()
     page.wait_for_selector('[data-activity="word-choice"][data-choice-count="4"]')
     page.evaluate("ListeningAudioDebug.state.settings.voiceSource = 'device'")
 

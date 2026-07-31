@@ -129,12 +129,14 @@
       const key = normalizedSentenceKey(sentence.text);
       if (!key) return;
       if (!seen.has(key)) {
+        sentence.tags = Array.from(new Set(toArray(sentence.tags).map(cleanText).filter(Boolean)));
         seen.set(key, sentence);
         return;
       }
       const current = seen.get(key);
       if (!current.pinyin && sentence.pinyin) current.pinyin = sentence.pinyin;
       if (!current.meaning && sentence.meaning) current.meaning = sentence.meaning;
+      current.tags = Array.from(new Set(toArray(current.tags).concat(toArray(sentence.tags)).map(cleanText).filter(Boolean)));
       if (current.sentenceType !== 'grammar-example' && sentence.sentenceType === 'grammar-example') {
         current.alsoGrammarExample = true;
         current.grammarId = current.grammarId || sentence.grammarId;
@@ -401,6 +403,235 @@
     };
   }
 
+  function listLdsnUnits(payload) {
+    const lessons = toArray(payload && payload.lessons || payload);
+    return lessons.map((lesson, index) => ({
+      id: cleanText(lesson.id) || `ldsn-${String(index + 1).padStart(2, '0')}`,
+      unitId: cleanText(lesson.id) || `ldsn-${String(index + 1).padStart(2, '0')}`,
+      sectionType: 'lesson',
+      sectionOrder: Number(lesson.lessonNumber || index + 1),
+      title: cleanText(lesson.title && lesson.title.vi),
+      titleZh: cleanText(lesson.title && lesson.title.hanzi),
+      pinyin: cleanPinyin(lesson.title && lesson.title.pinyin),
+      wordCount: toArray(lesson.vocabulary).length,
+      dialogueCount: toArray(lesson.dialogue).length,
+      passageSentenceCount: toArray(lesson.passage && lesson.passage.sentences).length,
+      status: cleanText(lesson.sourceStatus) || 'source-complete'
+    })).sort((left, right) => left.sectionOrder - right.sectionOrder);
+  }
+
+  function ldsnSentence(raw, context) {
+    const text = cleanText(raw && (raw.hanzi || raw.text || raw.chinese));
+    if (!text || !(Core ? Core.containsHan(text) : /[\u3400-\u9fff]/u.test(text))) return null;
+    const explicitId = cleanText(raw && raw.id);
+    const id = stableId(`${context.unitId}|${context.category}|${explicitId}|${normalizedSentenceKey(text)}`, 'ldsn-sentence');
+    return {
+      id,
+      text,
+      hanzi: text,
+      pinyin: cleanPinyin(raw && raw.pinyin),
+      meaning: cleanText(raw && (raw.vi || raw.meaning || raw.vietnamese)),
+      sourceType: 'ldsn14-sentence',
+      sourceId: context.unitId,
+      sourceTitle: context.title || '',
+      lessonId: context.unitId,
+      sentenceType: context.sentenceType || 'source-sentence',
+      originType: 'source',
+      grammarId: context.grammarId || '',
+      tags: toArray(context.tags),
+      origin: {
+        file: context.sourceFile,
+        path: context.path,
+        routeId: context.unitId
+      },
+      tokens: tokenizeSentence(text, context.vocabulary, raw && raw.answerTokens)
+    };
+  }
+
+  function adaptLdsnUnit(payload, unitId, options) {
+    const configured = options || {};
+    const lessons = toArray(payload && payload.lessons || payload);
+    const lesson = lessons.find((entry) => cleanText(entry && entry.id) === cleanText(unitId));
+    if (!lesson) throw new Error(`Không tìm thấy đơn vị LDSN1-4: ${unitId}`);
+    const sourceFile = configured.sourceFile || 'modules/ldsn14/data/lessons.json';
+    const title = cleanText(lesson.title && lesson.title.vi);
+    const titleZh = cleanText(lesson.title && lesson.title.hanzi);
+    const words = toArray(lesson.vocabulary).map((raw, index) => {
+      const text = cleanText(raw && raw.hanzi);
+      if (!text) return null;
+      return {
+        id: stableId(`${unitId}|word|${raw.id || index}|${text}`, 'ldsn-word'),
+        text,
+        hanzi: text,
+        pinyin: cleanPinyin(raw.pinyin),
+        meaning: cleanText(raw.vi),
+        wordType: cleanText(raw.wordClass),
+        hanViet: cleanText(raw.hanViet),
+        sourceType: 'ldsn14-word',
+        sourceId: unitId,
+        sourceTitle: title,
+        lessonId: unitId,
+        originType: 'source',
+        origin: {
+          file: sourceFile,
+          path: `lessons[id=${unitId}].vocabulary[${index}]`,
+          routeId: unitId
+        }
+      };
+    }).filter(Boolean);
+
+    const collected = [];
+    const addRows = (rows, category, sentenceType, tags, pathPrefix, grammarId) => {
+      toArray(rows).forEach((row, index) => {
+        const sentence = ldsnSentence(row, {
+          unitId,
+          title,
+          sourceFile,
+          category,
+          sentenceType,
+          tags,
+          grammarId,
+          vocabulary: words,
+          path: `lessons[id=${unitId}].${pathPrefix}[${index}]`
+        });
+        if (sentence) collected.push(sentence);
+      });
+    };
+
+    const translation = lesson.translation || {};
+    addRows(translation.zhVi && translation.zhVi.questions, 'translation-zhvi-question', 'translation-sentence', ['translation', 'zh-vi'], 'translation.zhVi.questions');
+    addRows(translation.zhVi && translation.zhVi.answers, 'translation-zhvi-answer', 'translation-sentence', ['translation', 'zh-vi'], 'translation.zhVi.answers');
+    addRows(translation.viZh && translation.viZh.questions, 'translation-vizh-question', 'translation-sentence', ['translation', 'vi-zh'], 'translation.viZh.questions');
+    addRows(translation.viZh && translation.viZh.answers, 'translation-vizh-answer', 'translation-sentence', ['translation', 'vi-zh'], 'translation.viZh.answers');
+    addRows(lesson.dialogue, 'dialogue', 'dialogue-turn', ['dialogue'], 'dialogue');
+    addRows(lesson.passage && lesson.passage.sentences, 'passage', 'passage-sentence', ['passage'], 'passage.sentences');
+
+    const grammarEntries = toArray(lesson.grammar).map((grammar, grammarIndex) => {
+      const grammarId = cleanText(grammar.id) || stableId(`${unitId}|grammar|${grammarIndex}|${grammar.title || ''}`, 'ldsn-grammar');
+      const examples = toArray(grammar.examples);
+      addRows(examples, `grammar-${grammarId}`, 'grammar-example', ['grammar'], `grammar[${grammarIndex}].examples`, grammarId);
+      return Object.assign({}, grammar, {
+        id: grammarId,
+        sourceId: unitId,
+        lessonId: unitId,
+        origin: {
+          file: sourceFile,
+          path: `lessons[id=${unitId}].grammar[${grammarIndex}]`,
+          routeId: unitId
+        }
+      });
+    });
+
+    const sentences = dedupeSentences(collected);
+    const sentenceByKey = new Map(sentences.map((sentence) => [normalizedSentenceKey(sentence.text), sentence]));
+    const diagnostics = [];
+    const buildLdsnGroup = (kind, rawItems, groupId, groupTitle) => {
+      const items = [];
+      toArray(rawItems).forEach((raw, index) => {
+        const rawText = cleanText(raw && raw.hanzi);
+        if (!rawText) return;
+        const canonical = sentenceByKey.get(normalizedSentenceKey(rawText));
+        if (!canonical) {
+          diagnostics.push({ level: 'error', code: 'MISSING_LDSN_GROUP_SENTENCE', groupId, definitionId: raw && raw.id || String(index + 1) });
+          return;
+        }
+        items.push(Object.assign({}, canonical, {
+          id: `${groupId}:item-${index + 1}`,
+          canonicalSentenceId: canonical.id,
+          speaker: kind === 'dialogue' ? cleanText(raw && raw.speaker) : '',
+          groupId,
+          groupKind: kind,
+          groupIndex: index
+        }));
+      });
+      if (items.length < 2) return null;
+      return {
+        id: groupId,
+        kind,
+        title: groupTitle,
+        originType: 'source',
+        sourceType: 'ldsn14-group',
+        sourceId: unitId,
+        lessonId: unitId,
+        items
+      };
+    };
+
+    const dialogue = buildLdsnGroup('dialogue', lesson.dialogue, `${unitId}-dialogue`, `${titleZh || title} · Hội thoại`);
+    const passageTitle = cleanText(lesson.passage && lesson.passage.title && (lesson.passage.title.vi || lesson.passage.title.hanzi)) || `${titleZh || title} · Đoạn văn`;
+    const passage = buildLdsnGroup('passage', lesson.passage && lesson.passage.sentences, `${unitId}-passage`, passageTitle);
+    const groups = [dialogue, passage].filter(Boolean);
+    const dialogues = groups.filter((group) => group.kind === 'dialogue');
+    const passages = groups.filter((group) => group.kind === 'passage');
+    const validOrderingSentences = sentences.filter((sentence) => toArray(sentence.tokens).length >= 3);
+
+    return {
+      schemaVersion: SCHEMA_VERSION,
+      source: {
+        id: 'ldsn14',
+        curriculum: 'ldsn1-4',
+        levelId: 'ldsn1-4',
+        levelName: 'LDSN1-4'
+      },
+      unit: {
+        id: unitId,
+        unitId,
+        sectionType: 'lesson',
+        sectionOrder: Number(lesson.lessonNumber || 0),
+        title,
+        titleZh,
+        status: cleanText(lesson.sourceStatus) || 'source-complete'
+      },
+      words,
+      sentences,
+      grammar: grammarEntries,
+      groups,
+      sentenceFilters: [
+        { id: 'all', label: 'Toàn bộ', tag: '', description: `${sentences.length} câu phân biệt` },
+        { id: 'translation', label: 'Dịch câu', tag: 'translation', description: `${sentences.filter((item) => item.tags.includes('translation')).length} câu` },
+        { id: 'dialogue', label: 'Hội thoại', tag: 'dialogue', description: `${sentences.filter((item) => item.tags.includes('dialogue')).length} lượt` },
+        { id: 'passage', label: 'Đoạn văn', tag: 'passage', description: `${sentences.filter((item) => item.tags.includes('passage')).length} câu` },
+        { id: 'grammar', label: 'Ngữ pháp', tag: 'grammar', description: `${sentences.filter((item) => item.tags.includes('grammar')).length} ví dụ` }
+      ],
+      capabilities: {
+        wordChoice: words.length >= 4,
+        wordTyping: words.length > 0,
+        sentenceDictation: sentences.length > 0,
+        sentenceTranscript: sentences.length > 0,
+        sentenceOrdering: validOrderingSentences.length > 0,
+        dialogueTurnOrdering: dialogues.some((group) => group.items.length >= 2),
+        dialogueSentenceOrdering: dialogues.some((group) => group.items.some((item) => toArray(item.tokens).length >= 3)),
+        dialogueDictation: dialogues.some((group) => group.items.length >= 2),
+        dialogueFullDictation: dialogues.some((group) => group.items.length >= 2),
+        passageSentenceOrdering: passages.some((group) => group.items.length >= 2),
+        passageSentenceTokenOrdering: passages.some((group) => group.items.some((item) => toArray(item.tokens).length >= 3)),
+        passageDictation: passages.some((group) => group.items.length >= 2),
+        passageFullDictation: passages.some((group) => group.items.length >= 2)
+      },
+      diagnostics,
+      stats: {
+        wordCount: words.length,
+        sentenceCount: sentences.length,
+        vocabularyExampleCount: 0,
+        grammarExampleCount: sentences.filter((sentence) => sentence.tags.includes('grammar')).length,
+        grammarOnlyCount: sentences.filter((sentence) => sentence.tags.length === 1 && sentence.tags.includes('grammar')).length,
+        authoredSentenceCount: 0,
+        sourceSentenceCount: sentences.length,
+        translationSentenceCount: sentences.filter((sentence) => sentence.tags.includes('translation')).length,
+        dialogueSentenceCount: sentences.filter((sentence) => sentence.tags.includes('dialogue')).length,
+        passageSentenceCount: sentences.filter((sentence) => sentence.tags.includes('passage')).length,
+        dialogueCount: dialogues.length,
+        passageCount: passages.length
+      },
+      rules: {
+        audio: 'user-mp3-or-device-tts',
+        defaultChoiceCount: 4,
+        hardChoiceCount: 5,
+        grammarIncludedInAllSentences: true
+      }
+    };
+  }
+
   function validateDataset(dataset) {
     const errors = [];
     const warnings = [];
@@ -416,6 +647,23 @@
     });
     if (!dataset.capabilities || typeof dataset.capabilities !== 'object' || Array.isArray(dataset.capabilities)) {
       errors.push('Dataset thiếu capabilities hợp lệ.');
+    }
+    if (dataset.sentenceFilters !== undefined) {
+      if (!Array.isArray(dataset.sentenceFilters)) {
+        errors.push('Dataset.sentenceFilters phải là mảng.');
+      } else {
+        const filterIds = new Set();
+        dataset.sentenceFilters.forEach((filter, index) => {
+          const filterId = cleanText(filter && filter.id);
+          if (!filterId) errors.push(`Dataset.sentenceFilters[${index}] thiếu id.`);
+          else if (filterIds.has(filterId)) errors.push(`Dataset.sentenceFilters trùng id: ${filterId}`);
+          else filterIds.add(filterId);
+          if (!cleanText(filter && filter.label)) errors.push(`Dataset.sentenceFilters[${index}] thiếu label.`);
+        });
+        if (dataset.sentenceFilters.length && !filterIds.has('all')) {
+          errors.push('Dataset.sentenceFilters phải có bộ lọc all.');
+        }
+      }
     }
     function register(id, label) {
       if (!id) errors.push(`${label} thiếu id.`);
@@ -455,8 +703,10 @@
     SCHEMA_VERSION,
     normalizedSentenceKey,
     listNewHskUnits,
+    listLdsnUnits,
     tokenizeSentence,
     adaptNewHskUnit,
+    adaptLdsnUnit,
     validateDataset
   };
 });

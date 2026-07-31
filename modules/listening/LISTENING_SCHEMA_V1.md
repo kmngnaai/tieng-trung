@@ -26,6 +26,7 @@ UI và activity builders không được đọc trực tiếp cấu trúc riêng
   sentences: [],
   grammar: [],
   groups: [],
+  sentenceFilters: [], // tùy chọn, do adapter cung cấp
   capabilities: {},
   diagnostics: [],
   stats: {},
@@ -72,11 +73,30 @@ Không đưa URL audio nguồn vào Word. Audio luôn được tìm bằng `cano
   originType: 'source' | 'curated' | 'authored',
   origin: { file, path, routeId },
   grammarId,
-  alsoGrammarExample
+  alsoGrammarExample,
+  tags: []
 }
 ```
 
 `tokens` khi ghép lại phải bằng đáp án chữ Hán sau khi bỏ dấu câu theo `Core.answerUnits()`.
+
+`tags` là nhãn semantic do adapter gắn để tạo bộ lọc dùng chung, ví dụ `translation`, `dialogue`, `passage`, `grammar`. UI không được suy luận bộ lọc từ cấu trúc dữ liệu nguồn.
+
+## Sentence filters
+
+Nguồn có các nhóm câu riêng có thể khai báo:
+
+```js
+sentenceFilters: [
+  { id: 'all', label: 'Toàn bộ', tag: '', description: '...' },
+  { id: 'dialogue', label: 'Hội thoại', tag: 'dialogue', description: '...' }
+]
+```
+
+- `id` phải duy nhất trong dataset.
+- `all` luôn đại diện cho toàn bộ `sentences`.
+- Khi có `tag`, bộ lọc lấy các câu chứa tag tương ứng.
+- Bộ lọc chỉ là view; không sao chép câu thành danh sách dữ liệu thứ hai.
 
 ## Group
 

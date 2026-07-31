@@ -30,10 +30,11 @@ assert(adapterIndex >= 0 && builderIndex > adapterIndex && appIndex > builderInd
 
 assert(app.includes('data-choice-count="4"'), 'Mức chuẩn phải dùng 4 lựa chọn');
 assert(app.includes('data-choice-count="5"'), 'Mức khó phải dùng 5 lựa chọn');
-assert(app.includes('data-filter="all"'), 'Thiếu bộ lọc Toàn bộ');
-assert(app.includes('data-filter="vocabulary"'), 'Thiếu bộ lọc Câu ví dụ');
-assert(app.includes('data-filter="grammar"'), 'Thiếu bộ lọc Ngữ pháp');
-assert(app.includes('data-filter="authored"'), 'Thiếu bộ lọc câu biên soạn');
+assert(app.includes("{ id: 'all', label: 'Toàn bộ'"), 'Thiếu bộ lọc Toàn bộ');
+assert(app.includes("{ id: 'vocabulary', label: 'Ví dụ từ vựng'"), 'Thiếu bộ lọc Câu ví dụ');
+assert(app.includes("{ id: 'grammar', label: 'Ngữ pháp'"), 'Thiếu bộ lọc Ngữ pháp');
+assert(app.includes("{ id: 'authored', label: 'Biên soạn'"), 'Thiếu bộ lọc câu biên soạn');
+assert(app.includes('datasetSentenceFilters'), 'Bộ lọc phải dùng cấu hình dataset chung');
 assert(app.includes('ví dụ từ vựng gốc'), 'Thiếu giải thích nguồn câu ví dụ gốc');
 assert(app.includes('ngữ pháp riêng'), 'Thiếu giải thích câu ngữ pháp riêng');
 assert(app.includes('câu biên soạn'), 'Thiếu giải thích câu biên soạn');

@@ -14,7 +14,8 @@ function readJson(relative) {
 const level = readJson('modules/hanzi-stroke/data/learning/hsk/hsk_1.json');
 const grammar = readJson('modules/hanzi-stroke/data/learning/grammar/new_hsk_1.json');
 const manifest = readJson('modules/listening/data/structures/new-hsk/manifest.json');
-const sample = manifest.units[0];
+const sample = manifest.units.find((entry) => entry.unitId.includes('__lesson__2__'));
+assert(sample, 'Manifest phải giữ bài mẫu New HSK 1 bài 2');
 const structure = readJson(`modules/listening/data/structures/new-hsk/${sample.structureFile}`);
 
 const units = Adapters.listNewHskUnits(level, { levelId: 'new-hsk-1', sectionType: 'lesson' });

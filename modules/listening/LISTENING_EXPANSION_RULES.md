@@ -41,7 +41,7 @@ Mẫu đầu tiên là **New HSK 1 – Bài 2: Tôi tên là Lý Văn**. Chỉ n
 25. Chỉ sửa file liên quan đến patch; không đổi tên hoặc refactor ngoài phạm vi.
 26. Mỗi patch phải cập nhật: quyết định, file sửa, test tự động và test thủ công.
 27. Nếu dữ liệu thực khác giả định, dừng mở rộng và cập nhật tài liệu trước khi code tiếp.
-28. Sau mẫu New HSK 1, chuyển 301 và LDSN14 sang schema chung trước khi nhân rộng hàng loạt.
+28. Sau mẫu New HSK 1, chuyển nguồn ưu tiên sang schema chung trước khi nhân rộng. Theo lộ trình hiện tại: LDSN1–4 làm trước; 301 tạm hoãn theo quyết định người dùng.
 29. 301/LDSN14 là nguồn chuyển đổi và bảo toàn, không xây lại hoặc làm phẳng dữ liệu gốc.
 30. HSK/YCT/Boya chỉ bật hội thoại và đoạn khi có structure hợp lệ đã được kiểm tra.
 31. Mỗi tính năng lớn nằm trong một patch riêng: adapter → bảo toàn cũ → chọn từ → xếp câu → hội thoại → đoạn.
@@ -80,32 +80,27 @@ Mỗi câu chuẩn cần tối thiểu:
 
 ## Trạng thái patch hiện tại
 
-Đã hoàn thành mẫu local New HSK 1 gồm:
+Đã hoàn thành nền tảng schema/activity builders và giao diện Nghe cơ bản.
 
-- Adapter New HSK và ngữ pháp.
-- Một structure mẫu có hội thoại 8 lượt và đoạn văn 4 câu.
-- Chọn từ 4/5 đáp án.
-- Điền tay từ bằng bộ máy chép hiện có.
-- Xếp từ thành câu.
-- Chép câu và transcript.
-- Xếp lượt hội thoại, xếp từng câu hội thoại, chép từng lượt.
-- Xếp câu trong đoạn, xếp từng câu trong đoạn, chép đoạn từng câu.
-- Bộ lọc Toàn bộ/Câu ví dụ/Ngữ pháp.
-- Lưu descriptor để khôi phục phiên và dùng chung canonical ID cho MP3.
+Đã chuyển **LDSN1–4** sang schema chung:
 
-Chưa nhân rộng sang nguồn khác trong patch này.
-Bổ sung trong patch thanh audio nổi theo ngữ cảnh:
+- Adapter đọc đủ 10 bài từ `modules/ldsn14/data/lessons.json`.
+- Bảo toàn từ vựng, dịch câu, ngữ pháp, hội thoại và đoạn văn từ nguồn.
+- Hội thoại/đoạn giữ nguyên thứ tự và `canonicalSentenceId`.
+- Bộ lọc Toàn bộ/Dịch câu/Hội thoại/Đoạn văn/Ngữ pháp dùng `sentenceFilters` và `tags` chung.
+- Phiên LDSN lưu và khôi phục bằng cùng session descriptor với New HSK.
+- Giao diện LDSN cũ vẫn có regression test riêng; không bị thay thế hoặc làm phẳng dữ liệu.
 
-- Một renderer `renderFloatingAudioControls()` dùng chung cho chọn từ, xếp từ, xếp thứ tự, chép câu và transcript.
-- Không còn floating audio riêng cho dictation.
-- Mặc định ẩn; tự hiện thu gọn khi audio card chính không còn trong viewport hoặc input IME đang focus trên mobile.
-- Nút quay về dùng `data-learning-target`; với chép chính tả quay đúng active slot, với activity khác quay về vùng trả lời hiện tại.
-- Desktop không hiện thanh nổi.
+Đã mở rộng **New HSK 1 đủ 15 bài**:
 
+- Bài 2 giữ mẫu chi tiết đã xác nhận.
+- Bài 1 và 3–15 có structure riêng.
+- Hội thoại/đoạn được biên tập từ các câu có thật trong dữ liệu nguồn và ghi `originType: curated`.
+- Không nối câu ngoài bài hoặc gắn nhãn nội dung biên tập thành nội dung gốc.
 
-Bổ sung trong patch header cố định và pastel:
+Theo quyết định hiện tại:
 
-- Xóa nội dung giới thiệu bản thử local khỏi giao diện người học.
-- Header chuyển sang fixed thực sự, có khoảng đệm tương ứng để không che nội dung.
-- Thêm bảng màu pastel semantic: xanh mint cho Từ, vàng kem cho Câu, cam đào cho Hội thoại, xanh trời cho Đoạn, tím nhạt cho bộ lọc nội dung.
-- Xanh lá tiếp tục là màu chủ đạo cho nút active, progress, audio và trạng thái học.
+- Không triển khai 301 trong đợt này.
+- Bước tiếp theo sau kiểm thử là rà nội dung từng bài New HSK, rồi mở rộng HSK 6 cấp, YCT và Boya bằng adapter/structure tương ứng.
+
+Thanh audio nổi, header cố định và hệ màu pastel tiếp tục là component/theme dùng chung; không tạo bản riêng theo nguồn.

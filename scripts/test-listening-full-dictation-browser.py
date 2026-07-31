@@ -78,7 +78,7 @@ def main():
 
         page.locator('[data-action="open-new-hsk"]').click()
         page.wait_for_selector('[data-action="open-new-hsk-unit"]')
-        page.locator('[data-action="open-new-hsk-unit"]').first.click()
+        page.locator('[data-action="open-new-hsk-unit"][data-unit-id*="__lesson__2__"]').click()
         page.wait_for_selector('[data-activity="dialogue-full-dictation"]')
 
         body_text = page.locator("body").inner_text()

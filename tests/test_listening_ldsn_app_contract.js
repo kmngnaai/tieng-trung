@@ -1,0 +1,15 @@
+'use strict';
+const assert = require('assert');
+const fs = require('fs');
+const path = require('path');
+const repo = path.resolve(__dirname, '..');
+const app = fs.readFileSync(path.join(repo, 'modules/listening/app.js'), 'utf8');
+assert(app.includes("data-action=\"open-ldsn\""));
+assert(app.includes("state.screen === 'ldsnUnits'"));
+assert(app.includes('SourceAdapters.listLdsnUnits'));
+assert(app.includes('SourceAdapters.adaptLdsnUnit'));
+assert(app.includes("state.source === 'ldsn14'"));
+assert(app.includes("session.source === 'ldsn14'"), 'LDSN phải khôi phục được phiên nghe gần nhất');
+assert(app.includes('datasetSentenceFilters'));
+assert(!app.includes("if (state.dataset && state.source === 'new-hsk')"), 'Dataset mode không được khóa riêng New HSK');
+console.log('LDSN listening app contract passed.');

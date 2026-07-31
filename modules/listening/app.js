@@ -99,6 +99,8 @@
     newHskLevelData: null,
     newHskGrammarData: null,
     newHskUnits: [],
+    ldsnData: null,
+    ldsnUnits: [],
     activitySelection: [],
     activityResult: null,
     activityDescriptor: null,
@@ -202,6 +204,11 @@
       const title = state.dataset && state.dataset.unit && (state.dataset.unit.titleZh || state.dataset.unit.title) || state.lesson && (state.lesson.title_zh || state.lesson.title) || 'New HSK 1';
       return `New HSK 1 · ${title}`;
     }
+    if (state.source === 'ldsn14') {
+      const order = state.dataset && state.dataset.unit && state.dataset.unit.sectionOrder;
+      const title = state.dataset && state.dataset.unit && (state.dataset.unit.titleZh || state.dataset.unit.title) || state.lesson && (state.lesson.title_zh || state.lesson.title) || 'LDSN1-4';
+      return [`LDSN ${order || ''}`.trim(), title].filter(Boolean).join(' · ');
+    }
     if (state.source === '301') {
       const lessonNo = state.lesson && state.lesson.lesson_no ? `Bài ${state.lesson.lesson_no}` : '';
       const title = state.lessonData && (state.lessonData.title_zh || state.lessonData.title) || state.lesson && (state.lesson.title_zh || state.lesson.title) || '';
@@ -264,6 +271,7 @@
     if (!app) return;
     if (state.screen === 'home') renderHome();
     else if (state.screen === 'newHskUnits') renderNewHskUnits();
+    else if (state.screen === 'ldsnUnits') renderLdsnUnits();
     else if (state.screen === 'lessons301') render301Lessons();
     else if (state.screen === 'custom') renderCustomLibrary();
     else if (state.screen === 'customGroup') renderCustomGroupScreen();
@@ -299,6 +307,11 @@
               <span class="source-icon">新</span>
               <strong>New HSK 1</strong>
               <small>Mẫu hoàn chỉnh · Từ → câu → hội thoại → đoạn</small>
+            </button>
+            <button class="source-card source-card--ldsn" type="button" data-action="open-ldsn">
+              <span class="source-icon">旅</span>
+              <strong>LDSN1–4</strong>
+              <small>10 bài · Từ · câu · hội thoại · đoạn văn</small>
             </button>
             <button class="source-card" type="button" data-action="open-301">
               <span class="source-icon">301</span>
@@ -443,6 +456,78 @@
       state.lessonData = dataset;
     } catch (error) {
       state.error = `Không mở được mẫu New HSK: ${error.message || error}`;
+    }
+    render();
+  }
+
+  async function openLdsnLibrary() {
+    state.error = '';
+    state.screen = 'ldsnUnits';
+    render();
+    try {
+      if (!SourceAdapters || !ActivityBuilders) throw new Error('Thiếu source-adapters.js hoặc activity-builders.js.');
+      if (!state.ldsnData) {
+        const response = await fetch('../ldsn14/data/lessons.json');
+        if (!response.ok) throw new Error(`Dữ liệu LDSN ${response.status}`);
+        state.ldsnData = await response.json();
+        state.ldsnUnits = SourceAdapters.listLdsnUnits(state.ldsnData);
+      }
+    } catch (error) {
+      state.error = `Không mở được LDSN1-4: ${error.message || error}`;
+    }
+    render();
+  }
+
+  function renderLdsnUnits() {
+    app.innerHTML = `
+      ${pageHeader('LDSN1–4', 'Chọn bài học', true)}
+      <main class="listen-main">
+        ${state.error ? errorCard(state.error) : ''}
+        <div class="lesson-list lesson-list--ldsn">
+          ${state.ldsnUnits.length ? state.ldsnUnits.map((unit) => `
+            <button class="lesson-card lesson-card--ldsn" type="button" data-action="open-ldsn-unit" data-unit-id="${escapeHtml(unit.unitId)}">
+              <span class="lesson-number">${escapeHtml(unit.sectionOrder)}</span>
+              <span>
+                <strong class="lesson-card__title">${formatHanziRuns(unit.titleZh || unit.title)}</strong>
+                <small>${escapeHtml(unit.title)} · ${unit.wordCount} từ · ${unit.dialogueCount} lượt thoại · ${unit.passageSentenceCount} câu đoạn</small>
+              </span>
+              <b aria-hidden="true">›</b>
+            </button>
+          `).join('') : state.error ? '' : loadingCard('Đang đọc dữ liệu LDSN1-4...')}
+        </div>
+      </main>
+      ${bottomNav()}
+      ${settingsSheet()}
+    `;
+  }
+
+  async function openLdsnUnit(unitId) {
+    const unit = state.ldsnUnits.find((entry) => entry.unitId === unitId);
+    if (!unit || !state.ldsnData) return;
+    state.source = 'ldsn14';
+    state.lesson = { id: unit.unitId, lesson_id: unit.unitId, title: unit.title, title_zh: unit.titleZh };
+    state.lessonData = null;
+    state.dataset = null;
+    state.activityDescriptor = null;
+    state.sentenceFilter = 'all';
+    state.items = [];
+    state.practiceItems = null;
+    state.vocabulary = [];
+    state.error = '';
+    state.screen = 'mode';
+    render();
+    try {
+      const dataset = SourceAdapters.adaptLdsnUnit(state.ldsnData, unit.unitId, {
+        sourceFile: 'modules/ldsn14/data/lessons.json'
+      });
+      const validation = SourceAdapters.validateDataset(dataset);
+      if (!validation.ok) throw new Error(validation.errors.join(' · '));
+      state.dataset = dataset;
+      state.items = dataset.sentences.slice();
+      state.vocabulary = dataset.words.slice();
+      state.lessonData = dataset;
+    } catch (error) {
+      state.error = `Không mở được bài LDSN: ${error.message || error}`;
     }
     render();
   }
@@ -866,7 +951,7 @@
   }
 
   function renderModeChoice() {
-    if (state.dataset && state.source === 'new-hsk') {
+    if (state.dataset) {
       renderDatasetModeChoice();
       return;
     }
@@ -917,22 +1002,31 @@
     `;
   }
 
+  function datasetSentenceFilters() {
+    const dataset = state.dataset || {};
+    if (Array.isArray(dataset.sentenceFilters) && dataset.sentenceFilters.length) return dataset.sentenceFilters;
+    const stats = dataset.stats || {};
+    return [
+      { id: 'all', label: 'Toàn bộ', description: `${stats.sentenceCount || 0} câu phân biệt` },
+      { id: 'vocabulary', label: 'Ví dụ từ vựng', description: `${stats.vocabularyExampleCount || 0} câu gốc` },
+      { id: 'grammar', label: 'Ngữ pháp', description: `${stats.grammarExampleCount || 0} câu` },
+      { id: 'authored', label: 'Biên soạn', description: `${stats.authoredSentenceCount || 0} câu luyện tập` }
+    ];
+  }
+
   function filteredDatasetSentences() {
     const sentences = state.dataset && state.dataset.sentences || [];
-    if (state.sentenceFilter === 'grammar') {
-      return sentences.filter((item) => item.sentenceType === 'grammar-example' || item.alsoGrammarExample);
-    }
-    if (state.sentenceFilter === 'vocabulary') {
-      return sentences.filter((item) => item.sentenceType === 'vocabulary-example');
-    }
-    if (state.sentenceFilter === 'authored') {
-      return sentences.filter((item) => item.originType === 'authored');
-    }
+    if (state.sentenceFilter === 'all') return sentences.slice();
+    const configured = datasetSentenceFilters().find((filter) => filter.id === state.sentenceFilter);
+    if (configured && configured.tag) return sentences.filter((item) => Array.isArray(item.tags) && item.tags.includes(configured.tag));
+    if (state.sentenceFilter === 'grammar') return sentences.filter((item) => item.sentenceType === 'grammar-example' || item.alsoGrammarExample);
+    if (state.sentenceFilter === 'vocabulary') return sentences.filter((item) => item.sentenceType === 'vocabulary-example');
+    if (state.sentenceFilter === 'authored') return sentences.filter((item) => item.originType === 'authored');
     return sentences.slice();
   }
 
   function setSentenceFilter(filter) {
-    if (!['all', 'vocabulary', 'grammar', 'authored'].includes(filter)) return;
+    if (!datasetSentenceFilters().some((entry) => entry.id === filter)) return;
     state.sentenceFilter = filter;
     state.items = filteredDatasetSentences();
     render();
@@ -958,7 +1052,9 @@
         <section class="dataset-summary dataset-summary--pastel">
           <div><strong>${formatHanziRuns(dataset.unit.titleZh || '')}</strong><span>${escapeHtml(dataset.unit.title || '')}</span></div>
           <div class="dataset-summary__stats"><span>${stats.wordCount} từ</span><span>${stats.sentenceCount} câu phân biệt</span><span>${stats.dialogueCount} hội thoại</span><span>${stats.passageCount} đoạn</span></div>
-          <p class="dataset-source-breakdown"><strong>${stats.sentenceCount} câu</strong> = ${stats.vocabularyExampleCount || 0} ví dụ từ vựng gốc + ${stats.grammarOnlyCount || 0} ngữ pháp riêng + ${stats.authoredSentenceCount || 0} câu biên soạn.</p>
+          <p class="dataset-source-breakdown">${state.source === 'ldsn14'
+            ? `<strong>${stats.sentenceCount} câu</strong> gồm ${stats.translationSentenceCount || 0} câu dịch, ${stats.dialogueSentenceCount || 0} lượt thoại, ${stats.passageSentenceCount || 0} câu đoạn và ${stats.grammarExampleCount || 0} ví dụ ngữ pháp.`
+            : `<strong>${stats.sentenceCount} câu</strong> = ${stats.vocabularyExampleCount || 0} ví dụ từ vựng gốc + ${stats.grammarOnlyCount || 0} ngữ pháp riêng + ${stats.authoredSentenceCount || 0} câu biên soạn.`}</p>
         </section>
 
         <section class="activity-section activity-section--word">
@@ -973,12 +1069,9 @@
         <section class="sentence-filter-card sentence-filter-card--pastel">
           <div><p class="eyebrow">Nội dung câu</p><strong>Chọn phạm vi luyện</strong></div>
           <div class="sentence-filter-options" role="group" aria-label="Lọc câu">
-            <button data-action="set-sentence-filter" data-filter="all" class="${state.sentenceFilter === 'all' ? 'active' : ''}">Toàn bộ <small>${stats.sentenceCount || 0} câu phân biệt</small></button>
-            <button data-action="set-sentence-filter" data-filter="vocabulary" class="${state.sentenceFilter === 'vocabulary' ? 'active' : ''}">Ví dụ từ vựng <small>${stats.vocabularyExampleCount || 0} câu gốc</small></button>
-            <button data-action="set-sentence-filter" data-filter="grammar" class="${state.sentenceFilter === 'grammar' ? 'active' : ''}">Ngữ pháp <small>${stats.grammarExampleCount || 0} câu · ${stats.grammarOnlyCount || 0} riêng</small></button>
-            <button data-action="set-sentence-filter" data-filter="authored" class="${state.sentenceFilter === 'authored' ? 'active' : ''}">Biên soạn <small>${stats.authoredSentenceCount || 0} câu luyện tập</small></button>
+            ${datasetSentenceFilters().map((filter) => `<button data-action="set-sentence-filter" data-filter="${escapeHtml(filter.id)}" class="${state.sentenceFilter === filter.id ? 'active' : ''}">${escapeHtml(filter.label)} <small>${escapeHtml(filter.description || '')}</small></button>`).join('')}
           </div>
-          <small class="sentence-filter-note">Đang dùng ${filteredDatasetSentences().length}/${stats.sentenceCount} câu. Một câu có thể đồng thời là ví dụ từ vựng và ví dụ ngữ pháp.</small>
+          <small class="sentence-filter-note">Đang dùng ${filteredDatasetSentences().length}/${stats.sentenceCount} câu. Các câu trùng nội dung chỉ giữ một bản và vẫn bảo toàn nhãn nguồn.</small>
         </section>
 
         <section class="activity-section activity-section--sentence">
@@ -1172,6 +1265,26 @@
     });
   }
 
+  function restoreDatasetSession(session) {
+    if (!state.dataset) return false;
+    const validFilters = datasetSentenceFilters().map((entry) => entry.id);
+    state.sentenceFilter = validFilters.includes(session.sentenceFilter) ? session.sentenceFilter : 'all';
+    state.items = filteredDatasetSentences();
+    const descriptor = session.activityDescriptor;
+    if (descriptor && descriptor.activity) {
+      startDatasetActivity(descriptor.activity, descriptor.groupId || '', {
+        choiceCount: descriptor.choiceCount,
+        startIndex: session.currentIndex || 0
+      });
+    } else {
+      const mode = session.mode || 'dictation';
+      startPractice(mode, session.currentIndex || 0, { items: state.items.slice(), sessionName: session.sessionName || '' });
+    }
+    state.activitySelection = Array.isArray(session.activitySelection) ? session.activitySelection.slice() : [];
+    render();
+    return true;
+  }
+
   async function resumeLastSession() {
     const session = loadJson(LAST_SESSION_KEY, null);
     if (!session) {
@@ -1184,21 +1297,15 @@
       const unit = state.newHskUnits.find((entry) => entry.unitId === session.lessonId);
       if (!unit) return;
       await openNewHskUnit(unit.unitId);
-      if (!state.dataset) return;
-      state.sentenceFilter = ['all', 'vocabulary', 'grammar', 'authored'].includes(session.sentenceFilter) ? session.sentenceFilter : 'all';
-      state.items = filteredDatasetSentences();
-      const descriptor = session.activityDescriptor;
-      if (descriptor && descriptor.activity) {
-        startDatasetActivity(descriptor.activity, descriptor.groupId || '', {
-          choiceCount: descriptor.choiceCount,
-          startIndex: session.currentIndex || 0
-        });
-      } else {
-        const mode = session.mode || 'dictation';
-        startPractice(mode, session.currentIndex || 0, { items: state.items.slice(), sessionName: session.sessionName || '' });
-      }
-      state.activitySelection = Array.isArray(session.activitySelection) ? session.activitySelection.slice() : [];
-      render();
+      restoreDatasetSession(session);
+      return;
+    }
+    if (session.source === 'ldsn14') {
+      await openLdsnLibrary();
+      const unit = state.ldsnUnits.find((entry) => entry.unitId === session.lessonId);
+      if (!unit) return;
+      await openLdsnUnit(unit.unitId);
+      restoreDatasetSession(session);
       return;
     }
     if (session.source === '301') {
@@ -2020,6 +2127,8 @@
       else if (action === 'close-menu') element.onclick = () => { state.menuOpen = false; render(); };
       else if (action === 'open-new-hsk') element.onclick = openNewHskLibrary;
       else if (action === 'open-new-hsk-unit') element.onclick = () => openNewHskUnit(element.dataset.unitId);
+      else if (action === 'open-ldsn') element.onclick = openLdsnLibrary;
+      else if (action === 'open-ldsn-unit') element.onclick = () => openLdsnUnit(element.dataset.unitId);
       else if (action === 'open-301') element.onclick = open301Library;
       else if (action === 'open-custom') element.onclick = openCustomLibrary;
       else if (action === 'open-review') element.onclick = openReview;
@@ -3345,7 +3454,7 @@
       render();
       return;
     }
-    if (state.screen === 'newHskUnits') {
+    if (state.screen === 'newHskUnits' || state.screen === 'ldsnUnits') {
       state.screen = 'home';
       render();
       return;
@@ -3361,6 +3470,10 @@
         state.dataset = null;
         state.items = [];
         state.screen = 'newHskUnits';
+      } else if (state.source === 'ldsn14') {
+        state.dataset = null;
+        state.items = [];
+        state.screen = 'ldsnUnits';
       } else if (state.source === '301') state.screen = 'lessons301';
       else if (state.source === 'custom') state.screen = state.lesson && state.lesson.groupId ? 'customGroup' : 'custom';
       else state.screen = 'home';

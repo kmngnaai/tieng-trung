@@ -52,7 +52,8 @@ assert(!app.includes('moveCaretToEnd'), 'Lỗi cũ ép caret về cuối chưa �
 assert(css.includes('.dictation-slot.is-selected'), 'Thiếu phản hồi trực quan khi chọn chữ sai');
 assert(css.includes('.dictation-ime-input'), 'Thiếu input IME');
 
-assert(app.includes('data-filter="authored"'), 'Thiếu bộ lọc Biên soạn');
+assert(app.includes("{ id: 'authored', label: 'Biên soạn'"), 'Thiếu cấu hình bộ lọc Biên soạn');
+assert(app.includes('datasetSentenceFilters'), 'Bộ lọc câu chưa dùng cấu hình chung theo dataset');
 assert(adapters.includes('vocabularyExampleCount'), 'Thiếu thống kê ví dụ từ vựng gốc');
 assert(adapters.includes('grammarOnlyCount'), 'Thiếu thống kê ngữ pháp riêng');
 assert(adapters.includes('authoredSentenceCount'), 'Thiếu thống kê câu biên soạn');
