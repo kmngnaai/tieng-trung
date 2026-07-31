@@ -129,8 +129,9 @@
 
   function deriveAutomaticRating(meta) {
     const value = meta || {};
-    if (value.usedHint || value.viewedAnswer) return 'hard';
-    if (Number(value.wrongChecks || 0) > 0) return 'review';
+    const wrongChecks = Math.max(0, Number(value.wrongChecks || 0));
+    if (value.usedHint || value.viewedAnswer || wrongChecks >= 2) return 'hard';
+    if (wrongChecks === 1) return 'review';
     return 'easy';
   }
 

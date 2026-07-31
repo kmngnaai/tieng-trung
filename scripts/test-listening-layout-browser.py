@@ -72,7 +72,7 @@ def mobile_word_choice_scenario(browser):
     centered = assert_centered(page, '.audio-controls--5', 5)
     wait_floating(page, False)
 
-    page.evaluate('window.scrollTo(0, 400)')
+    page.evaluate("document.querySelector('[data-learning-target]').scrollIntoView({block:'start'})")
     wait_floating(page, True)
     collapsed = page.evaluate('''() => {
       const rail = document.querySelector('[data-floating-audio]');

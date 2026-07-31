@@ -2322,3 +2322,78 @@ button { color: inherit; }
     min-height: 42px;
   }
 }
+
+
+/* Listening mobile density V2 — one compact system for choices, ordering and feedback. */
+.sentence-count-setting {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 12px;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.sentence-count-setting > span { display: grid; gap: 2px; }
+.sentence-count-setting > span strong { color: var(--ink); font-size: 12px; }
+.sentence-count-setting > span small { color: var(--muted); font-size: 10px; }
+.sentence-count-presets { display: flex; gap: 5px; }
+.sentence-count-presets button,
+.sentence-count-custom button {
+  min-height: 34px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--surface);
+  color: var(--accent-strong);
+  font-weight: 750;
+}
+.sentence-count-presets button { min-width: 42px; padding: 0 8px; }
+.sentence-count-presets button.active { border-color: var(--accent); background: var(--accent-soft); }
+.sentence-count-custom { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 7px; }
+.sentence-count-custom input { min-width: 0; min-height: 36px; border: 1px solid var(--border); border-radius: 11px; padding: 0 10px; background: var(--surface); }
+.sentence-count-custom button { padding: 0 12px; }
+.auto-rating-note { display: block; margin-top: 3px; color: var(--accent-strong) !important; }
+
+@media (max-width: 560px) {
+  .practice-main { padding-inline: 8px; padding-bottom: 78px; }
+  .choice-card,
+  .ordering-card,
+  .group-context-card,
+  .activity-feedback { padding: 11px; border-radius: 17px; }
+  .choice-card .dictation-heading h2,
+  .ordering-card .dictation-heading h2 { font-size: 17px; line-height: 1.25; }
+  .word-choice-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; margin-top: 10px; }
+  .word-choice-option { min-height: 72px; display: grid; grid-template-columns: 1fr; place-content: center; gap: 2px; padding: 7px 5px; border-radius: 14px; }
+  .word-choice-option strong { font-size: 22px; line-height: 1.2; }
+  .word-choice-option span { font-size: 10px; line-height: 1.2; }
+  .ordering-card .activity-instruction { margin-top: 5px; font-size: 10.5px; line-height: 1.4; }
+  .ordering-answer,
+  .ordering-pool { min-height: 52px; gap: 6px; margin-top: 9px; padding: 7px; border-radius: 13px; }
+  .ordering-token { min-height: 38px; padding: 5px 9px; border-radius: 11px; }
+  .ordering-token span { font-size: 18px; }
+  .ordering-slot-placeholder { width: 36px; min-height: 36px; border-radius: 10px; }
+  .ordering-pool-label { margin: 10px 2px -3px; }
+  .ordering-actions { gap: 6px; margin-top: 9px; }
+  .ordering-actions button,
+  .link-button { min-height: 38px; border-radius: 11px; }
+  .link-button { margin-top: 4px; }
+  .sequence-answer,
+  .sequence-pool { gap: 6px; margin-top: 9px; }
+  .sequence-card,
+  .sequence-slot { min-height: 46px; padding: 7px 8px; border-radius: 12px; }
+  .sequence-card__content { line-height: 1.35; }
+  .sequence-card__content span[lang="zh-Hans"],
+  .sequence-card span[lang="zh-Hans"] { font-size: 16px; line-height: 1.35; }
+  .sequence-card > b,
+  .sequence-slot b,
+  .sequence-card--answer > b { width: 24px; height: 24px; border-radius: 7px; }
+  .activity-feedback { gap: 3px; margin-top: 10px; }
+  .activity-feedback > span { font-size: 19px; line-height: 1.4; }
+  .activity-feedback small { font-size: 11px; line-height: 1.35; }
+  .activity-feedback .rating-row { gap: 5px; margin-top: 7px; }
+  .activity-feedback .rating-row button { min-height: 36px; }
+  .practice-nav { gap: 7px; margin-top: 9px; }
+  .practice-nav button { min-height: 40px; }
+  .sentence-count-setting { grid-template-columns: 1fr; }
+  .sentence-count-presets { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .sentence-count-custom { grid-column: 1; }
+}

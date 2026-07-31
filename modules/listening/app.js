@@ -23,7 +23,8 @@
     autoCheck: true,
     autoRate: true,
     autoNext: true,
-    autoNextSeconds: 2
+    autoNextSeconds: 2,
+    sentenceCount: 'all'
   };
 
   const state = {
@@ -110,7 +111,8 @@
     dictationResumeIndex: null,
     groupContextExpanded: false,
     groupTranscriptOpen: false,
-    groupPreviewSpeaking: false
+    groupPreviewSpeaking: false,
+    modeScrollTop: 0
   };
 
   // Dùng một phần tử audio cố định ở ngoài #app. Safari/iPhone cấp quyền phát
@@ -221,6 +223,42 @@
 
   function progressKey(item, mode) {
     return `${item.sourceType || 'unknown'}:${item.sourceId || ''}:${item.lessonId || ''}:${item.id}:${mode}`;
+  }
+
+
+  function canonicalProgressRating(item) {
+    const canonicalId = String(item && (item.canonicalItemId || item.id) || '');
+    if (!canonicalId) return '';
+    let latest = null;
+    Object.values(state.progress || {}).forEach((entry) => {
+      const stored = entry && entry.item;
+      const storedId = String(stored && (stored.canonicalItemId || stored.id) || '');
+      if (storedId !== canonicalId || !entry.rating) return;
+      if (!latest || String(entry.lastReviewedAt || '') > String(latest.lastReviewedAt || '')) latest = entry;
+    });
+    return latest && latest.rating || '';
+  }
+
+  function prioritizeLearningItems(items) {
+    const rank = { review: 0, '': 1, hard: 2, easy: 3 };
+    return (items || []).map((item, index) => ({ item, index, rating: canonicalProgressRating(item) }))
+      .sort((left, right) => (rank[left.rating] ?? 1) - (rank[right.rating] ?? 1) || left.index - right.index)
+      .map((row) => row.item);
+  }
+
+  function normalizedSentenceCount(total) {
+    if (state.settings.sentenceCount === 'all') return total;
+    return Math.max(1, Math.min(Number(state.settings.sentenceCount) || total, total));
+  }
+
+  function limitedSentencePool(items) {
+    const prioritized = prioritizeLearningItems(items || []);
+    return prioritized.slice(0, normalizedSentenceCount(prioritized.length));
+  }
+
+  function restoreModeScroll() {
+    const top = Math.max(0, Number(state.modeScrollTop) || 0);
+    requestAnimationFrame(() => window.scrollTo({ top, behavior: 'instant' }));
   }
 
   function saveSettings() {
@@ -1071,7 +1109,14 @@
           <div class="sentence-filter-options" role="group" aria-label="Lọc câu">
             ${datasetSentenceFilters().map((filter) => `<button data-action="set-sentence-filter" data-filter="${escapeHtml(filter.id)}" class="${state.sentenceFilter === filter.id ? 'active' : ''}">${escapeHtml(filter.label)} <small>${escapeHtml(filter.description || '')}</small></button>`).join('')}
           </div>
-          <small class="sentence-filter-note">Đang dùng ${filteredDatasetSentences().length}/${stats.sentenceCount} câu. Các câu trùng nội dung chỉ giữ một bản và vẫn bảo toàn nhãn nguồn.</small>
+          <div class="sentence-count-setting">
+            <span><strong>Số câu trong phiên</strong><small>Ưu tiên Ôn → Mới → Khó → Dễ</small></span>
+            <div class="sentence-count-presets">
+              ${['5','10','20','all'].map((value) => `<button type="button" data-action="set-sentence-count" data-count="${value}" class="${String(state.settings.sentenceCount) === value ? 'active' : ''}">${value === 'all' ? 'Tất cả' : value}</button>`).join('')}
+            </div>
+            <div class="sentence-count-custom"><input id="sentenceCountCustom" type="number" min="1" max="${filteredDatasetSentences().length}" inputmode="numeric" placeholder="Số khác"><button type="button" data-action="apply-sentence-count">Áp dụng</button></div>
+          </div>
+          <small class="sentence-filter-note">Đang dùng tối đa ${normalizedSentenceCount(filteredDatasetSentences().length)}/${stats.sentenceCount} câu. Các câu trùng nội dung chỉ giữ một bản và vẫn bảo toàn nhãn nguồn.</small>
         </section>
 
         <section class="activity-section activity-section--sentence">
@@ -1109,6 +1154,20 @@
     `;
   }
 
+  function randomShuffle(list) {
+    const result = (list || []).slice();
+    for (let index = result.length - 1; index > 0; index -= 1) {
+      const swapIndex = Math.floor(Math.random() * (index + 1));
+      [result[index], result[swapIndex]] = [result[swapIndex], result[index]];
+    }
+    if (result.length > 1 && result.every((entry, index) => entry === list[index])) [result[0], result[1]] = [result[1], result[0]];
+    return result;
+  }
+
+  function randomizeSequenceItem(item) {
+    return Object.assign({}, item, { shuffledCards: randomShuffle(item && item.cards || []) });
+  }
+
   function datasetGroup(groupId) {
     return state.dataset && state.dataset.groups.find((group) => group.id === groupId) || null;
   }
@@ -1119,27 +1178,29 @@
     const group = groupId ? datasetGroup(groupId) : null;
     const startIndex = Math.max(0, Number(configured.startIndex) || 0);
     const choiceCount = Number(configured.choiceCount) === 5 ? 5 : 4;
-    state.activityDescriptor = { activity, groupId: groupId || '', choiceCount };
-    const sentencePool = filteredDatasetSentences();
+    const shuffleSeed = `${Date.now()}:${Math.random()}`;
+    state.activityDescriptor = { activity, groupId: groupId || '', choiceCount, shuffleSeed };
+    state.modeScrollTop = window.scrollY || 0;
+    const sentencePool = limitedSentencePool(filteredDatasetSentences());
     if (activity === 'word-choice') {
-      startPractice('word-choice', startIndex, { items: ActivityBuilders.buildWordChoiceItems(state.dataset, { choiceCount }), sessionName: choiceCount === 5 ? 'Chọn từ · Mức khó' : 'Chọn từ nghe được' });
+      startPractice('word-choice', startIndex, { items: prioritizeLearningItems(ActivityBuilders.buildWordChoiceItems(state.dataset, { choiceCount, shuffleSeed })), sessionName: choiceCount === 5 ? 'Chọn từ · Mức khó' : 'Chọn từ nghe được' });
     } else if (activity === 'word-dictation') {
-      startPractice('dictation', startIndex, { items: state.dataset.words.slice(), sessionName: 'Điền tay từ nghe được' });
+      startPractice('dictation', startIndex, { items: prioritizeLearningItems(state.dataset.words.slice()), sessionName: 'Điền tay từ nghe được' });
     } else if (activity === 'sentence-ordering') {
-      startPractice('token-ordering', startIndex, { items: ActivityBuilders.buildSentenceOrderingItems(Object.assign({}, state.dataset, { sentences: sentencePool })), sessionName: 'Xếp từ thành câu' });
+      startPractice('token-ordering', startIndex, { items: ActivityBuilders.buildSentenceOrderingItems(Object.assign({}, state.dataset, { sentences: sentencePool }), { shuffleSeed }), sessionName: 'Xếp từ thành câu' });
     } else if (activity === 'sentence-dictation') {
       startPractice('dictation', startIndex, { items: sentencePool, sessionName: 'Chép từng câu' });
     } else if (activity === 'sentence-transcript') {
       startPractice('transcript', startIndex, { items: sentencePool, sessionName: 'Nghe có transcript' });
     } else if (activity === 'dialogue-sequence' || activity === 'passage-sequence') {
       if (!group) return;
-      startPractice('sequence-ordering', startIndex, { items: [ActivityBuilders.buildGroupSequenceItem(group)], sessionName: group.title });
+      startPractice('sequence-ordering', startIndex, { items: [randomizeSequenceItem(ActivityBuilders.buildGroupSequenceItem(group))], sessionName: group.title });
     } else if (activity === 'dialogue-token' || activity === 'passage-token') {
       if (!group) return;
-      startPractice('token-ordering', startIndex, { items: ActivityBuilders.buildGroupTokenItems(group), sessionName: group.title });
+      startPractice('token-ordering', startIndex, { items: prioritizeLearningItems(ActivityBuilders.buildGroupTokenItems(group).map((entry) => Object.assign({}, entry, { shuffledTokens: randomShuffle(entry.tokens || []) }))), sessionName: group.title });
     } else if (activity === 'dialogue-dictation' || activity === 'passage-dictation') {
       if (!group) return;
-      startPractice('dictation', startIndex, { items: ActivityBuilders.buildGroupDictationItems(group), sessionName: group.title });
+      startPractice('dictation', startIndex, { items: prioritizeLearningItems(ActivityBuilders.buildGroupDictationItems(group)), sessionName: group.title });
     } else if (activity === 'dialogue-full-dictation' || activity === 'passage-full-dictation') {
       if (!group) return;
       startPractice('passage', 0, { items: [ActivityBuilders.buildGroupFullDictationItem(group)], sessionName: group.title });
@@ -1658,7 +1719,8 @@
       <span lang="zh-Hans">${escapeHtml(item.text)}</span>
       ${item.pinyin ? `<small>${escapeHtml(item.pinyin)}</small>` : ''}
       ${item.meaning ? `<small>${escapeHtml(item.meaning)}</small>` : ''}
-      <div class="rating-row"><button data-action="rate-item" data-rating="easy">Dễ</button><button data-action="rate-item" data-rating="review">Ôn</button><button data-action="rate-item" data-rating="hard">Khó</button></div>
+      ${state.autoSuggestedRating ? `<small class="auto-rating-note">Đã tự gán: <strong>${ratingLabel(state.autoSuggestedRating)}</strong>${state.settings.autoNext && Number(state.settings.autoNextSeconds) > 0 && correct ? ` · Có ${state.settings.autoNextSeconds}s để đổi` : ''}</small>` : ''}
+      <div class="rating-row"><button data-action="rate-item" data-rating="easy" class="${canonicalProgressRating(item) === 'easy' ? 'active' : ''}">Dễ</button><button data-action="rate-item" data-rating="review" class="${canonicalProgressRating(item) === 'review' ? 'active' : ''}">Ôn</button><button data-action="rate-item" data-rating="hard" class="${canonicalProgressRating(item) === 'hard' ? 'active' : ''}">Khó</button></div>
     </section>`;
   }
 
@@ -2137,6 +2199,8 @@
       else if (action === 'start-mode') element.onclick = () => startPractice(element.dataset.mode, 0);
       else if (action === 'start-dataset-activity') element.onclick = () => startDatasetActivity(element.dataset.activity, element.dataset.groupId || '', { choiceCount: Number(element.dataset.choiceCount) || 4 });
       else if (action === 'set-sentence-filter') element.onclick = () => setSentenceFilter(element.dataset.filter);
+      else if (action === 'set-sentence-count') element.onclick = () => { state.settings.sentenceCount = element.dataset.count === 'all' ? 'all' : String(Math.max(1, Number(element.dataset.count) || 1)); saveSettings(); render(); };
+      else if (action === 'apply-sentence-count') element.onclick = () => { const input = document.getElementById('sentenceCountCustom'); const value = Math.max(1, Math.min(Number(input && input.value) || 1, filteredDatasetSentences().length)); state.settings.sentenceCount = String(value); saveSettings(); render(); };
       else if (action === 'open-content-preview') element.onclick = openContentPreview;
       else if (action === 'open-preview-item') element.onclick = () => startPractice('transcript', Number(element.dataset.index) || 0);
       else if (action === 'open-library-group') element.onclick = () => openLibraryGroup(element.dataset.groupId);
@@ -2774,7 +2838,9 @@
     if (!element) return false;
     const rect = element.getBoundingClientRect();
     const bounds = practiceViewportBounds();
-    return rect.bottom > bounds.top && rect.top < bounds.bottom;
+    const visibleHeight = Math.max(0, Math.min(rect.bottom, bounds.bottom) - Math.max(rect.top, bounds.top));
+    const usefulHeight = Math.min(96, Math.max(44, rect.height * 0.35));
+    return visibleHeight >= usefulHeight;
   }
 
   function detectPracticeKeyboardVisible() {
@@ -3032,8 +3098,11 @@
     if (!isCorrect) {
       state.currentWrongChecks += 1;
       markSessionWrong(item);
-    } else if (state.settings.autoRate) {
-      rateItem(deriveAutomaticRating(), { render: false });
+    }
+    if (state.settings.autoRate) {
+      const rating = deriveAutomaticRating();
+      state.autoSuggestedRating = rating;
+      rateItem(rating, { render: false });
     }
     saveProgress();
     rememberSession();
@@ -3110,7 +3179,7 @@
     }
     updateAttemptProgress(item);
 
-    if (state.result.isCorrect && state.settings.autoRate) {
+    if (state.settings.autoRate) {
       const rating = deriveAutomaticRating();
       state.autoSuggestedRating = rating;
       rateItem(rating, { render: false });
@@ -3452,6 +3521,7 @@
       state.screen = 'mode';
       stopSpeech();
       render();
+      restoreModeScroll();
       return;
     }
     if (state.screen === 'newHskUnits' || state.screen === 'ldsnUnits') {

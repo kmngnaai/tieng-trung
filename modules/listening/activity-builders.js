@@ -71,10 +71,10 @@
         .map((word) => ({ word, score: distractorScore(answer, word) }))
         .sort((left, right) => right.score - left.score || left.word.text.localeCompare(right.word.text));
       const bucket = candidates.slice(0, Math.max(choiceCount * 3, choiceCount - 1));
-      const distractors = deterministicShuffle(bucket, `${answer.id}:distractors`)
+      const distractors = deterministicShuffle(bucket, `${configured.shuffleSeed || 'stable'}:${answer.id}:distractors`)
         .slice(0, Math.max(0, choiceCount - 1))
         .map((entry) => entry.word);
-      const choices = deterministicShuffle([answer].concat(distractors), `${answer.id}:choices:${choiceCount}`)
+      const choices = deterministicShuffle([answer].concat(distractors), `${configured.shuffleSeed || 'stable'}:${answer.id}:choices:${choiceCount}`)
         .map((word) => ({ id: word.id, text: word.text, pinyin: word.pinyin, meaning: word.meaning }));
       return Object.assign({}, answer, {
         id: `word-choice:${answer.id}`,
@@ -108,7 +108,7 @@
           canonicalItemId: sentence.id,
           activityType: 'token-ordering',
           tokens,
-          shuffledTokens: deterministicShuffle(tokens, `${sentence.id}:tokens`)
+          shuffledTokens: deterministicShuffle(tokens, `${configured.shuffleSeed || 'stable'}:${sentence.id}:tokens`)
         });
       })
       .filter(Boolean);
