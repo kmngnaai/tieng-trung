@@ -5,7 +5,6 @@
   const DATA_URL = 'data/lessons.json?v=20260731-ldsn6';
   const HSK_LOOKUP_URL = '../hanzi-stroke/data/learning/hsk/hsk_flashcard_lookup.json?v=20260731-ldsn5';
   const HSK_EXTERNAL_FLASHCARD_KEY = 'tiengTrung.hsk.externalFlashcard.v1';
-  const HSK_POPUP_SEED_PREFIX = 'tiengTrung.hsk.popupSeed.';
   const SETTINGS_KEY = 'tiengTrung.ldsn14.settings.v1';
   const PROGRESS_KEY = 'tiengTrung.ldsn14.progress.v1';
   const TABS = Object.freeze([
@@ -56,6 +55,8 @@
   let progress = readJson(PROGRESS_KEY, {});
   let wordDetailLookupPromise = null;
   let activeWordDetail = null;
+  let sharedWordDetailFrameReady = false;
+  let pendingWordDetailPayload = null;
   let flashcardSession = null;
 
   function readJson(key, fallback) {
@@ -206,7 +207,7 @@
 
   function pinyinToggleButton(label = 'Pinyin') {
     const visible = settings.displayPinyin !== false;
-    return `<button class="ldsn-eye-btn${visible ? ' is-active' : ''}" type="button" data-toggle-pinyin aria-pressed="${visible}" title="${visible ? 'Ẩn' : 'Hiện'} pinyin"><span data-pinyin-icon aria-hidden="true">${visible ? '👁' : '◉'}</span><span class="ldsn-sr-only" data-pinyin-label>${visible ? 'Ẩn' : 'Hiện'} ${esc(label)}</span></button>`;
+    return `<button class="ldsn-pinyin-toggle${visible ? ' is-active' : ''}" type="button" data-toggle-pinyin aria-pressed="${visible}" title="${visible ? 'Ẩn' : 'Hiện'} pinyin"><span class="ldsn-pinyin-toggle-mark" aria-hidden="true"></span><span class="ldsn-sr-only" data-pinyin-label>${visible ? 'Ẩn' : 'Hiện'} ${esc(label)}</span></button>`;
   }
 
   function applyPinyinVisibility() {
@@ -216,8 +217,6 @@
       button.classList?.toggle('is-active', visible);
       button.setAttribute?.('aria-pressed', String(visible));
       button.setAttribute?.('title', `${visible ? 'Ẩn' : 'Hiện'} pinyin`);
-      const icon = button.querySelector?.('[data-pinyin-icon]');
-      if (icon) icon.textContent = visible ? '👁' : '◉';
       const label = button.querySelector?.('[data-pinyin-label]');
       if (label) label.textContent = `${visible ? 'Ẩn' : 'Hiện'} Pinyin`;
     });
@@ -341,6 +340,23 @@
     };
   }
 
+  function renderSharedWordPreview(word) {
+    const sentences = lessonSentenceRows(word);
+    const related = lessonRelatedWords(word);
+    return `
+      <div class="ldsn-word-popup-topbar">
+        <button type="button" class="ldsn-word-popup-back" data-word-popup-back>← Quay lại bài</button>
+        <button type="button" class="ldsn-word-popup-close" data-word-popup-close aria-label="Đóng">×</button>
+      </div>
+      <section class="ldsn-word-popup-hero">
+        <div><h2>${esc(word.hanzi)}</h2><strong>${esc(word.pinyin || '')}</strong><p>${esc(word.vi || '')}</p>${word.wordClass || word.hanViet ? `<small>${esc(word.wordClass || 'từ vựng')}${word.hanViet ? ` · Hán Việt: ${esc(word.hanViet)}` : ''}</small>` : ''}</div>
+        <button type="button" class="ldsn-word-popup-speaker" data-word-popup-speak="${attr(word.hanzi)}" aria-label="Nghe ${esc(word.hanzi)}">🔊</button>
+      </section>
+      ${sentences.length ? `<section class="ldsn-word-popup-section"><h3>Câu trong bài</h3><div class="ldsn-word-popup-list">${sentences.slice(0, 2).map(row => `<article><div><b>${esc(row.hanzi)}</b><small>${esc(row.pinyin || '')}</small><p>${esc(row.vi || '')}</p></div><button type="button" data-word-popup-speak="${attr(row.hanzi)}" aria-label="Nghe câu">🔊</button></article>`).join('')}</div></section>` : ''}
+      ${related.length ? `<section class="ldsn-word-popup-section ldsn-word-popup-related"><h3>Từ liên quan trong bài</h3><div class="ldsn-word-popup-list">${related.slice(0, 3).map(row => `<article><div><b>${esc(row.hanzi)} <em>${esc(row.pinyin)}</em></b><p>${esc(row.vi)}</p></div><button type="button" data-word-popup-speak="${attr(row.hanzi)}" aria-label="Nghe ${esc(row.hanzi)}">🔊</button></article>`).join('')}</div></section>` : ''}
+      <div class="ldsn-shared-detail-loading" role="status"><span class="ldsn-spinner" aria-hidden="true"></span><span>Đang mở tra cứu và cách viết…</span></div>`;
+  }
+
   function ensureSharedWordDetailFrame() {
     let overlay = document.getElementById('ldsnSharedWordDetail');
     if (overlay) return overlay;
@@ -348,43 +364,97 @@
     overlay.id = 'ldsnSharedWordDetail';
     overlay.className = 'ldsn-shared-detail-overlay';
     overlay.hidden = true;
-    overlay.innerHTML = '<iframe class="ldsn-shared-detail-frame" title="Chi tiết từ vựng" allow="clipboard-write"></iframe>';
+    overlay.innerHTML = `<section class="ldsn-shared-detail-shell" role="dialog" aria-modal="true" aria-label="Chi tiết từ vựng">
+      <div id="ldsnSharedWordPreview" class="ldsn-shared-detail-preview"></div>
+      <div class="ldsn-shared-detail-frame-host">
+        <iframe id="ldsnSharedWordDetailFrame" class="ldsn-shared-detail-frame" title="Chi tiết từ vựng" allow="clipboard-write" hidden></iframe>
+      </div>
+    </section>`;
     document.body.appendChild(overlay);
+    const frame = overlay.querySelector('#ldsnSharedWordDetailFrame');
+    frame.addEventListener('load', () => {
+      sharedWordDetailFrameReady = true;
+      sendSharedWordDetailOpen();
+    });
+    frame.addEventListener('error', () => {
+      if (!activeWordDetail) return;
+      overlay.hidden = true;
+      renderWordDetailPopup(activeWordDetail, {});
+      loadWordDetailLookup().then(items => {
+        if (activeWordDetail) renderWordDetailPopup(activeWordDetail, items);
+      });
+    });
+    overlay.addEventListener('click', event => {
+      if (event.target === overlay || event.target.closest('[data-word-popup-close], [data-word-popup-back]')) {
+        closeWordDetail();
+        return;
+      }
+      const speakButton = event.target.closest('[data-word-popup-speak]');
+      if (speakButton) speak(speakButton.dataset.wordPopupSpeak || '', speakButton);
+    });
     return overlay;
   }
 
-  async function openWordDetail(wordId) {
+  function sendSharedWordDetailOpen() {
+    if (!sharedWordDetailFrameReady || !pendingWordDetailPayload) return;
+    const frame = document.getElementById('ldsnSharedWordDetailFrame');
+    if (!frame?.contentWindow) return;
+    frame.contentWindow.postMessage({
+      type: 'tiengtrung:hsk-popup-open',
+      payload: pendingWordDetailPayload
+    }, location.origin);
+  }
+
+  function openWordDetail(wordId) {
     const word = getWordById(wordId);
     if (!word) return;
     activeWordDetail = word;
+    pendingWordDetailPayload = {
+      word: word.hanzi,
+      seed: buildWordDetailSeed(word),
+      returnContext: { type: 'external', label: `Quay lại Bài ${currentLesson.lessonNumber}` }
+    };
+
     const overlay = ensureSharedWordDetailFrame();
-    const frame = overlay.querySelector('iframe');
-    const token = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
-    try {
-      sessionStorage.setItem(`${HSK_POPUP_SEED_PREFIX}${token}`, JSON.stringify({
-        word: word.hanzi,
-        seed: buildWordDetailSeed(word),
-        returnContext: { type: 'external', label: `Quay lại Bài ${currentLesson.lessonNumber}` }
-      }));
-    } catch (_error) {
-      renderWordDetailPopup(word, await loadWordDetailLookup());
-      return;
+    const preview = overlay.querySelector('#ldsnSharedWordPreview');
+    const frame = overlay.querySelector('#ldsnSharedWordDetailFrame');
+    if (preview) {
+      preview.hidden = false;
+      preview.innerHTML = renderSharedWordPreview(word);
     }
-    frame.src = `../hanzi-stroke/index.html?embedPopup=1&popupToken=${encodeURIComponent(token)}`;
+    if (frame) frame.hidden = true;
     overlay.hidden = false;
     document.body.classList.add('ldsn-modal-open');
+
+    if (frame && frame.dataset.initialized !== 'true') {
+      frame.dataset.initialized = 'true';
+      frame.src = '../hanzi-stroke/index.html?embedPopup=1&popupHost=1';
+      return;
+    }
+    sendSharedWordDetailOpen();
+  }
+
+  function revealSharedWordDetail(word) {
+    if (!activeWordDetail || (word && word !== activeWordDetail.hanzi)) return;
+    const overlay = document.getElementById('ldsnSharedWordDetail');
+    if (!overlay || overlay.hidden) return;
+    const preview = overlay.querySelector('#ldsnSharedWordPreview');
+    const frame = overlay.querySelector('#ldsnSharedWordDetailFrame');
+    if (preview) preview.hidden = true;
+    if (frame) frame.hidden = false;
   }
 
   function closeWordDetail() {
     const shared = document.getElementById('ldsnSharedWordDetail');
     if (shared) {
       shared.hidden = true;
-      const frame = shared.querySelector('iframe');
-      if (frame) frame.src = 'about:blank';
+      const frame = shared.querySelector('#ldsnSharedWordDetailFrame');
+      if (frame) frame.hidden = true;
     }
     const overlay = document.getElementById('ldsnWordDetailOverlay');
     if (overlay) overlay.hidden = true;
     activeWordDetail = null;
+    pendingWordDetailPayload = null;
     document.body.classList.remove('ldsn-modal-open');
   }
 
@@ -1339,7 +1409,13 @@
 
   window.addEventListener?.('message', event => {
     if (event.origin !== location.origin) return;
-    if (event.data?.type === 'tiengtrung:hsk-popup-close') closeWordDetail();
+    if (event.data?.type === 'tiengtrung:hsk-popup-close') {
+      closeWordDetail();
+      return;
+    }
+    if (event.data?.type === 'tiengtrung:hsk-popup-ready') {
+      revealSharedWordDetail(event.data.word || '');
+    }
   });
 
   async function init() {

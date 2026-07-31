@@ -1313,13 +1313,50 @@ body.ldsn-modal-open { overflow: hidden; }
   padding-top: max(.5rem, env(safe-area-inset-top));
 }
 .ldsn-shared-detail-overlay[hidden] { display: none !important; }
+.ldsn-shared-detail-shell {
+  position: relative;
+  width: 100%;
+  height: calc(100dvh - max(.5rem, env(safe-area-inset-top)));
+  overflow: hidden;
+  background: #fffdf9;
+  box-shadow: 0 22px 70px rgba(30, 31, 32, .24);
+}
+.ldsn-shared-detail-preview,
+.ldsn-shared-detail-frame-host {
+  position: absolute;
+  inset: 0;
+}
+.ldsn-shared-detail-preview {
+  z-index: 2;
+  overflow: auto;
+  background: #fffdf9;
+}
+.ldsn-shared-detail-preview[hidden] { display: none !important; }
+.ldsn-shared-detail-frame-host { z-index: 1; }
 .ldsn-shared-detail-frame {
   display: block;
   width: 100%;
-  height: calc(100dvh - max(.5rem, env(safe-area-inset-top)));
+  height: 100%;
   border: 0;
-  background: transparent;
+  background: #fffdf9;
 }
+.ldsn-shared-detail-frame[hidden] { display: none !important; }
+.ldsn-shared-detail-loading {
+  margin: .8rem;
+  min-height: 3.2rem;
+  padding: .75rem .85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .55rem;
+  border: 1px solid #d8ece4;
+  border-radius: .9rem;
+  background: #f4fbf7;
+  color: #37685a;
+  font-size: .82rem;
+  font-weight: 800;
+}
+.ldsn-shared-detail-loading .ldsn-spinner { width: 1rem; height: 1rem; }
 .ldsn-passage-sentence summary strong {
   display: block;
   overflow: visible;
@@ -1367,10 +1404,10 @@ body.ldsn-modal-open { overflow: hidden; }
 }
 @media (min-width: 720px) {
   .ldsn-shared-detail-overlay { padding: 1rem; place-items: center; }
-  .ldsn-shared-detail-frame { width: min(44rem, 100%); height: min(88dvh, 54rem); border-radius: 1.1rem; overflow: hidden; }
+  .ldsn-shared-detail-shell { width: min(44rem, 100%); height: min(88dvh, 54rem); border-radius: 1.1rem; }
 }
 
-/* LDSN V6: compact mobile controls, shared pinyin eye and contextual grammar. */
+/* LDSN V6.2: compact mobile controls, shared pinyin state and contextual grammar. */
 .ldsn-sr-only {
   position: absolute !important;
   width: 1px !important;
@@ -1382,7 +1419,7 @@ body.ldsn-modal-open { overflow: hidden; }
   white-space: nowrap !important;
   border: 0 !important;
 }
-.ldsn-eye-btn,
+.ldsn-pinyin-toggle,
 .ldsn-settings-shortcut {
   width: 2.55rem;
   height: 2.55rem;
@@ -1397,12 +1434,32 @@ body.ldsn-modal-open { overflow: hidden; }
   font: inherit;
   cursor: pointer;
 }
-.ldsn-eye-btn.is-active {
-  border-color: #a8d1bf;
+.ldsn-pinyin-toggle.is-active {
+  border-color: #8fbea9;
   background: var(--ldsn-mint);
   color: var(--ldsn-green-strong);
 }
-.ldsn-eye-btn span[aria-hidden="true"] { font-size: 1rem; line-height: 1; }
+.ldsn-pinyin-toggle-mark {
+  position: relative;
+  width: 1rem;
+  height: 1rem;
+  display: block;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  box-sizing: border-box;
+}
+.ldsn-pinyin-toggle-mark::after {
+  content: '';
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: .42rem;
+  height: .42rem;
+  border-radius: 999px;
+  background: currentColor;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform .14s ease;
+}
+.ldsn-pinyin-toggle.is-active .ldsn-pinyin-toggle-mark::after { transform: translate(-50%, -50%) scale(1); }
 .ldsn-compact-actions { display: flex; align-items: center; justify-content: flex-end; gap: .38rem; flex: 0 0 auto; }
 .ldsn-compact-section-head {
   display: flex;

@@ -7788,6 +7788,25 @@ if(window.HanziWriter){
     }
   }
 
+  window.addEventListener('message', event => {
+    if(event.origin !== window.location.origin) return;
+    if(new URLSearchParams(window.location.search).get('embedPopup') !== '1') return;
+    if(event.data?.type !== 'tiengtrung:hsk-popup-open') return;
+    const payload = event.data.payload || {};
+    if(!payload.word) return;
+    openHskPopup(payload.word, {
+      pushHistory: false,
+      seed: payload.seed || {},
+      returnContext: payload.returnContext || { type: 'external' }
+    });
+    window.requestAnimationFrame(() => {
+      window.parent.postMessage({
+        type: 'tiengtrung:hsk-popup-ready',
+        word: payload.word
+      }, window.location.origin);
+    });
+  });
+
   ensureFlashcardLibraryUi();
   window.setTimeout(() => {
     if(!launchEmbeddedPopupFromStorage()) launchExternalFlashcardsFromStorage();

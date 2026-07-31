@@ -192,15 +192,24 @@ function clickTarget(selector, object) {
 
   const ldsnCode = fs.readFileSync(path.join(ROOT, 'modules/ldsn14/app.js'), 'utf8');
   assert(ldsnCode.includes('buildWordDetailSeed') && ldsnCode.includes('embedPopup=1'), 'LDSN must pass local fallback data into the shared HSK popup');
+  assert(ldsnCode.includes('renderSharedWordPreview') && ldsnCode.includes('Đang mở tra cứu và cách viết'), 'Word detail must render immediate LDSN content while advanced detail loads');
+  assert(ldsnCode.indexOf('overlay.hidden = false') < ldsnCode.indexOf("frame.src = '../hanzi-stroke/index.html?embedPopup=1&popupHost=1'"), 'Word detail overlay must become visible before the shared HSK frame starts loading');
+  assert(ldsnCode.includes("type: 'tiengtrung:hsk-popup-open'") && ldsnCode.includes("type === 'tiengtrung:hsk-popup-ready'"), 'LDSN must reuse one persistent HSK popup host through postMessage');
+  assert(!ldsnCode.includes("frame.src = 'about:blank'"), 'Closing word detail must keep the shared engine cached instead of reloading it');
+  assert(!ldsnCode.includes('👁') && ldsnCode.includes('ldsn-pinyin-toggle-mark'), 'Pinyin toggle must use a CSS-drawn circle instead of a device-dependent eye glyph');
   assert(ldsnCode.includes('tiengTrung.hsk.externalFlashcard.v1'), 'LDSN flashcards must launch the real HSK engine');
   assert(ldsnCode.includes('grammar.groups'), 'Grammar must render structured semantic groups');
+  const hskCode = fs.readFileSync(path.join(ROOT, 'modules/hanzi-stroke/app.js'), 'utf8');
+  assert(hskCode.includes("type !== 'tiengtrung:hsk-popup-open'") && hskCode.includes("type: 'tiengtrung:hsk-popup-ready'"), 'Shared HSK popup must accept repeated in-place word opens without reloading the iframe');
+  const ldsnCss = fs.readFileSync(path.join(ROOT, 'modules/ldsn14/style.css'), 'utf8');
+  assert(ldsnCss.includes('.ldsn-pinyin-toggle-mark::after') && !ldsnCss.includes('.ldsn-eye-btn'), 'Pinyin state indicator must be drawn consistently with CSS');
   const learnHtml = fs.readFileSync(path.join(ROOT, 'modules/hanzi-stroke/index.html'), 'utf8');
   assert(learnHtml.includes('data-study-tab="ldsn14"'), 'Học horizontal tabs must include LDSN1-4');
   assert(learnHtml.includes('ui-module-card--ldsn'), 'Học overview must include the LDSN1-4 card');
   assert(learnHtml.includes('id="studyTabFlashcards"'), 'Học horizontal tabs must keep the existing Thẻ tab');
   const studyNav = learnHtml.match(/<nav class="study-tabs[\s\S]*?<\/nav>/)?.[0] || '';
   assert((studyNav.match(/data-study-tab=/g) || []).length === 5, 'Học horizontal navigation must render all five tabs');
-  assert(learnHtml.includes('style.css?v=20260718-deckmultiselect1&ldsn=20260731-5') && learnHtml.includes('app.js?v=20260718-deckmultiselect1&ldsn=20260731-5'), 'Học assets must be cache-busted for LDSN V5');
+  assert(learnHtml.includes('style.css?v=20260718-deckmultiselect1&ldsn=20260731-6.2') && learnHtml.includes('app.js?v=20260718-deckmultiselect1&ldsn=20260731-6.2'), 'Học assets must be cache-busted for the shared popup host');
 
   const tabs = ['learn', 'practice', 'dialogue', 'content', 'review'];
   for (let lessonNo = 1; lessonNo <= 10; lessonNo += 1) {
