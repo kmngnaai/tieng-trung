@@ -3,13 +3,14 @@
   // Listening library v1.16 — groups/decks/trash replace the old flat custom list.
 
   const Core = window.ListeningCore;
+  const SourceAdapters = window.ListeningSourceAdapters;
+  const ActivityBuilders = window.ListeningActivityBuilders;
   const LibraryStore = window.ListeningLibraryStore;
   const app = document.getElementById('app');
   const SETTINGS_KEY = 'tieng-trung-listening-settings-v1';
   const PROGRESS_KEY = 'tieng-trung-listening-progress-v1';
   const LAST_SESSION_KEY = 'tieng-trung-listening-last-session-v1';
   const AudioStore = window.ListeningAudioStore;
-  const FLOATING_AUDIO_KEY = 'tieng-trung-listening-floating-audio-v1';
 
   const DEFAULT_SETTINGS = {
     voiceSource: 'auto',
@@ -87,8 +88,27 @@
     audioLoadToken: 0,
     audioPrepareScheduled: false,
     audioPreparePromise: null,
-    floatingAudioCollapsed: loadJson(FLOATING_AUDIO_KEY, { collapsed: false }).collapsed === true,
-    manualBrowseMode: false
+    floatingAudioCollapsed: true,
+    floatingAudioVisible: false,
+    primaryAudioVisible: true,
+    keyboardVisible: false,
+    activeTargetAway: false,
+    manualBrowseMode: false,
+    dataset: null,
+    newHskManifest: null,
+    newHskLevelData: null,
+    newHskGrammarData: null,
+    newHskUnits: [],
+    activitySelection: [],
+    activityResult: null,
+    activityDescriptor: null,
+    sentenceFilter: 'all',
+    dictationCaretIndex: 0,
+    dictationSelectionLength: 0,
+    dictationResumeIndex: null,
+    groupContextExpanded: false,
+    groupTranscriptOpen: false,
+    groupPreviewSpeaking: false
   };
 
   // Dùng một phần tử audio cố định ở ngoài #app. Safari/iPhone cấp quyền phát
@@ -178,6 +198,10 @@
   }
 
   function sessionTitle() {
+    if (state.source === 'new-hsk') {
+      const title = state.dataset && state.dataset.unit && (state.dataset.unit.titleZh || state.dataset.unit.title) || state.lesson && (state.lesson.title_zh || state.lesson.title) || 'New HSK 1';
+      return `New HSK 1 · ${title}`;
+    }
     if (state.source === '301') {
       const lessonNo = state.lesson && state.lesson.lesson_no ? `Bài ${state.lesson.lesson_no}` : '';
       const title = state.lessonData && (state.lessonData.title_zh || state.lessonData.title) || state.lesson && (state.lesson.title_zh || state.lesson.title) || '';
@@ -239,6 +263,7 @@
   function render() {
     if (!app) return;
     if (state.screen === 'home') renderHome();
+    else if (state.screen === 'newHskUnits') renderNewHskUnits();
     else if (state.screen === 'lessons301') render301Lessons();
     else if (state.screen === 'custom') renderCustomLibrary();
     else if (state.screen === 'customGroup') renderCustomGroupScreen();
@@ -250,8 +275,8 @@
     else renderHome();
     bindCommonEvents();
     syncOverlayState();
-    requestAnimationFrame(updateFloatingAudioPosition);
-    if (state.screen === 'practice' && state.settings.voiceSource !== 'device') schedulePrepareCurrentAudio();
+    requestAnimationFrame(setupPracticeFloatingAudio);
+    if (state.screen === 'practice' && state.settings.voiceSource !== 'device' && !state.groupPreviewSpeaking) schedulePrepareCurrentAudio();
   }
 
   function renderHome() {
@@ -270,10 +295,10 @@
             <button class="icon-action" data-action="open-settings" aria-label="Cài đặt giọng đọc">⚙</button>
           </div>
           <div class="source-grid">
-            <button class="source-card is-disabled" type="button" disabled>
-              <span class="source-icon">HSK</span>
-              <strong>HSK</strong>
-              <small>Sẽ nối dữ liệu HSK hiện có ở bước tiếp theo</small>
+            <button class="source-card" type="button" data-action="open-new-hsk">
+              <span class="source-icon">新</span>
+              <strong>New HSK 1</strong>
+              <small>Mẫu hoàn chỉnh · Từ → câu → hội thoại → đoạn</small>
             </button>
             <button class="source-card" type="button" data-action="open-301">
               <span class="source-icon">301</span>
@@ -327,7 +352,105 @@
     return `<section class="notice-card"><strong>Giọng hiện tại:</strong><span>${escapeHtml(selected && selected.name || voices[0].name)} · ${escapeHtml(selected && selected.lang || voices[0].lang || 'zh-CN')}</span></section>`;
   }
 
+  async function openNewHskLibrary() {
+    state.error = '';
+    state.screen = 'newHskUnits';
+    render();
+    try {
+      if (!SourceAdapters || !ActivityBuilders) throw new Error('Thiếu source-adapters.js hoặc activity-builders.js.');
+      if (!state.newHskManifest) {
+        const [manifestResponse, levelResponse, grammarResponse] = await Promise.all([
+          fetch('./data/structures/new-hsk/manifest.json'),
+          fetch('../hanzi-stroke/data/learning/hsk/hsk_1.json'),
+          fetch('../hanzi-stroke/data/learning/grammar/new_hsk_1.json')
+        ]);
+        if (!manifestResponse.ok) throw new Error(`Manifest ${manifestResponse.status}`);
+        if (!levelResponse.ok) throw new Error(`Dữ liệu HSK ${levelResponse.status}`);
+        if (!grammarResponse.ok) throw new Error(`Ngữ pháp ${grammarResponse.status}`);
+        state.newHskManifest = await manifestResponse.json();
+        state.newHskLevelData = await levelResponse.json();
+        state.newHskGrammarData = await grammarResponse.json();
+        const allUnits = SourceAdapters.listNewHskUnits(state.newHskLevelData, { levelId: 'new-hsk-1', sectionType: 'lesson' });
+        const manifestById = new Map((state.newHskManifest.units || []).map((entry) => [entry.unitId, entry]));
+        state.newHskUnits = allUnits
+          .filter((unit) => manifestById.has(unit.unitId))
+          .map((unit) => Object.assign({}, unit, manifestById.get(unit.unitId)));
+      }
+    } catch (error) {
+      state.error = `Không mở được New HSK: ${error.message || error}`;
+    }
+    render();
+  }
+
+  function renderNewHskUnits() {
+    app.innerHTML = `
+      ${pageHeader('New HSK 1', 'Chọn bài học', true)}
+      <main class="listen-main">
+        ${state.error ? errorCard(state.error) : ''}
+        <div class="lesson-list">
+          ${state.newHskUnits.length ? state.newHskUnits.map((unit) => `
+            <button class="lesson-card" type="button" data-action="open-new-hsk-unit" data-unit-id="${escapeHtml(unit.unitId)}">
+              <span class="lesson-number">${escapeHtml(unit.sectionOrder)}</span>
+              <span>
+                <strong class="lesson-card__title">${formatHanziRuns(unit.titleZh || unit.title)}</strong>
+                <small>${escapeHtml(unit.title)} · ${unit.wordCount} từ · ${unit.exampleCount} câu nguồn</small>
+              </span>
+              <b aria-hidden="true">›</b>
+            </button>
+          `).join('') : state.error ? '' : loadingCard('Đang đọc dữ liệu New HSK 1...')}
+        </div>
+      </main>
+      ${bottomNav()}
+      ${settingsSheet()}
+    `;
+  }
+
+  async function openNewHskUnit(unitId) {
+    const unit = state.newHskUnits.find((entry) => entry.unitId === unitId);
+    if (!unit) return;
+    state.source = 'new-hsk';
+    state.lesson = { id: unit.unitId, lesson_id: unit.unitId, title: unit.title, title_zh: unit.titleZh };
+    state.lessonData = null;
+    state.dataset = null;
+    state.activityDescriptor = null;
+    state.sentenceFilter = 'all';
+    state.items = [];
+    state.practiceItems = null;
+    state.vocabulary = [];
+    state.error = '';
+    state.screen = 'mode';
+    render();
+    try {
+      const structureResponse = await fetch(`./data/structures/new-hsk/${unit.structureFile}`);
+      if (!structureResponse.ok) throw new Error(`Structure ${structureResponse.status}`);
+      const structure = await structureResponse.json();
+      const dataset = SourceAdapters.adaptNewHskUnit(
+        state.newHskLevelData,
+        state.newHskGrammarData,
+        structure,
+        unit.unitId,
+        {
+          structureFile: `modules/listening/data/structures/new-hsk/${unit.structureFile}`,
+          sourceFile: 'modules/hanzi-stroke/data/learning/hsk/hsk_1.json',
+          grammarFile: 'modules/hanzi-stroke/data/learning/grammar/new_hsk_1.json'
+        }
+      );
+      const validation = SourceAdapters.validateDataset(dataset);
+      if (!validation.ok) throw new Error(validation.errors.join(' · '));
+      state.dataset = dataset;
+      state.items = dataset.sentences.slice();
+      state.vocabulary = dataset.words.slice();
+      state.lessonData = dataset;
+    } catch (error) {
+      state.error = `Không mở được mẫu New HSK: ${error.message || error}`;
+    }
+    render();
+  }
+
   async function open301Library() {
+    state.dataset = null;
+    state.activityDescriptor = null;
+    state.sentenceFilter = 'all';
     state.error = '';
     state.screen = 'lessons301';
     render();
@@ -376,6 +499,9 @@
     if (!lesson) return;
     state.lesson = lesson;
     state.source = '301';
+    state.dataset = null;
+    state.activityDescriptor = null;
+    state.sentenceFilter = 'all';
     state.error = '';
     state.screen = 'mode';
     state.items = [];
@@ -652,6 +778,9 @@
       return;
     }
     state.source = 'custom';
+    state.dataset = null;
+    state.activityDescriptor = null;
+    state.sentenceFilter = 'all';
     state.lesson = { id: deck.id, title: deck.name, name: deck.name, groupId: deck.groupId, description: deck.description };
     state.lessonData = null;
     state.practiceItems = null;
@@ -737,6 +866,10 @@
   }
 
   function renderModeChoice() {
+    if (state.dataset && state.source === 'new-hsk') {
+      renderDatasetModeChoice();
+      return;
+    }
 
     app.innerHTML = `
       ${pageHeader(sessionTitle(), state.items.length ? `${state.items.length} câu có thể luyện` : 'Đang đọc dữ liệu...', true)}
@@ -784,7 +917,150 @@
     `;
   }
 
+  function filteredDatasetSentences() {
+    const sentences = state.dataset && state.dataset.sentences || [];
+    if (state.sentenceFilter === 'grammar') {
+      return sentences.filter((item) => item.sentenceType === 'grammar-example' || item.alsoGrammarExample);
+    }
+    if (state.sentenceFilter === 'vocabulary') {
+      return sentences.filter((item) => item.sentenceType === 'vocabulary-example');
+    }
+    if (state.sentenceFilter === 'authored') {
+      return sentences.filter((item) => item.originType === 'authored');
+    }
+    return sentences.slice();
+  }
+
+  function setSentenceFilter(filter) {
+    if (!['all', 'vocabulary', 'grammar', 'authored'].includes(filter)) return;
+    state.sentenceFilter = filter;
+    state.items = filteredDatasetSentences();
+    render();
+  }
+
+  function renderDatasetModeChoice() {
+    const dataset = state.dataset;
+    const capabilities = dataset.capabilities || {};
+    const groups = Array.isArray(dataset.groups) ? dataset.groups : [];
+    const dialogue = groups.find((group) => group.kind === 'dialogue');
+    const passage = groups.find((group) => group.kind === 'passage');
+    const stats = dataset.stats || {};
+    const modeCard = (action, icon, title, description, attrs) => `
+      <button class="mode-card" data-action="${action}" ${attrs || ''}>
+        <span class="mode-icon" lang="zh-Hans">${icon}</span>
+        <span class="mode-card__copy"><strong>${title}</strong><small>${description}</small></span>
+        <span class="mode-arrow" aria-hidden="true">›</span>
+      </button>`;
+    app.innerHTML = `
+      ${pageHeader(sessionTitle(), `${stats.wordCount || 0} từ · ${stats.sentenceCount || 0} câu phân biệt`, true)}
+      <main class="listen-main">
+        ${state.error ? errorCard(state.error) : ''}
+        <section class="dataset-summary dataset-summary--pastel">
+          <div><strong>${formatHanziRuns(dataset.unit.titleZh || '')}</strong><span>${escapeHtml(dataset.unit.title || '')}</span></div>
+          <div class="dataset-summary__stats"><span>${stats.wordCount} từ</span><span>${stats.sentenceCount} câu phân biệt</span><span>${stats.dialogueCount} hội thoại</span><span>${stats.passageCount} đoạn</span></div>
+          <p class="dataset-source-breakdown"><strong>${stats.sentenceCount} câu</strong> = ${stats.vocabularyExampleCount || 0} ví dụ từ vựng gốc + ${stats.grammarOnlyCount || 0} ngữ pháp riêng + ${stats.authoredSentenceCount || 0} câu biên soạn.</p>
+        </section>
+
+        <section class="activity-section activity-section--word">
+          <div class="section-heading"><div><p class="eyebrow">Từ</p><h2>Nghe và nhận diện</h2></div></div>
+          <div class="mode-grid">
+            ${capabilities.wordChoice ? modeCard('start-dataset-activity', '选', 'Chọn từ nghe được', 'Mức chuẩn với 4 lựa chọn.', 'data-activity="word-choice" data-choice-count="4"') : ''}
+            ${capabilities.wordChoice ? modeCard('start-dataset-activity', '难', 'Chọn từ · Mức khó', '5 lựa chọn gây nhiễu trong cùng bài.', 'data-activity="word-choice" data-choice-count="5"') : ''}
+            ${capabilities.wordTyping ? modeCard('start-dataset-activity', '写', 'Điền tay từ nghe được', 'Giữ cách nhập và chấm từng chữ hiện tại.', 'data-activity="word-dictation"') : ''}
+          </div>
+        </section>
+
+        <section class="sentence-filter-card sentence-filter-card--pastel">
+          <div><p class="eyebrow">Nội dung câu</p><strong>Chọn phạm vi luyện</strong></div>
+          <div class="sentence-filter-options" role="group" aria-label="Lọc câu">
+            <button data-action="set-sentence-filter" data-filter="all" class="${state.sentenceFilter === 'all' ? 'active' : ''}">Toàn bộ <small>${stats.sentenceCount || 0} câu phân biệt</small></button>
+            <button data-action="set-sentence-filter" data-filter="vocabulary" class="${state.sentenceFilter === 'vocabulary' ? 'active' : ''}">Ví dụ từ vựng <small>${stats.vocabularyExampleCount || 0} câu gốc</small></button>
+            <button data-action="set-sentence-filter" data-filter="grammar" class="${state.sentenceFilter === 'grammar' ? 'active' : ''}">Ngữ pháp <small>${stats.grammarExampleCount || 0} câu · ${stats.grammarOnlyCount || 0} riêng</small></button>
+            <button data-action="set-sentence-filter" data-filter="authored" class="${state.sentenceFilter === 'authored' ? 'active' : ''}">Biên soạn <small>${stats.authoredSentenceCount || 0} câu luyện tập</small></button>
+          </div>
+          <small class="sentence-filter-note">Đang dùng ${filteredDatasetSentences().length}/${stats.sentenceCount} câu. Một câu có thể đồng thời là ví dụ từ vựng và ví dụ ngữ pháp.</small>
+        </section>
+
+        <section class="activity-section activity-section--sentence">
+          <div class="section-heading"><div><p class="eyebrow">Câu</p><h2>Xếp và chép câu</h2></div></div>
+          <div class="mode-grid">
+            ${capabilities.sentenceOrdering ? modeCard('start-dataset-activity', '序', 'Xếp từ thành câu', 'Nghe rồi chạm các từ theo đúng thứ tự.', 'data-activity="sentence-ordering"') : ''}
+            ${capabilities.sentenceDictation ? modeCard('start-dataset-activity', '听写', 'Chép từng câu', 'Câu ví dụ và ví dụ ngữ pháp được trộn mặc định.', 'data-activity="sentence-dictation"') : ''}
+            ${capabilities.sentenceTranscript ? modeCard('start-dataset-activity', '文', 'Có transcript', 'Nghe cùng chữ Hán, pinyin và nghĩa.', 'data-activity="sentence-transcript"') : ''}
+            ${modeCard('open-content-preview', '览', 'Xem trước nội dung', `${stats.sentenceCount} câu đã chuẩn hóa.`, '')}
+          </div>
+        </section>
+
+        ${dialogue ? `<section class="activity-section activity-section--dialogue">
+          <div class="section-heading"><div><p class="eyebrow">Hội thoại</p><h2>${escapeHtml(dialogue.title)}</h2></div><span class="activity-count">${dialogue.items.length} lượt</span></div>
+          <div class="mode-grid">
+            ${capabilities.dialogueTurnOrdering ? modeCard('start-dataset-activity', '轮', 'Xếp thứ tự lượt thoại', 'Nghe toàn đoạn rồi sắp các lượt hội thoại.', `data-activity="dialogue-sequence" data-group-id="${escapeHtml(dialogue.id)}"`) : ''}
+            ${capabilities.dialogueSentenceOrdering ? modeCard('start-dataset-activity', '句', 'Xếp từng câu hội thoại', 'Giữ ngữ cảnh A/B; chỉ xếp các câu có từ 3 cụm trở lên.', `data-activity="dialogue-token" data-group-id="${escapeHtml(dialogue.id)}"`) : ''}
+            ${capabilities.dialogueDictation ? modeCard('start-dataset-activity', '录', 'Chép từng lượt', 'Nghe và gõ lần lượt từng câu, luôn có hội thoại làm ngữ cảnh.', `data-activity="dialogue-dictation" data-group-id="${escapeHtml(dialogue.id)}"`) : ''}
+            ${capabilities.dialogueFullDictation ? modeCard('start-dataset-activity', '全', 'Chép nguyên hội thoại', 'Nghe toàn bộ rồi gõ liên tục tất cả các lượt trên cùng một màn hình.', `data-activity="dialogue-full-dictation" data-group-id="${escapeHtml(dialogue.id)}"`) : ''}
+          </div>
+        </section>` : ''}
+
+        ${passage ? `<section class="activity-section activity-section--passage">
+          <div class="section-heading"><div><p class="eyebrow">Đoạn văn</p><h2>${escapeHtml(passage.title)}</h2></div><span class="activity-count">${passage.items.length} câu</span></div>
+          <div class="mode-grid">
+            ${capabilities.passageSentenceOrdering ? modeCard('start-dataset-activity', '段', 'Xếp câu trong đoạn', 'Nghe toàn đoạn rồi sắp các câu theo trình tự.', `data-activity="passage-sequence" data-group-id="${escapeHtml(passage.id)}"`) : ''}
+            ${capabilities.passageSentenceTokenOrdering ? modeCard('start-dataset-activity', '组', 'Xếp từng câu trong đoạn', 'Làm từng câu có từ 3 cụm trở lên; câu ngắn vẫn giữ làm ngữ cảnh.', `data-activity="passage-token" data-group-id="${escapeHtml(passage.id)}"`) : ''}
+            ${capabilities.passageDictation ? modeCard('start-dataset-activity', '抄', 'Chép từng câu', 'Nghe và gõ lần lượt từng câu, luôn có toàn đoạn làm ngữ cảnh.', `data-activity="passage-dictation" data-group-id="${escapeHtml(passage.id)}"`) : ''}
+            ${capabilities.passageFullDictation ? modeCard('start-dataset-activity', '全', 'Chép nguyên đoạn', 'Nghe toàn bộ rồi gõ liên tục tất cả các câu trên cùng một màn hình.', `data-activity="passage-full-dictation" data-group-id="${escapeHtml(passage.id)}"`) : ''}
+          </div>
+        </section>` : ''}
+      </main>
+      ${bottomNav()}
+      ${settingsSheet()}
+    `;
+  }
+
+  function datasetGroup(groupId) {
+    return state.dataset && state.dataset.groups.find((group) => group.id === groupId) || null;
+  }
+
+  function startDatasetActivity(activity, groupId, options) {
+    if (!state.dataset) return;
+    const configured = options || {};
+    const group = groupId ? datasetGroup(groupId) : null;
+    const startIndex = Math.max(0, Number(configured.startIndex) || 0);
+    const choiceCount = Number(configured.choiceCount) === 5 ? 5 : 4;
+    state.activityDescriptor = { activity, groupId: groupId || '', choiceCount };
+    const sentencePool = filteredDatasetSentences();
+    if (activity === 'word-choice') {
+      startPractice('word-choice', startIndex, { items: ActivityBuilders.buildWordChoiceItems(state.dataset, { choiceCount }), sessionName: choiceCount === 5 ? 'Chọn từ · Mức khó' : 'Chọn từ nghe được' });
+    } else if (activity === 'word-dictation') {
+      startPractice('dictation', startIndex, { items: state.dataset.words.slice(), sessionName: 'Điền tay từ nghe được' });
+    } else if (activity === 'sentence-ordering') {
+      startPractice('token-ordering', startIndex, { items: ActivityBuilders.buildSentenceOrderingItems(Object.assign({}, state.dataset, { sentences: sentencePool })), sessionName: 'Xếp từ thành câu' });
+    } else if (activity === 'sentence-dictation') {
+      startPractice('dictation', startIndex, { items: sentencePool, sessionName: 'Chép từng câu' });
+    } else if (activity === 'sentence-transcript') {
+      startPractice('transcript', startIndex, { items: sentencePool, sessionName: 'Nghe có transcript' });
+    } else if (activity === 'dialogue-sequence' || activity === 'passage-sequence') {
+      if (!group) return;
+      startPractice('sequence-ordering', startIndex, { items: [ActivityBuilders.buildGroupSequenceItem(group)], sessionName: group.title });
+    } else if (activity === 'dialogue-token' || activity === 'passage-token') {
+      if (!group) return;
+      startPractice('token-ordering', startIndex, { items: ActivityBuilders.buildGroupTokenItems(group), sessionName: group.title });
+    } else if (activity === 'dialogue-dictation' || activity === 'passage-dictation') {
+      if (!group) return;
+      startPractice('dictation', startIndex, { items: ActivityBuilders.buildGroupDictationItems(group), sessionName: group.title });
+    } else if (activity === 'dialogue-full-dictation' || activity === 'passage-full-dictation') {
+      if (!group) return;
+      startPractice('passage', 0, { items: [ActivityBuilders.buildGroupFullDictationItem(group)], sessionName: group.title });
+    }
+  }
+
   function renderContentPreview() {
+    const sourceBadges = (item) => {
+      const badges = [];
+      if (item.sentenceType === 'vocabulary-example') badges.push('Ví dụ từ vựng');
+      if (item.sentenceType === 'grammar-example' || item.alsoGrammarExample) badges.push('Ngữ pháp');
+      if (item.originType === 'authored') badges.push('Biên soạn');
+      return badges.map((label) => `<span>${escapeHtml(label)}</span>`).join('');
+    };
     app.innerHTML = `
       ${pageHeader(sessionTitle(), `${state.items.length} câu trong bài`, true)}
       <main class="listen-main content-preview-main">
@@ -797,6 +1073,7 @@
             <button class="content-preview-card" data-action="open-preview-item" data-index="${index}" type="button">
               <span class="content-preview-number">${index + 1}</span>
               <span class="content-preview-copy">
+                ${sourceBadges(item) ? `<span class="content-preview-source">${sourceBadges(item)}</span>` : ''}
                 <strong lang="zh-Hans">${item.speaker ? `<span class="content-preview-speaker">${escapeHtml(item.speaker)}：</span>` : ''}${escapeHtml(item.text)}</strong>
                 ${item.pinyin ? `<span class="content-preview-pinyin">${escapeHtml(item.pinyin)}</span>` : ''}
                 ${item.meaning ? `<small>${escapeHtml(item.meaning)}</small>` : ''}
@@ -822,7 +1099,9 @@
     const configured = options || {};
     state.mode = mode;
     state.sessionName = configured.sessionName || '';
-    if (mode === 'passage' || mode === 'passage-transcript') {
+    if (configured.items) {
+      state.practiceItems = configured.items.slice();
+    } else if (mode === 'passage' || mode === 'passage-transcript') {
       const passage = Core.createPassageItem(state.items, {
         sourceType: state.source,
         sourceId: state.lesson && (state.lesson.lesson_id || state.lesson.id) || state.source,
@@ -831,8 +1110,6 @@
         lessonTitle: sessionTitle()
       });
       state.practiceItems = passage ? [passage] : [];
-    } else if (configured.items) {
-      state.practiceItems = configured.items.slice();
     } else {
       state.practiceItems = state.items;
     }
@@ -841,8 +1118,10 @@
     state.sessionCheckedIds = [];
     state.sessionCorrectIds = [];
     state.sessionAnswerIds = [];
+    state.groupContextExpanded = false;
     resetCurrentAnswer();
     state.screen = 'practice';
+    resetFloatingAudioContext();
     rememberSession();
     prepareNextItem();
     render();
@@ -867,16 +1146,28 @@
     state.speechStartIndex = 0;
     state.speechCharIndex = 0;
     state.manualBrowseMode = false;
+    state.dictationCaretIndex = 0;
+    state.dictationSelectionLength = 0;
+    state.dictationResumeIndex = null;
+    state.activitySelection = [];
+    state.activityResult = null;
+    state.groupTranscriptOpen = false;
+    state.groupPreviewSpeaking = false;
   }
 
   function rememberSession() {
     const item = currentItem();
     if (!item) return;
     saveJson(LAST_SESSION_KEY, {
+      schemaVersion: 2,
       source: state.source,
       lessonId: state.lesson && (state.lesson.lesson_id || state.lesson.id) || '',
       mode: state.mode,
       currentIndex: state.currentIndex,
+      sessionName: state.sessionName || '',
+      activitySelection: state.activitySelection.slice(),
+      activityDescriptor: state.activityDescriptor ? structuredCloneSafe(state.activityDescriptor) : null,
+      sentenceFilter: state.sentenceFilter,
       updatedAt: new Date().toISOString()
     });
   }
@@ -885,6 +1176,28 @@
     const session = loadJson(LAST_SESSION_KEY, null);
     if (!session) {
       state.error = 'Chưa có phiên nghe gần đây.';
+      render();
+      return;
+    }
+    if (session.source === 'new-hsk') {
+      await openNewHskLibrary();
+      const unit = state.newHskUnits.find((entry) => entry.unitId === session.lessonId);
+      if (!unit) return;
+      await openNewHskUnit(unit.unitId);
+      if (!state.dataset) return;
+      state.sentenceFilter = ['all', 'vocabulary', 'grammar', 'authored'].includes(session.sentenceFilter) ? session.sentenceFilter : 'all';
+      state.items = filteredDatasetSentences();
+      const descriptor = session.activityDescriptor;
+      if (descriptor && descriptor.activity) {
+        startDatasetActivity(descriptor.activity, descriptor.groupId || '', {
+          choiceCount: descriptor.choiceCount,
+          startIndex: session.currentIndex || 0
+        });
+      } else {
+        const mode = session.mode || 'dictation';
+        startPractice(mode, session.currentIndex || 0, { items: state.items.slice(), sessionName: session.sessionName || '' });
+      }
+      state.activitySelection = Array.isArray(session.activitySelection) ? session.activitySelection.slice() : [];
       render();
       return;
     }
@@ -929,6 +1242,9 @@
       return;
     }
     state.source = 'review';
+    state.dataset = null;
+    state.activityDescriptor = null;
+    state.sentenceFilter = 'all';
     state.lesson = { id: 'review', title: 'Câu cần ôn' };
     state.items = deduped;
     state.practiceItems = null;
@@ -938,8 +1254,12 @@
     render();
   }
 
-  function practiceModeLabel() {
+  function practiceModeLabel(item) {
+    if (state.mode === 'word-choice') return 'Chọn từ';
+    if (state.mode === 'token-ordering') return 'Xếp câu';
+    if (state.mode === 'sequence-ordering') return 'Xếp thứ tự';
     if (state.mode === 'transcript') return 'Có transcript';
+    if (item && item.fullGroupDictation) return item.groupKind === 'dialogue' ? 'Chép nguyên hội thoại' : 'Chép nguyên đoạn';
     if (state.mode === 'passage') return 'Chép đoạn';
     if (state.mode === 'passage-transcript') return 'Transcript đoạn';
     return 'Chép chính tả';
@@ -959,7 +1279,7 @@
 
   function audioFingerprintFor(item) {
     if (!item) return '';
-    return `${audioScopeFor(item)}|${String(item.id || '')}|${speechTextFor(item).trim()}`;
+    return `${audioScopeFor(item)}|${String(item.canonicalItemId || item.id || '')}|${speechTextFor(item).trim()}`;
   }
 
   function currentAudioIsPrepared(item) {
@@ -1005,7 +1325,69 @@
     return duration * ratio;
   }
 
+  function renderAudioControls(options = {}) {
+    const showNext = Boolean(options.showNext);
+    const nextLabel = options.nextLabel || 'Câu sau';
+    const activeSpeaking = options.activeSpeaking !== undefined ? Boolean(options.activeSpeaking) : Boolean(state.speaking);
+    const disabled = state.audioLoading ? 'disabled' : '';
+    const controls = [
+      `<button class="secondary-round" data-action="restart-speech" aria-label="Nghe từ đầu" ${disabled}><span aria-hidden="true">↺</span><small>Từ đầu</small></button>`,
+      `<button class="secondary-round" data-action="rewind-speech" aria-label="Lùi ${state.settings.rewindSeconds} giây" ${disabled}><span aria-hidden="true">−${state.settings.rewindSeconds}s</span><small>Lùi</small></button>`,
+      `<button class="play-button ${activeSpeaking ? 'is-speaking' : ''}" data-action="toggle-speech" aria-label="${activeSpeaking ? 'Tạm dừng' : 'Phát'}" ${disabled}>${state.audioLoading ? '◌' : activeSpeaking ? 'Ⅱ' : '▶'}</button>`,
+      `<button class="secondary-round" data-action="forward-speech" aria-label="Tiến ${state.settings.rewindSeconds} giây" ${disabled}><span aria-hidden="true">+${state.settings.rewindSeconds}s</span><small>Tiến</small></button>`
+    ];
+    if (showNext) {
+      controls.push(`<button class="secondary-round" data-action="next-item" aria-label="${escapeHtml(nextLabel)}"><span aria-hidden="true">›</span><small>${escapeHtml(nextLabel)}</small></button>`);
+    }
+    return `<div class="audio-controls audio-controls--${controls.length}">${controls.join('')}</div>`;
+  }
+
+  function resetFloatingAudioContext() {
+    state.floatingAudioVisible = false;
+    state.floatingAudioCollapsed = true;
+    state.primaryAudioVisible = true;
+    state.keyboardVisible = false;
+    state.activeTargetAway = false;
+  }
+
+  function renderFloatingAudioControls() {
+    const label = state.audioLoading
+      ? 'Đang tải'
+      : state.speaking
+        ? 'Tạm dừng'
+        : state.paused
+          ? 'Phát tiếp'
+          : 'Phát';
+    const icon = state.audioLoading ? '◌' : state.speaking ? 'Ⅱ' : '▶';
+    const disabled = state.audioLoading ? 'disabled' : '';
+    return `
+      <div
+        class="practice-audio-float ${state.floatingAudioCollapsed ? 'is-collapsed' : ''}"
+        data-floating-audio
+        role="group"
+        aria-label="Điều khiển nghe nhanh"
+        ${state.floatingAudioVisible ? '' : 'hidden'}
+      >
+        <button
+          type="button"
+          class="practice-audio-collapse"
+          data-action="toggle-floating-audio"
+          tabindex="-1"
+          aria-label="${state.floatingAudioCollapsed ? 'Mở rộng điều khiển nghe' : 'Thu gọn điều khiển nghe'}"
+        >${state.floatingAudioCollapsed ? '›' : '‹'}</button>
+        <div class="practice-audio-cluster">
+          <button type="button" class="practice-audio-control practice-audio-skip" data-action="rewind-speech" tabindex="-1" aria-label="Lùi ${state.settings.rewindSeconds} giây" ${disabled}>−${state.settings.rewindSeconds}s</button>
+          <button type="button" class="practice-audio-control practice-audio-toggle ${state.speaking ? 'is-speaking' : ''} ${state.paused ? 'is-paused' : ''}" data-action="toggle-speech" tabindex="-1" aria-label="${label}" ${disabled}><span aria-hidden="true">${icon}</span><small>${label}</small></button>
+          <button type="button" class="practice-audio-control practice-audio-skip" data-action="forward-speech" tabindex="-1" aria-label="Tiến ${state.settings.rewindSeconds} giây" ${disabled}>+${state.settings.rewindSeconds}s</button>
+        </div>
+        <button type="button" class="practice-audio-return" data-action="return-to-active-target" tabindex="-1" aria-label="Quay về vị trí đang học" title="Về chỗ đang học" ${state.activeTargetAway ? '' : 'hidden'}><span aria-hidden="true">↳</span></button>
+      </div>`;
+  }
+
   function renderPractice() {
+    if (state.mode === 'word-choice') { renderWordChoicePractice(); return; }
+    if (state.mode === 'token-ordering') { renderTokenOrderingPractice(); return; }
+    if (state.mode === 'sequence-ordering') { renderSequenceOrderingPractice(); return; }
     const item = currentItem();
     if (!item) {
       setScreen('home');
@@ -1014,8 +1396,11 @@
     const items = activeItems();
     const units = Core.answerUnits(item.text);
     const isPassage = Boolean(item.isPassage);
+    const isFullDialogue = Boolean(item.fullGroupDictation && item.groupKind === 'dialogue');
+    const passageLabel = isFullDialogue ? 'Hội thoại' : 'Đoạn nghe';
+    const listenLabel = isFullDialogue ? 'Nghe toàn hội thoại' : 'Nghe toàn đoạn';
     const isTranscript = state.mode === 'transcript' || state.mode === 'passage-transcript';
-    const progress = isPassage ? `${item.segments.length} câu` : `${state.currentIndex + 1}/${items.length}`;
+    const progress = isPassage ? `${item.segments.length} ${isFullDialogue ? 'lượt' : 'câu'}` : `${state.currentIndex + 1}/${items.length}`;
     const speechText = speechTextFor(item);
     const displayCurrentTime = state.audioPlayer
       ? state.audioCurrentTime
@@ -1024,31 +1409,29 @@
       ? state.audioDuration
       : estimatedDeviceSpeechDuration(speechText);
     app.innerHTML = `
-      ${pageHeader(state.sessionName || sessionTitle(), `${practiceModeLabel()} · ${progress}`, true)}
+      ${pageHeader(state.sessionName || sessionTitle(), `${practiceModeLabel(item)} · ${progress}`, true)}
       <main class="listen-main practice-main">
         <section class="practice-progress" aria-label="Tiến độ">
           <span style="width:${isPassage ? 100 : ((state.currentIndex + 1) / items.length) * 100}%"></span>
         </section>
 
         <div class="practice-mode-switch" aria-label="Chế độ luyện">
-          <button data-action="switch-current-mode" data-mode="${isPassage ? 'passage' : 'dictation'}" class="${!isTranscript ? 'active' : ''}">Chép chính tả</button>
+          <button data-action="switch-current-mode" data-mode="${isPassage ? 'passage' : 'dictation'}" class="${!isTranscript ? 'active' : ''}">${item.fullGroupDictation ? 'Chép nguyên' : 'Chép chính tả'}</button>
           <button data-action="switch-current-mode" data-mode="${isPassage ? 'passage-transcript' : 'transcript'}" class="${isTranscript ? 'active' : ''}">Có transcript</button>
         </div>
 
-        <section class="audio-card">
+        ${renderGroupContext(item)}
+
+        <section class="audio-card" data-primary-audio>
           <div class="audio-head">
-            <div><p class="eyebrow">${isPassage ? 'Đoạn nghe' : `Câu ${progress}`}</p><strong>${state.audioLoading ? 'Đang tải MP3...' : state.speaking ? (state.audioPlayer ? 'Đang phát...' : 'Đang đọc...') : state.paused ? 'Đã tạm dừng' : isPassage ? 'Nghe toàn đoạn' : 'Nghe câu'}</strong></div>
+            <div><p class="eyebrow">${isPassage ? passageLabel : `Câu ${progress}`}</p><strong>${state.audioLoading ? 'Đang tải MP3...' : state.speaking ? (state.audioPlayer ? 'Đang phát...' : 'Đang đọc...') : state.paused ? 'Đã tạm dừng' : isPassage ? listenLabel : 'Nghe câu'}</strong></div>
             <button class="icon-action" data-action="open-settings" aria-label="Cài đặt giọng">⚙</button>
           </div>
-          <div class="audio-controls">
-            <button class="secondary-round" data-action="restart-speech" aria-label="Nghe từ đầu">↺<small>Từ đầu</small></button>
-            <button class="secondary-round" data-action="rewind-speech" aria-label="Lùi ${state.settings.rewindSeconds} giây">−${state.settings.rewindSeconds}s<small>Lùi</small></button>
-            <button class="play-button ${state.speaking ? 'is-speaking' : ''}" data-action="toggle-speech" aria-label="${state.speaking ? 'Tạm dừng' : 'Phát'}" ${state.audioLoading ? 'disabled' : ''}>
-              ${state.audioLoading ? '◌' : state.speaking ? 'Ⅱ' : '▶'}
-            </button>
-            <button class="secondary-round" data-action="forward-speech" aria-label="Tiến ${state.settings.rewindSeconds} giây">+${state.settings.rewindSeconds}s<small>Tiến</small></button>
-            <button class="secondary-round" data-action="next-item" aria-label="Câu sau">›<small>Câu sau</small></button>
-          </div>
+          ${renderAudioControls({
+            showNext: !isPassage,
+            nextLabel: 'Câu sau',
+            activeSpeaking: state.speaking
+          })}
           <div class="audio-time" aria-live="polite">
             <span id="audioCurrentTime">${formatAudioTime(displayCurrentTime)}</span>
             <span>/</span>
@@ -1057,7 +1440,7 @@
           </div>
           ${state.audioMessage && ['error', 'missing'].includes(state.audioStatus) ? `<div class="audio-runtime-status audio-runtime-status--${escapeHtml(state.audioStatus || 'info')}" role="alert">${escapeHtml(state.audioMessage)}</div>` : ''}
           <label class="speech-position">
-            <span>${state.audioPlayer ? 'Vị trí trong file audio' : `Vị trí gần đúng ${isPassage ? 'trong đoạn' : 'trong câu'}`}</span>
+            <span>${state.audioPlayer ? 'Vị trí trong file audio' : `Vị trí gần đúng ${isFullDialogue ? 'trong hội thoại' : isPassage ? 'trong đoạn' : 'trong câu'}`}</span>
             <input id="speechPosition" type="range" min="0" max="${state.audioPlayer && state.audioDuration > 0 ? state.audioDuration : Math.max(1, speechText.length)}" step="${state.audioPlayer ? '0.1' : '1'}" value="${state.audioPlayer ? Math.min(state.audioDuration || 0, state.audioCurrentTime) : Math.min(speechText.length, state.speechCharIndex)}" />
           </label>
           <div class="speed-row" aria-label="Tốc độ đọc">
@@ -1070,11 +1453,220 @@
         ${!isPassage ? `<nav class="practice-nav">
           <button data-action="previous-item" ${state.currentIndex === 0 ? 'disabled' : ''}>← Câu trước</button>
           <button data-action="next-item">${state.currentIndex >= items.length - 1 ? 'Hoàn thành' : 'Câu sau →'}</button>
-        </nav>` : `<nav class="practice-nav practice-nav--single"><button data-action="complete-session">Hoàn thành đoạn</button></nav>`}
+        </nav>` : `<nav class="practice-nav practice-nav--single"><button data-action="complete-session">${isFullDialogue ? 'Hoàn thành hội thoại' : 'Hoàn thành đoạn'}</button></nav>`}
       </main>
+      ${renderFloatingAudioControls()}
       ${bottomNav()}
       ${settingsSheet()}
     `;
+  }
+
+  function compactAudioCard(item, label) {
+    const speechText = speechTextFor(item);
+    const displayCurrentTime = state.audioPlayer ? state.audioCurrentTime : estimatedDeviceSpeechTime(speechText, state.speechCharIndex);
+    const displayDuration = state.audioPlayer ? state.audioDuration : estimatedDeviceSpeechDuration(speechText);
+    const hasMultipleItems = activeItems().length > 1;
+    const isLastItem = state.currentIndex >= activeItems().length - 1;
+    const nextLabel = isLastItem ? 'Hoàn thành' : item && item.activityType === 'word-choice' ? 'Từ sau' : 'Câu sau';
+    const statusText = state.groupPreviewSpeaking
+      ? 'Đang nghe toàn bộ...'
+      : state.audioLoading
+        ? 'Đang tải MP3...'
+        : state.speaking
+          ? 'Đang phát...'
+          : state.paused
+            ? 'Đã tạm dừng'
+            : 'Chạm để nghe';
+    return `<section class="audio-card audio-card--compact" data-primary-audio>
+      <div class="audio-head"><div><p class="eyebrow">${escapeHtml(label || 'Nghe')}</p><strong>${statusText}</strong></div><button class="icon-action" data-action="open-settings" aria-label="Cài đặt giọng">⚙</button></div>
+      ${renderAudioControls({
+        showNext: hasMultipleItems,
+        nextLabel,
+        activeSpeaking: state.speaking && !state.groupPreviewSpeaking
+      })}
+      <div class="audio-time"><span id="audioCurrentTime">${formatAudioTime(displayCurrentTime)}</span><span>/</span><span id="audioDuration">${displayDuration > 0 ? formatAudioTime(displayDuration) : '--:--'}</span><small id="audioTimeKind" class="audio-time-kind">${state.audioPlayer ? '' : 'ước tính'}</small></div>
+      <div class="speed-row speed-row--compact">${[0.5, 0.75, 1, 1.25, 1.5].map((rate) => `<button data-action="set-rate" data-rate="${rate}" class="${Number(state.settings.rate) === rate ? 'active' : ''}">${rate}×</button>`).join('')}</div>
+    </section>`;
+  }
+
+  function groupContextUnit(context) {
+    return context.kind === 'dialogue' ? 'lượt' : 'câu';
+  }
+
+  function groupContextVisibleIndexes(context) {
+    const total = context.items.length;
+    if (state.groupContextExpanded || total <= 4) return context.items.map((entry, index) => index);
+    const current = context.currentIndex;
+    const indexes = new Set([Math.max(0, current - 1), current, Math.min(total - 1, current + 1)]);
+    return Array.from(indexes).sort((left, right) => left - right);
+  }
+
+  function renderGroupContext(item) {
+    const context = item && item.groupContext;
+    if (!context) return '';
+    const unit = groupContextUnit(context);
+    const visibleIndexes = groupContextVisibleIndexes(context);
+    const revealAll = state.groupTranscriptOpen || state.showAnswer || Boolean(state.activityResult && state.activityResult.isCorrect) || Boolean(state.result && state.result.isCorrect);
+    const practiceIds = new Set(context.practiceItemIds || []);
+    let previousIndex = -1;
+    const lines = visibleIndexes.map((index) => {
+      const entry = context.items[index];
+      const isCurrent = index === context.currentIndex;
+      const isCompleted = index < context.currentIndex;
+      const isContextOnly = practiceIds.size > 0 && !practiceIds.has(entry.id);
+      const canShowText = revealAll || isCompleted;
+      const text = canShowText ? entry.text : isCurrent ? 'Đang nghe…' : 'Chưa mở';
+      const gap = previousIndex >= 0 && index - previousIndex > 1
+        ? `<div class="group-context-gap" aria-hidden="true">•••</div>`
+        : '';
+      previousIndex = index;
+      const status = isCurrent ? 'is-current' : isCompleted ? 'is-done' : 'is-pending';
+      return `${gap}<div class="group-context-line ${status} ${isContextOnly ? 'is-context-only' : ''}">
+        <b>${entry.speaker ? escapeHtml(entry.speaker) : index + 1}</b>
+        <span lang="zh-Hans">${escapeHtml(text)}</span>
+        ${isContextOnly ? '<small>Ngữ cảnh</small>' : ''}
+      </div>`;
+    }).join('');
+    const skippedCount = practiceIds.size ? context.items.length - practiceIds.size : 0;
+    return `<section class="group-context-card">
+      <div class="group-context-head">
+        <div><p class="eyebrow">${context.kind === 'dialogue' ? 'Toàn bộ hội thoại' : 'Toàn bộ đoạn văn'}</p><h2>${escapeHtml(context.title)}</h2></div>
+        <span class="group-context-progress">${context.currentIndex + 1}/${context.items.length}</span>
+      </div>
+      <div class="group-context-actions">
+        <button type="button" data-action="play-group-overview" class="context-action ${state.groupPreviewSpeaking ? 'is-active' : ''}">${state.groupPreviewSpeaking ? '■ Dừng toàn bộ' : '▶ Nghe toàn bộ'}</button>
+        <button type="button" data-action="toggle-group-transcript" class="context-action">${state.groupTranscriptOpen ? 'Ẩn nội dung' : 'Xem toàn bộ nội dung'}</button>
+      </div>
+      <div class="group-context-list">${lines}</div>
+      ${context.items.length > 4 ? `<button type="button" class="group-context-expand" data-action="toggle-group-context">${state.groupContextExpanded ? 'Thu gọn' : `Xem đủ ${context.items.length} ${unit}`}</button>` : ''}
+      ${skippedCount > 0 && item.activityType && item.activityType.includes('token-ordering') ? `<p class="group-context-note">${skippedCount} ${unit} quá ngắn để xếp từ, vẫn được giữ làm ngữ cảnh.</p>` : ''}
+    </section>`;
+  }
+
+  function renderActivityFeedback(item) {
+    if (!state.activityResult) return '';
+    const correct = state.activityResult.isCorrect;
+    return `<section class="activity-feedback ${correct ? 'is-correct' : 'is-wrong'}">
+      <strong>${correct ? '✓ Chính xác' : 'Chưa đúng'}</strong>
+      <span lang="zh-Hans">${escapeHtml(item.text)}</span>
+      ${item.pinyin ? `<small>${escapeHtml(item.pinyin)}</small>` : ''}
+      ${item.meaning ? `<small>${escapeHtml(item.meaning)}</small>` : ''}
+      <div class="rating-row"><button data-action="rate-item" data-rating="easy">Dễ</button><button data-action="rate-item" data-rating="review">Ôn</button><button data-action="rate-item" data-rating="hard">Khó</button></div>
+    </section>`;
+  }
+
+  function renderWordChoicePractice() {
+    const item = currentItem();
+    if (!item) { setScreen('home'); return; }
+    const items = activeItems();
+    app.innerHTML = `
+      ${pageHeader(state.sessionName || sessionTitle(), `Chọn từ · ${state.currentIndex + 1}/${items.length}`, true)}
+      <main class="listen-main practice-main">
+        <section class="practice-progress"><span style="width:${((state.currentIndex + 1) / items.length) * 100}%"></span></section>
+        ${compactAudioCard(item, 'Nghe từ')}
+        <section class="choice-card" data-learning-target>
+          <div class="dictation-heading"><div><p class="eyebrow">Chọn đáp án</p><h2>Từ nào vừa được đọc?</h2></div><span>${item.choiceCount} lựa chọn</span></div>
+          <div class="word-choice-grid">${item.choices.map((choice) => {
+            const selected = state.activitySelection[0] === choice.id;
+            const isAnswer = state.activityResult && choice.id === item.answerId;
+            const isWrong = state.activityResult && selected && choice.id !== item.answerId;
+            return `<button class="word-choice-option ${selected ? 'is-selected' : ''} ${isAnswer ? 'is-answer' : ''} ${isWrong ? 'is-wrong' : ''}" data-action="choose-word" data-choice-id="${escapeHtml(choice.id)}" ${state.activityResult ? 'disabled' : ''}>
+              <strong lang="zh-Hans">${escapeHtml(choice.text)}</strong>
+              ${state.settings.showPinyin ? `<span>${escapeHtml(choice.pinyin || '')}</span>` : ''}
+            </button>`;
+          }).join('')}</div>
+        </section>
+        ${renderActivityFeedback(item)}
+        <nav class="practice-nav"><button data-action="previous-item" ${state.currentIndex === 0 ? 'disabled' : ''}>← Trước</button><button data-action="next-item">${state.currentIndex >= items.length - 1 ? 'Hoàn thành' : 'Từ sau →'}</button></nav>
+      </main>${renderFloatingAudioControls()}${bottomNav()}${settingsSheet()}`;
+  }
+
+  function selectedOrderingTokens(item) {
+    const map = new Map((item.tokens || item.cards || []).map((entry) => [entry.id, entry]));
+    return state.activitySelection.map((id) => map.get(id)).filter(Boolean);
+  }
+
+  function orderingStatus(item, token, index) {
+    if (!state.activityResult) return '';
+    const expected = item.tokens || item.cards || [];
+    return expected[index] && expected[index].id === token.id ? 'is-correct' : 'is-wrong';
+  }
+
+  function renderTokenOrderingPractice() {
+    const item = currentItem();
+    if (!item) { setScreen('home'); return; }
+    const items = activeItems();
+    const selected = selectedOrderingTokens(item);
+    const selectedIds = new Set(state.activitySelection);
+    const context = item.groupContext;
+    const contextLabel = context && context.kind === 'dialogue' ? 'Lượt thoại hiện tại' : context && context.kind === 'passage' ? 'Câu hiện tại trong đoạn' : 'Câu nghe';
+    const title = context && context.kind === 'dialogue' ? 'Xếp từ trong lượt thoại' : context && context.kind === 'passage' ? 'Xếp từ trong câu hiện tại' : 'Xếp từ thành câu';
+    const remainingSlots = Math.max(0, item.tokens.length - selected.length);
+    app.innerHTML = `
+      ${pageHeader(state.sessionName || sessionTitle(), `${title} · ${state.currentIndex + 1}/${items.length}`, true)}
+      <main class="listen-main practice-main">
+        <section class="practice-progress"><span style="width:${((state.currentIndex + 1) / items.length) * 100}%"></span></section>
+        ${renderGroupContext(item)}
+        ${compactAudioCard(item, contextLabel)}
+        <section class="ordering-card ordering-card--tokens" data-learning-target>
+          <div class="dictation-heading"><div><p class="eyebrow">Xếp từ</p><h2>Chạm các từ theo thứ tự nghe được</h2></div><span>${selected.length}/${item.tokens.length}</span></div>
+          <p class="activity-instruction">Nghe trước, sau đó chọn từng thẻ. Chạm thẻ đã chọn để trả lại.</p>
+          <div class="ordering-answer ${selected.length ? '' : 'is-empty'}">
+            ${selected.map((token, index) => `<button data-action="remove-order-token" data-token-id="${escapeHtml(token.id)}" class="ordering-token ${orderingStatus(item, token, index)}"><span lang="zh-Hans">${escapeHtml(token.text)}</span></button>`).join('')}
+            ${Array.from({ length: remainingSlots }, () => '<span class="ordering-slot-placeholder" aria-hidden="true"></span>').join('')}
+            ${!selected.length ? '<span class="ordering-empty-label">Câu của bạn sẽ hiện ở đây</span>' : ''}
+          </div>
+          <div class="ordering-pool-label"><span>Các từ để chọn</span><small>${item.tokens.length} thẻ</small></div>
+          <div class="ordering-pool">${item.shuffledTokens.map((token) => `<button data-action="add-order-token" data-token-id="${escapeHtml(token.id)}" class="ordering-token" ${selectedIds.has(token.id) || state.activityResult && state.activityResult.isCorrect ? 'disabled' : ''}><span lang="zh-Hans">${escapeHtml(token.text)}</span></button>`).join('')}</div>
+          <div class="ordering-actions"><button data-action="undo-ordering" ${!selected.length ? 'disabled' : ''}>Hoàn tác</button><button data-action="reset-ordering" ${!selected.length ? 'disabled' : ''}>Làm lại</button><button class="primary-button" data-action="check-ordering" ${selected.length !== item.tokens.length ? 'disabled' : ''}>Kiểm tra</button></div>
+          <button class="link-button" data-action="show-order-answer">Hiện đáp án</button>
+        </section>
+        ${renderActivityFeedback(item)}
+        <nav class="practice-nav"><button data-action="previous-item" ${state.currentIndex === 0 ? 'disabled' : ''}>← Trước</button><button data-action="next-item">${state.currentIndex >= items.length - 1 ? 'Hoàn thành' : 'Câu sau →'}</button></nav>
+      </main>${renderFloatingAudioControls()}${bottomNav()}${settingsSheet()}`;
+  }
+
+  function renderSequenceOrderingPractice() {
+    const item = currentItem();
+    if (!item) { setScreen('home'); return; }
+    const sequenceItem = Object.assign({}, item, { tokens: item.cards });
+    const selected = selectedOrderingTokens(sequenceItem);
+    const selectedIds = new Set(state.activitySelection);
+    const isDialogue = item.groupKind === 'dialogue';
+    const unitLabel = isDialogue ? 'lượt thoại' : 'câu';
+    const remaining = Math.max(0, item.cards.length - selected.length);
+    const selectedCards = selected.map((card, index) => `<button data-action="remove-order-token" data-token-id="${escapeHtml(card.id)}" class="sequence-card sequence-card--answer ${orderingStatus(sequenceItem, card, index)}">
+      <b>${index + 1}</b><span class="sequence-card__content">${card.speaker ? `<strong>${escapeHtml(card.speaker)}：</strong>` : ''}<span lang="zh-Hans">${escapeHtml(card.text)}</span></span>
+    </button>`).join('');
+    const emptySlots = remaining > 0 ? `<div class="sequence-slot sequence-slot--next"><b>${selected.length + 1}</b><span>Chọn ${unitLabel} tiếp theo ở phía dưới</span></div>` : '';
+    app.innerHTML = `
+      ${pageHeader(state.sessionName || item.groupTitle || sessionTitle(), isDialogue ? 'Xếp thứ tự lượt thoại' : 'Xếp thứ tự câu trong đoạn', true)}
+      <main class="listen-main practice-main">
+        <section class="practice-progress"><span style="width:${item.cards.length ? (selected.length / item.cards.length) * 100 : 0}%"></span></section>
+        ${compactAudioCard(item, isDialogue ? 'Nghe toàn hội thoại' : 'Nghe toàn đoạn')}
+        <section class="ordering-card ordering-card--sequence" data-learning-target>
+          <div class="dictation-heading"><div><p class="eyebrow">${isDialogue ? 'Trình tự hội thoại' : 'Trình tự đoạn văn'}</p><h2>Chọn từng ${unitLabel} theo thứ tự nghe được</h2></div><span>${selected.length}/${item.cards.length}</span></div>
+          <p class="activity-instruction">Ở hoạt động này bạn xếp các câu hoàn chỉnh. Xếp từ trong từng câu là một hoạt động riêng.</p>
+          <div class="sequence-answer" aria-label="Thứ tự đã chọn">${selectedCards}${emptySlots}</div>
+          <div class="ordering-pool-label"><span>${isDialogue ? 'Các lượt thoại đã xáo trộn' : 'Các câu đã xáo trộn'}</span><small>Chạm để đưa lên trên</small></div>
+          <div class="sequence-pool">${item.shuffledCards.map((card) => `<button data-action="add-order-token" data-token-id="${escapeHtml(card.id)}" class="sequence-card sequence-card--pool" ${selectedIds.has(card.id) || state.activityResult && state.activityResult.isCorrect ? 'disabled' : ''}>
+            <span class="sequence-card__content">${card.speaker ? `<strong class="speaker-badge">${escapeHtml(card.speaker)}</strong>` : ''}<span lang="zh-Hans">${escapeHtml(card.text)}</span></span>
+          </button>`).join('')}</div>
+          <div class="ordering-actions"><button data-action="undo-ordering" ${!selected.length ? 'disabled' : ''}>Hoàn tác</button><button data-action="reset-ordering" ${!selected.length ? 'disabled' : ''}>Làm lại</button><button class="primary-button" data-action="check-ordering" ${selected.length !== item.cards.length ? 'disabled' : ''}>Kiểm tra</button></div>
+          <button class="link-button" data-action="show-order-answer">Hiện đáp án</button>
+        </section>
+        ${renderActivityFeedback(item)}
+        <nav class="practice-nav practice-nav--single"><button data-action="complete-session">Hoàn thành</button></nav>
+      </main>${renderFloatingAudioControls()}${bottomNav()}${settingsSheet()}`;
+  }
+
+  function clampDictationCaretIndex(item, index) {
+    const total = Core.answerUnits(item && item.text || '').length;
+    return Math.max(0, Math.min(Number.isFinite(index) ? index : 0, total));
+  }
+
+  function currentDictationCaretIndex(item) {
+    return clampDictationCaretIndex(item, state.dictationCaretIndex);
   }
 
   function renderSlot(index, inputUnits, comparison, activeIndex, extraClass) {
@@ -1082,7 +1674,8 @@
     let status = '';
     if (state.result) status = comparison.cells[index] && comparison.cells[index].correct ? 'is-correct' : actual ? 'is-wrong' : 'is-empty-wrong';
     const active = index === activeIndex ? 'is-active' : '';
-    return `<span class="dictation-slot ${extraClass || ''} ${status} ${active}" lang="zh-Hans" data-slot-index="${index}">${escapeHtml(actual)}</span>`;
+    const selected = index === activeIndex && state.dictationSelectionLength > 0 ? 'is-selected' : '';
+    return `<span class="dictation-slot ${extraClass || ''} ${status} ${active} ${selected}" lang="zh-Hans" data-slot-index="${index}" data-slot-filled="${actual ? 'true' : 'false'}">${escapeHtml(actual)}</span>`;
   }
 
   function renderShortSlots(item, comparison, inputUnits, activeIndex) {
@@ -1124,76 +1717,26 @@
   function renderDictation(item, units) {
     const comparison = state.result || Core.compareAnswers(state.input, item.text);
     const inputUnits = Core.answerUnits(state.input);
-    const activeIndex = inputUnits.length < units.length ? inputUnits.length : -1;
+    const caretIndex = currentDictationCaretIndex(item);
+    const activeIndex = caretIndex < units.length ? caretIndex : -1;
     const slots = item.isPassage
       ? renderPassageSlots(item, comparison, inputUnits, activeIndex)
       : renderShortSlots(item, comparison, inputUnits, activeIndex);
-    const miniAudioLabel = state.audioLoading
-      ? 'Đang tải'
-      : state.speaking
-        ? 'Tạm dừng'
-        : state.paused
-          ? 'Phát tiếp'
-          : 'Phát';
-    const miniAudioIcon = state.audioLoading ? '◌' : state.speaking ? 'Ⅱ' : '▶';
+    const hasNamedSpeakers = Boolean(item.isPassage && (item.segments || []).some((segment) => segment.speaker));
 
     return `
-      <section class="dictation-card ${item.isPassage ? 'dictation-card--passage' : ''}">
+      <section class="dictation-card ${item.isPassage ? 'dictation-card--passage' : ''}" data-learning-target>
         <div class="dictation-heading">
-          <div><p class="eyebrow">Nhập chữ Hán</p><h2>${item.isPassage ? 'Chép lại đoạn vừa nghe' : 'Gõ lại câu vừa nghe'}</h2></div>
+          <div><p class="eyebrow">Nhập chữ Hán</p><h2>${item.fullGroupDictation ? (item.groupKind === 'dialogue' ? 'Chép nguyên hội thoại' : 'Chép nguyên đoạn') : item.isPassage ? 'Chép lại đoạn vừa nghe' : 'Gõ lại câu vừa nghe'}</h2></div>
           <div class="dictation-heading__tools">
             <span class="dictation-count">${inputUnits.length}/${units.length}</span>
-          </div>
-          <div class="dictation-audio-float ${state.floatingAudioCollapsed ? 'is-collapsed' : ''}" data-floating-audio role="group" aria-label="Điều khiển nghe khi đang nhập">
-            <button
-              type="button"
-              class="dictation-audio-collapse"
-              data-action="toggle-floating-audio"
-              tabindex="-1"
-              aria-label="${state.floatingAudioCollapsed ? 'Mở rộng điều khiển nghe' : 'Thu gọn điều khiển nghe'}"
-            >${state.floatingAudioCollapsed ? '›' : '‹'}</button>
-            <div class="dictation-audio-cluster">
-              <button
-                type="button"
-                class="dictation-audio-control dictation-audio-skip"
-                data-action="rewind-speech"
-                tabindex="-1"
-                aria-label="Lùi ${state.settings.rewindSeconds} giây"
-                ${state.audioLoading ? 'disabled' : ''}
-              >−${state.settings.rewindSeconds}s</button>
-              <button
-                type="button"
-                class="dictation-audio-control dictation-audio-toggle ${state.speaking ? 'is-speaking' : ''} ${state.paused ? 'is-paused' : ''}"
-                data-action="toggle-speech"
-                tabindex="-1"
-                aria-label="${miniAudioLabel}"
-                ${state.audioLoading ? 'disabled' : ''}
-              ><span aria-hidden="true">${miniAudioIcon}</span><small>${miniAudioLabel}</small></button>
-              <button
-                type="button"
-                class="dictation-audio-control dictation-audio-skip"
-                data-action="forward-speech"
-                tabindex="-1"
-                aria-label="Tiến ${state.settings.rewindSeconds} giây"
-                ${state.audioLoading ? 'disabled' : ''}
-              >+${state.settings.rewindSeconds}s</button>
-            </div>
-            <button
-              type="button"
-              class="dictation-return-active"
-              data-action="return-to-active-slot"
-              tabindex="-1"
-              aria-label="Quay về vị trí chữ đang nhập"
-              title="Về chỗ gõ"
-              ${state.manualBrowseMode ? '' : 'hidden'}
-            ><span aria-hidden="true">↳</span></button>
           </div>
         </div>
         <div class="dictation-input-wrap ${item.isPassage ? 'dictation-input-wrap--passage' : ''}" data-action="focus-input">
           <div class="${item.isPassage ? 'passage-lines' : 'dictation-rows'}" aria-hidden="true">${slots}</div>
           <input id="dictationInput" class="dictation-ime-input" type="text" value="${escapeHtml(state.input)}" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" lang="zh-Hans" aria-label="Nhập câu tiếng Trung" />
         </div>
-        <p class="input-help">Gõ pinyin trên bàn phím Trung rồi chọn chữ. Dấu câu${item.isPassage ? ' và tên người nói' : ''} không cần nhập.</p>
+        <p class="input-help">Gõ pinyin trên bàn phím Trung rồi chọn chữ. Chạm vào chữ đã gõ để thay trực tiếp; chọn chữ mới xong con trỏ tự quay lại vị trí đang gõ. Dấu câu${hasNamedSpeakers ? ' và tên người nói' : ''} không cần nhập.</p>
 
         <div class="dictation-actions">
           <button class="primary-button" data-action="check-answer">Kiểm tra</button>
@@ -1281,7 +1824,7 @@
   function renderTranscript(item) {
     const ratingEntry = state.progress[progressKey(item, state.mode)];
     return `
-      <section class="transcript-card ${item.isPassage ? 'transcript-card--passage' : ''}">
+      <section class="transcript-card ${item.isPassage ? 'transcript-card--passage' : ''}" data-learning-target>
         <p class="eyebrow">Transcript</p>
         ${item.isPassage
           ? renderPassageTranscriptLines(item, true)
@@ -1475,12 +2018,16 @@
       else if (action === 'close-settings') element.onclick = () => { state.settingsOpen = false; render(); schedulePrepareCurrentAudio(); };
       else if (action === 'open-menu') element.onclick = () => { clearAutoAdvance(); state.menuOpen = true; state.settingsOpen = false; render(); requestAnimationFrame(() => document.querySelector('.listen-menu-head button')?.focus()); };
       else if (action === 'close-menu') element.onclick = () => { state.menuOpen = false; render(); };
+      else if (action === 'open-new-hsk') element.onclick = openNewHskLibrary;
+      else if (action === 'open-new-hsk-unit') element.onclick = () => openNewHskUnit(element.dataset.unitId);
       else if (action === 'open-301') element.onclick = open301Library;
       else if (action === 'open-custom') element.onclick = openCustomLibrary;
       else if (action === 'open-review') element.onclick = openReview;
       else if (action === 'resume-last') element.onclick = resumeLastSession;
       else if (action === 'go-back') element.onclick = goBack;
       else if (action === 'start-mode') element.onclick = () => startPractice(element.dataset.mode, 0);
+      else if (action === 'start-dataset-activity') element.onclick = () => startDatasetActivity(element.dataset.activity, element.dataset.groupId || '', { choiceCount: Number(element.dataset.choiceCount) || 4 });
+      else if (action === 'set-sentence-filter') element.onclick = () => setSentenceFilter(element.dataset.filter);
       else if (action === 'open-content-preview') element.onclick = openContentPreview;
       else if (action === 'open-preview-item') element.onclick = () => startPractice('transcript', Number(element.dataset.index) || 0);
       else if (action === 'open-library-group') element.onclick = () => openLibraryGroup(element.dataset.groupId);
@@ -1502,26 +2049,21 @@
       else if (action === 'confirm-empty-library-trash') element.onclick = () => executeLibraryDelete('empty');
       else if (action === 'restore-library-trash') element.onclick = () => restoreLibraryTrash(element.dataset.trashId);
       else if (action === 'restore-library-trash-all') element.onclick = restoreAllLibraryTrash;
-      else if (action === 'return-to-active-slot') {
+      else if (action === 'return-to-active-target') {
         element.onpointerdown = (event) => event.preventDefault();
         element.onmousedown = (event) => event.preventDefault();
-        element.onclick = returnToActiveDictationSlot;
+        element.onclick = returnToActiveLearningTarget;
       }
       else if (action === 'toggle-floating-audio') {
         element.onpointerdown = (event) => event.preventDefault();
         element.onmousedown = (event) => event.preventDefault();
         element.onclick = () => {
           state.floatingAudioCollapsed = !state.floatingAudioCollapsed;
-          saveJson(FLOATING_AUDIO_KEY, { collapsed: state.floatingAudioCollapsed });
-          const floating = document.querySelector('[data-floating-audio]');
-          if (floating) floating.classList.toggle('is-collapsed', state.floatingAudioCollapsed);
-          element.textContent = state.floatingAudioCollapsed ? '›' : '‹';
-          element.setAttribute('aria-label', state.floatingAudioCollapsed ? 'Mở rộng điều khiển nghe' : 'Thu gọn điều khiển nghe');
-          updateFloatingAudioPosition();
+          syncFloatingAudioDom();
         };
       }
       else if (action === 'toggle-speech') {
-        if (element.classList.contains('dictation-audio-control')) {
+        if (element.classList.contains('practice-audio-control')) {
           // Không chuyển focus khỏi ô nhập: bàn phím iPhone tiếp tục mở khi điều khiển audio.
           element.onpointerdown = (event) => event.preventDefault();
           element.onmousedown = (event) => event.preventDefault();
@@ -1541,14 +2083,14 @@
         } else speakFrom(0);
       };
       else if (action === 'rewind-speech') {
-        if (element.classList.contains('dictation-audio-control')) {
+        if (element.classList.contains('practice-audio-control')) {
           element.onpointerdown = (event) => event.preventDefault();
           element.onmousedown = (event) => event.preventDefault();
         }
         element.onclick = rewindSpeech;
       }
       else if (action === 'forward-speech') {
-        if (element.classList.contains('dictation-audio-control')) {
+        if (element.classList.contains('practice-audio-control')) {
           element.onpointerdown = (event) => event.preventDefault();
           element.onmousedown = (event) => event.preventDefault();
         }
@@ -1556,6 +2098,9 @@
       }
       else if (action === 'previous-item') element.onclick = () => moveItem(-1);
       else if (action === 'next-item') element.onclick = () => moveItem(1);
+      else if (action === 'toggle-group-context') element.onclick = toggleGroupContext;
+      else if (action === 'toggle-group-transcript') element.onclick = toggleGroupTranscript;
+      else if (action === 'play-group-overview') element.onclick = toggleGroupOverviewAudio;
       else if (action === 'set-rate') element.onclick = () => setRate(Number(element.dataset.rate));
       else if (action === 'switch-current-mode') element.onclick = () => switchCurrentMode(element.dataset.mode);
       else if (action === 'focus-input') {
@@ -1563,6 +2108,13 @@
         // để Safari vẫn cuộn trang tự nhiên khi bàn phím đang mở.
         bindDictationTapAndScroll(element);
       }
+      else if (action === 'choose-word') element.onclick = () => chooseWord(element.dataset.choiceId);
+      else if (action === 'add-order-token') element.onclick = () => addOrderingToken(element.dataset.tokenId);
+      else if (action === 'remove-order-token') element.onclick = () => removeOrderingToken(element.dataset.tokenId);
+      else if (action === 'undo-ordering') element.onclick = () => { if (state.activitySelection.length) state.activitySelection.pop(); state.activityResult = null; rememberSession(); render(); };
+      else if (action === 'reset-ordering') element.onclick = resetOrdering;
+      else if (action === 'check-ordering') element.onclick = checkOrdering;
+      else if (action === 'show-order-answer') element.onclick = showOrderingAnswer;
       else if (action === 'check-answer') element.onclick = checkAnswer;
       else if (action === 'show-hint') element.onclick = showHint;
       else if (action === 'hide-hint') element.onclick = () => { state.hint = null; renderPractice(); bindCommonEvents(); focusDictationInput(); };
@@ -1676,6 +2228,56 @@
     });
   }
 
+  function nativeOffsetForAnswerIndex(value, unitIndex) {
+    return Array.from(String(value || '')).slice(0, Math.max(0, unitIndex)).join('').length;
+  }
+
+  function answerIndexFromNativeOffset(value, offset, item) {
+    const max = Core.answerUnits(item && item.text || '').length;
+    const prefix = String(value || '').slice(0, Math.max(0, Number(offset) || 0));
+    return Core.answerUnits(Core.sanitizeDictationAnswer(prefix, item && item.text || '', max)).length;
+  }
+
+  function applyDictationSelection(input) {
+    const item = currentItem();
+    if (!input || !item || input.dataset.composing) return;
+    const inputUnits = Core.answerUnits(state.input);
+    const caretIndex = Math.max(0, Math.min(currentDictationCaretIndex(item), inputUnits.length));
+    const selectionLength = Math.max(0, Math.min(Number(state.dictationSelectionLength) || 0, inputUnits.length - caretIndex));
+    const start = nativeOffsetForAnswerIndex(state.input, caretIndex);
+    const end = nativeOffsetForAnswerIndex(state.input, caretIndex + selectionLength);
+    try {
+      input.setSelectionRange(start, end);
+    } catch (error) {
+      // Một số bàn phím mobile chưa cho đổi vùng chọn trong lúc vừa mở IME.
+    }
+  }
+
+  function setDictationCaret(index, options) {
+    const item = currentItem();
+    if (!item) return;
+    const configured = options || {};
+    const inputUnits = Core.answerUnits(state.input);
+    const previousCaretIndex = Math.max(0, Math.min(currentDictationCaretIndex(item), inputUnits.length));
+    const caretIndex = Math.max(0, Math.min(clampDictationCaretIndex(item, index), inputUnits.length));
+    const willSelectUnit = configured.selectUnit && caretIndex < inputUnits.length;
+    if (willSelectUnit) {
+      if (!Number.isFinite(state.dictationResumeIndex) && caretIndex < previousCaretIndex) {
+        state.dictationResumeIndex = previousCaretIndex;
+      } else if (Number.isFinite(state.dictationResumeIndex) && caretIndex >= state.dictationResumeIndex) {
+        state.dictationResumeIndex = null;
+      }
+    } else {
+      state.dictationResumeIndex = null;
+    }
+    state.dictationCaretIndex = caretIndex;
+    state.dictationSelectionLength = willSelectUnit ? 1 : 0;
+    setManualBrowseMode(false);
+    updateDictationDom({ preserveCaret: true });
+    focusDictationInput({ immediate: configured.immediate === true });
+    keepActiveDictationSlotVisible(caretIndex, { force: configured.forceScroll === true });
+  }
+
   function bindDictationInput(input) {
     let composing = false;
     const syncTimers = new Set();
@@ -1691,9 +2293,20 @@
       if (!item) return false;
 
       const max = Core.answerUnits(item.text).length;
+      const previousLength = Core.answerUnits(state.input).length;
+      const replacingSelectedUnit = state.dictationSelectionLength > 0;
+      const resumeIndex = Number.isFinite(state.dictationResumeIndex) ? state.dictationResumeIndex : null;
+      const nativeStart = Number.isFinite(input.selectionStart) ? input.selectionStart : input.value.length;
+      const nativeEnd = Number.isFinite(input.selectionEnd) ? input.selectionEnd : nativeStart;
       const next = Core.sanitizeDictationAnswer(input.value, item.text, max);
+      const nextLength = Core.answerUnits(next).length;
+      const nextCaretIndex = Math.min(Core.answerUnits(next).length, answerIndexFromNativeOffset(input.value, nativeStart, item));
+      const nextSelectionEnd = Math.min(Core.answerUnits(next).length, answerIndexFromNativeOffset(input.value, nativeEnd, item));
+      const caretChanged = state.dictationCaretIndex !== nextCaretIndex || state.dictationSelectionLength !== Math.max(0, nextSelectionEnd - nextCaretIndex);
+      state.dictationCaretIndex = nextCaretIndex;
+      state.dictationSelectionLength = Math.max(0, nextSelectionEnd - nextCaretIndex);
       if (next === state.input) {
-        moveCaretToEnd(input);
+        if (caretChanged) updateDictationDom({ keepNativeValue: true, preserveNativeSelection: true });
         return false;
       }
 
@@ -1702,8 +2315,16 @@
       state.result = null;
       state.showAnswer = false;
       state.autoSuggestedRating = '';
-      updateDictationDom({ keepNativeValue: true });
-      moveCaretToEnd(input);
+      if (replacingSelectedUnit && resumeIndex !== null) {
+        const delta = nextLength - previousLength;
+        state.dictationCaretIndex = Math.max(0, Math.min(nextLength, resumeIndex + delta));
+        state.dictationSelectionLength = 0;
+        state.dictationResumeIndex = null;
+        updateDictationDom();
+      } else {
+        state.dictationResumeIndex = null;
+        updateDictationDom({ keepNativeValue: true, preserveNativeSelection: true });
+      }
       maybeAutoCheckCompleteInput();
       return true;
     };
@@ -1722,7 +2343,7 @@
     // Giữ giá trị thật trong input. Cách này cho phép IME trên iPhone,
     // Android và Microsoft Pinyin tiếp tục ghép chữ sau mỗi lần chọn ứng viên.
     input.value = state.input;
-    moveCaretToEnd(input);
+    applyDictationSelection(input);
 
     input.oncompositionstart = () => {
       composing = true;
@@ -1749,12 +2370,21 @@
     input.onchange = scheduleSync;
     input.onblur = scheduleSync;
     input.onfocus = () => {
-      moveCaretToEnd(input);
+      applyDictationSelection(input);
       if (state.manualBrowseMode) return;
-      const activeIndex = Core.answerUnits(state.input).length;
+      const activeIndex = currentDictationCaretIndex(currentItem());
       window.setTimeout(() => keepActiveDictationSlotVisible(activeIndex), 80);
     };
-    input.onclick = () => moveCaretToEnd(input);
+    input.onselect = () => {
+      if (composing) return;
+      const item = currentItem();
+      if (!item) return;
+      const start = Number.isFinite(input.selectionStart) ? input.selectionStart : input.value.length;
+      const end = Number.isFinite(input.selectionEnd) ? input.selectionEnd : start;
+      state.dictationCaretIndex = answerIndexFromNativeOffset(input.value, start, item);
+      state.dictationSelectionLength = Math.max(0, answerIndexFromNativeOffset(input.value, end, item) - state.dictationCaretIndex);
+      updateDictationDom({ keepNativeValue: true, preserveNativeSelection: true });
+    };
 
     input.onkeyup = (event) => {
       if ([' ', 'Spacebar', 'Enter'].includes(event.key) || /^Digit[0-9]$/.test(event.code || '')) {
@@ -1775,7 +2405,14 @@
     const item = currentItem();
     if (!item || !value) return;
     const max = Core.answerUnits(item.text).length;
-    const nextInput = Core.appendDictationInput(state.input, value, item.text, max);
+    const currentUnits = Core.answerUnits(state.input);
+    const committedUnits = Core.answerUnits(Core.sanitizeDictationAnswer(value, item.text, max));
+    const caretIndex = Math.max(0, Math.min(currentDictationCaretIndex(item), currentUnits.length));
+    const deleteCount = Math.max(0, Math.min(Number(state.dictationSelectionLength) || 0, currentUnits.length - caretIndex));
+    const resumeIndex = Number.isFinite(state.dictationResumeIndex) ? state.dictationResumeIndex : null;
+    const nextUnits = currentUnits.slice();
+    nextUnits.splice(caretIndex, deleteCount, ...committedUnits);
+    const nextInput = Core.sanitizeDictationAnswer(nextUnits.join(''), item.text, max);
     if (nextInput === state.input) return;
 
     clearAutoAdvance();
@@ -1783,6 +2420,12 @@
     state.result = null;
     state.showAnswer = false;
     state.autoSuggestedRating = '';
+    const nextLength = Core.answerUnits(nextInput).length;
+    state.dictationCaretIndex = resumeIndex !== null && deleteCount > 0
+      ? Math.max(0, Math.min(nextLength, resumeIndex + (nextLength - currentUnits.length)))
+      : Math.min(nextLength, caretIndex + committedUnits.length);
+    state.dictationSelectionLength = 0;
+    state.dictationResumeIndex = null;
 
     // Không render lại toàn bộ màn hình sau mỗi chữ. Việc thay input DOM làm
     // bàn phím iPhone mất focus, nên người dùng chỉ nhập được một chữ.
@@ -1792,8 +2435,25 @@
 
   function deleteLastDictationUnit() {
     if (!state.input) return;
+    const item = currentItem();
+    if (!item) return;
+    const units = Core.answerUnits(state.input);
+    const previousLength = units.length;
+    let caretIndex = Math.max(0, Math.min(currentDictationCaretIndex(item), units.length));
+    const selectionLength = Math.max(0, Math.min(Number(state.dictationSelectionLength) || 0, units.length - caretIndex));
+    const resumeIndex = Number.isFinite(state.dictationResumeIndex) ? state.dictationResumeIndex : null;
+    if (selectionLength > 0) units.splice(caretIndex, selectionLength);
+    else if (caretIndex > 0) {
+      units.splice(caretIndex - 1, 1);
+      caretIndex -= 1;
+    } else return;
     clearAutoAdvance();
-    state.input = Core.removeLastAnswerUnit(state.input);
+    state.input = units.join('');
+    state.dictationCaretIndex = resumeIndex !== null && selectionLength > 0
+      ? Math.max(0, Math.min(units.length, resumeIndex + (units.length - previousLength)))
+      : caretIndex;
+    state.dictationSelectionLength = 0;
+    state.dictationResumeIndex = null;
     state.result = null;
     state.showAnswer = false;
     state.autoSuggestedRating = '';
@@ -1810,7 +2470,9 @@
 
     const units = Core.answerUnits(item.text);
     const inputUnits = Core.answerUnits(state.input);
-    const activeIndex = inputUnits.length < units.length ? inputUnits.length : -1;
+    state.dictationCaretIndex = Math.max(0, Math.min(currentDictationCaretIndex(item), inputUnits.length));
+    state.dictationSelectionLength = Math.max(0, Math.min(Number(state.dictationSelectionLength) || 0, inputUnits.length - state.dictationCaretIndex));
+    const activeIndex = state.dictationCaretIndex < units.length ? state.dictationCaretIndex : -1;
     const comparison = Core.compareAnswers(state.input, item.text);
     const slotElements = Array.from(container.querySelectorAll('[data-slot-index]'));
 
@@ -1826,7 +2488,9 @@
         const index = Number(slot.dataset.slotIndex);
         const actual = inputUnits[index] || '';
         slot.textContent = actual;
+        slot.dataset.slotFilled = actual ? 'true' : 'false';
         slot.classList.toggle('is-active', index === activeIndex);
+        slot.classList.toggle('is-selected', index === activeIndex && state.dictationSelectionLength > 0);
         slot.classList.remove('is-correct', 'is-wrong', 'is-empty-wrong');
         if (state.result) {
           const correct = Boolean(comparison.cells[index] && comparison.cells[index].correct);
@@ -1856,7 +2520,7 @@
 
     const configured = options || {};
     if (!configured.keepNativeValue && !input.dataset.composing) input.value = state.input;
-    moveCaretToEnd(input);
+    if (!configured.preserveNativeSelection) applyDictationSelection(input);
     if (!state.manualBrowseMode) keepActiveDictationSlotVisible(activeIndex);
     updateManualBrowseUi();
   }
@@ -1871,13 +2535,52 @@
   let touchScrollMaxDistance = 0;
   let userGestureScrollUntil = 0;
   let programmaticScrollUntil = 0;
+  let primaryAudioObserver = null;
+  let floatingAudioUpdateFrame = 0;
+  let floatingAudioSettleTimer = 0;
+  let practiceViewportMaxHeight = 0;
   const MANUAL_BROWSE_DISTANCE = 64;
   const MAX_AUTO_FOLLOW_SCROLL = 96;
 
-  function updateManualBrowseUi() {
-    const button = document.querySelector('[data-action="return-to-active-slot"]');
-    if (button) button.hidden = !state.manualBrowseMode;
+  function activeLearningTargetElement() {
+    const item = currentItem();
+    const input = document.getElementById('dictationInput');
+    if (input && item) {
+      const units = Core.answerUnits(item.text);
+      const caret = currentDictationCaretIndex(item);
+      const activeIndex = caret < units.length ? caret : Math.max(0, units.length - 1);
+      return document.querySelector(`[data-slot-index="${activeIndex}"]`) || document.querySelector('[data-learning-target]');
+    }
+    return document.querySelector('[data-learning-target]');
+  }
+
+  function practiceViewportBounds() {
+    const viewport = window.visualViewport;
+    const top = viewport ? viewport.offsetTop : 0;
+    const height = viewport ? viewport.height : window.innerHeight;
+    const bottomNav = document.querySelector('.listen-bottom-nav');
+    const bottomNavRect = bottomNav ? bottomNav.getBoundingClientRect() : null;
+    let bottom = top + height;
+    if (bottomNavRect && bottomNavRect.top > top && bottomNavRect.top < bottom) bottom = bottomNavRect.top;
+    return { top: top + 12, bottom: bottom - 12 };
+  }
+
+  function updateActiveTargetAway() {
+    const target = activeLearningTargetElement();
+    const bounds = practiceViewportBounds();
+    let away = false;
+    if (target) {
+      const rect = target.getBoundingClientRect();
+      away = rect.bottom <= bounds.top || rect.top >= bounds.bottom;
+    }
+    state.activeTargetAway = away;
+    const button = document.querySelector('[data-action="return-to-active-target"]');
+    if (button) button.hidden = !away;
     document.querySelector('.dictation-card')?.classList.toggle('is-manual-browse', state.manualBrowseMode);
+  }
+
+  function updateManualBrowseUi() {
+    updateActiveTargetAway();
   }
 
   function setManualBrowseMode(enabled) {
@@ -1954,6 +2657,96 @@
     floating.style.setProperty('--floating-audio-top', `${Math.round(targetTop)}px`);
   }
 
+  function mobileFloatingAudioEnabled() {
+    return window.matchMedia ? window.matchMedia('(max-width: 760px)').matches : window.innerWidth <= 760;
+  }
+
+  function elementIntersectsPracticeViewport(element) {
+    if (!element) return false;
+    const rect = element.getBoundingClientRect();
+    const bounds = practiceViewportBounds();
+    return rect.bottom > bounds.top && rect.top < bounds.bottom;
+  }
+
+  function detectPracticeKeyboardVisible() {
+    const viewport = window.visualViewport;
+    const currentHeight = viewport ? viewport.height : window.innerHeight;
+    const inputFocused = document.activeElement && document.activeElement.id === 'dictationInput';
+    if (!inputFocused) practiceViewportMaxHeight = Math.max(practiceViewportMaxHeight, currentHeight);
+    if (!practiceViewportMaxHeight) practiceViewportMaxHeight = currentHeight;
+    const reduced = practiceViewportMaxHeight - currentHeight > 96;
+    const coarse = window.matchMedia ? window.matchMedia('(pointer: coarse)').matches : false;
+    return Boolean(inputFocused && (reduced || coarse));
+  }
+
+  function syncFloatingAudioDom() {
+    const floating = document.querySelector('[data-floating-audio]');
+    if (!floating) return;
+    floating.hidden = !state.floatingAudioVisible;
+    floating.classList.toggle('is-collapsed', state.floatingAudioCollapsed);
+    const collapse = floating.querySelector('[data-action="toggle-floating-audio"]');
+    if (collapse) {
+      collapse.textContent = state.floatingAudioCollapsed ? '›' : '‹';
+      collapse.setAttribute('aria-label', state.floatingAudioCollapsed ? 'Mở rộng điều khiển nghe' : 'Thu gọn điều khiển nghe');
+    }
+    updateActiveTargetAway();
+    updateFloatingAudioPosition();
+  }
+
+  function updatePracticeFloatingAudioState() {
+    if (floatingAudioUpdateFrame) cancelAnimationFrame(floatingAudioUpdateFrame);
+    floatingAudioUpdateFrame = requestAnimationFrame(() => {
+      floatingAudioUpdateFrame = 0;
+      const floating = document.querySelector('[data-floating-audio]');
+      if (!floating || state.screen !== 'practice' || !mobileFloatingAudioEnabled()) {
+        state.floatingAudioVisible = false;
+        if (floating) floating.hidden = true;
+        return;
+      }
+
+      const audioCard = document.querySelector('[data-primary-audio]');
+      state.primaryAudioVisible = elementIntersectsPracticeViewport(audioCard);
+      state.keyboardVisible = detectPracticeKeyboardVisible();
+      const shouldShow = !state.primaryAudioVisible || state.keyboardVisible;
+      if (shouldShow && !state.floatingAudioVisible) state.floatingAudioCollapsed = true;
+      state.floatingAudioVisible = shouldShow;
+      syncFloatingAudioDom();
+    });
+  }
+
+  function setupPracticeFloatingAudio() {
+    if (primaryAudioObserver) {
+      primaryAudioObserver.disconnect();
+      primaryAudioObserver = null;
+    }
+    if (state.screen !== 'practice') {
+      state.floatingAudioVisible = false;
+      state.keyboardVisible = false;
+      return;
+    }
+
+    const viewportHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+    if (!document.getElementById('dictationInput')) practiceViewportMaxHeight = Math.max(practiceViewportMaxHeight, viewportHeight);
+    const audioCard = document.querySelector('[data-primary-audio]');
+    if (audioCard && 'IntersectionObserver' in window) {
+      primaryAudioObserver = new IntersectionObserver((entries) => {
+        const entry = entries[0];
+        state.primaryAudioVisible = Boolean(entry && entry.isIntersecting);
+        updatePracticeFloatingAudioState();
+      }, { threshold: [0, 0.01] });
+      primaryAudioObserver.observe(audioCard);
+    }
+    updatePracticeFloatingAudioState();
+    clearTimeout(floatingAudioSettleTimer);
+    floatingAudioSettleTimer = window.setTimeout(updatePracticeFloatingAudioState, 140);
+  }
+
+  function handlePracticeFloatingAudioViewportChange() {
+    updatePracticeFloatingAudioState();
+    clearTimeout(floatingAudioSettleTimer);
+    floatingAudioSettleTimer = window.setTimeout(updatePracticeFloatingAudioState, 140);
+  }
+
   function ensureGlobalScrollGuards() {
     if (globalScrollGuardsBound) return;
     globalScrollGuardsBound = true;
@@ -1968,13 +2761,23 @@
     ensureGlobalScrollGuards();
 
     // Không chặn pointer/touch ở vùng đoạn văn. Vuốt vẫn do Safari xử lý;
-    // click nhẹ chỉ dùng để mở hoặc giữ bàn phím.
-    element.onclick = () => {
+    // click nhẹ vào một ô đã gõ sẽ chọn đúng chữ đó để thay thế trực tiếp.
+    element.onclick = (event) => {
+      if (Date.now() < userGestureScrollUntil && touchScrollMaxDistance > 8) return;
+      const slot = event.target && event.target.closest ? event.target.closest('[data-slot-index]') : null;
+      if (slot) {
+        setDictationCaret(Number(slot.dataset.slotIndex), {
+          selectUnit: slot.dataset.slotFilled === 'true',
+          immediate: true,
+          forceScroll: false
+        });
+        return;
+      }
       focusDictationInput({ immediate: true });
     };
   }
 
-  function returnToActiveDictationSlot() {
+  function returnToActiveLearningTarget() {
     setManualBrowseMode(false);
     userIsScrolling = false;
     touchScrollTracking = false;
@@ -1982,13 +2785,21 @@
     clearTimeout(userScrollReleaseTimer);
 
     const item = currentItem();
-    if (!item) return;
-    const units = Core.answerUnits(item.text);
-    const typed = Core.answerUnits(state.input).length;
-    const activeIndex = typed < units.length ? typed : Math.max(0, units.length - 1);
-
-    focusDictationInput({ immediate: true });
-    keepActiveDictationSlotVisible(activeIndex, { force: true });
+    const input = document.getElementById('dictationInput');
+    if (input && item) {
+      const units = Core.answerUnits(item.text);
+      const caret = currentDictationCaretIndex(item);
+      const activeIndex = caret < units.length ? caret : Math.max(0, units.length - 1);
+      focusDictationInput({ immediate: true });
+      keepActiveDictationSlotVisible(activeIndex, { force: true });
+    } else {
+      const target = activeLearningTargetElement();
+      if (target) {
+        programmaticScrollUntil = Date.now() + 400;
+        target.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+      }
+    }
+    window.setTimeout(updatePracticeFloatingAudioState, 450);
   }
 
   function keepActiveDictationSlotVisible(activeIndex, options) {
@@ -2063,7 +2874,7 @@
         input.focus();
       }
 
-      moveCaretToEnd(input);
+      applyDictationSelection(input);
       return document.activeElement === input;
     };
 
@@ -2073,15 +2884,6 @@
 
     requestAnimationFrame(applyFocus);
     return false;
-  }
-
-  function moveCaretToEnd(input) {
-    try {
-      const length = input.value.length;
-      input.setSelectionRange(length, length);
-    } catch (error) {
-      // Một số bàn phím mobile không hỗ trợ setSelectionRange trong lúc composition.
-    }
   }
 
   function itemSessionKey(item) {
@@ -2102,6 +2904,86 @@
   function markSessionAnswer(item) {
     pushUniqueValue(state.sessionAnswerIds, itemSessionKey(item));
     markSessionWrong(item);
+  }
+
+  function recordActivityResult(item, isCorrect, activity) {
+    state.activityResult = { isCorrect };
+    const key = progressKey(item, state.mode);
+    const sessionKey = itemSessionKey(item);
+    pushUniqueValue(state.sessionCheckedIds, sessionKey);
+    if (isCorrect) pushUniqueValue(state.sessionCorrectIds, sessionKey);
+    const previous = state.progress[key] || {};
+    state.progress[key] = Object.assign({}, previous, {
+      item: snapshotItem(item),
+      activity,
+      attempts: Number(previous.attempts || 0) + 1,
+      lastResult: { isCorrect },
+      lastReviewedAt: new Date().toISOString()
+    });
+    if (!isCorrect) {
+      state.currentWrongChecks += 1;
+      markSessionWrong(item);
+    } else if (state.settings.autoRate) {
+      rateItem(deriveAutomaticRating(), { render: false });
+    }
+    saveProgress();
+    rememberSession();
+    if (isCorrect && state.settings.autoNext && state.mode !== 'sequence-ordering') scheduleAutoAdvance();
+    render();
+  }
+
+  function chooseWord(choiceId) {
+    const item = currentItem();
+    if (!item || state.activityResult) return;
+    state.activitySelection = [choiceId];
+    recordActivityResult(item, choiceId === item.answerId, 'listening-word-choice');
+  }
+
+  function orderingEntries(item) {
+    return item && item.activityType && item.activityType.includes('sequence') ? item.cards : item.tokens;
+  }
+
+  function addOrderingToken(tokenId) {
+    const item = currentItem();
+    if (!item || state.activityResult && state.activityResult.isCorrect) return;
+    if (!state.activitySelection.includes(tokenId)) state.activitySelection.push(tokenId);
+    rememberSession();
+    render();
+  }
+
+  function removeOrderingToken(tokenId) {
+    if (state.activityResult && state.activityResult.isCorrect) return;
+    const index = state.activitySelection.lastIndexOf(tokenId);
+    if (index >= 0) state.activitySelection.splice(index, 1);
+    state.activityResult = null;
+    rememberSession();
+    render();
+  }
+
+  function resetOrdering() {
+    state.activitySelection = [];
+    state.activityResult = null;
+    rememberSession();
+    render();
+  }
+
+  function checkOrdering() {
+    const item = currentItem();
+    if (!item) return;
+    const expected = orderingEntries(item).map((entry) => entry.id);
+    if (state.activitySelection.length !== expected.length) return;
+    const isCorrect = expected.every((id, index) => state.activitySelection[index] === id);
+    recordActivityResult(item, isCorrect, item.activityType || 'listening-ordering');
+  }
+
+  function showOrderingAnswer() {
+    const item = currentItem();
+    if (!item) return;
+    state.viewedAnswer = true;
+    state.showAnswer = true;
+    state.activitySelection = orderingEntries(item).map((entry) => entry.id);
+    markSessionAnswer(item);
+    recordActivityResult(item, false, item.activityType || 'listening-ordering');
   }
 
   function checkAnswer(options) {
@@ -2194,7 +3076,7 @@
     const isTranscript = state.mode === 'transcript' || state.mode === 'passage-transcript';
     state.progress[key] = Object.assign({}, previous, {
       item: snapshotItem(item),
-      activity: isTranscript ? 'listening-transcript' : item.isPassage ? 'listening-passage-dictation' : 'listening-dictation',
+      activity: item.activityType || (isTranscript ? 'listening-transcript' : item.isPassage ? 'listening-passage-dictation' : 'listening-dictation'),
       attempts: Number(previous.attempts || 0) + 1,
       listenCount: Number(previous.listenCount || 0) + state.listenCount,
       usedHint: Boolean(previous.usedHint || state.usedHint),
@@ -2231,18 +3113,10 @@
   }
 
   function fillHintText(text) {
-    const item = currentItem();
-    if (!item) return;
+    if (!currentItem()) return;
     state.usedHint = true;
-    const max = Core.answerUnits(item.text).length;
-    clearAutoAdvance();
-    state.input = Core.appendDictationInput(state.input, text, item.text, max);
-    state.result = null;
-    state.showAnswer = false;
-    state.autoSuggestedRating = '';
-    updateDictationDom();
+    commitDictationText(text);
     focusDictationInput();
-    maybeAutoCheckCompleteInput();
   }
 
   function switchCurrentMode(mode) {
@@ -2272,7 +3146,7 @@
     const isTranscript = state.mode === 'transcript' || state.mode === 'passage-transcript';
     state.progress[key] = Object.assign({}, previous, {
       item: snapshotItem(item),
-      activity: isTranscript ? 'listening-transcript' : item.isPassage ? 'listening-passage-dictation' : 'listening-dictation',
+      activity: item.activityType || (isTranscript ? 'listening-transcript' : item.isPassage ? 'listening-passage-dictation' : 'listening-dictation'),
       rating,
       listenCount: Number(previous.listenCount || 0) + state.listenCount,
       usedHint: Boolean(previous.usedHint || state.usedHint),
@@ -2282,6 +3156,102 @@
     state.listenCount = 0;
     saveProgress();
     if (configured.render !== false) render();
+  }
+
+  function toggleGroupContext() {
+    state.groupContextExpanded = !state.groupContextExpanded;
+    render();
+  }
+
+  function toggleGroupTranscript() {
+    const item = currentItem();
+    if (!item || !item.groupContext) return;
+    state.groupTranscriptOpen = !state.groupTranscriptOpen;
+    if (state.groupTranscriptOpen) {
+      state.usedHint = true;
+      markSessionAnswer(item);
+    }
+    rememberSession();
+    render();
+  }
+
+  function toggleGroupOverviewAudio() {
+    const item = currentItem();
+    const context = item && item.groupContext;
+    if (!context || !context.speechText) return;
+    if (state.groupPreviewSpeaking) {
+      stopSpeech();
+      render();
+      return;
+    }
+    if (!('speechSynthesis' in window)) {
+      state.error = 'Thiết bị không hỗ trợ đọc toàn bộ hội thoại hoặc đoạn văn.';
+      render();
+      return;
+    }
+    stopSpeech();
+    const token = ++state.speechToken;
+    const utterance = new SpeechSynthesisUtterance(context.speechText);
+    const voice = selectedVoice();
+    if (voice) utterance.voice = voice;
+    utterance.lang = voice && voice.lang || 'zh-CN';
+    utterance.rate = Number(state.settings.rate) || 1;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+    state.groupPreviewSpeaking = true;
+    state.speaking = true;
+    state.paused = false;
+    state.listenCount += 1;
+    render();
+    const finish = () => {
+      if (token !== state.speechToken) return;
+      state.groupPreviewSpeaking = false;
+      state.speaking = false;
+      state.paused = false;
+      render();
+    };
+    utterance.onend = finish;
+    utterance.onerror = (event) => {
+      if (event.error === 'canceled' || event.error === 'interrupted') return;
+      state.error = `Không đọc được toàn bộ nội dung (${event.error || 'unknown'}).`;
+      finish();
+    };
+    window.setTimeout(() => {
+      if (token === state.speechToken) window.speechSynthesis.speak(utterance);
+    }, 40);
+  }
+
+  function autoplayCurrentItemAfterNavigation() {
+    const item = currentItem();
+    if (!item || state.screen !== 'practice') return;
+    const expectedKey = itemSessionKey(item);
+    window.setTimeout(async () => {
+      const active = currentItem();
+      if (!active || itemSessionKey(active) !== expectedKey || state.screen !== 'practice') return;
+      if (state.settings.voiceSource === 'device' || !AudioStore) {
+        speakFrom(0);
+        return;
+      }
+      try {
+        const entry = await prepareImportedAudio(active, { force: true, silent: true });
+        const latest = currentItem();
+        if (!latest || itemSessionKey(latest) !== expectedKey || state.screen !== 'practice') return;
+        if (entry && state.audioPlayer) {
+          state.audioPlayer.currentTime = 0;
+          state.audioCurrentTime = 0;
+          resumeFileAudio({ fallbackToDevice: state.settings.voiceSource === 'auto' });
+          return;
+        }
+      } catch (error) {
+        // Chế độ Tự động sẽ dùng TTS khi MP3 không sẵn sàng.
+      }
+      if (state.settings.voiceSource === 'auto') speakFrom(0);
+      else {
+        state.audioStatus = 'missing';
+        state.audioMessage = 'Mục mới chưa có MP3. Hãy nhập MP3 hoặc đổi sang Tự động/TTS.';
+        render();
+      }
+    }, 70);
   }
 
   function moveItem(delta) {
@@ -2295,10 +3265,12 @@
     }
     state.currentIndex = next;
     resetCurrentAnswer();
+    resetFloatingAudioContext();
     rememberSession();
     prepareNextItem();
     render();
     focusDictationInput();
+    if (delta > 0) autoplayCurrentItemAfterNavigation();
   }
 
   function prepareNextItem() {
@@ -2321,15 +3293,21 @@
     if (!state.sessionWrongItems.length) return;
     const retryItems = state.sessionWrongItems.map((item) => structuredCloneSafe(item));
     state.practiceItems = retryItems;
-    state.mode = retryItems[0] && retryItems[0].isPassage ? 'passage' : 'dictation';
+    const firstActivity = retryItems[0] && retryItems[0].activityType || '';
+    if (firstActivity === 'word-choice') state.mode = 'word-choice';
+    else if (firstActivity.includes('sequence-ordering')) state.mode = 'sequence-ordering';
+    else if (firstActivity.includes('ordering')) state.mode = 'token-ordering';
+    else state.mode = retryItems[0] && retryItems[0].isPassage ? 'passage' : 'dictation';
     state.currentIndex = 0;
-    state.sessionName = retryItems[0] && retryItems[0].isPassage ? 'Chép lại đoạn' : 'Chép lại câu sai';
+    state.sessionName = state.mode === 'word-choice' ? 'Chọn lại từ sai' : state.mode.includes('ordering') ? 'Xếp lại mục sai' : retryItems[0] && retryItems[0].isPassage ? 'Chép lại đoạn' : 'Chép lại câu sai';
     state.sessionWrongItems = [];
     state.sessionCheckedIds = [];
     state.sessionCorrectIds = [];
     state.sessionAnswerIds = [];
+    state.groupContextExpanded = false;
     resetCurrentAnswer();
     state.screen = 'practice';
+    resetFloatingAudioContext();
     rememberSession();
     prepareNextItem();
     render();
@@ -2341,6 +3319,7 @@
     stopSpeech();
     state.practiceItems = null;
     state.sessionName = '';
+    state.activityDescriptor = null;
     state.screen = 'mode';
     render();
   }
@@ -2359,8 +3338,15 @@
     if (state.screen === 'practice' || state.screen === 'complete') {
       state.practiceItems = null;
       state.sessionName = '';
+      state.activitySelection = [];
+      state.activityResult = null;
       state.screen = 'mode';
       stopSpeech();
+      render();
+      return;
+    }
+    if (state.screen === 'newHskUnits') {
+      state.screen = 'home';
       render();
       return;
     }
@@ -2371,7 +3357,11 @@
     }
     if (state.screen === 'mode') {
       state.practiceItems = null;
-      if (state.source === '301') state.screen = 'lessons301';
+      if (state.source === 'new-hsk') {
+        state.dataset = null;
+        state.items = [];
+        state.screen = 'newHskUnits';
+      } else if (state.source === '301') state.screen = 'lessons301';
       else if (state.source === 'custom') state.screen = state.lesson && state.lesson.groupId ? 'customGroup' : 'custom';
       else state.screen = 'home';
       render();
@@ -2578,6 +3568,7 @@
   function toggleSpeech() {
     const item = currentItem();
     if (!item) return;
+    if (state.groupPreviewSpeaking) stopSpeech();
 
     if (currentAudioIsPrepared(item)) {
       if (state.speaking) pauseSpeech();
@@ -2666,6 +3657,7 @@
     state.audioMessage = '';
     state.speaking = false;
     state.paused = false;
+    state.groupPreviewSpeaking = false;
     state.speechToken += 1;
   }
 
@@ -2715,7 +3707,7 @@
       button.setAttribute('aria-label', label);
       button.classList.toggle('is-speaking', Boolean(state.speaking));
       button.classList.toggle('is-paused', Boolean(state.paused));
-      if (button.classList.contains('dictation-audio-toggle')) {
+      if (button.classList.contains('practice-audio-toggle')) {
         button.innerHTML = `<span aria-hidden="true">${icon}</span><small>${label}</small>`;
       } else if (button.classList.contains('play-button')) {
         button.textContent = icon;
@@ -2952,7 +3944,8 @@
     return task;
   }
 
-  function resumeFileAudio() {
+  function resumeFileAudio(options) {
+    const configured = options || {};
     const item = currentItem();
     if (!currentAudioIsPrepared(item)) {
       state.audioStatus = 'loading';
@@ -2976,11 +3969,19 @@
       }).catch((error) => {
         state.speaking = false;
         state.paused = false;
+        if (configured.fallbackToDevice) {
+          releasePreparedFileAudio();
+          state.audioStatus = 'idle';
+          state.audioMessage = 'MP3 bị chặn tự phát; đang chuyển sang TTS thiết bị.';
+          speakFrom(0);
+          return;
+        }
         state.audioStatus = 'error';
         state.audioMessage = `Không phát được MP3: ${mediaErrorText(error)}`;
         render();
       });
     }
+    return playPromise;
   }
 
   async function playImportedAudio(item, options = {}) {
@@ -3073,9 +4074,20 @@
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) pauseSpeech();
   });
-  window.visualViewport?.addEventListener('resize', updateFloatingAudioPosition, { passive: true });
-  window.visualViewport?.addEventListener('scroll', updateFloatingAudioPosition, { passive: true });
-  window.addEventListener('orientationchange', updateFloatingAudioPosition, { passive: true });
+  window.addEventListener('scroll', handlePracticeFloatingAudioViewportChange, { passive: true });
+  window.visualViewport?.addEventListener('resize', handlePracticeFloatingAudioViewportChange, { passive: true });
+  window.visualViewport?.addEventListener('scroll', handlePracticeFloatingAudioViewportChange, { passive: true });
+  window.addEventListener('resize', handlePracticeFloatingAudioViewportChange, { passive: true });
+  window.addEventListener('orientationchange', () => {
+    practiceViewportMaxHeight = 0;
+    handlePracticeFloatingAudioViewportChange();
+  }, { passive: true });
+  document.addEventListener('focusin', (event) => {
+    if (event.target && event.target.id === 'dictationInput') window.setTimeout(handlePracticeFloatingAudioViewportChange, 80);
+  });
+  document.addEventListener('focusout', (event) => {
+    if (event.target && event.target.id === 'dictationInput') window.setTimeout(handlePracticeFloatingAudioViewportChange, 180);
+  });
 
   window.ListeningAudioDebug = {
     state,

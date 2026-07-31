@@ -747,7 +747,7 @@
       <div class="ldsn-tabs-wrap">
         <nav class="ldsn-tabs" aria-label="Nội dung bài học">${TABS.map(tab => `<button class="ldsn-tab${tab.id === activeTab ? ' is-active' : ''}" type="button" data-tab="${tab.id}" aria-current="${tab.id === activeTab ? 'page' : 'false'}">${tab.label}</button>`).join('')}</nav>
       </div>
-      <section id="ldsnPanel" class="ldsn-panel">${renderActivePanel()}</section>
+      <section id="ldsnPanel" class="ldsn-panel" data-active-tab="${activeTab}">${renderActivePanel()}</section>
     </div>`;
     applyPinyinVisibility();
     setBreadcrumb();
@@ -1125,7 +1125,7 @@
     const rows = Object.entries(state.ratings || {})
       .filter(([, row]) => ['review', 'hard'].includes(row.rating))
       .sort((a, b) => String(b[1].updatedAt).localeCompare(String(a[1].updatedAt)));
-    return `<section id="review" class="ldsn-card ldsn-pad">
+    return `<section id="review" class="ldsn-card ldsn-pad ldsn-section ldsn-section--review">
       <div class="ldsn-section-head"><div><p class="ldsn-kicker">Ôn cách quãng</p><h2>${rows.length} mục cần ôn</h2><p>Từ, câu, hội thoại và ngữ pháp dùng chung một lịch sử.</p></div></div>
       ${rows.length ? `<div class="ldsn-exercise-list">${rows.map(([key, row]) => renderReviewItem(key, row)).join('')}</div>` : `<div class="ldsn-review-empty"><strong>Chưa có mục cần ôn</strong>Trong lúc học, chọn Ôn hoặc Khó để đưa nội dung vào đây.</div>`}
       <div class="ldsn-actions"><button class="ldsn-secondary-btn" type="button" data-mark-step="review">Đã ôn hôm nay</button></div>

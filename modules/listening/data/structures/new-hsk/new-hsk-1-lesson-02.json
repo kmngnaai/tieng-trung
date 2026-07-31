@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "sourceId": "new-hsk",
+  "levelId": "new-hsk-1",
+  "unitId": "new_hsk__1__lesson__2__bai-2-my-name-is-li-wen",
+  "title": "Tôi tên là Lý Văn",
+  "titleZh": "我叫李文",
+  "status": "sample-complete",
+  "rules": {
+    "audio": "user-mp3-or-device-tts",
+    "defaultChoiceCount": 4,
+    "hardChoiceCount": 5,
+    "grammarIncludedInAllSentences": true
+  },
+  "sentenceDefinitions": [
+    {
+      "id": "nhsk1-l02-s01",
+      "originType": "source",
+      "sourceText": "你好",
+      "tokens": ["你", "好"]
+    },
+    {
+      "id": "nhsk1-l02-s02",
+      "originType": "source",
+      "sourceText": "你叫什么名字？",
+      "tokens": ["你", "叫", "什么", "名字"]
+    },
+    {
+      "id": "nhsk1-l02-s03",
+      "originType": "authored",
+      "hanzi": "我叫李文。",
+      "pinyin": "Wǒ jiào Lǐ Wén.",
+      "meaning": "Tôi tên là Lý Văn.",
+      "tokens": ["我", "叫", "李文"],
+      "basedOn": {
+        "wordIds": ["我", "叫", "名字"],
+        "grammarIds": ["hsk1_new_1"]
+      }
+    },
+    {
+      "id": "nhsk1-l02-s04",
+      "originType": "authored",
+      "hanzi": "你呢？",
+      "pinyin": "Nǐ ne?",
+      "meaning": "Còn bạn thì sao?",
+      "tokens": ["你", "呢"],
+      "basedOn": {
+        "wordIds": ["你"],
+        "grammarIds": ["hsk1_new_7"]
+      }
+    },
+    {
+      "id": "nhsk1-l02-s05",
+      "originType": "authored",
+      "hanzi": "我叫王明。",
+      "pinyin": "Wǒ jiào Wáng Míng.",
+      "meaning": "Tôi tên là Vương Minh.",
+      "tokens": ["我", "叫", "王明"],
+      "basedOn": {
+        "wordIds": ["我", "叫", "名字"],
+        "grammarIds": ["hsk1_new_1"]
+      }
+    },
+    {
+      "id": "nhsk1-l02-s06",
+      "originType": "source",
+      "sourceText": "很高兴认识你",
+      "tokens": ["很", "高兴", "认识", "你"]
+    },
+    {
+      "id": "nhsk1-l02-s07",
+      "originType": "authored",
+      "hanzi": "我也很高兴认识你。",
+      "pinyin": "Wǒ yě hěn gāoxìng rènshi nǐ.",
+      "meaning": "Tôi cũng rất vui được làm quen với bạn.",
+      "tokens": ["我", "也", "很", "高兴", "认识", "你"],
+      "basedOn": {
+        "wordIds": ["我", "也", "很", "高兴", "认识", "你"]
+      }
+    },
+    {
+      "id": "nhsk1-l02-s08",
+      "originType": "source",
+      "sourceText": "我认识他",
+      "tokens": ["我", "认识", "他"]
+    },
+    {
+      "id": "nhsk1-l02-s09",
+      "originType": "authored",
+      "hanzi": "王明也认识我。",
+      "pinyin": "Wáng Míng yě rènshi wǒ.",
+      "meaning": "Vương Minh cũng quen tôi.",
+      "tokens": ["王明", "也", "认识", "我"],
+      "basedOn": {
+        "wordIds": ["也", "认识", "我"]
+      }
+    },
+    {
+      "id": "nhsk1-l02-s10",
+      "originType": "source",
+      "sourceText": "我很高兴",
+      "tokens": ["我", "很", "高兴"]
+    },
+    {
+      "id": "nhsk1-l02-g01",
+      "originType": "grammar",
+      "grammarId": "hsk1_new_1",
+      "sourceText": "我叫陈天中。",
+      "tokens": ["我", "叫", "陈天中"]
+    }
+  ],
+  "dialogues": [
+    {
+      "id": "nhsk1-l02-dialogue-01",
+      "title": "Làm quen",
+      "originType": "curated",
+      "turns": [
+        { "id": "turn-01", "speaker": "A", "sentenceRef": "nhsk1-l02-s01" },
+        { "id": "turn-02", "speaker": "B", "sentenceRef": "nhsk1-l02-s01" },
+        { "id": "turn-03", "speaker": "A", "sentenceRef": "nhsk1-l02-s02" },
+        { "id": "turn-04", "speaker": "B", "sentenceRef": "nhsk1-l02-s03" },
+        { "id": "turn-05", "speaker": "B", "sentenceRef": "nhsk1-l02-s04" },
+        { "id": "turn-06", "speaker": "A", "sentenceRef": "nhsk1-l02-s05" },
+        { "id": "turn-07", "speaker": "B", "sentenceRef": "nhsk1-l02-s06" },
+        { "id": "turn-08", "speaker": "A", "sentenceRef": "nhsk1-l02-s07" }
+      ]
+    }
+  ],
+  "passages": [
+    {
+      "id": "nhsk1-l02-passage-01",
+      "title": "Lý Văn và Vương Minh",
+      "originType": "curated",
+      "sentenceRefs": [
+        "nhsk1-l02-s03",
+        "nhsk1-l02-s08",
+        "nhsk1-l02-s09",
+        "nhsk1-l02-s10"
+      ]
+    }
+  ]
+}
