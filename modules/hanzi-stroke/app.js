@@ -1365,12 +1365,14 @@ if(window.HanziWriter){
     sourceKey: readLastCurriculum(),
     levelLoading: false,
     vocabViewMode: 'list',
+    showPinyin: true,
     flashcardSession: null,
     flashcardStatsOpen: false
   };
 
   const HSK_MODE_STORAGE_KEY = 'hanziStroke.hskLastModeBySourceLevel.v1';
   const HSK_VOCAB_VIEW_STORAGE_KEY = 'hanziStroke.hskVocabViewMode.v1';
+  const HSK_PINYIN_VISIBILITY_STORAGE_KEY = 'hanziStroke.hskShowPinyin.v1';
   const HSK_FLASHCARD_SETTINGS_KEY = 'hanziStroke.hskFlashcardSettings.v1';
   const HSK_FLASHCARD_RESULTS_KEY = 'hanziStroke.hskFlashcardResults.v1';
   const HSK_FLASHCARD_ACTIVE_SESSION_KEY = 'hanziStroke.hskFlashcardActiveSession.v1';
@@ -3871,6 +3873,40 @@ if(window.HanziWriter){
 
   hskState.vocabViewMode = readStoredVocabViewMode();
 
+  function readStoredHskPinyinVisibility(){
+    try{
+      return window.localStorage?.getItem(HSK_PINYIN_VISIBILITY_STORAGE_KEY) !== 'false';
+    }catch(_err){
+      return true;
+    }
+  }
+
+  function saveStoredHskPinyinVisibility(visible){
+    hskState.showPinyin = visible !== false;
+    try{
+      window.localStorage?.setItem(HSK_PINYIN_VISIBILITY_STORAGE_KEY, String(hskState.showPinyin));
+    }catch(_err){
+      // localStorage có thể bị chặn; state trong phiên vẫn hoạt động bình thường.
+    }
+  }
+
+  function hskSourceSupportsPinyinToggle(sourceKey = hskState.sourceKey){
+    return ['hsk', 'new_hsk', 'yct', 'boya'].includes(String(sourceKey || ''));
+  }
+
+  function applyHskPinyinVisibility(){
+    const visible = hskState.showPinyin !== false;
+    hskList?.classList.toggle('is-pinyin-hidden', !visible);
+    hskGroupModes?.querySelectorAll('[data-hsk-toggle-pinyin]').forEach(button => {
+      button.classList.toggle('is-active', visible);
+      button.setAttribute('aria-pressed', String(visible));
+      button.setAttribute('aria-label', visible ? 'Ẩn pinyin' : 'Hiện pinyin');
+      button.setAttribute('title', visible ? 'Ẩn pinyin' : 'Hiện pinyin');
+    });
+  }
+
+  hskState.showPinyin = readStoredHskPinyinVisibility();
+
   function ensureHskVocabViewControls(){
     let controls = document.getElementById('hskVocabViewControls');
     if(controls || !hskStatus?.parentElement){
@@ -5027,15 +5063,17 @@ if(window.HanziWriter){
     const backTool = showingSelectedVocabulary ? `
       <button type="button" class="hsk-route-icon-button hsk-route-back-button" data-hsk-section-back aria-label="Quay lại danh sách ${hskState.groupMode === 'topics' ? 'chủ đề' : 'bài học'}" title="Quay lại">←</button>
     ` : '';
-    const viewTools = showingSelectedVocabulary ? `
+    const showingVocabularyTools = showingSelectedVocabulary && hskSourceSupportsPinyinToggle();
+    const viewTools = showingVocabularyTools ? `
       <span class="hsk-route-inline-tools">
         <button type="button" class="hsk-route-icon-button ${hskState.vocabViewMode === 'list' ? 'active' : ''}" data-hsk-vocab-view="list" aria-pressed="${hskState.vocabViewMode === 'list'}" aria-label="Hiển thị dạng danh sách" title="Danh sách">☰</button>
         <button type="button" class="hsk-route-icon-button ${hskState.vocabViewMode === 'grid' ? 'active' : ''}" data-hsk-vocab-view="grid" aria-pressed="${hskState.vocabViewMode === 'grid'}" aria-label="Hiển thị dạng lưới" title="Lưới">▦</button>
+        <button type="button" class="hsk-route-icon-button ui-pinyin-toggle ${hskState.showPinyin !== false ? 'is-active' : ''}" data-hsk-toggle-pinyin aria-pressed="${hskState.showPinyin !== false}" aria-label="${hskState.showPinyin !== false ? 'Ẩn' : 'Hiện'} pinyin" title="${hskState.showPinyin !== false ? 'Ẩn' : 'Hiện'} pinyin"><span class="ui-pinyin-toggle__mark" aria-hidden="true"></span></button>
       </span>
     ` : '';
 
     hskGroupModes.classList.toggle('has-back', showingSelectedVocabulary);
-    hskGroupModes.classList.toggle('has-view-tools', showingSelectedVocabulary);
+    hskGroupModes.classList.toggle('has-view-tools', showingVocabularyTools);
     hskGroupModes.classList.remove(
       'hsk-route-toolbar--1-tab',
       'hsk-route-toolbar--2-tabs',
@@ -5047,6 +5085,7 @@ if(window.HanziWriter){
       <span class="hsk-route-toolbar-main hsk-route-toolbar-main--${Math.min(Math.max(rows.length, 1), 3)}">${routeTabs}</span>
       <span class="hsk-route-toolbar-slot hsk-route-toolbar-right">${viewTools}</span>
     `;
+    applyHskPinyinVisibility();
   }
 
   function filterItemsByWordFilter(items){
@@ -5725,7 +5764,7 @@ if(window.HanziWriter){
         <div class="hsk-item-main">
           <div class="hsk-word-row">
             <strong class="hsk-word">${escapeHtml(word)}</strong>
-            ${pinyin ? `<span class="hsk-pinyin">${escapeHtml(pinyin)}</span>` : ''}
+            ${pinyin ? `<span class="hsk-pinyin" data-pinyin>${escapeHtml(pinyin)}</span>` : ''}
             <span class="hsk-card-actions">
               <button type="button" class="hsk-speak" data-hsk-speak="${escapeHtml(word)}" aria-label="Nghe ${escapeHtml(word)}">🔊</button>
             </span>
@@ -7870,6 +7909,13 @@ if(window.HanziWriter){
       renderHskFilters();
       renderHskList();
       syncHskRoute({ sectionKey: 'all' });
+      return;
+    }
+    const pinyinButton = event.target.closest('[data-hsk-toggle-pinyin]');
+    if(pinyinButton){
+      event.preventDefault();
+      saveStoredHskPinyinVisibility(hskState.showPinyin === false);
+      applyHskPinyinVisibility();
       return;
     }
     const viewButton = event.target.closest('[data-hsk-vocab-view]');

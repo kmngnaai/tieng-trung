@@ -207,7 +207,7 @@
 
   function pinyinToggleButton(label = 'Pinyin') {
     const visible = settings.displayPinyin !== false;
-    return `<button class="ldsn-pinyin-toggle${visible ? ' is-active' : ''}" type="button" data-toggle-pinyin aria-pressed="${visible}" title="${visible ? 'Ẩn' : 'Hiện'} pinyin"><span class="ldsn-pinyin-toggle-mark" aria-hidden="true"></span><span class="ldsn-sr-only" data-pinyin-label>${visible ? 'Ẩn' : 'Hiện'} ${esc(label)}</span></button>`;
+    return `<button class="ldsn-pinyin-toggle ui-pinyin-toggle${visible ? ' is-active' : ''}" type="button" data-toggle-pinyin aria-pressed="${visible}" title="${visible ? 'Ẩn' : 'Hiện'} pinyin"><span class="ldsn-pinyin-toggle-mark ui-pinyin-toggle__mark" aria-hidden="true"></span><span class="ldsn-sr-only" data-pinyin-label>${visible ? 'Ẩn' : 'Hiện'} ${esc(label)}</span></button>`;
   }
 
   function applyPinyinVisibility() {

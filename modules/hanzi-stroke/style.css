@@ -11704,3 +11704,41 @@ html.hsk-popup-embed .hsk-popup-sheet {
   margin: 0;
   border-radius: 1rem 1rem 0 0;
 }
+
+
+/* Shared curriculum pinyin visibility: HSK 6 cấp, HSK 9 cấp, YCT và Boya. */
+.hsk-list.is-pinyin-hidden [data-pinyin]{
+  display:none !important;
+}
+
+.hsk-group-modes.hsk-route-tabs .hsk-route-inline-tools{
+  grid-template-columns:repeat(3, 34px);
+}
+
+@media (max-width:430px){
+  .hsk-group-modes.hsk-route-tabs.has-back.has-view-tools{
+    grid-template-columns:32px minmax(0, 1fr) 104px;
+  }
+
+  .hsk-group-modes.hsk-route-tabs.has-view-tools:not(.has-back){
+    grid-template-columns:minmax(0, 1fr) 104px;
+  }
+
+  .hsk-group-modes.hsk-route-tabs .hsk-route-inline-tools{
+    grid-template-columns:repeat(3, 32px);
+  }
+}
+
+@media (max-width:350px){
+  .hsk-group-modes.hsk-route-tabs.has-back.has-view-tools{
+    grid-template-columns:30px minmax(0, 1fr) 98px;
+  }
+
+  .hsk-group-modes.hsk-route-tabs.has-view-tools:not(.has-back){
+    grid-template-columns:minmax(0, 1fr) 98px;
+  }
+
+  .hsk-group-modes.hsk-route-tabs .hsk-route-inline-tools{
+    grid-template-columns:repeat(3, 30px);
+  }
+}
