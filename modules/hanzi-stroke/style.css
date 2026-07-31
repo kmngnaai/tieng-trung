@@ -11678,3 +11678,29 @@ html, body, .hanzi-app { background: var(--ui-bg); color: var(--ui-text); }
   .study-tab span { font-size: 12px; }
   .study-tab b { max-width: 100%; font-size: 8.7px; white-space: nowrap; }
 }
+
+/* LDSN V5: reusable HSK word-detail popup embedded over another module. */
+html.hsk-popup-embed,
+html.hsk-popup-embed body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  background: transparent !important;
+  overflow: hidden;
+}
+html.hsk-popup-embed body > *:not(#hskDetailOverlay) {
+  display: none !important;
+}
+html.hsk-popup-embed .hsk-popup-overlay {
+  background: transparent !important;
+  padding: 0 !important;
+  align-items: stretch;
+}
+html.hsk-popup-embed .hsk-popup-sheet {
+  width: 100%;
+  max-width: none;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  border-radius: 1rem 1rem 0 0;
+}

@@ -5614,6 +5614,9 @@ if(window.HanziWriter){
   }
 
   function closeHskPopup(){
+    if(new URLSearchParams(window.location.search).get('embedPopup') === '1' && window.parent !== window){
+      window.parent.postMessage({ type: 'tiengtrung:hsk-popup-close' }, window.location.origin);
+    }
     const popup = ensureHskPopup();
     popup.hidden = true;
     document.body.classList.remove('hsk-popup-open');
@@ -5642,7 +5645,9 @@ if(window.HanziWriter){
     }
     const returnContext = hskState.popupReturnContext;
     closeHskPopup();
-    if(returnContext?.type === 'radical' && returnContext.id && window.openRadicalLearningPopup){
+    if(returnContext?.type === 'external' && window.parent !== window){
+      window.parent.postMessage({ type: 'tiengtrung:hsk-popup-close' }, window.location.origin);
+    }else if(returnContext?.type === 'radical' && returnContext.id && window.openRadicalLearningPopup){
       window.openRadicalLearningPopup(returnContext.id);
     }
   }
@@ -5980,7 +5985,9 @@ if(window.HanziWriter){
     };
   }
 
-  function createFlashcardSessionFromCards(cards, title){
+  const FLASHCARD_SESSION_DEFAULTS = { origin: 'library' };
+
+  function createFlashcardSessionFromCards(cards, title, options = {}){
     const cleanCards = (cards || []).filter(card => card?.id && card?.word);
     if(!cleanCards.length) return false;
     hskState.flashcardStatsOpen = false;
@@ -5993,9 +6000,10 @@ if(window.HanziWriter){
       flipped: false,
       ratings: {},
       mixedTypes: [],
-      origin: 'library',
-      contextKey: `library:${String(title || 'flashcards')}`,
-      contextLabel: String(title || 'Ôn Flashcard'),
+      origin: options.origin || FLASHCARD_SESSION_DEFAULTS.origin,
+      contextKey: String(options.contextKey || `library:${String(title || 'flashcards')}`),
+      contextLabel: String(options.contextLabel || title || 'Ôn Flashcard'),
+      returnUrl: String(options.returnUrl || ''),
       typing: null,
       typingPromptTypes: []
     };
@@ -6096,6 +6104,7 @@ if(window.HanziWriter){
       origin: session.origin || 'lesson',
       contextKey: String(session.contextKey || ''),
       contextLabel: String(session.contextLabel || ''),
+      returnUrl: String(session.returnUrl || ''),
       typingPromptTypes: Array.isArray(session.typingPromptTypes) ? session.typingPromptTypes : [],
       typing: session.typing && typeof session.typing === 'object' ? session.typing : null
     };
@@ -6184,6 +6193,7 @@ if(window.HanziWriter){
         origin: saved.origin || 'lesson',
         contextKey: String(saved.contextKey || ''),
         contextLabel: String(saved.contextLabel || ''),
+        returnUrl: String(saved.returnUrl || ''),
         typingPromptTypes: Array.isArray(saved.typingPromptTypes) ? saved.typingPromptTypes : [],
         typing: saved.typing && typeof saved.typing === 'object' ? saved.typing : null
       };
@@ -7045,6 +7055,9 @@ if(window.HanziWriter){
   }
 
   function closeFlashcardOverlay(){
+    const externalReturnUrl = hskState.flashcardSession?.origin === 'external'
+      ? String(hskState.flashcardSession?.returnUrl || '')
+      : '';
     cancelFlashcardTypingCompletionTimer();
     cancelFlashcardTypingErrorTimer();
     stopFlashcardTypingClock();
@@ -7060,6 +7073,9 @@ if(window.HanziWriter){
     }
     const selectedCards = (hskState.topicKey && hskState.topicKey !== 'all') ? getSelectedFlashcardItems() : [];
     renderFlashcardLaunchButton(selectedCards);
+    if(externalReturnUrl){
+      window.location.href = new URL(externalReturnUrl, window.location.href).href;
+    }
   }
 
   function openFlashcardSetup(){
@@ -7097,7 +7113,7 @@ if(window.HanziWriter){
   function renderFlashcardSetup(session){
     const settings = session.settings;
     const contextNoun = session.origin === 'topic' ? 'chủ đề' : (session.origin === 'lesson' ? 'bài' : 'bộ thẻ');
-    const backLabel = session.origin === 'topic' ? '← Quay lại chủ đề' : (session.origin === 'lesson' ? '← Quay lại bài' : '← Quay lại Thẻ');
+    const backLabel = session.origin === 'topic' ? '← Quay lại chủ đề' : ((session.origin === 'lesson' || session.origin === 'external') ? '← Quay lại bài' : '← Quay lại Thẻ');
     const modes = [
       ['flashcard', 'Flashcard', 'Hán tự → lật xem pinyin và nghĩa'],
       ['reverse', 'Đảo ngược', 'Nghĩa Việt → đoán chữ Hán'],
@@ -7731,7 +7747,51 @@ if(window.HanziWriter){
 
   window.openHanziLearningPopup = openHskPopup;
   window.openHanziLookupWord = openHskWord;
+
+  function launchExternalFlashcardsFromStorage(){
+    const params = new URLSearchParams(window.location.search);
+    if(params.get('externalFlashcards') !== '1') return false;
+    try{
+      const payload = JSON.parse(window.sessionStorage?.getItem('tiengTrung.hsk.externalFlashcard.v1') || 'null');
+      if(!payload?.cards?.length) return false;
+      window.sessionStorage?.removeItem('tiengTrung.hsk.externalFlashcard.v1');
+      return createFlashcardSessionFromCards(payload.cards, payload.title, {
+        origin: 'external',
+        contextKey: payload.contextKey,
+        contextLabel: payload.contextLabel,
+        returnUrl: payload.returnUrl
+      });
+    }catch(_err){
+      return false;
+    }
+  }
+
+  function launchEmbeddedPopupFromStorage(){
+    const params = new URLSearchParams(window.location.search);
+    if(params.get('embedPopup') !== '1') return false;
+    document.documentElement.classList.add('hsk-popup-embed');
+    const token = params.get('popupToken') || '';
+    if(!token) return false;
+    try{
+      const key = `tiengTrung.hsk.popupSeed.${token}`;
+      const payload = JSON.parse(window.sessionStorage?.getItem(key) || 'null');
+      window.sessionStorage?.removeItem(key);
+      if(!payload?.word) return false;
+      openHskPopup(payload.word, {
+        pushHistory: false,
+        seed: payload.seed || {},
+        returnContext: payload.returnContext || { type: 'external' }
+      });
+      return true;
+    }catch(_err){
+      return false;
+    }
+  }
+
   ensureFlashcardLibraryUi();
+  window.setTimeout(() => {
+    if(!launchEmbeddedPopupFromStorage()) launchExternalFlashcardsFromStorage();
+  }, 0);
 
   tabHub?.addEventListener('click', () => navigateStudyRoute('hub', 'hub'));
   learnHubView?.addEventListener('click', event => {
@@ -8238,6 +8298,7 @@ if(window.HanziWriter){
   window.addEventListener('popstate', restoreHskRouteFromLocation);
 
   window.setTimeout(() => {
+    if(new URLSearchParams(window.location.search).get('embedPopup') === '1') return;
     const restored = restorePersistedFlashcardSession();
     const shouldResume = new URLSearchParams(window.location.search).get('resume') === 'flashcard';
     if(restored && shouldResume){

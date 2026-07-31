@@ -2,8 +2,10 @@
   'use strict';
 
   const root = document.getElementById('ldsnApp');
-  const DATA_URL = 'data/lessons.json?v=20260730-ldsn4';
-  const HSK_LOOKUP_URL = '../hanzi-stroke/data/learning/hsk/hsk_flashcard_lookup.json?v=20260730-ldsn4';
+  const DATA_URL = 'data/lessons.json?v=20260731-ldsn6';
+  const HSK_LOOKUP_URL = '../hanzi-stroke/data/learning/hsk/hsk_flashcard_lookup.json?v=20260731-ldsn5';
+  const HSK_EXTERNAL_FLASHCARD_KEY = 'tiengTrung.hsk.externalFlashcard.v1';
+  const HSK_POPUP_SEED_PREFIX = 'tiengTrung.hsk.popupSeed.';
   const SETTINGS_KEY = 'tiengTrung.ldsn14.settings.v1';
   const PROGRESS_KEY = 'tiengTrung.ldsn14.progress.v1';
   const TABS = Object.freeze([
@@ -36,6 +38,7 @@
     vocabModeByLesson: {},
     customVocabByLesson: {},
     roleByLesson: {},
+    displayPinyin: true,
     flashcard: { mode: 'flashcard', showPinyin: true, autoPlay: false, shuffle: false }
   });
   settings.roleplayMode = settings.roleplayMode === 'ordering' ? 'ordering' : 'typing';
@@ -44,6 +47,7 @@
   settings.vocabModeByLesson = settings.vocabModeByLesson || {};
   settings.customVocabByLesson = settings.customVocabByLesson || {};
   settings.roleByLesson = settings.roleByLesson || {};
+  settings.displayPinyin = settings.displayPinyin !== false;
   settings.flashcard = settings.flashcard && typeof settings.flashcard === 'object' ? settings.flashcard : {};
   settings.flashcard.mode = ['flashcard', 'reverse', 'listening', 'typing', 'mixed'].includes(settings.flashcard.mode) ? settings.flashcard.mode : 'flashcard';
   settings.flashcard.showPinyin = settings.flashcard.showPinyin !== false;
@@ -186,6 +190,42 @@
     return `<button class="ldsn-icon-btn" type="button" data-speak="${attr(text)}" aria-label="${esc(label)}" title="${esc(label)}">🔊</button>`;
   }
 
+  function pinyinHtml(value, tag = 'div', extraClass = '') {
+    if (!value) return '';
+    const className = ['ldsn-pinyin', extraClass].filter(Boolean).join(' ');
+    return `<${tag} class="${className}" data-pinyin>${esc(value)}</${tag}>`;
+  }
+
+  function pinyinStatusLabel() {
+    return settings.displayPinyin !== false ? 'Hiện pinyin' : 'Ẩn pinyin';
+  }
+
+  function pinyinStatusHtml() {
+    return `<span data-pinyin-status>${pinyinStatusLabel()}</span>`;
+  }
+
+  function pinyinToggleButton(label = 'Pinyin') {
+    const visible = settings.displayPinyin !== false;
+    return `<button class="ldsn-eye-btn${visible ? ' is-active' : ''}" type="button" data-toggle-pinyin aria-pressed="${visible}" title="${visible ? 'Ẩn' : 'Hiện'} pinyin"><span data-pinyin-icon aria-hidden="true">${visible ? '👁' : '◉'}</span><span class="ldsn-sr-only" data-pinyin-label>${visible ? 'Ẩn' : 'Hiện'} ${esc(label)}</span></button>`;
+  }
+
+  function applyPinyinVisibility() {
+    const visible = settings.displayPinyin !== false;
+    root.classList?.toggle('is-pinyin-hidden', !visible);
+    root.querySelectorAll?.('[data-toggle-pinyin]').forEach(button => {
+      button.classList?.toggle('is-active', visible);
+      button.setAttribute?.('aria-pressed', String(visible));
+      button.setAttribute?.('title', `${visible ? 'Ẩn' : 'Hiện'} pinyin`);
+      const icon = button.querySelector?.('[data-pinyin-icon]');
+      if (icon) icon.textContent = visible ? '👁' : '◉';
+      const label = button.querySelector?.('[data-pinyin-label]');
+      if (label) label.textContent = `${visible ? 'Ẩn' : 'Hiện'} Pinyin`;
+    });
+    root.querySelectorAll?.('[data-pinyin-status]').forEach(status => {
+      status.textContent = pinyinStatusLabel();
+    });
+  }
+
   function ratingButtons(itemKey, meta) {
     const current = getLessonState(currentLesson.id).ratings[itemKey]?.rating || '';
     const encoded = encodeURIComponent(JSON.stringify(meta));
@@ -292,16 +332,56 @@
     document.body.classList.add('ldsn-modal-open');
   }
 
+  function buildWordDetailSeed(word) {
+    return {
+      pinyin: word.pinyin || '',
+      meaningVi: word.vi || '',
+      sampleSentences: lessonSentenceRows(word).map(row => ({ zh: row.hanzi || '', pinyin: row.pinyin || '', vi: row.vi || '' })),
+      relatedWords: lessonRelatedWords(word).map(row => ({ word: row.hanzi || '', pinyin: row.pinyin || '', meaningVi: row.vi || '' }))
+    };
+  }
+
+  function ensureSharedWordDetailFrame() {
+    let overlay = document.getElementById('ldsnSharedWordDetail');
+    if (overlay) return overlay;
+    overlay = document.createElement('div');
+    overlay.id = 'ldsnSharedWordDetail';
+    overlay.className = 'ldsn-shared-detail-overlay';
+    overlay.hidden = true;
+    overlay.innerHTML = '<iframe class="ldsn-shared-detail-frame" title="Chi tiết từ vựng" allow="clipboard-write"></iframe>';
+    document.body.appendChild(overlay);
+    return overlay;
+  }
+
   async function openWordDetail(wordId) {
     const word = getWordById(wordId);
     if (!word) return;
     activeWordDetail = word;
-    renderWordDetailPopup(word, {});
-    const lookupItems = await loadWordDetailLookup();
-    if (activeWordDetail?.id === word.id) renderWordDetailPopup(word, lookupItems);
+    const overlay = ensureSharedWordDetailFrame();
+    const frame = overlay.querySelector('iframe');
+    const token = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    try {
+      sessionStorage.setItem(`${HSK_POPUP_SEED_PREFIX}${token}`, JSON.stringify({
+        word: word.hanzi,
+        seed: buildWordDetailSeed(word),
+        returnContext: { type: 'external', label: `Quay lại Bài ${currentLesson.lessonNumber}` }
+      }));
+    } catch (_error) {
+      renderWordDetailPopup(word, await loadWordDetailLookup());
+      return;
+    }
+    frame.src = `../hanzi-stroke/index.html?embedPopup=1&popupToken=${encodeURIComponent(token)}`;
+    overlay.hidden = false;
+    document.body.classList.add('ldsn-modal-open');
   }
 
   function closeWordDetail() {
+    const shared = document.getElementById('ldsnSharedWordDetail');
+    if (shared) {
+      shared.hidden = true;
+      const frame = shared.querySelector('iframe');
+      if (frame) frame.src = 'about:blank';
+    }
     const overlay = document.getElementById('ldsnWordDetailOverlay');
     if (overlay) overlay.hidden = true;
     activeWordDetail = null;
@@ -337,22 +417,43 @@
   }
 
   function openFlashcards() {
-    const cards = getSessionVocabulary(currentLesson);
-    flashcardSession = {
-      phase: 'setup',
+    const cards = getSessionVocabulary(currentLesson).map(word => ({
+      id: `${currentLesson.id}:${word.id}`,
+      word: word.hanzi,
+      pinyin: word.pinyin,
+      meaningVi: word.vi,
+      source: 'ldsn14',
+      lessonId: currentLesson.id
+    }));
+    if (!cards.length) return;
+    const returnUrl = new URL(lessonUrl(currentLesson.lessonNumber, activeTab), location.href);
+    returnUrl.searchParams.set('focus', 'vocabulary');
+    const payload = {
+      version: 1,
+      title: `Bài ${currentLesson.lessonNumber} · ${currentLesson.title.vi}`,
       cards,
-      index: 0,
-      revealed: false,
-      mode: settings.flashcard.mode,
-      showPinyin: settings.flashcard.showPinyin,
-      autoPlay: settings.flashcard.autoPlay,
-      shuffle: settings.flashcard.shuffle,
-      results: {},
-      feedback: ''
+      origin: 'external',
+      contextKey: `ldsn14:${currentLesson.id}`,
+      contextLabel: `LDSN1-4 · Bài ${currentLesson.lessonNumber}`,
+      returnUrl: `${returnUrl.pathname}${returnUrl.search}${returnUrl.hash}`
     };
-    ensureFlashcardOverlay().hidden = false;
-    document.body.classList.add('ldsn-modal-open');
-    renderFlashcardOverlay();
+    try {
+      sessionStorage.setItem(HSK_EXTERNAL_FLASHCARD_KEY, JSON.stringify(payload));
+      const target = new URL('../hanzi-stroke/index.html', location.href);
+      target.searchParams.set('externalFlashcards', '1');
+      location.href = target.href;
+    } catch (_error) {
+      // Fallback to the legacy LDSN overlay only when sessionStorage is unavailable.
+      flashcardSession = {
+        phase: 'setup', cards: getSessionVocabulary(currentLesson), index: 0, revealed: false,
+        mode: settings.flashcard.mode, showPinyin: settings.flashcard.showPinyin,
+        autoPlay: settings.flashcard.autoPlay, shuffle: settings.flashcard.shuffle,
+        results: {}, feedback: ''
+      };
+      ensureFlashcardOverlay().hidden = false;
+      document.body.classList.add('ldsn-modal-open');
+      renderFlashcardOverlay();
+    }
   }
 
   function closeFlashcards() {
@@ -533,6 +634,7 @@
         <div class="ldsn-lesson-grid">${payload.lessons.map(renderLessonCard).join('')}</div>
       </section>
     </div>`;
+    applyPinyinVisibility();
     setBreadcrumb();
     recordLocation();
   }
@@ -561,24 +663,15 @@
     state.updatedAt = new Date().toISOString();
     saveProgress();
     root.innerHTML = `<div class="ldsn-stack">
-      <section class="ldsn-card ldsn-lesson-hero">
-        <a class="ldsn-back-link" href="${courseUrl()}">‹ LDSN1-4 · 10 bài</a>
-        <div class="ldsn-lesson-heading">
-          <div>
-            <p class="ldsn-kicker">Bài ${currentLesson.lessonNumber}</p>
-            <h1>${esc(currentLesson.title.vi)}<span class="ldsn-hanzi">${esc(currentLesson.title.hanzi)}</span></h1>
-            <p class="ldsn-subtitle">${esc(currentLesson.title.pinyin)} · ${percent}% hoàn thành</p>
-          </div>
-          ${audioButton(currentLesson.title.hanzi, 'Nghe tên bài')}
+      <section class="ldsn-card ldsn-lesson-hero ldsn-lesson-hero--compact">
+        <div class="ldsn-lesson-meta-row"><a class="ldsn-back-link" href="${courseUrl()}">‹ 10 bài</a><span>Bài ${currentLesson.lessonNumber} · ${percent}%</span>${audioButton(currentLesson.title.hanzi, 'Nghe tên bài')}</div>
+        <div class="ldsn-lesson-heading ldsn-lesson-heading--compact">
+          <div><h1>${esc(currentLesson.title.vi)}</h1><p class="ldsn-lesson-language"><span class="ldsn-hanzi">${esc(currentLesson.title.hanzi)}</span>${pinyinHtml(currentLesson.title.pinyin, 'span')}</p></div>
         </div>
-        <div class="ldsn-recommendation">
-          <small>Hoạt động phù hợp tiếp theo</small>
-          <strong>${esc(next.label)}</strong>
-          <button class="ldsn-primary-btn" type="button" data-journey="${next.id}">Tiếp tục học</button>
-        </div>
+        <div class="ldsn-next-row"><span><small>Tiếp theo</small><strong>${esc(next.label)}</strong></span><button class="ldsn-primary-btn" type="button" data-journey="${next.id}">Tiếp tục</button></div>
       </section>
-      <section class="ldsn-card ldsn-pad" aria-label="Hành trình bài học">
-        <div class="ldsn-section-head"><div><h2>Hành trình</h2><p>Có thể mở lại hoặc bỏ qua phần đã quen.</p></div></div>
+      <section class="ldsn-card ldsn-pad ldsn-journey-card" aria-label="Hành trình bài học">
+        <div class="ldsn-journey-heading"><strong>Hành trình</strong><small>Chạm để mở nhanh</small></div>
         <div class="ldsn-journey">${renderJourney()}</div>
       </section>
       <div class="ldsn-tabs-wrap">
@@ -586,6 +679,7 @@
       </div>
       <section id="ldsnPanel" class="ldsn-panel">${renderActivePanel()}</section>
     </div>`;
+    applyPinyinVisibility();
     setBreadcrumb();
     recordLocation();
   }
@@ -614,30 +708,27 @@
     const session = getSessionVocabulary(currentLesson);
     const viewMode = settings.vocabViewMode === 'list' ? 'list' : 'cards';
     return `<section id="vocabulary" class="ldsn-card ldsn-pad ldsn-section ldsn-section--vocab">
-      <div class="ldsn-vocab-title-row">
-        <div><p class="ldsn-kicker">Vườn từ vựng</p><h2>Từ vựng</h2><p>${session.length}/${currentLesson.vocabulary.length} từ trong phiên · Chạm vào từ để xem chi tiết.</p></div>
-        <div class="ldsn-view-switch" aria-label="Kiểu hiển thị từ vựng">
-          <button class="ldsn-view-btn${viewMode === 'cards' ? ' is-active' : ''}" type="button" data-vocab-view="cards" aria-pressed="${viewMode === 'cards'}">Thẻ</button>
-          <button class="ldsn-view-btn${viewMode === 'list' ? ' is-active' : ''}" type="button" data-vocab-view="list" aria-pressed="${viewMode === 'list'}">Danh sách</button>
-        </div>
+      <div class="ldsn-compact-section-head">
+        <div><p class="ldsn-kicker">Vườn từ vựng</p><h2>Từ vựng · ${session.length}/${currentLesson.vocabulary.length}</h2><p>Chạm vào từ để xem chi tiết.</p></div>
+        <div class="ldsn-compact-actions">${pinyinToggleButton()}<button class="ldsn-settings-shortcut" type="button" data-open-nearest-settings aria-label="Mở cài đặt từ vựng">⚙</button></div>
       </div>
+      <div class="ldsn-vocab-toolbar"><div class="ldsn-view-switch" aria-label="Kiểu hiển thị từ vựng"><button class="ldsn-view-btn${viewMode === 'cards' ? ' is-active' : ''}" type="button" data-vocab-view="cards" aria-pressed="${viewMode === 'cards'}">Thẻ</button><button class="ldsn-view-btn${viewMode === 'list' ? ' is-active' : ''}" type="button" data-vocab-view="list" aria-pressed="${viewMode === 'list'}">Danh sách</button></div><button class="ldsn-flashcard-launch ldsn-flashcard-launch--compact" type="button" data-open-flashcards><span>🎓</span><strong>Flashcard</strong><small>${session.length} thẻ</small></button></div>
       ${renderVocabularySettings()}
-      <button class="ldsn-flashcard-launch" type="button" data-open-flashcards><span>🎓</span><strong>Học Flashcard</strong><small>${session.length} thẻ</small></button>
       ${viewMode === 'list' ? renderVocabularyList(session) : `<div class="ldsn-vocab-grid">${session.map(renderVocabularyCard).join('')}</div>`}
     </section>
     <section id="warmup" class="ldsn-card ldsn-pad ldsn-section ldsn-section--warmup">
-      <div class="ldsn-inline-head"><div><p class="ldsn-kicker">Khởi động 2–3 phút</p><h2>Nhìn chủ đề trước khi học</h2></div></div>
-      <p class="ldsn-subtitle">Bạn đã biết từ nào? Nghe một câu và đoán tình huống của bài.</p>
+      <div class="ldsn-inline-head"><div><p class="ldsn-kicker">Khởi động</p><h2>Nhìn chủ đề trước khi học</h2></div></div>
       <div class="ldsn-meta">${sampleWords.map(word => `<span class="ldsn-hanzi">${esc(word.hanzi)}</span>`).join('')}</div>
       ${firstDialogue.hanzi ? `<div class="ldsn-layer ldsn-layer--mint"><div class="ldsn-inline-head"><span class="ldsn-hanzi">${esc(firstDialogue.hanzi)}</span>${audioButton(firstDialogue.hanzi)}</div><small>Nghe trước, sau đó mới xem nghĩa trong tab Nội dung.</small></div>` : ''}
       <div class="ldsn-actions"><button class="ldsn-secondary-btn" type="button" data-mark-step="warmup">Đã khởi động</button></div>
     </section>
     <section id="grammar" class="ldsn-card ldsn-pad ldsn-section ldsn-section--grammar">
-      <div class="ldsn-section-head"><div><p class="ldsn-kicker">Khám phá ngữ pháp</p><h2>Ngữ pháp từ câu thật</h2><p>Mở từng thẻ để xem cấu trúc, cách dùng và ví dụ trong bài.</p></div></div>
+      <div class="ldsn-compact-section-head"><div><p class="ldsn-kicker">Khám phá ngữ pháp</p><h2>Ngữ pháp từ câu thật</h2><p>Mỗi cách dùng đi cùng đúng ví dụ.</p></div>${pinyinToggleButton('pinyin ngữ pháp')}</div>
       <div class="ldsn-grammar-list">${currentLesson.grammar.slice(0, 5).map(renderGrammarCard).join('')}</div>
       <div class="ldsn-actions"><button class="ldsn-secondary-btn" type="button" data-tab-target="content" data-content-target="grammar">Xem toàn bộ ${currentLesson.grammar.length} điểm ngữ pháp</button><button class="ldsn-ghost-btn" type="button" data-mark-step="grammar">Đã học phần ngữ pháp</button></div>
     </section>`;
   }
+
   function vocabMode(lesson) {
     return settings.vocabModeByLesson[lesson.id] || 'auto';
   }
@@ -670,19 +761,14 @@
     ];
     const selected = new Set(settings.customVocabByLesson[currentLesson.id] || []);
     const numericMode = /^\d+$/.test(mode) ? Number(mode) : 10;
-    return `<details class="ldsn-settings"${mode === 'custom' ? ' open' : ''}>
-      <summary><span>Cài đặt số lượng từ</span><small>${mode === 'auto' ? 'Đề xuất thông minh' : mode === 'all' ? 'Toàn bộ bài' : mode === 'custom' ? `${selected.size || 0} từ đã chọn` : `${mode} từ`}</small></summary>
+    const modeLabel = mode === 'auto' ? 'Tự động' : mode === 'all' ? 'Tất cả' : mode === 'custom' ? `${selected.size || 0} từ` : `${mode} từ`;
+    return `<details class="ldsn-settings ldsn-compact-settings" data-vocab-settings${mode === 'custom' ? ' open' : ''}>
+      <summary><span>⚙ Cài đặt từ vựng</span><small>${modeLabel} · ${pinyinStatusHtml()}</small></summary>
       <div class="ldsn-settings-body">
-        <div class="ldsn-choice-grid">${options.map(([value, label]) => `<label class="ldsn-choice"><input type="radio" name="vocabMode" value="${value}" data-vocab-mode${mode === value ? ' checked' : ''}><span>${label}</span></label>`).join('')}</div>
-        <div class="ldsn-number-setting">
-          <label for="ldsnCustomCount"><strong>Số lượng khác</strong><small>Nhập từ 1 đến ${currentLesson.vocabulary.length}</small></label>
-          <div class="ldsn-number-control"><input id="ldsnCustomCount" class="ldsn-number-input" type="number" min="1" max="${currentLesson.vocabulary.length}" value="${numericMode}" data-vocab-count-input inputmode="numeric"><button class="ldsn-secondary-btn" type="button" data-apply-vocab-count>Áp dụng</button></div>
-        </div>
-        <div class="${mode === 'custom' ? '' : 'ldsn-hidden'}" data-custom-vocab-wrap>
-          <div class="ldsn-actions"><button class="ldsn-ghost-btn" type="button" data-custom-action="all">Chọn tất cả</button><button class="ldsn-ghost-btn" type="button" data-custom-action="none">Bỏ chọn</button><button class="ldsn-ghost-btn" type="button" data-custom-action="ten">Chọn 10 từ</button><button class="ldsn-ghost-btn" type="button" data-custom-action="weak">Chọn từ yếu</button></div>
-          <div class="ldsn-custom-list">${currentLesson.vocabulary.map(word => `<label class="ldsn-custom-word"><input type="checkbox" data-custom-vocab="${word.id}"${selected.has(word.id) ? ' checked' : ''}><span><strong class="ldsn-hanzi">${esc(word.hanzi)}</strong><small>${esc(word.pinyin)} · ${esc(word.vi)}</small></span></label>`).join('')}</div>
-          <button class="ldsn-primary-btn" type="button" data-apply-custom>Áp dụng danh sách đã chọn</button>
-        </div>
+        <div class="ldsn-setting-block"><strong>Số từ trong phiên</strong><div class="ldsn-choice-grid">${options.map(([value, label]) => `<label class="ldsn-choice"><input type="radio" name="vocabMode" value="${value}" data-vocab-mode${mode === value ? ' checked' : ''}><span>${label}</span></label>`).join('')}</div></div>
+        <div class="ldsn-number-setting"><label for="ldsnCustomCount"><strong>Số lượng khác</strong><small>1–${currentLesson.vocabulary.length}</small></label><div class="ldsn-number-control"><input id="ldsnCustomCount" class="ldsn-number-input" type="number" min="1" max="${currentLesson.vocabulary.length}" value="${numericMode}" data-vocab-count-input inputmode="numeric"><button class="ldsn-secondary-btn" type="button" data-apply-vocab-count>Áp dụng</button></div></div>
+        <div class="ldsn-setting-row"><span><strong>Hiện pinyin</strong><small>Dùng chung toàn bộ LDSN1-4</small></span>${pinyinToggleButton()}</div>
+        <div class="${mode === 'custom' ? '' : 'ldsn-hidden'}" data-custom-vocab-wrap><div class="ldsn-actions"><button class="ldsn-ghost-btn" type="button" data-custom-action="all">Chọn tất cả</button><button class="ldsn-ghost-btn" type="button" data-custom-action="none">Bỏ chọn</button><button class="ldsn-ghost-btn" type="button" data-custom-action="ten">Chọn 10 từ</button><button class="ldsn-ghost-btn" type="button" data-custom-action="weak">Chọn từ yếu</button></div><div class="ldsn-custom-list">${currentLesson.vocabulary.map(word => `<label class="ldsn-custom-word"><input type="checkbox" data-custom-vocab="${word.id}"${selected.has(word.id) ? ' checked' : ''}><span><strong class="ldsn-hanzi">${esc(word.hanzi)}</strong><small>${pinyinHtml(`${word.pinyin} ·`, 'span', 'ldsn-inline-pinyin')}${esc(word.vi)}</small></span></label>`).join('')}</div><button class="ldsn-primary-btn" type="button" data-apply-custom>Áp dụng danh sách đã chọn</button></div>
       </div>
     </details>`;
   }
@@ -693,7 +779,7 @@
       <div class="ldsn-flashcard-top"><span class="ldsn-vocab-kind">Từ vựng</span>${audioButton(word.hanzi, `Nghe ${word.hanzi}`)}</div>
       <button class="ldsn-flashcard-face ldsn-vocab-lookup-link" type="button" data-open-word-detail="${attr(word.id)}" aria-label="Mở chi tiết ${esc(word.hanzi)}">
         <h3>${esc(word.hanzi)}</h3>
-        <div class="ldsn-pinyin">${esc(word.pinyin)}</div>
+        ${pinyinHtml(word.pinyin)}
         <div class="ldsn-meaning">${esc(word.vi)}</div>
         <small class="ldsn-open-detail">Xem chi tiết →</small>
       </button>
@@ -709,7 +795,7 @@
         <div class="ldsn-vocab-list-main">
           <button class="ldsn-vocab-list-link" type="button" data-open-word-detail="${attr(word.id)}" aria-label="Mở chi tiết ${esc(word.hanzi)}">
             <span class="ldsn-vocab-list-hanzi">${esc(word.hanzi)}</span>
-            <span class="ldsn-vocab-list-copy"><strong>${esc(word.pinyin)}</strong><span>${esc(word.vi)}</span><small>${esc(word.wordClass || 'từ vựng')}${word.hanViet ? ` · Hán Việt: ${esc(word.hanViet)}` : ''}</small></span>
+            <span class="ldsn-vocab-list-copy">${pinyinHtml(word.pinyin, 'strong')}<span>${esc(word.vi)}</span><small>${esc(word.wordClass || 'từ vựng')}${word.hanViet ? ` · Hán Việt: ${esc(word.hanViet)}` : ''}</small></span>
             <span class="ldsn-vocab-list-arrow" aria-hidden="true">›</span>
           </button>
           ${audioButton(word.hanzi, `Nghe ${word.hanzi}`)}
@@ -718,37 +804,36 @@
       </article>`;
     }).join('')}</div>`;
   }
-  function cleanGrammarUseLabel(note, index) {
-    const cleaned = String(note || '')
-      .replace(/^\s*Cách\s+dùng\s*\d+\s*[:：.-]?\s*/i, '')
-      .replace(/^\s*\d+\s*[.)-]\s*/, '')
-      .trim();
-    return cleaned || `Cách dùng ${index + 1}`;
-  }
-
   function renderGrammarExample(example) {
     if (!example?.hanzi) return '';
-    return `<article class="ldsn-grammar-example-inline"><div class="ldsn-grammar-example-copy"><div class="ldsn-hanzi">${esc(example.hanzi)}</div><div class="ldsn-pinyin">${esc(example.pinyin || '')}</div><div class="ldsn-meaning">${esc(example.vi || '')}</div></div>${audioButton(example.hanzi, 'Nghe câu ví dụ')}</article>`;
+    return `<article class="ldsn-grammar-example-inline"><div class="ldsn-grammar-example-copy"><div class="ldsn-hanzi">${esc(example.hanzi)}</div>${pinyinHtml(example.pinyin)}<div class="ldsn-meaning">${esc(example.vi || '')}</div></div>${audioButton(example.hanzi, `Nghe ${example.hanzi}`)}</article>`;
+  }
+
+  function renderGrammarGroup(group, grammar, groupIndex) {
+    const title = String(group?.title || '').trim();
+    const notes = (group?.notes || []).filter(Boolean);
+    const examples = (group?.examples || []).filter(row => row?.hanzi);
+    const normalizedGrammarTitle = String(grammar.title || '').replace(/^\s*\d+(?:\.\d+)*[.)]?\s*/, '').trim();
+    const showTitle = title && title !== normalizedGrammarTitle;
+    return `<section class="ldsn-grammar-group" data-grammar-group="${groupIndex + 1}">
+      ${showTitle ? `<h4>${esc(title)}</h4>` : ''}
+      ${group?.structure ? `<div class="ldsn-grammar-structure"><span>Cấu trúc</span><strong>${esc(group.structure)}</strong></div>` : ''}
+      ${notes.length ? `<div class="ldsn-grammar-prose">${notes.map(note => `<p>${esc(note)}</p>`).join('')}</div>` : ''}
+      ${examples.length ? `<div class="ldsn-grammar-example-list">${examples.map(renderGrammarExample).join('')}</div>` : ''}
+    </section>`;
   }
 
   function renderGrammarCard(grammar) {
-    const examples = grammar.examples.filter(row => row.hanzi);
-    const notes = (grammar.notes || []).filter(Boolean);
-    const ratingExample = examples[0] || {};
-    const sourceLabel = grammar.source === 'passage' ? 'Đoạn văn' : grammar.source === 'dialogue' ? 'Hội thoại' : 'Câu';
-    const pairUses = notes.length > 1 && notes.length === examples.length;
-    const detailLabel = pairUses ? `${notes.length} cách dùng` : `${notes.length} ghi chú · ${examples.length} câu`;
-    const body = pairUses
-      ? `<div class="ldsn-grammar-use-list">${notes.map((note, index) => `<section class="ldsn-grammar-use"><h4><span>${index + 1}</span>${esc(cleanGrammarUseLabel(note, index))}</h4>${renderGrammarExample(examples[index])}</section>`).join('')}</div>`
-      : `${notes.length ? `<div class="ldsn-grammar-note-list">${notes.map((note, index) => `<p><span>${index + 1}</span>${esc(cleanGrammarUseLabel(note, index))}</p>`).join('')}</div>` : ''}${examples.length ? `<div class="ldsn-grammar-example-list">${examples.map(renderGrammarExample).join('')}</div>` : ''}`;
-    return `<details class="ldsn-card ldsn-grammar-card">
-      <summary><span class="ldsn-grammar-icon">法</span><span class="ldsn-grammar-summary"><strong>${esc(grammar.title)}</strong><small>${sourceLabel} · ${detailLabel}</small></span><span class="ldsn-chevron">⌄</span></summary>
-      <div class="ldsn-grammar-body">
-        ${grammar.structure ? `<div class="ldsn-grammar-structure"><span>Cấu trúc</span><strong>${esc(grammar.structure)}</strong></div>` : ''}
-        ${body}
-        ${ratingButtons(`grammar:${grammar.id}`, itemMeta('grammar', ratingExample, { title: grammar.title }))}
-      </div>
-    </details>`;
+    const legacyExamples = (grammar.examples || []).filter(row => row?.hanzi);
+    const groups = Array.isArray(grammar.groups) && grammar.groups.length ? grammar.groups : [{ title: grammar.title, notes: grammar.notes || [], structure: grammar.structure || '', examples: legacyExamples }];
+    const ratingExample = groups.flatMap(group => group.examples || []).find(row => row?.hanzi) || legacyExamples[0] || {};
+    const sourceLabel = grammar.source === 'passage' ? 'Ngữ pháp đoạn văn' : grammar.source === 'dialogue' ? 'Ngữ pháp câu và hội thoại' : 'Ngữ pháp';
+    return `<details class="ldsn-card ldsn-grammar-card" data-grammar-id="${attr(grammar.id)}"><summary><span class="ldsn-grammar-icon">法</span><span class="ldsn-grammar-summary"><strong>${esc(grammar.title)}</strong><small>${sourceLabel}</small></span><span class="ldsn-chevron">⌄</span></summary><div class="ldsn-grammar-body">${groups.map((group, index) => renderGrammarGroup(group, grammar, index)).join('')}${ratingButtons(`grammar:${grammar.id}`, itemMeta('grammar', ratingExample, { title: grammar.title }))}</div></details>`;
+  }
+
+  function renderPracticeSettings(mode, practiceMode) {
+    const practiceModes = [['mixed', 'Hỗn hợp'], ['hanzi', 'Chữ Hán'], ['pinyin', 'Pinyin'], ['vi', 'Tiếng Việt']];
+    return `<details class="ldsn-settings ldsn-compact-settings" data-practice-settings><summary><span>⚙ Cài đặt luyện tập</span><small>${mode === 'ordering' ? 'Xếp từ' : 'Gõ câu'} · ${practiceModes.find(row => row[0] === practiceMode)?.[1] || 'Hỗn hợp'} · ${pinyinStatusHtml()}</small></summary><div class="ldsn-settings-body"><div class="ldsn-setting-block"><strong>Cách trả lời tiếng Trung</strong><div class="ldsn-mode-switch"><button class="ldsn-mode-btn${mode === 'typing' ? ' is-active' : ''}" type="button" data-role-mode="typing">Gõ câu</button><button class="ldsn-mode-btn${mode === 'ordering' ? ' is-active' : ''}" type="button" data-role-mode="ordering">Xếp từ</button></div></div><div class="ldsn-setting-block"><strong>Phần cần điền</strong><div class="ldsn-mode-switch ldsn-mode-switch--four">${practiceModes.map(([value, label]) => `<button class="ldsn-mode-btn${practiceMode === value ? ' is-active' : ''}" type="button" data-vocab-practice-mode="${value}">${label}</button>`).join('')}</div></div><div class="ldsn-setting-row"><span><strong>Hiện pinyin</strong><small>Dùng chung toàn bộ LDSN1-4</small></span>${pinyinToggleButton()}</div></div></details>`;
   }
 
   function renderPractice() {
@@ -757,40 +842,14 @@
     const vizh = [...currentLesson.translation.viZh.questions, ...currentLesson.translation.viZh.answers];
     const mode = settings.roleplayMode === 'ordering' ? 'ordering' : 'typing';
     const practiceMode = settings.vocabPracticeMode || 'mixed';
-    const practiceModes = [['mixed', 'Hỗn hợp'], ['hanzi', 'Chữ Hán'], ['pinyin', 'Pinyin'], ['vi', 'Tiếng Việt']];
-    return `<section class="ldsn-card ldsn-pad ldsn-section ldsn-section--practice">
-      <div class="ldsn-section-head"><div><p class="ldsn-kicker">Luyện tập</p><h2>Đổi dạng bài để không nhàm chán</h2><p>Điền từ → dịch câu → dịch ngược → chinh phục đoạn văn.</p></div></div>
-      <div class="ldsn-answer-mode-bar"><div><strong>Cách trả lời tiếng Trung</strong><small>Ghi nhớ cho câu, hội thoại và đoạn văn.</small></div><div class="ldsn-mode-switch"><button class="ldsn-mode-btn${mode === 'typing' ? ' is-active' : ''}" type="button" data-role-mode="typing">Gõ câu</button><button class="ldsn-mode-btn${mode === 'ordering' ? ' is-active' : ''}" type="button" data-role-mode="ordering">Xếp từ</button></div></div>
-    </section>
-    <section id="vocab-fill" class="ldsn-card ldsn-pad ldsn-section ldsn-section--fill">
-      <div class="ldsn-section-head"><div><h2>Điền từ vựng</h2><p>${Math.min(6, session.length)} từ trong nhóm đã chọn.</p></div></div>
-      <div class="ldsn-practice-mode-bar">
-        <div><strong>Phần cần điền</strong><small>Hỗn hợp sẽ trộn Chữ Hán, Pinyin và Tiếng Việt.</small></div>
-        <div class="ldsn-mode-switch ldsn-mode-switch--four">${practiceModes.map(([value, label]) => `<button class="ldsn-mode-btn${practiceMode === value ? ' is-active' : ''}" type="button" data-vocab-practice-mode="${value}">${label}</button>`).join('')}</div>
-      </div>
-      <div class="ldsn-exercise-list">${session.slice(0, 6).map(renderVocabFill).join('')}</div>
-    </section>
-    <section id="zhvi" class="ldsn-card ldsn-pad ldsn-section ldsn-section--sentence">
-      <div class="ldsn-section-head"><div><h2>Dịch Trung → Việt</h2><p>3 câu hỏi và 3 câu trả lời.</p></div></div>
-      <div class="ldsn-exercise-list">${zhvi.map((item, index) => renderTranslationExercise(item, 'zhvi', index)).join('')}</div>
-      <button class="ldsn-ghost-btn" type="button" data-mark-step="zhvi">Đã hoàn thành phần Trung → Việt</button>
-    </section>
-    <section id="vizh" class="ldsn-card ldsn-pad ldsn-section ldsn-section--reverse">
-      <div class="ldsn-section-head"><div><h2>Dịch Việt → Trung</h2><p>${mode === 'ordering' ? 'Chọn các từ theo đúng thứ tự.' : 'Tự gõ chữ Hán, sau đó so sánh đáp án.'}</p></div></div>
-      <div class="ldsn-exercise-list">${vizh.map((item, index) => renderTranslationExercise(item, 'vizh', index)).join('')}</div>
-      <button class="ldsn-ghost-btn" type="button" data-mark-step="vizh">Đã hoàn thành phần Việt → Trung</button>
-    </section>
-    <section id="passage" class="ldsn-card ldsn-pad ldsn-section ldsn-section--passage">
-      <div class="ldsn-section-head"><div><p class="ldsn-kicker">Chinh phục đoạn văn</p><h2>${esc(currentLesson.passage.title.vi || 'Đoạn văn')}</h2><p>Làm từng câu bằng ${mode === 'ordering' ? 'xếp từ' : 'gõ chữ Hán'}, sau đó đọc toàn đoạn.</p></div>${audioButton(currentLesson.passage.hanzi, 'Nghe toàn bộ đoạn văn')}</div>
-      ${renderPassagePractice(mode)}
-      <div class="ldsn-actions"><button class="ldsn-secondary-btn" type="button" data-tab-target="content" data-content-target="passage">Xem đầy đủ ba lớp</button><button class="ldsn-ghost-btn" type="button" data-mark-step="passage">Đã học đoạn văn</button></div>
-    </section>
-    <section id="challenge" class="ldsn-card ldsn-pad ldsn-section ldsn-section--challenge">
-      <div class="ldsn-section-head"><div><p class="ldsn-kicker">Thử thách cuối bài</p><h2>Trộn nhiều kỹ năng</h2><p>Điền từ, nghe, dịch hai chiều, hội thoại, ngữ pháp và đoạn văn.</p></div></div>
-      <div class="ldsn-meta"><span>3 từ vựng</span><span>2 nghe</span><span>4 câu dịch</span><span>2 hội thoại</span><span>2 ngữ pháp</span><span>1 đoạn văn</span></div>
-      <div class="ldsn-actions"><button class="ldsn-primary-btn" type="button" data-mark-step="challenge">Hoàn thành thử thách</button></div>
-    </section>`;
+    return `<section class="ldsn-card ldsn-pad ldsn-section ldsn-section--practice"><div class="ldsn-compact-section-head"><div><p class="ldsn-kicker">Luyện tập</p><h2>Luyện theo bài</h2><p>Điền từ · dịch câu · đoạn văn</p></div><div class="ldsn-compact-actions">${pinyinToggleButton()}<button class="ldsn-settings-shortcut" type="button" data-open-nearest-settings aria-label="Mở cài đặt luyện tập">⚙</button></div></div>${renderPracticeSettings(mode, practiceMode)}</section>
+    <section id="vocab-fill" class="ldsn-card ldsn-pad ldsn-section ldsn-section--fill"><div class="ldsn-section-head"><div><h2>Điền từ vựng</h2><p>${Math.min(6, session.length)} từ trong nhóm đã chọn.</p></div></div><div class="ldsn-exercise-list">${session.slice(0, 6).map(renderVocabFill).join('')}</div></section>
+    <section id="zhvi" class="ldsn-card ldsn-pad ldsn-section ldsn-section--sentence"><div class="ldsn-section-head"><div><h2>Dịch Trung → Việt</h2><p>3 câu hỏi và 3 câu trả lời.</p></div>${pinyinToggleButton()}</div><div class="ldsn-exercise-list">${zhvi.map((item, index) => renderTranslationExercise(item, 'zhvi', index)).join('')}</div><button class="ldsn-ghost-btn" type="button" data-mark-step="zhvi">Đã hoàn thành phần Trung → Việt</button></section>
+    <section id="vizh" class="ldsn-card ldsn-pad ldsn-section ldsn-section--reverse"><div class="ldsn-section-head"><div><h2>Dịch Việt → Trung</h2><p>${mode === 'ordering' ? 'Chọn các từ theo đúng thứ tự.' : 'Tự gõ chữ Hán, sau đó so sánh đáp án.'}</p></div>${pinyinToggleButton()}</div><div class="ldsn-exercise-list">${vizh.map((item, index) => renderTranslationExercise(item, 'vizh', index)).join('')}</div><button class="ldsn-ghost-btn" type="button" data-mark-step="vizh">Đã hoàn thành phần Việt → Trung</button></section>
+    <section id="passage" class="ldsn-card ldsn-pad ldsn-section ldsn-section--passage"><div class="ldsn-section-head"><div><p class="ldsn-kicker">Chinh phục đoạn văn</p><h2>${esc(currentLesson.passage.title.vi || 'Đoạn văn')}</h2><p>${mode === 'ordering' ? 'Xếp từ' : 'Gõ chữ Hán'} theo từng câu.</p></div><div class="ldsn-compact-actions">${pinyinToggleButton()}${audioButton(currentLesson.passage.hanzi, 'Nghe toàn bộ đoạn văn')}</div></div>${renderPassagePractice(mode)}<div class="ldsn-actions"><button class="ldsn-secondary-btn" type="button" data-tab-target="content" data-content-target="passage">Xem đầy đủ ba lớp</button><button class="ldsn-ghost-btn" type="button" data-mark-step="passage">Đã học đoạn văn</button></div></section>
+    <section id="challenge" class="ldsn-card ldsn-pad ldsn-section ldsn-section--challenge"><div class="ldsn-section-head"><div><p class="ldsn-kicker">Thử thách cuối bài</p><h2>Trộn nhiều kỹ năng</h2></div></div><div class="ldsn-meta"><span>3 từ vựng</span><span>2 nghe</span><span>4 câu dịch</span><span>2 hội thoại</span><span>2 ngữ pháp</span><span>1 đoạn văn</span></div><div class="ldsn-actions"><button class="ldsn-primary-btn" type="button" data-mark-step="challenge">Hoàn thành thử thách</button></div></section>`;
   }
+
   function renderVocabFill(word, index) {
     const fields = ['pinyin', 'hanzi', 'vi'];
     const selectedMode = settings.vocabPracticeMode || 'mixed';
@@ -800,7 +859,7 @@
       <div class="ldsn-exercise-head ldsn-exercise-head--audio-only">${audioButton(word.hanzi)}</div>
       <div class="ldsn-layer">
         <span class="ldsn-hanzi">${missing === 'hanzi' ? '＿＿＿' : esc(word.hanzi)}</span>
-        <small>${missing === 'pinyin' ? '＿＿＿' : esc(word.pinyin)}</small>
+        ${missing === 'pinyin' ? '<small>＿＿＿</small>' : pinyinHtml(word.pinyin, 'small')}
         <small>${esc(word.wordClass)} · ${missing === 'vi' ? '＿＿＿' : esc(word.vi)}</small>
       </div>
       <label><small>Điền ${labels[missing]}</small><input class="ldsn-input" type="text" data-vocab-answer data-expected="${attr(word[missing])}" data-kind="${missing}" autocomplete="off" inputmode="text"></label>
@@ -814,25 +873,29 @@
     const key = `sentence:${item.id}:${direction}`;
     const mode = settings.roleplayMode === 'ordering' ? 'ordering' : 'typing';
     const response = direction === 'vizh' && mode === 'ordering'
-      ? renderOrderingAnswer(item.hanzi, item.pinyin, index + 101)
+      ? renderOrderingAnswer(item.hanzi, item.pinyin, index + 101, item.answerTokens)
       : `<textarea class="ldsn-textarea" placeholder="Nhập bản dịch của bạn..." data-translation-input></textarea>
          <button class="ldsn-secondary-btn" type="button" data-show-reference data-answer="${attr(answer)}" data-pinyin="${attr(item.pinyin)}">So sánh đáp án</button>
          <div class="ldsn-feedback" data-feedback></div>`;
     return `<article class="ldsn-card ldsn-exercise${direction === 'vizh' ? ' ldsn-exercise--reverse' : ''}"${direction === 'vizh' && mode === 'ordering' ? ' data-order-exercise' : ''}>
       <div class="ldsn-exercise-head ldsn-exercise-head--audio-only">${audioButton(item.hanzi)}</div>
       <div class="${direction === 'zhvi' ? 'ldsn-prompt-hanzi' : 'ldsn-meaning ldsn-prompt-vi'}">${esc(prompt)}</div>
-      ${direction === 'vizh' && mode === 'typing' ? `<small class="ldsn-pinyin">Gợi ý pinyin: ${esc(item.pinyin.split(/\s+/).map(part => part.slice(0, 1)).join(' · '))}</small>` : ''}
+      ${direction === 'zhvi'
+        ? pinyinHtml(item.pinyin, 'div', 'ldsn-prompt-pinyin')
+        : mode === 'typing'
+          ? pinyinHtml(`Gợi ý pinyin: ${item.pinyin.split(/\s+/).map(part => part.slice(0, 1)).join(' · ')}`, 'small', 'ldsn-pinyin-hint')
+          : ''}
       ${response}
       ${ratingButtons(key, itemMeta('sentence', item, { title: direction === 'zhvi' ? 'Dịch Trung → Việt' : 'Dịch Việt → Trung' }))}
     </article>`;
   }
-  function renderOrderingAnswer(expected, pinyin, seed) {
-    const tokens = tokeniseSentence(expected, currentLesson.vocabulary);
+  function renderOrderingAnswer(expected, pinyin, seed, answerTokens = []) {
+    const tokens = Array.isArray(answerTokens) && answerTokens.length ? answerTokens : tokeniseSentence(expected, currentLesson.vocabulary);
     const shuffled = deterministicShuffle(tokens, seed);
     return `<div class="ldsn-order-workspace">
       <div><small>Câu của bạn</small><div class="ldsn-token-answer" data-token-answer><span class="ldsn-order-placeholder">Chọn từ ở dưới</span></div></div>
       <div><small>Từ cho sẵn</small><div class="ldsn-token-bank" data-token-bank>${shuffled.map((token, index) => `<button class="ldsn-token" type="button" data-token="${attr(token)}" data-token-index="${index}">${esc(token)}</button>`).join('')}</div></div>
-      ${pinyin ? `<small class="ldsn-pinyin">${esc(pinyin)}</small>` : ''}
+      ${pinyinHtml(pinyin, 'small')}
       <div class="ldsn-actions"><button class="ldsn-secondary-btn" type="button" data-check-order data-expected="${attr(expected)}">Kiểm tra</button><button class="ldsn-ghost-btn" type="button" data-reset-order>Đặt lại</button>${audioButton(expected, 'Nghe câu mẫu')}</div>
       <div class="ldsn-feedback" data-feedback></div>
     </div>`;
@@ -841,11 +904,11 @@
   function renderPassagePractice(mode) {
     const p = currentLesson.passage;
     return `<div class="ldsn-passage-practice">
-      <div class="ldsn-passage-title ldsn-passage-title--compact"><h3>${esc(p.title.hanzi || '')}</h3><span class="ldsn-pinyin">${esc(p.title.pinyin || '')}</span><span class="ldsn-meaning">${esc(p.title.vi || '')}</span></div>
+      <div class="ldsn-passage-title ldsn-passage-title--compact"><h3>${esc(p.title.hanzi || '')}</h3>${pinyinHtml(p.title.pinyin || '', 'span')}<span class="ldsn-meaning">${esc(p.title.vi || '')}</span></div>
       <div class="ldsn-passage-sentences">${p.sentences.filter(row => row.hanzi).map((row, index) => `<details class="ldsn-passage-sentence"${index === 0 ? ' open' : ''} data-order-exercise>
         <summary><span class="ldsn-sentence-number">${index + 1}</span><span><strong>${esc(row.vi)}</strong><small>${mode === 'ordering' ? 'Xếp từ thành câu tiếng Trung' : 'Gõ câu tiếng Trung'}</small></span><span class="ldsn-chevron">⌄</span></summary>
         <div class="ldsn-passage-sentence-body">
-          ${mode === 'ordering' ? renderOrderingAnswer(row.hanzi, row.pinyin, index + 501) : `<input class="ldsn-input" type="text" placeholder="Gõ câu tiếng Trung..." data-role-input autocomplete="off" lang="zh-CN"><div class="ldsn-actions"><button class="ldsn-secondary-btn" type="button" data-check-role data-expected="${attr(row.hanzi)}">Kiểm tra</button>${audioButton(row.hanzi, `Nghe câu ${index + 1}`)}</div><div class="ldsn-feedback" data-feedback></div>`}
+          ${mode === 'ordering' ? renderOrderingAnswer(row.hanzi, row.pinyin, index + 501, row.answerTokens) : `<input class="ldsn-input" type="text" placeholder="Gõ câu tiếng Trung..." data-role-input autocomplete="off" lang="zh-CN"><div class="ldsn-actions"><button class="ldsn-secondary-btn" type="button" data-check-role data-expected="${attr(row.hanzi)}">Kiểm tra</button>${audioButton(row.hanzi, `Nghe câu ${index + 1}`)}</div><div class="ldsn-feedback" data-feedback></div>`}
         </div>
       </details>`).join('')}</div>
     </div>`;
@@ -853,26 +916,22 @@
 
   function renderPassage(full) {
     const p = currentLesson.passage;
-    const sentenceAudio = p.sentences.filter(row => row.hanzi).map((row, index) => `<div class="ldsn-layer"><div class="ldsn-inline-head"><span><strong>Câu ${index + 1}</strong></span>${audioButton(row.hanzi, `Nghe câu ${index + 1}`)}</div><span class="ldsn-hanzi">${esc(row.hanzi)}</span>${full && row.pinyin ? `<small>${esc(row.pinyin)}</small>` : ''}</div>`).join('');
+    const sentenceAudio = p.sentences.filter(row => row.hanzi).map((row, index) => `<div class="ldsn-layer"><div class="ldsn-inline-head"><span><strong>Câu ${index + 1}</strong></span>${audioButton(row.hanzi, `Nghe câu ${index + 1}`)}</div><span class="ldsn-hanzi">${esc(row.hanzi)}</span>${full ? pinyinHtml(row.pinyin, 'small') : ''}</div>`).join('');
     return `<div class="ldsn-passage">
-      <div class="ldsn-passage-title"><h3>${esc(p.title.hanzi || '')}</h3><span class="ldsn-pinyin">${esc(p.title.pinyin || '')}</span><span class="ldsn-meaning">${esc(p.title.vi || '')}</span></div>
-      ${full ? `<div class="ldsn-passage-layer"><h4>Chữ Hán</h4><p class="ldsn-hanzi">${esc(p.hanzi)}</p></div><div class="ldsn-passage-layer"><h4>Pinyin</h4><p>${esc(p.pinyin)}</p></div><div class="ldsn-passage-layer"><h4>Tiếng Việt</h4><p>${esc(p.vi)}</p></div>` : sentenceAudio}
+      <div class="ldsn-passage-title"><h3>${esc(p.title.hanzi || '')}</h3>${pinyinHtml(p.title.pinyin || '', 'span')}<span class="ldsn-meaning">${esc(p.title.vi || '')}</span></div>
+      ${full ? `<div class="ldsn-passage-layer"><h4>Chữ Hán</h4><p class="ldsn-hanzi">${esc(p.hanzi)}</p></div><div class="ldsn-passage-layer" data-pinyin><h4>Pinyin</h4><p>${esc(p.pinyin)}</p></div><div class="ldsn-passage-layer"><h4>Tiếng Việt</h4><p>${esc(p.vi)}</p></div>` : sentenceAudio}
     </div>`;
+  }
+
+  function renderDialogueSettings(speakers, selectedRole, mode) {
+    return `<details class="ldsn-settings ldsn-compact-settings" data-dialogue-settings><summary><span>⚙ Cài đặt hội thoại</span><small>${esc(selectedRole)} · ${mode === 'ordering' ? 'Xếp từ' : 'Gõ câu'} · ${pinyinStatusHtml()}</small></summary><div class="ldsn-settings-body"><label class="ldsn-setting-block"><strong>Vai của bạn</strong><select class="ldsn-role-select" data-role-select>${speakers.map(speaker => `<option value="${attr(speaker)}"${speaker === selectedRole ? ' selected' : ''}>${esc(speaker)}</option>`).join('')}</select></label><div class="ldsn-setting-block"><strong>Cách trả lời</strong><div class="ldsn-mode-switch"><button class="ldsn-mode-btn${mode === 'typing' ? ' is-active' : ''}" type="button" data-role-mode="typing">Gõ câu</button><button class="ldsn-mode-btn${mode === 'ordering' ? ' is-active' : ''}" type="button" data-role-mode="ordering">Xếp từ</button></div></div><div class="ldsn-setting-row"><span><strong>Hiện pinyin</strong><small>Dùng chung toàn bộ LDSN1-4</small></span>${pinyinToggleButton()}</div></div></details>`;
   }
 
   function renderDialogue() {
     const speakers = [...new Set(currentLesson.dialogue.map(turn => turn.speaker).filter(Boolean))];
     const selectedRole = settings.roleByLesson[currentLesson.id] || speakers[0] || '';
     const mode = settings.roleplayMode === 'ordering' ? 'ordering' : 'typing';
-    return `<section id="roleplay" class="ldsn-card ldsn-pad ldsn-section ldsn-section--dialogue">
-      <div class="ldsn-section-head"><div><p class="ldsn-kicker">Hội thoại nhập vai</p><h2>Nghe → phản xạ → tự trả lời</h2><p>Chế độ đã chọn dùng chung với câu và đoạn văn, đồng thời được ghi nhớ.</p></div>${audioButton(currentLesson.dialogue.map(turn => turn.hanzi).join(' '), 'Nghe toàn bộ hội thoại')}</div>
-      <div class="ldsn-dialogue-toolbar">
-        <label><small>Vai của bạn</small><select class="ldsn-role-select" data-role-select>${speakers.map(speaker => `<option value="${attr(speaker)}"${speaker === selectedRole ? ' selected' : ''}>${esc(speaker)}</option>`).join('')}</select></label>
-        <div><small>Cách trả lời mặc định</small><div class="ldsn-mode-switch"><button class="ldsn-mode-btn${mode === 'typing' ? ' is-active' : ''}" type="button" data-role-mode="typing">Gõ câu</button><button class="ldsn-mode-btn${mode === 'ordering' ? ' is-active' : ''}" type="button" data-role-mode="ordering">Xếp từ</button></div></div>
-      </div>
-    </section>
-    <section class="ldsn-dialogue-list">${currentLesson.dialogue.map(turn => renderDialogueTurn(turn, selectedRole, mode)).join('')}</section>
-    <section class="ldsn-card ldsn-pad"><button class="ldsn-ghost-btn" type="button" data-mark-step="dialogue">Đã hoàn thành lượt nhập vai</button></section>`;
+    return `<section id="roleplay" class="ldsn-card ldsn-pad ldsn-section ldsn-section--dialogue"><div class="ldsn-compact-section-head"><div><p class="ldsn-kicker">Hội thoại nhập vai</p><h2>Nghe · phản xạ · trả lời</h2></div><div class="ldsn-compact-actions">${pinyinToggleButton()}${audioButton(currentLesson.dialogue.map(turn => turn.hanzi).join(' '), 'Nghe toàn bộ hội thoại')}<button class="ldsn-settings-shortcut" type="button" data-open-nearest-settings aria-label="Mở cài đặt hội thoại">⚙</button></div></div>${renderDialogueSettings(speakers, selectedRole, mode)}</section><section class="ldsn-dialogue-list">${currentLesson.dialogue.map(turn => renderDialogueTurn(turn, selectedRole, mode)).join('')}</section><section class="ldsn-card ldsn-pad"><button class="ldsn-ghost-btn" type="button" data-mark-step="dialogue">Đã hoàn thành lượt nhập vai</button></section>`;
   }
 
   function renderDialogueTurn(turn, selectedRole, mode) {
@@ -883,43 +942,38 @@
     const key = `dialogue:${turn.id}`;
     return `<article class="ldsn-card ldsn-dialogue-turn ${speakerClass}${isUser ? ' is-user' : ' is-other'}" data-turn-id="${turn.id}"${isUser && mode === 'ordering' ? ' data-order-exercise' : ''}>
       <div class="ldsn-dialogue-speaker-row"><span class="ldsn-speaker-avatar">${esc((turn.speaker || '?').slice(0, 1))}</span><div class="ldsn-speaker">${esc(turn.speaker || `Lượt ${turn.turn}`)}${isUser ? ' · Lượt của bạn' : ''}</div></div>
-      ${isUser ? renderRoleAnswer(turn, mode) : `<div class="ldsn-turn-copy"><div><div class="ldsn-hanzi">${esc(turn.hanzi)}</div><div class="ldsn-pinyin">${esc(turn.pinyin)}</div><div class="ldsn-meaning">${esc(turn.vi)}</div></div>${audioButton(turn.hanzi)}</div>`}
+      ${isUser ? renderRoleAnswer(turn, mode) : `<div class="ldsn-turn-copy"><div><div class="ldsn-hanzi">${esc(turn.hanzi)}</div>${pinyinHtml(turn.pinyin)}<div class="ldsn-meaning">${esc(turn.vi)}</div></div>${audioButton(turn.hanzi)}</div>`}
       ${ratingButtons(key, itemMeta('dialogue', turn, { title: turn.speaker }))}
     </article>`;
   }
   function renderRoleAnswer(turn, mode) {
     if (mode === 'ordering') {
-      return `<div class="ldsn-layer ldsn-layer--dialogue"><span class="ldsn-meaning">${esc(turn.vi)}</span><small>${esc(turn.pinyin)}</small></div>${renderOrderingAnswer(turn.hanzi, '', turn.turn)}`;
+      return `<div class="ldsn-layer ldsn-layer--dialogue"><span class="ldsn-meaning">${esc(turn.vi)}</span>${pinyinHtml(turn.pinyin, 'small')}</div>${renderOrderingAnswer(turn.hanzi, '', turn.turn, turn.answerTokens)}`;
     }
-    return `<div class="ldsn-layer ldsn-layer--dialogue"><span class="ldsn-meaning">${esc(turn.vi)}</span><small>${esc(turn.pinyin)}</small></div>
+    return `<div class="ldsn-layer ldsn-layer--dialogue"><span class="ldsn-meaning">${esc(turn.vi)}</span>${pinyinHtml(turn.pinyin, 'small')}</div>
       <input class="ldsn-input" type="text" placeholder="Gõ câu tiếng Trung..." data-role-input autocomplete="off" lang="zh-CN">
       <div class="ldsn-actions"><button class="ldsn-secondary-btn" type="button" data-check-role data-expected="${attr(turn.hanzi)}">Kiểm tra</button>${audioButton(turn.hanzi, 'Nghe câu mẫu')}</div>
       <div class="ldsn-feedback" data-feedback></div>`;
   }
 
   function tokeniseSentence(sentence, vocabulary) {
-    const clean = String(sentence || '').replace(/[，。！？；：、“”‘’…,.!?;:\s]/g, '');
-    const common = ['我们', '你们', '他们', '她们', '这里', '那里', '什么', '怎么', '可以', '因为', '所以', '但是', '然后', '已经', '还是', '一起', '一下', '一个', '我的', '你的', '他的', '她的', '我', '你', '他', '她', '叫', '是', '有', '在', '来', '去', '也', '很', '不', '没', '的', '了', '吗', '呢', '吧', '啊'];
-    const words = [...new Set([...vocabulary.map(row => row.hanzi), ...common])]
-      .filter(Boolean)
-      .sort((a, b) => b.length - a.length);
-    const surnames = new Set('赵钱孙李周吴郑王冯陈褚卫蒋沈韩杨朱秦尤许何吕施张孔曹严华金魏陶姜戚谢邹喻柏水窦章云苏潘葛范彭郎鲁韦昌马苗凤花方俞任袁柳唐罗薛伍余米贝姚孟顾尹江钟徐邱骆高夏蔡田樊胡凌霍虞万支柯管卢莫房裘缪干解应宗丁宣贲邓郁单杭洪包诸左石崔吉龚程嵇邢滑裴陆荣翁荀羊於惠甄曲家封芮羿储靳汲邴糜松井段富巫乌焦巴弓牧隗山谷车侯宓蓬全郗班仰秋仲伊宫宁仇栾暴甘钭厉戎祖武符刘景詹束龙叶幸司韶郜黎蓟薄印宿白怀蒲台从鄂索咸籍赖卓蔺屠蒙池乔阴胥能苍双闻莘党翟谭贡劳逄姬申扶堵冉宰郦雍郤璩桑桂濮牛寿通边扈燕冀郏浦尚农温别庄晏柴瞿阎充慕连茹习宦艾鱼容向古易慎戈廖庾终暨居衡步都耿满弘匡国文寇广禄阙东欧殳沃利蔚越夔隆师巩厍聂晁勾敖融冷訾辛阚那简饶空曾毋沙乜养鞠须丰巢关蒯相查后荆红游竺权逯盖益桓公');
+    const clean = normalizeHanzi(sentence);
+    const words = [...new Set((vocabulary || []).map(row => row.hanzi).filter(Boolean))].sort((a, b) => b.length - a.length);
     const tokens = [];
     let index = 0;
     while (index < clean.length) {
-      const match = words.find(word => clean.startsWith(word, index));
-      if (match) { tokens.push(match); index += match.length; continue; }
-      const latin = clean.slice(index).match(/^[A-Za-z0-9]+/);
-      if (latin) { tokens.push(latin[0]); index += latin[0].length; continue; }
-      const remaining = clean.slice(index);
-      if (surnames.has(clean[index]) && /^[\u4e00-\u9fff]{3}/.test(remaining)) {
-        tokens.push(clean[index]);
-        tokens.push(clean.slice(index + 1, index + 3));
-        index += 3;
+      const match = words.find(word => word.length > 1 && clean.startsWith(word, index));
+      if (match) {
+        tokens.push(match);
+        index += match.length;
         continue;
       }
-      const pair = remaining.match(/^[\u4e00-\u9fff]{2}/);
-      if (pair) { tokens.push(pair[0]); index += 2; continue; }
+      const latin = clean.slice(index).match(/^[A-Za-z0-9]+/);
+      if (latin) {
+        tokens.push(latin[0]);
+        index += latin[0].length;
+        continue;
+      }
       tokens.push(clean[index]);
       index += 1;
     }
@@ -938,41 +992,64 @@
     return list;
   }
 
-  function renderContent() {
-    const filters = [
-      ['all', 'Tất cả'], ['vocabulary', 'Từ vựng'], ['sentences', 'Câu'], ['dialogue', 'Hội thoại'], ['grammar', 'Ngữ pháp'], ['passage', 'Đoạn văn']
-    ];
-    return `<section class="ldsn-card ldsn-pad ldsn-section ldsn-section--content">
-      <div class="ldsn-section-head"><div><p class="ldsn-kicker">Nội dung đầy đủ</p><h2>Toàn bộ Bài ${currentLesson.lessonNumber}</h2><p>Mỗi nhóm có thể thu gọn để dễ xem trên điện thoại.</p></div></div>
-      <div class="ldsn-filter-row">${filters.map(([id, label]) => `<button class="ldsn-chip${contentFilter === id ? ' is-active' : ''}" type="button" data-content-filter="${id}">${label}</button>`).join('')}</div>
-    </section>
-    ${showContent('vocabulary') ? renderFullVocabulary() : ''}
-    ${showContent('sentences') ? renderFullSentences() : ''}
-    ${showContent('dialogue') ? renderFullDialogue() : ''}
-    ${showContent('grammar') ? `<details class="ldsn-card ldsn-content-accordion"${contentFilter === 'grammar' ? ' open' : ''}><summary><span><strong>Toàn bộ ngữ pháp</strong><small>${currentLesson.grammar.length} điểm · Cấu trúc và ví dụ</small></span><span class="ldsn-chevron">⌄</span></summary><div class="ldsn-content-accordion-body"><div class="ldsn-grammar-list">${currentLesson.grammar.map(renderGrammarCard).join('')}</div></div></details>` : ''}
-    ${showContent('passage') ? `<details class="ldsn-card ldsn-content-accordion"${contentFilter === 'passage' ? ' open' : ''}><summary><span><strong>Đoạn văn</strong><small>Chữ Hán · Pinyin · Tiếng Việt</small></span><span class="ldsn-chevron">⌄</span></summary><div class="ldsn-content-accordion-body"><div class="ldsn-section-head"><div><h2>${esc(currentLesson.passage.title.vi || 'Đoạn văn')}</h2></div>${audioButton(currentLesson.passage.hanzi, 'Nghe toàn bộ đoạn văn')}</div>${renderPassage(true)}</div></details>` : ''}`;
+  function renderContentSentenceGroup(title, items, open = false) {
+    return `<details class="ldsn-card ldsn-content-accordion"${open ? ' open' : ''}><summary><span><strong>${esc(title)}</strong><small>Chữ Hán · Pinyin · Tiếng Việt</small></span><span class="ldsn-chevron">⌄</span></summary><div class="ldsn-content-accordion-body"><div class="ldsn-content-group">${items.map(item => `<article class="ldsn-content-sentence-row"><div><div class="ldsn-hanzi">${esc(item.hanzi)}</div>${pinyinHtml(item.pinyin)}<div class="ldsn-meaning">${esc(item.vi)}</div></div>${audioButton(item.hanzi)}</article>`).join('')}</div></div></details>`;
   }
 
-  function showContent(id) { return contentFilter === 'all' || contentFilter === id; }
+  function renderContentGrammar(source, title, open = false) {
+    const items = currentLesson.grammar.filter(item => item.source === source);
+    return `<details class="ldsn-card ldsn-content-accordion"${open ? ' open' : ''}><summary><span><strong>${esc(title)}</strong><small>${items.length} điểm · Theo đúng thứ tự nguồn</small></span><span class="ldsn-chevron">⌄</span></summary><div class="ldsn-content-accordion-body"><div class="ldsn-grammar-list">${items.map(renderGrammarCard).join('')}</div></div></details>`;
+  }
 
-  function renderFullVocabulary() {
-    return `<details class="ldsn-card ldsn-content-accordion"${contentFilter === 'vocabulary' || contentFilter === 'all' ? ' open' : ''}><summary><span><strong>Toàn bộ ${currentLesson.vocabulary.length} từ vựng</strong><small>Chạm vào từ để xem chi tiết · Chữ Hán · Pinyin · Nghĩa</small></span><span class="ldsn-chevron">⌄</span></summary>
-      <div class="ldsn-content-accordion-body"><div class="ldsn-content-vocab-list">${currentLesson.vocabulary.map(word => `<article class="ldsn-content-vocab-row" data-vocab-id="${attr(word.id)}"><button class="ldsn-content-vocab-link" type="button" data-open-word-detail="${attr(word.id)}" aria-label="Mở chi tiết ${esc(word.hanzi)}"><div class="ldsn-content-vocab-hanzi">${esc(word.hanzi)}</div><div class="ldsn-content-vocab-copy"><strong>${esc(word.pinyin)}</strong><span>${esc(word.vi)}</span><small>${esc(word.wordClass || 'từ vựng')}${word.hanViet ? ` · Hán Việt: ${esc(word.hanViet)}` : ''}</small></div><span class="ldsn-vocab-list-arrow" aria-hidden="true">›</span></button>${audioButton(word.hanzi)}</article>`).join('')}</div></div>
+  function renderContentFlowItem(step, index) {
+    const open = contentFilter !== 'all' || index === 0;
+    switch (step.type) {
+      case 'vocabulary': return renderFullVocabulary(open);
+      case 'zhViQuestions': return renderContentSentenceGroup('Phần 2 · Dịch Trung → Việt · Câu hỏi', currentLesson.translation.zhVi.questions, open);
+      case 'zhViAnswers': return renderContentSentenceGroup('Phần 2 · Dịch Trung → Việt · Câu trả lời', currentLesson.translation.zhVi.answers, open);
+      case 'dialogue': return renderFullDialogue(open);
+      case 'dialogueGrammar': return renderContentGrammar('dialogue', 'Phân tích ngữ pháp · Câu và hội thoại', open);
+      case 'viZhQuestions': return renderContentSentenceGroup('Phần 3 · Dịch Việt → Trung · Câu hỏi', currentLesson.translation.viZh.questions, open);
+      case 'viZhAnswers': return renderContentSentenceGroup('Phần 3 · Dịch Việt → Trung · Câu trả lời', currentLesson.translation.viZh.answers, open);
+      case 'passage': return `<details class="ldsn-card ldsn-content-accordion"${open ? ' open' : ''}><summary><span><strong>Phần 3 · Đoạn văn</strong><small>Chữ Hán · Pinyin · Tiếng Việt</small></span><span class="ldsn-chevron">⌄</span></summary><div class="ldsn-content-accordion-body"><div class="ldsn-section-head"><div><h2>${esc(currentLesson.passage.title.vi || 'Đoạn văn')}</h2></div>${audioButton(currentLesson.passage.hanzi, 'Nghe toàn bộ đoạn văn')}</div>${renderPassage(true)}</div></details>`;
+      case 'passageGrammar': return renderContentGrammar('passage', 'Phân tích ngữ pháp · Đoạn văn', open);
+      default: return '';
+    }
+  }
+
+  function contentStepMatchesFilter(stepType) {
+    if (contentFilter === 'all') return true;
+    const map = {
+      vocabulary: ['vocabulary'],
+      zhvi: ['zhViQuestions', 'zhViAnswers', 'dialogue', 'dialogueGrammar'],
+      dialogue: ['dialogue', 'dialogueGrammar'],
+      grammar: ['dialogueGrammar', 'passageGrammar'],
+      vizh: ['viZhQuestions', 'viZhAnswers', 'passage', 'passageGrammar'],
+      passage: ['passage', 'passageGrammar']
+    };
+    return (map[contentFilter] || []).includes(stepType);
+  }
+
+  function renderContent() {
+    const filters = [['all', 'Tất cả'], ['vocabulary', 'Từ vựng'], ['zhvi', 'Trung → Việt'], ['dialogue', 'Hội thoại'], ['grammar', 'Ngữ pháp'], ['vizh', 'Việt → Trung'], ['passage', 'Đoạn văn']];
+    const flow = (currentLesson.contentFlow || []).filter(step => contentStepMatchesFilter(step.type));
+    return `<section class="ldsn-card ldsn-pad ldsn-section ldsn-section--content">
+      <div class="ldsn-compact-section-head"><div><p class="ldsn-kicker">Nội dung đầy đủ</p><h2>Toàn bộ Bài ${currentLesson.lessonNumber}</h2><p>Theo đúng trình tự PDF và Markdown.</p></div>${pinyinToggleButton()}</div>
+      <div class="ldsn-filter-row">${filters.map(([id, label]) => `<button class="ldsn-chip${contentFilter === id ? ' is-active' : ''}" type="button" data-content-filter="${id}">${label}</button>`).join('')}</div>
+    </section>${flow.map(renderContentFlowItem).join('')}`;
+  }
+
+  function renderFullVocabulary(open = false) {
+    return `<details class="ldsn-card ldsn-content-accordion"${open ? ' open' : ''}><summary><span><strong>Phần 1 · Toàn bộ ${currentLesson.vocabulary.length} từ vựng</strong><small>Chạm vào từ để xem chi tiết chung với HSK</small></span><span class="ldsn-chevron">⌄</span></summary>
+      <div class="ldsn-content-accordion-body"><div class="ldsn-content-vocab-list">${currentLesson.vocabulary.map(word => `<article class="ldsn-content-vocab-row" data-vocab-id="${attr(word.id)}"><button class="ldsn-content-vocab-link" type="button" data-open-word-detail="${attr(word.id)}" aria-label="Mở chi tiết ${esc(word.hanzi)}"><div class="ldsn-content-vocab-hanzi">${esc(word.hanzi)}</div><div class="ldsn-content-vocab-copy">${pinyinHtml(word.pinyin, 'strong')}<span>${esc(word.vi)}</span><small>${esc(word.wordClass || 'từ vựng')}${word.hanViet ? ` · Hán Việt: ${esc(word.hanViet)}` : ''}</small></div><span class="ldsn-vocab-list-arrow" aria-hidden="true">›</span></button>${audioButton(word.hanzi)}</article>`).join('')}</div></div>
     </details>`;
   }
-  function renderFullSentences() {
-    const groups = [
-      ['Trung → Việt · Câu hỏi', currentLesson.translation.zhVi.questions],
-      ['Trung → Việt · Câu trả lời', currentLesson.translation.zhVi.answers],
-      ['Việt → Trung · Câu hỏi', currentLesson.translation.viZh.questions],
-      ['Việt → Trung · Câu trả lời', currentLesson.translation.viZh.answers]
-    ];
-    return `<details class="ldsn-card ldsn-content-accordion"${contentFilter === 'sentences' ? ' open' : ''}><summary><span><strong>Toàn bộ câu</strong><small>Chữ Hán · Pinyin · Tiếng Việt</small></span><span class="ldsn-chevron">⌄</span></summary><div class="ldsn-content-accordion-body"><div class="ldsn-exercise-list">${groups.map(([title, items]) => `<section class="ldsn-content-group"><h3>${title}</h3>${items.map(item => `<article class="ldsn-content-sentence-row"><div><div class="ldsn-hanzi">${esc(item.hanzi)}</div><div class="ldsn-pinyin">${esc(item.pinyin)}</div><div class="ldsn-meaning">${esc(item.vi)}</div></div>${audioButton(item.hanzi)}</article>`).join('')}</section>`).join('')}</div></div></details>`;
-  }
-  function renderFullDialogue() {
+
+  function renderFullDialogue(open = false) {
     const speakers = [...new Set(currentLesson.dialogue.map(row => row.speaker).filter(Boolean))];
-    return `<details class="ldsn-card ldsn-content-accordion"${contentFilter === 'dialogue' ? ' open' : ''}><summary><span><strong>Toàn bộ hội thoại</strong><small>${currentLesson.dialogue.length} lượt · Hai vai được phân màu</small></span><span class="ldsn-chevron">⌄</span></summary><div class="ldsn-content-accordion-body"><div class="ldsn-section-head"><div></div>${audioButton(currentLesson.dialogue.map(turn => turn.hanzi).join(' '), 'Nghe toàn bộ hội thoại')}</div><div class="ldsn-dialogue-list">${currentLesson.dialogue.map(turn => { const speakerIndex = Math.max(0, speakers.indexOf(turn.speaker)); const speakerClass = speakerIndex % 2 === 0 ? 'speaker-a' : 'speaker-b'; return `<article class="ldsn-dialogue-turn ${speakerClass} is-other"><div class="ldsn-dialogue-speaker-row"><span class="ldsn-speaker-avatar">${esc((turn.speaker || '?').slice(0, 1))}</span><div class="ldsn-speaker">${esc(turn.speaker)}</div></div><div class="ldsn-turn-copy"><div><div class="ldsn-hanzi">${esc(turn.hanzi)}</div><div class="ldsn-pinyin">${esc(turn.pinyin)}</div><div class="ldsn-meaning">${esc(turn.vi)}</div></div>${audioButton(turn.hanzi)}</div></article>`; }).join('')}</div></div></details>`;
+    return `<details class="ldsn-card ldsn-content-accordion"${open ? ' open' : ''}><summary><span><strong>Phần 2 · Hội thoại và đáp án</strong><small>${currentLesson.dialogue.length} lượt · Hai vai được phân màu</small></span><span class="ldsn-chevron">⌄</span></summary><div class="ldsn-content-accordion-body"><div class="ldsn-section-head"><div></div>${audioButton(currentLesson.dialogue.map(turn => turn.hanzi).join(' '), 'Nghe toàn bộ hội thoại')}</div><div class="ldsn-dialogue-list">${currentLesson.dialogue.map(turn => { const speakerIndex = Math.max(0, speakers.indexOf(turn.speaker)); const speakerClass = speakerIndex % 2 === 0 ? 'speaker-a' : 'speaker-b'; return `<article class="ldsn-dialogue-turn ${speakerClass} is-other"><div class="ldsn-dialogue-speaker-row"><span class="ldsn-speaker-avatar">${esc((turn.speaker || '?').slice(0, 1))}</span><div class="ldsn-speaker">${esc(turn.speaker)}</div></div><div class="ldsn-turn-copy"><div><div class="ldsn-hanzi">${esc(turn.hanzi)}</div>${pinyinHtml(turn.pinyin)}<div class="ldsn-meaning">${esc(turn.vi)}</div></div>${audioButton(turn.hanzi)}</div></article>`; }).join('')}</div></div></details>`;
   }
+
   function renderReview() {
     const state = getLessonState(currentLesson.id);
     const rows = Object.entries(state.ratings || {})
@@ -990,7 +1067,7 @@
     return `<article class="ldsn-card ldsn-exercise">
       <div class="ldsn-exercise-head"><div><small>${esc(meta.type || 'Nội dung')}</small><h3>${esc(meta.title || meta.lessonTitle || '')}</h3></div>${audioButton(meta.hanzi || '')}</div>
       ${meta.hanzi ? `<div class="ldsn-hanzi ldsn-prompt-hanzi">${esc(meta.hanzi)}</div>` : ''}
-      ${meta.pinyin ? `<div class="ldsn-pinyin">${esc(meta.pinyin)}</div>` : ''}
+      ${pinyinHtml(meta.pinyin)}
       ${meta.vi ? `<div class="ldsn-meaning">${esc(meta.vi)}</div>` : ''}
       ${ratingButtons(key, meta)}
     </article>`;
@@ -1055,6 +1132,22 @@
     if (wordDetail) { openWordDetail(wordDetail.dataset.openWordDetail); return; }
 
     if (event.target.closest('[data-open-flashcards]')) { openFlashcards(); return; }
+
+    const togglePinyin = event.target.closest('[data-toggle-pinyin]');
+    if (togglePinyin) {
+      settings.displayPinyin = settings.displayPinyin === false;
+      saveSettings();
+      applyPinyinVisibility();
+      return;
+    }
+
+    const openSettings = event.target.closest('[data-open-nearest-settings]');
+    if (openSettings) {
+      const section = openSettings.closest('.ldsn-section');
+      const details = section?.querySelector?.('.ldsn-compact-settings');
+      if (details) { details.open = true; details.scrollIntoView?.({ behavior: 'smooth', block: 'nearest' }); }
+      return;
+    }
 
     const tab = event.target.closest('[data-tab]');
     if (tab) { switchTab(tab.dataset.tab); return; }
@@ -1130,7 +1223,7 @@
       const card = reference.closest('.ldsn-exercise');
       const answer = reference.dataset.answer || '';
       const pinyin = reference.dataset.pinyin || '';
-      showFeedback(card, `<strong>Đáp án tham khảo:</strong><br>${esc(answer)}${pinyin ? `<br><small>${esc(pinyin)}</small>` : ''}`, 'is-partial');
+      showFeedback(card, `<strong>Đáp án tham khảo:</strong><br>${esc(answer)}${pinyin ? `<br><small class="ldsn-pinyin" data-pinyin>${esc(pinyin)}</small>` : ''}`, 'is-partial');
       return;
     }
 
@@ -1243,6 +1336,12 @@
     }
   }
 
+
+  window.addEventListener?.('message', event => {
+    if (event.origin !== location.origin) return;
+    if (event.data?.type === 'tiengtrung:hsk-popup-close') closeWordDetail();
+  });
+
   async function init() {
     try {
       const response = await fetch(DATA_URL, { cache: 'no-store' });
@@ -1253,7 +1352,7 @@
       currentLesson = payload.lessons.find(lesson => lesson.lessonNumber === lessonNo) || null;
       activeTab = TABS.some(tab => tab.id === params.get('tab')) ? params.get('tab') : 'learn';
       const requestedContent = params.get('content');
-      contentFilter = ['all', 'vocabulary', 'sentences', 'dialogue', 'grammar', 'passage'].includes(requestedContent) ? requestedContent : 'all';
+      contentFilter = ['all', 'vocabulary', 'zhvi', 'dialogue', 'grammar', 'vizh', 'passage'].includes(requestedContent) ? requestedContent : 'all';
       if (currentLesson) renderLesson(); else renderCourse();
       root.addEventListener('click', handleClick);
       root.addEventListener('change', handleChange);

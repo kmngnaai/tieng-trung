@@ -394,6 +394,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .ldsn-vocab-main { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: .6rem; align-items: start; }
 .ldsn-vocab-main h3 { margin: 0; font: 600 1.65rem/1.2 var(--app-font-zh); }
 .ldsn-pinyin { color: #4f7088; font-size: .86rem; line-height: 1.42; overflow-wrap: anywhere; }
+.ldsn-app.is-pinyin-hidden [data-pinyin] { display: none !important; }
+.ldsn-inline-pinyin { display: inline; }
+.ldsn-prompt-pinyin { margin-top: .28rem; }
 .ldsn-meaning { color: var(--ui-text-secondary); line-height: 1.48; overflow-wrap: anywhere; }
 .ldsn-meta { display: flex; flex-wrap: wrap; gap: .3rem; min-width: 0; }
 .ldsn-meta span { max-width: 100%; padding: .23rem .42rem; border-radius: 99px; background: #edf4f1; color: var(--ui-text-muted); font-size: .68rem; overflow-wrap: anywhere; }
@@ -1295,4 +1298,260 @@ body.ldsn-modal-open { overflow: hidden; }
   .ldsn-flashcard-complete,
   .ldsn-flashcard-study-card { margin: .55rem; }
   .ldsn-flashcard-start { width: calc(100% - 1.1rem); margin: .55rem; }
+}
+
+/* LDSN V5: shared HSK popup, source-order content and full-length prompts. */
+.ldsn-shared-detail-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+  display: grid;
+  align-items: end;
+  background: rgba(25, 31, 29, .45);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  padding-top: max(.5rem, env(safe-area-inset-top));
+}
+.ldsn-shared-detail-overlay[hidden] { display: none !important; }
+.ldsn-shared-detail-frame {
+  display: block;
+  width: 100%;
+  height: calc(100dvh - max(.5rem, env(safe-area-inset-top)));
+  border: 0;
+  background: transparent;
+}
+.ldsn-passage-sentence summary strong {
+  display: block;
+  overflow: visible;
+  -webkit-line-clamp: unset;
+  -webkit-box-orient: initial;
+  white-space: normal;
+  font-size: .84rem;
+  line-height: 1.45;
+}
+.ldsn-prompt-vi,
+.ldsn-prompt-hanzi,
+.ldsn-content-sentence-row .ldsn-hanzi,
+.ldsn-content-sentence-row .ldsn-pinyin,
+.ldsn-content-sentence-row .ldsn-meaning {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-overflow: clip;
+}
+.ldsn-grammar-group {
+  display: grid;
+  gap: .55rem;
+  padding: .8rem;
+  border: 1px solid color-mix(in srgb, var(--ldsn-purple) 28%, white);
+  border-radius: .9rem;
+  background: #fff;
+}
+.ldsn-grammar-group + .ldsn-grammar-group { margin-top: .7rem; }
+.ldsn-grammar-group > h4 {
+  margin: 0;
+  color: #305f54;
+  font-size: .98rem;
+  line-height: 1.4;
+}
+.ldsn-grammar-prose { display: grid; gap: .36rem; }
+.ldsn-grammar-prose p {
+  margin: 0;
+  color: var(--ui-text);
+  line-height: 1.58;
+}
+.ldsn-grammar-group .ldsn-grammar-example-list { display: grid; gap: .5rem; }
+.ldsn-grammar-group .ldsn-grammar-example-inline {
+  margin: 0;
+  background: #f7fbf9;
+  border-color: #d8ece4;
+}
+@media (min-width: 720px) {
+  .ldsn-shared-detail-overlay { padding: 1rem; place-items: center; }
+  .ldsn-shared-detail-frame { width: min(44rem, 100%); height: min(88dvh, 54rem); border-radius: 1.1rem; overflow: hidden; }
+}
+
+/* LDSN V6: compact mobile controls, shared pinyin eye and contextual grammar. */
+.ldsn-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+.ldsn-eye-btn,
+.ldsn-settings-shortcut {
+  width: 2.55rem;
+  height: 2.55rem;
+  min-height: 2.55rem;
+  flex: 0 0 auto;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid var(--ldsn-line);
+  border-radius: .8rem;
+  background: #fff;
+  color: var(--ui-text-secondary);
+  font: inherit;
+  cursor: pointer;
+}
+.ldsn-eye-btn.is-active {
+  border-color: #a8d1bf;
+  background: var(--ldsn-mint);
+  color: var(--ldsn-green-strong);
+}
+.ldsn-eye-btn span[aria-hidden="true"] { font-size: 1rem; line-height: 1; }
+.ldsn-compact-actions { display: flex; align-items: center; justify-content: flex-end; gap: .38rem; flex: 0 0 auto; }
+.ldsn-compact-section-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: .65rem;
+  margin-bottom: .62rem;
+}
+.ldsn-compact-section-head h2,
+.ldsn-compact-section-head p { margin: 0; }
+.ldsn-compact-section-head h2 { font-size: clamp(1.08rem, 4.7vw, 1.35rem); line-height: 1.25; }
+.ldsn-compact-section-head p:not(.ldsn-kicker) { margin-top: .18rem; color: var(--ui-text-muted); font-size: .76rem; line-height: 1.35; }
+
+.ldsn-lesson-hero--compact { padding: .72rem .8rem; }
+.ldsn-lesson-meta-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .5rem;
+  color: var(--ui-text-muted);
+  font-size: .75rem;
+}
+.ldsn-lesson-meta-row .ldsn-back-link { margin: 0; white-space: nowrap; }
+.ldsn-lesson-meta-row > span { text-align: center; font-weight: 800; }
+.ldsn-lesson-heading--compact { margin-top: .45rem; }
+.ldsn-lesson-heading--compact h1 { font-size: clamp(1.32rem, 6vw, 1.85rem); }
+.ldsn-lesson-language { margin: .24rem 0 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: .35rem; color: var(--ui-text-secondary); }
+.ldsn-lesson-language .ldsn-hanzi { color: var(--ldsn-green-strong); font-size: 1.05rem; }
+.ldsn-lesson-language .ldsn-pinyin { font-size: .78rem; }
+.ldsn-next-row {
+  margin-top: .62rem;
+  padding: .52rem .58rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .55rem;
+  border-radius: .82rem;
+  background: var(--ldsn-mint);
+}
+.ldsn-next-row span { display: grid; gap: .08rem; }
+.ldsn-next-row small { color: var(--ui-text-muted); font-size: .68rem; }
+.ldsn-next-row strong { font-size: .85rem; }
+.ldsn-next-row .ldsn-primary-btn { min-height: 2.35rem; padding: .5rem .75rem; }
+.ldsn-journey-card { padding: .58rem .62rem; }
+.ldsn-journey-heading { display: flex; align-items: baseline; justify-content: space-between; gap: .6rem; margin-bottom: .38rem; }
+.ldsn-journey-heading strong { font-size: .9rem; }
+.ldsn-journey-heading small { color: var(--ui-text-muted); font-size: .68rem; }
+.ldsn-journey { grid-auto-columns: minmax(4.8rem, 5.4rem); gap: .35rem; padding-bottom: .08rem; }
+.ldsn-journey-step { min-height: 3.55rem; padding: .42rem; border-radius: .75rem; }
+.ldsn-journey-step span { width: 1.2rem; height: 1.2rem; margin-bottom: .2rem; font-size: .62rem; }
+.ldsn-journey-step strong { font-size: .66rem; }
+
+.ldsn-vocab-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .45rem;
+  margin-bottom: .5rem;
+}
+.ldsn-vocab-toolbar .ldsn-view-switch { width: 100%; }
+.ldsn-flashcard-launch--compact {
+  width: auto;
+  min-height: 2.55rem;
+  margin: 0;
+  padding: .48rem .65rem;
+  box-shadow: none;
+  white-space: nowrap;
+}
+.ldsn-flashcard-launch--compact small { display: none; }
+.ldsn-compact-settings { margin: 0 0 .58rem; }
+.ldsn-compact-settings summary { min-height: 2.55rem; padding: .5rem .62rem; font-size: .8rem; }
+.ldsn-compact-settings summary small { max-width: 58%; font-size: .68rem; line-height: 1.25; }
+.ldsn-setting-block { display: grid; gap: .42rem; min-width: 0; }
+.ldsn-setting-block > strong { font-size: .82rem; }
+.ldsn-setting-row {
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .65rem;
+  padding: .56rem .62rem;
+  border: 1px solid var(--ldsn-line);
+  border-radius: .78rem;
+  background: var(--ldsn-mint-2);
+}
+.ldsn-setting-row > span { display: grid; gap: .08rem; min-width: 0; }
+.ldsn-setting-row strong { font-size: .82rem; }
+.ldsn-setting-row small { color: var(--ui-text-muted); font-size: .68rem; }
+
+.ldsn-grammar-card summary { min-height: 3.35rem; padding: .58rem .65rem; }
+.ldsn-grammar-body { gap: .55rem; padding: .62rem; }
+.ldsn-grammar-group {
+  gap: .52rem;
+  padding: .72rem;
+  border-color: #d7e8e1;
+  background: linear-gradient(150deg, #fff, #f7fcf9);
+}
+.ldsn-grammar-group + .ldsn-grammar-group { margin-top: .1rem; }
+.ldsn-grammar-group > h4 {
+  padding-bottom: .42rem;
+  border-bottom: 1px solid #e4efe9;
+  color: #245d4b;
+  font-size: .94rem;
+  line-height: 1.45;
+}
+.ldsn-grammar-prose { gap: .28rem; }
+.ldsn-grammar-prose p { color: var(--ui-text-secondary); font-size: .84rem; line-height: 1.55; }
+.ldsn-grammar-example-inline {
+  position: relative;
+  min-width: 0;
+  padding: .68rem;
+  grid-template-columns: minmax(0, 1fr) 2.35rem;
+  border-color: #d7e7df;
+  background: #fff;
+}
+.ldsn-grammar-example-copy { display: grid; gap: .18rem; }
+.ldsn-grammar-example-inline .ldsn-hanzi { padding-right: .15rem; font-size: 1.05rem; line-height: 1.62; overflow-wrap: anywhere; }
+.ldsn-grammar-example-inline .ldsn-pinyin { font-size: .8rem; }
+.ldsn-grammar-example-inline .ldsn-meaning { font-size: .84rem; }
+.ldsn-grammar-example-inline .ldsn-icon-btn { width: 2.25rem; height: 2.25rem; min-height: 2.25rem; align-self: start; background: var(--ldsn-lilac-soft); }
+
+.ldsn-passage-sentence summary strong,
+.ldsn-prompt-vi,
+.ldsn-prompt-hanzi,
+.ldsn-content-sentence-row .ldsn-hanzi,
+.ldsn-content-sentence-row .ldsn-pinyin,
+.ldsn-content-sentence-row .ldsn-meaning {
+  max-height: none !important;
+  overflow: visible !important;
+  white-space: normal !important;
+  text-overflow: clip !important;
+  -webkit-line-clamp: unset !important;
+}
+
+@media (max-width: 520px) {
+  .ldsn-app { padding-inline: .42rem; }
+  .ldsn-card { border-radius: .95rem; }
+  .ldsn-pad { padding: .68rem; }
+  .ldsn-tabs-wrap { padding-top: .22rem; }
+  .ldsn-tab { min-height: 2.45rem; font-size: .69rem; }
+  .ldsn-compact-section-head { align-items: center; }
+  .ldsn-compact-section-head p:not(.ldsn-kicker) { display: none; }
+  .ldsn-vocab-toolbar { grid-template-columns: minmax(0, 1fr) auto; }
+  .ldsn-flashcard-launch--compact strong { font-size: .78rem; }
+  .ldsn-choice-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ldsn-mode-switch--four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ldsn-grammar-icon { width: 1.8rem; height: 1.8rem; }
+  .ldsn-grammar-card summary { grid-template-columns: 1.8rem minmax(0, 1fr) auto; gap: .45rem; }
+  .ldsn-grammar-summary strong { font-size: .82rem; }
+  .ldsn-grammar-example-inline { grid-template-columns: minmax(0, 1fr) 2.25rem; }
+  .ldsn-dialogue-turn { width: 97%; }
 }
