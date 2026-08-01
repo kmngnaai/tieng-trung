@@ -19,8 +19,8 @@
     grammar: {
       label: 'Ngữ pháp',
       icon: '法',
-      inputLabel: 'Mẫu ngữ pháp cần giải thích',
-      inputPlaceholder: 'Ví dụ:\nS + 是 + N\n也\n吗\nMỗi mẫu một dòng.',
+      inputLabel: 'Mẫu ngữ pháp hoặc chủ đề',
+      inputPlaceholder: 'Ví dụ:\nS + 是 + N\n也\n吗\nHoặc chỉ nhập chủ đề để AI tự chọn tối đa N mẫu.',
       countLabel: 'Số ví dụ cho mỗi mẫu'
     },
     dialogue: {
@@ -48,87 +48,123 @@
     return Number.isFinite(parsed) && parsed > 0 ? Math.floor(parsed) : fallback;
   }
 
+  function sourceMode(fields) {
+    const input = clean(fields.inputText);
+    if (!input) return 'none';
+    const lines = input.split(/\r?\n/).map(clean).filter(Boolean);
+    const looksLikeGrammar = lines.some(line => /[+＝=]|\bS\b|\bV\b|\bN\b|主语|谓语|宾语|\.{3}|…/i.test(line));
+    return looksLikeGrammar ? 'patterns' : 'list';
+  }
+
   function baseRules(fields) {
     const level = clean(fields.level) || 'HSK 1';
     const topic = clean(fields.topic) || 'giao tiếp hằng ngày';
     const extra = clean(fields.requirements);
     return [
-      `Trình độ mục tiêu: ${level}.`,
+      `Trình độ mục tiêu do người dùng khai báo: ${level}.`,
       `Chủ đề: ${topic}.`,
-      'Chỉ dùng tiếng Trung phù hợp trình độ; tránh từ khó không cần thiết.',
-      'Không thêm thông tin ngoài yêu cầu nếu không cần cho tính tự nhiên.',
-      'Pinyin phải có dấu thanh, tách âm tiết rõ ràng.',
+      'Chỉ dùng tiếng Trung phù hợp trình độ và dữ liệu nguồn; tránh từ khó không cần thiết.',
+      'Không tự khẳng định một từ hoặc cấu trúc thuộc đúng cấp HSK nếu không chắc chắn; khi chưa chắc, thêm cảnh báo vào quality_notes.',
+      'Nếu người dùng cung cấp danh sách từ, chỉ dùng các từ đó làm dữ liệu chính và phải giữ nguyên chữ Hán.',
+      'Chỉ khi thật sự cần để câu tự nhiên mới dùng từ ngoài danh sách; mọi từ ngoài phải được liệt kê trong extra_words, không được giấu.',
+      'Pinyin phải có dấu thanh, tách âm tiết rõ ràng; không dùng số thanh.',
       'Nghĩa tiếng Việt tự nhiên, ngắn gọn và đúng ngữ cảnh.',
+      'ID phải ổn định, dùng chữ thường không dấu, số, dấu gạch ngang hoặc gạch dưới; không trùng trong cùng kết quả.',
       extra ? `Yêu cầu bổ sung: ${extra}` : ''
     ].filter(Boolean);
   }
 
+  function commonWrapper(type) {
+    return [
+      'Trả về đúng một đối tượng JSON thuần, không đặt trong Markdown và không giải thích ngoài JSON.',
+      `Đối tượng gốc phải có: format="tieng-trung-ai-result-v1", type="${type}", level, topic, extra_words, quality_notes, items.`,
+      'extra_words là mảng các đối tượng {hanzi, pinyin, meaning, reason}; để [] nếu không dùng từ ngoài nguồn.',
+      'quality_notes là mảng chuỗi; để [] nếu không có cảnh báo.',
+      'items là mảng dữ liệu chính.'
+    ];
+  }
+
+  function tokenRules() {
+    return [
+      'tokens phải là mảng từ hoặc cụm ngữ pháp tự nhiên theo đúng thứ tự câu.',
+      'Không gộp cả một chủ ngữ dài hoặc gần như cả câu thành một token chỉ để giảm số token.',
+      'Không tách một từ hai âm tiết thành hai token.',
+      'Khi bỏ dấu câu và khoảng trắng, ghép tokens phải khớp nội dung hanzi.'
+    ];
+  }
+
   function outputContract(type) {
     if (type === 'vocabulary') {
-      return [
-        'Trả kết quả dưới dạng JSON thuần, không đặt trong Markdown.',
-        'Mỗi phần tử có đúng các trường: id, hanzi, pinyin, meaning, word_type, tags.',
-        'id dùng chữ thường không dấu hoặc số, không trùng.',
+      return commonWrapper(type).concat([
+        'Mỗi phần tử items có đúng các trường: id, hanzi, pinyin, meaning, word_type, tags.',
         'tags là mảng chuỗi.'
-      ];
+      ]);
     }
     if (type === 'sentence') {
-      return [
-        'Trả kết quả dưới dạng JSON thuần, không đặt trong Markdown.',
-        'Mỗi phần tử có đúng các trường: id, hanzi, pinyin, meaning, tokens, tags.',
-        'tokens là mảng các cụm từ theo đúng thứ tự câu, tối thiểu 3 cụm khi câu đủ dài.',
+      return commonWrapper(type).concat([
+        'Mỗi phần tử items có đúng các trường: id, hanzi, pinyin, meaning, tokens, tags, source_word_ids, grammar_ids.',
+        'source_word_ids và grammar_ids là mảng ID tham chiếu; để [] nếu không có.',
+        ...tokenRules(),
         'Không tạo hai câu trùng nội dung.'
-      ];
+      ]);
     }
     if (type === 'grammar') {
-      return [
-        'Trả kết quả dưới dạng JSON thuần, không đặt trong Markdown.',
-        'Mỗi mục có đúng các trường: id, topic, pattern, explanation, tips, attentions, examples.',
-        'examples là mảng; mỗi ví dụ gồm hanzi, pinyin, meaning.',
+      return commonWrapper(type).concat([
+        'Mỗi phần tử items có đúng các trường: id, topic, pattern, explanation, tips, attentions, examples.',
+        'examples là mảng; mỗi ví dụ gồm id, hanzi, pinyin, meaning, tokens, source_word_ids, grammar_ids.',
+        'grammar_ids của mỗi ví dụ phải chứa ID mẫu ngữ pháp hiện tại.',
+        ...tokenRules(),
         'Giải thích bằng tiếng Việt, súc tích và dễ học.'
-      ];
+      ]);
     }
     if (type === 'dialogue') {
-      return [
-        'Trả kết quả dưới dạng JSON thuần, không đặt trong Markdown.',
-        'Kết quả có các trường: id, title, kind="dialogue", items.',
-        'Mỗi item gồm id, order, speaker, hanzi, pinyin, meaning, tokens.',
+      return commonWrapper(type).concat([
+        'items phải chứa đúng một đối tượng hội thoại có các trường: id, title, kind="dialogue", items.',
+        'Mỗi lượt trong items của hội thoại gồm id, order, speaker, hanzi, pinyin, meaning, tokens, source_word_ids, grammar_ids.',
+        'source_word_ids và grammar_ids là mảng ID tham chiếu; để [] nếu không có.',
+        ...tokenRules(),
         'Lượt thoại phải liên kết tự nhiên, không phải các câu rời ghép lại.'
-      ];
+      ]);
     }
-    return [
-      'Trả kết quả dưới dạng JSON thuần, không đặt trong Markdown.',
-      'Kết quả có các trường: id, title, kind="passage", items.',
-      'Mỗi item gồm id, order, hanzi, pinyin, meaning, tokens.',
+    return commonWrapper(type).concat([
+      'items phải chứa đúng một đối tượng đoạn văn có các trường: id, title, kind="passage", items.',
+      'Mỗi câu trong items của đoạn gồm id, order, hanzi, pinyin, meaning, tokens, source_word_ids, grammar_ids.',
+      'source_word_ids và grammar_ids là mảng ID tham chiếu; để [] nếu không có.',
+      ...tokenRules(),
       'Các câu phải tạo thành một đoạn văn mạch lạc, không phải danh sách câu rời.'
-    ];
+    ]);
   }
 
   function taskLines(type, fields) {
     const count = number(fields.count, type === 'grammar' ? 3 : 10);
     const input = clean(fields.inputText);
-    const sourceBlock = input ? `\nDữ liệu đầu vào bắt buộc:\n${input}` : '\nKhông có danh sách bắt buộc; tự chọn nội dung đúng chủ đề.';
+    const sourceBlock = input ? `\nDữ liệu đầu vào bắt buộc:\n${input}` : '\nKhông có danh sách bắt buộc; tự chọn nội dung đúng chủ đề và ghi rõ trong quality_notes nếu cấp độ chưa chắc chắn.';
     if (type === 'vocabulary') {
       return [
         `Hãy tạo hoặc chuẩn hóa ${count} mục từ vựng tiếng Trung.`,
         'Nếu đầu vào đã có từ, phải giữ đúng chữ Hán và chỉ bổ sung dữ liệu còn thiếu.',
-        'Nếu đầu vào là chủ đề, chọn các từ hữu ích nhất cho người học.',
+        'Nếu đầu vào chỉ là chủ đề, chọn các từ hữu ích nhất và không tuyên bố chắc cấp HSK khi không có nguồn kiểm chứng.',
         sourceBlock
       ];
     }
     if (type === 'sentence') {
       return [
         `Hãy tạo ${count} câu tiếng Trung mới để luyện thẻ và luyện nghe.`,
-        'Mỗi từ/mẫu bắt buộc cần xuất hiện hợp lý; không lặp lại một cấu trúc quá nhiều.',
-        'Câu phải độc lập, tự nhiên và có thể đọc bằng TTS.',
+        'Mỗi từ hoặc mẫu bắt buộc cần xuất hiện hợp lý; không lặp lại một cấu trúc quá nhiều.',
+        'Câu phải độc lập, tự nhiên, đủ ngắn để học trên điện thoại và có thể đọc bằng TTS.',
+        'Gắn source_word_ids và grammar_ids để chỉ rõ dữ liệu nguồn đã dùng trong từng câu.',
         sourceBlock
       ];
     }
     if (type === 'grammar') {
+      const mode = sourceMode(fields);
       return [
-        'Hãy phân tích từng mẫu ngữ pháp trong đầu vào.',
+        mode === 'patterns'
+          ? 'Đầu vào có mẫu ngữ pháp: chỉ phân tích các mẫu được cung cấp, không tự tạo thêm mẫu ngoài danh sách.'
+          : `Đầu vào chỉ là chủ đề hoặc chưa có mẫu rõ ràng: tự chọn tối đa ${Math.max(1, Math.min(5, number(fields.grammarPatternCount, 3)))} mẫu phù hợp nhất với chủ đề và trình độ.`,
         `Mỗi mẫu tạo ${count} ví dụ khác nhau.`,
-        'Nêu rõ mẫu, cách dùng, lưu ý sai thường gặp và ví dụ.',
+        'Nêu rõ mẫu, cách dùng, mẹo nhớ, lỗi thường gặp và ví dụ.',
+        'Mỗi ví dụ phải tham chiếu grammar_ids và source_word_ids khi có.',
         sourceBlock
       ];
     }
@@ -136,14 +172,16 @@
       return [
         `Hãy viết một hội thoại gồm ${count} lượt.`,
         'Dùng 2–3 nhân vật; tên người nói phải nhất quán.',
-        'Mỗi lượt ngắn gọn, phản hồi hợp logic với lượt trước.',
+        'Mỗi lượt ngắn gọn, phản hồi hợp logic với lượt trước và phù hợp màn hình điện thoại.',
+        'Mỗi lượt phải có source_word_ids hoặc grammar_ids nếu đã dùng dữ liệu nguồn.',
         sourceBlock
       ];
     }
     return [
       `Hãy viết một đoạn văn gồm khoảng ${count} câu.`,
       'Đoạn có mở đầu, triển khai và kết thúc ngắn; các câu liên kết tự nhiên.',
-      'Không chuyển thành hội thoại.',
+      'Không chuyển thành hội thoại; mỗi câu đủ ngắn để luyện nghe và chép trên điện thoại.',
+      'Mỗi câu phải có source_word_ids hoặc grammar_ids nếu đã dùng dữ liệu nguồn.',
       sourceBlock
     ];
   }

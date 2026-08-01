@@ -610,6 +610,492 @@
     return buildFlashcardFromRows(tableRows(parsed), parsed.fileName);
   }
 
+  const AI_PASTE_FORMAT = 'tieng-trung-ai-paste-v1';
+  const AI_RESULT_FORMAT = 'tieng-trung-ai-result-v1';
+  const AI_TYPES = Object.freeze(['vocabulary', 'sentence', 'grammar', 'dialogue', 'passage']);
+  const AI_TYPE_LABELS = Object.freeze({ vocabulary: 'Từ vựng', sentence: 'Câu', grammar: 'Ngữ pháp', dialogue: 'Hội thoại', passage: 'Đoạn văn' });
+  const PINYIN_TONE_RE = /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜńňǹḿ]/iu;
+
+  function uniqueStrings(values) {
+    return Array.from(new Set((values || []).map(clean).filter(Boolean)));
+  }
+
+  function orderedStrings(values) {
+    return (values || []).map(clean).filter(Boolean);
+  }
+
+  function jsonCandidateEnd(text, start) {
+    const opener = text[start];
+    if (opener !== '{' && opener !== '[') return -1;
+    const stack = [opener];
+    let quoted = false;
+    let escaped = false;
+    for (let index = start + 1; index < text.length; index += 1) {
+      const char = text[index];
+      if (quoted) {
+        if (escaped) escaped = false;
+        else if (char === '\\') escaped = true;
+        else if (char === '"') quoted = false;
+        continue;
+      }
+      if (char === '"') { quoted = true; continue; }
+      if (char === '{' || char === '[') stack.push(char);
+      else if (char === '}' || char === ']') {
+        const expected = char === '}' ? '{' : '[';
+        if (stack[stack.length - 1] !== expected) return -1;
+        stack.pop();
+        if (!stack.length) return index + 1;
+      }
+    }
+    return -1;
+  }
+
+  function extractJsonValues(text) {
+    const source = String(text || '').replace(/^\uFEFF/, '');
+    const values = [];
+    const seen = new Set();
+    const add = (value, raw, start, end) => {
+      let key = '';
+      try { key = JSON.stringify(value); } catch (_error) { return; }
+      if (!key || seen.has(key)) return;
+      seen.add(key);
+      values.push({ value, raw, start, end });
+    };
+    const fenced = /```(?:json|javascript|js)?\s*([\s\S]*?)```/gi;
+    let match;
+    while ((match = fenced.exec(source))) {
+      const raw = clean(match[1]);
+      if (!raw) continue;
+      try { add(JSON.parse(raw), raw, match.index, fenced.lastIndex); } catch (_error) { /* scanner below can recover nested JSON */ }
+    }
+    for (let index = 0; index < source.length; index += 1) {
+      if (source[index] !== '{' && source[index] !== '[') continue;
+      const end = jsonCandidateEnd(source, index);
+      if (end < 0) continue;
+      const raw = source.slice(index, end);
+      try {
+        add(JSON.parse(raw), raw, index, end);
+        index = end - 1;
+      } catch (_error) {
+        // Continue scanning from the next character so a later valid JSON block can still be found.
+      }
+    }
+    return values.sort((left, right) => left.start - right.start);
+  }
+
+  function normalizeAiType(value) {
+    const type = clean(value).toLowerCase();
+    const map = {
+      vocabulary: 'vocabulary', word: 'vocabulary', words: 'vocabulary', tu_vung: 'vocabulary', 'từ vựng': 'vocabulary',
+      sentence: 'sentence', sentences: 'sentence', cau: 'sentence', 'câu': 'sentence',
+      grammar: 'grammar', grammars: 'grammar', ngu_phap: 'grammar', 'ngữ pháp': 'grammar',
+      dialogue: 'dialogue', dialogues: 'dialogue', hoi_thoai: 'dialogue', 'hội thoại': 'dialogue',
+      passage: 'passage', passages: 'passage', doan_van: 'passage', 'đoạn văn': 'passage'
+    };
+    return map[type] || '';
+  }
+
+  function inferAiType(value, expectedType) {
+    const expected = normalizeAiType(expectedType);
+    if (expected && expected !== 'auto') return expected;
+    if (!value) return '';
+    if (!Array.isArray(value) && typeof value === 'object') {
+      const direct = normalizeAiType(value.type || value.content_type || value.kind);
+      if (direct) return direct;
+      if (value.pattern || value.explanation || value.examples) return 'grammar';
+      if (Array.isArray(value.items)) {
+        if (value.kind === 'dialogue' || value.items.some((item) => clean(item?.speaker))) return 'dialogue';
+        if (value.kind === 'passage' || value.items.some((item) => item && item.order != null && !item.speaker)) return 'passage';
+        return inferAiType(value.items, expectedType);
+      }
+    }
+    const items = Array.isArray(value) ? value : [];
+    const first = items.find((item) => item && typeof item === 'object');
+    if (!first) return '';
+    if (first.pattern || first.explanation || Array.isArray(first.examples)) return 'grammar';
+    if (first.kind === 'dialogue' || clean(first.speaker)) return 'dialogue';
+    if (first.kind === 'passage') return 'passage';
+    if (Array.isArray(first.tokens) || Array.isArray(first.source_word_ids) || Array.isArray(first.grammar_ids)) return 'sentence';
+    if (first.word_type != null || first.hanzi || first.word || first.text) return 'vocabulary';
+    return '';
+  }
+
+  function aiRootItems(value, type) {
+    if (Array.isArray(value)) return value;
+    if (!value || typeof value !== 'object') return [];
+    if (value.format === AI_RESULT_FORMAT && Array.isArray(value.items)) return value.items;
+    if (type === 'dialogue' || type === 'passage') {
+      if ((value.kind === type || normalizeAiType(value.type) === type) && Array.isArray(value.items)) return [value];
+    }
+    return Array.isArray(value.items) ? value.items : [value];
+  }
+
+  function normalizeAiRefs(value) {
+    return uniqueStrings(Array.isArray(value) ? value : splitList(value));
+  }
+
+  function normalizeAiVocabulary(raw, index) {
+    const hanzi = clean(raw?.hanzi || raw?.word || raw?.text);
+    return {
+      id: clean(raw?.id) || stableId(`ai-word|${hanzi}|${raw?.pinyin || ''}`, 'ai-word'),
+      hanzi,
+      pinyin: clean(raw?.pinyin),
+      meaning: clean(raw?.meaning || raw?.meaningVi || raw?.meaning_vi),
+      word_type: clean(raw?.word_type || raw?.wordType),
+      tags: uniqueStrings(Array.isArray(raw?.tags) ? raw.tags : splitList(raw?.tags)),
+      __index: index
+    };
+  }
+
+  function normalizeAiSentence(raw, index) {
+    const hanzi = clean(raw?.hanzi || raw?.text || raw?.word);
+    return {
+      id: clean(raw?.id) || stableId(`ai-sentence|${hanzi}|${raw?.pinyin || ''}`, 'ai-sentence'),
+      hanzi,
+      pinyin: clean(raw?.pinyin),
+      meaning: clean(raw?.meaning || raw?.meaningVi || raw?.meaning_vi),
+      tokens: orderedStrings(Array.isArray(raw?.tokens) ? raw.tokens : splitList(raw?.tokens)),
+      tags: uniqueStrings(Array.isArray(raw?.tags) ? raw.tags : splitList(raw?.tags)),
+      source_word_ids: normalizeAiRefs(raw?.source_word_ids || raw?.sourceWordIds),
+      grammar_ids: normalizeAiRefs(raw?.grammar_ids || raw?.grammarIds),
+      __index: index
+    };
+  }
+
+  function normalizeAiGrammar(raw, index) {
+    const pattern = clean(raw?.pattern || raw?.title || raw?.topic);
+    const id = clean(raw?.id) || stableId(`ai-grammar|${pattern}`, 'ai-grammar');
+    return {
+      id,
+      topic: clean(raw?.topic),
+      pattern,
+      explanation: clean(raw?.explanation || raw?.meaning),
+      tips: clean(raw?.tips),
+      attentions: clean(raw?.attentions || raw?.attention || raw?.notes),
+      examples: (Array.isArray(raw?.examples) ? raw.examples : []).map((example, exampleIndex) => {
+        const sentence = normalizeAiSentence(example, exampleIndex);
+        sentence.id = clean(example?.id) || `${id}-example-${exampleIndex + 1}`;
+        sentence.grammar_ids = uniqueStrings(sentence.grammar_ids.concat(id));
+        return sentence;
+      }),
+      __index: index
+    };
+  }
+
+  function normalizeAiGroup(raw, type, index) {
+    const title = clean(raw?.title || raw?.name) || AI_TYPE_LABELS[type];
+    const id = clean(raw?.id) || stableId(`ai-${type}|${title}|${index}`, `ai-${type}`);
+    return {
+      id,
+      title,
+      kind: type,
+      items: (Array.isArray(raw?.items) ? raw.items : []).map((item, itemIndex) => ({
+        ...normalizeAiSentence(item, itemIndex),
+        id: clean(item?.id) || `${id}-item-${itemIndex + 1}`,
+        order: Number(item?.order) > 0 ? Number(item.order) : itemIndex + 1,
+        speaker: type === 'dialogue' ? clean(item?.speaker) : ''
+      })).sort((left, right) => left.order - right.order),
+      __index: index
+    };
+  }
+
+  function validateAiSentence(item, label, errors, warnings) {
+    if (!containsHan(item.hanzi)) errors.push(`${label} thiếu chữ Hán.`);
+    if (!item.pinyin) warnings.push(`${label} thiếu pinyin.`);
+    else if (/[aeiouvü]/i.test(item.pinyin) && !PINYIN_TONE_RE.test(item.pinyin) && !/[1-5]/.test(item.pinyin)) warnings.push(`${label} có pinyin nhưng chưa thấy dấu thanh.`);
+    if (!item.meaning) warnings.push(`${label} thiếu nghĩa tiếng Việt.`);
+    if (item.tokens.length) {
+      const joined = answerText(item.tokens.join(''));
+      if (joined !== answerText(item.hanzi)) warnings.push(`${label} có tokens không khớp hoàn toàn với câu.`);
+      if (item.tokens.some((token) => answerText(token).length >= Math.max(7, Math.ceil(answerText(item.hanzi).length * 0.75)))) warnings.push(`${label} có token quá dài; nên chia theo từ hoặc cụm ngữ pháp tự nhiên.`);
+    } else if (answerText(item.hanzi).length >= 3) warnings.push(`${label} chưa có tokens để luyện xếp câu.`);
+  }
+
+  function makeAiBlock(type, value, sourceIndex, rootMeta = {}) {
+    const errors = [];
+    const warnings = [];
+    let items = aiRootItems(value, type);
+    if (type === 'vocabulary') items = items.map(normalizeAiVocabulary);
+    else if (type === 'sentence') items = items.map(normalizeAiSentence);
+    else if (type === 'grammar') items = items.map(normalizeAiGrammar);
+    else items = items.map((item, index) => normalizeAiGroup(item, type, index));
+    items = items.filter(Boolean);
+    const ids = new Set();
+    const texts = new Set();
+    items.forEach((item, index) => {
+      const label = `${AI_TYPE_LABELS[type]} ${index + 1}`;
+      if (ids.has(item.id)) errors.push(`${label} trùng ID “${item.id}”.`);
+      ids.add(item.id);
+      if (type === 'vocabulary') {
+        if (!containsHan(item.hanzi)) errors.push(`${label} thiếu chữ Hán.`);
+        if (!item.pinyin) warnings.push(`${label} thiếu pinyin.`);
+        if (!item.meaning) warnings.push(`${label} thiếu nghĩa tiếng Việt.`);
+        const key = `${item.hanzi}\u0000${item.pinyin}\u0000${item.meaning}`;
+        if (texts.has(key)) warnings.push(`${label} trùng hoàn toàn với mục khác.`);
+        texts.add(key);
+      } else if (type === 'sentence') {
+        validateAiSentence(item, label, errors, warnings);
+        const key = answerText(item.hanzi);
+        if (texts.has(key)) warnings.push(`${label} trùng nội dung câu.`);
+        texts.add(key);
+      } else if (type === 'grammar') {
+        if (!item.pattern) errors.push(`${label} thiếu pattern.`);
+        if (!item.explanation) warnings.push(`${label} thiếu explanation.`);
+        if (!item.examples.length) warnings.push(`${label} chưa có ví dụ.`);
+        item.examples.forEach((example, exampleIndex) => validateAiSentence(example, `${label}, ví dụ ${exampleIndex + 1}`, errors, warnings));
+      } else {
+        if (!item.items.length) errors.push(`${label} không có câu/lượt.`);
+        if (item.items.length < 2) warnings.push(`${label} chỉ có một câu nên chưa đủ tạo hoạt động ${AI_TYPE_LABELS[type].toLowerCase()}.`);
+        item.items.forEach((sentence, sentenceIndex) => {
+          if (type === 'dialogue' && !sentence.speaker) errors.push(`${label}, lượt ${sentenceIndex + 1} thiếu speaker.`);
+          validateAiSentence(sentence, `${label}, ${type === 'dialogue' ? 'lượt' : 'câu'} ${sentenceIndex + 1}`, errors, warnings);
+        });
+      }
+    });
+    const root = value && !Array.isArray(value) && typeof value === 'object' ? value : {};
+    return {
+      id: `ai-block-${sourceIndex + 1}-${type}`,
+      type,
+      label: AI_TYPE_LABELS[type],
+      title: clean(root.title || root.topic) || AI_TYPE_LABELS[type],
+      level: clean(root.level || rootMeta.level),
+      topic: clean(root.topic || rootMeta.topic),
+      extra_words: Array.isArray(root.extra_words) ? clone(root.extra_words) : [],
+      quality_notes: uniqueStrings(Array.isArray(root.quality_notes) ? root.quality_notes : []),
+      items,
+      errors: uniqueStrings(errors),
+      warnings: uniqueStrings(warnings)
+    };
+  }
+
+  function expandAiPackage(value) {
+    if (!value || Array.isArray(value) || typeof value !== 'object') return [];
+    const result = [];
+    const aliases = {
+      vocabulary: value.vocabulary || value.words,
+      sentence: value.sentences,
+      grammar: value.grammar || value.grammars,
+      dialogue: value.dialogues,
+      passage: value.passages
+    };
+    Object.entries(aliases).forEach(([type, items]) => {
+      if (!items) return;
+      const wrapped = { format: AI_RESULT_FORMAT, type, level: value.meta?.level || value.level, topic: value.meta?.title || value.topic, extra_words: value.extra_words || [], quality_notes: value.quality_notes || [], items: Array.isArray(items) ? items : [items] };
+      result.push({ type, value: wrapped });
+    });
+    return result;
+  }
+
+  function aiBlockSentences(block) {
+    if (block.type === 'sentence') return block.items || [];
+    if (block.type === 'grammar') return (block.items || []).flatMap((item) => item.examples || []);
+    if (block.type === 'dialogue' || block.type === 'passage') return (block.items || []).flatMap((item) => item.items || []);
+    return [];
+  }
+
+  function extraWordLabel(entry) {
+    if (typeof entry === 'string') return clean(entry);
+    return clean(entry?.hanzi || entry?.word || entry?.text);
+  }
+
+  function applyAiCrossChecks(blocks) {
+    const vocabularyIds = new Set(blocks.filter((block) => block.type === 'vocabulary').flatMap((block) => block.items || []).map((item) => item.id));
+    const grammarIds = new Set(blocks.filter((block) => block.type === 'grammar').flatMap((block) => block.items || []).map((item) => item.id));
+    const hasVocabulary = vocabularyIds.size > 0;
+    blocks.forEach((block) => {
+      const extras = (block.extra_words || []).map(extraWordLabel).filter(Boolean);
+      if (extras.length) block.warnings.push(`Có ${extras.length} từ ngoài dữ liệu nguồn: ${extras.slice(0, 8).join(', ')}${extras.length > 8 ? '…' : ''}.`);
+      const sentences = aiBlockSentences(block);
+      if (!sentences.length) { block.warnings = uniqueStrings(block.warnings); return; }
+      const missingWordRefs = new Set();
+      const missingGrammarRefs = new Set();
+      let noWordReferenceCount = 0;
+      sentences.forEach((item) => {
+        if (hasVocabulary && !(item.source_word_ids || []).length) noWordReferenceCount += 1;
+        (item.source_word_ids || []).forEach((id) => { if (hasVocabulary && !vocabularyIds.has(id)) missingWordRefs.add(id); });
+        (item.grammar_ids || []).forEach((id) => { if (grammarIds.size && !grammarIds.has(id)) missingGrammarRefs.add(id); });
+      });
+      if (noWordReferenceCount) block.warnings.push(`${noWordReferenceCount} câu/lượt chưa khai báo source_word_ids dù kết quả có khối Từ vựng.`);
+      if (missingWordRefs.size) block.warnings.push(`source_word_ids không tồn tại trong khối Từ vựng: ${Array.from(missingWordRefs).slice(0, 10).join(', ')}.`);
+      if (missingGrammarRefs.size) block.warnings.push(`grammar_ids không tồn tại trong khối Ngữ pháp: ${Array.from(missingGrammarRefs).slice(0, 10).join(', ')}.`);
+      block.warnings = uniqueStrings(block.warnings);
+    });
+    return blocks;
+  }
+
+  function aiStats(blocks) {
+    const stats = { blockCount: blocks.length, vocabularyCount: 0, sentenceCount: 0, grammarCount: 0, dialogueCount: 0, dialogueTurnCount: 0, passageCount: 0, passageSentenceCount: 0, errorCount: 0, warningCount: 0 };
+    blocks.forEach((block) => {
+      if (block.type === 'vocabulary') stats.vocabularyCount += block.items.length;
+      else if (block.type === 'sentence') stats.sentenceCount += block.items.length;
+      else if (block.type === 'grammar') stats.grammarCount += block.items.length;
+      else if (block.type === 'dialogue') { stats.dialogueCount += block.items.length; stats.dialogueTurnCount += block.items.reduce((sum, group) => sum + group.items.length, 0); }
+      else if (block.type === 'passage') { stats.passageCount += block.items.length; stats.passageSentenceCount += block.items.reduce((sum, group) => sum + group.items.length, 0); }
+      stats.errorCount += block.errors.length;
+      stats.warningCount += block.warnings.length + block.quality_notes.length;
+    });
+    return stats;
+  }
+
+  function parseAiPaste(text, options = {}) {
+    const expectedType = normalizeAiType(options.expectedType);
+    const values = extractJsonValues(text);
+    const blocks = [];
+    const ignored = [];
+    values.forEach((entry, sourceIndex) => {
+      const expanded = expandAiPackage(entry.value);
+      if (expanded.length) {
+        expanded.forEach((row) => blocks.push(makeAiBlock(row.type, row.value, blocks.length, entry.value.meta || {})));
+        return;
+      }
+      const type = inferAiType(entry.value, expectedType);
+      if (!type) { ignored.push(`Khối JSON ${sourceIndex + 1} không nhận diện được loại nội dung.`); return; }
+      blocks.push(makeAiBlock(type, entry.value, blocks.length));
+    });
+    applyAiCrossChecks(blocks);
+    const errors = [];
+    if (!clean(text)) errors.push('Chưa dán kết quả AI.');
+    else if (!values.length) errors.push('Không tìm thấy khối JSON hợp lệ trong nội dung đã dán.');
+    else if (!blocks.length) errors.push('Có JSON nhưng không nhận diện được Từ vựng, Câu, Ngữ pháp, Hội thoại hoặc Đoạn văn.');
+    return {
+      format: AI_PASTE_FORMAT,
+      expectedType: expectedType || 'auto',
+      blocks,
+      errors,
+      warnings: ignored,
+      stats: aiStats(blocks),
+      sourceLength: String(text || '').length
+    };
+  }
+
+  function selectedAiBlocks(analysis, selectedBlockIds) {
+    const selected = selectedBlockIds instanceof Set ? selectedBlockIds : new Set(Array.isArray(selectedBlockIds) ? selectedBlockIds : []);
+    const blocks = Array.isArray(analysis?.blocks) ? analysis.blocks : [];
+    return selected.size ? blocks.filter((block) => selected.has(block.id)) : blocks.slice();
+  }
+
+  function aiRows(blocks, options = {}) {
+    const title = clean(options.title) || 'Nội dung AI';
+    const deckId = clean(options.deckId) || `ai-${slug(title, 'noi-dung-ai')}`;
+    const groupId = clean(options.groupId);
+    const groupName = clean(options.groupName);
+    const rows = [];
+    const base = { library_group_id: groupId, library_group_name: groupName, deck_id: deckId, deck_name: title, deck_description: clean(options.description) || 'Nội dung tạo bằng AI và đã xem trước trong ứng dụng.' };
+    blocks.forEach((block) => {
+      if (block.type === 'vocabulary') block.items.forEach((item) => rows.push({ ...base, row_type: 'word', card_id: item.id, hanzi: item.hanzi, pinyin: item.pinyin, meaning: item.meaning, word_type: item.word_type, tags: item.tags.join('|') }));
+      else if (block.type === 'sentence') block.items.forEach((item) => rows.push({ ...base, row_type: 'sentence', card_id: item.id, hanzi: item.hanzi, pinyin: item.pinyin, meaning: item.meaning, tokens: item.tokens.join('|'), tags: uniqueStrings(item.tags.concat(item.source_word_ids.map((id) => `source:${id}`), item.grammar_ids.map((id) => `grammar:${id}`))).join('|'), sentence_type: 'ai-sentence' }));
+      else if (block.type === 'grammar') block.items.forEach((grammar) => grammar.examples.forEach((item) => rows.push({ ...base, row_type: 'sentence', card_id: item.id, hanzi: item.hanzi, pinyin: item.pinyin, meaning: item.meaning, tokens: item.tokens.join('|'), tags: uniqueStrings([`grammar:${grammar.id}`, 'grammar-example'].concat(item.source_word_ids.map((id) => `source:${id}`))).join('|'), sentence_type: 'grammar-example' })));
+      else block.items.forEach((group) => group.items.forEach((item) => rows.push({ ...base, row_type: block.type === 'dialogue' ? 'dialogue_turn' : 'passage_sentence', content_group_id: group.id, content_group_title: group.title, order: item.order, speaker: item.speaker, card_id: item.id, hanzi: item.hanzi, pinyin: item.pinyin, meaning: item.meaning, tokens: item.tokens.join('|'), tags: uniqueStrings(item.source_word_ids.map((id) => `source:${id}`).concat(item.grammar_ids.map((id) => `grammar:${id}`))).join('|'), sentence_type: `ai-${block.type}` })));
+    });
+    return { rows, deckId, title, groupId, groupName };
+  }
+
+  function buildAiListeningImport(analysis, options = {}) {
+    const blocks = selectedAiBlocks(analysis, options.selectedBlockIds);
+    const blocking = blocks.flatMap((block) => block.errors || []);
+    if (!blocks.length) return { format: LISTENING_FORMAT, groups: [], decks: [], errors: ['Chưa chọn nội dung để nhập vào Nghe.'], warnings: [], stats: listeningStats([], 0) };
+    if (blocking.length && options.allowErrors !== true) return { format: LISTENING_FORMAT, groups: [], decks: [], errors: uniqueStrings(blocking), warnings: [], stats: listeningStats([], 0) };
+    const prepared = aiRows(blocks, options);
+    const payload = buildListeningFromRows(prepared.rows, `${prepared.title}.json`);
+    payload.warnings = uniqueStrings(payload.warnings.concat(blocks.flatMap((block) => block.warnings || []), blocks.flatMap((block) => block.quality_notes || [])));
+    return payload;
+  }
+
+  function grammarCard(grammar) {
+    const details = [grammar.explanation, grammar.tips ? `Mẹo: ${grammar.tips}` : '', grammar.attentions ? `Lưu ý: ${grammar.attentions}` : ''].filter(Boolean);
+    const examples = grammar.examples.slice(0, 3).map((example) => `${example.hanzi}${example.meaning ? ` — ${example.meaning}` : ''}`);
+    return {
+      id: grammar.id,
+      word: grammar.pattern,
+      pinyin: '',
+      meaningVi: details.concat(examples.length ? [`Ví dụ: ${examples.join(' / ')}`] : []).join('\n'),
+      contentType: 'grammar',
+      grammar: clone(grammar)
+    };
+  }
+
+  function buildAiFlashcardImport(analysis, options = {}) {
+    const blocks = selectedAiBlocks(analysis, options.selectedBlockIds);
+    const errors = blocks.flatMap((block) => block.errors || []);
+    if (!blocks.length) return { format: FLASHCARD_FORMAT, groups: [], decks: [], errors: ['Chưa chọn nội dung để nhập vào Thẻ.'], warnings: [], stats: { groupCount: 0, deckCount: 0, cardCount: 0 } };
+    if (errors.length && options.allowErrors !== true) return { format: FLASHCARD_FORMAT, groups: [], decks: [], errors: uniqueStrings(errors), warnings: [], stats: { groupCount: 0, deckCount: 0, cardCount: 0 } };
+    const title = clean(options.title) || 'Nội dung AI';
+    const deckId = clean(options.deckId) || `ai-${slug(title, 'noi-dung-ai')}`;
+    const groupId = clean(options.groupId) || null;
+    const cards = [];
+    blocks.forEach((block) => {
+      if (block.type === 'vocabulary') block.items.forEach((item) => cards.push({ id: item.id, word: item.hanzi, pinyin: item.pinyin, meaningVi: item.meaning, contentType: 'vocabulary', wordType: item.word_type, tags: clone(item.tags) }));
+      else if (block.type === 'sentence') block.items.forEach((item) => cards.push({ id: item.id, word: item.hanzi, pinyin: item.pinyin, meaningVi: item.meaning, contentType: 'sentence', tokens: clone(item.tokens), sourceWordIds: clone(item.source_word_ids), grammarIds: clone(item.grammar_ids) }));
+      else if (block.type === 'grammar') block.items.forEach((item) => cards.push(grammarCard(item)));
+      else block.items.forEach((group) => group.items.forEach((item) => cards.push({ id: item.id, word: item.hanzi, pinyin: item.pinyin, meaningVi: item.meaning, contentType: block.type, groupId: group.id, groupTitle: group.title, speaker: item.speaker, order: item.order, tokens: clone(item.tokens), sourceWordIds: clone(item.source_word_ids), grammarIds: clone(item.grammar_ids) })));
+    });
+    const uniqueCards = Array.from(new Map(cards.filter((card) => containsHan(card.word)).map((card) => [`${card.contentType}|${card.word}\u0000${card.pinyin}\u0000${card.meaningVi}`, card])).values());
+    const groups = groupId ? [{ id: groupId, name: clean(options.groupName) || groupId, description: '' }] : [];
+    const deck = { id: deckId, name: title, description: clean(options.description) || 'Nội dung tạo bằng AI và đã xem trước trong ứng dụng.', groupId, cards: uniqueCards, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() };
+    const warnings = uniqueStrings(blocks.flatMap((block) => block.warnings || []).concat(blocks.flatMap((block) => block.quality_notes || [])));
+    return { format: FLASHCARD_FORMAT, groups, decks: uniqueCards.length ? [deck] : [], errors: uniqueCards.length ? [] : ['Không có nội dung phù hợp để tạo Thẻ.'], warnings, stats: { groupCount: groups.length, deckCount: uniqueCards.length ? 1 : 0, cardCount: uniqueCards.length } };
+  }
+
+  function nextMergedId(base, used) {
+    const cleanBase = clean(base) || 'item';
+    if (!used.has(cleanBase)) { used.add(cleanBase); return cleanBase; }
+    let index = 2;
+    while (used.has(`${cleanBase}-${index}`)) index += 1;
+    const id = `${cleanBase}-${index}`;
+    used.add(id);
+    return id;
+  }
+
+  function mergeListeningDeck(existingRaw, incomingRaw) {
+    const existing = normalizeExistingListeningDeck(existingRaw || {}, 0);
+    const incoming = normalizeExistingListeningDeck(incomingRaw || {}, 0);
+    const dataset = clone(existing.dataset);
+    const usedWordIds = new Set((dataset.words || []).map((item) => item.id));
+    const usedSentenceIds = new Set((dataset.sentences || []).map((item) => item.id));
+    const usedGroupIds = new Set((dataset.groups || []).map((item) => item.id));
+    const wordKeys = new Set((dataset.words || []).map((item) => `${item.text}\u0000${item.pinyin}\u0000${item.meaning}`));
+    const sentenceByText = new Map((dataset.sentences || []).map((item) => [answerText(item.text), item.id]));
+    const sentenceIdMap = new Map();
+    (incoming.dataset.words || []).forEach((word) => {
+      const key = `${word.text}\u0000${word.pinyin}\u0000${word.meaning}`;
+      if (wordKeys.has(key)) return;
+      wordKeys.add(key);
+      const copy = clone(word);
+      copy.id = nextMergedId(copy.id, usedWordIds);
+      copy.sourceId = existing.id; copy.lessonId = existing.id;
+      dataset.words.push(copy);
+    });
+    (incoming.dataset.sentences || []).forEach((sentence) => {
+      const key = answerText(sentence.text);
+      if (sentenceByText.has(key)) { sentenceIdMap.set(sentence.id, sentenceByText.get(key)); return; }
+      const copy = clone(sentence);
+      copy.id = nextMergedId(copy.id, usedSentenceIds);
+      copy.sourceId = existing.id; copy.lessonId = existing.id;
+      sentenceByText.set(key, copy.id);
+      sentenceIdMap.set(sentence.id, copy.id);
+      dataset.sentences.push(copy);
+    });
+    (incoming.dataset.groups || []).forEach((group) => {
+      const copy = clone(group);
+      copy.id = nextMergedId(copy.id, usedGroupIds);
+      copy.sourceId = existing.id; copy.lessonId = existing.id;
+      copy.items = (copy.items || []).map((item, index) => {
+        const canonicalSentenceId = sentenceIdMap.get(item.canonicalSentenceId);
+        if (!canonicalSentenceId) return null;
+        return { ...item, id: `${copy.id}:item-${index + 1}`, canonicalSentenceId, groupId: copy.id, groupIndex: index, sourceId: existing.id, lessonId: existing.id };
+      }).filter(Boolean);
+      if (copy.items.length >= 2) dataset.groups.push(copy);
+    });
+    dataset.grammar = (dataset.grammar || []).concat(clone(incoming.dataset.grammar || []));
+    dataset.unit.id = existing.id;
+    dataset.unit.title = existing.name;
+    dataset.unit.titleZh = existing.name;
+    dataset.source.id = `custom:${existing.id}`;
+    finalizeListeningDataset(dataset);
+    return normalizeExistingListeningDeck({ ...existing, dataset, updatedAt: new Date().toISOString() }, 0);
+  }
+
+
   function prefixDataset(dataset, prefix) {
     const cloned = clone(dataset);
     const sentenceMap = new Map();
@@ -655,10 +1141,11 @@
   }
 
   return Object.freeze({
-    LISTENING_FORMAT, FLASHCARD_FORMAT,
+    LISTENING_FORMAT, FLASHCARD_FORMAT, AI_PASTE_FORMAT, AI_RESULT_FORMAT,
     clean, slug, stableId, containsHan, normalizeHeader, normalizeRowType, parseBoolean, splitList,
     parseDelimited, objectsFromMatrix, readFile, tableRows,
     buildListeningImport, buildFlashcardImport,
+    extractJsonValues, parseAiPaste, buildAiListeningImport, buildAiFlashcardImport, mergeListeningDeck,
     normalizeExistingListeningDeck, legacyDeckToDataset, finalizeListeningDataset, mergeListeningDatasets,
     downloadText
   });

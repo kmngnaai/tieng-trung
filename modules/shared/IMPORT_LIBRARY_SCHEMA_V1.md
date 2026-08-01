@@ -98,3 +98,66 @@ Một file có thể tạo:
 - `01_MOT_THE`
 - `02_MOT_BO_NHIEU_THE`
 - `03_MOT_NHOM_NHIEU_BO`
+
+## Dán kết quả AI V1
+
+Giao diện **Dán kết quả AI** dùng cùng parser trong `modules/shared/import-core.js` cho tab Thẻ và Nghe.
+
+### Dữ liệu đầu vào được chấp nhận
+
+- Một JSON thuần.
+- JSON nằm trong khối Markdown như ```` ```json ````.
+- Nhiều JSON đặt liên tiếp.
+- Toàn bộ đoạn trò chuyện có văn bản giải thích xen giữa các JSON.
+- Một gói có các khóa `vocabulary`, `sentences`, `grammar`, `dialogues`, `passages` để nhập một bộ đầy đủ. Prompt tạo gói đầy đủ chưa thuộc phiên bản này.
+
+### Hai chế độ
+
+- **Nhập nhanh từng loại:** người dùng chọn trước Từ vựng, Câu, Ngữ pháp, Hội thoại hoặc Đoạn văn.
+- **Nhập một bộ đầy đủ:** tự nhận diện tất cả loại có trong nội dung đã dán.
+
+### Hợp đồng kết quả AI khuyến nghị
+
+```json
+{
+  "format": "tieng-trung-ai-result-v1",
+  "type": "sentence",
+  "level": "HSK 1",
+  "topic": "Giới thiệu gia đình",
+  "extra_words": [],
+  "quality_notes": [],
+  "items": []
+}
+```
+
+`type` nhận một trong:
+
+- `vocabulary`
+- `sentence`
+- `grammar`
+- `dialogue`
+- `passage`
+
+### Kiểm tra trước khi nhập
+
+- Lỗi thiếu chữ Hán, thiếu `speaker`, trùng ID hoặc JSON hỏng sẽ được báo trước khi lưu.
+- Thiếu pinyin, nghĩa, tokens, tokens không khớp hoặc token quá dài là cảnh báo.
+- Từ ngoài nguồn trong `extra_words` được hiển thị thành cảnh báo.
+- `source_word_ids` và `grammar_ids` được đối chiếu với các khối đã dán khi có dữ liệu nguồn tương ứng.
+- Tokens giữ nguyên thứ tự và số lần lặp; không loại bỏ token lặp trong câu.
+- Người dùng có thể bỏ chọn từng khối nội dung trước khi nhập.
+
+### Đích nhập
+
+Từ tab Thẻ, người dùng có thể:
+
+- tạo bộ Thẻ mới;
+- thêm vào bộ Thẻ có sẵn;
+- đặt bộ mới vào nhóm có sẵn;
+- tạo bộ Nghe mới;
+- thêm vào bộ Nghe có sẵn;
+- tạo đồng thời cả Thẻ và Nghe.
+
+Từ tab Nghe, người dùng có thể tạo bộ Nghe mới, thêm vào bộ có sẵn hoặc đặt bộ mới trong nhóm thư viện.
+
+ID bộ mới bị trùng sẽ được đổi sang ID khả dụng. Khi thêm vào bộ có sẵn, mục trùng hoàn toàn được bỏ qua thay vì ghi đè âm thầm.

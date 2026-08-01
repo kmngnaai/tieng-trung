@@ -321,6 +321,21 @@
     return deck ? normalizeDeck(deck) : null;
   }
 
+  async function saveDeck(raw) {
+    const deck = normalizeDeck(raw);
+    if (!deck) throw new Error('Bộ Nghe không hợp lệ.');
+    deck.updatedAt = nowIso();
+    await withStore([STORES.decks], 'readwrite', async (stores) => stores.decks.put(deck));
+    return deck;
+  }
+
+  async function saveGroup(raw) {
+    const group = normalizeGroup(raw);
+    group.updatedAt = nowIso();
+    await withStore([STORES.groups], 'readwrite', async (stores) => stores.groups.put(group));
+    return group;
+  }
+
   async function getGroup(id) {
     return withStore([STORES.groups], 'readonly', async (stores) => requestToPromise(stores.groups.get(id)));
   }
@@ -540,6 +555,8 @@
     listTrash,
     getGroup,
     getDeck,
+    saveDeck,
+    saveGroup,
     importData,
     exportAll,
     exportGroup,

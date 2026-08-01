@@ -121,7 +121,16 @@
     batchSentenceCustomCount: 10,
     aiPromptType: 'sentence',
     aiPromptFields: { level: 'HSK 1', topic: '', count: 10, inputText: '', requirements: '' },
-    aiPromptCopied: false
+    aiPromptCopied: false,
+    aiPasteMode: 'full',
+    aiPasteExpectedType: 'sentence',
+    aiPasteText: '',
+    aiPasteAnalysis: null,
+    aiPasteSelectedIds: new Set(),
+    aiPasteTitle: '',
+    aiPasteTargetMode: 'new',
+    aiPasteTargetDeckId: '',
+    aiPasteGroupId: ''
   };
 
   // Dùng một phần tử audio cố định ở ngoài #app. Safari/iPhone cấp quyền phát
@@ -288,6 +297,7 @@
     else if (state.screen === 'customGroup') renderCustomGroupScreen();
     else if (state.screen === 'customTrash') renderLibraryTrash();
     else if (state.screen === 'aiPrompt') renderListeningAiPromptBuilder();
+    else if (state.screen === 'aiPaste') renderListeningAiPaste();
     else if (state.screen === 'mode') renderModeChoice();
     else if (state.screen === 'preview') renderContentPreview();
     else if (state.screen === 'practice') renderPractice();
@@ -717,7 +727,8 @@
         <section class="listening-ai-intro">
           <p class="eyebrow">Không cần API</p>
           <h2>Tạo dữ liệu cho bộ Nghe</h2>
-          <p>Chọn loại nội dung, nhập vài thông tin rồi sao chép prompt sang ChatGPT hoặc AI khác. Kết quả có thể đưa vào file mẫu để nhập lại.</p>
+          <p>Chọn loại nội dung, nhập vài thông tin rồi sao chép prompt sang ChatGPT hoặc AI khác.</p>
+          <button type="button" class="primary-button listening-ai-paste-entry" data-action="open-listening-ai-paste">Dán kết quả AI</button>
         </section>
         <section class="listening-ai-card">
           <div class="listening-ai-types" role="tablist" aria-label="Chọn loại nội dung">
@@ -770,6 +781,127 @@
       if (state.screen === 'aiPrompt') render();
     }, 1500);
   }
+
+
+  function aiPasteStatsText(stats) {
+    const parts = [];
+    if (stats.vocabularyCount) parts.push(`${stats.vocabularyCount} từ`);
+    if (stats.sentenceCount) parts.push(`${stats.sentenceCount} câu`);
+    if (stats.grammarCount) parts.push(`${stats.grammarCount} ngữ pháp`);
+    if (stats.dialogueCount) parts.push(`${stats.dialogueCount} hội thoại · ${stats.dialogueTurnCount} lượt`);
+    if (stats.passageCount) parts.push(`${stats.passageCount} đoạn · ${stats.passageSentenceCount} câu`);
+    return parts.join(' · ') || 'Chưa nhận diện dữ liệu';
+  }
+
+  function selectedAiPasteBlocks() {
+    const blocks = state.aiPasteAnalysis?.blocks || [];
+    return blocks.filter((block) => state.aiPasteSelectedIds.has(block.id));
+  }
+
+  function renderListeningAiPastePreview(block) {
+    const rows = [];
+    if (block.type === 'vocabulary' || block.type === 'sentence') {
+      (block.items || []).slice(0, 12).forEach((item, index) => rows.push(`<div class="ai-paste-preview-row"><b>${index + 1}</b><span><strong lang="zh-Hans">${escapeHtml(item.hanzi || '')}</strong>${item.pinyin ? `<small>${escapeHtml(item.pinyin)}</small>` : ''}${item.meaning ? `<em>${escapeHtml(item.meaning)}</em>` : ''}</span></div>`));
+    } else if (block.type === 'grammar') {
+      (block.items || []).slice(0, 8).forEach((item, index) => rows.push(`<div class="ai-paste-preview-row"><b>${index + 1}</b><span><strong>${escapeHtml(item.pattern || '')}</strong><small>${escapeHtml(item.explanation || 'Chưa có giải thích')}</small><em>${(item.examples || []).length} ví dụ</em></span></div>`));
+    } else {
+      (block.items || []).slice(0, 4).forEach((group) => rows.push(`<div class="ai-paste-preview-group"><strong>${escapeHtml(group.title || block.label)}</strong>${(group.items || []).slice(0, 8).map((item) => `<p>${item.speaker ? `<b>${escapeHtml(item.speaker)}</b>` : ''}<span lang="zh-Hans">${escapeHtml(item.hanzi || '')}</span><small>${escapeHtml(item.meaning || '')}</small></p>`).join('')}</div>`));
+    }
+    const total = block.type === 'dialogue' || block.type === 'passage' ? (block.items || []).reduce((sum, group) => sum + (group.items || []).length, 0) : (block.items || []).length;
+    return `<details class="ai-paste-preview"><summary>Xem nội dung đã nhận diện</summary><div>${rows.join('')}${total > 12 && ['vocabulary', 'sentence'].includes(block.type) ? `<p class="ai-paste-preview-more">Còn ${total - 12} mục khác sẽ được nhập.</p>` : ''}</div></details>`;
+  }
+
+  function renderListeningAiPasteBlock(block) {
+    const selected = state.aiPasteSelectedIds.has(block.id);
+    const count = block.type === 'dialogue' || block.type === 'passage'
+      ? block.items.reduce((sum, group) => sum + (group.items || []).length, 0)
+      : block.items.length;
+    const errorCount = block.errors?.length || 0;
+    const warningCount = (block.warnings?.length || 0) + (block.quality_notes?.length || 0);
+    return `<article class="ai-paste-block ${selected ? 'is-selected' : ''} ${errorCount ? 'has-error' : ''}">
+      <label><input type="checkbox" data-ai-paste-block="${escapeHtml(block.id)}" ${selected ? 'checked' : ''} ${errorCount ? 'disabled' : ''}><span><b>${escapeHtml(block.label)}</b><small>${count} mục${errorCount ? ` · ${errorCount} lỗi` : ''}${warningCount ? ` · ${warningCount} cảnh báo` : ''}</small></span></label>
+      ${renderListeningAiPastePreview(block)}
+      ${(errorCount || warningCount) ? `<details class="ai-paste-check"><summary>Xem kiểm tra</summary>${(block.errors || []).map((message) => `<p class="is-error">${escapeHtml(message)}</p>`).join('')}${(block.warnings || []).concat(block.quality_notes || []).slice(0, 12).map((message) => `<p>${escapeHtml(message)}</p>`).join('')}</details>` : ''}
+    </article>`;
+  }
+
+  function renderListeningAiPaste() {
+    const analysis = state.aiPasteAnalysis;
+    const types = Object.entries(window.TiengTrungAiPromptTemplates?.TYPE_META || {});
+    const groups = state.libraryGroups || [];
+    const decks = state.libraryDecks || [];
+    app.innerHTML = `
+      ${pageHeader('Dán kết quả AI', 'Tự tách JSON · kiểm tra · xem trước', true)}
+      <main class="listen-main ai-paste-main">
+        <section class="ai-paste-card">
+          <div class="ai-paste-mode" role="tablist"><button data-action="set-ai-paste-mode" data-mode="quick" class="${state.aiPasteMode === 'quick' ? 'active' : ''}">Nhập nhanh từng loại</button><button data-action="set-ai-paste-mode" data-mode="full" class="${state.aiPasteMode === 'full' ? 'active' : ''}">Nhập một bộ đầy đủ</button></div>
+          ${state.aiPasteMode === 'quick' ? `<div class="ai-paste-types">${types.map(([id, meta]) => `<button data-action="set-ai-paste-type" data-type="${id}" class="${state.aiPasteExpectedType === id ? 'active' : ''}">${meta.icon} ${escapeHtml(meta.label)}</button>`).join('')}</div>` : `<p class="ai-paste-help">Có thể dán toàn bộ cuộc trò chuyện gồm nhiều khối JSON. Ứng dụng sẽ tự nhận diện từng loại.</p>`}
+          <label class="ai-paste-text"><span>Nội dung AI trả về</span><textarea rows="12" data-ai-paste-text placeholder="Dán JSON thuần, JSON trong Markdown hoặc toàn bộ đoạn chat tại đây...">${escapeHtml(state.aiPasteText)}</textarea></label>
+          <button type="button" class="primary-button full-width" data-action="analyze-ai-paste">Phân tích dữ liệu</button>
+        </section>
+        ${analysis ? `<section class="ai-paste-card ai-paste-result">
+          <header><div><p class="eyebrow">Đã nhận diện</p><h2>${escapeHtml(aiPasteStatsText(analysis.stats || {}))}</h2></div><span>${analysis.stats?.warningCount || 0} cảnh báo</span></header>
+          ${analysis.errors?.length ? `<div class="library-import-messages is-error">${analysis.errors.map((message) => `<p>${escapeHtml(message)}</p>`).join('')}</div>` : ''}
+          ${analysis.warnings?.length ? `<div class="library-import-messages is-warning">${analysis.warnings.map((message) => `<p>${escapeHtml(message)}</p>`).join('')}</div>` : ''}
+          <div class="ai-paste-blocks">${(analysis.blocks || []).map(renderListeningAiPasteBlock).join('')}</div>
+        </section>
+        <section class="ai-paste-card ai-paste-destination">
+          <p class="eyebrow">Đích nhập</p><h2>Đưa vào Bộ tự tạo Nghe</h2>
+          <label><span>Tên bộ</span><input data-ai-paste-title value="${escapeHtml(state.aiPasteTitle || '')}" placeholder="Ví dụ: Giới thiệu gia đình"></label>
+          <div class="ai-paste-target-tabs"><button data-action="set-ai-paste-target" data-target="new" class="${state.aiPasteTargetMode === 'new' ? 'active' : ''}">Tạo bộ mới</button><button data-action="set-ai-paste-target" data-target="existing" class="${state.aiPasteTargetMode === 'existing' ? 'active' : ''}" ${decks.length ? '' : 'disabled'}>Thêm vào bộ có sẵn</button></div>
+          ${state.aiPasteTargetMode === 'existing' ? `<label><span>Bộ đích</span><select data-ai-paste-deck>${decks.map((deck) => `<option value="${escapeHtml(deck.id)}" ${state.aiPasteTargetDeckId === deck.id ? 'selected' : ''}>${escapeHtml(deck.name)}</option>`).join('')}</select></label>` : `<label><span>Nhóm thư viện</span><select data-ai-paste-group><option value="">Không phân nhóm</option>${groups.map((group) => `<option value="${escapeHtml(group.id)}" ${state.aiPasteGroupId === group.id ? 'selected' : ''}>${escapeHtml(group.name)}</option>`).join('')}</select></label>`}
+          <button class="primary-button full-width" data-action="confirm-ai-paste-listening" ${selectedAiPasteBlocks().length ? '' : 'disabled'}>Nhập ${selectedAiPasteBlocks().length} phần đã chọn</button>
+        </section>` : ''}
+      </main>${bottomNav()}`;
+  }
+
+  function analyzeListeningAiPaste() {
+    const text = app.querySelector('[data-ai-paste-text]')?.value || state.aiPasteText;
+    state.aiPasteText = text;
+    state.aiPasteAnalysis = ImportCore.parseAiPaste(text, { expectedType: state.aiPasteMode === 'quick' ? state.aiPasteExpectedType : 'auto' });
+    state.aiPasteSelectedIds = new Set((state.aiPasteAnalysis.blocks || []).filter((block) => !(block.errors || []).length).map((block) => block.id));
+    if (!state.aiPasteTitle) state.aiPasteTitle = state.aiPromptFields?.topic || state.aiPasteAnalysis.blocks?.find((block) => block.topic)?.topic || '';
+    render();
+  }
+
+  async function confirmListeningAiPaste() {
+    const analysis = state.aiPasteAnalysis;
+    if (!analysis) return;
+    const title = cleanAiPasteValue(state.aiPasteTitle) || 'Nội dung AI';
+    const group = state.libraryGroups.find((item) => item.id === state.aiPasteGroupId);
+    const payload = ImportCore.buildAiListeningImport(analysis, { selectedBlockIds: state.aiPasteSelectedIds, title, groupId: group?.id || '', groupName: group?.name || '' });
+    if (payload.errors?.length) { state.error = payload.errors.join(' · '); render(); return; }
+    try {
+      if (state.aiPasteTargetMode === 'existing') {
+        const targetId = state.aiPasteTargetDeckId || state.libraryDecks[0]?.id;
+        const existing = await LibraryStore.getDeck(targetId);
+        if (!existing) throw new Error('Bộ đích không còn tồn tại.');
+        const merged = ImportCore.mergeListeningDeck(existing, payload.decks[0]);
+        await LibraryStore.saveDeck(merged);
+        state.libraryNotice = `Đã thêm nội dung AI vào “${existing.name}”.`;
+      } else {
+        const incoming = payload.decks[0];
+        if (!incoming) throw new Error('Không có dữ liệu phù hợp để tạo bộ Nghe.');
+        const used = new Set(state.libraryDecks.map((deck) => deck.id));
+        let id = incoming.id;
+        let suffix = 2;
+        while (used.has(id)) { id = `${incoming.id}-${suffix}`; suffix += 1; }
+        const deck = { ...incoming, id, groupId: state.aiPasteGroupId || null };
+        if (deck.dataset) {
+          deck.dataset.unit.id = id; deck.dataset.source.id = `custom:${id}`;
+          [...(deck.dataset.words || []), ...(deck.dataset.sentences || [])].forEach((item) => { item.sourceId = id; item.lessonId = id; });
+          (deck.dataset.groups || []).forEach((entry) => { entry.sourceId = id; entry.lessonId = id; });
+        }
+        await LibraryStore.saveDeck(deck);
+        state.libraryNotice = `Đã tạo bộ Nghe “${deck.name}” từ kết quả AI.`;
+      }
+      await refreshListeningLibrary();
+      state.aiPasteAnalysis = null; state.aiPasteText = ''; state.aiPasteSelectedIds = new Set(); state.screen = 'custom';
+    } catch (error) { state.error = `Không nhập được kết quả AI: ${error.message || error}`; }
+    render();
+  }
+
+  function cleanAiPasteValue(value) { return String(value == null ? '' : value).trim(); }
 
   function renderCustomLibrary() {
     const groups = state.libraryGroups || [];
@@ -2383,8 +2515,14 @@
       else if (action === 'open-301') element.onclick = open301Library;
       else if (action === 'open-custom') element.onclick = openCustomLibrary;
       else if (action === 'open-listening-ai-prompt') element.onclick = () => { state.screen = 'aiPrompt'; state.aiPromptCopied = false; render(); };
+      else if (action === 'open-listening-ai-paste') element.onclick = async () => { await refreshListeningLibrary(); state.screen = 'aiPaste'; state.aiPasteAnalysis = null; state.aiPasteSelectedIds = new Set(); render(); };
       else if (action === 'set-listening-ai-type') element.onclick = () => { syncListeningAiPromptFields(); state.aiPromptType = element.dataset.type || 'sentence'; state.aiPromptCopied = false; render(); };
       else if (action === 'copy-listening-ai-prompt') element.onclick = copyListeningAiPrompt;
+      else if (action === 'set-ai-paste-mode') element.onclick = () => { state.aiPasteMode = element.dataset.mode === 'quick' ? 'quick' : 'full'; state.aiPasteAnalysis = null; state.aiPasteSelectedIds = new Set(); render(); };
+      else if (action === 'set-ai-paste-type') element.onclick = () => { state.aiPasteExpectedType = element.dataset.type || 'sentence'; state.aiPasteAnalysis = null; state.aiPasteSelectedIds = new Set(); render(); };
+      else if (action === 'analyze-ai-paste') element.onclick = analyzeListeningAiPaste;
+      else if (action === 'set-ai-paste-target') element.onclick = () => { state.aiPasteTargetMode = element.dataset.target === 'existing' ? 'existing' : 'new'; if (state.aiPasteTargetMode === 'existing' && !state.aiPasteTargetDeckId) state.aiPasteTargetDeckId = state.libraryDecks[0]?.id || ''; render(); };
+      else if (action === 'confirm-ai-paste-listening') element.onclick = confirmListeningAiPaste;
       else if (action === 'open-review') element.onclick = openReview;
       else if (action === 'resume-last') element.onclick = resumeLastSession;
       else if (action === 'go-back') element.onclick = goBack;
@@ -2537,6 +2675,17 @@
 
     app.querySelectorAll('[data-listening-ai-field]').forEach((input) => {
       input.oninput = syncListeningAiPromptFields;
+    });
+    const aiPasteText = app.querySelector('[data-ai-paste-text]');
+    if (aiPasteText) aiPasteText.oninput = () => { state.aiPasteText = aiPasteText.value; };
+    const aiPasteTitle = app.querySelector('[data-ai-paste-title]');
+    if (aiPasteTitle) aiPasteTitle.oninput = () => { state.aiPasteTitle = aiPasteTitle.value; };
+    const aiPasteDeck = app.querySelector('[data-ai-paste-deck]');
+    if (aiPasteDeck) aiPasteDeck.onchange = () => { state.aiPasteTargetDeckId = aiPasteDeck.value; };
+    const aiPasteGroup = app.querySelector('[data-ai-paste-group]');
+    if (aiPasteGroup) aiPasteGroup.onchange = () => { state.aiPasteGroupId = aiPasteGroup.value; };
+    app.querySelectorAll('[data-ai-paste-block]').forEach((input) => {
+      input.onchange = () => { if (input.checked) state.aiPasteSelectedIds.add(input.dataset.aiPasteBlock); else state.aiPasteSelectedIds.delete(input.dataset.aiPasteBlock); const button = app.querySelector('[data-action="confirm-ai-paste-listening"]'); if (button) { button.disabled = !state.aiPasteSelectedIds.size; button.textContent = `Nhập ${state.aiPasteSelectedIds.size} phần đã chọn`; } };
     });
 
     const input = document.getElementById('dictationInput');
@@ -3727,6 +3876,11 @@
       state.activityResult = null;
       state.screen = 'mode';
       stopSpeech();
+      render();
+      return;
+    }
+    if (state.screen === 'aiPaste') {
+      state.screen = 'aiPrompt';
       render();
       return;
     }
