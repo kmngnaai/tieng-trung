@@ -1,8 +1,9 @@
 (() => {
   'use strict';
 
+  const ImportCore = window.TiengTrungImportCore;
   const DB_NAME = 'tiengTrungListeningLibrary';
-  const DB_VERSION = 1;
+  const DB_VERSION = 2;
   const STORES = Object.freeze({ groups: 'groups', decks: 'decks', trash: 'trash' });
   const LEGACY_KEY = 'tieng-trung-listening-custom-v1';
   const MIGRATION_KEY = 'tieng-trung-listening-library-migrated-v1';
@@ -97,28 +98,23 @@
 
   function normalizeDeck(raw, index = 0, groupIdFallback = null) {
     if (!raw || typeof raw !== 'object') return null;
+    if (ImportCore && typeof ImportCore.normalizeExistingListeningDeck === 'function') {
+      const candidate = Object.assign({}, raw, {
+        groupId: raw.groupId === null ? null : String(raw.groupId || groupIdFallback || '') || null
+      });
+      const deck = ImportCore.normalizeExistingListeningDeck(candidate, index);
+      if (!deck || (!(deck.dataset?.words || []).length && !(deck.dataset?.sentences || []).length)) return null;
+      return deck;
+    }
     const name = String(raw.name || raw.title || `Bộ ${index + 1}`).trim();
-    const sourceCards = Array.isArray(raw.cards)
-      ? raw.cards
-      : Array.isArray(raw.items)
-        ? raw.items
-        : Array.isArray(raw.sentences)
-          ? raw.sentences
-          : Array.isArray(raw.dialogue)
-            ? raw.dialogue
-            : [];
+    const sourceCards = Array.isArray(raw.cards) ? raw.cards : Array.isArray(raw.items) ? raw.items : [];
     const cards = dedupeCards(sourceCards.map((card) => normalizeCard(card)).filter(Boolean));
     if (!cards.length) return null;
     return {
-      id: String(raw.id || makeId('deck', name)),
-      name,
+      id: String(raw.id || makeId('deck', name)), name,
       description: String(raw.description || raw.summary || '').trim(),
       groupId: raw.groupId === null ? null : String(raw.groupId || groupIdFallback || '') || null,
-      mode: String(raw.mode || 'dialogue'),
-      sourceLessons: Array.isArray(raw.sourceLessons) ? raw.sourceLessons.slice() : [],
-      cards,
-      createdAt: String(raw.createdAt || nowIso()),
-      updatedAt: nowIso()
+      cards, createdAt: String(raw.createdAt || nowIso()), updatedAt: nowIso()
     };
   }
 
@@ -224,14 +220,26 @@
   function openDb() {
     return new Promise((resolve, reject) => {
       const request = indexedDB.open(DB_NAME, DB_VERSION);
-      request.onupgradeneeded = () => {
+      request.onupgradeneeded = (event) => {
         const db = request.result;
         if (!db.objectStoreNames.contains(STORES.groups)) db.createObjectStore(STORES.groups, { keyPath: 'id' });
+        let deckStore;
         if (!db.objectStoreNames.contains(STORES.decks)) {
-          const store = db.createObjectStore(STORES.decks, { keyPath: 'id' });
-          store.createIndex('groupId', 'groupId', { unique: false });
+          deckStore = db.createObjectStore(STORES.decks, { keyPath: 'id' });
+          deckStore.createIndex('groupId', 'groupId', { unique: false });
+        } else {
+          deckStore = request.transaction.objectStore(STORES.decks);
+          if (!deckStore.indexNames.contains('groupId')) deckStore.createIndex('groupId', 'groupId', { unique: false });
         }
         if (!db.objectStoreNames.contains(STORES.trash)) db.createObjectStore(STORES.trash, { keyPath: 'id' });
+        if (event.oldVersion < 2 && deckStore && ImportCore) {
+          deckStore.openCursor().onsuccess = (event) => {
+            const cursor = event.target.result;
+            if (!cursor) return;
+            try { cursor.update(normalizeDeck(cursor.value)); } catch (error) { console.warn('Không di chuyển được bộ Nghe cũ:', error); }
+            cursor.continue();
+          };
+        }
       };
       request.onsuccess = () => resolve(request.result);
       request.onerror = () => reject(request.error || new Error('Không mở được thư viện Nghe.'));
@@ -304,12 +312,13 @@
   }
 
   async function listDecks() {
-    const decks = await getAll(STORES.decks);
+    const decks = (await getAll(STORES.decks)).map((deck, index) => normalizeDeck(deck, index)).filter(Boolean);
     return decks.sort((a, b) => String(b.updatedAt || '').localeCompare(String(a.updatedAt || '')));
   }
 
   async function getDeck(id) {
-    return withStore([STORES.decks], 'readonly', async (stores) => requestToPromise(stores.decks.get(id)));
+    const deck = await withStore([STORES.decks], 'readonly', async (stores) => requestToPromise(stores.decks.get(id)));
+    return deck ? normalizeDeck(deck) : null;
   }
 
   async function getGroup(id) {
@@ -322,14 +331,69 @@
     return items.sort((a, b) => String(b.deletedAt).localeCompare(String(a.deletedAt)));
   }
 
-  async function importData(data, fileName) {
-    const parsed = parseImportPayload(data, fileName);
-    if (!parsed.decks.length) throw new Error('Không tìm thấy bộ câu có chữ Hán trong file.');
-    await withStore([STORES.groups, STORES.decks], 'readwrite', async (stores) => {
-      parsed.groups.forEach((group) => stores.groups.put(group));
-      parsed.decks.forEach((deck) => stores.decks.put(deck));
+  function nextAvailableId(base, used) {
+    const cleanBase = String(base || 'item');
+    if (!used.has(cleanBase)) { used.add(cleanBase); return cleanBase; }
+    let index = 2;
+    while (used.has(`${cleanBase}-${index}`)) index += 1;
+    const id = `${cleanBase}-${index}`;
+    used.add(id);
+    return id;
+  }
+
+  async function importData(data, fileName, options = {}) {
+    const prepared = data && Array.isArray(data.decks) && Array.isArray(data.groups)
+      ? data
+      : parseImportPayload(data, fileName);
+    if (Array.isArray(prepared.errors) && prepared.errors.length) throw new Error(prepared.errors.join(' · '));
+    if (!prepared.decks.length) throw new Error('Không tìm thấy bộ Nghe có dữ liệu hợp lệ trong file.');
+    const restore = options.restore === true;
+    const existingGroups = await listGroups();
+    const existingDecks = await listDecks();
+    const usedGroupIds = new Set(existingGroups.map((group) => group.id));
+    const usedDeckIds = new Set(existingDecks.map((deck) => deck.id));
+    const groupIdMap = new Map();
+    const groups = prepared.groups.map((raw, index) => {
+      const group = normalizeGroup(raw, index);
+      const originalId = group.id;
+      group.id = restore ? originalId : nextAvailableId(originalId, usedGroupIds);
+      if (restore) usedGroupIds.add(group.id);
+      groupIdMap.set(originalId, group.id);
+      return group;
     });
-    return { groupCount: parsed.groups.length, deckCount: parsed.decks.length, cardCount: parsed.decks.reduce((sum, deck) => sum + deck.cards.length, 0) };
+    const decks = prepared.decks.map((raw, index) => {
+      const originalGroupId = raw.groupId ? String(raw.groupId) : null;
+      const deck = normalizeDeck(raw, index, originalGroupId && groupIdMap.get(originalGroupId));
+      if (!deck) return null;
+      const originalId = deck.id;
+      deck.id = restore ? originalId : nextAvailableId(originalId, usedDeckIds);
+      if (restore) usedDeckIds.add(deck.id);
+      deck.groupId = originalGroupId ? (groupIdMap.get(originalGroupId) || (restore ? originalGroupId : null)) : null;
+      if (deck.dataset) {
+        deck.dataset.unit.id = deck.id;
+        deck.dataset.source.id = `custom:${deck.id}`;
+        [...(deck.dataset.words || []), ...(deck.dataset.sentences || [])].forEach((item) => {
+          item.sourceId = deck.id; item.lessonId = deck.id;
+        });
+        (deck.dataset.groups || []).forEach((group) => { group.sourceId = deck.id; group.lessonId = deck.id; });
+      }
+      deck.updatedAt = nowIso();
+      return deck;
+    }).filter(Boolean);
+    await withStore([STORES.groups, STORES.decks], 'readwrite', async (stores) => {
+      groups.forEach((group) => stores.groups.put(group));
+      decks.forEach((deck) => stores.decks.put(deck));
+    });
+    const stats = ImportCore && typeof ImportCore.buildListeningImport === 'function'
+      ? decks.reduce((summary, deck) => {
+          summary.wordCount += (deck.dataset?.words || []).length;
+          summary.sentenceCount += (deck.dataset?.sentences || []).length;
+          summary.dialogueCount += (deck.dataset?.groups || []).filter((group) => group.kind === 'dialogue').length;
+          summary.passageCount += (deck.dataset?.groups || []).filter((group) => group.kind === 'passage').length;
+          return summary;
+        }, { wordCount: 0, sentenceCount: 0, dialogueCount: 0, passageCount: 0 })
+      : { wordCount: 0, sentenceCount: decks.reduce((sum, deck) => sum + deck.cards.length, 0), dialogueCount: 0, passageCount: 0 };
+    return { groupCount: groups.length, deckCount: decks.length, cardCount: stats.wordCount + stats.sentenceCount, ...stats, remapped: !restore };
   }
 
   function backupPayload(groups, decks) {
@@ -375,11 +439,21 @@
 
   async function toggleCard(deckId, cardId, enabled) {
     await withStore([STORES.decks], 'readwrite', async (stores) => {
-      const deck = await requestToPromise(stores.decks.get(deckId));
+      const raw = await requestToPromise(stores.decks.get(deckId));
+      const deck = raw ? normalizeDeck(raw) : null;
       if (!deck) throw new Error('Bộ không còn tồn tại.');
       const card = deck.cards.find((entry) => entry.id === cardId);
-      if (!card) throw new Error('Câu không còn tồn tại.');
+      if (!card) throw new Error('Nội dung không còn tồn tại.');
       card.listenEnabled = Boolean(enabled);
+      const word = deck.dataset?.words?.find((entry) => entry.id === cardId);
+      const sentence = deck.dataset?.sentences?.find((entry) => entry.id === cardId);
+      if (word) word.listenEnabled = Boolean(enabled);
+      if (sentence) sentence.listenEnabled = Boolean(enabled);
+      (deck.dataset?.groups || []).forEach((group) => {
+        group.items.forEach((item) => {
+          if (item.canonicalSentenceId === cardId) item.listenEnabled = Boolean(enabled);
+        });
+      });
       deck.updatedAt = nowIso();
       stores.decks.put(deck);
     });

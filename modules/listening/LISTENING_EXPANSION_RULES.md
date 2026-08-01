@@ -104,3 +104,9 @@ Theo quyết định hiện tại:
 - Bước tiếp theo sau kiểm thử là rà nội dung từng bài New HSK, rồi mở rộng HSK 6 cấp, YCT và Boya bằng adapter/structure tương ứng.
 
 Thanh audio nổi, header cố định và hệ màu pastel tiếp tục là component/theme dùng chung; không tạo bản riêng theo nguồn.
+
+## Quy tắc bổ sung — mobile và chép nhiều câu
+
+35. Mọi tính năng mới của tab Nghe phải thiết kế mobile-first: kiểm tra ở viewport 390–430 px trước desktop; ưu tiên mật độ thông tin, vùng chạm tối thiểu 42 px, không để kết quả/đáp án bị đẩy quá xa khỏi vùng thao tác.
+36. `Chép từng câu` và `Chép nhiều câu` là hai activity khác nhau. Chép từng câu chỉ có một câu và điều hướng từng item; Chép nhiều câu tạo một item tổng hợp, phát liền toàn bộ câu đã chọn, hiển thị toàn bộ dòng nhập cùng lúc và kiểm tra cả phiên một lần.
+37. Prompt Builder của Nghe chỉ sinh prompt để sao chép; không gọi API và không gửi dữ liệu người dùng ra ngoài. Prompt phải dùng chung bộ template với Thẻ và kết quả hướng tới schema nhập Bộ tự tạo.

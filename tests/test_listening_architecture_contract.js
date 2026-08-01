@@ -53,8 +53,8 @@ assert(adapters.includes('schemaVersion: SCHEMA_VERSION'), 'Dataset phải dùng
 assert(adapters.includes('capabilities:'), 'Dataset chuẩn phải có capabilities');
 assert(adapters.includes('diagnostics'), 'Dataset chuẩn phải có diagnostics');
 assert(!adapters.includes('      dialogues,\n      passages,'), 'Schema không được lưu dialogues/passages dẫn xuất');
-assert(app.includes("groups.find((group) => group.kind === 'dialogue')"), 'UI phải dẫn xuất dialogue từ groups');
-assert(app.includes("groups.find((group) => group.kind === 'passage')"), 'UI phải dẫn xuất passage từ groups');
+assert(app.includes("groups.filter((group) => group.kind === 'dialogue')"), 'UI phải dẫn xuất toàn bộ dialogue từ groups');
+assert(app.includes("groups.filter((group) => group.kind === 'passage')"), 'UI phải dẫn xuất toàn bộ passage từ groups');
 assert(builders.includes('const MIN_ORDERING_TOKENS = 3'), 'Builder phải dùng một rule chung cho xếp token');
 assert(builders.includes('buildGroupFullDictationItem'), 'Builder phải hỗ trợ chép nguyên nhóm');
 

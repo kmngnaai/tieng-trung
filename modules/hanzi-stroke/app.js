@@ -1266,6 +1266,7 @@ if(window.HanziWriter){
     return;
   }
 
+  const ImportCore = window.TiengTrungImportCore;
   const HSK_DATA_BASE = 'data/learning/hsk/';
   const HSK_QUICK_LOOKUP_PATH = `${HSK_DATA_BASE}hsk_flashcard_lookup.json`;
   const GRAMMAR_DATA_BASE = 'data/learning/grammar/';
@@ -1404,7 +1405,7 @@ if(window.HanziWriter){
   let tabFlashcards = document.getElementById('studyTabFlashcards');
   let tabDialogue301 = null;
   let flashcardLibraryView = null;
-  const flashcardLibraryState = { decks: [], groups: [], activeGroupId: '', editingGroup: null, movingDeckId: '', movingDeckIds: [], deckSelectionMode: false, selectedDeckIds: new Set(), deletingGroupId: '', editingDeck: null, detailDeckId: '', detailSearch: '', editingCardId: '', selectedCardIds: new Set(), message: '', quickImportBusy: false, searchQuery: '', sortMode: readFlashcardLibrarySort(), customDecksOpen: false, dataManagerOpen: false, sortSheetOpen: false, undoTrashId: '', undoTimer: null, trashOpen: false, trashItems: [] };
+  const flashcardLibraryState = { decks: [], groups: [], activeGroupId: '', editingGroup: null, movingDeckId: '', movingDeckIds: [], deckSelectionMode: false, selectedDeckIds: new Set(), deletingGroupId: '', editingDeck: null, detailDeckId: '', detailSearch: '', editingCardId: '', selectedCardIds: new Set(), message: '', quickImportBusy: false, searchQuery: '', sortMode: readFlashcardLibrarySort(), customDecksOpen: false, dataManagerOpen: false, sortSheetOpen: false, undoTrashId: '', undoTimer: null, trashOpen: false, trashItems: [], importPreview: null, importPayload: null, importMode: 'content', templateMenuOpen: false, curriculumBrowserOpen: false, curriculumSource: 'new_hsk', curriculumLevel: 1, curriculumLessons: [], curriculumLessonKey: '', curriculumLesson: null, curriculumContentType: 'vocabulary', curriculumCountMode: 'all', curriculumCustomCount: 10, curriculumSelectedIds: new Set(), curriculumLoading: false, curriculumError: '', curriculumScrollTop: 0, curriculumQuery: '', aiPromptBuilderOpen: false, aiPromptType: 'vocabulary', aiPromptFields: { level: 'HSK 1', topic: '', count: 10, inputText: '', requirements: '' }, aiPromptCopied: false };
 
   function makeLocalId(prefix = 'id'){
     if(window.crypto?.randomUUID) return `${prefix}-${window.crypto.randomUUID()}`;
@@ -2009,6 +2010,578 @@ if(window.HanziWriter){
     });
     document.body.appendChild(toast);
     flashcardLibraryState.undoTimer = window.setTimeout(() => hideFlashcardUndoToast(), 8000);
+  }
+
+  function nextFlashcardImportId(base, used){
+    const cleanBase = String(base || 'item');
+    if(!used.has(cleanBase)){ used.add(cleanBase); return cleanBase; }
+    let index = 2;
+    while(used.has(`${cleanBase}-${index}`)) index += 1;
+    const id = `${cleanBase}-${index}`;
+    used.add(id);
+    return id;
+  }
+
+  async function importFlashcardContent(payload, options = {}){
+    const restore = options.restore === true;
+    if(Array.isArray(payload?.errors) && payload.errors.length) throw new Error(payload.errors.join(' · '));
+    const groups = Array.isArray(payload?.groups) ? payload.groups : [];
+    const decks = Array.isArray(payload?.decks) ? payload.decks : [];
+    if(!groups.length && !decks.length && !payload?.results) throw new Error('File không có dữ liệu Thẻ hợp lệ.');
+    const [existingGroups, existingDecks] = await Promise.all([getAllFlashcardGroups(), getAllCustomDecks()]);
+    const usedGroupIds = new Set(existingGroups.map(group => group.id));
+    const usedDeckIds = new Set(existingDecks.map(deck => deck.id));
+    const groupIdMap = new Map();
+    const now = new Date().toISOString();
+    const normalizedGroups = groups.map((raw, index) => {
+      const originalId = String(raw?.id || `group-${index + 1}`);
+      const id = restore ? originalId : nextFlashcardImportId(originalId, usedGroupIds);
+      if(restore) usedGroupIds.add(id);
+      groupIdMap.set(originalId, id);
+      return { id, name: String(raw?.name || raw?.title || `Nhóm ${index + 1}`), description: String(raw?.description || ''), createdAt: raw?.createdAt || now, updatedAt: now };
+    });
+    const normalizedDecks = decks.map((raw, index) => {
+      const originalId = String(raw?.id || `deck-${index + 1}`);
+      const id = restore ? originalId : nextFlashcardImportId(originalId, usedDeckIds);
+      if(restore) usedDeckIds.add(id);
+      const originalGroupId = raw?.groupId ? String(raw.groupId) : '';
+      const groupId = originalGroupId ? (groupIdMap.get(originalGroupId) || (restore ? originalGroupId : null)) : null;
+      const seen = new Set();
+      const cards = (raw?.cards || []).map((card, cardIndex) => {
+        const word = String(card?.word || card?.hanzi || card?.text || '').trim();
+        const pinyin = String(card?.pinyin || '').trim();
+        const meaningVi = String(card?.meaningVi || card?.meaning || '').trim();
+        const key = `${word}\u0000${pinyin}\u0000${meaningVi}`;
+        if(!word || seen.has(key)) return null;
+        seen.add(key);
+        return { id: String(card?.id || makeLocalId('card')), word, pinyin, meaningVi };
+      }).filter(Boolean);
+      return { id, name: String(raw?.name || raw?.title || `Bộ ${index + 1}`), description: String(raw?.description || ''), groupId, createdAt: raw?.createdAt || now, updatedAt: now, cards };
+    }).filter(deck => deck.cards.length);
+    const db = await openFlashcardDb();
+    await new Promise((resolve, reject) => {
+      const tx = db.transaction([FLASHCARD_GROUP_STORE, FLASHCARD_DECK_STORE], 'readwrite');
+      const groupStore = tx.objectStore(FLASHCARD_GROUP_STORE);
+      const deckStore = tx.objectStore(FLASHCARD_DECK_STORE);
+      normalizedGroups.forEach(group => groupStore.put(group));
+      normalizedDecks.forEach(deck => deckStore.put(deck));
+      tx.oncomplete = resolve;
+      tx.onerror = () => reject(tx.error || new Error('Không nhập được nội dung Thẻ.'));
+      tx.onabort = () => reject(tx.error || new Error('Giao dịch nhập Thẻ bị hủy.'));
+    });
+    db.close();
+    if(payload?.results && typeof payload.results === 'object'){
+      const merged = { ...readFlashcardResults(), ...payload.results };
+      window.localStorage?.setItem(HSK_FLASHCARD_RESULTS_KEY, JSON.stringify(merged));
+    }
+    return { groupCount: normalizedGroups.length, deckCount: normalizedDecks.length, cardCount: normalizedDecks.reduce((sum, deck) => sum + deck.cards.length, 0) };
+  }
+
+  async function prepareFlashcardImport(file, mode = 'content'){
+    if(!ImportCore) throw new Error('Thiếu modules/shared/import-core.js.');
+    const parsed = await ImportCore.readFile(file, { simpleText: 'flashcard' });
+    const payload = ImportCore.buildFlashcardImport(parsed);
+    if(mode === 'restore' && payload.format !== 'flashcard-backup') throw new Error('File này không phải backup Thẻ. Hãy dùng “Nhập nội dung” cho XLSX, CSV, TXT hoặc JSON mẫu.');
+    flashcardLibraryState.importMode = mode;
+    flashcardLibraryState.importPayload = payload;
+    flashcardLibraryState.importPreview = { ...payload, fileName: file.name };
+    await renderFlashcardLibrary();
+  }
+
+  async function confirmFlashcardImport(){
+    const payload = flashcardLibraryState.importPayload;
+    if(!payload) return;
+    const summary = await importFlashcardContent(payload, { restore: flashcardLibraryState.importMode === 'restore' });
+    flashcardLibraryState.importPayload = null;
+    flashcardLibraryState.importPreview = null;
+    flashcardLibraryState.message = `Đã nhập ${summary.groupCount} nhóm, ${summary.deckCount} bộ và ${summary.cardCount} thẻ.`;
+    await renderFlashcardLibrary();
+  }
+
+  function cancelFlashcardImport(){
+    flashcardLibraryState.importPayload = null;
+    flashcardLibraryState.importPreview = null;
+    renderFlashcardLibrary();
+  }
+
+  function renderFlashcardImportPreview(){
+    const preview = flashcardLibraryState.importPreview;
+    if(!preview) return '';
+    const stats = preview.stats || {};
+    const errors = preview.errors || [];
+    const warnings = preview.warnings || [];
+    return `<div class="flashcard-import-backdrop" data-flashcard-import-cancel>
+      <section class="flashcard-import-dialog" role="dialog" aria-modal="true" aria-labelledby="flashcardImportTitle" onclick="event.stopPropagation()">
+        <span class="flashcard-data-section__eyebrow">${flashcardLibraryState.importMode === 'restore' ? 'KHÔI PHỤC BACKUP' : 'XEM TRƯỚC FILE NHẬP'}</span>
+        <h3 id="flashcardImportTitle">${escapeHtml(preview.fileName || 'File dữ liệu')}</h3>
+        <div class="flashcard-import-stats"><span><b>${stats.groupCount || 0}</b> nhóm</span><span><b>${stats.deckCount || 0}</b> bộ</span><span><b>${stats.cardCount || 0}</b> thẻ</span></div>
+        ${errors.length ? `<div class="flashcard-import-message is-error"><b>Lỗi cần sửa</b>${errors.map(message => `<p>${escapeHtml(message)}</p>`).join('')}</div>` : ''}
+        ${warnings.length ? `<details class="flashcard-import-message is-warning"><summary>${warnings.length} cảnh báo</summary>${warnings.slice(0, 20).map(message => `<p>${escapeHtml(message)}</p>`).join('')}</details>` : ''}
+        <p>${flashcardLibraryState.importMode === 'restore' ? 'Khôi phục backup có thể cập nhật bộ cùng ID.' : 'Nhập nội dung mới không ghi đè âm thầm; ID trùng sẽ được đổi ID.'}</p>
+        <div class="flashcard-import-actions"><button type="button" data-flashcard-import-cancel>Hủy</button><button type="button" class="hsk-flashcard-start" data-flashcard-import-confirm ${errors.length ? 'disabled' : ''}>${flashcardLibraryState.importMode === 'restore' ? 'Khôi phục' : 'Nhập nội dung'}</button></div>
+      </section>
+    </div>`;
+  }
+
+  function renderFlashcardTemplatePanel(){
+    if(!flashcardLibraryState.templateMenuOpen) return '';
+    return `<section class="flashcard-template-panel"><div><b>File mẫu Thẻ</b><small>XLSX có hướng dẫn và các sheet cho một thẻ, một bộ, một nhóm.</small></div><div>
+      <a href="templates/flashcards/the-mau-day-du.xlsx" download>Mẫu XLSX</a>
+      <a href="templates/flashcards/the-mau-day-du.csv" download>Mẫu CSV</a>
+      <a href="templates/flashcards/the-mau-day-du.txt" download>Mẫu TXT</a>
+      <a href="templates/flashcards/the-mau-day-du.json" download>Mẫu JSON</a>
+      <a href="templates/flashcards/README.md" target="_blank" rel="noopener">Hướng dẫn</a>
+    </div></section>`;
+  }
+
+
+  const FLASHCARD_CURRICULUM_SOURCES = Object.freeze([
+    { key: 'dialogue301', label: '301', description: 'Giáo trình 301' },
+    { key: 'hsk', label: 'HSK 6 cấp', description: 'HSK 1–6' },
+    { key: 'new_hsk', label: 'New HSK', description: 'HSK 9 cấp' },
+    { key: 'yct', label: 'YCT', description: 'YCT 1–4' },
+    { key: 'boya', label: 'Boya', description: 'Sơ cấp đến cao cấp' }
+  ]);
+  let flashcardCurriculumSummaryPromise = null;
+
+  function getFlashcardCurriculumSourceMeta(sourceKey = flashcardLibraryState.curriculumSource){
+    return FLASHCARD_CURRICULUM_SOURCES.find(source => source.key === sourceKey) || FLASHCARD_CURRICULUM_SOURCES[1];
+  }
+
+  async function loadFlashcardCurriculumSummary(){
+    if(!flashcardCurriculumSummaryPromise){
+      flashcardCurriculumSummaryPromise = fetchJson(`${HSK_DATA_BASE}source_summary.json`).catch(error => {
+        flashcardCurriculumSummaryPromise = null;
+        throw error;
+      });
+    }
+    return flashcardCurriculumSummaryPromise;
+  }
+
+  function getFlashcardCurriculumLevels(summary, sourceKey = flashcardLibraryState.curriculumSource){
+    if(sourceKey === 'dialogue301') return [];
+    const rows = summary?.sources?.[sourceKey]?.levels || [];
+    return rows.filter(level => level?.hasVocabulary !== false && Number(level?.level) > 0);
+  }
+
+  function getCurriculumRouteKey(route){
+    return String(route?.sectionId || route?.sectionSlug || `${route?.sectionType || 'section'}-${route?.sectionOrder || ''}-${route?.sectionTitle || ''}`);
+  }
+
+  function getCurriculumRouteTitle(route){
+    const title = String(route?.sectionTitle || route?.sectionTitleZh || '').trim();
+    if(title) return title;
+    const order = Number(route?.sectionOrder);
+    return Number.isFinite(order) ? `Bài ${order}` : 'Bài học';
+  }
+
+  function buildFlashcardCurriculumSections(items, sourceKey, level){
+    const rows = Array.isArray(items) ? items : [];
+    const scopedRoutes = rows.flatMap(item => (Array.isArray(item?.routes) ? item.routes : [])
+      .filter(route => String(route?.libraryId || '') === String(sourceKey || '') && Number(route?.levelNo || level) === Number(level))
+      .map(route => ({ item, route })));
+    const hasLessons = scopedRoutes.some(entry => entry.route?.sectionType === 'lesson');
+    const preferredType = hasLessons ? 'lesson' : 'topic';
+    const groups = new Map();
+    scopedRoutes.filter(entry => entry.route?.sectionType === preferredType).forEach(({ item, route }) => {
+      const key = getCurriculumRouteKey(route);
+      if(!groups.has(key)) groups.set(key, {
+        key,
+        title: getCurriculumRouteTitle(route),
+        titleZh: String(route?.sectionTitleZh || ''),
+        order: Number(route?.sectionOrder) || 9999,
+        kind: preferredType,
+        cards: [],
+        sentenceCards: [],
+        grammarCards: [],
+        route
+      });
+      const group = groups.get(key);
+      const word = String(item?.word || item?.simplified || '').trim();
+      if(word && !group.cards.some(card => card.word === word)){
+        group.cards.push({
+          id: `curriculum:${sourceKey}:${level}:${key}:word:${word}`,
+          cardType: 'vocabulary',
+          word,
+          pinyin: formatPinyin(item?.pinyin),
+          meaningVi: String(item?.meaningVi || item?.translationVi || '').trim(),
+          order: Number(route?.orderInSection) || 9999,
+          sourceItem: item
+        });
+      }
+      (Array.isArray(item?.examples) ? item.examples : []).forEach((example, exampleIndex) => {
+        const chinese = String(example?.chinese || example?.zh || '').trim();
+        if(!chinese || group.sentenceCards.some(card => card.word === chinese)) return;
+        group.sentenceCards.push({
+          id: `curriculum:${sourceKey}:${level}:${key}:sentence:${encodeURIComponent(chinese)}`,
+          cardType: 'sentence',
+          word: chinese,
+          pinyin: formatPinyin(example?.pinyin),
+          meaningVi: String(example?.meaning_vi || example?.meaningVi || example?.vietnamese || example?.vi || '').trim(),
+          order: (Number(route?.orderInSection) || 9999) * 100 + exampleIndex,
+          sourceWord: word
+        });
+      });
+    });
+    return Array.from(groups.values()).map(group => {
+      const vocabulary = group.cards.sort((left, right) => left.order - right.order || left.word.localeCompare(right.word, 'zh-Hans-CN'));
+      const sentence = group.sentenceCards.sort((left, right) => left.order - right.order || left.word.localeCompare(right.word, 'zh-Hans-CN'));
+      return {
+        ...group,
+        cards: vocabulary,
+        content: { vocabulary, sentence, grammar: group.grammarCards || [] },
+        wordCount: vocabulary.length,
+        sentenceCount: sentence.length,
+        grammarCount: 0
+      };
+    }).filter(group => group.wordCount || group.sentenceCount)
+      .sort((left, right) => left.order - right.order || left.title.localeCompare(right.title, 'vi'));
+  }
+
+  function grammarCardFromItem(item, sourceKey, level, lessonKey){
+    const examples = (Array.isArray(item?.example) ? item.example : []).map((example, index) => ({
+      id: `${item?.id || 'grammar'}-example-${index + 1}`,
+      hanzi: String(example?.chinese || example?.hanzi || '').trim(),
+      pinyin: formatPinyin(example?.pinyin),
+      meaning: String(example?.vietnamese || example?.meaningVi || example?.vi || '').trim()
+    })).filter(example => example.hanzi);
+    const topic = String(item?.topic || item?.title || 'Ngữ pháp').trim();
+    const pattern = String(item?.grammar_syntax || item?.pattern || topic).trim();
+    return {
+      id: `curriculum:${sourceKey}:${level}:${lessonKey}:grammar:${String(item?.id || item?.item_order || topic)}`,
+      cardType: 'grammar',
+      word: pattern,
+      pinyin: '',
+      meaningVi: String(item?.grammar_explanation || item?.explanation || '').trim(),
+      title: topic,
+      grammar: {
+        topic,
+        pattern,
+        explanation: String(item?.grammar_explanation || item?.explanation || '').trim(),
+        tips: String(item?.grammar_tips || item?.tips || '').trim(),
+        attentions: String(item?.grammar_attentions || item?.attentions || '').trim(),
+        examples
+      },
+      order: Number(item?.item_order) || 9999
+    };
+  }
+
+  async function loadFlashcardCurriculumGrammar(sourceKey, level){
+    if(!['hsk', 'new_hsk'].includes(sourceKey)) return [];
+    try{
+      const data = await fetchJson(`${GRAMMAR_DATA_BASE}${sourceKey}_${level}.json`);
+      return Array.isArray(data?.items) ? data.items : [];
+    }catch(_error){
+      return [];
+    }
+  }
+
+  function attachFlashcardGrammarToLessons(lessons, grammarItems, sourceKey, level){
+    const rows = Array.isArray(grammarItems) ? grammarItems : [];
+    return (lessons || []).map(lesson => {
+      const lessonGrammar = rows.filter(item => Number(item?.from_book_chapter) === Number(lesson.order));
+      const grammar = lessonGrammar.map(item => grammarCardFromItem(item, sourceKey, level, lesson.key));
+      const content = { ...(lesson.content || {}), grammar };
+      return { ...lesson, grammarCards: grammar, grammarCount: grammar.length, content };
+    });
+  }
+
+  function curriculumContentTypes(lesson){
+    const content = lesson?.content || {};
+    return [
+      { id: 'vocabulary', label: 'Từ vựng', icon: '词', cards: Array.isArray(content.vocabulary) ? content.vocabulary : [] },
+      { id: 'sentence', label: 'Câu', icon: '句', cards: Array.isArray(content.sentence) ? content.sentence : [] },
+      { id: 'grammar', label: 'Ngữ pháp', icon: '法', cards: Array.isArray(content.grammar) ? content.grammar : [] }
+    ].filter(type => type.cards.length);
+  }
+
+  function currentFlashcardCurriculumCards(){
+    const lesson = flashcardLibraryState.curriculumLesson;
+    const type = curriculumContentTypes(lesson).find(row => row.id === flashcardLibraryState.curriculumContentType);
+    return type ? type.cards : [];
+  }
+
+  async function loadFlashcardCurriculumLessons(options = {}){
+    const sourceKey = options.sourceKey || flashcardLibraryState.curriculumSource || 'new_hsk';
+    flashcardLibraryState.curriculumLoading = true;
+    flashcardLibraryState.curriculumError = '';
+    flashcardLibraryState.curriculumLessons = [];
+    flashcardLibraryState.curriculumLesson = null;
+    flashcardLibraryState.curriculumLessonKey = '';
+    try{
+      if(sourceKey === 'dialogue301'){
+        const lessons = await loadDialogue301Curriculum();
+        flashcardLibraryState.curriculumLessons = lessons.map(lesson => ({
+          key: String(lesson.lesson_id || `lesson-${lesson.lesson_no || ''}`),
+          title: String(lesson.title || lesson.title_zh || `Bài ${lesson.lesson_no || ''}`),
+          titleZh: String(lesson.title_zh || ''),
+          order: Number(lesson.lesson_no) || 9999,
+          kind: 'lesson',
+          dataPath: String(lesson.data || ''),
+          wordCount: null,
+          sentenceCount: null,
+          grammarCount: null,
+          cards: null,
+          content: null
+        })).sort((left, right) => left.order - right.order);
+      }else{
+        const summary = await loadFlashcardCurriculumSummary();
+        const levels = getFlashcardCurriculumLevels(summary, sourceKey);
+        if(!levels.length) throw new Error('Nguồn này chưa có cấp độ từ vựng.');
+        if(!levels.some(row => Number(row.level) === Number(flashcardLibraryState.curriculumLevel))){
+          flashcardLibraryState.curriculumLevel = Number(levels[0].level) || 1;
+        }
+        const level = Number(flashcardLibraryState.curriculumLevel) || 1;
+        const [data, grammarItems] = await Promise.all([
+          fetchJson(`${HSK_DATA_BASE}hsk_${level}.json`),
+          loadFlashcardCurriculumGrammar(sourceKey, level)
+        ]);
+        const lessons = buildFlashcardCurriculumSections(data?.items || [], sourceKey, level);
+        flashcardLibraryState.curriculumLessons = attachFlashcardGrammarToLessons(lessons, grammarItems, sourceKey, level);
+      }
+    }catch(error){
+      console.warn('Cannot load flashcard curriculum browser:', error);
+      flashcardLibraryState.curriculumError = error?.message || 'Không tải được danh sách bài.';
+    }finally{
+      flashcardLibraryState.curriculumLoading = false;
+    }
+  }
+
+  async function openFlashcardCurriculumBrowser(){
+    flashcardLibraryState.curriculumBrowserOpen = true;
+    flashcardLibraryState.curriculumLesson = null;
+    flashcardLibraryState.curriculumLessonKey = '';
+    flashcardLibraryState.curriculumQuery = '';
+    flashcardLibraryState.curriculumContentType = 'vocabulary';
+    await loadFlashcardCurriculumLessons();
+    await renderFlashcardLibrary();
+  }
+
+  async function selectFlashcardCurriculumSource(sourceKey){
+    if(!FLASHCARD_CURRICULUM_SOURCES.some(source => source.key === sourceKey)) return;
+    flashcardLibraryState.curriculumSource = sourceKey;
+    flashcardLibraryState.curriculumLevel = 1;
+    flashcardLibraryState.curriculumScrollTop = 0;
+    flashcardLibraryState.curriculumQuery = '';
+    flashcardLibraryState.curriculumContentType = 'vocabulary';
+    await loadFlashcardCurriculumLessons({ sourceKey });
+    await renderFlashcardLibrary();
+  }
+
+  async function selectFlashcardCurriculumLevel(level){
+    flashcardLibraryState.curriculumLevel = Number(level) || 1;
+    flashcardLibraryState.curriculumScrollTop = 0;
+    flashcardLibraryState.curriculumQuery = '';
+    flashcardLibraryState.curriculumContentType = 'vocabulary';
+    await loadFlashcardCurriculumLessons();
+    await renderFlashcardLibrary();
+  }
+
+  function buildDialogue301CurriculumContent(data, lesson){
+    const lessonKey = lesson.key;
+    const vocabulary = (Array.isArray(data?.vocabulary) ? data.vocabulary : []).map((item, index) => ({
+      id: `curriculum:dialogue301:${lessonKey}:word:${String(item?.id || index + 1)}`,
+      cardType: 'vocabulary',
+      word: String(item?.zh || item?.word || '').trim(),
+      pinyin: formatPinyin(item?.pinyin),
+      meaningVi: String(item?.vi || item?.meaningVi || '').trim(),
+      order: Number(item?.no) || index + 1,
+      sourceItem: item
+    })).filter(card => card.word);
+    const sentenceRows = [
+      ...(Array.isArray(data?.sentences) ? data.sentences : []),
+      ...(Array.isArray(data?.dialogue) ? data.dialogue : []),
+      ...(Array.isArray(data?.extension) ? data.extension : [])
+    ];
+    const seen = new Set();
+    const sentence = sentenceRows.map((item, index) => {
+      const word = String(item?.zh || item?.chinese || '').trim();
+      if(!word || seen.has(word)) return null;
+      seen.add(word);
+      return {
+        id: `curriculum:dialogue301:${lessonKey}:sentence:${String(item?.id || index + 1)}`,
+        cardType: 'sentence',
+        word,
+        pinyin: formatPinyin(item?.pinyin),
+        meaningVi: String(item?.vi || item?.meaningVi || '').trim(),
+        order: Number(item?.turn || item?.no) || index + 1,
+        speaker: String(item?.speaker_zh || item?.speaker_vi || '').trim()
+      };
+    }).filter(Boolean);
+    const grammar = (Array.isArray(data?.grammar) ? data.grammar : []).map((item, index) => ({
+      id: `curriculum:dialogue301:${lessonKey}:grammar:${String(item?.id || index + 1)}`,
+      cardType: 'grammar',
+      word: String(item?.title || 'Ngữ pháp').trim(),
+      pinyin: '',
+      meaningVi: String(item?.content || '').trim(),
+      title: String(item?.title || 'Ngữ pháp').trim(),
+      grammar: {
+        topic: String(item?.title || 'Ngữ pháp').trim(),
+        pattern: String(item?.title || '').trim(),
+        explanation: String(item?.content || '').trim(),
+        tips: '', attentions: '', examples: []
+      },
+      order: Number(item?.no) || index + 1
+    }));
+    return { vocabulary, sentence, grammar };
+  }
+
+  async function openFlashcardCurriculumLesson(key){
+    const lesson = flashcardLibraryState.curriculumLessons.find(item => item.key === key);
+    if(!lesson) return;
+    flashcardLibraryState.curriculumScrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+    flashcardLibraryState.curriculumLoading = true;
+    flashcardLibraryState.curriculumError = '';
+    await renderFlashcardLibrary();
+    try{
+      let fullLesson = lesson;
+      if(flashcardLibraryState.curriculumSource === 'dialogue301' && !lesson.content){
+        if(!lesson.dataPath) throw new Error('Bài 301 chưa có đường dẫn dữ liệu.');
+        const data = await fetchJson(`../../lessons-301-v2/${lesson.dataPath.replace(/^\.\//, '')}`);
+        const content = buildDialogue301CurriculumContent(data, lesson);
+        fullLesson = {
+          ...lesson,
+          cards: content.vocabulary,
+          content,
+          wordCount: content.vocabulary.length,
+          sentenceCount: content.sentence.length,
+          grammarCount: content.grammar.length
+        };
+        const index = flashcardLibraryState.curriculumLessons.findIndex(item => item.key === key);
+        if(index >= 0) flashcardLibraryState.curriculumLessons[index] = fullLesson;
+      }
+      const types = curriculumContentTypes(fullLesson);
+      if(!types.length) throw new Error('Bài này chưa có dữ liệu thẻ phù hợp.');
+      flashcardLibraryState.curriculumLesson = fullLesson;
+      flashcardLibraryState.curriculumLessonKey = key;
+      flashcardLibraryState.curriculumContentType = types.some(type => type.id === flashcardLibraryState.curriculumContentType)
+        ? flashcardLibraryState.curriculumContentType
+        : types[0].id;
+      const cards = currentFlashcardCurriculumCards();
+      flashcardLibraryState.curriculumCountMode = cards.length > 10 ? '10' : 'all';
+      flashcardLibraryState.curriculumCustomCount = Math.min(10, cards.length || 10);
+      flashcardLibraryState.curriculumSelectedIds = new Set(cards.map(card => card.id));
+      flashcardLibraryState.curriculumQuery = '';
+    }catch(error){
+      flashcardLibraryState.curriculumError = error?.message || 'Không tải được nội dung của bài.';
+    }finally{
+      flashcardLibraryState.curriculumLoading = false;
+      await renderFlashcardLibrary();
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }
+  }
+
+  function getFlashcardCurriculumSelectedCards(){
+    const cards = currentFlashcardCurriculumCards();
+    const mode = String(flashcardLibraryState.curriculumCountMode || 'all');
+    if(mode === 'manual') return cards.filter(card => flashcardLibraryState.curriculumSelectedIds.has(card.id));
+    if(mode === 'all') return cards.slice();
+    const count = mode === 'custom' ? Number(flashcardLibraryState.curriculumCustomCount) : Number(mode);
+    const safeCount = Math.max(1, Math.min(cards.length, Number.isFinite(count) ? Math.floor(count) : cards.length));
+    return cards.slice(0, safeCount);
+  }
+
+  function curriculumLessonCountLabel(lesson){
+    const parts = [];
+    if(Number(lesson?.wordCount) > 0) parts.push(`${lesson.wordCount} từ`);
+    if(Number(lesson?.sentenceCount) > 0) parts.push(`${lesson.sentenceCount} câu`);
+    if(Number(lesson?.grammarCount) > 0) parts.push(`${lesson.grammarCount} NP`);
+    return parts.join(' · ') || (lesson?.wordCount == null ? 'Mở' : 'Chưa có dữ liệu');
+  }
+
+  function curriculumContentLabel(type, count){
+    if(type === 'sentence') return `${count} câu`;
+    if(type === 'grammar') return `${count} ngữ pháp`;
+    return `${count} từ vựng`;
+  }
+
+  function curriculumCardSearchText(card){
+    const grammar = card?.grammar || {};
+    return [card?.word, card?.pinyin, card?.meaningVi, card?.title, grammar.topic, grammar.pattern, ...(grammar.examples || []).flatMap(row => [row.hanzi, row.pinyin, row.meaning])].join(' ');
+  }
+
+  function renderFlashcardCurriculumBrowser(){
+    const sourceMeta = getFlashcardCurriculumSourceMeta();
+    const lesson = flashcardLibraryState.curriculumLesson;
+    const contentTypes = curriculumContentTypes(lesson);
+    const currentType = contentTypes.find(type => type.id === flashcardLibraryState.curriculumContentType) || contentTypes[0] || { id: 'vocabulary', label: 'Từ vựng', cards: [] };
+    const selectedCards = getFlashcardCurriculumSelectedCards();
+    const allCards = currentType.cards || [];
+    const query = normalizeLibrarySearch(flashcardLibraryState.curriculumQuery || '');
+    const visibleManualCards = allCards.filter(card => !query || normalizeLibrarySearch(curriculumCardSearchText(card)).includes(query));
+    return `<div class="flashcard-library-page flashcard-curriculum-page">
+      <header class="flashcard-library-subpage-header flashcard-library-subpage-header--plain flashcard-curriculum-header">
+        <button type="button" class="flashcard-library-back" ${lesson ? 'data-flashcard-curriculum-lesson-back' : 'data-flashcard-curriculum-close'} aria-label="Quay lại">←</button>
+        <div><span>课 · HSK & GIÁO TRÌNH</span><h2>${escapeHtml(lesson?.title || 'Chọn bài để tạo phiên')}</h2><p>${lesson ? `${curriculumLessonCountLabel(lesson)} · chọn loại nội dung và số lượng` : 'Tạo thẻ từ từ vựng, câu và ngữ pháp ngay trong bài.'}</p></div>
+      </header>
+      ${flashcardLibraryState.curriculumError ? `<p class="flashcard-library-message is-error">${escapeHtml(flashcardLibraryState.curriculumError)}</p>` : ''}
+      ${lesson ? `
+        <section class="flashcard-curriculum-lesson-panel">
+          <div class="flashcard-curriculum-lesson-meta"><b>${escapeHtml(lesson.titleZh || sourceMeta.label)}</b><span>${escapeHtml(curriculumLessonCountLabel(lesson))}</span></div>
+          <div class="flashcard-curriculum-content-tabs" role="tablist" aria-label="Chọn loại thẻ">
+            ${contentTypes.map(type => `<button type="button" role="tab" aria-selected="${type.id === currentType.id}" class="${type.id === currentType.id ? 'active' : ''}" data-flashcard-curriculum-content="${type.id}"><span>${type.icon}</span><b>${escapeHtml(type.label)}</b><small>${type.cards.length}</small></button>`).join('')}
+          </div>
+          <div class="flashcard-curriculum-content-note"><b>${escapeHtml(currentType.label)}</b><span>${escapeHtml(curriculumContentLabel(currentType.id, allCards.length))}</span></div>
+          <div class="flashcard-curriculum-count" role="group" aria-label="Chọn số thẻ">
+            ${(allCards.length > 10 ? ['10','20','30','all','custom','manual'] : ['all','manual']).map(mode => {
+              const labels = { all: 'Tất cả', custom: 'Tự nhập', manual: 'Tự chọn' };
+              const disabled = /^\d+$/.test(mode) && Number(mode) > allCards.length;
+              return `<button type="button" class="${flashcardLibraryState.curriculumCountMode === mode ? 'active' : ''}" data-flashcard-curriculum-count="${mode}" ${disabled ? 'disabled' : ''}>${labels[mode] || mode}</button>`;
+            }).join('')}
+          </div>
+          ${flashcardLibraryState.curriculumCountMode === 'custom' ? `<label class="flashcard-curriculum-custom-count">Số thẻ muốn học<input type="number" min="1" max="${allCards.length}" value="${escapeHtml(flashcardLibraryState.curriculumCustomCount)}" data-flashcard-curriculum-custom-count><small>Tối đa ${allCards.length} thẻ</small></label>` : ''}
+          ${flashcardLibraryState.curriculumCountMode === 'manual' ? `
+            <div class="flashcard-curriculum-manual-tools">
+              <label><span aria-hidden="true">⌕</span><input type="search" value="${escapeHtml(flashcardLibraryState.curriculumQuery || '')}" data-flashcard-curriculum-search placeholder="Tìm nội dung, pinyin, nghĩa..."></label>
+              <button type="button" data-flashcard-curriculum-select-all>${visibleManualCards.length && visibleManualCards.every(card => flashcardLibraryState.curriculumSelectedIds.has(card.id)) ? 'Bỏ chọn đang hiện' : 'Chọn tất cả đang hiện'}</button>
+            </div>
+            <div class="flashcard-curriculum-word-list flashcard-curriculum-word-list--${currentType.id}">
+              ${visibleManualCards.length ? visibleManualCards.map(card => `<label class="flashcard-curriculum-word flashcard-curriculum-word--${currentType.id} ${flashcardLibraryState.curriculumSelectedIds.has(card.id) ? 'is-selected' : ''}"><input type="checkbox" data-flashcard-curriculum-card="${escapeHtml(card.id)}" ${flashcardLibraryState.curriculumSelectedIds.has(card.id) ? 'checked' : ''}><span><b>${escapeHtml(card.title || card.word)}</b>${card.pinyin ? `<i>${escapeHtml(card.pinyin)}</i>` : ''}<small>${escapeHtml(card.meaningVi || card.grammar?.pattern || 'Chưa có mô tả')}</small></span></label>`).join('') : '<p class="flashcard-library-empty">Không tìm thấy nội dung phù hợp.</p>'}
+            </div>` : `
+            <div class="flashcard-curriculum-selection-preview flashcard-curriculum-selection-preview--${currentType.id}">
+              ${selectedCards.slice(0, 12).map(card => `<span><b>${escapeHtml(card.title || card.word)}</b><small>${escapeHtml(card.pinyin || (card.cardType === 'grammar' ? 'Ngữ pháp' : ''))}</small></span>`).join('')}
+              ${selectedCards.length > 12 ? `<span class="is-more">+${selectedCards.length - 12}</span>` : ''}
+            </div>`}
+          <button type="button" class="flashcard-library-primary flashcard-curriculum-start" data-flashcard-curriculum-start ${selectedCards.length ? '' : 'disabled'}>Tạo phiên ${escapeHtml(currentType.label)} · ${selectedCards.length} thẻ</button>
+        </section>` : `
+        <section class="flashcard-curriculum-source-tabs" aria-label="Chọn giáo trình">
+          ${FLASHCARD_CURRICULUM_SOURCES.map(source => `<button type="button" class="${source.key === flashcardLibraryState.curriculumSource ? 'active' : ''}" data-flashcard-curriculum-source="${source.key}"><b>${escapeHtml(source.label)}</b><small>${escapeHtml(source.description)}</small></button>`).join('')}
+        </section>
+        ${flashcardLibraryState.curriculumSource !== 'dialogue301' ? `<div class="flashcard-curriculum-level-tabs" data-flashcard-curriculum-level-host></div>` : ''}
+        ${flashcardLibraryState.curriculumLoading ? '<div class="flashcard-curriculum-loading"><span class="spinner"></span><b>Đang tải danh sách bài...</b></div>' : `
+          <section class="flashcard-curriculum-lessons">
+            <header><div><span>${escapeHtml(sourceMeta.label)}</span><h3>Chọn bài có nội dung thẻ</h3></div><small>${flashcardLibraryState.curriculumLessons.length} bài/chủ đề</small></header>
+            <div>${flashcardLibraryState.curriculumLessons.length ? flashcardLibraryState.curriculumLessons.map(item => `<button type="button" class="flashcard-curriculum-lesson-card" data-flashcard-curriculum-lesson="${escapeHtml(item.key)}"><span class="flashcard-curriculum-lesson-no">${Number.isFinite(item.order) && item.order < 9999 ? escapeHtml(item.order) : '课'}</span><span><b>${escapeHtml(item.title)}</b><small>${escapeHtml(item.titleZh || sourceMeta.label)}</small></span><i>${escapeHtml(curriculumLessonCountLabel(item))} ›</i></button>`).join('') : '<p class="flashcard-library-empty">Chưa có bài phù hợp ở cấp này.</p>'}</div>
+          </section>`}
+      `}
+    </div>`;
+  }
+
+  async function hydrateFlashcardCurriculumLevels(){
+    if(!flashcardLibraryState.curriculumBrowserOpen || flashcardLibraryState.curriculumLesson || flashcardLibraryState.curriculumSource === 'dialogue301') return;
+    const host = flashcardLibraryView?.querySelector('[data-flashcard-curriculum-level-host]');
+    if(!host) return;
+    try{
+      const summary = await loadFlashcardCurriculumSummary();
+      if(!host.isConnected) return;
+      const levels = getFlashcardCurriculumLevels(summary);
+      host.innerHTML = levels.map(level => `<button type="button" class="${Number(level.level) === Number(flashcardLibraryState.curriculumLevel) ? 'active' : ''}" data-flashcard-curriculum-level="${escapeHtml(level.level)}"><b>${escapeHtml(level.label || `Cấp ${level.level}`)}</b><small>${level.status === 'PARTIAL' ? 'Chưa đủ dữ liệu' : `${Number(level.uniqueItemCount || 0).toLocaleString('vi-VN')} từ`}</small></button>`).join('');
+    }catch(error){
+      host.innerHTML = `<p class="flashcard-library-empty">${escapeHtml(error?.message || 'Không tải được cấp độ.')}</p>`;
+    }
+  }
+
+  function startFlashcardCurriculumSession(){
+    const cards = getFlashcardCurriculumSelectedCards();
+    const lesson = flashcardLibraryState.curriculumLesson;
+    if(!lesson || !cards.length) return;
+    const contentType = curriculumContentTypes(lesson).find(type => type.id === flashcardLibraryState.curriculumContentType);
+    const contentLabel = contentType?.label || 'Thẻ';
+    createFlashcardSessionFromCards(cards, `${lesson.title} · ${contentLabel}`, {
+      origin: 'curriculum-library',
+      contextKey: `curriculum:${flashcardLibraryState.curriculumSource}:${flashcardLibraryState.curriculumLevel}:${lesson.key}:${flashcardLibraryState.curriculumContentType}`,
+      contextLabel: `${lesson.title} · ${contentLabel}`
+    });
   }
 
   async function importCustomDecks(decks){
@@ -2970,17 +3543,118 @@ if(window.HanziWriter){
       </div>`;
   }
 
+  function getAiPromptMeta(){
+    const api = window.TiengTrungAiPromptTemplates;
+    const type = flashcardLibraryState.aiPromptType || 'vocabulary';
+    return api?.TYPE_META?.[type] || { label: 'Từ vựng', icon: '词', inputLabel: 'Dữ liệu đầu vào', inputPlaceholder: '', countLabel: 'Số lượng' };
+  }
+
+  function getAiPromptOutput(){
+    const api = window.TiengTrungAiPromptTemplates;
+    if(!api?.build) return 'Không tải được bộ mẫu prompt.';
+    return api.build(flashcardLibraryState.aiPromptType, flashcardLibraryState.aiPromptFields || {});
+  }
+
+  function renderFlashcardAiPromptBuilder(){
+    const api = window.TiengTrungAiPromptTemplates;
+    const meta = getAiPromptMeta();
+    const fields = flashcardLibraryState.aiPromptFields || {};
+    const output = getAiPromptOutput();
+    const types = Object.entries(api?.TYPE_META || {});
+    return `<div class="flashcard-library-page flashcard-ai-prompt-page">
+      <header class="flashcard-library-subpage-header flashcard-library-subpage-header--plain flashcard-ai-prompt-header">
+        <button type="button" class="flashcard-library-back" data-flashcard-ai-close aria-label="Quay lại">←</button>
+        <div><span>AI PROMPT BUILDER</span><h2>Tạo nội dung bằng AI</h2><p>Nhập ít thông tin, nhận prompt hoàn chỉnh để sao chép sang ChatGPT hoặc AI khác.</p></div>
+      </header>
+      <section class="flashcard-ai-prompt-card">
+        <div class="flashcard-ai-type-tabs" role="tablist" aria-label="Chọn loại nội dung">
+          ${types.map(([id, row]) => `<button type="button" class="${id === flashcardLibraryState.aiPromptType ? 'active' : ''}" data-flashcard-ai-type="${id}"><span>${row.icon}</span><b>${escapeHtml(row.label)}</b></button>`).join('')}
+        </div>
+        <div class="flashcard-ai-fields">
+          <label><span>Trình độ</span><input type="text" data-flashcard-ai-field="level" value="${escapeHtml(fields.level || '')}" placeholder="Ví dụ: HSK 1"></label>
+          <label><span>Chủ đề</span><input type="text" data-flashcard-ai-field="topic" value="${escapeHtml(fields.topic || '')}" placeholder="Ví dụ: Giới thiệu bản thân"></label>
+          <label><span>${escapeHtml(meta.countLabel || 'Số lượng')}</span><input type="number" min="1" max="200" data-flashcard-ai-field="count" value="${escapeHtml(fields.count || 10)}"></label>
+          <label class="is-wide"><span>${escapeHtml(meta.inputLabel || 'Dữ liệu đầu vào')}</span><textarea rows="8" data-flashcard-ai-field="inputText" placeholder="${escapeHtml(meta.inputPlaceholder || '')}">${escapeHtml(fields.inputText || '')}</textarea><small>Có thể dán hàng loạt, mỗi mục một dòng.</small></label>
+          <label class="is-wide"><span>Yêu cầu bổ sung <small>không bắt buộc</small></span><textarea rows="3" data-flashcard-ai-field="requirements" placeholder="Ví dụ: chỉ dùng từ trong danh sách, tránh tên riêng...">${escapeHtml(fields.requirements || '')}</textarea></label>
+        </div>
+      </section>
+      <section class="flashcard-ai-output-card">
+        <header><div><span>PROMPT ĐÃ TẠO</span><h3>${escapeHtml(meta.label || 'Nội dung')}</h3></div><button type="button" data-flashcard-ai-copy>${flashcardLibraryState.aiPromptCopied ? '✓ Đã sao chép' : 'Sao chép prompt'}</button></header>
+        <textarea readonly rows="18" data-flashcard-ai-output>${escapeHtml(output)}</textarea>
+        <p>Dán prompt này vào AI. Kết quả được yêu cầu ở dạng JSON thuần để dễ kiểm tra và nhập lại vào ứng dụng.</p>
+      </section>
+    </div>`;
+  }
+
+  function syncAiPromptFieldsFromView(){
+    if(!flashcardLibraryView) return;
+    const next = { ...(flashcardLibraryState.aiPromptFields || {}) };
+    flashcardLibraryView.querySelectorAll('[data-flashcard-ai-field]').forEach(input => {
+      const key = input.dataset.flashcardAiField;
+      if(key) next[key] = key === 'count' ? Math.max(1, Number(input.value) || 1) : input.value;
+    });
+    flashcardLibraryState.aiPromptFields = next;
+  }
+
+  async function copyAiPrompt(){
+    syncAiPromptFieldsFromView();
+    const prompt = getAiPromptOutput();
+    try{
+      await navigator.clipboard.writeText(prompt);
+      flashcardLibraryState.aiPromptCopied = true;
+    }catch(_error){
+      const output = flashcardLibraryView?.querySelector('[data-flashcard-ai-output]');
+      output?.focus();
+      output?.select();
+      document.execCommand?.('copy');
+      flashcardLibraryState.aiPromptCopied = true;
+    }
+    await renderFlashcardLibrary();
+    window.setTimeout(() => {
+      flashcardLibraryState.aiPromptCopied = false;
+      if(flashcardLibraryState.aiPromptBuilderOpen) renderFlashcardLibrary();
+    }, 1600);
+  }
+
   async function renderFlashcardLibrary(){
     ensureFlashcardLibraryUi();
     if(!flashcardLibraryView) return;
     const restoreSearchFocus = document.activeElement?.matches?.('[data-flashcard-library-search]');
     const restoreDetailSearchFocus = document.activeElement?.matches?.('[data-flashcard-detail-search]');
-    const restoreSearchStart = (restoreSearchFocus || restoreDetailSearchFocus) ? document.activeElement.selectionStart : null;
-    const restoreSearchEnd = (restoreSearchFocus || restoreDetailSearchFocus) ? document.activeElement.selectionEnd : null;
+    const restoreCurriculumSearchFocus = document.activeElement?.matches?.('[data-flashcard-curriculum-search]');
+    const restoreCurriculumCountFocus = document.activeElement?.matches?.('[data-flashcard-curriculum-custom-count]');
+    const restoreTextFocus = restoreSearchFocus || restoreDetailSearchFocus || restoreCurriculumSearchFocus || restoreCurriculumCountFocus;
+    const restoreSearchStart = restoreTextFocus ? document.activeElement.selectionStart : null;
+    const restoreSearchEnd = restoreTextFocus ? document.activeElement.selectionEnd : null;
     try{ await cleanupExpiredTrash(); }catch(_err){}
     if(flashcardLibraryState.trashOpen){
       try{ flashcardLibraryState.trashItems = await getAllTrashItems(); }catch(err){ flashcardLibraryState.message = err.message || 'Không đọc được Thùng rác.'; flashcardLibraryState.trashItems = []; }
       flashcardLibraryView.innerHTML = renderFlashcardTrashPage(flashcardLibraryState.trashItems);
+      return;
+    }
+    if(flashcardLibraryState.curriculumBrowserOpen){
+      flashcardLibraryView.innerHTML = renderFlashcardCurriculumBrowser();
+      await hydrateFlashcardCurriculumLevels();
+      if(restoreCurriculumSearchFocus || restoreCurriculumCountFocus){
+        const selector = restoreCurriculumSearchFocus ? '[data-flashcard-curriculum-search]' : '[data-flashcard-curriculum-custom-count]';
+        const restoredInput = flashcardLibraryView.querySelector(selector);
+        if(restoredInput){
+          restoredInput.focus({ preventScroll: true });
+          if(typeof restoredInput.setSelectionRange === 'function' && restoreSearchStart != null){
+            const maxLength = String(restoredInput.value || '').length;
+            restoredInput.setSelectionRange(Math.min(restoreSearchStart, maxLength), Math.min(restoreSearchEnd ?? restoreSearchStart, maxLength));
+          }
+        }
+      }
+      if(!flashcardLibraryState.curriculumLesson && flashcardLibraryState.curriculumScrollTop > 0){
+        const restoreTop = flashcardLibraryState.curriculumScrollTop;
+        flashcardLibraryState.curriculumScrollTop = 0;
+        window.requestAnimationFrame(() => window.scrollTo({ top: restoreTop, behavior: 'auto' }));
+      }
+      return;
+    }
+    if(flashcardLibraryState.aiPromptBuilderOpen){
+      flashcardLibraryView.innerHTML = renderFlashcardAiPromptBuilder();
       return;
     }
     if(flashcardLibraryState.editingDeck){
@@ -3083,17 +3757,29 @@ if(window.HanziWriter){
           <section class="flashcard-data-section" aria-labelledby="flashcardBackupTitle">
             <header><span class="flashcard-data-section__eyebrow">SAO LƯU</span><h3 id="flashcardBackupTitle">Dữ liệu của bạn</h3></header>
             <div class="flashcard-data-action-list">
+              <button type="button" data-flashcard-content-import-trigger>
+                <span class="flashcard-data-action__icon import" aria-hidden="true">＋</span>
+                <span class="flashcard-data-action__copy"><b>Nhập nội dung</b><small>Nhận JSON, XLSX, CSV hoặc TXT; có xem trước trước khi lưu.</small></span>
+                <i aria-hidden="true">›</i>
+              </button>
+              <input type="file" accept=".json,.xlsx,.csv,.txt,application/json,text/csv,text/plain,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" data-flashcard-content-import-file hidden>
+              <button type="button" data-flashcard-template-toggle>
+                <span class="flashcard-data-action__icon export" aria-hidden="true">▦</span>
+                <span class="flashcard-data-action__copy"><b>Tải file mẫu</b><small>Mẫu cho một thẻ, một bộ nhiều thẻ và một nhóm nhiều bộ.</small></span>
+                <i aria-hidden="true">›</i>
+              </button>
+              ${renderFlashcardTemplatePanel()}
+              <button type="button" data-flashcard-import-trigger>
+                <span class="flashcard-data-action__icon import" aria-hidden="true">⇧</span>
+                <span class="flashcard-data-action__copy"><b>Khôi phục backup</b><small>Chỉ nhận file JSON được xuất từ mục Xuất dữ liệu.</small></span>
+                <i aria-hidden="true">›</i>
+              </button>
+              <input type="file" accept="application/json,.json" data-flashcard-import-file hidden>
               <button type="button" data-flashcard-export>
                 <span class="flashcard-data-action__icon export" aria-hidden="true">⇩</span>
                 <span class="flashcard-data-action__copy"><b>Xuất dữ liệu</b><small>Tải bộ thẻ và lịch sử học thành file JSON.</small></span>
                 <i aria-hidden="true">›</i>
               </button>
-              <button type="button" data-flashcard-import-trigger>
-                <span class="flashcard-data-action__icon import" aria-hidden="true">⇧</span>
-                <span class="flashcard-data-action__copy"><b>Nhập dữ liệu</b><small>Khôi phục từ file JSON đã sao lưu.</small></span>
-                <i aria-hidden="true">›</i>
-              </button>
-              <input type="file" accept="application/json,.json" data-flashcard-import-file hidden>
             </div>
           </section>
           <section class="flashcard-data-section" aria-labelledby="flashcardRestoreTitle">
@@ -3121,6 +3807,7 @@ if(window.HanziWriter){
               </button>
             </div>
           </section>
+          ${renderFlashcardImportPreview()}
         </div>`;
       return;
     }
@@ -3221,15 +3908,20 @@ if(window.HanziWriter){
         </header>
         ${flashcardLibraryState.message ? `<p class="flashcard-library-message">${escapeHtml(flashcardLibraryState.message)}</p>` : ''}
         <section class="flashcard-library-quick" aria-label="Học nhanh">
-          <a class="flashcard-quick-row" href="?study=hsk">
+          <button type="button" class="flashcard-quick-row" data-flashcard-curriculum-open>
             <span class="flashcard-quick-row__icon hsk" aria-hidden="true">课</span>
-            <span class="flashcard-quick-row__copy"><strong>HSK & Giáo trình</strong><small>Mở bài học hoặc tạo phiên ôn</small></span>
+            <span class="flashcard-quick-row__copy"><strong>HSK & Giáo trình</strong><small>Chọn bài, số từ hoặc tự chọn từ để tạo phiên</small></span>
             <span class="flashcard-quick-row__arrow" aria-hidden="true">›</span>
-          </a>
+          </button>
           <button type="button" class="flashcard-quick-row" data-hsk-flashcard-study-group="review-hard" ${dueCount ? '' : 'disabled'}>
             <span class="flashcard-quick-row__icon review" aria-hidden="true">↻</span>
             <span class="flashcard-quick-row__copy"><strong>Ôn hôm nay</strong><small>${dueCount ? `${dueCount} thẻ cần ôn lại` : 'Bạn đã hoàn thành hôm nay'}</small></span>
             <span class="flashcard-quick-row__action">${dueCount ? 'Ôn ngay' : '✓'}</span>
+          </button>
+          <button type="button" class="flashcard-quick-row flashcard-quick-row--ai" data-flashcard-ai-open>
+            <span class="flashcard-quick-row__icon ai" aria-hidden="true">AI</span>
+            <span class="flashcard-quick-row__copy"><strong>Tạo nội dung bằng AI</strong><small>Sinh prompt cho từ vựng, câu, ngữ pháp, hội thoại và đoạn văn</small></span>
+            <span class="flashcard-quick-row__arrow" aria-hidden="true">›</span>
           </button>
           <button type="button" class="flashcard-quick-row" data-flashcard-custom-open>
             <span class="flashcard-quick-row__icon custom" aria-hidden="true">＋</span>
@@ -3275,19 +3967,10 @@ if(window.HanziWriter){
   }
 
   async function importFlashcardBackup(file){
-    const parsed = JSON.parse(await file.text());
-    const decks = Array.isArray(parsed)
-      ? parsed
-      : (Array.isArray(parsed.decks) ? parsed.decks : (parsed.deck && typeof parsed.deck === 'object' ? [parsed.deck] : []));
-    const groups = Array.isArray(parsed?.groups) ? parsed.groups : [];
-    if(!decks.length && !groups.length && !parsed.results) throw new Error('File JSON không có dữ liệu Flashcard hợp lệ.');
-    if(groups.length) await importFlashcardGroups(groups);
-    if(decks.length) await importCustomDecks(decks);
-    if(parsed.results && typeof parsed.results === 'object'){
-      const merged = { ...readFlashcardResults(), ...parsed.results };
-      window.localStorage?.setItem(HSK_FLASHCARD_RESULTS_KEY, JSON.stringify(merged));
-    }
-    await renderFlashcardLibrary();
+    const parsed = await ImportCore.readFile(file, { simpleText: 'flashcard' });
+    const payload = ImportCore.buildFlashcardImport(parsed);
+    if(payload.format !== 'flashcard-backup') throw new Error('File JSON không phải backup Flashcard hợp lệ.');
+    return importFlashcardContent(payload, { restore: true });
   }
 
   function resetFlashcardHistory(){
@@ -3445,6 +4128,81 @@ if(window.HanziWriter){
     }
     const speakCard = target.closest('[data-flashcard-card-speak]');
     if(speakCard){ event.preventDefault(); event.stopPropagation(); speakChar(speakCard.dataset.flashcardCardSpeak || ''); return; }
+    if(target.closest('[data-flashcard-curriculum-open]')){ await openFlashcardCurriculumBrowser(); return; }
+    if(target.closest('[data-flashcard-ai-open]')){
+      flashcardLibraryState.aiPromptBuilderOpen = true;
+      flashcardLibraryState.aiPromptCopied = false;
+      await renderFlashcardLibrary();
+      return;
+    }
+    if(target.closest('[data-flashcard-ai-close]')){
+      syncAiPromptFieldsFromView();
+      flashcardLibraryState.aiPromptBuilderOpen = false;
+      flashcardLibraryState.aiPromptCopied = false;
+      await renderFlashcardLibrary();
+      return;
+    }
+    const aiType = target.closest('[data-flashcard-ai-type]');
+    if(aiType){
+      syncAiPromptFieldsFromView();
+      flashcardLibraryState.aiPromptType = aiType.dataset.flashcardAiType || 'vocabulary';
+      flashcardLibraryState.aiPromptCopied = false;
+      await renderFlashcardLibrary();
+      return;
+    }
+    if(target.closest('[data-flashcard-ai-copy]')){ await copyAiPrompt(); return; }
+    if(target.closest('[data-flashcard-curriculum-close]')){
+      flashcardLibraryState.curriculumBrowserOpen = false;
+      flashcardLibraryState.curriculumLesson = null;
+      flashcardLibraryState.curriculumLessonKey = '';
+      flashcardLibraryState.curriculumQuery = '';
+      flashcardLibraryState.curriculumScrollTop = 0;
+      await renderFlashcardLibrary();
+      return;
+    }
+    if(target.closest('[data-flashcard-curriculum-lesson-back]')){
+      flashcardLibraryState.curriculumLesson = null;
+      flashcardLibraryState.curriculumLessonKey = '';
+      flashcardLibraryState.curriculumQuery = '';
+      await renderFlashcardLibrary();
+      return;
+    }
+    const curriculumSource = target.closest('[data-flashcard-curriculum-source]');
+    if(curriculumSource){ await selectFlashcardCurriculumSource(curriculumSource.dataset.flashcardCurriculumSource || 'new_hsk'); return; }
+    const curriculumLevel = target.closest('[data-flashcard-curriculum-level]');
+    if(curriculumLevel){ await selectFlashcardCurriculumLevel(curriculumLevel.dataset.flashcardCurriculumLevel); return; }
+    const curriculumLesson = target.closest('[data-flashcard-curriculum-lesson]');
+    if(curriculumLesson){ await openFlashcardCurriculumLesson(curriculumLesson.dataset.flashcardCurriculumLesson || ''); return; }
+    const curriculumContent = target.closest('[data-flashcard-curriculum-content]');
+    if(curriculumContent){
+      const type = curriculumContent.dataset.flashcardCurriculumContent || 'vocabulary';
+      if(curriculumContentTypes(flashcardLibraryState.curriculumLesson).some(row => row.id === type)){
+        flashcardLibraryState.curriculumContentType = type;
+        const cards = currentFlashcardCurriculumCards();
+        flashcardLibraryState.curriculumCountMode = cards.length > 10 ? '10' : 'all';
+        flashcardLibraryState.curriculumCustomCount = Math.min(10, cards.length || 10);
+        flashcardLibraryState.curriculumSelectedIds = new Set(cards.map(card => card.id));
+        flashcardLibraryState.curriculumQuery = '';
+        await renderFlashcardLibrary();
+      }
+      return;
+    }
+    const curriculumCount = target.closest('[data-flashcard-curriculum-count]');
+    if(curriculumCount && !curriculumCount.disabled){
+      flashcardLibraryState.curriculumCountMode = curriculumCount.dataset.flashcardCurriculumCount || 'all';
+      await renderFlashcardLibrary();
+      return;
+    }
+    if(target.closest('[data-flashcard-curriculum-select-all]')){
+      const cards = currentFlashcardCurriculumCards();
+      const query = normalizeLibrarySearch(flashcardLibraryState.curriculumQuery || '');
+      const visible = cards.filter(card => !query || normalizeLibrarySearch(curriculumCardSearchText(card)).includes(query));
+      const allSelected = visible.length && visible.every(card => flashcardLibraryState.curriculumSelectedIds.has(card.id));
+      visible.forEach(card => allSelected ? flashcardLibraryState.curriculumSelectedIds.delete(card.id) : flashcardLibraryState.curriculumSelectedIds.add(card.id));
+      await renderFlashcardLibrary();
+      return;
+    }
+    if(target.closest('[data-flashcard-curriculum-start]')){ startFlashcardCurriculumSession(); return; }
     if(target.closest('[data-flashcard-tools-open]')){
       flashcardLibraryState.dataManagerOpen = true;
       flashcardLibraryState.message = '';
@@ -3763,12 +4521,24 @@ if(window.HanziWriter){
       await saveCustomDeck(flashcardLibraryState.editingDeck); flashcardLibraryState.editingDeck = null; await renderFlashcardLibrary(); return;
     }
     if(target.closest('[data-flashcard-export]')){ try{ await exportFlashcardBackup(); }catch(err){ window.alert(err.message || 'Không xuất được JSON.'); } return; }
+    if(target.closest('[data-flashcard-content-import-trigger]')){ flashcardLibraryView.querySelector('[data-flashcard-content-import-file]')?.click(); return; }
+    if(target.closest('[data-flashcard-template-toggle]')){ flashcardLibraryState.templateMenuOpen = !flashcardLibraryState.templateMenuOpen; await renderFlashcardLibrary(); return; }
     if(target.closest('[data-flashcard-import-trigger]')){ flashcardLibraryView.querySelector('[data-flashcard-import-file]')?.click(); return; }
+    if(target.closest('[data-flashcard-import-confirm]')){ try{ await confirmFlashcardImport(); }catch(err){ window.alert(err.message || 'Không nhập được nội dung.'); } return; }
+    if(target.closest('[data-flashcard-import-cancel]')){ cancelFlashcardImport(); return; }
     if(target.closest('[data-flashcard-reset-history]')){ resetFlashcardHistory(); return; }
     if(target.closest('[data-flashcard-reset-session]')){ resetActiveFlashcardSession(); return; }
   }
 
   async function handleFlashcardLibraryChange(event){
+    const curriculumCard = event.target.closest('[data-flashcard-curriculum-card]');
+    if(curriculumCard){
+      const id = curriculumCard.dataset.flashcardCurriculumCard || '';
+      if(curriculumCard.checked) flashcardLibraryState.curriculumSelectedIds.add(id);
+      else flashcardLibraryState.curriculumSelectedIds.delete(id);
+      await renderFlashcardLibrary();
+      return;
+    }
     const tokenSelect=event.target.closest('[data-flashcard-token-select]');
     if(tokenSelect && flashcardLibraryState.editingDeck){
       const deck=ensureDeckEditorState(flashcardLibraryState.editingDeck);
@@ -3820,15 +4590,48 @@ if(window.HanziWriter){
     }
     const csvInput = event.target.closest('[data-flashcard-csv-file]');
     if(csvInput?.files?.[0]){try{await importQuickCsvFile(csvInput.files[0]);}catch(err){window.alert(err.message||'Không đọc được CSV.');}csvInput.value='';return;}
+    const contentInput = event.target.closest('[data-flashcard-content-import-file]');
+    if(contentInput?.files?.[0]){
+      try{ await prepareFlashcardImport(contentInput.files[0], 'content'); }
+      catch(err){ window.alert(err.message || 'Không đọc được file nội dung.'); }
+      contentInput.value = '';
+      return;
+    }
     const input = event.target.closest('[data-flashcard-import-file]');
     if(!input?.files?.[0]) return;
-    try{ await importFlashcardBackup(input.files[0]); window.alert('Đã nhập dữ liệu Flashcard.'); }
-    catch(err){ window.alert(err.message || 'Không nhập được file JSON.'); }
+    try{ await prepareFlashcardImport(input.files[0], 'restore'); }
+    catch(err){ window.alert(err.message || 'Không đọc được file backup JSON.'); }
     input.value = '';
   }
 
   let flashcardLibrarySearchTimer = 0;
   function handleFlashcardLibraryInput(event){
+    const aiField = event.target.closest('[data-flashcard-ai-field]');
+    if(aiField){
+      const key = aiField.dataset.flashcardAiField;
+      if(key){
+        flashcardLibraryState.aiPromptFields = { ...(flashcardLibraryState.aiPromptFields || {}), [key]: key === 'count' ? Math.max(1, Number(aiField.value) || 1) : aiField.value };
+        flashcardLibraryState.aiPromptCopied = false;
+        const output = flashcardLibraryView?.querySelector('[data-flashcard-ai-output]');
+        if(output) output.value = getAiPromptOutput();
+      }
+      return;
+    }
+    const curriculumCountInput = event.target.closest('[data-flashcard-curriculum-custom-count]');
+    if(curriculumCountInput){
+      const max = currentFlashcardCurriculumCards().length || 1;
+      flashcardLibraryState.curriculumCustomCount = Math.max(1, Math.min(max, Number(curriculumCountInput.value) || 1));
+      window.clearTimeout(flashcardLibrarySearchTimer);
+      flashcardLibrarySearchTimer = window.setTimeout(() => renderFlashcardLibrary(), 120);
+      return;
+    }
+    const curriculumSearch = event.target.closest('[data-flashcard-curriculum-search]');
+    if(curriculumSearch){
+      flashcardLibraryState.curriculumQuery = curriculumSearch.value;
+      window.clearTimeout(flashcardLibrarySearchTimer);
+      flashcardLibrarySearchTimer = window.setTimeout(() => renderFlashcardLibrary(), 160);
+      return;
+    }
     const tokenWord=event.target.closest('[data-flashcard-token-word]');
     if(tokenWord && flashcardLibraryState.editingDeck){
       const deck=ensureDeckEditorState(flashcardLibraryState.editingDeck);
@@ -6120,7 +6923,10 @@ if(window.HanziWriter){
         id: String(card.id || ''),
         word: String(card.word || ''),
         pinyin: String(card.pinyin || ''),
-        meaningVi: String(card.meaningVi || '')
+        meaningVi: String(card.meaningVi || ''),
+        cardType: String(card.cardType || 'vocabulary'),
+        title: String(card.title || ''),
+        grammar: card.grammar && typeof card.grammar === 'object' ? card.grammar : null
       })).filter(card => card.id && card.word),
       settings: {
         mode: session.settings?.mode || 'flashcard',
@@ -7151,8 +7957,8 @@ if(window.HanziWriter){
 
   function renderFlashcardSetup(session){
     const settings = session.settings;
-    const contextNoun = session.origin === 'topic' ? 'chủ đề' : (session.origin === 'lesson' ? 'bài' : 'bộ thẻ');
-    const backLabel = session.origin === 'topic' ? '← Quay lại chủ đề' : ((session.origin === 'lesson' || session.origin === 'external') ? '← Quay lại bài' : '← Quay lại Thẻ');
+    const contextNoun = session.origin === 'topic' ? 'chủ đề' : (['lesson', 'curriculum-library'].includes(session.origin) ? 'bài' : 'bộ thẻ');
+    const backLabel = session.origin === 'topic' ? '← Quay lại chủ đề' : ((['lesson', 'external', 'curriculum-library'].includes(session.origin)) ? '← Quay lại bài' : '← Quay lại Thẻ');
     const modes = [
       ['flashcard', 'Flashcard', 'Hán tự → lật xem pinyin và nghĩa'],
       ['reverse', 'Đảo ngược', 'Nghĩa Việt → đoán chữ Hán'],
@@ -7500,6 +8306,14 @@ if(window.HanziWriter){
 
   function renderFlashcardFace(session, card, type){
     const answerVisible = session.flipped;
+    if(card?.cardType === 'grammar'){
+      const grammar = card.grammar || {};
+      const examples = Array.isArray(grammar.examples) ? grammar.examples : [];
+      if(!answerVisible){
+        return `<div class="hsk-flashcard-front hsk-flashcard-front--grammar"><small>NGỮ PHÁP</small><h3>${escapeHtml(card.title || grammar.topic || 'Ngữ pháp')}</h3><strong>${escapeHtml(grammar.pattern || card.word || '')}</strong><p>Bấm để xem giải thích và ví dụ</p></div>`;
+      }
+      return `<div class="hsk-flashcard-answer hsk-flashcard-answer--grammar"><small>NGỮ PHÁP</small><h3>${escapeHtml(card.title || grammar.topic || 'Ngữ pháp')}</h3><strong>${escapeHtml(grammar.pattern || card.word || '')}</strong>${grammar.explanation || card.meaningVi ? `<p>${escapeHtml(grammar.explanation || card.meaningVi)}</p>` : ''}${grammar.tips ? `<div class="grammar-card-note"><b>Mẹo</b><span>${escapeHtml(grammar.tips)}</span></div>` : ''}${grammar.attentions ? `<div class="grammar-card-note is-attention"><b>Lưu ý</b><span>${escapeHtml(grammar.attentions)}</span></div>` : ''}${examples.length ? `<div class="grammar-card-examples">${examples.slice(0,3).map(example => `<article><b>${escapeHtml(example.hanzi || '')}</b>${session.settings.showPinyin && example.pinyin ? `<i>${escapeHtml(example.pinyin)}</i>` : ''}<span>${escapeHtml(example.meaning || '')}</span></article>`).join('')}</div>` : ''}</div>`;
+    }
     if(type === 'listen' && !answerVisible){
       return `
         <div class="hsk-flashcard-listen-front">

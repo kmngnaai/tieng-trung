@@ -6,6 +6,7 @@
   const SourceAdapters = window.ListeningSourceAdapters;
   const ActivityBuilders = window.ListeningActivityBuilders;
   const LibraryStore = window.ListeningLibraryStore;
+  const ImportCore = window.TiengTrungImportCore;
   const app = document.getElementById('app');
   const SETTINGS_KEY = 'tieng-trung-listening-settings-v1';
   const PROGRESS_KEY = 'tieng-trung-listening-progress-v1';
@@ -23,8 +24,7 @@
     autoCheck: true,
     autoRate: true,
     autoNext: true,
-    autoNextSeconds: 2,
-    sentenceCount: 'all'
+    autoNextSeconds: 2
   };
 
   const state = {
@@ -63,6 +63,10 @@
     libraryManagerDeckId: '',
     libraryDialog: null,
     libraryNotice: '',
+    libraryTemplateMenuOpen: false,
+    libraryImportPreview: null,
+    libraryImportPayload: null,
+    libraryImportMode: 'content',
     preparedNext: null,
     sessionWrongItems: [],
     sessionCheckedIds: [],
@@ -112,7 +116,12 @@
     groupContextExpanded: false,
     groupTranscriptOpen: false,
     groupPreviewSpeaking: false,
-    modeScrollTop: 0
+    batchSentenceSetupOpen: false,
+    batchSentenceCountMode: '10',
+    batchSentenceCustomCount: 10,
+    aiPromptType: 'sentence',
+    aiPromptFields: { level: 'HSK 1', topic: '', count: 10, inputText: '', requirements: '' },
+    aiPromptCopied: false
   };
 
   // Dùng một phần tử audio cố định ở ngoài #app. Safari/iPhone cấp quyền phát
@@ -225,42 +234,6 @@
     return `${item.sourceType || 'unknown'}:${item.sourceId || ''}:${item.lessonId || ''}:${item.id}:${mode}`;
   }
 
-
-  function canonicalProgressRating(item) {
-    const canonicalId = String(item && (item.canonicalItemId || item.id) || '');
-    if (!canonicalId) return '';
-    let latest = null;
-    Object.values(state.progress || {}).forEach((entry) => {
-      const stored = entry && entry.item;
-      const storedId = String(stored && (stored.canonicalItemId || stored.id) || '');
-      if (storedId !== canonicalId || !entry.rating) return;
-      if (!latest || String(entry.lastReviewedAt || '') > String(latest.lastReviewedAt || '')) latest = entry;
-    });
-    return latest && latest.rating || '';
-  }
-
-  function prioritizeLearningItems(items) {
-    const rank = { review: 0, '': 1, hard: 2, easy: 3 };
-    return (items || []).map((item, index) => ({ item, index, rating: canonicalProgressRating(item) }))
-      .sort((left, right) => (rank[left.rating] ?? 1) - (rank[right.rating] ?? 1) || left.index - right.index)
-      .map((row) => row.item);
-  }
-
-  function normalizedSentenceCount(total) {
-    if (state.settings.sentenceCount === 'all') return total;
-    return Math.max(1, Math.min(Number(state.settings.sentenceCount) || total, total));
-  }
-
-  function limitedSentencePool(items) {
-    const prioritized = prioritizeLearningItems(items || []);
-    return prioritized.slice(0, normalizedSentenceCount(prioritized.length));
-  }
-
-  function restoreModeScroll() {
-    const top = Math.max(0, Number(state.modeScrollTop) || 0);
-    requestAnimationFrame(() => window.scrollTo({ top, behavior: 'instant' }));
-  }
-
   function saveSettings() {
     saveJson(SETTINGS_KEY, state.settings);
   }
@@ -314,6 +287,7 @@
     else if (state.screen === 'custom') renderCustomLibrary();
     else if (state.screen === 'customGroup') renderCustomGroupScreen();
     else if (state.screen === 'customTrash') renderLibraryTrash();
+    else if (state.screen === 'aiPrompt') renderListeningAiPromptBuilder();
     else if (state.screen === 'mode') renderModeChoice();
     else if (state.screen === 'preview') renderContentPreview();
     else if (state.screen === 'practice') renderPractice();
@@ -359,7 +333,7 @@
             <button class="source-card" type="button" data-action="open-custom">
               <span class="source-icon">自</span>
               <strong>Bộ tự tạo</strong>
-              <small>Nhập JSON, nghe có hoặc không transcript</small>
+              <small>Nhập XLSX, CSV, TXT hoặc JSON · đủ từ, câu, hội thoại, đoạn</small>
             </button>
           </div>
         </section>
@@ -685,12 +659,116 @@
     return (deck.cards || []).filter((card) => card.listenEnabled !== false).length;
   }
 
+  function deckContentSummary(deck) {
+    const stats = deck.dataset?.stats || {};
+    const parts = [];
+    if (stats.wordCount) parts.push(`${stats.wordCount} từ`);
+    if (stats.sentenceCount) parts.push(`${stats.sentenceCount} câu`);
+    if (stats.dialogueCount) parts.push(`${stats.dialogueCount} hội thoại`);
+    if (stats.passageCount) parts.push(`${stats.passageCount} đoạn`);
+    return parts.join(' · ') || `${deckEnabledCount(deck)} nội dung`;
+  }
+
+  function libraryTemplatePanel() {
+    if (!state.libraryTemplateMenuOpen) return '';
+    return `<section class="library-template-panel" aria-label="Tải file mẫu Nghe">
+      <div><strong>File mẫu bộ Nghe</strong><small>XLSX có sheet hướng dẫn và từng trường hợp riêng. CSV/TXT dùng bảng dài thống nhất.</small></div>
+      <div class="library-template-links">
+        <a href="templates/nghe-mau-day-du.xlsx" download>Mẫu XLSX</a>
+        <a href="templates/nghe-mau-day-du.csv" download>Mẫu CSV</a>
+        <a href="templates/nghe-mau-day-du.txt" download>Mẫu TXT</a>
+        <a href="templates/nghe-mau-day-du.json" download>Mẫu JSON</a>
+        <a href="templates/README.md" target="_blank" rel="noopener">Hướng dẫn</a>
+      </div>
+    </section>`;
+  }
+
   function libraryToolbar() {
-    return `<div class="library-toolbar">
-      <label class="library-action library-action--primary">Nhập JSON<input id="libraryFileInput" type="file" accept="application/json,.json" hidden /></label>
+    return `<div class="library-toolbar library-toolbar--import">
+      <label class="library-action library-action--primary">Nhập file<input id="libraryFileInput" type="file" accept=".json,.xlsx,.csv,.txt,application/json,text/csv,text/plain,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden /></label>
+      <button class="library-action library-action--ai" data-action="open-listening-ai-prompt">Tạo bằng AI</button>
+      <button class="library-action" data-action="toggle-library-templates">Tải mẫu</button>
+      <label class="library-action">Khôi phục JSON<input id="libraryRestoreFileInput" type="file" accept="application/json,.json" hidden /></label>
       <button class="library-action" data-action="export-library-all">Xuất tất cả</button>
       <button class="library-action" data-action="open-library-trash">Thùng rác${state.libraryTrash.length ? ` (${state.libraryTrash.length})` : ''}</button>
-    </div>`;
+    </div>${libraryTemplatePanel()}`;
+  }
+
+  function listeningAiPromptMeta() {
+    const api = window.TiengTrungAiPromptTemplates;
+    const type = state.aiPromptType || 'sentence';
+    return api?.TYPE_META?.[type] || { label: 'Câu', icon: '句', inputLabel: 'Dữ liệu đầu vào', inputPlaceholder: '', countLabel: 'Số lượng' };
+  }
+
+  function listeningAiPromptOutput() {
+    const api = window.TiengTrungAiPromptTemplates;
+    if (!api?.build) return 'Không tải được bộ mẫu prompt.';
+    return api.build(state.aiPromptType, state.aiPromptFields || {});
+  }
+
+  function renderListeningAiPromptBuilder() {
+    const api = window.TiengTrungAiPromptTemplates;
+    const meta = listeningAiPromptMeta();
+    const fields = state.aiPromptFields || {};
+    const types = Object.entries(api?.TYPE_META || {});
+    app.innerHTML = `
+      ${pageHeader('Tạo nội dung bằng AI', 'Sinh prompt để sao chép', true)}
+      <main class="listen-main listening-ai-main">
+        <section class="listening-ai-intro">
+          <p class="eyebrow">Không cần API</p>
+          <h2>Tạo dữ liệu cho bộ Nghe</h2>
+          <p>Chọn loại nội dung, nhập vài thông tin rồi sao chép prompt sang ChatGPT hoặc AI khác. Kết quả có thể đưa vào file mẫu để nhập lại.</p>
+        </section>
+        <section class="listening-ai-card">
+          <div class="listening-ai-types" role="tablist" aria-label="Chọn loại nội dung">
+            ${types.map(([id, row]) => `<button type="button" class="${id === state.aiPromptType ? 'active' : ''}" data-action="set-listening-ai-type" data-type="${id}"><span>${row.icon}</span><b>${escapeHtml(row.label)}</b></button>`).join('')}
+          </div>
+          <div class="listening-ai-fields">
+            <label><span>Trình độ</span><input type="text" data-listening-ai-field="level" value="${escapeHtml(fields.level || '')}" placeholder="Ví dụ: HSK 1"></label>
+            <label><span>Chủ đề</span><input type="text" data-listening-ai-field="topic" value="${escapeHtml(fields.topic || '')}" placeholder="Ví dụ: Giới thiệu bản thân"></label>
+            <label class="is-count"><span>${escapeHtml(meta.countLabel || 'Số lượng')}</span><input type="number" min="1" max="200" data-listening-ai-field="count" value="${escapeHtml(fields.count || 10)}"></label>
+            <label class="is-wide"><span>${escapeHtml(meta.inputLabel || 'Dữ liệu đầu vào')}</span><textarea rows="7" data-listening-ai-field="inputText" placeholder="${escapeHtml(meta.inputPlaceholder || '')}">${escapeHtml(fields.inputText || '')}</textarea><small>Có thể dán hàng loạt, mỗi mục một dòng.</small></label>
+            <label class="is-wide"><span>Yêu cầu bổ sung <small>không bắt buộc</small></span><textarea rows="3" data-listening-ai-field="requirements" placeholder="Ví dụ: chỉ dùng từ trong danh sách, câu ngắn để luyện nghe...">${escapeHtml(fields.requirements || '')}</textarea></label>
+          </div>
+        </section>
+        <section class="listening-ai-output">
+          <header><div><p class="eyebrow">Prompt đã tạo</p><h2>${escapeHtml(meta.label || 'Nội dung')}</h2></div><button type="button" data-action="copy-listening-ai-prompt">${state.aiPromptCopied ? '✓ Đã sao chép' : 'Sao chép'}</button></header>
+          <textarea readonly rows="18" data-listening-ai-output>${escapeHtml(listeningAiPromptOutput())}</textarea>
+          <p>Dán prompt vào AI, kiểm tra nội dung rồi đưa kết quả vào mẫu XLSX/CSV/TXT/JSON của Bộ tự tạo.</p>
+        </section>
+      </main>
+      ${bottomNav()}
+    `;
+  }
+
+  function syncListeningAiPromptFields() {
+    const next = Object.assign({}, state.aiPromptFields || {});
+    app.querySelectorAll('[data-listening-ai-field]').forEach((input) => {
+      const key = input.dataset.listeningAiField;
+      if (key) next[key] = key === 'count' ? Math.max(1, Number(input.value) || 1) : input.value;
+    });
+    state.aiPromptFields = next;
+    const output = app.querySelector('[data-listening-ai-output]');
+    if (output) output.value = listeningAiPromptOutput();
+  }
+
+  async function copyListeningAiPrompt() {
+    syncListeningAiPromptFields();
+    const prompt = listeningAiPromptOutput();
+    try {
+      await navigator.clipboard.writeText(prompt);
+    } catch (error) {
+      const output = app.querySelector('[data-listening-ai-output]');
+      output?.focus();
+      output?.select();
+      document.execCommand?.('copy');
+    }
+    state.aiPromptCopied = true;
+    render();
+    window.setTimeout(() => {
+      state.aiPromptCopied = false;
+      if (state.screen === 'aiPrompt') render();
+    }, 1500);
   }
 
   function renderCustomLibrary() {
@@ -721,6 +799,7 @@
       ${bottomNav()}
       ${settingsSheet()}
       ${renderLibraryDialog()}
+      ${renderLibraryImportPreview()}
     `;
   }
 
@@ -730,10 +809,11 @@
     return `<article class="library-card library-card--group">
       <button class="library-card__main" data-action="open-library-group" data-group-id="${escapeHtml(group.id)}">
         <span class="library-card__icon">组</span>
-        <span class="library-card__copy"><strong>${escapeHtml(group.name)}</strong><small>${decks.length} bộ · ${cardCount} câu${group.description ? ` · ${escapeHtml(group.description)}` : ''}</small></span>
+        <span class="library-card__copy"><strong>${escapeHtml(group.name)}</strong><small>${decks.length} bộ · ${cardCount} nội dung${group.description ? ` · ${escapeHtml(group.description)}` : ''}</small></span>
         <b aria-hidden="true">›</b>
       </button>
       <div class="library-card__actions">
+        <button data-action="study-library-group" data-group-id="${escapeHtml(group.id)}" ${decks.length ? '' : 'disabled'}>Học toàn nhóm</button>
         <button data-action="export-library-group" data-group-id="${escapeHtml(group.id)}">Xuất nhóm</button>
         <button class="danger-text" data-action="request-delete-library-group" data-group-id="${escapeHtml(group.id)}">Xóa nhóm</button>
       </div>
@@ -747,11 +827,11 @@
     return `<article class="library-card library-card--deck">
       <button class="library-card__main" data-action="open-library-deck" data-deck-id="${escapeHtml(deck.id)}">
         <span class="library-card__icon">段</span>
-        <span class="library-card__copy"><strong>${escapeHtml(deck.name)}</strong><small>${enabledCount}/${(deck.cards || []).length} câu luyện${group ? ` · ${escapeHtml(group.name)}` : ''}${deck.description ? ` · ${escapeHtml(deck.description)}` : ''}</small></span>
+        <span class="library-card__copy"><strong>${escapeHtml(deck.name)}</strong><small>${deckContentSummary(deck)} · ${enabledCount}/${(deck.cards || []).length} đang bật${group ? ` · ${escapeHtml(group.name)}` : ''}${deck.description ? ` · ${escapeHtml(deck.description)}` : ''}</small></span>
         <b aria-hidden="true">›</b>
       </button>
       <div class="library-card__actions">
-        <button data-action="manage-library-deck" data-deck-id="${escapeHtml(deck.id)}">${isManaging ? 'Đóng danh sách' : 'Chọn câu'}</button>
+        <button data-action="manage-library-deck" data-deck-id="${escapeHtml(deck.id)}">${isManaging ? 'Đóng danh sách' : 'Chọn nội dung'}</button>
         <button data-action="export-library-deck" data-deck-id="${escapeHtml(deck.id)}">Xuất bộ</button>
         <button class="danger-text" data-action="request-delete-library-deck" data-deck-id="${escapeHtml(deck.id)}">Xóa</button>
       </div>
@@ -781,7 +861,8 @@
       ${pageHeader(group.name, `${decks.length} bộ · ${cardCount} câu`, true)}
       <main class="listen-main library-main">
         <div class="library-toolbar">
-          <button class="library-action library-action--primary" data-action="export-library-group" data-group-id="${escapeHtml(group.id)}">Xuất nhóm</button>
+          <button class="library-action library-action--primary" data-action="study-library-group" data-group-id="${escapeHtml(group.id)}" ${decks.length ? '' : 'disabled'}>Học toàn nhóm</button>
+          <button class="library-action" data-action="export-library-group" data-group-id="${escapeHtml(group.id)}">Xuất nhóm</button>
           <button class="library-action library-action--danger" data-action="request-delete-library-group" data-group-id="${escapeHtml(group.id)}">Xóa nhóm</button>
         </div>
         ${group.description ? `<section class="notice-card"><span>${escapeHtml(group.description)}</span></section>` : ''}
@@ -795,6 +876,7 @@
       ${bottomNav()}
       ${settingsSheet()}
       ${renderLibraryDialog()}
+      ${renderLibraryImportPreview()}
     `;
   }
 
@@ -815,6 +897,7 @@
       </main>
       ${bottomNav()}
       ${renderLibraryDialog()}
+      ${renderLibraryImportPreview()}
     `;
   }
 
@@ -830,6 +913,29 @@
         <button class="danger-text" data-action="request-delete-library-trash" data-trash-id="${escapeHtml(item.id)}">Xóa vĩnh viễn</button>
       </div>
     </article>`;
+  }
+
+  function renderLibraryImportPreview() {
+    const preview = state.libraryImportPreview;
+    if (!preview) return '';
+    const stats = preview.stats || {};
+    const errors = preview.errors || [];
+    const warnings = preview.warnings || [];
+    return `<div class="library-dialog-backdrop" data-action="cancel-library-import">
+      <section class="library-dialog library-import-preview" role="dialog" aria-modal="true" aria-labelledby="libraryImportTitle" onclick="event.stopPropagation()">
+        <p class="eyebrow">${state.libraryImportMode === 'restore' ? 'Khôi phục backup' : 'Xem trước trước khi nhập'}</p>
+        <h2 id="libraryImportTitle">${escapeHtml(preview.fileName || 'File dữ liệu')}</h2>
+        <div class="library-import-stats">
+          <span><b>${stats.groupCount || 0}</b> nhóm</span><span><b>${stats.deckCount || 0}</b> bộ</span>
+          <span><b>${stats.wordCount || 0}</b> từ</span><span><b>${stats.sentenceCount || 0}</b> câu</span>
+          <span><b>${stats.dialogueCount || 0}</b> hội thoại</span><span><b>${stats.passageCount || 0}</b> đoạn</span>
+        </div>
+        ${errors.length ? `<div class="library-import-messages is-error"><strong>Lỗi cần sửa</strong>${errors.map((message) => `<p>${escapeHtml(message)}</p>`).join('')}</div>` : ''}
+        ${warnings.length ? `<details class="library-import-messages is-warning"><summary>${warnings.length} cảnh báo</summary>${warnings.slice(0, 20).map((message) => `<p>${escapeHtml(message)}</p>`).join('')}${warnings.length > 20 ? `<p>… và ${warnings.length - 20} cảnh báo khác.</p>` : ''}</details>` : ''}
+        <p class="library-import-note">${state.libraryImportMode === 'restore' ? 'Đây là luồng khôi phục backup. ID trùng có thể cập nhật dữ liệu cũ.' : 'Nhập nội dung mới không ghi đè âm thầm. ID trùng sẽ được đổi sang ID mới.'}</p>
+        <div class="library-dialog-actions"><button data-action="cancel-library-import">Hủy</button><button class="primary-button" data-action="confirm-library-import" ${errors.length ? 'disabled' : ''}>${state.libraryImportMode === 'restore' ? 'Khôi phục' : 'Nhập nội dung'}</button></div>
+      </section>
+    </div>`;
   }
 
   function renderLibraryDialog() {
@@ -865,17 +971,43 @@
     </div>`;
   }
 
-  async function importCustomFile(file) {
+  async function prepareCustomImport(file, mode = 'content') {
     state.error = '';
     state.libraryNotice = '';
     try {
-      const data = JSON.parse(await file.text());
-      const summary = await LibraryStore.importData(data, file.name);
-      await refreshListeningLibrary();
-      state.libraryNotice = `Đã nhập ${summary.groupCount} nhóm, ${summary.deckCount} bộ và ${summary.cardCount} câu.`;
+      if (!ImportCore) throw new Error('Thiếu modules/shared/import-core.js.');
+      const parsed = await ImportCore.readFile(file);
+      const payload = ImportCore.buildListeningImport(parsed);
+      if (mode === 'restore' && payload.format !== 'listening-backup') throw new Error('File này không phải backup thư viện Nghe. Hãy dùng “Nhập file” để nhập nội dung mới.');
+      state.libraryImportMode = mode;
+      state.libraryImportPayload = payload;
+      state.libraryImportPreview = { ...payload, fileName: file.name };
     } catch (error) {
-      state.error = `Không nhập được JSON: ${error.message || error}`;
+      state.error = `Không đọc được file: ${error.message || error}`;
+      state.libraryImportPreview = null;
+      state.libraryImportPayload = null;
     }
+    render();
+  }
+
+  async function confirmCustomImport() {
+    const payload = state.libraryImportPayload;
+    if (!payload) return;
+    try {
+      const summary = await LibraryStore.importData(payload, state.libraryImportPreview?.fileName || 'Bộ tự tạo', { restore: state.libraryImportMode === 'restore' });
+      state.libraryImportPreview = null;
+      state.libraryImportPayload = null;
+      await refreshListeningLibrary();
+      state.libraryNotice = `Đã nhập ${summary.groupCount} nhóm, ${summary.deckCount} bộ, ${summary.wordCount || 0} từ, ${summary.sentenceCount || 0} câu, ${summary.dialogueCount || 0} hội thoại và ${summary.passageCount || 0} đoạn.`;
+    } catch (error) {
+      state.error = `Không nhập được dữ liệu: ${error.message || error}`;
+    }
+    render();
+  }
+
+  function cancelCustomImport() {
+    state.libraryImportPreview = null;
+    state.libraryImportPayload = null;
     render();
   }
 
@@ -887,40 +1019,52 @@
     render();
   }
 
-  async function openCustomDeck(deckId) {
-    const deck = await LibraryStore.getDeck(deckId);
-    if (!deck) {
-      state.error = 'Bộ không còn tồn tại.';
-      render();
-      return;
-    }
-    const enabled = (deck.cards || []).filter((card) => card.listenEnabled !== false);
-    if (!enabled.length) {
-      state.error = 'Bộ này chưa có câu nào được bật cho luyện nghe.';
-      render();
-      return;
-    }
+  function openCustomDataset(dataset, lesson) {
+    const validation = SourceAdapters.validateDataset(dataset);
+    if (!validation.ok) throw new Error(validation.errors.join(' · '));
     state.source = 'custom';
-    state.dataset = null;
+    state.dataset = dataset;
     state.activityDescriptor = null;
     state.sentenceFilter = 'all';
-    state.lesson = { id: deck.id, title: deck.name, name: deck.name, groupId: deck.groupId, description: deck.description };
-    state.lessonData = null;
+    state.lesson = lesson;
+    state.lessonData = dataset;
     state.practiceItems = null;
-    state.items = enabled.map((card) => ({
-      id: card.id,
-      text: card.word,
-      pinyin: card.pinyin || '',
-      meaning: card.meaningVi || '',
-      speaker: card.speaker || '',
-      sourceType: 'custom',
-      sourceId: deck.id,
-      sourceTitle: deck.name,
-      lessonId: deck.id
-    }));
-    state.vocabulary = [];
+    state.items = dataset.sentences.slice();
+    state.vocabulary = dataset.words.slice();
     state.screen = 'mode';
     state.error = '';
+  }
+
+  async function openCustomDeck(deckId) {
+    const deck = await LibraryStore.getDeck(deckId);
+    if (!deck) { state.error = 'Bộ không còn tồn tại.'; render(); return; }
+    try {
+      const normalized = ImportCore.normalizeExistingListeningDeck(deck);
+      const enabledIds = new Set((normalized.cards || []).filter((card) => card.listenEnabled !== false).map((card) => card.id));
+      const dataset = structuredCloneSafe(normalized.dataset);
+      dataset.words = dataset.words.filter((item) => enabledIds.has(item.id));
+      dataset.sentences = dataset.sentences.filter((item) => enabledIds.has(item.id));
+      const sentenceIds = new Set(dataset.sentences.map((item) => item.id));
+      dataset.groups = dataset.groups.map((group) => ({ ...group, items: group.items.filter((item) => sentenceIds.has(item.canonicalSentenceId)) })).filter((group) => group.items.length >= 2);
+      ImportCore.finalizeListeningDataset(dataset);
+      if (!dataset.words.length && !dataset.sentences.length) throw new Error('Bộ này chưa có nội dung nào được bật cho luyện nghe.');
+      openCustomDataset(dataset, { id: deck.id, title: deck.name, name: deck.name, groupId: deck.groupId, description: deck.description });
+    } catch (error) {
+      state.error = error.message || String(error);
+    }
+    render();
+  }
+
+  async function studyCustomGroup(groupId) {
+    const group = state.libraryGroups.find((entry) => entry.id === groupId);
+    const decks = libraryGroupDecks(groupId).filter((deck) => deckEnabledCount(deck) > 0);
+    if (!group || !decks.length) { state.error = 'Nhóm chưa có bộ nào có nội dung được bật.'; render(); return; }
+    try {
+      const dataset = ImportCore.mergeListeningDatasets(decks, { id: group.id, title: group.name });
+      openCustomDataset(dataset, { id: group.id, title: group.name, name: group.name, groupId: group.id, description: group.description, isLibraryGroup: true });
+    } catch (error) {
+      state.error = `Không mở được nhóm: ${error.message || error}`;
+    }
     render();
   }
 
@@ -1070,12 +1214,72 @@
     render();
   }
 
+  function batchSentenceCount(total) {
+    const mode = String(state.batchSentenceCountMode || '10');
+    if (mode === 'all') return total;
+    const value = mode === 'custom' ? Number(state.batchSentenceCustomCount) : Number(mode);
+    return Math.max(1, Math.min(total, Number.isFinite(value) ? Math.floor(value) : total));
+  }
+
+  function createBatchSentenceDictationItem(items) {
+    const sourceItems = (items || []).filter((item) => item && item.text);
+    if (!sourceItems.length) return null;
+    const passage = Core.createPassageItem(sourceItems, {
+      sourceType: state.source,
+      sourceId: state.lesson && (state.lesson.lesson_id || state.lesson.id) || state.source,
+      sourceTitle: sessionTitle(),
+      lessonId: state.lesson && (state.lesson.lesson_id || state.lesson.id) || '',
+      lessonTitle: sessionTitle()
+    });
+    if (!passage) return null;
+    passage.id = Core.stableId(`${passage.id}|batch|${sourceItems.length}`, 'batch');
+    passage.activityType = 'sentence-batch-dictation';
+    passage.isBatchSentenceDictation = true;
+    passage.batchItems = sourceItems.map((item) => snapshotItem(item));
+    passage.batchCount = sourceItems.length;
+    return passage;
+  }
+
+  function renderBatchSentenceSetup(total) {
+    if (!state.batchSentenceSetupOpen) return '';
+    const count = batchSentenceCount(total);
+    return `<section class="batch-dictation-setup" aria-labelledby="batchDictationTitle">
+      <header><div><p class="eyebrow">Chép nhiều câu</p><h2 id="batchDictationTitle">Chép toàn bộ trong một lần</h2></div><button type="button" data-action="close-batch-sentence-setup" aria-label="Đóng">×</button></header>
+      <p>Ứng dụng phát liền toàn bộ các câu đã chọn. Tất cả dòng nhập cùng xuất hiện trên một màn hình và bạn kiểm tra cả phiên một lần.</p>
+      <div class="batch-dictation-counts" role="group" aria-label="Chọn số câu">
+        ${['5','10','20','all','custom'].map(mode => `<button type="button" class="${state.batchSentenceCountMode === mode ? 'active' : ''}" data-action="set-batch-sentence-count" data-count="${mode}">${mode === 'all' ? 'Tất cả' : mode === 'custom' ? 'Tự nhập' : mode}</button>`).join('')}
+      </div>
+      ${state.batchSentenceCountMode === 'custom' ? `<label class="batch-dictation-custom"><span>Số câu muốn chép cùng lúc</span><input type="number" min="1" max="${total}" value="${escapeHtml(state.batchSentenceCustomCount)}" data-action="batch-sentence-custom-count"><small>Tối đa ${total} câu trong phạm vi đang chọn.</small></label>` : ''}
+      <div class="batch-dictation-summary"><b>${count} câu · một lần nghe</b><span>Phạm vi: ${escapeHtml(datasetSentenceFilters().find(row => row.id === state.sentenceFilter)?.label || 'Toàn bộ')}</span></div>
+      <button type="button" class="primary-button full-width" data-action="start-batch-sentence-dictation" ${total ? '' : 'disabled'}>Mở ${count} dòng để chép</button>
+    </section>`;
+  }
+
+  function openBatchSentenceSetup() {
+    state.batchSentenceSetupOpen = true;
+    const total = filteredDatasetSentences().length;
+    if (total < Number(state.batchSentenceCountMode || 10)) state.batchSentenceCountMode = 'all';
+    render();
+  }
+
+  function startBatchSentenceDictation() {
+    const pool = filteredDatasetSentences();
+    if (!pool.length) return;
+    const count = batchSentenceCount(pool.length);
+    const batchItem = createBatchSentenceDictationItem(pool.slice(0, count));
+    if (!batchItem) return;
+    state.batchSentenceSetupOpen = false;
+    state.activityDescriptor = { activity: 'sentence-batch-dictation', groupId: '', choiceCount: 4, batchCount: count };
+    startPractice('passage', 0, { items: [batchItem], sessionName: `Chép nhiều câu · ${count} câu` });
+    autoplayCurrentItemAfterNavigation();
+  }
+
   function renderDatasetModeChoice() {
     const dataset = state.dataset;
     const capabilities = dataset.capabilities || {};
     const groups = Array.isArray(dataset.groups) ? dataset.groups : [];
-    const dialogue = groups.find((group) => group.kind === 'dialogue');
-    const passage = groups.find((group) => group.kind === 'passage');
+    const dialogues = groups.filter((group) => group.kind === 'dialogue');
+    const passages = groups.filter((group) => group.kind === 'passage');
     const stats = dataset.stats || {};
     const modeCard = (action, icon, title, description, attrs) => `
       <button class="mode-card" data-action="${action}" ${attrs || ''}>
@@ -1109,14 +1313,7 @@
           <div class="sentence-filter-options" role="group" aria-label="Lọc câu">
             ${datasetSentenceFilters().map((filter) => `<button data-action="set-sentence-filter" data-filter="${escapeHtml(filter.id)}" class="${state.sentenceFilter === filter.id ? 'active' : ''}">${escapeHtml(filter.label)} <small>${escapeHtml(filter.description || '')}</small></button>`).join('')}
           </div>
-          <div class="sentence-count-setting">
-            <span><strong>Số câu trong phiên</strong><small>Ưu tiên Ôn → Mới → Khó → Dễ</small></span>
-            <div class="sentence-count-presets">
-              ${['5','10','20','all'].map((value) => `<button type="button" data-action="set-sentence-count" data-count="${value}" class="${String(state.settings.sentenceCount) === value ? 'active' : ''}">${value === 'all' ? 'Tất cả' : value}</button>`).join('')}
-            </div>
-            <div class="sentence-count-custom"><input id="sentenceCountCustom" type="number" min="1" max="${filteredDatasetSentences().length}" inputmode="numeric" placeholder="Số khác"><button type="button" data-action="apply-sentence-count">Áp dụng</button></div>
-          </div>
-          <small class="sentence-filter-note">Đang dùng tối đa ${normalizedSentenceCount(filteredDatasetSentences().length)}/${stats.sentenceCount} câu. Các câu trùng nội dung chỉ giữ một bản và vẫn bảo toàn nhãn nguồn.</small>
+          <small class="sentence-filter-note">Đang dùng ${filteredDatasetSentences().length}/${stats.sentenceCount} câu. Các câu trùng nội dung chỉ giữ một bản và vẫn bảo toàn nhãn nguồn.</small>
         </section>
 
         <section class="activity-section activity-section--sentence">
@@ -1124,12 +1321,14 @@
           <div class="mode-grid">
             ${capabilities.sentenceOrdering ? modeCard('start-dataset-activity', '序', 'Xếp từ thành câu', 'Nghe rồi chạm các từ theo đúng thứ tự.', 'data-activity="sentence-ordering"') : ''}
             ${capabilities.sentenceDictation ? modeCard('start-dataset-activity', '听写', 'Chép từng câu', 'Câu ví dụ và ví dụ ngữ pháp được trộn mặc định.', 'data-activity="sentence-dictation"') : ''}
+            ${capabilities.sentenceDictation ? modeCard('open-batch-sentence-setup', '连', 'Chép nhiều câu', 'Chọn 5, 10, 20, tất cả hoặc tự nhập số câu; phát liên tiếp trong một phiên.', '') : ''}
             ${capabilities.sentenceTranscript ? modeCard('start-dataset-activity', '文', 'Có transcript', 'Nghe cùng chữ Hán, pinyin và nghĩa.', 'data-activity="sentence-transcript"') : ''}
             ${modeCard('open-content-preview', '览', 'Xem trước nội dung', `${stats.sentenceCount} câu đã chuẩn hóa.`, '')}
           </div>
         </section>
+        ${renderBatchSentenceSetup(filteredDatasetSentences().length)}
 
-        ${dialogue ? `<section class="activity-section activity-section--dialogue">
+        ${dialogues.map((dialogue) => `<section class="activity-section activity-section--dialogue">
           <div class="section-heading"><div><p class="eyebrow">Hội thoại</p><h2>${escapeHtml(dialogue.title)}</h2></div><span class="activity-count">${dialogue.items.length} lượt</span></div>
           <div class="mode-grid">
             ${capabilities.dialogueTurnOrdering ? modeCard('start-dataset-activity', '轮', 'Xếp thứ tự lượt thoại', 'Nghe toàn đoạn rồi sắp các lượt hội thoại.', `data-activity="dialogue-sequence" data-group-id="${escapeHtml(dialogue.id)}"`) : ''}
@@ -1137,9 +1336,9 @@
             ${capabilities.dialogueDictation ? modeCard('start-dataset-activity', '录', 'Chép từng lượt', 'Nghe và gõ lần lượt từng câu, luôn có hội thoại làm ngữ cảnh.', `data-activity="dialogue-dictation" data-group-id="${escapeHtml(dialogue.id)}"`) : ''}
             ${capabilities.dialogueFullDictation ? modeCard('start-dataset-activity', '全', 'Chép nguyên hội thoại', 'Nghe toàn bộ rồi gõ liên tục tất cả các lượt trên cùng một màn hình.', `data-activity="dialogue-full-dictation" data-group-id="${escapeHtml(dialogue.id)}"`) : ''}
           </div>
-        </section>` : ''}
+        </section>`).join('')}
 
-        ${passage ? `<section class="activity-section activity-section--passage">
+        ${passages.map((passage) => `<section class="activity-section activity-section--passage">
           <div class="section-heading"><div><p class="eyebrow">Đoạn văn</p><h2>${escapeHtml(passage.title)}</h2></div><span class="activity-count">${passage.items.length} câu</span></div>
           <div class="mode-grid">
             ${capabilities.passageSentenceOrdering ? modeCard('start-dataset-activity', '段', 'Xếp câu trong đoạn', 'Nghe toàn đoạn rồi sắp các câu theo trình tự.', `data-activity="passage-sequence" data-group-id="${escapeHtml(passage.id)}"`) : ''}
@@ -1147,25 +1346,11 @@
             ${capabilities.passageDictation ? modeCard('start-dataset-activity', '抄', 'Chép từng câu', 'Nghe và gõ lần lượt từng câu, luôn có toàn đoạn làm ngữ cảnh.', `data-activity="passage-dictation" data-group-id="${escapeHtml(passage.id)}"`) : ''}
             ${capabilities.passageFullDictation ? modeCard('start-dataset-activity', '全', 'Chép nguyên đoạn', 'Nghe toàn bộ rồi gõ liên tục tất cả các câu trên cùng một màn hình.', `data-activity="passage-full-dictation" data-group-id="${escapeHtml(passage.id)}"`) : ''}
           </div>
-        </section>` : ''}
+        </section>`).join('')}
       </main>
       ${bottomNav()}
       ${settingsSheet()}
     `;
-  }
-
-  function randomShuffle(list) {
-    const result = (list || []).slice();
-    for (let index = result.length - 1; index > 0; index -= 1) {
-      const swapIndex = Math.floor(Math.random() * (index + 1));
-      [result[index], result[swapIndex]] = [result[swapIndex], result[index]];
-    }
-    if (result.length > 1 && result.every((entry, index) => entry === list[index])) [result[0], result[1]] = [result[1], result[0]];
-    return result;
-  }
-
-  function randomizeSequenceItem(item) {
-    return Object.assign({}, item, { shuffledCards: randomShuffle(item && item.cards || []) });
   }
 
   function datasetGroup(groupId) {
@@ -1178,29 +1363,32 @@
     const group = groupId ? datasetGroup(groupId) : null;
     const startIndex = Math.max(0, Number(configured.startIndex) || 0);
     const choiceCount = Number(configured.choiceCount) === 5 ? 5 : 4;
-    const shuffleSeed = `${Date.now()}:${Math.random()}`;
-    state.activityDescriptor = { activity, groupId: groupId || '', choiceCount, shuffleSeed };
-    state.modeScrollTop = window.scrollY || 0;
-    const sentencePool = limitedSentencePool(filteredDatasetSentences());
+    state.activityDescriptor = { activity, groupId: groupId || '', choiceCount, batchCount: Number(configured.batchCount) || 0 };
+    const sentencePool = filteredDatasetSentences();
     if (activity === 'word-choice') {
-      startPractice('word-choice', startIndex, { items: prioritizeLearningItems(ActivityBuilders.buildWordChoiceItems(state.dataset, { choiceCount, shuffleSeed })), sessionName: choiceCount === 5 ? 'Chọn từ · Mức khó' : 'Chọn từ nghe được' });
+      startPractice('word-choice', startIndex, { items: ActivityBuilders.buildWordChoiceItems(state.dataset, { choiceCount }), sessionName: choiceCount === 5 ? 'Chọn từ · Mức khó' : 'Chọn từ nghe được' });
     } else if (activity === 'word-dictation') {
-      startPractice('dictation', startIndex, { items: prioritizeLearningItems(state.dataset.words.slice()), sessionName: 'Điền tay từ nghe được' });
+      startPractice('dictation', startIndex, { items: state.dataset.words.slice(), sessionName: 'Điền tay từ nghe được' });
     } else if (activity === 'sentence-ordering') {
-      startPractice('token-ordering', startIndex, { items: ActivityBuilders.buildSentenceOrderingItems(Object.assign({}, state.dataset, { sentences: sentencePool }), { shuffleSeed }), sessionName: 'Xếp từ thành câu' });
+      startPractice('token-ordering', startIndex, { items: ActivityBuilders.buildSentenceOrderingItems(Object.assign({}, state.dataset, { sentences: sentencePool })), sessionName: 'Xếp từ thành câu' });
     } else if (activity === 'sentence-dictation') {
       startPractice('dictation', startIndex, { items: sentencePool, sessionName: 'Chép từng câu' });
+    } else if (activity === 'sentence-batch-dictation') {
+      const batchCount = Math.max(1, Math.min(sentencePool.length, Number(configured.batchCount) || Number(state.batchSentenceCustomCount) || 10));
+      const batchItem = createBatchSentenceDictationItem(sentencePool.slice(0, batchCount));
+      if (!batchItem) return;
+      startPractice('passage', 0, { items: [batchItem], sessionName: `Chép nhiều câu · ${batchCount} câu` });
     } else if (activity === 'sentence-transcript') {
       startPractice('transcript', startIndex, { items: sentencePool, sessionName: 'Nghe có transcript' });
     } else if (activity === 'dialogue-sequence' || activity === 'passage-sequence') {
       if (!group) return;
-      startPractice('sequence-ordering', startIndex, { items: [randomizeSequenceItem(ActivityBuilders.buildGroupSequenceItem(group))], sessionName: group.title });
+      startPractice('sequence-ordering', startIndex, { items: [ActivityBuilders.buildGroupSequenceItem(group)], sessionName: group.title });
     } else if (activity === 'dialogue-token' || activity === 'passage-token') {
       if (!group) return;
-      startPractice('token-ordering', startIndex, { items: prioritizeLearningItems(ActivityBuilders.buildGroupTokenItems(group).map((entry) => Object.assign({}, entry, { shuffledTokens: randomShuffle(entry.tokens || []) }))), sessionName: group.title });
+      startPractice('token-ordering', startIndex, { items: ActivityBuilders.buildGroupTokenItems(group), sessionName: group.title });
     } else if (activity === 'dialogue-dictation' || activity === 'passage-dictation') {
       if (!group) return;
-      startPractice('dictation', startIndex, { items: prioritizeLearningItems(ActivityBuilders.buildGroupDictationItems(group)), sessionName: group.title });
+      startPractice('dictation', startIndex, { items: ActivityBuilders.buildGroupDictationItems(group), sessionName: group.title });
     } else if (activity === 'dialogue-full-dictation' || activity === 'passage-full-dictation') {
       if (!group) return;
       startPractice('passage', 0, { items: [ActivityBuilders.buildGroupFullDictationItem(group)], sessionName: group.title });
@@ -1335,6 +1523,7 @@
     if (descriptor && descriptor.activity) {
       startDatasetActivity(descriptor.activity, descriptor.groupId || '', {
         choiceCount: descriptor.choiceCount,
+        batchCount: descriptor.batchCount,
         startIndex: session.currentIndex || 0
       });
     } else {
@@ -1564,9 +1753,10 @@
     const items = activeItems();
     const units = Core.answerUnits(item.text);
     const isPassage = Boolean(item.isPassage);
+    const isBatchSentenceDictation = Boolean(item.isBatchSentenceDictation);
     const isFullDialogue = Boolean(item.fullGroupDictation && item.groupKind === 'dialogue');
-    const passageLabel = isFullDialogue ? 'Hội thoại' : 'Đoạn nghe';
-    const listenLabel = isFullDialogue ? 'Nghe toàn hội thoại' : 'Nghe toàn đoạn';
+    const passageLabel = isBatchSentenceDictation ? `${item.batchCount || item.segments?.length || 0} câu` : isFullDialogue ? 'Hội thoại' : 'Đoạn nghe';
+    const listenLabel = isBatchSentenceDictation ? 'Nghe toàn bộ câu đã chọn' : isFullDialogue ? 'Nghe toàn hội thoại' : 'Nghe toàn đoạn';
     const isTranscript = state.mode === 'transcript' || state.mode === 'passage-transcript';
     const progress = isPassage ? `${item.segments.length} ${isFullDialogue ? 'lượt' : 'câu'}` : `${state.currentIndex + 1}/${items.length}`;
     const speechText = speechTextFor(item);
@@ -1584,7 +1774,7 @@
         </section>
 
         <div class="practice-mode-switch" aria-label="Chế độ luyện">
-          <button data-action="switch-current-mode" data-mode="${isPassage ? 'passage' : 'dictation'}" class="${!isTranscript ? 'active' : ''}">${item.fullGroupDictation ? 'Chép nguyên' : 'Chép chính tả'}</button>
+          <button data-action="switch-current-mode" data-mode="${isPassage ? 'passage' : 'dictation'}" class="${!isTranscript ? 'active' : ''}">${isBatchSentenceDictation ? 'Chép toàn bộ' : item.fullGroupDictation ? 'Chép nguyên' : 'Chép chính tả'}</button>
           <button data-action="switch-current-mode" data-mode="${isPassage ? 'passage-transcript' : 'transcript'}" class="${isTranscript ? 'active' : ''}">Có transcript</button>
         </div>
 
@@ -1608,7 +1798,7 @@
           </div>
           ${state.audioMessage && ['error', 'missing'].includes(state.audioStatus) ? `<div class="audio-runtime-status audio-runtime-status--${escapeHtml(state.audioStatus || 'info')}" role="alert">${escapeHtml(state.audioMessage)}</div>` : ''}
           <label class="speech-position">
-            <span>${state.audioPlayer ? 'Vị trí trong file audio' : `Vị trí gần đúng ${isFullDialogue ? 'trong hội thoại' : isPassage ? 'trong đoạn' : 'trong câu'}`}</span>
+            <span>${state.audioPlayer ? 'Vị trí trong file audio' : `Vị trí gần đúng ${isBatchSentenceDictation ? 'trong toàn bộ câu' : isFullDialogue ? 'trong hội thoại' : isPassage ? 'trong đoạn' : 'trong câu'}`}</span>
             <input id="speechPosition" type="range" min="0" max="${state.audioPlayer && state.audioDuration > 0 ? state.audioDuration : Math.max(1, speechText.length)}" step="${state.audioPlayer ? '0.1' : '1'}" value="${state.audioPlayer ? Math.min(state.audioDuration || 0, state.audioCurrentTime) : Math.min(speechText.length, state.speechCharIndex)}" />
           </label>
           <div class="speed-row" aria-label="Tốc độ đọc">
@@ -1621,7 +1811,7 @@
         ${!isPassage ? `<nav class="practice-nav">
           <button data-action="previous-item" ${state.currentIndex === 0 ? 'disabled' : ''}>← Câu trước</button>
           <button data-action="next-item">${state.currentIndex >= items.length - 1 ? 'Hoàn thành' : 'Câu sau →'}</button>
-        </nav>` : `<nav class="practice-nav practice-nav--single"><button data-action="complete-session">${isFullDialogue ? 'Hoàn thành hội thoại' : 'Hoàn thành đoạn'}</button></nav>`}
+        </nav>` : `<nav class="practice-nav practice-nav--single"><button data-action="complete-session">${isBatchSentenceDictation ? 'Hoàn thành phiên' : isFullDialogue ? 'Hoàn thành hội thoại' : 'Hoàn thành đoạn'}</button></nav>`}
       </main>
       ${renderFloatingAudioControls()}
       ${bottomNav()}
@@ -1719,8 +1909,7 @@
       <span lang="zh-Hans">${escapeHtml(item.text)}</span>
       ${item.pinyin ? `<small>${escapeHtml(item.pinyin)}</small>` : ''}
       ${item.meaning ? `<small>${escapeHtml(item.meaning)}</small>` : ''}
-      ${state.autoSuggestedRating ? `<small class="auto-rating-note">Đã tự gán: <strong>${ratingLabel(state.autoSuggestedRating)}</strong>${state.settings.autoNext && Number(state.settings.autoNextSeconds) > 0 && correct ? ` · Có ${state.settings.autoNextSeconds}s để đổi` : ''}</small>` : ''}
-      <div class="rating-row"><button data-action="rate-item" data-rating="easy" class="${canonicalProgressRating(item) === 'easy' ? 'active' : ''}">Dễ</button><button data-action="rate-item" data-rating="review" class="${canonicalProgressRating(item) === 'review' ? 'active' : ''}">Ôn</button><button data-action="rate-item" data-rating="hard" class="${canonicalProgressRating(item) === 'hard' ? 'active' : ''}">Khó</button></div>
+      <div class="rating-row"><button data-action="rate-item" data-rating="easy">Dễ</button><button data-action="rate-item" data-rating="review">Ôn</button><button data-action="rate-item" data-rating="hard">Khó</button></div>
     </section>`;
   }
 
@@ -1894,9 +2083,9 @@
     const hasNamedSpeakers = Boolean(item.isPassage && (item.segments || []).some((segment) => segment.speaker));
 
     return `
-      <section class="dictation-card ${item.isPassage ? 'dictation-card--passage' : ''}" data-learning-target>
+      <section class="dictation-card ${item.isPassage ? 'dictation-card--passage' : ''} ${item.isBatchSentenceDictation ? 'dictation-card--batch' : ''}" data-learning-target>
         <div class="dictation-heading">
-          <div><p class="eyebrow">Nhập chữ Hán</p><h2>${item.fullGroupDictation ? (item.groupKind === 'dialogue' ? 'Chép nguyên hội thoại' : 'Chép nguyên đoạn') : item.isPassage ? 'Chép lại đoạn vừa nghe' : 'Gõ lại câu vừa nghe'}</h2></div>
+          <div><p class="eyebrow">Nhập chữ Hán</p><h2>${item.isBatchSentenceDictation ? `Chép toàn bộ ${item.batchCount || item.segments?.length || 0} câu` : item.fullGroupDictation ? (item.groupKind === 'dialogue' ? 'Chép nguyên hội thoại' : 'Chép nguyên đoạn') : item.isPassage ? 'Chép lại đoạn vừa nghe' : 'Gõ lại câu vừa nghe'}</h2></div>
           <div class="dictation-heading__tools">
             <span class="dictation-count">${inputUnits.length}/${units.length}</span>
           </div>
@@ -1905,7 +2094,7 @@
           <div class="${item.isPassage ? 'passage-lines' : 'dictation-rows'}" aria-hidden="true">${slots}</div>
           <input id="dictationInput" class="dictation-ime-input" type="text" value="${escapeHtml(state.input)}" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" lang="zh-Hans" aria-label="Nhập câu tiếng Trung" />
         </div>
-        <p class="input-help">Gõ pinyin trên bàn phím Trung rồi chọn chữ. Chạm vào chữ đã gõ để thay trực tiếp; chọn chữ mới xong con trỏ tự quay lại vị trí đang gõ. Dấu câu${hasNamedSpeakers ? ' và tên người nói' : ''} không cần nhập.</p>
+        <p class="input-help">${item.isBatchSentenceDictation ? 'Nghe toàn bộ một lần rồi nhập lần lượt theo các dòng. Chạm vào chữ đã gõ để sửa; dấu câu không cần nhập.' : `Gõ pinyin trên bàn phím Trung rồi chọn chữ. Chạm vào chữ đã gõ để thay trực tiếp; chọn chữ mới xong con trỏ tự quay lại vị trí đang gõ. Dấu câu${hasNamedSpeakers ? ' và tên người nói' : ''} không cần nhập.`}</p>
 
         <div class="dictation-actions">
           <button class="primary-button" data-action="check-answer">Kiểm tra</button>
@@ -1952,7 +2141,7 @@
 
   function renderAnswer(item) {
     if (item.isPassage) {
-      return `<aside class="answer-card"><p class="eyebrow">Transcript đoạn</p>${renderPassageTranscriptLines(item, false)}</aside>`;
+      return `<aside class="answer-card"><p class="eyebrow">${item.isBatchSentenceDictation ? 'Đáp án toàn bộ câu' : 'Transcript đoạn'}</p>${renderPassageTranscriptLines(item, false)}</aside>`;
     }
     return `<aside class="answer-card"><p class="eyebrow">Đáp án</p><strong lang="zh-Hans">${escapeHtml(item.text)}</strong>${item.pinyin ? `<span>${escapeHtml(item.pinyin)}</span>` : ''}${item.meaning ? `<small>${escapeHtml(item.meaning)}</small>` : ''}</aside>`;
   }
@@ -2193,19 +2382,29 @@
       else if (action === 'open-ldsn-unit') element.onclick = () => openLdsnUnit(element.dataset.unitId);
       else if (action === 'open-301') element.onclick = open301Library;
       else if (action === 'open-custom') element.onclick = openCustomLibrary;
+      else if (action === 'open-listening-ai-prompt') element.onclick = () => { state.screen = 'aiPrompt'; state.aiPromptCopied = false; render(); };
+      else if (action === 'set-listening-ai-type') element.onclick = () => { syncListeningAiPromptFields(); state.aiPromptType = element.dataset.type || 'sentence'; state.aiPromptCopied = false; render(); };
+      else if (action === 'copy-listening-ai-prompt') element.onclick = copyListeningAiPrompt;
       else if (action === 'open-review') element.onclick = openReview;
       else if (action === 'resume-last') element.onclick = resumeLastSession;
       else if (action === 'go-back') element.onclick = goBack;
       else if (action === 'start-mode') element.onclick = () => startPractice(element.dataset.mode, 0);
       else if (action === 'start-dataset-activity') element.onclick = () => startDatasetActivity(element.dataset.activity, element.dataset.groupId || '', { choiceCount: Number(element.dataset.choiceCount) || 4 });
+      else if (action === 'open-batch-sentence-setup') element.onclick = openBatchSentenceSetup;
+      else if (action === 'close-batch-sentence-setup') element.onclick = () => { state.batchSentenceSetupOpen = false; render(); };
+      else if (action === 'set-batch-sentence-count') element.onclick = () => { state.batchSentenceCountMode = element.dataset.count || '10'; render(); };
+      else if (action === 'start-batch-sentence-dictation') element.onclick = startBatchSentenceDictation;
+      else if (action === 'batch-sentence-custom-count') element.oninput = () => { state.batchSentenceCustomCount = Math.max(1, Math.min(filteredDatasetSentences().length || 1, Number(element.value) || 1)); const summary = app.querySelector('.batch-dictation-summary b'); if(summary) summary.textContent = `${batchSentenceCount(filteredDatasetSentences().length)} câu`; const start = app.querySelector('[data-action="start-batch-sentence-dictation"]'); if(start) start.textContent = `Bắt đầu chép ${batchSentenceCount(filteredDatasetSentences().length)} câu`; };
       else if (action === 'set-sentence-filter') element.onclick = () => setSentenceFilter(element.dataset.filter);
-      else if (action === 'set-sentence-count') element.onclick = () => { state.settings.sentenceCount = element.dataset.count === 'all' ? 'all' : String(Math.max(1, Number(element.dataset.count) || 1)); saveSettings(); render(); };
-      else if (action === 'apply-sentence-count') element.onclick = () => { const input = document.getElementById('sentenceCountCustom'); const value = Math.max(1, Math.min(Number(input && input.value) || 1, filteredDatasetSentences().length)); state.settings.sentenceCount = String(value); saveSettings(); render(); };
       else if (action === 'open-content-preview') element.onclick = openContentPreview;
       else if (action === 'open-preview-item') element.onclick = () => startPractice('transcript', Number(element.dataset.index) || 0);
       else if (action === 'open-library-group') element.onclick = () => openLibraryGroup(element.dataset.groupId);
+      else if (action === 'study-library-group') element.onclick = () => studyCustomGroup(element.dataset.groupId);
       else if (action === 'open-library-deck') element.onclick = () => openCustomDeck(element.dataset.deckId);
       else if (action === 'manage-library-deck') element.onclick = () => { state.libraryManagerDeckId = state.libraryManagerDeckId === element.dataset.deckId ? '' : element.dataset.deckId; render(); };
+      else if (action === 'toggle-library-templates') element.onclick = () => { state.libraryTemplateMenuOpen = !state.libraryTemplateMenuOpen; render(); };
+      else if (action === 'confirm-library-import') element.onclick = confirmCustomImport;
+      else if (action === 'cancel-library-import') element.onclick = cancelCustomImport;
       else if (action === 'export-library-all') element.onclick = () => exportLibrary('all');
       else if (action === 'export-library-group') element.onclick = () => exportLibrary('group', element.dataset.groupId);
       else if (action === 'export-library-deck') element.onclick = () => exportLibrary('deck', element.dataset.deckId);
@@ -2328,10 +2527,16 @@
     }
 
     const fileInput = document.getElementById('libraryFileInput');
-    if (fileInput) fileInput.onchange = () => { if (fileInput.files && fileInput.files[0]) importCustomFile(fileInput.files[0]); };
+    if (fileInput) fileInput.onchange = () => { if (fileInput.files && fileInput.files[0]) prepareCustomImport(fileInput.files[0], 'content'); fileInput.value = ''; };
+    const restoreInput = document.getElementById('libraryRestoreFileInput');
+    if (restoreInput) restoreInput.onchange = () => { if (restoreInput.files && restoreInput.files[0]) prepareCustomImport(restoreInput.files[0], 'restore'); restoreInput.value = ''; };
 
     app.querySelectorAll('[data-action="toggle-library-card"]').forEach((input) => {
       input.onchange = () => toggleLibraryCard(input.dataset.deckId, input.dataset.cardId, input.checked);
+    });
+
+    app.querySelectorAll('[data-listening-ai-field]').forEach((input) => {
+      input.oninput = syncListeningAiPromptFields;
     });
 
     const input = document.getElementById('dictationInput');
@@ -2838,9 +3043,7 @@
     if (!element) return false;
     const rect = element.getBoundingClientRect();
     const bounds = practiceViewportBounds();
-    const visibleHeight = Math.max(0, Math.min(rect.bottom, bounds.bottom) - Math.max(rect.top, bounds.top));
-    const usefulHeight = Math.min(96, Math.max(44, rect.height * 0.35));
-    return visibleHeight >= usefulHeight;
+    return rect.bottom > bounds.top && rect.top < bounds.bottom;
   }
 
   function detectPracticeKeyboardVisible() {
@@ -3098,11 +3301,8 @@
     if (!isCorrect) {
       state.currentWrongChecks += 1;
       markSessionWrong(item);
-    }
-    if (state.settings.autoRate) {
-      const rating = deriveAutomaticRating();
-      state.autoSuggestedRating = rating;
-      rateItem(rating, { render: false });
+    } else if (state.settings.autoRate) {
+      rateItem(deriveAutomaticRating(), { render: false });
     }
     saveProgress();
     rememberSession();
@@ -3179,7 +3379,7 @@
     }
     updateAttemptProgress(item);
 
-    if (state.settings.autoRate) {
+    if (state.result.isCorrect && state.settings.autoRate) {
       const rating = deriveAutomaticRating();
       state.autoSuggestedRating = rating;
       rateItem(rating, { render: false });
@@ -3319,18 +3519,25 @@
     const configured = options || {};
     const item = currentItem();
     if (!item) return;
-    const key = progressKey(item, state.mode);
-    const previous = state.progress[key] || {};
     const isTranscript = state.mode === 'transcript' || state.mode === 'passage-transcript';
-    state.progress[key] = Object.assign({}, previous, {
-      item: snapshotItem(item),
-      activity: item.activityType || (isTranscript ? 'listening-transcript' : item.isPassage ? 'listening-passage-dictation' : 'listening-dictation'),
-      rating,
-      listenCount: Number(previous.listenCount || 0) + state.listenCount,
-      usedHint: Boolean(previous.usedHint || state.usedHint),
-      lastReviewedAt: new Date().toISOString()
+    const targets = item.isBatchSentenceDictation && Array.isArray(item.batchItems) && item.batchItems.length
+      ? item.batchItems
+      : [item];
+    targets.forEach((target) => {
+      const targetMode = item.isBatchSentenceDictation ? 'dictation' : state.mode;
+      const key = progressKey(target, targetMode);
+      const previous = state.progress[key] || {};
+      state.progress[key] = Object.assign({}, previous, {
+        item: snapshotItem(target),
+        activity: item.isBatchSentenceDictation ? 'listening-batch-sentence-dictation' : target.activityType || (isTranscript ? 'listening-transcript' : target.isPassage ? 'listening-passage-dictation' : 'listening-dictation'),
+        rating,
+        listenCount: Number(previous.listenCount || 0) + state.listenCount,
+        usedHint: Boolean(previous.usedHint || state.usedHint),
+        lastReviewedAt: new Date().toISOString()
+      });
+      if ((rating === 'review' || rating === 'hard') && item.isBatchSentenceDictation) markSessionWrong(target);
     });
-    if (rating === 'review' || rating === 'hard') markSessionWrong(item);
+    if ((rating === 'review' || rating === 'hard') && !item.isBatchSentenceDictation) markSessionWrong(item);
     state.listenCount = 0;
     saveProgress();
     if (configured.render !== false) render();
@@ -3521,7 +3728,11 @@
       state.screen = 'mode';
       stopSpeech();
       render();
-      restoreModeScroll();
+      return;
+    }
+    if (state.screen === 'aiPrompt') {
+      state.screen = 'custom';
+      render();
       return;
     }
     if (state.screen === 'newHskUnits' || state.screen === 'ldsnUnits') {

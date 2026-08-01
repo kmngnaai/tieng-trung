@@ -11742,3 +11742,372 @@ html.hsk-popup-embed .hsk-popup-sheet {
     grid-template-columns:repeat(3, 30px);
   }
 }
+
+/* Import & curriculum browser V1: shared, non-overwriting content import and in-tab lesson selection. */
+.flashcard-template-panel{
+  grid-column:1/-1;
+  display:grid;
+  gap:11px;
+  border:1px solid #d9e9e3;
+  border-radius:16px;
+  background:linear-gradient(135deg,#eff9f5,#fff9f1);
+  padding:13px;
+}
+.flashcard-template-panel > div:first-child{display:grid;gap:3px}
+.flashcard-template-panel small{color:#687b75;line-height:1.45}
+.flashcard-template-panel > div:last-child{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:7px;
+}
+.flashcard-template-panel a{
+  display:grid;
+  min-height:38px;
+  place-items:center;
+  border:1px solid #cfe2da;
+  border-radius:11px;
+  background:rgba(255,255,255,.9);
+  color:#166f63;
+  font-size:11px;
+  font-weight:800;
+  text-decoration:none;
+}
+.flashcard-import-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:1200;
+  display:grid;
+  place-items:center;
+  background:rgba(23,42,36,.44);
+  padding:14px;
+}
+.flashcard-import-dialog{
+  width:min(520px,100%);
+  max-height:calc(100dvh - 28px);
+  overflow:auto;
+  border:1px solid #d7e7e1;
+  border-radius:22px;
+  background:#fff;
+  padding:20px;
+  box-shadow:0 24px 70px rgba(18,54,44,.22);
+}
+.flashcard-import-dialog h3{margin:4px 0 12px;font-size:22px}
+.flashcard-import-stats{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+  margin:12px 0;
+}
+.flashcard-import-stats span{
+  display:grid;
+  gap:2px;
+  border:1px solid #dceae5;
+  border-radius:13px;
+  background:#f3faf7;
+  padding:10px 6px;
+  color:#6b7a75;
+  font-size:10px;
+  text-align:center;
+}
+.flashcard-import-stats b{color:#116e62;font-size:20px}
+.flashcard-import-message{
+  max-height:180px;
+  overflow:auto;
+  margin:10px 0;
+  border:1px solid #ebd8b5;
+  border-radius:13px;
+  background:#fffaf0;
+  padding:11px 12px;
+  color:#765a23;
+  font-size:12px;
+  line-height:1.5;
+}
+.flashcard-import-message.is-error{border-color:#efc7c3;background:#fff3f2;color:#9d3733}
+.flashcard-import-message p{margin:5px 0 0}
+.flashcard-import-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}
+.flashcard-import-actions button{min-height:44px;border:1px solid #d4e5de;border-radius:13px;background:#fff;font-weight:800}
+
+.flashcard-curriculum-page{
+  display:grid;
+  gap:14px;
+  padding-bottom:calc(94px + env(safe-area-inset-bottom));
+}
+.flashcard-curriculum-header{position:sticky;top:0;z-index:15;background:rgba(247,252,249,.95);backdrop-filter:blur(15px)}
+.flashcard-curriculum-source-tabs{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:7px;
+  border:1px solid #d9e8e2;
+  border-radius:18px;
+  background:#fff;
+  padding:8px;
+}
+.flashcard-curriculum-source-tabs button,
+.flashcard-curriculum-level-tabs button,
+.flashcard-curriculum-count button{
+  min-width:0;
+  border:1px solid transparent;
+  border-radius:12px;
+  background:transparent;
+  padding:9px 6px;
+  color:#52645e;
+  cursor:pointer;
+}
+.flashcard-curriculum-source-tabs button{display:grid;gap:2px;text-align:center}
+.flashcard-curriculum-source-tabs b{font-size:12px}
+.flashcard-curriculum-source-tabs small{overflow:hidden;font-size:8px;line-height:1.25;text-overflow:ellipsis;white-space:nowrap}
+.flashcard-curriculum-source-tabs button.active,
+.flashcard-curriculum-level-tabs button.active,
+.flashcard-curriculum-count button.active{
+  border-color:#9ed1c2;
+  background:#dff4ec;
+  color:#0d6e61;
+  box-shadow:0 3px 10px rgba(20,112,96,.08);
+}
+.flashcard-curriculum-level-tabs{
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  scrollbar-width:none;
+  padding:1px 2px 5px;
+}
+.flashcard-curriculum-level-tabs::-webkit-scrollbar{display:none}
+.flashcard-curriculum-level-tabs button{
+  flex:0 0 auto;
+  display:grid;
+  gap:2px;
+  min-width:88px;
+  border-color:#d7e7e1;
+  background:#fff;
+}
+.flashcard-curriculum-level-tabs small{font-size:9px;color:#72817c}
+.flashcard-curriculum-loading{
+  display:grid;
+  min-height:180px;
+  place-items:center;
+  align-content:center;
+  gap:10px;
+  border:1px solid #dbe9e4;
+  border-radius:20px;
+  background:#fff;
+}
+.flashcard-curriculum-loading .spinner{
+  width:24px;height:24px;border:3px solid #d7ece5;border-top-color:#168476;border-radius:50%;animation:flashcardSpin .8s linear infinite
+}
+@keyframes flashcardSpin{to{transform:rotate(360deg)}}
+.flashcard-curriculum-lessons,
+.flashcard-curriculum-lesson-panel{
+  border:1px solid #d8e8e2;
+  border-radius:20px;
+  background:#fff;
+  padding:14px;
+  box-shadow:0 10px 30px rgba(35,80,66,.06);
+}
+.flashcard-curriculum-lessons > header{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+.flashcard-curriculum-lessons header span{color:#168476;font-size:10px;font-weight:900;letter-spacing:.08em}
+.flashcard-curriculum-lessons h3{margin:3px 0 0;font-size:19px}
+.flashcard-curriculum-lessons header > small{color:#71807b;font-size:11px}
+.flashcard-curriculum-lessons > div{display:grid;gap:8px}
+.flashcard-curriculum-lesson-card{
+  display:grid;
+  grid-template-columns:42px minmax(0,1fr) auto;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  min-height:64px;
+  border:1px solid #dce9e4;
+  border-radius:15px;
+  background:#fbfefc;
+  padding:9px 11px;
+  text-align:left;
+  cursor:pointer;
+}
+.flashcard-curriculum-lesson-card:hover{border-color:#9bcfbe;background:#f1faf6}
+.flashcard-curriculum-lesson-no{display:grid;width:38px;height:38px;place-items:center;border-radius:12px;background:#e4f5ee;color:#117264;font-weight:900}
+.flashcard-curriculum-lesson-card > span:nth-child(2){display:grid;min-width:0;gap:2px}
+.flashcard-curriculum-lesson-card b,.flashcard-curriculum-lesson-card small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.flashcard-curriculum-lesson-card b{font-size:14px}
+.flashcard-curriculum-lesson-card small{color:#73817c;font-size:10px}
+.flashcard-curriculum-lesson-card i{color:#177c6e;font-size:11px;font-style:normal;font-weight:800;white-space:nowrap}
+.flashcard-curriculum-lesson-panel{display:grid;gap:13px}
+.flashcard-curriculum-lesson-meta{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.flashcard-curriculum-lesson-meta b{font-family:var(--font-hanzi,"Noto Serif SC",serif);font-size:20px;font-weight:500}
+.flashcard-curriculum-lesson-meta span{border-radius:999px;background:#e7f6f0;padding:6px 9px;color:#126f62;font-size:10px;font-weight:800}
+.flashcard-curriculum-count{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.flashcard-curriculum-count button{min-height:39px;border-color:#d7e7e1;background:#fff;font-size:11px;font-weight:800}
+.flashcard-curriculum-count button:disabled{opacity:.35}
+.flashcard-curriculum-custom-count{display:grid;grid-template-columns:minmax(0,1fr) 92px;align-items:center;gap:8px;color:#33443e;font-size:12px;font-weight:800}
+.flashcard-curriculum-custom-count input{width:100%;min-height:42px;border:1px solid #cfe2da;border-radius:12px;padding:0 12px;font:inherit}
+.flashcard-curriculum-custom-count small{grid-column:1/-1;color:#74827d;font-size:10px;font-weight:500}
+.flashcard-curriculum-manual-tools{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+.flashcard-curriculum-manual-tools label{display:grid;grid-template-columns:24px minmax(0,1fr);align-items:center;border:1px solid #d5e6df;border-radius:13px;background:#fff;padding:0 10px}
+.flashcard-curriculum-manual-tools input{min-width:0;min-height:42px;border:0;outline:0;background:transparent}
+.flashcard-curriculum-manual-tools button{border:1px solid #cfe2da;border-radius:12px;background:#f1faf6;color:#116f62;padding:0 11px;font-size:10px;font-weight:800}
+.flashcard-curriculum-word-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;max-height:48dvh;overflow:auto;padding-right:2px}
+.flashcard-curriculum-word{display:grid;grid-template-columns:22px minmax(0,1fr);align-items:center;gap:8px;border:1px solid #dce9e4;border-radius:14px;background:#fff;padding:9px;cursor:pointer}
+.flashcard-curriculum-word.is-selected{border-color:#97cdbd;background:#eef9f5}
+.flashcard-curriculum-word > span{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:baseline;gap:2px 8px;min-width:0}
+.flashcard-curriculum-word b{font-family:var(--font-hanzi,"Noto Serif SC",serif);font-size:19px;font-weight:500}
+.flashcard-curriculum-word i{overflow:hidden;color:#5f716b;font-size:11px;font-style:normal;text-overflow:ellipsis;white-space:nowrap}
+.flashcard-curriculum-word small{grid-column:1/-1;overflow:hidden;color:#71807b;font-size:10px;text-overflow:ellipsis;white-space:nowrap}
+.flashcard-curriculum-selection-preview{display:flex;flex-wrap:wrap;gap:7px;min-height:50px;border:1px dashed #cfe1da;border-radius:15px;background:#f8fcfa;padding:9px}
+.flashcard-curriculum-selection-preview span{display:inline-flex;align-items:baseline;gap:5px;border-radius:10px;background:#e7f6f0;padding:7px 9px;color:#174e45}
+.flashcard-curriculum-selection-preview b{font-family:var(--font-hanzi,"Noto Serif SC",serif);font-size:17px;font-weight:500}
+.flashcard-curriculum-selection-preview small{font-size:9px}
+.flashcard-curriculum-selection-preview .is-more{display:grid;place-items:center;font-weight:900}
+.flashcard-curriculum-start{width:100%;min-height:48px}
+
+@media(max-width:620px){
+  .flashcard-template-panel > div:last-child{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .flashcard-template-panel a:last-child{grid-column:1/-1}
+  .flashcard-import-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .flashcard-curriculum-page{gap:10px}
+  .flashcard-curriculum-source-tabs{grid-template-columns:repeat(5,minmax(62px,1fr));gap:4px;overflow-x:auto}
+  .flashcard-curriculum-source-tabs button{padding:8px 4px}
+  .flashcard-curriculum-source-tabs small{display:none}
+  .flashcard-curriculum-count{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .flashcard-curriculum-word-list{grid-template-columns:1fr}
+  .flashcard-curriculum-manual-tools{grid-template-columns:1fr}
+  .flashcard-curriculum-manual-tools button{min-height:38px}
+  .flashcard-curriculum-lessons,.flashcard-curriculum-lesson-panel{padding:11px}
+}
+
+/* Flashcard content types + AI prompt builder (Patch 2A/2B).
+   Green remains primary; secondary surfaces use mint, blue and lavender only. */
+.flashcard-library-page{
+  --flashcard-green:#167f72;
+  --flashcard-green-soft:#e3f5ee;
+  --flashcard-blue-soft:#eaf4fb;
+  --flashcard-blue-ink:#356f8f;
+  --flashcard-lilac-soft:#f1edfb;
+  --flashcard-lilac-ink:#695893;
+  --flashcard-border:#d8e8e2;
+}
+.flashcard-quick-row__icon.review{background:var(--flashcard-blue-soft);color:var(--flashcard-blue-ink)}
+.flashcard-quick-row__icon.custom{background:var(--flashcard-lilac-soft);color:var(--flashcard-lilac-ink)}
+.flashcard-quick-row__icon.ai{background:linear-gradient(145deg,#dff4ec,#eaf4fb);color:#136f63;font-size:11px;letter-spacing:.04em}
+.flashcard-template-panel{background:linear-gradient(135deg,#eff9f5,#edf6fb)}
+.flashcard-import-message{border-color:#d9e5eb;background:#f2f8fb;color:#49636f}
+
+.flashcard-curriculum-content-tabs{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+}
+.flashcard-curriculum-content-tabs button{
+  display:grid;
+  grid-template-columns:32px minmax(0,1fr) auto;
+  align-items:center;
+  gap:7px;
+  min-height:48px;
+  border:1px solid var(--flashcard-border);
+  border-radius:14px;
+  background:#fff;
+  padding:7px 9px;
+  color:#50635d;
+  cursor:pointer;
+  text-align:left;
+}
+.flashcard-curriculum-content-tabs button > span{
+  display:grid;
+  width:32px;
+  height:32px;
+  place-items:center;
+  border-radius:10px;
+  background:var(--flashcard-green-soft);
+  color:#116f62;
+  font-family:var(--font-hanzi,"Noto Serif SC",serif);
+  font-size:17px;
+}
+.flashcard-curriculum-content-tabs button:nth-child(2) > span{background:var(--flashcard-blue-soft);color:var(--flashcard-blue-ink)}
+.flashcard-curriculum-content-tabs button:nth-child(3) > span{background:var(--flashcard-lilac-soft);color:var(--flashcard-lilac-ink)}
+.flashcard-curriculum-content-tabs button b{overflow:hidden;font-size:12px;text-overflow:ellipsis;white-space:nowrap}
+.flashcard-curriculum-content-tabs button small{display:grid;min-width:24px;height:24px;place-items:center;border-radius:999px;background:#f1f7f4;color:#60736d;font-size:9px;font-weight:800}
+.flashcard-curriculum-content-tabs button.active{border-color:#8fcaba;background:#f1faf6;box-shadow:0 5px 14px rgba(22,127,114,.09);color:#0e6d60}
+.flashcard-curriculum-content-tabs button:nth-child(2).active{border-color:#acd0e2;background:#f2f8fc;color:var(--flashcard-blue-ink)}
+.flashcard-curriculum-content-tabs button:nth-child(3).active{border-color:#c8bce3;background:#f7f4fc;color:var(--flashcard-lilac-ink)}
+.flashcard-curriculum-content-note{display:flex;align-items:center;justify-content:space-between;gap:10px;border-radius:12px;background:#f5faf8;padding:8px 10px;color:#667872;font-size:10px}
+.flashcard-curriculum-content-note b{color:#176f63;font-size:12px}
+.flashcard-curriculum-word--sentence.is-selected{border-color:#a9cddd;background:#f1f8fb}
+.flashcard-curriculum-word--grammar.is-selected{border-color:#c6b9df;background:#f7f4fc}
+.flashcard-curriculum-word--sentence b{font-size:16px;line-height:1.45}
+.flashcard-curriculum-word--grammar b{font-family:inherit;font-size:13px;font-weight:800;line-height:1.35}
+.flashcard-curriculum-word--grammar small{white-space:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}
+.flashcard-curriculum-selection-preview--sentence span{background:var(--flashcard-blue-soft);color:#345f78}
+.flashcard-curriculum-selection-preview--grammar span{background:var(--flashcard-lilac-soft);color:#5f5181}
+
+.hsk-flashcard-front--grammar,
+.hsk-flashcard-answer--grammar{
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  justify-content:center;
+  gap:10px;
+  width:100%;
+  min-height:100%;
+  padding:22px;
+  text-align:left;
+}
+.hsk-flashcard-front--grammar small,
+.hsk-flashcard-answer--grammar > small{color:#695893;font-size:10px;font-weight:900;letter-spacing:.12em}
+.hsk-flashcard-front--grammar h3,
+.hsk-flashcard-answer--grammar h3{margin:0;color:#273832;font-size:17px}
+.hsk-flashcard-front--grammar strong,
+.hsk-flashcard-answer--grammar > strong{font-family:var(--font-hanzi,"Noto Serif SC",serif);font-size:clamp(22px,6vw,32px);font-weight:500;line-height:1.45}
+.hsk-flashcard-answer--grammar > p{margin:0;color:#52635e;font-size:13px;line-height:1.6}
+.grammar-card-note{display:grid;grid-template-columns:50px minmax(0,1fr);gap:8px;border-radius:11px;background:#edf7f3;padding:9px 10px;color:#47645b;font-size:11px;line-height:1.5}
+.grammar-card-note.is-attention{background:#f2f5fb;color:#52627b}
+.grammar-card-examples{display:grid;gap:7px;max-height:180px;overflow:auto}
+.grammar-card-examples article{display:grid;gap:2px;border:1px solid #dbe9e4;border-radius:11px;background:#fff;padding:8px 10px}
+.grammar-card-examples article b{font-family:var(--font-hanzi,"Noto Serif SC",serif);font-size:17px;font-weight:500}
+.grammar-card-examples article i{color:#27796d;font-size:10px;font-style:normal}
+.grammar-card-examples article span{color:#687872;font-size:10px}
+
+.flashcard-ai-prompt-page{display:grid;gap:13px;padding-bottom:calc(94px + env(safe-area-inset-bottom))}
+.flashcard-ai-prompt-header{position:sticky;top:0;z-index:15;background:rgba(247,252,249,.96);backdrop-filter:blur(15px)}
+.flashcard-ai-prompt-card,
+.flashcard-ai-output-card{border:1px solid var(--flashcard-border);border-radius:20px;background:#fff;padding:14px;box-shadow:0 10px 30px rgba(35,80,66,.06)}
+.flashcard-ai-type-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-bottom:14px}
+.flashcard-ai-type-tabs button{display:grid;place-items:center;gap:4px;min-height:58px;border:1px solid #dce9e4;border-radius:13px;background:#f9fcfb;color:#53655f;cursor:pointer}
+.flashcard-ai-type-tabs button span{font-family:var(--font-hanzi,"Noto Serif SC",serif);font-size:18px}
+.flashcard-ai-type-tabs button b{font-size:10px}
+.flashcard-ai-type-tabs button.active{border-color:#91cbbb;background:#e8f7f1;color:#0f6f62;box-shadow:0 4px 12px rgba(22,127,114,.08)}
+.flashcard-ai-type-tabs button:nth-child(2).active{border-color:#afd1e1;background:#eef7fb;color:#356f8f}
+.flashcard-ai-type-tabs button:nth-child(3).active{border-color:#c6bae0;background:#f5f1fb;color:#695893}
+.flashcard-ai-type-tabs button:nth-child(4).active{border-color:#9acfc1;background:#eef9f5;color:#176f63}
+.flashcard-ai-type-tabs button:nth-child(5).active{border-color:#b4cddd;background:#f1f7fa;color:#3d7088}
+.flashcard-ai-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.flashcard-ai-fields label{display:grid;gap:6px;color:#33453f;font-size:11px;font-weight:800}
+.flashcard-ai-fields label.is-wide{grid-column:1/-1}
+.flashcard-ai-fields label span small{color:#84918d;font-weight:500}
+.flashcard-ai-fields input,
+.flashcard-ai-fields textarea,
+.flashcard-ai-output-card textarea{width:100%;border:1px solid #d3e5de;border-radius:13px;background:#fbfefc;padding:10px 12px;color:#20312c;font:inherit;outline:none;resize:vertical}
+.flashcard-ai-fields input{min-height:42px}
+.flashcard-ai-fields input:focus,
+.flashcard-ai-fields textarea:focus{border-color:#88c6b6;box-shadow:0 0 0 3px rgba(22,127,114,.1)}
+.flashcard-ai-fields label > small{color:#788782;font-size:9px;font-weight:500}
+.flashcard-ai-output-card{display:grid;gap:10px;background:linear-gradient(145deg,#f3faf7,#f3f8fb)}
+.flashcard-ai-output-card header{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.flashcard-ai-output-card header span{color:#167f72;font-size:9px;font-weight:900;letter-spacing:.1em}
+.flashcard-ai-output-card h3{margin:3px 0 0;font-size:18px}
+.flashcard-ai-output-card header button{min-height:39px;border:1px solid #94cbbc;border-radius:12px;background:#e4f5ef;color:#116e61;padding:0 12px;font-weight:800;cursor:pointer}
+.flashcard-ai-output-card textarea{min-height:320px;background:#fff;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11px;line-height:1.55}
+.flashcard-ai-output-card > p{margin:0;color:#6d7d77;font-size:10px;line-height:1.5}
+
+@media(max-width:620px){
+  .flashcard-curriculum-content-tabs{grid-template-columns:1fr}
+  .flashcard-curriculum-content-tabs button{grid-template-columns:30px minmax(0,1fr) auto;min-height:44px}
+  .flashcard-ai-type-tabs{grid-template-columns:repeat(5,minmax(54px,1fr));overflow-x:auto}
+  .flashcard-ai-type-tabs button{min-width:54px;padding:6px 2px}
+  .flashcard-ai-type-tabs button b{font-size:9px}
+  .flashcard-ai-fields{grid-template-columns:1fr 1fr}
+  .flashcard-ai-fields label:nth-child(3),.flashcard-ai-fields label.is-wide{grid-column:1/-1}
+  .hsk-flashcard-front--grammar,.hsk-flashcard-answer--grammar{padding:16px}
+}
