@@ -3663,17 +3663,28 @@ if(window.HanziWriter){
   function renderFlashcardAiPastePage(){
     const analysis=flashcardLibraryState.aiPasteAnalysis;
     const types=Object.entries(window.TiengTrungAiPromptTemplates?.TYPE_META || {});
-    const selectedCount=flashcardSelectedAiBlocks().length;
+    const selectedBlocks=flashcardSelectedAiBlocks();
+    const selectedCount=selectedBlocks.length;
+    const isFull=flashcardLibraryState.aiPasteMode==='full';
     const listeningDecks=flashcardLibraryState.listeningDecks || [];
     const listeningGroups=flashcardLibraryState.listeningGroups || [];
+    const selectedLabels=selectedBlocks.map(block=>block.label).join(' · ');
+    const titleLabel=isFull?'Tên nhóm / chủ đề':'Tên bộ';
+    const destinationTitle=isFull?'Tạo nhóm và các bộ riêng':'Tạo một bộ từ nội dung đã chọn';
+    const fcTarget=isFull
+      ? `<div class="flashcard-ai-paste-target"><b>Đích Thẻ</b><div class="flashcard-ai-paste-target-tabs"><button type="button" data-flashcard-ai-paste-fc-mode="new" class="${flashcardLibraryState.aiPasteFlashcardMode==='new'?'active':''}">Tạo nhóm mới</button><button type="button" data-flashcard-ai-paste-fc-mode="existing" class="${flashcardLibraryState.aiPasteFlashcardMode==='existing'?'active':''}" ${flashcardLibraryState.groups.length?'':'disabled'}>Thêm vào nhóm có sẵn</button></div>${flashcardLibraryState.aiPasteFlashcardMode==='existing'?`<select data-flashcard-ai-paste-fc-group>${flashcardLibraryState.groups.map(group=>`<option value="${escapeHtml(group.id)}" ${flashcardLibraryState.aiPasteFlashcardGroupId===group.id?'selected':''}>${escapeHtml(group.name)}</option>`).join('')}</select>`:`<p class="flashcard-ai-paste-target-note">Sẽ tạo một nhóm mới và tối đa 5 bộ riêng: Từ vựng, Câu, Ngữ pháp, Hội thoại, Đoạn văn.</p>`}</div>`
+      : `<div class="flashcard-ai-paste-target"><b>Đích Thẻ</b><div class="flashcard-ai-paste-target-tabs"><button type="button" data-flashcard-ai-paste-fc-mode="new" class="${flashcardLibraryState.aiPasteFlashcardMode==='new'?'active':''}">Tạo bộ mới</button><button type="button" data-flashcard-ai-paste-fc-mode="existing" class="${flashcardLibraryState.aiPasteFlashcardMode==='existing'?'active':''}" ${flashcardLibraryState.decks.length?'':'disabled'}>Thêm vào bộ có sẵn</button></div>${flashcardLibraryState.aiPasteFlashcardMode==='existing'?`<select data-flashcard-ai-paste-fc-deck>${flashcardLibraryState.decks.map(deck=>`<option value="${escapeHtml(deck.id)}" ${flashcardLibraryState.aiPasteFlashcardDeckId===deck.id?'selected':''}>${escapeHtml(deck.name)}</option>`).join('')}</select>`:`<select data-flashcard-ai-paste-fc-group><option value="">Không phân nhóm</option>${flashcardLibraryState.groups.map(group=>`<option value="${escapeHtml(group.id)}" ${flashcardLibraryState.aiPasteFlashcardGroupId===group.id?'selected':''}>${escapeHtml(group.name)}</option>`).join('')}</select>`}</div>`;
+    const listeningTarget=isFull
+      ? `<div class="flashcard-ai-paste-target"><b>Đích Nghe</b><div class="flashcard-ai-paste-target-tabs"><button type="button" data-flashcard-ai-paste-listen-mode="new" class="${flashcardLibraryState.aiPasteListeningMode==='new'?'active':''}">Tạo nhóm mới</button><button type="button" data-flashcard-ai-paste-listen-mode="existing" class="${flashcardLibraryState.aiPasteListeningMode==='existing'?'active':''}" ${listeningGroups.length?'':'disabled'}>Thêm vào nhóm có sẵn</button></div>${flashcardLibraryState.aiPasteListeningMode==='existing'?`<select data-flashcard-ai-paste-listen-group>${listeningGroups.map(group=>`<option value="${escapeHtml(group.id)}" ${flashcardLibraryState.aiPasteListeningGroupId===group.id?'selected':''}>${escapeHtml(group.name)}</option>`).join('')}</select>`:`<p class="flashcard-ai-paste-target-note">Mỗi loại nội dung sẽ thành một bộ Nghe riêng trong cùng nhóm. Loại không có dữ liệu sẽ không được tạo.</p>`}</div>`
+      : `<div class="flashcard-ai-paste-target"><b>Đích Nghe</b><div class="flashcard-ai-paste-target-tabs"><button type="button" data-flashcard-ai-paste-listen-mode="new" class="${flashcardLibraryState.aiPasteListeningMode==='new'?'active':''}">Tạo bộ mới</button><button type="button" data-flashcard-ai-paste-listen-mode="existing" class="${flashcardLibraryState.aiPasteListeningMode==='existing'?'active':''}" ${listeningDecks.length?'':'disabled'}>Thêm vào bộ có sẵn</button></div>${flashcardLibraryState.aiPasteListeningMode==='existing'?`<select data-flashcard-ai-paste-listen-deck>${listeningDecks.map(deck=>`<option value="${escapeHtml(deck.id)}" ${flashcardLibraryState.aiPasteListeningDeckId===deck.id?'selected':''}>${escapeHtml(deck.name)}</option>`).join('')}</select>`:`<select data-flashcard-ai-paste-listen-group><option value="">Không phân nhóm</option>${listeningGroups.map(group=>`<option value="${escapeHtml(group.id)}" ${flashcardLibraryState.aiPasteListeningGroupId===group.id?'selected':''}>${escapeHtml(group.name)}</option>`).join('')}</select>`}</div>`;
     return `<div class="flashcard-library-page flashcard-ai-paste-page">
       <header class="flashcard-library-subpage-header flashcard-library-subpage-header--plain">
         <button type="button" class="flashcard-library-back" data-flashcard-ai-paste-close aria-label="Quay lại">←</button>
         <div><span>AI IMPORT</span><h2>Dán kết quả AI</h2><p>Tự tách JSON, kiểm tra, xem trước rồi nhập vào Thẻ hoặc Nghe.</p></div>
       </header>
       <section class="flashcard-ai-paste-card">
-        <div class="flashcard-ai-paste-mode"><button type="button" data-flashcard-ai-paste-mode="quick" class="${flashcardLibraryState.aiPasteMode==='quick'?'active':''}">Nhập nhanh từng loại</button><button type="button" data-flashcard-ai-paste-mode="full" class="${flashcardLibraryState.aiPasteMode==='full'?'active':''}">Nhập một bộ đầy đủ</button></div>
-        ${flashcardLibraryState.aiPasteMode==='quick'?`<div class="flashcard-ai-paste-types">${types.map(([id,meta])=>`<button type="button" data-flashcard-ai-paste-type="${id}" class="${flashcardLibraryState.aiPasteExpectedType===id?'active':''}">${meta.icon} ${escapeHtml(meta.label)}</button>`).join('')}</div>`:`<p class="flashcard-ai-paste-help">Dán toàn bộ cuộc trò chuyện hoặc nhiều khối JSON liên tiếp. Ứng dụng tự nhận diện Từ vựng, Câu, Ngữ pháp, Hội thoại và Đoạn văn.</p>`}
+        <div class="flashcard-ai-paste-mode"><button type="button" data-flashcard-ai-paste-mode="quick" class="${flashcardLibraryState.aiPasteMode==='quick'?'active':''}">Nhập nhanh từng loại</button><button type="button" data-flashcard-ai-paste-mode="full" class="${isFull?'active':''}">Nhập một bộ đầy đủ</button></div>
+        ${!isFull?`<div class="flashcard-ai-paste-types">${types.map(([id,meta])=>`<button type="button" data-flashcard-ai-paste-type="${id}" class="${flashcardLibraryState.aiPasteExpectedType===id?'active':''}">${meta.icon} ${escapeHtml(meta.label)}</button>`).join('')}</div>`:`<p class="flashcard-ai-paste-help">Dán toàn bộ cuộc trò chuyện hoặc nhiều khối JSON liên tiếp. Khi nhập, ứng dụng tạo một nhóm và tách từng loại thành một bộ riêng.</p>`}
         <label class="flashcard-ai-paste-text"><span>Nội dung AI trả về</span><textarea rows="13" data-flashcard-ai-paste-text placeholder="Dán JSON thuần, JSON trong Markdown hoặc toàn bộ đoạn chat...">${escapeHtml(flashcardLibraryState.aiPasteText)}</textarea></label>
         <button type="button" class="hsk-flashcard-start" data-flashcard-ai-paste-analyze>Phân tích dữ liệu</button>
       </section>
@@ -3684,15 +3695,16 @@ if(window.HanziWriter){
         <div class="flashcard-ai-paste-blocks">${(analysis.blocks||[]).map(renderFlashcardAiPasteBlock).join('')}</div>
       </section>
       <section class="flashcard-ai-paste-card flashcard-ai-paste-destination">
-        <span class="flashcard-data-section__eyebrow">ĐÍCH NHẬP</span><h3>Tạo một bộ từ nội dung đã chọn</h3>
-        <label><span>Tên bộ</span><input data-flashcard-ai-paste-title value="${escapeHtml(flashcardLibraryState.aiPasteTitle||'')}" placeholder="Ví dụ: Giới thiệu gia đình"></label>
+        <span class="flashcard-data-section__eyebrow">ĐÍCH NHẬP</span><h3>${destinationTitle}</h3>
+        <label><span>${titleLabel}</span><input data-flashcard-ai-paste-title value="${escapeHtml(flashcardLibraryState.aiPasteTitle||'')}" placeholder="Ví dụ: Giới thiệu gia đình"></label>
+        ${isFull&&selectedLabels?`<p class="flashcard-ai-paste-plan"><b>Sẽ tạo ${selectedCount} bộ:</b> ${escapeHtml(selectedLabels)}</p>`:''}
         <div class="flashcard-ai-paste-destination-switches">
-          <label><input type="checkbox" data-flashcard-ai-paste-to="flashcards" ${flashcardLibraryState.aiPasteToFlashcards?'checked':''}><span><b>Thẻ</b><small>Tạo thẻ từ, câu, ngữ pháp và nội dung nhóm</small></span></label>
-          <label><input type="checkbox" data-flashcard-ai-paste-to="listening" ${flashcardLibraryState.aiPasteToListening?'checked':''}><span><b>Nghe</b><small>Tạo Listening Dataset V1 đầy đủ</small></span></label>
+          <label><input type="checkbox" data-flashcard-ai-paste-to="flashcards" ${flashcardLibraryState.aiPasteToFlashcards?'checked':''}><span><b>Thẻ</b><small>${isFull?'Tạo một nhóm và các bộ riêng theo từng loại':'Tạo một bộ Thẻ từ nội dung đã chọn'}</small></span></label>
+          <label><input type="checkbox" data-flashcard-ai-paste-to="listening" ${flashcardLibraryState.aiPasteToListening?'checked':''}><span><b>Nghe</b><small>${isFull?'Tạo một nhóm Nghe và các bộ riêng theo từng loại':'Tạo một Listening Dataset V1'}</small></span></label>
         </div>
-        ${flashcardLibraryState.aiPasteToFlashcards?`<div class="flashcard-ai-paste-target"><b>Đích Thẻ</b><div class="flashcard-ai-paste-target-tabs"><button type="button" data-flashcard-ai-paste-fc-mode="new" class="${flashcardLibraryState.aiPasteFlashcardMode==='new'?'active':''}">Tạo bộ mới</button><button type="button" data-flashcard-ai-paste-fc-mode="existing" class="${flashcardLibraryState.aiPasteFlashcardMode==='existing'?'active':''}" ${flashcardLibraryState.decks.length?'':'disabled'}>Thêm vào bộ có sẵn</button></div>${flashcardLibraryState.aiPasteFlashcardMode==='existing'?`<select data-flashcard-ai-paste-fc-deck>${flashcardLibraryState.decks.map(deck=>`<option value="${escapeHtml(deck.id)}" ${flashcardLibraryState.aiPasteFlashcardDeckId===deck.id?'selected':''}>${escapeHtml(deck.name)}</option>`).join('')}</select>`:`<select data-flashcard-ai-paste-fc-group><option value="">Không phân nhóm</option>${flashcardLibraryState.groups.map(group=>`<option value="${escapeHtml(group.id)}" ${flashcardLibraryState.aiPasteFlashcardGroupId===group.id?'selected':''}>${escapeHtml(group.name)}</option>`).join('')}</select>`}</div>`:''}
-        ${flashcardLibraryState.aiPasteToListening?`<div class="flashcard-ai-paste-target"><b>Đích Nghe</b><div class="flashcard-ai-paste-target-tabs"><button type="button" data-flashcard-ai-paste-listen-mode="new" class="${flashcardLibraryState.aiPasteListeningMode==='new'?'active':''}">Tạo bộ mới</button><button type="button" data-flashcard-ai-paste-listen-mode="existing" class="${flashcardLibraryState.aiPasteListeningMode==='existing'?'active':''}" ${listeningDecks.length?'':'disabled'}>Thêm vào bộ có sẵn</button></div>${flashcardLibraryState.aiPasteListeningMode==='existing'?`<select data-flashcard-ai-paste-listen-deck>${listeningDecks.map(deck=>`<option value="${escapeHtml(deck.id)}" ${flashcardLibraryState.aiPasteListeningDeckId===deck.id?'selected':''}>${escapeHtml(deck.name)}</option>`).join('')}</select>`:`<select data-flashcard-ai-paste-listen-group><option value="">Không phân nhóm</option>${listeningGroups.map(group=>`<option value="${escapeHtml(group.id)}" ${flashcardLibraryState.aiPasteListeningGroupId===group.id?'selected':''}>${escapeHtml(group.name)}</option>`).join('')}</select>`}</div>`:''}
-        <button type="button" class="hsk-flashcard-start" data-flashcard-ai-paste-import ${selectedCount && (flashcardLibraryState.aiPasteToFlashcards||flashcardLibraryState.aiPasteToListening)?'':'disabled'}>Nhập ${selectedCount} phần đã chọn</button>
+        ${flashcardLibraryState.aiPasteToFlashcards?fcTarget:''}
+        ${flashcardLibraryState.aiPasteToListening?listeningTarget:''}
+        <button type="button" class="hsk-flashcard-start" data-flashcard-ai-paste-import ${selectedCount&&(flashcardLibraryState.aiPasteToFlashcards||flashcardLibraryState.aiPasteToListening)?'':'disabled'}>${isFull?`Tạo nhóm và ${selectedCount} bộ`:`Nhập ${selectedCount} phần đã chọn`}</button>
       </section>`:''}
     </div>`;
   }
@@ -3719,14 +3731,60 @@ if(window.HanziWriter){
 
   function uniqueAiImportId(base, ids){
     let id=String(base||'ai-content');
-    if(!ids.has(id)) return id;
-    let index=2; while(ids.has(`${id}-${index}`)) index+=1; return `${id}-${index}`;
+    if(!ids.has(id)){ids.add(id);return id;}
+    let index=2; while(ids.has(`${id}-${index}`)) index+=1;
+    const next=`${id}-${index}`;ids.add(next);return next;
   }
 
-  async function importAiToFlashcards(payload){
+  function uniqueAiImportName(base, names){
+    const clean=String(base||'Nội dung AI').trim()||'Nội dung AI';
+    const normalized=new Set(Array.from(names||[]).map(name=>String(name||'').trim().toLocaleLowerCase('vi')));
+    if(!normalized.has(clean.toLocaleLowerCase('vi'))) return clean;
+    let index=2;while(normalized.has(`${clean} (${index})`.toLocaleLowerCase('vi')))index+=1;
+    return `${clean} (${index})`;
+  }
+
+  function rebaseAiListeningDeck(incoming,id,groupId){
+    const deck={...incoming,id,groupId:groupId||null};
+    if(deck.dataset){
+      deck.dataset.unit.id=id;
+      deck.dataset.unit.title=deck.name;
+      deck.dataset.source.id=`custom:${id}`;
+      [...(deck.dataset.words||[]),...(deck.dataset.sentences||[])].forEach(item=>{item.sourceId=id;item.lessonId=id;});
+      (deck.dataset.groups||[]).forEach(group=>{group.sourceId=id;group.lessonId=id;});
+    }
+    return deck;
+  }
+
+  async function importAiToFlashcards(payload,{splitByType=false,title='Nội dung AI'}={}){
     if(payload.errors?.length) throw new Error(payload.errors.join(' · '));
-    const incoming=payload.decks?.[0];
-    if(!incoming) throw new Error('Không có dữ liệu phù hợp để tạo Thẻ.');
+    if(!payload.decks?.length) throw new Error('Không có dữ liệu phù hợp để tạo Thẻ.');
+
+    if(splitByType){
+      let groupId='';let groupName='';
+      if(flashcardLibraryState.aiPasteFlashcardMode==='existing'){
+        const target=flashcardLibraryState.groups.find(group=>group.id===(flashcardLibraryState.aiPasteFlashcardGroupId||flashcardLibraryState.groups[0]?.id));
+        if(!target) throw new Error('Nhóm Thẻ đích không còn tồn tại.');
+        groupId=target.id;groupName=target.name;
+      }else{
+        const ids=new Set(flashcardLibraryState.groups.map(group=>group.id));
+        const names=new Set(flashcardLibraryState.groups.map(group=>group.name));
+        const sourceGroup=payload.groups?.[0]||{id:'ai-group',name:title};
+        groupId=uniqueAiImportId(sourceGroup.id,ids);
+        groupName=uniqueAiImportName(sourceGroup.name||title,names);
+        await saveFlashcardGroup({id:groupId,name:groupName,description:'Nhóm nội dung AI được tách thành các bộ theo từng loại.'});
+      }
+      const ids=new Set(flashcardLibraryState.decks.map(deck=>deck.id));
+      let cardCount=0;
+      for(const incoming of payload.decks){
+        const id=uniqueAiImportId(incoming.id,ids);
+        await saveCustomDeck({...incoming,id,groupId,createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()});
+        cardCount+=(incoming.cards||[]).length;
+      }
+      return {groupName,deckCount:payload.decks.length,cardCount};
+    }
+
+    const incoming=payload.decks[0];
     if(flashcardLibraryState.aiPasteFlashcardMode==='existing'){
       const target=flashcardLibraryState.decks.find(deck=>deck.id===(flashcardLibraryState.aiPasteFlashcardDeckId||flashcardLibraryState.decks[0]?.id));
       if(!target) throw new Error('Bộ Thẻ đích không còn tồn tại.');
@@ -3741,13 +3799,36 @@ if(window.HanziWriter){
     return {deckCount:1,cardCount:incoming.cards.length,targetName:incoming.name};
   }
 
-  async function importAiToListening(payload){
+  async function importAiToListening(payload,{splitByType=false,title='Nội dung AI'}={}){
     if(payload.errors?.length) throw new Error(payload.errors.join(' · '));
-    const incoming=payload.decks?.[0];
-    if(!incoming) throw new Error('Không có dữ liệu phù hợp để tạo bộ Nghe.');
+    if(!payload.decks?.length) throw new Error('Không có dữ liệu phù hợp để tạo bộ Nghe.');
     const store=window.ListeningLibraryStore;
     if(!store) throw new Error('Thiếu ListeningLibraryStore.');
     await store.init();
+
+    if(splitByType){
+      let groupId='';let groupName='';
+      if(flashcardLibraryState.aiPasteListeningMode==='existing'){
+        const target=flashcardLibraryState.listeningGroups.find(group=>group.id===(flashcardLibraryState.aiPasteListeningGroupId||flashcardLibraryState.listeningGroups[0]?.id));
+        if(!target) throw new Error('Nhóm Nghe đích không còn tồn tại.');
+        groupId=target.id;groupName=target.name;
+      }else{
+        const ids=new Set(flashcardLibraryState.listeningGroups.map(group=>group.id));
+        const names=new Set(flashcardLibraryState.listeningGroups.map(group=>group.name));
+        const sourceGroup=payload.groups?.[0]||{id:'ai-group',name:title};
+        groupId=uniqueAiImportId(sourceGroup.id,ids);
+        groupName=uniqueAiImportName(sourceGroup.name||title,names);
+        await store.saveGroup({id:groupId,name:groupName,description:'Nhóm nội dung AI được tách thành các bộ Nghe theo từng loại.'});
+      }
+      const ids=new Set(flashcardLibraryState.listeningDecks.map(deck=>deck.id));
+      for(const incoming of payload.decks){
+        const id=uniqueAiImportId(incoming.id,ids);
+        await store.saveDeck(rebaseAiListeningDeck(incoming,id,groupId));
+      }
+      return {groupName,deckCount:payload.decks.length};
+    }
+
+    const incoming=payload.decks[0];
     if(flashcardLibraryState.aiPasteListeningMode==='existing'){
       const targetId=flashcardLibraryState.aiPasteListeningDeckId||flashcardLibraryState.listeningDecks[0]?.id;
       const existing=await store.getDeck(targetId);
@@ -3758,8 +3839,7 @@ if(window.HanziWriter){
     }
     const ids=new Set(flashcardLibraryState.listeningDecks.map(deck=>deck.id));
     const id=uniqueAiImportId(incoming.id,ids);
-    const deck={...incoming,id,groupId:flashcardLibraryState.aiPasteListeningGroupId||null};
-    if(deck.dataset){deck.dataset.unit.id=id;deck.dataset.source.id=`custom:${id}`;[...(deck.dataset.words||[]),...(deck.dataset.sentences||[])].forEach(item=>{item.sourceId=id;item.lessonId=id;});(deck.dataset.groups||[]).forEach(group=>{group.sourceId=id;group.lessonId=id;});}
+    const deck=rebaseAiListeningDeck(incoming,id,flashcardLibraryState.aiPasteListeningGroupId||null);
     await store.saveDeck(deck);
     return {deckCount:1,targetName:deck.name};
   }
@@ -3768,15 +3848,24 @@ if(window.HanziWriter){
     const analysis=flashcardLibraryState.aiPasteAnalysis;
     if(!analysis) return;
     const title=String(flashcardLibraryState.aiPasteTitle||'Nội dung AI').trim()||'Nội dung AI';
+    const splitByType=flashcardLibraryState.aiPasteMode==='full';
     try{
       const messages=[];
       if(flashcardLibraryState.aiPasteToFlashcards){
-        const payload=ImportCore.buildAiFlashcardImport(analysis,{selectedBlockIds:flashcardLibraryState.aiPasteSelectedIds,title});
-        const summary=await importAiToFlashcards(payload); messages.push(summary.deckCount?`đã tạo bộ Thẻ “${summary.targetName}”`:`đã thêm ${summary.cardCount} thẻ vào “${summary.targetName}”`);
+        const existingGroup=splitByType&&flashcardLibraryState.aiPasteFlashcardMode==='existing'
+          ? flashcardLibraryState.groups.find(group=>group.id===(flashcardLibraryState.aiPasteFlashcardGroupId||flashcardLibraryState.groups[0]?.id))
+          : null;
+        const payload=ImportCore.buildAiFlashcardImport(analysis,{selectedBlockIds:flashcardLibraryState.aiPasteSelectedIds,title,splitByType,groupId:existingGroup?.id||'',groupName:existingGroup?.name||title});
+        const summary=await importAiToFlashcards(payload,{splitByType,title});
+        messages.push(splitByType?`đã tạo ${summary.deckCount} bộ Thẻ trong nhóm “${summary.groupName}”`:summary.deckCount?`đã tạo bộ Thẻ “${summary.targetName}”`:`đã thêm ${summary.cardCount} thẻ vào “${summary.targetName}”`);
       }
       if(flashcardLibraryState.aiPasteToListening){
-        const payload=ImportCore.buildAiListeningImport(analysis,{selectedBlockIds:flashcardLibraryState.aiPasteSelectedIds,title});
-        const summary=await importAiToListening(payload); messages.push(summary.deckCount?`đã tạo bộ Nghe “${summary.targetName}”`:`đã thêm vào bộ Nghe “${summary.targetName}”`);
+        const existingGroup=splitByType&&flashcardLibraryState.aiPasteListeningMode==='existing'
+          ? flashcardLibraryState.listeningGroups.find(group=>group.id===(flashcardLibraryState.aiPasteListeningGroupId||flashcardLibraryState.listeningGroups[0]?.id))
+          : null;
+        const payload=ImportCore.buildAiListeningImport(analysis,{selectedBlockIds:flashcardLibraryState.aiPasteSelectedIds,title,splitByType,groupId:existingGroup?.id||'',groupName:existingGroup?.name||title});
+        const summary=await importAiToListening(payload,{splitByType,title});
+        messages.push(splitByType?`đã tạo ${summary.deckCount} bộ Nghe trong nhóm “${summary.groupName}”`:summary.deckCount?`đã tạo bộ Nghe “${summary.targetName}”`:`đã thêm vào bộ Nghe “${summary.targetName}”`);
       }
       flashcardLibraryState.aiPasteOpen=false;flashcardLibraryState.aiPasteAnalysis=null;flashcardLibraryState.aiPasteText='';flashcardLibraryState.aiPasteSelectedIds=new Set();flashcardLibraryState.aiPromptBuilderOpen=false;
       flashcardLibraryState.message=messages.join(' · ');
@@ -4310,14 +4399,14 @@ if(window.HanziWriter){
     if(target.closest('[data-flashcard-ai-paste-open]')){ await openFlashcardAiPaste(); return; }
     if(target.closest('[data-flashcard-ai-paste-close]')){ flashcardLibraryState.aiPasteOpen=false; flashcardLibraryState.aiPasteAnalysis=null; flashcardLibraryState.aiPasteSelectedIds=new Set(); await renderFlashcardLibrary(); return; }
     const aiPasteMode=target.closest('[data-flashcard-ai-paste-mode]');
-    if(aiPasteMode){ flashcardLibraryState.aiPasteMode=aiPasteMode.dataset.flashcardAiPasteMode==='quick'?'quick':'full'; flashcardLibraryState.aiPasteAnalysis=null; flashcardLibraryState.aiPasteSelectedIds=new Set(); await renderFlashcardLibrary(); return; }
+    if(aiPasteMode){ flashcardLibraryState.aiPasteMode=aiPasteMode.dataset.flashcardAiPasteMode==='quick'?'quick':'full'; flashcardLibraryState.aiPasteAnalysis=null; flashcardLibraryState.aiPasteSelectedIds=new Set(); flashcardLibraryState.aiPasteFlashcardMode='new'; flashcardLibraryState.aiPasteListeningMode='new'; await renderFlashcardLibrary(); return; }
     const aiPasteType=target.closest('[data-flashcard-ai-paste-type]');
     if(aiPasteType){ flashcardLibraryState.aiPasteExpectedType=aiPasteType.dataset.flashcardAiPasteType||'vocabulary'; flashcardLibraryState.aiPasteAnalysis=null; flashcardLibraryState.aiPasteSelectedIds=new Set(); await renderFlashcardLibrary(); return; }
     if(target.closest('[data-flashcard-ai-paste-analyze]')){ analyzeFlashcardAiPaste(); return; }
     const aiPasteFcMode=target.closest('[data-flashcard-ai-paste-fc-mode]');
-    if(aiPasteFcMode){ flashcardLibraryState.aiPasteFlashcardMode=aiPasteFcMode.dataset.flashcardAiPasteFcMode==='existing'?'existing':'new'; if(flashcardLibraryState.aiPasteFlashcardMode==='existing'&&!flashcardLibraryState.aiPasteFlashcardDeckId)flashcardLibraryState.aiPasteFlashcardDeckId=flashcardLibraryState.decks[0]?.id||''; await renderFlashcardLibrary(); return; }
+    if(aiPasteFcMode){ flashcardLibraryState.aiPasteFlashcardMode=aiPasteFcMode.dataset.flashcardAiPasteFcMode==='existing'?'existing':'new'; if(flashcardLibraryState.aiPasteFlashcardMode==='existing'){ if(flashcardLibraryState.aiPasteMode==='full'){if(!flashcardLibraryState.aiPasteFlashcardGroupId)flashcardLibraryState.aiPasteFlashcardGroupId=flashcardLibraryState.groups[0]?.id||'';}else if(!flashcardLibraryState.aiPasteFlashcardDeckId)flashcardLibraryState.aiPasteFlashcardDeckId=flashcardLibraryState.decks[0]?.id||'';} await renderFlashcardLibrary(); return; }
     const aiPasteListenMode=target.closest('[data-flashcard-ai-paste-listen-mode]');
-    if(aiPasteListenMode){ flashcardLibraryState.aiPasteListeningMode=aiPasteListenMode.dataset.flashcardAiPasteListenMode==='existing'?'existing':'new'; if(flashcardLibraryState.aiPasteListeningMode==='existing'&&!flashcardLibraryState.aiPasteListeningDeckId)flashcardLibraryState.aiPasteListeningDeckId=flashcardLibraryState.listeningDecks[0]?.id||''; await renderFlashcardLibrary(); return; }
+    if(aiPasteListenMode){ flashcardLibraryState.aiPasteListeningMode=aiPasteListenMode.dataset.flashcardAiPasteListenMode==='existing'?'existing':'new'; if(flashcardLibraryState.aiPasteListeningMode==='existing'){ if(flashcardLibraryState.aiPasteMode==='full'){if(!flashcardLibraryState.aiPasteListeningGroupId)flashcardLibraryState.aiPasteListeningGroupId=flashcardLibraryState.listeningGroups[0]?.id||'';}else if(!flashcardLibraryState.aiPasteListeningDeckId)flashcardLibraryState.aiPasteListeningDeckId=flashcardLibraryState.listeningDecks[0]?.id||'';} await renderFlashcardLibrary(); return; }
     if(target.closest('[data-flashcard-ai-paste-import]')){ await importFlashcardAiPaste(); return; }
     if(target.closest('[data-flashcard-ai-close]')){
       syncAiPromptFieldsFromView();

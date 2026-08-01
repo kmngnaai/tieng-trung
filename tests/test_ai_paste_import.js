@@ -50,6 +50,36 @@ assert.strictEqual(flashcard.errors.length, 0);
 assert.strictEqual(flashcard.decks.length, 1);
 assert.ok(flashcard.decks[0].cards.length >= 4);
 
+const listeningSplit = Core.buildAiListeningImport(parsed, { title:'Gia đình', selectedBlockIds:selected, splitByType:true });
+assert.strictEqual(listeningSplit.errors.length, 0);
+assert.strictEqual(listeningSplit.groups.length, 1);
+assert.strictEqual(listeningSplit.decks.length, 3);
+assert.deepStrictEqual(listeningSplit.decks.map(deck => deck.name), ['Gia đình · Từ vựng','Gia đình · Câu','Gia đình · Hội thoại']);
+assert.ok(listeningSplit.decks.every(deck => deck.groupId === listeningSplit.groups[0].id));
+
+const flashcardSplit = Core.buildAiFlashcardImport(parsed, { title:'Gia đình', selectedBlockIds:selected, splitByType:true });
+assert.strictEqual(flashcardSplit.errors.length, 0);
+assert.strictEqual(flashcardSplit.groups.length, 1);
+assert.strictEqual(flashcardSplit.decks.length, 3);
+assert.deepStrictEqual(flashcardSplit.decks.map(deck => deck.name), ['Gia đình · Từ vựng','Gia đình · Câu','Gia đình · Hội thoại']);
+assert.ok(flashcardSplit.decks.every(deck => deck.groupId === flashcardSplit.groups[0].id));
+
+
+const fullFive = Core.parseAiPaste([
+  JSON.stringify([{id:'v5',hanzi:'家',pinyin:'jiā',meaning:'gia đình',word_type:'Danh từ',tags:[]}]),
+  JSON.stringify([{id:'s5',hanzi:'我爱我家。',pinyin:'wǒ ài wǒ jiā.',meaning:'Tôi yêu gia đình tôi.',tokens:['我','爱','我','家'],tags:[]}]),
+  JSON.stringify([{id:'g5',topic:'Gia đình',pattern:'A + 有 + B',explanation:'Diễn tả sở hữu.',tips:'',attentions:'',examples:[{hanzi:'我有妹妹。',pinyin:'wǒ yǒu mèi mei.',meaning:'Tôi có em gái.'}]}]),
+  JSON.stringify({id:'d5',title:'Hội thoại',kind:'dialogue',items:[{id:'d5-1',order:1,speaker:'A',hanzi:'你好！',pinyin:'nǐ hǎo!',meaning:'Xin chào!',tokens:['你好']},{id:'d5-2',order:2,speaker:'B',hanzi:'你好！',pinyin:'nǐ hǎo!',meaning:'Xin chào!',tokens:['你好']}]}),
+  JSON.stringify({id:'p5',title:'Đoạn văn',kind:'passage',items:[{id:'p5-1',order:1,hanzi:'我爱我家。',pinyin:'wǒ ài wǒ jiā.',meaning:'Tôi yêu gia đình tôi.',tokens:['我','爱','我','家']}]})
+].join('\n'));
+const fullFiveIds = new Set(fullFive.blocks.map(block => block.id));
+const fullFiveFlashcards = Core.buildAiFlashcardImport(fullFive,{title:'Giới thiệu gia đình',selectedBlockIds:fullFiveIds,splitByType:true});
+const fullFiveListening = Core.buildAiListeningImport(fullFive,{title:'Giới thiệu gia đình',selectedBlockIds:fullFiveIds,splitByType:true});
+assert.strictEqual(fullFiveFlashcards.decks.length,5);
+assert.strictEqual(fullFiveListening.decks.length,5);
+assert.deepStrictEqual(fullFiveFlashcards.decks.map(deck=>deck.contentType),['vocabulary','sentence','grammar','dialogue','passage']);
+assert.deepStrictEqual(fullFiveListening.decks.map(deck=>deck.name),['Giới thiệu gia đình · Từ vựng','Giới thiệu gia đình · Câu','Giới thiệu gia đình · Ngữ pháp','Giới thiệu gia đình · Hội thoại','Giới thiệu gia đình · Đoạn văn']);
+
 const promptCode = fs.readFileSync(path.join(__dirname,'../modules/shared/ai-prompt-templates.js'),'utf8');
 const sandbox = { window:{} };
 vm.createContext(sandbox);
@@ -65,6 +95,8 @@ const listeningApp = fs.readFileSync(path.join(__dirname,'../modules/listening/a
 const flashcardApp = fs.readFileSync(path.join(__dirname,'../modules/hanzi-stroke/app.js'),'utf8');
 assert.match(listeningApp, /Dán kết quả AI/);
 assert.match(listeningApp, /parseAiPaste/);
+assert.match(listeningApp, /Tạo nhóm và các bộ Nghe riêng/);
+assert.match(flashcardApp, /Tạo nhóm và các bộ riêng/);
 assert.match(flashcardApp, /data-flashcard-ai-paste-open/);
 assert.match(flashcardApp, /aiPasteToListening/);
 console.log('PASS: AI paste parser, preview adapters, prompt quality and app integration contracts');

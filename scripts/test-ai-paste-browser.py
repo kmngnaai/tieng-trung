@@ -20,7 +20,7 @@ def route_local(route):
         route.abort(); return
     rel = unquote(parsed.path.lstrip('/'))
     if rel == 'modules/listening/library-store.js':
-        fake = """window.ListeningLibraryStore=Object.freeze({init:async()=>{},listGroups:async()=>[],listDecks:async()=>[],listTrash:async()=>[],getGroup:async()=>null,getDeck:async()=>null,saveDeck:async d=>d,saveGroup:async g=>g,importData:async()=>({}),exportAll:async()=>({}),exportGroup:async()=>({}),exportDeck:async()=>({}),downloadJson:()=>{},toggleCard:async()=>{},deleteDeck:async()=>{},deleteGroup:async()=>{},restoreTrash:async()=>{},deleteTrashPermanently:async()=>{},restoreAllTrash:async()=>{},emptyTrash:async()=>{},parseImportPayload:x=>x,normalizeCard:x=>x,normalizeDeck:x=>x,normalizeGroup:x=>x,constants:Object.freeze({DB_NAME:'test',DB_VERSION:2,TRASH_DAYS:7})});"""
+        fake = """window.__testListening={groups:[],decks:[]};window.ListeningLibraryStore=Object.freeze({init:async()=>{},listGroups:async()=>window.__testListening.groups.slice(),listDecks:async()=>window.__testListening.decks.slice(),listTrash:async()=>[],getGroup:async id=>window.__testListening.groups.find(x=>x.id===id)||null,getDeck:async id=>window.__testListening.decks.find(x=>x.id===id)||null,saveDeck:async d=>{const i=window.__testListening.decks.findIndex(x=>x.id===d.id);if(i>=0)window.__testListening.decks[i]=d;else window.__testListening.decks.push(d);return d},saveGroup:async g=>{const i=window.__testListening.groups.findIndex(x=>x.id===g.id);if(i>=0)window.__testListening.groups[i]=g;else window.__testListening.groups.push(g);return g},importData:async()=>({}),exportAll:async()=>({}),exportGroup:async()=>({}),exportDeck:async()=>({}),downloadJson:()=>{},toggleCard:async()=>{},deleteDeck:async()=>{},deleteGroup:async()=>{},restoreTrash:async()=>{},deleteTrashPermanently:async()=>{},restoreAllTrash:async()=>{},emptyTrash:async()=>{},parseImportPayload:x=>x,normalizeCard:x=>x,normalizeDeck:x=>x,normalizeGroup:x=>x,constants:Object.freeze({DB_NAME:'test',DB_VERSION:2,TRASH_DAYS:7})});"""
         route.fulfill(status=200, body=fake.encode('utf-8'), content_type='application/javascript'); return
     file = ROOT / rel
     if file.is_dir(): file = file / 'index.html'
@@ -68,6 +68,7 @@ def test_flashcard(browser):
     body = page.locator('body').inner_text()
     assert '1 từ' in body and '1 câu' in body
     assert 'Từ vựng' in body and 'Câu' in body
+    assert 'Tạo nhóm và các bộ riêng' in body and 'Sẽ tạo 2 bộ' in body
     assert page.locator('[data-flashcard-ai-paste-block]:checked').count() == 2
     page.locator('[data-flashcard-ai-paste-title]').fill('Gia đình AI')
     listen_toggle = page.locator('[data-flashcard-ai-paste-to="listening"]')
@@ -94,11 +95,19 @@ def test_listening(browser):
     page.wait_for_selector('.ai-paste-result')
     body = page.locator('body').inner_text()
     assert '1 từ' in body and '1 câu' in body
+    assert 'Tạo nhóm và các bộ Nghe riêng' in body and 'Sẽ tạo 2 bộ' in body
     assert page.locator('[data-ai-paste-block]:checked').count() == 2
     page.locator('[data-ai-paste-title]').fill('Gia đình AI Nghe')
     assert page.locator('[data-action="confirm-ai-paste-listening"]').is_enabled()
     assert page.evaluate('document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1')
     page.screenshot(path=str(OUT/'listening-ai-paste-preview-mobile.png'), full_page=True)
+    page.locator('[data-action="confirm-ai-paste-listening"]').click()
+    page.wait_for_timeout(300)
+    stored = page.evaluate('window.__testListening')
+    assert len(stored['groups']) == 1
+    assert len(stored['decks']) == 2
+    assert sorted(deck['name'] for deck in stored['decks']) == ['Gia đình AI Nghe · Câu','Gia đình AI Nghe · Từ vựng']
+    assert all(deck['groupId'] == stored['groups'][0]['id'] for deck in stored['decks'])
     ctx.close()
 
 def main():

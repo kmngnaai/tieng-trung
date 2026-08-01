@@ -830,12 +830,18 @@
     const types = Object.entries(window.TiengTrungAiPromptTemplates?.TYPE_META || {});
     const groups = state.libraryGroups || [];
     const decks = state.libraryDecks || [];
+    const selectedBlocks = selectedAiPasteBlocks();
+    const isFull = state.aiPasteMode === 'full';
+    const selectedLabels = selectedBlocks.map((block) => block.label).join(' · ');
+    const targetPanel = isFull
+      ? `<div class="ai-paste-target-tabs"><button data-action="set-ai-paste-target" data-target="new" class="${state.aiPasteTargetMode === 'new' ? 'active' : ''}">Tạo nhóm mới</button><button data-action="set-ai-paste-target" data-target="existing" class="${state.aiPasteTargetMode === 'existing' ? 'active' : ''}" ${groups.length ? '' : 'disabled'}>Thêm vào nhóm có sẵn</button></div>${state.aiPasteTargetMode === 'existing' ? `<label><span>Nhóm đích</span><select data-ai-paste-group>${groups.map((group) => `<option value="${escapeHtml(group.id)}" ${state.aiPasteGroupId === group.id ? 'selected' : ''}>${escapeHtml(group.name)}</option>`).join('')}</select></label>` : `<p class="ai-paste-target-note">Sẽ tạo một nhóm mới và tách Từ vựng, Câu, Ngữ pháp, Hội thoại, Đoạn văn thành các bộ riêng. Loại không có dữ liệu sẽ không được tạo.</p>`}`
+      : `<div class="ai-paste-target-tabs"><button data-action="set-ai-paste-target" data-target="new" class="${state.aiPasteTargetMode === 'new' ? 'active' : ''}">Tạo bộ mới</button><button data-action="set-ai-paste-target" data-target="existing" class="${state.aiPasteTargetMode === 'existing' ? 'active' : ''}" ${decks.length ? '' : 'disabled'}>Thêm vào bộ có sẵn</button></div>${state.aiPasteTargetMode === 'existing' ? `<label><span>Bộ đích</span><select data-ai-paste-deck>${decks.map((deck) => `<option value="${escapeHtml(deck.id)}" ${state.aiPasteTargetDeckId === deck.id ? 'selected' : ''}>${escapeHtml(deck.name)}</option>`).join('')}</select></label>` : `<label><span>Nhóm thư viện</span><select data-ai-paste-group><option value="">Không phân nhóm</option>${groups.map((group) => `<option value="${escapeHtml(group.id)}" ${state.aiPasteGroupId === group.id ? 'selected' : ''}>${escapeHtml(group.name)}</option>`).join('')}</select></label>`}`;
     app.innerHTML = `
       ${pageHeader('Dán kết quả AI', 'Tự tách JSON · kiểm tra · xem trước', true)}
       <main class="listen-main ai-paste-main">
         <section class="ai-paste-card">
-          <div class="ai-paste-mode" role="tablist"><button data-action="set-ai-paste-mode" data-mode="quick" class="${state.aiPasteMode === 'quick' ? 'active' : ''}">Nhập nhanh từng loại</button><button data-action="set-ai-paste-mode" data-mode="full" class="${state.aiPasteMode === 'full' ? 'active' : ''}">Nhập một bộ đầy đủ</button></div>
-          ${state.aiPasteMode === 'quick' ? `<div class="ai-paste-types">${types.map(([id, meta]) => `<button data-action="set-ai-paste-type" data-type="${id}" class="${state.aiPasteExpectedType === id ? 'active' : ''}">${meta.icon} ${escapeHtml(meta.label)}</button>`).join('')}</div>` : `<p class="ai-paste-help">Có thể dán toàn bộ cuộc trò chuyện gồm nhiều khối JSON. Ứng dụng sẽ tự nhận diện từng loại.</p>`}
+          <div class="ai-paste-mode" role="tablist"><button data-action="set-ai-paste-mode" data-mode="quick" class="${state.aiPasteMode === 'quick' ? 'active' : ''}">Nhập nhanh từng loại</button><button data-action="set-ai-paste-mode" data-mode="full" class="${isFull ? 'active' : ''}">Nhập một bộ đầy đủ</button></div>
+          ${!isFull ? `<div class="ai-paste-types">${types.map(([id, meta]) => `<button data-action="set-ai-paste-type" data-type="${id}" class="${state.aiPasteExpectedType === id ? 'active' : ''}">${meta.icon} ${escapeHtml(meta.label)}</button>`).join('')}</div>` : `<p class="ai-paste-help">Dán toàn bộ cuộc trò chuyện gồm nhiều khối JSON. Khi nhập, ứng dụng tạo một nhóm và tách từng loại thành một bộ Nghe riêng.</p>`}
           <label class="ai-paste-text"><span>Nội dung AI trả về</span><textarea rows="12" data-ai-paste-text placeholder="Dán JSON thuần, JSON trong Markdown hoặc toàn bộ đoạn chat tại đây...">${escapeHtml(state.aiPasteText)}</textarea></label>
           <button type="button" class="primary-button full-width" data-action="analyze-ai-paste">Phân tích dữ liệu</button>
         </section>
@@ -846,11 +852,11 @@
           <div class="ai-paste-blocks">${(analysis.blocks || []).map(renderListeningAiPasteBlock).join('')}</div>
         </section>
         <section class="ai-paste-card ai-paste-destination">
-          <p class="eyebrow">Đích nhập</p><h2>Đưa vào Bộ tự tạo Nghe</h2>
-          <label><span>Tên bộ</span><input data-ai-paste-title value="${escapeHtml(state.aiPasteTitle || '')}" placeholder="Ví dụ: Giới thiệu gia đình"></label>
-          <div class="ai-paste-target-tabs"><button data-action="set-ai-paste-target" data-target="new" class="${state.aiPasteTargetMode === 'new' ? 'active' : ''}">Tạo bộ mới</button><button data-action="set-ai-paste-target" data-target="existing" class="${state.aiPasteTargetMode === 'existing' ? 'active' : ''}" ${decks.length ? '' : 'disabled'}>Thêm vào bộ có sẵn</button></div>
-          ${state.aiPasteTargetMode === 'existing' ? `<label><span>Bộ đích</span><select data-ai-paste-deck>${decks.map((deck) => `<option value="${escapeHtml(deck.id)}" ${state.aiPasteTargetDeckId === deck.id ? 'selected' : ''}>${escapeHtml(deck.name)}</option>`).join('')}</select></label>` : `<label><span>Nhóm thư viện</span><select data-ai-paste-group><option value="">Không phân nhóm</option>${groups.map((group) => `<option value="${escapeHtml(group.id)}" ${state.aiPasteGroupId === group.id ? 'selected' : ''}>${escapeHtml(group.name)}</option>`).join('')}</select></label>`}
-          <button class="primary-button full-width" data-action="confirm-ai-paste-listening" ${selectedAiPasteBlocks().length ? '' : 'disabled'}>Nhập ${selectedAiPasteBlocks().length} phần đã chọn</button>
+          <p class="eyebrow">Đích nhập</p><h2>${isFull ? 'Tạo nhóm và các bộ Nghe riêng' : 'Đưa vào Bộ tự tạo Nghe'}</h2>
+          <label><span>${isFull ? 'Tên nhóm / chủ đề' : 'Tên bộ'}</span><input data-ai-paste-title value="${escapeHtml(state.aiPasteTitle || '')}" placeholder="Ví dụ: Giới thiệu gia đình"></label>
+          ${isFull && selectedLabels ? `<p class="ai-paste-plan"><b>Sẽ tạo ${selectedBlocks.length} bộ:</b> ${escapeHtml(selectedLabels)}</p>` : ''}
+          ${targetPanel}
+          <button class="primary-button full-width" data-action="confirm-ai-paste-listening" ${selectedBlocks.length ? '' : 'disabled'}>${isFull ? `Tạo nhóm và ${selectedBlocks.length} bộ` : `Nhập ${selectedBlocks.length} phần đã chọn`}</button>
         </section>` : ''}
       </main>${bottomNav()}`;
   }
@@ -864,15 +870,76 @@
     render();
   }
 
+  function nextAiLibraryId(base, used) {
+    let id = String(base || 'ai-content');
+    if (!used.has(id)) { used.add(id); return id; }
+    let suffix = 2;
+    while (used.has(`${id}-${suffix}`)) suffix += 1;
+    const next = `${id}-${suffix}`;
+    used.add(next);
+    return next;
+  }
+
+  function nextAiLibraryName(base, names) {
+    const clean = String(base || 'Nội dung AI').trim() || 'Nội dung AI';
+    const normalized = new Set(Array.from(names || []).map((name) => String(name || '').trim().toLocaleLowerCase('vi')));
+    if (!normalized.has(clean.toLocaleLowerCase('vi'))) return clean;
+    let suffix = 2;
+    while (normalized.has(`${clean} (${suffix})`.toLocaleLowerCase('vi'))) suffix += 1;
+    return `${clean} (${suffix})`;
+  }
+
+  function rebaseListeningAiDeck(incoming, id, groupId) {
+    const deck = { ...incoming, id, groupId: groupId || null };
+    if (deck.dataset) {
+      deck.dataset.unit.id = id;
+      deck.dataset.unit.title = deck.name;
+      deck.dataset.source.id = `custom:${id}`;
+      [...(deck.dataset.words || []), ...(deck.dataset.sentences || [])].forEach((item) => { item.sourceId = id; item.lessonId = id; });
+      (deck.dataset.groups || []).forEach((entry) => { entry.sourceId = id; entry.lessonId = id; });
+    }
+    return deck;
+  }
+
   async function confirmListeningAiPaste() {
     const analysis = state.aiPasteAnalysis;
     if (!analysis) return;
     const title = cleanAiPasteValue(state.aiPasteTitle) || 'Nội dung AI';
-    const group = state.libraryGroups.find((item) => item.id === state.aiPasteGroupId);
-    const payload = ImportCore.buildAiListeningImport(analysis, { selectedBlockIds: state.aiPasteSelectedIds, title, groupId: group?.id || '', groupName: group?.name || '' });
+    const splitByType = state.aiPasteMode === 'full';
+    const existingGroup = splitByType && state.aiPasteTargetMode === 'existing'
+      ? state.libraryGroups.find((item) => item.id === (state.aiPasteGroupId || state.libraryGroups[0]?.id))
+      : null;
+    const payload = ImportCore.buildAiListeningImport(analysis, {
+      selectedBlockIds: state.aiPasteSelectedIds,
+      title,
+      splitByType,
+      groupId: existingGroup?.id || '',
+      groupName: existingGroup?.name || title
+    });
     if (payload.errors?.length) { state.error = payload.errors.join(' · '); render(); return; }
     try {
-      if (state.aiPasteTargetMode === 'existing') {
+      if (splitByType) {
+        let groupId = '';
+        let groupName = '';
+        if (state.aiPasteTargetMode === 'existing') {
+          if (!existingGroup) throw new Error('Nhóm Nghe đích không còn tồn tại.');
+          groupId = existingGroup.id;
+          groupName = existingGroup.name;
+        } else {
+          const usedGroupIds = new Set(state.libraryGroups.map((group) => group.id));
+          const usedGroupNames = new Set(state.libraryGroups.map((group) => group.name));
+          const sourceGroup = payload.groups?.[0] || { id: 'ai-group', name: title };
+          groupId = nextAiLibraryId(sourceGroup.id, usedGroupIds);
+          groupName = nextAiLibraryName(sourceGroup.name || title, usedGroupNames);
+          await LibraryStore.saveGroup({ id: groupId, name: groupName, description: 'Nhóm nội dung AI được tách thành các bộ Nghe theo từng loại.' });
+        }
+        const usedDeckIds = new Set(state.libraryDecks.map((deck) => deck.id));
+        for (const incoming of payload.decks || []) {
+          const id = nextAiLibraryId(incoming.id, usedDeckIds);
+          await LibraryStore.saveDeck(rebaseListeningAiDeck(incoming, id, groupId));
+        }
+        state.libraryNotice = `Đã tạo ${payload.decks.length} bộ Nghe trong nhóm “${groupName}”.`;
+      } else if (state.aiPasteTargetMode === 'existing') {
         const targetId = state.aiPasteTargetDeckId || state.libraryDecks[0]?.id;
         const existing = await LibraryStore.getDeck(targetId);
         if (!existing) throw new Error('Bộ đích không còn tồn tại.');
@@ -883,15 +950,8 @@
         const incoming = payload.decks[0];
         if (!incoming) throw new Error('Không có dữ liệu phù hợp để tạo bộ Nghe.');
         const used = new Set(state.libraryDecks.map((deck) => deck.id));
-        let id = incoming.id;
-        let suffix = 2;
-        while (used.has(id)) { id = `${incoming.id}-${suffix}`; suffix += 1; }
-        const deck = { ...incoming, id, groupId: state.aiPasteGroupId || null };
-        if (deck.dataset) {
-          deck.dataset.unit.id = id; deck.dataset.source.id = `custom:${id}`;
-          [...(deck.dataset.words || []), ...(deck.dataset.sentences || [])].forEach((item) => { item.sourceId = id; item.lessonId = id; });
-          (deck.dataset.groups || []).forEach((entry) => { entry.sourceId = id; entry.lessonId = id; });
-        }
+        const id = nextAiLibraryId(incoming.id, used);
+        const deck = rebaseListeningAiDeck(incoming, id, state.aiPasteGroupId || null);
         await LibraryStore.saveDeck(deck);
         state.libraryNotice = `Đã tạo bộ Nghe “${deck.name}” từ kết quả AI.`;
       }
@@ -2518,10 +2578,10 @@
       else if (action === 'open-listening-ai-paste') element.onclick = async () => { await refreshListeningLibrary(); state.screen = 'aiPaste'; state.aiPasteAnalysis = null; state.aiPasteSelectedIds = new Set(); render(); };
       else if (action === 'set-listening-ai-type') element.onclick = () => { syncListeningAiPromptFields(); state.aiPromptType = element.dataset.type || 'sentence'; state.aiPromptCopied = false; render(); };
       else if (action === 'copy-listening-ai-prompt') element.onclick = copyListeningAiPrompt;
-      else if (action === 'set-ai-paste-mode') element.onclick = () => { state.aiPasteMode = element.dataset.mode === 'quick' ? 'quick' : 'full'; state.aiPasteAnalysis = null; state.aiPasteSelectedIds = new Set(); render(); };
+      else if (action === 'set-ai-paste-mode') element.onclick = () => { state.aiPasteMode = element.dataset.mode === 'quick' ? 'quick' : 'full'; state.aiPasteAnalysis = null; state.aiPasteSelectedIds = new Set(); state.aiPasteTargetMode = 'new'; render(); };
       else if (action === 'set-ai-paste-type') element.onclick = () => { state.aiPasteExpectedType = element.dataset.type || 'sentence'; state.aiPasteAnalysis = null; state.aiPasteSelectedIds = new Set(); render(); };
       else if (action === 'analyze-ai-paste') element.onclick = analyzeListeningAiPaste;
-      else if (action === 'set-ai-paste-target') element.onclick = () => { state.aiPasteTargetMode = element.dataset.target === 'existing' ? 'existing' : 'new'; if (state.aiPasteTargetMode === 'existing' && !state.aiPasteTargetDeckId) state.aiPasteTargetDeckId = state.libraryDecks[0]?.id || ''; render(); };
+      else if (action === 'set-ai-paste-target') element.onclick = () => { state.aiPasteTargetMode = element.dataset.target === 'existing' ? 'existing' : 'new'; if (state.aiPasteTargetMode === 'existing') { if (state.aiPasteMode === 'full') { if (!state.aiPasteGroupId) state.aiPasteGroupId = state.libraryGroups[0]?.id || ''; } else if (!state.aiPasteTargetDeckId) state.aiPasteTargetDeckId = state.libraryDecks[0]?.id || ''; } render(); };
       else if (action === 'confirm-ai-paste-listening') element.onclick = confirmListeningAiPaste;
       else if (action === 'open-review') element.onclick = openReview;
       else if (action === 'resume-last') element.onclick = resumeLastSession;

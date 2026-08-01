@@ -974,20 +974,55 @@
     return selected.size ? blocks.filter((block) => selected.has(block.id)) : blocks.slice();
   }
 
+  const AI_IMPORT_TYPE_META = Object.freeze({
+    vocabulary: { label: 'Từ vựng', slug: 'tu-vung', description: 'Từ vựng tạo bằng AI và đã xem trước trong ứng dụng.' },
+    sentence: { label: 'Câu', slug: 'cau', description: 'Câu luyện tập tạo bằng AI và đã xem trước trong ứng dụng.' },
+    grammar: { label: 'Ngữ pháp', slug: 'ngu-phap', description: 'Ngữ pháp và câu ví dụ tạo bằng AI và đã xem trước trong ứng dụng.' },
+    dialogue: { label: 'Hội thoại', slug: 'hoi-thoai', description: 'Hội thoại tạo bằng AI và đã xem trước trong ứng dụng.' },
+    passage: { label: 'Đoạn văn', slug: 'doan-van', description: 'Đoạn văn tạo bằng AI và đã xem trước trong ứng dụng.' }
+  });
+
+  function aiDeckMeta(type, options = {}) {
+    const title = clean(options.title) || 'Nội dung AI';
+    const rootDeckId = clean(options.deckId) || `ai-${slug(title, 'noi-dung-ai')}`;
+    const meta = AI_IMPORT_TYPE_META[type] || { label: 'Nội dung', slug: slug(type, 'noi-dung'), description: 'Nội dung tạo bằng AI và đã xem trước trong ứng dụng.' };
+    if (options.splitByType === true) {
+      return {
+        id: `${rootDeckId}-${meta.slug}`,
+        name: `${title} · ${meta.label}`,
+        description: meta.description
+      };
+    }
+    return {
+      id: rootDeckId,
+      name: title,
+      description: clean(options.description) || 'Nội dung tạo bằng AI và đã xem trước trong ứng dụng.'
+    };
+  }
+
   function aiRows(blocks, options = {}) {
     const title = clean(options.title) || 'Nội dung AI';
-    const deckId = clean(options.deckId) || `ai-${slug(title, 'noi-dung-ai')}`;
     const groupId = clean(options.groupId);
     const groupName = clean(options.groupName);
     const rows = [];
-    const base = { library_group_id: groupId, library_group_name: groupName, deck_id: deckId, deck_name: title, deck_description: clean(options.description) || 'Nội dung tạo bằng AI và đã xem trước trong ứng dụng.' };
+    const baseFor = (type) => {
+      const deck = aiDeckMeta(type, options);
+      return {
+        library_group_id: groupId,
+        library_group_name: groupName,
+        deck_id: deck.id,
+        deck_name: deck.name,
+        deck_description: deck.description
+      };
+    };
     blocks.forEach((block) => {
+      const base = baseFor(block.type);
       if (block.type === 'vocabulary') block.items.forEach((item) => rows.push({ ...base, row_type: 'word', card_id: item.id, hanzi: item.hanzi, pinyin: item.pinyin, meaning: item.meaning, word_type: item.word_type, tags: item.tags.join('|') }));
       else if (block.type === 'sentence') block.items.forEach((item) => rows.push({ ...base, row_type: 'sentence', card_id: item.id, hanzi: item.hanzi, pinyin: item.pinyin, meaning: item.meaning, tokens: item.tokens.join('|'), tags: uniqueStrings(item.tags.concat(item.source_word_ids.map((id) => `source:${id}`), item.grammar_ids.map((id) => `grammar:${id}`))).join('|'), sentence_type: 'ai-sentence' }));
       else if (block.type === 'grammar') block.items.forEach((grammar) => grammar.examples.forEach((item) => rows.push({ ...base, row_type: 'sentence', card_id: item.id, hanzi: item.hanzi, pinyin: item.pinyin, meaning: item.meaning, tokens: item.tokens.join('|'), tags: uniqueStrings([`grammar:${grammar.id}`, 'grammar-example'].concat(item.source_word_ids.map((id) => `source:${id}`))).join('|'), sentence_type: 'grammar-example' })));
       else block.items.forEach((group) => group.items.forEach((item) => rows.push({ ...base, row_type: block.type === 'dialogue' ? 'dialogue_turn' : 'passage_sentence', content_group_id: group.id, content_group_title: group.title, order: item.order, speaker: item.speaker, card_id: item.id, hanzi: item.hanzi, pinyin: item.pinyin, meaning: item.meaning, tokens: item.tokens.join('|'), tags: uniqueStrings(item.source_word_ids.map((id) => `source:${id}`).concat(item.grammar_ids.map((id) => `grammar:${id}`))).join('|'), sentence_type: `ai-${block.type}` })));
     });
-    return { rows, deckId, title, groupId, groupName };
+    return { rows, deckId: clean(options.deckId) || `ai-${slug(title, 'noi-dung-ai')}`, title, groupId, groupName };
   }
 
   function buildAiListeningImport(analysis, options = {}) {
@@ -995,7 +1030,15 @@
     const blocking = blocks.flatMap((block) => block.errors || []);
     if (!blocks.length) return { format: LISTENING_FORMAT, groups: [], decks: [], errors: ['Chưa chọn nội dung để nhập vào Nghe.'], warnings: [], stats: listeningStats([], 0) };
     if (blocking.length && options.allowErrors !== true) return { format: LISTENING_FORMAT, groups: [], decks: [], errors: uniqueStrings(blocking), warnings: [], stats: listeningStats([], 0) };
-    const prepared = aiRows(blocks, options);
+    const title = clean(options.title) || 'Nội dung AI';
+    const splitByType = options.splitByType === true;
+    const preparedOptions = {
+      ...options,
+      title,
+      groupId: clean(options.groupId) || (splitByType ? `ai-group-${slug(title, 'noi-dung-ai')}` : ''),
+      groupName: clean(options.groupName) || (splitByType ? title : '')
+    };
+    const prepared = aiRows(blocks, preparedOptions);
     const payload = buildListeningFromRows(prepared.rows, `${prepared.title}.json`);
     payload.warnings = uniqueStrings(payload.warnings.concat(blocks.flatMap((block) => block.warnings || []), blocks.flatMap((block) => block.quality_notes || [])));
     return payload;
@@ -1014,26 +1057,56 @@
     };
   }
 
+  function cardsForAiBlock(block) {
+    const cards = [];
+    if (block.type === 'vocabulary') block.items.forEach((item) => cards.push({ id: item.id, word: item.hanzi, pinyin: item.pinyin, meaningVi: item.meaning, contentType: 'vocabulary', wordType: item.word_type, tags: clone(item.tags) }));
+    else if (block.type === 'sentence') block.items.forEach((item) => cards.push({ id: item.id, word: item.hanzi, pinyin: item.pinyin, meaningVi: item.meaning, contentType: 'sentence', tokens: clone(item.tokens), sourceWordIds: clone(item.source_word_ids), grammarIds: clone(item.grammar_ids) }));
+    else if (block.type === 'grammar') block.items.forEach((item) => cards.push(grammarCard(item)));
+    else block.items.forEach((group) => group.items.forEach((item) => cards.push({ id: item.id, word: item.hanzi, pinyin: item.pinyin, meaningVi: item.meaning, contentType: block.type, groupId: group.id, groupTitle: group.title, speaker: item.speaker, order: item.order, tokens: clone(item.tokens), sourceWordIds: clone(item.source_word_ids), grammarIds: clone(item.grammar_ids) })));
+    return cards;
+  }
+
+  function uniqueAiCards(cards) {
+    return Array.from(new Map(cards.filter((card) => containsHan(card.word)).map((card) => [`${card.contentType}|${card.word}\u0000${card.pinyin}\u0000${card.meaningVi}`, card])).values());
+  }
+
   function buildAiFlashcardImport(analysis, options = {}) {
     const blocks = selectedAiBlocks(analysis, options.selectedBlockIds);
     const errors = blocks.flatMap((block) => block.errors || []);
     if (!blocks.length) return { format: FLASHCARD_FORMAT, groups: [], decks: [], errors: ['Chưa chọn nội dung để nhập vào Thẻ.'], warnings: [], stats: { groupCount: 0, deckCount: 0, cardCount: 0 } };
     if (errors.length && options.allowErrors !== true) return { format: FLASHCARD_FORMAT, groups: [], decks: [], errors: uniqueStrings(errors), warnings: [], stats: { groupCount: 0, deckCount: 0, cardCount: 0 } };
     const title = clean(options.title) || 'Nội dung AI';
-    const deckId = clean(options.deckId) || `ai-${slug(title, 'noi-dung-ai')}`;
-    const groupId = clean(options.groupId) || null;
-    const cards = [];
-    blocks.forEach((block) => {
-      if (block.type === 'vocabulary') block.items.forEach((item) => cards.push({ id: item.id, word: item.hanzi, pinyin: item.pinyin, meaningVi: item.meaning, contentType: 'vocabulary', wordType: item.word_type, tags: clone(item.tags) }));
-      else if (block.type === 'sentence') block.items.forEach((item) => cards.push({ id: item.id, word: item.hanzi, pinyin: item.pinyin, meaningVi: item.meaning, contentType: 'sentence', tokens: clone(item.tokens), sourceWordIds: clone(item.source_word_ids), grammarIds: clone(item.grammar_ids) }));
-      else if (block.type === 'grammar') block.items.forEach((item) => cards.push(grammarCard(item)));
-      else block.items.forEach((group) => group.items.forEach((item) => cards.push({ id: item.id, word: item.hanzi, pinyin: item.pinyin, meaningVi: item.meaning, contentType: block.type, groupId: group.id, groupTitle: group.title, speaker: item.speaker, order: item.order, tokens: clone(item.tokens), sourceWordIds: clone(item.source_word_ids), grammarIds: clone(item.grammar_ids) })));
-    });
-    const uniqueCards = Array.from(new Map(cards.filter((card) => containsHan(card.word)).map((card) => [`${card.contentType}|${card.word}\u0000${card.pinyin}\u0000${card.meaningVi}`, card])).values());
-    const groups = groupId ? [{ id: groupId, name: clean(options.groupName) || groupId, description: '' }] : [];
-    const deck = { id: deckId, name: title, description: clean(options.description) || 'Nội dung tạo bằng AI và đã xem trước trong ứng dụng.', groupId, cards: uniqueCards, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() };
+    const splitByType = options.splitByType === true;
+    const defaultGroupId = splitByType ? `ai-group-${slug(title, 'noi-dung-ai')}` : '';
+    const groupId = clean(options.groupId) || defaultGroupId || null;
+    const groupName = clean(options.groupName) || (splitByType ? title : '');
+    const now = new Date().toISOString();
+    const decks = [];
+
+    if (splitByType) {
+      const byType = new Map();
+      blocks.forEach((block) => {
+        if (!byType.has(block.type)) byType.set(block.type, []);
+        byType.get(block.type).push(...cardsForAiBlock(block));
+      });
+      byType.forEach((rawCards, type) => {
+        const cards = uniqueAiCards(rawCards);
+        if (!cards.length) return;
+        const deckMeta = aiDeckMeta(type, options);
+        decks.push({ id: deckMeta.id, name: deckMeta.name, description: deckMeta.description, groupId, cards, createdAt: now, updatedAt: now, contentType: type });
+      });
+    } else {
+      const cards = uniqueAiCards(blocks.flatMap(cardsForAiBlock));
+      if (cards.length) {
+        const deckMeta = aiDeckMeta(blocks[0]?.type || 'content', options);
+        decks.push({ id: deckMeta.id, name: deckMeta.name, description: deckMeta.description, groupId, cards, createdAt: now, updatedAt: now });
+      }
+    }
+
+    const groups = groupId ? [{ id: groupId, name: groupName || groupId, description: splitByType ? 'Nhóm nội dung AI được tách thành các bộ theo từng loại.' : '' }] : [];
     const warnings = uniqueStrings(blocks.flatMap((block) => block.warnings || []).concat(blocks.flatMap((block) => block.quality_notes || [])));
-    return { format: FLASHCARD_FORMAT, groups, decks: uniqueCards.length ? [deck] : [], errors: uniqueCards.length ? [] : ['Không có nội dung phù hợp để tạo Thẻ.'], warnings, stats: { groupCount: groups.length, deckCount: uniqueCards.length ? 1 : 0, cardCount: uniqueCards.length } };
+    const cardCount = decks.reduce((sum, deck) => sum + deck.cards.length, 0);
+    return { format: FLASHCARD_FORMAT, groups, decks, errors: decks.length ? [] : ['Không có nội dung phù hợp để tạo Thẻ.'], warnings, stats: { groupCount: groups.length, deckCount: decks.length, cardCount } };
   }
 
   function nextMergedId(base, used) {

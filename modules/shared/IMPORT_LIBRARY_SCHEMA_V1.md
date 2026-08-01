@@ -161,3 +161,19 @@ Từ tab Thẻ, người dùng có thể:
 Từ tab Nghe, người dùng có thể tạo bộ Nghe mới, thêm vào bộ có sẵn hoặc đặt bộ mới trong nhóm thư viện.
 
 ID bộ mới bị trùng sẽ được đổi sang ID khả dụng. Khi thêm vào bộ có sẵn, mục trùng hoàn toàn được bỏ qua thay vì ghi đè âm thầm.
+
+## Nhập một bộ đầy đủ: nhóm và các bộ riêng
+
+Khi dùng chế độ **Nhập một bộ đầy đủ**, ứng dụng không gom mọi loại nội dung vào một deck.
+
+Ứng dụng tạo một nhóm theo tên chủ đề và tối đa năm bộ con:
+
+- `<Chủ đề> · Từ vựng`
+- `<Chủ đề> · Câu`
+- `<Chủ đề> · Ngữ pháp`
+- `<Chủ đề> · Hội thoại`
+- `<Chủ đề> · Đoạn văn`
+
+Chỉ loại có dữ liệu và đang được chọn mới được tạo. Cùng quy tắc được áp dụng cho thư viện Thẻ và thư viện Nghe.
+
+Trong tab Nghe, bộ Ngữ pháp chứa các câu ví dụ ngữ pháp dưới dạng câu nghe. Trong chế độ **Nhập nhanh từng loại**, người dùng vẫn có thể tạo một bộ riêng hoặc thêm vào bộ có sẵn như trước.
