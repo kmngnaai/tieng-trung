@@ -8221,6 +8221,7 @@ if(window.HanziWriter){
     cancelFlashcardTypingCompletionTimer();
     cancelFlashcardTypingErrorTimer();
     stopFlashcardTypingClock();
+    Matching?.cancelScheduledNextRound?.(hskState.flashcardSession?.matching);
     const overlay = document.getElementById('hskFlashcardOverlay');
     if(!overlay) return;
     overlay.hidden = true;
@@ -8288,7 +8289,7 @@ if(window.HanziWriter){
       ['reverse', 'Đảo ngược', 'Nghĩa Việt → đoán chữ Hán'],
       ['listen', 'Nghe', 'Nghe phát âm → nhớ lại từ và nghĩa'],
       ['typing', 'Gõ Pinyin', 'Nhập đầy đủ pinyin không dấu trong một ô'],
-      ['matching', 'Nối thẻ', 'Chạm ghép chữ Hán với nghĩa; 3–5 cặp mỗi lượt'],
+      ['matching', 'Nối thẻ', 'Chạm ghép chữ Hán với nghĩa; số cặp tự thích ứng hoặc tự nhập'],
       ['mixed', 'Hỗn hợp', 'Flashcard → Đảo ngược → Nghe']
     ];
     return `
@@ -8730,6 +8731,14 @@ if(window.HanziWriter){
     saveFlashcardRatingResult(card, rating, previousRating);
   }
 
+  function scheduleFlashcardMatchingRoundAdvance(session){
+    if(!session?.matching || !Matching) return;
+    Matching.scheduleNextRound(session.matching, () => {
+      persistFlashcardSession();
+      renderFlashcardOverlay();
+    });
+  }
+
   function handleFlashcardMatchingSelection(side, pairId){
     const session = hskState.flashcardSession;
     if(!session?.matching || !Matching) return;
@@ -8743,6 +8752,8 @@ if(window.HanziWriter){
         persistFlashcardSession();
         renderFlashcardOverlay();
       });
+    }else if(result.status === 'correct' && result.roundComplete && !result.complete){
+      scheduleFlashcardMatchingRoundAdvance(session);
     }
   }
 
@@ -9331,6 +9342,7 @@ if(window.HanziWriter){
         return;
       }
       if(event.target.closest('[data-hsk-flashcard-to-setup]')){
+        Matching?.cancelScheduledNextRound?.(session.matching);
         cancelFlashcardTypingCompletionTimer();
         cancelFlashcardTypingErrorTimer();
         stopFlashcardTypingClock();
@@ -9347,18 +9359,33 @@ if(window.HanziWriter){
       const matchAction = event.target.closest('[data-match-action]');
       if(matchAction && session.phase === 'study' && getCurrentFlashcardType(session) === 'matching'){
         event.preventDefault();
+        const matching = session.matching;
         const action = matchAction.dataset.matchAction;
         if(action === 'toggle-pinyin'){
-          const value = Matching.togglePinyin(session.matching);
+          const value = Matching.togglePinyin(matching);
           session.settings.showPinyin = value;
           saveFlashcardSettings(session.settings);
         }else if(action === 'toggle-speak'){
-          const value = Matching.toggleTapSpeak(session.matching);
+          const value = Matching.toggleTapSpeak(matching);
           session.settings.tapHanziSpeak = value;
           saveFlashcardSettings(session.settings);
-        }else if(action === 'next-round') Matching.nextRound(session.matching);
+        }else if(action === 'toggle-settings') Matching.toggleSettings(matching);
+        else if(action === 'close-settings') Matching.toggleSettings(matching, false);
+        else if(action === 'set-round-limit') Matching.setRoundLimit(matching, matchAction.dataset.matchValue || 'auto');
+        else if(action === 'apply-custom-limit'){
+          const input = matchAction.closest('[data-matching-root]')?.querySelector('[data-match-custom-limit]');
+          Matching.setRoundLimit(matching, input?.value || '');
+        }else if(action === 'toggle-auto-next') Matching.setAutoNext(matching, !matching.autoNext);
+        else if(action === 'set-auto-next-delay') Matching.setAutoNextDelay(matching, matchAction.dataset.matchValue);
+        else if(action === 'apply-custom-delay'){
+          const input = matchAction.closest('[data-matching-root]')?.querySelector('[data-match-custom-delay]');
+          Matching.setAutoNextDelay(matching, input?.value);
+        }else if(action === 'manual-next') Matching.nextRound(matching);
         persistFlashcardSession();
         renderFlashcardOverlay();
+        if(Matching.isRoundComplete(matching) && !Matching.isComplete(matching) && matching.autoNext && !matching.settingsOpen){
+          scheduleFlashcardMatchingRoundAdvance(session);
+        }
         return;
       }
       if(event.target.closest('[data-hsk-flashcard-matching-restart]')){

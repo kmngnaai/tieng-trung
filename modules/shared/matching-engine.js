@@ -6,10 +6,18 @@
 
   const runtime = typeof globalThis !== 'undefined' ? globalThis : (typeof window !== 'undefined' ? window : {});
   const SETTINGS_KEY = 'tieng-trung-interaction-settings-v1';
-  const DEFAULT_SETTINGS = Object.freeze({ tapHanziSpeak: true, matchingShowPinyin: true });
+  const DEFAULT_SETTINGS = Object.freeze({
+    tapHanziSpeak: true,
+    matchingShowPinyin: true,
+    matchingPairLimitWord: 0,
+    matchingPairLimitSentence: 0,
+    matchingAutoNext: true,
+    matchingAutoNextDelay: 0.7
+  });
   const ADAPTIVE_DEFAULTS = Object.freeze({
     minPairs: 2,
-    maxPairs: 8,
+    defaultMaxPairs: 8,
+    absoluteMaxPairs: 30,
     fallbackWidth: 390,
     fallbackHeight: 844,
     mobileChromeHeight: 377,
@@ -30,21 +38,43 @@
     for(let i=0;i<text.length;i+=1){ hash ^= text.charCodeAt(i); hash = Math.imul(hash, 16777619); }
     return `${prefix || 'match'}-${(hash >>> 0).toString(36)}`;
   }
+  function normalizePairLimit(value){
+    const number = Number(value);
+    if(!Number.isFinite(number) || number <= 0) return 0;
+    return clamp(Math.round(number), ADAPTIVE_DEFAULTS.minPairs, ADAPTIVE_DEFAULTS.absoluteMaxPairs);
+  }
+  function normalizeAutoNextDelay(value){
+    const number = Number(value);
+    if(!Number.isFinite(number)) return DEFAULT_SETTINGS.matchingAutoNextDelay;
+    return Math.round(clamp(number, 0, 10) * 10) / 10;
+  }
   function readSettings(){
     try{
       const saved = JSON.parse(runtime.localStorage && runtime.localStorage.getItem(SETTINGS_KEY) || '{}');
       return {
         tapHanziSpeak: saved.tapHanziSpeak !== false,
-        matchingShowPinyin: saved.matchingShowPinyin !== false
+        matchingShowPinyin: saved.matchingShowPinyin !== false,
+        matchingPairLimitWord: normalizePairLimit(saved.matchingPairLimitWord),
+        matchingPairLimitSentence: normalizePairLimit(saved.matchingPairLimitSentence),
+        matchingAutoNext: saved.matchingAutoNext !== false,
+        matchingAutoNextDelay: normalizeAutoNextDelay(saved.matchingAutoNextDelay)
       };
     }catch(_err){ return { ...DEFAULT_SETTINGS }; }
   }
   function writeSettings(next){
-    const settings = { ...readSettings(), ...(next || {}) };
+    const merged = { ...readSettings(), ...(next || {}) };
+    const settings = {
+      tapHanziSpeak: merged.tapHanziSpeak !== false,
+      matchingShowPinyin: merged.matchingShowPinyin !== false,
+      matchingPairLimitWord: normalizePairLimit(merged.matchingPairLimitWord),
+      matchingPairLimitSentence: normalizePairLimit(merged.matchingPairLimitSentence),
+      matchingAutoNext: merged.matchingAutoNext !== false,
+      matchingAutoNextDelay: normalizeAutoNextDelay(merged.matchingAutoNextDelay)
+    };
     try{ runtime.localStorage && runtime.localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); }catch(_err){}
     return settings;
   }
-  function setSetting(name, value){ return writeSettings({ [name]: Boolean(value) }); }
+  function setSetting(name, value){ return writeSettings({ [name]: value }); }
 
   function normalizePair(input, index){
     const leftText = clean(input && (input.leftText || input.hanzi || input.text || input.word));
@@ -140,7 +170,14 @@
 
   function contentKindMax(kind){
     clean(kind); // Giữ tham số để schema có thể mở rộng mà không tách engine theo nguồn.
-    return ADAPTIVE_DEFAULTS.maxPairs;
+    return ADAPTIVE_DEFAULTS.defaultMaxPairs;
+  }
+
+  function settingsBucket(kind){
+    return clean(kind) === 'word' ? 'word' : 'sentence';
+  }
+  function pairLimitSettingName(kind){
+    return settingsBucket(kind) === 'word' ? 'matchingPairLimitWord' : 'matchingPairLimitSentence';
   }
 
   function inferContentKind(pairs){
@@ -168,11 +205,11 @@
     const values = normalizePairs(pairs);
     if(values.length <= 1) return values.length;
     const metrics = viewportMetrics(configured.viewport);
-    const minPairs = clamp(Number(configured.minPairs) || ADAPTIVE_DEFAULTS.minPairs, 2, ADAPTIVE_DEFAULTS.maxPairs);
+    const minPairs = clamp(Number(configured.minPairs) || ADAPTIVE_DEFAULTS.minPairs, 2, ADAPTIVE_DEFAULTS.absoluteMaxPairs);
     const kind = clean(configured.contentKind || inferContentKind(values));
     const kindMax = contentKindMax(kind);
     const configuredMax = Number(configured.maxPairs || configured.roundSize || kindMax) || kindMax;
-    const maxPairs = clamp(Math.min(values.length, configuredMax, kindMax), minPairs, ADAPTIVE_DEFAULTS.maxPairs);
+    const maxPairs = clamp(Math.min(values.length, configuredMax), minPairs, ADAPTIVE_DEFAULTS.absoluteMaxPairs);
     let capacity = minPairs;
     for(let count = minPairs; count <= maxPairs; count += 1){
       const height = estimateBoardHeight(values.slice(0, count), metrics, configured.showPinyin !== false);
@@ -185,29 +222,41 @@
   function balancedRoundSize(total, capacity){
     const count = Math.max(0, Number(total) || 0);
     if(count <= 1) return count;
-    const safeCapacity = clamp(Number(capacity) || ADAPTIVE_DEFAULTS.minPairs, ADAPTIVE_DEFAULTS.minPairs, ADAPTIVE_DEFAULTS.maxPairs);
+    const safeCapacity = clamp(Number(capacity) || ADAPTIVE_DEFAULTS.minPairs, ADAPTIVE_DEFAULTS.minPairs, ADAPTIVE_DEFAULTS.absoluteMaxPairs);
     if(count <= safeCapacity) return count;
     const roundCount = Math.ceil(count / safeCapacity);
     return clamp(Math.ceil(count / roundCount), ADAPTIVE_DEFAULTS.minPairs, safeCapacity);
   }
+
+  function cancelScheduledNextRound(session){
+    if(!session || !session._nextRoundTimer) return false;
+    if(typeof runtime.clearTimeout === 'function') runtime.clearTimeout(session._nextRoundTimer);
+    session._nextRoundTimer = null;
+    return true;
+  }
+
   function makeRound(session){
+    cancelScheduledNextRound(session);
     const pending = session.order.filter(id => !session.completedIds.includes(id));
     const byId = pairMap(session);
     const pendingPairs = pending.map(id => byId.get(id)).filter(Boolean);
     const metrics = viewportMetrics(session.viewport);
+    const desiredMax = session.roundLimit > 0 ? session.roundLimit : ADAPTIVE_DEFAULTS.defaultMaxPairs;
     const capacity = session.adaptive === false
-      ? clamp(Number(session.maxRoundSize) || 4, 2, Math.min(ADAPTIVE_DEFAULTS.maxPairs, Math.max(2, pendingPairs.length)))
+      ? clamp(Number(desiredMax) || 4, 2, Math.min(ADAPTIVE_DEFAULTS.absoluteMaxPairs, Math.max(2, pendingPairs.length)))
       : estimateRoundCapacity(pendingPairs, {
         viewport: metrics,
         minPairs: session.minRoundSize,
-        maxPairs: session.maxRoundSize,
+        maxPairs: desiredMax,
         contentKind: session.contentKind,
         showPinyin: session.showPinyin
       });
     const plannedSize = balancedRoundSize(pending.length, capacity);
     const ids = pending.slice(0, plannedSize || pending.length);
+    const roundPairs = ids.map(id => byId.get(id)).filter(Boolean);
     session.roundCapacity = capacity;
     session.roundSize = ids.length;
+    session.roundBoardHeight = Math.ceil(estimateBoardHeight(roundPairs, metrics, session.showPinyin));
     session.layout = {
       viewportWidth: metrics.width,
       viewportHeight: metrics.height,
@@ -225,14 +274,20 @@
     session.selectedRightId = '';
     session.feedback = null;
     session.hintPairId = '';
+    session.settingsError = '';
     return session;
   }
+
   function createSession(items, options){
     const configured = options || {};
     const pairs = normalizePairs(items);
     const interaction = readSettings();
+    const contentKind = clean(configured.contentKind || inferContentKind(pairs));
+    const storedLimit = interaction[pairLimitSettingName(contentKind)] || 0;
+    const configuredLimit = configured.roundLimit == null ? null : normalizePairLimit(configured.roundLimit);
+    const roundLimit = configuredLimit == null ? storedLimit : configuredLimit;
     const session = {
-      version: 1,
+      version: 2,
       id: clean(configured.id || stableId(pairs.map(pair => pair.id).join('|'), 'matching-session')),
       title: clean(configured.title || 'Nối chữ'),
       subtitle: clean(configured.subtitle || ''),
@@ -240,12 +295,14 @@
       pairs,
       order: shuffled(pairs.map(pair => pair.id)),
       adaptive: configured.adaptive !== false,
-      contentKind: clean(configured.contentKind || inferContentKind(pairs)),
-      minRoundSize: clamp(Number(configured.minRoundSize) || ADAPTIVE_DEFAULTS.minPairs, 2, ADAPTIVE_DEFAULTS.maxPairs),
-      maxRoundSize: clamp(Number(configured.maxRoundSize || configured.roundSize || contentKindMax(configured.contentKind || inferContentKind(pairs))) || ADAPTIVE_DEFAULTS.maxPairs, 2, ADAPTIVE_DEFAULTS.maxPairs),
+      contentKind,
+      minRoundSize: clamp(Number(configured.minRoundSize) || ADAPTIVE_DEFAULTS.minPairs, 2, ADAPTIVE_DEFAULTS.absoluteMaxPairs),
+      roundLimit,
+      maxRoundSize: roundLimit || ADAPTIVE_DEFAULTS.defaultMaxPairs,
       viewport: configured.viewport && typeof configured.viewport === 'object' ? { width:Number(configured.viewport.width) || 0, height:Number(configured.viewport.height) || 0 } : null,
       roundCapacity: 0,
       roundSize: 0,
+      roundBoardHeight: 0,
       layout: null,
       roundIds: [], leftOrder: [], rightOrder: [],
       completedIds: [],
@@ -255,34 +312,46 @@
       hintPairId: '',
       showPinyin: configured.showPinyin == null ? interaction.matchingShowPinyin : Boolean(configured.showPinyin),
       tapToSpeak: configured.tapToSpeak == null ? interaction.tapHanziSpeak : Boolean(configured.tapToSpeak),
+      autoNext: configured.autoNext == null ? interaction.matchingAutoNext : Boolean(configured.autoNext),
+      autoNextDelayMs: Math.round(normalizeAutoNextDelay(configured.autoNextDelay == null ? interaction.matchingAutoNextDelay : configured.autoNextDelay) * 1000),
+      settingsOpen: false,
+      settingsError: '',
       startedAt: configured.startedAt || new Date().toISOString(),
       finishedAt: ''
     };
     return makeRound(session);
   }
+
   function hydrateSession(saved, items, options){
     if(!saved || typeof saved !== 'object') return createSession(items, options);
+    const configured = options || {};
     const freshPairs = normalizePairs(items);
     const byId = new Map(freshPairs.map(pair => [pair.id, pair]));
     const completedIds = (saved.completedIds || []).filter(id => byId.has(id));
     const order = (saved.order || []).filter(id => byId.has(id));
     freshPairs.forEach(pair => { if(!order.includes(pair.id)) order.push(pair.id); });
     const savedHintPairId = saved.hintPairId && byId.has(saved.hintPairId) && !completedIds.includes(saved.hintPairId) ? saved.hintPairId : '';
-    const base = createSession(freshPairs, options);
+    const base = createSession(freshPairs, configured);
+    const roundLimit = configured.roundLimit == null ? normalizePairLimit(saved.roundLimit) : normalizePairLimit(configured.roundLimit);
     const session = {
       ...base,
       ...saved,
       pairs: freshPairs,
       order,
       completedIds,
-      adaptive: options && options.adaptive != null ? options.adaptive !== false : saved.adaptive !== false,
-      contentKind: clean(options && options.contentKind || saved.contentKind || base.contentKind),
-      minRoundSize: clamp(Number(options && options.minRoundSize || saved.minRoundSize || base.minRoundSize), 2, ADAPTIVE_DEFAULTS.maxPairs),
-      maxRoundSize: clamp(Number(options && (options.maxRoundSize || options.roundSize) || saved.maxRoundSize || base.maxRoundSize), 2, ADAPTIVE_DEFAULTS.maxPairs),
-      viewport: options && options.viewport ? options.viewport : saved.viewport || base.viewport,
+      adaptive: configured.adaptive != null ? configured.adaptive !== false : saved.adaptive !== false,
+      contentKind: clean(configured.contentKind || saved.contentKind || base.contentKind),
+      minRoundSize: clamp(Number(configured.minRoundSize || saved.minRoundSize || base.minRoundSize), 2, ADAPTIVE_DEFAULTS.absoluteMaxPairs),
+      roundLimit,
+      maxRoundSize: roundLimit || ADAPTIVE_DEFAULTS.defaultMaxPairs,
+      viewport: configured.viewport || saved.viewport || base.viewport,
       mistakesById: saved.mistakesById && typeof saved.mistakesById === 'object' ? saved.mistakesById : {},
+      showPinyin: configured.showPinyin == null ? saved.showPinyin !== false : Boolean(configured.showPinyin),
+      tapToSpeak: configured.tapToSpeak == null ? saved.tapToSpeak !== false : Boolean(configured.tapToSpeak),
+      autoNext: configured.autoNext == null ? saved.autoNext !== false : Boolean(configured.autoNext),
+      autoNextDelayMs: Math.round(normalizeAutoNextDelay(configured.autoNextDelay == null ? Number(saved.autoNextDelayMs || base.autoNextDelayMs) / 1000 : configured.autoNextDelay) * 1000),
       selectedLeftId: '', selectedRightId: '', feedback: null,
-      hintPairId: ''
+      hintPairId: '', settingsOpen: false, settingsError: '', _nextRoundTimer: null
     };
     makeRound(session);
     if(savedHintPairId && session.roundIds.includes(savedHintPairId)) session.hintPairId = savedHintPairId;
@@ -346,6 +415,18 @@
     if(!session || isComplete(session)) return session;
     return makeRound(session);
   }
+  function scheduleNextRound(session, callback){
+    if(!session || isComplete(session) || !isRoundComplete(session) || !session.autoNext || session.settingsOpen) return null;
+    cancelScheduledNextRound(session);
+    if(typeof runtime.setTimeout !== 'function') return null;
+    const wait = Math.max(0, Number(session.autoNextDelayMs) || 0);
+    session._nextRoundTimer = runtime.setTimeout(() => {
+      session._nextRoundTimer = null;
+      if(!isComplete(session) && isRoundComplete(session)) nextRound(session);
+      if(typeof callback === 'function') callback();
+    }, wait);
+    return session._nextRoundTimer;
+  }
   function ratingFor(session, pairId){
     const mistakes = Number(session && session.mistakesById && session.mistakesById[pairId] || 0);
     return mistakes <= 0 ? 'easy' : mistakes === 1 ? 'review' : 'hard';
@@ -353,8 +434,64 @@
   function results(session){
     return (session && session.pairs || []).map(pair => ({ pair, rating:ratingFor(session, pair.id), mistakes:Number(session.mistakesById[pair.id] || 0), completed:session.completedIds.includes(pair.id) }));
   }
-  function togglePinyin(session){ session.showPinyin = !session.showPinyin; setSetting('matchingShowPinyin', session.showPinyin); return session.showPinyin; }
-  function toggleTapSpeak(session){ session.tapToSpeak = !session.tapToSpeak; setSetting('tapHanziSpeak', session.tapToSpeak); return session.tapToSpeak; }
+  function togglePinyin(session){
+    if(!session) return false;
+    session.showPinyin = !session.showPinyin;
+    setSetting('matchingShowPinyin', session.showPinyin);
+    if(!isComplete(session)) makeRound(session);
+    return session.showPinyin;
+  }
+  function toggleTapSpeak(session){
+    if(!session) return false;
+    session.tapToSpeak = !session.tapToSpeak;
+    setSetting('tapHanziSpeak', session.tapToSpeak);
+    return session.tapToSpeak;
+  }
+  function toggleSettings(session, force){
+    if(!session) return false;
+    const next = force == null ? !session.settingsOpen : Boolean(force);
+    if(next) cancelScheduledNextRound(session);
+    session.settingsOpen = next;
+    session.settingsError = '';
+    return next;
+  }
+  function setRoundLimit(session, value){
+    if(!session) return false;
+    const isAuto = value === 'auto' || value === '' || value == null || Number(value) === 0;
+    const number = Number(value);
+    if(!isAuto && (!Number.isFinite(number) || number < ADAPTIVE_DEFAULTS.minPairs || number > ADAPTIVE_DEFAULTS.absoluteMaxPairs)){
+      session.settingsError = `Nhập từ ${ADAPTIVE_DEFAULTS.minPairs} đến ${ADAPTIVE_DEFAULTS.absoluteMaxPairs} cặp.`;
+      return false;
+    }
+    const limit = isAuto ? 0 : normalizePairLimit(number);
+    session.roundLimit = limit;
+    session.maxRoundSize = limit || ADAPTIVE_DEFAULTS.defaultMaxPairs;
+    session.settingsError = '';
+    setSetting(pairLimitSettingName(session.contentKind), limit);
+    if(!isComplete(session)) makeRound(session);
+    session.settingsOpen = true;
+    return true;
+  }
+  function setAutoNext(session, enabled){
+    if(!session) return false;
+    session.autoNext = Boolean(enabled);
+    setSetting('matchingAutoNext', session.autoNext);
+    if(!session.autoNext) cancelScheduledNextRound(session);
+    return session.autoNext;
+  }
+  function setAutoNextDelay(session, seconds){
+    if(!session) return false;
+    const number = Number(seconds);
+    if(!Number.isFinite(number) || number < 0 || number > 10){
+      session.settingsError = 'Thời gian chờ phải từ 0 đến 10 giây.';
+      return false;
+    }
+    const normalized = normalizeAutoNextDelay(number);
+    session.autoNextDelayMs = Math.round(normalized * 1000);
+    session.settingsError = '';
+    setSetting('matchingAutoNextDelay', normalized);
+    return true;
+  }
 
   function render(session, options){
     const configured = options || {};
@@ -378,7 +515,26 @@
     };
     const roundDone = isRoundComplete(session) && !isComplete(session);
     const complete = isComplete(session);
-    return `<section class="tt-match" data-matching-root data-match-round-size="${session.roundIds.length}" data-match-capacity="${session.roundCapacity || session.roundIds.length}">
+    const delaySeconds = Math.round((Number(session.autoNextDelayMs) || 0) / 100) / 10;
+    const activeLimit = Number(session.roundLimit) || 0;
+    const customLimitValue = activeLimit > ADAPTIVE_DEFAULTS.defaultMaxPairs ? activeLimit : Math.max(2, activeLimit || session.roundCapacity || 5);
+    const settingsPanel = session.settingsOpen ? `<section class="tt-match-settings" aria-label="Cài đặt Nối chữ">
+      <header><div><b>Cài đặt Nối chữ</b><small>Dùng chung cho Nghe, Thẻ và Học.</small></div><button type="button" data-match-action="toggle-settings" aria-label="Đóng cài đặt">×</button></header>
+      <div class="tt-match-settings__row"><span><b>Hiện pinyin</b><small>Ẩn để tập trung vào chữ Hán.</small></span><button type="button" class="tt-match-switch ${session.showPinyin?'active':''}" data-match-action="toggle-pinyin" aria-pressed="${session.showPinyin}">${session.showPinyin?'Bật':'Tắt'}</button></div>
+      <div class="tt-match-settings__row"><span><b>Chạm chữ Hán để nghe</b><small>Phát âm khi chọn ô bên trái.</small></span><button type="button" class="tt-match-switch ${session.tapToSpeak?'active':''}" data-match-action="toggle-speak" aria-pressed="${session.tapToSpeak}">${session.tapToSpeak?'Bật':'Tắt'}</button></div>
+      <fieldset class="tt-match-settings__field"><legend>Số cặp tối đa mỗi lượt</legend><div class="tt-match-settings__chips">
+        <button type="button" class="${activeLimit===0?'active':''}" data-match-action="set-round-limit" data-match-value="auto">Tự động</button>
+        ${[2,3,4,5,6,7,8].map(value => `<button type="button" class="${activeLimit===value?'active':''}" data-match-action="set-round-limit" data-match-value="${value}">${value}</button>`).join('')}
+      </div><div class="tt-match-settings__custom"><label for="ttMatchCustomLimit">Tự nhập</label><input id="ttMatchCustomLimit" data-match-custom-limit type="number" inputmode="numeric" min="2" max="30" step="1" value="${escapeHtml(customLimitValue)}"><button type="button" data-match-action="apply-custom-limit">Áp dụng</button></div><small>Câu dài vẫn tự giảm để không cắt chữ hoặc làm tràn màn hình.</small></fieldset>
+      <div class="tt-match-settings__row"><span><b>Tự chuyển lượt</b><small>Bỏ bước hỏi “Cặp tiếp theo”.</small></span><button type="button" class="tt-match-switch ${session.autoNext?'active':''}" data-match-action="toggle-auto-next" aria-pressed="${session.autoNext}">${session.autoNext?'Bật':'Tắt'}</button></div>
+      <fieldset class="tt-match-settings__field ${session.autoNext?'':'is-disabled'}"><legend>Thời gian chờ</legend><div class="tt-match-settings__chips">
+        ${[0,0.5,1,1.5,2].map(value => `<button type="button" class="${delaySeconds===value?'active':''}" data-match-action="set-auto-next-delay" data-match-value="${value}" ${session.autoNext?'':'disabled'}>${value}s</button>`).join('')}
+      </div><div class="tt-match-settings__custom"><label for="ttMatchCustomDelay">Tự nhập</label><input id="ttMatchCustomDelay" data-match-custom-delay type="number" inputmode="decimal" min="0" max="10" step="0.1" value="${escapeHtml(delaySeconds)}" ${session.autoNext?'':'disabled'}><button type="button" data-match-action="apply-custom-delay" ${session.autoNext?'':'disabled'}>Áp dụng</button></div></fieldset>
+      ${session.settingsError ? `<p class="tt-match-settings__error">${escapeHtml(session.settingsError)}</p>` : ''}
+      <button type="button" class="tt-match-settings__done" data-match-action="close-settings">Xong</button>
+    </section>` : '';
+    const boardHeight = Math.max(0, Number(session.roundBoardHeight) || 0);
+    return `<section class="tt-match" data-matching-root data-match-round-size="${session.roundIds.length}" data-match-capacity="${session.roundCapacity || session.roundIds.length}" style="--tt-match-round-height:${boardHeight}px">
       <header class="tt-match__head">
         <div><p>${escapeHtml(configured.eyebrow || 'NỐI CHỮ')}</p><h2>${escapeHtml(session.title || 'Nối chữ')}</h2>${session.subtitle ? `<small>${escapeHtml(session.subtitle)}</small>` : ''}</div>
         <span class="tt-match__progress">${session.completedIds.length}/${session.pairs.length}</span>
@@ -386,15 +542,17 @@
       <div class="tt-match__tools" role="group" aria-label="Tùy chọn nối chữ">
         <button type="button" data-match-action="toggle-pinyin" class="${session.showPinyin?'active':''}" aria-pressed="${session.showPinyin}">拼 <span>Pinyin</span></button>
         <button type="button" data-match-action="toggle-speak" class="${session.tapToSpeak?'active':''}" aria-pressed="${session.tapToSpeak}">🔊 <span>Chạm để nghe</span></button>
+        <button type="button" data-match-action="toggle-settings" class="${session.settingsOpen?'active':''}" aria-expanded="${session.settingsOpen}">⚙ <span>Cài đặt</span></button>
       </div>
+      ${settingsPanel}
       <p class="tt-match__instruction">Chạm một ô chữ Hán rồi chạm nghĩa tương ứng.</p>
-      <div class="tt-match__board">
+      <div class="tt-match__board${roundDone?' is-round-complete':''}">
         <div class="tt-match__column tt-match__column--left">${left.map(pair => card(pair,'left')).join('')}</div>
         <div class="tt-match__column tt-match__column--right">${right.map(pair => card(pair,'right')).join('')}</div>
+        ${roundDone ? `<div class="tt-match__round-status"><b>✓ Hoàn thành lượt</b><span>${session.autoNext ? (delaySeconds > 0 ? `Tự chuyển sau ${delaySeconds} giây…` : 'Đang mở lượt tiếp theo…') : 'Chạm Tiếp tục khi bạn sẵn sàng.'}</span>${session.autoNext?'':'<button type="button" data-match-action="manual-next">Tiếp tục →</button>'}</div>` : ''}
       </div>
       ${session.feedback && session.feedback.type === 'wrong' ? `<p class="tt-match__feedback is-wrong">${session.feedback.mistakeCount >= 3 ? 'Chưa khớp. Cặp đúng đã được gợi ý.' : 'Chưa khớp, thử lại nhé.'}</p>` : ''}
       ${session.hintPairId ? '<p class="tt-match__hint">Gợi ý: cặp đúng đang sáng xanh.</p>' : ''}
-      ${roundDone ? '<button type="button" class="tt-match__next" data-match-action="next-round">Cặp tiếp theo →</button>' : ''}
       ${complete ? '<div class="tt-match__complete"><b>Hoàn thành</b><span>Đã nối đúng toàn bộ nội dung.</span></div>' : ''}
       ${remaining && !roundDone && !complete ? `<p class="tt-match__remaining">Còn ${remaining} cặp</p>` : ''}
     </section>`;
@@ -404,8 +562,8 @@
     SETTINGS_KEY, DEFAULT_SETTINGS,
     readSettings, writeSettings, setSetting,
     normalizePairs, viewportMetrics, estimatePairHeights, estimateBoardHeight, estimateRoundCapacity, balancedRoundSize,
-    createSession, hydrateSession, select, clearTransientFeedback, scheduleFeedbackClear, nextRound,
+    createSession, hydrateSession, select, clearTransientFeedback, scheduleFeedbackClear, nextRound, scheduleNextRound, cancelScheduledNextRound,
     isRoundComplete, isComplete, ratingFor, results,
-    togglePinyin, toggleTapSpeak, render, stableId
+    togglePinyin, toggleTapSpeak, toggleSettings, setRoundLimit, setAutoNext, setAutoNextDelay, render, stableId
   };
 });

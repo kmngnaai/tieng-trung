@@ -38,6 +38,29 @@ assert.strictEqual(long360.roundCapacity, 2, 'Very long content must stay readab
 assert.strictEqual(long390.roundCapacity, 3, 'Very long content should use three pairs on 390x844');
 assert(long430.roundCapacity >= 3 && long430.roundCapacity <= 4, '430x932 may fit three or four long pairs, but must not be overfilled');
 
+
+const customPairs = Array.from({ length:20 }, (_, index) => ({
+  id:`custom-${index + 1}`, leftText:`词${index + 1}`, pinyin:`cí ${index + 1}`, rightText:`nghĩa ${index + 1}`
+}));
+const customSession = Matching.createSession(customPairs, { contentKind:'word', viewport:{ width:430, height:932 } });
+assert.strictEqual(Matching.setRoundLimit(customSession, 12), true);
+assert.strictEqual(customSession.roundLimit, 12);
+assert(customSession.roundCapacity >= 9 && customSession.roundCapacity <= 12, 'Custom pair limit should extend beyond the default eight when the device has room');
+assert.strictEqual(customSession.roundIds.length, 10, 'Twenty short pairs should balance into two rounds of ten');
+assert.strictEqual(Matching.setRoundLimit(customSession, 31), false);
+assert(customSession.settingsError.includes('2 đến 30'));
+Matching.setAutoNext(customSession, false);
+assert.strictEqual(customSession.autoNext, false);
+assert.strictEqual(Matching.setAutoNextDelay(customSession, 1.5), true);
+assert.strictEqual(customSession.autoNextDelayMs, 1500);
+Matching.toggleSettings(customSession, true);
+const settingsHtml = Matching.render(customSession);
+assert(settingsHtml.includes('data-match-action="toggle-settings"'));
+assert(settingsHtml.includes('data-match-custom-limit'));
+assert(settingsHtml.includes('data-match-custom-delay'));
+assert(!settingsHtml.includes('data-match-action="next-round"'));
+assert(!settingsHtml.includes('tt-match__next'));
+
 const firstId = session.roundIds[0];
 const secondId = session.roundIds[1];
 const firstPair = session.pairs.find(pair => pair.id === firstId);
@@ -93,11 +116,17 @@ assert(listening.includes("data-matching-type=\"dialogue\""));
 assert(listening.includes("data-matching-type=\"passage\""));
 assert(listening.includes("toggle-tap-hanzi-speak"));
 assert(listening.includes('speakInteractionText(entry.text'));
+assert(listening.includes('captureActivityReturnContext'));
+assert(listening.includes('restoreActivityReturnContext'));
+assert(listening.includes('scheduleMatchingRoundAdvance'));
+assert(!listening.includes("action === 'next-round'"));
 
 const flashcard = fs.readFileSync(path.join(ROOT, 'modules/hanzi-stroke/app.js'), 'utf8');
 assert(flashcard.includes("['matching', 'Nối thẻ'"));
 assert(flashcard.includes('data-hsk-flashcard-open-matching'));
 assert(flashcard.includes('renderFlashcardMatchingStudy'));
 assert(flashcard.includes("Matching.setSetting('tapHanziSpeak'"));
+assert(flashcard.includes('scheduleFlashcardMatchingRoundAdvance'));
+assert(!flashcard.includes("action === 'next-round'"));
 
 console.log('PASS: shared matching engine, listening activities, flashcard mode and tap-to-speak contracts');

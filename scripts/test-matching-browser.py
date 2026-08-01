@@ -44,7 +44,8 @@ def test_listening(browser):
     assert page.locator('[data-matching-type="sentence"]').count() == 1
     assert page.locator('[data-matching-type="dialogue"]').count() >= 1
     assert page.locator('[data-matching-type="passage"]').count() >= 1
-    page.locator('[data-matching-type="word"]').click()
+    word_launch = page.locator('[data-matching-type="word"]')
+    word_launch.click()
     page.wait_for_selector('.tt-match')
     left = page.locator('.tt-match-card--left')
     right = page.locator('.tt-match-card--right')
@@ -54,6 +55,17 @@ def test_listening(browser):
     capacity = int(page.locator('.tt-match').get_attribute('data-match-capacity'))
     assert round_size == left.count()
     assert round_size <= capacity <= 8
+    page.locator('[data-match-action="toggle-settings"]').click()
+    page.wait_for_selector('.tt-match-settings')
+    custom_limit = page.locator('[data-match-custom-limit]')
+    custom_limit.fill('12')
+    page.locator('[data-match-action="apply-custom-limit"]').click()
+    saved_settings = page.evaluate("() => JSON.parse(localStorage.getItem('tieng-trung-interaction-settings-v1'))")
+    assert saved_settings['matchingPairLimitWord'] == 12
+    page.screenshot(path=str(OUT/'listening-matching-settings-mobile.png'), full_page=True)
+    page.locator('[data-match-action="set-auto-next-delay"][data-match-value="0"]').click()
+    page.locator('[data-match-action="close-settings"]').click()
+    assert page.locator('.tt-match-settings').count() == 0
     first_id = left.nth(0).get_attribute('data-match-id')
     right_ids = page.locator('.tt-match-card--right').evaluate_all("els => els.map(el => el.dataset.matchId)")
     wrong_id = next(item for item in right_ids if item != first_id)
@@ -78,16 +90,32 @@ def test_listening(browser):
     assert page.locator(f'.tt-match-card--left[data-match-id="{first_id}"]').count() == 0
     saved = page.evaluate("() => JSON.parse(localStorage.getItem('tieng-trung-listening-matching-session-v1'))")
     assert saved and first_id in saved['session']['completedIds']
+    current_round_ids = page.locator('.tt-match-card--left').evaluate_all("els => els.map(el => el.dataset.matchId)")
+    progress_before_next = int(page.locator('.tt-match__progress').inner_text().split('/')[0])
+    for pair_id in current_round_ids:
+        page.locator(f'.tt-match-card--left[data-match-id="{pair_id}"]').click()
+        page.locator(f'.tt-match-card--right[data-match-id="{pair_id}"]').click()
+    page.wait_for_function("previous => { const value=document.querySelector('.tt-match__progress')?.textContent||'0/0'; return Number(value.split('/')[0]) > previous && document.querySelectorAll('.tt-match-card--left').length > 0; }", arg=progress_before_next, timeout=5000)
+    assert page.locator('[data-match-action="next-round"]').count() == 0
     page.screenshot(path=str(OUT/'listening-word-matching-mobile.png'), full_page=True)
     assert_no_horizontal_overflow(page)
     page.locator('[data-action="go-back"]').click()
     page.wait_for_selector('[data-matching-type="sentence"]')
-    page.locator('[data-matching-type="sentence"]').click()
+    sentence_launch = page.locator('[data-matching-type="sentence"]')
+    sentence_launch.scroll_into_view_if_needed()
+    origin_scroll = page.evaluate('window.scrollY')
+    assert origin_scroll > 0, origin_scroll
+    sentence_launch.click()
     page.wait_for_selector('.tt-match')
     sentence_count = page.locator('.tt-match-card--left').count()
     assert 2 <= sentence_count <= 8
     page.screenshot(path=str(OUT/'listening-sentence-matching-mobile.png'), full_page=True)
     assert_no_horizontal_overflow(page)
+    page.locator('[data-action="go-back"]').click()
+    page.wait_for_selector('[data-matching-type="sentence"]')
+    page.wait_for_function('target => Math.abs(window.scrollY - target) <= 4', arg=origin_scroll, timeout=3000)
+    restored_scroll = page.evaluate('window.scrollY')
+    assert abs(restored_scroll - origin_scroll) <= 4, (origin_scroll, restored_scroll)
     ctx.close()
 
 def test_flashcard(browser):
@@ -107,6 +135,12 @@ def test_flashcard(browser):
     page.locator('[data-hsk-flashcard-mode="matching"]').click()
     page.locator('[data-hsk-flashcard-start]').click()
     page.wait_for_selector('.hsk-flashcard-study--matching .tt-match')
+    page.locator('.hsk-flashcard-study--matching [data-match-action="toggle-settings"]').click()
+    page.locator('.hsk-flashcard-study--matching [data-match-custom-limit]').fill('9')
+    page.locator('.hsk-flashcard-study--matching [data-match-action="apply-custom-limit"]').click()
+    shared_settings = page.evaluate("() => JSON.parse(localStorage.getItem('tieng-trung-interaction-settings-v1'))")
+    assert shared_settings['matchingPairLimitWord'] == 9
+    page.locator('.hsk-flashcard-study--matching [data-match-action="close-settings"]').click()
     left = page.locator('.hsk-flashcard-study--matching .tt-match-card--left')
     assert 2 <= left.count() <= 8
     first_id = left.nth(0).get_attribute('data-match-id')
