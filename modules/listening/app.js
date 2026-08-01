@@ -7,10 +7,12 @@
   const ActivityBuilders = window.ListeningActivityBuilders;
   const LibraryStore = window.ListeningLibraryStore;
   const ImportCore = window.TiengTrungImportCore;
+  const Matching = window.TiengTrungMatching;
   const app = document.getElementById('app');
   const SETTINGS_KEY = 'tieng-trung-listening-settings-v1';
   const PROGRESS_KEY = 'tieng-trung-listening-progress-v1';
   const LAST_SESSION_KEY = 'tieng-trung-listening-last-session-v1';
+  const MATCHING_SESSION_KEY = 'tieng-trung-listening-matching-session-v1';
   const AudioStore = window.ListeningAudioStore;
 
   const DEFAULT_SETTINGS = {
@@ -24,7 +26,8 @@
     autoCheck: true,
     autoRate: true,
     autoNext: true,
-    autoNextSeconds: 2
+    autoNextSeconds: 2,
+    tapHanziSpeak: Matching ? Matching.readSettings().tapHanziSpeak : true
   };
 
   const state = {
@@ -130,7 +133,9 @@
     aiPasteTitle: '',
     aiPasteTargetMode: 'new',
     aiPasteTargetDeckId: '',
-    aiPasteGroupId: ''
+    aiPasteGroupId: '',
+    matchingSession: null,
+    matchingDescriptor: null
   };
 
   // Dùng một phần tử audio cố định ở ngoài #app. Safari/iPhone cấp quyền phát
@@ -301,6 +306,7 @@
     else if (state.screen === 'mode') renderModeChoice();
     else if (state.screen === 'preview') renderContentPreview();
     else if (state.screen === 'practice') renderPractice();
+    else if (state.screen === 'matching') renderMatchingPractice();
     else if (state.screen === 'complete') renderComplete();
     else renderHome();
     bindCommonEvents();
@@ -1352,6 +1358,11 @@
               </span>
               <span class="mode-arrow" aria-hidden="true">›</span>
             </button>
+            ${(state.items || []).filter(item => item && (item.meaning || item.meaningVi)).length >= 2 ? `<button class="mode-card" data-action="start-matching-activity" data-matching-type="sentence">
+              <span class="mode-icon" lang="zh-Hans">配</span>
+              <span class="mode-card__copy"><strong>Nối câu với nghĩa</strong><small>Mỗi lượt 3 câu, tối ưu cho mobile.</small></span>
+              <span class="mode-arrow" aria-hidden="true">›</span>
+            </button>` : ''}
             ${state.items.length > 1 ? `<button class="mode-card" data-action="start-mode" data-mode="passage">
               <span class="mode-icon" lang="zh-Hans">段</span>
               <span class="mode-card__copy">
@@ -1466,6 +1477,162 @@
     autoplayCurrentItemAfterNavigation();
   }
 
+  function matchingSourceItems(type, groupId) {
+    const dataset = state.dataset || {};
+    const groups = Array.isArray(dataset.groups) ? dataset.groups : [];
+    if (type === 'word') return (dataset.words || []).filter(item => item && item.meaning);
+    if (type === 'sentence') return state.dataset
+      ? filteredDatasetSentences().filter(item => item && item.meaning)
+      : (state.items || []).filter(item => item && (item.meaning || item.meaningVi));
+    const group = groups.find(item => item.id === groupId && item.kind === type);
+    return group && Array.isArray(group.items) ? group.items.filter(item => item && item.meaning) : [];
+  }
+
+  function matchingTitle(type, groupId) {
+    const groups = state.dataset && Array.isArray(state.dataset.groups) ? state.dataset.groups : [];
+    const group = groups.find(item => item.id === groupId);
+    if (type === 'word') return 'Nối từ với nghĩa';
+    if (type === 'sentence') return 'Nối câu với nghĩa';
+    if (type === 'dialogue') return group ? `Nối lượt · ${group.title}` : 'Nối lượt hội thoại';
+    if (type === 'passage') return group ? `Nối câu · ${group.title}` : 'Nối câu trong đoạn';
+    return 'Nối chữ';
+  }
+
+  function matchingPairs(type, groupId) {
+    return matchingSourceItems(type, groupId).map((item, index) => ({
+      id: item.id || `matching-${type}-${index + 1}`,
+      canonicalItemId: item.canonicalItemId || item.id || `matching-${type}-${index + 1}`,
+      leftText: `${type === 'dialogue' && item.speaker ? `${item.speaker}：` : ''}${item.text || item.hanzi || ''}`,
+      pinyin: item.pinyin || '',
+      rightText: item.meaning || item.meaningVi || '',
+      speechText: item.text || item.hanzi || '',
+      sourceType: item.sourceType || `${state.source}-${type}`,
+      sourceId: item.sourceId || (state.lesson && (state.lesson.lesson_id || state.lesson.id)) || state.source,
+      groupId: groupId || '',
+      groupKind: type,
+      meta: { item: snapshotItem(item) }
+    }));
+  }
+
+  function persistMatchingSession() {
+    if (!Matching || !state.matchingSession || !state.matchingDescriptor) return;
+    saveJson(MATCHING_SESSION_KEY, {
+      source: state.source,
+      lessonId: state.lesson && (state.lesson.lesson_id || state.lesson.id) || '',
+      descriptor: structuredCloneSafe(state.matchingDescriptor),
+      session: structuredCloneSafe(state.matchingSession),
+      updatedAt: new Date().toISOString()
+    });
+    saveJson(LAST_SESSION_KEY, {
+      schemaVersion: 3,
+      source: state.source,
+      lessonId: state.lesson && (state.lesson.lesson_id || state.lesson.id) || '',
+      matchingDescriptor: structuredCloneSafe(state.matchingDescriptor),
+      updatedAt: new Date().toISOString()
+    });
+  }
+
+  function startMatchingActivity(type, groupId, options) {
+    if (!Matching) {
+      state.error = 'Chưa tải được engine Nối chữ.';
+      render();
+      return;
+    }
+    const configured = options || {};
+    const pairs = matchingPairs(type, groupId);
+    if (pairs.length < 2) {
+      state.error = 'Cần ít nhất hai mục có chữ Hán và nghĩa để luyện nối.';
+      render();
+      return;
+    }
+    const descriptor = { type, groupId: groupId || '', title: matchingTitle(type, groupId) };
+    const saved = configured.restore ? loadJson(MATCHING_SESSION_KEY, null) : null;
+    const canRestore = saved && saved.source === state.source && saved.lessonId === ((state.lesson && (state.lesson.lesson_id || state.lesson.id)) || '') && saved.descriptor && saved.descriptor.type === type && (saved.descriptor.groupId || '') === (groupId || '');
+    state.matchingDescriptor = descriptor;
+    state.matchingSession = canRestore
+      ? Matching.hydrateSession(saved.session, pairs, { title: descriptor.title, subtitle: '', roundSize: type === 'word' ? 5 : 3, tapToSpeak: state.settings.tapHanziSpeak })
+      : Matching.createSession(pairs, { title: descriptor.title, subtitle: '', roundSize: type === 'word' ? 5 : 3, tapToSpeak: state.settings.tapHanziSpeak });
+    state.screen = 'matching';
+    state.error = '';
+    persistMatchingSession();
+    render();
+  }
+
+  function matchingProgressItem(pair) {
+    const raw = pair && pair.meta && pair.meta.item || {};
+    return {
+      id: pair.canonicalItemId || pair.id,
+      text: raw.text || raw.hanzi || pair.leftText,
+      pinyin: raw.pinyin || pair.pinyin || '',
+      meaning: raw.meaning || raw.meaningVi || pair.rightText,
+      sourceType: pair.sourceType || 'matching',
+      sourceId: pair.sourceId || '',
+      lessonId: raw.lessonId || (state.lesson && (state.lesson.lesson_id || state.lesson.id)) || '',
+      activityType: `matching-${state.matchingDescriptor && state.matchingDescriptor.type || 'item'}`
+    };
+  }
+
+  function saveMatchingPairResult(pairId) {
+    if (!Matching || !state.matchingSession) return;
+    const pair = state.matchingSession.pairs.find(item => item.id === pairId);
+    if (!pair) return;
+    const item = matchingProgressItem(pair);
+    const rating = Matching.ratingFor(state.matchingSession, pairId);
+    const key = progressKey(item, item.activityType);
+    const previous = state.progress[key] || {};
+    state.progress[key] = Object.assign({}, previous, {
+      item: snapshotItem(item),
+      activity: item.activityType,
+      attempts: Number(previous.attempts || 0) + 1,
+      rating,
+      lastResult: { isCorrect: true, mistakes: Number(state.matchingSession.mistakesById[pairId] || 0) },
+      lastReviewedAt: new Date().toISOString()
+    });
+    saveProgress();
+  }
+
+  function speakInteractionText(text) {
+    const value = String(text || '').trim();
+    if (!value || !state.settings.tapHanziSpeak || !('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(value);
+    const voice = selectedVoice();
+    if (voice) utterance.voice = voice;
+    utterance.lang = voice && voice.lang || 'zh-CN';
+    utterance.rate = Number(state.settings.rate) || 1;
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function handleMatchingSelection(side, pairId) {
+    if (!Matching || !state.matchingSession) return;
+    const result = Matching.select(state.matchingSession, side, pairId);
+    if (result.speechText) speakInteractionText(result.speechText);
+    if (result.status === 'correct') saveMatchingPairResult(result.pairId);
+    persistMatchingSession();
+    render();
+    if (result.status === 'wrong') {
+      Matching.scheduleFeedbackClear(state.matchingSession, () => {
+        persistMatchingSession();
+        render();
+      });
+    }
+  }
+
+  function renderMatchingPractice() {
+    const session = state.matchingSession;
+    if (!Matching || !session) {
+      state.screen = 'mode';
+      render();
+      return;
+    }
+    const complete = Matching.isComplete(session);
+    app.innerHTML = `${pageHeader(session.title, `${session.completedIds.length}/${session.pairs.length} cặp`, true)}
+      <main class="listen-main listen-main--matching">
+        ${Matching.render(session, { eyebrow: state.matchingDescriptor && state.matchingDescriptor.type === 'word' ? 'TỪ VỰNG' : 'NỘI DUNG' })}
+        ${complete ? `<section class="matching-result-actions"><button type="button" class="secondary-button" data-action="restart-matching">Học lại</button><button type="button" class="primary-button" data-action="return-mode">Chọn hoạt động khác</button></section>` : ''}
+      </main>${bottomNav()}${settingsSheet()}`;
+  }
+
   function renderDatasetModeChoice() {
     const dataset = state.dataset;
     const capabilities = dataset.capabilities || {};
@@ -1497,6 +1664,7 @@
             ${capabilities.wordChoice ? modeCard('start-dataset-activity', '选', 'Chọn từ nghe được', 'Mức chuẩn với 4 lựa chọn.', 'data-activity="word-choice" data-choice-count="4"') : ''}
             ${capabilities.wordChoice ? modeCard('start-dataset-activity', '难', 'Chọn từ · Mức khó', '5 lựa chọn gây nhiễu trong cùng bài.', 'data-activity="word-choice" data-choice-count="5"') : ''}
             ${capabilities.wordTyping ? modeCard('start-dataset-activity', '写', 'Điền tay từ nghe được', 'Giữ cách nhập và chấm từng chữ hiện tại.', 'data-activity="word-dictation"') : ''}
+            ${(dataset.words || []).filter(item => item.meaning).length >= 2 ? modeCard('start-matching-activity', '连', 'Nối từ với nghĩa', 'Chạm ghép Hán tự với nghĩa; có thể ẩn pinyin và nghe khi chạm.', 'data-matching-type="word"') : ''}
           </div>
         </section>
 
@@ -1512,6 +1680,7 @@
           <div class="section-heading"><div><p class="eyebrow">Câu</p><h2>Xếp và chép câu</h2></div></div>
           <div class="mode-grid">
             ${capabilities.sentenceOrdering ? modeCard('start-dataset-activity', '序', 'Xếp từ thành câu', 'Nghe rồi chạm các từ theo đúng thứ tự.', 'data-activity="sentence-ordering"') : ''}
+            ${filteredDatasetSentences().filter(item => item.meaning).length >= 2 ? modeCard('start-matching-activity', '配', 'Nối câu với nghĩa', 'Mỗi lượt 3 câu để luôn gọn trên mobile.', 'data-matching-type="sentence"') : ''}
             ${capabilities.sentenceDictation ? modeCard('start-dataset-activity', '听写', 'Chép từng câu', 'Câu ví dụ và ví dụ ngữ pháp được trộn mặc định.', 'data-activity="sentence-dictation"') : ''}
             ${capabilities.sentenceDictation ? modeCard('open-batch-sentence-setup', '连', 'Chép nhiều câu', 'Chọn 5, 10, 20, tất cả hoặc tự nhập số câu; phát liên tiếp trong một phiên.', '') : ''}
             ${capabilities.sentenceTranscript ? modeCard('start-dataset-activity', '文', 'Có transcript', 'Nghe cùng chữ Hán, pinyin và nghĩa.', 'data-activity="sentence-transcript"') : ''}
@@ -1527,6 +1696,7 @@
             ${capabilities.dialogueSentenceOrdering ? modeCard('start-dataset-activity', '句', 'Xếp từng câu hội thoại', 'Giữ ngữ cảnh A/B; chỉ xếp các câu có từ 3 cụm trở lên.', `data-activity="dialogue-token" data-group-id="${escapeHtml(dialogue.id)}"`) : ''}
             ${capabilities.dialogueDictation ? modeCard('start-dataset-activity', '录', 'Chép từng lượt', 'Nghe và gõ lần lượt từng câu, luôn có hội thoại làm ngữ cảnh.', `data-activity="dialogue-dictation" data-group-id="${escapeHtml(dialogue.id)}"`) : ''}
             ${capabilities.dialogueFullDictation ? modeCard('start-dataset-activity', '全', 'Chép nguyên hội thoại', 'Nghe toàn bộ rồi gõ liên tục tất cả các lượt trên cùng một màn hình.', `data-activity="dialogue-full-dictation" data-group-id="${escapeHtml(dialogue.id)}"`) : ''}
+            ${(dialogue.items || []).filter(item => item.meaning).length >= 2 ? modeCard('start-matching-activity', '配', 'Nối lượt thoại với nghĩa', 'Giữ người nói và ghép từng lượt với nghĩa tương ứng.', `data-matching-type="dialogue" data-group-id="${escapeHtml(dialogue.id)}"`) : ''}
           </div>
         </section>`).join('')}
 
@@ -1537,6 +1707,7 @@
             ${capabilities.passageSentenceTokenOrdering ? modeCard('start-dataset-activity', '组', 'Xếp từng câu trong đoạn', 'Làm từng câu có từ 3 cụm trở lên; câu ngắn vẫn giữ làm ngữ cảnh.', `data-activity="passage-token" data-group-id="${escapeHtml(passage.id)}"`) : ''}
             ${capabilities.passageDictation ? modeCard('start-dataset-activity', '抄', 'Chép từng câu', 'Nghe và gõ lần lượt từng câu, luôn có toàn đoạn làm ngữ cảnh.', `data-activity="passage-dictation" data-group-id="${escapeHtml(passage.id)}"`) : ''}
             ${capabilities.passageFullDictation ? modeCard('start-dataset-activity', '全', 'Chép nguyên đoạn', 'Nghe toàn bộ rồi gõ liên tục tất cả các câu trên cùng một màn hình.', `data-activity="passage-full-dictation" data-group-id="${escapeHtml(passage.id)}"`) : ''}
+            ${(passage.items || []).filter(item => item.meaning).length >= 2 ? modeCard('start-matching-activity', '配', 'Nối câu trong đoạn', 'Ghép từng câu với nghĩa; mỗi lượt 3 cặp để gọn trên mobile.', `data-matching-type="passage" data-group-id="${escapeHtml(passage.id)}"`) : ''}
           </div>
         </section>`).join('')}
       </main>
@@ -1711,6 +1882,10 @@
     const validFilters = datasetSentenceFilters().map((entry) => entry.id);
     state.sentenceFilter = validFilters.includes(session.sentenceFilter) ? session.sentenceFilter : 'all';
     state.items = filteredDatasetSentences();
+    if (session.matchingDescriptor) {
+      startMatchingActivity(session.matchingDescriptor.type || 'word', session.matchingDescriptor.groupId || '', { restore: true });
+      return true;
+    }
     const descriptor = session.activityDescriptor;
     if (descriptor && descriptor.activity) {
       startDatasetActivity(descriptor.activity, descriptor.groupId || '', {
@@ -1764,7 +1939,7 @@
       if (deck) {
         if (deck.groupId) state.activeLibraryGroupId = deck.groupId;
         await openCustomDeck(deck.id);
-        startPractice(session.mode || 'dictation', session.currentIndex || 0);
+        if (!restoreDatasetSession(session)) startPractice(session.mode || 'dictation', session.currentIndex || 0);
       }
       return;
     }
@@ -2538,6 +2713,9 @@
         <fieldset class="setting-field"><legend>Lùi/tiến khi nghe lại</legend><div class="segmented">
           ${[3, 5].map((seconds) => `<button data-action="set-rewind" data-seconds="${seconds}" class="${Number(state.settings.rewindSeconds) === seconds ? 'active' : ''}">${seconds} giây</button>`).join('')}
         </div></fieldset>
+        <fieldset class="setting-field"><legend>Tương tác chữ Hán</legend><div class="automation-settings">
+          <label><span><strong>🔊 Chạm chữ Hán để nghe</strong><small>Dùng trong Nối chữ, lựa chọn và xếp câu. Tắt nếu chỉ muốn chọn mà không phát âm.</small></span><input type="checkbox" data-action="toggle-tap-hanzi-speak" ${state.settings.tapHanziSpeak ? 'checked' : ''} /></label>
+        </div></fieldset>
         <fieldset class="setting-field"><legend>Tự động khi chép chính tả</legend><div class="automation-settings">
           <label><span><strong>Nhập đủ tự kiểm tra</strong><small>So sánh ngay khi đã nhập đủ số chữ.</small></span><input type="checkbox" data-action="toggle-auto-check" ${state.settings.autoCheck ? 'checked' : ''} /></label>
           <label><span><strong>Tự xếp Dễ / Ôn / Khó</strong><small>Đúng ngay: Dễ · sửa sai: Ôn · dùng gợi ý/đáp án: Khó.</small></span><input type="checkbox" data-action="toggle-auto-rate" ${state.settings.autoRate ? 'checked' : ''} /></label>
@@ -2588,6 +2766,7 @@
       else if (action === 'go-back') element.onclick = goBack;
       else if (action === 'start-mode') element.onclick = () => startPractice(element.dataset.mode, 0);
       else if (action === 'start-dataset-activity') element.onclick = () => startDatasetActivity(element.dataset.activity, element.dataset.groupId || '', { choiceCount: Number(element.dataset.choiceCount) || 4 });
+      else if (action === 'start-matching-activity') element.onclick = () => startMatchingActivity(element.dataset.matchingType || 'word', element.dataset.groupId || '');
       else if (action === 'open-batch-sentence-setup') element.onclick = openBatchSentenceSetup;
       else if (action === 'close-batch-sentence-setup') element.onclick = () => { state.batchSentenceSetupOpen = false; render(); };
       else if (action === 'set-batch-sentence-count') element.onclick = () => { state.batchSentenceCountMode = element.dataset.count || '10'; render(); };
@@ -2707,7 +2886,26 @@
       else if (action === 'complete-session') element.onclick = completePractice;
       else if (action === 'retry-wrong') element.onclick = retryWrongItems;
       else if (action === 'return-mode') element.onclick = returnToModeChoice;
+      else if (action === 'restart-matching') element.onclick = () => startMatchingActivity(state.matchingDescriptor && state.matchingDescriptor.type || 'word', state.matchingDescriptor && state.matchingDescriptor.groupId || '');
       else if (action === 'go-home') element.onclick = () => setScreen('home');
+    });
+
+    app.querySelectorAll('[data-match-side][data-match-id]').forEach((button) => {
+      button.onclick = () => handleMatchingSelection(button.dataset.matchSide, button.dataset.matchId);
+    });
+    app.querySelectorAll('[data-match-action]').forEach((button) => {
+      button.onclick = () => {
+        if (!Matching || !state.matchingSession) return;
+        const action = button.dataset.matchAction;
+        if (action === 'toggle-pinyin') Matching.togglePinyin(state.matchingSession);
+        else if (action === 'toggle-speak') {
+          const enabled = Matching.toggleTapSpeak(state.matchingSession);
+          state.settings.tapHanziSpeak = enabled;
+          saveSettings();
+        } else if (action === 'next-round') Matching.nextRound(state.matchingSession);
+        persistMatchingSession();
+        render();
+      };
     });
 
     const search = document.getElementById('lessonSearch');
@@ -2791,6 +2989,14 @@
     if (pinyinToggle) pinyinToggle.onchange = () => { state.settings.showPinyin = pinyinToggle.checked; saveSettings(); render(); };
     const meaningToggle = app.querySelector('[data-action="toggle-meaning"]');
     if (meaningToggle) meaningToggle.onchange = () => { state.settings.showMeaning = meaningToggle.checked; saveSettings(); render(); };
+    const tapSpeakToggle = app.querySelector('[data-action="toggle-tap-hanzi-speak"]');
+    if (tapSpeakToggle) tapSpeakToggle.onchange = () => {
+      state.settings.tapHanziSpeak = tapSpeakToggle.checked;
+      if (Matching) Matching.setSetting('tapHanziSpeak', tapSpeakToggle.checked);
+      saveSettings();
+      if (state.matchingSession) state.matchingSession.tapToSpeak = tapSpeakToggle.checked;
+      render();
+    };
     const autoCheckToggle = app.querySelector('[data-action="toggle-auto-check"]');
     if (autoCheckToggle) autoCheckToggle.onchange = () => setAutomationSetting('autoCheck', autoCheckToggle.checked);
     const autoRateToggle = app.querySelector('[data-action="toggle-auto-rate"]');
@@ -3522,6 +3728,8 @@
   function chooseWord(choiceId) {
     const item = currentItem();
     if (!item || state.activityResult) return;
+    const choice = Array.isArray(item.choices) ? item.choices.find(entry => entry.id === choiceId) : null;
+    if (choice) speakInteractionText(choice.text || choice.hanzi || '');
     state.activitySelection = [choiceId];
     recordActivityResult(item, choiceId === item.answerId, 'listening-word-choice');
   }
@@ -3533,6 +3741,8 @@
   function addOrderingToken(tokenId) {
     const item = currentItem();
     if (!item || state.activityResult && state.activityResult.isCorrect) return;
+    const entry = orderingEntries(item).find(token => token.id === tokenId);
+    if (entry) speakInteractionText(entry.text || entry.hanzi || '');
     if (!state.activitySelection.includes(tokenId)) state.activitySelection.push(tokenId);
     rememberSession();
     render();
@@ -3540,6 +3750,9 @@
 
   function removeOrderingToken(tokenId) {
     if (state.activityResult && state.activityResult.isCorrect) return;
+    const item = currentItem();
+    const entry = item ? orderingEntries(item).find(token => token.id === tokenId) : null;
+    if (entry) speakInteractionText(entry.text || entry.hanzi || '');
     const index = state.activitySelection.lastIndexOf(tokenId);
     if (index >= 0) state.activitySelection.splice(index, 1);
     state.activityResult = null;
@@ -3926,6 +4139,15 @@
     }
     if (state.settingsOpen) {
       state.settingsOpen = false;
+      render();
+      return;
+    }
+    if (state.screen === 'matching') {
+      persistMatchingSession();
+      state.matchingSession = null;
+      state.matchingDescriptor = null;
+      state.screen = 'mode';
+      stopSpeech();
       render();
       return;
     }

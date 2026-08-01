@@ -2,6 +2,7 @@
   'use strict';
 
   const root = document.getElementById('ldsnApp');
+  const Matching = window.TiengTrungMatching;
   const DATA_URL = 'data/lessons.json?v=20260731-ldsn6';
   const HSK_LOOKUP_URL = '../hanzi-stroke/data/learning/hsk/hsk_flashcard_lookup.json?v=20260731-ldsn5';
   const HSK_EXTERNAL_FLASHCARD_KEY = 'tiengTrung.hsk.externalFlashcard.v1';
@@ -38,7 +39,6 @@
     customVocabByLesson: {},
     roleByLesson: {},
     displayPinyin: true,
-    vocabMatchShowPinyin: true,
     flashcard: { mode: 'flashcard', showPinyin: true, autoPlay: false, shuffle: false }
   });
   settings.roleplayMode = settings.roleplayMode === 'ordering' ? 'ordering' : 'typing';
@@ -48,7 +48,6 @@
   settings.customVocabByLesson = settings.customVocabByLesson || {};
   settings.roleByLesson = settings.roleByLesson || {};
   settings.displayPinyin = settings.displayPinyin !== false;
-  settings.vocabMatchShowPinyin = settings.vocabMatchShowPinyin !== false;
   settings.flashcard = settings.flashcard && typeof settings.flashcard === 'object' ? settings.flashcard : {};
   settings.flashcard.mode = ['flashcard', 'reverse', 'listening', 'typing', 'mixed'].includes(settings.flashcard.mode) ? settings.flashcard.mode : 'flashcard';
   settings.flashcard.showPinyin = settings.flashcard.showPinyin !== false;
@@ -60,7 +59,8 @@
   let sharedWordDetailFrameReady = false;
   let pendingWordDetailPayload = null;
   let flashcardSession = null;
-  let vocabMatchSession = null;
+  let matchingSession = null;
+  let matchingType = 'vocabulary';
 
   function readJson(key, fallback) {
     try {
@@ -822,7 +822,7 @@
     return [...lesson.vocabulary].sort((a, b) => {
       const ar = state.ratings[`vocab:${a.id}`]?.rating || '';
       const br = state.ratings[`vocab:${b.id}`]?.rating || '';
-      const rank = { review: 0, '': 1, hard: 2, easy: 3 };
+      const rank = { hard: 0, review: 1, '': 2, easy: 3 };
       return rank[ar] - rank[br] || a.order - b.order;
     }).slice(0, count);
   }
@@ -906,68 +906,80 @@
 
   function renderPracticeSettings(mode, practiceMode) {
     const practiceModes = [['mixed', 'Hỗn hợp'], ['hanzi', 'Chữ Hán'], ['pinyin', 'Pinyin'], ['vi', 'Tiếng Việt']];
-    return `<details class="ldsn-settings ldsn-compact-settings" data-practice-settings><summary><span>⚙ Cài đặt luyện tập</span><small>${mode === 'ordering' ? 'Xếp từ' : 'Gõ câu'} · ${practiceModes.find(row => row[0] === practiceMode)?.[1] || 'Hỗn hợp'} · ${pinyinStatusHtml()}</small></summary><div class="ldsn-settings-body"><div class="ldsn-setting-block"><strong>Cách trả lời tiếng Trung</strong><div class="ldsn-mode-switch"><button class="ldsn-mode-btn${mode === 'typing' ? ' is-active' : ''}" type="button" data-role-mode="typing">Gõ câu</button><button class="ldsn-mode-btn${mode === 'ordering' ? ' is-active' : ''}" type="button" data-role-mode="ordering">Xếp từ</button></div></div><div class="ldsn-setting-block"><strong>Luyện từ vựng</strong><div class="ldsn-mode-switch"><button class="ldsn-mode-btn" type="button" data-start-vocab-match>Nối Hán tự ↔ Nghĩa</button><button class="ldsn-mode-btn${settings.vocabMatchShowPinyin ? ' is-active' : ''}" type="button" data-toggle-match-pinyin>${settings.vocabMatchShowPinyin ? 'Đang hiện pinyin' : 'Đang ẩn pinyin'}</button></div></div><div class="ldsn-setting-block"><strong>Phần cần điền</strong><div class="ldsn-mode-switch ldsn-mode-switch--four">${practiceModes.map(([value, label]) => `<button class="ldsn-mode-btn${practiceMode === value ? ' is-active' : ''}" type="button" data-vocab-practice-mode="${value}">${label}</button>`).join('')}</div></div><div class="ldsn-setting-row"><span><strong>Hiện pinyin</strong><small>Dùng chung toàn bộ LDSN1-4</small></span>${pinyinToggleButton()}</div></div></details>`;
+    return `<details class="ldsn-settings ldsn-compact-settings" data-practice-settings><summary><span>⚙ Cài đặt luyện tập</span><small>${mode === 'ordering' ? 'Xếp từ' : 'Gõ câu'} · ${practiceModes.find(row => row[0] === practiceMode)?.[1] || 'Hỗn hợp'} · ${pinyinStatusHtml()}</small></summary><div class="ldsn-settings-body"><div class="ldsn-setting-block"><strong>Cách trả lời tiếng Trung</strong><div class="ldsn-mode-switch"><button class="ldsn-mode-btn${mode === 'typing' ? ' is-active' : ''}" type="button" data-role-mode="typing">Gõ câu</button><button class="ldsn-mode-btn${mode === 'ordering' ? ' is-active' : ''}" type="button" data-role-mode="ordering">Xếp từ</button></div></div><div class="ldsn-setting-block"><strong>Phần cần điền</strong><div class="ldsn-mode-switch ldsn-mode-switch--four">${practiceModes.map(([value, label]) => `<button class="ldsn-mode-btn${practiceMode === value ? ' is-active' : ''}" type="button" data-vocab-practice-mode="${value}">${label}</button>`).join('')}</div></div><div class="ldsn-setting-row"><span><strong>Hiện pinyin</strong><small>Dùng chung toàn bộ LDSN1-4</small></span>${pinyinToggleButton()}</div></div></details>`;
   }
 
-  function shuffledCopy(list) {
-    const result = [...(list || [])];
-    for (let index = result.length - 1; index > 0; index -= 1) {
-      const swap = Math.floor(Math.random() * (index + 1));
-      [result[index], result[swap]] = [result[swap], result[index]];
+  function ldsnMatchingItems(type = matchingType) {
+    if (!currentLesson) return [];
+    if (type === 'vocabulary') return getSessionVocabulary(currentLesson).map(word => ({
+      id: word.id, leftText: word.hanzi, pinyin: word.pinyin, rightText: word.vi, speechText: word.hanzi,
+      sourceType: 'ldsn-vocabulary', meta: { itemKey: `vocab:${word.id}`, item: word }
+    }));
+    if (type === 'sentence') {
+      const rows = [...currentLesson.translation.zhVi.questions, ...currentLesson.translation.zhVi.answers, ...currentLesson.translation.viZh.questions, ...currentLesson.translation.viZh.answers];
+      const seen = new Set();
+      return rows.filter(row => row && row.hanzi && row.vi && !seen.has(row.hanzi) && seen.add(row.hanzi)).map(row => ({
+        id: row.id, leftText: row.hanzi, pinyin: row.pinyin, rightText: row.vi, speechText: row.hanzi,
+        sourceType: 'ldsn-sentence', meta: { itemKey: `sentence:${row.id}:matching`, item: row }
+      }));
     }
-    return result;
+    if (type === 'dialogue') return (currentLesson.dialogue || []).filter(row => row.hanzi && row.vi).map(row => ({
+      id: row.id, leftText: `${row.speaker ? `${row.speaker}：` : ''}${row.hanzi}`, pinyin: row.pinyin, rightText: row.vi, speechText: row.hanzi,
+      sourceType: 'ldsn-dialogue', meta: { itemKey: `dialogue:${row.id}:matching`, item: row }
+    }));
+    if (type === 'passage') return (currentLesson.passage?.sentences || []).filter(row => row.hanzi && row.vi).map((row, index) => ({
+      id: row.id || `passage-${index + 1}`, leftText: row.hanzi, pinyin: row.pinyin, rightText: row.vi, speechText: row.hanzi,
+      sourceType: 'ldsn-passage', meta: { itemKey: `passage:${row.id || index}:matching`, item: row }
+    }));
+    return [];
   }
 
-  function startVocabMatching() {
-    const words = getSessionVocabulary(currentLesson).slice(0, Math.min(8, getSessionVocabulary(currentLesson).length));
-    vocabMatchSession = {
-      words,
-      left: shuffledCopy(words),
-      right: shuffledCopy(words),
-      selectedLeft: '',
-      selectedRight: '',
-      matched: [],
-      wrongPair: []
-    };
-    renderLesson();
-    requestAnimationFrame(() => document.querySelector('[data-vocab-match]')?.scrollIntoView?.({ behavior: 'smooth', block: 'start' }));
+  function ensureLdsnMatchingSession(force = false) {
+    if (!Matching) return null;
+    const items = ldsnMatchingItems();
+    const sessionId = `${currentLesson?.id || ''}:${matchingType}`;
+    if (!force && matchingSession && matchingSession.id === Matching.stableId(items.map(item => item.id).join('|'), 'matching-session') && matchingSession.sourceKind === sessionId) return matchingSession;
+    matchingSession = Matching.createSession(items, {
+      title: matchingType === 'vocabulary' ? 'Nối từ với nghĩa' : matchingType === 'sentence' ? 'Nối câu với nghĩa' : matchingType === 'dialogue' ? 'Nối lượt hội thoại' : 'Nối câu trong đoạn',
+      subtitle: `LDSN ${currentLesson?.lessonNumber || ''}`,
+      sourceKind: sessionId,
+      roundSize: matchingType === 'vocabulary' ? 5 : 3
+    });
+    return matchingSession;
   }
 
-  function renderVocabMatching() {
-    const session = vocabMatchSession;
-    if (!session) return '';
-    const matched = new Set(session.matched);
-    return `<section class="ldsn-card ldsn-pad ldsn-section ldsn-vocab-match" data-vocab-match>
-      <div class="ldsn-section-head"><div><p class="ldsn-kicker">Nối từ vựng</p><h2>Hán tự ↔ Nghĩa</h2><p>${matched.size}/${session.words.length} cặp đúng</p></div><button class="ldsn-pinyin-toggle ${settings.vocabMatchShowPinyin ? 'is-active' : ''}" type="button" data-toggle-match-pinyin><span class="ldsn-pinyin-toggle-mark"></span><span>Pinyin</span></button></div>
-      <div class="ldsn-match-grid">
-        <div class="ldsn-match-column">${session.left.map((word) => `<button type="button" class="ldsn-match-card ldsn-match-card--word${session.selectedLeft === word.id ? ' is-selected' : ''}${matched.has(word.id) ? ' is-matched' : ''}${session.wrongPair.includes(word.id) ? ' is-wrong' : ''}" data-match-left="${attr(word.id)}"${matched.has(word.id) ? ' disabled' : ''}><strong class="ldsn-hanzi">${esc(word.hanzi)}</strong>${settings.vocabMatchShowPinyin ? `<small>${esc(word.pinyin)}</small>` : ''}</button>`).join('')}</div>
-        <div class="ldsn-match-column">${session.right.map((word) => `<button type="button" class="ldsn-match-card ldsn-match-card--meaning${session.selectedRight === word.id ? ' is-selected' : ''}${matched.has(word.id) ? ' is-matched' : ''}${session.wrongPair.includes(word.id) ? ' is-wrong' : ''}" data-match-right="${attr(word.id)}"${matched.has(word.id) ? ' disabled' : ''}><span>${esc(word.vi)}</span></button>`).join('')}</div>
-      </div>
-      ${matched.size === session.words.length ? `<div class="ldsn-feedback is-correct">Hoàn thành ${matched.size} cặp. Kết quả đã được lưu.</div>` : ''}
-      <button class="ldsn-ghost-btn" type="button" data-restart-vocab-match>Làm lại và xáo trộn</button>
+  function renderLdsnMatching() {
+    if (!Matching) return '';
+    const types = [
+      ['vocabulary', 'Từ vựng'],
+      ['sentence', 'Câu'],
+      ['dialogue', 'Hội thoại'],
+      ['passage', 'Đoạn văn']
+    ].filter(([type]) => ldsnMatchingItems(type).length >= 2);
+    if (!types.length) return '';
+    if (!types.some(([type]) => type === matchingType)) matchingType = types[0][0];
+    const session = ensureLdsnMatchingSession();
+    return `<section id="matching" class="ldsn-card ldsn-pad ldsn-section ldsn-section--matching">
+      <div class="ldsn-section-head"><div><p class="ldsn-kicker">Nối chữ</p><h2>Chạm ghép chữ Hán với nghĩa</h2><p>3–5 cặp mỗi lượt, tối ưu cho mobile.</p></div></div>
+      <div class="ldsn-mode-switch ldsn-matching-types">${types.map(([type,label]) => `<button type="button" class="ldsn-mode-btn${matchingType === type ? ' is-active' : ''}" data-ldsn-matching-type="${type}">${label}</button>`).join('')}</div>
+      ${session && session.pairs.length >= 2 ? Matching.render(session, { eyebrow: 'LDSN1-4' }) : '<p>Chưa đủ dữ liệu để luyện nối.</p>'}
     </section>`;
   }
 
-  function chooseMatch(side, id) {
-    if (!vocabMatchSession) return;
-    vocabMatchSession.wrongPair = [];
-    if (side === 'left') vocabMatchSession.selectedLeft = id;
-    else vocabMatchSession.selectedRight = id;
-    const left = vocabMatchSession.selectedLeft;
-    const right = vocabMatchSession.selectedRight;
-    if (!left || !right) { renderLesson(); return; }
-    if (left === right) {
-      vocabMatchSession.matched.push(left);
-      const word = vocabMatchSession.words.find((entry) => entry.id === left);
-      rateItem(`vocab:${left}`, 'easy', itemMeta('vocabulary', word || {}));
-    } else {
-      vocabMatchSession.wrongPair = [left, right];
-      const leftWord = vocabMatchSession.words.find((entry) => entry.id === left);
-      rateItem(`vocab:${left}`, 'review', itemMeta('vocabulary', leftWord || {}));
+  function handleLdsnMatchingSelection(side, pairId) {
+    const session = ensureLdsnMatchingSession();
+    if (!session) return;
+    const result = Matching.select(session, side, pairId);
+    if (result.speechText && session.tapToSpeak) speak(result.speechText);
+    if (result.status === 'correct') {
+      const pair = session.pairs.find(item => item.id === result.pairId);
+      const meta = pair?.meta || {};
+      rateItem(meta.itemKey || `matching:${matchingType}:${pair?.id}`, Matching.ratingFor(session, result.pairId), itemMeta('matching', meta.item || {}, { title: session.title }));
     }
-    vocabMatchSession.selectedLeft = '';
-    vocabMatchSession.selectedRight = '';
-    renderLesson();
+    rerenderPanel();
+    if (result.status === 'wrong') {
+      Matching.scheduleFeedbackClear(session, rerenderPanel);
+    }
   }
 
   function renderPractice() {
@@ -976,8 +988,8 @@
     const vizh = [...currentLesson.translation.viZh.questions, ...currentLesson.translation.viZh.answers];
     const mode = settings.roleplayMode === 'ordering' ? 'ordering' : 'typing';
     const practiceMode = settings.vocabPracticeMode || 'mixed';
-    return `<section class="ldsn-card ldsn-pad ldsn-section ldsn-section--practice"><div class="ldsn-compact-section-head"><div><p class="ldsn-kicker">Luyện tập</p><h2>Luyện theo bài</h2><p>Điền từ · dịch câu · đoạn văn</p></div><div class="ldsn-compact-actions">${pinyinToggleButton()}<button class="ldsn-settings-shortcut" type="button" data-open-nearest-settings aria-label="Mở cài đặt luyện tập">⚙</button></div></div>${renderPracticeSettings(mode, practiceMode)}<button class="ldsn-match-launch" type="button" data-start-vocab-match><span>↔</span><strong>Nối từ vựng</strong><small>Hán tự${settings.vocabMatchShowPinyin ? ' + pinyin' : ''} ↔ Nghĩa</small></button></section>
-    ${renderVocabMatching()}
+    return `<section class="ldsn-card ldsn-pad ldsn-section ldsn-section--practice"><div class="ldsn-compact-section-head"><div><p class="ldsn-kicker">Luyện tập</p><h2>Luyện theo bài</h2><p>Điền từ · dịch câu · đoạn văn</p></div><div class="ldsn-compact-actions">${pinyinToggleButton()}<button class="ldsn-settings-shortcut" type="button" data-open-nearest-settings aria-label="Mở cài đặt luyện tập">⚙</button></div></div>${renderPracticeSettings(mode, practiceMode)}</section>
+    ${renderLdsnMatching()}
     <section id="vocab-fill" class="ldsn-card ldsn-pad ldsn-section ldsn-section--fill"><div class="ldsn-section-head"><div><h2>Điền từ vựng</h2><p>${Math.min(6, session.length)} từ trong nhóm đã chọn.</p></div></div><div class="ldsn-exercise-list">${session.slice(0, 6).map(renderVocabFill).join('')}</div></section>
     <section id="zhvi" class="ldsn-card ldsn-pad ldsn-section ldsn-section--sentence"><div class="ldsn-section-head"><div><h2>Dịch Trung → Việt</h2><p>3 câu hỏi và 3 câu trả lời.</p></div>${pinyinToggleButton()}</div><div class="ldsn-exercise-list">${zhvi.map((item, index) => renderTranslationExercise(item, 'zhvi', index)).join('')}</div><button class="ldsn-ghost-btn" type="button" data-mark-step="zhvi">Đã hoàn thành phần Trung → Việt</button></section>
     <section id="vizh" class="ldsn-card ldsn-pad ldsn-section ldsn-section--reverse"><div class="ldsn-section-head"><div><h2>Dịch Việt → Trung</h2><p>${mode === 'ordering' ? 'Chọn các từ theo đúng thứ tự.' : 'Tự gõ chữ Hán, sau đó so sánh đáp án.'}</p></div>${pinyinToggleButton()}</div><div class="ldsn-exercise-list">${vizh.map((item, index) => renderTranslationExercise(item, 'vizh', index)).join('')}</div><button class="ldsn-ghost-btn" type="button" data-mark-step="vizh">Đã hoàn thành phần Việt → Trung</button></section>
@@ -1263,6 +1275,29 @@
     const speakButton = event.target.closest('[data-speak]');
     if (speakButton) { speak(speakButton.dataset.speak, speakButton); return; }
 
+    const matchingTypeButton = event.target.closest('[data-ldsn-matching-type]');
+    if (matchingTypeButton) {
+      matchingType = matchingTypeButton.dataset.ldsnMatchingType || 'vocabulary';
+      matchingSession = null;
+      rerenderPanel();
+      return;
+    }
+    const matchingCard = event.target.closest('[data-match-side][data-match-id]');
+    if (matchingCard) {
+      handleLdsnMatchingSelection(matchingCard.dataset.matchSide, matchingCard.dataset.matchId);
+      return;
+    }
+    const matchingAction = event.target.closest('[data-match-action]');
+    if (matchingAction && Matching) {
+      const session = ensureLdsnMatchingSession();
+      const action = matchingAction.dataset.matchAction;
+      if (action === 'toggle-pinyin') Matching.togglePinyin(session);
+      else if (action === 'toggle-speak') Matching.toggleTapSpeak(session);
+      else if (action === 'next-round') Matching.nextRound(session);
+      rerenderPanel();
+      return;
+    }
+
     const wordDetail = event.target.closest('[data-open-word-detail]');
     if (wordDetail) { openWordDetail(wordDetail.dataset.openWordDetail); return; }
 
@@ -1283,21 +1318,6 @@
       if (details) { details.open = true; details.scrollIntoView?.({ behavior: 'smooth', block: 'nearest' }); }
       return;
     }
-
-    const startMatch = event.target.closest('[data-start-vocab-match]');
-    if (startMatch) { startVocabMatching(); return; }
-
-    const toggleMatchPinyin = event.target.closest('[data-toggle-match-pinyin]');
-    if (toggleMatchPinyin) { settings.vocabMatchShowPinyin = !settings.vocabMatchShowPinyin; saveSettings(); renderLesson(); return; }
-
-    const matchLeft = event.target.closest('[data-match-left]');
-    if (matchLeft) { chooseMatch('left', matchLeft.dataset.matchLeft); return; }
-
-    const matchRight = event.target.closest('[data-match-right]');
-    if (matchRight) { chooseMatch('right', matchRight.dataset.matchRight); return; }
-
-    const restartMatch = event.target.closest('[data-restart-vocab-match]');
-    if (restartMatch) { startVocabMatching(); return; }
 
     const tab = event.target.closest('[data-tab]');
     if (tab) { switchTab(tab.dataset.tab); return; }

@@ -1,5 +1,6 @@
 const HANZI_DATA_BASE = 'https://cdn.jsdelivr.net/npm/hanzi-writer-data@latest/';
 const hanRegex = /\p{Script=Han}/u;
+const Matching = window.TiengTrungMatching;
 
 const defaultSettings = {
   size: 200,
@@ -7228,6 +7229,7 @@ if(window.HanziWriter){
       settings: {
         mode: session.settings?.mode || 'flashcard',
         showPinyin: session.settings?.showPinyin !== false,
+        tapHanziSpeak: session.settings?.tapHanziSpeak !== false,
         autoPlay: Boolean(session.settings?.autoPlay),
         shuffle: Boolean(session.settings?.shuffle),
         showStroke: Boolean(session.settings?.showStroke),
@@ -7248,7 +7250,8 @@ if(window.HanziWriter){
       contextLabel: String(session.contextLabel || ''),
       returnUrl: String(session.returnUrl || ''),
       typingPromptTypes: Array.isArray(session.typingPromptTypes) ? session.typingPromptTypes : [],
-      typing: session.typing && typeof session.typing === 'object' ? session.typing : null
+      typing: session.typing && typeof session.typing === 'object' ? session.typing : null,
+      matching: session.matching && typeof session.matching === 'object' ? session.matching : null
     };
   }
 
@@ -7313,8 +7316,9 @@ if(window.HanziWriter){
         title: String(saved.title || 'Phiên Flashcard'),
         cards,
         settings: {
-          mode: ['flashcard', 'reverse', 'listen', 'typing', 'mixed'].includes(settings.mode) ? settings.mode : 'flashcard',
+          mode: ['flashcard', 'reverse', 'listen', 'typing', 'matching', 'mixed'].includes(settings.mode) ? settings.mode : 'flashcard',
           showPinyin: settings.showPinyin !== false,
+          tapHanziSpeak: settings.tapHanziSpeak == null ? (Matching ? Matching.readSettings().tapHanziSpeak : true) : settings.tapHanziSpeak !== false,
           autoPlay: Boolean(settings.autoPlay),
           shuffle: Boolean(settings.shuffle),
           showStroke: Boolean(settings.showStroke),
@@ -7337,8 +7341,15 @@ if(window.HanziWriter){
         contextLabel: String(saved.contextLabel || ''),
         returnUrl: String(saved.returnUrl || ''),
         typingPromptTypes: Array.isArray(saved.typingPromptTypes) ? saved.typingPromptTypes : [],
-        typing: saved.typing && typeof saved.typing === 'object' ? saved.typing : null
+        typing: saved.typing && typeof saved.typing === 'object' ? saved.typing : null,
+        matching: null
       };
+      if(hskState.flashcardSession.settings.mode === 'matching' && Matching){
+        const pairs = cards.filter(card => card.word && card.meaningVi).map(card => ({ id:card.id, canonicalItemId:card.id, leftText:card.word, pinyin:card.pinyin || '', rightText:card.meaningVi, speechText:card.word, meta:{cardId:card.id} }));
+        hskState.flashcardSession.matching = saved.matching
+          ? Matching.hydrateSession(saved.matching, pairs, { title:'Nối thẻ', subtitle:hskState.flashcardSession.title, roundSize:flashcardMatchingRoundSize(cards), showPinyin:hskState.flashcardSession.settings.showPinyin, tapToSpeak:hskState.flashcardSession.settings.tapHanziSpeak })
+          : Matching.createSession(pairs, { title:'Nối thẻ', subtitle:hskState.flashcardSession.title, roundSize:flashcardMatchingRoundSize(cards), showPinyin:hskState.flashcardSession.settings.showPinyin, tapToSpeak:hskState.flashcardSession.settings.tapHanziSpeak });
+      }
       renderFlashcardOverlay();
       if(hskState.flashcardSession.phase === 'study' && !hskState.flashcardSession.flipped){
         maybeAutoPlayFlashcard();
@@ -8007,6 +8018,7 @@ if(window.HanziWriter){
     const defaults = {
       mode: 'flashcard',
       showPinyin: true,
+      tapHanziSpeak: Matching ? Matching.readSettings().tapHanziSpeak : true,
       autoPlay: false,
       shuffle: false,
       showStroke: false,
@@ -8018,8 +8030,9 @@ if(window.HanziWriter){
     try{
       const saved = JSON.parse(window.localStorage?.getItem(HSK_FLASHCARD_SETTINGS_KEY) || '{}');
       return {
-        mode: ['flashcard', 'reverse', 'listen', 'typing', 'mixed'].includes(saved.mode) ? saved.mode : defaults.mode,
+        mode: ['flashcard', 'reverse', 'listen', 'typing', 'matching', 'mixed'].includes(saved.mode) ? saved.mode : defaults.mode,
         showPinyin: saved.showPinyin !== false,
+        tapHanziSpeak: saved.tapHanziSpeak == null ? defaults.tapHanziSpeak : saved.tapHanziSpeak !== false,
         autoPlay: Boolean(saved.autoPlay),
         shuffle: Boolean(saved.shuffle),
         showStroke: Boolean(saved.showStroke),
@@ -8085,6 +8098,11 @@ if(window.HanziWriter){
           <span>Học Flashcard</span>
           <small>${cards.length.toLocaleString('vi-VN')} thẻ</small>
         </button>
+        ${cards.filter(card => card.word && card.meaningVi).length >= 2 ? `<button type="button" class="hsk-flashcard-launch hsk-flashcard-launch--matching" data-hsk-flashcard-open-matching>
+          <span aria-hidden="true">连</span>
+          <span>Luyện nối</span>
+          <small>${cards.filter(card => card.word && card.meaningVi).length.toLocaleString('vi-VN')} mục</small>
+        </button>` : ''}
       ` : ''}
       ${showStats ? `
         <button type="button" class="hsk-flashcard-launch hsk-flashcard-launch--stats" data-hsk-flashcard-stats>
@@ -8242,12 +8260,21 @@ if(window.HanziWriter){
     renderFlashcardOverlay();
   }
 
+  function openFlashcardMatchingSetup(){
+    openFlashcardSetup();
+    if(!hskState.flashcardSession) return;
+    hskState.flashcardSession.settings.mode = 'matching';
+    saveFlashcardSettings(hskState.flashcardSession.settings);
+    renderFlashcardOverlay();
+  }
+
   function getFlashcardModeLabel(mode){
     return ({
       flashcard: 'Flashcard',
       reverse: 'Đảo ngược',
       listen: 'Nghe',
       typing: 'Gõ Pinyin',
+      matching: 'Nối thẻ',
       mixed: 'Hỗn hợp'
     })[mode] || 'Flashcard';
   }
@@ -8261,6 +8288,7 @@ if(window.HanziWriter){
       ['reverse', 'Đảo ngược', 'Nghĩa Việt → đoán chữ Hán'],
       ['listen', 'Nghe', 'Nghe phát âm → nhớ lại từ và nghĩa'],
       ['typing', 'Gõ Pinyin', 'Nhập đầy đủ pinyin không dấu trong một ô'],
+      ['matching', 'Nối thẻ', 'Chạm ghép chữ Hán với nghĩa; 3–5 cặp mỗi lượt'],
       ['mixed', 'Hỗn hợp', 'Flashcard → Đảo ngược → Nghe']
     ];
     return `
@@ -8318,11 +8346,12 @@ if(window.HanziWriter){
         ` : ''}
         <section class="hsk-flashcard-panel hsk-flashcard-options">
           <label><span><b>Hiện pinyin</b><small>Hiển thị pinyin sau khi mở đáp án.</small></span><input type="checkbox" data-hsk-flashcard-option="showPinyin" ${settings.showPinyin ? 'checked' : ''}></label>
+          <label><span><b>🔊 Chạm chữ Hán để nghe</b><small>Áp dụng trong Nối thẻ và các lựa chọn chữ Hán.</small></span><input type="checkbox" data-hsk-flashcard-option="tapHanziSpeak" ${settings.tapHanziSpeak ? 'checked' : ''}></label>
           <label><span><b>Tự phát âm</b><small>Tự đọc theo chế độ học hiện tại.</small></span><input type="checkbox" data-hsk-flashcard-option="autoPlay" ${settings.autoPlay ? 'checked' : ''}></label>
           <label><span><b>Xáo trộn thứ tự</b><small>Trộn bộ thẻ một lần khi bắt đầu.</small></span><input type="checkbox" data-hsk-flashcard-option="shuffle" ${settings.shuffle ? 'checked' : ''}></label>
           <label><span><b>Hiện cách viết từng chữ</b><small>Hiển thị ô thứ tự nét ở mặt đáp án.</small></span><input type="checkbox" data-hsk-flashcard-option="showStroke" ${settings.showStroke ? 'checked' : ''}></label>
         </section>
-        <button type="button" class="hsk-flashcard-start" data-hsk-flashcard-start>Bắt đầu học · ${(settings.mode === 'typing' ? getTypingEligibleCards(session.cards, settings.typingPromptType).length : session.cards.length).toLocaleString('vi-VN')} thẻ</button>
+        <button type="button" class="hsk-flashcard-start" data-hsk-flashcard-start>Bắt đầu học · ${(settings.mode === 'typing' ? getTypingEligibleCards(session.cards, settings.typingPromptType).length : settings.mode === 'matching' ? session.cards.filter(card => card.word && card.meaningVi).length : session.cards.length).toLocaleString('vi-VN')} thẻ</button>
       </div>
     `;
   }
@@ -8334,6 +8363,12 @@ if(window.HanziWriter){
       [copy[i], copy[j]] = [copy[j], copy[i]];
     }
     return copy;
+  }
+
+  function flashcardMatchingRoundSize(cards){
+    const valid = (cards || []).filter(card => card && card.word && card.meaningVi);
+    const hasLongContent = valid.some(card => Array.from(String(card.word || '')).length > 8 || String(card.meaningVi || '').length > 44 || card.cardType === 'grammar');
+    return hasLongContent ? 3 : (valid.length > 8 ? 5 : 4);
   }
 
   function startFlashcardSession(){
@@ -8350,6 +8385,14 @@ if(window.HanziWriter){
         return;
       }
     }
+    if(session.settings.mode === 'matching'){
+      session.cards = session.cards.filter(card => card.word && card.meaningVi);
+      if(session.cards.length < 2){
+        session.phase = 'setup';
+        renderFlashcardOverlay();
+        return;
+      }
+    }
     session.cards = session.settings.shuffle ? shuffleCards(session.cards) : [...session.cards];
     session.index = 0;
     session.flipped = false;
@@ -8362,6 +8405,16 @@ if(window.HanziWriter){
       return ['hanzi-to-pinyin', 'hanzi-meaning-to-pinyin', 'meaning-to-pinyin'][index % 3];
     });
     session.typing = session.settings.mode === 'typing' ? createFlashcardTypingState(session, session.cards[0]) : null;
+    session.matching = session.settings.mode === 'matching' && Matching ? Matching.createSession(session.cards.map(card => ({
+      id: card.id,
+      canonicalItemId: card.id,
+      leftText: card.word,
+      pinyin: card.pinyin || '',
+      rightText: card.meaningVi,
+      speechText: card.word,
+      sourceType: card.cardType || 'flashcard',
+      meta: { cardId: card.id }
+    })), { title: 'Nối thẻ', subtitle: session.title, roundSize: flashcardMatchingRoundSize(session.cards), showPinyin: session.settings.showPinyin, tapToSpeak: session.settings.tapHanziSpeak }) : null;
     persistFlashcardSession();
     renderFlashcardOverlay();
     maybeAutoPlayFlashcard();
@@ -8649,10 +8702,52 @@ if(window.HanziWriter){
     `;
   }
 
+  function renderFlashcardMatchingStudy(session){
+    if(!Matching || !session.matching) return '<p>Không thể mở Nối thẻ.</p>';
+    const complete = Matching.isComplete(session.matching);
+    return `
+      <header class="hsk-flashcard-header">
+        <button type="button" class="hsk-flashcard-back" data-hsk-flashcard-to-setup>← Thiết lập</button>
+        <span class="hsk-flashcard-progress">${session.matching.completedIds.length} / ${session.matching.pairs.length}</span>
+        <button type="button" class="hsk-flashcard-close" data-hsk-flashcard-close aria-label="Đóng">×</button>
+      </header>
+      <div class="hsk-flashcard-study hsk-flashcard-study--matching">
+        ${Matching.render(session.matching, { eyebrow: 'NỐI THẺ' })}
+        ${complete ? `<div class="hsk-flashcard-nav"><button type="button" data-hsk-flashcard-matching-restart>Học lại</button><button type="button" data-hsk-flashcard-matching-complete>Hoàn thành →</button></div>` : ''}
+      </div>`;
+  }
+
+  function saveFlashcardMatchingResult(session, pairId){
+    if(!Matching || !session?.matching) return;
+    const card = session.cards.find(item => item.id === pairId);
+    if(!card) return;
+    const rating = Matching.ratingFor(session.matching, pairId);
+    const previousRating = session.ratings[card.id] || '';
+    session.ratings[card.id] = rating;
+    saveFlashcardRatingResult(card, rating, previousRating);
+  }
+
+  function handleFlashcardMatchingSelection(side, pairId){
+    const session = hskState.flashcardSession;
+    if(!session?.matching || !Matching) return;
+    const result = Matching.select(session.matching, side, pairId);
+    if(result.speechText && session.settings.tapHanziSpeak) speakChar(result.speechText);
+    if(result.status === 'correct') saveFlashcardMatchingResult(session, result.pairId);
+    persistFlashcardSession();
+    renderFlashcardOverlay();
+    if(result.status === 'wrong'){
+      Matching.scheduleFeedbackClear(session.matching, () => {
+        persistFlashcardSession();
+        renderFlashcardOverlay();
+      });
+    }
+  }
+
   function renderFlashcardStudy(session){
     const card = session.cards[session.index];
     const type = getCurrentFlashcardType(session);
     if(type === 'typing') return renderFlashcardTypingStudy(session, card);
+    if(type === 'matching') return renderFlashcardMatchingStudy(session);
     const rating = session.ratings[card.id] || '';
     return `
       <header class="hsk-flashcard-header">
@@ -9147,6 +9242,12 @@ if(window.HanziWriter){
       openFlashcardSetup();
       return;
     }
+    const flashMatchingOpen = event.target.closest('[data-hsk-flashcard-open-matching]');
+    if(flashMatchingOpen){
+      event.preventDefault();
+      openFlashcardMatchingSetup();
+      return;
+    }
     const flashStats = event.target.closest('[data-hsk-flashcard-stats]');
     if(flashStats){
       event.preventDefault();
@@ -9216,6 +9317,8 @@ if(window.HanziWriter){
       const option = event.target.closest('[data-hsk-flashcard-option]');
       if(option && session.phase === 'setup'){
         session.settings[option.dataset.hskFlashcardOption] = Boolean(option.checked);
+        if(option.dataset.hskFlashcardOption === 'tapHanziSpeak' && Matching) Matching.setSetting('tapHanziSpeak', option.checked);
+        if(option.dataset.hskFlashcardOption === 'showPinyin' && Matching) Matching.setSetting('matchingShowPinyin', option.checked);
         saveFlashcardSettings(session.settings);
         if(option.dataset.hskFlashcardOption === 'typingAutoAdvanceEnabled') renderFlashcardOverlay();
         return;
@@ -9232,6 +9335,43 @@ if(window.HanziWriter){
         renderFlashcardOverlay();
         return;
       }
+      const matchCard = event.target.closest('[data-match-side][data-match-id]');
+      if(matchCard && session.phase === 'study' && getCurrentFlashcardType(session) === 'matching'){
+        event.preventDefault();
+        handleFlashcardMatchingSelection(matchCard.dataset.matchSide, matchCard.dataset.matchId);
+        return;
+      }
+      const matchAction = event.target.closest('[data-match-action]');
+      if(matchAction && session.phase === 'study' && getCurrentFlashcardType(session) === 'matching'){
+        event.preventDefault();
+        const action = matchAction.dataset.matchAction;
+        if(action === 'toggle-pinyin'){
+          const value = Matching.togglePinyin(session.matching);
+          session.settings.showPinyin = value;
+          saveFlashcardSettings(session.settings);
+        }else if(action === 'toggle-speak'){
+          const value = Matching.toggleTapSpeak(session.matching);
+          session.settings.tapHanziSpeak = value;
+          saveFlashcardSettings(session.settings);
+        }else if(action === 'next-round') Matching.nextRound(session.matching);
+        persistFlashcardSession();
+        renderFlashcardOverlay();
+        return;
+      }
+      if(event.target.closest('[data-hsk-flashcard-matching-restart]')){
+        session.matching = Matching.createSession(session.cards.map(card => ({ id:card.id, canonicalItemId:card.id, leftText:card.word, pinyin:card.pinyin || '', rightText:card.meaningVi, speechText:card.word, meta:{cardId:card.id} })), { title:'Nối thẻ', subtitle:session.title, roundSize:flashcardMatchingRoundSize(session.cards), showPinyin:session.settings.showPinyin, tapToSpeak:session.settings.tapHanziSpeak });
+        session.ratings = {};
+        persistFlashcardSession();
+        renderFlashcardOverlay();
+        return;
+      }
+      if(event.target.closest('[data-hsk-flashcard-matching-complete]')){
+        session.phase = 'complete';
+        persistFlashcardSession();
+        renderFlashcardOverlay();
+        return;
+      }
+
       const strokePlay = event.target.closest('[data-hsk-flashcard-stroke-play]');
       if(strokePlay){
         event.preventDefault();
@@ -9340,6 +9480,9 @@ if(window.HanziWriter){
         session.strokeExpanded = false;
         session.ratings = {};
         session.typing = getCurrentFlashcardType(session) === 'typing' ? createFlashcardTypingState(session, session.cards[0]) : null;
+        if(getCurrentFlashcardType(session) === 'matching' && Matching){
+          session.matching = Matching.createSession(session.cards.filter(card => card.word && card.meaningVi).map(card => ({ id:card.id, canonicalItemId:card.id, leftText:card.word, pinyin:card.pinyin || '', rightText:card.meaningVi, speechText:card.word, meta:{cardId:card.id} })), { title:'Nối thẻ', subtitle:session.title, roundSize:flashcardMatchingRoundSize(session.cards), showPinyin:session.settings.showPinyin, tapToSpeak:session.settings.tapHanziSpeak });
+        }
         renderFlashcardOverlay();
         maybeAutoPlayFlashcard();
         return;
@@ -9353,6 +9496,9 @@ if(window.HanziWriter){
         session.strokeExpanded = false;
         session.ratings = {};
         session.mixedTypes = selected.map((_, index) => ['flashcard', 'reverse', 'listen'][index % 3]);
+        if(getCurrentFlashcardType(session) === 'matching' && Matching){
+          session.matching = Matching.createSession(selected.filter(card => card.word && card.meaningVi).map(card => ({ id:card.id, canonicalItemId:card.id, leftText:card.word, pinyin:card.pinyin || '', rightText:card.meaningVi, speechText:card.word, meta:{cardId:card.id} })), { title:'Nối thẻ', subtitle:session.title, roundSize:flashcardMatchingRoundSize(selected), showPinyin:session.settings.showPinyin, tapToSpeak:session.settings.tapHanziSpeak });
+        }
         renderFlashcardOverlay();
         maybeAutoPlayFlashcard();
         return;
