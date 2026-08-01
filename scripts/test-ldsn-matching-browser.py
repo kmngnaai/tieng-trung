@@ -28,10 +28,10 @@ def main():
         page.set_content(html,wait_until='networkidle')
         page.wait_for_selector('.ldsn-section--matching',timeout=15000)
         assert page.locator('[data-ldsn-matching-type]').count() >= 3
-        assert 2 <= page.locator('.ldsn-section--matching .tt-match-card--left').count() <= 5
+        assert 2 <= page.locator('.ldsn-section--matching .tt-match-card--left').count() <= 8
         page.locator('[data-ldsn-matching-type="dialogue"]').click()
         page.wait_for_timeout(100)
-        assert page.locator('.ldsn-section--matching .tt-match-card--left').count() <= 3
+        assert 2 <= page.locator('.ldsn-section--matching .tt-match-card--left').count() <= 8
         page.screenshot(path=str(OUT/'ldsn-matching-mobile.png'),full_page=True)
         dims=page.evaluate('() => ({s:document.documentElement.scrollWidth,c:document.documentElement.clientWidth})')
         assert dims['s'] <= dims['c']+1,dims

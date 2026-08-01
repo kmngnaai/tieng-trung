@@ -943,7 +943,7 @@
       title: matchingType === 'vocabulary' ? 'Nối từ với nghĩa' : matchingType === 'sentence' ? 'Nối câu với nghĩa' : matchingType === 'dialogue' ? 'Nối lượt hội thoại' : 'Nối câu trong đoạn',
       subtitle: `LDSN ${currentLesson?.lessonNumber || ''}`,
       sourceKind: sessionId,
-      roundSize: matchingType === 'vocabulary' ? 5 : 3
+      contentKind: matchingType === 'vocabulary' ? 'word' : matchingType
     });
     return matchingSession;
   }
@@ -960,7 +960,7 @@
     if (!types.some(([type]) => type === matchingType)) matchingType = types[0][0];
     const session = ensureLdsnMatchingSession();
     return `<section id="matching" class="ldsn-card ldsn-pad ldsn-section ldsn-section--matching">
-      <div class="ldsn-section-head"><div><p class="ldsn-kicker">Nối chữ</p><h2>Chạm ghép chữ Hán với nghĩa</h2><p>3–5 cặp mỗi lượt, tối ưu cho mobile.</p></div></div>
+      <div class="ldsn-section-head"><div><p class="ldsn-kicker">Nối chữ</p><h2>Chạm ghép chữ Hán với nghĩa</h2><p>Tự cân bằng 2–8 cặp theo màn hình và độ dài nội dung.</p></div></div>
       <div class="ldsn-mode-switch ldsn-matching-types">${types.map(([type,label]) => `<button type="button" class="ldsn-mode-btn${matchingType === type ? ' is-active' : ''}" data-ldsn-matching-type="${type}">${label}</button>`).join('')}</div>
       ${session && session.pairs.length >= 2 ? Matching.render(session, { eyebrow: 'LDSN1-4' }) : '<p>Chưa đủ dữ liệu để luyện nối.</p>'}
     </section>`;

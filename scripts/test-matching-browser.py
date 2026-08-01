@@ -48,8 +48,12 @@ def test_listening(browser):
     page.wait_for_selector('.tt-match')
     left = page.locator('.tt-match-card--left')
     right = page.locator('.tt-match-card--right')
-    assert 2 <= left.count() <= 5
+    assert 2 <= left.count() <= 8
     assert left.count() == right.count()
+    round_size = int(page.locator('.tt-match').get_attribute('data-match-round-size'))
+    capacity = int(page.locator('.tt-match').get_attribute('data-match-capacity'))
+    assert round_size == left.count()
+    assert round_size <= capacity <= 8
     first_id = left.nth(0).get_attribute('data-match-id')
     right_ids = page.locator('.tt-match-card--right').evaluate_all("els => els.map(el => el.dataset.matchId)")
     wrong_id = next(item for item in right_ids if item != first_id)
@@ -80,7 +84,8 @@ def test_listening(browser):
     page.wait_for_selector('[data-matching-type="sentence"]')
     page.locator('[data-matching-type="sentence"]').click()
     page.wait_for_selector('.tt-match')
-    assert page.locator('.tt-match-card--left').count() <= 3
+    sentence_count = page.locator('.tt-match-card--left').count()
+    assert 2 <= sentence_count <= 8
     page.screenshot(path=str(OUT/'listening-sentence-matching-mobile.png'), full_page=True)
     assert_no_horizontal_overflow(page)
     ctx.close()
@@ -103,7 +108,7 @@ def test_flashcard(browser):
     page.locator('[data-hsk-flashcard-start]').click()
     page.wait_for_selector('.hsk-flashcard-study--matching .tt-match')
     left = page.locator('.hsk-flashcard-study--matching .tt-match-card--left')
-    assert 2 <= left.count() <= 5
+    assert 2 <= left.count() <= 8
     first_id = left.nth(0).get_attribute('data-match-id')
     left.nth(0).click()
     page.locator(f'.hsk-flashcard-study--matching .tt-match-card--right[data-match-id="{first_id}"]').click()

@@ -1550,8 +1550,8 @@
     const canRestore = saved && saved.source === state.source && saved.lessonId === ((state.lesson && (state.lesson.lesson_id || state.lesson.id)) || '') && saved.descriptor && saved.descriptor.type === type && (saved.descriptor.groupId || '') === (groupId || '');
     state.matchingDescriptor = descriptor;
     state.matchingSession = canRestore
-      ? Matching.hydrateSession(saved.session, pairs, { title: descriptor.title, subtitle: '', roundSize: type === 'word' ? 5 : 3, tapToSpeak: state.settings.tapHanziSpeak })
-      : Matching.createSession(pairs, { title: descriptor.title, subtitle: '', roundSize: type === 'word' ? 5 : 3, tapToSpeak: state.settings.tapHanziSpeak });
+      ? Matching.hydrateSession(saved.session, pairs, { title: descriptor.title, subtitle: '', contentKind: type, tapToSpeak: state.settings.tapHanziSpeak })
+      : Matching.createSession(pairs, { title: descriptor.title, subtitle: '', contentKind: type, tapToSpeak: state.settings.tapHanziSpeak });
     state.screen = 'matching';
     state.error = '';
     persistMatchingSession();

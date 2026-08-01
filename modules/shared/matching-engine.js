@@ -7,6 +7,18 @@
   const runtime = typeof globalThis !== 'undefined' ? globalThis : (typeof window !== 'undefined' ? window : {});
   const SETTINGS_KEY = 'tieng-trung-interaction-settings-v1';
   const DEFAULT_SETTINGS = Object.freeze({ tapHanziSpeak: true, matchingShowPinyin: true });
+  const ADAPTIVE_DEFAULTS = Object.freeze({
+    minPairs: 2,
+    maxPairs: 8,
+    fallbackWidth: 390,
+    fallbackHeight: 844,
+    mobileChromeHeight: 377,
+    desktopChromeHeight: 330,
+    minBoardHeight: 248,
+    maxBoardHeight: 620,
+    mobileGap: 5,
+    desktopGap: 8
+  });
 
   function clean(value){ return String(value == null ? '' : value).trim(); }
   function escapeHtml(value){
@@ -67,14 +79,142 @@
     for(let i=out.length-1;i>0;i-=1){ const j = Math.floor(rand() * (i+1)); [out[i], out[j]] = [out[j], out[i]]; }
     return out;
   }
-  function clampRoundSize(value, pairCount){
-    const requested = Number(value) || 4;
-    const max = pairCount <= 3 ? pairCount : 5;
-    return Math.max(2, Math.min(max, requested, pairCount));
+
+  function clamp(value, min, max){ return Math.max(min, Math.min(max, value)); }
+
+  function viewportMetrics(overrides){
+    const configured = overrides && typeof overrides === 'object' ? overrides : {};
+    const visual = runtime.visualViewport || {};
+    const width = Number(configured.width || visual.width || runtime.innerWidth || ADAPTIVE_DEFAULTS.fallbackWidth);
+    const height = Number(configured.height || visual.height || runtime.innerHeight || ADAPTIVE_DEFAULTS.fallbackHeight);
+    const mobile = width <= 520;
+    const horizontalChrome = mobile ? 54 : 70;
+    const columnWidth = Math.max(118, (Math.min(width, 760) - horizontalChrome) / 2);
+    const fixedChrome = mobile ? ADAPTIVE_DEFAULTS.mobileChromeHeight : ADAPTIVE_DEFAULTS.desktopChromeHeight;
+    const boardHeight = clamp(height - fixedChrome, ADAPTIVE_DEFAULTS.minBoardHeight, ADAPTIVE_DEFAULTS.maxBoardHeight);
+    return {
+      width,
+      height,
+      mobile,
+      columnWidth,
+      boardHeight,
+      gap: mobile ? ADAPTIVE_DEFAULTS.mobileGap : ADAPTIVE_DEFAULTS.desktopGap,
+      signature: `${Math.round(width)}x${Math.round(height)}`
+    };
+  }
+
+  function weightedUnits(value){
+    let total = 0;
+    for(const char of Array.from(clean(value))){
+      if(/\s/.test(char)) total += 0.32;
+      else if(/[\u3400-\u9fff\uf900-\ufaff]/.test(char)) total += 1;
+      else if(/[A-Za-z0-9]/.test(char)) total += 0.56;
+      else if(/[，。！？；：、,.!?;:'"()（）\[\]【】—-]/.test(char)) total += 0.48;
+      else total += 0.78;
+    }
+    return Math.max(1, total);
+  }
+
+  function lineCountByUnits(value, unitsPerLine){
+    return Math.max(1, Math.ceil(weightedUnits(value) / Math.max(1, unitsPerLine)));
+  }
+
+  function estimatePairHeights(pair, metrics, showPinyin){
+    const mobile = metrics.mobile;
+    const hanziUnitWidth = mobile ? 18.4 : 19.2;
+    const meaningUnitWidth = mobile ? 7.0 : 7.4;
+    const pinyinUnitWidth = mobile ? 5.6 : 5.9;
+    const leftLines = lineCountByUnits(pair.leftText, metrics.columnWidth / hanziUnitWidth);
+    const meaningLines = lineCountByUnits(pair.rightText, metrics.columnWidth / meaningUnitWidth);
+    const pinyinLines = showPinyin && pair.pinyin
+      ? lineCountByUnits(pair.pinyin, metrics.columnWidth / pinyinUnitWidth)
+      : 0;
+    const verticalPadding = mobile ? 13 : 16;
+    const leftHeight = verticalPadding + leftLines * (mobile ? 22.5 : 24) + (pinyinLines ? 2 + pinyinLines * 12.5 : 0);
+    const rightHeight = verticalPadding + meaningLines * (mobile ? 16.4 : 17.2);
+    return {
+      left: Math.max(mobile ? 46 : 52, Math.ceil(leftHeight)),
+      right: Math.max(mobile ? 46 : 52, Math.ceil(rightHeight))
+    };
+  }
+
+  function contentKindMax(kind){
+    clean(kind); // Giữ tham số để schema có thể mở rộng mà không tách engine theo nguồn.
+    return ADAPTIVE_DEFAULTS.maxPairs;
+  }
+
+  function inferContentKind(pairs){
+    const values = Array.isArray(pairs) ? pairs : [];
+    if(values.some(pair => pair && pair.meta && pair.meta.cardType === 'grammar')) return 'grammar';
+    const maxLeft = values.reduce((max, pair) => Math.max(max, Array.from(clean(pair && pair.leftText)).length), 0);
+    const maxRight = values.reduce((max, pair) => Math.max(max, clean(pair && pair.rightText).length), 0);
+    return maxLeft <= 7 && maxRight <= 38 ? 'word' : 'sentence';
+  }
+
+  function estimateBoardHeight(pairs, metrics, showPinyin){
+    let left = 0;
+    let right = 0;
+    pairs.forEach((pair, index) => {
+      const height = estimatePairHeights(pair, metrics, showPinyin);
+      left += height.left;
+      right += height.right;
+      if(index > 0){ left += metrics.gap; right += metrics.gap; }
+    });
+    return Math.max(left, right);
+  }
+
+  function estimateRoundCapacity(pairs, options){
+    const configured = options || {};
+    const values = normalizePairs(pairs);
+    if(values.length <= 1) return values.length;
+    const metrics = viewportMetrics(configured.viewport);
+    const minPairs = clamp(Number(configured.minPairs) || ADAPTIVE_DEFAULTS.minPairs, 2, ADAPTIVE_DEFAULTS.maxPairs);
+    const kind = clean(configured.contentKind || inferContentKind(values));
+    const kindMax = contentKindMax(kind);
+    const configuredMax = Number(configured.maxPairs || configured.roundSize || kindMax) || kindMax;
+    const maxPairs = clamp(Math.min(values.length, configuredMax, kindMax), minPairs, ADAPTIVE_DEFAULTS.maxPairs);
+    let capacity = minPairs;
+    for(let count = minPairs; count <= maxPairs; count += 1){
+      const height = estimateBoardHeight(values.slice(0, count), metrics, configured.showPinyin !== false);
+      if(height <= metrics.boardHeight) capacity = count;
+      else break;
+    }
+    return Math.min(values.length, Math.max(minPairs, capacity));
+  }
+
+  function balancedRoundSize(total, capacity){
+    const count = Math.max(0, Number(total) || 0);
+    if(count <= 1) return count;
+    const safeCapacity = clamp(Number(capacity) || ADAPTIVE_DEFAULTS.minPairs, ADAPTIVE_DEFAULTS.minPairs, ADAPTIVE_DEFAULTS.maxPairs);
+    if(count <= safeCapacity) return count;
+    const roundCount = Math.ceil(count / safeCapacity);
+    return clamp(Math.ceil(count / roundCount), ADAPTIVE_DEFAULTS.minPairs, safeCapacity);
   }
   function makeRound(session){
     const pending = session.order.filter(id => !session.completedIds.includes(id));
-    const ids = pending.slice(0, clampRoundSize(session.roundSize, pending.length || session.pairs.length));
+    const byId = pairMap(session);
+    const pendingPairs = pending.map(id => byId.get(id)).filter(Boolean);
+    const metrics = viewportMetrics(session.viewport);
+    const capacity = session.adaptive === false
+      ? clamp(Number(session.maxRoundSize) || 4, 2, Math.min(ADAPTIVE_DEFAULTS.maxPairs, Math.max(2, pendingPairs.length)))
+      : estimateRoundCapacity(pendingPairs, {
+        viewport: metrics,
+        minPairs: session.minRoundSize,
+        maxPairs: session.maxRoundSize,
+        contentKind: session.contentKind,
+        showPinyin: session.showPinyin
+      });
+    const plannedSize = balancedRoundSize(pending.length, capacity);
+    const ids = pending.slice(0, plannedSize || pending.length);
+    session.roundCapacity = capacity;
+    session.roundSize = ids.length;
+    session.layout = {
+      viewportWidth: metrics.width,
+      viewportHeight: metrics.height,
+      boardHeight: metrics.boardHeight,
+      columnWidth: metrics.columnWidth,
+      signature: metrics.signature
+    };
     session.roundIds = ids;
     session.leftOrder = shuffled(ids);
     session.rightOrder = shuffled(ids);
@@ -99,7 +239,14 @@
       sourceKind: clean(configured.sourceKind || ''),
       pairs,
       order: shuffled(pairs.map(pair => pair.id)),
-      roundSize: clampRoundSize(configured.roundSize || (pairs.length > 8 ? 5 : 4), pairs.length),
+      adaptive: configured.adaptive !== false,
+      contentKind: clean(configured.contentKind || inferContentKind(pairs)),
+      minRoundSize: clamp(Number(configured.minRoundSize) || ADAPTIVE_DEFAULTS.minPairs, 2, ADAPTIVE_DEFAULTS.maxPairs),
+      maxRoundSize: clamp(Number(configured.maxRoundSize || configured.roundSize || contentKindMax(configured.contentKind || inferContentKind(pairs))) || ADAPTIVE_DEFAULTS.maxPairs, 2, ADAPTIVE_DEFAULTS.maxPairs),
+      viewport: configured.viewport && typeof configured.viewport === 'object' ? { width:Number(configured.viewport.width) || 0, height:Number(configured.viewport.height) || 0 } : null,
+      roundCapacity: 0,
+      roundSize: 0,
+      layout: null,
       roundIds: [], leftOrder: [], rightOrder: [],
       completedIds: [],
       selectedLeftId: '', selectedRightId: '',
@@ -121,12 +268,18 @@
     const order = (saved.order || []).filter(id => byId.has(id));
     freshPairs.forEach(pair => { if(!order.includes(pair.id)) order.push(pair.id); });
     const savedHintPairId = saved.hintPairId && byId.has(saved.hintPairId) && !completedIds.includes(saved.hintPairId) ? saved.hintPairId : '';
+    const base = createSession(freshPairs, options);
     const session = {
-      ...createSession(freshPairs, options),
+      ...base,
       ...saved,
       pairs: freshPairs,
       order,
       completedIds,
+      adaptive: options && options.adaptive != null ? options.adaptive !== false : saved.adaptive !== false,
+      contentKind: clean(options && options.contentKind || saved.contentKind || base.contentKind),
+      minRoundSize: clamp(Number(options && options.minRoundSize || saved.minRoundSize || base.minRoundSize), 2, ADAPTIVE_DEFAULTS.maxPairs),
+      maxRoundSize: clamp(Number(options && (options.maxRoundSize || options.roundSize) || saved.maxRoundSize || base.maxRoundSize), 2, ADAPTIVE_DEFAULTS.maxPairs),
+      viewport: options && options.viewport ? options.viewport : saved.viewport || base.viewport,
       mistakesById: saved.mistakesById && typeof saved.mistakesById === 'object' ? saved.mistakesById : {},
       selectedLeftId: '', selectedRightId: '', feedback: null,
       hintPairId: ''
@@ -225,7 +378,7 @@
     };
     const roundDone = isRoundComplete(session) && !isComplete(session);
     const complete = isComplete(session);
-    return `<section class="tt-match" data-matching-root>
+    return `<section class="tt-match" data-matching-root data-match-round-size="${session.roundIds.length}" data-match-capacity="${session.roundCapacity || session.roundIds.length}">
       <header class="tt-match__head">
         <div><p>${escapeHtml(configured.eyebrow || 'NỐI CHỮ')}</p><h2>${escapeHtml(session.title || 'Nối chữ')}</h2>${session.subtitle ? `<small>${escapeHtml(session.subtitle)}</small>` : ''}</div>
         <span class="tt-match__progress">${session.completedIds.length}/${session.pairs.length}</span>
@@ -250,7 +403,8 @@
   return {
     SETTINGS_KEY, DEFAULT_SETTINGS,
     readSettings, writeSettings, setSetting,
-    normalizePairs, createSession, hydrateSession, select, clearTransientFeedback, scheduleFeedbackClear, nextRound,
+    normalizePairs, viewportMetrics, estimatePairHeights, estimateBoardHeight, estimateRoundCapacity, balancedRoundSize,
+    createSession, hydrateSession, select, clearTransientFeedback, scheduleFeedbackClear, nextRound,
     isRoundComplete, isComplete, ratingFor, results,
     togglePinyin, toggleTapSpeak, render, stableId
   };

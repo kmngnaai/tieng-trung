@@ -7347,8 +7347,8 @@ if(window.HanziWriter){
       if(hskState.flashcardSession.settings.mode === 'matching' && Matching){
         const pairs = cards.filter(card => card.word && card.meaningVi).map(card => ({ id:card.id, canonicalItemId:card.id, leftText:card.word, pinyin:card.pinyin || '', rightText:card.meaningVi, speechText:card.word, meta:{cardId:card.id} }));
         hskState.flashcardSession.matching = saved.matching
-          ? Matching.hydrateSession(saved.matching, pairs, { title:'Nối thẻ', subtitle:hskState.flashcardSession.title, roundSize:flashcardMatchingRoundSize(cards), showPinyin:hskState.flashcardSession.settings.showPinyin, tapToSpeak:hskState.flashcardSession.settings.tapHanziSpeak })
-          : Matching.createSession(pairs, { title:'Nối thẻ', subtitle:hskState.flashcardSession.title, roundSize:flashcardMatchingRoundSize(cards), showPinyin:hskState.flashcardSession.settings.showPinyin, tapToSpeak:hskState.flashcardSession.settings.tapHanziSpeak });
+          ? Matching.hydrateSession(saved.matching, pairs, { title:'Nối thẻ', subtitle:hskState.flashcardSession.title, contentKind:flashcardMatchingContentKind(cards), showPinyin:hskState.flashcardSession.settings.showPinyin, tapToSpeak:hskState.flashcardSession.settings.tapHanziSpeak })
+          : Matching.createSession(pairs, { title:'Nối thẻ', subtitle:hskState.flashcardSession.title, contentKind:flashcardMatchingContentKind(cards), showPinyin:hskState.flashcardSession.settings.showPinyin, tapToSpeak:hskState.flashcardSession.settings.tapHanziSpeak });
       }
       renderFlashcardOverlay();
       if(hskState.flashcardSession.phase === 'study' && !hskState.flashcardSession.flipped){
@@ -8365,10 +8365,13 @@ if(window.HanziWriter){
     return copy;
   }
 
-  function flashcardMatchingRoundSize(cards){
+  function flashcardMatchingContentKind(cards){
     const valid = (cards || []).filter(card => card && card.word && card.meaningVi);
-    const hasLongContent = valid.some(card => Array.from(String(card.word || '')).length > 8 || String(card.meaningVi || '').length > 44 || card.cardType === 'grammar');
-    return hasLongContent ? 3 : (valid.length > 8 ? 5 : 4);
+    const types = new Set(valid.map(card => String(card.cardType || 'vocabulary')));
+    if(types.size === 1 && types.has('grammar')) return 'grammar';
+    if(types.size === 1 && types.has('sentence')) return 'sentence';
+    const hasLongContent = valid.some(card => Array.from(String(card.word || '')).length > 8 || String(card.meaningVi || '').length > 44);
+    return hasLongContent ? 'sentence' : 'word';
   }
 
   function startFlashcardSession(){
@@ -8414,7 +8417,7 @@ if(window.HanziWriter){
       speechText: card.word,
       sourceType: card.cardType || 'flashcard',
       meta: { cardId: card.id }
-    })), { title: 'Nối thẻ', subtitle: session.title, roundSize: flashcardMatchingRoundSize(session.cards), showPinyin: session.settings.showPinyin, tapToSpeak: session.settings.tapHanziSpeak }) : null;
+    })), { title: 'Nối thẻ', subtitle: session.title, contentKind: flashcardMatchingContentKind(session.cards), showPinyin: session.settings.showPinyin, tapToSpeak: session.settings.tapHanziSpeak }) : null;
     persistFlashcardSession();
     renderFlashcardOverlay();
     maybeAutoPlayFlashcard();
@@ -9359,7 +9362,7 @@ if(window.HanziWriter){
         return;
       }
       if(event.target.closest('[data-hsk-flashcard-matching-restart]')){
-        session.matching = Matching.createSession(session.cards.map(card => ({ id:card.id, canonicalItemId:card.id, leftText:card.word, pinyin:card.pinyin || '', rightText:card.meaningVi, speechText:card.word, meta:{cardId:card.id} })), { title:'Nối thẻ', subtitle:session.title, roundSize:flashcardMatchingRoundSize(session.cards), showPinyin:session.settings.showPinyin, tapToSpeak:session.settings.tapHanziSpeak });
+        session.matching = Matching.createSession(session.cards.map(card => ({ id:card.id, canonicalItemId:card.id, leftText:card.word, pinyin:card.pinyin || '', rightText:card.meaningVi, speechText:card.word, meta:{cardId:card.id,cardType:card.cardType} })), { title:'Nối thẻ', subtitle:session.title, contentKind:flashcardMatchingContentKind(session.cards), showPinyin:session.settings.showPinyin, tapToSpeak:session.settings.tapHanziSpeak });
         session.ratings = {};
         persistFlashcardSession();
         renderFlashcardOverlay();
@@ -9481,7 +9484,7 @@ if(window.HanziWriter){
         session.ratings = {};
         session.typing = getCurrentFlashcardType(session) === 'typing' ? createFlashcardTypingState(session, session.cards[0]) : null;
         if(getCurrentFlashcardType(session) === 'matching' && Matching){
-          session.matching = Matching.createSession(session.cards.filter(card => card.word && card.meaningVi).map(card => ({ id:card.id, canonicalItemId:card.id, leftText:card.word, pinyin:card.pinyin || '', rightText:card.meaningVi, speechText:card.word, meta:{cardId:card.id} })), { title:'Nối thẻ', subtitle:session.title, roundSize:flashcardMatchingRoundSize(session.cards), showPinyin:session.settings.showPinyin, tapToSpeak:session.settings.tapHanziSpeak });
+          session.matching = Matching.createSession(session.cards.filter(card => card.word && card.meaningVi).map(card => ({ id:card.id, canonicalItemId:card.id, leftText:card.word, pinyin:card.pinyin || '', rightText:card.meaningVi, speechText:card.word, meta:{cardId:card.id,cardType:card.cardType} })), { title:'Nối thẻ', subtitle:session.title, contentKind:flashcardMatchingContentKind(session.cards), showPinyin:session.settings.showPinyin, tapToSpeak:session.settings.tapHanziSpeak });
         }
         renderFlashcardOverlay();
         maybeAutoPlayFlashcard();
@@ -9497,7 +9500,7 @@ if(window.HanziWriter){
         session.ratings = {};
         session.mixedTypes = selected.map((_, index) => ['flashcard', 'reverse', 'listen'][index % 3]);
         if(getCurrentFlashcardType(session) === 'matching' && Matching){
-          session.matching = Matching.createSession(selected.filter(card => card.word && card.meaningVi).map(card => ({ id:card.id, canonicalItemId:card.id, leftText:card.word, pinyin:card.pinyin || '', rightText:card.meaningVi, speechText:card.word, meta:{cardId:card.id} })), { title:'Nối thẻ', subtitle:session.title, roundSize:flashcardMatchingRoundSize(selected), showPinyin:session.settings.showPinyin, tapToSpeak:session.settings.tapHanziSpeak });
+          session.matching = Matching.createSession(selected.filter(card => card.word && card.meaningVi).map(card => ({ id:card.id, canonicalItemId:card.id, leftText:card.word, pinyin:card.pinyin || '', rightText:card.meaningVi, speechText:card.word, meta:{cardId:card.id,cardType:card.cardType} })), { title:'Nối thẻ', subtitle:session.title, contentKind:flashcardMatchingContentKind(selected), showPinyin:session.settings.showPinyin, tapToSpeak:session.settings.tapHanziSpeak });
         }
         renderFlashcardOverlay();
         maybeAutoPlayFlashcard();
