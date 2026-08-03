@@ -28,6 +28,7 @@
     autoNext: true,
     autoNextSeconds: 2,
     floatingAudioMode: 'auto',
+    shuffleItems: true,
     tapHanziSpeak: Matching ? Matching.readSettings().tapHanziSpeak : true
   };
 
@@ -39,6 +40,7 @@
     lessonData: null,
     items: [],
     practiceItems: null,
+    practiceShuffleSeed: '',
     vocabulary: [],
     currentIndex: 0,
     mode: 'dictation',
@@ -152,6 +154,7 @@
   }, {});
   if (!['auto', 'import', 'device'].includes(state.settings.voiceSource)) state.settings.voiceSource = 'auto';
   if (!['auto', 'always', 'off'].includes(state.settings.floatingAudioMode)) state.settings.floatingAudioMode = 'auto';
+  state.settings.shuffleItems = state.settings.shuffleItems !== false;
   saveJson(SETTINGS_KEY, state.settings);
 
   function loadJson(key, fallback) {
@@ -226,6 +229,22 @@
 
   function currentItem() {
     return activeItems()[state.currentIndex] || null;
+  }
+
+  function createPracticeShuffleSeed() {
+    return `listening:${Date.now()}:${Math.random().toString(36).slice(2, 10)}`;
+  }
+
+  function resolvePracticeShuffleSeed(options) {
+    const configured = options || {};
+    if (Object.prototype.hasOwnProperty.call(configured, 'shuffleSeed')) return String(configured.shuffleSeed || '');
+    return state.settings.shuffleItems ? createPracticeShuffleSeed() : '';
+  }
+
+  function arrangePracticeItems(items, shuffleSeed) {
+    const list = Array.isArray(items) ? items.slice() : [];
+    if (!shuffleSeed || list.length < 2) return list;
+    return ActivityBuilders.deterministicShuffle(list, shuffleSeed);
   }
 
   function sessionTitle() {
@@ -1406,6 +1425,20 @@
     render();
   }
 
+  function practiceOrderButtons() {
+    const selected = state.settings.shuffleItems ? 'shuffle' : 'original';
+    return [['shuffle', 'Xáo trộn'], ['original', 'Theo thứ tự']]
+      .map(([value, label]) => `<button type="button" data-action="set-practice-order" data-order-mode="${value}" class="${selected === value ? 'active' : ''}" aria-pressed="${selected === value}">${label}</button>`)
+      .join('');
+  }
+
+  function practiceOrderCard() {
+    return `<section class="practice-order-card" aria-label="Chọn thứ tự luyện tập">
+      <div class="practice-order-card__copy"><p class="eyebrow">Thứ tự luyện tập</p><strong>${state.settings.shuffleItems ? 'Xáo trộn tự động' : 'Theo nội dung gốc'}</strong><small>Giữ cố định trong suốt phiên đang học.</small></div>
+      <div class="segmented practice-order-card__controls" role="group" aria-label="Thứ tự câu hỏi">${practiceOrderButtons()}</div>
+    </section>`;
+  }
+
   function renderModeChoice() {
     if (state.dataset) {
       renderDatasetModeChoice();
@@ -1416,6 +1449,7 @@
       ${pageHeader(sessionTitle(), state.items.length ? `${state.items.length} câu có thể luyện` : 'Đang đọc dữ liệu...', true)}
       <main class="listen-main">
         ${state.error ? errorCard(state.error) : ''}
+        ${!state.error && state.items.length ? practiceOrderCard() : ''}
         ${!state.error && !state.items.length ? loadingCard('Đang chuẩn bị câu luyện nghe...') : `
           <section class="mode-grid" aria-label="Chọn cách luyện nghe">
             <button class="mode-card" data-action="start-mode" data-mode="dictation">
@@ -1545,11 +1579,12 @@
     const pool = filteredDatasetSentences();
     if (!pool.length) return;
     const count = batchSentenceCount(pool.length);
-    const batchItem = createBatchSentenceDictationItem(pool.slice(0, count));
+    const shuffleSeed = resolvePracticeShuffleSeed();
+    const batchItem = createBatchSentenceDictationItem(arrangePracticeItems(pool, shuffleSeed).slice(0, count));
     if (!batchItem) return;
     state.batchSentenceSetupOpen = false;
-    state.activityDescriptor = { activity: 'sentence-batch-dictation', groupId: '', choiceCount: 4, batchCount: count };
-    startPractice('passage', 0, { items: [batchItem], sessionName: `Chép nhiều câu · ${count} câu` });
+    state.activityDescriptor = { activity: 'sentence-batch-dictation', groupId: '', choiceCount: 4, batchCount: count, shuffleSeed };
+    startPractice('passage', 0, { items: [batchItem], sessionName: `Chép nhiều câu · ${count} câu`, shuffleSeed });
     autoplayCurrentItemAfterNavigation();
   }
 
@@ -1627,8 +1662,8 @@
     const canRestore = saved && saved.source === state.source && saved.lessonId === ((state.lesson && (state.lesson.lesson_id || state.lesson.id)) || '') && saved.descriptor && saved.descriptor.type === type && (saved.descriptor.groupId || '') === (groupId || '');
     state.matchingDescriptor = descriptor;
     state.matchingSession = canRestore
-      ? Matching.hydrateSession(saved.session, pairs, { title: descriptor.title, subtitle: '', contentKind: type, tapToSpeak: state.settings.tapHanziSpeak })
-      : Matching.createSession(pairs, { title: descriptor.title, subtitle: '', contentKind: type, tapToSpeak: state.settings.tapHanziSpeak });
+      ? Matching.hydrateSession(saved.session, pairs, { title: descriptor.title, subtitle: '', contentKind: type, tapToSpeak: state.settings.tapHanziSpeak, shuffleItems: state.settings.shuffleItems })
+      : Matching.createSession(pairs, { title: descriptor.title, subtitle: '', contentKind: type, tapToSpeak: state.settings.tapHanziSpeak, shuffleItems: state.settings.shuffleItems });
     state.screen = 'matching';
     state.error = '';
     persistMatchingSession();
@@ -1737,6 +1772,7 @@
       ${pageHeader(sessionTitle(), `${stats.wordCount || 0} từ · ${stats.sentenceCount || 0} câu phân biệt`, true)}
       <main class="listen-main">
         ${state.error ? errorCard(state.error) : ''}
+        ${practiceOrderCard()}
         <section class="dataset-summary dataset-summary--pastel">
           <div><strong>${formatHanziRuns(dataset.unit.titleZh || '')}</strong><span>${escapeHtml(dataset.unit.title || '')}</span></div>
           <div class="dataset-summary__stats"><span>${stats.wordCount} từ</span><span>${stats.sentenceCount} câu phân biệt</span><span>${stats.dialogueCount} hội thoại</span><span>${stats.passageCount} đoạn</span></div>
@@ -1811,11 +1847,12 @@
     if (!state.dataset) return;
     const configured = options || {};
     captureActivityReturnContext(configured);
-    const practiceOptions = (values) => Object.assign({}, values, { keepReturnContext: true });
+    const shuffleSeed = resolvePracticeShuffleSeed(configured);
+    const practiceOptions = (values) => Object.assign({}, values, { keepReturnContext: true, shuffleSeed });
     const group = groupId ? datasetGroup(groupId) : null;
     const startIndex = Math.max(0, Number(configured.startIndex) || 0);
     const choiceCount = Number(configured.choiceCount) === 5 ? 5 : 4;
-    state.activityDescriptor = { activity, groupId: groupId || '', choiceCount, batchCount: Number(configured.batchCount) || 0 };
+    state.activityDescriptor = { activity, groupId: groupId || '', choiceCount, batchCount: Number(configured.batchCount) || 0, shuffleSeed };
     const sentencePool = filteredDatasetSentences();
     if (activity === 'word-choice') {
       startPractice('word-choice', startIndex, practiceOptions({ items: ActivityBuilders.buildWordChoiceItems(state.dataset, { choiceCount }), sessionName: choiceCount === 5 ? 'Chọn từ · Mức khó' : 'Chọn từ nghe được' }));
@@ -1827,7 +1864,7 @@
       startPractice('dictation', startIndex, practiceOptions({ items: sentencePool, sessionName: 'Chép từng câu' }));
     } else if (activity === 'sentence-batch-dictation') {
       const batchCount = Math.max(1, Math.min(sentencePool.length, Number(configured.batchCount) || Number(state.batchSentenceCustomCount) || 10));
-      const batchItem = createBatchSentenceDictationItem(sentencePool.slice(0, batchCount));
+      const batchItem = createBatchSentenceDictationItem(arrangePracticeItems(sentencePool, shuffleSeed).slice(0, batchCount));
       if (!batchItem) return;
       startPractice('passage', 0, practiceOptions({ items: [batchItem], sessionName: `Chép nhiều câu · ${batchCount} câu` }));
     } else if (activity === 'sentence-transcript') {
@@ -1894,8 +1931,10 @@
     captureActivityReturnContext(configured);
     state.mode = mode;
     state.sessionName = configured.sessionName || '';
+    const shuffleSeed = resolvePracticeShuffleSeed(configured);
+    state.practiceShuffleSeed = shuffleSeed;
     if (configured.items) {
-      state.practiceItems = configured.items.slice();
+      state.practiceItems = arrangePracticeItems(configured.items, shuffleSeed);
     } else if (mode === 'passage' || mode === 'passage-transcript') {
       const passage = Core.createPassageItem(state.items, {
         sourceType: state.source,
@@ -1906,9 +1945,13 @@
       });
       state.practiceItems = passage ? [passage] : [];
     } else {
-      state.practiceItems = state.items;
+      state.practiceItems = arrangePracticeItems(state.items, shuffleSeed);
     }
-    state.currentIndex = Math.max(0, Math.min(Number(index) || 0, Math.max(0, activeItems().length - 1)));
+    const requestedIndex = Math.max(0, Number(index) || 0);
+    const requestedItemIndex = configured.startItemId
+      ? activeItems().findIndex((item) => String(item && item.id || '') === String(configured.startItemId))
+      : -1;
+    state.currentIndex = Math.max(0, Math.min(requestedItemIndex >= 0 ? requestedItemIndex : requestedIndex, Math.max(0, activeItems().length - 1)));
     state.sessionWrongItems = [];
     state.sessionCheckedIds = [];
     state.sessionCorrectIds = [];
@@ -1920,6 +1963,7 @@
     rememberSession();
     prepareNextItem();
     render();
+    window.scrollTo({ top: 0, behavior: 'instant' });
     // startPractice được gọi trực tiếp từ cú chạm của người dùng. Focus ngay
     // trong cùng call stack để iOS cho phép mở bàn phím ảo.
     focusDictationInput({ immediate: true });
@@ -1960,6 +2004,7 @@
       mode: state.mode,
       currentIndex: state.currentIndex,
       sessionName: state.sessionName || '',
+      shuffleSeed: state.practiceShuffleSeed,
       activitySelection: state.activitySelection.slice(),
       activityDescriptor: state.activityDescriptor ? structuredCloneSafe(state.activityDescriptor) : null,
       sentenceFilter: state.sentenceFilter,
@@ -1981,11 +2026,12 @@
       startDatasetActivity(descriptor.activity, descriptor.groupId || '', {
         choiceCount: descriptor.choiceCount,
         batchCount: descriptor.batchCount,
+        shuffleSeed: descriptor.shuffleSeed,
         startIndex: session.currentIndex || 0
       });
     } else {
       const mode = session.mode || 'dictation';
-      startPractice(mode, session.currentIndex || 0, { items: state.items.slice(), sessionName: session.sessionName || '' });
+      startPractice(mode, session.currentIndex || 0, { items: state.items.slice(), sessionName: session.sessionName || '', shuffleSeed: session.shuffleSeed });
     }
     state.activitySelection = Array.isArray(session.activitySelection) ? session.activitySelection.slice() : [];
     render();
@@ -2020,7 +2066,7 @@
       const lesson = state.lessons301.find((entry) => entry.lesson_id === session.lessonId);
       if (!lesson) return;
       await open301Lesson(lesson.lesson_id);
-      if (state.items.length) startPractice(session.mode || 'dictation', session.currentIndex || 0);
+      if (state.items.length) startPractice(session.mode || 'dictation', session.currentIndex || 0, { shuffleSeed: session.shuffleSeed });
       return;
     }
     if (session.source === 'custom') {
@@ -2029,7 +2075,7 @@
       if (deck) {
         if (deck.groupId) state.activeLibraryGroupId = deck.groupId;
         await openCustomDeck(deck.id);
-        if (!restoreDatasetSession(session)) startPractice(session.mode || 'dictation', session.currentIndex || 0);
+        if (!restoreDatasetSession(session)) startPractice(session.mode || 'dictation', session.currentIndex || 0, { shuffleSeed: session.shuffleSeed });
       }
       return;
     }
@@ -2840,6 +2886,9 @@
         <fieldset class="setting-field"><legend>Lùi/tiến khi nghe lại</legend><div class="segmented">
           ${[3, 5].map((seconds) => `<button data-action="set-rewind" data-seconds="${seconds}" class="${Number(state.settings.rewindSeconds) === seconds ? 'active' : ''}">${seconds} giây</button>`).join('')}
         </div></fieldset>
+        <fieldset class="setting-field"><legend>Thứ tự luyện tập</legend><div class="segmented">
+          ${practiceOrderButtons()}
+        </div><small class="setting-note">Áp dụng khi mở hoạt động mới hoặc bắt đầu lại. Phiên đang học giữ nguyên thứ tự để không đổi câu giữa chừng.</small></fieldset>
         <fieldset class="setting-field"><legend>Thanh nghe bên cạnh</legend><div class="segmented segmented--three">
           ${[['auto', 'Tự động'], ['always', 'Luôn hiện'], ['off', 'Tắt']].map(([value, label]) => `<button data-action="set-floating-audio-mode" data-floating-mode="${value}" class="${state.settings.floatingAudioMode === value ? 'active' : ''}" aria-pressed="${state.settings.floatingAudioMode === value}">${label}</button>`).join('')}
         </div><small class="setting-note">Áp dụng cho toàn bộ hoạt động trong tab Nghe. Khi bàn phím mở, thanh luôn tự thu gọn.</small></fieldset>
@@ -2904,7 +2953,11 @@
       else if (action === 'batch-sentence-custom-count') element.oninput = () => { state.batchSentenceCustomCount = Math.max(1, Math.min(filteredDatasetSentences().length || 1, Number(element.value) || 1)); const summary = app.querySelector('.batch-dictation-summary b'); if(summary) summary.textContent = `${batchSentenceCount(filteredDatasetSentences().length)} câu`; const start = app.querySelector('[data-action="start-batch-sentence-dictation"]'); if(start) start.textContent = `Bắt đầu chép ${batchSentenceCount(filteredDatasetSentences().length)} câu`; };
       else if (action === 'set-sentence-filter') element.onclick = () => setSentenceFilter(element.dataset.filter);
       else if (action === 'open-content-preview') element.onclick = openContentPreview;
-      else if (action === 'open-preview-item') element.onclick = () => startPractice('transcript', Number(element.dataset.index) || 0, { sourceElement: element });
+      else if (action === 'open-preview-item') element.onclick = () => {
+        const index = Number(element.dataset.index) || 0;
+        const item = state.items[index];
+        startPractice('transcript', index, { sourceElement: element, startItemId: item && item.id || '' });
+      };
       else if (action === 'open-library-group') element.onclick = () => openLibraryGroup(element.dataset.groupId);
       else if (action === 'study-library-group') element.onclick = () => studyCustomGroup(element.dataset.groupId);
       else if (action === 'open-library-deck') element.onclick = () => openCustomDeck(element.dataset.deckId);
@@ -2982,6 +3035,7 @@
       else if (action === 'toggle-group-transcript') element.onclick = toggleGroupTranscript;
       else if (action === 'play-group-overview') element.onclick = toggleGroupOverviewAudio;
       else if (action === 'set-rate') element.onclick = () => setRate(Number(element.dataset.rate));
+      else if (action === 'set-practice-order') element.onclick = () => setPracticeOrder(element.dataset.orderMode || 'shuffle');
       else if (action === 'set-floating-audio-mode') element.onclick = () => setFloatingAudioMode(element.dataset.floatingMode || 'auto');
       else if (action === 'switch-current-mode') element.onclick = () => switchCurrentMode(element.dataset.mode);
       else if (action === 'focus-input') {
@@ -4256,14 +4310,16 @@
   function retryWrongItems() {
     if (!state.sessionWrongItems.length) return;
     const retryItems = state.sessionWrongItems.map((item) => structuredCloneSafe(item));
-    state.practiceItems = retryItems;
-    const firstActivity = retryItems[0] && retryItems[0].activityType || '';
+    const shuffleSeed = resolvePracticeShuffleSeed();
+    state.practiceShuffleSeed = shuffleSeed;
+    state.practiceItems = arrangePracticeItems(retryItems, shuffleSeed);
+    const firstActivity = state.practiceItems[0] && state.practiceItems[0].activityType || '';
     if (firstActivity === 'word-choice') state.mode = 'word-choice';
     else if (firstActivity.includes('sequence-ordering')) state.mode = 'sequence-ordering';
     else if (firstActivity.includes('ordering')) state.mode = 'token-ordering';
-    else state.mode = retryItems[0] && retryItems[0].isPassage ? 'passage' : 'dictation';
+    else state.mode = state.practiceItems[0] && state.practiceItems[0].isPassage ? 'passage' : 'dictation';
     state.currentIndex = 0;
-    state.sessionName = state.mode === 'word-choice' ? 'Chọn lại từ sai' : state.mode.includes('ordering') ? 'Xếp lại mục sai' : retryItems[0] && retryItems[0].isPassage ? 'Chép lại đoạn' : 'Chép lại câu sai';
+    state.sessionName = state.mode === 'word-choice' ? 'Chọn lại từ sai' : state.mode.includes('ordering') ? 'Xếp lại mục sai' : state.practiceItems[0] && state.practiceItems[0].isPassage ? 'Chép lại đoạn' : 'Chép lại câu sai';
     state.sessionWrongItems = [];
     state.sessionCheckedIds = [];
     state.sessionCorrectIds = [];
@@ -4359,12 +4415,28 @@
     document.body.classList.toggle('listen-overlay-open', Boolean(state.menuOpen || state.settingsOpen));
   }
 
+  function syncPracticeOrderControls() {
+    const mode = state.settings.shuffleItems ? 'shuffle' : 'original';
+    document.querySelectorAll('[data-action="set-practice-order"]').forEach((button) => {
+      const active = button.dataset.orderMode === mode;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+  }
+
   function syncFloatingAudioModeControls() {
     document.querySelectorAll('[data-action="set-floating-audio-mode"]').forEach((button) => {
       const active = button.dataset.floatingMode === state.settings.floatingAudioMode;
       button.classList.toggle('active', active);
       button.setAttribute('aria-pressed', String(active));
     });
+  }
+
+  function setPracticeOrder(mode) {
+    if (!['shuffle', 'original'].includes(mode)) return;
+    state.settings.shuffleItems = mode === 'shuffle';
+    saveSettings();
+    syncPracticeOrderControls();
   }
 
   function setFloatingAudioMode(mode) {

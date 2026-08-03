@@ -22,6 +22,7 @@
     cards: new URL('modules/hanzi-stroke/index.html?study=flashcards', rootUrl).href,
     listening: new URL('modules/listening/index.html', rootUrl).href,
     ldsn14: new URL('modules/ldsn14/index.html', rootUrl).href,
+    newHskCourse: new URL('modules/new-hsk-course/index.html', rootUrl).href,
     writing: new URL('modules/hanzi-stroke/index.html?study=writing', rootUrl).href,
     pinyin: new URL('modules/pinyin/index.html', rootUrl).href,
     dialogue301: new URL('index.html#dialogue301', rootUrl).href,
@@ -102,6 +103,15 @@
     } else if (path.includes('/modules/ldsn14/')) {
       const lessonNumber = params.get('lesson') || '';
       item = { type: 'curriculum', icon: '译', title: lessonNumber ? `LDSN1-4 · Bài ${lessonNumber}` : 'LDSN1-4', subtitle: 'Luyện dịch song ngữ HSK 1–4' };
+    } else if (path.includes('/modules/new-hsk-course/')) {
+      const level = params.get('level') || '1';
+      const lessonNumber = params.get('lesson') || '';
+      item = {
+        type: 'curriculum',
+        icon: '课',
+        title: lessonNumber ? `New HSK ${level} · Bài ${lessonNumber}` : 'New HSK 3.0',
+        subtitle: lessonNumber ? 'Nội dung đầy đủ theo sách' : 'Giáo trình New HSK 1–3'
+      };
     } else if (path.includes('/modules/listening/')) {
       item = { type: 'listening', icon: '听', title: 'Nghe', subtitle: 'Chép chính tả · Có transcript' };
     } else if (path.includes('/modules/pinyin/')) {
@@ -138,7 +148,9 @@
     const current = readLearningHistory();
     const next = [item, ...current.filter(row => row.id !== item.id && row.url !== item.url)].slice(0, LEARNING_HISTORY_MAX);
     writeLearningHistory(next);
-    window.dispatchEvent(new CustomEvent(LEARNING_HISTORY_EVENT, { detail: { items: next, current: item } }));
+    if (typeof window.dispatchEvent === 'function' && typeof CustomEvent === 'function') {
+      window.dispatchEvent(new CustomEvent(LEARNING_HISTORY_EVENT, { detail: { items: next, current: item } }));
+    }
     return item;
   }
 
@@ -149,7 +161,9 @@
 
   function clearLearningHistory() {
     writeLearningHistory([]);
-    window.dispatchEvent(new CustomEvent(LEARNING_HISTORY_EVENT, { detail: { items: [] } }));
+    if (typeof window.dispatchEvent === 'function' && typeof CustomEvent === 'function') {
+      window.dispatchEvent(new CustomEvent(LEARNING_HISTORY_EVENT, { detail: { items: [] } }));
+    }
   }
 
   function resolveContext() {
@@ -159,7 +173,7 @@
     if (window.location.hash === '#dialogue301') return 'learn';
     if (path.includes('/modules/bo-thu-50/')) return 'menu';
     if (path.includes('/modules/lookup/')) return 'lookup';
-    if (path.includes('/modules/hanzi-stroke/') || path.includes('/modules/pinyin/') || path.includes('/modules/listening/') || path.includes('/modules/ldsn14/')) return 'learn';
+    if (path.includes('/modules/hanzi-stroke/') || path.includes('/modules/pinyin/') || path.includes('/modules/listening/') || path.includes('/modules/ldsn14/') || path.includes('/modules/new-hsk-course/')) return 'learn';
 
     const explicit = document.body && document.body.dataset
       ? document.body.dataset.uiShellContext || document.body.dataset.navContext
@@ -367,7 +381,16 @@
       return items;
     }
 
-    items.push(breadcrumbItem('Học', ROUTES.learn, study === 'hub' && !path.includes('/modules/pinyin/') && !path.includes('/modules/listening/')));
+    items.push(breadcrumbItem('Học', ROUTES.learn, study === 'hub' && !path.includes('/modules/pinyin/') && !path.includes('/modules/listening/') && !path.includes('/modules/ldsn14/') && !path.includes('/modules/new-hsk-course/')));
+    if (path.includes('/modules/new-hsk-course/')) {
+      const level = params.get('level') || '';
+      const lessonNumber = params.get('lesson') || '';
+      items.push(breadcrumbItem('Giáo trình', ROUTES.curriculum));
+      items.push(breadcrumbItem('New HSK 3.0', ROUTES.newHskCourse, !level && !lessonNumber));
+      if (level) items.push(breadcrumbItem(`HSK ${level}`, `${ROUTES.newHskCourse}?level=${encodeURIComponent(level)}`, !lessonNumber));
+      if (lessonNumber) items.push(breadcrumbItem(`Bài ${lessonNumber}`, '', true));
+      return items;
+    }
     if (path.includes('/modules/ldsn14/')) {
       const lessonNumber = params.get('lesson') || '';
       items.push(breadcrumbItem('LDSN1-4', ROUTES.ldsn14, !lessonNumber));
@@ -606,7 +629,8 @@
     syncSettings(drawer);
     bindEvents(drawer);
     applyStudyQuery();
-    window.setTimeout(() => recordCurrentLearningLocation(), 0);
+    if (typeof window.setTimeout === 'function') window.setTimeout(() => recordCurrentLearningLocation(), 0);
+    else recordCurrentLearningLocation();
   }
 
   window.TiengTrungLearningHistory = Object.freeze({

@@ -12352,3 +12352,28 @@ html.hsk-popup-embed .hsk-popup-sheet {
 /* Shared Matching V1 — Flashcard and lesson entry use the same engine. */
 .hsk-flashcard-launch--matching{border-color:#b9dfd2;background:linear-gradient(135deg,#f5fcf9 0%,#e9f7f1 58%,#f5fbff 100%);color:#176e62}.hsk-flashcard-launch--matching small{color:#5a857c}.hsk-flashcard-study--matching{padding:14px 16px calc(22px + env(safe-area-inset-bottom))}.hsk-flashcard-study--matching .tt-match{max-width:680px;margin:0 auto}.hsk-flashcard-study--matching .hsk-flashcard-nav{max-width:680px;margin:12px auto 0}
 @media(max-width:480px){.hsk-flashcard-study--matching{padding:10px 8px calc(18px + env(safe-area-inset-bottom))}.hsk-flashcard-study--matching .tt-match{border-radius:16px}.hsk-flashcard-launch-wrap{grid-template-columns:1fr 1fr}.hsk-flashcard-launch{min-height:46px;padding:7px 8px}.hsk-flashcard-launch span:not([aria-hidden]){font-size:13px}.hsk-flashcard-launch small{font-size:10px}}
+
+/* New HSK Course V1: narrow entry from the existing lesson vocabulary view. */
+.hsk-full-course-entry{
+  display:grid;
+  grid-template-columns:38px minmax(0,1fr) 24px;
+  align-items:center;
+  gap:10px;
+  margin:0 0 12px;
+  border:1px solid #bcded3;
+  border-radius:16px;
+  background:linear-gradient(135deg,#f4fcf8 0%,#e7f6ef 62%,#fff8ec 100%);
+  box-shadow:0 6px 18px rgba(38,112,93,.08);
+  padding:11px 12px;
+  color:#184f45;
+  text-decoration:none;
+}
+.hsk-full-course-entry:hover,
+.hsk-full-course-entry:focus-visible{border-color:#69ad98;box-shadow:0 9px 24px rgba(38,112,93,.14);transform:translateY(-1px)}
+.hsk-full-course-entry__icon{display:grid;width:38px;height:38px;place-items:center;border-radius:12px;background:#d9efe7;color:#176f61;font:800 20px/1 var(--font-hanzi,"Noto Serif SC",serif)}
+.hsk-full-course-entry__copy{display:block;min-width:0}
+.hsk-full-course-entry__copy strong,.hsk-full-course-entry__copy small{display:block}
+.hsk-full-course-entry__copy strong{font-size:14px;line-height:1.35}
+.hsk-full-course-entry__copy small{margin-top:2px;color:#5c7c74;font-size:10px;line-height:1.4}
+.hsk-full-course-entry__arrow{color:#438879;font-size:24px;text-align:center}
+@media(max-width:480px){.hsk-full-course-entry{margin-bottom:9px;padding:9px 10px}.hsk-full-course-entry__copy strong{font-size:13px}}

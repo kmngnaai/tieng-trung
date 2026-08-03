@@ -295,7 +295,7 @@
       subtitle: clean(configured.subtitle || ''),
       sourceKind: clean(configured.sourceKind || ''),
       pairs,
-      order: shuffled(pairs.map(pair => pair.id)),
+      order: configured.shuffleItems === false ? pairs.map(pair => pair.id) : shuffled(pairs.map(pair => pair.id)),
       adaptive: configured.adaptive !== false,
       contentKind,
       minRoundSize: clamp(Number(configured.minRoundSize) || ADAPTIVE_DEFAULTS.minPairs, 2, ADAPTIVE_DEFAULTS.absoluteMaxPairs),

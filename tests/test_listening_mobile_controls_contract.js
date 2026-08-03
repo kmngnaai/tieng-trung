@@ -34,7 +34,7 @@ assert.match(app, /sourceAction:/, 'activity return context records its source c
 assert.match(app, /sourceViewportTop:/, 'activity return context records source viewport offset');
 assert.match(app, /restoreActivitySourcePosition/, 'activity return restores the source card position');
 assert.match(app, /startPractice\(element\.dataset\.mode, 0, \{ sourceElement: element \}\)/, 'legacy mode cards preserve their source position');
-assert.match(app, /startPractice\('transcript', Number\(element\.dataset\.index\) \|\| 0, \{ sourceElement: element \}\)/, 'preview items preserve their source position');
+assert.match(app, /startPractice\('transcript', index, \{ sourceElement: element, startItemId: item && item\.id \|\| '' \}\)/, 'preview items preserve their source item and return position after shuffling');
 
 assert.match(css, /data-choice-count="5"[^}]*last-child[^}]*grid-column:\s*1\s*\/\s*-1/s, 'fifth choice spans full width');
 assert.match(css, /data-pinyin-visible="false"[^}]*min-height/s, 'choice cards shrink when pinyin is hidden');

@@ -6276,12 +6276,36 @@ if(window.HanziWriter){
       return '<p class="hsk-empty">Không tìm thấy từ phù hợp trong mục này.</p>';
     }
     const modeClass = sectionType === 'topic' ? 'topic' : 'lesson';
+    const fullLessonEntry = renderNewHskCourseLessonEntry(selected);
     return `
       <section class="hsk-section-word-view hsk-section-word-view--${modeClass}">
+        ${fullLessonEntry}
         <div class="hsk-section-word-list">
           ${filtered.map((item, index) => renderHskItem(item, index)).join('')}
         </div>
       </section>
+    `;
+  }
+
+  function renderNewHskCourseLessonEntry(selected){
+    const route = selected?.route;
+    const isReadyPrototype = String(route?.libraryId || '') === 'new_hsk'
+      && Number(route?.levelNo) === 1
+      && Number(route?.sectionOrder) === 1;
+    if(!isReadyPrototype) return '';
+    const url = new URL('../new-hsk-course/index.html', window.location.href);
+    url.searchParams.set('level', '1');
+    url.searchParams.set('lesson', '1');
+    url.searchParams.set('view', 'book');
+    return `
+      <a class="hsk-full-course-entry" href="${escapeHtml(url.href)}">
+        <span class="hsk-full-course-entry__icon" aria-hidden="true">课</span>
+        <span class="hsk-full-course-entry__copy">
+          <strong>Học toàn bộ bài theo sách</strong>
+          <small>Bài khóa · hội thoại · từ mới · hoạt động · bài vè</small>
+        </span>
+        <span class="hsk-full-course-entry__arrow" aria-hidden="true">›</span>
+      </a>
     `;
   }
 
