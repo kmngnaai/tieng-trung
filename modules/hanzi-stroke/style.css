@@ -6510,16 +6510,50 @@ body.hsk-flashcard-open{
   font-size: 12px;
 }
 
+.hsk-flashcard-study--cards{
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 12px;
+  overflow: hidden !important;
+}
+
+.hsk-flashcard-study--cards .hsk-flashcard-study-meta{
+  margin-bottom: 0;
+}
+
+.hsk-flashcard-card-area{
+  min-height: 0;
+  display: flex;
+}
+
+.hsk-flashcard-study-footer{
+  display: grid;
+  gap: 10px;
+}
+
+.hsk-flashcard-study-footer .hsk-flashcard-reveal,
+.hsk-flashcard-study-footer .hsk-flashcard-rating,
+.hsk-flashcard-study-footer .hsk-flashcard-nav{
+  margin-top: 0;
+}
+
 .hsk-flashcard-study-meta b{
   color: #214f74;
 }
 
 .hsk-flashcard-card{
   width: 100%;
-  min-height: 350px;
+  min-height: 0;
+  height: 100%;
   padding: 22px;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   border: 1px solid #d9cdbf;
   border-radius: 24px;
   background: linear-gradient(145deg, #fffefc 0%, #fff9f1 100%);
@@ -6549,7 +6583,11 @@ body.hsk-flashcard-open{
   place-items: center;
   gap: 14px;
   text-align: center;
+  margin-block: auto;
 }
+
+/* Auto margins center short content; when the answer is taller than the card,
+   the margins collapse to zero so the scrollable answer starts at the top. */
 
 .hsk-flashcard-front--hanzi,
 .hsk-flashcard-answer{
@@ -6774,8 +6812,12 @@ body.hsk-flashcard-open{
     min-height: 66px;
   }
 
+  .hsk-flashcard-study--cards{
+    height: 100%;
+    padding-bottom: calc(14px + env(safe-area-inset-bottom));
+  }
+
   .hsk-flashcard-card{
-    min-height: 330px;
     padding: 18px;
   }
 

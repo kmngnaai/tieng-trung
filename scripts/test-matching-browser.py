@@ -183,7 +183,24 @@ def test_flashcard(browser):
     regular_rect = page.locator('.hsk-flashcard-shell--activity').evaluate("el => { const r=el.getBoundingClientRect(); return {top:Math.round(r.top), left:Math.round(r.left), width:Math.round(r.width), height:Math.round(r.height)}; }")
     assert regular_rect['top'] == 0 and regular_rect['left'] == 0, regular_rect
     assert abs(regular_rect['width'] - 390) <= 1 and abs(regular_rect['height'] - 844) <= 2, regular_rect
+    study_rect = page.locator('.hsk-flashcard-study--cards').evaluate("el => { const r=el.getBoundingClientRect(); return {top:r.top,bottom:r.bottom,height:r.height}; }")
+    card_rect = page.locator('.hsk-flashcard-card').evaluate("el => { const r=el.getBoundingClientRect(); return {top:r.top,bottom:r.bottom,height:r.height}; }")
+    footer_rect = page.locator('.hsk-flashcard-study-footer').evaluate("el => { const r=el.getBoundingClientRect(); return {top:r.top,bottom:r.bottom,height:r.height}; }")
+    face_alignment = page.locator('.hsk-flashcard-front').evaluate("el => { const face=el.getBoundingClientRect(); const card=el.closest('.hsk-flashcard-card').getBoundingClientRect(); return {faceCenter:(face.top+face.bottom)/2, cardCenter:(card.top+card.bottom)/2}; }")
+    assert card_rect['height'] > 430, card_rect
+    assert footer_rect['bottom'] <= study_rect['bottom'] + 1, (footer_rect, study_rect)
+    assert abs(face_alignment['faceCenter'] - face_alignment['cardCenter']) < 24, face_alignment
     page.screenshot(path=str(OUT/'flashcard-regular-fullscreen-mobile.png'), full_page=False)
+    page.locator('.hsk-flashcard-reveal').click()
+    page.wait_for_selector('.hsk-flashcard-answer')
+    page.evaluate("""() => {
+      const answer=document.querySelector('.hsk-flashcard-answer');
+      answer.insertAdjacentHTML('beforeend', Array.from({length:18},(_,i)=>`<p>Ví dụ nội dung dài ${i+1}: phần giải thích được cuộn bên trong thẻ.</p>`).join(''));
+    }""")
+    long_layout = page.locator('.hsk-flashcard-card').evaluate("el => { const card=el.getBoundingClientRect(); const answer=el.querySelector('.hsk-flashcard-answer').getBoundingClientRect(); return {clientHeight:el.clientHeight,scrollHeight:el.scrollHeight,topGap:answer.top-card.top,scrollTop:el.scrollTop}; }")
+    assert long_layout['scrollHeight'] > long_layout['clientHeight'], long_layout
+    assert long_layout['topGap'] < 32, long_layout
+    page.screenshot(path=str(OUT/'flashcard-long-answer-scroll-mobile.png'), full_page=False)
     page.locator('[data-hsk-flashcard-to-setup]').click()
     assert page.locator('#hskFlashcardOverlay.hsk-flashcard-overlay--dialog').count() == 1
     page.locator('[data-hsk-flashcard-mode="matching"]').click()

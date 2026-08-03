@@ -8782,20 +8782,24 @@ if(window.HanziWriter){
         <span class="hsk-flashcard-progress">${session.index + 1} / ${session.cards.length}</span>
         <button type="button" class="hsk-flashcard-close" data-hsk-flashcard-close aria-label="Đóng">×</button>
       </header>
-      <div class="hsk-flashcard-study">
+      <div class="hsk-flashcard-study hsk-flashcard-study--cards">
         <div class="hsk-flashcard-study-meta"><b>${escapeHtml(getFlashcardModeLabel(type))}</b><span>${escapeHtml(session.title)}</span></div>
-        <div class="hsk-flashcard-card ${session.flipped ? 'is-flipped' : ''}" data-hsk-flashcard-flip role="button" tabindex="0" aria-label="Thẻ flashcard, bấm để lật">
-          ${renderFlashcardFace(session, card, type)}
-        </div>
-        ${session.flipped ? `
-          <div class="hsk-flashcard-rating" role="group" aria-label="Tự đánh giá">
-            ${[['easy','Dễ'],['review','Ôn'],['hard','Khó']].map(([key,label]) => `<button type="button" class="${rating === key ? 'active' : ''}" data-hsk-flashcard-rate="${key}">${label}</button>`).join('')}
+        <div class="hsk-flashcard-card-area">
+          <div class="hsk-flashcard-card ${session.flipped ? 'is-flipped' : ''}" data-hsk-flashcard-flip role="button" tabindex="0" aria-label="Thẻ flashcard, bấm để lật">
+            ${renderFlashcardFace(session, card, type)}
           </div>
-        ` : `<button type="button" class="hsk-flashcard-reveal" data-hsk-flashcard-flip>Xem đáp án</button>`}
-        <div class="hsk-flashcard-nav">
-          <button type="button" data-hsk-flashcard-prev ${session.index === 0 ? 'disabled' : ''}>← Trước</button>
-          <button type="button" data-hsk-flashcard-next>${session.index === session.cards.length - 1 ? 'Hoàn thành' : 'Tiếp →'}</button>
         </div>
+        <footer class="hsk-flashcard-study-footer">
+          ${session.flipped ? `
+            <div class="hsk-flashcard-rating" role="group" aria-label="Tự đánh giá">
+              ${[['easy','Dễ'],['review','Ôn'],['hard','Khó']].map(([key,label]) => `<button type="button" class="${rating === key ? 'active' : ''}" data-hsk-flashcard-rate="${key}">${label}</button>`).join('')}
+            </div>
+          ` : `<button type="button" class="hsk-flashcard-reveal" data-hsk-flashcard-flip>Xem đáp án</button>`}
+          <div class="hsk-flashcard-nav">
+            <button type="button" data-hsk-flashcard-prev ${session.index === 0 ? 'disabled' : ''}>← Trước</button>
+            <button type="button" data-hsk-flashcard-next>${session.index === session.cards.length - 1 ? 'Hoàn thành' : 'Tiếp →'}</button>
+          </div>
+        </footer>
       </div>
     `;
   }
