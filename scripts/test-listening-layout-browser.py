@@ -51,7 +51,7 @@ def assert_centered(page, selector, expected_count):
       const card = controls.closest('.audio-card');
       const cr = controls.getBoundingClientRect();
       const ar = card.getBoundingClientRect();
-      const children = Array.from(controls.children).map((el) => {
+      const children = Array.from(controls.children).filter((el) => getComputedStyle(el).display !== 'none').map((el) => {
         const r = el.getBoundingClientRect();
         return {left:r.left, right:r.right, width:r.width};
       });
@@ -64,12 +64,33 @@ def assert_centered(page, selector, expected_count):
     return result
 
 def mobile_word_choice_scenario(browser):
-    context = browser.new_context(viewport={'width': 430, 'height': 320}, is_mobile=True, has_touch=True)
+    context = browser.new_context(viewport={'width': 360, 'height': 360}, is_mobile=True, has_touch=True)
     page = context.new_page(); page.set_default_timeout(10000)
     load_app(page); open_new_hsk_unit(page)
     page.locator('[data-activity="word-choice"][data-choice-count="4"]').click()
     page.wait_for_selector('.audio-controls--5')
-    centered = assert_centered(page, '.audio-controls--5', 5)
+    centered = assert_centered(page, '.audio-controls--5', 4)
+    wait_floating(page, False)
+
+    page.locator('.audio-mobile-settings').click()
+    floating_mode_button = page.locator('[data-action="set-floating-audio-mode"][data-floating-mode="always"]')
+    floating_mode_button.scroll_into_view_if_needed()
+    sheet_scroll_before = page.locator('.settings-sheet').evaluate('(sheet) => sheet.scrollTop')
+    page_scroll_before = page.evaluate('window.scrollY')
+    floating_mode_button.click()
+    sheet_scroll_after = page.locator('.settings-sheet').evaluate('(sheet) => sheet.scrollTop')
+    page_scroll_after = page.evaluate('window.scrollY')
+    assert abs(sheet_scroll_after - sheet_scroll_before) <= 1, (sheet_scroll_before, sheet_scroll_after)
+    assert abs(page_scroll_after - page_scroll_before) <= 1, (page_scroll_before, page_scroll_after)
+    page.locator('[data-action="close-settings"]').last.click()
+    wait_floating(page, True)
+    page.locator('.audio-mobile-settings').click()
+    page.locator('[data-action="set-floating-audio-mode"][data-floating-mode="off"]').click()
+    page.locator('[data-action="close-settings"]').last.click()
+    wait_floating(page, False)
+    page.locator('.audio-mobile-settings').click()
+    page.locator('[data-action="set-floating-audio-mode"][data-floating-mode="auto"]').click()
+    page.locator('[data-action="close-settings"]').last.click()
     wait_floating(page, False)
 
     page.evaluate("document.querySelector('[data-learning-target]').scrollIntoView({block:'start'})")
@@ -97,6 +118,35 @@ def mobile_word_choice_scenario(browser):
     wait_floating(page, False)
     context.close()
     return centered
+
+def mobile_five_choice_scenario(browser):
+    context = browser.new_context(viewport={'width': 360, 'height': 640}, is_mobile=True, has_touch=True)
+    page = context.new_page(); page.set_default_timeout(10000)
+    load_app(page); open_new_hsk_unit(page)
+    page.locator('[data-activity="word-choice"][data-choice-count="5"]').click()
+    page.wait_for_selector('.word-choice-grid[data-choice-count="5"]')
+    layout = page.evaluate('''() => {
+      const grid = document.querySelector('.word-choice-grid[data-choice-count="5"]');
+      const cards = Array.from(grid.children);
+      const gr = grid.getBoundingClientRect();
+      const last = cards.at(-1).getBoundingClientRect();
+      return {
+        bodyOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        count: cards.length,
+        lastWidth: last.width,
+        gridWidth: gr.width,
+        cardHeights: cards.map(card => card.getBoundingClientRect().height)
+      };
+    }''')
+    assert layout['count'] == 5, layout
+    assert layout['bodyOverflow'] <= 1, layout
+    assert abs(layout['lastWidth'] - layout['gridWidth']) <= 2, layout
+    before = min(layout['cardHeights'])
+    page.locator('[data-action="toggle-word-choice-pinyin"]').click()
+    after = page.evaluate("() => Math.min(...Array.from(document.querySelectorAll('.word-choice-option')).map(card => card.getBoundingClientRect().height))")
+    assert after < before, (before, after)
+    page.screenshot(path=str(OUT / 'word-choice-five-360px.png'), full_page=True)
+    context.close()
 
 def mobile_dictation_scenario(browser):
     context = browser.new_context(viewport={'width': 430, 'height': 400}, is_mobile=True, has_touch=True)
@@ -145,6 +195,7 @@ def main():
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True, executable_path=executable, args=['--no-sandbox', '--disable-gpu'])
         mobile_center = mobile_word_choice_scenario(browser)
+        mobile_five_choice_scenario(browser)
         mobile_dictation_scenario(browser)
         desktop_center = desktop_scenario(browser)
         browser.close()
