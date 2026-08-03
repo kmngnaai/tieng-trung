@@ -1501,3 +1501,22 @@ a.lookup-context-back {
   align-items: center;
   text-decoration: none;
 }
+
+/* Mobile lookup result sizing: one fixed size per target length group. */
+.main-char {
+  white-space: nowrap;
+}
+.main-char--single { font-size: 96px; }
+.main-char--short-word { font-size: 48px; line-height: 1; }
+.main-char--long-word { font-size: 34px; line-height: 1.05; }
+.hero-grid--word { grid-template-columns: max-content minmax(0, 1fr) auto; }
+
+@media (max-width: 430px) {
+  .hero-grid.hero-grid--single { grid-template-columns: minmax(74px, 92px) minmax(0, 1fr) 38px; }
+  .hero-grid.hero-grid--word { grid-template-columns: max-content minmax(0, 1fr) 34px; gap: 10px; }
+  .main-char--single { font-size: 76px; }
+  .main-char--short-word { font-size: 40px; }
+  .main-char--long-word { font-size: 26px; }
+  .hero-grid--word .pinyin,
+  .hero-grid--word .primary-meaning { overflow-wrap: anywhere; }
+}

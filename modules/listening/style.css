@@ -2874,3 +2874,194 @@ button { color: inherit; }
   .word-choice-grid{margin-top:11px}
   .word-choice-heading-actions{gap:6px}
 }
+
+/* Mobile listening controls: keep the question closer to the audio player. */
+.audio-mobile-meta,
+.audio-speed-popover {
+  display: none;
+}
+
+.ordering-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 7px;
+  margin: -4px 0 10px;
+}
+.ordering-toolbar button {
+  min-height: 36px;
+  padding: 0 11px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--muted);
+  font-weight: 800;
+  cursor: pointer;
+}
+.ordering-toolbar button.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+.ordering-token small,
+.sequence-card__content small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+@media (max-width: 560px) {
+  .audio-card {
+    padding: 14px;
+  }
+
+  .audio-head-settings,
+  .audio-speed-desktop {
+    display: none !important;
+  }
+
+  .audio-card .audio-controls {
+    margin: 12px auto 10px;
+  }
+
+  .audio-controls [data-action="restart-speech"] {
+    display: none;
+  }
+
+  .audio-card .audio-controls--4 {
+    --audio-secondary-size: 42px;
+    --audio-play-size: 54px;
+    grid-template-columns: var(--audio-secondary-size) var(--audio-play-size) var(--audio-secondary-size);
+    gap: 7px;
+  }
+
+  .audio-card .audio-controls--5 {
+    --audio-secondary-size: 40px;
+    --audio-play-size: 52px;
+    grid-template-columns: var(--audio-secondary-size) var(--audio-play-size) var(--audio-secondary-size) var(--audio-secondary-size);
+    gap: 6px;
+  }
+
+  .audio-controls .secondary-round {
+    grid-template-rows: 16px 10px;
+  }
+
+  .audio-controls .secondary-round > span {
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  .audio-controls .secondary-round small {
+    font-size: 7.5px;
+    line-height: 9px;
+  }
+
+  .audio-controls .play-button {
+    font-size: 22px;
+  }
+
+  .audio-mobile-meta {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) 34px;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .audio-current-speed,
+  .audio-speed-popover button {
+    min-height: 34px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--muted);
+    font-weight: 800;
+  }
+
+  .audio-current-speed.active,
+  .audio-speed-popover button.active {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+  }
+
+  .audio-source-summary {
+    min-width: 0;
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .audio-mobile-settings {
+    width: 34px;
+    min-width: 34px;
+    height: 34px;
+    min-height: 34px;
+  }
+
+  .audio-speed-popover {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 5px;
+    margin-top: 7px;
+  }
+
+  .audio-speed-popover button {
+    min-width: 0;
+    padding: 0 3px;
+    font-size: 10.5px;
+  }
+
+  .word-choice-grid,
+  .word-choice-grid[data-choice-count="4"],
+  .word-choice-grid[data-choice-count="5"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .word-choice-grid[data-choice-count="5"] .word-choice-option:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .word-choice-option,
+  .word-choice-grid[data-choice-count="4"] .word-choice-option {
+    min-height: 72px;
+    grid-template-columns: 1fr;
+    align-content: center;
+    justify-items: center;
+    row-gap: 3px;
+    padding: 8px 6px;
+  }
+
+  .word-choice-grid[data-pinyin-visible="false"] .word-choice-option {
+    min-height: 56px;
+  }
+
+  .word-choice-option strong,
+  .word-choice-option span {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    text-align: center;
+  }
+
+  .ordering-toolbar {
+    justify-content: stretch;
+    margin-top: -2px;
+  }
+
+  .ordering-toolbar button {
+    flex: 1 1 0;
+    min-width: 0;
+    padding-inline: 7px;
+  }
+
+  .ordering-toolbar button span {
+    display: none;
+  }
+}

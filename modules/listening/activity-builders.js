@@ -89,10 +89,19 @@
   }
 
   function normalizedTokens(sentence) {
-    return toArray(sentence && sentence.tokens).map((token, index) => ({
-      id: `${sentence.id}:token-${index + 1}`,
-      text: token.text || token
-    })).filter((token) => token.text);
+    const pinyinUnits = String(sentence && sentence.pinyin || '').trim().split(/\s+/).filter(Boolean);
+    let pinyinIndex = 0;
+    return toArray(sentence && sentence.tokens).map((token, index) => {
+      const text = token.text || token;
+      const unitCount = Core.answerUnits(text).length;
+      const pinyin = pinyinUnits.slice(pinyinIndex, pinyinIndex + unitCount).join(' ');
+      pinyinIndex += unitCount;
+      return {
+        id: `${sentence.id}:token-${index + 1}`,
+        text,
+        pinyin
+      };
+    }).filter((token) => token.text);
   }
 
   function buildSentenceOrderingItems(dataset, options) {

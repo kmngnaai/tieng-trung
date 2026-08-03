@@ -145,7 +145,7 @@ function renderLookupBreadcrumb() {
   const shellItems = [{ label: 'Tra', href: lookupHome, current: targets.length === 0 }];
   targets.forEach((target, index) => {
     const isCurrent = index === targets.length - 1;
-    const href = isCurrent ? '' : `${lookupHome}?q=${encodeURIComponent(target)}`;
+    const href = isCurrent ? '' : `#lookup-breadcrumb-${index}`;
     shellItems.push({ label: target, href, current: isCurrent });
   });
   window.dispatchEvent(new CustomEvent('tiengtrung:breadcrumbchange', { detail: { items: shellItems } }));
@@ -154,8 +154,10 @@ function renderLookupBreadcrumb() {
 async function openLookupBreadcrumbTarget(index) {
   const parents = state.navigationStack.map(item => clean(item.target)).filter(Boolean);
   const target = parents[index];
-  if (!target) return;
+  const restore = state.navigationStack[index];
+  if (!target || !restore) return;
   state.navigationStack = state.navigationStack.slice(0, index);
+  state.pendingRestore = restore;
   await runSearch(target, { skipHistory: true, recordRecent: false });
   pushTraHistory('detail');
 }
@@ -379,8 +381,30 @@ function bindTraSwipeNavigation() {
 const targetOf = data => clean(data?.char || data?.word || data?.target || '');
 const extractHanCharacters = value => [...new Set([...String(value || '')].filter(ch => isSingleHan(ch)))];
 
-function currentSectionId(sourceElement) {
-  return sourceElement?.closest('section')?.id || '';
+function lookupTargetLengthClass(value) {
+  const length = Array.from(clean(value)).length;
+  if (length <= 1) return 'main-char--single';
+  if (length <= 4) return 'main-char--short-word';
+  return 'main-char--long-word';
+}
+
+function navigationSourceDescriptor(sourceElement) {
+  const section = sourceElement?.closest('section') || null;
+  const sourceTarget = clean(sourceElement?.dataset?.searchChar || '');
+  const sectionSources = section ? Array.from(section.querySelectorAll('[data-search-char]')) : [];
+  const allSources = el.view ? Array.from(el.view.querySelectorAll('[data-search-char]')) : [];
+  const matchingSources = sourceTarget
+    ? allSources.filter(item => clean(item.dataset.searchChar) === sourceTarget)
+    : [];
+  const sourceRect = sourceElement?.getBoundingClientRect?.();
+  return {
+    sectionId: section?.id || '',
+    sourceTarget,
+    sourceIndex: Math.max(0, sectionSources.indexOf(sourceElement)),
+    sourceGlobalIndex: Math.max(0, allSources.indexOf(sourceElement)),
+    sourceTargetIndex: Math.max(0, matchingSources.indexOf(sourceElement)),
+    sourceViewportTop: Number(sourceRect?.top) || 0
+  };
 }
 
 function pushNavigationContext(sourceElement) {
@@ -389,7 +413,7 @@ function pushNavigationContext(sourceElement) {
   state.navigationStack.push({
     target,
     scrollY: window.scrollY || document.documentElement.scrollTop || 0,
-    sectionId: currentSectionId(sourceElement)
+    ...navigationSourceDescriptor(sourceElement)
   });
   if (state.navigationStack.length > 20) state.navigationStack.shift();
 }
@@ -409,6 +433,33 @@ async function restoreParentTarget() {
   state.pendingRestore = parent;
   await runSearch(parent.target, { skipHistory: true, recordRecent: false });
   renderLookupBreadcrumb();
+}
+
+function restoreNavigationPosition(restore) {
+  const fallbackTop = Math.max(0, Number(restore?.scrollY) || 0);
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    const section = restore?.sectionId ? document.getElementById(restore.sectionId) : null;
+    const sectionSources = section ? Array.from(section.querySelectorAll('[data-search-char]')) : [];
+    const allSources = el.view ? Array.from(el.view.querySelectorAll('[data-search-char]')) : [];
+    let source = sectionSources[Number(restore?.sourceIndex) || 0] || null;
+    if (source && restore?.sourceTarget && clean(source.dataset.searchChar) !== clean(restore.sourceTarget)) source = null;
+    if (!source) {
+      const globalCandidate = allSources[Number(restore?.sourceGlobalIndex) || 0] || null;
+      if (!restore?.sourceTarget || clean(globalCandidate?.dataset?.searchChar) === clean(restore.sourceTarget)) {
+        source = globalCandidate;
+      }
+    }
+    if (!source && restore?.sourceTarget) {
+      const matchingSources = allSources.filter(item => clean(item.dataset.searchChar) === clean(restore.sourceTarget));
+      source = matchingSources[Number(restore?.sourceTargetIndex) || 0] || matchingSources[0] || null;
+    }
+    if (source && Number.isFinite(Number(restore?.sourceViewportTop))) {
+      const delta = source.getBoundingClientRect().top - Number(restore.sourceViewportTop);
+      window.scrollBy({ top: delta, behavior: 'auto' });
+      return;
+    }
+    window.scrollTo({ top: fallbackTop, behavior: 'auto' });
+  }));
 }
 
 
@@ -1967,11 +2018,12 @@ function render(data) {
   const sections = [];
   const parent = state.navigationStack[state.navigationStack.length - 1];
   const externalReturn = externalReturnContext();
+  const targetLengthClass = lookupTargetLengthClass(target);
   if (parent) sections.push(`<div class="lookup-context-back-wrap"><button type="button" class="lookup-context-back" data-back-parent>← Quay lại ${escapeHtml(parent.target)}</button></div>`);
   else if (state.catalogListSnapshot) sections.push(`<div class="lookup-context-back-wrap"><button type="button" class="lookup-context-back" data-back-catalog-list>← Quay lại ${escapeHtml(state.catalogListSnapshot.title || 'danh sách')}</button></div>`);
   else if (externalReturn) sections.push(`<div class="lookup-context-back-wrap"><a class="lookup-context-back" href="${escapeHtml(externalReturn.href)}">← Quay lại ${escapeHtml(externalReturn.label)}</a></div>`);
   sections.push(`<section id="lookup-hero-section" class="panel hero-card full-width"><div class="panel-inner">
-      <div class="hero-grid"><div class="main-char">${escapeHtml(target)}</div><div><div class="pinyin">${escapeHtml(pinyin)}</div><div class="hanviet">${data.pronunciation?.hanViet ? `Hán Việt: ${escapeHtml(data.pronunciation.hanViet)}` : ''}</div><p class="primary-meaning">${escapeHtml(meaningSummary(data))}</p></div><button class="speak-btn icon-audio-btn" type="button" data-speak="${escapeHtml(target)}" aria-label="Nghe phát âm">${audioIcon()}</button></div>
+      <div class="hero-grid ${targetLengthClass === 'main-char--single' ? 'hero-grid--single' : 'hero-grid--word'}"><div class="main-char ${targetLengthClass}">${escapeHtml(target)}</div><div><div class="pinyin">${escapeHtml(pinyin)}</div><div class="hanviet">${data.pronunciation?.hanViet ? `Hán Việt: ${escapeHtml(data.pronunciation.hanViet)}` : ''}</div><p class="primary-meaning">${escapeHtml(meaningSummary(data))}</p></div><button class="speak-btn icon-audio-btn" type="button" data-speak="${escapeHtml(target)}" aria-label="Nghe phát âm">${audioIcon()}</button></div>
       <div class="meta-row">${formation ? `<span class="meta-chip">${escapeHtml(formation)}</span>` : ''}${structure ? `<span class="meta-chip">${escapeHtml(structure)}</span>` : ''}${data.characterInfo?.strokeCount ? `<span class="meta-chip">${escapeHtml(data.characterInfo.strokeCount)} nét</span>` : ''}${radicalVisible && radical.nameVi ? `<span class="meta-chip">${escapeHtml(radical.nameVi)}</span>` : ''}</div>
     </div></section>`);
 
@@ -2124,11 +2176,7 @@ async function runSearch(value, options = {}) {
     if (state.pendingRestore) {
       const restore = state.pendingRestore;
       state.pendingRestore = null;
-      requestAnimationFrame(() => {
-        const anchor = restore.sectionId ? document.getElementById(restore.sectionId) : null;
-        if (anchor) anchor.scrollIntoView({ block: 'start' });
-        else window.scrollTo({ top: restore.scrollY || 0, behavior: 'auto' });
-      });
+      restoreNavigationPosition(restore);
     }
   } catch (error) {
     el.loading.hidden = true;
@@ -2197,6 +2245,14 @@ async function bootstrapLookupPage() {
       const button = event.target.closest('[data-lookup-breadcrumb-target]');
       if (!button) return;
       openLookupBreadcrumbTarget(Number(button.dataset.lookupBreadcrumbTarget));
+    });
+    document.addEventListener('click', event => {
+      const link = event.target.closest('a[href^="#lookup-breadcrumb-"]');
+      if (!link) return;
+      const index = Number(link.getAttribute('href').replace('#lookup-breadcrumb-', ''));
+      if (!Number.isInteger(index)) return;
+      event.preventDefault();
+      openLookupBreadcrumbTarget(index);
     });
     document.querySelectorAll('[data-char]').forEach(button => button.addEventListener('click', () => { state.navigationStack = []; runSearch(button.dataset.char); }));
     el.theme?.addEventListener('click', () => setDark());
