@@ -8,7 +8,10 @@
     tab: 'learn', selected: '', tone: 2, search: '', finalGroup: 'all', initialGroup: 'all', hideEmpty: false,
     learned: {}, favorite: {}, wrong: {}, quiz: null, chartMode: 'cards', activeGroup: 'intro', activeReviewGroup: 'not_started',
     progress: { syllables: {}, hanzi: {}, shadowing: {} },
-    ui: { listenMode: 'lookup', groupVisible: {}, reviewVisible: 80, openMiniTables: {} }
+    ui: {
+      listenMode: 'lookup', groupVisible: {}, reviewVisible: 80, openMiniTables: {}, openRuleCategories: {},
+      viewPositions: {}, selectedAudioKey: '', selectedAudioContext: ''
+    }
   };
   let state = null;
 
@@ -29,6 +32,10 @@
     next.ui = Object.assign({}, defaults.ui, safeObject(next.ui));
     next.ui.groupVisible = safeObject(next.ui.groupVisible);
     next.ui.openMiniTables = safeObject(next.ui.openMiniTables);
+    next.ui.openRuleCategories = safeObject(next.ui.openRuleCategories);
+    next.ui.viewPositions = safeObject(next.ui.viewPositions);
+    next.ui.selectedAudioKey = typeof next.ui.selectedAudioKey === 'string' ? next.ui.selectedAudioKey : '';
+    next.ui.selectedAudioContext = typeof next.ui.selectedAudioContext === 'string' ? next.ui.selectedAudioContext : '';
 
     Object.keys(next.learned).forEach(function (safe) {
       if (!next.learned[safe]) return;

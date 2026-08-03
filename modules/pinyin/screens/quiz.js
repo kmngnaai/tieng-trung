@@ -31,7 +31,7 @@
     const feedbackClass = quiz.correct ? 'is-correct' : 'is-wrong';
     return `<section class="screen-hero compact"><div><span class="eyebrow">QUIZ NGHE</span><h2>${esc()(groupTitle)}</h2><p>Nghe âm rồi chọn thanh điệu.</p></div><button type="button" class="secondary-button" data-action="reset-quiz">Đổi nhóm</button></section>
       <section class="quiz-card panel"><div class="quiz-question"><span>Câu hiện tại</span><div class="quiz-hidden-answer">${answered ? esc()(App.utils.markTone(item.pinyin, quiz.tone)) : '?'}</div>
-        <button type="button" class="play-quiz-button" data-action="play-syllable" data-safe="${esc()(item.safe)}" data-tone="${quiz.tone}">▶ Phát âm</button></div>
+        <button type="button" class="play-quiz-button${App.ui.audioSelectionClass(item.safe, quiz.tone)}" data-action="play-syllable" data-safe="${esc()(item.safe)}" data-tone="${quiz.tone}" data-audio-key="${esc()(App.ui.audioKey(item.safe, quiz.tone))}" data-selection-context="quiz">▶ Phát âm</button></div>
         <div class="quiz-options">${[1,2,3,4].map(tone => `<button type="button" data-action="answer-quiz" data-tone="${tone}" ${answered ? 'disabled' : ''} class="quiz-option${answered && tone === quiz.tone ? ' is-answer' : ''}"><b>Thanh ${tone}</b><span>${tone === 1 ? 'cao và ngang' : tone === 2 ? 'đi lên' : tone === 3 ? 'hạ rồi lên' : 'đi xuống'}</span></button>`).join('')}</div>
         ${answered ? `<div class="quiz-feedback ${feedbackClass}">${esc()(quiz.feedback || '')}</div><button type="button" class="primary-button full" data-action="next-quiz">Câu tiếp theo</button>` : '<p class="muted center">Đáp án chỉ hiện sau khi bạn chọn.</p>'}
       </section>`;

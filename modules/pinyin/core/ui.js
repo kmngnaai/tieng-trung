@@ -18,6 +18,23 @@
     toastTimer = setTimeout(function () { node.classList.remove('is-visible'); }, 2600);
   }
 
+
+  function audioKey(safe, tone) {
+    return `${String(safe || '')}:${Number(tone || 0)}`;
+  }
+
+  function isAudioSelected(safe, tone) {
+    return !!(App.state && App.state.ui && App.state.ui.selectedAudioKey === audioKey(safe, tone));
+  }
+
+  function audioSelectionClass(safe, tone) {
+    return isAudioSelected(safe, tone) ? ' is-selected' : '';
+  }
+
+  function syllableSelectionClass(safe) {
+    return App.state && App.state.selected === safe ? ' is-selected' : '';
+  }
+
   function progressSummary() {
     const syllables = App.model.syllables.filter(item => App.review.syllableCanListen(item));
     const heard = syllables.filter(item => App.store.progress('syllable', item.safe).heard).length;
@@ -70,5 +87,5 @@
     return `<section class="empty-state"><div aria-hidden="true">拼</div><h2>${App.utils.escapeHtml(title)}</h2><p>${App.utils.escapeHtml(body)}</p></section>`;
   }
 
-  App.ui = { toast, shell, statusChips, empty, progressSummary };
+  App.ui = { toast, shell, statusChips, empty, progressSummary, audioKey, isAudioSelected, audioSelectionClass, syllableSelectionClass };
 })(window);

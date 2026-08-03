@@ -5,9 +5,18 @@
   const player = new Audio();
   let activeButton = null;
   let activeUtterance = null;
+  let activeSource = '';
+  let playbackToken = 0;
   let queueToken = 0;
   let queueActive = false;
-  const runtimeBroken = new Set();
+  let lastFailure = null;
+  const runtimeBroken = new Map();
+  const transientFailures = new Map();
+
+  function clearFailureClasses(button) {
+    if (!button) return;
+    button.classList.remove('is-temporary-error', 'is-verified-broken');
+  }
 
   function clearButton() {
     if (activeButton) {
@@ -18,12 +27,14 @@
   }
 
   function stop() {
+    playbackToken += 1;
     queueToken += 1;
     queueActive = false;
-    try { player.pause(); } catch (_error) {}
-    player.removeAttribute('src');
     player.onended = null;
     player.onerror = null;
+    try { player.pause(); } catch (_error) {}
+    try { player.removeAttribute('src'); player.load(); } catch (_error) {}
+    activeSource = '';
     if (root.speechSynthesis) {
       try { root.speechSynthesis.cancel(); } catch (_error) {}
     }
@@ -35,6 +46,7 @@
     clearButton();
     activeButton = button || null;
     if (activeButton) {
+      clearFailureClasses(activeButton);
       activeButton.classList.add('is-playing');
       activeButton.setAttribute('aria-pressed', 'true');
     }
@@ -56,7 +68,7 @@
     const src = exactSource(item, value);
     if (src) {
       return runtimeBroken.has(src)
-        ? { status: 'broken', label: 'Audio hỏng', src }
+        ? { status: 'broken', label: 'Audio hỏng đã xác nhận', src, failure: runtimeBroken.get(src) }
         : { status: 'mp3', label: 'MP3 chuẩn', src };
     }
     const fallback = verifiedFallback(item, value);
@@ -67,18 +79,86 @@
     return { status: 'missing', label: 'Chưa có audio', reason: 'Chưa có MP3 hoặc chữ Hán fallback đã xác minh cho đúng thanh.' };
   }
 
+  function classifyFailure(error, mediaError) {
+    const code = Number(mediaError && mediaError.code || 0);
+    if (code === 3) return { kind: 'decode', broken: true, message: 'Trình duyệt không giải mã được file MP3.' };
+    if (code === 4) return { kind: 'unsupported', broken: true, message: 'Nguồn MP3 không được trình duyệt hỗ trợ.' };
+    if (code === 2) return { kind: 'network', broken: false, message: 'Mạng chưa tải kịp file MP3. Chạm lại để thử.' };
+    if (code === 1) return { kind: 'aborted', broken: false, silent: true, message: 'Lượt phát đã bị ngắt.' };
+
+    const name = String(error && error.name || '');
+    if (name === 'AbortError') return { kind: 'aborted', broken: false, silent: true, message: 'Lượt phát trước đã bị ngắt.' };
+    if (name === 'NotAllowedError' || name === 'SecurityError') return { kind: 'blocked', broken: false, message: 'Trình duyệt chưa cho phát âm thanh. Chạm lại để phát.' };
+    if (name === 'NotSupportedError') return { kind: 'unsupported', broken: true, message: 'Nguồn MP3 không được trình duyệt hỗ trợ.' };
+    if (name === 'NetworkError') return { kind: 'network', broken: false, message: 'Kết nối tạm thời chưa tải được MP3. Chạm lại để thử.' };
+    return { kind: 'temporary', broken: false, message: 'Chưa phát được âm thanh. Chạm lại để thử.' };
+  }
+
+  function recordFailure(src, failure, button) {
+    lastFailure = Object.assign({ src: src || '', at: Date.now() }, failure || {});
+    if (failure && failure.broken && src) {
+      runtimeBroken.set(src, lastFailure);
+      transientFailures.delete(src);
+      if (button) button.classList.add('is-verified-broken');
+    } else if (src) {
+      transientFailures.set(src, lastFailure);
+      if (button && !(failure && failure.silent)) {
+        button.classList.add('is-temporary-error');
+        root.setTimeout(function () { button.classList.remove('is-temporary-error'); }, 1800);
+      }
+    }
+    clearButton();
+    return lastFailure;
+  }
+
+  function markSuccessful(src, button) {
+    lastFailure = null;
+    if (src) {
+      runtimeBroken.delete(src);
+      transientFailures.delete(src);
+    }
+    clearFailureClasses(button);
+  }
+
+  function showFailure(failure) {
+    if (!failure || failure.silent) return;
+    App.ui.toast(failure.message, failure.broken ? 'error' : 'warning');
+  }
+
   async function playSource(src, button) {
     if (!src) return false;
     stop();
+    const token = playbackToken;
+    activeSource = src;
     setButton(button);
     player.src = src;
     player.currentTime = 0;
+    let eventHandled = false;
+
+    player.onerror = function () {
+      if (token !== playbackToken || eventHandled) return;
+      eventHandled = true;
+      const failure = classifyFailure(null, player.error);
+      recordFailure(src, failure, button);
+      showFailure(failure);
+    };
+    player.onended = function () {
+      if (token !== playbackToken) return;
+      clearButton();
+    };
+
     try {
       await player.play();
+      if (token !== playbackToken) return false;
+      markSuccessful(src, button);
+      setButton(button);
       return true;
-    } catch (_error) {
-      runtimeBroken.add(src);
-      clearButton();
+    } catch (error) {
+      if (token !== playbackToken || eventHandled) return false;
+      eventHandled = true;
+      const failure = classifyFailure(error, player.error);
+      recordFailure(src, failure, button);
+      showFailure(failure);
       return false;
     }
   }
@@ -119,6 +199,7 @@
     }
 
     stop();
+    const token = playbackToken;
     setButton(button);
     const utterance = new root.SpeechSynthesisUtterance(entry.ttsText || entry.hanzi);
     utterance.lang = voice.lang || 'zh-CN';
@@ -129,16 +210,19 @@
 
     return new Promise(resolve => {
       let started = false;
-      utterance.onstart = function () { started = true; };
+      utterance.onstart = function () { if (token === playbackToken) started = true; };
       utterance.onend = function () {
+        if (token !== playbackToken) return resolve(false);
         activeUtterance = null;
         clearButton();
         resolve(started || true);
       };
       utterance.onerror = function () {
+        if (token !== playbackToken) return resolve(false);
         activeUtterance = null;
-        clearButton();
-        App.ui.toast('Giọng máy không phát được chữ Hán fallback.', 'error');
+        const failure = { kind: 'tts-temporary', broken: false, message: 'Giọng máy chưa phát được chữ Hán fallback. Chạm lại để thử.' };
+        recordFailure('', failure, button);
+        showFailure(failure);
         resolve(false);
       };
       try { root.speechSynthesis.speak(utterance); }
@@ -154,14 +238,13 @@
 
     if (source.status === 'mp3') {
       ok = await playSource(source.src, button);
-      if (!ok) App.ui.toast('File MP3 này không phát được và đã được ghi nhận là hỏng.', 'error');
     } else if (source.status === 'device') {
       ok = await speakHanzi(source.fallback, button);
       if (ok) App.ui.toast(`${source.fallback.pinyin} · ${source.fallback.hanzi} · Giọng máy`, 'info');
     } else if (source.status === 'verify') {
       App.ui.toast(`${item ? item.pinyin : safe}: cần xác minh trước khi bổ sung audio.`, 'warning');
     } else if (source.status === 'broken') {
-      App.ui.toast('File MP3 đã được ghi nhận là hỏng.', 'error');
+      App.ui.toast('File MP3 đã được xác nhận lỗi giải mã hoặc không được hỗ trợ.', 'error');
     } else {
       App.ui.toast(`Chưa có audio chính xác cho ${item ? item.pinyin : safe} thanh ${value}.`, 'warning');
     }
@@ -221,12 +304,21 @@
   async function playMp3Queue(queue, button, callbacks) {
     if (!queue || !queue.length) return false;
     stop();
-    const token = ++queueToken;
+    const token = queueToken;
     queueActive = true;
     setButton(button);
     const hooks = callbacks || {};
 
     return new Promise(function (resolve) {
+      const finishFailure = function (part, error) {
+        if (token !== queueToken) return resolve(false);
+        const failure = classifyFailure(error, player.error);
+        recordFailure(part && part.src, failure, button);
+        showFailure(failure);
+        queueActive = false;
+        resolve(false);
+      };
+
       const playAt = function (index) {
         if (token !== queueToken) return resolve(false);
         if (index >= queue.length) {
@@ -236,21 +328,28 @@
           return resolve(true);
         }
         const part = queue[index];
-        if (typeof hooks.onPartStart === 'function') hooks.onPartStart(part, index);
+        activeSource = part.src;
         player.src = part.src;
         player.currentTime = 0;
-        player.onended = function () { setTimeout(() => playAt(index + 1), Number(part.pause || 80)); };
-        player.onerror = function () {
-          runtimeBroken.add(part.src);
-          stop();
-          App.ui.toast('Một file MP3 trong chuỗi bị lỗi.', 'error');
-          resolve(false);
+        let eventHandled = false;
+        player.onended = function () {
+          if (token !== queueToken) return;
+          setTimeout(() => playAt(index + 1), Number(part.pause || 80));
         };
-        player.play().catch(function () {
-          runtimeBroken.add(part.src);
-          stop();
-          App.ui.toast('Không phát được chuỗi MP3.', 'error');
-          resolve(false);
+        player.onerror = function () {
+          if (token !== queueToken || eventHandled) return;
+          eventHandled = true;
+          finishFailure(part, null);
+        };
+        player.play().then(function () {
+          if (token !== queueToken) return;
+          markSuccessful(part.src, button);
+          setButton(button);
+          if (typeof hooks.onPartStart === 'function') hooks.onPartStart(part, index);
+        }).catch(function (error) {
+          if (token !== queueToken || eventHandled) return;
+          eventHandled = true;
+          finishFailure(part, error);
         });
       };
       playAt(0);
@@ -304,15 +403,15 @@
       missing: verify + items.filter(item => !item.hasExactAudio && !item.hasVerifiedFallback && !item.needsVerification).length,
       verify,
       broken: packagedBroken + runtimeBroken.size,
-      runtimeBroken: Array.from(runtimeBroken)
+      temporary: transientFailures.size,
+      runtimeBroken: Array.from(runtimeBroken.keys()),
+      transientFailures: Array.from(transientFailures.values()),
+      lastFailure
     };
   }
 
-  player.addEventListener('ended', function () { if (!queueActive) clearButton(); });
-  player.addEventListener('pause', function () { if (!player.ended && !queueActive) clearButton(); });
-  player.addEventListener('error', function () {
-    if (player.src) runtimeBroken.add(player.getAttribute('src') || player.src);
-    clearButton();
+  player.addEventListener('pause', function () {
+    if (!player.ended && !queueActive) clearButton();
   });
   document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); });
 
@@ -321,6 +420,7 @@
     exactSource,
     verifiedFallback,
     availability,
+    classifyFailure,
     playSyllable,
     inspectShadowing,
     playShadowing,

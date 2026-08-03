@@ -24,13 +24,13 @@
     if (record.type === 'syllable') {
       const tone = listenTone(record.item);
       return `<article class="review-row"><div class="review-copy"><b>${esc()(App.utils.markTone(record.item.pinyin, tone || 1))}</b><span>${esc()(record.subtitle)} · ${esc()(sourceLabel(record.item, tone))}</span><div class="status-row">${App.ui.statusChips('syllable', record.id)}</div></div><div class="review-actions">
-        <button type="button" class="icon-button" data-action="play-syllable" data-safe="${esc()(record.id)}" data-tone="${tone}" ${tone ? '' : 'disabled'}>🔊</button>
+        <button type="button" class="icon-button${App.ui.audioSelectionClass(record.id, tone)}" data-action="play-syllable" data-safe="${esc()(record.id)}" data-tone="${tone}" data-audio-key="${esc()(App.ui.audioKey(record.id, tone))}" data-selection-context="review" ${tone ? '' : 'disabled'}>🔊</button>
         <button type="button" class="mini-button" data-action="toggle-progress" data-type="syllable" data-id="${esc()(record.id)}" data-field="mastered">★ Vững</button>
         ${Number(p.wrong || 0) ? `<button type="button" class="mini-button" data-action="clear-wrong" data-type="syllable" data-id="${esc()(record.id)}">Xóa lỗi</button>` : ''}
       </div></article>`;
     }
     const audit = App.audio.inspectShadowing(record.item);
-    return `<article class="review-row"><div class="review-copy"><b class="hanzi-line">${esc()(record.item.zh)}</b><span>${esc()(record.item.pinyin)}</span><div class="status-row">${App.ui.statusChips('shadowing', record.id)}</div></div><div class="review-actions"><button type="button" class="icon-button" data-action="play-shadowing" data-id="${esc()(record.id)}" ${audit.ready ? '' : 'disabled'}>${audit.ready ? '🔊' : '🔇'}</button><button type="button" class="mini-button" data-action="toggle-progress" data-type="shadowing" data-id="${esc()(record.id)}" data-field="mastered">★ Vững</button></div></article>`;
+    return `<article class="review-row"><div class="review-copy"><b class="hanzi-line">${esc()(record.item.zh)}</b><span>${esc()(record.item.pinyin)}</span><div class="status-row">${App.ui.statusChips('shadowing', record.id)}</div></div><div class="review-actions"><button type="button" class="icon-button${App.state.ui.selectedAudioKey === `shadowing:${record.id}` ? ' is-selected' : ''}" data-action="play-shadowing" data-id="${esc()(record.id)}" data-selection-key="shadowing:${esc()(record.id)}" data-selection-context="review-shadowing" ${audit.ready ? '' : 'disabled'}>${audit.ready ? '🔊' : '🔇'}</button><button type="button" class="mini-button" data-action="toggle-progress" data-type="shadowing" data-id="${esc()(record.id)}" data-field="mastered">★ Vững</button></div></article>`;
   }
 
   function render() {

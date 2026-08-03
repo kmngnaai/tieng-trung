@@ -44,7 +44,7 @@
     return `<section class="audio-health" aria-label="Báo cáo audio">
       <div class="audio-health__item is-ready"><span>Khả dụng</span><b>${report.available}/${report.total}</b><small>${report.mp3} MP3 · ${report.device} giọng máy</small></div>
       <div class="audio-health__item is-missing"><span>Thiếu / xác minh</span><b>${report.missing}</b><small>${report.verify} âm đang cần xác minh</small></div>
-      <div class="audio-health__item is-broken"><span>Hỏng</span><b>${report.broken}</b><small>kiểm toán đóng gói + lỗi phiên này</small></div>
+      <div class="audio-health__item is-broken"><span>Hỏng thật</span><b>${report.broken}</b><small>${report.temporary} lỗi tạm thời không bị ghi thành hỏng</small></div>
     </section>`;
   }
 
@@ -59,13 +59,13 @@
       : source.label;
     return `${audioReport()}<section class="listen-layout"><article class="selected-syllable"><span class="eyebrow">ÂM ĐANG CHỌN</span><div class="selected-pinyin">${esc()(App.utils.markTone(item.pinyin, App.state.tone))}</div><p>${esc()(item.initialLabel || '∅')} + ${esc()(item.chartFinal || item.final || '')}</p>
       ${toneControls(item)}
-      <button type="button" class="primary-button full" data-action="play-syllable" data-safe="${esc()(item.safe)}" data-tone="${App.state.tone}" ${canPlay(source.status) ? '' : 'disabled'}>🔊 Nghe thanh ${App.state.tone}</button>
+      <button type="button" class="primary-button full${App.ui.audioSelectionClass(item.safe, App.state.tone)}" data-action="play-syllable" data-safe="${esc()(item.safe)}" data-tone="${App.state.tone}" data-audio-key="${esc()(App.ui.audioKey(item.safe, App.state.tone))}" ${canPlay(source.status) ? '' : 'disabled'}>🔊 Nghe thanh ${App.state.tone}</button>
       <p class="audio-source-badge ${sourceClass(source.status)}">${esc()(sourceDetail)}</p>
       ${source.status === 'verify' ? `<p class="verify-note">${esc()(source.reason || 'Chưa có nguồn đã xác minh.')}</p>` : ''}
       <div class="rule-panel"><b>${esc()(item.rule || 'Quy tắc')}</b><span>${esc()(item.hint || '')}</span></div></article>
       <div class="lookup-column"><section class="panel"><h3>Tra âm</h3><div class="search-row"><input type="search" value="${esc()(App.state.search)}" placeholder="ma, shi, xue, lü…" data-action="search-syllable"><button type="button" class="primary-button" data-action="submit-search">Tra</button></div>
-      ${results.length ? `<div class="chip-grid">${results.map(row => `<button type="button" class="pinyin-chip" data-action="select-syllable" data-safe="${esc()(row.safe)}">${esc()(row.pinyin)}</button>`).join('')}</div>` : '<p class="muted">Nhập âm không dấu hoặc có dấu để tìm.</p>'}</section>
-      ${(App.model.pinyin.quickGroups || []).map(group => `<section class="panel compact"><h3>${esc()(group.title)}</h3><div class="chip-grid">${group.items.map(py => { const row = App.data.findSyllable(py); return row ? `<button type="button" class="pinyin-chip" data-action="select-syllable" data-safe="${esc()(row.safe)}">${esc()(row.pinyin)}</button>` : ''; }).join('')}</div></section>`).join('')}</div></section>`;
+      ${results.length ? `<div class="chip-grid">${results.map(row => `<button type="button" class="pinyin-chip${App.ui.syllableSelectionClass(row.safe)}" data-action="select-syllable" data-safe="${esc()(row.safe)}" data-select-safe="${esc()(row.safe)}">${esc()(row.pinyin)}</button>`).join('')}</div>` : '<p class="muted">Nhập âm không dấu hoặc có dấu để tìm.</p>'}</section>
+      ${(App.model.pinyin.quickGroups || []).map(group => `<section class="panel compact"><h3>${esc()(group.title)}</h3><div class="chip-grid">${group.items.map(py => { const row = App.data.findSyllable(py); return row ? `<button type="button" class="pinyin-chip${App.ui.syllableSelectionClass(row.safe)}" data-action="select-syllable" data-safe="${esc()(row.safe)}" data-select-safe="${esc()(row.safe)}">${esc()(row.pinyin)}</button>` : ''; }).join('')}</div></section>`).join('')}</div></section>`;
   }
 
   function initialRows() {
@@ -99,9 +99,9 @@
     const tone = Number(App.state.tone || 2);
     const source = App.audio.availability(item, tone);
     if (App.state.hideEmpty && !canPlay(source.status)) return '<td class="matrix-empty is-filtered" aria-label="Đã lọc">—</td>';
-    const selected = item.safe === App.state.selected ? ' is-selected' : '';
+    const selected = App.ui.isAudioSelected(item.safe, tone) ? ' is-selected' : '';
     return `<td class="matrix-value ${sourceClass(source.status)}${selected}" data-matrix-safe="${esc()(item.safe)}">
-      <button type="button" data-action="${action}" data-safe="${esc()(item.safe)}" data-tone="${tone}" ${extra || ''} aria-label="${esc()(`${item.pinyin}, ${source.label}`)}">
+      <button type="button" class="matrix-audio-button${App.ui.audioSelectionClass(item.safe, tone)}" data-action="${action}" data-safe="${esc()(item.safe)}" data-tone="${tone}" data-audio-key="${esc()(App.ui.audioKey(item.safe, tone))}" ${extra || ''} aria-label="${esc()(`${item.pinyin}, ${source.label}`)}">
         <b>${esc()(App.utils.markTone(item.pinyin, tone))}</b><small>${sourceShort(source.status)}</small>
       </button>
     </td>`;
@@ -143,9 +143,9 @@
     return `${audioReport()}<section class="section-head"><div><span class="eyebrow">18 BẢNG NHỎ</span><h2>Học theo nhóm ghép</h2><p class="muted">Chạm âm chỉ phát tại chỗ; bảng đang mở không tự thu lại.</p></div></section>${renderToneToolbar()}<div class="mini-table-grid">${(App.model.pinyin.miniTables || []).map(table => {
       const safes = tableSafes(table);
       return `<details class="mini-table" data-mini-table-id="${table.no}" ${open[String(table.no)] ? 'open' : ''}><summary><span>${String(table.no).padStart(2,'0')}</span><b>${esc()(table.title)}</b><small>${safes.length} MP3 thanh ${App.state.tone}</small></summary>
-        <div class="mini-table__body"><div class="mini-table-toolbar"><button type="button" class="secondary-button" data-action="play-mini-table" data-table-no="${table.no}" ${safes.length ? '' : 'disabled'}>▶ Đọc lần lượt MP3</button><span>Âm thiếu không được ghép thay thế.</span></div>
+        <div class="mini-table__body"><div class="mini-table-toolbar"><button type="button" class="secondary-button${App.state.ui.selectedAudioKey === `table:${table.no}` ? ' is-selected' : ''}" data-action="play-mini-table" data-table-no="${table.no}" data-selection-key="table:${table.no}" data-selection-context="mini-table" ${safes.length ? '' : 'disabled'}>▶ Đọc lần lượt MP3</button><span>Âm thiếu không được ghép thay thế.</span></div>
         ${(table.meta || []).length ? `<div class="mini-table-meta">${table.meta.map(meta => `<div><b>${esc()(meta.label)}</b><span>${esc()(meta.value)}</span></div>`).join('')}</div>` : ''}
-        <div class="mini-table-scroll"><table class="mini-matrix"><thead><tr><th>Thanh mẫu</th>${table.finals.map(final => `<th>${esc()(final)}</th>`).join('')}</tr></thead><tbody>${table.initials.map(initial => `<tr><th>${esc()(initial || '∅')}</th>${table.finals.map(final => matrixCell(findMatrixItem(initial, final), 'play-table-syllable', `data-table-no="${table.no}"`)).join('')}</tr>`).join('')}</tbody></table></div>
+        <div class="mini-table-scroll" data-mini-table-scroll="${table.no}"><table class="mini-matrix"><thead><tr><th>Thanh mẫu</th>${table.finals.map(final => `<th>${esc()(final)}</th>`).join('')}</tr></thead><tbody>${table.initials.map(initial => `<tr><th>${esc()(initial || '∅')}</th>${table.finals.map(final => matrixCell(findMatrixItem(initial, final), 'play-table-syllable', `data-table-no="${table.no}"`)).join('')}</tr>`).join('')}</tbody></table></div>
         ${(table.notes || []).length ? `<aside class="mini-table-notes"><b>Chú ý cần nhớ</b><ul>${table.notes.map(note => `<li>${esc()(note)}</li>`).join('')}</ul></aside>` : ''}</div>
       </details>`;
     }).join('')}</div>`;
@@ -156,13 +156,15 @@
     if (!item) return '';
     const tone = preferredTone(item);
     const source = App.audio.availability(item, tone);
-    return `<button type="button" class="rule-audio-chip ${sourceClass(source.status)}" data-action="play-inline-syllable" data-safe="${esc()(item.safe)}" data-tone="${tone}"><span>${esc()(App.utils.markTone(item.pinyin, tone))}</span><small>${sourceShort(source.status)}</small></button>`;
+    return `<button type="button" class="rule-audio-chip ${sourceClass(source.status)}${App.ui.audioSelectionClass(item.safe, tone)}" data-action="play-inline-syllable" data-safe="${esc()(item.safe)}" data-tone="${tone}" data-audio-key="${esc()(App.ui.audioKey(item.safe, tone))}" data-selection-context="rule"><span>${esc()(App.utils.markTone(item.pinyin, tone))}</span><small>${sourceShort(source.status)}</small></button>`;
   }
 
   function renderRules() {
     const data = App.model.rules || { categories: [] };
+    const openRules = App.state.ui.openRuleCategories || {};
+    const hasSavedRuleState = Object.keys(openRules).length > 0;
     return `<section class="rules-intro panel"><span class="eyebrow">QUY TẮC TỔNG & CHI TIẾT</span><h2>${esc()(data.title || 'Quy tắc phát âm Pinyin')}</h2><p>${esc()(data.intro || '')}</p></section>
-      <div class="rules-accordion">${(data.categories || []).map((category, index) => `<details class="rule-category tone-${esc()(category.tone || 'mint')}" ${index === 0 ? 'open' : ''}><summary><div><span>${String(index + 1).padStart(2,'0')}</span><b>${esc()(category.title)}</b></div><p>${esc()(category.summary)}</p></summary><div class="rule-category__body">
+      <div class="rules-accordion">${(data.categories || []).map((category, index) => `<details class="rule-category tone-${esc()(category.tone || 'mint')}" data-rule-category-id="${esc()(category.id || String(index))}" ${(openRules[category.id] || (!hasSavedRuleState && index === 0)) ? 'open' : ''}><summary><div><span>${String(index + 1).padStart(2,'0')}</span><b>${esc()(category.title)}</b></div><p>${esc()(category.summary)}</p></summary><div class="rule-category__body">
         <div class="rule-detail-grid">${(category.sections || []).map(section => `<article class="rule-detail"><h3>${esc()(section.title)}</h3><p>${esc()(section.body)}</p>${(section.related || []).length ? `<div class="rule-chip-row">${section.related.map(ruleChip).join('')}</div>` : ''}</article>`).join('')}</div>
         ${(category.notes || []).length ? `<aside class="rule-notes"><b>Ghi nhớ</b><ul>${category.notes.map(note => `<li>${esc()(note)}</li>`).join('')}</ul></aside>` : ''}
       </div></details>`).join('')}</div>`;

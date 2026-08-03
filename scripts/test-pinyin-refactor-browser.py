@@ -5,7 +5,7 @@ import shutil
 from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'test-output' / 'pinyin-content-chart-v2'
+OUT = ROOT / 'test-output' / 'pinyin-audio-scroll-fix-v1'
 OUT.mkdir(parents=True, exist_ok=True)
 MIMES = {
     '.html':'text/html', '.js':'application/javascript', '.css':'text/css', '.json':'application/json',
@@ -34,8 +34,22 @@ def html_with_base():
     storage = f"""<script>(()=>{{
       let d={{'tiengtrung_pinyin_v12_state':{initial!r}}};
       Object.defineProperty(window,'localStorage',{{configurable:true,value:{{getItem:k=>Object.prototype.hasOwnProperty.call(d,k)?d[k]:null,setItem:(k,v)=>{{d[k]=String(v)}},removeItem:k=>{{delete d[k]}},clear:()=>{{d={{}}}}}}}});
-      window.__played=[]; window.__spoken=[];
-      Object.defineProperty(HTMLMediaElement.prototype,'play',{{configurable:true,value:function(){{window.__played.push(this.getAttribute('src')||this.src||'');setTimeout(()=>this.dispatchEvent(new Event('ended')),5);return Promise.resolve();}}}});
+      window.__played=[]; window.__spoken=[]; window.__playMode='ok';
+      Object.defineProperty(HTMLMediaElement.prototype,'play',{{configurable:true,value:function(){{
+        const src=this.getAttribute('src')||this.src||'';
+        window.__played.push(src);
+        try{{Object.defineProperty(this,'error',{{configurable:true,value:null}});}}catch(_e){{}}
+        if(window.__playMode==='abort') return Promise.reject(new DOMException('aborted','AbortError'));
+        if(window.__playMode==='blocked') return Promise.reject(new DOMException('blocked','NotAllowedError'));
+        if(window.__playMode==='network') return Promise.reject(new DOMException('network','NetworkError'));
+        if(window.__playMode==='decode'){{
+          try{{Object.defineProperty(this,'error',{{configurable:true,value:{{code:3}}}});}}catch(_e){{}}
+          setTimeout(()=>this.dispatchEvent(new Event('error')),0);
+          return Promise.reject(new DOMException('decode','NotSupportedError'));
+        }}
+        setTimeout(()=>this.dispatchEvent(new Event('ended')),5);
+        return Promise.resolve();
+      }}}});
       Object.defineProperty(HTMLMediaElement.prototype,'pause',{{configurable:true,value:function(){{}}}});
       class FakeUtterance{{constructor(text){{this.text=text;this.lang='';this.voice=null;this.rate=1;this.pitch=1;}}}}
       const zhVoice={{name:'Test Mandarin',lang:'zh-CN'}};
@@ -176,6 +190,105 @@ with sync_playwright() as p:
     assert not errors, '\n'.join(errors)
     ctx.close()
 
+    regression_ctx = browser.new_context(viewport={"width":390,"height":844}, is_mobile=True, has_touch=True)
+    regression = regression_ctx.new_page()
+    regression_errors=[]
+    regression.on('console', lambda msg: regression_errors.append(f'console:{msg.type}:{msg.text}') if msg.type == 'error' else None)
+    regression.on('pageerror', lambda exc: regression_errors.append(f'pageerror:{exc}'))
+    load(regression)
+    regression.locator('[data-action="set-tab"][data-tab="listen"]').evaluate('(el)=>el.click()')
+    regression.wait_for_selector('.selected-syllable')
+    regression.locator('[data-action="set-listen-mode"][data-mode="rules"]').evaluate('(el)=>el.click()')
+    regression.wait_for_selector('.rule-audio-chip.is-mp3')
+    regression.wait_for_timeout(180)
+    chip=regression.locator('.rule-audio-chip.is-mp3').first
+    chip.evaluate('(el)=>window.scrollTo(0,Math.max(0,el.getBoundingClientRect().top+window.scrollY-260))')
+    regression.wait_for_timeout(40)
+    before_scroll=regression.evaluate('window.scrollY')
+    chip.evaluate('(el)=>el.click()')
+    regression.wait_for_timeout(30)
+    after_scroll=regression.evaluate('window.scrollY')
+    assert abs(after_scroll-before_scroll) <= 2, (before_scroll, after_scroll)
+    assert chip.evaluate('(el)=>el.classList.contains("is-selected")')
+    regression.screenshot(path=str(OUT/'09-rule-chip-selected-mobile.png'), full_page=False)
+
+    regression.evaluate("window.__playMode='abort'")
+    chip.evaluate('(el)=>el.click()')
+    regression.wait_for_timeout(30)
+    report=regression.evaluate('PinyinApp.audio.report()')
+    assert report['broken']==0 and report['temporary']>=1, report
+    regression.evaluate("window.__playMode='ok'")
+    chip.evaluate('(el)=>el.click()')
+    regression.wait_for_timeout(30)
+    report=regression.evaluate('PinyinApp.audio.report()')
+    assert report['broken']==0 and report['temporary']==0, report
+
+    regression.evaluate("window.__playMode='blocked'")
+    chip.evaluate('(el)=>el.click()')
+    regression.wait_for_timeout(30)
+    report=regression.evaluate('PinyinApp.audio.report()')
+    assert report['broken']==0 and report['temporary']>=1, report
+    assert chip.evaluate('(el)=>el.classList.contains("is-temporary-error")')
+    regression.evaluate("window.__playMode='ok'")
+    chip.evaluate('(el)=>el.click()')
+    regression.wait_for_timeout(2700)
+
+    regression.locator('[data-action="set-listen-mode"][data-mode="tables"]').evaluate('(el)=>el.click()')
+    regression.wait_for_selector('.mini-table')
+    first=regression.locator('.mini-table').first
+    first.locator('summary').evaluate('(el)=>el.click()')
+    regression.wait_for_timeout(20)
+    assert first.get_attribute('open') is not None
+    first_scroll=first.locator('[data-mini-table-scroll]')
+    first_scroll.evaluate('(el)=>el.scrollLeft=42')
+    regression.evaluate('window.scrollTo(0, Math.min(document.body.scrollHeight-844, 620))')
+    regression.wait_for_timeout(220)
+    saved_y=regression.evaluate('window.scrollY')
+    regression.locator('[data-action="set-listen-mode"][data-mode="chart"]').evaluate('(el)=>el.click()')
+    regression.wait_for_selector('.pinyin-matrix')
+    regression.locator('[data-pinyin-matrix-scroll]').evaluate('(el)=>el.scrollLeft=180')
+    regression.wait_for_timeout(220)
+    regression.locator('[data-action="set-listen-mode"][data-mode="tables"]').evaluate('(el)=>el.click()')
+    regression.wait_for_selector('.mini-table')
+    regression.wait_for_timeout(180)
+    first=regression.locator('.mini-table').first
+    assert first.get_attribute('open') is not None
+    assert abs(first.locator('[data-mini-table-scroll]').evaluate('(el)=>el.scrollLeft')-42) <= 2
+    assert abs(regression.evaluate('window.scrollY')-saved_y) <= 3, (saved_y, regression.evaluate('window.scrollY'))
+    regression.screenshot(path=str(OUT/'10-table-position-restored-mobile.png'), full_page=False)
+
+    regression.locator('[data-action="set-listen-mode"][data-mode="chart"]').evaluate('(el)=>el.click()')
+    regression.wait_for_selector('.pinyin-matrix')
+    regression.wait_for_timeout(180)
+    assert abs(regression.locator('[data-pinyin-matrix-scroll]').evaluate('(el)=>el.scrollLeft')-180) <= 2
+
+    regression.locator('[data-action="set-listen-mode"][data-mode="rules"]').evaluate('(el)=>el.click()')
+    regression.wait_for_selector('.rule-category')
+    second_rule=regression.locator('.rule-category').nth(1)
+    if second_rule.get_attribute('open') is None:
+        second_rule.locator('summary').evaluate('(el)=>el.click()')
+    regression.wait_for_timeout(30)
+    regression.evaluate('window.scrollTo(0, Math.min(document.body.scrollHeight-844, 500))')
+    regression.wait_for_timeout(220)
+    rule_y=regression.evaluate('window.scrollY')
+    regression.locator('[data-action="set-tab"][data-tab="progress"]').evaluate('(el)=>el.click()')
+    regression.wait_for_selector('.metric-grid')
+    regression.locator('[data-action="set-tab"][data-tab="listen"]').evaluate('(el)=>el.click()')
+    regression.wait_for_selector('.rule-category')
+    regression.wait_for_timeout(180)
+    assert regression.locator('.rule-category').nth(1).get_attribute('open') is not None
+    assert abs(regression.evaluate('window.scrollY')-rule_y) <= 3, (rule_y, regression.evaluate('window.scrollY'))
+
+    regression.evaluate("window.__playMode='decode'")
+    decode_chip=regression.locator('.rule-audio-chip.is-mp3').nth(1)
+    decode_chip.evaluate('(el)=>el.click()')
+    regression.wait_for_timeout(40)
+    report=regression.evaluate('PinyinApp.audio.report()')
+    assert report['broken']==1, report
+    assert decode_chip.evaluate('(el)=>el.classList.contains("is-verified-broken")')
+    assert not regression_errors, '\n'.join(regression_errors)
+    regression_ctx.close()
+
     for width, height in [(360, 800), (430, 932)]:
         extra = browser.new_context(viewport={'width': width, 'height': height}, is_mobile=True, has_touch=True)
         mobile = extra.new_page(); load(mobile)
@@ -195,4 +308,4 @@ with sync_playwright() as p:
     assert_no_global_overflow(desktop)
     desktop.screenshot(path=str(OUT/'08-chart-desktop.png'), full_page=True)
     desktop_ctx.close(); browser.close()
-print('Pinyin Content & Chart V2 browser: PASS')
+print('Pinyin Audio + Scroll Fix V1 browser: PASS')

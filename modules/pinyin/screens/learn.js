@@ -15,7 +15,7 @@
 
   function toneButton(item, tone) {
     const source = App.audio.availability(item, tone);
-    return `<button type="button" class="tone-audio ${sourceClass(source.status)}" data-action="play-syllable" data-safe="${esc()(item.safe)}" data-tone="${tone}" aria-label="${esc()(`${item.pinyin} thanh ${tone}, ${source.label}`)}">
+    return `<button type="button" class="tone-audio ${sourceClass(source.status)}${App.ui.audioSelectionClass(item.safe, tone)}" data-action="play-syllable" data-safe="${esc()(item.safe)}" data-tone="${tone}" data-audio-key="${esc()(App.ui.audioKey(item.safe, tone))}" aria-label="${esc()(`${item.pinyin} thanh ${tone}, ${source.label}`)}">
       <b>${esc()(App.utils.markTone(item.pinyin, tone))}</b><small>${sourceShort(source.status)}</small>
     </button>`;
   }
@@ -29,7 +29,7 @@
       : source.label;
     return `<article class="study-card syllable-card" data-syllable-card="${esc()(item.safe)}">
       <div class="study-card__head"><div><span class="eyebrow">ÂM TIẾT</span><h3>${esc()(App.utils.markTone(item.pinyin, tone))}</h3><p>${esc()(item.initialLabel || '∅')} + ${esc()(item.chartFinal || item.final || '')}</p></div>
-        <button type="button" class="icon-button ${sourceClass(source.status)}" data-action="play-syllable" data-safe="${esc()(item.safe)}" data-tone="${tone}" aria-label="Nghe âm đang chọn">${canPlay(source.status) ? '🔊' : '◌'}</button>
+        <button type="button" class="icon-button ${sourceClass(source.status)}${App.ui.audioSelectionClass(item.safe, tone)}" data-action="play-syllable" data-safe="${esc()(item.safe)}" data-tone="${tone}" data-audio-key="${esc()(App.ui.audioKey(item.safe, tone))}" aria-label="Nghe âm đang chọn">${canPlay(source.status) ? '🔊' : '◌'}</button>
       </div>
       <div class="tone-audio-row">${[1,2,3,4].map(t => toneButton(item, t)).join('')}</div>
       <p class="audio-source-badge ${sourceClass(source.status)}">${esc()(fallbackText)}</p>
@@ -50,7 +50,7 @@
     const p = App.store.progress('shadowing', item.id);
     const source = audit.ready ? (audit.type === 'direct' ? 'audio mẫu nguyên câu' : 'ghép nghiêm ngặt từ MP3 đúng từng âm') : `đã khóa: ${audit.missing.slice(0,2).join('; ')}`;
     return `<article class="study-card shadowing-card"><div class="study-card__head"><div><span class="eyebrow">SHADOWING</span><h3 class="hanzi-line">${esc()(item.zh)}</h3><p>${esc()(item.pinyin)}</p></div>
-      <button type="button" class="icon-button" data-action="play-shadowing" data-id="${esc()(item.id)}" ${audit.ready ? '' : 'disabled'} aria-label="Nghe câu">${audit.ready ? '🔊' : '🔇'}</button></div>
+      <button type="button" class="icon-button${App.state.ui.selectedAudioKey === `shadowing:${item.id}` ? ' is-selected' : ''}" data-action="play-shadowing" data-id="${esc()(item.id)}" data-selection-key="shadowing:${esc()(item.id)}" data-selection-context="shadowing" ${audit.ready ? '' : 'disabled'} aria-label="Nghe câu">${audit.ready ? '🔊' : '🔇'}</button></div>
       <p>${esc()(item.vi)}</p><p class="audio-source${audit.ready ? '' : ' is-warning'}">${esc()(source)}</p>
       <div class="study-card__footer"><div class="status-row">${App.ui.statusChips('shadowing', item.id)}</div><div class="compact-actions"><button type="button" class="mini-button${p.shadowed ? ' is-active' : ''}" data-action="toggle-progress" data-type="shadowing" data-id="${esc()(item.id)}" data-field="shadowed">Đã nhại</button><button type="button" class="mini-button${p.mastered ? ' is-active' : ''}" data-action="toggle-progress" data-type="shadowing" data-id="${esc()(item.id)}" data-field="mastered">★ Vững</button></div></div>
     </article>`;

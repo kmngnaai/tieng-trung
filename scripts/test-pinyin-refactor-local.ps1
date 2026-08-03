@@ -17,6 +17,9 @@ if ($LASTEXITCODE -ne 0) { throw "Refactor contract test failed" }
 node tests/test_pinyin_content_chart_v2_contract.js
 if ($LASTEXITCODE -ne 0) { throw "Content & Chart V2 contract test failed" }
 
+node tests/test_pinyin_audio_scroll_fix_contract.js
+if ($LASTEXITCODE -ne 0) { throw "Audio + scroll contract test failed" }
+
 python scripts/audit-pinyin-audio.py
 if ($LASTEXITCODE -ne 0) { throw "Audio audit failed" }
 
@@ -26,4 +29,4 @@ if ($LASTEXITCODE -ne 0) { throw "Browser test failed" }
 python -m unittest discover -s tests -p "test_*.py"
 if ($LASTEXITCODE -ne 0) { throw "Regression tests failed" }
 
-Write-Host "Pinyin Content & Chart V2: ALL PASS" -ForegroundColor Green
+Write-Host "Pinyin Audio + Scroll Fix V1: ALL PASS" -ForegroundColor Green
