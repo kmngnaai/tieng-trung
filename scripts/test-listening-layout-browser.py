@@ -64,7 +64,7 @@ def assert_centered(page, selector, expected_count):
     return result
 
 def mobile_word_choice_scenario(browser):
-    context = browser.new_context(viewport={'width': 430, 'height': 400}, is_mobile=True, has_touch=True)
+    context = browser.new_context(viewport={'width': 430, 'height': 320}, is_mobile=True, has_touch=True)
     page = context.new_page(); page.set_default_timeout(10000)
     load_app(page); open_new_hsk_unit(page)
     page.locator('[data-activity="word-choice"][data-choice-count="4"]').click()

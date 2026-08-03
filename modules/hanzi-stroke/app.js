@@ -8125,7 +8125,7 @@ if(window.HanziWriter){
     overlay.id = 'hskFlashcardOverlay';
     overlay.className = 'hsk-flashcard-overlay';
     overlay.hidden = true;
-    overlay.innerHTML = '<section class="hsk-flashcard-shell" role="dialog" aria-modal="true" aria-label="Học Flashcard"><div id="hskFlashcardBody"></div></section>';
+    overlay.innerHTML = '<section class="hsk-flashcard-shell hsk-flashcard-shell--dialog" role="dialog" aria-modal="true" aria-label="Học Flashcard"><div id="hskFlashcardBody" class="hsk-flashcard-body"></div></section>';
     document.body.appendChild(overlay);
     overlay.addEventListener('click', event => {
       const session = hskState.flashcardSession;
@@ -8212,6 +8212,19 @@ if(window.HanziWriter){
       moveFlashcard(dx < 0 ? 1 : -1);
     }, { passive: true });
     return overlay;
+  }
+
+  function setFlashcardHostMode(overlay, isActivity){
+    if(!overlay) return;
+    const shell = overlay.querySelector('.hsk-flashcard-shell');
+    const body = overlay.querySelector('#hskFlashcardBody');
+    overlay.classList.toggle('hsk-flashcard-overlay--activity', Boolean(isActivity));
+    overlay.classList.toggle('hsk-flashcard-overlay--dialog', !isActivity);
+    shell?.classList.toggle('hsk-flashcard-shell--activity', Boolean(isActivity));
+    shell?.classList.toggle('hsk-flashcard-shell--dialog', !isActivity);
+    body?.classList.toggle('hsk-flashcard-body--activity', Boolean(isActivity));
+    body?.classList.toggle('hsk-flashcard-body--dialog', !isActivity);
+    shell?.setAttribute('aria-label', isActivity ? 'Phiên học Flashcard' : 'Thiết lập Flashcard');
   }
 
   function closeFlashcardOverlay(){
@@ -8888,6 +8901,7 @@ if(window.HanziWriter){
     const body = overlay.querySelector('#hskFlashcardBody');
     if(!body) return;
     if(hskState.flashcardStatsOpen){
+      setFlashcardHostMode(overlay, false);
       body.innerHTML = renderFlashcardStats();
       overlay.hidden = false;
       document.body.classList.add('hsk-flashcard-open');
@@ -8895,6 +8909,8 @@ if(window.HanziWriter){
     }
     const session = hskState.flashcardSession;
     if(!session) return;
+    const isActivity = session.phase === 'study' || session.phase === 'complete';
+    setFlashcardHostMode(overlay, isActivity);
     body.innerHTML = session.phase === 'setup'
       ? renderFlashcardSetup(session)
       : (session.phase === 'complete' ? renderFlashcardComplete(session) : renderFlashcardStudy(session));

@@ -62,6 +62,8 @@ def test_listening(browser):
     page.locator('[data-match-action="apply-custom-limit"]').click()
     saved_settings = page.evaluate("() => JSON.parse(localStorage.getItem('tieng-trung-interaction-settings-v1'))")
     assert saved_settings['matchingPairLimitWord'] == 12
+    custom_capacity = int(page.locator('.tt-match').get_attribute('data-match-capacity'))
+    assert custom_capacity > 8, custom_capacity
     page.screenshot(path=str(OUT/'listening-matching-settings-mobile.png'), full_page=True)
     page.locator('[data-match-action="set-auto-next-delay"][data-match-value="0"]').click()
     page.locator('[data-match-action="close-settings"]').click()
@@ -116,6 +118,47 @@ def test_listening(browser):
     page.wait_for_function('target => Math.abs(window.scrollY - target) <= 4', arg=origin_scroll, timeout=3000)
     restored_scroll = page.evaluate('window.scrollY')
     assert abs(restored_scroll - origin_scroll) <= 4, (origin_scroll, restored_scroll)
+
+    word_choice = page.locator('[data-action="start-dataset-activity"][data-activity="word-choice"][data-choice-count="4"]')
+    word_choice.scroll_into_view_if_needed()
+    word_choice.click()
+    page.wait_for_selector('.word-choice-grid[data-choice-count="4"]')
+    options = page.locator('.word-choice-option')
+    assert options.count() == 4
+    rects = options.evaluate_all("els => els.map(el => { const r=el.getBoundingClientRect(); return {x:Math.round(r.x), y:Math.round(r.y), w:Math.round(r.width)}; })")
+    assert abs(rects[0]['y'] - rects[1]['y']) <= 2, rects
+    assert abs(rects[2]['y'] - rects[3]['y']) <= 2, rects
+    assert abs(rects[0]['x'] - rects[2]['x']) <= 2, rects
+    assert rects[0]['w'] < 190, rects
+    heights = options.evaluate_all("els => els.map(el => Math.round(el.getBoundingClientRect().height))")
+    assert max(heights) <= 80, heights
+    pinyin_toggle = page.locator('[data-action="toggle-word-choice-pinyin"]')
+    assert pinyin_toggle.count() == 1
+    before_pinyin = page.locator('.word-choice-option span').count()
+    assert before_pinyin > 0
+    pinyin_toggle.click()
+    assert page.locator('.word-choice-option span').count() == 0
+    pinyin_settings = page.evaluate("() => JSON.parse(localStorage.getItem('tieng-trung-listening-settings-v1'))")
+    assert pinyin_settings['showPinyin'] is False
+    page.locator('[data-action="toggle-word-choice-pinyin"]').click()
+    page.screenshot(path=str(OUT/'listening-word-choice-2x2-mobile.png'), full_page=True)
+    page.locator('[data-action="open-settings"]').click()
+    page.wait_for_selector('.settings-sheet')
+    page.evaluate("""() => {
+      window.__settingsMutationCount = 0;
+      window.__settingsObserver = new MutationObserver(() => { window.__settingsMutationCount += 1; });
+      window.__settingsObserver.observe(document.getElementById('app'), {childList:true, subtree:true});
+    }""")
+    page.wait_for_timeout(1200)
+    assert page.locator('.settings-sheet').is_visible()
+    mutation_count = page.evaluate("() => { window.__settingsObserver.disconnect(); return window.__settingsMutationCount; }")
+    assert mutation_count < 8, mutation_count
+    page.locator('[data-action="set-voice-source"][data-source="device"]').click()
+    page.wait_for_timeout(100)
+    voice_settings = page.evaluate("() => JSON.parse(localStorage.getItem('tieng-trung-listening-settings-v1'))")
+    assert voice_settings['voiceSource'] == 'device'
+    page.screenshot(path=str(OUT/'listening-audio-settings-stable-mobile.png'), full_page=True)
+    assert_no_horizontal_overflow(page)
     ctx.close()
 
 def test_flashcard(browser):
@@ -131,18 +174,38 @@ def test_flashcard(browser):
     page.wait_for_selector('[data-flashcard-curriculum-content="vocabulary"]')
     page.locator('[data-flashcard-curriculum-start]').click()
     page.wait_for_selector('#hskFlashcardOverlay:not([hidden])')
+    assert page.locator('#hskFlashcardOverlay.hsk-flashcard-overlay--dialog').count() == 1
     page.wait_for_selector('[data-hsk-flashcard-mode="matching"]')
+    page.locator('[data-hsk-flashcard-mode="flashcard"]').click()
+    page.locator('[data-hsk-flashcard-start]').click()
+    page.wait_for_selector('.hsk-flashcard-card')
+    assert page.locator('#hskFlashcardOverlay.hsk-flashcard-overlay--activity').count() == 1
+    regular_rect = page.locator('.hsk-flashcard-shell--activity').evaluate("el => { const r=el.getBoundingClientRect(); return {top:Math.round(r.top), left:Math.round(r.left), width:Math.round(r.width), height:Math.round(r.height)}; }")
+    assert regular_rect['top'] == 0 and regular_rect['left'] == 0, regular_rect
+    assert abs(regular_rect['width'] - 390) <= 1 and abs(regular_rect['height'] - 844) <= 2, regular_rect
+    page.screenshot(path=str(OUT/'flashcard-regular-fullscreen-mobile.png'), full_page=False)
+    page.locator('[data-hsk-flashcard-to-setup]').click()
+    assert page.locator('#hskFlashcardOverlay.hsk-flashcard-overlay--dialog').count() == 1
     page.locator('[data-hsk-flashcard-mode="matching"]').click()
     page.locator('[data-hsk-flashcard-start]').click()
     page.wait_for_selector('.hsk-flashcard-study--matching .tt-match')
+    assert page.locator('#hskFlashcardOverlay.hsk-flashcard-overlay--activity').count() == 1
+    shell_rect = page.locator('.hsk-flashcard-shell--activity').evaluate("el => { const r=el.getBoundingClientRect(); return {top:Math.round(r.top), left:Math.round(r.left), width:Math.round(r.width), height:Math.round(r.height)}; }")
+    assert shell_rect['top'] == 0 and shell_rect['left'] == 0, shell_rect
+    assert abs(shell_rect['width'] - 390) <= 1 and abs(shell_rect['height'] - 844) <= 2, shell_rect
     page.locator('.hsk-flashcard-study--matching [data-match-action="toggle-settings"]').click()
     page.locator('.hsk-flashcard-study--matching [data-match-custom-limit]').fill('9')
     page.locator('.hsk-flashcard-study--matching [data-match-action="apply-custom-limit"]').click()
     shared_settings = page.evaluate("() => JSON.parse(localStorage.getItem('tieng-trung-interaction-settings-v1'))")
     assert shared_settings['matchingPairLimitWord'] == 9
     page.locator('.hsk-flashcard-study--matching [data-match-action="close-settings"]').click()
+    matching_root = page.locator('.hsk-flashcard-study--matching .tt-match')
+    assert matching_root.get_attribute('data-match-limit-mode') == 'manual'
+    assert matching_root.get_attribute('data-match-limit') == '9'
+    assert int(matching_root.get_attribute('data-match-capacity')) >= 9
+    assert 'Tối đa 9' in page.locator('.hsk-flashcard-study--matching .tt-match__limit-status').inner_text()
     left = page.locator('.hsk-flashcard-study--matching .tt-match-card--left')
-    assert 2 <= left.count() <= 8
+    assert 2 <= left.count() <= 9
     first_id = left.nth(0).get_attribute('data-match-id')
     left.nth(0).click()
     page.locator(f'.hsk-flashcard-study--matching .tt-match-card--right[data-match-id="{first_id}"]').click()
@@ -150,7 +213,7 @@ def test_flashcard(browser):
     assert page.locator(f'.hsk-flashcard-study--matching .tt-match-card--left[data-match-id="{first_id}"]').count() == 0
     settings = page.evaluate("() => JSON.parse(localStorage.getItem('hanziStroke.hskFlashcardSettings.v1'))")
     assert settings['mode'] == 'matching'
-    page.screenshot(path=str(OUT/'flashcard-matching-mobile.png'), full_page=True)
+    page.screenshot(path=str(OUT/'flashcard-matching-mobile.png'), full_page=False)
     assert_no_horizontal_overflow(page)
     ctx.close()
 

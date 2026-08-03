@@ -6284,6 +6284,36 @@ body.hsk-flashcard-open{
   box-shadow: 0 20px 60px rgba(35, 27, 21, 0.25);
 }
 
+.hsk-flashcard-body{
+  min-width: 0;
+  min-height: 0;
+}
+
+.hsk-flashcard-overlay--activity .hsk-flashcard-shell{
+  overflow: hidden;
+}
+
+.hsk-flashcard-body--activity{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.hsk-flashcard-body--activity > .hsk-flashcard-header{
+  flex: 0 0 auto;
+}
+
+.hsk-flashcard-body--activity > .hsk-flashcard-study,
+.hsk-flashcard-body--activity > .hsk-flashcard-complete{
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
 .hsk-flashcard-header{
   position: sticky;
   top: 0;
@@ -6683,20 +6713,56 @@ body.hsk-flashcard-open{
 }
 
 @media (max-width: 520px){
-  .hsk-flashcard-overlay{
+  .hsk-flashcard-overlay--dialog{
     padding: 0;
     align-items: end;
   }
 
-  .hsk-flashcard-shell{
+  .hsk-flashcard-overlay--dialog .hsk-flashcard-shell{
     width: 100%;
-    max-height: 94vh;
+    max-height: 94dvh;
     border-radius: 24px 24px 0 0;
   }
 
-  .hsk-flashcard-setup,
-  .hsk-flashcard-study,
-  .hsk-flashcard-complete{
+  .hsk-flashcard-overlay--activity{
+    display: block;
+    padding: 0;
+    background: #fffaf4;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .hsk-flashcard-overlay--activity .hsk-flashcard-shell{
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    max-height: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .hsk-flashcard-overlay--activity .hsk-flashcard-header{
+    position: relative;
+    top: auto;
+    min-height: calc(54px + env(safe-area-inset-top));
+    padding-top: calc(9px + env(safe-area-inset-top));
+    background: rgba(255, 250, 244, 0.98);
+  }
+
+  .hsk-flashcard-overlay--activity .hsk-flashcard-study,
+  .hsk-flashcard-overlay--activity .hsk-flashcard-complete{
+    padding: 14px 14px calc(18px + env(safe-area-inset-bottom));
+    scroll-padding-bottom: calc(18px + env(safe-area-inset-bottom));
+  }
+
+  .hsk-flashcard-overlay--activity .hsk-flashcard-study--matching{
+    background: linear-gradient(180deg, #fffaf4 0%, #f7fbf9 100%);
+  }
+
+  .hsk-flashcard-overlay--dialog .hsk-flashcard-setup,
+  .hsk-flashcard-overlay--dialog .hsk-flashcard-study,
+  .hsk-flashcard-overlay--dialog .hsk-flashcard-complete{
     padding: 14px;
   }
 
@@ -12242,5 +12308,5 @@ html.hsk-popup-embed .hsk-popup-sheet {
 }
 
 /* Shared Matching V1 — Flashcard and lesson entry use the same engine. */
-.hsk-flashcard-launch--matching{border-color:#b9dfd2;background:linear-gradient(135deg,#f5fcf9 0%,#e9f7f1 58%,#f5fbff 100%);color:#176e62}.hsk-flashcard-launch--matching small{color:#5a857c}.hsk-flashcard-study--matching{padding:14px 16px 22px}.hsk-flashcard-study--matching .tt-match{max-width:680px;margin:0 auto}.hsk-flashcard-study--matching .hsk-flashcard-nav{max-width:680px;margin:12px auto 0}
-@media(max-width:480px){.hsk-flashcard-study--matching{padding:10px 8px 18px}.hsk-flashcard-study--matching .tt-match{border-radius:16px}.hsk-flashcard-launch-wrap{grid-template-columns:1fr 1fr}.hsk-flashcard-launch{min-height:46px;padding:7px 8px}.hsk-flashcard-launch span:not([aria-hidden]){font-size:13px}.hsk-flashcard-launch small{font-size:10px}}
+.hsk-flashcard-launch--matching{border-color:#b9dfd2;background:linear-gradient(135deg,#f5fcf9 0%,#e9f7f1 58%,#f5fbff 100%);color:#176e62}.hsk-flashcard-launch--matching small{color:#5a857c}.hsk-flashcard-study--matching{padding:14px 16px calc(22px + env(safe-area-inset-bottom))}.hsk-flashcard-study--matching .tt-match{max-width:680px;margin:0 auto}.hsk-flashcard-study--matching .hsk-flashcard-nav{max-width:680px;margin:12px auto 0}
+@media(max-width:480px){.hsk-flashcard-study--matching{padding:10px 8px calc(18px + env(safe-area-inset-bottom))}.hsk-flashcard-study--matching .tt-match{border-radius:16px}.hsk-flashcard-launch-wrap{grid-template-columns:1fr 1fr}.hsk-flashcard-launch{min-height:46px;padding:7px 8px}.hsk-flashcard-launch span:not([aria-hidden]){font-size:13px}.hsk-flashcard-launch small{font-size:10px}}

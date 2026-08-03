@@ -2325,8 +2325,8 @@
         <section class="practice-progress"><span style="width:${((state.currentIndex + 1) / items.length) * 100}%"></span></section>
         ${compactAudioCard(item, 'Nghe từ')}
         <section class="choice-card" data-learning-target>
-          <div class="dictation-heading"><div><p class="eyebrow">Chọn đáp án</p><h2>Từ nào vừa được đọc?</h2></div><span>${item.choiceCount} lựa chọn</span></div>
-          <div class="word-choice-grid">${item.choices.map((choice) => {
+          <div class="dictation-heading"><div><p class="eyebrow">Chọn đáp án</p><h2>Từ nào vừa được đọc?</h2></div><div class="word-choice-heading-actions"><span>${item.choiceCount} lựa chọn</span><button type="button" class="word-choice-pinyin-toggle ${state.settings.showPinyin ? 'active' : ''}" data-action="toggle-word-choice-pinyin" aria-pressed="${state.settings.showPinyin}" aria-label="${state.settings.showPinyin ? 'Ẩn' : 'Hiện'} pinyin">拼</button></div></div>
+          <div class="word-choice-grid" data-choice-count="${item.choices.length}">${item.choices.map((choice) => {
             const selected = state.activitySelection[0] === choice.id;
             const isAnswer = state.activityResult && choice.id === item.answerId;
             const isWrong = state.activityResult && selected && choice.id !== item.answerId;
@@ -2707,6 +2707,12 @@
     const voices = chineseVoices();
     const item = currentItem();
     const isPassage = Boolean(item && item.isPassage);
+    const preparedMp3 = currentAudioIsPrepared(item);
+    const activeSourceLabel = state.settings.voiceSource === 'device'
+      ? 'Giọng máy'
+      : state.settings.voiceSource === 'import'
+        ? (preparedMp3 ? 'MP3 đã nhập' : 'MP3 chưa có')
+        : (preparedMp3 ? 'MP3 đã nhập' : 'Giọng máy');
     return `
       <div class="sheet-backdrop" data-action="close-settings"></div>
       <section class="settings-sheet" role="dialog" aria-modal="true" aria-label="Cài đặt giọng đọc">
@@ -2714,8 +2720,8 @@
         <div class="sheet-head"><div><p class="eyebrow">Âm thanh</p><h2>Cài đặt nghe</h2></div><button data-action="close-settings">×</button></div>
         <label class="setting-field"><span>Ngôn ngữ</span><select disabled><option>Phổ thông Trung Quốc · zh-CN</option></select></label>
         <fieldset class="setting-field"><legend>Nguồn phát</legend><div class="segmented segmented--three">
-          ${[['auto', 'Tự động'], ['import', 'MP3 đã nhập'], ['device', 'Thiết bị']].map(([value, label]) => `<button data-action="set-voice-source" data-source="${value}" class="${state.settings.voiceSource === value ? 'active' : ''}">${label}</button>`).join('')}
-        </div><small class="setting-note">Tự động: ${isPassage ? 'ưu tiên MP3 toàn đoạn, nếu chưa có thì dùng giọng thiết bị đọc toàn đoạn.' : 'ưu tiên MP3 của câu hiện tại, nếu chưa có thì dùng giọng thiết bị.'}</small></fieldset>
+          ${[['auto', 'Tự động'], ['import', 'MP3 đã nhập'], ['device', 'Giọng máy']].map(([value, label]) => `<button data-action="set-voice-source" data-source="${value}" class="${state.settings.voiceSource === value ? 'active' : ''}">${label}</button>`).join('')}
+        </div><small class="setting-note"><strong>Đang dùng: ${activeSourceLabel}.</strong> Tự động mặc định dùng giọng máy và chỉ chuyển sang ${isPassage ? 'MP3 toàn đoạn' : 'MP3 của câu hiện tại'} khi file đó có sẵn.</small></fieldset>
         ${isPassage ? `
           <div class="audio-scope-heading"><strong>Âm thanh toàn đoạn</strong><small>Chỉ cần một MP3 cho toàn bộ ${item.segments?.length || 0} câu.</small></div>
           <div class="current-audio-status ${currentAudioIsPrepared(item) ? 'is-ready' : ''}">${escapeHtml(currentAudioStatusText(item))}</div>
@@ -2892,6 +2898,7 @@
         // để Safari vẫn cuộn trang tự nhiên khi bàn phím đang mở.
         bindDictationTapAndScroll(element);
       }
+      else if (action === 'toggle-word-choice-pinyin') element.onclick = () => { state.settings.showPinyin = !state.settings.showPinyin; saveSettings(); render(); };
       else if (action === 'choose-word') element.onclick = () => chooseWord(element.dataset.choiceId);
       else if (action === 'add-order-token') element.onclick = () => addOrderingToken(element.dataset.tokenId);
       else if (action === 'remove-order-token') element.onclick = () => removeOrderingToken(element.dataset.tokenId);
@@ -4432,6 +4439,13 @@
 
   function schedulePrepareCurrentAudio() {
     if (state.audioPrepareScheduled || state.screen !== 'practice' || state.settings.voiceSource === 'device') return;
+    const current = currentItem();
+    if (!current) return;
+    const fingerprint = audioFingerprintFor(current);
+    if (
+      state.audioPreparedFingerprint === fingerprint &&
+      ['loading', 'ready', 'missing', 'error'].includes(state.audioStatus)
+    ) return;
     state.audioPrepareScheduled = true;
     window.setTimeout(() => {
       state.audioPrepareScheduled = false;
@@ -4449,6 +4463,13 @@
     if (currentAudioIsPrepared(item)) {
       if (state.speaking) pauseSpeech();
       else resumeFileAudio();
+      return;
+    }
+
+    const fingerprint = audioFingerprintFor(item);
+    const checkedWithoutMp3 = state.audioPreparedFingerprint === fingerprint && ['missing', 'error'].includes(state.audioStatus);
+    if (state.settings.voiceSource === 'auto' && checkedWithoutMp3) {
+      toggleDeviceSpeech();
       return;
     }
 

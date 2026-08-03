@@ -242,7 +242,9 @@
     const pendingPairs = pending.map(id => byId.get(id)).filter(Boolean);
     const metrics = viewportMetrics(session.viewport);
     const desiredMax = session.roundLimit > 0 ? session.roundLimit : ADAPTIVE_DEFAULTS.defaultMaxPairs;
-    const capacity = session.adaptive === false
+    const capacity = session.roundLimit > 0
+      ? Math.min(pendingPairs.length, clamp(session.roundLimit, ADAPTIVE_DEFAULTS.minPairs, ADAPTIVE_DEFAULTS.absoluteMaxPairs))
+      : session.adaptive === false
       ? clamp(Number(desiredMax) || 4, 2, Math.min(ADAPTIVE_DEFAULTS.absoluteMaxPairs, Math.max(2, pendingPairs.length)))
       : estimateRoundCapacity(pendingPairs, {
         viewport: metrics,
@@ -525,7 +527,7 @@
       <fieldset class="tt-match-settings__field"><legend>Số cặp tối đa mỗi lượt</legend><div class="tt-match-settings__chips">
         <button type="button" class="${activeLimit===0?'active':''}" data-match-action="set-round-limit" data-match-value="auto">Tự động</button>
         ${[2,3,4,5,6,7,8].map(value => `<button type="button" class="${activeLimit===value?'active':''}" data-match-action="set-round-limit" data-match-value="${value}">${value}</button>`).join('')}
-      </div><div class="tt-match-settings__custom"><label for="ttMatchCustomLimit">Tự nhập</label><input id="ttMatchCustomLimit" data-match-custom-limit type="number" inputmode="numeric" min="2" max="30" step="1" value="${escapeHtml(customLimitValue)}"><button type="button" data-match-action="apply-custom-limit">Áp dụng</button></div><small>Câu dài vẫn tự giảm để không cắt chữ hoặc làm tràn màn hình.</small></fieldset>
+      </div><div class="tt-match-settings__custom"><label for="ttMatchCustomLimit">Tự nhập</label><input id="ttMatchCustomLimit" data-match-custom-limit type="number" inputmode="numeric" min="2" max="30" step="1" value="${escapeHtml(customLimitValue)}"><button type="button" data-match-action="apply-custom-limit">Áp dụng</button></div><small>Tự động sẽ tối ưu theo màn hình. Khi chọn hoặc tự nhập số cụ thể, ứng dụng giữ đúng số cặp và cho cuộn nếu nội dung dài.</small></fieldset>
       <div class="tt-match-settings__row"><span><b>Tự chuyển lượt</b><small>Bỏ bước hỏi “Cặp tiếp theo”.</small></span><button type="button" class="tt-match-switch ${session.autoNext?'active':''}" data-match-action="toggle-auto-next" aria-pressed="${session.autoNext}">${session.autoNext?'Bật':'Tắt'}</button></div>
       <fieldset class="tt-match-settings__field ${session.autoNext?'':'is-disabled'}"><legend>Thời gian chờ</legend><div class="tt-match-settings__chips">
         ${[0,0.5,1,1.5,2].map(value => `<button type="button" class="${delaySeconds===value?'active':''}" data-match-action="set-auto-next-delay" data-match-value="${value}" ${session.autoNext?'':'disabled'}>${value}s</button>`).join('')}
@@ -534,15 +536,22 @@
       <button type="button" class="tt-match-settings__done" data-match-action="close-settings">Xong</button>
     </section>` : '';
     const boardHeight = Math.max(0, Number(session.roundBoardHeight) || 0);
-    return `<section class="tt-match" data-matching-root data-match-round-size="${session.roundIds.length}" data-match-capacity="${session.roundCapacity || session.roundIds.length}" style="--tt-match-round-height:${boardHeight}px">
+    const limitMode = activeLimit > 0 ? 'manual' : 'auto';
+    const limitLabel = activeLimit > 0
+      ? `Tối đa ${activeLimit} · lượt này ${session.roundIds.length}`
+      : `Tự động · lượt này ${session.roundIds.length}`;
+    return `<section class="tt-match" data-matching-root data-match-round-size="${session.roundIds.length}" data-match-capacity="${session.roundCapacity || session.roundIds.length}" data-match-limit-mode="${limitMode}" data-match-limit="${activeLimit || 'auto'}" style="--tt-match-round-height:${boardHeight}px">
       <header class="tt-match__head">
         <div><p>${escapeHtml(configured.eyebrow || 'NỐI CHỮ')}</p><h2>${escapeHtml(session.title || 'Nối chữ')}</h2>${session.subtitle ? `<small>${escapeHtml(session.subtitle)}</small>` : ''}</div>
         <span class="tt-match__progress">${session.completedIds.length}/${session.pairs.length}</span>
       </header>
-      <div class="tt-match__tools" role="group" aria-label="Tùy chọn nối chữ">
-        <button type="button" data-match-action="toggle-pinyin" class="${session.showPinyin?'active':''}" aria-pressed="${session.showPinyin}">拼 <span>Pinyin</span></button>
-        <button type="button" data-match-action="toggle-speak" class="${session.tapToSpeak?'active':''}" aria-pressed="${session.tapToSpeak}">🔊 <span>Chạm để nghe</span></button>
-        <button type="button" data-match-action="toggle-settings" class="${session.settingsOpen?'active':''}" aria-expanded="${session.settingsOpen}">⚙ <span>Cài đặt</span></button>
+      <div class="tt-match__toolbar">
+        <div class="tt-match__tools" role="group" aria-label="Tùy chọn nối chữ">
+          <button type="button" data-match-action="toggle-pinyin" class="${session.showPinyin?'active':''}" aria-pressed="${session.showPinyin}">拼 <span>Pinyin</span></button>
+          <button type="button" data-match-action="toggle-speak" class="${session.tapToSpeak?'active':''}" aria-pressed="${session.tapToSpeak}">🔊 <span>Chạm để nghe</span></button>
+          <button type="button" data-match-action="toggle-settings" class="${session.settingsOpen?'active':''}" aria-expanded="${session.settingsOpen}">⚙ <span>Cài đặt</span></button>
+        </div>
+        <output class="tt-match__limit-status" aria-live="polite">${escapeHtml(limitLabel)}</output>
       </div>
       ${settingsPanel}
       <p class="tt-match__instruction">Chạm một ô chữ Hán rồi chạm nghĩa tương ứng.</p>

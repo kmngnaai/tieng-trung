@@ -45,7 +45,7 @@ const customPairs = Array.from({ length:20 }, (_, index) => ({
 const customSession = Matching.createSession(customPairs, { contentKind:'word', viewport:{ width:430, height:932 } });
 assert.strictEqual(Matching.setRoundLimit(customSession, 12), true);
 assert.strictEqual(customSession.roundLimit, 12);
-assert(customSession.roundCapacity >= 9 && customSession.roundCapacity <= 12, 'Custom pair limit should extend beyond the default eight when the device has room');
+assert.strictEqual(customSession.roundCapacity, 12, 'A manual pair count must not be silently capped at the automatic limit of eight');
 assert.strictEqual(customSession.roundIds.length, 10, 'Twenty short pairs should balance into two rounds of ten');
 assert.strictEqual(Matching.setRoundLimit(customSession, 31), false);
 assert(customSession.settingsError.includes('2 đến 30'));
@@ -119,7 +119,14 @@ assert(listening.includes('speakInteractionText(entry.text'));
 assert(listening.includes('captureActivityReturnContext'));
 assert(listening.includes('restoreActivityReturnContext'));
 assert(listening.includes('scheduleMatchingRoundAdvance'));
+assert(listening.includes('data-choice-count="${item.choices.length}"'));
+assert(listening.includes("['loading', 'ready', 'missing', 'error'].includes(state.audioStatus)"));
+assert(listening.includes("state.settings.voiceSource === 'auto' && checkedWithoutMp3"));
 assert(!listening.includes("action === 'next-round'"));
+
+const listeningCss = fs.readFileSync(path.join(ROOT, 'modules/listening/style.css'), 'utf8');
+assert(listeningCss.includes('.word-choice-grid[data-choice-count="4"]'));
+assert(listeningCss.includes('grid-template-columns: repeat(2, minmax(0, 1fr))'));
 
 const flashcard = fs.readFileSync(path.join(ROOT, 'modules/hanzi-stroke/app.js'), 'utf8');
 assert(flashcard.includes("['matching', 'Nối thẻ'"));
