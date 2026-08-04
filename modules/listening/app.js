@@ -114,6 +114,7 @@
     newHskUnits: [],
     newHskCourseManifest: null,
     newHskCourseUnits: [],
+    newHskCourseLevel: 1,
     ldsnData: null,
     ldsnUnits: [],
     activitySelection: [],
@@ -546,7 +547,7 @@
         const response = await fetch('../new-hsk-course/data/manifest.json');
         if (!response.ok) throw new Error(`Manifest ${response.status}`);
         state.newHskCourseManifest = await response.json();
-        state.newHskCourseUnits = SourceAdapters.listNewHskCourseUnits(state.newHskCourseManifest, { level: 1 });
+        state.newHskCourseUnits = SourceAdapters.listNewHskCourseUnits(state.newHskCourseManifest);
       }
     } catch (error) {
       state.error = `Không mở được New 3.0: ${error.message || error}`;
@@ -555,12 +556,15 @@
   }
 
   function renderNewHskCourseUnits() {
+    const levels = [...new Set(state.newHskCourseUnits.map(unit => Number(unit.level)))].sort((a,b)=>a-b);
+    const visibleUnits = state.newHskCourseUnits.filter(unit => Number(unit.level) === Number(state.newHskCourseLevel));
     app.innerHTML = `
       ${pageHeader('New 3.0', 'Nội dung theo sách', true)}
       <main class="listen-main">
         ${state.error ? errorCard(state.error) : ''}
+        <div class="segmented" role="group" aria-label="Chọn cấp New 3.0">${levels.map(level => `<button type="button" class="${Number(state.newHskCourseLevel)===level?'active':''}" data-action="set-new-hsk-course-level" data-level="${level}">HSK ${level}</button>`).join('')}</div>
         <div class="lesson-list">
-          ${state.newHskCourseUnits.length ? state.newHskCourseUnits.map(unit => `
+          ${visibleUnits.length ? visibleUnits.map(unit => `
             <button class="lesson-card" type="button" data-action="open-new-hsk-course-unit" data-unit-id="${escapeHtml(unit.unitId)}">
               <span class="lesson-number">${escapeHtml(unit.sectionOrder)}</span>
               <span><strong class="lesson-card__title">${formatHanziRuns(unit.titleZh || unit.title)}</strong><small>${escapeHtml(unit.title)} · HSK ${unit.level}</small></span><b aria-hidden="true">›</b>
@@ -3032,6 +3036,7 @@
       else if (action === 'close-menu') element.onclick = () => { state.menuOpen = false; render(); };
       else if (action === 'open-new-hsk-course') element.onclick = openNewHskCourseLibrary;
       else if (action === 'open-new-hsk-course-unit') element.onclick = () => openNewHskCourseUnit(element.dataset.unitId);
+      else if (action === 'set-new-hsk-course-level') element.onclick = () => { state.newHskCourseLevel = Number(element.dataset.level || 1); render(); };
       else if (action === 'open-new-hsk') element.onclick = openNewHskLibrary;
       else if (action === 'open-new-hsk-unit') element.onclick = () => openNewHskUnit(element.dataset.unitId);
       else if (action === 'open-ldsn') element.onclick = openLdsnLibrary;

@@ -633,8 +633,8 @@
   }
 
   function listNewHskCourseUnits(manifest, options){
-    const level = Number(options && options.level || 1);
-    return toArray(manifest && manifest.lessons).filter(row => Number(row.level) === level && String(row.status || '').includes('ready')).map(row => ({
+    const requestedLevel = Number(options && options.level || 0);
+    return toArray(manifest && manifest.lessons).filter(row => (!requestedLevel || Number(row.level) === requestedLevel) && String(row.status || '').includes('ready')).map(row => ({
       id: cleanText(row.id), unitId: cleanText(row.id), level: Number(row.level), sectionOrder: Number(row.lessonNumber || 0), title: cleanText(row.title && row.title.vi), titleZh: cleanText(row.title && row.title.hanzi), pinyin: cleanPinyin(row.title && row.title.pinyin), dataPath: cleanText(row.path), status: cleanText(row.status)
     })).sort((a,b)=>a.sectionOrder-b.sectionOrder);
   }

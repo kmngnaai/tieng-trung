@@ -16,32 +16,79 @@
     "views"
   ],
   "properties": {
-    "schemaVersion": { "const": "new-hsk-course.v1" },
-    "id": { "type": "string", "pattern": "^nhsk-[1-9]-[0-9]{2}$" },
-    "courseId": { "const": "new-hsk-course" },
-    "level": { "type": "integer", "minimum": 1 },
-    "lessonNumber": { "type": "integer", "minimum": 1 },
-    "title": { "$ref": "#/$defs/trilingualTitle" },
+    "schemaVersion": {
+      "const": "new-hsk-course.v1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^nhsk-[1-9]-[0-9]{2}$"
+    },
+    "courseId": {
+      "const": "new-hsk-course"
+    },
+    "level": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "lessonNumber": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "title": {
+      "$ref": "#/$defs/trilingualTitle"
+    },
     "source": {
       "type": "object",
-      "required": ["book", "pdfPages", "bookPages", "verificationStatus", "pageTrace"],
+      "required": [
+        "book",
+        "pdfPages",
+        "bookPages",
+        "verificationStatus",
+        "pageTrace"
+      ],
       "properties": {
-        "book": { "type": "string" },
-        "pdfPages": { "type": "string" },
-        "bookPages": { "type": "string" },
-        "verificationStatus": { "type": "string" },
-        "markdown": { "type": "string" },
-        "dialogueData": { "type": "string" },
+        "book": {
+          "type": "string"
+        },
+        "pdfPages": {
+          "type": "string"
+        },
+        "bookPages": {
+          "type": "string"
+        },
+        "verificationStatus": {
+          "type": "string"
+        },
+        "markdown": {
+          "type": "string"
+        },
+        "dialogueData": {
+          "type": "string"
+        },
         "pageTrace": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["pdfPage", "bookPage", "content", "status"],
+            "required": [
+              "pdfPage",
+              "bookPage",
+              "content",
+              "status"
+            ],
             "properties": {
-              "pdfPage": { "type": "integer", "minimum": 1 },
-              "bookPage": { "type": "string" },
-              "content": { "type": "string" },
-              "status": { "type": "string" }
+              "pdfPage": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "bookPage": {
+                "type": "string"
+              },
+              "content": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
             },
             "additionalProperties": false
           }
@@ -49,7 +96,9 @@
       },
       "additionalProperties": false
     },
-    "stats": { "type": "object" },
+    "stats": {
+      "type": "object"
+    },
     "entities": {
       "type": "object",
       "required": [
@@ -64,39 +113,117 @@
         "exercises",
         "activities",
         "passages",
-        "extensions"
+        "extensions",
+        "contentSections"
       ],
       "properties": {
-        "objectives": { "type": "array", "items": { "$ref": "#/$defs/orderedEntity" } },
-        "lessonTexts": { "type": "array", "items": { "$ref": "#/$defs/lessonText" } },
-        "vocabulary": { "type": "array", "items": { "$ref": "#/$defs/vocabulary" } },
-        "properNouns": { "type": "array", "items": { "$ref": "#/$defs/properNoun" } },
-        "dialogues": { "type": "array", "items": { "$ref": "#/$defs/dialogue" } },
-        "languageNotes": { "type": "array", "items": { "$ref": "#/$defs/orderedEntity" } },
-        "grammar": { "type": "array" },
-        "examplesPractice": { "type": "array" },
-        "exercises": { "type": "array" },
-        "activities": { "type": "array", "items": { "$ref": "#/$defs/orderedEntity" } },
-        "passages": { "type": "array", "items": { "$ref": "#/$defs/orderedEntity" } },
-        "extensions": { "type": "array", "items": { "$ref": "#/$defs/orderedEntity" } },
-        "radicalSortExercises": { "type": "array" },
-        "oddOneOutExercises": { "type": "array" },
-        "characters": { "type": "array" },
-        "characterBuildExercises": { "type": "array" }
+        "objectives": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/orderedEntity"
+          }
+        },
+        "lessonTexts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/lessonText"
+          }
+        },
+        "vocabulary": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/vocabulary"
+          }
+        },
+        "properNouns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/properNoun"
+          }
+        },
+        "dialogues": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/dialogue"
+          }
+        },
+        "languageNotes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/orderedEntity"
+          }
+        },
+        "grammar": {
+          "type": "array"
+        },
+        "examplesPractice": {
+          "type": "array"
+        },
+        "exercises": {
+          "type": "array"
+        },
+        "activities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/orderedEntity"
+          }
+        },
+        "passages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/orderedEntity"
+          }
+        },
+        "extensions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/orderedEntity"
+          }
+        },
+        "radicalSortExercises": {
+          "type": "array"
+        },
+        "oddOneOutExercises": {
+          "type": "array"
+        },
+        "characters": {
+          "type": "array"
+        },
+        "characterBuildExercises": {
+          "type": "array"
+        },
+        "contentSections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/orderedEntity"
+          }
+        }
       },
       "additionalProperties": false
     },
-    "practicePlan": { "type": "object" },
+    "practicePlan": {
+      "type": "object"
+    },
     "views": {
       "type": "object",
-      "required": ["bookFlow", "groupedIndex"],
+      "required": [
+        "bookFlow",
+        "groupedIndex"
+      ],
       "properties": {
-        "bookFlow": { "type": "array", "items": { "type": "string" } },
+        "bookFlow": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "groupedIndex": {
           "type": "object",
           "additionalProperties": {
             "type": "array",
-            "items": { "type": "string" }
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -107,26 +234,50 @@
   "$defs": {
     "trilingualTitle": {
       "type": "object",
-      "required": ["hanzi", "pinyin", "vi"],
+      "required": [
+        "hanzi",
+        "pinyin",
+        "vi"
+      ],
       "properties": {
-        "hanzi": { "type": "string", "minLength": 1 },
-        "pinyin": { "type": "string", "minLength": 1 },
-        "vi": { "type": "string", "minLength": 1 }
+        "hanzi": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pinyin": {
+          "type": "string",
+          "minLength": 1
+        },
+        "vi": {
+          "type": "string",
+          "minLength": 1
+        }
       },
       "additionalProperties": false
     },
     "orderedEntity": {
       "type": "object",
-      "required": ["id", "order"],
+      "required": [
+        "id",
+        "order"
+      ],
       "properties": {
-        "id": { "type": "string", "minLength": 1 },
-        "order": { "type": "integer", "minimum": 1 }
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 1
+        }
       },
       "additionalProperties": true
     },
     "lessonText": {
       "allOf": [
-        { "$ref": "#/$defs/orderedEntity" },
+        {
+          "$ref": "#/$defs/orderedEntity"
+        },
         {
           "type": "object",
           "required": [
@@ -144,41 +295,81 @@
     },
     "vocabulary": {
       "allOf": [
-        { "$ref": "#/$defs/orderedEntity" },
+        {
+          "$ref": "#/$defs/orderedEntity"
+        },
         {
           "type": "object",
-          "required": ["hanzi", "pinyin", "hanViet", "wordClass", "vi", "note", "lessonTextId"]
+          "required": [
+            "hanzi",
+            "pinyin",
+            "hanViet",
+            "wordClass",
+            "vi",
+            "note",
+            "lessonTextId"
+          ]
         }
       ]
     },
     "properNoun": {
       "allOf": [
-        { "$ref": "#/$defs/orderedEntity" },
+        {
+          "$ref": "#/$defs/orderedEntity"
+        },
         {
           "type": "object",
-          "required": ["hanzi", "pinyin", "hanViet", "kind", "vi", "lessonTextId"]
+          "required": [
+            "hanzi",
+            "pinyin",
+            "hanViet",
+            "kind",
+            "vi",
+            "lessonTextId"
+          ]
         }
       ]
     },
     "dialogue": {
       "allOf": [
-        { "$ref": "#/$defs/orderedEntity" },
+        {
+          "$ref": "#/$defs/orderedEntity"
+        },
         {
           "type": "object",
-          "required": ["kind", "lessonTextId", "sourceHeading", "context", "turns"],
+          "required": [
+            "kind",
+            "lessonTextId",
+            "sourceHeading",
+            "context",
+            "turns"
+          ],
           "properties": {
             "turns": {
               "type": "array",
               "minItems": 1,
               "items": {
                 "type": "object",
-                "required": ["id", "order", "speaker", "hanzi", "pinyin", "vi", "answerTokens"],
+                "required": [
+                  "id",
+                  "order",
+                  "speaker",
+                  "hanzi",
+                  "pinyin",
+                  "vi",
+                  "answerTokens"
+                ],
                 "properties": {
-                  "speaker": { "$ref": "#/$defs/trilingualTitle" },
+                  "speaker": {
+                    "$ref": "#/$defs/trilingualTitle"
+                  },
                   "answerTokens": {
                     "type": "array",
                     "minItems": 1,
-                    "items": { "type": "string", "minLength": 1 }
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
                   }
                 },
                 "additionalProperties": true

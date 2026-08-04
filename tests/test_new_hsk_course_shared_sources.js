@@ -4,21 +4,32 @@ const fs = require('fs');
 const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const Adapters = require(path.join(ROOT, 'modules/listening/source-adapters.js'));
-const lesson = JSON.parse(fs.readFileSync(path.join(ROOT, 'modules/new-hsk-course/data/hsk1/lesson-01.json'), 'utf8'));
 const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, 'modules/new-hsk-course/data/manifest.json'), 'utf8'));
-const units = Adapters.listNewHskCourseUnits(manifest, { level: 1 });
-assert.strictEqual(units.length, 1, 'New 3.0 manifest should expose the ready HSK 1 lesson');
-assert.strictEqual(units[0].unitId, 'nhsk-1-01');
-const dataset = Adapters.adaptNewHskCourseLesson(lesson, { sourceFile: 'fixture' });
-const validation = Adapters.validateDataset(dataset);
-assert.strictEqual(validation.ok, true, validation.errors.join(' | '));
-assert.strictEqual(dataset.source.id, 'new-hsk-course');
-assert.ok(dataset.words.length >= 12, 'vocabulary and proper nouns should reach Listening');
-assert.ok(dataset.sentences.some(row => row.tags.includes('dialogue')), 'dialogue turns should reach Listening');
-assert.ok(dataset.sentences.some(row => row.tags.includes('passage')), 'passage/rhyme lines should reach Listening');
-assert.ok(dataset.sentences.filter(row => row.tokens.length >= 2).length >= 1, 'sentences should have ordering tokens');
-const charNi = lesson.entities.characters.find(row => row.hanzi === '你');
+const allUnits = Adapters.listNewHskCourseUnits(manifest);
+assert.strictEqual(allUnits.length, 48, 'New 3.0 manifest must expose all 48 app-ready lessons');
+assert.deepStrictEqual(
+  [1, 2, 3].map(level => Adapters.listNewHskCourseUnits(manifest, { level }).length),
+  [15, 15, 18],
+  'New 3.0 level lesson counts must be 15/15/18'
+);
+assert.strictEqual(allUnits[0].unitId, 'nhsk-1-01');
+assert.strictEqual(allUnits.at(-1).unitId, 'nhsk-3-18');
+
+for (const entry of manifest.lessons) {
+  const file = path.join(ROOT, 'modules/new-hsk-course/data', entry.path);
+  const lesson = JSON.parse(fs.readFileSync(file, 'utf8'));
+  const dataset = Adapters.adaptNewHskCourseLesson(lesson, { sourceFile: entry.path });
+  const validation = Adapters.validateDataset(dataset);
+  assert.strictEqual(validation.ok, true, `${entry.id}: ${validation.errors.join(' | ')}`);
+  assert.strictEqual(dataset.source.id, 'new-hsk-course');
+  assert.ok(dataset.words.length > 0, `${entry.id} missing words`);
+  assert.ok(dataset.sentences.some(row => row.tags.includes('dialogue')), `${entry.id} missing dialogue sentences`);
+  assert.ok(dataset.sentences.filter(row => row.tokens.length >= 2).length >= 1, `${entry.id} missing ordering tokens`);
+}
+
+const lesson1 = JSON.parse(fs.readFileSync(path.join(ROOT, 'modules/new-hsk-course/data/hsk1/lesson-01.json'), 'utf8'));
+const charNi = lesson1.entities.characters.find(row => row.hanzi === '你');
 assert.ok(charNi);
 assert.deepStrictEqual(charNi.components.map(row => row.nameVi), ['Nhân', 'Nhĩ']);
 assert.ok(charNi.components.every(row => row.positionVi && row.roleVi));
-console.log('PASS New 3.0 shared Flashcard/Listening source adapter and curated character labels');
+console.log('PASS New 3.0 all 48 shared Flashcard/Listening lessons and curated character labels');
