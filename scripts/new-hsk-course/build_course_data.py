@@ -470,7 +470,35 @@ def parse_lesson_texts(body: str, level: int, lesson: int, dialogue_json: dict[s
     return lesson_texts, entities
 
 
-def build_lesson(markdown_path: Path, dialogue_path: Path) -> dict[str, Any]:
+def resolve_practice_path(markdown_path: Path, practice_path: Path | None = None) -> Path | None:
+    if practice_path is not None:
+        return practice_path if practice_path.exists() else None
+    candidate = markdown_path.parent / "practice" / f"{markdown_path.stem}_practice.json"
+    return candidate if candidate.exists() else None
+
+
+def merge_practice_data(lesson: dict[str, Any], practice_data: dict[str, Any], practice_path: Path) -> None:
+    lesson_id = lesson["id"]
+    if practice_data.get("lessonId") != lesson_id:
+        raise BuildError(
+            f"Practice lesson mismatch: expected={lesson_id}, actual={practice_data.get('lessonId')}"
+        )
+
+    entities = lesson["entities"]
+    entities["exercises"] = practice_data.get("exercises", [])
+    entities["radicalSortExercises"] = practice_data.get("radicalSortExercises", [])
+    entities["oddOneOutExercises"] = practice_data.get("oddOneOutExercises", [])
+    entities["characters"] = practice_data.get("characters", [])
+    entities["characterBuildExercises"] = practice_data.get("characterBuildExercises", [])
+    lesson["practicePlan"] = practice_data.get("practicePlan", {})
+    lesson["stats"].update(practice_data.get("stats", {}))
+
+
+def build_lesson(
+    markdown_path: Path,
+    dialogue_path: Path,
+    practice_path: Path | None = None,
+) -> dict[str, Any]:
     markdown_text = read_text(markdown_path)
     frontmatter, body = parse_frontmatter(markdown_text)
     dialogue_json = json.loads(read_text(dialogue_path))
@@ -568,7 +596,7 @@ def build_lesson(markdown_path: Path, dialogue_path: Path) -> dict[str, Any]:
     }
 
     total_turns = sum(len(item["turns"]) for item in entities["dialogues"])
-    return {
+    lesson_data = {
         "schemaVersion": SCHEMA_VERSION,
         "id": lesson_id,
         "courseId": "new-hsk-course",
@@ -604,15 +632,22 @@ def build_lesson(markdown_path: Path, dialogue_path: Path) -> dict[str, Any]:
         "views": {"bookFlow": book_flow, "groupedIndex": grouped},
     }
 
+    resolved_practice_path = resolve_practice_path(markdown_path, practice_path)
+    if resolved_practice_path:
+        practice_data = json.loads(read_text(resolved_practice_path))
+        merge_practice_data(lesson_data, practice_data, resolved_practice_path)
+    return lesson_data
+
 
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--markdown", type=Path, required=True)
     parser.add_argument("--dialogues", type=Path, required=True)
+    parser.add_argument("--practice", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
 
-    lesson = build_lesson(args.markdown, args.dialogues)
+    lesson = build_lesson(args.markdown, args.dialogues, args.practice)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(lesson, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"output": str(args.output), "id": lesson["id"], "stats": lesson["stats"]}, ensure_ascii=False))

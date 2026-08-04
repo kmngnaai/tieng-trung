@@ -78,10 +78,15 @@
         "exercises": { "type": "array" },
         "activities": { "type": "array", "items": { "$ref": "#/$defs/orderedEntity" } },
         "passages": { "type": "array", "items": { "$ref": "#/$defs/orderedEntity" } },
-        "extensions": { "type": "array", "items": { "$ref": "#/$defs/orderedEntity" } }
+        "extensions": { "type": "array", "items": { "$ref": "#/$defs/orderedEntity" } },
+        "radicalSortExercises": { "type": "array" },
+        "oddOneOutExercises": { "type": "array" },
+        "characters": { "type": "array" },
+        "characterBuildExercises": { "type": "array" }
       },
       "additionalProperties": false
     },
+    "practicePlan": { "type": "object" },
     "views": {
       "type": "object",
       "required": ["bookFlow", "groupedIndex"],

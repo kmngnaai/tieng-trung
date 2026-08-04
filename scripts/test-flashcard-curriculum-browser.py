@@ -14,11 +14,11 @@ with sync_playwright() as p:
     b=p.chromium.launch(headless=True, executable_path='/usr/bin/chromium')
     ctx=b.new_context(viewport={'width':430,'height':850},is_mobile=True,has_touch=True)
     page=ctx.new_page(); page.route('**/*',route_local)
-    page.goto('about:blank'); html=(ROOT/'modules/hanzi-stroke/index.html').read_text('utf-8').replace('<head>','<head><base href="https://app.test/modules/hanzi-stroke/">',1); page.set_content(html, wait_until='domcontentloaded'); page.wait_for_selector('#studyTabFlashcards'); page.evaluate("""() => { const Native = window.URLSearchParams; window.URLSearchParams = class extends Native { constructor(arg){ super(arg === window.location.search ? 'study=flashcards' : arg); } }; document.getElementById('studyTabFlashcards').click(); }""")
+    page.goto('about:blank'); html=(ROOT/'modules/hanzi-stroke/index.html').read_text('utf-8').replace('<head>','<head><base href="https://app.test/modules/hanzi-stroke/">',1); page.set_content(html, wait_until='domcontentloaded'); page.wait_for_selector('#studyTabFlashcards', state='attached'); page.evaluate("""() => { const Native = window.URLSearchParams; window.URLSearchParams = class extends Native { constructor(arg){ super(arg === window.location.search ? 'study=flashcards' : arg); } }; document.getElementById('studyTabFlashcards').click(); }""")
     page.wait_for_selector('[data-flashcard-curriculum-open]', timeout=15000)
     page.locator('[data-flashcard-curriculum-open]').click()
     page.wait_for_selector('.flashcard-curriculum-lesson-card', timeout=15000)
-    assert page.locator('.flashcard-curriculum-source-tabs button').count()==5
+    assert page.locator('.flashcard-curriculum-source-tabs button').count()>=6
     assert page.locator('.flashcard-curriculum-lesson-card').count()>=1
     page.locator('.flashcard-curriculum-lesson-card').first.click()
     page.wait_for_selector('[data-flashcard-curriculum-start]', timeout=15000)

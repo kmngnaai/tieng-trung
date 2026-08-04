@@ -109,8 +109,8 @@
       item = {
         type: 'curriculum',
         icon: '课',
-        title: lessonNumber ? `New HSK ${level} · Bài ${lessonNumber}` : 'New HSK 3.0',
-        subtitle: lessonNumber ? 'Nội dung đầy đủ theo sách' : 'Giáo trình New HSK 1–3'
+        title: lessonNumber ? `New 3.0 · HSK ${level} · Bài ${lessonNumber}` : 'New 3.0',
+        subtitle: lessonNumber ? 'Nội dung đầy đủ theo sách' : 'Giáo trình HSK 1–3'
       };
     } else if (path.includes('/modules/listening/')) {
       item = { type: 'listening', icon: '听', title: 'Nghe', subtitle: 'Chép chính tả · Có transcript' };
@@ -257,6 +257,7 @@
           <h3 id="uiLearnGroupTitle">Học tập</h3>
           <div class="ui-drawer-subnav">
             ${drawerLink('课', 'Giáo trình', '301 · HSK 6 cấp · HSK 9 cấp · YCT · Boya', ROUTES.curriculum, false)}
+            ${drawerLink('新', 'New 3.0', 'Nội dung đầy đủ theo sách · HSK 1–3', ROUTES.newHskCourse, path.includes('/modules/new-hsk-course/'))}
             ${drawerLink('译', 'LDSN1-4', '10 bài luyện dịch song ngữ', ROUTES.ldsn14, path.includes('/modules/ldsn14/'))}
             ${drawerLink('部', 'Bộ thủ', 'Bộ thủ 214 hiện tại', ROUTES.radicals, false)}
             ${drawerLink('卡', 'Thẻ', 'Flashcard và ôn tập', ROUTES.cards, false)}
@@ -385,8 +386,7 @@
     if (path.includes('/modules/new-hsk-course/')) {
       const level = params.get('level') || '';
       const lessonNumber = params.get('lesson') || '';
-      items.push(breadcrumbItem('Giáo trình', ROUTES.curriculum));
-      items.push(breadcrumbItem('New HSK 3.0', ROUTES.newHskCourse, !level && !lessonNumber));
+      items.push(breadcrumbItem('New 3.0', ROUTES.newHskCourse, !level && !lessonNumber));
       if (level) items.push(breadcrumbItem(`HSK ${level}`, `${ROUTES.newHskCourse}?level=${encodeURIComponent(level)}`, !lessonNumber));
       if (lessonNumber) items.push(breadcrumbItem(`Bài ${lessonNumber}`, '', true));
       return items;

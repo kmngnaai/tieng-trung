@@ -35,7 +35,7 @@ class RendererPrototypeTests(unittest.TestCase):
         shell = (ROOT / "modules" / "shared" / "app-shell.js").read_text(encoding="utf-8")
         self.assertIn("newHskCourse", shell)
         self.assertIn("/modules/new-hsk-course/", shell)
-        self.assertIn("New HSK 3.0", shell)
+        self.assertIn("New 3.0", shell)
 
     def test_existing_new_hsk_lesson_has_full_course_entry(self):
         app = (ROOT / "modules" / "hanzi-stroke" / "app.js").read_text(encoding="utf-8")

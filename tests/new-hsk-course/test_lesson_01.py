@@ -49,6 +49,12 @@ class NewHskLesson01Test(unittest.TestCase):
                 "activities": 4,
                 "passages": 1,
                 "extensions": 1,
+                "practiceSourceGroups": 6,
+                "practiceActivities": 10,
+                "radicalSortItems": 11,
+                "characters": 11,
+                "coreCharacters": 5,
+                "characterBuildExercises": 5,
             },
         )
 

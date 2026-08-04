@@ -375,7 +375,7 @@ class UiUpgradeTests(unittest.TestCase):
         html = read("index.html")
         self.assertIn("app.js?v=20260718-resume1", html)
         self.assertIn("modules/shared/lookup-history.js?v=20260717-recent1", html)
-        self.assertIn("modules/shared/app-shell.js?v=20260718-resume1", html)
+        self.assertIn("modules/shared/app-shell.js?v=20260803-new-hsk-nav-audio-v2", html)
 
 
     def test_lookup_stroke_links_are_optional_after_shared_shell_replaces_legacy_nav(self) -> None:

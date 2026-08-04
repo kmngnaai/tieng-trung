@@ -34,8 +34,8 @@ assert(matching.includes('data-match-limit-mode="${limitMode}"'), 'Matching must
 assert(matching.includes('Tối đa ${activeLimit} · lượt này ${session.roundIds.length}'), 'Manual matching limit must be visible');
 assert(matching.includes('absoluteMaxPairs: 30'), 'Manual matching limit must support values above eight');
 
-const listeningRelease = '20260803-mobile-practice-shell-v1';
-const flashRelease = '20260803-flashcard-flex-card-v1';
+const listeningRelease = '20260804-ai-flashcard-new3-v1';
+const flashRelease = '20260804-practice-ui-v7';
 const listeningVersions = Array.from(listeningHtml.matchAll(/\?v=([^"']+)/g), match => match[1]);
 assert(listeningVersions.length >= 8, 'Listening page is missing versioned assets');
 assert.strictEqual(new Set(listeningVersions).size, 1, 'Listening assets must share one cache version');

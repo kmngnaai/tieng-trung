@@ -14,6 +14,7 @@
     pinyin: new URL('modules/pinyin/index.html', ROOT_URL).href,
     writing: new URL('modules/hanzi-stroke/index.html?study=lookup', ROOT_URL).href,
     hsk: new URL('modules/hanzi-stroke/index.html?study=hsk', ROOT_URL).href,
+    newHskCourse: new URL('modules/new-hsk-course/index.html?level=1&lesson=1&view=book', ROOT_URL).href,
     radicals: new URL('modules/hanzi-stroke/index.html?study=radicals', ROOT_URL).href,
     cards: new URL('modules/hanzi-stroke/index.html?study=flashcards', ROOT_URL).href,
     dialogue301: new URL('index.html#dialogue301', ROOT_URL).href,
@@ -92,6 +93,7 @@
           ${link('拼', 'Pinyin', 'Học, nghe, quiz, ôn, tiến độ', ROUTES.pinyin, false)}
           ${link('写', 'Bút thuận', 'Tra nét và luyện viết', ROUTES.writing, false)}
           ${link('课', 'HSK & Giáo trình', 'Bài học, chủ đề, từ vựng, ngữ pháp', ROUTES.hsk, false)}
+          ${link('新', 'New 3.0', 'Nội dung đầy đủ theo sách · HSK 1–3', ROUTES.newHskCourse, false)}
           ${link('部', 'Bộ thủ', 'Danh sách và chi tiết bộ thủ', ROUTES.radicals, false)}
           ${link('卡', 'Thẻ', 'Flashcard, Gõ Pinyin, Ôn/Khó', ROUTES.cards, false)}
           ${link('☵', '301 Đàm thoại', 'Đặt trong nhóm Học', ROUTES.dialogue301, false)}

@@ -91,6 +91,12 @@ def validate(data: dict[str, Any]) -> dict[str, Any]:
             require(ref in index, f"Broken groupedIndex reference in {group_name}: {ref}")
 
     stats = data.get("stats", {})
+    practice_plan = data.get("practicePlan", {})
+    radical_sort_items = sum(
+        len(exercise.get("items", []))
+        for exercise in entities.get("radicalSortExercises", [])
+    )
+    characters = entities.get("characters", [])
     expected_stats = {
         "objectives": len(entities.get("objectives", [])),
         "lessonTexts": len(entities.get("lessonTexts", [])),
@@ -103,6 +109,22 @@ def validate(data: dict[str, Any]) -> dict[str, Any]:
         "passages": len(entities.get("passages", [])),
         "extensions": len(entities.get("extensions", [])),
     }
+    if practice_plan or any(
+        entities.get(name)
+        for name in ("radicalSortExercises", "characters", "characterBuildExercises")
+    ):
+        expected_stats.update(
+            {
+                "practiceSourceGroups": len(practice_plan.get("sourceGroups", {})),
+                "practiceActivities": len(practice_plan.get("activities", {})),
+                "radicalSortItems": radical_sort_items,
+                "characters": len(characters),
+                "coreCharacters": sum(
+                    1 for item in characters if item.get("studyPriority") == "core"
+                ),
+                "characterBuildExercises": len(entities.get("characterBuildExercises", [])),
+            }
+        )
     require(stats == expected_stats, f"stats mismatch: expected={expected_stats}, actual={stats}")
 
     return {

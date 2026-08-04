@@ -8,6 +8,7 @@
     learn: new URL('modules/hanzi-stroke/index.html', root).href,
     writing: new URL('modules/hanzi-stroke/index.html?study=writing', root).href,
     hsk: new URL('modules/hanzi-stroke/index.html?study=hsk', root).href,
+    newHskCourse: new URL('modules/new-hsk-course/index.html?level=1&lesson=1&view=book', root).href,
     radicals: new URL('modules/hanzi-stroke/index.html?study=radicals', root).href,
     cards: new URL('modules/hanzi-stroke/index.html?study=flashcards', root).href,
     pinyin: new URL('modules/pinyin/index.html', root).href,
@@ -50,6 +51,7 @@
         <a class="ui-home-quick-card" href="${routes.learn}"><span>学</span><strong>Học</strong><small>Mở trung tâm học tập</small></a>
         <a class="ui-home-quick-card" href="${routes.writing}"><span>✍</span><strong>Bút thuận</strong><small>Luyện viết từng nét</small></a>
         <a class="ui-home-quick-card" href="${routes.hsk}"><span>课</span><strong>HSK</strong><small>Bài, từ vựng, ngữ pháp</small></a>
+        <a class="ui-home-quick-card" href="${routes.newHskCourse}"><span>新</span><strong>New 3.0</strong><small>Nội dung đầy đủ theo sách</small></a>
         <a class="ui-home-quick-card" href="${routes.cards}"><span>卡</span><strong>Thẻ</strong><small>Flashcard và Gõ Pinyin</small></a>
         <a class="ui-home-quick-card" href="${routes.dialogue301}"><span>301</span><strong>301</strong><small>Đàm thoại và câu mẫu</small></a>
       </div></section>

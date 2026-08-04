@@ -1,0 +1,39 @@
+New 3.0 Practice UX v4 - Test Report
+====================================
+
+Static / syntax
+- modules/new-hsk-course/app.js: PASS
+- modules/hanzi-stroke/app.js: PASS
+
+Python
+- python -m unittest discover -s tests -p 'test_*.py'
+- 71 tests: PASS
+
+Node contract/runtime
+- 22 test files: PASS
+- Includes New HSK practice UX v4, shared source adapters, Flashcard modes,
+  Listening, Lookup return context, Matching, LDSN and breadcrumb runtime.
+
+Browser
+- scripts/test-new-hsk-course-browser.py: PASS
+  - compact radical session
+  - radical-first then character selection
+  - one-sentence ordering
+  - automatic checking/rating
+  - listening typing with hidden hints
+  - concise character components
+  - direct writing link contract
+- scripts/test-flashcard-curriculum-browser.py: PASS
+- scripts/test-lookup-mobile-navigation-browser.py: PASS
+- scripts/test-new-hsk-deeplink-browser.py: PASS
+  - study=lookup opens Bút thuận
+  - input contains 你
+  - return label is Quay lại chữ 你
+  - radical detail has distinct return actions
+
+Data
+- JSON Schema validation: PASS
+- Reproducible build including practice data: PASS
+- HSK 1 Bài 1 practice stats:
+  source groups 6; activities 10; radical items 11;
+  characters 11; core characters 5; character build exercises 5.

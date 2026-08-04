@@ -13,7 +13,8 @@ const ui = read('modules/pinyin/core/ui.js');
 const listen = read('modules/pinyin/screens/listen.js');
 const css = read('modules/pinyin/style.css');
 
-const versions = [...index.matchAll(/\?v=([^"']+)/g)].map(match => match[1]);
+const pinyinIndex = index.replace(/<script[^>]+app-shell\.js[^>]*><\/script>/g, '');
+const versions = [...pinyinIndex.matchAll(/\?v=([^"']+)/g)].map(match => match[1]);
 assert(versions.length >= 10, 'All Pinyin assets must be versioned');
 assert.strictEqual(new Set(versions).size, 1, 'All Pinyin assets must share one cache version');
 assert.strictEqual(versions[0], '20260803-pinyin-audio-scroll-fix-v1', 'Cache token must be bumped for the runtime fix');

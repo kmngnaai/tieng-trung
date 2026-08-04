@@ -13,6 +13,7 @@
   const PROGRESS_KEY = 'tieng-trung-listening-progress-v1';
   const LAST_SESSION_KEY = 'tieng-trung-listening-last-session-v1';
   const MATCHING_SESSION_KEY = 'tieng-trung-listening-matching-session-v1';
+  const EXTERNAL_PRACTICE_KEY = 'tiengTrung.listening.externalPractice.v1';
   const AudioStore = window.ListeningAudioStore;
 
   const DEFAULT_SETTINGS = {
@@ -111,6 +112,8 @@
     newHskLevelData: null,
     newHskGrammarData: null,
     newHskUnits: [],
+    newHskCourseManifest: null,
+    newHskCourseUnits: [],
     ldsnData: null,
     ldsnUnits: [],
     activitySelection: [],
@@ -127,7 +130,7 @@
     batchSentenceCountMode: '10',
     batchSentenceCustomCount: 10,
     aiPromptType: 'sentence',
-    aiPromptFields: { level: 'HSK 1', topic: '', count: 10, inputText: '', requirements: '' },
+    aiPromptFields: { level: 'HSK 1', topic: '', operation: 'create', count: 10, maxOutOfScopeWords: 0, inputText: '', allowedVocabulary: '', allowedGrammar: '', requiredVocabulary: '', requiredGrammar: '', requirements: '' },
     aiPromptCopied: false,
     aiPasteMode: 'full',
     aiPasteExpectedType: 'sentence',
@@ -140,7 +143,8 @@
     aiPasteGroupId: '',
     matchingSession: null,
     matchingDescriptor: null,
-    activityReturnContext: null
+    activityReturnContext: null,
+    externalReturnUrl: ''
   };
 
   // Dùng một phần tử audio cố định ở ngoài #app. Safari/iPhone cấp quyền phát
@@ -358,6 +362,12 @@
   function restoreActivityReturnContext(fallbackScreen) {
     const context = state.activityReturnContext;
     state.activityReturnContext = null;
+    if (!context && state.externalReturnUrl) {
+      const target = state.externalReturnUrl;
+      state.externalReturnUrl = '';
+      window.location.href = target;
+      return;
+    }
     state.screen = context && context.screen ? context.screen : (fallbackScreen || 'mode');
     render();
     restoreActivitySourcePosition(context);
@@ -387,10 +397,42 @@
     return Core.chooseVoice(state.voices, state.settings);
   }
 
+  function practiceInputFocusSnapshot() {
+    const input = document.getElementById('dictationInput');
+    if (!input || document.activeElement !== input || state.screen !== 'practice') return null;
+    return {
+      selectionStart: Number.isFinite(input.selectionStart) ? input.selectionStart : null,
+      selectionEnd: Number.isFinite(input.selectionEnd) ? input.selectionEnd : null,
+      selectionDirection: input.selectionDirection || 'none'
+    };
+  }
+
+  function restorePracticeInputFocus(snapshot) {
+    if (!snapshot || state.screen !== 'practice') return;
+    const input = document.getElementById('dictationInput');
+    if (!input) return;
+    try {
+      input.focus({ preventScroll: true });
+    } catch (_error) {
+      input.focus();
+    }
+    if (snapshot.selectionStart !== null && snapshot.selectionEnd !== null) {
+      try {
+        input.setSelectionRange(snapshot.selectionStart, snapshot.selectionEnd, snapshot.selectionDirection);
+      } catch (_error) {}
+    }
+  }
+
+  function preservePracticeAudioPointerFocus(event) {
+    if (document.activeElement?.id === 'dictationInput') event.preventDefault();
+  }
+
   function render() {
     if (!app) return;
+    const practiceFocus = practiceInputFocusSnapshot();
     if (state.screen === 'home') renderHome();
     else if (state.screen === 'newHskUnits') renderNewHskUnits();
+    else if (state.screen === 'newHskCourseUnits') renderNewHskCourseUnits();
     else if (state.screen === 'ldsnUnits') renderLdsnUnits();
     else if (state.screen === 'lessons301') render301Lessons();
     else if (state.screen === 'custom') renderCustomLibrary();
@@ -406,6 +448,7 @@
     else renderHome();
     bindCommonEvents();
     syncOverlayState();
+    restorePracticeInputFocus(practiceFocus);
     requestAnimationFrame(setupPracticeFloatingAudio);
     if (state.screen === 'practice' && state.settings.voiceSource !== 'device' && !state.groupPreviewSpeaking) schedulePrepareCurrentAudio();
   }
@@ -426,6 +469,11 @@
             <button class="icon-action" data-action="open-settings" aria-label="Cài đặt giọng đọc">⚙</button>
           </div>
           <div class="source-grid">
+            <button class="source-card source-card--course" type="button" data-action="open-new-hsk-course">
+              <span class="source-icon">课</span>
+              <strong>New 3.0</strong>
+              <small>Nội dung theo sách · từ → câu → hội thoại → bài đọc</small>
+            </button>
             <button class="source-card" type="button" data-action="open-new-hsk">
               <span class="source-icon">新</span>
               <strong>New HSK 1</strong>
@@ -486,6 +534,57 @@
       return `<section class="notice-card is-warning"><strong>Chưa tìm thấy giọng Trung.</strong><span>Ứng dụng vẫn thử giọng mặc định của thiết bị, nhưng phát âm có thể chưa đúng.</span></section>`;
     }
     return `<section class="notice-card"><strong>Giọng hiện tại:</strong><span>${escapeHtml(selected && selected.name || voices[0].name)} · ${escapeHtml(selected && selected.lang || voices[0].lang || 'zh-CN')}</span></section>`;
+  }
+
+  async function openNewHskCourseLibrary() {
+    state.error = '';
+    state.screen = 'newHskCourseUnits';
+    render();
+    try {
+      if (!SourceAdapters) throw new Error('Thiếu source-adapters.js.');
+      if (!state.newHskCourseManifest) {
+        const response = await fetch('../new-hsk-course/data/manifest.json');
+        if (!response.ok) throw new Error(`Manifest ${response.status}`);
+        state.newHskCourseManifest = await response.json();
+        state.newHskCourseUnits = SourceAdapters.listNewHskCourseUnits(state.newHskCourseManifest, { level: 1 });
+      }
+    } catch (error) {
+      state.error = `Không mở được New 3.0: ${error.message || error}`;
+    }
+    render();
+  }
+
+  function renderNewHskCourseUnits() {
+    app.innerHTML = `
+      ${pageHeader('New 3.0', 'Nội dung theo sách', true)}
+      <main class="listen-main">
+        ${state.error ? errorCard(state.error) : ''}
+        <div class="lesson-list">
+          ${state.newHskCourseUnits.length ? state.newHskCourseUnits.map(unit => `
+            <button class="lesson-card" type="button" data-action="open-new-hsk-course-unit" data-unit-id="${escapeHtml(unit.unitId)}">
+              <span class="lesson-number">${escapeHtml(unit.sectionOrder)}</span>
+              <span><strong class="lesson-card__title">${formatHanziRuns(unit.titleZh || unit.title)}</strong><small>${escapeHtml(unit.title)} · HSK ${unit.level}</small></span><b aria-hidden="true">›</b>
+            </button>`).join('') : state.error ? '' : loadingCard('Đang đọc dữ liệu New 3.0...')}
+        </div>
+      </main>${bottomNav()}${settingsSheet()}`;
+  }
+
+  async function openNewHskCourseUnit(unitId) {
+    const unit = state.newHskCourseUnits.find(entry => entry.unitId === unitId);
+    if (!unit) return;
+    state.source = 'new-hsk-course';
+    state.lesson = { id: unit.unitId, lesson_id: unit.unitId, title: unit.title, title_zh: unit.titleZh };
+    state.dataset = null; state.items = []; state.vocabulary = []; state.error = ''; state.screen = 'mode'; render();
+    try {
+      const response = await fetch(`../new-hsk-course/data/${unit.dataPath}`);
+      if (!response.ok) throw new Error(`Dữ liệu ${response.status}`);
+      const lesson = await response.json();
+      const dataset = SourceAdapters.adaptNewHskCourseLesson(lesson, { sourceFile: `modules/new-hsk-course/data/${unit.dataPath}` });
+      const validation = SourceAdapters.validateDataset(dataset);
+      if (!validation.ok) throw new Error(validation.errors.join(' · '));
+      state.dataset = dataset; state.items = dataset.sentences.slice(); state.vocabulary = dataset.words.slice(); state.lessonData = dataset;
+    } catch (error) { state.error = `Không mở được New 3.0: ${error.message || error}`; }
+    render();
   }
 
   async function openNewHskLibrary() {
@@ -837,10 +936,16 @@
           </div>
           <div class="listening-ai-fields">
             <label><span>Trình độ</span><input type="text" data-listening-ai-field="level" value="${escapeHtml(fields.level || '')}" placeholder="Ví dụ: HSK 1"></label>
-            <label><span>Chủ đề</span><input type="text" data-listening-ai-field="topic" value="${escapeHtml(fields.topic || '')}" placeholder="Ví dụ: Giới thiệu bản thân"></label>
-            <label class="is-count"><span>${escapeHtml(meta.countLabel || 'Số lượng')}</span><input type="number" min="1" max="200" data-listening-ai-field="count" value="${escapeHtml(fields.count || 10)}"></label>
-            <label class="is-wide"><span>${escapeHtml(meta.inputLabel || 'Dữ liệu đầu vào')}</span><textarea rows="7" data-listening-ai-field="inputText" placeholder="${escapeHtml(meta.inputPlaceholder || '')}">${escapeHtml(fields.inputText || '')}</textarea><small>Có thể dán hàng loạt, mỗi mục một dòng.</small></label>
-            <label class="is-wide"><span>Yêu cầu bổ sung <small>không bắt buộc</small></span><textarea rows="3" data-listening-ai-field="requirements" placeholder="Ví dụ: chỉ dùng từ trong danh sách, câu ngắn để luyện nghe...">${escapeHtml(fields.requirements || '')}</textarea></label>
+            <label><span>Chủ đề / bài</span><input type="text" data-listening-ai-field="topic" value="${escapeHtml(fields.topic || '')}" placeholder="Ví dụ: New 3.0 · HSK 1 · Bài 1"></label>
+            <label><span>Chế độ xử lý</span><select data-listening-ai-field="operation"><option value="create" ${fields.operation === 'create' ? 'selected' : ''}>Tạo mới</option><option value="enrich" ${fields.operation === 'enrich' ? 'selected' : ''}>Bổ sung trường thiếu</option><option value="review" ${fields.operation === 'review' ? 'selected' : ''}>Kiểm tra và đề xuất patch</option></select></label>
+            <label class="is-count"><span>${escapeHtml(meta.countLabel || 'Số lượng')}</span><input type="number" min="1" max="500" data-listening-ai-field="count" value="${escapeHtml(fields.count || 10)}"></label>
+            <label><span>Từ ngoài phạm vi tối đa</span><input type="number" min="0" max="100" data-listening-ai-field="maxOutOfScopeWords" value="${escapeHtml(fields.maxOutOfScopeWords ?? 0)}"></label>
+            <label class="is-wide"><span>${escapeHtml(meta.inputLabel || 'Dữ liệu đầu vào')}</span><textarea rows="7" data-listening-ai-field="inputText" placeholder="${escapeHtml(meta.inputPlaceholder || '')}">${escapeHtml(fields.inputText || '')}</textarea><small>Dán dữ liệu gốc; AI phải giữ nguyên trường đã có khi chọn Bổ sung.</small></label>
+            <label class="is-wide"><span>Từ được phép dùng</span><textarea rows="4" data-listening-ai-field="allowedVocabulary" placeholder="Mỗi từ hoặc ID một dòng">${escapeHtml(fields.allowedVocabulary || '')}</textarea></label>
+            <label class="is-wide"><span>Ngữ pháp được phép dùng</span><textarea rows="3" data-listening-ai-field="allowedGrammar" placeholder="Mỗi mẫu hoặc ID một dòng">${escapeHtml(fields.allowedGrammar || '')}</textarea></label>
+            <label class="is-wide"><span>Từ bắt buộc</span><textarea rows="3" data-listening-ai-field="requiredVocabulary" placeholder="Các từ phải xuất hiện hoặc được xử lý">${escapeHtml(fields.requiredVocabulary || '')}</textarea></label>
+            <label class="is-wide"><span>Ngữ pháp bắt buộc</span><textarea rows="3" data-listening-ai-field="requiredGrammar" placeholder="Các mẫu bắt buộc phải tham chiếu">${escapeHtml(fields.requiredGrammar || '')}</textarea></label>
+            <label class="is-wide"><span>Yêu cầu bổ sung <small>không bắt buộc</small></span><textarea rows="4" data-listening-ai-field="requirements" placeholder="Ví dụ: audioText tự nhiên; giữ sourceRefs; không tự tạo hội thoại...">${escapeHtml(fields.requirements || '')}</textarea></label>
           </div>
         </section>
         <section class="listening-ai-output">
@@ -857,7 +962,7 @@
     const next = Object.assign({}, state.aiPromptFields || {});
     app.querySelectorAll('[data-listening-ai-field]').forEach((input) => {
       const key = input.dataset.listeningAiField;
-      if (key) next[key] = key === 'count' ? Math.max(1, Number(input.value) || 1) : input.value;
+      if (key) next[key] = key === 'count' ? Math.max(1, Number(input.value) || 1) : key === 'maxOutOfScopeWords' ? Math.max(0, Number(input.value) || 0) : input.value;
     });
     state.aiPromptFields = next;
     const output = app.querySelector('[data-listening-ai-output]');
@@ -928,7 +1033,7 @@
 
   function renderListeningAiPaste() {
     const analysis = state.aiPasteAnalysis;
-    const types = Object.entries(window.TiengTrungAiPromptTemplates?.TYPE_META || {});
+    const types = Object.entries(window.TiengTrungAiPromptTemplates?.TYPE_META || {}).filter(([, meta]) => meta?.importable !== false);
     const groups = state.libraryGroups || [];
     const decks = state.libraryDecks || [];
     const selectedBlocks = selectedAiPasteBlocks();
@@ -2925,6 +3030,8 @@
       else if (action === 'close-settings') element.onclick = () => { state.settingsOpen = false; render(); schedulePrepareCurrentAudio(); };
       else if (action === 'open-menu') element.onclick = () => { clearAutoAdvance(); state.menuOpen = true; state.settingsOpen = false; render(); requestAnimationFrame(() => document.querySelector('.listen-menu-head button')?.focus()); };
       else if (action === 'close-menu') element.onclick = () => { state.menuOpen = false; render(); };
+      else if (action === 'open-new-hsk-course') element.onclick = openNewHskCourseLibrary;
+      else if (action === 'open-new-hsk-course-unit') element.onclick = () => openNewHskCourseUnit(element.dataset.unitId);
       else if (action === 'open-new-hsk') element.onclick = openNewHskLibrary;
       else if (action === 'open-new-hsk-unit') element.onclick = () => openNewHskUnit(element.dataset.unitId);
       else if (action === 'open-ldsn') element.onclick = openLdsnLibrary;
@@ -2982,13 +3089,13 @@
       else if (action === 'restore-library-trash') element.onclick = () => restoreLibraryTrash(element.dataset.trashId);
       else if (action === 'restore-library-trash-all') element.onclick = restoreAllLibraryTrash;
       else if (action === 'return-to-active-target') {
-        element.onpointerdown = (event) => event.preventDefault();
-        element.onmousedown = (event) => event.preventDefault();
+        element.onpointerdown = preservePracticeAudioPointerFocus;
+        element.onmousedown = preservePracticeAudioPointerFocus;
         element.onclick = returnToActiveLearningTarget;
       }
       else if (action === 'toggle-floating-audio') {
-        element.onpointerdown = (event) => event.preventDefault();
-        element.onmousedown = (event) => event.preventDefault();
+        element.onpointerdown = preservePracticeAudioPointerFocus;
+        element.onmousedown = preservePracticeAudioPointerFocus;
         element.onclick = () => {
           state.floatingAudioCollapsed = !state.floatingAudioCollapsed;
           syncFloatingAudioDom();
@@ -2998,8 +3105,8 @@
       else if (action === 'toggle-speech') {
         if (element.classList.contains('practice-audio-control')) {
           // Không chuyển focus khỏi ô nhập: bàn phím iPhone tiếp tục mở khi điều khiển audio.
-          element.onpointerdown = (event) => event.preventDefault();
-          element.onmousedown = (event) => event.preventDefault();
+          element.onpointerdown = preservePracticeAudioPointerFocus;
+          element.onmousedown = preservePracticeAudioPointerFocus;
         }
         element.onclick = toggleSpeech;
       }
@@ -3017,15 +3124,15 @@
       };
       else if (action === 'rewind-speech') {
         if (element.classList.contains('practice-audio-control')) {
-          element.onpointerdown = (event) => event.preventDefault();
-          element.onmousedown = (event) => event.preventDefault();
+          element.onpointerdown = preservePracticeAudioPointerFocus;
+          element.onmousedown = preservePracticeAudioPointerFocus;
         }
         element.onclick = rewindSpeech;
       }
       else if (action === 'forward-speech') {
         if (element.classList.contains('practice-audio-control')) {
-          element.onpointerdown = (event) => event.preventDefault();
-          element.onmousedown = (event) => event.preventDefault();
+          element.onpointerdown = preservePracticeAudioPointerFocus;
+          element.onmousedown = preservePracticeAudioPointerFocus;
         }
         element.onclick = forwardSpeech;
       }
@@ -4382,7 +4489,7 @@
       render();
       return;
     }
-    if (state.screen === 'newHskUnits' || state.screen === 'ldsnUnits') {
+    if (state.screen === 'newHskUnits' || state.screen === 'newHskCourseUnits' || state.screen === 'ldsnUnits') {
       state.screen = 'home';
       render();
       return;
@@ -4394,7 +4501,11 @@
     }
     if (state.screen === 'mode') {
       state.practiceItems = null;
-      if (state.source === 'new-hsk') {
+      if (state.source === 'new-hsk-course') {
+        state.dataset = null;
+        state.items = [];
+        state.screen = 'newHskCourseUnits';
+      } else if (state.source === 'new-hsk') {
         state.dataset = null;
         state.items = [];
         state.screen = 'newHskUnits';
@@ -5139,6 +5250,40 @@
     }, 60);
   }
 
+  function launchExternalPracticeFromStorage() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('externalPractice') !== '1') return false;
+    let payload = null;
+    try {
+      payload = JSON.parse(sessionStorage.getItem(EXTERNAL_PRACTICE_KEY) || 'null');
+      sessionStorage.removeItem(EXTERNAL_PRACTICE_KEY);
+    } catch (_error) {}
+    if (!payload || !Array.isArray(payload.items) || !payload.items.length) return false;
+    state.source = 'new-hsk-course';
+    state.lesson = { id: 'new-hsk-course-external', title: payload.title || 'New 3.0' };
+    state.items = payload.items.map((item, index) => ({
+      id: String(item.id || `new-hsk-external-${index + 1}`),
+      text: String(item.text || ''),
+      pinyin: String(item.pinyin || ''),
+      meaning: String(item.meaning || ''),
+      speaker: String(item.speaker || ''),
+      sourceType: item.sourceType || 'new-hsk-course',
+      sourceId: item.sourceId || 'new-hsk-course',
+      sourceTitle: item.sourceTitle || payload.title || 'New 3.0',
+      lessonId: item.lessonId || '',
+      lessonTitle: item.lessonTitle || '',
+      sentenceType: item.sentenceType || 'lesson-sentence'
+    })).filter(item => item.text);
+    state.externalReturnUrl = String(payload.returnUrl || '');
+    state.settings.shuffleItems = payload.shuffle === true;
+    startPractice(payload.mode || 'dictation', 0, {
+      items: state.items,
+      sessionName: payload.title || 'New 3.0 · Luyện nghe',
+      keepReturnContext: true
+    });
+    return true;
+  }
+
   if ('speechSynthesis' in window) {
     window.speechSynthesis.onvoiceschanged = loadVoices;
     loadVoices();
@@ -5196,5 +5341,5 @@
     })
   };
 
-  render();
+  if (!launchExternalPracticeFromStorage()) render();
 })();

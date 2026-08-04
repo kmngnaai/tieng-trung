@@ -9456,6 +9456,7 @@ body.hsk-flashcard-open{
   box-shadow: var(--ui-shadow-sm);
 }
 .ui-module-card--curriculum .ui-module-card__icon { background: #fff1e5; color: #d96f23; }
+.ui-module-card--new-hsk .ui-module-card__icon { background: #e4f4ee; color: #176f61; }
 .ui-module-card--radicals .ui-module-card__icon { background: #eaf8ee; color: #27834e; }
 .ui-module-card--cards .ui-module-card__icon { background: #eaf6ff; color: #1685c5; }
 .ui-module-card--writing .ui-module-card__icon { background: #f2ecff; color: #7751c8; }
@@ -11772,12 +11773,12 @@ html, body, .hanzi-app { background: var(--ui-bg); color: var(--ui-text); }
 }
 
 /* LDSN1-4 joins the shared Học navigation. */
-.study-tabs { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.study-tabs { grid-template-columns: repeat(6, minmax(0, 1fr)); }
 .study-tab-link { text-decoration: none; }
 .ui-module-card--ldsn .ui-module-card__icon { background: #e8f5ef; color: #34765f; }
 @media (max-width: 520px) {
   .study-tabs {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 3px;
     padding: 4px;
     overflow: visible;
@@ -12195,10 +12196,12 @@ html.hsk-popup-embed .hsk-popup-sheet {
 .flashcard-ai-fields label.is-wide{grid-column:1/-1}
 .flashcard-ai-fields label span small{color:#84918d;font-weight:500}
 .flashcard-ai-fields input,
+.flashcard-ai-fields select,
 .flashcard-ai-fields textarea,
 .flashcard-ai-output-card textarea{width:100%;border:1px solid #d3e5de;border-radius:13px;background:#fbfefc;padding:10px 12px;color:#20312c;font:inherit;outline:none;resize:vertical}
-.flashcard-ai-fields input{min-height:42px}
+.flashcard-ai-fields input,.flashcard-ai-fields select{min-height:42px}
 .flashcard-ai-fields input:focus,
+.flashcard-ai-fields select:focus,
 .flashcard-ai-fields textarea:focus{border-color:#88c6b6;box-shadow:0 0 0 3px rgba(22,127,114,.1)}
 .flashcard-ai-fields label > small{color:#788782;font-size:9px;font-weight:500}
 .flashcard-ai-output-card{display:grid;gap:10px;background:linear-gradient(145deg,#f3faf7,#f3f8fb)}
@@ -12377,3 +12380,474 @@ html.hsk-popup-embed .hsk-popup-sheet {
 .hsk-full-course-entry__copy small{margin-top:2px;color:#5c7c74;font-size:10px;line-height:1.4}
 .hsk-full-course-entry__arrow{color:#438879;font-size:24px;text-align:center}
 @media(max-width:480px){.hsk-full-course-entry{margin-bottom:9px;padding:9px 10px}.hsk-full-course-entry__copy strong{font-size:13px}}
+
+/* Return link when New 3.0 opens a radical or a concrete character. */
+.new-hsk-external-return{position:fixed;z-index:10050;left:12px;bottom:calc(76px + env(safe-area-inset-bottom));display:inline-flex;min-height:38px;align-items:center;border:1px solid #bcded3;border-radius:999px;background:rgba(249,253,251,.96);box-shadow:0 8px 24px rgba(24,92,76,.16);padding:0 13px;color:#176f61;font-size:11px;font-weight:850;text-decoration:none;backdrop-filter:blur(12px)}
+@media(max-width:480px){.new-hsk-external-return{left:8px;bottom:calc(70px + env(safe-area-inset-bottom));min-height:36px;padding-inline:11px}}
+
+/* New 3.0: lối tắt cấu tạo chữ trong phiên Flashcard dùng chung. */
+.hsk-flashcard-structure-link,
+.hsk-flashcard-structure-practice{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:40px;
+  border:1px solid #8fc7b5;
+  border-radius:12px;
+  background:#eef9f5;
+  color:#176f61;
+  font-weight:800;
+  text-decoration:none;
+}
+.hsk-flashcard-structure-link{justify-self:center;padding:0 14px}
+.hsk-flashcard-structure-practice{width:100%;padding:10px 14px;text-align:center}
+.hsk-flashcard-study--ordering,.hsk-flashcard-study--radical-sort{display:grid;gap:14px}.hsk-flashcard-ordering-prompt{display:grid;gap:6px;border:1px solid var(--ui-border);border-radius:16px;background:var(--ui-surface);padding:14px}.hsk-flashcard-ordering-answer,.hsk-flashcard-ordering-bank,.hsk-flashcard-radical-bank{display:flex;flex-wrap:wrap;gap:8px;min-height:62px;border:1px dashed #91c8b7;border-radius:16px;background:#f4fbf8;padding:12px}.hsk-flashcard-ordering-answer button,.hsk-flashcard-ordering-bank button,.hsk-flashcard-radical-bank button{border:1px solid #69aa96;border-radius:10px;background:#fff;padding:9px 12px;color:var(--ui-text);font-family:var(--ui-font-han);font-size:20px;font-weight:800}.hsk-flashcard-radical-bank button.active{outline:3px solid rgba(31,139,113,.25);background:#dff3ec}.hsk-flashcard-ordering-feedback{display:block;min-height:24px;font-weight:800}.hsk-flashcard-ordering-feedback.is-correct{color:#18785e}.hsk-flashcard-ordering-feedback.is-wrong{color:#b34c3f}.hsk-flashcard-radical-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.hsk-flashcard-radical-groups button{display:grid;gap:3px;min-height:110px;border:1px solid #82baa8;border-radius:16px;background:#fff;padding:12px;text-align:left}.hsk-flashcard-radical-groups b{font-family:var(--ui-font-han);font-size:32px}.hsk-flashcard-radical-groups span{font-weight:900}.hsk-flashcard-radical-groups small{color:var(--ui-text-secondary)}.hsk-flashcard-radical-groups i{min-height:24px;color:#16735f;font-style:normal;font-size:20px}@media(max-width:430px){.hsk-flashcard-radical-groups{grid-template-columns:1fr 1fr}.hsk-flashcard-radical-bank button{padding:7px 10px;font-size:18px}}
+.radical-popup-nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}.radical-popup-back--external{border-color:#78b7a5;color:#176f61;background:#eef9f5}
+
+/* 2026-08-04 flashcard practice UX v4 */
+.hsk-flashcard-study--ordering.is-compact,.hsk-flashcard-study--radical-sort.is-compact{gap:10px}
+.hsk-flashcard-study--ordering.is-compact .hsk-flashcard-ordering-prompt{padding:10px 12px;border-radius:13px}
+.hsk-flashcard-ordering-toolbar{display:flex;align-items:center;justify-content:space-between;gap:8px;color:var(--ui-text-secondary);font-size:11px;font-weight:750}
+.hsk-flashcard-ordering-toolbar button{display:grid;width:34px;height:34px;place-items:center;border:1px solid var(--ui-border);border-radius:10px;background:var(--ui-surface);color:var(--ui-text);font-size:18px}
+.hsk-flashcard-study--ordering.is-compact .hsk-flashcard-ordering-answer,.hsk-flashcard-study--ordering.is-compact .hsk-flashcard-ordering-bank{min-height:48px;gap:6px;padding:8px;border-radius:12px}
+.hsk-flashcard-study--ordering.is-compact .hsk-flashcard-ordering-answer button,.hsk-flashcard-study--ordering.is-compact .hsk-flashcard-ordering-bank button{padding:7px 10px;border-radius:9px;font-size:18px}
+.hsk-flashcard-order-rating{display:flex;align-items:center;gap:6px;flex-wrap:wrap;color:var(--ui-text-secondary);font-size:11px;font-weight:800}
+.hsk-flashcard-order-rating button{min-height:31px;border:1px solid var(--ui-border);border-radius:999px;background:var(--ui-surface);padding:0 11px;color:var(--ui-text-secondary);font-weight:850}
+.hsk-flashcard-order-rating button.active{border-color:#2e9d7f;background:#e4f5ee;color:#166854;box-shadow:0 0 0 2px rgba(46,157,127,.12)}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-bank{min-height:52px;gap:5px;padding:7px;border-radius:12px}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-bank button{min-width:38px;min-height:41px;padding:5px 8px;border-radius:9px;font-size:21px}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups{gap:7px}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups button{min-height:82px;gap:1px;padding:8px;border-radius:12px}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups button.active{border-color:#1f8b71;background:#e8f7f1;box-shadow:0 0 0 3px rgba(31,139,113,.12)}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups b{font-size:25px}.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups span{font-size:12px}.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups small{font-size:9px}.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups i{min-height:19px;font-size:18px}
+@media(max-width:430px){.hsk-flashcard-study--ordering.is-compact,.hsk-flashcard-study--radical-sort.is-compact{gap:8px}.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups{grid-template-columns:1fr 1fr}.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-bank button{min-width:36px;min-height:39px;font-size:20px}}
+
+/* Flashcard practice UX v5: compact sentence/radical sessions */
+.hsk-flashcard-ordering-setup{display:grid;gap:12px}
+.hsk-flashcard-ordering-display-count{display:flex;align-items:center;justify-content:space-between;gap:12px}.hsk-flashcard-ordering-display-count>span{display:grid;gap:2px}.hsk-flashcard-ordering-display-count small{color:var(--ui-text-secondary);font-size:11px}.hsk-flashcard-ordering-display-count select{min-width:104px;min-height:40px;border:1px solid var(--ui-border);border-radius:11px;background:var(--ui-surface);padding:0 10px;color:var(--ui-text);font-weight:800}
+.hsk-flashcard-order-items{display:grid;gap:8px;min-height:0;overflow-y:auto}
+.hsk-flashcard-order-item{display:grid;gap:6px;border:1px solid var(--ui-border);border-radius:13px;background:var(--ui-surface);padding:8px}
+.hsk-flashcard-study--ordering.is-compact .hsk-flashcard-ordering-prompt{gap:2px;padding:7px 9px;border-radius:11px}.hsk-flashcard-study--ordering.is-compact .hsk-flashcard-ordering-prompt strong{font-size:14px}.hsk-flashcard-study--ordering.is-compact .hsk-flashcard-ordering-prompt small{font-size:11px}
+.hsk-flashcard-study--ordering.is-compact .hsk-flashcard-ordering-answer,.hsk-flashcard-study--ordering.is-compact .hsk-flashcard-ordering-bank{min-height:38px;gap:4px;padding:5px;border-radius:10px}
+.hsk-flashcard-study--ordering.is-compact .hsk-flashcard-ordering-answer button,.hsk-flashcard-study--ordering.is-compact .hsk-flashcard-ordering-bank button{min-height:30px;padding:4px 8px;border-radius:8px;font-size:15px}
+.hsk-flashcard-order-page-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px}.hsk-flashcard-order-page-actions .hsk-flashcard-start{width:auto;min-width:126px;margin:0}.hsk-flashcard-order-auto-note{margin-right:auto;color:var(--ui-text-secondary);font-size:10px}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-bank{min-height:44px;gap:4px;padding:6px;border-radius:11px}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-bank button{min-width:32px;min-height:35px;padding:3px 6px;border-radius:8px;font-size:19px}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups{gap:6px}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups button{min-height:68px;gap:1px;padding:7px;border-radius:11px}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups b{font-size:22px}.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups span{font-size:11px}.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups small{font-size:8px}.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups i{min-height:17px;font-size:16px}
+@media(max-width:430px){.hsk-flashcard-order-items{gap:7px}.hsk-flashcard-order-item{padding:7px}.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-bank button{min-width:31px;min-height:34px;font-size:18px}.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups button{min-height:64px;padding:6px}}
+
+/* 2026-08-04 practice UX v6: mobile-first compact radical sort shell */
+.hsk-flashcard-study--radical-sort.is-compact{
+  grid-template-columns:minmax(0,1fr);
+  grid-auto-rows:max-content;
+  align-content:start;
+  gap:8px;
+}
+.hsk-flashcard-study--radical-sort.is-compact > *{
+  min-width:0;
+  align-self:start;
+}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-study-meta{
+  min-height:24px;
+  margin:0;
+  align-items:center;
+  font-size:11px;
+}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-study-meta b{
+  font-size:12px;
+}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-study-meta span{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-bank{
+  min-height:44px;
+  align-items:flex-start;
+  align-content:flex-start;
+  justify-content:flex-start;
+}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-bank button{
+  flex:0 0 auto;
+  width:34px;
+  min-width:34px;
+  height:38px;
+  min-height:38px;
+  padding:0;
+  line-height:1;
+}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-bank.is-complete{
+  min-height:44px;
+  align-items:center;
+  padding:8px 10px;
+  border-color:#b8dcd0;
+  background:#eef8f4;
+}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-bank.is-complete strong{
+  color:#315f55;
+  font-size:12px;
+  line-height:1.35;
+}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups{
+  grid-auto-rows:max-content;
+  align-content:start;
+  align-items:start;
+}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups button{
+  align-self:start;
+  height:auto;
+}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-ordering-feedback{
+  min-height:18px;
+  margin:0;
+  line-height:1.4;
+}
+.hsk-flashcard-study--radical-sort.is-compact [data-hsk-radical-complete]{
+  width:min(180px,100%);
+  min-height:40px;
+  margin:2px auto 0;
+  border-radius:12px;
+  background:#1f876f;
+  box-shadow:0 4px 12px rgba(31,135,111,.16);
+}
+
+@media(max-width:520px){
+  .hsk-flashcard-overlay--activity .hsk-flashcard-study--radical-sort.is-compact{
+    padding:10px 12px calc(14px + env(safe-area-inset-bottom));
+    gap:7px;
+  }
+  .hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-study-meta{
+    min-height:22px;
+  }
+  .hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-bank{
+    min-height:42px;
+    gap:4px;
+    padding:5px;
+    border-radius:10px;
+  }
+  .hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-bank button{
+    width:32px;
+    min-width:32px;
+    height:36px;
+    min-height:36px;
+    border-radius:8px;
+    font-size:19px;
+  }
+  .hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups{
+    gap:6px;
+  }
+  .hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups button{
+    min-height:64px;
+    padding:6px;
+    border-radius:11px;
+  }
+  .hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups b{
+    font-size:21px;
+  }
+  .hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups span{
+    font-size:10px;
+  }
+  .hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups small{
+    font-size:8px;
+  }
+  .hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups i{
+    min-height:16px;
+    font-size:15px;
+  }
+}
+
+/* v6 refinement: match the compact New 3.0 radical cards */
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-study-meta{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-study-meta span{
+  max-width:58%;
+  color:var(--ui-text-muted,#74665c);
+  font-size:10px;
+}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups button{
+  display:grid;
+  grid-template-rows:auto auto;
+  gap:4px;
+}
+.hsk-flashcard-radical-group-head{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  min-width:0;
+}
+.hsk-flashcard-radical-group-head>b{
+  display:grid;
+  flex:0 0 auto;
+  width:28px;
+  height:28px;
+  place-items:center;
+  border-radius:8px;
+  background:#eaf6f1;
+  color:#285f50;
+  font:700 20px/1 var(--ui-font-han);
+}
+.hsk-flashcard-radical-group-head>span{
+  display:grid;
+  min-width:0;
+  gap:1px;
+}
+.hsk-flashcard-radical-group-head strong{
+  overflow:hidden;
+  color:var(--ui-text);
+  font-size:10px;
+  font-weight:900;
+  line-height:1.2;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.hsk-flashcard-radical-group-head small{
+  overflow:hidden;
+  color:var(--ui-text-muted,#74665c);
+  font-size:8px;
+  line-height:1.2;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups i{
+  display:block;
+  min-height:18px;
+  overflow:hidden;
+  color:#16735f;
+  font-style:normal;
+  font-size:15px;
+  line-height:18px;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+@media(max-width:520px){
+  .hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-study-meta span{max-width:54%;font-size:9px}
+  .hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups button{min-height:62px}
+}
+
+/* 2026-08-04 flashcard mobile UI v7: New 3.0 visual rhythm */
+.hsk-flashcard-study--ordering.is-compact{
+  grid-template-columns:minmax(0,1fr);
+  grid-auto-rows:max-content;
+  align-content:start;
+  gap:8px;
+}
+.hsk-flashcard-study--ordering.is-compact > *{
+  min-width:0;
+  align-self:start;
+}
+.hsk-flashcard-study--ordering.is-compact .hsk-flashcard-study-meta{
+  margin:0;
+  min-height:22px;
+  align-items:center;
+}
+.hsk-flashcard-study--ordering.is-compact .hsk-flashcard-order-items{
+  width:100%;
+  align-self:start;
+}
+
+.hsk-flashcard-study--radical-sort.is-compact{
+  box-sizing:border-box;
+  border:1px solid #e8c9ad;
+  border-radius:18px;
+  background:linear-gradient(180deg,#fffdf9 0%,#fff9f1 100%);
+  padding:10px 12px calc(12px + env(safe-area-inset-bottom));
+  box-shadow:0 5px 16px rgba(142,91,52,.07);
+}
+.hsk-flashcard-radical-topbar{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:8px;
+  min-width:0;
+}
+.hsk-flashcard-radical-topbar .hsk-flashcard-study-meta{
+  display:grid;
+  flex:1 1 auto;
+  gap:2px;
+  min-width:0;
+  margin:0;
+}
+.hsk-flashcard-radical-display{
+  display:inline-flex;
+  flex:0 0 auto;
+  gap:3px;
+  border:1px solid #edd9c6;
+  border-radius:10px;
+  background:#fffaf4;
+  padding:3px;
+}
+.hsk-flashcard-radical-display button{
+  min-width:30px;
+  min-height:28px;
+  border:0;
+  border-radius:7px;
+  background:transparent;
+  padding:0 6px;
+  color:#816b5a;
+  font-size:10px;
+  font-weight:850;
+  cursor:pointer;
+}
+.hsk-flashcard-radical-display button.active{
+  background:#f4dec9;
+  color:#74441f;
+  box-shadow:0 1px 4px rgba(126,77,41,.12);
+}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-bank{
+  border-color:#d8c8b9;
+  background:#fffdf9;
+}
+.hsk-flashcard-radical-token{
+  display:grid;
+  align-content:center;
+  justify-items:center;
+  gap:1px;
+  overflow:hidden;
+}
+.hsk-flashcard-radical-token b{
+  font:800 19px/1 var(--ui-font-han);
+}
+.hsk-flashcard-radical-token small{
+  display:block;
+  width:100%;
+  overflow:hidden;
+  color:#826f61;
+  font:750 8px/1.15 var(--ui-font-sans,system-ui,sans-serif);
+  text-align:center;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-bank.display-pinyin .hsk-flashcard-radical-token,
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-bank.display-meaning .hsk-flashcard-radical-token{
+  width:56px;
+  min-width:56px;
+  height:46px;
+  min-height:46px;
+  padding:3px 4px;
+}
+.hsk-flashcard-radical-selected-help{
+  display:grid;
+  grid-template-columns:auto auto minmax(0,1fr);
+  align-items:center;
+  gap:5px;
+  min-height:34px;
+  border:1px solid #ecd8c4;
+  border-radius:10px;
+  background:#fff8ed;
+  padding:6px 8px;
+  color:#76583f;
+  font-size:10px;
+}
+.hsk-flashcard-radical-selected-help b{
+  color:#1d6757;
+  font:850 21px/1 var(--ui-font-han);
+}
+.hsk-flashcard-radical-selected-help span:first-of-type{
+  color:#1d6757;
+  font-weight:850;
+}
+.hsk-flashcard-radical-selected-help span:last-child{
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups button{
+  border-color:#b9d9cf;
+  background:#fbfefd;
+}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-groups button.active{
+  border-color:#3d9c83;
+  background:#e7f6f0;
+}
+.hsk-flashcard-study--radical-sort.is-compact.is-complete{
+  align-content:center;
+  justify-content:stretch;
+  min-height:100%;
+  padding-top:18px;
+  padding-bottom:calc(18px + env(safe-area-inset-bottom));
+}
+.hsk-flashcard-study--radical-sort.is-compact.is-complete .hsk-flashcard-radical-topbar,
+.hsk-flashcard-study--radical-sort.is-compact.is-complete .hsk-flashcard-radical-bank,
+.hsk-flashcard-study--radical-sort.is-compact.is-complete .hsk-flashcard-radical-groups,
+.hsk-flashcard-study--radical-sort.is-compact.is-complete .hsk-flashcard-ordering-feedback,
+.hsk-flashcard-study--radical-sort.is-compact.is-complete [data-hsk-radical-complete]{
+  width:min(100%,420px);
+  margin-left:auto;
+  margin-right:auto;
+}
+
+@media(max-width:520px){
+  .hsk-flashcard-overlay--activity .hsk-flashcard-study--ordering.is-compact{
+    padding:8px 10px calc(12px + env(safe-area-inset-bottom));
+  }
+  .hsk-flashcard-study--ordering.is-compact .hsk-flashcard-study-meta{
+    display:flex;
+    gap:6px;
+    font-size:10px;
+  }
+  .hsk-flashcard-study--ordering.is-compact .hsk-flashcard-study-meta span{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  .hsk-flashcard-overlay--activity .hsk-flashcard-study--radical-sort.is-compact{
+    margin:8px 9px calc(10px + env(safe-area-inset-bottom));
+    padding:9px;
+  }
+  .hsk-flashcard-radical-topbar{
+    align-items:center;
+  }
+  .hsk-flashcard-radical-topbar .hsk-flashcard-study-meta span{
+    max-width:none;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  .hsk-flashcard-radical-display button{
+    min-width:28px;
+    min-height:27px;
+    padding-inline:5px;
+    font-size:9px;
+  }
+  .hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-bank.display-pinyin .hsk-flashcard-radical-token,
+  .hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-bank.display-meaning .hsk-flashcard-radical-token{
+    width:52px;
+    min-width:52px;
+    height:44px;
+    min-height:44px;
+  }
+  .hsk-flashcard-radical-selected-help{
+    grid-template-columns:auto auto minmax(0,1fr);
+    min-height:32px;
+    padding:5px 7px;
+  }
+}
+
+/* v7 mobile refinement: compact activity card instead of a full-height bordered panel */
+@media(max-width:520px){
+  .hsk-flashcard-body--activity > .hsk-flashcard-study--radical-sort.is-compact{
+    flex:0 1 auto;
+    width:calc(100% - 18px);
+    max-height:calc(100dvh - 78px - env(safe-area-inset-top));
+    margin:8px 9px auto;
+    overflow-y:auto;
+  }
+  .hsk-flashcard-body--activity > .hsk-flashcard-study--radical-sort.is-compact.is-complete{
+    min-height:0;
+    margin-top:auto;
+    margin-bottom:auto;
+    align-content:start;
+  }
+  .hsk-flashcard-study--radical-sort.is-compact.is-complete .hsk-flashcard-radical-display{
+    display:none;
+  }
+  .hsk-flashcard-study--radical-sort.is-compact.is-complete [data-hsk-radical-complete]{
+    width:min(180px,100%);
+  }
+}

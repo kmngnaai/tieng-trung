@@ -632,6 +632,43 @@
     };
   }
 
+  function listNewHskCourseUnits(manifest, options){
+    const level = Number(options && options.level || 1);
+    return toArray(manifest && manifest.lessons).filter(row => Number(row.level) === level && String(row.status || '').includes('ready')).map(row => ({
+      id: cleanText(row.id), unitId: cleanText(row.id), level: Number(row.level), sectionOrder: Number(row.lessonNumber || 0), title: cleanText(row.title && row.title.vi), titleZh: cleanText(row.title && row.title.hanzi), pinyin: cleanPinyin(row.title && row.title.pinyin), dataPath: cleanText(row.path), status: cleanText(row.status)
+    })).sort((a,b)=>a.sectionOrder-b.sectionOrder);
+  }
+
+  function adaptNewHskCourseLesson(lesson, options){
+    const configured=options || {};
+    const entities=lesson && lesson.entities || {};
+    const unitId=cleanText(lesson && lesson.id);
+    const title=cleanText(lesson && lesson.title && lesson.title.vi);
+    const titleZh=cleanText(lesson && lesson.title && lesson.title.hanzi);
+    const sourceFile=configured.sourceFile || `modules/new-hsk-course/data/hsk${lesson.level}/lesson-${String(lesson.lessonNumber).padStart(2,'0')}.json`;
+    const words=[...toArray(entities.vocabulary),...toArray(entities.properNouns)].map((raw,index)=>{
+      const text=cleanText(raw.hanzi); if(!text) return null;
+      return {id:cleanText(raw.id)||stableId(`${unitId}|word|${text}`,'nhsk-course-word'),text,hanzi:text,pinyin:cleanPinyin(raw.pinyin),meaning:cleanText(raw.vi),hanViet:cleanText(raw.hanViet),wordType:cleanText(raw.wordClass || raw.kind),sourceType:'new-hsk-course-word',sourceId:unitId,sourceTitle:title,lessonId:unitId,originType:'source',origin:{file:sourceFile,path:`entities.${raw.kind?'properNouns':'vocabulary'}[${index}]`,routeId:unitId}};
+    }).filter(Boolean);
+    const sentences=[]; const groups=[];
+    toArray(entities.dialogues).forEach((dialogue,dialogueIndex)=>{
+      const items=[];
+      toArray(dialogue.turns).forEach((turn,turnIndex)=>{
+        const sentence={id:cleanText(turn.id)||stableId(`${unitId}|dialogue|${dialogueIndex}|${turnIndex}`,'nhsk-course-sentence'),text:cleanText(turn.hanzi),hanzi:cleanText(turn.hanzi),pinyin:cleanPinyin(turn.pinyin),meaning:cleanText(turn.vi),speaker:cleanText(turn.speaker && turn.speaker.vi),sourceType:'new-hsk-course-sentence',sourceId:unitId,sourceTitle:title,lessonId:unitId,sentenceType:'dialogue-turn',originType:'source',tags:['dialogue'],origin:{file:sourceFile,path:`entities.dialogues[${dialogueIndex}].turns[${turnIndex}]`,routeId:unitId},tokens:tokenizeSentence(turn.hanzi,words,turn.answerTokens)};
+        if(!sentence.text) return; sentences.push(sentence); items.push(Object.assign({},sentence,{id:`${sentence.id}:group`,canonicalSentenceId:sentence.id,groupId:dialogue.id,groupKind:'dialogue',groupIndex:turnIndex}));
+      });
+      if(items.length>=2) groups.push({id:cleanText(dialogue.id)||`${unitId}-dialogue-${dialogueIndex+1}`,kind:'dialogue',title:cleanText(dialogue.sourceHeading)||`${titleZh||title} · Hội thoại`,originType:'source',sourceType:'new-hsk-course-group',sourceId:unitId,lessonId:unitId,items});
+    });
+    toArray(entities.passages).forEach((passage,passageIndex)=>{
+      const hanzi=cleanText(passage.hanzi).split(/\n+/u).filter(Boolean); const pinyin=cleanText(passage.pinyin).split(/\n+/u); const vi=cleanText(passage.vi).split(/\n+/u); const items=[];
+      hanzi.forEach((line,lineIndex)=>{ const sentence={id:`${cleanText(passage.id)||`${unitId}-passage-${passageIndex+1}`}-line-${lineIndex+1}`,text:line,hanzi:line,pinyin:cleanPinyin(pinyin[lineIndex]),meaning:cleanText(vi[lineIndex]),sourceType:'new-hsk-course-sentence',sourceId:unitId,sourceTitle:title,lessonId:unitId,sentenceType:'passage-sentence',originType:'source',tags:['passage'],origin:{file:sourceFile,path:`entities.passages[${passageIndex}]`,routeId:unitId},tokens:tokenizeSentence(line,words,null)}; sentences.push(sentence); items.push(Object.assign({},sentence,{id:`${sentence.id}:group`,canonicalSentenceId:sentence.id,groupId:passage.id,groupKind:'passage',groupIndex:lineIndex})); });
+      if(items.length>=2) groups.push({id:cleanText(passage.id)||`${unitId}-passage-${passageIndex+1}`,kind:'passage',title:cleanText(passage.title)||`${titleZh||title} · Bài đọc`,originType:'source',sourceType:'new-hsk-course-group',sourceId:unitId,lessonId:unitId,items});
+    });
+    const grammar=[...toArray(entities.grammar),...toArray(entities.languageNotes)].map((raw,index)=>Object.assign({},raw,{id:cleanText(raw.id)||`${unitId}-grammar-${index+1}`,sourceId:unitId,lessonId:unitId,origin:{file:sourceFile,path:`entities.languageNotes[${index}]`,routeId:unitId}}));
+    const validOrdering=sentences.filter(row=>toArray(row.tokens).length>=2); const dialogues=groups.filter(g=>g.kind==='dialogue'); const passages=groups.filter(g=>g.kind==='passage');
+    return {schemaVersion:SCHEMA_VERSION,source:{id:'new-hsk-course',curriculum:'new-hsk-course',levelId:`hsk-${lesson.level}`,levelName:`HSK ${lesson.level}`},unit:{id:unitId,unitId,sectionType:'lesson',sectionOrder:Number(lesson.lessonNumber||0),title,titleZh,status:cleanText(lesson.source && lesson.source.status)||'app-ready'},words,sentences,grammar,groups,sentenceFilters:[{id:'all',label:'Toàn bộ',tag:'',description:`${sentences.length} câu`},{id:'dialogue',label:'Hội thoại',tag:'dialogue',description:`${sentences.filter(x=>x.tags.includes('dialogue')).length} lượt`},{id:'passage',label:'Bài đọc / bài vè',tag:'passage',description:`${sentences.filter(x=>x.tags.includes('passage')).length} câu`}],capabilities:{wordChoice:words.length>=4,wordTyping:words.length>0,sentenceDictation:sentences.length>0,sentenceTranscript:sentences.length>0,sentenceOrdering:validOrdering.length>0,dialogueTurnOrdering:dialogues.some(g=>g.items.length>=2),dialogueSentenceOrdering:dialogues.some(g=>g.items.some(i=>toArray(i.tokens).length>=2)),dialogueDictation:dialogues.length>0,dialogueFullDictation:dialogues.length>0,passageSentenceOrdering:passages.some(g=>g.items.length>=2),passageSentenceTokenOrdering:passages.some(g=>g.items.some(i=>toArray(i.tokens).length>=2)),passageDictation:passages.length>0,passageFullDictation:passages.length>0},diagnostics:[],stats:{wordCount:words.length,sentenceCount:sentences.length,vocabularyExampleCount:0,grammarExampleCount:0,grammarOnlyCount:0,authoredSentenceCount:0,sourceSentenceCount:sentences.length,dialogueCount:dialogues.length,passageCount:passages.length},rules:{audio:'source-audio-or-device-tts',defaultChoiceCount:4,hardChoiceCount:5,grammarIncludedInAllSentences:true}};
+  }
+
   function validateDataset(dataset) {
     const errors = [];
     const warnings = [];
@@ -703,9 +740,11 @@
     SCHEMA_VERSION,
     normalizedSentenceKey,
     listNewHskUnits,
+    listNewHskCourseUnits,
     listLdsnUnits,
     tokenizeSentence,
     adaptNewHskUnit,
+    adaptNewHskCourseLesson,
     adaptLdsnUnit,
     validateDataset
   };

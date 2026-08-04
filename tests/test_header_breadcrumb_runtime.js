@@ -156,4 +156,13 @@ function runScenario(relativeUrl, bodyContext = '') {
   assert.strictEqual(result.breadcrumb.scrollLeft, result.breadcrumb.scrollWidth);
 }
 
-console.log('header breadcrumb runtime tests: 5/5 passed');
+{
+  const result = runScenario('/modules/new-hsk-course/index.html?level=1&lesson=1&view=book', 'learn');
+  assert.match(result.breadcrumb.innerHTML, /Học/);
+  assert.match(result.breadcrumb.innerHTML, /New 3\.0/);
+  assert.match(result.breadcrumb.innerHTML, /HSK 1/);
+  assert.match(result.breadcrumb.innerHTML, /Bài 1/);
+  assert.doesNotMatch(result.breadcrumb.innerHTML, /Giáo trình/);
+}
+
+console.log('header breadcrumb runtime tests: 6/6 passed');

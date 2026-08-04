@@ -208,7 +208,7 @@ function clickTarget(selector, object) {
   assert(learnHtml.includes('ui-module-card--ldsn'), 'Học overview must include the LDSN1-4 card');
   assert(learnHtml.includes('id="studyTabFlashcards"'), 'Học horizontal tabs must keep the existing Thẻ tab');
   const studyNav = learnHtml.match(/<nav class="study-tabs[\s\S]*?<\/nav>/)?.[0] || '';
-  assert((studyNav.match(/data-study-tab=/g) || []).length === 5, 'Học horizontal navigation must render all five tabs');
+  assert((studyNav.match(/data-study-tab=/g) || []).length === 6, 'Học horizontal navigation must render all six tabs');
   assert(learnHtml.includes('style.css?v=20260718-deckmultiselect1&ldsn=20260731-6.2') && learnHtml.includes('app.js?v=20260718-deckmultiselect1&ldsn=20260731-6.2'), 'Học assets must be cache-busted for the shared popup host');
 
   const tabs = ['learn', 'practice', 'dialogue', 'content', 'review'];
