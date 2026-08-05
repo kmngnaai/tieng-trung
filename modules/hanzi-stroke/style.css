@@ -13114,8 +13114,34 @@ html.hsk-popup-embed .hsk-popup-sheet {
 @media(max-width:520px){
   .hsk-flashcard-ordering-vocab-panel{min-height:84px;max-height:46%;padding-top:4px}
   .hsk-flashcard-ordering-vocab-list{grid-template-columns:1fr}
-  .hsk-flashcard-ordering-vocab-list button{grid-template-columns:36px minmax(0,1fr) auto;padding:7px}
-  .hsk-flashcard-ordering-vocab-list button>b{font-size:21px}
+  .hsk-flashcard-ordering-vocab-list button{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:'word speak' 'meta meta';padding:8px 9px}
+  .hsk-flashcard-ordering-vocab-list button>b{grid-area:word;max-width:100%;font-size:21px;white-space:nowrap;word-break:keep-all;overflow-wrap:normal}.hsk-flashcard-ordering-vocab-list button>span{grid-area:meta}.hsk-flashcard-ordering-vocab-list button>i{grid-area:speak}
 }
 .hsk-flashcard-ordering-vocab-section,.hsk-flashcard-ordering-vocab-list,.hsk-flashcard-ordering-vocab-list button{width:100%;box-sizing:border-box}
 .hsk-flashcard-study--ordering.is-compact>.hsk-flashcard-ordering-vocab-panel{width:100%;align-self:stretch;box-sizing:border-box}
+
+
+/* 2026-08-05: pointer drag for sentence ordering and radical flashcards. */
+.hsk-flashcard-ordering-answer,
+.hsk-flashcard-ordering-bank,
+.hsk-flashcard-radical-groups{transition:background .12s,border-color .12s,box-shadow .12s}
+.hsk-flashcard-ordering-answer.is-hsk-drag-over,
+.hsk-flashcard-ordering-bank.is-hsk-drag-over{border-color:#27856f;background:#edf8f4;box-shadow:inset 0 0 0 2px rgba(39,133,111,.12)}
+.hsk-flashcard-ordering-answer button,
+.hsk-flashcard-ordering-bank button,
+.hsk-flashcard-radical-token{touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab}
+.hsk-flashcard-ordering-answer button:active,
+.hsk-flashcard-ordering-bank button:active,
+.hsk-flashcard-radical-token:active{cursor:grabbing}
+.hsk-flashcard-ordering-answer button{position:relative}
+.hsk-flashcard-ordering-answer button.is-hsk-drop-before::before,
+.hsk-flashcard-ordering-answer button.is-hsk-drop-after::after{content:'';position:absolute;top:3px;bottom:3px;width:3px;border-radius:999px;background:#1b8d72}
+.hsk-flashcard-ordering-answer button.is-hsk-drop-before::before{left:-5px}
+.hsk-flashcard-ordering-answer button.is-hsk-drop-after::after{right:-5px}
+.hsk-flashcard-radical-groups [data-hsk-radical-group].is-hsk-drag-over{border-color:#27856f;background:#e9f7f2;box-shadow:0 0 0 3px rgba(39,133,111,.14)}
+.hsk-flashcard-drag-ghost{position:fixed!important;z-index:999999!important;left:0!important;top:0!important;width:auto!important;max-width:180px!important;margin:0!important;pointer-events:none!important;opacity:.92!important;box-shadow:0 12px 28px rgba(35,55,48,.24)!important;transform:translate3d(-9999px,-9999px,0)}
+body.hsk-flashcard-pointer-dragging{cursor:grabbing}
+@media(max-width:520px){
+  .hsk-flashcard-ordering-vocab-list button>b{font-size:22px}
+  .hsk-flashcard-ordering-answer button,.hsk-flashcard-ordering-bank button{min-height:38px;padding-inline:10px;font-size:20px;white-space:nowrap;word-break:keep-all}
+}
