@@ -2,13 +2,14 @@
   'use strict';
 
   const SETTINGS_KEY = 'tiengTrung.newHskCourse.settings.v1';
-  const SETTINGS_VERSION = 7;
+  const SETTINGS_VERSION = 8;
   const Matching = window.TiengTrungMatching;
   const LAST_LOCATION_KEY = 'tiengTrung.newHskCourse.lastLocation.v1';
   const PROGRESS_KEY = 'tiengTrung.newHskCourse.progress.v1';
   const EXTERNAL_LISTENING_KEY = 'tiengTrung.listening.externalPractice.v1';
   const RETURN_PREFIX = 'tiengTrung.newHskCourse.return.';
   const HSK_EXTERNAL_FLASHCARD_KEY = 'tiengTrung.hsk.externalFlashcard.v1';
+  const HSK1_SENTENCE_INDEX_URL = '../hanzi-stroke/data/learning/hsk1-vocabulary-sentence-index.json';
   const PRACTICE_ACTIVITY_IDS = new Set(['flashcards', 'listening', 'fill', 'matching', 'ordering', 'typing', 'translateZhVi', 'translateViZh', 'roleplay', 'characters']);
   const PRACTICE_SOURCE_IDS = ['vocabulary', 'properNouns', 'sentences', 'dialogues', 'passages', 'grammar'];
   const LEGACY_PRACTICE_ACTIVITY_MAP = Object.freeze({
@@ -22,7 +23,15 @@
     level: Math.max(1, Number(params.get('level')) || 1),
     lessonNumber: Math.max(1, Number(params.get('lesson')) || 1),
     view: ['book', 'grouped', 'practice'].includes(params.get('view')) ? params.get('view') : 'book',
+    catalog: ['topics', 'grammar'].includes(params.get('catalog')) ? params.get('catalog') : '',
+    topicId: params.get('topic') || '',
+    grammarId: params.get('grammar') || '',
+    focusWord: params.get('focusWord') || '',
+    catalogData: null,
+    catalogLoading: false,
+    catalogError: '',
     filter: params.get('filter') || 'all',
+    grammarPlusId: params.get('grammarPlus') || '',
     dialogueLayers: { hanzi: true, pinyin: true, vi: true },
     passageLayers: { hanzi: true, pinyin: true, vi: true },
     practiceActivity: params.get('practice') || 'flashcards',
@@ -42,6 +51,7 @@
     practiceOrderingDisplayCount: 1,
     practiceRoleSpeaker: '',
     practiceCharacterMode: ['learn', 'sort', 'build', 'write'].includes(params.get('characterMode')) ? params.get('characterMode') : 'learn',
+    practiceCharacterScope: 'all',
     practiceCharacterGlyphs: String(params.get('chars') || '').split(',').map(value => value.trim()).filter(Boolean),
     practiceLayers: {},
     practiceSessionRows: [],
@@ -65,6 +75,9 @@
   let radicalPointerDrag = null;
   let suppressRadicalClickUntil = 0;
   let practiceProgress = readProgress();
+  const catalogCache = new Map();
+  const lessonDataCache = new Map();
+  let hsk1SentenceIndexPromise = null;
 
   Object.assign(state, readSettings());
   if (params.get('view')) state.view = ['book', 'grouped', 'practice'].includes(params.get('view')) ? params.get('view') : 'book';
@@ -142,6 +155,7 @@
         practiceOrderingDisplayCount: [1, 2, 3].includes(Number(saved.practiceOrderingDisplayCount)) ? Number(saved.practiceOrderingDisplayCount) : 1,
         practiceRoleSpeaker: String(saved.practiceRoleSpeaker || ''),
         practiceCharacterMode: ['learn', 'sort', 'build', 'write'].includes(saved.practiceCharacterMode) ? saved.practiceCharacterMode : 'learn',
+        practiceCharacterScope: saved.practiceCharacterScope === 'core' ? 'core' : 'all',
         practiceLayers: saved.practiceLayers && typeof saved.practiceLayers === 'object'
           ? { ...saved.practiceLayers, ...(Number(saved.settingsVersion) >= SETTINGS_VERSION ? {} : { typingListen: undefined }) }
           : {},
@@ -175,6 +189,7 @@
         practiceOrderingDisplayCount: state.practiceOrderingDisplayCount,
         practiceRoleSpeaker: state.practiceRoleSpeaker,
         practiceCharacterMode: state.practiceCharacterMode,
+        practiceCharacterScope: state.practiceCharacterScope,
         practiceLayers: state.practiceLayers,
         vocabShowPinyin: state.vocabShowPinyin,
         vocabViewMode: state.vocabViewMode
@@ -196,9 +211,24 @@
     url.searchParams.set('level', String(state.level));
     url.searchParams.set('lesson', String(state.lessonNumber));
     url.searchParams.set('view', state.view);
-    if (state.view === 'grouped' && state.filter !== 'all') url.searchParams.set('filter', state.filter);
+    if (state.catalog) {
+      url.searchParams.set('catalog', state.catalog);
+      if (state.catalog === 'topics' && state.topicId) url.searchParams.set('topic', state.topicId);
+      else url.searchParams.delete('topic');
+      if (state.catalog === 'grammar' && state.grammarId) url.searchParams.set('grammar', state.grammarId);
+      else url.searchParams.delete('grammar');
+    } else {
+      url.searchParams.delete('catalog');
+      url.searchParams.delete('topic');
+      url.searchParams.delete('grammar');
+    }
+    if (state.focusWord) url.searchParams.set('focusWord', state.focusWord);
+    else url.searchParams.delete('focusWord');
+    if (!state.catalog && state.grammarPlusId) url.searchParams.set('grammarPlus', state.grammarPlusId);
+    else url.searchParams.delete('grammarPlus');
+    if (!state.catalog && state.view === 'grouped' && state.filter !== 'all') url.searchParams.set('filter', state.filter);
     else url.searchParams.delete('filter');
-    if (state.view === 'practice' && state.practiceActivity !== 'flashcards') url.searchParams.set('practice', state.practiceActivity);
+    if (!state.catalog && state.view === 'practice' && state.practiceActivity !== 'flashcards') url.searchParams.set('practice', state.practiceActivity);
     else url.searchParams.delete('practice');
     window.history[replace ? 'replaceState' : 'pushState'](window.history.state, '', `${url.pathname}${url.search}`);
   }
@@ -357,6 +387,308 @@
       </div>`;
   }
 
+
+  function renderCatalogSwitch() {
+    const rows = [
+      ['', 'Bài hiện tại'],
+      ['topics', 'Chủ đề'],
+      ['grammar', 'Ngữ pháp']
+    ];
+    return `<nav class="nhsk-catalog-switch" aria-label="Danh mục New 3.0">${rows.map(([key, label]) => `<button type="button" class="${state.catalog === key ? 'is-active' : ''}" data-nhsk-catalog="${key}" aria-pressed="${state.catalog === key}">${label}</button>`).join('')}</nav>`;
+  }
+
+  function renderCatalogLevelNav() {
+    const levels = state.manifest?.course?.levels || [];
+    return `<section class="nhsk-catalog-level-nav">
+      <label><span>Cấp độ</span><select data-nhsk-catalog-level-select>${levels.map(row => `<option value="${Number(row.level)}" ${Number(row.level) === state.level ? 'selected' : ''}>HSK ${Number(row.level)}</option>`).join('')}</select></label>
+      <button type="button" data-nhsk-catalog="">← Về HSK ${state.level} · Bài ${state.lessonNumber}</button>
+    </section>`;
+  }
+
+  function renderCatalogHero() {
+    const grammar = state.catalog === 'grammar';
+    return `<section class="nhsk-hero nhsk-catalog-hero">
+      <div class="nhsk-hero__eyebrow">NEW 3.0 · HSK ${state.level}</div>
+      <h1>${grammar ? 'Ngữ pháp' : 'Chủ đề'}</h1>
+      <p>${grammar ? 'Cấu trúc · giải thích · mẹo nhớ · ví dụ theo đúng cấp độ.' : 'Chọn một chủ đề để xem toàn bộ từ, sau đó mở đúng bài nguồn trong New 3.0.'}</p>
+    </section>`;
+  }
+
+  async function loadCatalogData(level = state.level) {
+    const normalizedLevel = Math.max(1, Number(level) || 1);
+    if (catalogCache.has(normalizedLevel)) {
+      state.catalogData = catalogCache.get(normalizedLevel);
+      state.catalogLoading = false;
+      state.catalogError = '';
+      return state.catalogData;
+    }
+    state.catalogLoading = true;
+    state.catalogError = '';
+    render();
+    try {
+      const response = await fetch(`data/catalog/hsk${normalizedLevel}.json`, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`Không tải được danh mục HSK ${normalizedLevel} (${response.status}).`);
+      const data = await response.json();
+      catalogCache.set(normalizedLevel, data);
+      if (Number(state.level) === normalizedLevel) state.catalogData = data;
+      state.catalogLoading = false;
+      render();
+      return data;
+    } catch (error) {
+      state.catalogLoading = false;
+      state.catalogError = error instanceof Error ? error.message : String(error);
+      render();
+      return null;
+    }
+  }
+
+  async function openCatalog(mode, options = {}) {
+    state.catalog = ['topics', 'grammar'].includes(mode) ? mode : '';
+    state.grammarPlusId = '';
+    state.topicId = state.catalog === 'topics' ? String(options.topicId || '') : '';
+    state.grammarId = state.catalog === 'grammar' ? String(options.grammarId || '') : '';
+    state.focusWord = '';
+    if (options.push !== false) syncUrl(false);
+    if (!state.catalog) {
+      render();
+      return;
+    }
+    state.catalogData = catalogCache.get(Number(state.level)) || null;
+    render();
+    if (!state.catalogData) await loadCatalogData(state.level);
+  }
+
+  async function navigateCatalogLevel(level) {
+    const normalizedLevel = Math.max(1, Number(level) || 1);
+    const first = courseLessons(normalizedLevel)[0];
+    if (!first) return;
+    state.topicId = '';
+    state.grammarId = '';
+    state.catalogData = catalogCache.get(normalizedLevel) || null;
+    await loadLessonData(normalizedLevel, Number(first.lessonNumber), { push: true });
+    if (!state.catalogData) await loadCatalogData(normalizedLevel);
+  }
+
+  function catalogLessonUrl(lessonNumber, word = '') {
+    const url = new URL(window.location.href);
+    url.searchParams.set('level', String(state.level));
+    url.searchParams.set('lesson', String(lessonNumber));
+    url.searchParams.set('view', 'grouped');
+    url.searchParams.set('filter', 'vocabulary');
+    if (word) url.searchParams.set('focusWord', word);
+    else url.searchParams.delete('focusWord');
+    url.searchParams.delete('catalog');
+    url.searchParams.delete('topic');
+    url.searchParams.delete('grammar');
+    url.searchParams.delete('practice');
+    return `${url.pathname}${url.search}`;
+  }
+
+  function renderCatalogLoading() {
+    if (state.catalogError) return `<section class="nhsk-error"><h2>Chưa mở được danh mục</h2><p>${escapeHtml(state.catalogError)}</p><button type="button" data-nhsk-catalog-retry>Thử lại</button></section>`;
+    return '<section class="nhsk-loading"><span class="nhsk-spinner" aria-hidden="true"></span><span>Đang tải danh mục...</span></section>';
+  }
+
+  function selectedCatalogTopic() {
+    return (state.catalogData?.topics || []).find(item => item.id === state.topicId) || null;
+  }
+
+  function selectedCatalogWord(wordText) {
+    const target = String(wordText || '').trim();
+    if (!target) return null;
+    return (selectedCatalogTopic()?.words || []).find(item => String(item.word || '').trim() === target) || null;
+  }
+
+  function topicFlashcardCards(topic = selectedCatalogTopic()) {
+    if (!topic) return [];
+    return (topic.words || []).map((word, index) => ({
+      id: `new-hsk-topic:${state.level}:${topic.id}:${word.word}:${index}`,
+      word: String(word.word || '').trim(),
+      pinyin: String(word.pinyin || '').trim(),
+      meaningVi: String(word.meaningVi || '').trim(),
+      cardType: 'vocabulary',
+      source: 'new-hsk-topic',
+      sourceWord: String(word.word || '').trim(),
+      sourceItem: word,
+      lessonNumbers: Array.isArray(word.lessonNumbers) ? word.lessonNumbers : []
+    })).filter(card => card.word);
+  }
+
+  const HSK_CATALOG_ACCENTS = ['#6f9fe8', '#68b982', '#62b9c8', '#9a7fd1', '#e79a62', '#df7fa8', '#7f8fd8', '#68a99f'];
+
+  function hskCatalogAccent(index) {
+    const safeIndex = Number.isFinite(Number(index)) ? Number(index) : 0;
+    return HSK_CATALOG_ACCENTS[Math.abs(safeIndex) % HSK_CATALOG_ACCENTS.length];
+  }
+
+  function formatCatalogMeaning(value, limit = 3) {
+    const parts = String(value || '').split(/\s*\/\s*/).map(part => part.trim()).filter(Boolean);
+    return parts.length ? parts.slice(0, limit).join(' / ') : '';
+  }
+
+  function renderTopicWord(word, index) {
+    const lessons = Array.isArray(word.lessons) ? word.lessons : [];
+    const hanzi = String(word.word || '').trim();
+    const pinyin = String(word.pinyin || '').trim();
+    const meaning = formatCatalogMeaning(word.meaningVi || '', 3);
+    return `<article class="hsk-item hsk-item-compact hsk-vocab-item hsk-item--accented nhsk-topic-word" style="--hsk-card-accent:${hskCatalogAccent(index)}" data-nhsk-catalog-word="${attr(hanzi)}" tabindex="0" role="button" aria-label="Mở chi tiết ${attr(hanzi)}">
+      <div class="hsk-item-main">
+        <div class="hsk-word-row">
+          <strong class="hsk-word">${escapeHtml(hanzi)}</strong>
+          ${pinyin ? `<span class="hsk-pinyin nhsk-pinyin">${escapeHtml(pinyin)}</span>` : ''}
+          <span class="hsk-card-actions"><button type="button" class="hsk-speak nhsk-speak" data-nhsk-speak="${attr(hanzi)}" aria-label="Nghe ${attr(hanzi)}">🔊</button></span>
+        </div>
+        ${meaning ? `<p class="hsk-meaning">${escapeHtml(meaning)}</p>` : '<p class="hsk-meaning is-muted">Chưa có nghĩa tiếng Việt.</p>'}
+        <div class="nhsk-hsk-source-links" aria-label="Bài nguồn">
+          ${lessons.length ? lessons.map(lesson => `<a href="${attr(catalogLessonUrl(lesson.number, hanzi))}" title="${attr(lesson.title || `Bài ${lesson.number}`)}">Bài ${lesson.number}<span>›</span></a>`).join('') : '<span>Chưa xác định bài nguồn</span>'}
+        </div>
+      </div>
+    </article>`;
+  }
+
+  function renderTopicCatalog() {
+    if (state.catalogLoading || !state.catalogData) return renderCatalogLoading();
+    const topic = selectedCatalogTopic();
+    if (state.topicId && !topic) {
+      return `<section class="nhsk-card"><div class="nhsk-card__body"><button type="button" class="nhsk-catalog-back" data-nhsk-topic-id="">← Danh sách chủ đề</button><p>Không tìm thấy chủ đề này.</p></div></section>`;
+    }
+    if (topic) {
+      return `<section class="nhsk-topic-detail nhsk-hsk-parity">
+        <button type="button" class="nhsk-catalog-back" data-nhsk-topic-id="">← Danh sách chủ đề</button>
+        <header class="nhsk-hsk-topic-heading"><span>CHỦ ĐỀ ${String(topic.order || '').padStart(2, '0')}</span><h2>${escapeHtml(topic.title)}</h2><p>${Number(topic.wordCount || topic.words?.length || 0).toLocaleString('vi-VN')} từ · chạm Bài nguồn để mở đúng bài trong New 3.0.</p></header>
+        ${renderVocabularyControls({ grouped: true, showFlashcard: true })}
+        <div class="nhsk-topic-word-list nhsk-topic-word-list--${state.vocabViewMode} ${state.vocabShowPinyin ? '' : 'is-pinyin-hidden'}">${(topic.words || []).map(renderTopicWord).join('')}</div>
+      </section>`;
+    }
+    const topics = state.catalogData.topics || [];
+    return `<section class="hsk-section-library hsk-section-library--topic nhsk-topic-library nhsk-hsk-parity">
+      <div class="hsk-section-library-head"><div><h3>Danh sách chủ đề</h3><p>${topics.length.toLocaleString('vi-VN')} / ${topics.length.toLocaleString('vi-VN')} chủ đề</p></div></div>
+      <div class="hsk-section-card-list">${topics.map((topicItem, index) => {
+        const no = String(topicItem.order || index + 1).padStart(2, '0');
+        return `<button type="button" class="hsk-section-card hsk-section-card--topic" data-nhsk-topic-id="${attr(topicItem.id)}">
+          <span class="hsk-section-card-badge">CHỦ ĐỀ ${no}</span>
+          <strong>${escapeHtml(topicItem.title)}</strong>
+          <span class="hsk-section-card-meta">${Number(topicItem.wordCount || 0).toLocaleString('vi-VN')} từ</span>
+          <span class="hsk-section-practice">◎ Luyện tập</span>
+          <b aria-hidden="true">${no}</b><i aria-hidden="true">›</i>
+        </button>`;
+      }).join('')}</div>
+    </section>`;
+  }
+
+  function selectedCatalogGrammar() {
+    return (state.catalogData?.grammar || []).find(item => item.id === state.grammarId) || null;
+  }
+
+  function renderGrammarCard(item, index = 0, options = {}) {
+    const chapterLabel = item.chapter ? `BÀI ${String(item.chapter).padStart(2, '0')}` : 'NGỮ PHÁP';
+    const examples = Array.isArray(item.examples) ? item.examples : [];
+    const trigger = options.plus === true ? `data-nhsk-grammar-plus-id="${attr(item.id)}"` : `data-nhsk-grammar-id="${attr(item.id)}"`;
+    return `<article class="hsk-item hsk-grammar-item hsk-item--accented" style="--hsk-card-accent:${hskCatalogAccent(index)}" tabindex="0" role="button" ${trigger} aria-label="Mở ngữ pháp ${attr(item.topic || '')}">
+      <div class="hsk-item-main hsk-grammar-card-main">
+        <div class="hsk-grammar-card-meta"><span class="hsk-grammar-chapter-badge">${escapeHtml(chapterLabel)}</span><span class="hsk-grammar-example-count">${examples.length.toLocaleString('vi-VN')} ví dụ</span></div>
+        <h3 class="hsk-grammar-topic">${escapeHtml(item.topic || 'Ngữ pháp')}</h3>
+        ${item.syntax ? `<p class="hsk-grammar-syntax">${escapeHtml(item.syntax)}</p>` : ''}
+        ${item.explanation ? `<p class="hsk-grammar-preview">${escapeHtml(item.explanation)}</p>` : ''}
+      </div>
+    </article>`;
+  }
+
+  function renderGrammarCatalog() {
+    if (state.catalogLoading || !state.catalogData) return renderCatalogLoading();
+    const items = state.catalogData.grammar || [];
+    return `<section class="nhsk-grammar-library nhsk-hsk-parity">
+      <div class="nhsk-catalog-heading"><div><span>NEW 3.0</span><h2>Danh sách ngữ pháp</h2></div><p>${items.length} mục</p></div>
+      <div class="nhsk-grammar-card-list hsk-list hsk-list--grammar">${items.map(renderGrammarCard).join('')}</div>
+    </section>`;
+  }
+
+  function renderGrammarPopupBlock(type, label, text, icon = '') {
+    if (!text) return '';
+    return `<section class="hsk-popup-section hsk-grammar-detail-block hsk-grammar-detail-${type}"><div class="hsk-grammar-detail-head">${icon ? `<span class="hsk-grammar-detail-icon" aria-hidden="true">${escapeHtml(icon)}</span>` : ''}<h4>${escapeHtml(label)}</h4></div><p class="hsk-grammar-text">${escapeHtml(text)}</p></section>`;
+  }
+
+  function renderGrammarPopupContent(item, options = {}) {
+    const examples = Array.isArray(item?.examples) ? item.examples : [];
+    const meta = [`New 3.0`, `HSK ${state.level}`, item?.chapter ? `Bài ${item.chapter}` : '', `${examples.length.toLocaleString('vi-VN')} ví dụ`].filter(Boolean);
+    const backLabel = options.plus === true ? 'Quay về NP+' : 'Quay về Ngữ pháp';
+    return `<div class="hsk-popup-topbar"><button type="button" class="hsk-popup-back" data-nhsk-grammar-close>← ${backLabel}</button><button type="button" class="hsk-popup-close" data-nhsk-grammar-close aria-label="Đóng">×</button></div>
+      <section class="hsk-popup-hero hsk-grammar-hero hsk-grammar-detail-hero"><div><div class="hsk-grammar-hero-kicker">NGỮ PHÁP</div><h3>${escapeHtml(item?.topic || 'Ngữ pháp')}</h3><div class="hsk-grammar-hero-meta">${meta.map(value => `<span>${escapeHtml(value)}</span>`).join('')}</div></div></section>
+      <div class="hsk-grammar-detail-stack">
+        ${renderGrammarPopupBlock('syntax', 'Cấu trúc', item?.syntax)}
+        ${renderGrammarPopupBlock('explanation', 'Giải thích', item?.explanation)}
+        ${renderGrammarPopupBlock('tips', 'Mẹo nhớ', item?.tips, '💡')}
+        ${renderGrammarPopupBlock('attention', 'Lưu ý', item?.attentions, '!')}
+        ${examples.length ? `<section class="hsk-popup-section hsk-grammar-examples hsk-grammar-detail-examples"><div class="hsk-grammar-examples-head"><h4>Ví dụ</h4><span>${examples.length.toLocaleString('vi-VN')} ví dụ</span></div><div class="hsk-grammar-example-list">${examples.map((row, index) => `<article class="hsk-grammar-example-card"><span class="hsk-grammar-example-index">${String(index + 1).padStart(2, '0')}</span><div class="hsk-grammar-example-main"><strong>${escapeHtml(row.chinese || '')}</strong>${row.pinyin ? `<em>${escapeHtml(row.pinyin)}</em>` : ''}${row.vietnamese ? `<span>${escapeHtml(row.vietnamese)}</span>` : ''}</div>${row.chinese ? `<button type="button" class="hsk-grammar-example-speaker nhsk-catalog-grammar-example-speak nhsk-speak" data-nhsk-speak="${attr(row.chinese)}" aria-label="Nghe ${attr(row.chinese)}">🔊</button>` : ''}</article>`).join('')}</div></section>` : ''}
+        ${item?.chapter && options.plus !== true ? `<a class="nhsk-catalog-source-lesson" href="${attr(catalogLessonUrl(item.chapter))}">Mở HSK ${state.level} · Bài ${item.chapter} theo sách <span>›</span></a>` : ''}
+      </div>`;
+  }
+
+  function ensureGrammarPopup() {
+    let overlay = document.getElementById('nhskGrammarPopup');
+    if (overlay) return overlay;
+    overlay = document.createElement('div');
+    overlay.id = 'nhskGrammarPopup';
+    overlay.className = 'nhsk-hsk-popup-overlay';
+    overlay.hidden = true;
+    overlay.innerHTML = '<section class="nhsk-hsk-popup-card" role="dialog" aria-modal="true" aria-label="Chi tiết ngữ pháp"><div class="nhsk-hsk-popup-body"></div></section>';
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click', event => {
+      if (event.target === overlay || event.target.closest('[data-nhsk-grammar-close]')) {
+        event.preventDefault();
+        state.grammarId = '';
+        state.grammarPlusId = '';
+        overlay.hidden = true;
+        document.body.classList.remove('nhsk-modal-open');
+        syncUrl(true);
+        return;
+      }
+      const speaker = event.target.closest('[data-nhsk-speak]');
+      if (speaker) {
+        event.preventDefault();
+        event.stopPropagation();
+        speak(speaker.dataset.nhskSpeak || '', speaker);
+      }
+    });
+    return overlay;
+  }
+
+  function syncGrammarPopup() {
+    const overlay = document.getElementById('nhskGrammarPopup');
+    const plusMode = !state.catalog && Boolean(state.grammarPlusId);
+    const catalogMode = state.catalog === 'grammar' && Boolean(state.grammarId);
+    if (!catalogMode && !plusMode) {
+      if (overlay) overlay.hidden = true;
+      document.body.classList.remove('nhsk-modal-open');
+      return;
+    }
+    const item = plusMode
+      ? (state.catalogData?.grammar || []).find(row => row.id === state.grammarPlusId && Number(row.chapter) === Number(state.lessonNumber))
+      : selectedCatalogGrammar();
+    if (!item) return;
+    const target = ensureGrammarPopup();
+    target.querySelector('.nhsk-hsk-popup-body').innerHTML = renderGrammarPopupContent(item, { plus: plusMode });
+    target.hidden = false;
+    document.body.classList.add('nhsk-modal-open');
+  }
+
+
+  function renderCatalog() {
+    return state.catalog === 'grammar' ? renderGrammarCatalog() : renderTopicCatalog();
+  }
+
+  function focusLessonWord() {
+    const word = String(state.focusWord || '').trim();
+    if (!word || state.catalog) return;
+    window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
+      const target = Array.from(root.querySelectorAll('[data-vocab-word]')).find(item => item.dataset.vocabWord === word);
+      if (!target) return;
+      target.classList.add('is-focused-word');
+      target.scrollIntoView({ block: 'center', behavior: 'auto' });
+      window.setTimeout(() => target.classList.remove('is-focused-word'), 2400);
+    }));
+  }
+
   function renderLayerToggle(scope, label) {
     const layers = scope === 'passage' ? state.passageLayers : state.dialogueLayers;
     const buttons = [
@@ -412,13 +744,14 @@
 
   function renderVocabularyControls(options = {}) {
     const grouped = options.grouped === true;
+    const showFlashcard = options.showFlashcard !== false;
     return `<div class="nhsk-vocab-controls" role="toolbar" aria-label="Hiển thị và học từ vựng">
       ${grouped ? `<div class="nhsk-vocab-view-switch" role="group" aria-label="Kiểu hiển thị từ vựng">
         <button type="button" class="${state.vocabViewMode === 'list' ? 'is-active' : ''}" data-nhsk-vocab-view="list" aria-pressed="${state.vocabViewMode === 'list'}" title="Danh sách">☰</button>
         <button type="button" class="${state.vocabViewMode === 'grid' ? 'is-active' : ''}" data-nhsk-vocab-view="grid" aria-pressed="${state.vocabViewMode === 'grid'}" title="Lưới">▦</button>
       </div>` : ''}
       <button type="button" class="nhsk-icon-toggle ${state.vocabShowPinyin ? 'is-active' : ''}" data-nhsk-vocab-pinyin aria-pressed="${state.vocabShowPinyin}" title="${state.vocabShowPinyin ? 'Ẩn pinyin từ mới' : 'Hiện pinyin từ mới'}">拼</button>
-      <button type="button" class="nhsk-icon-toggle nhsk-flashcard-button" data-nhsk-open-flashcards title="Học Flashcard" aria-label="Học Flashcard">🎓 <span>Flashcard</span></button>
+      ${showFlashcard ? '<button type="button" class="nhsk-icon-toggle nhsk-flashcard-button" data-nhsk-open-flashcards title="Học Flashcard" aria-label="Học Flashcard">🎓 <span>Flashcard</span></button>' : ''}
     </div>`;
   }
 
@@ -643,6 +976,7 @@
     ['dialogues', 'Hội thoại'],
     ['languageNotes', 'Ghi chú'],
     ['grammar', 'Ngữ pháp'],
+    ['grammarPlus', 'NP+'],
     ['examplesPractice', 'Ví dụ & bài luyện'],
     ['passages', 'Bài đọc / bài vè'],
     ['exercisesActivities', 'Bài tập & hoạt động'],
@@ -650,7 +984,8 @@
   ];
 
   function availableGroups(lesson) {
-    return GROUPS.filter(([key]) => (lesson.views.groupedIndex[key] || []).length > 0);
+    const grammarPlus = (state.catalogData?.grammar || []).some(item => Number(item.chapter) === Number(lesson.lessonNumber));
+    return GROUPS.filter(([key]) => key === 'grammarPlus' ? grammarPlus : (lesson.views.groupedIndex[key] || []).length > 0);
   }
 
   function renderGroupFilters(lesson) {
@@ -664,7 +999,10 @@
 
   function renderGroupedSection(key, label, lesson, idx) {
     const ids = lesson.views.groupedIndex[key] || [];
-    if (!ids.length) return '';
+    const grammarPlusItems = key === 'grammarPlus'
+      ? (state.catalogData?.grammar || []).filter(item => Number(item.chapter) === Number(lesson.lessonNumber))
+      : [];
+    if (!ids.length && !grammarPlusItems.length) return '';
     let body = '';
     if (key === 'vocabulary') body = renderVocabulary(ids.map(id => idx.vocabulary.get(id)).filter(Boolean), { grouped: true, sourcePrefix: 'grouped:vocabulary', showControls: true });
     if (key === 'properNouns') body = `<div class="nhsk-subsection-head">${renderVocabularyControls({ grouped: false })}</div>${renderProperNouns(ids.map(id => idx.properNouns.get(id)).filter(Boolean), { sourcePrefix: 'grouped:proper' })}`;
@@ -677,6 +1015,7 @@
     if (key === 'exercisesActivities') body = renderExerciseItems(ids.map(id => idx.exercises.get(id) || idx.activities.get(id)).filter(Boolean));
     if (key === 'extensions') body = ids.map(id => idx.extensions.get(id)).filter(Boolean).map(renderExtension).join('');
     if (key === 'grammar') body = renderGrammarItems(ids.map(id => idx.grammar.get(id)).filter(Boolean));
+    if (key === 'grammarPlus') body = `<div class="nhsk-hsk-parity nhsk-grammar-plus-parity"><div class="nhsk-grammar-plus-intro"><span>NP+</span><p>Ngữ pháp bổ sung theo đúng bài hiện tại; ngữ pháp gốc của sách vẫn nằm ở tab Ngữ pháp.</p></div><div class="nhsk-grammar-card-list hsk-list hsk-list--grammar">${grammarPlusItems.map((item, index) => renderGrammarCard(item, index, { plus: true })).join('')}</div></div>`;
     if (key === 'examplesPractice') body = renderExampleItems(ids.map(id => idx.examplesPractice.get(id)).filter(Boolean));
     return sectionCard(label, body, '', `nhsk-card--${key}`);
   }
@@ -831,6 +1170,7 @@
     state.practiceActivityStarted = false;
     state.practiceSessionRows = [];
     state.practiceSessionKey = '';
+    state.grammarPlusId = '';
     practiceMatchingSession = null;
     clearOrderingAutoNext();
     practiceOrderingSession = null;
@@ -958,6 +1298,7 @@
 
   function renderCurrentViewContent() {
     if (!state.lesson) return '';
+    if (state.catalog) return renderCatalog();
     if (state.view === 'book') return renderBook(state.lesson);
     if (state.view === 'grouped') return renderGrouped(state.lesson);
     return renderPractice(state.lesson);
@@ -1091,6 +1432,35 @@
     return target.href;
   }
 
+  function flashcardSentenceGlossary(text) {
+    const sentence = String(text || '').trim();
+    if (!sentence) return [];
+    const lessonCandidates = [
+      ...(state.lesson?.entities?.vocabulary || []),
+      ...(state.lesson?.entities?.properNouns || [])
+    ].map((item, index) => ({
+      word: String(item?.hanzi || '').trim(),
+      pinyin: String(item?.pinyin || '').trim(),
+      meaningVi: String(item?.vi || '').trim(),
+      order: Number(item?.order || index),
+      sourcePriority: 0
+    }));
+    const catalogCandidates = Number(state.level) === 1
+      ? (state.catalogData?.topics || []).flatMap(topic => topic?.words || []).map((item, index) => ({
+          word: String(item?.word || '').trim(),
+          pinyin: String(item?.pinyin || '').trim(),
+          meaningVi: String(item?.meaningVi || '').trim(),
+          order: Number(item?.order || index),
+          sourcePriority: 1
+        }))
+      : [];
+    const candidates = [...lessonCandidates, ...catalogCandidates]
+      .filter(item => item.word && sentence.includes(item.word));
+    candidates.sort((a, b) => a.sourcePriority - b.sourcePriority || Array.from(b.word).length - Array.from(a.word).length || a.order - b.order);
+    const seen = new Set();
+    return candidates.filter(item => !seen.has(item.word) && seen.add(item.word)).map(({ word, pinyin, meaningVi }) => ({ word, pinyin, meaningVi }));
+  }
+
   function buildFlashcardCards(rows) {
     const layers = practiceLayerState('flashcards');
     const structurePracticeUrl = buildCharacterPracticeUrl(rows);
@@ -1104,11 +1474,11 @@
         cardType,
         title: row.title || '',
         source: 'new-hsk-course',
-        lessonId: state.lesson.id
+        lessonId: state.lesson.id,
+        tokens: Array.isArray(row.orderingTokens) ? row.orderingTokens : (Array.isArray(row.answerTokens) ? row.answerTokens : []),
+        wordGlossary: cardType === 'sentence' ? flashcardSentenceGlossary(row.hanzi || '') : []
       };
       if (row.kind === 'grammar') card.grammar = row.grammar;
-      const firstChar = Array.from(row.hanzi || '').find(char => /[\u3400-\u9fff]/u.test(char));
-      if (firstChar) card.structureUrl = buildCharacterReturnUrl(firstChar);
       card.structurePracticeUrl = structurePracticeUrl;
       return card;
     }).filter(card => card.word);
@@ -1224,15 +1594,23 @@
     return [1, 2, 3].includes(value) ? value : 1;
   }
 
+  function orderingTokensForRow(row) {
+    const reviewed = Array.isArray(row?.orderingTokens) ? row.orderingTokens : [];
+    const fallback = Array.isArray(row?.answerTokens) ? row.answerTokens : [];
+    const tokens = reviewed.length >= 2 ? reviewed : fallback;
+    return tokens.filter(token => token && !/^[，。！？；：、,.!?;:'"“”‘’（）()\[\]【】《》—-]+$/u.test(token));
+  }
+
   function ensurePracticeOrderingSession(rows, force = false) {
     const key = `${state.practiceSessionKey}:${rows.map(row => row.id).join(',')}`;
     if (!force && practiceOrderingSession?.key === key) return practiceOrderingSession;
     clearOrderingAutoNext();
-    const items = rows.filter(row => Array.isArray(row.answerTokens) && row.answerTokens.length >= 2).map((row, index) => ({
+    const items = rows.map(row => ({ row, tokens: orderingTokensForRow(row) })).filter(item => item.tokens.length >= 2).map(({ row, tokens }, index) => ({
       id: row.id,
       row,
+      tokens,
       order: index,
-      bank: seededShuffle(row.answerTokens.map((token, tokenIndex) => ({ id: `${row.id}:token:${tokenIndex}`, token })), `${key}:${index}`),
+      bank: seededShuffle(tokens.map((token, tokenIndex) => ({ id: `${row.id}:token:${tokenIndex}`, token })), `${key}:${index}`),
       selected: [],
       mistakes: 0,
       complete: false,
@@ -1260,7 +1638,7 @@
   }
 
   function evaluatePracticeOrderingItem(item) {
-    if (!item || item.complete || item.selected.length !== item.row.answerTokens.length) return false;
+    if (!item || item.complete || item.selected.length !== item.tokens.length) return false;
     const answer = item.selected.map(token => token.token).join('');
     if (acceptedAnswerMatches(answer, [item.row.hanzi])) {
       item.complete = true;
@@ -1368,6 +1746,7 @@
       practiceActivity: 'characters',
       practiceActivityStarted: true,
       practiceCharacterMode: mode,
+      practiceCharacterScope: state.practiceCharacterScope,
       practiceCharacterGlyphs: [...state.practiceCharacterGlyphs],
       characterId: charId,
       characterHanzi: hanzi,
@@ -1391,7 +1770,7 @@
 
   function radicalDetailUrl(group, returnCharacter = null) {
     const returnChar = returnCharacter && typeof returnCharacter === 'object' ? returnCharacter.hanzi : String(returnCharacter || '');
-    const snapshot = returnChar ? characterReturnSnapshot(returnCharacter, 'learn') : { scrollY: window.scrollY || 0, view: 'practice', filter: state.filter, practiceActivity: 'characters', practiceActivityStarted: true, practiceCharacterMode: 'sort', practiceCharacterGlyphs: [...state.practiceCharacterGlyphs], radicalSession: serializeRadicalSession() };
+    const snapshot = returnChar ? characterReturnSnapshot(returnCharacter, 'learn') : { scrollY: window.scrollY || 0, view: 'practice', filter: state.filter, practiceActivity: 'characters', practiceActivityStarted: true, practiceCharacterMode: 'sort', practiceCharacterScope: state.practiceCharacterScope, practiceCharacterGlyphs: [...state.practiceCharacterGlyphs], radicalSession: serializeRadicalSession() };
     const token = saveReturnSnapshot(snapshot);
     const returnUrl = new URL(location.href);
     returnUrl.searchParams.set('restoreToken', token);
@@ -1402,6 +1781,27 @@
     target.searchParams.set('returnLabel', returnChar ? `Quay lại chữ ${returnChar}` : 'Quay lại bài xếp chữ');
     if (returnChar) target.searchParams.set('returnChar', returnChar);
     return target.href;
+  }
+
+  function vocabularyCharacterEntities() {
+    const characters = state.lesson?.entities?.characters || [];
+    return characters.filter(item => Array.isArray(item?.sourceRefs?.vocabularyIds) && item.sourceRefs.vocabularyIds.length);
+  }
+
+  function effectiveCharacterScope() {
+    if (state.practiceCharacterGlyphs.length) return 'selected';
+    return Number(state.level) === 1 && state.practiceCharacterScope !== 'core' ? 'all' : 'core';
+  }
+
+  function characterEntitiesForScope() {
+    const characters = selectedCharacterEntities();
+    if (state.practiceCharacterGlyphs.length) return characters;
+    if (effectiveCharacterScope() === 'all') {
+      const vocabIds = new Set(vocabularyCharacterEntities().map(item => item.id));
+      return characters.filter(item => vocabIds.has(item.id));
+    }
+    const coreIds = new Set(practicePlan().characters?.coreCharacterIds || []);
+    return characters.filter(item => coreIds.has(item.id));
   }
 
   function selectedCharacterEntities() {
@@ -1424,10 +1824,14 @@
   function renderCharacterLearn() {
     const charIdx = characterIndex();
     const entityIdx = indexes(state.lesson);
-    const selectedCharacters = selectedCharacterEntities();
-    const ids = state.practiceCharacterGlyphs.length
-      ? selectedCharacters.map(item => item.id)
-      : (practicePlan().characters?.coreCharacterIds || []);
+    const scopedCharacters = characterEntitiesForScope();
+    const ids = scopedCharacters.map(item => item.id);
+    const coreCount = (practicePlan().characters?.coreCharacterIds || []).length;
+    const allCount = vocabularyCharacterEntities().length;
+    const scope = effectiveCharacterScope();
+    const scopeControls = Number(state.level) === 1 && !state.practiceCharacterGlyphs.length
+      ? `<div class="nhsk-character-scope-toggle" role="group" aria-label="Phạm vi chữ học"><button type="button" class="${scope === 'all' ? 'is-active' : ''}" data-nhsk-character-scope="all">Tất cả chữ <small>${allCount}</small></button><button type="button" class="${scope === 'core' ? 'is-active' : ''}" data-nhsk-character-scope="core">Chữ trọng tâm <small>${coreCount}</small></button></div>`
+      : '';
     const cards = ids.map(id => charIdx.get(id)).filter(Boolean).map(char => {
       const words = (char.sourceRefs?.vocabularyIds || []).map(ref => entityIdx.vocabulary?.get(ref) || entityIdx.properNouns?.get(ref)).filter(Boolean);
       const radical = char.dictionaryRadical || {};
@@ -1441,7 +1845,7 @@
         ${char.pedagogy?.commonErrors?.length ? `<p class="nhsk-practice-hint"><b>Lỗi thường gặp:</b> ${escapeHtml(char.pedagogy.commonErrors.join(' '))}</p>` : ''}
       </article>`;
     }).join('');
-    return sectionCard('Học cấu tạo chữ', `<p class="nhsk-practice-help">HSK 1–2 học sâu 3–5 chữ mỗi bài theo chuỗi Hình – Âm – Nghĩa → nét → thành phần → từ → viết.</p><div class="nhsk-character-learning-list">${cards}</div>`, '字');
+    return sectionCard('Học cấu tạo chữ', `${scopeControls}<p class="nhsk-practice-help">${scope === 'all' ? 'Học toàn bộ chữ xuất hiện trong từ vựng và danh từ riêng của bài. Chọn Chữ trọng tâm khi muốn ôn nhanh.' : 'Ôn nhóm chữ trọng tâm đã được biên tập cho bài.'}</p><div class="nhsk-character-learning-list">${cards}</div>`, '字');
   }
 
   function radicalExercise() {
@@ -1615,7 +2019,7 @@
   }
 
   function renderCharacterWriting() {
-    const chars = selectedCharacterEntities().filter(item => state.practiceCharacterGlyphs.length || item.studyPriority === 'core');
+    const chars = characterEntitiesForScope();
     return sectionCard('Cấu tạo và bút thuận', `<div class="nhsk-character-grid">${chars.map(char => `<a href="${attr(buildCharacterReturnUrl(char))}"><span>${escapeHtml(char.hanzi)}</span><small>${escapeHtml((char.pinyin || []).join(' / '))}</small><em>${Number(char.strokes?.count || 0)} nét</em></a>`).join('')}</div>`, '✍');
   }
 
@@ -1724,6 +2128,7 @@
       state.practiceActivity = normalizePracticeActivity(snapshot.practiceActivity || state.practiceActivity);
       if (snapshot.practiceSourceSelections && typeof snapshot.practiceSourceSelections === 'object') state.practiceSourceSelections = snapshot.practiceSourceSelections;
       if (snapshot.practiceCharacterMode) state.practiceCharacterMode = snapshot.practiceCharacterMode;
+      if (snapshot.practiceCharacterScope) state.practiceCharacterScope = snapshot.practiceCharacterScope === 'core' ? 'core' : 'all';
       if (Array.isArray(snapshot.practiceCharacterGlyphs)) state.practiceCharacterGlyphs = snapshot.practiceCharacterGlyphs;
       state.practiceActivityStarted = snapshot.practiceActivityStarted === true;
       restoreRadicalSession(snapshot);
@@ -1735,6 +2140,97 @@
       url.searchParams.delete('restoreToken');
       history.replaceState(history.state, '', `${url.pathname}${url.search}${url.hash}`);
     } catch (_error) {}
+  }
+
+  function lessonCacheKey(level, lessonNumber) {
+    return `${Number(level)}:${Number(lessonNumber)}`;
+  }
+
+  async function loadCatalogLessonData(level, lessonNumber) {
+    const key = lessonCacheKey(level, lessonNumber);
+    if (Number(state.lesson?.level) === Number(level) && Number(state.lesson?.lessonNumber) === Number(lessonNumber)) {
+      lessonDataCache.set(key, state.lesson);
+      return state.lesson;
+    }
+    if (lessonDataCache.has(key)) return lessonDataCache.get(key);
+    const lessonInfo = state.manifest?.lessons?.find(item => Number(item.level) === Number(level) && Number(item.lessonNumber) === Number(lessonNumber) && String(item.status || '').includes('ready'));
+    if (!lessonInfo) return null;
+    const response = await fetch(`data/${lessonInfo.path}`, { cache: 'no-store' });
+    if (!response.ok) return null;
+    const lesson = await response.json();
+    lessonDataCache.set(key, lesson);
+    return lesson;
+  }
+
+  function lessonRowsContainingWord(lesson, wordText, lessonNumber) {
+    const target = String(wordText || '').trim();
+    if (!target || !lesson?.entities) return [];
+    const rows = [];
+    const append = (hanzi, pinyin, vi) => {
+      const text = String(hanzi || '').trim();
+      if (!text || !text.includes(target)) return;
+      rows.push({ hanzi: text, pinyin: String(pinyin || '').trim(), vi: String(vi || '').trim(), lessonNumber: Number(lessonNumber) });
+    };
+    for (const dialogue of lesson.entities.dialogues || []) {
+      for (const turn of dialogue.turns || []) append(turn.hanzi, turn.pinyin, turn.vi);
+    }
+    for (const passage of lesson.entities.passages || []) {
+      for (const row of splitAlignedLines(passage)) append(row.hanzi, row.pinyin, row.vi);
+    }
+    for (const activity of lesson.entities.activities || []) append(activity.hanzi, activity.pinyin, activity.vi);
+    const seen = new Set();
+    return rows.filter(row => {
+      const key = `${row.hanzi}\u0000${row.pinyin}\u0000${row.vi}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+
+  async function loadHsk1SentenceIndex() {
+    if (!hsk1SentenceIndexPromise) {
+      hsk1SentenceIndexPromise = fetch(HSK1_SENTENCE_INDEX_URL)
+        .then(response => {
+          if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+          return response.json();
+        })
+        .then(payload => payload?.items && typeof payload.items === 'object' ? payload.items : {})
+        .catch(error => {
+          console.warn('Không tải được chỉ mục câu HSK 1:', error);
+          return {};
+        });
+    }
+    return hsk1SentenceIndexPromise;
+  }
+
+  async function catalogWordSentenceRows(catalogWord) {
+    const lessonNumbers = Array.from(new Set([
+      ...(Array.isArray(catalogWord?.lessonNumbers) ? catalogWord.lessonNumbers : []),
+      ...(Array.isArray(catalogWord?.lessons) ? catalogWord.lessons.map(item => item?.number) : [])
+    ].map(Number).filter(Number.isFinite)));
+    const lessons = await Promise.all(lessonNumbers.map(async lessonNumber => ({
+      lessonNumber,
+      lesson: await loadCatalogLessonData(state.level, lessonNumber)
+    })));
+    const rows = lessons.flatMap(entry => lessonRowsContainingWord(entry.lesson, catalogWord?.word, entry.lessonNumber));
+    if (Number(state.level) === 1) {
+      const sentenceIndex = await loadHsk1SentenceIndex();
+      const indexed = sentenceIndex[String(catalogWord?.word || '').trim()]?.sentences || [];
+      rows.push(...indexed.map(row => ({
+        hanzi: row.chinese || '',
+        pinyin: row.pinyin || '',
+        vi: row.meaningVi || '',
+        lessonNumber: row.lessonNumber || null,
+        sourceLabel: row.sourceLabel || ''
+      })));
+    }
+    const seen = new Set();
+    return rows.filter(row => {
+      const key = String(row.hanzi || '').replace(/\s+/g, '');
+      if (!key || seen.has(key)) return false;
+      seen.add(key);
+      return row.pinyin && row.vi;
+    });
   }
 
   function lessonSentenceRows(word) {
@@ -1749,7 +2245,7 @@
       if (passage.hanzi?.includes(target)) rows.push({ hanzi: passage.hanzi, pinyin: passage.pinyin, vi: passage.vi });
     }
     const seen = new Set();
-    return rows.filter(row => !seen.has(row.hanzi) && seen.add(row.hanzi)).slice(0, 5);
+    return rows.filter(row => !seen.has(row.hanzi) && seen.add(row.hanzi));
   }
 
   function relatedWords(word) {
@@ -1767,11 +2263,12 @@
   }
 
   function renderWordPreview(word) {
-    const sentences = lessonSentenceRows(word);
-    return `<div class="nhsk-word-preview-topbar"><button type="button" data-word-popup-back>← Quay lại bài</button><button type="button" data-word-popup-close aria-label="Đóng">×</button></div>
+    const sentences = Array.isArray(word.previewSentences) ? word.previewSentences : lessonSentenceRows(word);
+    const returnLabel = String(word.returnLabel || 'Quay lại bài').trim();
+    return `<div class="nhsk-word-preview-topbar"><button type="button" data-word-popup-back>← ${escapeHtml(returnLabel)}</button><button type="button" data-word-popup-close aria-label="Đóng">×</button></div>
       <section class="nhsk-word-preview-hero"><div><h2>${escapeHtml(word.hanzi)}</h2><strong>${escapeHtml(word.pinyin || '')}</strong><p>${escapeHtml(word.vi || '')}</p><small>${escapeHtml(word.wordClass || word.kind || 'từ vựng')}${word.hanViet ? ` · Hán Việt: ${escapeHtml(word.hanViet)}` : ''}</small></div><button type="button" data-word-popup-speak="${attr(word.hanzi)}">🔊</button></section>
-      ${sentences.length ? `<section class="nhsk-word-preview-section"><h3>Câu trong bài</h3>${sentences.slice(0, 2).map(row => `<article><b>${escapeHtml(row.hanzi)}</b><small>${escapeHtml(row.pinyin)}</small><p>${escapeHtml(row.vi)}</p></article>`).join('')}</section>` : ''}
-      <div class="nhsk-word-preview-loading"><span class="nhsk-spinner"></span><span>Đang mở tra cứu và cách viết…</span></div>`;
+      ${sentences.length ? `<section class="nhsk-word-preview-section"><h3>Câu trong bài</h3>${sentences.slice(0, 3).map(row => `<article><b>${escapeHtml(row.hanzi)}</b><small>${escapeHtml(row.pinyin)}</small><p>${escapeHtml(row.vi)}</p></article>`).join('')}${sentences.length > 3 ? `<p class="nhsk-word-preview-more">Còn ${sentences.length - 3} câu trong phần Xem thêm.</p>` : ''}</section>` : ''}
+      <div class="nhsk-word-preview-loading"><span class="nhsk-spinner"></span><span>${word.catalogSentencesLoading ? 'Đang tìm câu liên quan trong các bài nguồn…' : 'Đang mở tra cứu và cách viết…'}</span></div>`;
   }
 
   function ensureWordDetailFrame() {
@@ -1796,7 +2293,8 @@
   function sendWordDetailOpen() {
     if (!sharedWordDetailFrameReady || !pendingWordDetailPayload) return;
     const frame = document.getElementById('nhskSharedWordDetailFrame');
-    frame?.contentWindow?.postMessage({ type: 'tiengtrung:hsk-popup-open', payload: pendingWordDetailPayload }, location.origin);
+    const targetOrigin = location.origin && location.origin !== 'null' ? location.origin : '*';
+    frame?.contentWindow?.postMessage({ type: 'tiengtrung:hsk-popup-open', payload: pendingWordDetailPayload }, targetOrigin);
   }
 
   function openWordDetail(wordId, sourceElement) {
@@ -1822,6 +2320,60 @@
       frame.src = '../hanzi-stroke/index.html?embedPopup=1&popupHost=1';
       return;
     }
+    sendWordDetailOpen();
+  }
+
+  async function openCatalogWordDetail(wordText, sourceElement) {
+    const catalogWord = selectedCatalogWord(wordText);
+    const topic = selectedCatalogTopic();
+    if (!catalogWord || !topic) return;
+    const related = (topic.words || [])
+      .filter(item => item !== catalogWord)
+      .slice(0, 6)
+      .map(item => ({ word: item.word, pinyin: item.pinyin || '', meaningVi: item.meaningVi || '' }));
+    const word = {
+      id: `catalog:${state.level}:${topic.id}:${catalogWord.word}`,
+      hanzi: catalogWord.word,
+      pinyin: catalogWord.pinyin || '',
+      vi: catalogWord.meaningVi || '',
+      wordClass: catalogWord.wordType || 'từ vựng',
+      previewSentences: [],
+      catalogSentencesLoading: true,
+      returnLabel: `Quay lại Chủ đề ${String(topic.order || '').padStart(2, '0')}`
+    };
+    activeWordDetail = word;
+    activeWordSource = sourceDescriptor(sourceElement);
+    // Keep the lightweight preview visible while related lesson sentences load.
+    // The embedded HSK popup receives one complete payload afterwards, avoiding
+    // an empty first render followed by a second navigation of the same word.
+    pendingWordDetailPayload = null;
+    const overlay = ensureWordDetailFrame();
+    const preview = overlay.querySelector('#nhskSharedWordPreview');
+    const frame = overlay.querySelector('#nhskSharedWordDetailFrame');
+    preview.hidden = false;
+    preview.innerHTML = renderWordPreview(word);
+    frame.hidden = true;
+    overlay.hidden = false;
+    document.body.classList.add('nhsk-modal-open');
+    if (frame.dataset.initialized !== 'true') {
+      frame.dataset.initialized = 'true';
+      frame.src = '../hanzi-stroke/index.html?embedPopup=1&popupHost=1';
+    }
+    const sentences = await catalogWordSentenceRows(catalogWord);
+    if (activeWordDetail?.id !== word.id) return;
+    word.previewSentences = sentences;
+    word.catalogSentencesLoading = false;
+    pendingWordDetailPayload = {
+      word: word.hanzi,
+      seed: {
+        pinyin: word.pinyin,
+        meaningVi: word.vi,
+        sampleSentences: sentences.map(row => ({ zh: row.hanzi, pinyin: row.pinyin, vi: row.vi, lessonNumber: row.lessonNumber })),
+        relatedWords: related
+      },
+      returnContext: { type: 'external', label: word.returnLabel }
+    };
+    if (!preview.hidden) preview.innerHTML = renderWordPreview(word);
     sendWordDetailOpen();
   }
 
@@ -1881,7 +2433,7 @@
     restoreWordSourcePosition(source);
   }
 
-  function openFlashcards(sourceElement, cardsOverride) {
+  function openFlashcards(sourceElement, cardsOverride, options = {}) {
     let cards = Array.isArray(cardsOverride) && cardsOverride.length
       ? cardsOverride
       : (state.lesson?.entities?.vocabulary || []).map(word => ({
@@ -1907,11 +2459,11 @@
     returnUrl.searchParams.set('restoreToken', token);
     const payload = {
       version: 1,
-      title: `New 3.0 · HSK ${state.level} · Bài ${state.lessonNumber} · Ôn tổng hợp`,
+      title: options.title || `New 3.0 · HSK ${state.level} · Bài ${state.lessonNumber} · Ôn tổng hợp`,
       cards,
       origin: 'external',
-      contextKey: `new-hsk-course:${state.lesson.id}:${selectedPracticeSources('flashcards').join(',')}`,
-      contextLabel: `New 3.0 · HSK ${state.level} · Bài ${state.lessonNumber}`,
+      contextKey: options.contextKey || `new-hsk-course:${state.lesson.id}:${selectedPracticeSources('flashcards').join(',')}`,
+      contextLabel: options.contextLabel || `New 3.0 · HSK ${state.level} · Bài ${state.lessonNumber}`,
       returnUrl: `${returnUrl.pathname}${returnUrl.search}${returnUrl.hash}`
     };
     try {
@@ -1932,9 +2484,14 @@
       return;
     }
     const content = renderCurrentViewContent();
-    root.innerHTML = `<div class="nhsk-page">${renderCourseNav()}${renderHero(state.lesson)}${renderToolbar()}<div class="nhsk-content" data-nhsk-content>${content}</div>${renderSourceAudit(state.lesson)}</div>`;
+    const navigation = state.catalog ? renderCatalogLevelNav() : renderCourseNav();
+    const hero = state.catalog ? renderCatalogHero() : renderHero(state.lesson);
+    const toolbar = state.catalog ? '' : renderToolbar();
+    root.innerHTML = `<div class="nhsk-page">${navigation}${renderCatalogSwitch()}${hero}${toolbar}<div class="nhsk-content" data-nhsk-content>${content}</div>${state.catalog ? '' : renderSourceAudit(state.lesson)}</div>`;
     saveSettings();
     syncUrl(true);
+    focusLessonWord();
+    syncGrammarPopup();
   }
 
   function toggleLayer(scope, key) {
@@ -1948,6 +2505,11 @@
 
   function bindEvents() {
     root.addEventListener('change', event => {
+      const catalogLevelSelect = event.target.closest?.('[data-nhsk-catalog-level-select]');
+      if (catalogLevelSelect) {
+        navigateCatalogLevel(Number(catalogLevelSelect.value || 1));
+        return;
+      }
       const levelSelect = event.target.closest?.('[data-nhsk-level-select]');
       if (levelSelect) {
         const level = Number(levelSelect.value || 1);
@@ -1959,6 +2521,46 @@
       if (lessonSelect) { navigateLesson(state.level, Number(lessonSelect.value || 1)); return; }
     });
     root.addEventListener('click', event => {
+      const catalogButton = event.target.closest('[data-nhsk-catalog]');
+      if (catalogButton) {
+        event.preventDefault();
+        openCatalog(catalogButton.dataset.nhskCatalog || '');
+        return;
+      }
+      const topicButton = event.target.closest('[data-nhsk-topic-id]');
+      if (topicButton) {
+        event.preventDefault();
+        state.topicId = topicButton.dataset.nhskTopicId || '';
+        state.grammarId = '';
+        syncUrl(false);
+        render();
+        return;
+      }
+      const grammarButton = event.target.closest('[data-nhsk-grammar-id]');
+      if (grammarButton && state.catalog === 'grammar') {
+        event.preventDefault();
+        state.grammarId = grammarButton.dataset.nhskGrammarId || '';
+        state.topicId = '';
+        syncUrl(false);
+        syncGrammarPopup();
+        return;
+      }
+      const grammarPlusButton = event.target.closest('[data-nhsk-grammar-plus-id]');
+      if (grammarPlusButton && !state.catalog) {
+        event.preventDefault();
+        state.grammarPlusId = grammarPlusButton.dataset.nhskGrammarPlusId || '';
+        syncUrl(false);
+        syncGrammarPopup();
+        return;
+      }
+      const catalogRetry = event.target.closest('[data-nhsk-catalog-retry]');
+      if (catalogRetry) {
+        event.preventDefault();
+        catalogCache.delete(Number(state.level));
+        state.catalogData = null;
+        loadCatalogData(state.level);
+        return;
+      }
       const courseStep = event.target.closest('[data-nhsk-course-step]');
       if (courseStep) {
         const position = currentCoursePosition();
@@ -1967,7 +2569,7 @@
         return;
       }
       const view = event.target.closest('[data-nhsk-view]');
-      if (view) { state.view = ['book', 'grouped', 'practice'].includes(view.dataset.nhskView) ? view.dataset.nhskView : 'book'; state.filter = 'all'; render(); return; }
+      if (view) { state.view = ['book', 'grouped', 'practice'].includes(view.dataset.nhskView) ? view.dataset.nhskView : 'book'; state.filter = 'all'; state.grammarPlusId = ''; render(); return; }
       const layer = event.target.closest('[data-nhsk-layer-scope][data-nhsk-layer]');
       if (layer) { toggleLayer(layer.dataset.nhskLayerScope, layer.dataset.nhskLayer); return; }
       const vocabPinyin = event.target.closest('[data-nhsk-vocab-pinyin]');
@@ -1975,7 +2577,7 @@
       const vocabView = event.target.closest('[data-nhsk-vocab-view]');
       if (vocabView) { state.vocabViewMode = vocabView.dataset.nhskVocabView === 'grid' ? 'grid' : 'list'; render(); return; }
       const filter = event.target.closest('[data-nhsk-filter]');
-      if (filter) { state.filter = filter.dataset.nhskFilter || 'all'; rerenderCurrentContent({ preserveFilter: true }); return; }
+      if (filter) { state.filter = filter.dataset.nhskFilter || 'all'; state.grammarPlusId = ''; rerenderCurrentContent({ preserveFilter: true }); return; }
       const practice = event.target.closest('[data-nhsk-practice]');
       if (practice) {
         state.practiceActivity = normalizePracticeActivity(practice.dataset.nhskPractice || 'flashcards');
@@ -2002,6 +2604,8 @@
       if (listeningMode) { state.practiceListeningMode = listeningMode.dataset.nhskListeningMode === 'single' ? 'single' : 'all'; state.practiceActivityStarted = false; saveSettings(); rerenderCurrentContent({ preserveFilter: true }); return; }
       const typingMode = event.target.closest('[data-nhsk-typing-mode]');
       if (typingMode) { state.practiceTypingMode = ['hanzi', 'pinyin', 'listen'].includes(typingMode.dataset.nhskTypingMode) ? typingMode.dataset.nhskTypingMode : 'hanzi'; state.practiceActivityStarted = false; saveSettings(); rerenderCurrentContent({ preserveFilter: true }); return; }
+      const characterScope = event.target.closest('[data-nhsk-character-scope]');
+      if (characterScope) { state.practiceCharacterScope = characterScope.dataset.nhskCharacterScope === 'core' ? 'core' : 'all'; saveSettings(); rerenderCurrentContent({ preserveFilter: true }); return; }
       const characterMode = event.target.closest('[data-nhsk-character-mode]');
       if (characterMode) { state.practiceCharacterMode = ['learn', 'sort', 'build', 'write'].includes(characterMode.dataset.nhskCharacterMode) ? characterMode.dataset.nhskCharacterMode : 'learn'; state.practiceActivityStarted = false; saveSettings(); rerenderCurrentContent({ preserveFilter: true }); return; }
       const roleSpeaker = event.target.closest('[data-nhsk-role-speaker]');
@@ -2015,7 +2619,7 @@
       const radicalGroupSelect = event.target.closest('[data-radical-group-select]');
       if (radicalGroupSelect) { selectRadicalGroup(radicalGroupSelect.dataset.radicalGroupSelect || ''); return; }
       const radicalDrop = event.target.closest('[data-radical-drop]');
-      if (radicalDrop && event.target === radicalDrop) {
+      if (radicalDrop && !event.target.closest?.('a[href]')) {
         const session = ensureRadicalSortSession();
         if (session?.selectedItemId) handleRadicalAssign(session.selectedItemId, radicalDrop.dataset.radicalDrop || '');
         else selectRadicalGroup(radicalDrop.dataset.radicalDrop || '');
@@ -2028,6 +2632,9 @@
         if (result.speechText && session.tapToSpeak) speak(result.speechText);
         rerenderCurrentContent({ preserveFilter: true });
         if (result.status === 'wrong') Matching.scheduleFeedbackClear(session, () => rerenderCurrentContent({ preserveFilter: true }));
+        if (result.status === 'correct' && result.roundComplete && !result.complete) {
+          Matching.scheduleNextRound(session, () => rerenderCurrentContent({ preserveFilter: true }));
+        }
         return;
       }
       const matchAction = event.target.closest('[data-match-action]');
@@ -2169,11 +2776,55 @@
       const wordDetail = event.target.closest('[data-open-word-detail]');
       if (wordDetail) { openWordDetail(wordDetail.dataset.openWordDetail, wordDetail.closest('[data-vocab-source-key]')); return; }
       const flashcards = event.target.closest('[data-nhsk-open-flashcards]');
-      if (flashcards) { openFlashcards(flashcards); return; }
+      if (flashcards) {
+        const topic = state.catalog === 'topics' ? selectedCatalogTopic() : null;
+        if (topic) {
+          const no = String(topic.order || '').padStart(2, '0');
+          openFlashcards(flashcards, topicFlashcardCards(topic), {
+            title: `New 3.0 · HSK ${state.level} · Chủ đề ${no} · ${topic.title}`,
+            contextKey: `new-hsk-course:topic:hsk${state.level}:${topic.id}`,
+            contextLabel: `New 3.0 · HSK ${state.level} · Chủ đề ${no}`
+          });
+        } else {
+          openFlashcards(flashcards);
+        }
+        return;
+      }
       const speakButton = event.target.closest('[data-nhsk-speak]');
       if (speakButton) { event.preventDefault(); event.stopPropagation(); speak(speakButton.dataset.nhskSpeak || '', speakButton); return; }
+      const catalogWord = event.target.closest('[data-nhsk-catalog-word]');
+      if (catalogWord && !event.target.closest('a[href],button')) {
+        event.preventDefault();
+        openCatalogWordDetail(catalogWord.dataset.nhskCatalogWord || '', catalogWord);
+        return;
+      }
       const audioButton = event.target.closest('[data-nhsk-audio-ref]');
       if (audioButton) { event.preventDefault(); playTrack(audioButton.dataset.nhskAudioRef || '', audioButton); }
+    });
+
+    root.addEventListener('keydown', event => {
+      if (!['Enter', ' '].includes(event.key)) return;
+      const grammarCard = event.target.closest?.('[data-nhsk-grammar-id]');
+      if (grammarCard && state.catalog === 'grammar') {
+        event.preventDefault();
+        state.grammarId = grammarCard.dataset.nhskGrammarId || '';
+        state.topicId = '';
+        syncUrl(false);
+        syncGrammarPopup();
+        return;
+      }
+      const grammarPlusCard = event.target.closest?.('[data-nhsk-grammar-plus-id]');
+      if (grammarPlusCard && !state.catalog) {
+        event.preventDefault();
+        state.grammarPlusId = grammarPlusCard.dataset.nhskGrammarPlusId || '';
+        syncUrl(false);
+        syncGrammarPopup();
+        return;
+      }
+      const catalogWord = event.target.closest?.('[data-nhsk-catalog-word]');
+      if (!catalogWord || event.target.closest('a[href],button')) return;
+      event.preventDefault();
+      openCatalogWordDetail(catalogWord.dataset.nhskCatalogWord || '', catalogWord);
     });
 
     root.addEventListener('change', event => {
@@ -2257,10 +2908,17 @@
     const lessonResponse = await fetch(`data/${lessonInfo.path}`, { cache: 'no-store' });
     if (!lessonResponse.ok) throw new Error(`Không tải được dữ liệu HSK ${level} Bài ${lessonNumber} (${lessonResponse.status}).`);
     state.lesson = await lessonResponse.json();
+    lessonDataCache.set(lessonCacheKey(level, lessonNumber), state.lesson);
+    state.catalogData = catalogCache.get(Number(level)) || null;
+    if (!state.catalogData) await loadCatalogData(level);
     state.loading = false;
+    const currentParams = new URLSearchParams(window.location.search);
+    if (!state.catalog) state.filter = currentParams.get('filter') || state.filter || 'all';
+    state.focusWord = currentParams.get('focusWord') || state.focusWord || '';
+    state.grammarPlusId = currentParams.get('grammarPlus') || '';
     document.title = `${state.lesson.title.vi} · New 3.0 · HSK ${state.lesson.level}`;
     render();
-    window.dispatchEvent(new CustomEvent('tiengtrung:navigationchange'));
+    if (typeof window.dispatchEvent === 'function' && typeof window.CustomEvent === 'function') window.dispatchEvent(new window.CustomEvent('tiengtrung:navigationchange'));
     window.setTimeout(() => window.TiengTrungLearningHistory?.recordCurrent?.(), 0);
   }
 
@@ -2285,6 +2943,7 @@
       const fallback = requested || state.manifest.lessons.find(item => String(item.status || '').includes('ready'));
       if (!fallback) throw new Error('Manifest New 3.0 chưa có bài app-ready.');
       await loadLessonData(Number(fallback.level), Number(fallback.lessonNumber), { push: false });
+      if (state.catalog) await loadCatalogData(state.level);
       restoreReturnSnapshotFromUrl();
     } catch (error) {
       state.loading = false;
@@ -2298,8 +2957,24 @@
     const next = new URLSearchParams(location.search);
     const level = Math.max(1, Number(next.get('level')) || 1);
     const lessonNumber = Math.max(1, Number(next.get('lesson')) || 1);
-    if (level === state.level && lessonNumber === state.lessonNumber) return;
-    loadLessonData(level, lessonNumber, { push: false }).catch(error => {
+    state.view = ['book', 'grouped', 'practice'].includes(next.get('view')) ? next.get('view') : 'book';
+    state.catalog = ['topics', 'grammar'].includes(next.get('catalog')) ? next.get('catalog') : '';
+    state.topicId = state.catalog === 'topics' ? next.get('topic') || '' : '';
+    state.grammarId = state.catalog === 'grammar' ? next.get('grammar') || '' : '';
+    state.grammarPlusId = !state.catalog ? next.get('grammarPlus') || '' : '';
+    state.filter = next.get('filter') || 'all';
+    state.focusWord = next.get('focusWord') || '';
+    if (level === state.level && lessonNumber === state.lessonNumber) {
+      state.catalogData = catalogCache.get(level) || null;
+      render();
+      if (!state.catalogData) loadCatalogData(level);
+      return;
+    }
+    state.catalogData = catalogCache.get(level) || null;
+    loadLessonData(level, lessonNumber, { push: false }).then(() => {
+      if (!state.catalogData) return loadCatalogData(level);
+      return null;
+    }).catch(error => {
       state.loading = false;
       state.error = error instanceof Error ? error.message : String(error);
       render();

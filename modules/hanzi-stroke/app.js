@@ -67,6 +67,11 @@ let autoplayLoopActive = false;
 let initialAutoplayDone = false;
 const charDataCache = new Map();
 const localCharInfoCache = new Map();
+const CHARACTER_LEARNING_INDEX_URL = 'data/learning/character-learning-index.json';
+const HSK1_CHARACTER_LEARNING_INDEX_URL = 'data/learning/character-learning-index-hsk1.json';
+const HSK1_VOCABULARY_SENTENCE_INDEX_URL = 'data/learning/hsk1-vocabulary-sentence-index.json';
+let characterLearningIndexPromise = null;
+let hsk1VocabularySentenceIndexPromise = null;
 const HANZI_COLOR_STORAGE_KEY = 'hanziStrokeColorSettings.v1';
 const HANZI_PRESET_STORAGE_KEY = 'hanziStrokeActivePreset.v1';
 const HANZI_THEME_STORAGE_KEY = 'hanziStrokeTheme.v1';
@@ -546,6 +551,49 @@ async function loadLocalCharInfo(char){
   return promise;
 }
 
+async function loadCharacterLearningIndex(){
+  if(!characterLearningIndexPromise){
+    const loadItems = url => fetch(url)
+      .then(response => {
+        if(!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+        return response.json();
+      })
+      .then(data => data?.items && typeof data.items === 'object' ? data.items : {});
+    characterLearningIndexPromise = Promise.all([
+      loadItems(CHARACTER_LEARNING_INDEX_URL).catch(error => {
+        console.warn('Cannot load general character learning index:', error);
+        return {};
+      }),
+      loadItems(HSK1_CHARACTER_LEARNING_INDEX_URL).catch(error => {
+        console.warn('Cannot load HSK 1 character learning index:', error);
+        return {};
+      })
+    ]).then(([general, hsk1]) => ({ ...general, ...hsk1 }));
+  }
+  return characterLearningIndexPromise;
+}
+
+async function loadHsk1VocabularySentenceIndex(){
+  if(!hsk1VocabularySentenceIndexPromise){
+    hsk1VocabularySentenceIndexPromise = fetch(HSK1_VOCABULARY_SENTENCE_INDEX_URL)
+      .then(response => {
+        if(!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+        return response.json();
+      })
+      .then(data => data?.items && typeof data.items === 'object' ? data.items : {})
+      .catch(error => {
+        console.warn('Cannot load HSK 1 sentence index:', error);
+        return {};
+      });
+  }
+  return hsk1VocabularySentenceIndexPromise;
+}
+
+async function loadCharacterLearningInfo(char){
+  const items = await loadCharacterLearningIndex();
+  return items[String(char || '').trim()] || null;
+}
+
 function formatInfoValue(value, fallback = 'Chưa có dữ liệu'){
   const text = String(value ?? '').trim();
   return text || fallback;
@@ -635,6 +683,59 @@ function renderCompoundCharsHtml(charInfos){
   `;
 }
 
+function renderCharacterComponentsHtml(learning){
+  const components = Array.isArray(learning?.components) ? learning.components.filter(item => item?.glyph) : [];
+  if(!components.length){
+    return '';
+  }
+  return `
+    <div class="dict-components-row">
+      <div class="dict-label">Thành phần chữ</div>
+      <div class="dict-components-list">
+        ${components.map(component => {
+          const meta = [component.pinyin, component.hanViet].filter(Boolean).join(' · ');
+          const role = [component.roleVi, component.positionVi].filter(Boolean).join(' · ');
+          return `<article class="dict-component-card">
+            <button type="button" class="dict-component-open" data-character-component-open="${escapeHtml(component.glyph)}" aria-label="Tra chữ ${escapeHtml(component.glyph)}">
+              <strong>${escapeHtml(component.glyph)}</strong>
+              <span>${escapeHtml(meta || component.nameVi || 'Chưa có pinyin')}</span>
+              ${component.meaningVi ? `<small>${escapeHtml(component.meaningVi)}</small>` : ''}
+              ${role ? `<em>${escapeHtml(role)}</em>` : ''}
+            </button>
+            <button type="button" class="dict-component-speak" data-character-component-speak="${escapeHtml(component.glyph)}" aria-label="Nghe ${escapeHtml(component.glyph)}">🔊</button>
+          </article>`;
+        }).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function bindCharacterLearningActions(container){
+  if(!container || container.dataset.characterLearningBound === 'true') return;
+  container.dataset.characterLearningBound = 'true';
+  container.addEventListener('click', event => {
+    const speak = event.target.closest?.('[data-character-component-speak]');
+    if(speak){
+      event.preventDefault();
+      event.stopPropagation();
+      speakChar(speak.dataset.characterComponentSpeak || '');
+      return;
+    }
+    const open = event.target.closest?.('[data-character-component-open]');
+    if(!open) return;
+    event.preventDefault();
+    const char = open.dataset.characterComponentOpen || '';
+    if(!char) return;
+    if(els.infoDialog?.open && typeof els.infoDialog.close === 'function') els.infoDialog.close();
+    else els.infoDialog?.removeAttribute?.('open');
+    if(els.input){
+      els.input.value = char;
+      renderWriters();
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }
+  });
+}
+
 async function renderCompoundInfo(chars, currentRender = renderId){
   if(!els.compound){
     return;
@@ -690,6 +791,7 @@ async function renderCompoundInfo(chars, currentRender = renderId){
 function renderDictionaryInfoHtml(info, options = {}){
   const mode = options.mode === 'modal' ? 'modal' : 'panel';
   const fallbackChar = String(options.char || '').trim();
+  const learning = options.learning || null;
 
   if(!info){
     return '<p class="dict-empty">Chưa có dữ liệu từ điển.</p>';
@@ -699,10 +801,12 @@ function renderDictionaryInfoHtml(info, options = {}){
   const pinyin = formatPinyin(info.pinyin);
   const strokeCount = Number.isFinite(Number(info.strokeCount)) ? String(Number(info.strokeCount)) : '';
   const hsk = info.hsk ? `HSK ${info.hsk}` : '';
-  const rows = [
+  const rowsBeforeComponents = [
     ['Hán Việt', formatInfoValue(info.hanViet)],
     ['Nghĩa', formatInfoValue(formatMeaning(info))],
-    ['Bộ thủ', formatInfoValue(info.radical)],
+    ['Bộ thủ', formatInfoValue(info.radical)]
+  ];
+  const rowsAfterComponents = [
     ['Số nét', formatInfoValue(strokeCount)],
     ['HSK', formatInfoValue(hsk)]
   ];
@@ -714,7 +818,14 @@ function renderDictionaryInfoHtml(info, options = {}){
         ${pinyin ? `<span>/${escapeHtml(pinyin)}/</span>` : ''}
       </div>
       <dl class="dict-grid">
-        ${rows.map(([label, value]) => `
+        ${rowsBeforeComponents.map(([label, value]) => `
+          <div class="dict-row">
+            <dt class="dict-label">${escapeHtml(label)}</dt>
+            <dd class="dict-value">${escapeHtml(value)}</dd>
+          </div>
+        `).join('')}
+        ${renderCharacterComponentsHtml(learning)}
+        ${rowsAfterComponents.map(([label, value]) => `
           <div class="dict-row">
             <dt class="dict-label">${escapeHtml(label)}</dt>
             <dd class="dict-value">${escapeHtml(value)}</dd>
@@ -791,15 +902,20 @@ async function renderCharacterInfo(item){
   }
 
   item.infoPanel.innerHTML = '<p class="dict-empty">Đang tải dữ liệu từ điển...</p>';
-  const info = await loadLocalCharInfo(item.char);
+  const [info, learning] = await Promise.all([
+    loadLocalCharInfo(item.char),
+    loadCharacterLearningInfo(item.char)
+  ]);
 
   if(!info){
-    item.infoPanel.innerHTML = renderDictionaryInfoHtml(null, { mode: 'panel', char: item.char });
+    item.infoPanel.innerHTML = renderDictionaryInfoHtml(null, { mode: 'panel', char: item.char, learning });
+    bindCharacterLearningActions(item.infoPanel);
     return;
   }
 
   setCardPinyin(item, info.pinyin);
-  item.infoPanel.innerHTML = renderDictionaryInfoHtml(info, { mode: 'panel', char: item.char });
+  item.infoPanel.innerHTML = renderDictionaryInfoHtml(info, { mode: 'panel', char: item.char, learning });
+  bindCharacterLearningActions(item.infoPanel);
 }
 
 async function renderStrokeOrder(char, container){
@@ -1069,9 +1185,13 @@ async function showCharInfo(char){
     els.infoDialog.setAttribute('open', '');
   }
 
-  const localInfo = await loadLocalCharInfo(char);
+  const [localInfo, learning] = await Promise.all([
+    loadLocalCharInfo(char),
+    loadCharacterLearningInfo(char)
+  ]);
   if(content){
-    content.innerHTML = renderDictionaryInfoHtml(localInfo, { mode: 'modal', char });
+    content.innerHTML = renderDictionaryInfoHtml(localInfo, { mode: 'modal', char, learning });
+    bindCharacterLearningActions(content);
   }
 }
 
@@ -1360,6 +1480,7 @@ if(window.HanziWriter){
     popupReturnContext: null,
     popupSeed: null,
     popupRelatedExpanded: false,
+    popupSentencesExpanded: false,
     popupLoadId: 0,
     groupMode: pendingHskSectionMode || 'lessons',
     topicKey: 'all',
@@ -6419,13 +6540,16 @@ if(window.HanziWriter){
 
   function renderNewHskCourseLessonEntry(selected){
     const route = selected?.route;
-    const isReadyPrototype = String(route?.libraryId || '') === 'new_hsk'
-      && Number(route?.levelNo) === 1
-      && Number(route?.sectionOrder) === 1;
-    if(!isReadyPrototype) return '';
+    const level = Number(route?.levelNo || 0);
+    const lesson = Number(route?.sectionOrder || 0);
+    const isReadyLesson = String(route?.libraryId || '') === 'new_hsk'
+      && String(route?.sectionType || '') === 'lesson'
+      && level >= 1 && level <= 3
+      && lesson > 0;
+    if(!isReadyLesson) return '';
     const url = new URL('../new-hsk-course/index.html', window.location.href);
-    url.searchParams.set('level', '1');
-    url.searchParams.set('lesson', '1');
+    url.searchParams.set('level', String(level));
+    url.searchParams.set('lesson', String(lesson));
     url.searchParams.set('view', 'book');
     return `
       <a class="hsk-full-course-entry" href="${escapeHtml(url.href)}">
@@ -6641,11 +6765,15 @@ if(window.HanziWriter){
   function renderPopupSampleSentences(item){
     const rows = normalizePopupSentences(collectPopupSentenceRows(item));
     if(!rows.length) return '';
+    const initialLimit = 3;
+    const expanded = Boolean(hskState.popupSentencesExpanded);
+    const visible = expanded ? rows : rows.slice(0, initialLimit);
+    const hiddenCount = Math.max(0, rows.length - initialLimit);
     return `
       <section class="hsk-popup-section hsk-popup-sentences">
         <h4>Câu mẫu</h4>
         <div class="hsk-popup-sentence-list">
-          ${rows.map(row => `
+          ${visible.map(row => `
             <button type="button" class="hsk-popup-sentence-item" data-copy-text="${escapeHtml(row.zh)}" data-hsk-speak="${escapeHtml(row.zh)}">
               <strong>${escapeHtml(row.zh)}</strong>
               ${row.pinyin ? `<em>${escapeHtml(formatPinyin(row.pinyin))}</em>` : ''}
@@ -6654,6 +6782,7 @@ if(window.HanziWriter){
             </button>
           `).join('')}
         </div>
+        ${rows.length > initialLimit ? `<button type="button" class="hsk-popup-more-btn" data-hsk-sentences-toggle>${expanded ? 'Thu gọn' : `Xem thêm ${hiddenCount} câu`}</button>` : ''}
       </section>
     `;
   }
@@ -6777,15 +6906,17 @@ if(window.HanziWriter){
         if(!row.zh || seen.has(row.zh)) return false;
         seen.add(row.zh);
         return true;
-      })
-      .slice(0, 5);
+      });
   }
 
   async function enrichHskPopupItem(item, loadId){
     const chars = normalizePopupCharRows(item);
-    if(!chars.length) return;
-    const infos = await Promise.all(chars.map(row => loadLocalCharInfo(row.char)));
-    if(loadId !== hskState.popupLoadId || getHskWordKey(item) !== hskState.popupWord) return;
+    const word = getHskWordKey(item);
+    const [infos, sentenceIndex] = await Promise.all([
+      Promise.all(chars.map(row => loadLocalCharInfo(row.char))),
+      loadHsk1VocabularySentenceIndex()
+    ]);
+    if(loadId !== hskState.popupLoadId || word !== hskState.popupWord) return;
 
     const enrichedChars = chars.map((row, index) => {
       const info = infos[index] || {};
@@ -6805,6 +6936,13 @@ if(window.HanziWriter){
     const current = mergePopupSeed(findHskItem(hskState.popupWord) || getFallbackItem(hskState.popupWord, hskState.popupSeed || {}), hskState.popupSeed || {});
     if(!current) return;
     current.chars = enrichedChars;
+    const indexedSentences = sentenceIndex[word]?.sentences || [];
+    if(indexedSentences.length){
+      current.sampleSentences = normalizePopupSentences([
+        ...collectPopupSentenceRows(current),
+        ...indexedSentences.map(row => ({ zh: row.chinese, pinyin: row.pinyin, vi: row.meaningVi }))
+      ]);
+    }
     renderHskPopup(current, { skipEnrich: true });
   }
 
@@ -6902,6 +7040,7 @@ if(window.HanziWriter){
     hskState.popupWord = target;
     hskState.popupSeed = options.seed || {};
     hskState.popupRelatedExpanded = false;
+    hskState.popupSentencesExpanded = false;
     hskState.popupActiveChar = '';
     const item = mergePopupSeed(findHskItem(target) || getFallbackItem(target, options.seed || {}), options.seed || {});
     renderHskPopup(item);
@@ -6922,6 +7061,7 @@ if(window.HanziWriter){
     hskState.popupReturnContext = null;
     hskState.popupSeed = null;
     hskState.popupRelatedExpanded = false;
+    hskState.popupSentencesExpanded = false;
   }
 
   function goBackHskPopup(){
@@ -6932,6 +7072,7 @@ if(window.HanziWriter){
       hskState.popupWord = previousWord;
       hskState.popupSeed = previousSeed;
       hskState.popupRelatedExpanded = false;
+      hskState.popupSentencesExpanded = false;
       hskState.popupActiveChar = '';
       const item = mergePopupSeed(findHskItem(previousWord) || getFallbackItem(previousWord, previousSeed), previousSeed);
       renderHskPopup(item);
@@ -7371,7 +7512,7 @@ if(window.HanziWriter){
     return {
       version: 1,
       savedAt: Date.now(),
-      phase: session.phase,
+      phase: session.phase === 'preparing' ? 'setup' : session.phase,
       title: String(session.title || ''),
       cards: (session.cards || []).map(card => ({
         id: String(card.id || ''),
@@ -7385,7 +7526,8 @@ if(window.HanziWriter){
         structurePracticeUrl: String(card.structurePracticeUrl || ''),
         tokens: Array.isArray(card.tokens) ? card.tokens : [],
         sourceWord: String(card.sourceWord || ''),
-        characterData: Array.isArray(card.characterData) ? card.characterData : []
+        characterData: Array.isArray(card.characterData) ? card.characterData : [],
+        wordGlossary: Array.isArray(card.wordGlossary) ? card.wordGlossary : []
       })).filter(card => card.id && card.word),
       settings: {
         mode: session.settings?.mode || 'flashcard',
@@ -7404,7 +7546,9 @@ if(window.HanziWriter){
         sentenceOrderingAutoAdvanceEnabled: session.settings?.sentenceOrderingAutoAdvanceEnabled !== false,
         sentenceOrderingAutoAdvanceSeconds: normalizeFlashcardOrderingDelay(session.settings?.sentenceOrderingAutoAdvanceSeconds, 1.2),
         sentenceOrderingDisplayCount: [1, 2, 3].includes(Number(session.settings?.sentenceOrderingDisplayCount)) ? Number(session.settings.sentenceOrderingDisplayCount) : 1,
-        radicalSortDisplayMode: ['hanzi', 'pinyin', 'meaning'].includes(session.settings?.radicalSortDisplayMode) ? session.settings.radicalSortDisplayMode : 'hanzi'
+        sentenceOrderingVocabularyList: session.settings?.sentenceOrderingVocabularyList === true,
+        radicalSortDisplayMode: ['hanzi', 'pinyin', 'meaning'].includes(session.settings?.radicalSortDisplayMode) ? session.settings.radicalSortDisplayMode : 'hanzi',
+        radicalSortMeaningList: session.settings?.radicalSortMeaningList === true
       },
       index: Number(session.index || 0),
       flipped: Boolean(session.flipped),
@@ -7499,7 +7643,9 @@ if(window.HanziWriter){
           sentenceOrderingAutoAdvanceEnabled: settings.sentenceOrderingAutoAdvanceEnabled !== false,
           sentenceOrderingAutoAdvanceSeconds: normalizeFlashcardOrderingDelay(settings.sentenceOrderingAutoAdvanceSeconds, 1.2),
           sentenceOrderingDisplayCount: [1, 2, 3].includes(Number(settings.sentenceOrderingDisplayCount)) ? Number(settings.sentenceOrderingDisplayCount) : 1,
-          radicalSortDisplayMode: ['hanzi', 'pinyin', 'meaning'].includes(settings.radicalSortDisplayMode) ? settings.radicalSortDisplayMode : 'hanzi'
+          sentenceOrderingVocabularyList: settings.sentenceOrderingVocabularyList === true,
+          radicalSortDisplayMode: ['hanzi', 'pinyin', 'meaning'].includes(settings.radicalSortDisplayMode) ? settings.radicalSortDisplayMode : 'hanzi',
+          radicalSortMeaningList: settings.radicalSortMeaningList === true
         },
         index,
         flipped: Boolean(saved.flipped),
@@ -8195,6 +8341,8 @@ if(window.HanziWriter){
 
   let flashcardRadicalLookupPromise = null;
   const flashcardCharacterInfoPromises = new Map();
+  const flashcardRadicalStatePromises = new Map();
+  let flashcardRadicalPersistTimer = null;
 
   function normalizeFlashcardSentenceAnswer(value){
     return String(value || '').replace(/[\s，,。.!！?？；;：:“”"'‘’、]/gu, '');
@@ -8269,36 +8417,196 @@ if(window.HanziWriter){
     return Array.from(new Set(Array.from(String(card?.word || '')).filter(char=>/\p{Script=Han}/u.test(char))));
   }
 
+  function mergeRadicalLearningAnalysis(char, character, learning, resolvedRadical){
+    const lessonComponents=Array.isArray(character?.components) ? character.components : [];
+    const learningComponents=Array.isArray(learning?.components) ? learning.components : [];
+    const componentMap=new Map();
+    [...lessonComponents.map(row=>({
+      glyph:String(row?.glyph || row?.char || '').trim(),
+      pinyin:String(row?.pinyin || '').trim(),
+      hanViet:String(row?.hanViet || '').trim(),
+      meaningVi:String(row?.meaningVi || '').trim(),
+      roleVi:String(row?.roleVi || '').trim(),
+      positionVi:String(row?.positionVi || '').trim()
+    })),...learningComponents].forEach(row=>{
+      const glyph=String(row?.glyph || '').trim();
+      if(!glyph) return;
+      const previous=componentMap.get(glyph) || {glyph};
+      componentMap.set(glyph,{
+        ...previous,
+        glyph,
+        pinyin:String(previous.pinyin || row?.pinyin || '').trim(),
+        hanViet:String(previous.hanViet || row?.hanViet || '').trim(),
+        meaningVi:String(previous.meaningVi || row?.meaningVi || '').trim(),
+        roleVi:String(previous.roleVi || row?.roleVi || '').trim(),
+        positionVi:String(previous.positionVi || row?.positionVi || '').trim()
+      });
+    });
+    const radicalSource=learning?.radical || character?.dictionaryRadical || {};
+    const radical={
+      glyph:String(radicalSource.glyph || resolvedRadical?.sideForm || resolvedRadical?.key || resolvedRadical?.mainForm || '').trim(),
+      nameVi:String(radicalSource.nameVi || resolvedRadical?.displayNameVi || '').trim(),
+      pinyin:String(radicalSource.pinyin || resolvedRadical?.pinyin || '').trim(),
+      hanViet:String(radicalSource.hanViet || resolvedRadical?.hanViet || '').trim(),
+      meaningVi:String(radicalSource.meaningVi || '').trim()
+    };
+    return {
+      char,
+      radical,
+      structureLabel:String(character?.structure?.labelVi || learning?.structure?.labelVi || '').trim(),
+      components:Array.from(componentMap.values()),
+      explanationVi:String(learning?.explanationVi || '').trim(),
+      memoryVi:String(learning?.memoryVi || '').trim(),
+      commonErrors:Array.isArray(character?.pedagogy?.commonErrors) ? character.pedagogy.commonErrors.filter(Boolean) : (Array.isArray(learning?.commonErrors) ? learning.commonErrors.filter(Boolean) : [])
+    };
+  }
+
+  function buildFlashcardRadicalRounds(entries){
+    const grouped=new Map();
+    (entries || []).forEach(entry=>{
+      const id=entry?.radical?.id;
+      if(!id) return;
+      if(!grouped.has(id)) grouped.set(id,{
+        id,
+        glyph:entry.radical.sideForm || entry.radical.key || entry.radical.mainForm,
+        name:entry.radical.displayNameVi || '',
+        pinyin:entry.radical.pinyin || '',
+        hanViet:entry.radical.hanViet || '',
+        queue:[]
+      });
+      grouped.get(id).queue.push(entry);
+    });
+    grouped.forEach(group=>{ group.queue=shuffleCards(group.queue); });
+    const rounds=[];
+    while(Array.from(grouped.values()).some(group=>group.queue.length)){
+      const active=Array.from(grouped.values()).filter(group=>group.queue.length).sort((a,b)=>b.queue.length-a.queue.length || a.name.localeCompare(b.name,'vi'));
+      const selected=active.slice(0,4);
+      const roundEntries=[];
+      while(roundEntries.length<12 && selected.some(group=>group.queue.length)){
+        for(const group of selected){
+          if(roundEntries.length>=12) break;
+          const entry=group.queue.shift();
+          if(entry) roundEntries.push(entry);
+        }
+      }
+      const present=new Set(roundEntries.map(entry=>entry.radical.id));
+      const groups=selected.filter(group=>present.has(group.id)).map(group=>({
+        id:group.id,glyph:group.glyph,name:group.name,pinyin:group.pinyin,hanViet:group.hanViet,items:[]
+      }));
+      const items=roundEntries.map((item,index)=>({
+        id:`radical-sort:${rounds.length}:${item.char}:${index}`,
+        hanzi:item.char,
+        pinyin:item.pinyin || '',
+        meaningVi:item.meaningVi || '',
+        groupId:item.radical.id,
+        sourceCardId:item.sourceCardId,
+        analysis:item.analysis || null,
+        done:false
+      }));
+      if(items.length) rounds.push({groups,items});
+    }
+    return rounds;
+  }
+
   async function createFlashcardRadicalSortState(cards){
     const lookup=await loadFlashcardRadicalLookup();
-    const assignments=new Map();
+    const candidates=new Map();
     for(const card of cards || []){
       const explicit=new Map((card.characterData || []).map(row=>[row.hanzi,row]));
       for(const char of cardCharacterCandidates(card)){
-        if(assignments.has(char)) continue;
-        const character=explicit.get(char);
-        const fallbackInfo=await loadFlashcardCharacterInfo(char,lookup);
-        let radical=null;
-        if(character?.dictionaryRadical?.radicalId) radical=lookup.byId.get(character.dictionaryRadical.radicalId) || lookup.glyphToItem.get(character.dictionaryRadical.glyph);
-        if(!radical) radical=lookup.byChar.get(char) || null;
-        if(!radical) radical=fallbackInfo.radical;
-        if(!radical) radical=sourceItemDictionaryRadical(card?.sourceItem,lookup);
-        const pinyin=formatPinyin(Array.isArray(character?.pinyin) ? character.pinyin.join(' / ') : character?.pinyin || fallbackInfo.pinyin || '');
-        const meaningVi=Array.isArray(character?.meaningsVi) ? character.meaningsVi.join('; ') : String(character?.meaningVi || fallbackInfo.meaningVi || '').trim();
-        if(radical?.id) assignments.set(char,{char,radical,sourceCardId:card.id,pinyin,meaningVi});
+        if(!candidates.has(char)) candidates.set(char,{char,card,character:explicit.get(char) || null});
       }
     }
-    const grouped=new Map();
-    assignments.forEach(entry=>{
-      if(!grouped.has(entry.radical.id)) grouped.set(entry.radical.id,{id:entry.radical.id,glyph:entry.radical.sideForm || entry.radical.key || entry.radical.mainForm,name:entry.radical.displayNameVi || '',pinyin:entry.radical.pinyin || '',hanViet:entry.radical.hanViet || '',items:[]});
-      grouped.get(entry.radical.id).items.push(entry);
-    });
-    const groups=Array.from(grouped.values()).filter(group=>group.items.length).sort((a,b)=>b.items.length-a.items.length || a.name.localeCompare(b.name,'vi')).slice(0,4);
-    const allowed=new Set(groups.map(group=>group.id));
-    const items=shuffleCards(Array.from(assignments.values()).filter(item=>allowed.has(item.radical.id))).slice(0,12).map((item,index)=>({id:`radical-sort:${item.char}:${index}`,hanzi:item.char,pinyin:item.pinyin || '',meaningVi:item.meaningVi || '',groupId:item.radical.id,sourceCardId:item.sourceCardId,done:false}));
-    const present=new Set(items.map(item=>item.groupId));
-    const activeGroups=groups.filter(group=>present.has(group.id));
-    return {groups:activeGroups,items,selectedItemId:'',selectedGroupId:'',focusedItemId:'',selectionLead:'',correct:0,wrong:0,feedback:''};
+    const resolved=await Promise.all(Array.from(candidates.values()).map(async entry=>{
+      const {char,card,character}=entry;
+      const learning=await loadCharacterLearningInfo(char);
+      let radical=null;
+      if(character?.dictionaryRadical?.radicalId) radical=lookup.byId.get(character.dictionaryRadical.radicalId) || lookup.glyphToItem.get(character.dictionaryRadical.glyph);
+      if(!radical) radical=lookup.byChar.get(char) || null;
+      if(!radical) radical=sourceItemDictionaryRadical(card?.sourceItem,lookup);
+      let pinyin=formatPinyin(Array.isArray(character?.pinyin) ? character.pinyin.join(' / ') : character?.pinyin || '');
+      let meaningVi=Array.isArray(character?.meaningsVi) ? character.meaningsVi.join('; ') : String(character?.meaningVi || '').trim();
+      if(!pinyin) pinyin=formatPinyin(learning?.pinyin || '');
+      if(!meaningVi) meaningVi=String(learning?.meaningVi || '').trim();
+      if(!radical || !pinyin || !meaningVi){
+        const fallbackInfo=await loadFlashcardCharacterInfo(char,lookup);
+        if(!radical) radical=fallbackInfo.radical;
+        if(!pinyin) pinyin=fallbackInfo.pinyin || '';
+        if(!meaningVi) meaningVi=fallbackInfo.meaningVi || '';
+      }
+      return radical?.id ? {char,radical,sourceCardId:card.id,pinyin,meaningVi,analysis:mergeRadicalLearningAnalysis(char,character,learning,radical)} : null;
+    }));
+    const assignments=Array.from(new Map(resolved.filter(Boolean).map(entry=>[entry.char,entry])).values());
+    const rounds=buildFlashcardRadicalRounds(assignments);
+    const first=rounds[0] || {groups:[],items:[]};
+    return {
+      rounds,
+      roundIndex:0,
+      totalItems:assignments.length,
+      groups:first.groups,
+      items:first.items,
+      selectedItemId:'',selectedGroupId:'',focusedItemId:'',selectionLead:'',correct:0,wrong:0,feedback:''
+    };
+  }
+
+  function flashcardRadicalStateKey(cards){
+    return (cards || []).map(card=>`${card?.id || ''}:${card?.word || ''}`).join('|');
+  }
+
+  function cloneFlashcardRadicalSortState(state){
+    if(!state) return null;
+    const rounds=(state.rounds || []).map(round=>({
+      groups:(round.groups || []).map(group=>({...group,items:[]})),
+      items:(round.items || []).map(item=>({...item,done:false}))
+    }));
+    const first=rounds[0] || {groups:[],items:[]};
+    return {
+      ...state,
+      rounds,
+      roundIndex:0,
+      groups:first.groups,
+      items:first.items,
+      totalItems:Number(state.totalItems || rounds.reduce((sum,round)=>sum+round.items.length,0)),
+      selectedItemId:'',selectedGroupId:'',focusedItemId:'',selectionLead:'',correct:0,wrong:0,feedback:''
+    };
+  }
+
+  function advanceFlashcardRadicalRound(state){
+    if(!state || state.roundIndex >= (state.rounds || []).length - 1) return false;
+    state.roundIndex += 1;
+    const round=state.rounds[state.roundIndex] || {groups:[],items:[]};
+    state.groups=(round.groups || []).map(group=>({...group,items:[]}));
+    state.items=(round.items || []).map(item=>({...item,done:false}));
+    state.selectedItemId='';
+    state.selectedGroupId='';
+    state.focusedItemId='';
+    state.selectionLead='';
+    state.feedback='';
+    return true;
+  }
+
+  function prepareFlashcardRadicalSortState(cards){
+    const key=flashcardRadicalStateKey(cards);
+    if(!flashcardRadicalStatePromises.has(key)){
+      const promise=createFlashcardRadicalSortState(cards).catch(error=>{
+        flashcardRadicalStatePromises.delete(key);
+        throw error;
+      });
+      flashcardRadicalStatePromises.set(key,promise);
+      if(flashcardRadicalStatePromises.size>6){
+        const oldest=flashcardRadicalStatePromises.keys().next().value;
+        if(oldest!==key) flashcardRadicalStatePromises.delete(oldest);
+      }
+    }
+    return flashcardRadicalStatePromises.get(key);
+  }
+
+  function scheduleFlashcardRadicalPersist(){
+    window.clearTimeout(flashcardRadicalPersistTimer);
+    flashcardRadicalPersistTimer=window.setTimeout(()=>{
+      flashcardRadicalPersistTimer=null;
+      persistFlashcardSession();
+    },120);
   }
 
   function flashcardSentenceOrderingCount(cards){ return getSentenceOrderingEligibleCards(cards).length; }
@@ -8319,7 +8627,9 @@ if(window.HanziWriter){
       sentenceOrderingAutoAdvanceEnabled: true,
       sentenceOrderingAutoAdvanceSeconds: 1.2,
       sentenceOrderingDisplayCount: 1,
-      radicalSortDisplayMode: 'hanzi'
+      sentenceOrderingVocabularyList: false,
+      radicalSortDisplayMode: 'hanzi',
+      radicalSortMeaningList: false
     };
     try{
       const saved = JSON.parse(window.localStorage?.getItem(HSK_FLASHCARD_SETTINGS_KEY) || '{}');
@@ -8340,7 +8650,9 @@ if(window.HanziWriter){
         sentenceOrderingAutoAdvanceEnabled: saved.sentenceOrderingAutoAdvanceEnabled !== false,
         sentenceOrderingAutoAdvanceSeconds: normalizeFlashcardOrderingDelay(saved.sentenceOrderingAutoAdvanceSeconds, defaults.sentenceOrderingAutoAdvanceSeconds),
         sentenceOrderingDisplayCount: [1, 2, 3].includes(Number(saved.sentenceOrderingDisplayCount)) ? Number(saved.sentenceOrderingDisplayCount) : defaults.sentenceOrderingDisplayCount,
-        radicalSortDisplayMode: ['hanzi', 'pinyin', 'meaning'].includes(saved.radicalSortDisplayMode) ? saved.radicalSortDisplayMode : defaults.radicalSortDisplayMode
+        sentenceOrderingVocabularyList: saved.sentenceOrderingVocabularyList === true,
+        radicalSortDisplayMode: ['hanzi', 'pinyin', 'meaning'].includes(saved.radicalSortDisplayMode) ? saved.radicalSortDisplayMode : defaults.radicalSortDisplayMode,
+        radicalSortMeaningList: saved.radicalSortMeaningList === true
       };
     }catch(_err){
       return defaults;
@@ -8542,6 +8854,8 @@ if(window.HanziWriter){
     cancelFlashcardTypingCompletionTimer();
     cancelFlashcardTypingErrorTimer();
     clearFlashcardOrderingAdvanceTimer();
+    window.clearTimeout(flashcardRadicalPersistTimer);
+    flashcardRadicalPersistTimer=null;
     stopFlashcardTypingClock();
     Matching?.cancelScheduledNextRound?.(hskState.flashcardSession?.matching);
     const overlay = document.getElementById('hskFlashcardOverlay');
@@ -8552,6 +8866,7 @@ if(window.HanziWriter){
     cleanupFlashcardStrokeWriters();
     hskState.flashcardStatsOpen = false;
     if(hskState.flashcardSession){
+      hskState.flashcardSession.prepareToken=(Number(hskState.flashcardSession.prepareToken)||0)+1;
       clearPersistedFlashcardSession();
     }
     const selectedCards = (hskState.topicKey && hskState.topicKey !== 'all') ? getSelectedFlashcardItems() : [];
@@ -8723,9 +9038,13 @@ if(window.HanziWriter){
   async function startFlashcardSession(){
     const session = hskState.flashcardSession;
     if(!session) return;
+    const prepareToken=(Number(session.prepareToken)||0)+1;
+    session.prepareToken=prepareToken;
     clearFlashcardOrderingAdvanceTimer();
     saveFlashcardSettings(session.settings);
-    session.phase = 'study';
+    const preparingRadicalSort = session.settings.mode === 'radical-sort';
+    session.phase = preparingRadicalSort ? 'preparing' : 'study';
+    if(preparingRadicalSort) renderFlashcardOverlay();
     if(session.settings.mode === 'typing'){
       session.cards = getTypingEligibleCards(session.cards, session.settings.typingPromptType);
       if(!session.cards.length){ session.phase = 'setup'; session.typing = null; renderFlashcardOverlay(); return; }
@@ -8740,12 +9059,16 @@ if(window.HanziWriter){
     }
     if(session.settings.mode === 'radical-sort'){
       try{
-        session.radicalSort = await createFlashcardRadicalSortState(session.cards);
+        const prepared=await prepareFlashcardRadicalSortState(session.cards);
+        if(session.prepareToken!==prepareToken || session.phase!=='preparing') return;
+        session.radicalSort = cloneFlashcardRadicalSortState(prepared);
       }catch(error){
+        if(session.prepareToken!==prepareToken || session.phase!=='preparing') return;
         console.warn('Cannot prepare radical sort:', error);
         session.radicalSort = null;
       }
       if(!session.radicalSort || session.radicalSort.groups.length < 2 || session.radicalSort.items.length < 2){ session.phase = 'setup'; renderFlashcardOverlay(); return; }
+      session.phase = 'study';
     }
     session.cards = session.settings.shuffle && !['radical-sort'].includes(session.settings.mode) ? shuffleCards(session.cards) : [...session.cards];
     session.index = 0;
@@ -9188,12 +9511,22 @@ if(window.HanziWriter){
     return correct;
   }
 
+  function renderFlashcardOrderingVocabularyPanel(page,state){
+    const sections=(page || []).map((item,offset)=>{
+      const glossary=Array.isArray(item?.card?.wordGlossary) ? item.card.wordGlossary.filter(row=>row?.word) : [];
+      if(!glossary.length) return '';
+      const absoluteIndex=Number(state?.index || 0)+offset+1;
+      return `<section class="hsk-flashcard-ordering-vocab-section"><h3>Câu ${absoluteIndex}</h3><div class="hsk-flashcard-ordering-vocab-list">${glossary.map(row=>`<button type="button" data-hsk-order-vocab-speak="${escapeHtml(row.word)}"><b>${escapeHtml(row.word)}</b><span><strong>${escapeHtml(row.pinyin || 'Chưa có pinyin')}</strong><small>${escapeHtml(row.meaningVi || 'Chưa có nghĩa Việt')}</small></span><i aria-hidden="true">🔊</i></button>`).join('')}</div></section>`;
+    }).filter(Boolean);
+    return `<div class="hsk-flashcard-ordering-vocab-panel" data-hsk-order-vocab-panel>${sections.join('') || '<p>Chưa có mục từ vựng khớp với câu này trong dữ liệu bài.</p>'}</div>`;
+  }
+
   function renderFlashcardSentenceOrderingItem(session,item,absoluteIndex,total){
     const selectedIds=new Set((item.selected || []).map(token=>token.id));
     const bank=(item.bank || []).filter(token=>!selectedIds.has(token.id));
     const rating=item.rating || session.ratings[item.card.id] || '';
     return `<article class="hsk-flashcard-order-item" data-hsk-order-item-id="${escapeHtml(item.id)}">
-      <div class="hsk-flashcard-ordering-toolbar"><span>Câu ${absoluteIndex+1}/${total}</span><button type="button" data-hsk-order-reset aria-label="Đặt lại">↺</button></div>
+      <div class="hsk-flashcard-ordering-toolbar"><span>Câu ${absoluteIndex+1}/${total}</span><div class="hsk-flashcard-ordering-toolbar-actions"><button type="button" class="${session.settings.sentenceOrderingVocabularyList ? 'active' : ''}" data-hsk-order-vocab-toggle aria-pressed="${session.settings.sentenceOrderingVocabularyList === true}" aria-label="${session.settings.sentenceOrderingVocabularyList ? 'Ẩn nghĩa từ' : 'Hiện nghĩa từ'}">词义</button><button type="button" class="${session.settings.showPinyin ? 'active' : ''}" data-hsk-order-pinyin aria-pressed="${session.settings.showPinyin}" aria-label="${session.settings.showPinyin ? 'Ẩn pinyin' : 'Hiện pinyin'}">拼</button><button type="button" data-hsk-order-speak="${escapeHtml(item.card.word || '')}" aria-label="Nghe cả câu">🔊</button><button type="button" data-hsk-order-reset aria-label="Đặt lại">↺</button></div></div>
       <div class="hsk-flashcard-ordering-prompt">${item.card.meaningVi ? `<strong>${escapeHtml(item.card.meaningVi)}</strong>` : '<strong>Xếp thành câu đúng</strong>'}${session.settings.showPinyin && item.card.pinyin ? `<small>${escapeHtml(item.card.pinyin)}</small>` : ''}</div>
       <div class="hsk-flashcard-ordering-answer" aria-label="Câu đang xếp">${item.selected.length ? item.selected.map(token=>`<button type="button" data-hsk-order-token="${escapeHtml(token.id)}" data-hsk-order-zone="answer">${escapeHtml(token.text)}</button>`).join('') : '<span>Chạm các từ theo đúng thứ tự</span>'}</div>
       <div class="hsk-flashcard-ordering-bank">${bank.map(token=>`<button type="button" data-hsk-order-token="${escapeHtml(token.id)}" data-hsk-order-zone="bank">${escapeHtml(token.text)}</button>`).join('')}</div>
@@ -9215,9 +9548,33 @@ if(window.HanziWriter){
     return `<header class="hsk-flashcard-header"><button type="button" class="hsk-flashcard-back" data-hsk-flashcard-to-setup>← Thiết lập</button><span class="hsk-flashcard-progress">${progressEnd} / ${state.items.length}</span><button type="button" class="hsk-flashcard-close" data-hsk-flashcard-close aria-label="Đóng">×</button></header>
       <div class="hsk-flashcard-study hsk-flashcard-study--ordering is-compact">
         <div class="hsk-flashcard-study-meta"><b>Sắp xếp câu</b><span>${escapeHtml(session.title)}</span></div>
-        <div class="hsk-flashcard-order-items">${page.map((item,offset)=>renderFlashcardSentenceOrderingItem(session,item,state.index+offset,state.items.length)).join('')}</div>
-        ${complete ? `<div class="hsk-flashcard-order-page-actions">${autoNote}<button type="button" class="hsk-flashcard-start" data-hsk-order-next>${hasNext?(page.length>1?'Nhóm tiếp →':'Câu tiếp →'):'Hoàn thành'}</button></div>` : ''}
+        ${session.settings.sentenceOrderingVocabularyList ? renderFlashcardOrderingVocabularyPanel(page,state) : '<div class="hsk-flashcard-ordering-spacer" aria-hidden="true"></div>'}
+        <div class="hsk-flashcard-ordering-controls">
+          <div class="hsk-flashcard-order-items">${page.map((item,offset)=>renderFlashcardSentenceOrderingItem(session,item,state.index+offset,state.items.length)).join('')}</div>
+          ${complete ? `<div class="hsk-flashcard-order-page-actions">${autoNote}<button type="button" class="hsk-flashcard-start" data-hsk-order-next>${hasNext?(page.length>1?'Nhóm tiếp →':'Câu tiếp →'):'Hoàn thành'}</button></div>` : ''}
+        </div>
       </div>`;
+  }
+
+  function renderFlashcardRadicalAnalysis(item){
+    if(!item) return '';
+    const analysis=item.analysis || {};
+    const radical=analysis.radical || {};
+    const components=Array.isArray(analysis.components) ? analysis.components.filter(row=>row?.glyph) : [];
+    const radicalMeta=[radical.nameVi,radical.pinyin,radical.hanViet].filter(Boolean).join(' · ');
+    return `<article class="hsk-flashcard-radical-analysis">
+      <header><b>${escapeHtml(item.hanzi)}</b><div><strong>${escapeHtml(item.pinyin || 'Chưa có pinyin')}</strong><span>${escapeHtml(item.meaningVi || 'Chưa có nghĩa Việt')}</span></div></header>
+      ${radical.glyph ? `<section><h4>Bộ thủ</h4><div class="hsk-flashcard-radical-analysis-radical"><b>${escapeHtml(radical.glyph)}</b><div><strong>${escapeHtml(radicalMeta || 'Bộ thủ của chữ')}</strong>${radical.meaningVi ? `<span>${escapeHtml(radical.meaningVi)}</span>` : ''}</div></div></section>` : ''}
+      ${components.length ? `<section><h4>Thành phần chữ</h4><div class="hsk-flashcard-radical-component-list">${components.map(component=>{
+        const meta=[component.pinyin,component.hanViet].filter(Boolean).join(' · ');
+        const role=[component.roleVi,component.positionVi].filter(Boolean).join(' · ');
+        return `<div><b>${escapeHtml(component.glyph)}</b><span><strong>${escapeHtml(meta || 'Chưa có pinyin')}</strong>${component.meaningVi ? `<em>${escapeHtml(component.meaningVi)}</em>` : ''}${role ? `<small>${escapeHtml(role)}</small>` : ''}</span></div>`;
+      }).join('')}</div></section>` : ''}
+      ${analysis.structureLabel ? `<section><h4>Loại cấu tạo</h4><p>${escapeHtml(analysis.structureLabel)}</p></section>` : ''}
+      ${analysis.explanationVi ? `<section><h4>Giải thích</h4><p>${escapeHtml(analysis.explanationVi)}</p></section>` : ''}
+      ${analysis.memoryVi ? `<section><h4>Gợi nhớ</h4><p>${escapeHtml(analysis.memoryVi)}</p></section>` : ''}
+      ${Array.isArray(analysis.commonErrors) && analysis.commonErrors.length ? `<section><h4>Lưu ý khi viết</h4><ul>${analysis.commonErrors.map(row=>`<li>${escapeHtml(row)}</li>`).join('')}</ul></section>` : ''}
+    </article>`;
   }
 
   function renderFlashcardRadicalSortStudy(session){
@@ -9225,21 +9582,72 @@ if(window.HanziWriter){
     if(!state) return '<p>Không có đủ dữ liệu bộ thủ đã kiểm duyệt.</p>';
     const remaining=state.items.filter(item=>!item.done);
     const complete=!remaining.length;
+    const finalRound=Number(state.roundIndex || 0) >= (state.rounds || []).length - 1;
     const displayMode=['hanzi','pinyin','meaning'].includes(session.settings.radicalSortDisplayMode) ? session.settings.radicalSortDisplayMode : 'hanzi';
+    const showMeaningList=session.settings.radicalSortMeaningList === true;
     const focusedItem=state.items.find(item=>item.id===(state.focusedItemId || state.selectedItemId));
     const renderItem=item=>{
       const extra=displayMode==='pinyin' ? item.pinyin : displayMode==='meaning' ? item.meaningVi : '';
       return `<button type="button" class="hsk-flashcard-radical-token ${state.selectedItemId===item.id?'active':''}" data-hsk-radical-item="${escapeHtml(item.id)}"><b>${escapeHtml(item.hanzi)}</b>${extra ? `<small>${escapeHtml(extra)}</small>` : ''}</button>`;
     };
-    return `<header class="hsk-flashcard-header"><button type="button" class="hsk-flashcard-back" data-hsk-flashcard-to-setup>← Thiết lập</button><span class="hsk-flashcard-progress">${state.correct} / ${state.items.length}</span><button type="button" class="hsk-flashcard-close" data-hsk-flashcard-close aria-label="Đóng">×</button></header>
+    const selectedHelp=focusedItem && !complete
+      ? `<div class="hsk-flashcard-radical-selected-help" data-hsk-radical-selected-help>${renderFlashcardRadicalAnalysis(focusedItem)}</div>`
+      : '<div class="hsk-flashcard-radical-selected-help" data-hsk-radical-selected-help hidden></div>';
+    const meaningList=`<div class="hsk-flashcard-radical-meaning-list" data-hsk-radical-meaning-list>${state.items.map(item=>`<article class="${item.done?'is-done':''} ${state.selectedItemId===item.id?'is-active':''}" data-hsk-radical-meaning-item="${escapeHtml(item.id)}"><b>${escapeHtml(item.hanzi)}</b><div><strong>${escapeHtml(item.pinyin || 'Chưa có pinyin')}</strong><span>${escapeHtml(item.meaningVi || 'Chưa có nghĩa Việt')}</span></div>${item.done?'<i>✓</i>':''}</article>`).join('')}</div>`;
+    return `<header class="hsk-flashcard-header"><button type="button" class="hsk-flashcard-back" data-hsk-flashcard-to-setup>← Thiết lập</button><span class="hsk-flashcard-progress">${state.correct} / ${Number(state.totalItems || state.items.length)}</span><button type="button" class="hsk-flashcard-close" data-hsk-flashcard-close aria-label="Đóng">×</button></header>
       <div class="hsk-flashcard-study hsk-flashcard-study--radical-sort is-compact ${complete ? 'is-complete' : ''}">
-        <div class="hsk-flashcard-radical-topbar"><div class="hsk-flashcard-study-meta"><b>Xếp chữ vào bộ thủ</b><span>Chọn chữ → bộ thủ hoặc bộ thủ → chữ</span></div><div class="hsk-flashcard-radical-display" role="group" aria-label="Cách hiển thị chữ">${[['hanzi','汉'],['pinyin','汉+拼'],['meaning','汉+义']].map(([key,label])=>`<button type="button" class="${displayMode===key?'active':''}" data-hsk-radical-display-mode="${key}" aria-pressed="${displayMode===key}">${label}</button>`).join('')}</div></div>
-        <div class="hsk-flashcard-radical-bank display-${displayMode} ${complete ? 'is-complete' : ''}">${remaining.map(renderItem).join('') || '<strong>Đã xếp xong tất cả chữ</strong>'}</div>
-        ${focusedItem && !complete ? `<div class="hsk-flashcard-radical-selected-help"><b>${escapeHtml(focusedItem.hanzi)}</b><span>${escapeHtml(focusedItem.pinyin || 'Chưa có pinyin')}</span><span>${escapeHtml(focusedItem.meaningVi || 'Chưa có nghĩa Việt')}</span></div>` : ''}
-        <div class="hsk-flashcard-radical-groups">${state.groups.map(group=>`<button type="button" class="${state.selectedGroupId===group.id?'active':''}" data-hsk-radical-group="${escapeHtml(group.id)}"><span class="hsk-flashcard-radical-group-head"><b>${escapeHtml(group.glyph)}</b><span><strong>${escapeHtml(group.name)}</strong><small>${escapeHtml([group.pinyin,group.hanViet].filter(Boolean).join(' · '))}</small></span></span><i>${state.items.filter(item=>item.done&&item.groupId===group.id).map(item=>item.hanzi).join(' ')}</i></button>`).join('')}</div>
-        <output class="hsk-flashcard-ordering-feedback ${String(state.feedback).startsWith('Đúng')?'is-correct':state.feedback&&!String(state.feedback).startsWith('Đã chọn')?'is-wrong':''}">${escapeHtml(state.feedback || '')}</output>
-        ${complete ? '<button type="button" class="hsk-flashcard-start" data-hsk-radical-complete>Hoàn thành</button>' : ''}
+        <div class="hsk-flashcard-radical-topbar"><div class="hsk-flashcard-study-meta"><b>Xếp chữ vào bộ thủ</b><span>Lượt ${Number(state.roundIndex || 0)+1}/${Math.max(1,(state.rounds || []).length)} · Chọn chữ → bộ thủ hoặc bộ thủ → chữ</span></div><div class="hsk-flashcard-radical-display" role="group" aria-label="Cách hiển thị chữ">${[['hanzi','汉'],['pinyin','汉+拼'],['meaning','汉+义']].map(([key,label])=>`<button type="button" class="${displayMode===key?'active':''}" data-hsk-radical-display-mode="${key}" aria-pressed="${displayMode===key}">${label}</button>`).join('')}<button type="button" class="${showMeaningList?'active':''}" data-hsk-radical-meaning-toggle aria-pressed="${showMeaningList}" title="${showMeaningList?'Ẩn danh sách nghĩa':'Hiện danh sách nghĩa'}">义表</button></div></div>
+        <div class="hsk-flashcard-radical-scroll-region ${showMeaningList?'is-list-mode':''}" data-hsk-radical-scroll-region>
+          ${showMeaningList ? meaningList : `<p class="hsk-flashcard-radical-placeholder" data-hsk-radical-placeholder ${focusedItem && !complete ? 'hidden' : ''}>Chọn một chữ để xem pinyin và nghĩa đầy đủ.</p>${selectedHelp}`}
+        </div>
+        <div class="hsk-flashcard-radical-controls">
+          <div class="hsk-flashcard-radical-groups">${state.groups.map(group=>`<button type="button" class="${state.selectedGroupId===group.id?'active':''}" data-hsk-radical-group="${escapeHtml(group.id)}"><span class="hsk-flashcard-radical-group-head"><b>${escapeHtml(group.glyph)}</b><span><strong>${escapeHtml(group.name)}</strong><small>${escapeHtml([group.pinyin,group.hanViet].filter(Boolean).join(' · '))}</small></span></span><i>${state.items.filter(item=>item.done&&item.groupId===group.id).map(item=>item.hanzi).join(' ')}</i></button>`).join('')}</div>
+          <div class="hsk-flashcard-radical-bank display-${displayMode} ${complete ? 'is-complete' : ''}">${remaining.map(renderItem).join('') || '<strong>Đã xếp xong tất cả chữ</strong>'}</div>
+          <output class="hsk-flashcard-ordering-feedback ${String(state.feedback).startsWith('Đúng')?'is-correct':state.feedback&&!String(state.feedback).startsWith('Đã chọn')?'is-wrong':''}">${escapeHtml(state.feedback || '')}</output>
+          ${complete ? (finalRound ? '<button type="button" class="hsk-flashcard-start" data-hsk-radical-complete>Hoàn thành</button>' : '<button type="button" class="hsk-flashcard-start" data-hsk-radical-next-round>Lượt tiếp →</button>') : ''}
+        </div>
       </div>`;
+  }
+
+  function patchFlashcardRadicalSelection(session){
+    const state=session?.radicalSort;
+    const overlay=document.getElementById('hskFlashcardOverlay');
+    if(!state || !overlay || overlay.hidden) return false;
+    const study=overlay.querySelector('.hsk-flashcard-study--radical-sort');
+    if(!study) return false;
+    study.querySelectorAll('[data-hsk-radical-item]').forEach(button=>button.classList.toggle('active',button.dataset.hskRadicalItem===state.selectedItemId));
+    study.querySelectorAll('[data-hsk-radical-group]').forEach(button=>button.classList.toggle('active',button.dataset.hskRadicalGroup===state.selectedGroupId));
+    const focused=state.items.find(item=>item.id===(state.focusedItemId || state.selectedItemId) && !item.done);
+    study.querySelectorAll('[data-hsk-radical-meaning-item]').forEach(row=>{
+      const item=state.items.find(entry=>entry.id===row.dataset.hskRadicalMeaningItem);
+      row.classList.toggle('is-active',row.dataset.hskRadicalMeaningItem===state.selectedItemId);
+      row.classList.toggle('is-done',Boolean(item?.done));
+    });
+    const help=study.querySelector('[data-hsk-radical-selected-help]');
+    if(help){
+      help.hidden=!focused;
+      help.innerHTML=focused ? renderFlashcardRadicalAnalysis(focused) : '';
+    }
+    const placeholder=study.querySelector('[data-hsk-radical-placeholder]');
+    if(placeholder) placeholder.hidden=Boolean(focused);
+    const scrollRegion=study.querySelector('[data-hsk-radical-scroll-region]');
+    if(scrollRegion && focused){
+      const activeMeaning=scrollRegion.querySelector(`[data-hsk-radical-meaning-item="${CSS.escape(focused.id)}"]`);
+      if(activeMeaning) activeMeaning.scrollIntoView({block:'nearest',behavior:'auto'});
+      else scrollRegion.scrollTop=scrollRegion.scrollHeight;
+    }
+    const feedback=study.querySelector('.hsk-flashcard-ordering-feedback');
+    if(feedback){
+      feedback.textContent=state.feedback || '';
+      feedback.classList.toggle('is-correct',String(state.feedback).startsWith('Đúng'));
+      feedback.classList.toggle('is-wrong',Boolean(state.feedback) && !String(state.feedback).startsWith('Đúng') && !String(state.feedback).startsWith('Đã chọn'));
+    }
+    return true;
+  }
+
+  function renderFlashcardPreparing(session){
+    return `<header class="hsk-flashcard-header"><button type="button" class="hsk-flashcard-back" data-hsk-flashcard-to-setup>← Thiết lập</button><span class="hsk-flashcard-progress">Đang tải</span><button type="button" class="hsk-flashcard-close" data-hsk-flashcard-close aria-label="Đóng">×</button></header>
+      <div class="hsk-flashcard-preparing" role="status" aria-live="polite"><span class="hsk-flashcard-preparing-spinner" aria-hidden="true"></span><h2>Đang chuẩn bị chữ và bộ thủ…</h2><p>Lần mở đầu có thể cần tải dữ liệu. Các lần sau sẽ nhanh hơn.</p></div>`;
   }
 
   function renderFlashcardStudy(session){
@@ -9264,7 +9672,6 @@ if(window.HanziWriter){
           </div>
         </div>
         <footer class="hsk-flashcard-study-footer">
-          ${card.structureUrl ? `<a class="hsk-flashcard-structure-link" href="${escapeHtml(card.structureUrl)}">构 Cấu tạo</a>` : ''}
           ${session.flipped ? `
             <div class="hsk-flashcard-rating" role="group" aria-label="Tự đánh giá">
               ${[['easy','Dễ'],['review','Ôn'],['hard','Khó']].map(([key,label]) => `<button type="button" class="${rating === key ? 'active' : ''}" data-hsk-flashcard-rate="${key}">${label}</button>`).join('')}
@@ -9389,11 +9796,11 @@ if(window.HanziWriter){
     }
     const session = hskState.flashcardSession;
     if(!session) return;
-    const isActivity = session.phase === 'study' || session.phase === 'complete';
+    const isActivity = session.phase === 'preparing' || session.phase === 'study' || session.phase === 'complete';
     setFlashcardHostMode(overlay, isActivity);
     body.innerHTML = session.phase === 'setup'
       ? renderFlashcardSetup(session)
-      : (session.phase === 'complete' ? renderFlashcardComplete(session) : renderFlashcardStudy(session));
+      : (session.phase === 'preparing' ? renderFlashcardPreparing(session) : (session.phase === 'complete' ? renderFlashcardComplete(session) : renderFlashcardStudy(session)));
     overlay.hidden = false;
     document.body.classList.add('hsk-flashcard-open');
     persistFlashcardSession();
@@ -9811,6 +10218,7 @@ if(window.HanziWriter){
         clearFlashcardOrderingAdvanceTimer();
         session.settings.mode = modeButton.dataset.hskFlashcardMode || 'flashcard';
         saveFlashcardSettings(session.settings);
+        if(session.settings.mode==='radical-sort') prepareFlashcardRadicalSortState(session.cards).catch(()=>{});
         renderFlashcardOverlay();
         return;
       }
@@ -9860,6 +10268,7 @@ if(window.HanziWriter){
         cancelFlashcardTypingErrorTimer();
         stopFlashcardTypingClock();
         clearFlashcardOrderingAdvanceTimer();
+        session.prepareToken=(Number(session.prepareToken)||0)+1;
         session.phase = 'setup';
         renderFlashcardOverlay();
         return;
@@ -9915,6 +10324,34 @@ if(window.HanziWriter){
         renderFlashcardOverlay();
         return;
       }
+      const orderVocabToggle=event.target.closest('[data-hsk-order-vocab-toggle]');
+      if(orderVocabToggle && getCurrentFlashcardType(session)==='sentence-ordering'){
+        session.settings.sentenceOrderingVocabularyList=session.settings.sentenceOrderingVocabularyList !== true;
+        saveFlashcardSettings(session.settings);
+        persistFlashcardSession();
+        renderFlashcardOverlay();
+        return;
+      }
+      const orderVocabSpeak=event.target.closest('[data-hsk-order-vocab-speak]');
+      if(orderVocabSpeak && getCurrentFlashcardType(session)==='sentence-ordering'){
+        event.preventDefault();
+        speakChar(orderVocabSpeak.dataset.hskOrderVocabSpeak || '');
+        return;
+      }
+      const orderPinyinButton=event.target.closest('[data-hsk-order-pinyin]');
+      if(orderPinyinButton && getCurrentFlashcardType(session)==='sentence-ordering'){
+        session.settings.showPinyin=!session.settings.showPinyin;
+        saveFlashcardSettings(session.settings);
+        persistFlashcardSession();
+        renderFlashcardOverlay();
+        return;
+      }
+      const orderSpeakButton=event.target.closest('[data-hsk-order-speak]');
+      if(orderSpeakButton && getCurrentFlashcardType(session)==='sentence-ordering'){
+        event.preventDefault();
+        speakChar(orderSpeakButton.dataset.hskOrderSpeak || '');
+        return;
+      }
       const orderTokenButton = event.target.closest('[data-hsk-order-token]');
       if(orderTokenButton && getCurrentFlashcardType(session) === 'sentence-ordering'){
         const orderState=session.sentenceOrdering;
@@ -9923,8 +10360,9 @@ if(window.HanziWriter){
         if(!item || item.complete) return;
         const tokenId=orderTokenButton.dataset.hskOrderToken;
         const zone=orderTokenButton.dataset.hskOrderZone;
+        const token=[...(item.bank || []),...(item.selected || [])].find(row=>row.id===tokenId);
+        if(token && session.settings.tapHanziSpeak) speakChar(token.text);
         if(zone === 'bank'){
-          const token=item.bank.find(row=>row.id===tokenId);
           if(token && !item.selected.some(row=>row.id===tokenId)) item.selected.push(token);
         }else item.selected=item.selected.filter(row=>row.id!==tokenId);
         item.feedback='';
@@ -9961,6 +10399,14 @@ if(window.HanziWriter){
         if(['hanzi','pinyin','meaning'].includes(mode)){ session.settings.radicalSortDisplayMode=mode; saveFlashcardSettings(session.settings); persistFlashcardSession(); renderFlashcardOverlay(); }
         return;
       }
+      const radicalMeaningToggle=event.target.closest('[data-hsk-radical-meaning-toggle]');
+      if(radicalMeaningToggle && getCurrentFlashcardType(session)==='radical-sort'){
+        session.settings.radicalSortMeaningList=session.settings.radicalSortMeaningList !== true;
+        saveFlashcardSettings(session.settings);
+        persistFlashcardSession();
+        renderFlashcardOverlay();
+        return;
+      }
       const radicalItemButton=event.target.closest('[data-hsk-radical-item]');
       if(radicalItemButton && getCurrentFlashcardType(session)==='radical-sort'){
         const state=session.radicalSort; const itemId=radicalItemButton.dataset.hskRadicalItem||'';
@@ -9969,9 +10415,11 @@ if(window.HanziWriter){
         state.selectedItemId=state.selectedItemId===itemId?'':itemId;
         if(wasEmpty&&state.selectedItemId) state.selectionLead='item';
         if(!state.selectedItemId&&!state.selectedGroupId) state.selectionLead='';
-        if(state.selectedItemId && state.selectedGroupId) attemptFlashcardRadicalMatch(session,state.selectedItemId,state.selectedGroupId);
-        else state.feedback=state.selectedItemId?'Đã chọn chữ. Hãy chọn bộ thủ.':state.selectedGroupId?'Đã chọn bộ thủ. Hãy chọn chữ.':'';
-        persistFlashcardSession(); renderFlashcardOverlay(); return;
+        const matched=state.selectedItemId && state.selectedGroupId ? attemptFlashcardRadicalMatch(session,state.selectedItemId,state.selectedGroupId) : false;
+        if(!state.selectedItemId || !state.selectedGroupId) state.feedback=state.selectedItemId?'Đã chọn chữ. Hãy chọn bộ thủ.':state.selectedGroupId?'Đã chọn bộ thủ. Hãy chọn chữ.':'';
+        scheduleFlashcardRadicalPersist();
+        if(matched) renderFlashcardOverlay(); else patchFlashcardRadicalSelection(session);
+        return;
       }
       const radicalGroupButton=event.target.closest('[data-hsk-radical-group]');
       if(radicalGroupButton && getCurrentFlashcardType(session)==='radical-sort'){
@@ -9980,9 +10428,15 @@ if(window.HanziWriter){
         state.selectedGroupId=state.selectedGroupId===groupId?'':groupId;
         if(wasEmpty&&state.selectedGroupId) state.selectionLead='group';
         if(!state.selectedItemId&&!state.selectedGroupId) state.selectionLead='';
-        if(state.selectedItemId && state.selectedGroupId) attemptFlashcardRadicalMatch(session,state.selectedItemId,state.selectedGroupId);
-        else state.feedback=state.selectedGroupId?'Đã chọn bộ thủ. Hãy chọn chữ.':state.selectedItemId?'Đã chọn chữ. Hãy chọn bộ thủ.':'';
-        persistFlashcardSession(); renderFlashcardOverlay(); return;
+        const matched=state.selectedItemId && state.selectedGroupId ? attemptFlashcardRadicalMatch(session,state.selectedItemId,state.selectedGroupId) : false;
+        if(!state.selectedItemId || !state.selectedGroupId) state.feedback=state.selectedGroupId?'Đã chọn bộ thủ. Hãy chọn chữ.':state.selectedItemId?'Đã chọn chữ. Hãy chọn bộ thủ.':'';
+        scheduleFlashcardRadicalPersist();
+        if(matched) renderFlashcardOverlay(); else patchFlashcardRadicalSelection(session);
+        return;
+      }
+      if(event.target.closest('[data-hsk-radical-next-round]') && getCurrentFlashcardType(session)==='radical-sort'){
+        if(advanceFlashcardRadicalRound(session.radicalSort)){ persistFlashcardSession(); renderFlashcardOverlay(); }
+        return;
       }
       if(event.target.closest('[data-hsk-radical-complete]') && getCurrentFlashcardType(session)==='radical-sort'){
         session.phase='complete'; persistFlashcardSession(); renderFlashcardOverlay(); return;
@@ -10180,6 +10634,15 @@ if(window.HanziWriter){
     if(relatedToggle){
       event.preventDefault();
       hskState.popupRelatedExpanded = !hskState.popupRelatedExpanded;
+      const item = mergePopupSeed(findHskItem(hskState.popupWord) || getFallbackItem(hskState.popupWord, hskState.popupSeed || {}), hskState.popupSeed || {});
+      renderHskPopup(item);
+      return;
+    }
+
+    const sentencesToggle = event.target.closest('[data-hsk-sentences-toggle]');
+    if(sentencesToggle){
+      event.preventDefault();
+      hskState.popupSentencesExpanded = !hskState.popupSentencesExpanded;
       const item = mergePopupSeed(findHskItem(hskState.popupWord) || getFallbackItem(hskState.popupWord, hskState.popupSeed || {}), hskState.popupSeed || {});
       renderHskPopup(item);
       return;

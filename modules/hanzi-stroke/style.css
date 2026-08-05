@@ -12851,3 +12851,271 @@ html.hsk-popup-embed .hsk-popup-sheet {
     width:min(180px,100%);
   }
 }
+
+/* Radical-sort loading, faster interaction and thumb-friendly mobile layout */
+.hsk-flashcard-preparing{
+  display:grid;
+  place-content:center;
+  justify-items:center;
+  gap:10px;
+  min-height:320px;
+  padding:28px;
+  text-align:center;
+}
+.hsk-flashcard-preparing h2,.hsk-flashcard-preparing p{margin:0}
+.hsk-flashcard-preparing p{max-width:360px;color:var(--ui-text-secondary);line-height:1.55}
+.hsk-flashcard-preparing-spinner{
+  width:34px;
+  height:34px;
+  border:4px solid #dceee8;
+  border-top-color:#237d69;
+  border-radius:50%;
+  animation:hsk-flashcard-preparing-spin .8s linear infinite;
+}
+@keyframes hsk-flashcard-preparing-spin{to{transform:rotate(360deg)}}
+.hsk-flashcard-study--radical-sort.is-compact:not(.is-complete){
+  display:flex;
+  flex-direction:column;
+  align-content:normal;
+}
+.hsk-flashcard-study--radical-sort.is-compact:not(.is-complete) .hsk-flashcard-radical-groups{flex:0 0 auto}
+.hsk-flashcard-study--radical-sort.is-compact:not(.is-complete) .hsk-flashcard-radical-selected-help{flex:0 0 auto}
+.hsk-flashcard-study--radical-sort.is-compact:not(.is-complete) .hsk-flashcard-radical-bank{
+  justify-content:center;
+  align-content:center;
+  margin-top:auto;
+}
+.hsk-flashcard-radical-token small{
+  display:-webkit-box;
+  overflow:hidden;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  white-space:normal;
+  text-overflow:clip;
+}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-bank.display-meaning .hsk-flashcard-radical-token{
+  width:68px;
+  min-width:68px;
+  height:58px;
+  min-height:58px;
+  padding:4px 5px;
+}
+.hsk-flashcard-radical-selected-help[hidden]{display:none}
+@media(max-width:520px){
+  .hsk-flashcard-body--activity > .hsk-flashcard-study--radical-sort.is-compact:not(.is-complete){
+    flex:1 1 auto;
+    width:calc(100% - 18px);
+    max-height:none;
+    min-height:0;
+    margin:8px 9px calc(10px + env(safe-area-inset-bottom));
+    overflow-y:auto;
+  }
+  .hsk-flashcard-study--radical-sort.is-compact:not(.is-complete) .hsk-flashcard-radical-bank{
+    min-height:70px;
+    margin-top:auto;
+  }
+  .hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-bank.display-meaning .hsk-flashcard-radical-token{
+    width:64px;
+    min-width:64px;
+    height:58px;
+    min-height:58px;
+  }
+  .hsk-flashcard-radical-selected-help{
+    grid-template-columns:auto minmax(48px,auto) minmax(0,1fr);
+    min-height:42px;
+  }
+}
+.hsk-flashcard-study--radical-sort.is-compact:not(.is-complete)>*{width:100%;align-self:stretch}
+
+/* 2026-08-05: lower radical interaction group with a scrollable selected-word region. */
+.hsk-flashcard-study--radical-sort.is-compact:not(.is-complete){display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-topbar{flex:0 0 auto}
+.hsk-flashcard-radical-scroll-region{display:flex;flex:1 1 0;min-height:72px;overflow-y:auto;overscroll-behavior:contain;align-items:flex-end;padding:4px 2px}
+.hsk-flashcard-radical-placeholder{width:100%;margin:auto 0 0;color:var(--ui-text-muted,#74665c);font-size:11px;line-height:1.45;text-align:center}
+.hsk-flashcard-radical-placeholder[hidden]{display:none}
+.hsk-flashcard-radical-controls{display:grid;flex:0 0 auto;gap:8px;width:100%}
+.hsk-flashcard-study--radical-sort.is-compact:not(.is-complete) .hsk-flashcard-radical-groups{flex:none}
+.hsk-flashcard-study--radical-sort.is-compact:not(.is-complete) .hsk-flashcard-radical-bank{min-height:44px;margin-top:0;justify-content:center;align-content:center}
+.hsk-flashcard-radical-selected-help{display:grid;width:100%;grid-template-columns:auto minmax(0,1fr);gap:3px 8px;align-items:baseline;min-height:0;border:1px solid #e7d2b6;border-radius:12px;background:#fff9ef;padding:9px 10px}
+.hsk-flashcard-radical-selected-help b{grid-row:1 / span 2;align-self:start;font:800 28px/1.1 var(--ui-font-han);color:#236b59}
+.hsk-flashcard-radical-selected-help span:first-of-type{color:#2d6f61;font-size:12px;font-weight:800}
+.hsk-flashcard-radical-selected-help span:last-child{grid-column:2;margin:0;overflow:visible;display:block;color:#6f6258;font-size:11px;line-height:1.45;white-space:normal;text-overflow:clip}
+.hsk-flashcard-radical-selected-help[hidden]{display:none}
+.hsk-flashcard-radical-token small{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;white-space:normal;text-overflow:clip;line-height:1.08}
+.hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-bank.display-meaning .hsk-flashcard-radical-token{width:68px;min-width:68px;height:68px;min-height:68px;padding:4px 5px}
+@media(max-width:520px){
+  .hsk-flashcard-body--activity>.hsk-flashcard-study--radical-sort.is-compact:not(.is-complete){flex:1 1 auto;width:calc(100% - 18px);min-height:0;max-height:none;margin:8px 9px calc(10px + env(safe-area-inset-bottom));overflow:hidden}
+  .hsk-flashcard-radical-scroll-region{min-height:56px;padding:3px 1px}
+  .hsk-flashcard-radical-controls{gap:7px}
+  .hsk-flashcard-radical-selected-help{padding:8px 9px}
+  .hsk-flashcard-study--radical-sort.is-compact .hsk-flashcard-radical-bank.display-meaning .hsk-flashcard-radical-token{width:64px;min-width:64px;height:66px;min-height:66px}
+}
+
+/* 2026-08-05: lower sentence-order controls, inline audio/pinyin and radical meaning list. */
+.hsk-flashcard-study--ordering.is-compact{
+  display:flex;
+  flex-direction:column;
+  min-height:0;
+  overflow:hidden;
+  align-content:normal;
+}
+.hsk-flashcard-study--ordering.is-compact .hsk-flashcard-study-meta{flex:0 0 auto}
+.hsk-flashcard-ordering-spacer{flex:1 1 0;min-height:28px}
+.hsk-flashcard-ordering-controls{display:grid;flex:0 1 auto;gap:8px;max-height:72%;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:1px}
+.hsk-flashcard-ordering-toolbar-actions{display:flex;align-items:center;gap:5px}
+.hsk-flashcard-ordering-toolbar-actions button{width:32px;height:32px;font-size:14px}
+.hsk-flashcard-ordering-toolbar-actions button.active{border-color:#3d9c83;background:#e7f6f0;color:#176f61;box-shadow:0 0 0 2px rgba(31,139,113,.10)}
+.hsk-flashcard-radical-display [data-hsk-radical-meaning-toggle]{min-width:34px;padding-inline:6px}
+.hsk-flashcard-radical-scroll-region.is-list-mode{align-items:stretch;padding:5px 2px}
+.hsk-flashcard-radical-meaning-list{display:grid;width:100%;align-content:start;gap:6px}
+.hsk-flashcard-radical-meaning-list article{display:grid;grid-template-columns:34px minmax(0,1fr) auto;align-items:start;gap:8px;border:1px solid #e3d7c9;border-radius:11px;background:#fffdf9;padding:8px 9px;color:#5f5147}
+.hsk-flashcard-radical-meaning-list article.is-active{border-color:#55a58f;background:#edf8f4;box-shadow:0 0 0 2px rgba(31,139,113,.10)}
+.hsk-flashcard-radical-meaning-list article.is-done{opacity:.58}
+.hsk-flashcard-radical-meaning-list article>b{font:800 24px/1.15 var(--ui-font-han);color:#236b59}
+.hsk-flashcard-radical-meaning-list article>div{display:grid;gap:2px;min-width:0}
+.hsk-flashcard-radical-meaning-list article strong{color:#2d6f61;font-size:11px}
+.hsk-flashcard-radical-meaning-list article span{font-size:11px;line-height:1.42;overflow-wrap:anywhere}
+.hsk-flashcard-radical-meaning-list article>i{color:#27856f;font-style:normal;font-weight:900}
+@media(max-width:520px){
+  .hsk-flashcard-body--activity>.hsk-flashcard-study--ordering.is-compact{flex:1 1 auto;min-height:0;padding-bottom:calc(10px + env(safe-area-inset-bottom))}
+  .hsk-flashcard-ordering-spacer{min-height:36px}
+  .hsk-flashcard-ordering-controls{max-height:76%}
+  .hsk-flashcard-ordering-toolbar-actions button{width:30px;height:30px}
+  .hsk-flashcard-radical-meaning-list article{grid-template-columns:31px minmax(0,1fr) auto;padding:7px 8px}
+  .hsk-flashcard-radical-meaning-list article>b{font-size:22px}
+}
+
+/* 2026-08-05: shared popup expansion, character components and mobile learning analysis. */
+.hsk-popup-sentences .hsk-popup-more-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  min-height:40px;
+  margin-top:10px;
+  border:1px solid rgba(205,112,73,.28);
+  border-radius:999px;
+  background:#fff7f0;
+  color:#be5f3d;
+  padding:9px 12px;
+  font:800 13px/1.2 var(--ui-font);
+  cursor:pointer;
+}
+.hsk-popup-sentences .hsk-popup-more-btn:active{transform:translateY(1px)}
+
+.dict-components-row{
+  display:grid;
+  grid-template-columns:minmax(90px,.42fr) minmax(0,1fr);
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid var(--ui-border,#eadfce);
+}
+.dict-components-list{display:grid;gap:8px;min-width:0}
+.dict-component-card{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 34px;
+  gap:6px;
+  align-items:stretch;
+  border:1px solid #dfd8cd;
+  border-radius:12px;
+  background:#fffdf9;
+  overflow:hidden;
+}
+.dict-component-open{
+  display:grid;
+  grid-template-columns:40px minmax(0,1fr);
+  grid-template-areas:'glyph meta' 'glyph meaning' 'glyph role';
+  gap:2px 8px;
+  align-items:center;
+  min-width:0;
+  border:0;
+  background:transparent;
+  padding:8px 4px 8px 9px;
+  color:inherit;
+  text-align:left;
+}
+.dict-component-open strong{grid-area:glyph;font:800 28px/1 var(--ui-font-han);color:#256f5e}
+.dict-component-open span{grid-area:meta;color:#2f7668;font-size:12px;font-weight:800}
+.dict-component-open small{grid-area:meaning;color:#5f554e;font-size:12px;line-height:1.35}
+.dict-component-open em{grid-area:role;color:#9a6841;font-size:11px;font-style:normal}
+.dict-component-speak{align-self:stretch;border:0;border-left:1px solid #eee3d6;background:#fff8ef;font-size:14px}
+
+.hsk-flashcard-study--ordering.is-compact>.hsk-flashcard-ordering-controls,
+.hsk-flashcard-ordering-controls,
+.hsk-flashcard-order-items,
+.hsk-flashcard-order-item{
+  width:100%;
+  max-width:none;
+  box-sizing:border-box;
+  align-self:stretch;
+}
+.hsk-flashcard-study--ordering.is-compact>.hsk-flashcard-ordering-controls{justify-self:stretch}
+
+.hsk-flashcard-radical-selected-help{display:block!important;padding:0!important;border:0!important;background:transparent!important}
+.hsk-flashcard-radical-analysis{display:grid;width:100%;gap:9px;border:1px solid #e7d2b6;border-radius:13px;background:#fff9ef;padding:10px;color:#5f5147}
+.hsk-flashcard-radical-analysis>header{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px;align-items:start}
+.hsk-flashcard-radical-analysis>header>b{font:800 31px/1.05 var(--ui-font-han);color:#236b59}
+.hsk-flashcard-radical-analysis>header>div{display:grid;gap:3px;min-width:0}
+.hsk-flashcard-radical-analysis>header strong{color:#2d6f61;font-size:12px}
+.hsk-flashcard-radical-analysis>header span{font-size:12px;line-height:1.45;overflow-wrap:anywhere}
+.hsk-flashcard-radical-analysis section{display:grid;gap:5px;border-top:1px solid #eadfce;padding-top:8px}
+.hsk-flashcard-radical-analysis h4{margin:0;color:#8b5a32;font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.hsk-flashcard-radical-analysis p,.hsk-flashcard-radical-analysis ul{margin:0;font-size:12px;line-height:1.5}
+.hsk-flashcard-radical-analysis ul{padding-left:18px}
+.hsk-flashcard-radical-analysis-radical{display:grid;grid-template-columns:36px minmax(0,1fr);gap:8px;align-items:start}
+.hsk-flashcard-radical-analysis-radical>b{font:800 27px/1 var(--ui-font-han);color:#236b59}
+.hsk-flashcard-radical-analysis-radical>div{display:grid;gap:2px}
+.hsk-flashcard-radical-analysis-radical strong{font-size:12px;color:#2d6f61}
+.hsk-flashcard-radical-analysis-radical span{font-size:11px;line-height:1.4}
+.hsk-flashcard-radical-component-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.hsk-flashcard-radical-component-list>div{display:grid;grid-template-columns:30px minmax(0,1fr);gap:6px;border:1px solid #dce8e2;border-radius:10px;background:#fff;padding:7px}
+.hsk-flashcard-radical-component-list b{font:800 23px/1 var(--ui-font-han);color:#236b59}
+.hsk-flashcard-radical-component-list span{display:grid;gap:1px;min-width:0}
+.hsk-flashcard-radical-component-list strong{font-size:10px;color:#2d6f61}
+.hsk-flashcard-radical-component-list em{font-size:10px;font-style:normal;line-height:1.3;overflow-wrap:anywhere}
+.hsk-flashcard-radical-component-list small{font-size:9px;color:#9a6841;line-height:1.25}
+
+@media(max-width:520px){
+  .dict-components-row{grid-template-columns:1fr;gap:7px}
+  .dict-components-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dict-component-card{grid-template-columns:minmax(0,1fr) 30px}
+  .dict-component-open{grid-template-columns:33px minmax(0,1fr);padding:7px 3px 7px 7px}
+  .dict-component-open strong{font-size:24px}
+  .dict-component-open span,.dict-component-open small{font-size:10.5px}
+  .hsk-flashcard-radical-analysis{padding:9px}
+  .hsk-flashcard-radical-component-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:370px){
+  .dict-components-list,.hsk-flashcard-radical-component-list{grid-template-columns:1fr}
+}
+
+/* HSK 1 integrated mobile learning: ordering glossary, complete radical rounds and shared Hanzi font. */
+@media(max-width:520px){
+  .hsk-flashcard-study--ordering.is-compact>.hsk-flashcard-ordering-controls{margin-bottom:clamp(36px,7vh,68px)}
+}
+:is(.hsk-word,.hsk-related-word,.hsk-popup-hero h3,.hsk-popup-sentence-item strong,.hsk-popup-char-card strong,.hsk-flashcard-ordering-answer button,.hsk-flashcard-ordering-bank button,.hsk-flashcard-radical-bank button,.hsk-flashcard-radical-analysis b){font-family:var(--ui-font-han,var(--ui-han-font,"Noto Serif SC","Songti SC",serif))}
+.hsk-flashcard-ordering-toolbar-actions [data-hsk-order-vocab-toggle]{width:auto;min-width:44px;padding-inline:7px;font:800 11px/1 var(--ui-font-han)}
+.hsk-flashcard-ordering-vocab-panel{display:grid;flex:1 1 0;min-height:92px;max-height:48%;align-content:start;gap:9px;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;padding:6px 2px 10px}
+.hsk-flashcard-ordering-vocab-panel>p{margin:auto 0;color:var(--ui-text-muted,#74665c);font-size:12px;line-height:1.5;text-align:center}
+.hsk-flashcard-ordering-vocab-section{display:grid;gap:6px}
+.hsk-flashcard-ordering-vocab-section h3{margin:0;color:#8b5a32;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+.hsk-flashcard-ordering-vocab-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.hsk-flashcard-ordering-vocab-list button{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:7px;align-items:start;min-width:0;border:1px solid #dce8e2;border-radius:11px;background:#fffdf9;padding:8px;color:#5f5147;text-align:left}
+.hsk-flashcard-ordering-vocab-list button>b{font:800 22px/1.1 var(--ui-font-han);color:#236b59}
+.hsk-flashcard-ordering-vocab-list button>span{display:grid;gap:2px;min-width:0}
+.hsk-flashcard-ordering-vocab-list strong{color:#2d6f61;font-size:10px;overflow-wrap:anywhere}
+.hsk-flashcard-ordering-vocab-list small{font-size:10px;line-height:1.35;overflow-wrap:anywhere}
+.hsk-flashcard-ordering-vocab-list i{font-size:11px;font-style:normal}
+.hsk-flashcard-radical-scroll-region{flex-direction:column;align-items:stretch;overflow-x:hidden}
+.hsk-flashcard-radical-placeholder{margin:auto 0;width:100%;white-space:normal;overflow-wrap:anywhere}
+.hsk-flashcard-radical-selected-help:not([hidden]){display:block!important;padding:0!important;border:0!important;background:transparent!important}
+.hsk-flashcard-radical-selected-help[hidden]{display:none!important}
+[data-hsk-radical-next-round]{justify-self:center;max-width:200px}
+@media(max-width:520px){
+  .hsk-flashcard-ordering-vocab-panel{min-height:84px;max-height:46%;padding-top:4px}
+  .hsk-flashcard-ordering-vocab-list{grid-template-columns:1fr}
+  .hsk-flashcard-ordering-vocab-list button{grid-template-columns:36px minmax(0,1fr) auto;padding:7px}
+  .hsk-flashcard-ordering-vocab-list button>b{font-size:21px}
+}
+.hsk-flashcard-ordering-vocab-section,.hsk-flashcard-ordering-vocab-list,.hsk-flashcard-ordering-vocab-list button{width:100%;box-sizing:border-box}
+.hsk-flashcard-study--ordering.is-compact>.hsk-flashcard-ordering-vocab-panel{width:100%;align-self:stretch;box-sizing:border-box}
