@@ -881,6 +881,41 @@
     return `${inlineMarkdown(match[1])}${escapeHtml(match[2])}<span class="nhsk-translation">${inlineMarkdown(match[3])}</span>`;
   }
 
+  function markdownSpeakButton(text = '', label = 'Nghe câu') {
+    const value = String(text || '').replace(/\*\*|`/g, '').trim();
+    if (!containsCjk(value)) return '';
+    const speakable = value.split(/\s[—–]\s/u)[0].trim();
+    if (!speakable || !containsCjk(speakable)) return '';
+    return `<button type="button" class="nhsk-speak nhsk-markdown-speak" data-nhsk-speak="${attr(speakable)}" aria-label="${attr(label)}">🔊</button>`;
+  }
+
+  function renderStructuredMarkdownRow(row = '', renderInline = inlineMarkdown) {
+    const text = String(row || '').trim();
+    const choiceMatch = text.match(/^(.*?)(?:\s*[—–-]\s*)A[.．]\s*(.*?)\s*[·•]\s*B[.．]\s*(.*?)\s*[·•]\s*C[.．]\s*(.*)$/u);
+    if (choiceMatch) {
+      const question = choiceMatch[1].trim();
+      const choices = [['A', choiceMatch[2]], ['B', choiceMatch[3]], ['C', choiceMatch[4]]];
+      return `<div class="nhsk-question-copy">
+        <div class="nhsk-question-copy__prompt"><span>${renderInline(question)}</span>${markdownSpeakButton(question, 'Nghe câu hỏi')}</div>
+        <div class="nhsk-question-copy__options">${choices.map(([key, value]) => `<div><b>${key}.</b><span>${renderInline(value.trim())}</span>${markdownSpeakButton(value, `Nghe lựa chọn ${key}`)}</div>`).join('')}</div>
+      </div>`;
+    }
+
+    const turnPattern = /(?:^|\s)([A-Z])[:：]\s*/gu;
+    const matches = [...text.matchAll(turnPattern)];
+    if (matches.length >= 2 || (matches.length === 1 && matches[0].index === 0)) {
+      const turns = matches.map((match, index) => {
+        const start = (match.index || 0) + match[0].length;
+        const end = index + 1 < matches.length ? matches[index + 1].index : text.length;
+        return { speaker: match[1], text: text.slice(start, end).trim() };
+      }).filter(turn => turn.text);
+      if (turns.length) return `<div class="nhsk-dialogue-copy">${turns.map(turn => `<div><b>${escapeHtml(turn.speaker)}:</b><span>${renderInline(turn.text)}</span>${markdownSpeakButton(turn.text, `Nghe lượt ${turn.speaker}`)}</div>`).join('')}</div>`;
+    }
+
+    if (containsCjk(text)) return `<div class="nhsk-markdown-hanzi-row"><span>${renderInline(text)}</span>${markdownSpeakButton(text)}</div>`;
+    return renderInline(text);
+  }
+
   function renderMarkdown(markdown = '', options = {}) {
     const lines = String(markdown || '').replace(/\r/g, '').split('\n');
     const parts = [];
@@ -934,7 +969,7 @@
       if (/^\d+\.\s+/.test(line)) {
         const rows = [];
         while (index < lines.length && /^\d+\.\s+/.test(lines[index].trim())) rows.push(lines[index++].trim().replace(/^\d+\.\s+/, ''));
-        parts.push(`<ol class="nhsk-markdown-list">${rows.map(row => { const rendered = renderInline(row); if (containsCjk(row)) previousTranslationAnchor = row; return `<li>${rendered}</li>`; }).join('')}</ol>`);
+        parts.push(`<ol class="nhsk-markdown-list nhsk-markdown-list--structured">${rows.map(row => { const rendered = renderStructuredMarkdownRow(row, renderInline); if (containsCjk(row)) previousTranslationAnchor = row; return `<li>${rendered}</li>`; }).join('')}</ol>`);
         continue;
       }
       const paragraph = [line];
@@ -1018,7 +1053,7 @@
   }
 
   function renderAnswerDisclosure(answers = [], labelPrefix = 'Câu') {
-    return `<details class="nhsk-source-task__answers"><summary>Xem đáp án</summary><ol>${answers.map((answer, index) => `<li><span>${escapeHtml(labelPrefix)} ${index + 1}</span><b>${escapeHtml(answer)}</b></li>`).join('')}</ol></details>`;
+    return `<details class="nhsk-source-task__answers"><summary>Xem đáp án theo sách</summary><ol>${answers.map((answer, index) => `<li><span>${escapeHtml(labelPrefix)} ${index + 1}</span><b>${escapeHtml(answer)}</b></li>`).join('')}</ol></details>`;
   }
 
   function renderSourceTaskChecks(tasks = []) {
@@ -1029,7 +1064,7 @@
       if (task.type === 'image-match') {
         return `<section class="nhsk-source-task" data-nhsk-source-task-card data-task-type="image-match">
           <header><span>🖼</span><div><strong>Ghép hình theo sách</strong><small>Chọn chữ cái tương ứng cho từng hình theo thứ tự trái sang phải, trên xuống dưới.</small></div></header>
-          <div class="nhsk-source-task__match-grid">${answers.map((_answer, index) => `<label><span>Hình ${index + 1}</span><select data-nhsk-source-task-select data-question-index="${index}"><option value="">Chọn</option>${['A','B','C','D','E','F'].map(letter => `<option value="${letter}">${letter}</option>`).join('')}</select><small data-nhsk-source-task-status aria-live="polite"></small></label>`).join('')}</div>
+          <div class="nhsk-source-task__match-grid">${answers.map((_answer, index) => `<label><span>Hình ${index + 1}</span><select data-nhsk-source-task-select data-question-index="${index}"><option value="">Chọn</option>${['A','B','C','D','E','F'].slice(0, Math.max(2, answers.length)).map(letter => `<option value="${letter}">${letter}</option>`).join('')}</select><small data-nhsk-source-task-status aria-live="polite"></small></label>`).join('')}</div>
           <div class="nhsk-source-task__actions"><button type="button" data-nhsk-source-task-check data-answers="${attr(JSON.stringify(answers))}">Kiểm tra</button><button type="button" data-nhsk-source-task-reset>Làm lại</button><output aria-live="polite"></output></div>
           ${renderAnswerDisclosure(answers, 'Hình')}
         </section>`;
@@ -1038,6 +1073,14 @@
         return `<section class="nhsk-source-task" data-nhsk-source-task-card data-task-type="listening-mcq">
           <header><span>🎧</span><div><strong>Kiểm tra bài nghe</strong><small>Nghe audio, chọn đáp án rồi bấm Kiểm tra.</small></div>${mediaBadge('Audio', task.audioRef)}</header>
           <div class="nhsk-source-task__mcq">${answers.map((_answer, index) => `<div class="nhsk-source-task__question" data-question-index="${index}"><b>Câu ${index + 1}</b><div>${['A','B','C'].map(letter => `<button type="button" data-nhsk-source-task-choice data-value="${letter}">${letter}</button>`).join('')}</div><span data-nhsk-source-task-status aria-live="polite"></span></div>`).join('')}</div>
+          <div class="nhsk-source-task__actions"><button type="button" data-nhsk-source-task-check data-answers="${attr(JSON.stringify(answers))}">Kiểm tra</button><button type="button" data-nhsk-source-task-reset>Làm lại</button><output aria-live="polite"></output></div>
+          ${renderAnswerDisclosure(answers, 'Câu')}
+        </section>`;
+      }
+      if (task.type === 'listening-tf') {
+        return `<section class="nhsk-source-task" data-nhsk-source-task-card data-task-type="listening-tf">
+          <header><span>🎧</span><div><strong>Nghe và chọn đúng/sai</strong><small>Nghe audio, chọn Đúng hoặc Sai cho từng câu rồi bấm Kiểm tra.</small></div>${mediaBadge('Audio', task.audioRef)}</header>
+          <div class="nhsk-source-task__mcq nhsk-source-task__tf">${answers.map((_answer, index) => `<div class="nhsk-source-task__question" data-question-index="${index}"><b>Câu ${index + 1}</b><div><button type="button" data-nhsk-source-task-choice data-value="√"><span aria-hidden="true">√</span> Đúng</button><button type="button" data-nhsk-source-task-choice data-value="×"><span aria-hidden="true">×</span> Sai</button></div><span data-nhsk-source-task-status aria-live="polite"></span></div>`).join('')}</div>
           <div class="nhsk-source-task__actions"><button type="button" data-nhsk-source-task-check data-answers="${attr(JSON.stringify(answers))}">Kiểm tra</button><button type="button" data-nhsk-source-task-reset>Làm lại</button><output aria-live="polite"></output></div>
           ${renderAnswerDisclosure(answers, 'Câu')}
         </section>`;
@@ -1190,7 +1233,7 @@
     const body = `<p class="nhsk-summary-lead">Đánh dấu theo mức độ hiện tại của bạn. Lựa chọn được lưu trên thiết bị này.</p>
       ${items.length ? `<div class="nhsk-summary-table-wrap"><table class="nhsk-summary-table"><thead><tr><th>STT</th><th>Nội dung</th><th>Ví dụ trong sách</th><th>Đã hiểu</th><th>Biết dùng</th></tr></thead><tbody>${items.map((item, index) => {
         const row = checks[item.id] || {};
-        return `<tr><td>${index + 1}</td><td>${inlineMarkdown(item.content || '')}</td><td><div class="nhsk-summary-example"><div><span class="nhsk-hanzi">${escapeHtml(item.example || '—')}</span>${item.exampleVi ? `<small class="nhsk-translation">${escapeHtml(item.exampleVi)}</small>` : ''}</div>${item.example ? `<button type="button" class="nhsk-speak" data-nhsk-speak="${attr(item.example)}" aria-label="Nghe ví dụ">🔊</button>` : ''}</div></td><td><label class="nhsk-summary-check"><input type="checkbox" data-nhsk-summary-check data-section-id="${attr(section.id)}" data-item-id="${attr(item.id)}" data-check-kind="understood" ${row.understood ? 'checked' : ''}><span>Đã hiểu</span></label></td><td><label class="nhsk-summary-check"><input type="checkbox" data-nhsk-summary-check data-section-id="${attr(section.id)}" data-item-id="${attr(item.id)}" data-check-kind="canUse" ${row.canUse ? 'checked' : ''}><span>Biết dùng</span></label></td></tr>`;
+        return `<tr><td>${index + 1}</td><td>${inlineMarkdown(item.content || '')}</td><td><div class="nhsk-summary-example"><div><span class="nhsk-hanzi">${escapeHtml(item.example || 'Chưa có ví dụ trong nguồn')}</span>${item.examplePinyin ? `<small class="nhsk-summary-example__pinyin nhsk-pinyin-text">${escapeHtml(item.examplePinyin)}</small>` : ''}${item.exampleVi ? `<small class="nhsk-translation">${escapeHtml(item.exampleVi)}</small>` : ''}</div>${item.example ? `<button type="button" class="nhsk-speak" data-nhsk-speak="${attr(item.example)}" aria-label="Nghe ví dụ">🔊</button>` : ''}</div></td><td><label class="nhsk-summary-check"><input type="checkbox" data-nhsk-summary-check data-section-id="${attr(section.id)}" data-item-id="${attr(item.id)}" data-check-kind="understood" ${row.understood ? 'checked' : ''}><span>Đã hiểu</span></label></td><td><label class="nhsk-summary-check"><input type="checkbox" data-nhsk-summary-check data-section-id="${attr(section.id)}" data-item-id="${attr(item.id)}" data-check-kind="canUse" ${row.canUse ? 'checked' : ''}><span>Biết dùng</span></label></td></tr>`;
       }).join('')}</tbody></table></div>` : '<p>Chưa có bảng tự đánh giá trong nguồn.</p>'}
       <label class="nhsk-summary-note"><span>${escapeHtml(display.notePrompt || 'Những điểm tôi cần cố gắng')}</span><textarea rows="4" data-nhsk-summary-note data-section-id="${attr(section.id)}" placeholder="Ghi lại nội dung cần ôn thêm...">${escapeHtml(progress.note || '')}</textarea></label>`;
     return sectionCard(section.title, body, '✓', 'nhsk-card--summary');
@@ -1220,7 +1263,7 @@
     if (section.summaryDisplay) return renderLearningSummary(section);
     const lessonText = (lesson.entities.lessonTexts || []).find(item => normalizedSectionTitle(item.title) === title);
     const passage = (lesson.entities.passages || []).find(item => normalizedSectionTitle(item.sourceSection || item.title) === title || normalizedSectionTitle(item.title) === title);
-    if (passage) return sectionCard(passage.title, `${renderSourceVisuals(section.sourceVisuals || [], { variant: 'passage' })}<div class="nhsk-subsection-head">${mediaBadge('Audio bài đọc', passage.audioRef)}${mediaBadge('Audio từ mới', passage.vocabularyAudioRef)}${renderLayerToggle('passage', 'Bài đọc')}</div>${renderPassage(passage)}`, '跟读');
+    if (passage) return sectionCard(passage.title, `${renderSourceVisuals(section.sourceVisuals || [], { variant: 'passage' })}${renderLessonTasks(section.markdown || '', section.sourceTasks || [])}<div class="nhsk-subsection-head">${mediaBadge('Audio bài đọc', passage.audioRef)}${mediaBadge('Audio từ mới', passage.vocabularyAudioRef)}${renderLayerToggle('passage', 'Bài đọc')}</div>${renderPassage(passage)}`, '跟读');
     if (lessonText) return renderLessonText(lessonText, idx, section);
     if (section.kind === 'grammar') return renderGrammarSection(section);
     if (section.kind === 'extension') {
@@ -1231,7 +1274,7 @@
       return sectionCard(section.title, renderMarkdown(section.markdown), '练习', 'nhsk-card--content-exercise');
     }
     if (section.kind === 'activity') {
-      return sectionCard(section.title, `${renderSourceVisuals(section.sourceVisuals || [], { variant: 'activity' })}${renderMarkdown(section.markdown)}`, '活动', 'nhsk-card--content-activity');
+      return sectionCard(section.title, renderMarkdown(section.markdown), '活动', 'nhsk-card--content-activity');
     }
     return sectionCard(section.title, `${renderSourceVisuals(section.sourceVisuals || [])}${renderMarkdown(section.markdown)}`, '', `nhsk-card--content-${escapeHtml(section.kind || 'section')}`);
   }
@@ -1253,7 +1296,6 @@
       ${renderSourceVisuals(sourceSection?.sourceVisuals || item.sourceVisuals || [])}
       ${hasInstruction ? `<div class="nhsk-instruction"><span>${instruction.hanzi ? `<strong>${escapeHtml(instruction.hanzi)}</strong>` : ''} ${escapeHtml(instruction.vi || '')}</span>${mediaBadge('Audio hội thoại', instruction.audioRef)}</div>` : ''}
       ${renderLessonTasks(sourceSection?.markdown || '', sourceSection?.sourceTasks || [])}
-      ${item.visualDescription ? `<details class="nhsk-visual"><summary>Nội dung hình trong sách</summary><p>${escapeHtml(item.visualDescription)}</p></details>` : ''}
       ${dialogue ? `<div class="nhsk-subsection-head"><h3>Hội thoại</h3>${renderLayerToggle('dialogue', 'Hội thoại')}</div>${renderDialogue(dialogue)}` : ''}
       ${vocab.length ? `<div class="nhsk-subsection-head"><h3>Từ mới</h3>${renderVocabularyControls({ grouped: false })}</div>${renderVocabulary(vocab, { audioRef: item.vocabularyAudioRef, sourcePrefix: `book:${item.id}`, showControls: false })}` : ''}
       ${nouns.length ? `<h3>Danh từ riêng</h3>${renderProperNouns(nouns, { sourcePrefix: `book:${item.id}:proper` })}` : ''}

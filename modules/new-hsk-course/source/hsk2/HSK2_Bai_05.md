@@ -57,6 +57,7 @@ coverage_report_file: "07_Bao_cao_kiem_tra/HSK2_Bai_05_Coverage.md"
 - **C. 进来 jìnlái** — đi vào phía người nói.
 - **D. 进去 jìnqu** — đi vào xa người nói.
 - **E. 下来 xiàlái** — đi xuống phía người nói.
+- **F. 下去 xiàqù** — đi xuống xa người nói.
 
 ## 3. Bài khóa 1
 

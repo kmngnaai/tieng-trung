@@ -21,7 +21,7 @@ assert.match(app, /renderLayerToggle\('warmup', 'Từ khởi động'\)/);
 assert.match(app, /warmupLayers: \{ hanzi: true, pinyin: true, vi: false \}/);
 assert.match(app, /renderWarmupChoiceBank\(display\)/);
 assert.match(app, /renderSourceTaskChecks\(section\.sourceTasks/);
-assert.match(app, /<details class="nhsk-source-task__answers"><summary>Xem đáp án<\/summary>/);
+assert.match(app, /<details class="nhsk-source-task__answers"><summary>Xem đáp án theo sách<\/summary>/);
 assert.match(app, /data-nhsk-source-task-check/);
 assert.match(app, /data-nhsk-source-task-reset/);
 
@@ -48,7 +48,7 @@ assert.match(css, /\.nhsk-summary-table/);
 assert.doesNotMatch(app, /nhsk-source-visual__zoom/);
 assert.doesNotMatch(css, /\.nhsk-source-visual__zoom/);
 assert.match(css, /grid-template-columns:34px repeat\(2,minmax\(0,1fr\)\)/);
-assert.match(html, /20260806-hsk1-unified-pinyin-v1/);
+assert.match(html, /20260806-hsk12-learner-cleanup-v1/);
 
 // Refined v3 card color and global Hanzi typography.
 assert.match(css, /Refined v3: blue Vietnamese meanings/);
@@ -89,6 +89,7 @@ const makeRenderer = new Function(`
   function escapeHtml(value = '') {
     return String(value).replace(/[&<>\"']/g, char => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '\"':'&quot;', "'":'&#039;' }[char]));
   }
+  function attr(value = '') { return escapeHtml(value).replaceAll('\\n', '&#10;'); }
   ${markdownSource}
   return renderMarkdown;
 `);
@@ -115,4 +116,15 @@ assert.match(app, /nhsk-grammar-example__pinyin nhsk-pinyin-text/);
 assert.match(app, /<span class=\"nhsk-pinyin-text\">\$\{escapeHtml\(turn\.pinyin\)\}<\/span>/);
 assert.match(app, /<small class=\"nhsk-pinyin-text\">\$\{escapeHtml\(turn\.pinyin\)\}<\/small>/);
 
-console.log('PASS refined New HSK1 v6 unified Pinyin typography');
+
+// Learner-first cleanup: structured questions, dialogue turns and compact summaries.
+assert.match(app, /function renderStructuredMarkdownRow/);
+assert.match(app, /nhsk-question-copy__options/);
+assert.match(app, /nhsk-dialogue-copy/);
+assert.match(app, /Xem đáp án theo sách/);
+assert.doesNotMatch(app, /renderSourceVisuals\(section\.sourceVisuals \|\| \[\], \{ variant: 'activity' \}\)/);
+assert.match(app, /item\.examplePinyin/);
+assert.match(css, /HSK1\/2 learner-first cleanup/);
+assert.match(css, /grid-template-columns:26px minmax\(0,1fr\) minmax\(0,1fr\)/);
+
+console.log('PASS refined New HSK1/2 learner-first cleanup');

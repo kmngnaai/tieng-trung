@@ -376,16 +376,18 @@ def content_sections(text: str, lesson_id: str) -> list[dict[str, Any]]:
     return rows
 
 
-def apply_hsk1_source_manifests(repo: Path, lesson_id: str, sections: list[dict[str, Any]]) -> tuple[int, int, int]:
+def apply_source_manifests(repo: Path, lesson_id: str, sections: list[dict[str, Any]]) -> tuple[int, int, int]:
     """Merge source trace, activity keys and presentation metadata after Markdown parsing.
 
     Full-page PDF captures stay in JSON for auditability but are marked
     ``displayInLesson: false``. Only clean PPT assets or explicit ``pdf-crop``
     assets are eligible for the learner-facing lesson UI.
     """
-    if not lesson_id.startswith("nhsk-1-"):
+    match = re.match(r"^nhsk-(\d+)-", lesson_id)
+    if not match:
         return 0, 0, 0
-    base = repo / "modules/new-hsk-course/source/hsk1"
+    level = int(match.group(1))
+    base = repo / f"modules/new-hsk-course/source/hsk{level}"
     visual_path = base / "visual-manifest.json"
     task_path = base / "source-task-manifest.json"
     display_path = base / "display-manifest.json"
@@ -700,7 +702,7 @@ def build_lesson(repo: Path, markdown_path: Path, dialogue_path: Path, char_inde
     grammar, examples = grammar_entities(body, lesson_id)
     exercises, activities, extensions = generic_exercises(body, lesson_id)
     contents = content_sections(body, lesson_id)
-    source_visual_count, source_task_count, visible_source_visual_count = apply_hsk1_source_manifests(repo, lesson_id, contents)
+    source_visual_count, source_task_count, visible_source_visual_count = apply_source_manifests(repo, lesson_id, contents)
 
     objective_section = next((sec for sec in split_sections(body, 2) if normalize_title(sec.title) == "Mục tiêu"), None)
     objectives = [

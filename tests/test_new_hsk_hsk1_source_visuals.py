@@ -97,10 +97,13 @@ def main() -> int:
                     checked_assets.add(asset)
                     assert source_type in {"ppt", "pdf-crop"}, f"{lesson_id}: unsupported visible source"
                     if source_type == "ppt":
-                        assert kind in {"warmup", "lesson-text", "activity"}, f"{lesson_id}: PPT shown in {kind}"
+                        assert kind in {"warmup", "lesson-text"}, f"{lesson_id}: PPT shown in {kind}"
                 else:
-                    assert visual.get("assetPolicy") == "trace-only"
-                    assert not src, f"{lesson_id}: hidden source must not retain a learner asset path"
+                    if source_type == "pdf":
+                        assert visual.get("assetPolicy") == "trace-only"
+                        assert not src, f"{lesson_id}: hidden PDF source must not retain a learner asset path"
+                    else:
+                        assert kind == "activity" or visual.get("assetPolicy") == "trace-only"
 
             if kind in {"objectives", "exercise", "extension"} or section.get("summaryDisplay"):
                 assert not visible_in_section, f"{lesson_id}: {kind or 'summary'} must not show source images"
@@ -160,7 +163,7 @@ def main() -> int:
     assert grammar_examples == 157
     assert summaries == 5 and summary_items == 50
     assert vi_statuses == {"source": 100, "editorial-completion": 46, "repo-source": 11}
-    assert total_visuals == 139 and visible_visuals == 70 and total_tasks == 40
+    assert total_visuals == 139 and visible_visuals == 57 and total_tasks == 40
     assert (ROOT / "scripts/new-hsk-course/build_hsk1_display_manifests.py").exists()
 
     print(

@@ -525,6 +525,7 @@ html.nhsk-lightbox-open{overflow:hidden}
 .nhsk-source-task__question>b{font-size:11px;color:#65598c}.nhsk-source-task__question>div{display:flex;gap:7px}
 .nhsk-source-task__question button{display:grid;width:38px;height:36px;place-items:center;border:1px solid #d9d4e9;border-radius:10px;background:#fff;color:#574e74;font-weight:850;cursor:pointer}
 .nhsk-source-task__question button.is-selected{border-color:#7061a8;background:#eee9fb;box-shadow:0 2px 0 #c9bee9}
+.nhsk-source-task__tf .nhsk-source-task__question button{display:flex;width:auto;min-width:76px;padding:0 11px;gap:5px;white-space:nowrap}
 .nhsk-source-task__question.is-correct button.is-selected{border-color:#42a37e;background:#e5f5ed;color:#156b4d}
 .nhsk-source-task__question.is-wrong button.is-selected{border-color:#d98078;background:#fff0ee;color:#a63d35}
 .nhsk-source-task__question>[data-nhsk-source-task-status]{min-width:58px;color:#6b607f;font-size:10px;font-weight:850;text-align:right}
@@ -787,4 +788,76 @@ html.nhsk-lightbox-open{overflow:hidden}
   font-weight:700!important;
   line-height:1.45!important;
   font-style:normal;
+}
+
+/* 2026-08-06 · HSK1/2 learner-first cleanup.
+   Source metadata stays in JSON; the lesson view shows only learning content. */
+.nhsk-app :is(
+  .nhsk-source-audit,
+  .nhsk-source-task__source,
+  .nhsk-source-visuals__head,
+  .nhsk-source-visual__meta,
+  [data-source-label],
+  [data-source-page]
+){display:none!important}
+
+/* Structured questions and A/B/C dialogue turns are broken onto mobile-safe lines. */
+.nhsk-markdown-list--structured{display:grid;gap:10px}
+.nhsk-markdown-list--structured>li{padding-left:2px}
+.nhsk-question-copy{display:grid;gap:8px;min-width:0}
+.nhsk-question-copy__prompt,.nhsk-markdown-hanzi-row{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;min-width:0}
+.nhsk-question-copy__prompt>span,.nhsk-markdown-hanzi-row>span{min-width:0;line-height:1.65}
+.nhsk-question-copy__options{display:grid;gap:6px;margin-left:2px}
+.nhsk-question-copy__options>div,.nhsk-dialogue-copy>div{display:grid;grid-template-columns:24px minmax(0,1fr) 31px;align-items:start;gap:7px;border-radius:10px;background:#f8fbfa;padding:7px 8px}
+.nhsk-question-copy__options b,.nhsk-dialogue-copy b{color:#67588e;font-size:12px;line-height:1.7}
+.nhsk-question-copy__options span,.nhsk-dialogue-copy span{min-width:0;line-height:1.65}
+.nhsk-dialogue-copy{display:grid;gap:6px}
+.nhsk-markdown-speak{width:30px;height:30px;flex:0 0 auto;font-size:14px}
+.nhsk-dialogue-copy .nhsk-markdown-speak,.nhsk-question-copy__options .nhsk-markdown-speak{width:29px;height:29px}
+
+/* The answer key is available from the beginning, but remains collapsed until opened. */
+.nhsk-source-task__answers summary{display:inline-flex;align-items:center;min-height:34px;border-radius:9px;background:#f1edfb;padding:0 10px}
+.nhsk-source-task__answers[open] summary{background:#e8e1f8}
+
+/* Summary examples may include Hanzi, Pinyin and Vietnamese. */
+.nhsk-summary-example__pinyin{display:block;font-size:11px!important;line-height:1.4!important}
+
+@media(max-width:600px){
+  .nhsk-summary-table-wrap{overflow:visible;border:0;background:transparent}
+  .nhsk-summary-table tbody{gap:7px;padding:0}
+  .nhsk-summary-table tr{
+    grid-template-columns:26px minmax(0,1fr) minmax(0,1fr);
+    grid-template-rows:auto auto auto;
+    gap:4px 7px;
+    padding:8px;
+    border-radius:11px;
+  }
+  .nhsk-summary-table td:nth-child(1){grid-row:1/3;width:26px!important;min-height:26px;border-radius:8px!important;align-self:start}
+  .nhsk-summary-table td:nth-child(2){grid-column:2/4;grid-row:1;padding-top:1px!important;font-size:12px;font-weight:800;line-height:1.35}
+  .nhsk-summary-table td:nth-child(3){grid-column:2/4;grid-row:2;padding-bottom:3px!important}
+  .nhsk-summary-table td:nth-child(4){grid-column:2;grid-row:3}
+  .nhsk-summary-table td:nth-child(5){grid-column:3;grid-row:3}
+  .nhsk-summary-example{align-items:flex-start;gap:6px}
+  .nhsk-summary-example .nhsk-hanzi{font-size:15px;line-height:1.35}
+  .nhsk-summary-example .nhsk-speak{width:28px;height:28px}
+  .nhsk-summary-example small.nhsk-translation{font-size:10px;line-height:1.35}
+  .nhsk-summary-check{display:flex;width:100%;min-height:34px;align-items:center;justify-content:center;gap:6px;border-radius:9px;background:#f7faf9;padding:4px 6px}
+  .nhsk-summary-check input{width:18px;height:18px}
+  .nhsk-summary-check span{font-size:10px;font-weight:750}
+  .nhsk-summary-note textarea{min-height:74px}
+
+  .nhsk-question-copy__options>div,.nhsk-dialogue-copy>div{grid-template-columns:22px minmax(0,1fr) 29px;padding:6px 7px}
+  .nhsk-markdown-list--structured{gap:9px}
+}
+@media(max-width:600px){
+  .nhsk-summary-example .nhsk-hanzi,
+  .nhsk-summary-example__pinyin,
+  .nhsk-summary-example small.nhsk-translation{
+    display:-webkit-box;
+    overflow:hidden;
+    -webkit-box-orient:vertical;
+  }
+  .nhsk-summary-example .nhsk-hanzi{-webkit-line-clamp:2}
+  .nhsk-summary-example__pinyin,
+  .nhsk-summary-example small.nhsk-translation{-webkit-line-clamp:1}
 }

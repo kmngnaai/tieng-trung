@@ -47,7 +47,7 @@ coverage_report_file: "07_Bao_cao_kiem_tra/HSK2_Bai_09_Coverage.md"
 
 ### 2.1. Ghép từ với hình
 
-- A. 杯子 bēizi — cốc.
+- A. 个子 gèzi — chiều cao; vóc dáng.
 - B. 走路 zǒulù — đi bộ.
 - C. 咖啡 kāfēi — cà phê.
 - D. 门口 ménkǒu — cửa ra vào.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build HSK1 learner-facing display metadata from reviewed course JSON.
+"""Build learner-facing display metadata from reviewed New HSK course JSON.
 
 PDF/PPT trace data remains in JSON, while display flags, structured warmups,
 grammar layers and learning summaries are generated for the web renderer.
@@ -269,6 +269,49 @@ def extract_example_rows(block: str, phrase_map):
     return examples
 
 
+def extract_structured_examples(block: str):
+    """Read explicit Chữ Hán / Pinyin / Tiếng Việt example triplets."""
+    lines=block.splitlines(); examples=[]; current=None
+    def flush():
+        nonlocal current
+        if not current: return
+        if current.get('hanzi'):
+            current['id']=f"example-{len(examples)+1:02d}"
+            current['order']=len(examples)+1
+            current['label']=''
+            current['pinyinStatus']='source' if current.get('pinyin') else 'missing-source'
+            current['viStatus']='source' if current.get('vi') else 'missing-source'
+            examples.append(current)
+        current=None
+    for raw in lines:
+        line=raw.strip()
+        if re.match(r'^\*\*Ví dụ\s+\d+\*\*$',line,re.I):
+            flush(); current={}; continue
+        if current is None: continue
+        field=re.match(r'^-\s*\*\*(Chữ Hán|Pinyin|Tiếng Việt):\*\*\s*(.+?)\s*$',line,re.I)
+        if not field: continue
+        label=field.group(1).lower(); value=clean_inline(field.group(2)).strip()
+        if 'chữ hán' in label: current['hanzi']=value
+        elif 'pinyin' in label: current['pinyin']=value
+        else: current['vi']=value
+    flush()
+    return examples
+
+
+def remove_structured_example_block(block: str):
+    """Remove the explicit example triplets while retaining the exercise section."""
+    lines=block.splitlines(); kept=[]; skipping=False
+    for raw in lines:
+        line=raw.strip()
+        if re.match(r'^####\s+Ví dụ\s*$',line,re.I):
+            skipping=True
+            continue
+        if skipping and re.match(r'^####\s+',line):
+            skipping=False
+        if not skipping: kept.append(raw)
+    return '\n'.join(kept).strip()
+
+
 def remove_example_lines(block: str):
     lines=block.splitlines(); kept=[]; skipping=False
     i=0
@@ -292,7 +335,8 @@ def grammar_display(markdown: str, phrase_map, translation_map):
     sections=split_sections(markdown)
     intro=[]; groups=[]
     for title,block in sections:
-        examples=extract_example_rows(block,phrase_map)
+        structured_examples=extract_structured_examples(block)
+        examples=structured_examples or extract_example_rows(block,phrase_map)
         for example in examples:
             if example.get('vi'):
                 example['viStatus'] = 'source'
@@ -307,7 +351,7 @@ def grammar_display(markdown: str, phrase_map, translation_map):
                 example['viStatus'] = 'editorial-completion'
             else:
                 example['viStatus'] = 'missing-source'
-        prose=remove_example_lines(block)
+        prose=remove_structured_example_block(block) if structured_examples else remove_example_lines(block)
         normalized=title.lower()
         if not title:
             if prose: intro.append(prose)
@@ -338,21 +382,37 @@ def grammar_display(markdown: str, phrase_map, translation_map):
     return {'introMarkdown':'\n\n'.join(x for x in intro if x).strip(),'groups':groups}
 
 
-def warmup_display(markdown: str, phrase_map):
+def warmup_display(markdown: str, phrase_map, translation_map=None):
+    translation_map = translation_map or {}
     lines=[x.rstrip() for x in markdown.splitlines()]
-    hanzi=''; vi=''
-    for i,line in enumerate(lines):
-        m=re.search(r'\*\*([^*]*[\u3400-\u9fff][^*]*)\*\*',line)
-        if m:
-            hanzi=m.group(1).strip()
-            tail=clean_inline(line[m.end():]).strip()
-            if tail: vi=tail
-            if not vi:
-                for j in range(i+1,min(i+4,len(lines))):
-                    c=clean_inline(lines[j]).strip()
-                    if c and not c.startswith('|') and not CJK_RE.search(c): vi=c; break
+    instruction_vi=''
+    for line in lines:
+        heading=re.match(r'^###\s+(?:\d+(?:\.\d+)*\.\s*)?(.+)$',line.strip())
+        if heading and ('ghép' in heading.group(1).lower() or 'chọn hình' in heading.group(1).lower()):
+            instruction_vi=clean_inline(heading.group(1)).strip()
             break
+    if not instruction_vi:
+        instruction_vi='Chọn hình tương ứng với các từ/cụm từ sau.'
+
     choices=[]
+    def add_choice(letter: str, raw: str, vi_hint: str=''):
+        raw=clean_inline(raw).strip().strip('.;')
+        hanzi_match=re.search(r'[\u3400-\u9fff]+',raw)
+        if not hanzi_match: return
+        hanzi=hanzi_match.group(0)
+        tail=raw[hanzi_match.end():].strip()
+        pinyin=''
+        if tail:
+            pinyin_match=re.match(r'([A-Za-zÀ-ỹāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜüÜ\s\'’\-]+)',tail)
+            if pinyin_match: pinyin=pinyin_match.group(1).strip()
+        if not pinyin: pinyin=pinyinize(hanzi,phrase_map)
+        vi=clean_inline(vi_hint).strip(' —–-;,.')
+        if not vi:
+            vi=translation_map.get(hanzi) or translation_map.get(hanzi.rstrip('。！？!?')) or ''
+        if not any(item['key']==letter for item in choices):
+            choices.append({'key':letter,'hanzi':hanzi,'pinyin':pinyin,'vi':vi})
+
+    # Markdown tables used by several HSK1 lessons.
     for headers,rows in parse_md_table(markdown):
         lower=[clean_inline(h).lower() for h in headers]
         if not any('lựa chọn' in h or 'ký hiệu' in h for h in lower): continue
@@ -368,13 +428,27 @@ def warmup_display(markdown: str, phrase_map):
             word=clean_inline(row[hi] if hi>=0 and hi<len(row) else '')
             reading=clean_inline(row[reading_i] if reading_i>=0 and reading_i<len(row) else '')
             time_value=clean_inline(row[time_i] if time_i>=0 and time_i<len(row) else '')
-            choice_hanzi=word or reading or time_value
-            pinyin=clean_inline(row[pi] if pi>=0 and pi<len(row) else '')
-            if not pinyin and CJK_RE.search(choice_hanzi): pinyin=pinyinize(choice_hanzi,phrase_map)
-            choice_vi=clean_inline(row[vi_i] if vi_i>=0 and vi_i<len(row) else '') or time_value
-            choices.append({'key':letter,'hanzi':choice_hanzi,'pinyin':pinyin,'vi':choice_vi})
+            raw=word or reading or time_value
+            vi_hint=clean_inline(row[vi_i] if vi_i>=0 and vi_i<len(row) else '') or time_value
+            add_choice(letter,raw,vi_hint)
         if choices: break
-    return {'instructionHanzi':hanzi,'instructionVi':vi or 'Chọn hình tương ứng với các từ/cụm từ sau.','choices':choices}
+
+    # Inline/bullet choices used by HSK2: **A. 词 pinyin** — nghĩa.
+    if not choices:
+        fragments=[]
+        for bold in re.findall(r'\*\*([A-F]\.[^*]+)\*\*',markdown): fragments.append(bold)
+        for line in lines:
+            clean=clean_inline(line).strip()
+            match=re.match(r'^[-*]?\s*([A-F])\.\s*(.+)$',clean)
+            if match: fragments.append(f'{match.group(1)}. {match.group(2)}')
+        for fragment in fragments:
+            match=re.match(r'^([A-F])\.\s*(.+)$',fragment.strip())
+            if not match: continue
+            raw=match.group(2)
+            parts=re.split(r'\s+[—–-]\s+',raw,maxsplit=1)
+            add_choice(match.group(1),parts[0],parts[1] if len(parts)>1 else '')
+
+    return {'instructionHanzi':'','instructionVi':instruction_vi,'choices':choices}
 
 
 def summary_display(markdown: str, section_id: str):
@@ -394,29 +468,48 @@ def summary_display(markdown: str, section_id: str):
             if not content: continue
             assessment.append({'id':f'{section_id}-item-{len(assessment)+1:02d}','order':len(assessment)+1,'content':content,'example':example})
         if assessment: break
+    if not assessment:
+        candidate=''
+        for line in markdown.splitlines():
+            clean=clean_inline(line).strip().lstrip('-*').strip()
+            if 'Tự đánh giá các điểm:' in clean:
+                candidate=clean.split('Tự đánh giá các điểm:',1)[1]
+                break
+            if 'các điểm:' in clean.lower():
+                candidate=re.split(r'các điểm:',clean,maxsplit=1,flags=re.I)[1]
+                break
+            if clean.lower().startswith('tổng kết bài') and ':' in clean:
+                candidate=clean.split(':',1)[1]
+        if candidate:
+            candidate=candidate.strip().rstrip('.')
+            pieces=[item.strip(' .') for item in re.split(r';|，|,(?=\s*[A-ZÀ-Ỹ\u3400-\u9fff])',candidate) if item.strip(' .')]
+            for content in pieces:
+                if content.lower().startswith(('từ vựng đã','từ vựng chưa','ghi những điểm')): continue
+                assessment.append({'id':f'{section_id}-item-{len(assessment)+1:02d}','order':len(assessment)+1,'content':content,'example':''})
     return {'items':assessment,'notePrompt':'Những điểm tôi cần cố gắng'}
-
 
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument('--repo', type=Path, required=True)
+    parser.add_argument('--level', type=int, default=1)
     args = parser.parse_args()
     global REPO, MODULE, DATA, SOURCE
     REPO = args.repo.resolve()
     MODULE = REPO / 'modules/new-hsk-course'
-    DATA = MODULE / 'data/hsk1'
-    SOURCE = MODULE / 'source/hsk1'
+    level = args.level
+    DATA = MODULE / f'data/hsk{level}'
+    SOURCE = MODULE / f'source/hsk{level}'
     lessons=[read_json(DATA/f'lesson-{n:02d}.json') for n in range(1,16)]
     phrase_map=build_phrase_map(lessons)
     translation_map=build_translation_map()
     visual_manifest=read_json(SOURCE/'visual-manifest.json')
-    display={'version':1,'course':'new-hsk-course','level':1,'lessons':{}}
+    display={'version':1,'course':'new-hsk-course','level':level,'lessons':{}}
     for d in lessons:
         lesson_entry={'sections':{}}
         visual_sections=((visual_manifest.get('lessons',{}).get(d['id'],{}) or {}).get('sections',{}))
         for section in d['entities'].get('contentSections',[]):
             cfg={}; kind=section.get('kind','')
-            if kind=='warmup': cfg['warmupDisplay']=warmup_display(section.get('markdown',''), phrase_map)
+            if kind=='warmup': cfg['warmupDisplay']=warmup_display(section.get('markdown',''), phrase_map, translation_map)
             if kind=='grammar': cfg['grammarDisplay']=grammar_display(section.get('markdown',''),phrase_map,translation_map)
             if section.get('title','').lower().startswith('tổng kết học tập'):
                 cfg['summaryDisplay']=summary_display(section.get('markdown',''),section['id'])
