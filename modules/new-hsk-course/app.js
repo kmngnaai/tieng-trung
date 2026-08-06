@@ -2,10 +2,11 @@
   'use strict';
 
   const SETTINGS_KEY = 'tiengTrung.newHskCourse.settings.v1';
-  const SETTINGS_VERSION = 8;
+  const SETTINGS_VERSION = 9;
   const Matching = window.TiengTrungMatching;
   const LAST_LOCATION_KEY = 'tiengTrung.newHskCourse.lastLocation.v1';
   const PROGRESS_KEY = 'tiengTrung.newHskCourse.progress.v1';
+  const SUMMARY_PROGRESS_KEY = 'tiengTrung.newHskCourse.summaryProgress.v1';
   const EXTERNAL_LISTENING_KEY = 'tiengTrung.listening.externalPractice.v1';
   const RETURN_PREFIX = 'tiengTrung.newHskCourse.return.';
   const HSK_EXTERNAL_FLASHCARD_KEY = 'tiengTrung.hsk.externalFlashcard.v1';
@@ -34,6 +35,8 @@
     grammarPlusId: params.get('grammarPlus') || '',
     dialogueLayers: { hanzi: true, pinyin: true, vi: true },
     passageLayers: { hanzi: true, pinyin: true, vi: true },
+    grammarLayers: { hanzi: true, pinyin: true, vi: true },
+    warmupLayers: { hanzi: true, pinyin: true, vi: false },
     practiceActivity: params.get('practice') || 'flashcards',
     practiceSourceSelections: {},
     practiceActivityStarted: false,
@@ -75,6 +78,7 @@
   let radicalPointerDrag = null;
   let suppressRadicalClickUntil = 0;
   let practiceProgress = readProgress();
+  let summaryProgress = readSummaryProgress();
   const catalogCache = new Map();
   const lessonDataCache = new Map();
   let hsk1SentenceIndexPromise = null;
@@ -140,6 +144,8 @@
         view: ['book', 'grouped', 'practice'].includes(saved.view) ? saved.view : state.view,
         dialogueLayers: keepSavedLayers ? normalizeLayers(saved.dialogueLayers, state.dialogueLayers) : { hanzi: true, pinyin: true, vi: true },
         passageLayers: keepSavedLayers ? normalizeLayers(saved.passageLayers, state.passageLayers) : { hanzi: true, pinyin: true, vi: true },
+        grammarLayers: keepSavedLayers ? normalizeLayers(saved.grammarLayers, state.grammarLayers) : { hanzi: true, pinyin: true, vi: true },
+        warmupLayers: normalizeLayers(saved.warmupLayers, state.warmupLayers),
         practiceActivity: normalizePracticeActivity(String(saved.practiceActivity || state.practiceActivity)),
         practiceSourceSelections: saved.practiceSourceSelections && typeof saved.practiceSourceSelections === 'object' ? saved.practiceSourceSelections : {},
         practiceOrderMode: saved.practiceOrderMode === 'random' ? 'random' : 'ordered',
@@ -174,6 +180,8 @@
         view: state.view,
         dialogueLayers: state.dialogueLayers,
         passageLayers: state.passageLayers,
+        grammarLayers: state.grammarLayers,
+        warmupLayers: state.warmupLayers,
         practiceActivity: state.practiceActivity,
         practiceSourceSelections: state.practiceSourceSelections,
         practiceOrderMode: state.practiceOrderMode,
@@ -619,7 +627,7 @@
         ${renderGrammarPopupBlock('explanation', 'Giải thích', item?.explanation)}
         ${renderGrammarPopupBlock('tips', 'Mẹo nhớ', item?.tips, '💡')}
         ${renderGrammarPopupBlock('attention', 'Lưu ý', item?.attentions, '!')}
-        ${examples.length ? `<section class="hsk-popup-section hsk-grammar-examples hsk-grammar-detail-examples"><div class="hsk-grammar-examples-head"><h4>Ví dụ</h4><span>${examples.length.toLocaleString('vi-VN')} ví dụ</span></div><div class="hsk-grammar-example-list">${examples.map((row, index) => `<article class="hsk-grammar-example-card"><span class="hsk-grammar-example-index">${String(index + 1).padStart(2, '0')}</span><div class="hsk-grammar-example-main"><strong>${escapeHtml(row.chinese || '')}</strong>${row.pinyin ? `<em>${escapeHtml(row.pinyin)}</em>` : ''}${row.vietnamese ? `<span>${escapeHtml(row.vietnamese)}</span>` : ''}</div>${row.chinese ? `<button type="button" class="hsk-grammar-example-speaker nhsk-catalog-grammar-example-speak nhsk-speak" data-nhsk-speak="${attr(row.chinese)}" aria-label="Nghe ${attr(row.chinese)}">🔊</button>` : ''}</article>`).join('')}</div></section>` : ''}
+        ${examples.length ? `<section class="hsk-popup-section hsk-grammar-examples hsk-grammar-detail-examples"><div class="hsk-grammar-examples-head"><h4>Ví dụ</h4><span>${examples.length.toLocaleString('vi-VN')} ví dụ</span></div><div class="hsk-grammar-example-list">${examples.map((row, index) => `<article class="hsk-grammar-example-card"><span class="hsk-grammar-example-index">${String(index + 1).padStart(2, '0')}</span><div class="hsk-grammar-example-main"><strong>${escapeHtml(row.chinese || '')}</strong>${row.pinyin ? `<em>${escapeHtml(row.pinyin)}</em>` : ''}${row.vietnamese ? `<span class="nhsk-translation">${escapeHtml(row.vietnamese)}</span>` : ''}</div>${row.chinese ? `<button type="button" class="hsk-grammar-example-speaker nhsk-catalog-grammar-example-speak nhsk-speak" data-nhsk-speak="${attr(row.chinese)}" aria-label="Nghe ${attr(row.chinese)}">🔊</button>` : ''}</article>`).join('')}</div></section>` : ''}
         ${item?.chapter && options.plus !== true ? `<a class="nhsk-catalog-source-lesson" href="${attr(catalogLessonUrl(item.chapter))}">Mở HSK ${state.level} · Bài ${item.chapter} theo sách <span>›</span></a>` : ''}
       </div>`;
   }
@@ -689,8 +697,15 @@
     }));
   }
 
+  function layersForScope(scope) {
+    if (scope === 'passage') return state.passageLayers;
+    if (scope === 'grammar') return state.grammarLayers;
+    if (scope === 'warmup') return state.warmupLayers;
+    return state.dialogueLayers;
+  }
+
   function renderLayerToggle(scope, label) {
-    const layers = scope === 'passage' ? state.passageLayers : state.dialogueLayers;
+    const layers = layersForScope(scope);
     const buttons = [
       ['hanzi', '汉', 'Hán ngữ'],
       ['pinyin', '拼', 'Pinyin'],
@@ -730,8 +745,8 @@
           <header><strong>${speakers.map(escapeHtml).join(' · ')}</strong><button type="button" class="nhsk-speak" data-nhsk-speak="${attr(turn.hanzi)}" aria-label="Nghe câu ${attr(turn.hanzi)}">🔊</button></header>
           <div class="nhsk-dialogue-lines">
             ${layers.hanzi ? `<p class="nhsk-dialogue-line nhsk-dialogue-line--hanzi">${escapeHtml(turn.hanzi)}</p>` : ''}
-            ${layers.pinyin ? `<p class="nhsk-dialogue-line nhsk-dialogue-line--pinyin">${escapeHtml(turn.pinyin)}</p>` : ''}
-            ${layers.vi ? `<p class="nhsk-dialogue-line nhsk-dialogue-line--vi">${escapeHtml(turn.vi)}</p>` : ''}
+            ${layers.pinyin ? `<p class="nhsk-dialogue-line nhsk-dialogue-line--pinyin nhsk-pinyin-text">${escapeHtml(turn.pinyin)}</p>` : ''}
+            ${layers.vi ? `<p class="nhsk-dialogue-line nhsk-dialogue-line--vi nhsk-translation">${escapeHtml(turn.vi)}</p>` : ''}
           </div>
         </article>`;
       }).join('')}
@@ -817,8 +832,8 @@
         <header><strong>Câu ${index + 1}</strong><button type="button" class="nhsk-speak" data-nhsk-speak="${attr(row.hanzi)}" aria-label="Nghe câu ${index + 1}">🔊</button></header>
         <div class="nhsk-dialogue-lines">
           ${layers.hanzi && row.hanzi ? `<p class="nhsk-dialogue-line nhsk-dialogue-line--hanzi">${escapeHtml(row.hanzi)}</p>` : ''}
-          ${layers.pinyin && row.pinyin ? `<p class="nhsk-dialogue-line nhsk-dialogue-line--pinyin">${escapeHtml(row.pinyin)}</p>` : ''}
-          ${layers.vi && row.vi ? `<p class="nhsk-dialogue-line nhsk-dialogue-line--vi">${escapeHtml(row.vi)}</p>` : ''}
+          ${layers.pinyin && row.pinyin ? `<p class="nhsk-dialogue-line nhsk-dialogue-line--pinyin nhsk-pinyin-text">${escapeHtml(row.pinyin)}</p>` : ''}
+          ${layers.vi && row.vi ? `<p class="nhsk-dialogue-line nhsk-dialogue-line--vi nhsk-translation">${escapeHtml(row.vi)}</p>` : ''}
         </div>
       </article>`).join('')}
     </div>`;
@@ -842,14 +857,50 @@
     return html;
   }
 
-  function renderMarkdown(markdown = '') {
+  function containsCjk(value = '') {
+    return /[\u3400-\u9fff\uf900-\ufaff]/u.test(String(value || ''));
+  }
+
+  function looksLikePinyinLine(value = '') {
+    const text = String(value || '').trim();
+    return /^\*[^*]+\*$/.test(text) || /^_[^_]+_$/.test(text);
+  }
+
+  function looksLikeVietnameseTranslation(value = '') {
+    const text = String(value || '').trim();
+    if (!text || containsCjk(text) || looksLikePinyinLine(text) || /^Audio\s*:/i.test(text)) return false;
+    return /[ăâđêôơưĂÂĐÊÔƠƯàáảãạằắẳẵặầấẩẫậèéẻẽẹềếểễệìíỉĩịòóỏõọồốổỗộờớởỡợùúủũụừứửữựỳýỷỹỵ]/u.test(text)
+      || /\b(tôi|bạn|anh|chị|em|chúng|các|được|không|một|những|người|đi|ăn|uống|học|làm|thích|muốn|nào|đâu|thế nào|bao nhiêu)\b/i.test(text);
+  }
+
+  function inlineMarkdownWithDirectTranslation(value = '', enabled = false) {
+    if (!enabled) return inlineMarkdown(value);
+    const text = String(value || '');
+    const match = text.match(/^(.*?)(\s[—–]\s)(.+)$/u);
+    if (!match) return inlineMarkdown(text);
+    return `${inlineMarkdown(match[1])}${escapeHtml(match[2])}<span class="nhsk-translation">${inlineMarkdown(match[3])}</span>`;
+  }
+
+  function renderMarkdown(markdown = '', options = {}) {
     const lines = String(markdown || '').replace(/\r/g, '').split('\n');
     const parts = [];
+    const highlightDirectTranslations = options.highlightDirectTranslations === true;
+    let previousTranslationAnchor = '';
+    const renderInline = value => inlineMarkdownWithDirectTranslation(value, highlightDirectTranslations);
+    const renderParagraphLine = value => {
+      const direct = highlightDirectTranslations
+        && looksLikeVietnameseTranslation(value)
+        && containsCjk(previousTranslationAnchor);
+      const rendered = renderInline(value);
+      if (containsCjk(value)) previousTranslationAnchor = value;
+      else if (direct || !looksLikePinyinLine(value)) previousTranslationAnchor = '';
+      return direct ? `<span class="nhsk-translation">${rendered}</span>` : rendered;
+    };
     let index = 0;
     while (index < lines.length) {
       const raw = lines[index];
       const line = raw.trim();
-      if (!line) { index += 1; continue; }
+      if (!line) { previousTranslationAnchor = ''; index += 1; continue; }
       if (/^\|/.test(line) && index + 1 < lines.length && /^\|?\s*:?-{3,}/.test(lines[index + 1].trim().replace(/^\|/, ''))) {
         const rows = [];
         while (index < lines.length && /^\|/.test(lines[index].trim())) {
@@ -858,31 +909,32 @@
         }
         const headers = rows[0] || [];
         const bodyRows = rows.slice(2);
-        parts.push(`<div class="nhsk-markdown-table-wrap"><table class="nhsk-markdown-table"><thead><tr>${headers.map(cell => `<th>${inlineMarkdown(cell)}</th>`).join('')}</tr></thead><tbody>${bodyRows.map(row => `<tr>${headers.map((_cell, cellIndex) => `<td>${inlineMarkdown(row[cellIndex] || '')}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`);
+        parts.push(`<div class="nhsk-markdown-table-wrap"><table class="nhsk-markdown-table"><thead><tr>${headers.map(cell => `<th>${renderInline(cell)}</th>`).join('')}</tr></thead><tbody>${bodyRows.map(row => `<tr>${headers.map((_cell, cellIndex) => `<td>${renderInline(row[cellIndex] || '')}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`);
         continue;
       }
       const heading = line.match(/^(#{3,6})\s+(.+)$/);
       if (heading) {
         const level = Math.min(5, Math.max(3, heading[1].length));
-        parts.push(`<h${level} class="nhsk-markdown-heading">${inlineMarkdown(heading[2].replace(/^\d+(?:\.\d+)*\.\s*/, ''))}</h${level}>`);
+        parts.push(`<h${level} class="nhsk-markdown-heading">${renderInline(heading[2].replace(/^\d+(?:\.\d+)*\.\s*/, ''))}</h${level}>`);
+        previousTranslationAnchor = '';
         index += 1; continue;
       }
       if (/^>\s?/.test(line)) {
         const rows = [];
         while (index < lines.length && /^>\s?/.test(lines[index].trim())) rows.push(lines[index++].trim().replace(/^>\s?/, ''));
-        parts.push(`<blockquote class="nhsk-markdown-quote">${rows.map(row => `<p>${inlineMarkdown(row)}</p>`).join('')}</blockquote>`);
+        parts.push(`<blockquote class="nhsk-markdown-quote">${rows.map(row => `<p>${renderParagraphLine(row)}</p>`).join('')}</blockquote>`);
         continue;
       }
       if (/^[-*]\s+/.test(line)) {
         const rows = [];
         while (index < lines.length && /^[-*]\s+/.test(lines[index].trim())) rows.push(lines[index++].trim().replace(/^[-*]\s+/, ''));
-        parts.push(`<ul class="nhsk-markdown-list">${rows.map(row => `<li>${inlineMarkdown(row)}</li>`).join('')}</ul>`);
+        parts.push(`<ul class="nhsk-markdown-list">${rows.map(row => { const rendered = renderInline(row); if (containsCjk(row)) previousTranslationAnchor = row; return `<li>${rendered}</li>`; }).join('')}</ul>`);
         continue;
       }
       if (/^\d+\.\s+/.test(line)) {
         const rows = [];
         while (index < lines.length && /^\d+\.\s+/.test(lines[index].trim())) rows.push(lines[index++].trim().replace(/^\d+\.\s+/, ''));
-        parts.push(`<ol class="nhsk-markdown-list">${rows.map(row => `<li>${inlineMarkdown(row)}</li>`).join('')}</ol>`);
+        parts.push(`<ol class="nhsk-markdown-list">${rows.map(row => { const rendered = renderInline(row); if (containsCjk(row)) previousTranslationAnchor = row; return `<li>${rendered}</li>`; }).join('')}</ol>`);
         continue;
       }
       const paragraph = [line];
@@ -892,9 +944,256 @@
         if (!next || /^(#{3,6})\s+|^\||^>\s?|^[-*]\s+|^\d+\.\s+/.test(next)) break;
         paragraph.push(next); index += 1;
       }
-      parts.push(`<p>${paragraph.map(inlineMarkdown).join('<br>')}</p>`);
+      parts.push(`<p>${paragraph.map(renderParagraphLine).join('<br>')}</p>`);
     }
     return `<div class="nhsk-markdown">${parts.join('')}</div>`;
+  }
+
+  function visibleSourceVisuals(items = []) {
+    return (Array.isArray(items) ? items : []).filter(item => {
+      if (!item || item.displayInLesson !== true) return false;
+      if (item.sourceType === 'pdf') return false;
+      return Boolean(item.src);
+    });
+  }
+
+  function renderSourceVisuals(items = [], options = {}) {
+    const visible = visibleSourceVisuals(items);
+    if (!visible.length) return '';
+    const extra = options.variant ? ` nhsk-source-visuals--${escapeHtml(options.variant)}` : '';
+    return `<figure class="nhsk-source-visuals${extra}">
+      <div class="nhsk-source-visuals__grid">
+        ${visible.map(item => `<button type="button" class="nhsk-source-visual" data-nhsk-source-visual
+          data-src="${attr(item.src || '')}" data-alt="${attr(item.alt || '')}" aria-label="Phóng to hình">
+          <span class="nhsk-source-visual__media"><img src="${attr(item.src || '')}" alt="${attr(item.alt || '')}" loading="lazy" decoding="async"></span>
+        </button>`).join('')}
+      </div>
+    </figure>`;
+  }
+
+  function openSourceVisual(button) {
+    const src = button?.dataset?.src || '';
+    if (!src) return;
+    closeSourceVisual();
+    const modal = document.createElement('div');
+    modal.className = 'nhsk-source-lightbox';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', button.dataset.alt || 'Hình minh họa');
+    modal.innerHTML = `<button type="button" class="nhsk-source-lightbox__backdrop" data-nhsk-source-visual-close aria-label="Đóng hình"></button>
+      <article class="nhsk-source-lightbox__panel">
+        <header><span class="nhsk-visually-hidden">Hình minh họa</span><button type="button" data-nhsk-source-visual-close aria-label="Đóng">×</button></header>
+        <div class="nhsk-source-lightbox__stage"><img src="${attr(src)}" alt="${attr(button.dataset.alt || '')}"></div>
+      </article>`;
+    root.appendChild(modal);
+    document.documentElement.classList.add('nhsk-lightbox-open');
+    modal.querySelector('[data-nhsk-source-visual-close]:last-child')?.focus();
+  }
+
+  function closeSourceVisual() {
+    root.querySelector?.('.nhsk-source-lightbox')?.remove();
+    document.documentElement.classList.remove('nhsk-lightbox-open');
+  }
+
+  function taskMarkdownFromLessonSection(markdown = '') {
+    const lines = String(markdown || '').replace(/\r/g, '').split('\n');
+    const blocks = [];
+    let current = null;
+    const flush = () => {
+      if (!current) return;
+      const title = normalizedSectionTitle(current.title);
+      const keep = /(nghe|câu hỏi|hoạt động|yêu cầu|nội dung hình|bài tập)/i.test(title)
+        && !/(hội thoại|từ mới|danh từ riêng|bối cảnh|gợi ý)/i.test(title);
+      if (keep) blocks.push([`### ${current.title}`, ...current.lines].join('\n').trim());
+    };
+    for (const line of lines) {
+      const match = line.match(/^###\s+(.+?)\s*$/);
+      if (match) {
+        flush();
+        current = { title: match[1], lines: [] };
+      } else if (current) current.lines.push(line);
+    }
+    flush();
+    return blocks.join('\n\n');
+  }
+
+  function renderAnswerDisclosure(answers = [], labelPrefix = 'Câu') {
+    return `<details class="nhsk-source-task__answers"><summary>Xem đáp án</summary><ol>${answers.map((answer, index) => `<li><span>${escapeHtml(labelPrefix)} ${index + 1}</span><b>${escapeHtml(answer)}</b></li>`).join('')}</ol></details>`;
+  }
+
+  function renderSourceTaskChecks(tasks = []) {
+    if (!Array.isArray(tasks) || !tasks.length) return '';
+    return tasks.map(task => {
+      const answers = Array.isArray(task.answers) ? task.answers : [];
+      if (!answers.length) return '';
+      if (task.type === 'image-match') {
+        return `<section class="nhsk-source-task" data-nhsk-source-task-card data-task-type="image-match">
+          <header><span>🖼</span><div><strong>Ghép hình theo sách</strong><small>Chọn chữ cái tương ứng cho từng hình theo thứ tự trái sang phải, trên xuống dưới.</small></div></header>
+          <div class="nhsk-source-task__match-grid">${answers.map((_answer, index) => `<label><span>Hình ${index + 1}</span><select data-nhsk-source-task-select data-question-index="${index}"><option value="">Chọn</option>${['A','B','C','D','E','F'].map(letter => `<option value="${letter}">${letter}</option>`).join('')}</select><small data-nhsk-source-task-status aria-live="polite"></small></label>`).join('')}</div>
+          <div class="nhsk-source-task__actions"><button type="button" data-nhsk-source-task-check data-answers="${attr(JSON.stringify(answers))}">Kiểm tra</button><button type="button" data-nhsk-source-task-reset>Làm lại</button><output aria-live="polite"></output></div>
+          ${renderAnswerDisclosure(answers, 'Hình')}
+        </section>`;
+      }
+      if (task.type === 'listening-mcq') {
+        return `<section class="nhsk-source-task" data-nhsk-source-task-card data-task-type="listening-mcq">
+          <header><span>🎧</span><div><strong>Kiểm tra bài nghe</strong><small>Nghe audio, chọn đáp án rồi bấm Kiểm tra.</small></div>${mediaBadge('Audio', task.audioRef)}</header>
+          <div class="nhsk-source-task__mcq">${answers.map((_answer, index) => `<div class="nhsk-source-task__question" data-question-index="${index}"><b>Câu ${index + 1}</b><div>${['A','B','C'].map(letter => `<button type="button" data-nhsk-source-task-choice data-value="${letter}">${letter}</button>`).join('')}</div><span data-nhsk-source-task-status aria-live="polite"></span></div>`).join('')}</div>
+          <div class="nhsk-source-task__actions"><button type="button" data-nhsk-source-task-check data-answers="${attr(JSON.stringify(answers))}">Kiểm tra</button><button type="button" data-nhsk-source-task-reset>Làm lại</button><output aria-live="polite"></output></div>
+          ${renderAnswerDisclosure(answers, 'Câu')}
+        </section>`;
+      }
+      return '';
+    }).join('');
+  }
+
+  function checkSourceTask(card, checkButton) {
+    if (!card) return;
+    let answers = [];
+    try { answers = JSON.parse(checkButton.dataset.answers || '[]'); } catch (_error) {}
+    if (!answers.length) return;
+    let correct = 0;
+    let answeredCount = 0;
+    if (card.dataset.taskType === 'image-match') {
+      card.querySelectorAll('[data-nhsk-source-task-select]').forEach((select, index) => {
+        select.classList.remove('is-correct', 'is-wrong', 'is-unanswered');
+        const answered = Boolean(select.value);
+        const ok = answered && select.value === answers[index];
+        if (answered) answeredCount += 1;
+        if (ok) correct += 1;
+        select.classList.add(ok ? 'is-correct' : answered ? 'is-wrong' : 'is-unanswered');
+        const status = select.closest('label')?.querySelector('[data-nhsk-source-task-status]');
+        if (status) status.textContent = ok ? 'Đúng' : answered ? 'Chưa đúng' : 'Chưa chọn';
+        select.setAttribute('aria-label', `Hình ${index + 1}: ${ok ? 'đúng' : answered ? 'chưa đúng' : 'chưa chọn'}`);
+      });
+    } else {
+      card.querySelectorAll('.nhsk-source-task__question').forEach((row, index) => {
+        const selected = row.querySelector('[data-nhsk-source-task-choice].is-selected');
+        const answered = Boolean(selected);
+        const ok = answered && selected.dataset.value === answers[index];
+        if (answered) answeredCount += 1;
+        if (ok) correct += 1;
+        row.classList.toggle('is-correct', ok);
+        row.classList.toggle('is-wrong', answered && !ok);
+        row.classList.toggle('is-unanswered', !answered);
+        const status = row.querySelector('[data-nhsk-source-task-status]');
+        if (status) status.textContent = ok ? 'Đúng' : answered ? 'Chưa đúng' : 'Chưa chọn';
+      });
+    }
+    const output = card.querySelector('output');
+    if (output) output.textContent = correct === answers.length
+      ? `Hoàn thành ${correct}/${answers.length}`
+      : `Đã trả lời ${answeredCount}/${answers.length} · Đúng ${correct}`;
+    card.classList.add('is-checked');
+  }
+
+  function resetSourceTask(card) {
+    if (!card) return;
+    card.classList.remove('is-checked');
+    card.querySelectorAll('[data-nhsk-source-task-choice]').forEach(button => button.classList.remove('is-selected'));
+    card.querySelectorAll('.nhsk-source-task__question').forEach(row => {
+      row.classList.remove('is-correct', 'is-wrong', 'is-unanswered');
+      const status = row.querySelector('[data-nhsk-source-task-status]');
+      if (status) status.textContent = '';
+    });
+    card.querySelectorAll('[data-nhsk-source-task-select]').forEach(select => {
+      select.value = '';
+      select.classList.remove('is-correct', 'is-wrong', 'is-unanswered');
+      const status = select.closest('label')?.querySelector('[data-nhsk-source-task-status]');
+      if (status) status.textContent = '';
+    });
+    card.querySelectorAll('.nhsk-source-task__answers').forEach(details => { details.open = false; });
+    const output = card.querySelector('output');
+    if (output) output.textContent = '';
+  }
+
+  function renderLessonTasks(markdown = '', sourceTasks = []) {
+    const taskMarkdown = taskMarkdownFromLessonSection(markdown);
+    if (!taskMarkdown && (!sourceTasks || !sourceTasks.length)) return '';
+    return `<section class="nhsk-book-tasks"><div class="nhsk-book-tasks__head"><span>✓</span><div><strong>Nhiệm vụ theo đúng sách</strong><small>Giữ nguyên câu hỏi, lựa chọn và thứ tự nguồn</small></div></div>${taskMarkdown ? renderMarkdown(taskMarkdown, { highlightDirectTranslations: true }) : ''}${renderSourceTaskChecks(sourceTasks)}</section>`;
+  }
+
+  function renderWarmupChoiceBank(display = {}) {
+    const choices = Array.isArray(display.choices) ? display.choices : [];
+    if (!choices.length) return '';
+    const layers = state.warmupLayers;
+    return `<div class="nhsk-warmup-choices" aria-label="Các lựa chọn">
+      ${choices.map(item => `<article class="nhsk-warmup-choice">
+        <b>${escapeHtml(item.key || '')}</b>
+        <div>
+          ${layers.hanzi && item.hanzi ? `<span class="nhsk-hanzi">${escapeHtml(item.hanzi)}</span>` : ''}
+          ${layers.pinyin && item.pinyin ? `<small>${escapeHtml(item.pinyin)}</small>` : ''}
+          ${layers.vi && item.vi ? `<em class="nhsk-translation">${escapeHtml(item.vi)}</em>` : ''}
+        </div>
+        ${item.hanzi ? `<button type="button" class="nhsk-speak" data-nhsk-speak="${attr(item.hanzi)}" aria-label="Nghe ${attr(item.hanzi)}">🔊</button>` : ''}
+      </article>`).join('')}
+    </div>`;
+  }
+
+  function renderWarmupSection(section) {
+    const display = section.warmupDisplay || {};
+    const instructionHanzi = display.instructionHanzi || '';
+    const instructionVi = display.instructionVi || '';
+    const body = `<section class="nhsk-warmup-instruction">
+        <h3>Yêu cầu</h3>
+        ${instructionHanzi ? `<div class="nhsk-warmup-instruction__hanzi"><p class="nhsk-hanzi">${escapeHtml(instructionHanzi)}</p><button type="button" class="nhsk-speak" data-nhsk-speak="${attr(instructionHanzi)}" aria-label="Nghe yêu cầu">🔊</button></div>` : ''}
+        ${instructionVi ? `<p>${escapeHtml(instructionVi)}</p>` : ''}
+      </section>
+      ${renderSourceVisuals(section.sourceVisuals || [], { variant: 'warmup' })}
+      <div class="nhsk-warmup-toolbar">${renderLayerToggle('warmup', 'Từ khởi động')}</div>
+      ${renderWarmupChoiceBank(display)}
+      ${renderSourceTaskChecks(section.sourceTasks || [])}`;
+    return sectionCard(section.title || 'Khởi động', body, '热身', 'nhsk-card--content-warmup');
+  }
+
+  function renderGrammarExample(example, index) {
+    const layers = state.grammarLayers;
+    return `<article class="nhsk-grammar-example">
+      <header><span>${escapeHtml(example.label || String(index + 1))}</span>${example.hanzi ? `<button type="button" class="nhsk-speak" data-nhsk-speak="${attr(example.hanzi)}" aria-label="Nghe câu ${index + 1}">🔊</button>` : ''}</header>
+      <div class="nhsk-grammar-example__lines">
+        ${layers.hanzi && example.hanzi ? `<p class="nhsk-grammar-example__hanzi nhsk-hanzi">${escapeHtml(example.hanzi)}</p>` : ''}
+        ${layers.pinyin && example.pinyin ? `<p class="nhsk-grammar-example__pinyin nhsk-pinyin-text">${escapeHtml(example.pinyin)}</p>` : ''}
+        ${layers.vi && example.vi ? `<p class="nhsk-grammar-example__vi nhsk-translation">${escapeHtml(example.vi)}</p>` : ''}
+        ${layers.vi && !example.vi ? `<p class="nhsk-grammar-example__vi is-missing">Chưa có bản dịch tiếng Việt trong nguồn.</p>` : ''}
+      </div>
+    </article>`;
+  }
+
+  function renderGrammarDisplayBody(display = {}, includeToolbar = true) {
+    const groups = Array.isArray(display.groups) ? display.groups : [];
+    let exampleIndex = 0;
+    return `${includeToolbar ? `<div class="nhsk-grammar-toolbar">${renderLayerToggle('grammar', 'Câu mẫu')}</div>` : ''}
+      ${display.introMarkdown ? `<div class="nhsk-grammar-intro">${renderMarkdown(display.introMarkdown)}</div>` : ''}
+      ${groups.map(group => {
+        const examples = Array.isArray(group.examples) ? group.examples : [];
+        const title = String(group.title || '').trim();
+        const generic = /^(đọc to|đọc to hội thoại|ví dụ)$/i.test(title);
+        return `<section class="nhsk-grammar-group">
+          ${title && !generic ? `<h3>${escapeHtml(title)}</h3>` : title ? `<h3 class="nhsk-grammar-group__label">${escapeHtml(title)}</h3>` : ''}
+          ${group.introMarkdown ? renderMarkdown(group.introMarkdown) : ''}
+          ${examples.length ? `<div class="nhsk-grammar-examples">${examples.map(example => renderGrammarExample(example, exampleIndex++)).join('')}</div>` : ''}
+        </section>`;
+      }).join('')}`;
+  }
+
+  function renderGrammarSection(section) {
+    const display = section.grammarDisplay || {};
+    const groups = Array.isArray(display.groups) ? display.groups : [];
+    if (!display.introMarkdown && !groups.length) return sectionCard(section.title, renderMarkdown(section.markdown || ''), '语法');
+    return sectionCard(section.title, renderGrammarDisplayBody(display, true), '语法', 'nhsk-card--grammar');
+  }
+
+  function renderLearningSummary(section) {
+    const display = section.summaryDisplay || {};
+    const items = Array.isArray(display.items) ? display.items : [];
+    const progress = summarySectionProgress(section.id);
+    const checks = progress.checks || {};
+    const body = `<p class="nhsk-summary-lead">Đánh dấu theo mức độ hiện tại của bạn. Lựa chọn được lưu trên thiết bị này.</p>
+      ${items.length ? `<div class="nhsk-summary-table-wrap"><table class="nhsk-summary-table"><thead><tr><th>STT</th><th>Nội dung</th><th>Ví dụ trong sách</th><th>Đã hiểu</th><th>Biết dùng</th></tr></thead><tbody>${items.map((item, index) => {
+        const row = checks[item.id] || {};
+        return `<tr><td>${index + 1}</td><td>${inlineMarkdown(item.content || '')}</td><td><div class="nhsk-summary-example"><div><span class="nhsk-hanzi">${escapeHtml(item.example || '—')}</span>${item.exampleVi ? `<small class="nhsk-translation">${escapeHtml(item.exampleVi)}</small>` : ''}</div>${item.example ? `<button type="button" class="nhsk-speak" data-nhsk-speak="${attr(item.example)}" aria-label="Nghe ví dụ">🔊</button>` : ''}</div></td><td><label class="nhsk-summary-check"><input type="checkbox" data-nhsk-summary-check data-section-id="${attr(section.id)}" data-item-id="${attr(item.id)}" data-check-kind="understood" ${row.understood ? 'checked' : ''}><span>Đã hiểu</span></label></td><td><label class="nhsk-summary-check"><input type="checkbox" data-nhsk-summary-check data-section-id="${attr(section.id)}" data-item-id="${attr(item.id)}" data-check-kind="canUse" ${row.canUse ? 'checked' : ''}><span>Biết dùng</span></label></td></tr>`;
+      }).join('')}</tbody></table></div>` : '<p>Chưa có bảng tự đánh giá trong nguồn.</p>'}
+      <label class="nhsk-summary-note"><span>${escapeHtml(display.notePrompt || 'Những điểm tôi cần cố gắng')}</span><textarea rows="4" data-nhsk-summary-note data-section-id="${attr(section.id)}" placeholder="Ghi lại nội dung cần ôn thêm...">${escapeHtml(progress.note || '')}</textarea></label>`;
+    return sectionCard(section.title, body, '✓', 'nhsk-card--summary');
   }
 
   function normalizedSectionTitle(value = '') {
@@ -917,35 +1216,43 @@
     if (!section || section.kind === 'report') return '';
     const title = normalizedSectionTitle(section.title);
     if (section.kind === 'objectives') return renderObjectives(lesson.entities.objectives || []);
+    if (section.kind === 'warmup') return renderWarmupSection(section);
+    if (section.summaryDisplay) return renderLearningSummary(section);
     const lessonText = (lesson.entities.lessonTexts || []).find(item => normalizedSectionTitle(item.title) === title);
     const passage = (lesson.entities.passages || []).find(item => normalizedSectionTitle(item.sourceSection || item.title) === title || normalizedSectionTitle(item.title) === title);
-    if (passage) return sectionCard(passage.title, `<div class="nhsk-subsection-head">${mediaBadge('Audio bài đọc', passage.audioRef)}${mediaBadge('Audio từ mới', passage.vocabularyAudioRef)}${renderLayerToggle('passage', 'Bài đọc')}</div>${renderPassage(passage)}`, '跟读');
-    if (lessonText) return renderLessonText(lessonText, idx);
-    if (section.kind === 'grammar') {
-      const items = (lesson.entities.grammar || []).filter(item => normalizedSectionTitle(item.sourceSection) === title);
-      return sectionCard(section.title, items.length ? renderGrammarItems(items) : renderMarkdown(section.markdown), '语法');
-    }
+    if (passage) return sectionCard(passage.title, `${renderSourceVisuals(section.sourceVisuals || [], { variant: 'passage' })}<div class="nhsk-subsection-head">${mediaBadge('Audio bài đọc', passage.audioRef)}${mediaBadge('Audio từ mới', passage.vocabularyAudioRef)}${renderLayerToggle('passage', 'Bài đọc')}</div>${renderPassage(passage)}`, '跟读');
+    if (lessonText) return renderLessonText(lessonText, idx, section);
+    if (section.kind === 'grammar') return renderGrammarSection(section);
     if (section.kind === 'extension') {
       const item = (lesson.entities.extensions || []).find(row => normalizedSectionTitle(row.title) === title);
-      return sectionCard(section.title, item ? renderExtension(item) : renderMarkdown(section.markdown), '彩蛋');
+      return sectionCard(section.title, item ? renderExtension(item) : renderMarkdown(section.markdown), '彩蛋', 'nhsk-card--extension');
     }
-    const eyebrow = section.kind === 'warmup' ? '热身' : section.kind === 'exercise' ? '练习' : section.kind === 'activity' ? '活动' : '';
-    return sectionCard(section.title, renderMarkdown(section.markdown), eyebrow, `nhsk-card--content-${escapeHtml(section.kind || 'section')}`);
+    if (section.kind === 'exercise') {
+      return sectionCard(section.title, renderMarkdown(section.markdown), '练习', 'nhsk-card--content-exercise');
+    }
+    if (section.kind === 'activity') {
+      return sectionCard(section.title, `${renderSourceVisuals(section.sourceVisuals || [], { variant: 'activity' })}${renderMarkdown(section.markdown)}`, '活动', 'nhsk-card--content-activity');
+    }
+    return sectionCard(section.title, `${renderSourceVisuals(section.sourceVisuals || [])}${renderMarkdown(section.markdown)}`, '', `nhsk-card--content-${escapeHtml(section.kind || 'section')}`);
   }
 
   function sectionCard(title, body, eyebrow = '', extra = '') {
     return `<section class="nhsk-card ${extra}"><header class="nhsk-card__head">${eyebrow ? `<span>${escapeHtml(eyebrow)}</span>` : ''}<h2>${escapeHtml(title)}</h2></header><div class="nhsk-card__body">${body}</div></section>`;
   }
 
-  function renderLessonText(item, idx) {
+  function renderLessonText(item, idx, sourceSection = null) {
     const dialogue = idx.dialogues.get(item.dialogueId);
     const vocab = item.vocabularyIds.map(id => idx.vocabulary.get(id)).filter(Boolean);
     const nouns = item.properNounIds.map(id => idx.properNouns.get(id)).filter(Boolean);
     const notes = item.languageNoteIds.map(id => idx.languageNotes.get(id)).filter(Boolean);
     const activities = item.activityIds.map(id => idx.activities.get(id)).filter(Boolean);
+    const instruction = item.instruction || {};
+    const hasInstruction = Boolean(instruction.hanzi || instruction.vi || instruction.audioRef);
     const body = `
       ${renderContext(item.context)}
-      <div class="nhsk-instruction"><span><strong>${escapeHtml(item.instruction.hanzi)}</strong> ${escapeHtml(item.instruction.vi)}</span>${mediaBadge('Audio hội thoại', item.instruction.audioRef)}</div>
+      ${renderSourceVisuals(sourceSection?.sourceVisuals || item.sourceVisuals || [])}
+      ${hasInstruction ? `<div class="nhsk-instruction"><span>${instruction.hanzi ? `<strong>${escapeHtml(instruction.hanzi)}</strong>` : ''} ${escapeHtml(instruction.vi || '')}</span>${mediaBadge('Audio hội thoại', instruction.audioRef)}</div>` : ''}
+      ${renderLessonTasks(sourceSection?.markdown || '', sourceSection?.sourceTasks || [])}
       ${item.visualDescription ? `<details class="nhsk-visual"><summary>Nội dung hình trong sách</summary><p>${escapeHtml(item.visualDescription)}</p></details>` : ''}
       ${dialogue ? `<div class="nhsk-subsection-head"><h3>Hội thoại</h3>${renderLayerToggle('dialogue', 'Hội thoại')}</div>${renderDialogue(dialogue)}` : ''}
       ${vocab.length ? `<div class="nhsk-subsection-head"><h3>Từ mới</h3>${renderVocabularyControls({ grouped: false })}</div>${renderVocabulary(vocab, { audioRef: item.vocabularyAudioRef, sourcePrefix: `book:${item.id}`, showControls: false })}` : ''}
@@ -1014,7 +1321,12 @@
     if (key === 'passages') body = `${renderLayerToggle('passage', 'Bài đọc')}${ids.map(id => idx.passages.get(id)).filter(Boolean).map(item => `<article class="nhsk-group-block"><h3>${escapeHtml(item.title)}</h3>${mediaBadge('Audio bài đọc', item.audioRef)}${mediaBadge('Audio từ mới', item.vocabularyAudioRef)}${renderPassage(item)}</article>`).join('')}`;
     if (key === 'exercisesActivities') body = renderExerciseItems(ids.map(id => idx.exercises.get(id) || idx.activities.get(id)).filter(Boolean));
     if (key === 'extensions') body = ids.map(id => idx.extensions.get(id)).filter(Boolean).map(renderExtension).join('');
-    if (key === 'grammar') body = renderGrammarItems(ids.map(id => idx.grammar.get(id)).filter(Boolean));
+    if (key === 'grammar') {
+      const grammarSections = (lesson.entities.contentSections || []).filter(section => section.kind === 'grammar' && section.grammarDisplay);
+      body = grammarSections.length
+        ? `<div class="nhsk-grammar-toolbar">${renderLayerToggle('grammar', 'Câu mẫu')}</div>${grammarSections.map(section => `<article class="nhsk-group-block nhsk-grammar-item"><h3>${escapeHtml(section.title)}</h3>${renderGrammarDisplayBody(section.grammarDisplay, false)}</article>`).join('')}`
+        : renderGrammarItems(ids.map(id => idx.grammar.get(id)).filter(Boolean));
+    }
     if (key === 'grammarPlus') body = `<div class="nhsk-hsk-parity nhsk-grammar-plus-parity"><div class="nhsk-grammar-plus-intro"><span>NP+</span><p>Ngữ pháp bổ sung theo đúng bài hiện tại; ngữ pháp gốc của sách vẫn nằm ở tab Ngữ pháp.</p></div><div class="nhsk-grammar-card-list hsk-list hsk-list--grammar">${grammarPlusItems.map((item, index) => renderGrammarCard(item, index, { plus: true })).join('')}</div></div>`;
     if (key === 'examplesPractice') body = renderExampleItems(ids.map(id => idx.examplesPractice.get(id)).filter(Boolean));
     return sectionCard(label, body, '', `nhsk-card--${key}`);
@@ -1054,6 +1366,27 @@
   function normalizePracticeActivity(value) {
     if (PRACTICE_ACTIVITY_IDS.has(value)) return value;
     return LEGACY_PRACTICE_ACTIVITY_MAP[value] || 'flashcards';
+  }
+
+  function readSummaryProgress() {
+    try {
+      const parsed = JSON.parse(window.localStorage.getItem(SUMMARY_PROGRESS_KEY) || '{}');
+      return parsed && typeof parsed === 'object' ? parsed : {};
+    } catch (_error) {
+      return {};
+    }
+  }
+
+  function saveSummaryProgress() {
+    try { window.localStorage.setItem(SUMMARY_PROGRESS_KEY, JSON.stringify(summaryProgress)); } catch (_error) {}
+  }
+
+  function summarySectionProgress(sectionId) {
+    const key = String(sectionId || '');
+    const current = summaryProgress[key];
+    if (current && typeof current === 'object') return current;
+    summaryProgress[key] = { checks: {}, note: '' };
+    return summaryProgress[key];
   }
 
   function readProgress() {
@@ -1727,7 +2060,7 @@
     if (!state.practiceRoleSpeaker || !speakers.some(speaker => speaker.hanzi === state.practiceRoleSpeaker)) state.practiceRoleSpeaker = speakers[0]?.hanzi || '';
     const layers = practiceLayerState('roleplay');
     const dialogues = selectedPracticeSources('roleplay').includes('dialogues') ? (practiceSourceGroup('dialogues').ids || []).map(id => indexes(state.lesson).dialogues?.get(id)).filter(Boolean) : [];
-    return sectionCard('Nhập vai hội thoại', `<div class="nhsk-role-picker">${speakers.map(speaker => `<button type="button" class="${state.practiceRoleSpeaker === speaker.hanzi ? 'is-active' : ''}" data-nhsk-role-speaker="${attr(speaker.hanzi)}"><strong>${escapeHtml(speaker.vi)}</strong><small>${escapeHtml(speaker.hanzi)} · ${escapeHtml(speaker.pinyin)}</small></button>`).join('')}</div>${dialogues.map(dialogue => `<section class="nhsk-role-dialogue"><h3>${escapeHtml(dialogue.sourceHeading.replace(/^\d+(?:\.\d+)*\.\s*/, ''))}</h3>${sortByOrder(dialogue.turns || []).map(turn => turn.speaker?.hanzi === state.practiceRoleSpeaker ? `<article class="nhsk-practice-exercise nhsk-role-turn" data-nhsk-typing-card data-entity-id="${attr(turn.id)}"><div class="nhsk-role-label">Đến lượt <strong>${escapeHtml(turn.speaker.vi)}</strong></div><div class="nhsk-practice-prompt">${layers.vi ? `<strong>${escapeHtml(turn.vi)}</strong>` : ''}${layers.pinyin ? `<span>${escapeHtml(turn.pinyin)}</span>` : ''}</div><textarea rows="2" lang="zh-CN" data-nhsk-typing-input placeholder="Gõ lời thoại"></textarea><div class="nhsk-practice-actions"><button type="button" data-nhsk-check-typing data-accepted="${attr(JSON.stringify([turn.hanzi]))}">Kiểm tra</button><button type="button" class="nhsk-speak" data-nhsk-speak="${attr(turn.hanzi)}">🔊</button></div><output data-nhsk-feedback></output></article>` : `<article class="nhsk-role-turn nhsk-role-turn--given"><header><strong>${escapeHtml(turn.speaker?.vi || '')}</strong><button type="button" class="nhsk-speak" data-nhsk-speak="${attr(turn.hanzi)}">🔊</button></header>${layers.hanzi ? `<p class="nhsk-hanzi">${escapeHtml(turn.hanzi)}</p>` : ''}${layers.pinyin ? `<small>${escapeHtml(turn.pinyin)}</small>` : ''}${layers.vi ? `<p>${escapeHtml(turn.vi)}</p>` : ''}</article>`).join('')}</section>`).join('')}`, 'NHẬP VAI');
+    return sectionCard('Nhập vai hội thoại', `<div class="nhsk-role-picker">${speakers.map(speaker => `<button type="button" class="${state.practiceRoleSpeaker === speaker.hanzi ? 'is-active' : ''}" data-nhsk-role-speaker="${attr(speaker.hanzi)}"><strong>${escapeHtml(speaker.vi)}</strong><small>${escapeHtml(speaker.hanzi)} · ${escapeHtml(speaker.pinyin)}</small></button>`).join('')}</div>${dialogues.map(dialogue => `<section class="nhsk-role-dialogue"><h3>${escapeHtml(dialogue.sourceHeading.replace(/^\d+(?:\.\d+)*\.\s*/, ''))}</h3>${sortByOrder(dialogue.turns || []).map(turn => turn.speaker?.hanzi === state.practiceRoleSpeaker ? `<article class="nhsk-practice-exercise nhsk-role-turn" data-nhsk-typing-card data-entity-id="${attr(turn.id)}"><div class="nhsk-role-label">Đến lượt <strong>${escapeHtml(turn.speaker.vi)}</strong></div><div class="nhsk-practice-prompt">${layers.vi ? `<strong class="nhsk-translation">${escapeHtml(turn.vi)}</strong>` : ''}${layers.pinyin ? `<span class="nhsk-pinyin-text">${escapeHtml(turn.pinyin)}</span>` : ''}</div><textarea rows="2" lang="zh-CN" data-nhsk-typing-input placeholder="Gõ lời thoại"></textarea><div class="nhsk-practice-actions"><button type="button" data-nhsk-check-typing data-accepted="${attr(JSON.stringify([turn.hanzi]))}">Kiểm tra</button><button type="button" class="nhsk-speak" data-nhsk-speak="${attr(turn.hanzi)}">🔊</button></div><output data-nhsk-feedback></output></article>` : `<article class="nhsk-role-turn nhsk-role-turn--given"><header><strong>${escapeHtml(turn.speaker?.vi || '')}</strong><button type="button" class="nhsk-speak" data-nhsk-speak="${attr(turn.hanzi)}">🔊</button></header>${layers.hanzi ? `<p class="nhsk-hanzi">${escapeHtml(turn.hanzi)}</p>` : ''}${layers.pinyin ? `<small class="nhsk-pinyin-text">${escapeHtml(turn.pinyin)}</small>` : ''}${layers.vi ? `<p class="nhsk-translation">${escapeHtml(turn.vi)}</p>` : ''}</article>`).join('')}</section>`).join('')}`, 'NHẬP VAI');
   }
 
   function characterIndex() {
@@ -2054,16 +2387,6 @@
   }
 
 
-  function renderSourceAudit(lesson) {
-    return `<details class="nhsk-source-audit">
-      <summary>Truy vết nguồn và độ phủ</summary>
-      <div class="nhsk-source-audit__body">
-        <p><strong>Nguồn:</strong> ${escapeHtml(lesson.source.book)}</p>
-        <p><strong>Trang PDF:</strong> ${escapeHtml(lesson.source.pdfPages)} · <strong>Trang sách:</strong> ${escapeHtml(lesson.source.bookPages)}</p>
-        <div class="nhsk-trace-list">${lesson.source.pageTrace.map(row => `<article><strong>PDF ${row.pdfPage} · Trang ${escapeHtml(row.bookPage)}</strong><span>${escapeHtml(row.content)}</span><small>${escapeHtml(row.status)}</small></article>`).join('')}</div>
-      </div>
-    </details>`;
-  }
 
   function sourceDescriptor(element) {
     if (!element) return null;
@@ -2487,7 +2810,7 @@
     const navigation = state.catalog ? renderCatalogLevelNav() : renderCourseNav();
     const hero = state.catalog ? renderCatalogHero() : renderHero(state.lesson);
     const toolbar = state.catalog ? '' : renderToolbar();
-    root.innerHTML = `<div class="nhsk-page">${navigation}${renderCatalogSwitch()}${hero}${toolbar}<div class="nhsk-content" data-nhsk-content>${content}</div>${state.catalog ? '' : renderSourceAudit(state.lesson)}</div>`;
+    root.innerHTML = `<div class="nhsk-page">${navigation}${renderCatalogSwitch()}${hero}${toolbar}<div class="nhsk-content" data-nhsk-content>${content}</div></div>`;
     saveSettings();
     syncUrl(true);
     focusLessonWord();
@@ -2495,7 +2818,7 @@
   }
 
   function toggleLayer(scope, key) {
-    const target = scope === 'passage' ? state.passageLayers : state.dialogueLayers;
+    const target = layersForScope(scope);
     if (!Object.prototype.hasOwnProperty.call(target, key)) return;
     const activeCount = Object.values(target).filter(Boolean).length;
     if (target[key] && activeCount === 1) return;
@@ -2504,7 +2827,24 @@
   }
 
   function bindEvents() {
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && root.querySelector?.('.nhsk-source-lightbox')) closeSourceVisual();
+    });
+
     root.addEventListener('change', event => {
+      const summaryCheck = event.target.closest?.('[data-nhsk-summary-check]');
+      if (summaryCheck) {
+        const sectionId = summaryCheck.dataset.sectionId || '';
+        const itemId = summaryCheck.dataset.itemId || '';
+        const kind = summaryCheck.dataset.checkKind || '';
+        if (sectionId && itemId && ['understood', 'canUse'].includes(kind)) {
+          const section = summarySectionProgress(sectionId);
+          section.checks = section.checks && typeof section.checks === 'object' ? section.checks : {};
+          section.checks[itemId] = { ...(section.checks[itemId] || {}), [kind]: summaryCheck.checked === true };
+          saveSummaryProgress();
+        }
+        return;
+      }
       const catalogLevelSelect = event.target.closest?.('[data-nhsk-catalog-level-select]');
       if (catalogLevelSelect) {
         navigateCatalogLevel(Number(catalogLevelSelect.value || 1));
@@ -2520,7 +2860,30 @@
       const lessonSelect = event.target.closest?.('[data-nhsk-lesson-select]');
       if (lessonSelect) { navigateLesson(state.level, Number(lessonSelect.value || 1)); return; }
     });
+    root.addEventListener('input', event => {
+      const summaryNote = event.target.closest?.('[data-nhsk-summary-note]');
+      if (!summaryNote) return;
+      const sectionId = summaryNote.dataset.sectionId || '';
+      if (!sectionId) return;
+      const section = summarySectionProgress(sectionId);
+      section.note = summaryNote.value;
+      saveSummaryProgress();
+    });
+
     root.addEventListener('click', event => {
+      const visualClose = event.target.closest('[data-nhsk-source-visual-close]');
+      if (visualClose) { event.preventDefault(); closeSourceVisual(); return; }
+      const visualButton = event.target.closest('[data-nhsk-source-visual]');
+      if (visualButton) { event.preventDefault(); openSourceVisual(visualButton); return; }
+      const taskChoice = event.target.closest('[data-nhsk-source-task-choice]');
+      if (taskChoice) {
+        taskChoice.closest('.nhsk-source-task__question')?.querySelectorAll('[data-nhsk-source-task-choice]').forEach(button => button.classList.toggle('is-selected', button === taskChoice));
+        return;
+      }
+      const taskCheck = event.target.closest('[data-nhsk-source-task-check]');
+      if (taskCheck) { checkSourceTask(taskCheck.closest('[data-nhsk-source-task-card]'), taskCheck); return; }
+      const taskReset = event.target.closest('[data-nhsk-source-task-reset]');
+      if (taskReset) { resetSourceTask(taskReset.closest('[data-nhsk-source-task-card]')); return; }
       const catalogButton = event.target.closest('[data-nhsk-catalog]');
       if (catalogButton) {
         event.preventDefault();

@@ -17,7 +17,7 @@ const pinyinIndex = index.replace(/<script[^>]+app-shell\.js[^>]*><\/script>/g, 
 const versions = [...pinyinIndex.matchAll(/\?v=([^"']+)/g)].map(match => match[1]);
 assert(versions.length >= 10, 'All Pinyin assets must be versioned');
 assert.strictEqual(new Set(versions).size, 1, 'All Pinyin assets must share one cache version');
-assert.strictEqual(versions[0], '20260803-pinyin-audio-scroll-fix-v1', 'Cache token must be bumped for the runtime fix');
+assert.strictEqual(versions[0], '20260804-pinyin-instant-play-v1', 'Cache token must be bumped for the runtime fix');
 
 assert(audio.includes("name === 'AbortError'") && audio.includes("name === 'NotAllowedError'"), 'Temporary playback failures must be classified explicitly');
 assert(audio.includes('code === 3') && audio.includes('code === 4'), 'Only decode or unsupported media errors may become verified broken');

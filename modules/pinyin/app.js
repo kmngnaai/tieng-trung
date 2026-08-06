@@ -80,11 +80,26 @@
     });
   }
 
+  function prepareVisibleAudio() {
+    root.requestAnimationFrame(function () {
+      const controls = Array.from(document.querySelectorAll('[data-action="play-syllable"], [data-action="play-inline-syllable"], [data-action="play-chart-syllable"], [data-action="play-table-syllable"]'));
+      let prepared = 0;
+      controls.some(function (button) {
+        const rect = button.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > root.innerHeight) return false;
+        App.audio.prepareSyllable(button.dataset.safe, Number(button.dataset.tone || App.state.tone || 2));
+        prepared += 1;
+        return prepared >= 8;
+      });
+    });
+  }
+
   function render(options) {
     const opts = options || {};
     const screen = App.screens[App.state.tab] || App.screens.learn;
     rootNode.innerHTML = App.ui.shell(screen.render());
     restoreViewState(opts.restoreKey || currentViewKey(), !!opts.topIfMissing);
+    prepareVisibleAudio();
   }
 
   function rerender() {
@@ -291,6 +306,10 @@
   }
 
   function handlePointerDown(event) {
+    const audioButton = event.target.closest('[data-action="play-syllable"], [data-action="play-inline-syllable"], [data-action="play-chart-syllable"], [data-action="play-table-syllable"]');
+    if (audioButton && audioButton.dataset.safe) {
+      App.audio.prepareSyllable(audioButton.dataset.safe, Number(audioButton.dataset.tone || App.state.tone || 2));
+    }
     const summary = event.target.closest('summary');
     const details = summary && summary.parentElement;
     if (!details || (!details.dataset.miniTableId && !details.dataset.ruleCategoryId)) return;

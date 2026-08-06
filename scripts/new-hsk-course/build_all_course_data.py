@@ -376,6 +376,48 @@ def content_sections(text: str, lesson_id: str) -> list[dict[str, Any]]:
     return rows
 
 
+def apply_hsk1_source_manifests(repo: Path, lesson_id: str, sections: list[dict[str, Any]]) -> tuple[int, int, int]:
+    """Merge source trace, activity keys and presentation metadata after Markdown parsing.
+
+    Full-page PDF captures stay in JSON for auditability but are marked
+    ``displayInLesson: false``. Only clean PPT assets or explicit ``pdf-crop``
+    assets are eligible for the learner-facing lesson UI.
+    """
+    if not lesson_id.startswith("nhsk-1-"):
+        return 0, 0, 0
+    base = repo / "modules/new-hsk-course/source/hsk1"
+    visual_path = base / "visual-manifest.json"
+    task_path = base / "source-task-manifest.json"
+    display_path = base / "display-manifest.json"
+    visuals: dict[str, Any] = {}
+    tasks: dict[str, Any] = {}
+    display_sections: dict[str, Any] = {}
+    if visual_path.exists():
+        visuals = ((json.loads(visual_path.read_text(encoding="utf-8")).get("lessons", {}).get(lesson_id, {}) or {}).get("sections", {}))
+    if task_path.exists():
+        tasks = ((json.loads(task_path.read_text(encoding="utf-8")).get("lessons", {}).get(lesson_id, {}) or {}).get("sections", {}))
+    if display_path.exists():
+        display_sections = ((json.loads(display_path.read_text(encoding="utf-8")).get("lessons", {}).get(lesson_id, {}) or {}).get("sections", {}))
+    visual_count = 0
+    visible_visual_count = 0
+    task_count = 0
+    for section in sections:
+        section_id = section.get("id")
+        config = display_sections.get(section_id, {}) or {}
+        section_visuals = config.get("sourceVisuals") or visuals.get(section_id) or []
+        if section_visuals:
+            section["sourceVisuals"] = section_visuals
+            visual_count += len(section_visuals)
+            visible_visual_count += sum(1 for item in section_visuals if item.get("displayInLesson") is True)
+        if tasks.get(section_id):
+            section["sourceTasks"] = tasks[section_id]
+            task_count += len(tasks[section_id])
+        for key in ("warmupDisplay", "grammarDisplay", "summaryDisplay"):
+            if config.get(key):
+                section[key] = config[key]
+    return visual_count, task_count, visible_visual_count
+
+
 def load_character_sources(repo: Path) -> tuple[dict[str, Any], dict[str, Any]]:
     base = repo / "modules/hanzi-stroke/data/learning/character-enrichment/hsk1-3-single"
     index = json.loads((base / "index.json").read_text(encoding="utf-8"))
@@ -658,6 +700,7 @@ def build_lesson(repo: Path, markdown_path: Path, dialogue_path: Path, char_inde
     grammar, examples = grammar_entities(body, lesson_id)
     exercises, activities, extensions = generic_exercises(body, lesson_id)
     contents = content_sections(body, lesson_id)
+    source_visual_count, source_task_count, visible_source_visual_count = apply_hsk1_source_manifests(repo, lesson_id, contents)
 
     objective_section = next((sec for sec in split_sections(body, 2) if normalize_title(sec.title) == "Mục tiêu"), None)
     objectives = [
@@ -715,6 +758,7 @@ def build_lesson(repo: Path, markdown_path: Path, dialogue_path: Path, char_inde
             "dialogues": len(dialogues), "dialogueTurns": sum(len(row["turns"]) for row in dialogues), "languageNotes": len(language_notes),
             "grammar": len(grammar), "examplesPractice": len(examples), "exercises": len(exercises), "activities": len(activities),
             "passages": len(passages), "extensions": len(extensions), "contentSections": len(contents),
+            "sourceVisuals": source_visual_count, "visibleSourceVisuals": visible_source_visual_count, "sourceTasks": source_task_count,
         },
         "entities": entities,
         "views": {

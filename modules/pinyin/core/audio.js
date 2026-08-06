@@ -3,6 +3,7 @@
 
   const App = root.PinyinApp = root.PinyinApp || {};
   const player = new Audio();
+  player.preload = 'auto';
   let activeButton = null;
   let activeUtterance = null;
   let activeSource = '';
@@ -12,6 +13,31 @@
   let lastFailure = null;
   const runtimeBroken = new Map();
   const transientFailures = new Map();
+  const preparedSources = new Map();
+  const PREPARED_SOURCE_LIMIT = 12;
+
+  function prepareSource(src) {
+    const value = String(src || '').trim();
+    if (!value) return null;
+    if (preparedSources.has(value)) {
+      const cached = preparedSources.get(value);
+      preparedSources.delete(value);
+      preparedSources.set(value, cached);
+      return cached;
+    }
+    const warm = new Audio();
+    warm.preload = 'auto';
+    warm.src = value;
+    try { warm.load(); } catch (_error) {}
+    preparedSources.set(value, warm);
+    while (preparedSources.size > PREPARED_SOURCE_LIMIT) {
+      const oldest = preparedSources.keys().next().value;
+      const stale = preparedSources.get(oldest);
+      try { stale.removeAttribute('src'); stale.load(); } catch (_error) {}
+      preparedSources.delete(oldest);
+    }
+    return warm;
+  }
 
   function clearFailureClasses(button) {
     if (!button) return;
@@ -26,15 +52,20 @@
     activeButton = null;
   }
 
-  function stop() {
+  function stop(options) {
+    const releaseSource = !options || options.releaseSource !== false;
     playbackToken += 1;
     queueToken += 1;
     queueActive = false;
     player.onended = null;
     player.onerror = null;
     try { player.pause(); } catch (_error) {}
-    try { player.removeAttribute('src'); player.load(); } catch (_error) {}
-    activeSource = '';
+    if (releaseSource) {
+      try { player.removeAttribute('src'); player.load(); } catch (_error) {}
+      activeSource = '';
+    } else {
+      try { player.currentTime = 0; } catch (_error) {}
+    }
     if (root.speechSynthesis) {
       try { root.speechSynthesis.cancel(); } catch (_error) {}
     }
@@ -127,11 +158,17 @@
 
   async function playSource(src, button) {
     if (!src) return false;
-    stop();
+    const reuseSource = activeSource === src && player.getAttribute('src') === src;
+    stop({ releaseSource: !reuseSource });
     const token = playbackToken;
     activeSource = src;
     setButton(button);
-    player.src = src;
+    prepareSource(src);
+    if (!reuseSource) {
+      player.preload = 'auto';
+      player.src = src;
+      try { player.load(); } catch (_error) {}
+    }
     player.currentTime = 0;
     let eventHandled = false;
 
@@ -228,6 +265,12 @@
       try { root.speechSynthesis.speak(utterance); }
       catch (_error) { utterance.onerror(); }
     });
+  }
+
+  function prepareSyllable(safe, tone) {
+    const item = App.data.syllable(safe);
+    const source = availability(item, Number(tone || 0));
+    return source.status === 'mp3' ? prepareSource(source.src) : null;
   }
 
   async function playSyllable(safe, tone, button) {
@@ -421,6 +464,8 @@
     verifiedFallback,
     availability,
     classifyFailure,
+    prepareSource,
+    prepareSyllable,
     playSyllable,
     inspectShadowing,
     playShadowing,

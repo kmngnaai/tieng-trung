@@ -62,6 +62,7 @@ def measure(page):
         token: rect('.hsk-flashcard-radical-bank button'),
         groups: rect('.hsk-flashcard-radical-groups'),
         group: rect('.hsk-flashcard-radical-groups button'),
+        feedback: rect('.hsk-flashcard-ordering-feedback'),
         studyStyle: style('.hsk-flashcard-study--radical-sort'),
         documentWidth: document.documentElement.scrollWidth,
         viewportWidth: innerWidth
@@ -94,12 +95,13 @@ def complete_round(page):
     assert page.locator('[data-hsk-radical-item]').count() == 0
 
 
-def assert_compact(m, width):
+def assert_thumb_friendly(m, width, height):
     assert m['documentWidth'] <= m['viewportWidth'], m
-    assert m['studyStyle']['alignContent'] in ('start', 'flex-start'), m
-    assert m['meta']['height'] <= 32, m
-    assert m['bank']['height'] <= 92, m
-    assert m['token']['height'] <= 42, m
+    assert m['study']['height'] >= height * .78, m
+    assert m['groups']['width'] >= m['study']['width'] - 24, m
+    assert m['bank']['width'] >= m['study']['width'] - 24, m
+    assert m['bank']['y'] >= m['groups']['y'] + m['groups']['height'] + 120, m
+    assert m['token']['height'] <= 64, m
     assert m['group']['height'] <= 90, m
     assert m['groups']['height'] <= 205, m
 
@@ -116,7 +118,16 @@ def main():
             errors=[]; page.on('pageerror', lambda error: errors.append(str(error)))
             open_radical_sort(page)
             m = measure(page)
-            assert_compact(m, width)
+            assert_thumb_friendly(m, width, height)
+            page.locator('.hsk-flashcard-study--radical-sort').evaluate("node => node.dataset.selectionPatchMarker = 'kept'")
+            page.locator('[data-hsk-radical-item]').first.click(force=True)
+            assert page.locator('.hsk-flashcard-study--radical-sort').get_attribute('data-selection-patch-marker') == 'kept'
+            page.wait_for_selector('[data-hsk-radical-selected-help]:not([hidden])')
+            help_style = page.locator('[data-hsk-radical-selected-help] span').last.evaluate("node => ({clamp:getComputedStyle(node).webkitLineClamp, whiteSpace:getComputedStyle(node).whiteSpace})")
+            assert help_style['clamp'] == '2' and help_style['whiteSpace'] == 'normal', help_style
+            page.locator('[data-hsk-radical-display-mode="meaning"]').click(force=True)
+            token_style = page.locator('.hsk-flashcard-radical-token small').first.evaluate("node => ({clamp:getComputedStyle(node).webkitLineClamp, whiteSpace:getComputedStyle(node).whiteSpace})")
+            assert token_style['clamp'] == '2' and token_style['whiteSpace'] == 'normal', token_style
             page.screenshot(path=str(OUT/f'radical-{width}x{height}.png'), full_page=False)
             if width == 390:
                 complete_round(page)
@@ -129,6 +140,6 @@ def main():
             assert not errors, errors
             context.close()
         browser.close()
-    print('PASS: Flashcard radical sort mobile v6 compact UI')
+    print('PASS: Flashcard radical sort thumb-friendly mobile UI, two-line meaning and patched selection')
 
 if __name__ == '__main__': main()

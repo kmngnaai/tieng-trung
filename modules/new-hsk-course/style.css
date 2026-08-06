@@ -410,3 +410,381 @@ body.nhsk-modal-open{overflow:hidden}
 .nhsk-character-scope-toggle button small{margin-left:4px;color:inherit;font-size:10px}
 .nhsk-character-scope-toggle button.is-active{border-color:#56ad98;background:#e7f6f0;color:#176f61;box-shadow:0 2px 8px rgba(35,113,91,.08)}
 @media(max-width:420px){.nhsk-character-scope-toggle button{font-size:11px;padding-inline:5px}}
+
+
+/* HSK1 source-backed visual flow v1 - PDF keeps content order, PPT supplies clean imagery. */
+.nhsk-source-visuals{margin:0 0 14px;border:1px solid #d9e7e2;border-radius:16px;background:linear-gradient(145deg,#fbfffd,#f3faf7);padding:10px}
+.nhsk-source-visuals__head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 2px 9px}
+.nhsk-source-visuals__head strong{font-size:12px;color:#285f55}.nhsk-source-visuals__head span{font-size:10px;color:var(--ui-text-muted)}
+.nhsk-source-visuals__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:9px}
+.nhsk-source-visual{min-width:0;overflow:hidden;border:1px solid #dce8e3;border-radius:14px;background:#fff;padding:0;color:inherit;text-align:left;cursor:zoom-in;box-shadow:0 4px 12px rgba(30,89,74,.06);transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+.nhsk-source-visual:hover,.nhsk-source-visual:focus-visible{border-color:#75b8a5;box-shadow:0 8px 20px rgba(30,89,74,.12);transform:translateY(-1px);outline:none}
+.nhsk-source-visual__media{display:grid;min-height:150px;max-height:320px;place-items:center;overflow:hidden;background:#f6faf8}
+.nhsk-source-visual__media img{display:block;width:100%;height:auto;max-height:320px;object-fit:contain}
+.nhsk-source-visual__meta{display:grid;gap:3px;border-top:1px solid #e5edea;padding:8px 10px 9px}
+.nhsk-source-visual__meta b{width:max-content;border-radius:999px;background:#e5f4ee;padding:3px 7px;color:#1e7564;font-size:9px;letter-spacing:.03em;text-transform:uppercase}
+.nhsk-source-visual__meta span{overflow:hidden;color:var(--ui-text-secondary);font-size:11px;line-height:1.4;text-overflow:ellipsis;white-space:nowrap}
+
+.nhsk-book-tasks{margin:0 0 14px;border:1px solid #dcd6ef;border-radius:15px;background:#fbf9ff;padding:11px 12px}
+.nhsk-book-tasks__head{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.nhsk-book-tasks__head>span{display:grid;width:27px;height:27px;flex:0 0 auto;place-items:center;border-radius:9px;background:#e7e1f7;color:#665798;font-weight:900}
+.nhsk-book-tasks__head div{display:grid;gap:1px}.nhsk-book-tasks__head strong{font-size:12px;color:#55477f}.nhsk-book-tasks__head small{color:var(--ui-text-muted);font-size:10px}
+.nhsk-book-tasks .nhsk-markdown{margin:0}.nhsk-book-tasks .nhsk-markdown-heading:first-child{margin-top:0}
+
+.nhsk-source-task{display:grid;gap:10px;margin-top:12px;border-top:1px dashed #d8d0ef;padding-top:12px}
+.nhsk-source-task>header{display:flex;align-items:center;gap:9px}
+.nhsk-source-task>header>span{display:grid;width:30px;height:30px;flex:0 0 auto;place-items:center;border-radius:10px;background:#eee9fb}
+.nhsk-source-task>header>div{display:grid;min-width:0;flex:1;gap:2px}
+.nhsk-source-task>header strong{color:#54477d;font-size:12px}.nhsk-source-task>header small{color:var(--ui-text-muted);font-size:10px;line-height:1.4}
+.nhsk-source-task__mcq{display:grid;gap:8px}
+.nhsk-source-task__question{display:grid;grid-template-columns:54px minmax(0,1fr) auto;align-items:center;gap:8px;border:1px solid #e1ddef;border-radius:12px;background:#fff;padding:8px}
+.nhsk-source-task__question>b{font-size:11px;color:#65598c}
+.nhsk-source-task__question>div{display:flex;gap:7px}
+.nhsk-source-task__question button{display:grid;width:38px;height:36px;place-items:center;border:1px solid #d9d4e9;border-radius:10px;background:#fff;color:#574e74;font-weight:850;cursor:pointer}
+.nhsk-source-task__question button.is-selected{border-color:#7061a8;background:#eee9fb;box-shadow:0 2px 0 #c9bee9}
+.nhsk-source-task.is-checked .nhsk-source-task__question button.is-answer{border-color:#42a37e;background:#e5f5ed;color:#156b4d}
+.nhsk-source-task.is-checked .nhsk-source-task__question.is-wrong button.is-selected:not(.is-answer){border-color:#d98078;background:#fff0ee;color:#a63d35}
+.nhsk-source-task__question>span{min-width:48px;color:#6b607f;font-size:10px;font-weight:800;text-align:right}
+.nhsk-source-task__match-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.nhsk-source-task__match-grid label{display:grid;gap:5px;border:1px solid #e1ddef;border-radius:11px;background:#fff;padding:8px}
+.nhsk-source-task__match-grid label>span{font-size:10px;font-weight:800;color:#65598c}
+.nhsk-source-task__match-grid select{min-width:0;height:38px;border:1px solid #d9d4e9;border-radius:9px;background:#fff;padding:0 8px;font:800 13px var(--ui-font-sans)}
+.nhsk-source-task__match-grid select.is-correct{border-color:#42a37e;background:#e5f5ed}.nhsk-source-task__match-grid select.is-wrong{border-color:#d98078;background:#fff0ee}
+.nhsk-source-task__actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.nhsk-source-task__actions button{min-height:38px;border:1px solid #7264a5;border-radius:11px;background:#6d5f9e;padding:0 13px;color:#fff;font:800 11px var(--ui-font-sans);cursor:pointer}
+.nhsk-source-task__actions button+button{border-color:#d6d0e6;background:#fff;color:#63587d}
+.nhsk-source-task__actions output{margin-left:auto;color:#2b7561;font-size:11px;font-weight:850}
+.nhsk-source-task__source{color:var(--ui-text-muted);font-size:9px}
+
+html.nhsk-lightbox-open{overflow:hidden}
+.nhsk-source-lightbox{position:fixed;inset:0;z-index:calc(var(--ui-z-modal,1000) + 20);display:grid;place-items:center;padding:max(12px,env(safe-area-inset-top)) 12px max(12px,env(safe-area-inset-bottom))}
+.nhsk-source-lightbox__backdrop{position:absolute;inset:0;width:100%;height:100%;border:0;background:rgba(11,27,23,.78);cursor:zoom-out;backdrop-filter:blur(5px)}
+.nhsk-source-lightbox__panel{position:relative;z-index:1;display:grid;width:min(1100px,100%);max-height:calc(100dvh - 24px);overflow:hidden;border:1px solid rgba(255,255,255,.22);border-radius:20px;background:#fff;box-shadow:0 28px 90px rgba(0,0,0,.38)}
+.nhsk-source-lightbox__panel>header{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #e2e9e6;padding:10px 12px 10px 15px}
+.nhsk-source-lightbox__panel>header div{display:grid;min-width:0;gap:2px}.nhsk-source-lightbox__panel>header strong,.nhsk-source-lightbox__panel>header small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.nhsk-source-lightbox__panel>header small{color:var(--ui-text-muted);font-size:10px}
+.nhsk-source-lightbox__panel>header button{display:grid;width:38px;height:38px;flex:0 0 auto;place-items:center;border:1px solid #d9e4e0;border-radius:12px;background:#f5f9f7;color:#365e55;font:700 25px/1 var(--ui-font-sans);cursor:pointer}
+.nhsk-source-lightbox__stage{display:grid;min-height:0;overflow:auto;place-items:center;background:#eef4f1;padding:10px}
+.nhsk-source-lightbox__stage img{display:block;max-width:100%;height:auto;max-height:calc(100dvh - 94px);object-fit:contain;border-radius:10px;background:white}
+
+@media(max-width:430px){
+  .nhsk-source-visuals{margin-inline:-2px;padding:8px;border-radius:14px}.nhsk-source-visuals__grid{grid-template-columns:1fr}.nhsk-source-visual__media{min-height:130px}
+  .nhsk-source-task__question{grid-template-columns:48px minmax(0,1fr);}.nhsk-source-task__question>span{grid-column:1/-1;text-align:left}
+  .nhsk-source-task__match-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .nhsk-source-task__actions output{width:100%;margin-left:0}
+  .nhsk-source-lightbox{padding:0}.nhsk-source-lightbox__panel{width:100%;max-height:100dvh;border-radius:0}.nhsk-source-lightbox__stage img{max-height:calc(100dvh - 72px)}
+  .nhsk-book-tasks{padding:10px}
+}
+.nhsk-app :is(.nhsk-hero__hanzi,.nhsk-dialogue-line--hanzi,.nhsk-vocab-item__word,.nhsk-passage-line--hanzi,.nhsk-markdown strong){font-family:"Songti SC","Noto Serif SC",STSong,"Noto Serif CJK SC",SimSun,serif;font-synthesis:none}
+
+/* 2026-08-06 · HSK1 refined lesson presentation v2.
+   Source trace remains in JSON; learner UI only shows clean PPT/pdf-crop assets. */
+.nhsk-visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+
+.nhsk-source-visuals{margin:0 0 14px;border:0;border-radius:0;background:transparent;padding:0}
+.nhsk-source-visuals__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:10px}
+.nhsk-source-visual{position:relative;display:grid;min-width:0;overflow:hidden;border:1px solid #dbe7e2;border-radius:16px;background:#fff;padding:0;color:inherit;cursor:zoom-in;box-shadow:0 5px 16px rgba(31,84,70,.075)}
+.nhsk-source-visual:hover,.nhsk-source-visual:focus-visible{border-color:#78b9a7;box-shadow:0 10px 24px rgba(31,84,70,.13);transform:translateY(-1px);outline:none}
+.nhsk-source-visual__media{display:grid;min-height:0;max-height:none;place-items:center;overflow:hidden;background:#fff}
+.nhsk-source-visual__media img{display:block;width:100%;height:auto;max-height:none;object-fit:contain}
+.nhsk-source-visuals__head,.nhsk-source-visual__meta{display:none!important}
+
+.nhsk-source-lightbox__panel>header{position:absolute;z-index:3;top:8px;right:8px;display:block;border:0;background:transparent;padding:0}
+.nhsk-source-lightbox__panel>header button{border-color:rgba(255,255,255,.88);background:rgba(26,48,43,.76);color:#fff;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+.nhsk-source-lightbox__stage{padding:8px;background:#eef4f1}
+.nhsk-source-lightbox__stage img{max-height:calc(100dvh - 40px)}
+
+.nhsk-warmup-instruction{display:grid;gap:7px;margin-bottom:12px;border-left:4px solid #58a98f;border-radius:0 14px 14px 0;background:#f1faf6;padding:12px 13px}
+.nhsk-warmup-instruction h3{margin:0;color:#2a6d5d;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.nhsk-warmup-instruction p{margin:0}
+.nhsk-warmup-instruction__hanzi{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.nhsk-warmup-instruction__hanzi p{font-size:19px;line-height:1.5}
+.nhsk-warmup-toolbar{display:flex;justify-content:flex-end;margin:10px 0 8px}
+.nhsk-warmup-toolbar .nhsk-layer-control{margin:0}
+.nhsk-warmup-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0}
+.nhsk-warmup-choice{display:grid;grid-template-columns:30px minmax(0,1fr) 34px;align-items:center;gap:8px;border:1px solid #dfe9e5;border-radius:13px;background:#fff;padding:8px 9px}
+.nhsk-warmup-choice>b{display:grid;width:28px;height:28px;place-items:center;border-radius:9px;background:#e9f5f0;color:#236d5c;font-size:12px}
+.nhsk-warmup-choice>div{display:grid;min-width:0;gap:1px}
+.nhsk-warmup-choice .nhsk-hanzi{font-size:20px;line-height:1.25}
+.nhsk-warmup-choice small{color:#5f7590;font-size:11px}
+.nhsk-warmup-choice em{overflow:hidden;color:#776d64;font-size:11px;font-style:normal;text-overflow:ellipsis;white-space:nowrap}
+.nhsk-warmup-choice .nhsk-speak{width:32px;height:32px}
+
+.nhsk-source-task{display:grid;gap:11px;margin-top:12px;border:1px solid #dfdaef;border-radius:15px;background:#fbf9ff;padding:12px}
+.nhsk-source-task>header{display:flex;align-items:center;gap:9px}
+.nhsk-source-task>header>span{display:grid;width:32px;height:32px;flex:0 0 auto;place-items:center;border-radius:10px;background:#eee9fb}
+.nhsk-source-task>header>div{display:grid;min-width:0;flex:1;gap:2px}
+.nhsk-source-task>header strong{color:#54477d;font-size:13px}.nhsk-source-task>header small{color:var(--ui-text-muted);font-size:10px;line-height:1.45}
+.nhsk-source-task__match-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.nhsk-source-task__match-grid label{display:grid;gap:5px;border:1px solid #e1ddef;border-radius:11px;background:#fff;padding:8px}
+.nhsk-source-task__match-grid label>span{font-size:10px;font-weight:850;color:#65598c}
+.nhsk-source-task__match-grid label>small{min-height:1.35em;color:#7b718b;font-size:9px;font-weight:800}
+.nhsk-source-task__match-grid select{min-width:0;height:39px;border:1px solid #d9d4e9;border-radius:9px;background:#fff;padding:0 8px;font:800 13px var(--ui-font-sans)}
+.nhsk-source-task__match-grid select.is-correct{border-color:#42a37e;background:#e5f5ed}.nhsk-source-task__match-grid select.is-wrong{border-color:#d98078;background:#fff0ee}
+.nhsk-source-task__mcq{display:grid;gap:8px}
+.nhsk-source-task__question{display:grid;grid-template-columns:54px minmax(0,1fr) auto;align-items:center;gap:8px;border:1px solid #e1ddef;border-radius:12px;background:#fff;padding:8px}
+.nhsk-source-task__question>b{font-size:11px;color:#65598c}.nhsk-source-task__question>div{display:flex;gap:7px}
+.nhsk-source-task__question button{display:grid;width:38px;height:36px;place-items:center;border:1px solid #d9d4e9;border-radius:10px;background:#fff;color:#574e74;font-weight:850;cursor:pointer}
+.nhsk-source-task__question button.is-selected{border-color:#7061a8;background:#eee9fb;box-shadow:0 2px 0 #c9bee9}
+.nhsk-source-task__question.is-correct button.is-selected{border-color:#42a37e;background:#e5f5ed;color:#156b4d}
+.nhsk-source-task__question.is-wrong button.is-selected{border-color:#d98078;background:#fff0ee;color:#a63d35}
+.nhsk-source-task__question>[data-nhsk-source-task-status]{min-width:58px;color:#6b607f;font-size:10px;font-weight:850;text-align:right}
+.nhsk-source-task__actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.nhsk-source-task__actions button{min-height:39px;border:1px solid #7264a5;border-radius:11px;background:#6d5f9e;padding:0 14px;color:#fff;font:800 11px var(--ui-font-sans);cursor:pointer}
+.nhsk-source-task__actions button+button{border-color:#d6d0e6;background:#fff;color:#63587d}
+.nhsk-source-task__actions output{margin-left:auto;color:#2b7561;font-size:11px;font-weight:850}
+.nhsk-source-task__answers{border-top:1px dashed #d8d0e8;padding-top:9px}
+.nhsk-source-task__answers summary{width:max-content;cursor:pointer;color:#66578f;font-size:11px;font-weight:850}
+.nhsk-source-task__answers ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:9px 0 0;padding:0;list-style:none}
+.nhsk-source-task__answers li{display:flex;align-items:center;justify-content:space-between;gap:7px;border:1px solid #e3deef;border-radius:9px;background:#fff;padding:7px 9px;font-size:10px}
+.nhsk-source-task__answers li b{color:#4e4377;font-size:12px}
+.nhsk-source-task__source{display:none!important}
+
+.nhsk-grammar-toolbar{display:flex;justify-content:flex-end;margin-bottom:10px}
+.nhsk-grammar-intro{margin-bottom:12px;border-left:4px solid #8a78bb;border-radius:0 13px 13px 0;background:#f8f5ff;padding:11px 12px}
+.nhsk-grammar-intro .nhsk-markdown{margin:0}
+.nhsk-grammar-group{display:grid;gap:9px;margin-top:13px}
+.nhsk-grammar-group>h3{margin:0;color:#5e5086;font-size:14px}
+.nhsk-grammar-group__label{font-size:11px!important;letter-spacing:.05em;text-transform:uppercase}
+.nhsk-grammar-examples{display:grid;gap:9px}
+.nhsk-grammar-example{display:grid;grid-template-columns:36px minmax(0,1fr);gap:9px;border:1px solid #e2ddef;border-radius:14px;background:#fff;padding:10px}
+.nhsk-grammar-example>header{display:grid;align-content:start;justify-items:center;gap:5px}
+.nhsk-grammar-example>header>span{display:grid;width:27px;height:27px;place-items:center;border-radius:9px;background:#eee9fa;color:#66568f;font-size:10px;font-weight:900}
+.nhsk-grammar-example>header .nhsk-speak{width:31px;height:31px}
+.nhsk-grammar-example__lines{display:grid;min-width:0;gap:3px}
+.nhsk-grammar-example__lines p{margin:0}
+.nhsk-grammar-example__hanzi{font-size:21px;line-height:1.55}
+.nhsk-grammar-example__pinyin{color:#4f6f91;font-size:13px;font-weight:700;line-height:1.45}
+.nhsk-grammar-example__vi{color:#655f59;font-size:13px;line-height:1.45}
+.nhsk-grammar-example__vi.is-missing{color:#9a8170;font-size:11px;font-style:italic}
+
+.nhsk-summary-lead{margin:0 0 12px;color:#66716d;font-size:12px}
+.nhsk-summary-table-wrap{overflow:auto;border:1px solid #dce7e3;border-radius:15px}
+.nhsk-summary-table{width:100%;min-width:760px;border-collapse:collapse;background:#fff}
+.nhsk-summary-table th,.nhsk-summary-table td{border-bottom:1px solid #e7eeeb;padding:9px 10px;text-align:left;vertical-align:middle;font-size:11px}
+.nhsk-summary-table th{background:#eef7f3;color:#35665b;font-weight:900}
+.nhsk-summary-table tr:last-child td{border-bottom:0}
+.nhsk-summary-table th:nth-child(1),.nhsk-summary-table td:nth-child(1){width:46px;text-align:center}
+.nhsk-summary-table th:nth-child(4),.nhsk-summary-table th:nth-child(5),.nhsk-summary-table td:nth-child(4),.nhsk-summary-table td:nth-child(5){width:92px;text-align:center}
+.nhsk-summary-example{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.nhsk-summary-example .nhsk-hanzi{font-size:16px;line-height:1.4}.nhsk-summary-example .nhsk-speak{width:30px;height:30px;flex:0 0 auto}
+.nhsk-summary-check{display:inline-grid;justify-items:center;gap:3px;cursor:pointer}
+.nhsk-summary-check input{width:21px;height:21px;accent-color:#2b8a70}.nhsk-summary-check span{font-size:9px;color:#6b756f}
+.nhsk-summary-note{display:grid;gap:7px;margin-top:12px}.nhsk-summary-note>span{color:#35665b;font-size:12px;font-weight:850}
+.nhsk-summary-note textarea{width:100%;resize:vertical;border:1px solid #d9e6e1;border-radius:12px;background:#fbfefc;padding:10px 11px;color:var(--ui-text);font:12px/1.5 var(--ui-font-sans)}
+.nhsk-summary-note textarea:focus{border-color:#63ab96;box-shadow:0 0 0 3px rgba(72,157,131,.12);outline:none}
+
+.nhsk-card--extension .nhsk-extension{margin:0}
+.nhsk-card--content-exercise .nhsk-card__body,.nhsk-card--summary .nhsk-card__body{overflow:visible}
+
+@media(max-width:600px){
+  .nhsk-source-visuals__grid{grid-template-columns:1fr}.nhsk-source-visual{border-radius:13px}
+  .nhsk-warmup-choices{grid-template-columns:1fr 1fr}.nhsk-warmup-choice{grid-template-columns:27px minmax(0,1fr) 30px;padding:7px}.nhsk-warmup-choice .nhsk-hanzi{font-size:18px}
+  .nhsk-source-task__question{grid-template-columns:48px minmax(0,1fr)}.nhsk-source-task__question>[data-nhsk-source-task-status]{grid-column:1/-1;text-align:left}
+  .nhsk-source-task__match-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.nhsk-source-task__answers ol{grid-template-columns:repeat(2,minmax(0,1fr))}.nhsk-source-task__actions output{width:100%;margin-left:0}
+  .nhsk-grammar-example{grid-template-columns:32px minmax(0,1fr);padding:9px}.nhsk-grammar-example__hanzi{font-size:20px}
+  .nhsk-summary-table{display:block;min-width:0}.nhsk-summary-table thead{display:none}.nhsk-summary-table tbody{display:grid;gap:9px;padding:8px}.nhsk-summary-table tr{display:grid;grid-template-columns:34px repeat(2,minmax(0,1fr));grid-template-rows:auto auto 58px;gap:6px;border:1px solid #dfe9e5;border-radius:12px;background:#fff;padding:8px}.nhsk-summary-table td{border:0!important;padding:3px!important;width:auto!important;text-align:left!important}.nhsk-summary-table td:nth-child(1){grid-column:1;grid-row:1/4;display:grid;place-items:center;border-radius:9px!important;background:#eef7f3;color:#2f6a5b;font-weight:900}.nhsk-summary-table td:nth-child(2){grid-column:2/4;grid-row:1;font-weight:750}.nhsk-summary-table td:nth-child(3){grid-column:2/4;grid-row:2}.nhsk-summary-table td:nth-child(4){grid-column:2;grid-row:3;display:grid;place-items:center}.nhsk-summary-table td:nth-child(5){grid-column:3;grid-row:3;display:grid;place-items:center}.nhsk-summary-check{width:100%;min-height:52px;align-content:center;justify-content:center}.nhsk-summary-example{justify-content:flex-start}
+  .nhsk-source-lightbox{padding:0}.nhsk-source-lightbox__panel{width:100%;max-height:100dvh;border-radius:0}.nhsk-source-lightbox__stage img{max-height:100dvh}
+}
+@media(max-width:380px){.nhsk-warmup-choices{grid-template-columns:1fr}.nhsk-source-task__match-grid{grid-template-columns:1fr 1fr}}
+
+/* 2026-08-06 · Refined v3: blue Vietnamese meanings, colorful card accents,
+   and a slightly stronger Hanzi weight across the complete New HSK module. */
+.nhsk-app{
+  --nhsk-meaning-blue:#1687d9;
+  --nhsk-accent-1:#6f9fe8;
+  --nhsk-accent-2:#68b982;
+  --nhsk-accent-3:#62b9c8;
+  --nhsk-accent-4:#9a7fd1;
+  --nhsk-accent-5:#e79a62;
+  --nhsk-accent-6:#df7fa8;
+  --nhsk-accent-7:#7f8fd8;
+  --nhsk-accent-8:#68a99f;
+}
+
+/* Vietnamese meaning is the visual anchor, matching the reference card style. */
+.nhsk-app :is(
+  .nhsk-vocab-item__meaning,
+  .nhsk-topic-word .hsk-meaning:not(.is-muted),
+  .nhsk-word-preview-hero .hsk-meaning:not(.is-muted),
+  .nhsk-word-preview-section .hsk-meaning:not(.is-muted)
+){
+  color:var(--nhsk-meaning-blue)!important;
+  font-weight:800;
+}
+
+/* Lesson vocabulary/proper-noun cards receive the same rotating accent language
+   already used by the HSK catalog list/grid cards. */
+.nhsk-vocab-list>.nhsk-vocab-item{--nhsk-card-accent:var(--nhsk-accent-1)}
+.nhsk-vocab-list>.nhsk-vocab-item:nth-child(8n+2){--nhsk-card-accent:var(--nhsk-accent-2)}
+.nhsk-vocab-list>.nhsk-vocab-item:nth-child(8n+3){--nhsk-card-accent:var(--nhsk-accent-3)}
+.nhsk-vocab-list>.nhsk-vocab-item:nth-child(8n+4){--nhsk-card-accent:var(--nhsk-accent-4)}
+.nhsk-vocab-list>.nhsk-vocab-item:nth-child(8n+5){--nhsk-card-accent:var(--nhsk-accent-5)}
+.nhsk-vocab-list>.nhsk-vocab-item:nth-child(8n+6){--nhsk-card-accent:var(--nhsk-accent-6)}
+.nhsk-vocab-list>.nhsk-vocab-item:nth-child(8n+7){--nhsk-card-accent:var(--nhsk-accent-7)}
+.nhsk-vocab-list>.nhsk-vocab-item:nth-child(8n+8){--nhsk-card-accent:var(--nhsk-accent-8)}
+
+.nhsk-vocab-list--list>.nhsk-vocab-item{
+  border-left:5px solid var(--nhsk-card-accent);
+  box-shadow:0 3px 12px rgba(30,70,61,.045);
+}
+.nhsk-vocab-list--grid>.nhsk-vocab-item{
+  border-left:1px solid #e1ebe7;
+  border-top:5px solid var(--nhsk-card-accent);
+}
+
+/* Guarantee the catalog keeps a colored leading edge in List mode and a
+   colored top edge in Grid mode, as in the supplied references. */
+.nhsk-topic-word-list--list .nhsk-topic-word{
+  border-left:5px solid var(--hsk-card-accent)!important;
+}
+.nhsk-topic-word-list--grid .nhsk-topic-word{
+  border-left:1px solid rgba(225,218,207,.95)!important;
+  border-top:5px solid var(--hsk-card-accent)!important;
+}
+
+/* Real medium/semibold CJK weights are loaded in index.html. Apply them to all
+   structured Hanzi surfaces, not only vocabulary cards. */
+.nhsk-app :is(
+  .nhsk-hanzi,
+  .nhsk-dialogue-line--hanzi,
+  .nhsk-grammar-example__hanzi,
+  .nhsk-summary-example .nhsk-hanzi,
+  .nhsk-context .nhsk-hanzi,
+  .nhsk-note .nhsk-hanzi,
+  .nhsk-activity .nhsk-hanzi,
+  .nhsk-extension__topic,
+  .hsk-popup-sentence-zh,
+  .hsk-grammar-example-zh,
+  .hsk-grammar-example-main strong
+){
+  font-family:"Noto Serif SC","Songti SC",STSong,"Noto Serif CJK SC",SimSun,serif;
+  font-weight:500;
+  font-synthesis:none;
+}
+
+.nhsk-app :is(
+  .nhsk-hero__hanzi,
+  .nhsk-vocab-item__word,
+  .hsk-word,
+  .nhsk-warmup-choice .nhsk-hanzi
+){
+  font-family:"Noto Serif SC","Songti SC",STSong,"Noto Serif CJK SC",SimSun,serif;
+  font-weight:600;
+  font-synthesis:none;
+}
+
+/* Chinese source lines inside Markdown are usually represented by strong tags.
+   This also makes mixed grammar/exercise blocks visually consistent. */
+.nhsk-app .nhsk-markdown strong{
+  font-weight:600;
+  font-synthesis:none;
+}
+
+.nhsk-card__head>span,
+.nhsk-layer-toggle button:first-child,
+.nhsk-pinyin-toggle__mark{
+  font-family:"Noto Serif SC","Songti SC",STSong,"Noto Serif CJK SC",SimSun,serif;
+  font-weight:600;
+  font-synthesis:none;
+}
+
+
+/* 2026-08-06 · Refined v4: semibold Chinese sentence/paragraph text and
+   number badges synchronized with each vocabulary card accent. */
+.nhsk-vocab-list>.nhsk-vocab-item{
+  --nhsk-order-bg:#eaf3ff;
+  --nhsk-order-ink:#2f73c8;
+}
+.nhsk-vocab-list>.nhsk-vocab-item:nth-child(8n+2){--nhsk-order-bg:#eaf8f0;--nhsk-order-ink:#2d8a5e}
+.nhsk-vocab-list>.nhsk-vocab-item:nth-child(8n+3){--nhsk-order-bg:#e8f7f9;--nhsk-order-ink:#258092}
+.nhsk-vocab-list>.nhsk-vocab-item:nth-child(8n+4){--nhsk-order-bg:#f1ecfb;--nhsk-order-ink:#7654b7}
+.nhsk-vocab-list>.nhsk-vocab-item:nth-child(8n+5){--nhsk-order-bg:#fff2e5;--nhsk-order-ink:#c96a18}
+.nhsk-vocab-list>.nhsk-vocab-item:nth-child(8n+6){--nhsk-order-bg:#fcebf3;--nhsk-order-ink:#b9507d}
+.nhsk-vocab-list>.nhsk-vocab-item:nth-child(8n+7){--nhsk-order-bg:#edf0fd;--nhsk-order-ink:#5b6fc0}
+.nhsk-vocab-list>.nhsk-vocab-item:nth-child(8n+8){--nhsk-order-bg:#eaf5f2;--nhsk-order-ink:#43847a}
+
+.nhsk-vocab-item__order{
+  background:var(--nhsk-order-bg,#eaf3ff)!important;
+  color:var(--nhsk-order-ink,#2f73c8)!important;
+  border:1px solid color-mix(in srgb,var(--nhsk-order-ink,#2f73c8) 16%,transparent);
+}
+
+/* Sentence and paragraph Hanzi need the same visual confidence as vocabulary.
+   Keep the current sizes and spacing; only raise the real CJK weight. */
+.nhsk-app :is(
+  .nhsk-dialogue-line--hanzi,
+  .nhsk-passage-line--hanzi,
+  .nhsk-context .nhsk-hanzi,
+  .nhsk-instruction .nhsk-hanzi,
+  .nhsk-warmup-instruction__hanzi p,
+  .nhsk-grammar-example__hanzi,
+  .nhsk-summary-example .nhsk-hanzi,
+  .nhsk-note .nhsk-hanzi,
+  .nhsk-activity .nhsk-hanzi,
+  .nhsk-extension .nhsk-hanzi,
+  .hsk-popup-sentence-zh,
+  .hsk-grammar-example-zh,
+  .hsk-grammar-example-main strong
+){
+  font-family:"Noto Serif SC","Songti SC",STSong,"Noto Serif CJK SC",SimSun,serif;
+  font-weight:600!important;
+  font-synthesis:none;
+}
+
+/* Markdown carries many textbook questions and Chinese paragraphs as strong text. */
+.nhsk-app .nhsk-markdown strong{
+  font-weight:600!important;
+}
+
+/* 2026-08-06 · Refined v5: direct Vietnamese translations use a calm blue,
+   while instructions, context, explanations, notes, headings and controls stay neutral. */
+.nhsk-app{
+  --nhsk-translation-blue:#2f75b5;
+}
+
+.nhsk-app :is(
+  .nhsk-translation,
+  .nhsk-dialogue-line--vi,
+  .nhsk-grammar-example__vi:not(.is-missing)
+){
+  color:var(--nhsk-translation-blue)!important;
+  font-weight:600;
+}
+
+/* Translation lines inside textbook questions and answer choices. */
+.nhsk-app .nhsk-book-tasks .nhsk-markdown .nhsk-translation{
+  color:var(--nhsk-translation-blue)!important;
+}
+
+/* Warm-up Vietnamese is a direct meaning layer, not an instruction. */
+.nhsk-warmup-choice em.nhsk-translation{
+  color:var(--nhsk-translation-blue)!important;
+  font-style:normal;
+  font-weight:600;
+}
+
+/* Grammar catalog popup: only the translated example is blue. */
+.nhsk-hsk-popup-body .hsk-grammar-example-main .nhsk-translation{
+  color:var(--nhsk-translation-blue,#2f75b5)!important;
+  font-weight:600;
+}
+
+/* Summary supports a translated example when the source provides exampleVi. */
+.nhsk-summary-example>div{display:grid;min-width:0;gap:3px}
+.nhsk-summary-example small.nhsk-translation{
+  display:block;
+  color:var(--nhsk-translation-blue)!important;
+  font-size:11px;
+  font-weight:600;
+  line-height:1.45;
+}
+
+/* 2026-08-06 · Refined v6: one shared Pinyin treatment for grammar,
+   dialogue, reading/rhyme passages, and role-play dialogue content. */
+.nhsk-app .nhsk-pinyin-text{
+  color:#4f6f91!important;
+  font-size:13px!important;
+  font-weight:700!important;
+  line-height:1.45!important;
+  font-style:normal;
+}

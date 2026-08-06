@@ -137,7 +137,7 @@ const targetFor = (selector, dataset) => ({
   assert(root.innerHTML.includes('data-radical-drop'), 'Radical review must render drop targets');
   clickHandler({ target: targetFor('[data-radical-item]', { radicalItem: 'nhsk-1-01-radical-item-001' }) });
   clickHandler({ target: targetFor('[data-radical-drop]', { radicalDrop: 'nhsk-1-01-radical-group-nhan' }) });
-  assert(root.innerHTML.includes('Điểm 1 / 11'), 'Correct radical assignment must increase the score');
+  assert(root.innerHTML.includes('1/11 đúng'), 'Correct radical assignment must increase the score');
   assert(root.innerHTML.includes('Đúng: 你 thuộc Bộ Nhân.'), 'Correct radical assignment must show feedback');
 
   clickHandler({ target: targetFor('[data-nhsk-view]', { nhskView: 'grouped' }) });
