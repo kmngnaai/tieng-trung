@@ -39,6 +39,9 @@ from build_course_data import (  # noqa: E402
     sub_sections,
     table_dicts,
 )
+from improve_ordering_tokens import apply_ordering_tokens  # noqa: E402
+
+REVIEWED_ORDERING_LEVELS = {1, 3}
 
 CJK_RE = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]")
 AUDIO_RE = re.compile(r"(?:Audio(?: từ mới)?|Mã audio|Audio gốc)\s*:\s*`([^`]+)`", re.I)
@@ -59,6 +62,30 @@ GENERIC_ACTIVITY_CONFIG = {
 
 def normalize_title(title: str) -> str:
     return strip_numbered_title(title).strip()
+
+
+def preserve_json_order(current: Any, previous: Any) -> Any:
+    """Preserve stable key ordering from an existing generated JSON file.
+
+    Values still come entirely from the fresh build. This only prevents
+    no-op rebuilds from rewriting files because historical post-processors
+    inserted equivalent keys in a different order.
+    """
+    if isinstance(current, dict) and isinstance(previous, dict):
+        ordered: dict[str, Any] = {}
+        for key in previous:
+            if key in current:
+                ordered[key] = preserve_json_order(current[key], previous[key])
+        for key, value in current.items():
+            if key not in ordered:
+                ordered[key] = value
+        return ordered
+    if isinstance(current, list) and isinstance(previous, list):
+        return [
+            preserve_json_order(value, previous[index]) if index < len(previous) else value
+            for index, value in enumerate(current)
+        ]
+    return current
 
 
 def section_kind(title: str) -> str:
@@ -376,7 +403,7 @@ def content_sections(text: str, lesson_id: str) -> list[dict[str, Any]]:
     return rows
 
 
-def apply_source_manifests(repo: Path, lesson_id: str, sections: list[dict[str, Any]]) -> tuple[int, int, int]:
+def apply_source_manifests(repo: Path, lesson_id: str, sections: list[dict[str, Any]]) -> tuple[int, int, int, bool]:
     """Merge source trace, activity keys and presentation metadata after Markdown parsing.
 
     Full-page PDF captures stay in JSON for auditability but are marked
@@ -385,12 +412,13 @@ def apply_source_manifests(repo: Path, lesson_id: str, sections: list[dict[str, 
     """
     match = re.match(r"^nhsk-(\d+)-", lesson_id)
     if not match:
-        return 0, 0, 0
+        return 0, 0, 0, False
     level = int(match.group(1))
     base = repo / f"modules/new-hsk-course/source/hsk{level}"
     visual_path = base / "visual-manifest.json"
     task_path = base / "source-task-manifest.json"
     display_path = base / "display-manifest.json"
+    has_source_manifests = visual_path.exists() or task_path.exists() or display_path.exists()
     visuals: dict[str, Any] = {}
     tasks: dict[str, Any] = {}
     display_sections: dict[str, Any] = {}
@@ -417,15 +445,18 @@ def apply_source_manifests(repo: Path, lesson_id: str, sections: list[dict[str, 
         for key in ("warmupDisplay", "grammarDisplay", "summaryDisplay"):
             if config.get(key):
                 section[key] = config[key]
-    return visual_count, task_count, visible_visual_count
+    return visual_count, task_count, visible_visual_count, has_source_manifests
 
 
 def load_character_sources(repo: Path) -> tuple[dict[str, Any], dict[str, Any]]:
-    base = repo / "modules/hanzi-stroke/data/learning/character-enrichment/hsk1-3-single"
-    index = json.loads((base / "index.json").read_text(encoding="utf-8"))
+    source_path = repo / "modules/hanzi-stroke/data/learning/character-learning-source.json"
+    payload = json.loads(source_path.read_text(encoding="utf-8"))
+    index = payload.get("items", {}) if isinstance(payload, dict) else {}
+    if not isinstance(index, dict):
+        raise ValueError("character-learning-source.json has invalid items map")
     radical_catalog = json.loads((repo / "modules/hanzi-stroke/data/learning/radicals/radical_catalog.json").read_text(encoding="utf-8"))
     radical_by_id = {str(item.get("id")): item for item in (radical_catalog.get("items") or radical_catalog if isinstance(radical_catalog, list) else [])}
-    return index, {"base": base, "radicals": radical_by_id}
+    return index, {"radicals": radical_by_id, "sourcePath": source_path}
 
 
 def position_vi(value: str) -> str:
@@ -452,15 +483,15 @@ def build_character_data(repo: Path, lesson: dict[str, Any], index: dict[str, An
                 glyph_sources.setdefault(glyph, [])
     characters: list[dict[str, Any]] = []
     char_detail_by_glyph: dict[str, dict[str, Any]] = {}
-    base: Path = char_sources["base"]
     for glyph in sorted(glyph_sources, key=lambda g: (min([row.get("order", 9999) for row in source_rows if g in row.get("hanzi", "")] or [9999]), g)):
-        meta = index.get(glyph)
-        if not meta or not meta.get("path"):
+        detail = index.get(glyph)
+        if not isinstance(detail, dict):
             continue
-        path = base / str(meta["path"])
-        if not path.exists():
-            continue
-        detail = json.loads(path.read_text(encoding="utf-8"))
+        meta = {
+            "pinyin": (detail.get("pronunciation") or {}).get("pinyin", ""),
+            "meaningVi": (detail.get("meanings") or {}).get("shortVi", ""),
+            "qualityStatus": detail.get("qualityStatus") or (detail.get("quality") or {}).get("status", ""),
+        }
         radical = detail.get("characterInfo", {}).get("radical", {}) or {}
         components = []
         for component in detail.get("components", []) or []:
@@ -702,7 +733,7 @@ def build_lesson(repo: Path, markdown_path: Path, dialogue_path: Path, char_inde
     grammar, examples = grammar_entities(body, lesson_id)
     exercises, activities, extensions = generic_exercises(body, lesson_id)
     contents = content_sections(body, lesson_id)
-    source_visual_count, source_task_count, visible_source_visual_count = apply_source_manifests(repo, lesson_id, contents)
+    source_visual_count, source_task_count, visible_source_visual_count, has_source_manifests = apply_source_manifests(repo, lesson_id, contents)
 
     objective_section = next((sec for sec in split_sections(body, 2) if normalize_title(sec.title) == "Mục tiêu"), None)
     objectives = [
@@ -760,7 +791,6 @@ def build_lesson(repo: Path, markdown_path: Path, dialogue_path: Path, char_inde
             "dialogues": len(dialogues), "dialogueTurns": sum(len(row["turns"]) for row in dialogues), "languageNotes": len(language_notes),
             "grammar": len(grammar), "examplesPractice": len(examples), "exercises": len(exercises), "activities": len(activities),
             "passages": len(passages), "extensions": len(extensions), "contentSections": len(contents),
-            "sourceVisuals": source_visual_count, "visibleSourceVisuals": visible_source_visual_count, "sourceTasks": source_task_count,
         },
         "entities": entities,
         "views": {
@@ -778,6 +808,12 @@ def build_lesson(repo: Path, markdown_path: Path, dialogue_path: Path, char_inde
             },
         },
     }
+    if has_source_manifests:
+        lesson["stats"].update({
+            "sourceVisuals": source_visual_count,
+            "visibleSourceVisuals": visible_source_visual_count,
+            "sourceTasks": source_task_count,
+        })
     characters, radical_exercises, build_exercises, character_plan = build_character_data(repo, lesson, char_index, char_sources)
     entities["characters"] = characters
     entities["radicalSortExercises"] = radical_exercises
@@ -818,6 +854,9 @@ def main() -> int:
             try:
                 data = build_lesson(repo, md, dialogue, char_index, char_sources, existing_lesson1 if (level, lesson_no) == (1, 1) else None)
                 output = out_root / f"lesson-{lesson_no:02d}.json"
+                previous_output = json.loads(output.read_text(encoding="utf-8")) if output.exists() else None
+                if isinstance(previous_output, dict):
+                    data = preserve_json_order(data, previous_output)
                 output.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
                 lessons.append({
                     "id": data["id"], "level": level, "lessonNumber": lesson_no, "title": data["title"],
@@ -841,6 +880,14 @@ def main() -> int:
     }
     manifest_path = repo / "modules/new-hsk-course/data/manifest.json"
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    lesson_paths = [repo / "modules/new-hsk-course/data" / row["path"] for row in lessons]
+    token_changes, token_turns, token_lexicon_size = apply_ordering_tokens(
+        repo, lesson_paths, reviewed_levels=REVIEWED_ORDERING_LEVELS
+    )
+    print(
+        f"ORDERING TOKENS: updated={token_changes} reviewedTurns={token_turns} "
+        f"levels={sorted(REVIEWED_ORDERING_LEVELS)} lexicon={token_lexicon_size}"
+    )
     report = {"built": len(lessons), "errors": errors, "levels": manifest["course"]["levels"]}
     (repo / "modules/new-hsk-course/data/build-all-report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     if errors:
