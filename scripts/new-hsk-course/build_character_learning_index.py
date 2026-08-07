@@ -3,7 +3,7 @@
 
 Priority:
 1. Curated character records embedded in New HSK lesson JSON.
-2. Existing character-enrichment records as fallback only.
+2. Compact reviewed character learning source as fallback only.
 
 The script never invents roles, meanings, or explanations. Missing fields remain empty.
 """
@@ -15,7 +15,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 COURSE_DATA = ROOT / "modules/new-hsk-course/data"
-ENRICHMENT_ROOT = ROOT / "modules/hanzi-stroke/data/learning/character-enrichment/hsk1-3-single"
+CHARACTER_SOURCE = ROOT / "modules/hanzi-stroke/data/learning/character-learning-source.json"
 OUTPUT = ROOT / "modules/hanzi-stroke/data/learning/character-learning-index.json"
 REPORT = ROOT / "modules/hanzi-stroke/data/learning/character-learning-index-report.json"
 
@@ -138,19 +138,11 @@ def load_lesson_records() -> tuple[dict[str, dict[str, Any]], dict[str, set[int]
 
 
 def load_enrichment() -> dict[str, dict[str, Any]]:
-    index_path = ENRICHMENT_ROOT / "index.json"
-    if not index_path.exists():
+    if not CHARACTER_SOURCE.exists():
         return {}
-    index = read_json(index_path)
-    result: dict[str, dict[str, Any]] = {}
-    for char, summary in index.items():
-        rel_path = clean(summary.get("path"))
-        if not rel_path:
-            continue
-        path = ENRICHMENT_ROOT / rel_path
-        if path.exists():
-            result[char] = read_json(path)
-    return result
+    payload = read_json(CHARACTER_SOURCE)
+    items = payload.get("items", {}) if isinstance(payload, dict) else {}
+    return items if isinstance(items, dict) else {}
 
 
 def build() -> dict[str, Any]:
@@ -250,7 +242,7 @@ def build() -> dict[str, Any]:
     payload = {
         "schemaVersion": "character-learning-index-v1",
         "scope": "new-hsk-1-3",
-        "sourcePolicy": "lesson-curated-first; enrichment-fallback; no inferred fields",
+        "sourcePolicy": "lesson-curated-first; compact-reviewed-source-fallback; no inferred fields",
         "total": len(items),
         "courseCharacterTotal": len(lessons),
         "enrichmentOnlyTotal": len(set(enrichment) - set(lessons)),

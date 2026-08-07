@@ -28,7 +28,7 @@ def normalize_sentence(text: str) -> str:
     return PUNCTUATION_RE.sub("", str(text or ""))
 
 
-def build_lexicon(lesson_paths: list[Path]) -> set[str]:
+def build_lexicon(repo: Path, lesson_paths: list[Path]) -> set[str]:
     lexicon = set(CURATED_PHRASES)
     for path in lesson_paths:
         data = read_json(path)
@@ -38,8 +38,9 @@ def build_lexicon(lesson_paths: list[Path]) -> set[str]:
                 word = normalize_sentence(item.get("hanzi", ""))
                 if 2 <= len(word) <= 12:
                     lexicon.add(word)
+    hsk_dir = repo / "modules" / "hanzi-stroke" / "data" / "learning" / "hsk"
     for level in (1, 2, 3):
-        source = read_json(HSK_DIR / f"hsk_{level}.json")
+        source = read_json(hsk_dir / f"hsk_{level}.json")
         for item in source.get("items", []):
             word = normalize_sentence(item.get("word") or item.get("simplified") or "")
             if 2 <= len(word) <= 12:
@@ -77,13 +78,25 @@ def tokenize(text: str, lexicon: set[str]) -> list[str]:
     return result
 
 
-def main() -> None:
-    manifest = read_json(MANIFEST_PATH)
-    lesson_paths = [DATA_DIR / item["path"] for item in manifest.get("lessons", []) if "ready" in str(item.get("status", ""))]
-    lexicon = build_lexicon(lesson_paths)
+def apply_ordering_tokens(
+    repo: Path,
+    lesson_paths: list[Path],
+    *,
+    reviewed_levels: set[int] | None = None,
+) -> tuple[int, int, int]:
+    """Regenerate reviewed ordering tokens deterministically.
+
+    ``orderingTokens`` are a learner-facing reviewed layer. Levels that have
+    not been reviewed keep using the runtime fallback to ``answerTokens``.
+    """
+    lexicon = build_lexicon(repo, lesson_paths)
     changed = 0
     turns = 0
     for path in lesson_paths:
+        match = re.search(r"[/\\]hsk(\d+)[/\\]lesson-", str(path))
+        level = int(match.group(1)) if match else None
+        if reviewed_levels is not None and level not in reviewed_levels:
+            continue
         data = read_json(path)
         for dialogue in data.get("entities", {}).get("dialogues", []):
             for turn in dialogue.get("turns", []):
@@ -95,7 +108,14 @@ def main() -> None:
                     turn["orderingTokens"] = tokens
                     changed += 1
         path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"Updated {changed} of {turns} dialogue turns with orderingTokens; lexicon={len(lexicon)}")
+    return changed, turns, len(lexicon)
+
+
+def main() -> None:
+    manifest = read_json(MANIFEST_PATH)
+    lesson_paths = [DATA_DIR / item["path"] for item in manifest.get("lessons", []) if "ready" in str(item.get("status", ""))]
+    changed, turns, lexicon_size = apply_ordering_tokens(ROOT, lesson_paths)
+    print(f"Updated {changed} of {turns} dialogue turns with orderingTokens; lexicon={lexicon_size}")
 
 
 if __name__ == "__main__":

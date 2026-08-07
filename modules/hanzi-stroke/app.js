@@ -2269,7 +2269,7 @@ if(window.HanziWriter){
   let flashcardCurriculumSummaryPromise = null;
   let flashcardNewHskCourseManifestPromise = null;
   const FLASHCARD_NEW_HSK_COURSE_MANIFEST_URL = '../new-hsk-course/data/manifest.json';
-  const FLASHCARD_RADICAL_INDEX_URL = 'data/learning/character-enrichment/hsk1-3-single/radical-character-index.json';
+  const FLASHCARD_RADICAL_INDEX_URL = 'data/learning/radicals/radical-character-index.json';
   const FLASHCARD_RADICAL_CATALOG_URL = 'data/learning/radicals/radical_catalog.json';
 
   function getFlashcardCurriculumSourceMeta(sourceKey = flashcardLibraryState.curriculumSource){
