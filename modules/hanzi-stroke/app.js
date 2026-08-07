@@ -77,7 +77,7 @@ const HANZI_PRESET_STORAGE_KEY = 'hanziStrokeActivePreset.v1';
 const HANZI_THEME_STORAGE_KEY = 'hanziStrokeTheme.v1';
 
 const wordBucketCache = new Map();
-const WORD_LOOKUP_SOURCES = ['by_first_char', 'by_length'];
+const WORD_LOOKUP_SOURCES = ['by_first_char'];
 
 function getWordLookupPath(wordText, source){
   const chars = getHanziChars(wordText);
@@ -87,9 +87,6 @@ function getWordLookupPath(wordText, source){
   if(source === 'by_first_char'){
     const first = chars[0];
     return `data/words/by_first_char/${first.codePointAt(0).toString(16).toUpperCase().padStart(4, '0')}.json`;
-  }
-  if(source === 'by_length'){
-    return `data/words/by_length/len_${String(chars.length).padStart(2, '0')}.json`;
   }
   return '';
 }
@@ -5718,7 +5715,7 @@ if(window.HanziWriter){
       const routeLevel = Number(route?.levelNo);
       return !Number.isFinite(routeLevel) || routeLevel === Number(hskState.currentLevel);
     });
-    const primary = selected || item?.primaryRoute || routes[0] || null;
+    const primary = selected || routes[0] || null;
     if(!primary){
       return '';
     }

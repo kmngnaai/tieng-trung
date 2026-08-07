@@ -1212,9 +1212,6 @@ function getDialogue301WordBucketPath(wordText, source){
     const hex = chars[0].codePointAt(0).toString(16).toUpperCase().padStart(4, '0');
     return `modules/hanzi-stroke/data/words/by_first_char/${hex}.json`;
   }
-  if(source === 'by_length'){
-    return `modules/hanzi-stroke/data/words/by_length/len_${String(chars.length).padStart(2, '0')}.json`;
-  }
   return '';
 }
 
@@ -1264,14 +1261,14 @@ function normalizeDialogue301WordDictionaryEntry(entry, target, source){
     meaningEn: entry.en || entry.meaningEn || '',
     hanViet: entry.sv || entry.hanViet || '',
     hsk: entry.hsk || '',
-    source: source === 'by_first_char' ? 'words/by_first_char' : 'words/by_length'
+    source: 'words/by_first_char'
   };
 }
 
 async function lookupDialogue301CompoundWord(wordText){
   const target = String(wordText || '').trim();
   if(!target) return null;
-  const sources = ['by_first_char', 'by_length'];
+  const sources = ['by_first_char'];
   for(const source of sources){
     const bucket = await loadDialogue301WordBucket(target, source);
     const entry = findDialogue301WordEntryInBucket(bucket, target);
