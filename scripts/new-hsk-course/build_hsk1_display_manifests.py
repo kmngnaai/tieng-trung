@@ -10,6 +10,8 @@ import json, re, unicodedata
 from pathlib import Path
 from collections import defaultdict
 
+from course_config import lesson_numbers
+
 REPO: Path
 MODULE: Path
 DATA: Path
@@ -270,7 +272,13 @@ def extract_example_rows(block: str, phrase_map):
 
 
 def extract_structured_examples(block: str):
-    """Read explicit Chữ Hán / Pinyin / Tiếng Việt example triplets."""
+    """Read explicit Chữ Hán / Pinyin / Tiếng Việt example triplets.
+
+    Supports both source styles used across HSK2/3:
+    - ``**Ví dụ 1**`` followed by three ``- **Field:**`` rows;
+    - compact bullet triplets where each example begins with
+      ``- **Chữ Hán:** ...`` and the next two lines contain Pinyin/Vietnamese.
+    """
     lines=block.splitlines(); examples=[]; current=None
     def flush():
         nonlocal current
@@ -287,13 +295,18 @@ def extract_structured_examples(block: str):
         line=raw.strip()
         if re.match(r'^\*\*Ví dụ\s+\d+\*\*$',line,re.I):
             flush(); current={}; continue
-        if current is None: continue
-        field=re.match(r'^-\s*\*\*(Chữ Hán|Pinyin|Tiếng Việt):\*\*\s*(.+?)\s*$',line,re.I)
+        field=re.match(r'^[-*]?\s*\*\*(Chữ Hán|Pinyin|Tiếng Việt):\*\*\s*(.+?)\s*$',line,re.I)
         if not field: continue
         label=field.group(1).lower(); value=clean_inline(field.group(2)).strip()
-        if 'chữ hán' in label: current['hanzi']=value
-        elif 'pinyin' in label: current['pinyin']=value
-        else: current['vi']=value
+        if 'chữ hán' in label:
+            # In compact HSK3 source, each Hanzi field starts a new example.
+            if current and current.get('hanzi'): flush()
+            if current is None: current={}
+            current['hanzi']=value
+        else:
+            if current is None: continue
+            if 'pinyin' in label: current['pinyin']=value
+            else: current['vi']=value
     flush()
     return examples
 
@@ -388,11 +401,16 @@ def warmup_display(markdown: str, phrase_map, translation_map=None):
     instruction_vi=''
     for line in lines:
         heading=re.match(r'^###\s+(?:\d+(?:\.\d+)*\.\s*)?(.+)$',line.strip())
-        if heading and ('ghép' in heading.group(1).lower() or 'chọn hình' in heading.group(1).lower()):
-            instruction_vi=clean_inline(heading.group(1)).strip()
-            break
+        if not heading:
+            continue
+        candidate=clean_inline(heading.group(1)).strip()
+        lower=candidate.lower()
+        if lower.startswith(('làm việc theo cặp','làm việc nhóm','pair work','group work')):
+            continue
+        instruction_vi=candidate
+        break
     if not instruction_vi:
-        instruction_vi='Chọn hình tương ứng với các từ/cụm từ sau.'
+        instruction_vi='Khởi động'
 
     choices=[]
     def add_choice(letter: str, raw: str, vi_hint: str=''):
@@ -468,25 +486,62 @@ def summary_display(markdown: str, section_id: str):
             if not content: continue
             assessment.append({'id':f'{section_id}-item-{len(assessment)+1:02d}','order':len(assessment)+1,'content':content,'example':example})
         if assessment: break
+
+    # HSK3 source also uses numbered self-assessment lists instead of a table.
+    if not assessment:
+        lines=markdown.splitlines(); capture=False
+        for raw in lines:
+            clean=clean_inline(raw).strip()
+            heading=re.match(r'^#{2,5}\s+(.+)$',raw.strip())
+            if heading:
+                title=clean_inline(heading.group(1)).lower()
+                capture=any(key in title for key in ('tôi hiểu và biết dùng','ngữ pháp cần tự đánh giá','tự đánh giá ngữ pháp'))
+                continue
+            if not capture: continue
+            match=re.match(r'^\d+\.\s+(.+?)\s*$',clean)
+            if not match: continue
+            value=match.group(1).strip()
+            content=value; example=''
+            split=re.split(r'\s*[:：]\s*',value,maxsplit=1)
+            if len(split)==2 and CJK_RE.search(split[1]):
+                content,example=split[0].strip(),split[1].strip()
+            assessment.append({'id':f'{section_id}-item-{len(assessment)+1:02d}','order':len(assessment)+1,'content':content,'example':example})
+
     if not assessment:
         candidate=''
         for line in markdown.splitlines():
-            clean=clean_inline(line).strip().lstrip('-*').strip()
-            if 'Tự đánh giá các điểm:' in clean:
-                candidate=clean.split('Tự đánh giá các điểm:',1)[1]
+            raw=line.strip().lstrip('-*').strip()
+            lower=raw.lower()
+            for marker in ('tự đánh giá các điểm:','các điểm:','các cấu trúc:'):
+                if marker in lower:
+                    idx=lower.index(marker)+len(marker)
+                    candidate=raw[idx:]
+                    break
+            if candidate: break
+            if clean_inline(raw).lower().startswith('tổng kết bài') and ':' in raw:
+                candidate=raw.split(':',1)[1]
                 break
-            if 'các điểm:' in clean.lower():
-                candidate=re.split(r'các điểm:',clean,maxsplit=1,flags=re.I)[1]
-                break
-            if clean.lower().startswith('tổng kết bài') and ':' in clean:
-                candidate=clean.split(':',1)[1]
         if candidate:
             candidate=candidate.strip().rstrip('.')
-            pieces=[item.strip(' .') for item in re.split(r';|，|,(?=\s*[A-ZÀ-Ỹ\u3400-\u9fff])',candidate) if item.strip(' .')]
-            for content in pieces:
-                if content.lower().startswith(('từ vựng đã','từ vựng chưa','ghi những điểm')): continue
+            # Split list punctuation only outside Markdown code spans. Grammar
+            # patterns such as `一边……，一边……` must stay one summary item.
+            pieces=[]; buf=[]; in_code=False
+            for ch in candidate:
+                if ch=='`':
+                    in_code=not in_code; buf.append(ch); continue
+                if not in_code and ch in ';、，,':
+                    value=''.join(buf).strip(' .')
+                    if value: pieces.append(value)
+                    buf=[]; continue
+                buf.append(ch)
+            value=''.join(buf).strip(' .')
+            if value: pieces.append(value)
+            for raw_content in pieces:
+                content=clean_inline(raw_content).strip(' .')
+                if not content or content.lower().startswith(('từ vựng đã','từ vựng chưa','ghi những điểm')): continue
                 assessment.append({'id':f'{section_id}-item-{len(assessment)+1:02d}','order':len(assessment)+1,'content':content,'example':''})
     return {'items':assessment,'notePrompt':'Những điểm tôi cần cố gắng'}
+
 
 def main() -> int:
     parser = argparse.ArgumentParser()
@@ -499,7 +554,7 @@ def main() -> int:
     level = args.level
     DATA = MODULE / f'data/hsk{level}'
     SOURCE = MODULE / f'source/hsk{level}'
-    lessons=[read_json(DATA/f'lesson-{n:02d}.json') for n in range(1,16)]
+    lessons=[read_json(DATA/f'lesson-{n:02d}.json') for n in lesson_numbers(level)]
     phrase_map=build_phrase_map(lessons)
     translation_map=build_translation_map()
     visual_manifest=read_json(SOURCE/'visual-manifest.json')
@@ -519,7 +574,7 @@ def main() -> int:
                 for visual in visuals:
                     visual=dict(visual)
                     src=str(visual.get('src',''))
-                    visible=(visual.get('sourceType')=='ppt' and kind in {'warmup','lesson-text','activity'} and not src.endswith(('ppt-extension.webp','ppt-summary.webp')))
+                    visible=(visual.get('sourceType')=='ppt' and kind in {'warmup','lesson-text','passage','activity'} and not src.endswith(('ppt-extension.webp','ppt-summary.webp')))
                     # Future sourceType=pdf-crop is explicitly allowed, full-page PDF remains hidden.
                     if visual.get('sourceType')=='pdf-crop': visible=True
                     visual['displayInLesson']=visible

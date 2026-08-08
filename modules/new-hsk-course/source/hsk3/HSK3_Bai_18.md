@@ -100,7 +100,7 @@ Audio: `18-1`.
 
 ### 3.4. Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 1 | 怎样 | zěnyàng | chẩm dạng | đại | thế nào |  |
 | 2 | 过节 | guòjié | quá tiết | động | ăn lễ |  |
@@ -191,7 +191,7 @@ Audio: `18-3`.
 
 ### 5.4. Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 7 | 阿姨 | āyí | a di | danh | cô/dì |  |
 | 8 | 叔叔 | shūshu | thúc thúc | danh | chú |  |
@@ -286,7 +286,7 @@ Audio: `18-5`.
 
 ### 7.4. Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 15 | 出发 | chūfā | xuất phát | động | khởi hành |  |
 | 16 | 不久 | bùjiǔ | bất cửu | tính | không lâu |  |

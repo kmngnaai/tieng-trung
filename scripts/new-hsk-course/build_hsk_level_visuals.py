@@ -18,6 +18,8 @@ from PIL import Image, ImageOps
 from pptx import Presentation
 from pptx.enum.shapes import MSO_SHAPE_TYPE
 
+from course_config import lesson_count, lesson_numbers
+
 EMU_PER_INCH = 914400
 
 
@@ -47,8 +49,12 @@ def find_target_slides(prs: Presentation) -> dict[str, int]:
     for index, slide in enumerate(prs.slides, 1):
         text = slide_text(slide)
         compact = text.replace(" ", "")
-        if "warmup" not in targets and index <= 8 and "给下面" in compact and "图片" in compact:
-            targets["warmup"] = index
+        if "warmup" not in targets and index <= 8:
+            lower_text = text.lower()
+            has_warmup_marker = "warm-up" in lower_text or "warmup" in lower_text or "热身" in compact
+            has_first_task = any(token in compact for token in ("1.", "1。", "1．"))
+            if has_warmup_marker and has_first_task:
+                targets["warmup"] = index
         for number in (1, 2, 3, 4):
             key = f"text{number}"
             if key not in targets and f"课文{number}" in compact and ("课文内容请见" in compact or "Pleaserefertopage" in compact):
@@ -78,7 +84,9 @@ def picture_shapes(shapes: Iterable[Any]) -> list[Any]:
     direct: list[Any] = []
     groups: list[Any] = []
     for shape in shapes:
-        if shape.shape_type == MSO_SHAPE_TYPE.PICTURE:
+        # PowerPoint picture placeholders are exposed by python-pptx as
+        # PLACEHOLDER instead of PICTURE, but still carry an .image payload.
+        if shape.shape_type == MSO_SHAPE_TYPE.PICTURE or hasattr(shape, "image"):
             direct.append(shape)
         elif shape.shape_type == MSO_SHAPE_TYPE.GROUP:
             groups.append(shape)
@@ -155,9 +163,7 @@ def warmup_visual(slide) -> tuple[Image.Image | None, list[str]]:
 
 def largest_picture(slide, min_area: float = 1.0):
     candidates = []
-    for shape in slide.shapes:
-        if shape.shape_type != MSO_SHAPE_TYPE.PICTURE:
-            continue
+    for shape in picture_shapes(slide.shapes):
         x, y, w, h = shape_box(shape)
         area = w * h
         if area >= min_area and y >= 1.1:
@@ -174,6 +180,14 @@ def save_webp(image: Image.Image, path: Path, max_width: int = 1400) -> None:
         height = int(round(image.height * max_width / image.width))
         image = image.resize((max_width, height), Image.Resampling.LANCZOS)
     image.save(path, "WEBP", quality=88, method=6)
+
+
+def is_image_match_warmup(text: str) -> bool:
+    compact = re.sub(r"[\s|]+", "", text).lower()
+    return (
+        ("选择对应的图片" in compact or "选择相应的图片" in compact)
+        or ("matchthewords" in compact and "pictures" in compact)
+    )
 
 
 def listening_answers(slide) -> tuple[str, list[str]] | None:
@@ -195,6 +209,9 @@ def lesson_section_map(lesson: dict[str, Any]) -> dict[str, dict[str, Any]]:
             result["warmup"] = section
         elif kind == "activity":
             result["activity"] = section
+        elif kind == "passage":
+            # HSK 2-3 use the fourth textbook track (x-7) as the passage/text 4.
+            result["text4"] = section
         elif title.lower().startswith("tổng kết"):
             result["summary"] = section
         elif kind == "extension":
@@ -252,6 +269,8 @@ def main() -> int:
     parser.add_argument("--repo", type=Path, required=True)
     parser.add_argument("--level", type=int, required=True)
     parser.add_argument("--ppt-dir", type=Path, required=True)
+    parser.add_argument("--lesson-start", type=int, default=1)
+    parser.add_argument("--lesson-end", type=int, default=None)
     args = parser.parse_args()
 
     repo = args.repo.resolve()
@@ -271,7 +290,10 @@ def main() -> int:
     visual_manifest: dict[str, Any] = {"version": 1, "course": "new-hsk-course", "level": level, "lessons": {}}
     task_manifest: dict[str, Any] = {"version": 1, "course": "new-hsk-course", "level": level, "lessons": {}}
 
-    for lesson_number in range(1, 16):
+    lesson_end = args.lesson_end if args.lesson_end is not None else lesson_count(level)
+    selected_lessons = range(max(1, args.lesson_start), min(lesson_count(level), lesson_end) + 1)
+
+    for lesson_number in selected_lessons:
         pptx_path = ppt_by_lesson.get(lesson_number)
         if not pptx_path:
             raise FileNotFoundError(f"Missing PPT for lesson {lesson_number}")
@@ -308,7 +330,8 @@ def main() -> int:
                     "sourceRef": f"PPT Bài {lesson_number} - slide {warmup_slide}",
                     "assetPolicy": "learner-visual",
                 })
-            if answers:
+            warmup_text = slide_text(prs.slides[warmup_slide - 1])
+            if answers and is_image_match_warmup(warmup_text):
                 task_sections[warmup_section["id"]] = [{
                     "id": f"{lesson['id']}-task-warmup",
                     "type": "image-match",
@@ -316,7 +339,7 @@ def main() -> int:
                     "sourceRef": f"PPT Bài {lesson_number} - Khởi động slide {warmup_slide}",
                 }]
 
-        for text_number in (1, 2, 3):
+        for text_number in (1, 2, 3, 4):
             key = f"text{text_number}"
             section = section_map.get(key)
             slide_number = targets.get(key)

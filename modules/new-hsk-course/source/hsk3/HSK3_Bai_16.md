@@ -99,7 +99,7 @@ Audio: `16-1`.
 
 ### 3.4. Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 1 | 脏 | zāng | tạng | tính | bẩn |  |
 | 2 | 可爱 | kě’ài | khả ái | tính | đáng yêu |  |
@@ -199,7 +199,7 @@ Audio: `16-3`.
 
 ### 5.4. Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 11 | 大熊猫 | dàxióngmāo | đại hùng miêu | danh | gấu trúc |  |
 | 12 | 奇怪 | qíguài | kỳ quái | tính | kỳ lạ |  |
@@ -291,13 +291,13 @@ Audio: `16-5`.
 
 ### 7.4. Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 19 | 饱 | bǎo | bão | tính | no |  |
-| 20 | 张 | zhāng | trương | lượng | tờ |  |
+| 20 | 张 | zhāng | trương | động | mở; há |  |
 | 21 | 嘴 | zuǐ | chủy | danh | miệng |  |
 | 22 | 身边 | shēnbiān | thân biên | danh | bên cạnh |  |
-| 23 | 半天 | bàntiān | bán thiên | lượng | nửa ngày |  |
+| 23 | 半天 | bàntiān | bán thiên | số-lượng | một lúc lâu; khá lâu |  |
 | 24 | 脸 | liǎn | kiểm | danh | mặt |  |
 
 ### 7.5. Câu hỏi sau bài khóa
@@ -359,7 +359,7 @@ Hôm nay tôi đưa Tiểu Tuyết và Tiểu Minh đến vườn thú chơi. V�
 
 #### Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 25 | 大人 | dàren | đại nhân | danh | người lớn |  |
 | 26 | 喜爱 | xǐ’ài | hỉ ái | động | yêu thích |  |

@@ -296,11 +296,11 @@ Audio: `10-5`.
 
 | STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
-| 19 | 页 | yè | diệp | lượng | trang |  |
+| 19 | 页 | yè | diệp | danh | trang |  |
 | 20 | 对话 | duìhuà | đối thoại | danh/động | đối thoại |  |
 | 21 | 明白 | míngbai | minh bạch | động/tính | hiểu rõ |  |
 | 22 | 讲 | jiǎng | giảng | động | nói, giảng |  |
-| 23 | 句 | jù | cú | lượng từ | câu; dòng lời nói |  |
+| 23 | 句 | jù | cú | danh | câu; dòng lời nói |  |
 | 24 | 句子 | jùzi | cú tử | danh | câu văn |  |
 
 ### 7.5. Câu hỏi sau bài khóa

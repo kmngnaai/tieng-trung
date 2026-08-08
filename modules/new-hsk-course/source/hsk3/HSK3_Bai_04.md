@@ -296,7 +296,7 @@ Audio: `4-5`.
 |---:|---|---|---|---|---|---|
 | 18 | 欢迎 | huānyíng | hoan nghênh | động | chào mừng |  |
 | 19 | 司机 | sījī | tư cơ | danh | tài xế |  |
-| 20 | 晚点 | wǎndiǎn | vãn điểm | phó | muộn chút |  |
+| 20 | 晚点 | wǎndiǎn | vãn điểm | động | muộn chút |  |
 | 21 | 久 | jiǔ | cửu | tính | lâu |  |
 | 22 | 除了 | chúle | trừ liễu | giới | ngoài ra/trừ |  |
 | 23 | 以外 | yǐwài | dĩ ngoại | danh | ngoài ra |  |

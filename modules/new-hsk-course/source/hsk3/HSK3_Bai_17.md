@@ -97,7 +97,7 @@ Audio: `17-1`.
 
 ### 3.4. Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 1 | 向 | xiàng | hướng | giới/động | hướng về |  |
 | 2 | 楼梯 | lóutī | lâu thê | danh | cầu thang |  |
@@ -186,7 +186,7 @@ Audio: `17-3`.
 
 ### 5.4. Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 9 | 到处 | dàochù | đáo xứ | phó | khắp nơi |  |
 | 10 | 继续 | jìxù | kế tục | động từ | tiếp tục |  |
@@ -276,13 +276,13 @@ Audio: `17-5`.
 
 ### 7.4. Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 15 | 关机 | guānjī | quan cơ | động | tắt máy |  |
 | 16 | 前天 | qiántiān | tiền thiên | danh | hôm kia |  |
 | 17 | 留学 | liúxué | lưu học | động | du học |  |
 | 18 | 国家 | guójiā | quốc gia | danh | quốc gia |  |
-| 19 | 比如 | bǐrú | tỷ như | giới | ví dụ |  |
+| 19 | 比如 | bǐrú | tỷ như | động | ví dụ |  |
 | 20 | 查 | chá | tra | động | tra/kiểm tra |  |
 | 21 | 有用 | yǒuyòng | hữu dụng | tính | có ích |  |
 
@@ -345,7 +345,7 @@ Cuộc sống đại học sắp kết thúc. Gần đây tôi thường xuyên 
 
 #### Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 22 | 容易 | róngyì | dung dị | tính | dễ |  |
 | 23 | 回答 | huídá | hồi đáp | động | trả lời |  |

@@ -153,7 +153,7 @@ def parse_vocab_rows(text: str, lesson_id: str) -> tuple[list[dict[str, Any]], l
                         "pinyin": str(row.get("Pinyin", "")).strip(),
                         "hanViet": str(row.get("Hán Việt", "")).strip(),
                         "wordClass": str(row.get("Từ loại", "")).strip(),
-                        "vi": str(row.get("Nghĩa tiếng Việt", "")).strip(),
+                        "vi": str(row.get("Nghĩa tiếng Việt", row.get("Nghĩa", row.get("Tiếng Việt", "")))).strip(),
                         "note": str(row.get("Ghi chú", "")).strip(),
                         "sourceSection": parent_title,
                     }
@@ -174,7 +174,7 @@ def parse_vocab_rows(text: str, lesson_id: str) -> tuple[list[dict[str, Any]], l
                         "pinyin": str(row.get("Pinyin", "")).strip(),
                         "hanViet": str(row.get("Hán Việt", "")).strip(),
                         "kind": str(row.get("Loại", "")).strip(),
-                        "vi": str(row.get("Nghĩa tiếng Việt", "")).strip(),
+                        "vi": str(row.get("Nghĩa tiếng Việt", row.get("Nghĩa", row.get("Tiếng Việt", "")))).strip(),
                         "sourceSection": parent_title,
                     }
                     proper.append(item)

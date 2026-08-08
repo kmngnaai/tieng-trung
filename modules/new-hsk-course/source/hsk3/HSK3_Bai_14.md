@@ -91,7 +91,7 @@ Audio: `14-1`.
 
 ### 3.4. Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 1 | 词典 | cídiǎn | từ điển | danh | từ điển |  |
 | 2 | 最好 | zuìhǎo | tối hảo | phó | tốt nhất |  |
@@ -185,7 +185,7 @@ Audio: `14-3`.
 
 ### 5.4. Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 8 | 然后 | ránhòu | nhiên hậu | liên | sau đó |  |
 | 9 | 报纸 | bàozhǐ | báo chỉ | danh | báo giấy |  |
@@ -270,7 +270,7 @@ Audio: `14-5`.
 
 ### 7.4. Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 12 | 女生 | nǚshēng | nữ sinh | danh | nữ sinh |  |
 | 13 | 表演 | biǎoyǎn | biểu diễn | danh/động | biểu diễn |  |
@@ -340,7 +340,7 @@ Hôm qua là dạ hội năm mới của trường chúng tôi, học sinh của
 
 #### Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 20 | 新年 | xīnnián | tân niên | danh | năm mới |  |
 | 21 | 班级 | bānjí | ban cấp | danh | lớp |  |

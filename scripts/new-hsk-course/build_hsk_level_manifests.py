@@ -10,6 +10,8 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Any
 
+from course_config import lesson_numbers
+
 NS = {
     "a": "http://schemas.openxmlformats.org/drawingml/2006/main",
     "p": "http://schemas.openxmlformats.org/presentationml/2006/main",
@@ -56,8 +58,12 @@ def find_targets(records: list[dict[str, Any]]) -> dict[str, int]:
     targets: dict[str, int] = {}
     for index, record in enumerate(records, 1):
         compact = re.sub(r"[\s|]+", "", record["text"])
-        if "warmup" not in targets and index <= 8 and "给下面" in compact and "图片" in compact:
-            targets["warmup"] = index
+        if "warmup" not in targets and index <= 8:
+            lower_text = record["text"].lower()
+            has_warmup_marker = "warm-up" in lower_text or "warmup" in lower_text or "热身" in compact
+            has_first_task = any(token in compact for token in ("1.", "1。", "1．"))
+            if has_warmup_marker and has_first_task:
+                targets["warmup"] = index
         for number in (1, 2, 3, 4):
             key = f"text{number}"
             if key not in targets and f"课文{number}" in compact and ("课文内容请见" in compact or "Pleaserefertopage" in compact):
@@ -69,6 +75,14 @@ def find_targets(records: list[dict[str, Any]]) -> dict[str, int]:
         if "extension" not in targets and "小语的彩蛋" in compact:
             targets["extension"] = index
     return targets
+
+
+def is_image_match_warmup(text: str) -> bool:
+    compact = re.sub(r"[\s|]+", "", text).lower()
+    return (
+        ("选择对应的图片" in compact or "选择相应的图片" in compact)
+        or ("matchthewords" in compact and "pictures" in compact)
+    )
 
 
 def standalone_tokens(record: dict[str, Any], pattern: str) -> list[str]:
@@ -87,6 +101,9 @@ def section_map(lesson: dict[str, Any]) -> dict[str, dict[str, Any]]:
             result["warmup"] = section
         elif kind == "activity":
             result["activity"] = section
+        elif kind == "passage":
+            # HSK 2-3 use the fourth textbook track (x-7) as the passage/text 4.
+            result["text4"] = section
         elif title.lower().startswith("tổng kết"):
             result["summary"] = section
         elif kind == "extension":
@@ -160,7 +177,7 @@ def main() -> int:
     visual_manifest: dict[str, Any] = {"version": 1, "course": "new-hsk-course", "level": level, "lessons": {}}
     task_manifest: dict[str, Any] = {"version": 1, "course": "new-hsk-course", "level": level, "lessons": {}}
 
-    for number in range(1, 16):
+    for number in lesson_numbers(level):
         lesson = read_json(data_dir / f"lesson-{number:02d}.json")
         sections = section_map(lesson)
         records = slide_records(ppt_by_lesson[number])
@@ -187,8 +204,9 @@ def main() -> int:
                 "sourceRef": f"PPT Bài {number} - slide {warmup_slide}",
                 "assetPolicy": "learner-visual",
             })
-            answers = standalone_tokens(records[warmup_slide - 1], r"[A-F]")
-            if answers:
+            warmup_record = records[warmup_slide - 1]
+            answers = standalone_tokens(warmup_record, r"[A-F]")
+            if answers and is_image_match_warmup(warmup_record["text"]):
                 task_sections[warmup["id"]] = [{
                     "id": f"{lesson['id']}-task-warmup",
                     "type": "image-match",
@@ -196,7 +214,7 @@ def main() -> int:
                     "sourceRef": f"PPT Bài {number} - Khởi động slide {warmup_slide}",
                 }]
 
-        for text_number in (1, 2, 3):
+        for text_number in (1, 2, 3, 4):
             section = sections.get(f"text{text_number}")
             slide_number = targets.get(f"text{text_number}")
             asset = asset_root / f"lesson-{number:02d}/ppt-text-{text_number}.webp"

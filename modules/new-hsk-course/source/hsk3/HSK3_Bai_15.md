@@ -97,7 +97,7 @@ Audio: `15-1`.
 
 ### 3.4. Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 1 | 蓝 | lán | lam | tính | màu xanh lam |  |
 | 2 | 段 | duàn | đoạn | lượng | đoạn |  |
@@ -191,7 +191,7 @@ Audio: `15-3`.
 
 ### 5.4. Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 10 | 了解 | liǎojiě | liễu giải | động | tìm hiểu |  |
 | 11 | 可是 | kěshì | khả thị | liên | nhưng |  |
@@ -284,7 +284,7 @@ Audio: `15-5`.
 
 ### 7.4. Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 18 | 河 | hé | hà | danh | sông |  |
 | 19 | 关系 | guānxì | quan hệ | danh/động | quan hệ |  |
@@ -350,7 +350,7 @@ Khi còn nhỏ tôi sống ở phía tây bắc Bắc Kinh, có một con sông 
 
 #### Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 21 | 西北 | xīběi | tây bắc | danh | Tây Bắc |  |
 | 22 | 经过 | jīngguò | kinh quá | động/danh | đi qua; quá trình |  |

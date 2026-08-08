@@ -99,7 +99,7 @@ Audio: `13-1`.
 
 ### 3.4. Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 1 | 请客 | qǐngkè | thỉnh khách | động | mời ăn |  |
 | 2 | 南方 | nánfāng | nam phương | danh | miền Nam |  |
@@ -191,7 +191,7 @@ Audio: `13-3`.
 
 ### 5.4. Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 9 | 邻居 | línjū | lân cư | danh | hàng xóm |  |
 | 10 | 放心 | fàngxīn | phóng tâm | động | yên tâm |  |
@@ -277,7 +277,7 @@ Audio: `13-5`.
 
 ### 7.4. Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 14 | 晚会 | wǎnhuì | vãn hội | danh | dạ hội |  |
 | 15 | 礼物 | lǐwù | lễ vật | danh | quà tặng |  |
@@ -345,7 +345,7 @@ Hàng xóm mới của tôi là một cặp vợ chồng đến từ Anh. Tuần
 
 #### Từ mới
 
-| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa | Ghi chú |
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 20 | 来自 | láizì | lai tự | động | đến từ |  |
 | 21 | 夫妻 | fūqī | phu thê | danh | vợ chồng |  |
