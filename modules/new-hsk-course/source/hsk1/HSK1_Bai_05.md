@@ -213,11 +213,12 @@ Audio: `5-3`.
 | STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt |
 |---:|---|---|---|---|---|
 | 9 | 会 | huì | hội | động từ năng nguyện | biết; có thể do đã học |
-| 10 | 做饭 | zuòfàn | tác phạn | động từ | nấu ăn; nấu cơm |
-| 11 | 面条儿 | miàntiáor | diện điều nhi | danh từ | mì sợi |
-| 12 | 饺子 | jiǎozi | giảo tử | danh từ | bánh chẻo |
-| 13 | 一些 | yìxiē | nhất ta | số/lượng từ | một số; một ít |
-| 14 | 菜 | cài | thái | danh từ | món ăn; rau |
+| 10 | 做 | zuò | tác | động từ | làm; thực hiện |
+| 11 | 做饭 | zuòfàn | tác phạn | động từ | nấu ăn; nấu cơm |
+| 12 | 面条儿 | miàntiáor | diện điều nhi | danh từ | mì sợi |
+| 13 | 饺子 | jiǎozi | giảo tử | danh từ | bánh chẻo |
+| 14 | 一些 | yìxiē | nhất ta | số/lượng từ | một số; một ít |
+| 15 | 菜 | cài | thái | danh từ | món ăn; rau |
 
 ### 6.5. Hoạt động
 

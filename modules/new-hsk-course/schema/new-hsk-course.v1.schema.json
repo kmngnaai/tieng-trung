@@ -105,6 +105,7 @@
         "objectives",
         "lessonTexts",
         "vocabulary",
+        "supplementalVocabulary",
         "properNouns",
         "dialogues",
         "languageNotes",
@@ -133,6 +134,12 @@
           "type": "array",
           "items": {
             "$ref": "#/$defs/vocabulary"
+          }
+        },
+        "supplementalVocabulary": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/supplementalVocabulary"
           }
         },
         "properNouns": {
@@ -309,6 +316,71 @@
             "note",
             "lessonTextId"
           ]
+        }
+      ]
+    },
+    "supplementalVocabulary": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/orderedEntity"
+        },
+        {
+          "type": "object",
+          "required": [
+            "hanzi",
+            "pinyin",
+            "wordClass",
+            "vi",
+            "classification",
+            "sourceKind",
+            "sourceContentSectionId",
+            "officialLevelVocabulary",
+            "isLessonNewWord",
+            "flashcardEligible"
+          ],
+          "properties": {
+            "hanzi": {
+              "type": "string",
+              "minLength": 1
+            },
+            "pinyin": {
+              "type": "string"
+            },
+            "hanViet": {
+              "type": "string"
+            },
+            "wordClass": {
+              "type": "string"
+            },
+            "vi": {
+              "type": "string"
+            },
+            "classification": {
+              "const": "supplemental-vocabulary"
+            },
+            "sourceKind": {
+              "type": "string"
+            },
+            "sourceSection": {
+              "type": "string"
+            },
+            "sourceContentSectionId": {
+              "type": "string"
+            },
+            "officialLevelVocabulary": {
+              "type": "boolean"
+            },
+            "isLessonNewWord": {
+              "const": false
+            },
+            "flashcardEligible": {
+              "const": true
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
         }
       ]
     },

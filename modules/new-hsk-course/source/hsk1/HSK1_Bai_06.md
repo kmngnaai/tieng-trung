@@ -238,7 +238,7 @@ Audio: `6-5`.
 | 21 | 坐 | zuò | tọa | động từ | ngồi; đi bằng phương tiện |
 | 22 | 出租车 | chūzūchē | xuất tô xa | danh từ | taxi |
 
-**Danh từ riêng**
+#### Danh từ riêng
 
 | STT | Chữ Hán | Pinyin | Nghĩa |
 |---:|---|---|---|

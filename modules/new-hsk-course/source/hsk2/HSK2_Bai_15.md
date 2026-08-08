@@ -184,6 +184,12 @@ Audio: `15-3`.
 | 5 | 出门 | chūmén | xuất môn | động từ | ra khỏi nhà |  |
 | 6 | 路 | lù | lộ | danh từ | đường; lối |  |
 
+#### Danh từ riêng
+
+| STT | Chữ Hán | Pinyin | Nghĩa tiếng Việt |
+|---:|---|---|---|
+| 1 | 颐和园 | Yíhé Yuán | Di Hòa Viên |
+
 ### 4.5. Câu hỏi sau bài khóa
 
 1. 白家月为什么还要去北京？

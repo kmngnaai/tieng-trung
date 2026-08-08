@@ -297,6 +297,12 @@ Audio: `11-5`.
 | 19 | 怕 | pà | phạ | động/phó | sợ |  |
 | 20 | 邮箱 | yóuxiāng | bưu tương | danh | hộp thư |  |
 
+#### Danh từ riêng
+
+| STT | Chữ Hán | Pinyin | Nghĩa tiếng Việt |
+|---:|---|---|---|
+| 1 | 老张 | Lǎo Zhāng | lão Trương; cách gọi ông Trương |
+
 ### 7.5. Câu hỏi sau bài khóa
 
 1. 老张今天为什么没来上班？

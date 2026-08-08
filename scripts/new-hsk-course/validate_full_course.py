@@ -84,6 +84,7 @@ def main() -> int:
         source_groups = lesson.get("practicePlan", {}).get("sourceGroups", {})
         entity_type_to_ids = {
             "vocabulary": {row.get("id") for row in entities.get("vocabulary", [])},
+            "supplementalVocabulary": {row.get("id") for row in entities.get("supplementalVocabulary", [])},
             "properNouns": {row.get("id") for row in entities.get("properNouns", [])},
             "dialogueTurns": turn_ids,
             "dialogues": {row.get("id") for row in entities.get("dialogues", [])},

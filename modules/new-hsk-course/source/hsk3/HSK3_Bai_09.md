@@ -290,12 +290,13 @@ Audio: `9-5`.
 | STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 15 | 啤酒 | píjiǔ | tì tửu | danh | bia |  |
-| 16 | 事儿 | shìr | sự nhi | danh từ | việc; chuyện |  |
-| 17 | 紧张 | jǐnzhāng | khẩn trương | tính từ | căng thẳng; hồi hộp |  |
-| 18 | 主要 | zhǔyào | chủ yếu | tính | chủ yếu |  |
-| 19 | 受到 | shòudào | thụ đáo | động | chịu, nhận |  |
-| 20 | 影响 | yǐngxiǎng | ảnh hưởng | động/danh | ảnh hưởng |  |
-| 21 | 得分 | défēn | đắc phân | danh/động | ghi điểm/điểm |  |
+| 16 | 回 | huí | hồi | lượng từ | lần/sự việc; dùng cho chuyện hoặc sự việc |  |
+| 17 | 事儿 | shìr | sự nhi | danh từ | việc; chuyện |  |
+| 18 | 紧张 | jǐnzhāng | khẩn trương | tính từ | căng thẳng; hồi hộp |  |
+| 19 | 主要 | zhǔyào | chủ yếu | tính | chủ yếu |  |
+| 20 | 受到 | shòudào | thụ đáo | động | chịu, nhận |  |
+| 21 | 影响 | yǐngxiǎng | ảnh hưởng | động/danh | ảnh hưởng |  |
+| 22 | 得分 | défēn | đắc phân | danh/động | ghi điểm/điểm |  |
 
 ### 7.5. Câu hỏi sau bài khóa
 

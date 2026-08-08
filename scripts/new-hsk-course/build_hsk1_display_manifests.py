@@ -543,6 +543,75 @@ def summary_display(markdown: str, section_id: str):
     return {'items':assessment,'notePrompt':'Những điểm tôi cần cố gắng'}
 
 
+def normalize_summary_match(value: str) -> str:
+    value=clean_inline(str(value or '')).lower()
+    value=value.replace('（','(').replace('）',')').replace('／','/').replace('、','/')
+    value=re.sub(r'\(\d+(?:\s*[-–—]\s*\d+)?\)','',value)
+    value=re.sub(r'[“”"`\'’‘：:；;，,。.!！?？（）()\[\]{}\s]+','',value)
+    return value
+
+
+def summary_word_tokens(value: str):
+    text=clean_inline(str(value or '')).lower()
+    text=re.sub(r'[“”"`\'’‘：:；;，,。.!！?？（）()\[\]{}\/\\+…]+',' ',text)
+    stop={'câu','chữ','mẫu','cố','định','cách','biểu','đạt','giới','từ','phó','phân','biệt','với','và','cấu','trúc','ghép','bị','động'}
+    return {tok for tok in re.findall(r'[a-zà-ỹ0-9]+',text) if len(tok)>1 and tok not in stop}
+
+
+def summary_match_score(content: str, title: str) -> int:
+    cjk=re.findall(r'[\u3400-\u9fff]+',str(content or ''))
+    title_compact=normalize_summary_match(title)
+    if cjk:
+        matched=sum(1 for token in cjk if token and token in title_compact)
+        if matched:
+            # Prefer titles containing every Chinese target; then more specific titles.
+            return 1000 + matched*100 - abs(len(title_compact)-len(normalize_summary_match(content)))
+        return -1
+    a=normalize_summary_match(content); b=normalize_summary_match(title)
+    if a and (a in b or b in a):
+        return 800-min(abs(len(a)-len(b)),100)
+    wa=summary_word_tokens(content); wb=summary_word_tokens(title)
+    overlap=len(wa & wb)
+    return overlap*100 if overlap else -1
+
+
+def resolve_summary_examples(display: dict, lesson_number: int, grammar_by_lesson: dict[int, list[dict]]):
+    """Fill blank summary examples only from source-backed grammar examples.
+
+    Summary lessons recap the current three-lesson block. We therefore search the
+    current lesson and the preceding two lessons in textbook order. No example is
+    generated here: copied Hanzi/Pinyin/Vietnamese must already exist in a grammar
+    display produced from the lesson source Markdown/PPT-derived source.
+    """
+    candidates=[]
+    for n in range(max(1,lesson_number-2),lesson_number+1):
+        for order,group in enumerate(grammar_by_lesson.get(n,[]),1):
+            examples=[ex for ex in (group.get('examples') or []) if ex.get('hanzi')]
+            if not examples: continue
+            candidates.append({'lesson':n,'order':order,'group':group,'example':examples[0]})
+    used=set()
+    for item in display.get('items',[]):
+        if item.get('example'): continue
+        scored=[]
+        for cand in candidates:
+            score=summary_match_score(item.get('content',''),cand['group'].get('title',''))
+            if score<0: continue
+            # Stable preference: highest match, then earlier lesson/order; allow reuse only
+            # if no unused candidate can match (e.g. bundled 把 (1)-(3)).
+            scored.append((score,-cand['lesson'],-cand['order'],cand))
+        if not scored: continue
+        scored.sort(key=lambda row:(row[0],row[1],row[2]),reverse=True)
+        chosen=next((row[3] for row in scored if (row[3]['lesson'],row[3]['order']) not in used),scored[0][3])
+        used.add((chosen['lesson'],chosen['order']))
+        ex=chosen['example']; group=chosen['group']
+        item['example']=str(ex.get('hanzi','')).strip()
+        item['examplePinyin']=str(ex.get('pinyin','')).strip()
+        item['exampleVi']=str(ex.get('vi','')).strip()
+        item['sourceGrammarTitle']=str(group.get('title','')).strip()
+        item['sourceGrammarLesson']=chosen['lesson']
+        item['exampleSource']='grammar-source'
+    return display
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument('--repo', type=Path, required=True)
@@ -559,6 +628,18 @@ def main() -> int:
     translation_map=build_translation_map()
     visual_manifest=read_json(SOURCE/'visual-manifest.json')
     display={'version':1,'course':'new-hsk-course','level':level,'lessons':{}}
+
+    # Pass 1: build every grammar display first so a 3-lesson summary can resolve
+    # examples from earlier lessons in the same recap block.
+    grammar_by_lesson={}
+    for d in lessons:
+        groups=[]
+        for section in d['entities'].get('contentSections',[]):
+            if section.get('kind')!='grammar': continue
+            gd=grammar_display(section.get('markdown',''),phrase_map,translation_map)
+            groups.extend(gd.get('groups',[]))
+        grammar_by_lesson[int(d['lessonNumber'])]=groups
+
     for d in lessons:
         lesson_entry={'sections':{}}
         visual_sections=((visual_manifest.get('lessons',{}).get(d['id'],{}) or {}).get('sections',{}))
@@ -567,7 +648,8 @@ def main() -> int:
             if kind=='warmup': cfg['warmupDisplay']=warmup_display(section.get('markdown',''), phrase_map, translation_map)
             if kind=='grammar': cfg['grammarDisplay']=grammar_display(section.get('markdown',''),phrase_map,translation_map)
             if section.get('title','').lower().startswith('tổng kết học tập'):
-                cfg['summaryDisplay']=summary_display(section.get('markdown',''),section['id'])
+                raw_summary=summary_display(section.get('markdown',''),section['id'])
+                cfg['summaryDisplay']=resolve_summary_examples(raw_summary,int(d['lessonNumber']),grammar_by_lesson)
             visuals=visual_sections.get(section['id'],section.get('sourceVisuals',[]))
             if visuals:
                 out=[]
@@ -575,7 +657,6 @@ def main() -> int:
                     visual=dict(visual)
                     src=str(visual.get('src',''))
                     visible=(visual.get('sourceType')=='ppt' and kind in {'warmup','lesson-text','passage','activity'} and not src.endswith(('ppt-extension.webp','ppt-summary.webp')))
-                    # Future sourceType=pdf-crop is explicitly allowed, full-page PDF remains hidden.
                     if visual.get('sourceType')=='pdf-crop': visible=True
                     visual['displayInLesson']=visible
                     if visible:
@@ -589,11 +670,10 @@ def main() -> int:
             for key in ('warmupDisplay','grammarDisplay','summaryDisplay'):
                 if key in cfg: section[key]=cfg[key]
             if cfg: lesson_entry['sections'][section['id']]=cfg
-        d['stats']['visibleSourceVisuals']=sum(sum(1 for v in s.get('sourceVisuals',[]) if v.get('displayInLesson')) for s in d['entities'].get('contentSections',[]))
+        d['stats']['visibleSourceVisuals']=sum(sum(1 for v in sec.get('sourceVisuals',[]) if v.get('displayInLesson')) for sec in d['entities'].get('contentSections',[]))
         (DATA/f"lesson-{d['lessonNumber']:02d}.json").write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
         display['lessons'][d['id']]=lesson_entry
-    # Persist the normalized trace manifest too: hidden full-page sources keep
-    # page/source metadata but no binary asset path.
+
     for lesson_entry in visual_manifest.get('lessons', {}).values():
         for visuals in (lesson_entry.get('sections', {}) or {}).values():
             for visual in visuals:

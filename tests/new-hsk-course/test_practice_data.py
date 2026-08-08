@@ -1,5 +1,6 @@
 from pathlib import Path
 import json
+import re
 import subprocess
 import tempfile
 import unittest
@@ -58,8 +59,9 @@ class NewHskPracticeDataTests(unittest.TestCase):
         plan = self.lesson['practicePlan']
         self.assertEqual(plan['version'], 2)
         groups = plan['sourceGroups']
-        self.assertEqual(set(groups), {'vocabulary', 'properNouns', 'sentences', 'dialogues', 'passages', 'grammar'})
+        self.assertEqual(set(groups), {'vocabulary', 'supplementalVocabulary', 'properNouns', 'sentences', 'dialogues', 'passages', 'grammar'})
         self.assertEqual(len(groups['vocabulary']['ids']), 12)
+        self.assertEqual(groups['supplementalVocabulary']['ids'], [])
         self.assertEqual(len(groups['sentences']['ids']), 10)
         self.assertEqual(len(groups['dialogues']['ids']), 3)
         self.assertEqual(len(groups['passages']['ids']), 1)
@@ -70,11 +72,27 @@ class NewHskPracticeDataTests(unittest.TestCase):
 
     def test_character_data_separates_radical_components_and_writing(self):
         chars = self.lesson['entities']['characters']
-        self.assertEqual(len(chars), 11)
-        for char in chars:
+        by_id = {row['id']: row for row in chars}
+        plan = self.lesson['practicePlan']['characters']
+
+        expected_official = []
+        for vocab in self.lesson['entities']['vocabulary']:
+            for glyph in re.findall(r'[\u3400-\u9fff]', vocab['hanzi']):
+                if glyph not in expected_official:
+                    expected_official.append(glyph)
+        actual_official = [by_id[row_id]['hanzi'] for row_id in plan['officialCharacterIds']]
+        self.assertEqual(actual_official, expected_official)
+        self.assertEqual(plan['lessonNewWordCharacterIds'], plan['officialCharacterIds'])
+        self.assertTrue(set(plan['coreCharacterIds']).issubset(set(plan['officialCharacterIds'])))
+        self.assertTrue(set(plan['officialCharacterIds']).isdisjoint(set(plan['exposureCharacterIds'])))
+        self.assertEqual(set(by_id), set(plan['officialCharacterIds']) | set(plan['exposureCharacterIds']))
+
+        # Deep component/radical exercises stay on source-backed lesson new-word chars.
+        for row_id in plan['coreCharacterIds']:
+            char = by_id[row_id]
+            self.assertTrue(char['sourceRefs']['vocabularyIds'])
             self.assertTrue(char['dictionaryRadical']['radicalId'])
             self.assertTrue(char['components'])
-            self.assertGreater(char['strokes']['count'], 0)
         builds = self.lesson['entities']['characterBuildExercises']
         self.assertEqual(len(builds), 5)
         for exercise in builds:

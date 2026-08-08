@@ -374,6 +374,32 @@ Gia Nguyệt, tôi đã nhận được email của bạn và cũng đã xem nh�
 2. 音乐会什么时候结束？
 3. 听完音乐会，白家月可能做什么？
 
+## 9.1. Lớp học của Tiểu Ngữ - Ngữ pháp sau bài đọc
+
+### Câu ghép rút gọn “……了……就……”
+
+Cấu trúc “……了……就……” biểu thị hai hành động xảy ra nối tiếp ngay nhau. Nếu hành động thứ hai cũng đã hoàn thành thì cuối câu thêm một “了”.
+
+**Cấu trúc:** `Động từ 1 + 了……就 + Động từ 2……`
+
+#### Ví dụ
+
+- **Chữ Hán:** 你听完了音乐会就来我家吃饭。  
+  **Pinyin:** Nǐ tīngwán le yīnyuèhuì jiù lái wǒ jiā chīfàn.  
+  **Tiếng Việt:** Nghe xong buổi hòa nhạc thì bạn đến nhà tôi ăn cơm.
+- **Chữ Hán:** 我吃了早饭就去学校了。  
+  **Pinyin:** Wǒ chī le zǎofàn jiù qù xuéxiào le.  
+  **Tiếng Việt:** Tôi ăn sáng xong thì đi học.
+- **Chữ Hán:** 昨天我们下了课就回家了。  
+  **Pinyin:** Zuótiān wǒmen xià le kè jiù huíjiā le.  
+  **Tiếng Việt:** Hôm qua chúng tôi tan học xong thì về nhà.
+
+#### Bài luyện
+
+1. 爸爸每次上了飞机就________。
+2. 今天我没吃早饭，所以下了课就________。
+3. 我今天有点儿不舒服，________。
+
 ## 10. Bài tập tổng hợp
 
 ### 10.1. Chọn từ điền vào chỗ trống

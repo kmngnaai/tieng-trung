@@ -267,13 +267,14 @@ Audio: `9-5`.
 | 13 | 做 | zuò | tác | động từ | làm; thực hiện |
 | 14 | 白天 | báitiān | bạch thiên | danh từ thời gian | ban ngày |
 | 15 | 读书 | dúshū | độc thư | động từ | đọc sách; học |
-| 16 | 朋友 | péngyou | bằng hữu | danh từ | bạn; bạn bè |
-| 17 | 唱 | chàng | xướng | động từ | hát |
-| 18 | 歌 | gē | ca | danh từ | bài hát |
-| 19 | 好听 | hǎotīng | hảo thính | tính từ | hay; dễ nghe |
-| 20 | 电视 | diànshì | điện thị | danh từ | tivi; truyền hình |
-| 21 | 狗 | gǒu | cẩu | danh từ | chó |
-| 22 | 玩 | wán | ngoạn | động từ | chơi |
+| 16 | 和 | hé | hòa | giới từ | với; cùng |
+| 17 | 朋友 | péngyou | bằng hữu | danh từ | bạn; bạn bè |
+| 18 | 唱 | chàng | xướng | động từ | hát |
+| 19 | 歌 | gē | ca | danh từ | bài hát |
+| 20 | 好听 | hǎotīng | hảo thính | tính từ | hay; dễ nghe |
+| 21 | 电视 | diànshì | điện thị | danh từ | tivi; truyền hình |
+| 22 | 狗 | gǒu | cẩu | danh từ | chó |
+| 23 | 玩 | wán | ngoạn | động từ | chơi |
 
 ### 8.6. Câu hỏi sau bài khóa
 

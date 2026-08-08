@@ -322,6 +322,7 @@ def parse_lesson_texts(body: str, level: int, lesson: int, dialogue_json: dict[s
     dialogue_by_section = {group.get("section_level2"): group for group in dialogue_groups}
     entities: dict[str, list[dict[str, Any]]] = {
         "vocabulary": [],
+        "supplementalVocabulary": [],
         "properNouns": [],
         "languageNotes": [],
         "activities": [],
@@ -585,6 +586,7 @@ def build_lesson(
 
     grouped = {
         "vocabulary": [item["id"] for item in entities["vocabulary"]],
+        "supplementalVocabulary": [item["id"] for item in entities["supplementalVocabulary"]],
         "properNouns": [item["id"] for item in entities["properNouns"]],
         "dialogues": [item["id"] for item in entities["dialogues"]],
         "languageNotes": [item["id"] for item in entities["languageNotes"]],
@@ -620,6 +622,7 @@ def build_lesson(
             "objectives": len(objectives),
             "lessonTexts": len(lesson_texts),
             "vocabulary": len(entities["vocabulary"]),
+            "supplementalVocabulary": len(entities["supplementalVocabulary"]),
             "properNouns": len(entities["properNouns"]),
             "dialogues": len(entities["dialogues"]),
             "dialogueTurns": total_turns,

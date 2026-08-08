@@ -264,7 +264,7 @@ Audio: `8-5`.
 | 22 | 医生 | yīshēng | y sinh | danh từ | bác sĩ |
 | 23 | 工作 | gōngzuò | công tác | động từ | làm việc |
 
-**Danh từ riêng**
+#### Danh từ riêng
 
 | STT | Chữ Hán | Pinyin | Nghĩa |
 |---:|---|---|---|

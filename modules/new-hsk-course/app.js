@@ -2,7 +2,7 @@
   'use strict';
 
   const SETTINGS_KEY = 'tiengTrung.newHskCourse.settings.v1';
-  const SETTINGS_VERSION = 9;
+  const SETTINGS_VERSION = 10;
   const Matching = window.TiengTrungMatching;
   const LAST_LOCATION_KEY = 'tiengTrung.newHskCourse.lastLocation.v1';
   const PROGRESS_KEY = 'tiengTrung.newHskCourse.progress.v1';
@@ -12,7 +12,7 @@
   const HSK_EXTERNAL_FLASHCARD_KEY = 'tiengTrung.hsk.externalFlashcard.v1';
   const HSK1_SENTENCE_INDEX_URL = '../hanzi-stroke/data/learning/hsk1-vocabulary-sentence-index.json';
   const PRACTICE_ACTIVITY_IDS = new Set(['flashcards', 'listening', 'fill', 'matching', 'ordering', 'typing', 'translateZhVi', 'translateViZh', 'roleplay', 'characters']);
-  const PRACTICE_SOURCE_IDS = ['vocabulary', 'properNouns', 'sentences', 'dialogues', 'passages', 'grammar'];
+  const PRACTICE_SOURCE_IDS = ['vocabulary', 'supplementalVocabulary', 'properNouns', 'sentences', 'dialogues', 'passages', 'grammar'];
   const LEGACY_PRACTICE_ACTIVITY_MAP = Object.freeze({
     vocabulary: 'flashcards', sentences: 'ordering', dialogues: 'roleplay', passages: 'typing', grammar: 'fill', radicals: 'characters'
   });
@@ -39,6 +39,8 @@
     warmupLayers: { hanzi: true, pinyin: true, vi: false },
     practiceActivity: params.get('practice') || 'flashcards',
     practiceSourceSelections: {},
+    practiceItemExclusions: {},
+    practicePreviewExpanded: {},
     practiceActivityStarted: false,
     practiceOrderMode: 'ordered',
     practiceCountMode: 'all',
@@ -147,7 +149,7 @@
         grammarLayers: keepSavedLayers ? normalizeLayers(saved.grammarLayers, state.grammarLayers) : { hanzi: true, pinyin: true, vi: true },
         warmupLayers: normalizeLayers(saved.warmupLayers, state.warmupLayers),
         practiceActivity: normalizePracticeActivity(String(saved.practiceActivity || state.practiceActivity)),
-        practiceSourceSelections: saved.practiceSourceSelections && typeof saved.practiceSourceSelections === 'object' ? saved.practiceSourceSelections : {},
+        practiceSourceSelections: Number(saved.settingsVersion) >= 10 && saved.practiceSourceSelections && typeof saved.practiceSourceSelections === 'object' ? saved.practiceSourceSelections : {},
         practiceOrderMode: saved.practiceOrderMode === 'random' ? 'random' : 'ordered',
         practiceCountMode: ['5', '10', 'all'].includes(String(saved.practiceCountMode)) ? String(saved.practiceCountMode) : 'all',
         practiceFlashcardFilter: ['all', 'unseen', 'review', 'hard'].includes(saved.practiceFlashcardFilter) ? saved.practiceFlashcardFilter : 'all',
@@ -161,7 +163,7 @@
         practiceOrderingDisplayCount: [1, 2, 3].includes(Number(saved.practiceOrderingDisplayCount)) ? Number(saved.practiceOrderingDisplayCount) : 1,
         practiceRoleSpeaker: String(saved.practiceRoleSpeaker || ''),
         practiceCharacterMode: ['learn', 'sort', 'build', 'write'].includes(saved.practiceCharacterMode) ? saved.practiceCharacterMode : 'learn',
-        practiceCharacterScope: saved.practiceCharacterScope === 'core' ? 'core' : 'all',
+        practiceCharacterScope: ['all', 'core', 'seen'].includes(saved.practiceCharacterScope) ? saved.practiceCharacterScope : 'all',
         practiceLayers: saved.practiceLayers && typeof saved.practiceLayers === 'object'
           ? { ...saved.practiceLayers, ...(Number(saved.settingsVersion) >= SETTINGS_VERSION ? {} : { typingListen: undefined }) }
           : {},
@@ -249,6 +251,7 @@
     if (!state.lesson) return [];
     return [
       ...(state.lesson.entities.vocabulary || []).map(item => ({ ...item, itemType: 'vocabulary' })),
+      ...(state.lesson.entities.supplementalVocabulary || []).map(item => ({ ...item, itemType: 'supplementalVocabulary' })),
       ...(state.lesson.entities.properNouns || []).map(item => ({ ...item, wordClass: item.kind || 'danh từ riêng', itemType: 'properNoun' }))
     ];
   }
@@ -1233,7 +1236,7 @@
     const body = `<p class="nhsk-summary-lead">Đánh dấu theo mức độ hiện tại của bạn. Lựa chọn được lưu trên thiết bị này.</p>
       ${items.length ? `<div class="nhsk-summary-table-wrap"><table class="nhsk-summary-table"><thead><tr><th>STT</th><th>Nội dung</th><th>Ví dụ trong sách</th><th>Đã hiểu</th><th>Biết dùng</th></tr></thead><tbody>${items.map((item, index) => {
         const row = checks[item.id] || {};
-        return `<tr><td>${index + 1}</td><td>${inlineMarkdown(item.content || '')}</td><td><div class="nhsk-summary-example"><div><span class="nhsk-hanzi">${escapeHtml(item.example || 'Chưa có ví dụ trong nguồn')}</span>${item.examplePinyin ? `<small class="nhsk-summary-example__pinyin nhsk-pinyin-text">${escapeHtml(item.examplePinyin)}</small>` : ''}${item.exampleVi ? `<small class="nhsk-translation">${escapeHtml(item.exampleVi)}</small>` : ''}</div>${item.example ? `<button type="button" class="nhsk-speak" data-nhsk-speak="${attr(item.example)}" aria-label="Nghe ví dụ">🔊</button>` : ''}</div></td><td><label class="nhsk-summary-check"><input type="checkbox" data-nhsk-summary-check data-section-id="${attr(section.id)}" data-item-id="${attr(item.id)}" data-check-kind="understood" ${row.understood ? 'checked' : ''}><span>Đã hiểu</span></label></td><td><label class="nhsk-summary-check"><input type="checkbox" data-nhsk-summary-check data-section-id="${attr(section.id)}" data-item-id="${attr(item.id)}" data-check-kind="canUse" ${row.canUse ? 'checked' : ''}><span>Biết dùng</span></label></td></tr>`;
+        return `<tr><td>${index + 1}</td><td>${inlineMarkdown(item.content || '')}</td><td><div class="nhsk-summary-example"><div><span class="nhsk-hanzi">${escapeHtml(item.example || 'Không có câu mẫu riêng trong phần tổng kết')}</span>${item.examplePinyin ? `<small class="nhsk-summary-example__pinyin nhsk-pinyin-text">${escapeHtml(item.examplePinyin)}</small>` : ''}${item.exampleVi ? `<small class="nhsk-translation">${escapeHtml(item.exampleVi)}</small>` : ''}</div>${item.example ? `<button type="button" class="nhsk-speak" data-nhsk-speak="${attr(item.example)}" aria-label="Nghe ví dụ">🔊</button>` : ''}</div></td><td><label class="nhsk-summary-check"><input type="checkbox" data-nhsk-summary-check data-section-id="${attr(section.id)}" data-item-id="${attr(item.id)}" data-check-kind="understood" ${row.understood ? 'checked' : ''}><span>Đã hiểu</span></label></td><td><label class="nhsk-summary-check"><input type="checkbox" data-nhsk-summary-check data-section-id="${attr(section.id)}" data-item-id="${attr(item.id)}" data-check-kind="canUse" ${row.canUse ? 'checked' : ''}><span>Biết dùng</span></label></td></tr>`;
       }).join('')}</tbody></table></div>` : '<p>Chưa có bảng tự đánh giá trong nguồn.</p>'}
       <label class="nhsk-summary-note"><span>${escapeHtml(display.notePrompt || 'Những điểm tôi cần cố gắng')}</span><textarea rows="4" data-nhsk-summary-note data-section-id="${attr(section.id)}" placeholder="Ghi lại nội dung cần ôn thêm...">${escapeHtml(progress.note || '')}</textarea></label>`;
     return sectionCard(section.title, body, '✓', 'nhsk-card--summary');
@@ -1397,12 +1400,13 @@
   ]);
 
   const PRACTICE_SOURCE_LABELS = Object.freeze({
-    vocabulary: 'Từ vựng',
-    properNouns: 'Danh từ riêng',
+    vocabulary: 'Từ mới chính thức',
+    supplementalVocabulary: 'Từ bổ sung đã gặp',
+    properNouns: 'Tên riêng',
     sentences: 'Câu',
     dialogues: 'Hội thoại',
     passages: 'Đoạn / bài vè',
-    grammar: 'Ngữ pháp'
+    grammar: 'Mẫu / cụm ngữ pháp'
   });
 
   function normalizePracticeActivity(value) {
@@ -1621,6 +1625,7 @@
     const idx = indexes(state.lesson);
     const ids = practiceSourceGroup(sourceId).ids || [];
     if (sourceId === 'vocabulary') return ids.map(id => idx.vocabulary?.get(id)).filter(Boolean).map(item => ({ ...item, source: sourceId, kind: 'word', textId: item.id, hanzi: item.hanzi, pinyin: item.pinyin || '', vi: item.vi || '' }));
+    if (sourceId === 'supplementalVocabulary') return ids.map(id => idx.supplementalVocabulary?.get(id)).filter(Boolean).map(item => ({ ...item, source: sourceId, kind: 'word', textId: item.id, hanzi: item.hanzi, pinyin: item.pinyin || '', vi: item.vi || '', supplemental: true }));
     if (sourceId === 'properNouns') return ids.map(id => idx.properNouns?.get(id)).filter(Boolean).map(item => ({ ...item, source: sourceId, kind: 'word', textId: item.id, hanzi: item.hanzi, pinyin: item.pinyin || '', vi: item.vi || '' }));
     if (sourceId === 'sentences') return ids.map(dialogueTurnById).filter(Boolean).map(item => ({ ...item, source: sourceId, kind: 'sentence', textId: item.id }));
     if (sourceId === 'dialogues') {
@@ -1647,8 +1652,49 @@
     });
   }
 
+  function practiceItemId(row) {
+    return String(row?.textId || row?.id || `${row?.source || ''}:${row?.hanzi || ''}:${row?.vi || ''}`);
+  }
+
+  function practiceExcludedIds(activity = state.practiceActivity) {
+    return new Set(Array.isArray(state.practiceItemExclusions?.[activity]) ? state.practiceItemExclusions[activity] : []);
+  }
+
+  function practiceRowsBeforeItemSelection(activity = state.practiceActivity) {
+    let rows = uniquePracticeRows(selectedPracticeSources(activity).flatMap(source => practiceRowsForSource(source, activity)));
+    if (activity === 'flashcards' && state.practiceFlashcardFilter !== 'all') {
+      rows = rows.filter(row => ratingFromProgress(progressFor(practiceItemId(row))) === state.practiceFlashcardFilter);
+    }
+    return rows;
+  }
+
+  function selectedPracticeRows(activity = state.practiceActivity) {
+    const excluded = practiceExcludedIds(activity);
+    return practiceRowsBeforeItemSelection(activity).filter(row => !excluded.has(practiceItemId(row)));
+  }
+
+  function setPracticeItemSelected(activity, itemId, selected) {
+    const excluded = practiceExcludedIds(activity);
+    if (selected) excluded.delete(itemId);
+    else excluded.add(itemId);
+    state.practiceItemExclusions = { ...state.practiceItemExclusions, [activity]: [...excluded] };
+    state.practiceActivityStarted = false;
+    state.practiceSessionRows = [];
+    state.practiceSessionKey = '';
+  }
+
+  function setAllPracticeItems(activity, selected) {
+    if (activity === 'characters') {
+      const ids = characterEntitiesForScope().map(item => item.id);
+      state.practiceItemExclusions = { ...state.practiceItemExclusions, characters: selected ? [] : ids };
+      return;
+    }
+    const ids = practiceRowsBeforeItemSelection(activity).map(practiceItemId);
+    state.practiceItemExclusions = { ...state.practiceItemExclusions, [activity]: selected ? [] : ids };
+  }
+
   function buildPracticeRows(activity = state.practiceActivity) {
-    const rows = uniquePracticeRows(selectedPracticeSources(activity).flatMap(source => practiceRowsForSource(source, activity)));
+    const rows = selectedPracticeRows(activity);
     const ordered = state.practiceOrderMode === 'random' ? seededShuffle(rows, `${state.lesson?.id}:${activity}:${Date.now()}`) : rows;
     const limit = state.practiceCountMode === 'all' ? ordered.length : Math.max(1, Number(state.practiceCountMode) || ordered.length);
     return ordered.slice(0, limit);
@@ -1749,7 +1795,9 @@
 
   function startPracticeSession() {
     const activity = state.practiceActivity;
-    const rows = buildPracticeRows(activity);
+    const rows = activity === 'characters'
+      ? selectedCharacterPracticeEntities().map(item => ({ id: item.id, textId: item.id, source: 'characters', kind: 'character', hanzi: item.hanzi, pinyin: (item.pinyin || []).join(' / '), vi: (item.meaningsVi || []).join('; ') }))
+      : buildPracticeRows(activity);
     if (!rows.length) return;
     if (activity === 'flashcards') { openFlashcards(document.querySelector('[data-nhsk-start-practice]'), buildFlashcardCards(rows)); return; }
     if (activity === 'listening' && state.practiceListeningMode === 'single') { openListeningPractice(rows, document.querySelector('[data-nhsk-start-practice]')); return; }
@@ -1782,7 +1830,7 @@
     if (activity === 'typing') return `<div class="nhsk-practice-subtabs"><button type="button" class="${state.practiceTypingMode === 'hanzi' ? 'is-active' : ''}" data-nhsk-typing-mode="hanzi">Gõ chữ Hán</button><button type="button" class="${state.practiceTypingMode === 'pinyin' ? 'is-active' : ''}" data-nhsk-typing-mode="pinyin">Gõ pinyin</button><button type="button" class="${state.practiceTypingMode === 'listen' ? 'is-active' : ''}" data-nhsk-typing-mode="listen">Nghe rồi gõ</button></div>${state.practiceTypingMode === 'listen' ? renderPracticeLayerToggle('typingListen', 'Gợi ý', { allowEmpty: true }) : renderPracticeLayerToggle('typing', 'Gợi ý')}`;
     if (activity === 'ordering') return `<div class="nhsk-practice-options nhsk-ordering-settings"><label><span>Tự chuyển</span><select data-nhsk-practice-setting="ordering-auto-next"><option value="on" ${state.practiceOrderingAutoNext ? 'selected' : ''}>Bật</option><option value="off" ${!state.practiceOrderingAutoNext ? 'selected' : ''}>Tắt</option></select></label><label><span>Chờ sau khi đúng</span><select data-nhsk-practice-setting="ordering-auto-next-delay" ${state.practiceOrderingAutoNext ? '' : 'disabled'}>${[0, 0.8, 1.2, 2, 3].map(value => `<option value="${value}" ${Number(state.practiceOrderingAutoNextDelay) === value ? 'selected' : ''}>${value === 0 ? 'Ngay' : `${value} giây`}</option>`).join('')}</select></label><label><span>Số câu hiển thị</span><select data-nhsk-practice-setting="ordering-display-count">${[1, 2, 3].map(value => `<option value="${value}" ${Number(state.practiceOrderingDisplayCount) === value ? 'selected' : ''}>${value} câu</option>`).join('')}</select></label></div>${renderPracticeLayerToggle(activity, 'Hiển thị')}`;
     if (activity === 'translateZhVi' || activity === 'translateViZh' || activity === 'roleplay') return renderPracticeLayerToggle(activity, 'Hiển thị');
-    if (activity === 'characters') return `<div class="nhsk-practice-subtabs"><button type="button" class="${state.practiceCharacterMode === 'learn' ? 'is-active' : ''}" data-nhsk-character-mode="learn">Học cấu tạo chữ</button><button type="button" class="${state.practiceCharacterMode === 'sort' ? 'is-active' : ''}" data-nhsk-character-mode="sort">Xếp chữ vào thành phần</button><button type="button" class="${state.practiceCharacterMode === 'build' ? 'is-active' : ''}" data-nhsk-character-mode="build">Ghép thành phần thành chữ</button><button type="button" class="${state.practiceCharacterMode === 'write' ? 'is-active' : ''}" data-nhsk-character-mode="write">Cấu tạo và bút thuận</button></div>`;
+    if (activity === 'characters') return `${renderCharacterScopeControls()}<div class="nhsk-practice-subtabs"><button type="button" class="${state.practiceCharacterMode === 'learn' ? 'is-active' : ''}" data-nhsk-character-mode="learn">Học cấu tạo chữ</button><button type="button" class="${state.practiceCharacterMode === 'sort' ? 'is-active' : ''}" data-nhsk-character-mode="sort">Xếp chữ vào thành phần</button><button type="button" class="${state.practiceCharacterMode === 'build' ? 'is-active' : ''}" data-nhsk-character-mode="build">Ghép thành phần thành chữ</button><button type="button" class="${state.practiceCharacterMode === 'write' ? 'is-active' : ''}" data-nhsk-character-mode="write">Cấu tạo và bút thuận</button></div>`;
     return '';
   }
 
@@ -1790,9 +1838,68 @@
     return `<nav class="nhsk-practice-menu" aria-label="Hoạt động luyện tập">${PRACTICE_ACTIVITIES.map(([id, label, description]) => `<button type="button" class="${state.practiceActivity === id ? 'is-active' : ''}" data-nhsk-practice="${id}" aria-pressed="${state.practiceActivity === id}"><strong>${label}</strong><small>${description}</small></button>`).join('')}</nav>`;
   }
 
+  function practicePreviewSourceLabel(row) {
+    if (row?.source === 'supplementalVocabulary') return `Từ bổ sung · ${row.sourceSection || 'Đã gặp'}`;
+    return PRACTICE_SOURCE_LABELS[row?.source] || row?.source || 'Nội dung';
+  }
+
+  function characterScopeLabelForItem(item) {
+    const plan = practicePlan().characters || {};
+    if (new Set(plan.coreCharacterIds || []).has(item.id)) return 'Trọng tâm';
+    if (new Set(plan.officialCharacterIds || []).has(item.id)) return 'Từ mới';
+    return 'Đã gặp';
+  }
+
+  function renderPracticeItemSelector(activity = state.practiceActivity) {
+    if (!['flashcards', 'characters'].includes(activity)) return '';
+    const isCharacters = activity === 'characters';
+    const items = isCharacters
+      ? characterEntitiesForScope().map(item => ({ ...item, source: 'characters', textId: item.id, vi: (item.meaningsVi || []).join('; '), pinyinText: (item.pinyin || []).join(' / ') }))
+      : practiceRowsBeforeItemSelection(activity);
+    const excluded = practiceExcludedIds(activity);
+    const selectedCount = items.filter(item => !excluded.has(practiceItemId(item))).length;
+    const expanded = state.practicePreviewExpanded?.[activity] === true;
+    // Flashcard setup stays compact by default. The learner can explicitly open
+    // the full list to inspect/remove cards before starting. Character practice
+    // keeps the previous short preview because the glyph set itself is useful
+    // context beside the three character scopes.
+    const visible = isCharacters ? (expanded ? items : items.slice(0, 12)) : (expanded ? items : []);
+    const hiddenCount = Math.max(0, items.length - visible.length);
+    const cards = visible.map(item => {
+      const id = practiceItemId(item);
+      const selected = !excluded.has(id);
+      const sourceLabel = isCharacters ? characterScopeLabelForItem(item) : practicePreviewSourceLabel(item);
+      const pinyin = item.pinyinText || item.pinyin || '';
+      const vi = item.vi || '';
+      return `<button type="button" class="nhsk-practice-preview-item ${selected ? 'is-selected' : ''}" data-nhsk-practice-item-toggle="${attr(id)}" data-nhsk-practice-item-activity="${attr(activity)}" aria-pressed="${selected}"><span class="nhsk-practice-preview-check">${selected ? '✓' : ''}</span><strong>${escapeHtml(item.hanzi || item.title || '')}</strong>${pinyin ? `<small>${escapeHtml(pinyin)}</small>` : ''}${vi ? `<em>${escapeHtml(vi)}</em>` : ''}<b>${escapeHtml(sourceLabel)}</b></button>`;
+    }).join('');
+    const description = isCharacters
+      ? 'Xem toàn bộ chữ trước khi học; có thể bỏ hoặc chọn lại từng chữ.'
+      : 'Danh sách được ẩn để màn chuẩn bị gọn. Bấm Xem / chỉnh để kiểm tra, bỏ hoặc chọn lại từng thẻ.';
+    const actions = !isCharacters && !expanded
+      ? (items.length ? `<button type="button" data-nhsk-practice-preview-toggle="${attr(activity)}">Xem / chỉnh ${items.length} thẻ</button>` : '')
+      : `<button type="button" data-nhsk-practice-items-all="${attr(activity)}">Chọn tất cả</button><button type="button" data-nhsk-practice-items-none="${attr(activity)}">Bỏ tất cả</button>${items.length ? `<button type="button" data-nhsk-practice-preview-toggle="${attr(activity)}">${expanded ? 'Thu gọn' : `Xem tất cả ${items.length}`}</button>` : ''}`;
+    const grid = visible.length
+      ? `<div class="nhsk-practice-preview-grid">${cards}</div>`
+      : (items.length ? '' : '<div class="nhsk-practice-preview-grid"><p>Không có mục phù hợp với lựa chọn hiện tại.</p></div>');
+    const more = isCharacters && hiddenCount
+      ? `<small class="nhsk-practice-preview-more">Còn ${hiddenCount} mục · bấm “Xem tất cả” để chỉnh.</small>`
+      : '';
+    return `<section class="nhsk-practice-preview"><div class="nhsk-practice-config-head"><div><strong>${isCharacters ? 'Bộ chữ luyện' : 'Thẻ sẽ học'}</strong><small>${description}</small></div><span>${selectedCount}/${items.length}</span></div><div class="nhsk-practice-preview-actions">${actions}</div>${grid}${more}</section>`;
+  }
+
+  function selectedPracticeSetupCount(activity = state.practiceActivity) {
+    if (activity === 'characters') return selectedCharacterPracticeEntities().length;
+    const selectedCount = selectedPracticeRows(activity).length;
+    if (state.practiceCountMode === 'all') return selectedCount;
+    return Math.min(selectedCount, Math.max(1, Number(state.practiceCountMode) || selectedCount));
+  }
+
   function renderPracticeSetup() {
-    const selected = selectedPracticeSources();
-    return `<div class="nhsk-practice-setup">${practiceSourceSelector()}${practiceCommonSettings()}${renderActivitySpecificSettings(state.practiceActivity)}<button type="button" class="nhsk-practice-primary" data-nhsk-start-practice ${selected.length ? '' : 'disabled'}>Bắt đầu</button></div>`;
+    const activity = state.practiceActivity;
+    const hasSources = activity === 'characters' || selectedPracticeSources(activity).length > 0;
+    const itemCount = selectedPracticeSetupCount(activity);
+    return `<div class="nhsk-practice-setup">${activity === 'characters' ? '' : practiceSourceSelector()}${activity === 'characters' ? '' : practiceCommonSettings()}${renderActivitySpecificSettings(activity)}${renderPracticeItemSelector(activity)}<button type="button" class="nhsk-practice-primary" data-nhsk-start-practice ${hasSources && itemCount ? '' : 'disabled'}>Bắt đầu · ${itemCount} ${activity === 'characters' ? 'chữ' : 'mục'}</button></div>`;
   }
 
   function buildCharacterPracticeUrl(rows) {
@@ -1812,6 +1919,7 @@
     if (!sentence) return [];
     const lessonCandidates = [
       ...(state.lesson?.entities?.vocabulary || []),
+      ...(state.lesson?.entities?.supplementalVocabulary || []),
       ...(state.lesson?.entities?.properNouns || [])
     ].map((item, index) => ({
       word: String(item?.hanzi || '').trim(),
@@ -1847,8 +1955,11 @@
         pinyin: layers.pinyin ? row.pinyin || '' : '',
         meaningVi: layers.vi ? row.vi || '' : '',
         cardType,
-        title: row.title || '',
+        title: row.title || (row.source === 'supplementalVocabulary' ? `Từ bổ sung · ${row.sourceSection || 'Đã gặp'}` : ''),
         source: 'new-hsk-course',
+        sourceCategory: row.source || '',
+        sourceLabel: practicePreviewSourceLabel(row),
+        supplemental: row.source === 'supplementalVocabulary',
         lessonId: state.lesson.id,
         tokens: Array.isArray(row.orderingTokens) ? row.orderingTokens : (Array.isArray(row.answerTokens) ? row.answerTokens : []),
         wordGlossary: cardType === 'sentence' ? flashcardSentenceGlossary(row.hanzi || '') : []
@@ -2158,24 +2269,37 @@
     return target.href;
   }
 
+  function normalizeCharacterScope(value) {
+    return ['all', 'core', 'seen'].includes(value) ? value : 'all';
+  }
+
   function vocabularyCharacterEntities() {
     const characters = state.lesson?.entities?.characters || [];
+    const officialIds = new Set(practicePlan().characters?.officialCharacterIds || []);
+    if (officialIds.size) return characters.filter(item => officialIds.has(item.id));
     return characters.filter(item => Array.isArray(item?.sourceRefs?.vocabularyIds) && item.sourceRefs.vocabularyIds.length);
   }
 
   function effectiveCharacterScope() {
     if (state.practiceCharacterGlyphs.length) return 'selected';
-    return Number(state.level) === 1 && state.practiceCharacterScope !== 'core' ? 'all' : 'core';
+    return normalizeCharacterScope(state.practiceCharacterScope);
   }
 
   function characterEntitiesForScope() {
     const characters = selectedCharacterEntities();
     if (state.practiceCharacterGlyphs.length) return characters;
-    if (effectiveCharacterScope() === 'all') {
-      const vocabIds = new Set(vocabularyCharacterEntities().map(item => item.id));
-      return characters.filter(item => vocabIds.has(item.id));
+    const characterPlan = practicePlan().characters || {};
+    const scope = effectiveCharacterScope();
+    if (scope === 'all') {
+      const officialIds = new Set(characterPlan.officialCharacterIds || vocabularyCharacterEntities().map(item => item.id));
+      return characters.filter(item => officialIds.has(item.id));
     }
-    const coreIds = new Set(practicePlan().characters?.coreCharacterIds || []);
+    if (scope === 'seen') {
+      const seenIds = new Set([...(characterPlan.officialCharacterIds || []), ...(characterPlan.exposureCharacterIds || [])]);
+      if (!seenIds.size) return characters;
+      return characters.filter(item => seenIds.has(item.id));
+    }
+    const coreIds = new Set(characterPlan.coreCharacterIds || []);
     return characters.filter(item => coreIds.has(item.id));
   }
 
@@ -2196,19 +2320,31 @@
     return component?.positionVi || positionMap[component?.position] || '';
   }
 
+  function renderCharacterScopeControls() {
+    const characterPlan = practicePlan().characters || {};
+    const coreCount = (characterPlan.coreCharacterIds || []).length;
+    const allCount = (characterPlan.officialCharacterIds || vocabularyCharacterEntities().map(item => item.id)).length;
+    const seenCount = new Set([...(characterPlan.officialCharacterIds || []), ...(characterPlan.exposureCharacterIds || [])]).size || (state.lesson?.entities?.characters || []).length;
+    const scope = effectiveCharacterScope();
+    if (state.practiceCharacterGlyphs.length) return '';
+    return `<section class="nhsk-character-scope-setup"><div class="nhsk-practice-config-head"><div><strong>Phạm vi chữ</strong><small>Chọn phạm vi trước, sau đó xem/chỉnh từng chữ bên dưới.</small></div></div><div class="nhsk-character-scope-toggle" role="group" aria-label="Phạm vi chữ học"><button type="button" class="${scope === 'core' ? 'is-active' : ''}" data-nhsk-character-scope="core">Chữ trọng tâm <small>${coreCount}</small></button><button type="button" class="${scope === 'all' ? 'is-active' : ''}" data-nhsk-character-scope="all">Tất cả chữ chính thức <small>${allCount}</small></button><button type="button" class="${scope === 'seen' ? 'is-active' : ''}" data-nhsk-character-scope="seen">Chữ đã gặp <small>${seenCount}</small></button></div></section>`;
+  }
+
+  function selectedCharacterPracticeEntities() {
+    const excluded = practiceExcludedIds('characters');
+    return characterEntitiesForScope().filter(item => !excluded.has(item.id));
+  }
+
   function renderCharacterLearn() {
     const charIdx = characterIndex();
     const entityIdx = indexes(state.lesson);
-    const scopedCharacters = characterEntitiesForScope();
+    const scopedCharacters = selectedCharacterPracticeEntities();
     const ids = scopedCharacters.map(item => item.id);
-    const coreCount = (practicePlan().characters?.coreCharacterIds || []).length;
-    const allCount = vocabularyCharacterEntities().length;
     const scope = effectiveCharacterScope();
-    const scopeControls = Number(state.level) === 1 && !state.practiceCharacterGlyphs.length
-      ? `<div class="nhsk-character-scope-toggle" role="group" aria-label="Phạm vi chữ học"><button type="button" class="${scope === 'all' ? 'is-active' : ''}" data-nhsk-character-scope="all">Tất cả chữ <small>${allCount}</small></button><button type="button" class="${scope === 'core' ? 'is-active' : ''}" data-nhsk-character-scope="core">Chữ trọng tâm <small>${coreCount}</small></button></div>`
-      : '';
+    const scopeControls = renderCharacterScopeControls();
     const cards = ids.map(id => charIdx.get(id)).filter(Boolean).map(char => {
-      const words = (char.sourceRefs?.vocabularyIds || []).map(ref => entityIdx.vocabulary?.get(ref) || entityIdx.properNouns?.get(ref)).filter(Boolean);
+      const wordRefs = [...(char.sourceRefs?.vocabularyIds || []), ...(char.sourceRefs?.properNounIds || [])];
+      const words = wordRefs.map(ref => entityIdx.vocabulary?.get(ref) || entityIdx.properNouns?.get(ref)).filter(Boolean);
       const radical = char.dictionaryRadical || {};
       const radicalLink = radical.radicalId ? radicalDetailUrl(radical, char) : '';
       return `<article class="nhsk-character-learning-card" data-character-id="${attr(char.id)}">
@@ -2220,12 +2356,30 @@
         ${char.pedagogy?.commonErrors?.length ? `<p class="nhsk-practice-hint"><b>Lỗi thường gặp:</b> ${escapeHtml(char.pedagogy.commonErrors.join(' '))}</p>` : ''}
       </article>`;
     }).join('');
-    return sectionCard('Học cấu tạo chữ', `${scopeControls}<p class="nhsk-practice-help">${scope === 'all' ? 'Học toàn bộ chữ xuất hiện trong từ vựng và danh từ riêng của bài. Chọn Chữ trọng tâm khi muốn ôn nhanh.' : 'Ôn nhóm chữ trọng tâm đã được biên tập cho bài.'}</p><div class="nhsk-character-learning-list">${cards}</div>`, '字');
+    const scopeHelp = scope === 'all'
+      ? 'Học toàn bộ chữ cấu thành các từ mới chính thức của bài. Danh từ riêng và chữ chỉ mới xuất hiện trong nội dung không được trộn vào phạm vi này.'
+      : scope === 'seen'
+        ? 'Học các chữ đã xuất hiện trong bài này, gồm chữ của từ mới chính thức và chữ xuất hiện trong bài khóa, ngữ pháp, hoạt động hoặc danh từ riêng. Phạm vi này không làm thay đổi danh sách 生词.'
+        : 'Ôn nhóm chữ trọng tâm đã có dữ liệu cấu tạo/bộ thủ phù hợp để luyện sâu.';
+    return sectionCard('Học cấu tạo chữ', `${scopeControls}<p class="nhsk-practice-help">${scopeHelp}</p><div class="nhsk-character-learning-list">${cards}</div>`, '字');
   }
 
   function radicalExercise() {
     const id = practicePlan().curatedExerciseIds?.radicalSort?.[0];
-    return (state.lesson?.entities?.radicalSortExercises || []).find(item => item.id === id) || null;
+    const base = (state.lesson?.entities?.radicalSortExercises || []).find(item => item.id === id) || null;
+    if (!base) return null;
+    const allowedGlyphs = new Set(selectedCharacterPracticeEntities().map(item => item.hanzi));
+    if (!allowedGlyphs.size) return { ...base, items: [], groups: [], rounds: [] };
+    const items = (base.items || []).filter(item => allowedGlyphs.has(item.hanzi));
+    const itemIds = new Set(items.map(item => item.id));
+    const groupIds = new Set(items.map(item => item.groupId));
+    const groups = (base.groups || []).filter(group => groupIds.has(group.id));
+    const rounds = (base.rounds || []).map(round => {
+      const selectedItemIds = (round.itemIds || []).filter(itemId => itemIds.has(itemId));
+      const selectedGroups = new Set(items.filter(item => selectedItemIds.includes(item.id)).map(item => item.groupId));
+      return { ...round, itemIds: selectedItemIds, groupIds: (round.groupIds || []).filter(groupId => selectedGroups.has(groupId)) };
+    }).filter(round => round.itemIds.length);
+    return { ...base, items, groups, rounds };
   }
 
   function ensureRadicalSortSession(force = false) {
@@ -2388,13 +2542,13 @@
 
   function renderCharacterBuild() {
     const idx = characterIndex();
-    const selectedIds = new Set(selectedCharacterEntities().map(item => item.id));
+    const selectedIds = new Set(selectedCharacterPracticeEntities().map(item => item.id));
     const exercises = (state.lesson?.entities?.characterBuildExercises || []).filter(item => !state.practiceCharacterGlyphs.length || selectedIds.has(item.characterId));
     return sectionCard('Ghép thành phần thành chữ', `<div class="nhsk-character-build-list">${exercises.map(item => { const char = idx.get(item.characterId); return `<article class="nhsk-character-build-card" data-character-build="${attr(item.id)}" data-expected="${attr((item.answerComponents || []).join('|'))}"><div class="nhsk-character-build-result"><span>${escapeHtml((char?.pinyin || []).join(' / '))}</span><strong>${escapeHtml((char?.meaningsVi || []).join('; '))}</strong></div><div class="nhsk-character-build-answer" data-character-build-answer><small>Chọn thành phần</small></div><div class="nhsk-character-build-bank">${seededShuffle(item.componentChoices || [], item.id).map(component => `<button type="button" data-character-component="${attr(component)}">${escapeHtml(component)}</button>`).join('')}</div><div class="nhsk-practice-actions"><button type="button" data-character-build-check>Kiểm tra</button><button type="button" data-character-build-reset>Đặt lại</button></div><output data-nhsk-feedback></output></article>`; }).join('')}</div>`, '构');
   }
 
   function renderCharacterWriting() {
-    const chars = characterEntitiesForScope();
+    const chars = selectedCharacterPracticeEntities();
     return sectionCard('Cấu tạo và bút thuận', `<div class="nhsk-character-grid">${chars.map(char => `<a href="${attr(buildCharacterReturnUrl(char))}"><span>${escapeHtml(char.hanzi)}</span><small>${escapeHtml((char.pinyin || []).join(' / '))}</small><em>${Number(char.strokes?.count || 0)} nét</em></a>`).join('')}</div>`, '✍');
   }
 
@@ -2423,7 +2577,9 @@
     state.practiceActivity = normalizePracticeActivity(state.practiceActivity || lesson.practicePlan?.defaultActivity);
     const setup = state.practiceActivityStarted ? '' : renderPracticeSetup();
     const content = state.practiceActivityStarted ? renderPracticeSession() : '';
-    const selectedLabels = selectedPracticeSources().map(id => PRACTICE_SOURCE_LABELS[id] || id).join(' · ');
+    const selectedLabels = state.practiceActivity === 'characters'
+      ? ({ core: 'Chữ trọng tâm', all: 'Tất cả chữ chính thức', seen: 'Chữ đã gặp', selected: 'Chữ đã chọn' }[effectiveCharacterScope()] || 'Chữ')
+      : selectedPracticeSources().map(id => PRACTICE_SOURCE_LABELS[id] || id).join(' · ');
     const summary = state.practiceActivityStarted ? `<div class="nhsk-practice-session-summary"><span>${escapeHtml(selectedLabels)}</span><span>${state.practiceSessionRows.length || '—'} mục</span></div>` : '';
     return `${renderPracticeMenu()}<section class="nhsk-practice-panel" data-practice-panel="${attr(state.practiceActivity)}"><div class="nhsk-practice-panel-head"><h2>${escapeHtml(PRACTICE_ACTIVITIES.find(row => row[0] === state.practiceActivity)?.[1] || '')}</h2><button type="button" data-nhsk-practice-reset-settings>${state.practiceActivityStarted ? 'Đổi lựa chọn' : 'Cài đặt'}</button></div>${summary}${setup}${content}</section>`;
   }
@@ -2493,7 +2649,7 @@
       state.practiceActivity = normalizePracticeActivity(snapshot.practiceActivity || state.practiceActivity);
       if (snapshot.practiceSourceSelections && typeof snapshot.practiceSourceSelections === 'object') state.practiceSourceSelections = snapshot.practiceSourceSelections;
       if (snapshot.practiceCharacterMode) state.practiceCharacterMode = snapshot.practiceCharacterMode;
-      if (snapshot.practiceCharacterScope) state.practiceCharacterScope = snapshot.practiceCharacterScope === 'core' ? 'core' : 'all';
+      if (snapshot.practiceCharacterScope) state.practiceCharacterScope = normalizeCharacterScope(snapshot.practiceCharacterScope);
       if (Array.isArray(snapshot.practiceCharacterGlyphs)) state.practiceCharacterGlyphs = snapshot.practiceCharacterGlyphs;
       state.practiceActivityStarted = snapshot.practiceActivityStarted === true;
       restoreRadicalSession(snapshot);
@@ -2997,6 +3153,26 @@
       }
       const sourceChip = event.target.closest('[data-nhsk-practice-source]');
       if (sourceChip) { togglePracticeSource(sourceChip.dataset.nhskPracticeSource || ''); rerenderCurrentContent({ preserveFilter: true }); return; }
+      const practiceItemToggle = event.target.closest('[data-nhsk-practice-item-toggle]');
+      if (practiceItemToggle) {
+        const activity = practiceItemToggle.dataset.nhskPracticeItemActivity || state.practiceActivity;
+        const id = practiceItemToggle.dataset.nhskPracticeItemToggle || '';
+        const selected = practiceItemToggle.getAttribute('aria-pressed') !== 'true';
+        setPracticeItemSelected(activity, id, selected);
+        rerenderCurrentContent({ preserveFilter: true });
+        return;
+      }
+      const practiceItemsAll = event.target.closest('[data-nhsk-practice-items-all]');
+      if (practiceItemsAll) { setAllPracticeItems(practiceItemsAll.dataset.nhskPracticeItemsAll || state.practiceActivity, true); rerenderCurrentContent({ preserveFilter: true }); return; }
+      const practiceItemsNone = event.target.closest('[data-nhsk-practice-items-none]');
+      if (practiceItemsNone) { setAllPracticeItems(practiceItemsNone.dataset.nhskPracticeItemsNone || state.practiceActivity, false); rerenderCurrentContent({ preserveFilter: true }); return; }
+      const practicePreviewToggle = event.target.closest('[data-nhsk-practice-preview-toggle]');
+      if (practicePreviewToggle) {
+        const activity = practicePreviewToggle.dataset.nhskPracticePreviewToggle || state.practiceActivity;
+        state.practicePreviewExpanded = { ...state.practicePreviewExpanded, [activity]: state.practicePreviewExpanded?.[activity] !== true };
+        rerenderCurrentContent({ preserveFilter: true });
+        return;
+      }
       const practiceLayer = event.target.closest('[data-nhsk-practice-layer-activity][data-nhsk-practice-layer]');
       if (practiceLayer) { togglePracticeLayer(practiceLayer.dataset.nhskPracticeLayerActivity || state.practiceActivity, practiceLayer.dataset.nhskPracticeLayer || 'hanzi'); return; }
       const startPractice = event.target.closest('[data-nhsk-start-practice]');
@@ -3010,7 +3186,7 @@
       const typingMode = event.target.closest('[data-nhsk-typing-mode]');
       if (typingMode) { state.practiceTypingMode = ['hanzi', 'pinyin', 'listen'].includes(typingMode.dataset.nhskTypingMode) ? typingMode.dataset.nhskTypingMode : 'hanzi'; state.practiceActivityStarted = false; saveSettings(); rerenderCurrentContent({ preserveFilter: true }); return; }
       const characterScope = event.target.closest('[data-nhsk-character-scope]');
-      if (characterScope) { state.practiceCharacterScope = characterScope.dataset.nhskCharacterScope === 'core' ? 'core' : 'all'; saveSettings(); rerenderCurrentContent({ preserveFilter: true }); return; }
+      if (characterScope) { state.practiceCharacterScope = normalizeCharacterScope(characterScope.dataset.nhskCharacterScope); state.practiceItemExclusions = { ...state.practiceItemExclusions, characters: [] }; state.practiceActivityStarted = false; saveSettings(); rerenderCurrentContent({ preserveFilter: true }); return; }
       const characterMode = event.target.closest('[data-nhsk-character-mode]');
       if (characterMode) { state.practiceCharacterMode = ['learn', 'sort', 'build', 'write'].includes(characterMode.dataset.nhskCharacterMode) ? characterMode.dataset.nhskCharacterMode : 'learn'; state.practiceActivityStarted = false; saveSettings(); rerenderCurrentContent({ preserveFilter: true }); return; }
       const roleSpeaker = event.target.closest('[data-nhsk-role-speaker]');
@@ -3306,6 +3482,8 @@
     state.lesson = null;
     state.filter = 'all';
     state.practiceActivityStarted = false;
+    state.practiceItemExclusions = {};
+    state.practicePreviewExpanded = {};
     state.practiceSessionRows = [];
     state.practiceSessionKey = '';
     if (options.push !== false) syncUrl(false);

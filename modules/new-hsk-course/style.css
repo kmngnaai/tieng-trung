@@ -405,11 +405,11 @@ body.nhsk-modal-open{overflow:hidden}
 .nhsk-grammar-plus-intro>span{display:grid;place-items:center;flex:0 0 32px;width:32px;height:32px;border-radius:999px;background:#174f79;color:#fff;font-size:11px;font-weight:900}
 .nhsk-grammar-plus-intro p{margin:0;color:#536676;font-size:12px;line-height:1.42}
 .nhsk-app :is(.nhsk-vocab-item__word,.hsk-word,.nhsk-dialogue__hanzi,.nhsk-passage__hanzi,.nhsk-example__hanzi,.hsk-popup-sentence-zh,.hsk-grammar-example-zh){font-family:var(--ui-font-han,"Noto Serif SC","Songti SC",serif)}
-.nhsk-character-scope-toggle{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-bottom:10px;padding:4px;border:1px solid #dce8e4;border-radius:13px;background:#f7fbf9}
+.nhsk-character-scope-toggle{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-bottom:10px;padding:4px;border:1px solid #dce8e4;border-radius:13px;background:#f7fbf9}
 .nhsk-character-scope-toggle button{min-height:38px;border:1px solid transparent;border-radius:10px;background:transparent;color:var(--ui-text-secondary);font:800 12px/1.2 var(--ui-font);padding:7px 8px}
 .nhsk-character-scope-toggle button small{margin-left:4px;color:inherit;font-size:10px}
 .nhsk-character-scope-toggle button.is-active{border-color:#56ad98;background:#e7f6f0;color:#176f61;box-shadow:0 2px 8px rgba(35,113,91,.08)}
-@media(max-width:420px){.nhsk-character-scope-toggle button{font-size:11px;padding-inline:5px}}
+@media(max-width:420px){.nhsk-character-scope-toggle{gap:4px}.nhsk-character-scope-toggle button{min-height:44px;font-size:10px;padding-inline:3px}.nhsk-character-scope-toggle button small{display:block;margin:2px 0 0}}
 
 
 /* HSK1 source-backed visual flow v1 - PDF keeps content order, PPT supplies clean imagery. */
@@ -861,3 +861,22 @@ html.nhsk-lightbox-open{overflow:hidden}
   .nhsk-summary-example__pinyin,
   .nhsk-summary-example small.nhsk-translation{-webkit-line-clamp:1}
 }
+
+/* Practice preview/select shared by Flashcard and Character Practice */
+.nhsk-practice-preview,.nhsk-character-scope-setup{display:grid;gap:9px;border:1px solid #dbe8e3;border-radius:15px;background:#fbfdfc;padding:11px}
+.nhsk-character-scope-setup .nhsk-character-scope-toggle{margin:0}
+.nhsk-practice-preview-actions{display:flex;flex-wrap:wrap;gap:6px}
+.nhsk-practice-preview-actions button{min-height:32px;border:1px solid #d9e7e2;border-radius:999px;background:#fff;color:#48685f;padding:0 10px;font:800 10px/1 var(--ui-font);cursor:pointer}
+.nhsk-practice-preview-actions button:hover{border-color:#78bba9;color:#176f61}
+.nhsk-practice-preview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.nhsk-practice-preview-item{position:relative;display:grid;grid-template-columns:22px minmax(0,1fr);grid-template-areas:"check word" "check pinyin" "check meaning" "check badge";align-items:start;gap:2px 7px;min-width:0;text-align:left;border:1px solid #dce8e4;border-radius:12px;background:#fff;color:var(--ui-text);padding:9px;cursor:pointer}
+.nhsk-practice-preview-item.is-selected{border-color:#68b6a2;background:#eef9f5;box-shadow:0 2px 8px rgba(35,113,91,.06)}
+.nhsk-practice-preview-check{grid-area:check;display:grid;width:20px;height:20px;place-items:center;border:1px solid #b9d3ca;border-radius:6px;background:#fff;color:#176f61;font-weight:900}
+.nhsk-practice-preview-item.is-selected .nhsk-practice-preview-check{background:#dff4ec;border-color:#68b6a2}
+.nhsk-practice-preview-item strong{grid-area:word;min-width:0;font:900 17px/1.25 var(--ui-hanzi-font,var(--ui-font));overflow-wrap:anywhere}
+.nhsk-practice-preview-item small{grid-area:pinyin;color:#6f857f;font-size:10px;overflow-wrap:anywhere}
+.nhsk-practice-preview-item em{grid-area:meaning;color:#445b55;font:600 10px/1.35 var(--ui-font);font-style:normal;overflow-wrap:anywhere}
+.nhsk-practice-preview-item b{grid-area:badge;justify-self:start;margin-top:2px;border-radius:999px;background:#f0f5f3;color:#688078;padding:3px 6px;font:800 9px/1 var(--ui-font)}
+.nhsk-practice-preview-item.is-selected b{background:#dff4ec;color:#176f61}
+.nhsk-practice-preview-more{color:var(--ui-text-muted);font-size:10px}
+@media(max-width:430px){.nhsk-practice-preview,.nhsk-character-scope-setup{padding:9px}.nhsk-practice-preview-grid{grid-template-columns:1fr 1fr;gap:6px}.nhsk-practice-preview-item{padding:8px;grid-template-columns:20px minmax(0,1fr)}.nhsk-practice-preview-item strong{font-size:16px}.nhsk-practice-preview-item em{font-size:9px}.nhsk-practice-preview-actions button{min-height:30px;padding-inline:8px}.nhsk-character-scope-setup .nhsk-character-scope-toggle{grid-template-columns:1fr 1fr 1fr}}

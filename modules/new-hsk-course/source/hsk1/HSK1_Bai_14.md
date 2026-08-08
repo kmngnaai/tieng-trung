@@ -229,13 +229,14 @@ Audio: `14-3`.
 | STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
 |---:|---|---|---|---|---|---|
 | 8 | 会 | huì | hội | động từ năng nguyện | biết; có khả năng |  |
-| 9 | 都 | dōu | đô | phó từ | đều; tất cả | Phạm vi được khái quát đứng trước 都 |
-| 10 | 听见 | tīngjiàn | thính kiến | động từ | nghe thấy |  |
-| 11 | 不要 | búyào | bất yếu | phó từ | đừng | Dùng trong câu cầu khiến phủ định |
-| 12 | 说话 | shuōhuà | thuyết thoại | động từ li hợp | nói chuyện; nói |  |
-| 13 | 听 | tīng | thính | động từ | nghe |  |
-| 14 | 哪些 | nǎxiē | nả ta | đại từ nghi vấn | những… nào |  |
-| 15 | 字 | zì | tự | danh từ | chữ; ký tự |  |
+| 9 | 写 | xiě | tả | động từ | viết |  |
+| 10 | 都 | dōu | đô | phó từ | đều; tất cả | Phạm vi được khái quát đứng trước 都 |
+| 11 | 听见 | tīngjiàn | thính kiến | động từ | nghe thấy |  |
+| 12 | 不要 | búyào | bất yếu | phó từ | đừng | Dùng trong câu cầu khiến phủ định |
+| 13 | 说话 | shuōhuà | thuyết thoại | động từ li hợp | nói chuyện; nói |  |
+| 14 | 听 | tīng | thính | động từ | nghe |  |
+| 15 | 哪些 | nǎxiē | nả ta | đại từ nghi vấn | những… nào |  |
+| 16 | 字 | zì | tự | danh từ | chữ; ký tự |  |
 
 ### 6.5. Danh từ riêng
 

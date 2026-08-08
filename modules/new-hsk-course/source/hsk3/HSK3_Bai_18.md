@@ -353,6 +353,18 @@ zhè cì lái zhōng guó， wǒ zuì gāo xìng de shìrèn shí le lǐ wén de
 
 Lần này đến Trung Quốc, điều khiến tôi vui nhất là được quen biết bố mẹ Lý Văn. Họ cho tôi xem những bức ảnh khi Lý Văn mới sinh và kể cho tôi rất nhiều chuyện trong quá khứ của anh ấy. Khi học cấp ba, Lý Văn muốn học y nên từ lúc đó đã nỗ lực học tập. Năm cuối cấp, vì thành tích đặc biệt tốt, anh ấy có được cơ hội ra nước ngoài du học. Từ anh ấy, tôi hiểu rằng chỉ cần luôn kiên trì thì có thể hoàn thành mục tiêu của mình. Tôi tin rằng sau này anh ấy nhất định sẽ phát triển tốt hơn.
 
+#### Từ mới
+
+| STT | Chữ Hán | Pinyin | Hán Việt | Từ loại | Nghĩa tiếng Việt | Ghi chú |
+|---:|---|---|---|---|---|---|
+| 22 | 出生 | chūshēng | xuất sinh | động từ | sinh ra |  |
+| 23 | 过去 | guòqù | quá khứ | danh từ | quá khứ; trước đây |  |
+| 24 | 懂得 | dǒngde | đổng đắc | động từ | hiểu; biết |  |
+| 25 | 坚持 | jiānchí | kiên trì | động từ | kiên trì; duy trì |  |
+| 26 | 完成 | wánchéng | hoàn thành | động từ | hoàn thành |  |
+| 27 | 目标 | mùbiāo | mục tiêu | danh từ | mục tiêu |  |
+| 28 | 发展 | fāzhǎn | phát triển | động từ | phát triển |  |
+
 #### Câu hỏi sau bài đọc
 
 1. 李文的父母给白家月看什么了？

@@ -113,9 +113,10 @@ Audio: `5-1`.
 | 3 | 上来 | shànglái | thượng lai | động từ | đi lên phía người nói |  |
 | 4 | 上去 | shàngqu | thượng khứ | động từ | đi lên xa người nói |  |
 | 5 | 下面 | xiàmiàn | hạ diện | danh từ phương vị | phía dưới; tầng dưới |  |
-| 6 | 等 | děng | đẳng | động từ | đợi |  |
-| 7 | 一会儿 | yíhuìr | nhất hội nhi | lượng từ thời gian | một lát |  |
-| 8 | 下去 | xiàqu | hạ khứ | động từ | đi xuống xa người nói |  |
+| 6 | 面 | miàn | diện | hậu tố/danh từ | dùng tạo danh từ phương vị; mặt, bề mặt |  |
+| 7 | 等 | děng | đẳng | động từ | đợi |  |
+| 8 | 一会儿 | yíhuìr | nhất hội nhi | lượng từ thời gian | một lát |  |
+| 9 | 下去 | xiàqu | hạ khứ | động từ | đi xuống xa người nói |  |
 
 ### 3.5. Câu hỏi sau bài khóa
 

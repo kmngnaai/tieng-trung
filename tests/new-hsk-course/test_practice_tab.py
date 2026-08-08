@@ -18,7 +18,7 @@ class NewHskPracticeTabTests(unittest.TestCase):
         self.assertIn('data-nhsk-view="practice"', APP)
         for label in ['🎓 Flashcard', 'Nghe', 'Điền từ', 'Nối', 'Sắp xếp câu', 'Gõ câu / đoạn', 'Dịch Trung → Việt', 'Dịch Việt → Trung', 'Hội thoại', 'Cấu tạo & Bộ thủ']:
             self.assertIn(label, APP)
-        self.assertEqual(set(DATA['practicePlan']['sourceGroups']), {'vocabulary', 'properNouns', 'sentences', 'dialogues', 'passages', 'grammar'})
+        self.assertEqual(set(DATA['practicePlan']['sourceGroups']), {'vocabulary', 'supplementalVocabulary', 'properNouns', 'sentences', 'dialogues', 'passages', 'grammar'})
         self.assertEqual(len(DATA['practicePlan']['activities']), 10)
         self.assertIn('practiceSourceSelector', APP)
         self.assertIn('data-nhsk-practice-source="all"', APP)
@@ -33,7 +33,7 @@ class NewHskPracticeTabTests(unittest.TestCase):
     def test_radical_sort_has_curated_data_and_drag_touch_controls(self):
         plan = DATA['practicePlan']
         self.assertEqual(plan['defaultActivity'], 'flashcards')
-        self.assertEqual(set(plan['sourceGroups']), {'vocabulary', 'properNouns', 'sentences', 'dialogues', 'passages', 'grammar'})
+        self.assertEqual(set(plan['sourceGroups']), {'vocabulary', 'supplementalVocabulary', 'properNouns', 'sentences', 'dialogues', 'passages', 'grammar'})
         exercise = DATA['entities']['radicalSortExercises'][0]
         self.assertEqual(exercise['type'], 'radical-sort')
         self.assertEqual(len(exercise['groups']), 6)

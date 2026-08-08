@@ -348,6 +348,8 @@ Hôm qua là dạ hội năm mới của trường chúng tôi, học sinh của
 | 23 | 一块儿 | yíkuàir | nhất khoái nhi | phó/danh | cùng nhau |  |
 | 24 | 网站 | wǎngzhàn | võng trạm | danh | trang web |  |
 | 25 | 视频 | shìpín | thị tần | danh từ | video |  |
+| 26 | 留学生 | liúxuéshēng | lưu học sinh | danh từ | du học sinh |  |
+| 27 | 最后 | zuìhòu | tối hậu | danh từ | cuối cùng; phần cuối |  |
 
 #### Câu hỏi sau bài đọc
 
