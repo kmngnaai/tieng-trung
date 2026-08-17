@@ -69,6 +69,20 @@ const normalizePinyinSearch = value => normalizePinyin(value).replace(/[1-5]/g, 
 const normalizeViText = value => String(value || '').toLowerCase().replace(/[^a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ0-9\u3400-\u9fff]+/g, ' ').replace(/\s+/g, ' ').trim();
 const normalizeSearchText = value => String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/\s+/g, ' ').trim();
 
+function uniqueBy(items, keyFn) {
+  const seen = new Set();
+  return items.filter(item => {
+    const key = keyFn(item);
+    if (!key || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function publishableRadicalStatus(status = '') {
+  return ['verified', 'verified-local', 'reviewed'].includes(status);
+}
+
 
 function lookupRecentApi() {
   return window.TiengTrungLookupHistory || null;
