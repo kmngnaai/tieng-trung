@@ -1542,6 +1542,7 @@
   }
 
   function practiceSourceCount(id) {
+    if (id === 'grammar') return grammarRows().length;
     return Array.isArray(practiceSourceGroup(id).ids) ? practiceSourceGroup(id).ids.length : 0;
   }
 
@@ -1625,7 +1626,36 @@
     return allDialogueTurns().find(turn => turn.id === id) || null;
   }
 
+  function catalogGrammarRows() {
+    return (state.catalogData?.grammar || [])
+      .filter(item => Number(item.chapter) === Number(state.lessonNumber))
+      .map(item => ({
+        id: `catalog-grammar:${item.id}`,
+        textId: `catalog-grammar:${item.id}`,
+        source: 'grammar',
+        kind: 'grammar',
+        hanzi: item.syntax || item.topic || 'Ngữ pháp',
+        pinyin: '',
+        vi: item.explanation || '',
+        title: item.topic || 'Ngữ pháp',
+        grammar: {
+          topic: item.topic || 'Ngữ pháp',
+          pattern: item.syntax || '',
+          explanation: item.explanation || '',
+          tips: item.tips || '',
+          attentions: item.attentions || '',
+          examples: (item.examples || []).map(example => ({
+            hanzi: example.chinese || '',
+            pinyin: example.pinyin || '',
+            meaning: example.vietnamese || ''
+          }))
+        }
+      }));
+  }
+
   function grammarRows() {
+    const catalogRows = catalogGrammarRows();
+    if (catalogRows.length) return catalogRows;
     const idx = indexes(state.lesson);
     const group = practiceSourceGroup('grammar');
     return (group.ids || []).map(id => {
