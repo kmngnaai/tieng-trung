@@ -138,6 +138,12 @@
     return Math.min(5, Math.max(0, Math.round(parsed * 10) / 10));
   }
 
+  function normalizeOrderingDisplayCount(value, fallback = 1) {
+    if (String(value) === 'all') return 'all';
+    const parsed = Math.floor(Number(value));
+    return Number.isFinite(parsed) && parsed >= 1 ? parsed : fallback;
+  }
+
   function readSettings() {
     try {
       const saved = JSON.parse(window.localStorage.getItem(SETTINGS_KEY) || '{}');
@@ -160,7 +166,7 @@
         practiceTypingMode: ['hanzi', 'pinyin', 'listen'].includes(saved.practiceTypingMode) ? saved.practiceTypingMode : 'hanzi',
         practiceOrderingAutoNext: saved.practiceOrderingAutoNext !== false,
         practiceOrderingAutoNextDelay: normalizePracticeDelay(saved.practiceOrderingAutoNextDelay, 1.2),
-        practiceOrderingDisplayCount: [1, 2, 3].includes(Number(saved.practiceOrderingDisplayCount)) ? Number(saved.practiceOrderingDisplayCount) : 1,
+        practiceOrderingDisplayCount: normalizeOrderingDisplayCount(saved.practiceOrderingDisplayCount, 1),
         practiceRoleSpeaker: String(saved.practiceRoleSpeaker || ''),
         practiceCharacterMode: ['learn', 'sort', 'build', 'write'].includes(saved.practiceCharacterMode) ? saved.practiceCharacterMode : 'learn',
         practiceCharacterScope: ['all', 'core', 'seen'].includes(saved.practiceCharacterScope) ? saved.practiceCharacterScope : 'all',
@@ -1732,10 +1738,18 @@
     const anchorTop = Number(anchor?.getBoundingClientRect?.().top);
     const horizontalScroll = Number(anchor?.scrollLeft || 0);
     const oldScrollY = Number(window.scrollY || document.documentElement.scrollTop || 0);
-    const preserveAnchor = options.preserveFilter !== false && Number.isFinite(anchorTop);
+    const preserveScrollY = options.preserveScrollY === true;
+    const preserveAnchor = !preserveScrollY && options.preserveFilter !== false && Number.isFinite(anchorTop);
     container.innerHTML = renderCurrentViewContent();
     saveSettings();
     syncUrl(true);
+    if (preserveScrollY) {
+      const restoreScroll = () => window.scrollTo({ top: oldScrollY, behavior: 'auto' });
+      restoreScroll();
+      requestAnimationFrame(restoreScroll);
+      window.setTimeout(restoreScroll, 0);
+      return;
+    }
     if (!preserveAnchor) return;
     const restore = () => {
       const next = container.querySelector?.('.nhsk-filters, .nhsk-practice-subtabs, [data-practice-panel]');
@@ -1828,7 +1842,12 @@
     if (activity === 'fill') return `<div class="nhsk-practice-options"><label><span>Dạng bài</span><select data-nhsk-practice-setting="fill-mode"><option value="vocabulary" ${state.practiceFillMode === 'vocabulary' ? 'selected' : ''}>Điền từ vựng</option><option value="sentence" ${state.practiceFillMode === 'sentence' ? 'selected' : ''}>Điền từ trong câu</option></select></label>${state.practiceFillMode === 'sentence' ? `<label><span>Vị trí trống</span><select data-nhsk-practice-setting="fill-strategy"><option value="default" ${state.practiceFillStrategy === 'default' ? 'selected' : ''}>Đã biên tập</option><option value="random" ${state.practiceFillStrategy === 'random' ? 'selected' : ''}>Random có ưu tiên ôn/khó</option></select></label>` : ''}</div>${renderPracticeLayerToggle('fill', 'Gợi ý')}`;
     if (activity === 'matching') return `<div class="nhsk-practice-options"><label><span>Kiểu nối</span><select data-nhsk-practice-setting="matching-type"><option value="hanzi-vi" ${state.practiceMatchingType === 'hanzi-vi' ? 'selected' : ''}>Hán ↔ Việt</option><option value="hanzi-pinyin" ${state.practiceMatchingType === 'hanzi-pinyin' ? 'selected' : ''}>Hán ↔ Pinyin</option><option value="pinyin-vi" ${state.practiceMatchingType === 'pinyin-vi' ? 'selected' : ''}>Pinyin ↔ Việt</option><option value="question-answer" ${state.practiceMatchingType === 'question-answer' ? 'selected' : ''}>Câu hỏi ↔ câu trả lời</option><option value="speaker-line" ${state.practiceMatchingType === 'speaker-line' ? 'selected' : ''}>Người nói ↔ câu</option><option value="grammar" ${state.practiceMatchingType === 'grammar' ? 'selected' : ''}>Ngữ pháp ↔ giải thích</option></select></label></div>`;
     if (activity === 'typing') return `<div class="nhsk-practice-subtabs"><button type="button" class="${state.practiceTypingMode === 'hanzi' ? 'is-active' : ''}" data-nhsk-typing-mode="hanzi">Gõ chữ Hán</button><button type="button" class="${state.practiceTypingMode === 'pinyin' ? 'is-active' : ''}" data-nhsk-typing-mode="pinyin">Gõ pinyin</button><button type="button" class="${state.practiceTypingMode === 'listen' ? 'is-active' : ''}" data-nhsk-typing-mode="listen">Nghe rồi gõ</button></div>${state.practiceTypingMode === 'listen' ? renderPracticeLayerToggle('typingListen', 'Gợi ý', { allowEmpty: true }) : renderPracticeLayerToggle('typing', 'Gợi ý')}`;
-    if (activity === 'ordering') return `<div class="nhsk-practice-options nhsk-ordering-settings"><label><span>Tự chuyển</span><select data-nhsk-practice-setting="ordering-auto-next"><option value="on" ${state.practiceOrderingAutoNext ? 'selected' : ''}>Bật</option><option value="off" ${!state.practiceOrderingAutoNext ? 'selected' : ''}>Tắt</option></select></label><label><span>Chờ sau khi đúng</span><select data-nhsk-practice-setting="ordering-auto-next-delay" ${state.practiceOrderingAutoNext ? '' : 'disabled'}>${[0, 0.8, 1.2, 2, 3].map(value => `<option value="${value}" ${Number(state.practiceOrderingAutoNextDelay) === value ? 'selected' : ''}>${value === 0 ? 'Ngay' : `${value} giây`}</option>`).join('')}</select></label><label><span>Số câu hiển thị</span><select data-nhsk-practice-setting="ordering-display-count">${[1, 2, 3].map(value => `<option value="${value}" ${Number(state.practiceOrderingDisplayCount) === value ? 'selected' : ''}>${value} câu</option>`).join('')}</select></label></div>${renderPracticeLayerToggle(activity, 'Hiển thị')}`;
+    if (activity === 'ordering') {
+      const displayCount = normalizeOrderingDisplayCount(state.practiceOrderingDisplayCount, 1);
+      const displayMode = displayCount === 'all' ? 'all' : [1, 2, 3].includes(displayCount) ? String(displayCount) : 'custom';
+      const customCount = displayMode === 'custom' ? displayCount : 4;
+      return `<div class="nhsk-practice-options nhsk-ordering-settings"><label><span>Tự chuyển</span><select data-nhsk-practice-setting="ordering-auto-next"><option value="on" ${state.practiceOrderingAutoNext ? 'selected' : ''}>Bật</option><option value="off" ${!state.practiceOrderingAutoNext ? 'selected' : ''}>Tắt</option></select></label><label><span>Chờ sau khi đúng</span><select data-nhsk-practice-setting="ordering-auto-next-delay" ${state.practiceOrderingAutoNext ? '' : 'disabled'}>${[0, 0.8, 1.2, 2, 3].map(value => `<option value="${value}" ${Number(state.practiceOrderingAutoNextDelay) === value ? 'selected' : ''}>${value === 0 ? 'Ngay' : `${value} giây`}</option>`).join('')}</select></label><label><span>Số câu hiển thị</span><select data-nhsk-practice-setting="ordering-display-count"><option value="1" ${displayMode === '1' ? 'selected' : ''}>1 câu</option><option value="2" ${displayMode === '2' ? 'selected' : ''}>2 câu</option><option value="3" ${displayMode === '3' ? 'selected' : ''}>3 câu</option><option value="custom" ${displayMode === 'custom' ? 'selected' : ''}>Tự nhập</option><option value="all" ${displayMode === 'all' ? 'selected' : ''}>Tất cả</option></select>${displayMode === 'custom' ? `<input type="number" min="1" step="1" inputmode="numeric" value="${customCount}" data-nhsk-practice-setting="ordering-display-custom" aria-label="Số câu hiển thị tùy chỉnh">` : ''}</label></div>${renderPracticeLayerToggle(activity, 'Hiển thị')}`;
+    }
     if (activity === 'translateZhVi' || activity === 'translateViZh' || activity === 'roleplay') return renderPracticeLayerToggle(activity, 'Hiển thị');
     if (activity === 'characters') return `${renderCharacterScopeControls()}<div class="nhsk-practice-subtabs"><button type="button" class="${state.practiceCharacterMode === 'learn' ? 'is-active' : ''}" data-nhsk-character-mode="learn">Học cấu tạo chữ</button><button type="button" class="${state.practiceCharacterMode === 'sort' ? 'is-active' : ''}" data-nhsk-character-mode="sort">Xếp chữ vào thành phần</button><button type="button" class="${state.practiceCharacterMode === 'build' ? 'is-active' : ''}" data-nhsk-character-mode="build">Ghép thành phần thành chữ</button><button type="button" class="${state.practiceCharacterMode === 'write' ? 'is-active' : ''}" data-nhsk-character-mode="write">Cấu tạo và bút thuận</button></div>`;
     return '';
@@ -2075,9 +2094,10 @@
     practiceOrderingAutoNextTimer = 0;
   }
 
-  function orderingPageSize() {
-    const value = Number(state.practiceOrderingDisplayCount || 1);
-    return [1, 2, 3].includes(value) ? value : 1;
+  function orderingPageSize(session = null) {
+    const value = normalizeOrderingDisplayCount(state.practiceOrderingDisplayCount, 1);
+    if (value === 'all') return Math.max(1, Number(session?.items?.length || 1));
+    return value;
   }
 
   function orderingTokensForRow(row) {
@@ -2115,7 +2135,7 @@
 
   function visibleOrderingItems(session) {
     if (!session) return [];
-    return session.items.slice(session.index, session.index + orderingPageSize());
+    return session.items.slice(session.index, session.index + orderingPageSize(session));
   }
 
   function orderingPageComplete(session) {
@@ -2143,7 +2163,7 @@
   function advanceOrderingSession(session) {
     clearOrderingAutoNext();
     if (!session || !orderingPageComplete(session)) return;
-    const nextIndex = session.index + orderingPageSize();
+    const nextIndex = session.index + orderingPageSize(session);
     if (nextIndex >= session.items.length) return;
     session.index = nextIndex;
     rerenderCurrentContent({ preserveFilter: true });
@@ -2152,7 +2172,7 @@
   function scheduleOrderingAutoNext(session) {
     clearOrderingAutoNext();
     if (!state.practiceOrderingAutoNext || !orderingPageComplete(session)) return;
-    if (session.index + orderingPageSize() >= session.items.length) return;
+    if (session.index + orderingPageSize(session) >= session.items.length) return;
     const delay = normalizePracticeDelay(state.practiceOrderingAutoNextDelay, 1.2) * 1000;
     practiceOrderingAutoNextTimer = window.setTimeout(() => {
       if (practiceOrderingSession !== session || !orderingPageComplete(session)) return;
@@ -3248,7 +3268,7 @@
         }
         item.feedback = '';
         const correct = evaluatePracticeOrderingItem(item);
-        rerenderCurrentContent({ preserveFilter: true });
+        rerenderCurrentContent({ preserveFilter: true, preserveScrollY: true });
         if (correct) scheduleOrderingAutoNext(session);
         return;
       }
@@ -3257,13 +3277,13 @@
         const session = ensurePracticeOrderingSession(state.practiceSessionRows);
         const itemId = resetOrder.closest('[data-nhsk-order-item-id]')?.dataset.nhskOrderItemId || '';
         const item = session?.items?.find(row => row.id === itemId);
-        if (item) { item.selected = []; item.complete = false; item.feedback = ''; item.rating = ''; rerenderCurrentContent({ preserveFilter: true }); }
+        if (item) { item.selected = []; item.complete = false; item.feedback = ''; item.rating = ''; rerenderCurrentContent({ preserveFilter: true, preserveScrollY: true }); }
         return;
       }
       const orderNext = event.target.closest('[data-nhsk-order-next]');
       if (orderNext) {
         const session = ensurePracticeOrderingSession(state.practiceSessionRows);
-        if (session && session.index + orderingPageSize() < session.items.length) advanceOrderingSession(session);
+        if (session && session.index + orderingPageSize(session) < session.items.length) advanceOrderingSession(session);
         else { state.practiceActivityStarted = false; clearOrderingAutoNext(); practiceOrderingSession = null; rerenderCurrentContent({ preserveFilter: true }); }
         return;
       }
@@ -3273,7 +3293,7 @@
         const itemId = orderRating.closest('[data-nhsk-order-item-id]')?.dataset.nhskOrderItemId || '';
         const item = session?.items?.find(row => row.id === itemId);
         const rating = orderRating.dataset.nhskOrderRating || '';
-        if (item?.complete && ['easy','review','hard'].includes(rating)) { item.rating = rating; updatePracticeRating(item.id, rating); rerenderCurrentContent({ preserveFilter: true }); }
+        if (item?.complete && ['easy','review','hard'].includes(rating)) { item.rating = rating; updatePracticeRating(item.id, rating); rerenderCurrentContent({ preserveFilter: true, preserveScrollY: true }); }
         return;
       }
       const checkFill = event.target.closest('[data-nhsk-check-fill]');
@@ -3420,7 +3440,11 @@
       else if (key === 'matching-type') state.practiceMatchingType = ['hanzi-vi', 'hanzi-pinyin', 'pinyin-vi', 'question-answer', 'speaker-line', 'grammar'].includes(value) ? value : 'hanzi-vi';
       else if (key === 'ordering-auto-next') state.practiceOrderingAutoNext = value !== 'off';
       else if (key === 'ordering-auto-next-delay') state.practiceOrderingAutoNextDelay = normalizePracticeDelay(value, 1.2);
-      else if (key === 'ordering-display-count') state.practiceOrderingDisplayCount = [1, 2, 3].includes(Number(value)) ? Number(value) : 1;
+      else if (key === 'ordering-display-count') {
+        if (value === 'custom') state.practiceOrderingDisplayCount = [1, 2, 3].includes(Number(state.practiceOrderingDisplayCount)) || state.practiceOrderingDisplayCount === 'all' ? 4 : normalizeOrderingDisplayCount(state.practiceOrderingDisplayCount, 4);
+        else state.practiceOrderingDisplayCount = normalizeOrderingDisplayCount(value, 1);
+      }
+      else if (key === 'ordering-display-custom') state.practiceOrderingDisplayCount = normalizeOrderingDisplayCount(value, 4);
       state.practiceActivityStarted = false;
       state.practiceSessionRows = [];
       state.practiceSessionKey = '';
