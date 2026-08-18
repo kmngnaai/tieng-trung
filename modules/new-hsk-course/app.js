@@ -81,6 +81,8 @@
   let radicalSortSession = null;
   let radicalPointerDrag = null;
   let suppressRadicalClickUntil = 0;
+  let orderingPointerDrag = null;
+  let suppressOrderingClickUntil = 0;
   let practiceProgress = readProgress();
   let summaryProgress = readSummaryProgress();
   const catalogCache = new Map();
@@ -638,7 +640,7 @@
         ${renderGrammarPopupBlock('explanation', 'Giải thích', item?.explanation)}
         ${renderGrammarPopupBlock('tips', 'Mẹo nhớ', item?.tips, '💡')}
         ${renderGrammarPopupBlock('attention', 'Lưu ý', item?.attentions, '!')}
-        ${examples.length ? `<section class="hsk-popup-section hsk-grammar-examples hsk-grammar-detail-examples"><div class="hsk-grammar-examples-head"><h4>Ví dụ</h4><span>${examples.length.toLocaleString('vi-VN')} ví dụ</span></div><div class="hsk-grammar-example-list">${examples.map((row, index) => `<article class="hsk-grammar-example-card"><span class="hsk-grammar-example-index">${String(index + 1).padStart(2, '0')}</span><div class="hsk-grammar-example-main"><strong>${escapeHtml(row.chinese || '')}</strong>${row.pinyin ? `<em>${escapeHtml(row.pinyin)}</em>` : ''}${row.vietnamese ? `<span class="nhsk-translation">${escapeHtml(row.vietnamese)}</span>` : ''}</div>${row.chinese ? `<button type="button" class="hsk-grammar-example-speaker nhsk-catalog-grammar-example-speak nhsk-speak" data-nhsk-speak="${attr(row.chinese)}" aria-label="Nghe ${attr(row.chinese)}">🔊</button>` : ''}</article>`).join('')}</div></section>` : ''}
+        ${examples.length ? `<section class="hsk-popup-section hsk-grammar-examples hsk-grammar-detail-examples"><div class="hsk-grammar-examples-head"><h4>Ví dụ</h4><span>${examples.length.toLocaleString('vi-VN')} ví dụ</span></div><div class="hsk-grammar-example-list">${examples.map((row, index) => `<article class="hsk-grammar-example-card" ${index >= 3 ? 'hidden data-nhsk-grammar-example-extra' : ''}><span class="hsk-grammar-example-index">${String(index + 1).padStart(2, '0')}</span><div class="hsk-grammar-example-main"><strong>${escapeHtml(row.chinese || '')}</strong>${row.pinyin ? `<em>${escapeHtml(row.pinyin)}</em>` : ''}${row.vietnamese ? `<span class="nhsk-translation">${escapeHtml(row.vietnamese)}</span>` : ''}</div>${row.chinese ? `<button type="button" class="hsk-grammar-example-speaker nhsk-catalog-grammar-example-speak nhsk-speak" data-nhsk-speak="${attr(row.chinese)}" aria-label="Nghe ${attr(row.chinese)}">🔊</button>` : ''}</article>`).join('')}</div>${examples.length > 3 ? `<button type="button" class="nhsk-grammar-examples-more" data-nhsk-grammar-examples-more aria-expanded="false">Xem thêm ${examples.length - 3} câu</button>` : ''}</section>` : ''}
         ${item?.chapter && options.plus !== true ? `<a class="nhsk-catalog-source-lesson" href="${attr(catalogLessonUrl(item.chapter))}">Mở HSK ${state.level} · Bài ${item.chapter} theo sách <span>›</span></a>` : ''}
       </div>`;
   }
@@ -660,6 +662,14 @@
         overlay.hidden = true;
         document.body.classList.remove('nhsk-modal-open');
         syncUrl(true);
+        return;
+      }
+      const moreExamples = event.target.closest('[data-nhsk-grammar-examples-more]');
+      if (moreExamples) {
+        event.preventDefault();
+        moreExamples.closest('.hsk-grammar-examples')?.querySelectorAll('[data-nhsk-grammar-example-extra]').forEach(example => { example.hidden = false; });
+        moreExamples.setAttribute('aria-expanded', 'true');
+        moreExamples.hidden = true;
         return;
       }
       const speaker = event.target.closest('[data-nhsk-speak]');
@@ -2162,6 +2172,91 @@
     return false;
   }
 
+  function applyOrderingDrop(itemId, tokenId, targetZone, beforeTokenId = '') {
+    const session = ensurePracticeOrderingSession(state.practiceSessionRows);
+    const item = session?.items?.find(row => row.id === itemId);
+    if (!item || item.complete || !['answer', 'bank'].includes(targetZone)) return false;
+    const token = item.selected.find(row => row.id === tokenId) || item.bank.find(row => row.id === tokenId);
+    if (!token) return false;
+
+    const beforeIds = item.selected.map(row => row.id);
+    const nextSelected = item.selected.filter(row => row.id !== tokenId);
+    if (targetZone === 'answer') {
+      const targetIndex = beforeTokenId && beforeTokenId !== tokenId
+        ? nextSelected.findIndex(row => row.id === beforeTokenId)
+        : -1;
+      if (targetIndex >= 0) nextSelected.splice(targetIndex, 0, token);
+      else nextSelected.push(token);
+    }
+    const afterIds = nextSelected.map(row => row.id);
+    if (beforeIds.length === afterIds.length && beforeIds.every((id, index) => id === afterIds[index])) return false;
+
+    item.selected = nextSelected;
+    item.feedback = '';
+    const correct = evaluatePracticeOrderingItem(item);
+    rerenderCurrentContent({ preserveFilter: true, preserveScrollY: true });
+    if (correct) scheduleOrderingAutoNext(session);
+    return true;
+  }
+
+  function orderingDropTarget(element, itemId) {
+    const card = element?.closest?.('[data-nhsk-order-item-id]');
+    if (!card || card.dataset.nhskOrderItemId !== itemId) return null;
+    const token = element.closest?.('[data-nhsk-order-token]');
+    if (token?.dataset.tokenZone === 'answer') return { zone: 'answer', beforeTokenId: token.dataset.nhskOrderToken || '', node: token };
+    const answer = element.closest?.('[data-nhsk-order-answer]');
+    if (answer) return { zone: 'answer', beforeTokenId: '', node: answer };
+    const bank = element.closest?.('[data-nhsk-order-bank]');
+    if (bank) return { zone: 'bank', beforeTokenId: '', node: bank };
+    return null;
+  }
+
+  function clearOrderingDragTargets() {
+    document.querySelectorAll('.nhsk-order-answer.is-drag-over,.nhsk-order-bank.is-drag-over,[data-nhsk-order-token].is-drag-over').forEach(node => node.classList.remove('is-drag-over'));
+  }
+
+  function cleanupOrderingPointerDrag() {
+    orderingPointerDrag?.ghost?.remove?.();
+    orderingPointerDrag?.source?.classList?.remove?.('is-dragging');
+    orderingPointerDrag = null;
+    clearOrderingDragTargets();
+    document.body?.classList?.remove('nhsk-ordering-dragging');
+  }
+
+  function moveOrderingPointerDrag(event) {
+    if (!orderingPointerDrag || event.pointerId !== orderingPointerDrag.pointerId) return;
+    const dx = event.clientX - orderingPointerDrag.startX;
+    const dy = event.clientY - orderingPointerDrag.startY;
+    if (!orderingPointerDrag.dragging && Math.hypot(dx, dy) < 7) return;
+    if (!orderingPointerDrag.dragging) {
+      orderingPointerDrag.dragging = true;
+      orderingPointerDrag.source.classList.add('is-dragging');
+      orderingPointerDrag.ghost = orderingPointerDrag.source.cloneNode(true);
+      orderingPointerDrag.ghost.classList.add('nhsk-ordering-ghost');
+      orderingPointerDrag.ghost.classList.remove('is-dragging');
+      orderingPointerDrag.ghost.removeAttribute('draggable');
+      document.body.appendChild(orderingPointerDrag.ghost);
+      document.body.classList.add('nhsk-ordering-dragging');
+    }
+    event.preventDefault();
+    orderingPointerDrag.ghost.style.transform = `translate3d(${event.clientX - 24}px, ${event.clientY - 20}px, 0)`;
+    clearOrderingDragTargets();
+    const target = orderingDropTarget(document.elementFromPoint(event.clientX, event.clientY), orderingPointerDrag.itemId);
+    target?.node?.classList?.add('is-drag-over');
+  }
+
+  function endOrderingPointerDrag(event) {
+    if (!orderingPointerDrag || event.pointerId !== orderingPointerDrag.pointerId) return;
+    const payload = orderingPointerDrag;
+    const target = payload.dragging
+      ? orderingDropTarget(document.elementFromPoint(event.clientX, event.clientY), payload.itemId)
+      : null;
+    cleanupOrderingPointerDrag();
+    if (!payload.dragging) return;
+    suppressOrderingClickUntil = Date.now() + 350;
+    if (target) applyOrderingDrop(payload.itemId, payload.tokenId, target.zone, target.beforeTokenId);
+  }
+
   function advanceOrderingSession(session) {
     clearOrderingAutoNext();
     if (!session || !orderingPageComplete(session)) return;
@@ -2186,7 +2281,7 @@
     const selectedIds = new Set(item.selected.map(token => token.id));
     const bank = item.bank.filter(token => !selectedIds.has(token.id));
     const ratingButtons = item.complete ? `<div class="nhsk-auto-rating"><span>Tự phân loại:</span>${[['easy','Dễ'],['review','Ôn'],['hard','Khó']].map(([key,label]) => `<button type="button" class="${item.rating === key ? 'is-active' : ''}" data-nhsk-order-rating="${key}">${label}</button>`).join('')}</div>` : '';
-    return `<article class="nhsk-practice-exercise nhsk-order-exercise is-compact" data-nhsk-order-exercise data-nhsk-order-item-id="${attr(item.id)}" data-entity-id="${attr(item.id)}"><div class="nhsk-order-card-head"><span>Câu ${absoluteIndex + 1}/${total}</span><div><button type="button" class="nhsk-speak" data-nhsk-speak="${attr(item.row.hanzi)}" aria-label="Nghe câu">🔊</button><button type="button" class="nhsk-icon-reset" data-nhsk-reset-order aria-label="Đặt lại câu">↺</button></div></div><div class="nhsk-practice-prompt">${layers.vi && item.row.vi ? `<strong>${escapeHtml(item.row.vi)}</strong>` : ''}${layers.pinyin && item.row.pinyin ? `<span>${escapeHtml(item.row.pinyin)}</span>` : ''}${layers.hanzi ? '<small>Sắp xếp các từ/cụm từ thành câu đúng</small>' : ''}</div><div class="nhsk-order-answer" data-nhsk-order-answer>${item.selected.length ? item.selected.map(token => `<button type="button" data-nhsk-order-token="${attr(token.id)}" data-token="${attr(token.token)}" data-token-zone="answer">${escapeHtml(token.token)}</button>`).join('') : '<span>Chạm các từ theo đúng thứ tự</span>'}</div><div class="nhsk-order-bank" data-nhsk-order-bank>${bank.map(token => `<button type="button" data-nhsk-order-token="${attr(token.id)}" data-token="${attr(token.token)}" data-token-zone="bank">${escapeHtml(token.token)}</button>`).join('')}</div><output class="${item.complete ? 'is-correct' : item.feedback ? 'is-wrong' : ''}" data-nhsk-feedback>${escapeHtml(item.feedback)}</output>${ratingButtons}</article>`;
+    return `<article class="nhsk-practice-exercise nhsk-order-exercise is-compact" data-nhsk-order-exercise data-nhsk-order-item-id="${attr(item.id)}" data-entity-id="${attr(item.id)}"><div class="nhsk-order-card-head"><span>Câu ${absoluteIndex + 1}/${total}</span><div><button type="button" class="nhsk-speak" data-nhsk-speak="${attr(item.row.hanzi)}" aria-label="Nghe câu">🔊</button><button type="button" class="nhsk-icon-reset" data-nhsk-reset-order aria-label="Đặt lại câu">↺</button></div></div><div class="nhsk-practice-prompt">${layers.vi && item.row.vi ? `<strong>${escapeHtml(item.row.vi)}</strong>` : ''}${layers.pinyin && item.row.pinyin ? `<span>${escapeHtml(item.row.pinyin)}</span>` : ''}${layers.hanzi ? '<small>Sắp xếp các từ/cụm từ thành câu đúng</small>' : ''}</div><div class="nhsk-order-answer" data-nhsk-order-answer>${item.selected.length ? item.selected.map(token => `<button type="button" draggable="${item.complete ? 'false' : 'true'}" data-nhsk-order-token="${attr(token.id)}" data-token="${attr(token.token)}" data-token-zone="answer">${escapeHtml(token.token)}</button>`).join('') : '<span>Chạm hoặc kéo các từ theo đúng thứ tự</span>'}</div><div class="nhsk-order-bank" data-nhsk-order-bank>${bank.map(token => `<button type="button" draggable="true" data-nhsk-order-token="${attr(token.id)}" data-token="${attr(token.token)}" data-token-zone="bank">${escapeHtml(token.token)}</button>`).join('')}</div><output class="${item.complete ? 'is-correct' : item.feedback ? 'is-wrong' : ''}" data-nhsk-feedback>${escapeHtml(item.feedback)}</output>${ratingButtons}</article>`;
   }
 
   function renderOrderingSession(rows) {
@@ -3293,6 +3388,7 @@
       }
       const orderToken = event.target.closest('[data-nhsk-order-token]');
       if (orderToken) {
+        if (Date.now() < suppressOrderingClickUntil) return;
         const session = ensurePracticeOrderingSession(state.practiceSessionRows);
         const itemId = orderToken.closest('[data-nhsk-order-item-id]')?.dataset.nhskOrderItemId || '';
         const item = session?.items?.find(row => row.id === itemId);
@@ -3493,32 +3589,74 @@
     });
 
     root.addEventListener('dragstart', event => {
+      const orderToken = event.target.closest?.('[data-nhsk-order-token]');
+      if (orderToken && event.dataTransfer) {
+        const itemId = orderToken.closest('[data-nhsk-order-item-id]')?.dataset.nhskOrderItemId || '';
+        event.dataTransfer.effectAllowed = 'move';
+        event.dataTransfer.setData('application/x-new-hsk-order-token', JSON.stringify({ itemId, tokenId: orderToken.dataset.nhskOrderToken || '' }));
+        event.dataTransfer.setData('text/plain', orderToken.dataset.nhskOrderToken || '');
+        orderToken.classList.add('is-dragging');
+        return;
+      }
       const item = event.target.closest?.('[data-radical-item]');
       if (!item || !event.dataTransfer) return;
       event.dataTransfer.effectAllowed = 'move';
       event.dataTransfer.setData('text/plain', item.dataset.radicalItem || '');
       item.classList.add('is-dragging');
     });
-    root.addEventListener('dragend', event => event.target.closest?.('[data-radical-item]')?.classList?.remove('is-dragging'));
+    root.addEventListener('dragend', event => {
+      event.target.closest?.('[data-radical-item]')?.classList?.remove('is-dragging');
+      event.target.closest?.('[data-nhsk-order-token]')?.classList?.remove('is-dragging');
+      clearOrderingDragTargets();
+    });
     root.addEventListener('dragover', event => {
+      const orderZone = event.target.closest?.('[data-nhsk-order-answer],[data-nhsk-order-bank]');
+      if (orderZone) {
+        event.preventDefault();
+        if (event.dataTransfer) event.dataTransfer.dropEffect = 'move';
+        clearOrderingDragTargets();
+        const targetToken = event.target.closest?.('[data-nhsk-order-token][data-token-zone="answer"]');
+        (targetToken || orderZone).classList.add('is-drag-over');
+        return;
+      }
       const drop = event.target.closest?.('[data-radical-drop]');
       if (!drop) return;
       event.preventDefault();
       if (event.dataTransfer) event.dataTransfer.dropEffect = 'move';
     });
     root.addEventListener('drop', event => {
+      const orderZone = event.target.closest?.('[data-nhsk-order-answer],[data-nhsk-order-bank]');
+      if (orderZone && event.dataTransfer) {
+        event.preventDefault();
+        let payload = null;
+        try { payload = JSON.parse(event.dataTransfer.getData('application/x-new-hsk-order-token') || 'null'); } catch (_error) { payload = null; }
+        clearOrderingDragTargets();
+        const target = payload?.itemId ? orderingDropTarget(event.target, payload.itemId) : null;
+        if (target) applyOrderingDrop(payload.itemId, payload.tokenId || '', target.zone, target.beforeTokenId);
+        return;
+      }
       const drop = event.target.closest?.('[data-radical-drop]');
       if (!drop || !event.dataTransfer) return;
       event.preventDefault();
       handleRadicalAssign(event.dataTransfer.getData('text/plain'), drop.dataset.radicalDrop || '');
     });
     root.addEventListener('pointerdown', event => {
+      const orderToken = event.target.closest?.('[data-nhsk-order-token]');
+      if (orderToken && event.button <= 0) {
+        const itemId = orderToken.closest('[data-nhsk-order-item-id]')?.dataset.nhskOrderItemId || '';
+        orderingPointerDrag = { pointerId: event.pointerId, itemId, tokenId: orderToken.dataset.nhskOrderToken || '', source: orderToken, startX: event.clientX, startY: event.clientY, dragging: false, ghost: null };
+        orderToken.setPointerCapture?.(event.pointerId);
+        return;
+      }
       const item = event.target.closest?.('[data-radical-item]');
       if (!item || event.button > 0) return;
       radicalPointerDrag = { pointerId: event.pointerId, itemId: item.dataset.radicalItem || '', source: item, startX: event.clientX, startY: event.clientY, dragging: false, ghost: null };
       item.setPointerCapture?.(event.pointerId);
     });
     if (typeof document.addEventListener === 'function') {
+      document.addEventListener('pointermove', moveOrderingPointerDrag, { passive: false });
+      document.addEventListener('pointerup', endOrderingPointerDrag);
+      document.addEventListener('pointercancel', cleanupOrderingPointerDrag);
       document.addEventListener('pointermove', moveRadicalPointerDrag, { passive: false });
       document.addEventListener('pointerup', endRadicalPointerDrag);
       document.addEventListener('pointercancel', cleanupRadicalPointerDrag);
