@@ -7078,10 +7078,12 @@ if(window.HanziWriter){
       return;
     }
     const returnContext = hskState.popupReturnContext;
+    if(returnContext?.type === 'external' && new URLSearchParams(window.location.search).get('embedPopup') === '1' && window.parent !== window){
+      window.parent.postMessage({ type: 'tiengtrung:hsk-popup-back' }, window.location.origin);
+      return;
+    }
     closeHskPopup();
-    if(returnContext?.type === 'external' && window.parent !== window){
-      window.parent.postMessage({ type: 'tiengtrung:hsk-popup-close' }, window.location.origin);
-    }else if(returnContext?.type === 'radical' && returnContext.id && window.openRadicalLearningPopup){
+    if(returnContext?.type === 'radical' && returnContext.id && window.openRadicalLearningPopup){
       window.openRadicalLearningPopup(returnContext.id);
     }
   }

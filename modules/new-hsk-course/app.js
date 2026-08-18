@@ -71,6 +71,8 @@
   let activeWordSource = null;
   let pendingWordDetailPayload = null;
   let sharedWordDetailFrameReady = false;
+  let wordDetailRequested = false;
+  let wordPreviewScrollTop = 0;
   let activeAudio = null;
   let activeAudioButton = null;
   let practiceMatchingSession = null;
@@ -2806,10 +2808,10 @@
   function renderWordPreview(word) {
     const sentences = Array.isArray(word.previewSentences) ? word.previewSentences : lessonSentenceRows(word);
     const returnLabel = String(word.returnLabel || 'Quay lại bài').trim();
-    return `<div class="nhsk-word-preview-topbar"><button type="button" data-word-popup-back>← ${escapeHtml(returnLabel)}</button><button type="button" data-word-popup-close aria-label="Đóng">×</button></div>
+    return `<div class="nhsk-word-preview-topbar"><button type="button" data-word-popup-back>← ${escapeHtml(returnLabel)}</button><button type="button" data-word-popup-detail ${word.catalogSentencesLoading ? 'disabled' : ''}>Chi tiết ›</button><button type="button" data-word-popup-close aria-label="Đóng">×</button></div>
       <section class="nhsk-word-preview-hero"><div><h2>${escapeHtml(word.hanzi)}</h2><strong>${escapeHtml(word.pinyin || '')}</strong><p>${escapeHtml(word.vi || '')}</p><small>${escapeHtml(word.wordClass || word.kind || 'từ vựng')}${word.hanViet ? ` · Hán Việt: ${escapeHtml(word.hanViet)}` : ''}</small></div><button type="button" data-word-popup-speak="${attr(word.hanzi)}">🔊</button></section>
       ${sentences.length ? `<section class="nhsk-word-preview-section"><h3>Câu trong bài</h3>${sentences.slice(0, 3).map(row => `<article><b>${escapeHtml(row.hanzi)}</b><small>${escapeHtml(row.pinyin)}</small><p>${escapeHtml(row.vi)}</p></article>`).join('')}${sentences.length > 3 ? `<p class="nhsk-word-preview-more">Còn ${sentences.length - 3} câu trong phần Xem thêm.</p>` : ''}</section>` : ''}
-      <div class="nhsk-word-preview-loading"><span class="nhsk-spinner"></span><span>${word.catalogSentencesLoading ? 'Đang tìm câu liên quan trong các bài nguồn…' : 'Đang mở tra cứu và cách viết…'}</span></div>`;
+      ${word.catalogSentencesLoading ? '<div class="nhsk-word-preview-loading"><span class="nhsk-spinner"></span><span>Đang tìm câu liên quan trong các bài nguồn…</span></div>' : ''}`;
   }
 
   function ensureWordDetailFrame() {
@@ -2825,6 +2827,7 @@
     frame.addEventListener('load', () => { sharedWordDetailFrameReady = true; sendWordDetailOpen(); });
     overlay.addEventListener('click', event => {
       if (event.target === overlay || event.target.closest('[data-word-popup-close], [data-word-popup-back]')) { closeWordDetail(); return; }
+      if (event.target.closest('[data-word-popup-detail]')) { requestWordDetail(); return; }
       const speakButton = event.target.closest('[data-word-popup-speak]');
       if (speakButton) speak(speakButton.dataset.wordPopupSpeak || '');
     });
@@ -2832,10 +2835,18 @@
   }
 
   function sendWordDetailOpen() {
-    if (!sharedWordDetailFrameReady || !pendingWordDetailPayload) return;
+    if (!wordDetailRequested || !sharedWordDetailFrameReady || !pendingWordDetailPayload) return;
     const frame = document.getElementById('nhskSharedWordDetailFrame');
     const targetOrigin = location.origin && location.origin !== 'null' ? location.origin : '*';
     frame?.contentWindow?.postMessage({ type: 'tiengtrung:hsk-popup-open', payload: pendingWordDetailPayload }, targetOrigin);
+  }
+
+  function requestWordDetail() {
+    if (!activeWordDetail || !pendingWordDetailPayload) return;
+    const preview = document.getElementById('nhskSharedWordPreview');
+    wordPreviewScrollTop = Number(preview?.scrollTop || 0);
+    wordDetailRequested = true;
+    sendWordDetailOpen();
   }
 
   function openWordDetail(wordId, sourceElement) {
@@ -2843,10 +2854,12 @@
     if (!word) return;
     activeWordDetail = word;
     activeWordSource = sourceDescriptor(sourceElement);
+    wordDetailRequested = false;
+    wordPreviewScrollTop = 0;
     pendingWordDetailPayload = {
       word: word.hanzi,
       seed: buildWordDetailSeed(word),
-      returnContext: { type: 'external', label: `Quay lại HSK ${state.level} · Bài ${state.lessonNumber}` }
+      returnContext: { type: 'external', label: 'Quay lại chi tiết từ' }
     };
     const overlay = ensureWordDetailFrame();
     const preview = overlay.querySelector('#nhskSharedWordPreview');
@@ -2884,6 +2897,8 @@
     };
     activeWordDetail = word;
     activeWordSource = sourceDescriptor(sourceElement);
+    wordDetailRequested = false;
+    wordPreviewScrollTop = 0;
     // Keep the lightweight preview visible while related lesson sentences load.
     // The embedded HSK popup receives one complete payload afterwards, avoiding
     // an empty first render followed by a second navigation of the same word.
@@ -2912,9 +2927,13 @@
         sampleSentences: sentences.map(row => ({ zh: row.hanzi, pinyin: row.pinyin, vi: row.vi, lessonNumber: row.lessonNumber })),
         relatedWords: related
       },
-      returnContext: { type: 'external', label: word.returnLabel }
+      returnContext: { type: 'external', label: 'Quay lại chi tiết từ' }
     };
-    if (!preview.hidden) preview.innerHTML = renderWordPreview(word);
+    if (!preview.hidden) {
+      const previewScrollTop = preview.scrollTop;
+      preview.innerHTML = renderWordPreview(word);
+      preview.scrollTop = previewScrollTop;
+    }
     sendWordDetailOpen();
   }
 
@@ -2930,10 +2949,12 @@
       note: [char.structure?.labelVi, char.dictionaryRadical?.nameVi].filter(Boolean).join(' · ')
     };
     activeWordSource = sourceDescriptor(sourceElement);
+    wordDetailRequested = false;
+    wordPreviewScrollTop = 0;
     pendingWordDetailPayload = {
       word: char.hanzi,
       seed: buildWordDetailSeed(activeWordDetail),
-      returnContext: { type: 'external', label: `Quay lại chữ ${char.hanzi}` }
+      returnContext: { type: 'external', label: 'Quay lại chi tiết chữ' }
     };
     const overlay = ensureWordDetailFrame();
     const preview = overlay.querySelector('#nhskSharedWordPreview');
@@ -2952,11 +2973,25 @@
   }
 
   function revealWordDetail(word) {
-    if (!activeWordDetail || (word && word !== activeWordDetail.hanzi)) return;
+    if (!wordDetailRequested || !activeWordDetail || (word && word !== activeWordDetail.hanzi)) return;
     const overlay = document.getElementById('nhskSharedWordDetail');
     if (!overlay || overlay.hidden) return;
-    overlay.querySelector('#nhskSharedWordPreview').hidden = true;
+    const preview = overlay.querySelector('#nhskSharedWordPreview');
+    wordPreviewScrollTop = Number(preview?.scrollTop || wordPreviewScrollTop || 0);
+    preview.hidden = true;
     overlay.querySelector('#nhskSharedWordDetailFrame').hidden = false;
+  }
+
+  function returnToWordPreview() {
+    const overlay = document.getElementById('nhskSharedWordDetail');
+    if (!overlay || overlay.hidden || !activeWordDetail) return;
+    const preview = overlay.querySelector('#nhskSharedWordPreview');
+    const frame = overlay.querySelector('#nhskSharedWordDetailFrame');
+    wordDetailRequested = false;
+    frame.hidden = true;
+    preview.hidden = false;
+    const scrollTop = wordPreviewScrollTop;
+    window.requestAnimationFrame(() => { preview.scrollTop = scrollTop; });
   }
 
   function closeWordDetail() {
@@ -2970,6 +3005,8 @@
     activeWordDetail = null;
     activeWordSource = null;
     pendingWordDetailPayload = null;
+    wordDetailRequested = false;
+    wordPreviewScrollTop = 0;
     document.body.classList.remove('nhsk-modal-open');
     restoreWordSourcePosition(source);
   }
@@ -3491,6 +3528,7 @@
   window.addEventListener('message', event => {
     if (event.origin !== location.origin) return;
     if (event.data?.type === 'tiengtrung:hsk-popup-close') { closeWordDetail(); return; }
+    if (event.data?.type === 'tiengtrung:hsk-popup-back') { returnToWordPreview(); return; }
     if (event.data?.type === 'tiengtrung:hsk-popup-ready') revealWordDetail(event.data.word || '');
   });
 
