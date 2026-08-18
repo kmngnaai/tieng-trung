@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 from pathlib import Path
 from urllib.parse import urlparse, unquote
-import shutil
 from playwright.sync_api import sync_playwright
+
+from browser_runtime import require_browser_executable
 
 ROOT = Path(__file__).resolve().parents[1]
 MIMES = {
@@ -57,9 +58,7 @@ def load(page, query):
 
 
 def main():
-    executable = shutil.which('chromium') or shutil.which('chromium-browser') or shutil.which('google-chrome')
-    if not executable:
-        raise SystemExit('Không tìm thấy Chromium/Chrome trong PATH.')
+    executable = require_browser_executable()
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True, executable_path=executable, args=['--no-sandbox', '--disable-gpu'])
 

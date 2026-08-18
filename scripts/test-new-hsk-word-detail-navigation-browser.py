@@ -2,9 +2,10 @@
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 import os
-import shutil
 
 from playwright.sync_api import sync_playwright
+
+from browser_runtime import require_browser_executable, replace_location_search
 
 ROOT = Path(__file__).resolve().parents[1]
 MIMES = {
@@ -15,18 +16,6 @@ MIMES = {
 }
 TOPIC_ID = 'new_hsk__1__topic__1__dat-cau-hoi-va-do-luong-tu-ngu'
 
-
-def find_browser():
-    for name in ('chromium', 'chromium-browser', 'google-chrome', 'chrome'):
-        executable = shutil.which(name)
-        if executable:
-            return executable
-    candidates = [
-        Path(os.environ.get('PROGRAMFILES', '')) / 'Google/Chrome/Application/chrome.exe',
-        Path(os.environ.get('PROGRAMFILES(X86)', '')) / 'Google/Chrome/Application/chrome.exe',
-        Path(os.environ.get('LOCALAPPDATA', '')) / 'Google/Chrome/Application/chrome.exe',
-    ]
-    return next((str(path) for path in candidates if path.is_file()), None)
 
 
 def local_route(query):
@@ -43,11 +32,7 @@ def local_route(query):
             return
         body = file_path.read_bytes()
         if file_path.as_posix().endswith('/modules/new-hsk-course/app.js'):
-            source = body.decode('utf-8').replace(
-                'const params = new URLSearchParams(window.location.search);',
-                f'const params = new URLSearchParams({query!r});'
-            )
-            body = source.encode('utf-8')
+            body = replace_location_search(body.decode('utf-8'), query).encode('utf-8')
         route.fulfill(status=200, body=body, content_type=MIMES.get(file_path.suffix.lower(), 'application/octet-stream'))
     return handler
 
@@ -154,7 +139,7 @@ def assert_embedded_back_contract():
 
 
 def main():
-    executable = find_browser()
+    executable = require_browser_executable()
     if not executable:
         raise SystemExit('Không tìm thấy Chromium/Chrome.')
     with sync_playwright() as p:

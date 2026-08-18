@@ -60,13 +60,11 @@ class NewHskPracticeTabTests(unittest.TestCase):
     def test_flashcard_links_to_character_learning_and_preserves_urls(self):
         hanzi = (ROOT / 'modules' / 'hanzi-stroke' / 'app.js').read_text(encoding='utf-8')
         hanzi_css = (ROOT / 'modules' / 'hanzi-stroke' / 'style.css').read_text(encoding='utf-8')
-        self.assertIn('structureUrl', APP)
         self.assertIn('structurePracticeUrl', APP)
-        self.assertIn('构 Cấu tạo', hanzi)
-        self.assertIn('Luyện cấu tạo các chữ trong bộ thẻ', hanzi)
+        self.assertIn('构 Luyện cấu tạo các chữ trong bộ thẻ', hanzi)
         self.assertIn("structureUrl: String(card.structureUrl || '')", hanzi)
         self.assertIn("structurePracticeUrl: String(card.structurePracticeUrl || '')", hanzi)
-        self.assertIn('hsk-flashcard-structure-link', hanzi_css)
+        self.assertIn('hsk-flashcard-structure-practice', hanzi_css)
 
     def test_character_scope_from_selected_flashcards_is_supported(self):
         self.assertIn("params.get('chars')", APP)

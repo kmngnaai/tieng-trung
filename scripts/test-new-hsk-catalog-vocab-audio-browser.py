@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 from pathlib import Path
 from urllib.parse import urlparse, unquote
-import shutil
 from playwright.sync_api import sync_playwright
+
+from browser_runtime import require_browser_executable, replace_location_search
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'artifacts' / 'new-hsk-catalog-vocab-audio'
@@ -34,18 +35,15 @@ def route_local(query):
             route.fulfill(status=404, body=b'not found'); return
         body = path.read_bytes()
         if path.as_posix().endswith('/modules/new-hsk-course/app.js'):
-            body = body.decode('utf-8').replace(
-                'const params = new URLSearchParams(window.location.search);',
-                f'const params = new URLSearchParams({query!r});'
-            ).encode('utf-8')
+            body = replace_location_search(body.decode('utf-8'), query).encode('utf-8')
         route.fulfill(status=200, body=body, content_type=MIMES.get(path.suffix.lower(),'application/octet-stream'))
     return handler
 
 
 def load(page, query):
     page.route('**/*', route_local(query))
-    html = (ROOT/'modules/new-hsk-course/index.html').read_text('utf-8')
-    html = html.replace('<head>', '<head><base href="https://app.test/modules/new-hsk-course/">'+SPEECH_STUB, 1)
+    html = (ROOT / 'modules/new-hsk-course/index.html').read_text(encoding='utf-8')
+    html = html.replace('<head>', '<head><base href="https://app.test/modules/new-hsk-course/">' + SPEECH_STUB, 1)
     page.set_content(html, wait_until='networkidle')
     page.evaluate("""() => {
       window.__spoken = [];
@@ -62,8 +60,7 @@ def load(page, query):
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
-    executable = shutil.which('chromium') or shutil.which('chromium-browser') or shutil.which('google-chrome')
-    if not executable: raise SystemExit('Không tìm thấy Chromium/Chrome trong PATH.')
+    executable = require_browser_executable()
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True, executable_path=executable, args=['--no-sandbox','--disable-gpu'])
         context = browser.new_context(viewport={'width':390,'height':844}, is_mobile=True, has_touch=True)
@@ -73,7 +70,7 @@ def main():
         page.wait_for_selector('.nhsk-topic-word')
         first = page.locator('.nhsk-topic-word').first
         assert first.locator('[data-nhsk-speak]').count() == 1
-        meaning_style = first.locator('.nhsk-topic-word__copy p').evaluate("node => ({clamp:getComputedStyle(node).webkitLineClamp, whiteSpace:getComputedStyle(node).whiteSpace})")
+        meaning_style = first.locator('.hsk-meaning').evaluate("node => ({clamp:getComputedStyle(node).webkitLineClamp, whiteSpace:getComputedStyle(node).whiteSpace})")
         assert meaning_style['clamp'] == '2', meaning_style
         await_url = page.url
         first.scroll_into_view_if_needed()
@@ -82,7 +79,7 @@ def main():
         page.wait_for_function("window.__spoken.includes('哪')")
         assert page.url == await_url
         assert page.locator('#nhskSharedWordDetail:not([hidden])').count() == 0
-        first.locator('.nhsk-topic-word__copy p').click()
+        first.locator('.hsk-meaning').click()
         page.wait_for_selector('#nhskSharedWordDetail:not([hidden])')
         assert page.locator('.nhsk-word-preview-hero h2').inner_text() == '哪'
         assert 'Quay lại Chủ đề 01' in page.locator('.nhsk-word-preview-topbar').inner_text()
@@ -91,8 +88,8 @@ def main():
 
         page.unroute('**/*')
         load(page, f'?level=1&lesson=2&catalog=grammar&grammar={GRAMMAR_ID}')
-        page.wait_for_selector('.nhsk-catalog-grammar-examples article')
-        example = page.locator('.nhsk-catalog-grammar-examples article').first
+        page.wait_for_selector('.hsk-grammar-example-card')
+        example = page.locator('.hsk-grammar-example-card').first
         sentence = example.locator('strong').inner_text()
         example.scroll_into_view_if_needed()
         example.locator('[data-nhsk-speak]').click()

@@ -30,6 +30,9 @@ for (const entry of manifest.lessons) {
 const lesson1 = JSON.parse(fs.readFileSync(path.join(ROOT, 'modules/new-hsk-course/data/hsk1/lesson-01.json'), 'utf8'));
 const charNi = lesson1.entities.characters.find(row => row.hanzi === '你');
 assert.ok(charNi);
-assert.deepStrictEqual(charNi.components.map(row => row.nameVi), ['Nhân', 'Nhĩ']);
-assert.ok(charNi.components.every(row => row.positionVi && row.roleVi));
+assert.strictEqual(charNi.dictionaryRadical?.glyph, '亻');
+assert.strictEqual(charNi.dictionaryRadical?.nameVi, 'Bộ Nhân');
+assert.deepStrictEqual(charNi.components.map(row => row.glyph), ['亻', '尔']);
+assert.ok(charNi.components.every(row => row.roleVi && row.reviewStatus === 'reviewed'));
+assert.strictEqual(charNi.reviewStatus, 'curated');
 console.log('PASS New 3.0 all 48 shared Flashcard/Listening lessons and curated character labels');

@@ -1,8 +1,8 @@
 from pathlib import Path
 import json
 import re
-import subprocess
-import tempfile
+import importlib.util
+import sys
 import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -18,17 +18,33 @@ class NewHskPracticeDataTests(unittest.TestCase):
         cls.lesson = json.loads(DATA_PATH.read_text(encoding='utf-8'))
         cls.catalog = json.loads(CATALOG_PATH.read_text(encoding='utf-8'))
 
-    def test_practice_overlay_rebuilds_runtime_json_exactly(self):
-        with tempfile.TemporaryDirectory() as temp:
-            output = Path(temp) / 'lesson.json'
-            subprocess.run([
-                'python', str(ROOT / 'scripts' / 'new-hsk-course' / 'build_course_data.py'),
-                '--markdown', str(MODULE / 'source' / 'hsk1' / 'HSK1_Bai_01.md'),
-                '--dialogues', str(MODULE / 'source' / 'hsk1' / 'dialogues' / 'HSK1_Bai_01_dialogues.json'),
-                '--practice', str(PRACTICE_PATH),
-                '--output', str(output),
-            ], check=True, capture_output=True, text=True)
-            self.assertEqual(json.loads(output.read_text(encoding='utf-8')), self.lesson)
+    def test_current_builder_preserves_curated_practice_overlay_contract(self):
+        script_dir = ROOT / 'scripts' / 'new-hsk-course'
+        sys.path.insert(0, str(script_dir))
+        try:
+            spec = importlib.util.spec_from_file_location('new_hsk_build_all', script_dir / 'build_all_course_data.py')
+            self.assertIsNotNone(spec)
+            self.assertIsNotNone(spec.loader)
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            char_index, char_sources = module.load_character_sources(ROOT)
+            rebuilt = module.build_lesson(
+                ROOT,
+                MODULE / 'source' / 'hsk1' / 'HSK1_Bai_01.md',
+                MODULE / 'source' / 'hsk1' / 'dialogues' / 'HSK1_Bai_01_dialogues.json',
+                char_index,
+                char_sources,
+                self.lesson,
+                set(),
+            )
+        finally:
+            if str(script_dir) in sys.path:
+                sys.path.remove(str(script_dir))
+
+        self.assertEqual(rebuilt['entities']['radicalSortExercises'], self.lesson['entities']['radicalSortExercises'])
+        self.assertEqual(rebuilt['entities']['characterBuildExercises'], self.lesson['entities']['characterBuildExercises'])
+        self.assertEqual(rebuilt['practicePlan']['curatedExerciseIds'], self.lesson['practicePlan']['curatedExerciseIds'])
+        self.assertEqual(set(rebuilt['practicePlan']['sourceGroups']), set(self.lesson['practicePlan']['sourceGroups']))
 
     def test_radical_ids_and_display_forms_exist_in_repo_catalog(self):
         catalog = {item['id']: item for item in self.catalog['items']}

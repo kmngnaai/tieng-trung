@@ -2,8 +2,9 @@
 from pathlib import Path
 from urllib.parse import urlparse, unquote
 import json
-import shutil
 from playwright.sync_api import sync_playwright
+
+from browser_runtime import click_centered, require_browser_executable, replace_location_search
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'artifacts' / 'new-hsk-practice-v5'
@@ -19,17 +20,16 @@ def local_route(query):
         if not file_path.is_file(): route.fulfill(status=404,body=b'not found'); return
         body=file_path.read_bytes()
         if file_path.as_posix().endswith('/modules/new-hsk-course/app.js'):
-            source=body.decode('utf-8').replace('const params = new URLSearchParams(window.location.search);',f'const params = new URLSearchParams({query!r});')
-            body=source.encode('utf-8')
+            body=replace_location_search(body.decode('utf-8'), query).encode('utf-8')
         route.fulfill(status=200,body=body,content_type=MIMES.get(file_path.suffix.lower(),'application/octet-stream'))
     return handler
 
 
 def load(page, query='?level=1&lesson=1&view=practice'):
-    page.route('**/*',local_route(query))
-    html=(ROOT/'modules/new-hsk-course/index.html').read_text(encoding='utf-8')
-    html=html.replace('<head>','<head><base href="https://app.test/modules/new-hsk-course/">',1)
-    page.set_content(html,wait_until='networkidle')
+    page.route('**/*', local_route(query))
+    html = (ROOT / 'modules/new-hsk-course/index.html').read_text(encoding='utf-8')
+    html = html.replace('<head>', '<head><base href="https://app.test/modules/new-hsk-course/">', 1)
+    page.set_content(html, wait_until='networkidle')
     page.wait_for_selector('.nhsk-hero')
 
 
@@ -42,8 +42,7 @@ def ordering_rows():
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
-    executable=shutil.which('chromium') or shutil.which('chromium-browser') or shutil.which('google-chrome')
-    if not executable: raise SystemExit('Không tìm thấy Chromium/Chrome trong PATH.')
+    executable = require_browser_executable()
     with sync_playwright() as p:
         browser=p.chromium.launch(headless=True,executable_path=executable,args=['--no-sandbox','--disable-gpu'])
         context=browser.new_context(viewport={'width':390,'height':844},is_mobile=True,has_touch=True)
@@ -52,41 +51,41 @@ def main():
         load(page)
 
         # Radical-first remains selected for multiple correct characters.
-        page.locator('[data-nhsk-practice="characters"]').click(force=True)
-        page.locator('[data-nhsk-character-mode="sort"]').click(force=True)
-        page.locator('[data-nhsk-start-practice]').click(force=True)
+        click_centered(page.locator('[data-nhsk-practice="characters"]'))
+        click_centered(page.locator('[data-nhsk-character-mode="sort"]'))
+        click_centered(page.locator('[data-nhsk-start-practice]'))
         group=page.locator('[data-radical-group-select="nhsk-1-01-radical-group-nhan"]')
-        group.click(force=True)
-        page.locator('[data-radical-item="nhsk-1-01-radical-item-001"]').click(force=True)
+        click_centered(group)
+        click_centered(page.locator('[data-radical-item="nhsk-1-01-radical-item-001"]'))
         page.wait_for_timeout(80)
         assert page.locator('[data-radical-drop="nhsk-1-01-radical-group-nhan"]').get_attribute('class').find('is-selected')>=0
-        page.locator('[data-radical-item="nhsk-1-01-radical-item-002"]').click(force=True)
+        click_centered(page.locator('[data-radical-item="nhsk-1-01-radical-item-002"]'))
         page.wait_for_timeout(80)
         placed=page.locator('[data-radical-drop="nhsk-1-01-radical-group-nhan"] .nhsk-radical-placed').inner_text()
         assert '你' in placed and '们' in placed, placed
         page.screenshot(path=str(OUT/'radical-compact-mobile.png'), full_page=True)
 
         # Ordering supports two visible cards and immediate automatic page advance.
-        page.locator('[data-nhsk-practice="ordering"]').click(force=True)
+        click_centered(page.locator('[data-nhsk-practice="ordering"]'))
         page.locator('[data-nhsk-practice-setting="ordering-display-count"]').select_option('2')
         page.locator('[data-nhsk-practice-setting="ordering-auto-next"]').select_option('on')
         page.locator('[data-nhsk-practice-setting="ordering-auto-next-delay"]').select_option('0')
-        page.locator('[data-nhsk-start-practice]').click(force=True)
+        click_centered(page.locator('[data-nhsk-start-practice]'))
         page.wait_for_selector('[data-nhsk-order-item-id]')
         assert page.locator('[data-nhsk-order-item-id]').count()==2
         page.screenshot(path=str(OUT/'ordering-two-cards-mobile.png'), full_page=True)
         rows=ordering_rows()
         for row in rows[:2]:
             card=page.locator(f'[data-nhsk-order-item-id="{row["id"]}"]')
-            for token in row['answerTokens']:
-                card.locator(f'[data-token-zone="bank"][data-token="{token}"]').click(force=True)
+            for token in (row.get('orderingTokens') or row['answerTokens']):
+                click_centered(card.locator(f'[data-token-zone="bank"][data-token="{token}"]'))
         page.wait_for_timeout(150)
         labels=page.locator('.nhsk-order-card-head>span').all_inner_texts()
         assert labels and labels[0].startswith('Câu 3/'), labels
 
         # Listen then type invokes the Chinese TTS path and keeps hints hidden.
-        page.locator('[data-nhsk-practice="typing"]').click(force=True)
-        page.locator('[data-nhsk-typing-mode="listen"]').click(force=True)
+        click_centered(page.locator('[data-nhsk-practice="typing"]'))
+        click_centered(page.locator('[data-nhsk-typing-mode="listen"]'))
         page.evaluate("""() => {
           window.__spoken = [];
           window.speechSynthesis.cancel = () => {};
@@ -96,9 +95,9 @@ def main():
             if (utterance.onend) setTimeout(() => utterance.onend(), 0);
           };
         }""")
-        page.locator('[data-nhsk-start-practice]').click(force=True)
+        click_centered(page.locator('[data-nhsk-start-practice]'))
         play=page.locator('.nhsk-practice-listen-big').first
-        play.click(force=True)
+        click_centered(play)
         page.wait_for_timeout(50)
         spoken=page.evaluate('window.__spoken')
         assert spoken and spoken[0], spoken

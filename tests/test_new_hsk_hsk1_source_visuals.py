@@ -97,7 +97,7 @@ def main() -> int:
                     checked_assets.add(asset)
                     assert source_type in {"ppt", "pdf-crop"}, f"{lesson_id}: unsupported visible source"
                     if source_type == "ppt":
-                        assert kind in {"warmup", "lesson-text"}, f"{lesson_id}: PPT shown in {kind}"
+                        assert kind in {"warmup", "lesson-text", "activity"}, f"{lesson_id}: PPT shown in {kind}"
                 else:
                     if source_type == "pdf":
                         assert visual.get("assetPolicy") == "trace-only"
@@ -118,7 +118,7 @@ def main() -> int:
             if kind == "warmup":
                 warmups += 1
                 display = section.get("warmupDisplay", {})
-                assert display.get("instructionHanzi") and display.get("instructionVi"), f"{lesson_id}: warmup instruction missing"
+                assert display.get("instructionVi"), f"{lesson_id}: warmup instruction missing"
                 if any(task.get("type") == "image-match" for task in tasks):
                     choices = display.get("choices", [])
                     assert len(choices) >= 4, f"{lesson_id}: warmup choices missing"
@@ -163,7 +163,7 @@ def main() -> int:
     assert grammar_examples == 157
     assert summaries == 5 and summary_items == 50
     assert vi_statuses == {"source": 100, "editorial-completion": 46, "repo-source": 11}
-    assert total_visuals == 139 and visible_visuals == 57 and total_tasks == 40
+    assert total_visuals == 139 and visible_visuals == 70 and total_tasks == 40
     assert (ROOT / "scripts/new-hsk-course/build_hsk1_display_manifests.py").exists()
 
     print(

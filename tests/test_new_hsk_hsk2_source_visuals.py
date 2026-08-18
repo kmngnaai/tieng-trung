@@ -115,7 +115,7 @@ def main() -> int:
 
         assert found_warmup and found_grammar and found_tf
         assert lesson_tasks == 5, (lesson_id, lesson_tasks)
-        assert lesson_visible == 4, (lesson_id, lesson_visible)
+        assert lesson_visible == 5, (lesson_id, lesson_visible)
         assert lesson["stats"]["sourceVisuals"] == lesson_visuals
         assert lesson["stats"]["visibleSourceVisuals"] == lesson_visible
         assert lesson["stats"]["sourceTasks"] == lesson_tasks
@@ -123,11 +123,11 @@ def main() -> int:
         visible_visuals += lesson_visible
         total_tasks += lesson_tasks
 
-    assert len(visible_assets) == 60
-    assert visible_visuals == 60 and total_tasks == 75
+    assert len(visible_assets) == 75
+    assert visible_visuals == 75 and total_tasks == 75
     assert total_visuals == 230
     assert grammar_examples == 156
-    assert summary_rows == 33
+    assert summary_rows == 44
 
     # Every lesson has all eight canonical textbook audio tracks.
     audio_files = sorted(AUDIO.rglob("*.mp3"))

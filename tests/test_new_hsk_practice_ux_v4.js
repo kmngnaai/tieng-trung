@@ -41,9 +41,12 @@ assert.match(hanziCss, /hsk-flashcard-study--radical-sort\.is-compact/);
 
 const runtimeNi = lesson.entities.characters.find(row => row.hanzi === '你');
 const sourceNi = practice.characters.find(row => row.hanzi === '你');
-assert.equal(runtimeNi.pedagogy.mnemonic.type, 'pedagogical');
-assert.equal(runtimeNi.pedagogy.mnemonic.reviewStatus, 'needs-review');
-assert.deepEqual(runtimeNi.pedagogy.mnemonic, sourceNi.pedagogy.mnemonic);
+assert.equal(runtimeNi.reviewStatus, 'curated');
+assert.equal(runtimeNi.dictionaryRadical.glyph, '亻');
+assert.deepEqual(runtimeNi.components.map(row => row.glyph), ['亻', '尔']);
+assert.ok(runtimeNi.components.every(row => row.reviewStatus === 'reviewed'));
+assert.equal(runtimeNi.pedagogy.mnemonic, undefined);
+assert.equal(sourceNi.pedagogy.mnemonic.reviewStatus, 'needs-review');
 
 for (const exercise of lesson.entities.radicalSortExercises || []) {
   const groups = new Map(exercise.groups.map(group => [group.id, group]));

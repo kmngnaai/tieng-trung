@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import shutil
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 
 from playwright.sync_api import sync_playwright
+
+from browser_runtime import require_browser_executable, replace_location_search
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "test-output" / "new-hsk-course-full"
@@ -29,7 +30,7 @@ CASES = [
 ]
 
 
-def local_route(query: str):
+def local_route(query):
     def handler(route):
         parsed = urlparse(route.request.url)
         if parsed.netloc != "app.test":
@@ -40,11 +41,8 @@ def local_route(query: str):
             route.fulfill(status=404, body=b"not found")
             return
         body = path.read_bytes()
-        if path.as_posix().endswith("/modules/new-hsk-course/app.js"):
-            body = body.decode("utf-8").replace(
-                "const params = new URLSearchParams(window.location.search);",
-                f"const params = new URLSearchParams({query!r});",
-            ).encode("utf-8")
+        if path.as_posix().endswith('/modules/new-hsk-course/app.js'):
+            body = replace_location_search(body.decode('utf-8'), query).encode('utf-8')
         route.fulfill(
             status=200,
             body=body,
@@ -56,13 +54,9 @@ def local_route(query: str):
 
 def load(page, query: str):
     page.route("**/*", local_route(query))
-    html = (ROOT / "modules/new-hsk-course/index.html").read_text(encoding="utf-8")
-    html = html.replace(
-        "<head>",
-        '<head><base href="https://app.test/modules/new-hsk-course/">',
-        1,
-    )
-    page.set_content(html, wait_until="networkidle")
+    html = (ROOT / 'modules/new-hsk-course/index.html').read_text(encoding='utf-8')
+    html = html.replace('<head>', '<head><base href="https://app.test/modules/new-hsk-course/">', 1)
+    page.set_content(html, wait_until='networkidle')
     page.wait_for_selector(".nhsk-hero")
 
 
@@ -150,9 +144,7 @@ def run_layout_case(browser, width: int, height: int, level: int, lesson: int, t
 
 
 def main():
-    executable = shutil.which("chromium") or shutil.which("google-chrome")
-    if not executable:
-        raise SystemExit("Chromium not found")
+    executable = require_browser_executable()
     with sync_playwright() as p:
         browser = p.chromium.launch(
             headless=True,

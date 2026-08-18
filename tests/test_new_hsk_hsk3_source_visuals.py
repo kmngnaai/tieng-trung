@@ -130,7 +130,7 @@ def main() -> int:
 
     assert len(visible_assets) == 93
     assert total_visuals == 312 and visible_visuals == 93 and total_tasks == 88
-    assert grammar_examples == 183 and summary_rows == 61
+    assert grammar_examples == 186 and summary_rows == 61
 
     # Canonical HSK3 audio: 18 lessons x 8 textbook tracks.
     audio_files = sorted(AUDIO.rglob("*.mp3"))

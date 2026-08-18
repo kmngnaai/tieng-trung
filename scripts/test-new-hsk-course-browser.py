@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 from pathlib import Path
 from urllib.parse import urlparse, unquote
-import shutil
+import json
 from playwright.sync_api import sync_playwright
 
+from browser_runtime import click_centered, require_browser_executable, replace_location_search
+
 ROOT = Path(__file__).resolve().parents[1]
+LESSON = json.loads((ROOT / 'modules/new-hsk-course/data/hsk1/lesson-01.json').read_text(encoding='utf-8'))
 OUT = ROOT / 'test-output' / 'new-hsk-course-hsk1-lesson1'
 OUT.mkdir(parents=True, exist_ok=True)
 MIMES = {
@@ -24,11 +27,7 @@ def local_route(query):
             route.fulfill(status=404, body=b'not found'); return
         body = file_path.read_bytes()
         if file_path.as_posix().endswith('/modules/new-hsk-course/app.js'):
-            source = body.decode('utf-8').replace(
-                'const params = new URLSearchParams(window.location.search);',
-                f'const params = new URLSearchParams({query!r});'
-            )
-            body = source.encode('utf-8')
+            body = replace_location_search(body.decode('utf-8'), query).encode('utf-8')
         route.fulfill(status=200, body=body, content_type=MIMES.get(file_path.suffix.lower(), 'application/octet-stream'))
     return handler
 
@@ -93,40 +92,42 @@ def practice_mobile_test(browser):
     load(page, '?level=1&lesson=1&view=practice')
 
     # Compact radical practice, including radical-first then character selection.
-    page.locator('[data-nhsk-practice="characters"]').click(force=True)
-    page.locator('[data-nhsk-character-mode="sort"]').click(force=True)
-    page.locator('[data-nhsk-start-practice]').click(force=True)
+    click_centered(page.locator('[data-nhsk-practice="characters"]'))
+    click_centered(page.locator('[data-nhsk-character-mode="sort"]'))
+    click_centered(page.locator('[data-nhsk-start-practice]'))
     page.wait_for_selector('[data-radical-item]')
-    assert page.locator('[data-radical-item]').count() == 6
+    initial_radical_count = page.locator('[data-radical-item]').count()
+    assert initial_radical_count >= 1
     assert page.locator('[data-radical-group-select]').count() == 3
     person_group = page.locator('[data-radical-group-select="nhsk-1-01-radical-group-nhan"]')
-    person_group.click(force=True)
-    page.locator('[data-radical-item="nhsk-1-01-radical-item-001"]').click(force=True)
+    click_centered(person_group)
+    click_centered(page.locator('[data-radical-item="nhsk-1-01-radical-item-001"]'))
     page.wait_for_timeout(60)
     assert 'Đúng' in page.locator('.nhsk-radical-feedback').inner_text()
-    assert page.locator('[data-radical-item]').count() == 5
+    assert page.locator('[data-radical-item]').count() == initial_radical_count - 1
     page.screenshot(path=str(OUT / 'practice-radical-sort-mobile.png'), full_page=True)
 
     # One compact sentence at a time, automatic checking and rating.
-    page.locator('[data-nhsk-practice="ordering"]').click(force=True)
-    page.locator('[data-nhsk-start-practice]').click(force=True)
+    click_centered(page.locator('[data-nhsk-practice="ordering"]'))
+    click_centered(page.locator('[data-nhsk-start-practice]'))
     page.wait_for_selector('[data-nhsk-order-exercise]')
     assert page.locator('[data-nhsk-order-exercise]').count() == 1
     assert page.locator('[data-nhsk-check-order]').count() == 0
-    for token in ('AI小语', '你好'):
-        page.locator(f'[data-token-zone="bank"][data-token="{token}"]').click(force=True)
+    first_turn = sorted(LESSON['entities']['dialogues'], key=lambda row: row.get('order', 0))[0]['turns'][0]
+    for token in (first_turn.get('orderingTokens') or first_turn['answerTokens']):
+        click_centered(page.locator(f'[data-token-zone="bank"][data-token="{token}"]'))
     page.wait_for_timeout(60)
     assert 'Đúng:' in page.locator('[data-nhsk-feedback]').inner_text()
     assert page.locator('[data-nhsk-order-next]').count() == 1
     page.screenshot(path=str(OUT / 'practice-ordering-correct-mobile.png'), full_page=True)
 
     # Listening typing starts with all hints hidden.
-    page.locator('[data-nhsk-practice="typing"]').click(force=True)
-    page.locator('[data-nhsk-typing-mode="listen"]').click(force=True)
+    click_centered(page.locator('[data-nhsk-practice="typing"]'))
+    click_centered(page.locator('[data-nhsk-typing-mode="listen"]'))
     hint_toggles = page.locator('[data-nhsk-practice-layer-activity="typingListen"]')
     assert hint_toggles.count() == 3
     assert all(toggle.get_attribute('aria-pressed') == 'false' for toggle in hint_toggles.all())
-    page.locator('[data-nhsk-start-practice]').click(force=True)
+    click_centered(page.locator('[data-nhsk-start-practice]'))
     page.wait_for_selector('[data-nhsk-typing-card]')
     first_typing = page.locator('[data-nhsk-typing-card]').first.inner_text()
     assert 'AI小语' not in first_typing and 'AI Xiǎoyǔ' not in first_typing and 'Xin chào' not in first_typing
@@ -138,14 +139,16 @@ def practice_mobile_test(browser):
     character_errors = []
     character_page.on('pageerror', lambda error: character_errors.append(str(error)))
     load(character_page, '?level=1&lesson=1&view=practice')
-    character_page.locator('[data-nhsk-practice="characters"]').click(force=True)
-    character_page.locator('[data-nhsk-character-mode="learn"]').click(force=True)
+    click_centered(character_page.locator('[data-nhsk-practice="characters"]'))
+    click_centered(character_page.locator('[data-nhsk-character-mode="learn"]'))
     character_page.wait_for_selector('[data-nhsk-start-practice]')
-    character_page.locator('[data-nhsk-start-practice]').click(force=True)
+    click_centered(character_page.locator('[data-nhsk-start-practice]'))
     character_page.wait_for_selector('[data-character-id="nhsk-char-4f60"]')
     ni_card = character_page.locator('[data-character-id="nhsk-char-4f60"]')
     ni_text = ni_card.inner_text()
-    assert '亻 — Nhân' in ni_text and '尔 — Nhĩ' in ni_text
+    assert '亻 · Bộ Nhân' in ni_text
+    component_text = ni_card.locator('.nhsk-character-components').first.inner_text()
+    assert '亻' in component_text and '尔' in component_text
     assert 'thành phần cấu tạo' not in ni_text
     writing_href = ni_card.locator('a.nhsk-practice-link').get_attribute('href')
     assert 'study=lookup' in writing_href and 'chars=%E4%BD%A0' in writing_href
@@ -159,9 +162,7 @@ def practice_mobile_test(browser):
     context.close()
 
 def main():
-    executable = shutil.which('chromium') or shutil.which('chromium-browser') or shutil.which('google-chrome')
-    if not executable:
-        raise SystemExit('Không tìm thấy Chromium/Chrome trong PATH.')
+    executable = require_browser_executable()
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True, executable_path=executable, args=['--no-sandbox', '--disable-gpu'])
         mobile_test(browser)

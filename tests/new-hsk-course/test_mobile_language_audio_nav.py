@@ -42,7 +42,8 @@ class NewHskMobileLanguageAudioNavigationTests(unittest.TestCase):
         self.assertIn("home-explore-card--new-hsk", home)
         self.assertIn('data-study-tab="new-hsk-course"', hub)
         self.assertIn("ui-module-card--new-hsk", hub)
-        self.assertIn("drawerLink('新', 'New 3.0'", shell)
+        self.assertIn("newHskCourse: new URL('modules/new-hsk-course/index.html'", shell)
+        self.assertIn("title: lessonNumber ? `New 3.0 · HSK ${level} · Bài ${lessonNumber}` : 'New 3.0'", shell)
 
     def test_new_hsk_breadcrumb_is_not_nested_under_curriculum(self):
         shell = (ROOT / "modules" / "shared" / "app-shell.js").read_text(encoding="utf-8")

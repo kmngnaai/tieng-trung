@@ -24,9 +24,12 @@ assert((course.match(/syncUrl\(false\)/g) || []).length >= 3, 'Catalog, topic an
 assert(courseCss.includes('.nhsk-catalog-switch'), 'Catalog navigation must have mobile styling');
 assert(courseCss.includes('.nhsk-topic-word-list'), 'Topic word lists must have dedicated styling');
 
-assert(hsk.includes("target.searchParams.set('catalog', 'topics')"), 'HSK topic cards must link into New 3.0');
-assert(hsk.includes("target.searchParams.set('catalog', 'grammar')"), 'HSK grammar cards must link into New 3.0');
-assert((hsk.match(/openNewHskGrammarCatalog\(/g) || []).length >= 3, 'Mouse and keyboard grammar navigation must both open New 3.0');
+assert(hsk.includes('function renderNewHskCourseLessonEntry'), 'HSK lesson detail must expose the current New 3.0 lesson entry');
+assert(hsk.includes("new URL('../new-hsk-course/index.html', window.location.href)"), 'HSK lesson entry must target New 3.0');
+assert(hsk.includes("url.searchParams.set('level', String(level))"), 'HSK lesson entry must preserve level');
+assert(hsk.includes("url.searchParams.set('lesson', String(lesson))"), 'HSK lesson entry must preserve lesson');
+assert(hsk.includes("url.searchParams.set('view', 'book')"), 'HSK lesson entry must open the book view');
+assert(hsk.includes('hsk-full-course-entry'), 'HSK lesson detail must render the New 3.0 entry control');
 
 for (const level of [1, 2, 3]) {
   const catalogPath = path.join(ROOT, `modules/new-hsk-course/data/catalog/hsk${level}.json`);
