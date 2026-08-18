@@ -551,13 +551,18 @@ class UiUpgradeTests(unittest.TestCase):
         self.assertIn("Chưa đúng, nhập lại", js)
         self.assertIn(".hsk-flashcard-typing-input.is-wrong", css)
 
-    def test_typing_highlight_maps_one_pinyin_syllable_to_one_hanzi(self) -> None:
+    def test_typing_highlight_uses_shared_prompt_answer_model(self) -> None:
         js = read("modules/hanzi-stroke/app.js")
         css = read("modules/hanzi-stroke/style.css")
         self.assertIn("FLASHCARD_PINYIN_SYLLABLE_SET", js)
         self.assertIn("function splitFlashcardPinyinGroupIntoSyllables", js)
-        self.assertIn("function buildFlashcardTypingAnswerTokens", js)
-        self.assertIn("const isCurrent = !state?.isCompleting && hanIndex === currentTokenIndex", js)
+        self.assertIn("function buildFlashcardTypingPromptParts", js)
+        self.assertIn("function alignFlashcardTypingUnits", js)
+        self.assertIn("function buildFlashcardTypingModel", js)
+        self.assertIn("return buildFlashcardTypingModel(card).answerTokens;", js)
+        self.assertIn("const model = buildFlashcardTypingModel(card);", js)
+        self.assertIn("part.unitIndex === currentTokenIndex", js)
+        self.assertNotIn("answerTokenHanCounts", js)
         self.assertNotIn("function fitFlashcardTypingPromptHanzi", js)
         self.assertIn("flex-wrap:nowrap", css)
         self.assertIn("white-space:nowrap", css)

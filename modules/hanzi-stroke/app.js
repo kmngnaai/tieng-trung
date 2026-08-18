@@ -7689,13 +7689,17 @@ if(window.HanziWriter){
 
   const FLASHCARD_PINYIN_SYLLABLE_SET = new Set('a|o|e|er|ai|ei|ao|ou|an|en|ang|eng|yi|ya|ye|yao|you|yan|yin|yang|ying|yong|wu|wa|wo|wai|wei|wan|wen|wang|weng|yu|yue|yuan|yun|ba|bo|bai|bei|bao|ban|ben|bang|beng|bi|bie|biao|bian|bin|bing|bu|pa|po|pai|pei|pao|pou|pan|pen|pang|peng|pi|pie|piao|pian|pin|ping|pu|ma|mo|me|mai|mei|mao|mou|man|men|mang|meng|mi|mie|miao|miu|mian|min|ming|mu|fa|fo|fei|fou|fan|fen|fang|feng|fu|da|de|dai|dei|dao|dou|dan|den|dang|deng|dong|di|dia|die|diao|diu|dian|ding|du|duo|dui|duan|dun|ta|te|tai|tei|tao|tou|tan|tang|teng|tong|ti|tie|tiao|tian|ting|tu|tuo|tui|tuan|tun|na|ne|nai|nei|nao|nou|nan|nen|nang|neng|nong|ni|nie|niao|niu|nian|nin|niang|ning|nu|nuo|nuan|nv|nve|la|le|lai|lei|lao|lou|lan|lang|leng|long|li|lia|lie|liao|liu|lian|lin|liang|ling|lu|luo|luan|lun|lv|lve|ga|ge|gai|gei|gao|gou|gan|gen|gang|geng|gong|gu|gua|guo|guai|gui|guan|gun|guang|ka|ke|kai|kei|kao|kou|kan|ken|kang|keng|kong|ku|kua|kuo|kuai|kui|kuan|kun|kuang|ha|he|hai|hei|hao|hou|han|hen|hang|heng|hong|hu|hua|huo|huai|hui|huan|hun|huang|ji|jia|jie|jiao|jiu|jian|jin|jiang|jing|jiong|ju|jue|juan|jun|qi|qia|qie|qiao|qiu|qian|qin|qiang|qing|qiong|qu|que|quan|qun|xi|xia|xie|xiao|xiu|xian|xin|xiang|xing|xiong|xu|xue|xuan|xun|zha|zhe|zhi|zhai|zhei|zhao|zhou|zhan|zhen|zhang|zheng|zhong|zhu|zhua|zhuo|zhuai|zhui|zhuan|zhun|zhuang|cha|che|chi|chai|chao|chou|chan|chen|chang|cheng|chong|chu|chua|chuo|chuai|chui|chuan|chun|chuang|sha|she|shi|shai|shei|shao|shou|shan|shen|shang|sheng|shu|shua|shuo|shuai|shui|shuan|shun|shuang|re|ri|rao|rou|ran|ren|rang|reng|rong|ru|rua|ruo|rui|ruan|run|za|ze|zi|zai|zei|zao|zou|zan|zen|zang|zeng|zong|zu|zuo|zui|zuan|zun|ca|ce|ci|cai|cao|cou|can|cen|cang|ceng|cong|cu|cuo|cui|cuan|cun|sa|se|si|sai|sao|sou|san|sen|sang|seng|song|su|suo|sui|suan|sun'.split('|'));
 
-  function tokenizeFlashcardPinyin(value){
+  function tokenizeFlashcardPinyin(value, options = {}){
+    const preserveDigits = options.preserveDigits === true;
     const chars = Array.from(String(value || '').trim().toLowerCase());
     const tokens = [];
     for(let i = 0; i < chars.length; i += 1){
       let char = PINYIN_TONE_BASE_MAP[chars[i]] || chars[i];
       if(/[\s'’·-]/u.test(char)) continue;
-      if(/[1-5]/.test(char)) continue;
+      if(/[0-9]/.test(char)){
+        if(preserveDigits) tokens.push(char);
+        continue;
+      }
       if(char === 'u' && chars[i + 1] === ':'){
         tokens.push('u:');
         i += 1;
@@ -7719,12 +7723,19 @@ if(window.HanziWriter){
     return (tokens || []).map(token => token === 'u:' || token === 'ü' ? 'v' : token).join('');
   }
 
-  function sanitizeFlashcardTypingDisplayValue(rawValue){
-    return formatFlashcardTypingDisplayFromTokens(tokenizeFlashcardPinyin(rawValue));
+  function sanitizeFlashcardTypingDisplayValue(rawValue, options = {}){
+    return formatFlashcardTypingDisplayFromTokens(tokenizeFlashcardPinyin(rawValue, options));
   }
 
   function getFlashcardTypingExpectedLetterTokens(syllable){
-    return tokenizeFlashcardPinyin(syllable);
+    const preserveDigits = /\d/u.test(String(syllable || ''));
+    return tokenizeFlashcardPinyin(syllable, { preserveDigits });
+  }
+
+  function isFlashcardTypingKnownSyllable(value){
+    const token = String(value || '');
+    if(FLASHCARD_PINYIN_SYLLABLE_SET.has(token)) return true;
+    return token.length > 1 && token.endsWith('r') && FLASHCARD_PINYIN_SYLLABLE_SET.has(token.slice(0, -1));
   }
 
   function splitFlashcardPinyinGroupIntoSyllables(value){
@@ -7737,7 +7748,7 @@ if(window.HanziWriter){
       let best = null;
       for(let end = normalized.length; end > index; end -= 1){
         const part = normalized.slice(index, end);
-        if(!FLASHCARD_PINYIN_SYLLABLE_SET.has(part)) continue;
+        if(!isFlashcardTypingKnownSyllable(part)) continue;
         const rest = solve(end);
         if(rest === null) continue;
         const candidate = [part, ...rest];
@@ -7751,25 +7762,200 @@ if(window.HanziWriter){
     return solve(0) || [normalized];
   }
 
-  function buildFlashcardTypingAnswerTokens(card){
+  function buildFlashcardTypingPinyinTokens(card){
+    const word = String(card?.word || '');
+    const preserveSlash = word.includes('/');
     const groups = tokenizeFlashcardPinyinSyllables(card?.pinyin || '');
-    if(!groups.length) return [];
-    const flattened = groups.flatMap(group => {
-      const syllables = splitFlashcardPinyinGroupIntoSyllables(group);
-      return syllables.length ? syllables : [sanitizeFlashcardTypingDisplayValue(group)];
-    }).filter(Boolean);
-    const hanCount = countFlashcardHanCharacters(card?.word || '');
-    if(!hanCount || flattened.length === hanCount) return flattened;
-    if(flattened.length > hanCount){
-      return flattened.slice(0, hanCount - 1).concat([flattened.slice(hanCount - 1).join('')]).filter(Boolean);
-    }
-    return flattened.concat(groups.slice(flattened.length)).slice(0, hanCount);
+    const tokens = [];
+    groups.forEach(group => {
+      const source = preserveSlash ? group : String(group).split('/')[0];
+      const chunks = source.split(preserveSlash
+        ? /['’·*<>\-/，,。.!！？?；;]+/u
+        : /['’·*<>\-，,。.!！？?；;]+/u
+      ).map(part => part.trim()).filter(Boolean);
+      chunks.forEach(chunk => {
+        if(/^\d+$/u.test(chunk)){
+          tokens.push(...Array.from(chunk));
+          return;
+        }
+        const literal = sanitizeFlashcardTypingDisplayValue(chunk, { preserveDigits: true });
+        const looksLikeCode = /\d/u.test(chunk) && (/[A-Z]/u.test(chunk) || /[06-9]/u.test(chunk));
+        if(looksLikeCode && literal){
+          tokens.push(literal);
+          return;
+        }
+        const syllables = splitFlashcardPinyinGroupIntoSyllables(chunk);
+        tokens.push(...(syllables.length ? syllables : [literal]).filter(Boolean));
+      });
+    });
+    return tokens;
   }
 
-  function getFlashcardTypingAnswerTokenHanCounts(card, answerTokens){
-    const tokens = Array.isArray(answerTokens) ? answerTokens : [];
-    if(!tokens.length) return [];
-    return tokens.map(() => 1);
+  function buildFlashcardTypingPromptParts(word){
+    const parts = [];
+    let alphaNumeric = '';
+    const flushAlphaNumeric = () => {
+      if(!alphaNumeric) return;
+      const hasLatin = /\p{Script=Latin}/u.test(alphaNumeric);
+      if(hasLatin){
+        parts.push({ text: alphaNumeric, kind: 'latin', answerable: true });
+      }else{
+        Array.from(alphaNumeric).forEach(character => {
+          parts.push({ text: character, kind: 'digit', answerable: true });
+        });
+      }
+      alphaNumeric = '';
+    };
+    Array.from(String(word || '')).forEach(character => {
+      if(/\p{Script=Han}/u.test(character)){
+        flushAlphaNumeric();
+        parts.push({ text: character, kind: 'han', answerable: true });
+        return;
+      }
+      if(/[\p{Script=Latin}\p{Number}]/u.test(character)){
+        alphaNumeric += character;
+        return;
+      }
+      flushAlphaNumeric();
+      if(/\p{Symbol}/u.test(character)){
+        parts.push({ text: character, kind: 'symbol', answerable: true });
+      }else{
+        parts.push({ text: character, kind: 'separator', answerable: false });
+      }
+    });
+    flushAlphaNumeric();
+    return parts;
+  }
+
+  function alignFlashcardTypingUnits(parts, answerTokens){
+    const answerParts = parts
+      .map((part, partIndex) => ({ ...part, partIndex }))
+      .filter(part => part.answerable);
+    const tokens = Array.isArray(answerTokens) ? answerTokens.filter(Boolean) : [];
+    if(!answerParts.length || !tokens.length) return [];
+
+    const memo = new Map();
+    const better = (current, candidate) => !current || candidate.cost < current.cost ? candidate : current;
+    const solve = (partIndex, tokenIndex) => {
+      if(partIndex === answerParts.length && tokenIndex === tokens.length) return { cost: 0, steps: [] };
+      if(partIndex >= answerParts.length || tokenIndex >= tokens.length) return null;
+      const key = `${partIndex}:${tokenIndex}`;
+      if(memo.has(key)) return memo.get(key);
+      const part = answerParts[partIndex];
+      let best = null;
+      const addStep = (visualCount, tokenCount, cost) => {
+        const tail = solve(partIndex + visualCount, tokenIndex + tokenCount);
+        if(!tail) return;
+        best = better(best, {
+          cost: cost + tail.cost,
+          steps: [{ visualCount, tokenCount }, ...tail.steps]
+        });
+      };
+
+      if(part.kind === 'han'){
+        const next = answerParts[partIndex + 1];
+        const token = tokens[tokenIndex] || '';
+        if(next?.kind === 'han' && next.text === '儿' && token !== 'er' && token.endsWith('r')){
+          addStep(2, 1, -0.5);
+        }
+        addStep(1, 1, 0);
+      }else if(part.kind === 'latin'){
+        const target = sanitizeFlashcardTypingDisplayValue(part.text, { preserveDigits: true });
+        const maxTokens = Math.min(tokens.length - tokenIndex, 6);
+        for(let tokenCount = 1; tokenCount <= maxTokens; tokenCount += 1){
+          const joined = tokens.slice(tokenIndex, tokenIndex + tokenCount).join('');
+          const cost = target && joined === target ? 0 : (tokenCount === 1 ? 0.5 : 2 + tokenCount / 10);
+          addStep(1, tokenCount, cost);
+        }
+      }else if(part.kind === 'digit'){
+        let digitRun = 1;
+        while(partIndex + digitRun < answerParts.length && answerParts[partIndex + digitRun].kind === 'digit'){
+          digitRun += 1;
+        }
+        const currentTokenIsNumeric = /^\d+$/u.test(tokens[tokenIndex] || '');
+        if(digitRun > 1 && !currentTokenIsNumeric){
+          const maxTokens = Math.min(tokens.length - tokenIndex, digitRun + 3);
+          for(let tokenCount = 1; tokenCount <= maxTokens; tokenCount += 1){
+            addStep(digitRun, tokenCount, -1 + Math.abs(tokenCount - digitRun) / 4);
+          }
+        }
+        addStep(1, 1, 0);
+        if(digitRun > 1 && currentTokenIsNumeric){
+          const maxTokens = Math.min(tokens.length - tokenIndex, digitRun);
+          for(let visualCount = 2; visualCount <= digitRun; visualCount += 1){
+            for(let tokenCount = 1; tokenCount <= maxTokens; tokenCount += 1){
+              addStep(visualCount, tokenCount, 1 + Math.abs(tokenCount - visualCount) / 4);
+            }
+          }
+        }
+      }else{
+        addStep(1, 1, 0.5);
+      }
+
+      memo.set(key, best);
+      return best;
+    };
+
+    const resolved = solve(0, 0);
+    if(!resolved) return [];
+    const units = [];
+    let partIndex = 0;
+    let tokenIndex = 0;
+    resolved.steps.forEach(step => {
+      const visualParts = answerParts.slice(partIndex, partIndex + step.visualCount);
+      const tokenParts = tokens.slice(tokenIndex, tokenIndex + step.tokenCount);
+      units.push({
+        text: visualParts.map(part => part.text).join(''),
+        answer: tokenParts.join(''),
+        partIndexes: visualParts.map(part => part.partIndex)
+      });
+      partIndex += step.visualCount;
+      tokenIndex += step.tokenCount;
+    });
+    return units;
+  }
+
+  function buildFlashcardTypingModel(card){
+    const parts = buildFlashcardTypingPromptParts(card?.word || '');
+    const rawAnswerTokens = buildFlashcardTypingPinyinTokens(card);
+    let units = alignFlashcardTypingUnits(parts, rawAnswerTokens);
+    if(!units.length && rawAnswerTokens.length){
+      const answerableIndexes = parts
+        .map((part, partIndex) => part.answerable ? partIndex : -1)
+        .filter(partIndex => partIndex >= 0);
+      if(answerableIndexes.length){
+        units = [{
+          text: answerableIndexes.map(partIndex => parts[partIndex].text).join(''),
+          answer: rawAnswerTokens.join(''),
+          partIndexes: answerableIndexes
+        }];
+      }
+    }
+
+    const unitByPart = new Map();
+    units.forEach((unit, unitIndex) => {
+      unit.partIndexes.forEach(partIndex => unitByPart.set(partIndex, unitIndex));
+    });
+    const promptParts = [];
+    parts.forEach((part, partIndex) => {
+      const unitIndex = unitByPart.has(partIndex) ? unitByPart.get(partIndex) : null;
+      const previous = promptParts[promptParts.length - 1];
+      if(previous && previous.unitIndex === unitIndex && unitIndex !== null){
+        previous.text += part.text;
+      }else if(previous && previous.unitIndex === null && unitIndex === null){
+        previous.text += part.text;
+      }else{
+        promptParts.push({ text: part.text, unitIndex });
+      }
+    });
+    return {
+      answerTokens: units.map(unit => unit.answer),
+      promptParts
+    };
+  }
+
+  function buildFlashcardTypingAnswerTokens(card){
+    return buildFlashcardTypingModel(card).answerTokens;
   }
 
   function trimFlashcardTypingTokensToValidPrefix(expectedTokens, inputTokens){
@@ -7811,7 +7997,6 @@ if(window.HanziWriter){
       cardId: String(card?.id || ''),
       promptType: resolveTypingPromptType(session, session.index),
       answerTokens,
-      answerTokenHanCounts: getFlashcardTypingAnswerTokenHanCounts(card, answerTokens),
       currentIndex: 0,
       committedTokens: [],
       typedValue: '',
@@ -7848,11 +8033,12 @@ if(window.HanziWriter){
       state.typedValue = Array.isArray(state.committedTokens) ? state.committedTokens.join(' ') : '';
     }
     if(!Array.isArray(state.committedTokens)) state.committedTokens = [];
-    if(!Array.isArray(state.answerTokens) || !state.answerTokens.length){
-      state.answerTokens = buildFlashcardTypingAnswerTokens(card);
-    }
-    if(!Array.isArray(state.answerTokenHanCounts) || state.answerTokenHanCounts.length !== state.answerTokens.length){
-      state.answerTokenHanCounts = getFlashcardTypingAnswerTokenHanCounts(card, state.answerTokens);
+    const answerTokens = buildFlashcardTypingAnswerTokens(card);
+    if(!Array.isArray(state.answerTokens) || state.answerTokens.join('\u0000') !== answerTokens.join('\u0000')){
+      state.answerTokens = answerTokens;
+      state.currentIndex = Math.min(Math.max(0, Number(state.currentIndex || 0)), Math.max(0, answerTokens.length - 1));
+      state.mistakesByIndex = answerTokens.map((_, index) => Number(state.mistakesByIndex?.[index] || 0));
+      state.hintShownByIndex = answerTokens.map((_, index) => Boolean(state.hintShownByIndex?.[index]));
     }
     if(state.inputResetPending && !flashcardTypingErrorTimer){
       state.inputResetPending = false;
@@ -7912,20 +8098,19 @@ if(window.HanziWriter){
 
   function renderFlashcardTypingPromptHanzi(card, state){
     const currentTokenIndex = Math.max(0, Number(state?.currentIndex || 0));
-    let hanIndex = 0;
-    return Array.from(String(card?.word || '')).map(character => {
-      if(/\p{Script=Han}/u.test(character)){
-        const isDone = state?.isCompleting || hanIndex < currentTokenIndex;
-        const isCurrent = !state?.isCompleting && hanIndex === currentTokenIndex;
-        const className = [
-          'hsk-flashcard-typing-prompt-char',
-          isDone ? 'is-done' : '',
-          isCurrent ? 'is-current' : ''
-        ].filter(Boolean).join(' ');
-        hanIndex += 1;
-        return `<span class="${className}">${escapeHtml(character)}</span>`;
+    const model = buildFlashcardTypingModel(card);
+    return model.promptParts.map(part => {
+      if(part.unitIndex === null){
+        return `<span class="hsk-flashcard-typing-prompt-char is-separator">${escapeHtml(part.text)}</span>`;
       }
-      return `<span class="hsk-flashcard-typing-prompt-char is-separator">${escapeHtml(character)}</span>`;
+      const isDone = state?.isCompleting || part.unitIndex < currentTokenIndex;
+      const isCurrent = !state?.isCompleting && part.unitIndex === currentTokenIndex;
+      const className = [
+        'hsk-flashcard-typing-prompt-char',
+        isDone ? 'is-done' : '',
+        isCurrent ? 'is-current' : ''
+      ].filter(Boolean).join(' ');
+      return `<span class="${className}">${escapeHtml(part.text)}</span>`;
     }).join('');
   }
 
@@ -8254,8 +8439,9 @@ if(window.HanziWriter){
 
     const expectedSyllable = state.answerTokens[state.currentIndex] || '';
     const expectedLetterTokens = getFlashcardTypingExpectedLetterTokens(expectedSyllable);
-    const rawTokens = tokenizeFlashcardPinyin(rawValue);
-    const displayValue = sanitizeFlashcardTypingDisplayValue(rawValue);
+    const preserveDigits = /\d/u.test(expectedSyllable);
+    const rawTokens = tokenizeFlashcardPinyin(rawValue, { preserveDigits });
+    const displayValue = sanitizeFlashcardTypingDisplayValue(rawValue, { preserveDigits });
     state.typedValue = displayValue;
 
     if(!expectedLetterTokens.length){
