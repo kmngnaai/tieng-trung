@@ -52,6 +52,7 @@ CASES = [
     ('谢谢', '谢谢', 'word-two-repeated-char'),
     ('xuexi', '学习', 'pinyin-exact-word'),
     ('zhongguo', '中国', 'pinyin-exact-word'),
+    ('中國', '中国', 'traditional-exact-word'),
 ]
 
 

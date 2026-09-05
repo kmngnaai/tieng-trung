@@ -19,6 +19,7 @@ HSK_DIR = ROOT / "modules" / "hanzi-stroke" / "data" / "learning" / "hsk"
 GRAMMAR_DIR = ROOT / "modules" / "hanzi-stroke" / "data" / "learning" / "grammar"
 COURSE_DATA_DIR = ROOT / "modules" / "new-hsk-course" / "data"
 OUTPUT_DIR = COURSE_DATA_DIR / "catalog"
+OFFICIAL_VOCAB_PATH = ROOT / "modules" / "new-hsk-course" / "source" / "official-vocabulary.json"
 
 
 def read_json(path: Path):
@@ -48,6 +49,11 @@ def compact_word(item: dict, topic_route: dict, lesson_routes: list[dict]) -> di
         "lessonNumbers": [row["number"] for row in lessons],
         "lessons": lessons,
     }
+
+
+def load_official_reference_date() -> str:
+    payload = read_json(OFFICIAL_VOCAB_PATH)
+    return str(payload.get("policy", {}).get("referenceDate") or "")
 
 
 def build_topics(level: int) -> list[dict]:
@@ -256,12 +262,19 @@ def build_grammar(level: int) -> list[dict]:
 
 def main() -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    reference_date = load_official_reference_date()
     for level in (1, 2, 3):
+        topics = build_topics(level)
         payload = {
             "schemaVersion": "new-hsk-course-catalog.v1",
             "level": level,
+            "levelSemantics": "course/library route level, not official syllabus membership",
+            "officialVocabularyReference": {
+                "path": "modules/new-hsk-course/source/official-vocabulary.json",
+                "referenceDate": reference_date,
+            },
             "title": f"New 3.0 · HSK {level}",
-            "topics": build_topics(level),
+            "topics": topics,
             "grammar": build_grammar(level),
         }
         target = OUTPUT_DIR / f"hsk{level}.json"

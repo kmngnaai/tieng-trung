@@ -8,7 +8,7 @@ const UNIFIED_BASE_URL = resolveAssetUrl('../hanzi-stroke/data/learning/unified-
 const UNIFIED_INDEX_URL = new URL('unified-target-index.json', UNIFIED_BASE_URL).href;
 const UNIFIED_SEARCH_URL = new URL('search-index.json', UNIFIED_BASE_URL).href;
 const CATALOG_INDEX_URL = new URL('catalog-index.json', UNIFIED_BASE_URL).href;
-const HANZI_DATA_BASE = 'https://cdn.jsdelivr.net/npm/hanzi-writer-data@latest/';
+const HANZI_DATA_BASE = 'https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0.1/';
 const RADICAL_NOTES_URL = '../hanzi-stroke/data/learning/radicals/radical_learning_notes.json';
 const HSK1_CHARACTER_LEARNING_INDEX_URL = '../hanzi-stroke/data/learning/character-learning-index-hsk1.json';
 const HSK1_VOCABULARY_SENTENCE_INDEX_URL = '../hanzi-stroke/data/learning/hsk1-vocabulary-sentence-index.json';
@@ -599,6 +599,8 @@ function catalogItemInfo(target, map) {
     type: item.type || (isSingleHan(target) ? 'single-character' : 'multi-character-word'),
     pinyin: clean(item.pinyin),
     meaningVi: clean(item.meaningVi),
+    traditional: clean(item.traditional),
+    aliases: Array.isArray(item.aliases) ? item.aliases.map(clean).filter(Boolean) : [],
     dataTier: clean(item.dataTier),
     levels: Array.isArray(item.levels) ? item.levels : []
   };
@@ -621,7 +623,7 @@ function catalogMatches(item, filter, query) {
   if (filter === 'multi' && item.type === 'single-character') return false;
   const q = normalizeSearchText(query);
   if (!q) return true;
-  const haystack = normalizeSearchText([item.target, item.pinyin, item.meaningVi].join(' '));
+  const haystack = normalizeSearchText([item.target, item.traditional, ...(item.aliases || []), item.pinyin, item.meaningVi].join(' '));
   return haystack.includes(q);
 }
 
@@ -1168,13 +1170,15 @@ async function searchExistingData(query) {
   const items = await loadUnifiedSearch(); const results = [];
   for (const item of items) {
     const word = normalizeSearchText(item.target);
+    const traditional = normalizeSearchText(item.traditional || '');
+    const aliases = (item.aliases || []).map(normalizeSearchText).filter(Boolean);
     const p = normalizeSearchText(item.pinyin || '');
     const pCompact = normalizePinyinSearch(item.pinyin || '');
     const mVi = normalizeViText(item.meaningVi || '');
     const m = normalizeSearchText(item.meaningVi || '');
     let score = 0;
-    if (word === q) score = 1000; else if (p === q || (qPinyin && pCompact === qPinyin)) score = 950; else if (mVi === qVi) score = 920;
-    else if (word.startsWith(q)) score = 820; else if (p.startsWith(q) || (qPinyin && pCompact.startsWith(qPinyin))) score = 780; else if (mVi.startsWith(qVi)) score = 740;
+    if (word === q) score = 1000; else if (traditional === q || aliases.includes(q)) score = 990; else if (p === q || (qPinyin && pCompact === qPinyin)) score = 950; else if (mVi === qVi) score = 920;
+    else if (word.startsWith(q)) score = 820; else if (traditional.startsWith(q) || aliases.some(alias => alias.startsWith(q))) score = 810; else if (p.startsWith(q) || (qPinyin && pCompact.startsWith(qPinyin))) score = 780; else if (mVi.startsWith(qVi)) score = 740;
     else if (` ${mVi} `.includes(` ${qVi} `)) score = 650; else if (m.includes(q)) score = 420;
     if (!score) continue;
     results.push({ kind:'word', target:item.target, title:item.target, pinyin:item.pinyin || '', meaningVi:item.meaningVi || '', meta:[...(item.libraries || []),...(item.levels || []).map(x=>`Cấp ${x}`)].join(' · '), score });
@@ -1196,7 +1200,7 @@ function renderSearchResults(payload) {
   el.view.hidden = false;
   el.view.innerHTML = `<section class="panel search-results-panel">
     ${panelTitle('⌕', `Kết quả cho “${payload.query}”`)}
-    <p class="search-results-note">Tìm trong nghĩa tiếng Việt, pinyin, bộ thủ, từ liên quan và câu mẫu từ dữ liệu local hiện có.</p>
+    <p class="search-results-note">Tìm trong chữ giản thể/phồn thể, pinyin, nghĩa tiếng Việt, bộ thủ, từ liên quan và câu mẫu từ dữ liệu local hiện có.</p>
     <div class="search-results-list">${results.map(item => {
       const attr = item.kind === 'radical' ? `data-open-radical="${escapeHtml(item.target)}"` : `data-search-char="${escapeHtml(item.target)}"`;
       return `<button class="search-result-card" type="button" ${attr}>

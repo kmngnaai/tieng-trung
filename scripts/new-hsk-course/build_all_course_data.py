@@ -1097,8 +1097,9 @@ def build_first_occurrence_index(repo: Path, lesson_paths: list[Path]) -> dict[s
             term = str(row.get("hanzi", "")).strip()
             if not term:
                 continue
+            order = int(row.get("order", 0) or 0)
             official_levels_by_term[term].append(level)
-            official_order_by_term[term][level_text] = int(row.get("order", 0) or 0)
+            official_order_by_term[term][level_text] = order
 
     lesson_newword_refs: dict[str, list[dict[str, Any]]] = defaultdict(list)
     supplemental_refs: dict[str, list[dict[str, Any]]] = defaultdict(list)
@@ -1118,7 +1119,9 @@ def build_first_occurrence_index(repo: Path, lesson_paths: list[Path]) -> dict[s
             term = str(row.get("hanzi", "")).strip()
             if term:
                 proper_refs[term].append({**base, "entityId": row.get("id", "")})
-        for term in grammar_target_terms(lesson):
+        # grammar_target_terms returns a set. Sort it so generated grammarRefs do
+        # not depend on Python hash randomization (PYTHONHASHSEED).
+        for term in sorted(grammar_target_terms(lesson)):
             grammar_refs[term].append(base)
 
     known_terms = set(official_levels_by_term) | set(lesson_newword_refs) | set(supplemental_refs) | set(proper_refs) | set(grammar_refs)
@@ -1138,6 +1141,7 @@ def build_first_occurrence_index(repo: Path, lesson_paths: list[Path]) -> dict[s
         proper = proper_refs.get(term, [])
         grammar = grammar_refs.get(term, [])
         levels = sorted(set(official_levels_by_term.get(term, [])))
+        official_orders = official_order_by_term.get(term, {})
         term_rows.append({
             "hanzi": term,
             "firstSeenLevel": first_seen.get("level") if first_seen else None,
@@ -1146,7 +1150,7 @@ def build_first_occurrence_index(repo: Path, lesson_paths: list[Path]) -> dict[s
             "firstSeenSourceId": first_seen.get("sourceId", "") if first_seen else "",
             "isOfficialLevelVocabulary": bool(levels),
             "officialLevels": levels,
-            "officialOrders": official_order_by_term.get(term, {}),
+            "officialOrders": official_orders,
             "isLessonNewWord": bool(newword),
             "lessonNewWordRefs": newword,
             "isSupplementalVocabulary": bool(supplemental),
@@ -1217,11 +1221,21 @@ def build_first_occurrence_index(repo: Path, lesson_paths: list[Path]) -> dict[s
         "policy": {
             "lessonOrder": "HSK1 1-15 -> HSK2 1-15 -> HSK3 1-18",
             "officialVocabularyReference": str(OFFICIAL_VOCAB_PATH).replace("\\", "/"),
+            "officialVocabularyReferenceDate": str(official.get("policy", {}).get("referenceDate", "")),
             "lessonPptMarkdownRemainsAuthoritativeForLessonOrder": True,
             "exposureOnlyDoesNotChangeShengci": True,
+            "levelSemantics": {
+                "firstSeenLevel": "first learner-facing course exposure level; legacy compatibility field",
+                "officialLevels": "unique membership levels from the committed official vocabulary reference; legacy compatibility field",
+                "officialOrders": "legacy one-order-per-level projection; repeated raw official rows are audited directly from the official reference source",
+                "lessonNewWordRefs.level": "course level where the lesson marks the term as 生词",
+                "differencesAreNotAutomaticallyErrors": True,
+            },
         },
         "stats": {
             "officialReferenceTerms": sum(len(rows) for rows in official["levels"].values()),
+            "officialReferenceUniqueHanzi": len(official_levels_by_term),
+            "officialReferenceRepeatedEntriesBeyondFirst": sum(len(rows) for rows in official["levels"].values()) - len(official_levels_by_term),
             "knownTerms": len(term_rows),
             "charactersSeen": len(char_rows),
             "lessonNewWordCharacters": len(lesson_vocab_chars),

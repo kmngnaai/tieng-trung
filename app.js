@@ -1768,7 +1768,7 @@ async function activateDialogue301InlineStrokeChar(root, char){
       drawingWidth: 22,
       radicalColor: '#c85f42',
       charDataLoader: (loadChar, onComplete, onError) => {
-        fetch(`https://cdn.jsdelivr.net/npm/hanzi-writer-data@latest/${encodeURIComponent(loadChar)}.json`)
+        fetch(`https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0.1/${encodeURIComponent(loadChar)}.json`)
           .then(response => {
             if(!response.ok) throw new Error(`${response.status} ${response.statusText}`);
             return response.json();

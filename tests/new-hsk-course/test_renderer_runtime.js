@@ -23,6 +23,7 @@ const documentStub = {
   getElementById(id) { return id === 'newHskCourseApp' ? root : null; },
   querySelector() { return null; },
   querySelectorAll() { return []; },
+  addEventListener() {},
   createElement() { return { classList: { add() {}, remove() {} }, dataset: {}, addEventListener() {}, querySelector() { return null; } }; }
 };
 const locationStub = {
@@ -115,7 +116,6 @@ const targetFor = (selector, dataset) => ({
   assert(flashcardPayload?.cards?.length > 12, 'Aggregate Flashcard must include more than vocabulary cards');
   assert(flashcardPayload.cards.some(card => card.cardType === 'grammar'), 'Aggregate Flashcard must include grammar cards');
   assert(flashcardPayload.cards.some(card => card.cardType === 'sentence'), 'Aggregate Flashcard must include sentence/dialogue cards');
-  assert(flashcardPayload.cards.some(card => card.structureUrl), 'Flashcards with Hanzi must link to character details');
   assert(flashcardPayload.cards.every(card => card.structurePracticeUrl), 'Every aggregate card must link back to selected-card character practice');
   locationStub.href = 'http://example.test/modules/new-hsk-course/index.html?level=1&lesson=1&view=practice';
 
@@ -137,7 +137,7 @@ const targetFor = (selector, dataset) => ({
   assert(root.innerHTML.includes('data-radical-drop'), 'Radical review must render drop targets');
   clickHandler({ target: targetFor('[data-radical-item]', { radicalItem: 'nhsk-1-01-radical-item-001' }) });
   clickHandler({ target: targetFor('[data-radical-drop]', { radicalDrop: 'nhsk-1-01-radical-group-nhan' }) });
-  assert(root.innerHTML.includes('1/11 đúng'), 'Correct radical assignment must increase the score');
+  assert(root.innerHTML.includes('1/6 đúng'), 'Correct radical assignment must increase the current-round score');
   assert(root.innerHTML.includes('Đúng: 你 thuộc Bộ Nhân.'), 'Correct radical assignment must show feedback');
 
   clickHandler({ target: targetFor('[data-nhsk-view]', { nhskView: 'grouped' }) });

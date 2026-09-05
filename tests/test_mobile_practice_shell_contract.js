@@ -35,7 +35,7 @@ assert(matching.includes('Tối đa ${activeLimit} · lượt này ${session.rou
 assert(matching.includes('absoluteMaxPairs: 30'), 'Manual matching limit must support values above eight');
 
 const listeningRelease = '20260804-ai-flashcard-new3-v1';
-const flashRelease = '20260804-practice-ui-v7';
+const flashRelease = '20260805-hsk1-drag-font-v1';
 const listeningVersions = Array.from(listeningHtml.matchAll(/\?v=([^"']+)/g), match => match[1]);
 assert(listeningVersions.length >= 8, 'Listening page is missing versioned assets');
 assert.strictEqual(new Set(listeningVersions).size, 1, 'Listening assets must share one cache version');

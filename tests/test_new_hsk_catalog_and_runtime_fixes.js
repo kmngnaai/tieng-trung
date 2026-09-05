@@ -38,7 +38,11 @@ for (const level of [1, 2, 3]) {
   assert.strictEqual(catalog.level, level);
   assert(catalog.topics.length > 0, `HSK ${level} topics must not be empty`);
   assert(catalog.grammar.length > 0, `HSK ${level} grammar must not be empty`);
-  const word = catalog.topics.flatMap(topic => topic.words).find(item => item.lessonNumbers && item.lessonNumbers.length);
+  const words = catalog.topics.flatMap(topic => topic.words);
+  const word = words.find(item => item.lessonNumbers && item.lessonNumbers.length);
+  assert(catalog.level === level, `HSK ${level} catalog must preserve its route/course level`);
+  assert(catalog.levelSemantics === 'course/library route level, not official syllabus membership', `HSK ${level} catalog must define level semantics explicitly`);
+  assert(catalog.officialVocabularyReference && catalog.officialVocabularyReference.referenceDate, `HSK ${level} catalog must declare the official vocabulary reference without duplicating membership into the runtime payload`);
   assert(word, `HSK ${level} must include a topic word linked to at least one lesson`);
 }
 

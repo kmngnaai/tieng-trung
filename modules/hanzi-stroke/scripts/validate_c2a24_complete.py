@@ -3,11 +3,11 @@ from pathlib import Path
 import json, re, sys
 
 root = Path(sys.argv[1] if len(sys.argv) > 1 else '.')
-proto = root / 'modules/hanzi-stroke/prototypes/lookup-c1-2'
+proto = root / 'modules/lookup'
 data = root / 'modules/hanzi-stroke/data/learning/unified-lookup/all-sources'
 html = (proto/'index.html').read_text(encoding='utf-8')
-js = (proto/'prototype.js').read_text(encoding='utf-8')
-css = (proto/'prototype.css').read_text(encoding='utf-8')
+js = (proto/'app.js').read_text(encoding='utf-8')
+css = (proto/'style.css').read_text(encoding='utf-8')
 catalog = json.loads((data/'catalog-index.json').read_text(encoding='utf-8'))
 search = json.loads((data/'search-index.json').read_text(encoding='utf-8'))['items']
 unified = json.loads((data/'unified-target-index.json').read_text(encoding='utf-8'))['targets']

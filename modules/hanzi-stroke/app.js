@@ -1,4 +1,4 @@
-const HANZI_DATA_BASE = 'https://cdn.jsdelivr.net/npm/hanzi-writer-data@latest/';
+const HANZI_DATA_BASE = 'https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0.1/';
 const hanRegex = /\p{Script=Han}/u;
 const Matching = window.TiengTrungMatching;
 

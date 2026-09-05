@@ -4,11 +4,21 @@
   "policy": {
     "lessonOrder": "HSK1 1-15 -> HSK2 1-15 -> HSK3 1-18",
     "officialVocabularyReference": "modules/new-hsk-course/source/official-vocabulary.json",
+    "officialVocabularyReferenceDate": "2025-11",
     "lessonPptMarkdownRemainsAuthoritativeForLessonOrder": true,
-    "exposureOnlyDoesNotChangeShengci": true
+    "exposureOnlyDoesNotChangeShengci": true,
+    "levelSemantics": {
+      "firstSeenLevel": "first learner-facing course exposure level; legacy compatibility field",
+      "officialLevels": "unique membership levels from the committed official vocabulary reference; legacy compatibility field",
+      "officialOrders": "legacy one-order-per-level projection; repeated raw official rows are audited directly from the official reference source",
+      "lessonNewWordRefs.level": "course level where the lesson marks the term as 生词",
+      "differencesAreNotAutomaticallyErrors": true
+    }
   },
   "stats": {
     "officialReferenceTerms": 1000,
+    "officialReferenceUniqueHanzi": 988,
+    "officialReferenceRepeatedEntriesBeyondFirst": 12,
     "knownTerms": 1144,
     "charactersSeen": 778,
     "lessonNewWordCharacters": 650,
