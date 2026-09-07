@@ -1642,6 +1642,18 @@
   }
 
 
+
+  function syncVocabularyFillLearningState(hanzi, correct){
+    if(!LearningState) return;
+
+    const word = normalizeLearningHanzi(hanzi);
+    if(!word) return;
+
+    LearningState.recordAttempt(word, {
+      correct: correct === true,
+      source: 'practice:fill'
+    });
+  }
   function normalizePracticeAnswer(value) {
     return String(value || '')
       .normalize('NFKC')
@@ -2234,12 +2246,12 @@
     const layers = practiceLayerState('fill');
     const prompt = item.prompt || item;
     const accepted = item.acceptedAnswers || [item.answer || item.hanzi];
-    return `<article class="nhsk-practice-exercise" data-nhsk-fill-card data-entity-id="${attr(item.sourceId || item.id)}"><div class="nhsk-practice-prompt">${layers.hanzi && prompt.hanzi ? `<strong>${escapeHtml(prompt.hanzi)}</strong>` : ''}${layers.pinyin && prompt.pinyin ? `<span>${escapeHtml(prompt.pinyin)}</span>` : ''}${layers.vi && prompt.vi ? `<span>${escapeHtml(prompt.vi)}</span>` : ''}</div><label><span>${state.practiceFillMode === 'vocabulary' ? 'Chữ Hán' : 'Điền phần còn thiếu'}</span><input type="text" lang="zh-CN" autocomplete="off" data-nhsk-fill-input data-accepted="${attr(JSON.stringify(accepted))}" placeholder="Nhập đáp án"></label>${item.hint ? `<small class="nhsk-practice-hint">Gợi ý: ${escapeHtml(item.hint)}</small>` : ''}<button type="button" data-nhsk-check-fill>Kiểm tra</button><output data-nhsk-feedback></output></article>`;
+    return `<article class="nhsk-practice-exercise" data-nhsk-fill-card data-entity-id="${attr(item.sourceId || item.id)}" data-learning-word="${attr(item.learningWord || '')}"><div class="nhsk-practice-prompt">${layers.hanzi && prompt.hanzi ? `<strong>${escapeHtml(prompt.hanzi)}</strong>` : ''}${layers.pinyin && prompt.pinyin ? `<span>${escapeHtml(prompt.pinyin)}</span>` : ''}${layers.vi && prompt.vi ? `<span>${escapeHtml(prompt.vi)}</span>` : ''}</div><label><span>${state.practiceFillMode === 'vocabulary' ? 'Chữ Hán' : 'Điền phần còn thiếu'}</span><input type="text" lang="zh-CN" autocomplete="off" data-nhsk-fill-input data-accepted="${attr(JSON.stringify(accepted))}" placeholder="Nhập đáp án"></label>${item.hint ? `<small class="nhsk-practice-hint">Gợi ý: ${escapeHtml(item.hint)}</small>` : ''}<button type="button" data-nhsk-check-fill>Kiểm tra</button><output data-nhsk-feedback></output></article>`;
   }
 
   function renderFillSession(rows) {
     let items = [];
-    if (state.practiceFillMode === 'vocabulary') items = rows.filter(row => row.kind === 'word').map(row => ({ id: row.id, sourceId: row.id, prompt: { pinyin: row.pinyin, vi: row.vi }, answer: row.hanzi, acceptedAnswers: [row.hanzi] }));
+    if (state.practiceFillMode === 'vocabulary') items = rows.filter(row => row.kind === 'word').map(row => ({ id: row.id, sourceId: row.id, learningWord: row.hanzi, prompt: { pinyin: row.pinyin, vi: row.vi }, answer: row.hanzi, acceptedAnswers: [row.hanzi] }));
     else if (state.practiceFillStrategy === 'default') items = curatedFillExercises();
     else items = rows.filter(row => row.hanzi && row.answerTokens).map(randomBlankFromRow).filter(Boolean);
     return sectionCard(state.practiceFillMode === 'vocabulary' ? 'Điền từ vựng' : 'Điền từ trong câu', `<div class="nhsk-practice-exercises">${items.map(renderFillCard).join('') || '<p>Chưa có mục phù hợp với nguồn đã chọn.</p>'}</div>`, 'ĐIỀN');
@@ -3615,6 +3627,10 @@
         try { accepted = JSON.parse(input?.dataset.accepted || '[]'); } catch (_error) {}
         const correct = acceptedAnswerMatches(input?.value, accepted, state.practiceTypingMode === 'pinyin' ? 'pinyin' : 'hanzi');
         updatePracticeProgress(card?.dataset.entityId || '', correct);
+        const learningWord = card?.dataset.learningWord || '';
+        if (learningWord) {
+          syncVocabularyFillLearningState(learningWord, correct);
+        }
         if (feedback) { feedback.textContent = correct ? 'Chính xác.' : `Đáp án: ${accepted.join(' / ')}`; feedback.className = correct ? 'is-correct' : 'is-wrong'; }
         return;
       }
