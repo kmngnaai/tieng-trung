@@ -2275,6 +2275,51 @@
     });
   }
 
+
+  function matchingLearningRowForPairId(pairId){
+    if(!pairId) return null;
+
+    if(![
+      'hanzi-vi',
+      'hanzi-pinyin',
+      'pinyin-vi'
+    ].includes(state.practiceMatchingType)){
+      return null;
+    }
+
+    const rows = state.practiceSessionRows.length
+      ? state.practiceSessionRows
+      : buildPracticeRows('matching');
+
+    const row = rows.find(
+      item => String(item?.id || '') === String(pairId)
+    );
+
+    if(!row || row.kind !== 'word') return null;
+
+    if(![
+      'vocabulary',
+      'supplementalVocabulary'
+    ].includes(row.source)){
+      return null;
+    }
+
+    return row;
+  }
+
+  function syncVocabularyMatchingLearningState(pairId, correct){
+    if(!LearningState) return;
+
+    const row = matchingLearningRowForPairId(pairId);
+    const word = normalizeLearningHanzi(row?.hanzi);
+
+    if(!word) return;
+
+    LearningState.recordAttempt(word, {
+      correct: correct === true,
+      source: 'practice:matching'
+    });
+  }
   function ensurePracticeMatchingSession(force = false) {
     if (!Matching) return null;
     const rows = state.practiceSessionRows.length ? state.practiceSessionRows : buildPracticeRows('matching');
@@ -3551,6 +3596,18 @@
       if (matchCard && Matching) {
         const session = ensurePracticeMatchingSession();
         const result = Matching.select(session, matchCard.dataset.matchSide, matchCard.dataset.matchId);
+
+        if (result.status === 'correct') {
+          syncVocabularyMatchingLearningState(
+            result.pairId || '',
+            true
+          );
+        } else if (result.status === 'wrong') {
+          syncVocabularyMatchingLearningState(
+            result.leftId || '',
+            false
+          );
+        }
         if (result.speechText && session.tapToSpeak) speak(result.speechText);
         rerenderCurrentContent({ preserveFilter: true });
         if (result.status === 'wrong') Matching.scheduleFeedbackClear(session, () => rerenderCurrentContent({ preserveFilter: true }));
