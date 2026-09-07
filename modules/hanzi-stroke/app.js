@@ -1,6 +1,7 @@
 const HANZI_DATA_BASE = 'https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0.1/';
 const hanRegex = /\p{Script=Han}/u;
 const Matching = window.TiengTrungMatching;
+const LearningState = window.TiengTrungLearningState;
 
 const defaultSettings = {
   size: 200,
@@ -7412,9 +7413,60 @@ if(window.HanziWriter){
     };
   }
 
+  function getFlashcardLearningCardType(card){
+    const explicit = String(card?.cardType || '').trim();
+
+    if(['vocabulary', 'sentence', 'grammar'].includes(explicit)){
+      return explicit;
+    }
+
+    const id = String(card?.id || card?.cardId || '');
+
+    if(id.includes(':sentence:')){
+      return 'sentence';
+    }
+
+    if(id.includes(':grammar:')){
+      return 'grammar';
+    }
+
+    return 'vocabulary';
+  }
+
+  function syncFlashcardLearningState(card, rating){
+    if(!LearningState || !card?.word){
+      return;
+    }
+
+    if(getFlashcardLearningCardType(card) !== 'vocabulary'){
+      return;
+    }
+
+    const current = LearningState.get(card.word);
+
+    if(rating === 'easy'){
+      if(current.state !== LearningState.STATES.LEARNED){
+        LearningState.markLearned(card.word, {
+          source: 'flashcard:easy'
+        });
+      }
+
+      return;
+    }
+
+    if(
+      ['review', 'hard'].includes(rating)
+      && current.state === LearningState.STATES.UNSEEN
+    ){
+      LearningState.markLearning(card.word, {
+        source: `flashcard:${rating}`
+      });
+    }
+  }
   function flashcardResultEntryToCard(entry){
     return {
       id: String(entry.cardId || ''),
+      cardType: getFlashcardLearningCardType(entry),
       word: String(entry.word || ''),
       pinyin: String(entry.pinyin || ''),
       meaningVi: String(entry.meaningVi || '')
@@ -7474,6 +7526,7 @@ if(window.HanziWriter){
 
   function saveFlashcardRatingResult(card, rating, previousRating = ''){
     if(!card?.id || !['easy', 'review', 'hard'].includes(rating)) return;
+    syncFlashcardLearningState(card, rating);
     try{
       const results = readFlashcardResults();
       const previous = results[card.id] && typeof results[card.id] === 'object' ? results[card.id] : {};
@@ -7492,6 +7545,7 @@ if(window.HanziWriter){
       }
       results[card.id] = {
         cardId: card.id,
+        cardType: getFlashcardLearningCardType(card),
         word: card.word || '',
         pinyin: card.pinyin || '',
         meaningVi: card.meaningVi || '',
