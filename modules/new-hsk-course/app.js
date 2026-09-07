@@ -4,6 +4,7 @@
   const SETTINGS_KEY = 'tiengTrung.newHskCourse.settings.v1';
   const SETTINGS_VERSION = 10;
   const Matching = window.TiengTrungMatching;
+  const LearningState = window.TiengTrungLearningState;
   const LAST_LOCATION_KEY = 'tiengTrung.newHskCourse.lastLocation.v1';
   const PROGRESS_KEY = 'tiengTrung.newHskCourse.progress.v1';
   const SUMMARY_PROGRESS_KEY = 'tiengTrung.newHskCourse.summaryProgress.v1';
@@ -11,6 +12,7 @@
   const RETURN_PREFIX = 'tiengTrung.newHskCourse.return.';
   const HSK_EXTERNAL_FLASHCARD_KEY = 'tiengTrung.hsk.externalFlashcard.v1';
   const HSK1_SENTENCE_INDEX_URL = '../hanzi-stroke/data/learning/hsk1-vocabulary-sentence-index.json';
+  const FIRST_OCCURRENCE_URL = 'data/first-occurrence.json';
   const PRACTICE_ACTIVITY_IDS = new Set(['flashcards', 'listening', 'fill', 'matching', 'ordering', 'typing', 'translateZhVi', 'translateViZh', 'roleplay', 'characters']);
   const PRACTICE_SOURCE_IDS = ['vocabulary', 'supplementalVocabulary', 'properNouns', 'sentences', 'dialogues', 'passages', 'grammar'];
   const LEGACY_PRACTICE_ACTIVITY_MAP = Object.freeze({
@@ -88,6 +90,8 @@
   const catalogCache = new Map();
   const lessonDataCache = new Map();
   let hsk1SentenceIndexPromise = null;
+  let learningTaxonomy = null;
+  let learningTaxonomyPromise = null;
 
   Object.assign(state, readSettings());
   if (params.get('view')) state.view = ['book', 'grouped', 'practice'].includes(params.get('view')) ? params.get('view') : 'book';
@@ -104,6 +108,149 @@
   const sortByOrder = (items = []) => [...items].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
   const entityMap = (items = []) => new Map(items.map(item => [item.id, item]));
 
+
+  function normalizeLearningHanzi(value){
+    return String(value || '').trim();
+  }
+
+  function normalizeOfficialLevels(values){
+    return [...new Set(
+      (Array.isArray(values) ? values : [])
+        .map(value => Number(value))
+        .filter(value => Number.isInteger(value) && value >= 1 && value <= 3)
+    )].sort((a, b) => a - b);
+  }
+
+  function buildLearningTaxonomy(payload = {}){
+    const terms = Array.isArray(payload.terms) ? payload.terms : [];
+    const byHanzi = new Map();
+    const cumulativeTargets = new Map([
+      [1, []],
+      [2, []],
+      [3, []]
+    ]);
+
+    terms.forEach(row => {
+      const hanzi = normalizeLearningHanzi(row?.hanzi);
+      if(!hanzi) return;
+
+      const officialLevels = normalizeOfficialLevels(row?.officialLevels);
+
+      const normalized = {
+        ...row,
+        hanzi,
+        officialLevels
+      };
+
+      byHanzi.set(hanzi, normalized);
+
+      for(let level = 1; level <= 3; level += 1){
+        if(officialLevels.some(value => value <= level)){
+          cumulativeTargets.get(level).push(hanzi);
+        }
+      }
+    });
+
+    for(const [level, targets] of cumulativeTargets.entries()){
+      cumulativeTargets.set(level, [...new Set(targets)]);
+    }
+
+    return {
+      byHanzi,
+      cumulativeTargets
+    };
+  }
+
+  async function loadLearningTaxonomy(){
+    if(learningTaxonomy) return learningTaxonomy;
+
+    if(!learningTaxonomyPromise){
+      learningTaxonomyPromise = fetch(FIRST_OCCURRENCE_URL)
+        .then(response => {
+          if(!response.ok){
+            throw new Error(
+              `Không tải được taxonomy học tập (${response.status}).`
+            );
+          }
+
+          return response.json();
+        })
+        .then(payload => {
+          learningTaxonomy = buildLearningTaxonomy(payload);
+          return learningTaxonomy;
+        })
+        .catch(error => {
+          learningTaxonomyPromise = null;
+          throw error;
+        });
+    }
+
+    return learningTaxonomyPromise;
+  }
+
+  function learningInfoForWord(hanzi){
+    const key = normalizeLearningHanzi(hanzi);
+    const row = learningTaxonomy?.byHanzi?.get(key);
+
+    if(!row) return null;
+
+    const lessonNewWordRefs = Array.isArray(row.lessonNewWordRefs)
+      ? row.lessonNewWordRefs.map(ref => ({
+          level: Number(ref?.level) || null,
+          lesson: Number(ref?.lesson) || null,
+          entityId: String(ref?.entityId || '')
+        }))
+      : [];
+
+    return {
+      hanzi: key,
+      officialLevels: [...row.officialLevels],
+
+      courseFirstExposure:
+        row.firstSeenLevel && row.firstSeenLesson
+          ? {
+              level: Number(row.firstSeenLevel),
+              lesson: Number(row.firstSeenLesson),
+              sourceKind: String(row.firstSeenSourceKind || ''),
+              sourceId: String(row.firstSeenSourceId || '')
+            }
+          : null,
+
+      courseNewWordRefs: lessonNewWordRefs,
+
+      isOfficialLevelVocabulary:
+        row.isOfficialLevelVocabulary === true,
+
+      isLessonNewWord:
+        row.isLessonNewWord === true
+    };
+  }
+
+  function officialLearningTargets(level){
+    const normalizedLevel = Math.min(
+      3,
+      Math.max(1, Number(level) || 1)
+    );
+
+    return [
+      ...(learningTaxonomy?.cumulativeTargets?.get(normalizedLevel) || [])
+    ];
+  }
+
+  function officialLearningProgress(level){
+    const targets = officialLearningTargets(level);
+
+    if(!LearningState){
+      return {
+        total: targets.length,
+        learned: 0,
+        learning: 0,
+        unseen: targets.length
+      };
+    }
+
+    return LearningState.getProgress(targets);
+  }
   function seededShuffle(items, seedValue = '') {
     const result = [...items];
     let seed = 2166136261;
@@ -3794,6 +3941,24 @@
     });
   });
 
-  window.NewHskCourse = Object.freeze({ getState: () => ({ ...state }), render, restoreWordSourcePosition });
+  window.NewHskCourse = Object.freeze({
+    getState: () => ({ ...state }),
+    render,
+    restoreWordSourcePosition,
+
+    loadLearningTaxonomy,
+
+    getLearningInfo(hanzi){
+      return learningInfoForWord(hanzi);
+    },
+
+    getOfficialLearningProgress(level){
+      return officialLearningProgress(level);
+    },
+
+    getOfficialLearningTargets(level){
+      return officialLearningTargets(level);
+    }
+  });
   load();
 })();
