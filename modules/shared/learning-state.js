@@ -298,13 +298,25 @@
   }
 
   function getMany(targets) {
+    const store = readStore();
+
     return (
       Array.isArray(targets)
         ? targets
         : []
-    ).map(target => get(target));
-  }
+    ).map(targetLike => {
+      const target = normalizeTarget(targetLike);
 
+      if (!target) {
+        return publicRecord('', {});
+      }
+
+      return publicRecord(
+        target,
+        store.words[target] || {}
+      );
+    });
+  }
   function getProgress(targets) {
     const uniqueTargets = [];
     const seen = new Set();
