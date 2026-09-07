@@ -938,22 +938,92 @@
     </div>`;
   }
 
+
+  function learningStateView(record){
+    const value =
+      record?.state === 'learned'
+        ? 'learned'
+        : record?.state === 'learning'
+          ? 'learning'
+          : 'unseen';
+
+    if(value === 'learned'){
+      return {
+        state: value,
+        label: '● Đã học'
+      };
+    }
+
+    if(value === 'learning'){
+      return {
+        state: value,
+        label: '◐ Đang học'
+      };
+    }
+
+    return {
+      state: value,
+      label: '○ Chưa học'
+    };
+  }
+
+  function renderVocabularyLearningState(hanzi, record){
+    if(!LearningState) return '';
+
+    const word = normalizeLearningHanzi(hanzi);
+    if(!word) return '';
+
+    const view = learningStateView(record);
+
+    return `<span class="nhsk-vocab-item__learning" data-learning-state-word="${attr(word)}" data-learning-state="${attr(view.state)}">${escapeHtml(view.label)}</span>`;
+  }
+
+  function patchVocabularyLearningState(targetLike){
+    if(!LearningState) return;
+
+    const target = normalizeLearningHanzi(targetLike);
+    if(!target) return;
+
+    const record = LearningState.get(target);
+    const view = learningStateView(record);
+
+    root
+      .querySelectorAll?.('[data-learning-state-word]')
+      .forEach(node => {
+        if(
+          normalizeLearningHanzi(
+            node.dataset.learningStateWord
+          ) !== target
+        ){
+          return;
+        }
+
+        node.dataset.learningState = view.state;
+        node.textContent = view.label;
+      });
+  }
   function renderVocabulary(items, options = {}) {
     if (!items.length) return '';
     const mode = options.grouped && state.vocabViewMode === 'grid' ? 'grid' : 'list';
     const prefix = options.sourcePrefix || `${state.view}:vocabulary`;
+    const sortedItems = sortByOrder(items);
+    const learningRecords = LearningState?.getMany
+      ? LearningState.getMany(
+          sortedItems.map(item => item.hanzi)
+        )
+      : [];
     return `
       ${options.audioRef ? `<div class="nhsk-section-meta">${mediaBadge('Audio từ mới', options.audioRef)}</div>` : ''}
       ${options.showControls ? renderVocabularyControls({ grouped: options.grouped }) : ''}
       <div class="nhsk-vocab-list nhsk-vocab-list--${mode} ${state.vocabShowPinyin ? '' : 'is-pinyin-hidden'}">
-        ${sortByOrder(items).map((item, index) => `
+        ${sortedItems.map((item, index) => `
           <article class="nhsk-vocab-item" data-vocab-id="${attr(item.id)}" data-vocab-source-key="${attr(sourceKey(prefix, item, index))}" data-vocab-word="${attr(item.hanzi)}">
             <span class="nhsk-vocab-item__order">${item.order}</span>
             <button type="button" class="nhsk-vocab-item__open" data-open-word-detail="${attr(item.id)}" aria-label="Mở tra cứu ${attr(item.hanzi)}">
               <span class="nhsk-vocab-item__word">${escapeHtml(item.hanzi)}</span>
               <span class="nhsk-vocab-item__pinyin">${escapeHtml(item.pinyin)}</span>
               <span class="nhsk-vocab-item__meaning">${escapeHtml(item.vi)}</span>
-              <span class="nhsk-vocab-item__meta">${escapeHtml(item.wordClass)}${item.hanViet ? ` · ${escapeHtml(item.hanViet)}` : ''}</span>
+              <span class="nhsk-vocab-item__meta">${escapeHtml(item.wordClass)}${item.hanViet ? ` · ${escapeHtml(item.hanViet)}` : ''}${renderVocabularyLearningState(item.hanzi, learningRecords[index])}</span>
               ${item.note ? `<small>${escapeHtml(item.note)}</small>` : ''}
             </button>
             <button type="button" class="nhsk-speak" data-nhsk-speak="${attr(item.hanzi)}" aria-label="Nghe ${attr(item.hanzi)}">🔊</button>
@@ -4014,6 +4084,15 @@
     });
   });
 
+  if(LearningState?.subscribe){
+    LearningState.subscribe(detail => {
+      patchVocabularyLearningState(
+        detail?.target ||
+        detail?.record?.target ||
+        ''
+      );
+    });
+  }
   window.NewHskCourse = Object.freeze({
     getState: () => ({ ...state }),
     render,
