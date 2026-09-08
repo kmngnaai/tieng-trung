@@ -7433,6 +7433,139 @@ if(window.HanziWriter){
     return 'vocabulary';
   }
 
+  function flashcardLearningStateView(record){
+    const state =
+      record?.state === 'learned'
+        ? 'learned'
+        : record?.state === 'learning'
+          ? 'learning'
+          : 'unseen';
+
+    if(state === 'learned'){
+      return {
+        state,
+        label: 'â— ÄÃ£ há»c'
+      };
+    }
+
+    if(state === 'learning'){
+      return {
+        state,
+        label: 'â— Äang há»c'
+      };
+    }
+
+    return {
+      state,
+      label: 'â—‹ ChÆ°a há»c'
+    };
+  }
+
+  function flashcardLearningTarget(card){
+    if(
+      !LearningState ||
+      !card?.word ||
+      getFlashcardLearningCardType(card) !== 'vocabulary'
+    ){
+      return '';
+    }
+
+    if(LearningState.normalizeTarget){
+      return LearningState.normalizeTarget(card.word);
+    }
+
+    return String(card.word || '')
+      .normalize('NFC')
+      .trim()
+      .replace(/\s+/g, ' ');
+  }
+
+  function renderFlashcardLearningState(card){
+    const target =
+      flashcardLearningTarget(card);
+
+    if(!target){
+      return '';
+    }
+
+    const view =
+      flashcardLearningStateView(
+        LearningState.get(target)
+      );
+
+    return `<span class="flashcard-learning-state" data-flashcard-learning-state-word="${escapeHtml(target)}" data-learning-state="${escapeHtml(view.state)}">${escapeHtml(view.label)}</span>`;
+  }
+
+  function patchFlashcardLearningState(targetLike){
+    if(!LearningState){
+      return;
+    }
+
+    const target =
+      LearningState.normalizeTarget
+        ? LearningState.normalizeTarget(targetLike)
+        : String(targetLike || '')
+            .normalize('NFC')
+            .trim()
+            .replace(/\s+/g, ' ');
+
+    if(!target){
+      return;
+    }
+
+    const overlay =
+      document.getElementById(
+        'hskFlashcardOverlay'
+      );
+
+    if(!overlay || overlay.hidden){
+      return;
+    }
+
+    const view =
+      flashcardLearningStateView(
+        LearningState.get(target)
+      );
+
+    overlay
+      .querySelectorAll?.(
+        '[data-flashcard-learning-state-word]'
+      )
+      .forEach(node => {
+        const nodeTarget =
+          LearningState.normalizeTarget
+            ? LearningState.normalizeTarget(
+                node.dataset.flashcardLearningStateWord
+              )
+            : String(
+                node.dataset.flashcardLearningStateWord ||
+                ''
+              )
+                .normalize('NFC')
+                .trim()
+                .replace(/\s+/g, ' ');
+
+        if(nodeTarget !== target){
+          return;
+        }
+
+        node.dataset.learningState =
+          view.state;
+
+        node.textContent =
+          view.label;
+      });
+  }
+
+  if(LearningState?.subscribe){
+    LearningState.subscribe(detail => {
+      patchFlashcardLearningState(
+        detail?.target ||
+        detail?.record?.target ||
+        ''
+      );
+    });
+  }
   function syncFlashcardLearningState(card, rating){
     if(!LearningState || !card?.word){
       return;
@@ -10051,7 +10184,7 @@ if(window.HanziWriter){
         <button type="button" class="hsk-flashcard-close" data-hsk-flashcard-close aria-label="Đóng">×</button>
       </header>
       <div class="hsk-flashcard-study hsk-flashcard-study--cards">
-        <div class="hsk-flashcard-study-meta"><b>${escapeHtml(getFlashcardModeLabel(type))}</b><span>${escapeHtml(session.title)}</span></div>
+        <div class="hsk-flashcard-study-meta"><b>${escapeHtml(getFlashcardModeLabel(type))}</b><span>${escapeHtml(session.title)}</span>${renderFlashcardLearningState(card)}</div>
         <div class="hsk-flashcard-card-area">
           <div class="hsk-flashcard-card ${session.flipped ? 'is-flipped' : ''}" data-hsk-flashcard-flip role="button" tabindex="0" aria-label="Thẻ flashcard, bấm để lật">
             ${renderFlashcardFace(session, card, type)}

@@ -13145,3 +13145,8 @@ body.hsk-flashcard-pointer-dragging{cursor:grabbing}
   .hsk-flashcard-ordering-vocab-list button>b{font-size:22px}
   .hsk-flashcard-ordering-answer button,.hsk-flashcard-ordering-bank button{min-height:38px;padding-inline:10px;font-size:20px;white-space:nowrap;word-break:keep-all}
 }
+/* Learning State Lite V1: active Flashcard vocabulary state */
+.flashcard-learning-state{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;margin-left:auto;padding:2px 6px;border:1px solid currentColor;border-radius:999px;font-size:11px;font-weight:700;line-height:1.2;white-space:nowrap;opacity:.82}
+.flashcard-learning-state[data-learning-state="learning"]{opacity:.92}
+.flashcard-learning-state[data-learning-state="learned"]{opacity:1}
+@media(max-width:620px){.flashcard-learning-state{display:inline-flex;font-size:10px;padding:2px 5px}}
