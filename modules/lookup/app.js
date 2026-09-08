@@ -12,6 +12,7 @@ const HANZI_DATA_BASE = 'https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0.1/';
 const RADICAL_NOTES_URL = '../hanzi-stroke/data/learning/radicals/radical_learning_notes.json';
 const HSK1_CHARACTER_LEARNING_INDEX_URL = '../hanzi-stroke/data/learning/character-learning-index-hsk1.json';
 const HSK1_VOCABULARY_SENTENCE_INDEX_URL = '../hanzi-stroke/data/learning/hsk1-vocabulary-sentence-index.json';
+const LearningState = window.TiengTrungLearningState || null;
 
 const state = {
   current: null,
@@ -1192,19 +1193,139 @@ async function searchExistingData(query) {
   return uniqueBy(results.sort((a,b)=>b.score-a.score||a.title.localeCompare(b.title)),x=>`${x.kind}:${x.target}`).slice(0,24);
 }
 
+function lookupLearningStateView(record) {
+  const value =
+    record?.state === 'learned'
+      ? 'learned'
+      : record?.state === 'learning'
+        ? 'learning'
+        : 'unseen';
+
+  if (value === 'learned') {
+    return {
+      state: value,
+      label: '● Đã học'
+    };
+  }
+
+  if (value === 'learning') {
+    return {
+      state: value,
+      label: '◐ Đang học'
+    };
+  }
+
+  return {
+    state: value,
+    label: '○ Chưa học'
+  };
+}
+
+function lookupLearningTarget(item) {
+  if (
+    !LearningState ||
+    item?.kind !== 'word'
+  ) {
+    return '';
+  }
+
+  return LearningState.normalizeTarget
+    ? LearningState.normalizeTarget(
+        item?.target || ''
+      )
+    : clean(item?.target || '');
+}
+
+function renderLookupLearningState(
+  targetLike,
+  record
+) {
+  if (!LearningState) return '';
+
+  const target = LearningState.normalizeTarget
+    ? LearningState.normalizeTarget(
+        targetLike
+      )
+    : clean(targetLike);
+
+  if (!target) return '';
+
+  const view =
+    lookupLearningStateView(record);
+
+  return `<span class="word-badge lookup-learning-state" data-learning-state-word="${escapeHtml(target)}" data-learning-state="${escapeHtml(view.state)}">${escapeHtml(view.label)}</span>`;
+}
+
+function patchLookupLearningState(
+  targetLike
+) {
+  if (!LearningState) return;
+
+  const target = LearningState.normalizeTarget
+    ? LearningState.normalizeTarget(
+        targetLike
+      )
+    : clean(targetLike);
+
+  if (!target) return;
+
+  const record =
+    LearningState.get(target);
+
+  const view =
+    lookupLearningStateView(record);
+
+  el.view
+    ?.querySelectorAll?.(
+      '[data-learning-state-word]'
+    )
+    .forEach(node => {
+
+      const nodeTarget =
+        LearningState.normalizeTarget
+          ? LearningState.normalizeTarget(
+              node.dataset.learningStateWord
+            )
+          : clean(
+              node.dataset.learningStateWord
+            );
+
+      if (nodeTarget !== target) {
+        return;
+      }
+
+      node.dataset.learningState =
+        view.state;
+
+      node.textContent =
+        view.label;
+    });
+}
 function renderSearchResults(payload) {
   state.current = null;
   const results = payload.results || [];
+
+  const learningTargets =
+    results.map(
+      item => lookupLearningTarget(item)
+    );
+
+  const learningRecords =
+    LearningState?.getMany
+      ? LearningState.getMany(
+          learningTargets
+        )
+      : [];
   el.loading.hidden = true;
   el.message.hidden = true;
   el.view.hidden = false;
   el.view.innerHTML = `<section class="panel search-results-panel">
     ${panelTitle('⌕', `Kết quả cho “${payload.query}”`)}
     <p class="search-results-note">Tìm trong chữ giản thể/phồn thể, pinyin, nghĩa tiếng Việt, bộ thủ, từ liên quan và câu mẫu từ dữ liệu local hiện có.</p>
-    <div class="search-results-list">${results.map(item => {
+    <div class="search-results-list">${results.map((item, index) => {
       const attr = item.kind === 'radical' ? `data-open-radical="${escapeHtml(item.target)}"` : `data-search-char="${escapeHtml(item.target)}"`;
       return `<button class="search-result-card" type="button" ${attr}>
-        <span class="search-result-main"><strong>${escapeHtml(item.title)}</strong>${item.pinyin ? `<span>${escapeHtml(item.pinyin)}</span>` : ''}</span>
+        <span class="search-result-main"><strong>${escapeHtml(item.title)}</strong>${item.pinyin ? `<span>${escapeHtml(item.pinyin)}</span>` : ''}${renderLookupLearningState(lookupLearningTarget(item), learningRecords[index])}</span>
         <span class="search-result-meaning">${escapeHtml(item.meaningVi || '')}</span>
         <small>${escapeHtml(item.meta || '')}</small>
       </button>`;
@@ -1213,6 +1334,15 @@ function renderSearchResults(payload) {
   bindDynamicEvents();
 }
 
+if (LearningState?.subscribe) {
+  LearningState.subscribe(detail => {
+    patchLookupLearningState(
+      detail?.target ||
+      detail?.record?.target ||
+      ''
+    );
+  });
+}
 async function resolveQuery(rawQuery) {
   const query = clean(rawQuery); if (!query) throw new Error('Hãy nhập chữ, từ hoặc pinyin cần tra.');
   if (isHanText(query)) {
