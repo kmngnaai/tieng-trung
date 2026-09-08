@@ -883,3 +883,8 @@ html.nhsk-lightbox-open{overflow:hidden}
 /* Learning State Lite: compact vocabulary status */
 .nhsk-vocab-item__learning{display:inline-flex;align-items:center;margin-inline-start:6px;font-size:10px;font-weight:800;line-height:1.2;white-space:nowrap;color:var(--ui-text-secondary)}
 .nhsk-vocab-item__learning[data-learning-state="learning"],.nhsk-vocab-item__learning[data-learning-state="learned"]{font-weight:900}
+/* Learning State Lite: cumulative official HSK vocabulary progress */
+.nhsk-learning-progress{position:relative;z-index:1;display:flex;align-items:center;max-width:100%;overflow-x:auto;margin-top:9px;color:#346b61;font-size:11px;font-weight:850;line-height:1.35;white-space:nowrap;scrollbar-width:none}
+.nhsk-learning-progress::-webkit-scrollbar{display:none}
+.nhsk-learning-progress[data-learning-progress-ready="false"]{opacity:.68}
+@media(max-width:430px){.nhsk-learning-progress{font-size:10px}}

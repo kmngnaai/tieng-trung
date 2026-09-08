@@ -528,6 +528,89 @@
     </section>`;
   }
 
+
+  function officialLearningLevelLabel(level){
+    const normalizedLevel = Math.min(
+      3,
+      Math.max(1, Number(level) || 1)
+    );
+
+    return normalizedLevel === 1
+      ? 'HSK 1'
+      : `HSK 1–${normalizedLevel}`;
+  }
+
+  function officialLearningProgressView(level){
+    const normalizedLevel = Math.min(
+      3,
+      Math.max(1, Number(level) || 1)
+    );
+
+    const ready = Boolean(learningTaxonomy);
+
+    if(!ready){
+      return {
+        level: normalizedLevel,
+        label: officialLearningLevelLabel(normalizedLevel),
+        ready: false,
+        total: 0,
+        learned: 0,
+        learning: 0,
+        unseen: 0
+      };
+    }
+
+    const progress =
+      officialLearningProgress(
+        normalizedLevel
+      );
+
+    return {
+      level: normalizedLevel,
+      label: officialLearningLevelLabel(
+        normalizedLevel
+      ),
+      ready: true,
+      total: Number(progress?.total || 0),
+      learned: Number(progress?.learned || 0),
+      learning: Number(progress?.learning || 0),
+      unseen: Number(progress?.unseen || 0)
+    };
+  }
+
+  function officialLearningProgressText(view){
+    if(!view?.ready){
+      return `${view?.label || 'HSK'} chính thức · đang tải tiến độ`;
+    }
+
+    return `${view.label} chính thức · ● ${view.learned}/${view.total} đã học · ◐ ${view.learning} đang học`;
+  }
+
+  function renderOfficialLearningProgress(level){
+    const view =
+      officialLearningProgressView(level);
+
+    return `<div class="nhsk-learning-progress" role="status" aria-live="polite" data-learning-progress-level="${attr(String(view.level))}" data-learning-progress-ready="${view.ready ? 'true' : 'false'}">${escapeHtml(officialLearningProgressText(view))}</div>`;
+  }
+
+  function patchOfficialLearningProgress(){
+    root
+      .querySelectorAll?.(
+        '[data-learning-progress-level]'
+      )
+      .forEach(node => {
+        const view =
+          officialLearningProgressView(
+            node.dataset.learningProgressLevel
+          );
+
+        node.dataset.learningProgressReady =
+          view.ready ? 'true' : 'false';
+
+        node.textContent =
+          officialLearningProgressText(view);
+      });
+  }
   function renderHero(lesson) {
     return `
       <section class="nhsk-hero">
@@ -541,7 +624,7 @@
           <span>${lesson.stats.dialogueTurns} câu thoại</span>
           <span>Trang ${escapeHtml(lesson.source.bookPages)}</span>
         </div>
-      </section>`;
+        ${renderOfficialLearningProgress(lesson.level)}      </section>`;
   }
 
   function renderToolbar() {
@@ -579,7 +662,7 @@
       <div class="nhsk-hero__eyebrow">NEW 3.0 · HSK ${state.level}</div>
       <h1>${grammar ? 'Ngữ pháp' : 'Chủ đề'}</h1>
       <p>${grammar ? 'Cấu trúc · giải thích · mẹo nhớ · ví dụ theo đúng cấp độ.' : 'Chọn một chủ đề để xem toàn bộ từ, sau đó mở đúng bài nguồn trong New 3.0.'}</p>
-    </section>`;
+      ${renderOfficialLearningProgress(state.level)}    </section>`;
   }
 
   async function loadCatalogData(level = state.level) {
@@ -4038,6 +4121,22 @@
 
   async function load() {
     bindEvents();
+
+    loadLearningTaxonomy()
+      .then(() => {
+        patchOfficialLearningProgress();
+      })
+      .catch(error => {
+        if(
+          window.console &&
+          typeof window.console.warn === 'function'
+        ){
+          window.console.warn(
+            'Không tải được tiến độ HSK chính thức:',
+            error
+          );
+        }
+      });
     try {
       const manifestResponse = await fetch('data/manifest.json', { cache: 'no-store' });
       if (!manifestResponse.ok) throw new Error(`Không tải được manifest (${manifestResponse.status}).`);
@@ -4091,6 +4190,7 @@
         detail?.record?.target ||
         ''
       );
+      patchOfficialLearningProgress();
     });
   }
   window.NewHskCourse = Object.freeze({
