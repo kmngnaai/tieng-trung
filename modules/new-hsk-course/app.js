@@ -1033,7 +1033,6 @@
     if(value === 'learned'){
       return {
         state: value,
-        icon: '\u25CF',
         label: '\u0110\u00E3 h\u1ECDc'
       };
     }
@@ -1041,14 +1040,12 @@
     if(value === 'learning'){
       return {
         state: value,
-        icon: '\u25D0',
         label: '\u0110ang h\u1ECDc'
       };
     }
 
     return {
       state: value,
-      icon: '\u25CB',
       label: 'Ch\u01B0a h\u1ECDc'
     };
   }
@@ -1061,7 +1058,7 @@
 
     const view = learningStateView(record);
 
-    return `<span class="nhsk-vocab-item__learning" role="img" title="${attr(view.label)}" aria-label="${attr(view.label)}" data-learning-state-word="${attr(word)}" data-learning-state="${attr(view.state)}">${escapeHtml(view.icon)}</span>`;
+    return `data-learning-state-word="${attr(word)}" data-learning-state="${attr(view.state)}" title="${attr(view.label)}" aria-label="${attr(view.label)}"`;
   }
 
   function patchVocabularyLearningState(targetLike){
@@ -1085,7 +1082,6 @@
         }
 
         node.dataset.learningState = view.state;
-        node.textContent = view.icon;
         node.title = view.label;
         node.setAttribute('aria-label', view.label);
       });
@@ -1107,12 +1103,12 @@
       <div class="nhsk-vocab-list nhsk-vocab-list--${mode} ${state.vocabShowPinyin ? '' : 'is-pinyin-hidden'}">
         ${sortedItems.map((item, index) => `
           <article class="nhsk-vocab-item" data-vocab-id="${attr(item.id)}" data-vocab-source-key="${attr(sourceKey(prefix, item, index))}" data-vocab-word="${attr(item.hanzi)}">
-            <span class="nhsk-vocab-item__order">${item.order}</span>
+            <span class="nhsk-vocab-item__order" ${renderVocabularyLearningState(item.hanzi, learningRecords[index])}>${item.order}</span>
             <button type="button" class="nhsk-vocab-item__open" data-open-word-detail="${attr(item.id)}" aria-label="Mở tra cứu ${attr(item.hanzi)}">
               <span class="nhsk-vocab-item__word">${escapeHtml(item.hanzi)}</span>
               <span class="nhsk-vocab-item__pinyin">${escapeHtml(item.pinyin)}</span>
               <span class="nhsk-vocab-item__meaning">${escapeHtml(item.vi)}</span>
-              <span class="nhsk-vocab-item__meta">${escapeHtml(item.wordClass)}${item.hanViet ? ` · ${escapeHtml(item.hanViet)}` : ''}${renderVocabularyLearningState(item.hanzi, learningRecords[index])}</span>
+              <span class="nhsk-vocab-item__meta">${escapeHtml(item.wordClass)}${item.hanViet ? ` · ${escapeHtml(item.hanViet)}` : ''}</span>
               ${item.note ? `<small>${escapeHtml(item.note)}</small>` : ''}
             </button>
             <button type="button" class="nhsk-speak" data-nhsk-speak="${attr(item.hanzi)}" aria-label="Nghe ${attr(item.hanzi)}">🔊</button>
