@@ -58,8 +58,8 @@ const taxonomy = JSON.parse(
   'patchOfficialLearningProgress();',
   'loadLearningTaxonomy()',
 
-  '● ${view.learned}/${view.total} đã học',
-  '◐ ${view.learning} đang học'
+  '\\u25CF ${view.learned}/${view.total}',
+  '\\u25D0 ${view.learning}'
 ].forEach(marker => {
   assert(
     app.includes(marker),

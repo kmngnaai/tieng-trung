@@ -7444,20 +7444,23 @@ if(window.HanziWriter){
     if(state === 'learned'){
       return {
         state,
-        label: 'â— ÄÃ£ há»c'
+        icon: '\u25CF',
+        label: '\u0110\u00E3 h\u1ECDc'
       };
     }
 
     if(state === 'learning'){
       return {
         state,
-        label: 'â— Äang há»c'
+        icon: '\u25D0',
+        label: '\u0110ang h\u1ECDc'
       };
     }
 
     return {
       state,
-      label: 'â—‹ ChÆ°a há»c'
+      icon: '\u25CB',
+      label: 'Ch\u01B0a h\u1ECDc'
     };
   }
 
@@ -7493,7 +7496,7 @@ if(window.HanziWriter){
         LearningState.get(target)
       );
 
-    return `<span class="flashcard-learning-state" data-flashcard-learning-state-word="${escapeHtml(target)}" data-learning-state="${escapeHtml(view.state)}">${escapeHtml(view.label)}</span>`;
+    return `<span class="flashcard-learning-state" role="img" title="${escapeHtml(view.label)}" aria-label="${escapeHtml(view.label)}" data-flashcard-learning-state-word="${escapeHtml(target)}" data-learning-state="${escapeHtml(view.state)}">${escapeHtml(view.icon)}</span>`;
   }
 
   function patchFlashcardLearningState(targetLike){
@@ -7553,7 +7556,15 @@ if(window.HanziWriter){
           view.state;
 
         node.textContent =
+          view.icon;
+
+        node.title =
           view.label;
+
+        node.setAttribute(
+          'aria-label',
+          view.label
+        );
       });
   }
 

@@ -1204,20 +1204,23 @@ function lookupLearningStateView(record) {
   if (value === 'learned') {
     return {
       state: value,
-      label: '● Đã học'
+      icon: '\u25CF',
+      label: '\u0110\u00E3 h\u1ECDc'
     };
   }
 
   if (value === 'learning') {
     return {
       state: value,
-      label: '◐ Đang học'
+      icon: '\u25D0',
+      label: '\u0110ang h\u1ECDc'
     };
   }
 
   return {
     state: value,
-    label: '○ Chưa học'
+    icon: '\u25CB',
+    label: 'Ch\u01B0a h\u1ECDc'
   };
 }
 
@@ -1253,7 +1256,7 @@ function renderLookupLearningState(
   const view =
     lookupLearningStateView(record);
 
-  return `<span class="word-badge lookup-learning-state" data-learning-state-word="${escapeHtml(target)}" data-learning-state="${escapeHtml(view.state)}">${escapeHtml(view.label)}</span>`;
+  return `<span class="lookup-learning-state" role="img" title="${escapeHtml(view.label)}" aria-label="${escapeHtml(view.label)}" data-learning-state-word="${escapeHtml(target)}" data-learning-state="${escapeHtml(view.state)}">${escapeHtml(view.icon)}</span>`;
 }
 
 function patchLookupLearningState(
@@ -1298,9 +1301,18 @@ function patchLookupLearningState(
         view.state;
 
       node.textContent =
+        view.icon;
+
+      node.title =
         view.label;
+
+      node.setAttribute(
+        'aria-label',
+        view.label
+      );
     });
 }
+
 function renderSearchResults(payload) {
   state.current = null;
   const results = payload.results || [];

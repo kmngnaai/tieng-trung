@@ -580,10 +580,10 @@
 
   function officialLearningProgressText(view){
     if(!view?.ready){
-      return `${view?.label || 'HSK'} chính thức · đang tải tiến độ`;
+      return `${view?.label || 'HSK'} ch\u00EDnh th\u1EE9c \u00B7 \u0111ang t\u1EA3i ti\u1EBFn \u0111\u1ED9`;
     }
 
-    return `${view.label} chính thức · ● ${view.learned}/${view.total} đã học · ◐ ${view.learning} đang học`;
+    return `${view.label} ch\u00EDnh th\u1EE9c \u00B7 \u25CF ${view.learned}/${view.total} \u00B7 \u25D0 ${view.learning}`;
   }
 
   function renderOfficialLearningProgress(level){
@@ -1033,20 +1033,23 @@
     if(value === 'learned'){
       return {
         state: value,
-        label: '● Đã học'
+        icon: '\u25CF',
+        label: '\u0110\u00E3 h\u1ECDc'
       };
     }
 
     if(value === 'learning'){
       return {
         state: value,
-        label: '◐ Đang học'
+        icon: '\u25D0',
+        label: '\u0110ang h\u1ECDc'
       };
     }
 
     return {
       state: value,
-      label: '○ Chưa học'
+      icon: '\u25CB',
+      label: 'Ch\u01B0a h\u1ECDc'
     };
   }
 
@@ -1058,7 +1061,7 @@
 
     const view = learningStateView(record);
 
-    return `<span class="nhsk-vocab-item__learning" data-learning-state-word="${attr(word)}" data-learning-state="${attr(view.state)}">${escapeHtml(view.label)}</span>`;
+    return `<span class="nhsk-vocab-item__learning" role="img" title="${attr(view.label)}" aria-label="${attr(view.label)}" data-learning-state-word="${attr(word)}" data-learning-state="${attr(view.state)}">${escapeHtml(view.icon)}</span>`;
   }
 
   function patchVocabularyLearningState(targetLike){
@@ -1082,9 +1085,12 @@
         }
 
         node.dataset.learningState = view.state;
-        node.textContent = view.label;
+        node.textContent = view.icon;
+        node.title = view.label;
+        node.setAttribute('aria-label', view.label);
       });
   }
+
   function renderVocabulary(items, options = {}) {
     if (!items.length) return '';
     const mode = options.grouped && state.vocabViewMode === 'grid' ? 'grid' : 'list';

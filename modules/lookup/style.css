@@ -1529,3 +1529,9 @@ a.lookup-context-back {
 .component-card-wrap.semantic{border-color:var(--green-line)}
 .component-card-wrap.phonetic{border-color:var(--blue-line)}
 @media(max-width:430px){.component-card-wrap{grid-template-columns:minmax(0,1fr) 36px}.component-speak{width:36px}}
+/* LS Lite V1 UI polish: icon-only lookup state */
+.lookup-learning-state{display:inline-flex;align-items:center;justify-content:center;width:12px;min-width:12px;margin-inline-start:5px;padding:0;border:0;background:none;font-size:11px;font-weight:900;line-height:1;white-space:nowrap;color:#8a8f98;cursor:help;vertical-align:middle}
+.lookup-learning-state[data-learning-state="unseen"]{color:#8a8f98}
+.lookup-learning-state[data-learning-state="learning"]{color:#d97706}
+.lookup-learning-state[data-learning-state="learned"]{color:#16835c}
+@media(max-width:430px){.lookup-learning-state{width:11px;min-width:11px;margin-inline-start:4px;font-size:10px}}

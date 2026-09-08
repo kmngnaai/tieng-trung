@@ -29,9 +29,15 @@ const css = fs.readFileSync(
   'function renderVocabularyLearningState(hanzi, record)',
   'function patchVocabularyLearningState(targetLike)',
 
-  "'● Đã học'",
-  "'◐ Đang học'",
-  "'○ Chưa học'",
+  "icon: '\\u25CF'",
+  "icon: '\\u25D0'",
+  "icon: '\\u25CB'",
+  "label: '\\u0110\\u00E3 h\\u1ECDc'",
+  "label: '\\u0110ang h\\u1ECDc'",
+  "label: 'Ch\\u01B0a h\\u1ECDc'",
+  'role="img"',
+  'title="${attr(view.label)}"',
+  'aria-label="${attr(view.label)}"',
 
   'const sortedItems = sortByOrder(items);',
   'LearningState.getMany(',
