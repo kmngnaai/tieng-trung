@@ -1,0 +1,100 @@
+name: Deploy GitHub Pages from canonical vocabulary
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
+      - name: Generate HSK runtime from canonical source
+        run: |
+          python -B scripts/hsk/canonical_vocab_source_v1.py generate-runtime \
+            --source modules/hanzi-stroke/data/learning/hsk-source-v1 \
+            --output modules/hanzi-stroke/data/learning/hsk
+
+      - name: Reconcile Phase A HSK changes into generated Unified Lookup
+        run: |
+          python -B scripts/lookup/reconcile_phase_a_hsk_unified.py \
+            --base modules/hanzi-stroke/data/learning/unified-lookup/all-sources \
+            --runtime modules/hanzi-stroke/data/learning/hsk \
+            --delta modules/hanzi-stroke/data/learning/hsk-source-v1/unified-phase-a-delta.json \
+            --output _generated/unified
+
+      - name: Build generated Unified search and catalog projections
+        run: |
+          python -B scripts/lookup/build_search_index.py --base _generated/unified
+          python -B scripts/lookup/build_catalog_index.py --base _generated/unified
+
+      - name: Verify committed source projections
+        run: python -B scripts/verify_generated_data.py
+
+      - name: Run Python regression suite
+        run: python -B -m pytest -q
+
+      - name: Run JavaScript no-new-regression gate
+        run: |
+          python -B scripts/hsk/run_js_contract_gate.py \
+            --repo-root . \
+            --report b2-js-contract.json \
+            --log b2-js-contract.log \
+            --min-tests 42
+
+      - name: Build Pages artifact without canonical source duplication
+        run: |
+          python -B scripts/hsk/build_pages_site.py \
+            --repo-root . \
+            --generated-unified _generated/unified \
+            --output _site
+
+      - name: Verify Pages, canonical runtime and normalized Unified contract
+        run: |
+          python -B scripts/hsk/verify_b2_contract.py \
+            --repo-root . \
+            --unified-root _generated/unified \
+            --reconcile-report _generated/unified/phase-b2-unified-reconcile-report.json \
+            --artifact-root _site \
+            --report b2-deploy-contract.json
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
