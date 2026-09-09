@@ -114,8 +114,12 @@ class UiUpgradeTests(unittest.TestCase):
         levels = {row["level"]: row for row in summary["levels"]}
         self.assertEqual(levels[1]["statusBySource"]["hsk"]["loadedLessonCount"], 15)
         self.assertEqual(levels[1]["statusBySource"]["hsk"]["grammarTotal"], 46)
-        self.assertEqual(levels[5]["statusBySource"]["hsk"]["missingNote"], "35/36 bài")
-        self.assertEqual(levels[6]["statusBySource"]["hsk"]["missingNote"], "28/40 bài")
+        self.assertEqual(levels[5]["statusBySource"]["hsk"]["loadedLessonCount"], 36)
+        self.assertEqual(levels[5]["statusBySource"]["hsk"]["status"], "OK")
+        self.assertEqual(levels[5]["statusBySource"]["hsk"]["missingNote"], "")
+        self.assertEqual(levels[6]["statusBySource"]["hsk"]["loadedLessonCount"], 40)
+        self.assertEqual(levels[6]["statusBySource"]["hsk"]["status"], "OK")
+        self.assertEqual(levels[6]["statusBySource"]["hsk"]["missingNote"], "")
         self.assertEqual(levels[7]["statusBySource"]["new_hsk"]["missingNote"], "129/132 chủ đề")
 
     def test_pinyin_keeps_five_real_tabs(self) -> None:
