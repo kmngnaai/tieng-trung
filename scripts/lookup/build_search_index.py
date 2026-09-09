@@ -97,7 +97,7 @@ def main() -> int:
         print(f"PASS search-index projection: {len(payload['items'])} items")
         return 0
     output.write_text(rendered, encoding="utf-8")
-    print(f"Wrote {output.relative_to(ROOT)}: {len(payload['items'])} items")
+    print(f"Wrote {output}: {len(payload['items'])} items")
     return 0
 
 
