@@ -28,13 +28,16 @@ class NewHskPracticeDataTests(unittest.TestCase):
             module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(module)
             char_index, char_sources = module.load_character_sources(ROOT)
+            practice_source = json.loads((
+                ROOT / "modules/new-hsk-course/source/hsk1/practice/HSK1_Bai_01_practice.json"
+            ).read_text(encoding="utf-8"))
             rebuilt = module.build_lesson(
                 ROOT,
                 MODULE / 'source' / 'hsk1' / 'HSK1_Bai_01.md',
                 MODULE / 'source' / 'hsk1' / 'dialogues' / 'HSK1_Bai_01_dialogues.json',
                 char_index,
                 char_sources,
-                self.lesson,
+                practice_source,
                 set(),
             )
         finally:

@@ -37,6 +37,12 @@ jobs:
             --source modules/hanzi-stroke/data/learning/hsk-source-v1 \
             --output modules/hanzi-stroke/data/learning/hsk
 
+      - name: Generate New HSK runtime projections
+        run: |
+          python -B scripts/new-hsk-course/build_all_course_data.py --repo .
+          python -B scripts/new-hsk-course/build_catalog_data.py
+          python -B scripts/new-hsk-course/audit_hsk_taxonomy.py
+
       - name: Reconcile Phase A HSK changes into generated Unified Lookup
         run: |
           python -B scripts/lookup/reconcile_phase_a_hsk_unified.py \

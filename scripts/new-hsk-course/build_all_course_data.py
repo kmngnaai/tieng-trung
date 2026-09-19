@@ -1017,19 +1017,19 @@ def build_lesson(
     lesson["stats"].update({"characters": len(characters), "radicalSortItems": sum(len(row.get("items", [])) for row in radical_exercises), "characterBuildExercises": len(build_exercises)})
     lesson["practicePlan"] = generate_practice_plan(lesson, character_plan)
     if preserve_practice:
-        # Preserve HSK1 Bài 1's hand-curated exercise rounds to avoid changing an
-        # already-reviewed learning activity. The shared character inventory and the
-        # all/core/seen scope plan above remain freshly generated; preserving these
-        # exercises never changes vocabulary[] or the official-character scope.
+        # HSK1 Lesson 01 curated practice comes from the explicit source file.
+        # Character inventory remains generated from shared character sources.
         for key in ["exercises", "radicalSortExercises", "oddOneOutExercises", "characterBuildExercises"]:
-            if preserve_practice.get("entities", {}).get(key):
-                lesson["entities"][key] = preserve_practice["entities"][key]
-        previous_plan = preserve_practice.get("practicePlan") or {}
-        if previous_plan.get("curatedExerciseIds"):
-            lesson["practicePlan"]["curatedExerciseIds"] = previous_plan["curatedExerciseIds"]
-        for key, value in preserve_practice.get("stats", {}).items():
-            if key in {"practiceExercises", "radicalSortGroups", "radicalSortItems", "radicalSortRounds", "characterBuildExercises"}:
-                lesson["stats"][key] = value
+            if preserve_practice.get(key):
+                lesson["entities"][key] = preserve_practice[key]
+        curated_plan = preserve_practice.get("practicePlan") or {}
+        if curated_plan.get("curatedExerciseIds"):
+            lesson["practicePlan"]["curatedExerciseIds"] = curated_plan["curatedExerciseIds"]
+        radical_rows = lesson["entities"].get("radicalSortExercises", [])
+        if "radicalSortItems" in lesson["stats"]:
+            lesson["stats"]["radicalSortItems"] = sum(len(row.get("items", [])) for row in radical_rows)
+        if "characterBuildExercises" in lesson["stats"]:
+            lesson["stats"]["characterBuildExercises"] = len(lesson["entities"].get("characterBuildExercises", []))
     return lesson
 
 
@@ -1255,8 +1255,12 @@ def main() -> int:
     args = parser.parse_args()
     repo = args.repo.resolve()
     char_index, char_sources = load_character_sources(repo)
-    existing_lesson1_path = repo / "modules/new-hsk-course/data/hsk1/lesson-01.json"
-    existing_lesson1 = json.loads(existing_lesson1_path.read_text(encoding="utf-8")) if existing_lesson1_path.exists() else None
+    lesson1_practice_path = repo / "modules/new-hsk-course/source/hsk1/practice/HSK1_Bai_01_practice.json"
+    if not lesson1_practice_path.exists():
+        raise BuildError(f"Missing curated HSK1 Lesson 01 practice source: {lesson1_practice_path}")
+    lesson1_practice = json.loads(lesson1_practice_path.read_text(encoding="utf-8"))
+    if lesson1_practice.get("lessonId") != "nhsk-1-01":
+        raise BuildError(f"Unexpected curated practice lessonId: {lesson1_practice.get('lessonId')!r}")
 
     lessons: list[dict[str, Any]] = []
     errors: list[str] = []
@@ -1274,7 +1278,7 @@ def main() -> int:
             try:
                 data = build_lesson(
                     repo, md, dialogue, char_index, char_sources,
-                    existing_lesson1 if (level, lesson_no) == (1, 1) else None,
+                    lesson1_practice if (level, lesson_no) == (1, 1) else None,
                     prior_learned_terms,
                 )
                 output = out_root / f"lesson-{lesson_no:02d}.json"
