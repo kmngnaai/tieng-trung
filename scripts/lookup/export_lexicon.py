@@ -10,11 +10,19 @@ import argparse
 import csv
 import hashlib
 import json
+import os
 from pathlib import Path
 from typing import Any, Iterable
 
 ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_SEARCH = ROOT / "modules/hanzi-stroke/data/learning/unified-lookup/all-sources/search-index.json"
+DEFAULT_UNIFIED_BASE = ROOT / "modules/hanzi-stroke/data/learning/unified-lookup/all-sources"
+_configured_unified_base = os.environ.get("TIENG_TRUNG_UNIFIED_BASE")
+if _configured_unified_base:
+    DEFAULT_UNIFIED_BASE = Path(_configured_unified_base)
+    if not DEFAULT_UNIFIED_BASE.is_absolute():
+        DEFAULT_UNIFIED_BASE = ROOT / DEFAULT_UNIFIED_BASE
+    DEFAULT_UNIFIED_BASE = DEFAULT_UNIFIED_BASE.resolve()
+DEFAULT_SEARCH = DEFAULT_UNIFIED_BASE / "search-index.json"
 
 
 def read_json(path: Path) -> dict[str, Any]:

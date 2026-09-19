@@ -17,6 +17,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      TIENG_TRUNG_UNIFIED_BASE: _generated/unified
     steps:
       - name: Checkout
         uses: actions/checkout@v6

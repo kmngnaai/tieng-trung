@@ -4,7 +4,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts/lookup/export_lexicon.py"
-SEARCH = ROOT / "modules/hanzi-stroke/data/learning/unified-lookup/all-sources/search-index.json"
 
 
 def load_module():
@@ -17,7 +16,7 @@ def load_module():
 
 def test_lookup_export_is_deterministic_and_preserves_traditional():
     module = load_module()
-    payload = json.loads(SEARCH.read_text(encoding="utf-8"))
+    payload = json.loads(module.DEFAULT_SEARCH.read_text(encoding="utf-8"))
     rows = module.export_rows(payload)
     assert len(rows) == len(payload["items"])
     china = next(row for row in rows if row["hanzi"] == "中国")

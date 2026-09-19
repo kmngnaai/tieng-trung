@@ -1,11 +1,15 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+UNIFIED_BASE = Path(os.environ.get("TIENG_TRUNG_UNIFIED_BASE", "modules/hanzi-stroke/data/learning/unified-lookup/all-sources"))
+if not UNIFIED_BASE.is_absolute():
+    UNIFIED_BASE = (ROOT / UNIFIED_BASE).resolve()
 
 
 def read(rel: str) -> str:
@@ -192,8 +196,8 @@ class UiUpgradeTests(unittest.TestCase):
         self.assertIn("popstate", js)
 
     def test_lookup_data_and_compact_pinyin_search_are_grounded(self) -> None:
-        target_index = json.loads(read("modules/hanzi-stroke/data/learning/unified-lookup/all-sources/unified-target-index.json"))["targets"]
-        search_items = json.loads(read("modules/hanzi-stroke/data/learning/unified-lookup/all-sources/search-index.json"))["items"]
+        target_index = json.loads((UNIFIED_BASE / "unified-target-index.json").read_text(encoding="utf-8-sig"))["targets"]
+        search_items = json.loads((UNIFIED_BASE / "search-index.json").read_text(encoding="utf-8-sig"))["items"]
         self.assertGreaterEqual(len(target_index), 21_000)
         self.assertEqual(target_index["你好"], "60")
         hello = next(item for item in search_items if item["target"] == "你好")

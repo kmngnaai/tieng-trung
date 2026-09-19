@@ -4,10 +4,22 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_UNIFIED_BASE = ROOT / "modules/hanzi-stroke/data/learning/unified-lookup/all-sources"
+
+
+def resolve_unified_base() -> Path:
+    configured = os.environ.get("TIENG_TRUNG_UNIFIED_BASE")
+    if not configured:
+        return DEFAULT_UNIFIED_BASE
+    path = Path(configured)
+    if not path.is_absolute():
+        path = ROOT / path
+    return path.resolve()
 
 
 def load_json(path: Path) -> Any:
@@ -22,11 +34,11 @@ def load_module(name: str, path: Path):
     return module
 
 
-def verify() -> list[str]:
+def verify(unified_base: Path | None = None) -> list[str]:
     errors: list[str] = []
 
     search_mod = load_module("build_search_index", ROOT / "scripts/lookup/build_search_index.py")
-    search_base = ROOT / "modules/hanzi-stroke/data/learning/unified-lookup/all-sources"
+    search_base = (unified_base or resolve_unified_base()).resolve()
     expected_search = search_mod.build_search_index(search_base)
     actual_search = load_json(search_base / "search-index.json")
     if expected_search != actual_search:
