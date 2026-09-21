@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TIENG_TRUNG_UNIFIED_BASE: _generated/unified
+      GRAMMARV1_RUNTIME_BASE: _generated/GrammarV1/exercises
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -44,6 +45,12 @@ jobs:
           python -B scripts/new-hsk-course/build_all_course_data.py --repo .
           python -B scripts/new-hsk-course/build_catalog_data.py
           python -B scripts/new-hsk-course/audit_hsk_taxonomy.py
+
+      - name: Generate GrammarV1 runtime projection
+        run: |
+          python -B modules/GrammarV1/scripts/build_runtime_projection.py \
+            --repo-root . \
+            --output "$GRAMMARV1_RUNTIME_BASE"
 
       - name: Reconcile Phase A HSK changes into generated Unified Lookup
         run: |
@@ -85,7 +92,15 @@ jobs:
           python -B scripts/hsk/build_pages_site.py \
             --repo-root . \
             --generated-unified _generated/unified \
+            --generated-grammarv1 "$GRAMMARV1_RUNTIME_BASE" \
             --output _site
+
+      - name: Verify GrammarV1 Pages runtime contract
+        run: |
+          python -B modules/GrammarV1/scripts/verify_pages_runtime.py \
+            --generated-root "$GRAMMARV1_RUNTIME_BASE" \
+            --artifact-root _site \
+            --report grammarv1-pages-contract.json
 
       - name: Verify Pages, canonical runtime and normalized Unified contract
         run: |
