@@ -1,0 +1,320 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tieng-trung:GrammarV1:grammar-exercise-source:v1",
+  "title": "GrammarV1 Canonical Grammar Exercise Track",
+  "description": "Structural contract for one canonical GrammarV1 exercise track. Canonical source content is byte-preserved; cross-record semantic rules are documented in x-grammarV1Contract and will be implemented by the G1.4 validator.",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "oneOf": [
+      {
+        "$ref": "#/$defs/mcq"
+      },
+      {
+        "$ref": "#/$defs/translateZhVi"
+      },
+      {
+        "$ref": "#/$defs/translateViZh"
+      }
+    ]
+  },
+  "$defs": {
+    "grammarId": {
+      "type": "string",
+      "pattern": "^hsk(?:[3-6]_[1-9][0-9]*|[1-3]_new_[1-9][0-9]*)$"
+    },
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "optionA": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "text"
+      ],
+      "properties": {
+        "id": {
+          "const": "A"
+        },
+        "text": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "optionB": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "text"
+      ],
+      "properties": {
+        "id": {
+          "const": "B"
+        },
+        "text": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "optionC": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "text"
+      ],
+      "properties": {
+        "id": {
+          "const": "C"
+        },
+        "text": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "optionD": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "text"
+      ],
+      "properties": {
+        "id": {
+          "const": "D"
+        },
+        "text": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "mcq": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "questionId",
+        "grammarId",
+        "type",
+        "seq",
+        "prompt",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "properties": {
+        "questionId": {
+          "type": "string",
+          "pattern": "^hsk(?:[3-6]_[1-9][0-9]*|[1-3]_new_[1-9][0-9]*)_mcq_(?:[1-9]|10)$"
+        },
+        "grammarId": {
+          "$ref": "#/$defs/grammarId"
+        },
+        "type": {
+          "const": "mcq"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "prompt": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "options": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "prefixItems": [
+            {
+              "$ref": "#/$defs/optionA"
+            },
+            {
+              "$ref": "#/$defs/optionB"
+            },
+            {
+              "$ref": "#/$defs/optionC"
+            },
+            {
+              "$ref": "#/$defs/optionD"
+            }
+          ],
+          "items": false
+        },
+        "answer": {
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        },
+        "explanation": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "translateZhVi": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "questionId",
+        "grammarId",
+        "type",
+        "seq",
+        "prompt",
+        "pinyin",
+        "referenceAnswer"
+      ],
+      "properties": {
+        "questionId": {
+          "type": "string",
+          "pattern": "^hsk(?:[3-6]_[1-9][0-9]*|[1-3]_new_[1-9][0-9]*)_zhvi_[1-5]$"
+        },
+        "grammarId": {
+          "$ref": "#/$defs/grammarId"
+        },
+        "type": {
+          "const": "translate_zh_vi"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 11,
+          "maximum": 15
+        },
+        "prompt": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "pinyin": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "referenceAnswer": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "translateViZh": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "questionId",
+        "grammarId",
+        "type",
+        "seq",
+        "prompt",
+        "pinyin",
+        "referenceAnswer"
+      ],
+      "properties": {
+        "questionId": {
+          "type": "string",
+          "pattern": "^hsk(?:[3-6]_[1-9][0-9]*|[1-3]_new_[1-9][0-9]*)_vizh_[1-5]$"
+        },
+        "grammarId": {
+          "$ref": "#/$defs/grammarId"
+        },
+        "type": {
+          "const": "translate_vi_zh"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 16,
+          "maximum": 20
+        },
+        "prompt": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "pinyin": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "referenceAnswer": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    }
+  },
+  "x-grammarV1Contract": {
+    "contractVersion": "grammar-exercise-source-v1",
+    "canonicalLocation": "modules/GrammarV1/source/exercises/",
+    "schemaLocation": "modules/GrammarV1/schema/grammar-exercise.schema.json",
+    "contentPolicy": "Canonical JSON is byte-preserved. Schema/validator must not normalize, rewrite, reorder, or repair source content implicitly.",
+    "identity": {
+      "primaryExerciseKey": "questionId",
+      "grammarLinkKey": "grammarId",
+      "questionIdMustStartWithGrammarId": true,
+      "questionIdSuffixRules": {
+        "mcq": "<grammarId>_mcq_<seq> where seq=1..10",
+        "translate_zh_vi": "<grammarId>_zhvi_<seq-10> where seq=11..15",
+        "translate_vi_zh": "<grammarId>_vizh_<seq-15> where seq=16..20"
+      }
+    },
+    "crossRecordInvariants": {
+      "questionIdGloballyUnique": true,
+      "grammarIdMustResolveToCanonicalGrammar": true,
+      "perGrammarTotal": 20,
+      "perGrammarTypes": {
+        "mcq": 10,
+        "translate_zh_vi": 5,
+        "translate_vi_zh": 5
+      },
+      "perGrammarSeq": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ]
+    },
+    "mcqSemanticRules": {
+      "answerMustReferenceExistingOptionId": true,
+      "optionIdsAndOrder": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "duplicateOptionTextSeverity": "warning",
+      "reason": "The byte-preserved baseline contains 5 MCQs with repeated option text; G1.3 must not rewrite source data."
+    },
+    "translationSemanticRules": {
+      "referenceAnswerIsReferenceNotStrictAcceptedAnswers": true,
+      "autoExactGradeRecommended": false
+    },
+    "auditedBaseline": {
+      "repoCommit": "1e95a0a48acf06c8094a94f9e2b9bcac4ac29925",
+      "sourceArchiveSha256": "3e86988fa4bb199ecbe7e57f6cb1c4755eb830ca8b7e56887d9f783d329b75ba",
+      "tracks": 7,
+      "grammarIds": 399,
+      "exercises": 7980,
+      "types": {
+        "mcq": 3990,
+        "translate_zh_vi": 1995,
+        "translate_vi_zh": 1995
+      },
+      "knownDuplicateOptionTextQuestionIds": [
+        "hsk3_13_mcq_1",
+        "hsk3_13_mcq_4",
+        "hsk3_13_mcq_7",
+        "hsk6_59_mcq_8",
+        "hsk3_new_19_mcq_7"
+      ]
+    }
+  }
+}
