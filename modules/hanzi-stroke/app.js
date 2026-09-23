@@ -7334,18 +7334,96 @@ if(window.HanziWriter){
   }
 
   /* G3.3 FLASHCARD BRIDGE BEGIN */
+  let grammarFlashcardHandoff = null;
+
+  function suspendGrammarPopupForFlashcard(){
+    const popup = document.getElementById('hskDetailOverlay');
+    const body = document.getElementById('hskDetailBody');
+    const grammarId = String(body?.dataset?.grammarDetailId || '').trim();
+    if(!popup || popup.hidden || !body || !grammarId){
+      grammarFlashcardHandoff = null;
+      return null;
+    }
+
+    const popupCard = popup.querySelector('.hsk-popup-card');
+    const activeElement = document.activeElement;
+    const focusTarget = activeElement && popup.contains(activeElement) ? activeElement : null;
+    grammarFlashcardHandoff = {
+      grammarId,
+      scrollTop: Number(popupCard?.scrollTop || 0),
+      focusTarget
+    };
+
+    popup.hidden = true;
+    document.body.classList.remove('hsk-popup-open');
+    if(focusTarget && typeof focusTarget.blur === 'function'){
+      focusTarget.blur();
+    }
+    return grammarFlashcardHandoff;
+  }
+
+  function restoreGrammarPopupAfterFlashcard(){
+    const handoff = grammarFlashcardHandoff;
+    grammarFlashcardHandoff = null;
+    if(!handoff) return false;
+
+    const popup = document.getElementById('hskDetailOverlay');
+    const body = document.getElementById('hskDetailBody');
+    const grammarId = String(body?.dataset?.grammarDetailId || '').trim();
+    if(!popup || !body || !grammarId || grammarId !== handoff.grammarId){
+      return false;
+    }
+
+    const popupCard = popup.querySelector('.hsk-popup-card');
+    popup.hidden = false;
+    document.body.classList.add('hsk-popup-open');
+    if(popupCard){
+      popupCard.scrollTop = Number(handoff.scrollTop || 0);
+    }
+
+    window.requestAnimationFrame(() => {
+      if(popupCard){
+        popupCard.scrollTop = Number(handoff.scrollTop || 0);
+      }
+      const focusTarget = handoff.focusTarget?.isConnected && popup.contains(handoff.focusTarget)
+        ? handoff.focusTarget
+        : body.querySelector('[data-grammar-practice-study-cards], [data-hsk-popup-close], button');
+      if(focusTarget && typeof focusTarget.focus === 'function'){
+        try{ focusTarget.focus({ preventScroll: true }); }catch(_err){ focusTarget.focus(); }
+      }
+    });
+    return true;
+  }
+
   function launchGrammarPracticeCards(runtimeGrammar){
     if(!runtimeGrammar || !GrammarPracticeFlashcard || !GrammarPracticeAdapter){
       return false;
     }
+
+    const handoff = suspendGrammarPopupForFlashcard();
     try{
       const result = GrammarPracticeFlashcard.launch(
         GrammarPracticeAdapter,
         runtimeGrammar,
         createFlashcardSessionFromCards
       );
-      return Boolean(result?.launched);
+      if(!result?.launched){
+        restoreGrammarPopupAfterFlashcard();
+        return false;
+      }
+      if(handoff){
+        window.requestAnimationFrame(() => {
+          const overlay = document.getElementById('hskFlashcardOverlay');
+          if(!overlay || overlay.hidden) return;
+          const focusTarget = overlay.querySelector('[data-hsk-flashcard-close], button, input, textarea, select, a');
+          if(focusTarget && typeof focusTarget.focus === 'function'){
+            try{ focusTarget.focus({ preventScroll: true }); }catch(_err){ focusTarget.focus(); }
+          }
+        });
+      }
+      return true;
     }catch(err){
+      restoreGrammarPopupAfterFlashcard();
       console.warn('Cannot launch GrammarV1 Flashcard session:', err);
       return false;
     }
@@ -9501,6 +9579,7 @@ if(window.HanziWriter){
     const overlay = document.getElementById('hskFlashcardOverlay');
     if(!overlay) return;
     overlay.hidden = true;
+    restoreGrammarPopupAfterFlashcard();
     document.body.classList.remove('hsk-flashcard-open');
     window.speechSynthesis?.cancel?.();
     cleanupFlashcardStrokeWriters();
