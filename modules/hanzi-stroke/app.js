@@ -7360,6 +7360,22 @@ if(window.HanziWriter){
   });
   let grammarPracticeUiLoadId = 0;
 
+  function scrollGrammarPracticeTarget(host, selector, block = 'nearest'){
+    if(!host || !selector) return;
+    window.requestAnimationFrame(() => {
+      const target = host.querySelector(selector);
+      if(!target || typeof target.scrollIntoView !== 'function') return;
+      target.scrollIntoView({ behavior: 'smooth', block });
+    });
+  }
+
+  function formatGrammarPracticeText(value){
+    return escapeHtml(value || '').replace(
+      /([\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]+[\u3000-\u303F\uFF01-\uFF65]*)/g,
+      '<span lang="zh-Hans">$1</span>'
+    );
+  }
+
   function renderGrammarPracticeUi(host, session){
     if(!host || !GrammarPracticeUi) return;
     const view = GrammarPracticeUi.getView(session);
@@ -7382,11 +7398,16 @@ if(window.HanziWriter){
 
     let bodyHtml = '';
     if(isMcq){
-      const options = Array.isArray(exercise.options) ? exercise.options : [];
+      const options = Array.isArray(view.presentationOptions) && view.presentationOptions.length
+        ? view.presentationOptions
+        : (Array.isArray(exercise.options)
+          ? exercise.options.map(option => ({ ...option, displayId: String(option?.id || '').trim() }))
+          : []);
       bodyHtml = `
         <div class="hsk-grammar-practice__options">
           ${options.map(option => {
             const optionId = String(option?.id || '').trim();
+            const displayId = String(option?.displayId || optionId).trim();
             const classes = ['hsk-grammar-practice__option'];
             if(result?.expected === optionId) classes.push('is-correct');
             if(result && !result.correct && result.response === optionId) classes.push('is-wrong');
@@ -7397,8 +7418,8 @@ if(window.HanziWriter){
                 data-grammar-practice-option="${escapeHtml(optionId)}"
                 ${result ? 'disabled' : ''}
               >
-                <span class="hsk-grammar-practice__option-id">${escapeHtml(optionId)}</span>
-                <span>${escapeHtml(option?.text || '')}</span>
+                <span class="hsk-grammar-practice__option-id">${escapeHtml(displayId)}</span>
+                <span>${formatGrammarPracticeText(option?.text || '')}</span>
               </button>
             `;
           }).join('')}
@@ -7416,8 +7437,15 @@ if(window.HanziWriter){
           ${result ? `
             <div class="hsk-grammar-practice__feedback" aria-live="polite">
               <strong>Tự đối chiếu — không chấm đúng/sai</strong>
-              ${result.pinyin ? `<span>${escapeHtml(formatPinyin(result.pinyin))}</span>` : ''}
-              <p>${escapeHtml(result.referenceAnswer || '')}</p>
+              <div class="hsk-grammar-practice__review-block hsk-grammar-practice__review-block--user" data-grammar-practice-user-answer>
+                <span class="hsk-grammar-practice__review-label">Bài của bạn</span>
+                <p class="hsk-grammar-practice__review-answer">${result.response ? formatGrammarPracticeText(result.response) : '<span class="hsk-grammar-practice__review-empty">Chưa nhập câu trả lời.</span>'}</p>
+              </div>
+              <div class="hsk-grammar-practice__review-block hsk-grammar-practice__review-block--reference" data-grammar-practice-reference-answer>
+                <span class="hsk-grammar-practice__review-label">Đáp án tham khảo</span>
+                <p class="hsk-grammar-practice__review-answer">${formatGrammarPracticeText(result.referenceAnswer || '')}</p>
+                ${result.pinyin ? `<span class="hsk-grammar-practice__review-pinyin">${escapeHtml(formatPinyin(result.pinyin))}</span>` : ''}
+              </div>
             </div>
           ` : `
             <textarea
@@ -7440,8 +7468,16 @@ if(window.HanziWriter){
           <h4>Luyện tập</h4>
           <p>${escapeHtml(GRAMMAR_PRACTICE_SKILL_META[view.skill].note)}</p>
         </div>
-        <div class="hsk-grammar-practice__actions">
+        <div class="hsk-grammar-practice__head-tools">
           <button type="button" class="hsk-grammar-practice__action" data-grammar-practice-study-cards>Ôn thẻ</button>
+          <button
+            type="button"
+            class="hsk-grammar-practice__action hsk-grammar-practice__shuffle"
+            data-grammar-practice-shuffle
+            aria-label="Đổi câu ngẫu nhiên"
+            title="Đổi câu ngẫu nhiên"
+            ${view.canShuffle ? '' : 'disabled'}
+          >🔀</button>
           <span class="hsk-grammar-practice__progress">Câu ${view.index + 1}/${view.total}</span>
         </div>
       </div>
@@ -7449,7 +7485,7 @@ if(window.HanziWriter){
         ${skillButtons}
       </div>
       <div class="hsk-grammar-practice__card">
-        <p class="hsk-grammar-practice__prompt">${escapeHtml(exercise.prompt || '')}</p>
+        <p class="hsk-grammar-practice__prompt">${formatGrammarPracticeText(exercise.prompt || '')}</p>
         ${bodyHtml}
         ${result ? `
           <div class="hsk-grammar-practice__actions">
@@ -7465,6 +7501,12 @@ if(window.HanziWriter){
       launchGrammarPracticeCards(session.grammar);
     });
 
+    host.querySelector('[data-grammar-practice-shuffle]')?.addEventListener('click', () => {
+      GrammarPracticeUi.shuffleCurrent(session);
+      renderGrammarPracticeUi(host, session);
+      scrollGrammarPracticeTarget(host, '.hsk-grammar-practice__prompt', 'nearest');
+    });
+
     host.querySelectorAll('[data-grammar-practice-skill]').forEach(button => {
       button.addEventListener('click', () => {
         GrammarPracticeUi.selectSkill(session, button.dataset.grammarPracticeSkill);
@@ -7476,6 +7518,7 @@ if(window.HanziWriter){
       button.addEventListener('click', () => {
         GrammarPracticeUi.submit(session, button.dataset.grammarPracticeOption);
         renderGrammarPracticeUi(host, session);
+        scrollGrammarPracticeTarget(host, '.hsk-grammar-practice__feedback', 'center');
       });
     });
 
@@ -7483,11 +7526,13 @@ if(window.HanziWriter){
       const input = host.querySelector('[data-grammar-practice-input]');
       GrammarPracticeUi.submit(session, input?.value || '');
       renderGrammarPracticeUi(host, session);
+      scrollGrammarPracticeTarget(host, '.hsk-grammar-practice__feedback', 'center');
     });
 
     host.querySelector('[data-grammar-practice-next]')?.addEventListener('click', () => {
       GrammarPracticeUi.next(session);
       renderGrammarPracticeUi(host, session);
+      scrollGrammarPracticeTarget(host, '.hsk-grammar-practice__prompt', 'nearest');
     });
   }
 

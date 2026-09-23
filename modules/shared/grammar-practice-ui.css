@@ -1,9 +1,13 @@
 .hsk-grammar-practice{
+  --grammar-practice-accent:#9b86c8;
+  --grammar-practice-accent-soft:#f4f0fb;
+  --grammar-practice-accent-border:#cfc3e6;
   margin-top:18px;
   border:1px solid var(--ui-border, #e5e7eb);
   border-radius:18px;
   background:var(--ui-surface, #ffffff);
   overflow:hidden;
+  box-shadow:inset 0 3px 0 var(--grammar-practice-accent);
 }
 
 .hsk-grammar-practice__head{
@@ -16,6 +20,13 @@
 
 .hsk-grammar-practice__head h4{ margin:0; font-size:1.05rem; }
 .hsk-grammar-practice__head p{ margin:4px 0 0; color:var(--ui-text-muted, #6b7280); font-size:.9rem; }
+.hsk-grammar-practice__head-tools{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:8px;
+  flex-wrap:wrap;
+}
 .hsk-grammar-practice__progress{ flex:0 0 auto; font-size:.82rem; color:var(--ui-text-muted, #6b7280); }
 
 .hsk-grammar-practice__skills{
@@ -23,6 +34,7 @@
   gap:8px;
   overflow-x:auto;
   padding:0 18px 14px;
+  border-bottom:1px solid var(--ui-border, #d1d5db);
 }
 
 .hsk-grammar-practice__skill{
@@ -34,7 +46,12 @@
   cursor:pointer;
 }
 
-.hsk-grammar-practice__skill.is-active{ border-color:currentColor; font-weight:700; }
+.hsk-grammar-practice__skill.is-active{
+  border-color:var(--grammar-practice-accent-border);
+  background:var(--grammar-practice-accent-soft);
+  font-weight:600;
+  box-shadow:none;
+}
 
 .hsk-grammar-practice__card{
   margin:0 18px 18px;
@@ -60,8 +77,8 @@
 }
 
 .hsk-grammar-practice__option:disabled{ cursor:default; opacity:1; }
-.hsk-grammar-practice__option.is-correct{ border-color:#15803d; }
-.hsk-grammar-practice__option.is-wrong{ border-color:#b91c1c; }
+.hsk-grammar-practice__option.is-correct{ border-color:#15803d; background:#f0fdf4; }
+.hsk-grammar-practice__option.is-wrong{ border-color:#b91c1c; background:#fef2f2; }
 .hsk-grammar-practice__option-id{ font-weight:800; }
 
 .hsk-grammar-practice__translation{ display:grid; gap:10px; }
@@ -85,20 +102,78 @@
   cursor:pointer;
 }
 .hsk-grammar-practice__action--primary{ font-weight:700; }
+.hsk-grammar-practice__shuffle{
+  min-width:40px;
+  padding:9px 10px;
+  border-color:var(--grammar-practice-accent-border);
+  background:var(--grammar-practice-accent-soft);
+  line-height:1;
+}
+.hsk-grammar-practice__shuffle:hover:not(:disabled){ border-color:var(--grammar-practice-accent); }
+.hsk-grammar-practice__shuffle:focus-visible{ outline:2px solid var(--grammar-practice-accent); outline-offset:2px; }
+.hsk-grammar-practice__shuffle:disabled{ cursor:default; opacity:.5; }
 
 .hsk-grammar-practice__feedback{
   margin-top:12px;
   padding:12px;
+  border:1px solid var(--ui-border, #d1d5db);
   border-radius:12px;
   background:var(--ui-surface, #fff);
 }
 .hsk-grammar-practice__feedback strong,
 .hsk-grammar-practice__feedback span{ display:block; }
 .hsk-grammar-practice__feedback p{ margin:7px 0 0; line-height:1.6; }
+.hsk-grammar-practice__review-block{
+  display:grid;
+  gap:5px;
+  margin-top:10px;
+}
+.hsk-grammar-practice__review-block + .hsk-grammar-practice__review-block{
+  padding-top:10px;
+  border-top:1px solid var(--ui-border, #d1d5db);
+}
+.hsk-grammar-practice__review-block--reference{
+  padding:10px;
+  border:1px solid var(--grammar-practice-accent-border, #cfc3e6);
+  border-radius:10px;
+  background:var(--grammar-practice-accent-soft, #f4f0fb);
+}
+.hsk-grammar-practice__review-label{
+  color:var(--ui-text-muted, #6b7280);
+  font-size:.78rem;
+  font-weight:700;
+}
+.hsk-grammar-practice__review-answer{ margin:0 !important; line-height:1.6; }
+.hsk-grammar-practice__review-pinyin{
+  color:var(--ui-text-muted, #6b7280);
+  font-size:.86rem;
+  font-style:italic;
+}
+.hsk-grammar-practice__review-empty{ color:var(--ui-text-muted, #6b7280); font-style:italic; }
 .hsk-grammar-practice__self-review{ color:var(--ui-text-muted, #6b7280); font-size:.88rem; }
 
 @media (max-width:640px){
   .hsk-grammar-practice__head{ flex-direction:column; }
+  .hsk-grammar-practice__head-tools{ width:100%; justify-content:space-between; }
   .hsk-grammar-practice__card{ margin-left:12px; margin-right:12px; }
-  .hsk-grammar-practice__skills{ padding-left:12px; padding-right:12px; }
+  .hsk-grammar-practice__skills{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:6px;
+    overflow-x:visible;
+    padding-left:12px;
+    padding-right:12px;
+  }
+  .hsk-grammar-practice__skill{
+    min-width:0;
+    min-height:40px;
+    padding:7px 4px;
+    white-space:nowrap;
+    font-size:.9rem;
+    line-height:1.15;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
 }
