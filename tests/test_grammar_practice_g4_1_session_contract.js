@@ -268,13 +268,16 @@ const scrollUxPass = appSource.includes("function scrollGrammarPracticeTarget(ho
   appSource.includes("behavior: 'smooth'") &&
   appSource.includes("target.scrollIntoView({ behavior: 'smooth', block })");
 
-// Locked visual-theme rule and phase boundaries.
+// Locked visual-theme rule and G4.2 phase-aware boundaries.
+// G4.2 is explicitly allowed to add the approved "Bài của bạn" presentation.
+// G4.1 behavior/storage/G5+ boundaries remain enforced.
 const themePass = cssSource.includes('--grammar-practice-accent:#9b86c8') &&
   cssSource.includes('--grammar-practice-accent-soft:#f4f0fb') &&
   !/font-family\s*:/i.test(cssSource) &&
   cssSource.includes('.hsk-grammar-practice__option.is-correct') &&
   cssSource.includes('.hsk-grammar-practice__option.is-wrong');
-const boundaryPass = !appSource.includes('Bài của bạn') &&
+
+const boundaryPass =
   !uiSource.includes('buildExternalFlashcardPayload') &&
   !uiSource.includes('localStorage') &&
   !uiSource.includes('sessionStorage');
