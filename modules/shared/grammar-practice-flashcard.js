@@ -10,7 +10,7 @@
   'use strict';
 
   const VERSION = 'grammar-practice-flashcard-bridge-v1';
-  const DEFAULT_TRANSLATION_CARD_COUNT = 5;
+  const DEFAULT_TRANSLATION_CARD_COUNT = 10;
 
   function assertAdapter(adapter){
     if(!adapter || typeof adapter.buildExternalFlashcardPayload !== 'function'){

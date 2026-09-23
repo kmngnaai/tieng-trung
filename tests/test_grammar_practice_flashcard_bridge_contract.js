@@ -18,7 +18,7 @@ const app = fs.readFileSync(appPath, 'utf8');
 const html = fs.readFileSync(htmlPath, 'utf8');
 
 assert.strictEqual(Bridge.VERSION, 'grammar-practice-flashcard-bridge-v1');
-assert.strictEqual(Bridge.DEFAULT_TRANSLATION_CARD_COUNT, 5);
+assert.strictEqual(Bridge.DEFAULT_TRANSLATION_CARD_COUNT, 10);
 assert(Object.isFrozen(Bridge));
 
 [
@@ -52,10 +52,28 @@ for(const trackRow of index.tracks){
   assert.strictEqual(payload.contextKey, `grammarv1:${grammar.grammarId}`);
   assert.strictEqual(payload.contextLabel, grammar.topic || grammar.grammarId);
   assert.strictEqual(payload.returnUrl, '');
-  assert.strictEqual(payload.cards.length, 6);
+  assert.strictEqual(payload.cards.length, 11);
   assert.strictEqual(payload.cards[0].cardType, 'grammar');
-  assert(payload.cards.slice(1).every(card => card.cardType === 'sentence'));
-  assert(payload.cards.slice(1).every(card => card.grammar?.grammarId === grammar.grammarId));
+  const translationCards = payload.cards.slice(1);
+  assert.strictEqual(translationCards.length, 10);
+  assert(translationCards.every(card => card.cardType === 'sentence'));
+  assert(translationCards.every(card => card.grammar?.grammarId === grammar.grammarId));
+  const typeCounts = translationCards.reduce((acc, card) => {
+    const type = card?.grammar?.exerciseType || '';
+    acc[type] = (acc[type] || 0) + 1;
+    return acc;
+  }, {});
+  assert.strictEqual(typeCounts.translate_zh_vi, 5);
+  assert.strictEqual(typeCounts.translate_vi_zh, 5);
+  assert.strictEqual(new Set(translationCards.map(card => card.id)).size, 10);
+  const sourceById = new Map(grammar.exercises.map(row => [row.questionId, row]));
+  translationCards.forEach(card => {
+    const sourceExercise = sourceById.get(card.id);
+    assert(sourceExercise, `${grammar.grammarId}: missing source exercise for ${card.id}`);
+    assert.strictEqual(card.pinyin, sourceExercise.pinyin);
+    assert.strictEqual(card.grammar?.questionId, sourceExercise.questionId);
+    assert.strictEqual(card.grammar?.exerciseType, sourceExercise.type);
+  });
 
   let called = 0;
   let captured = null;
@@ -129,5 +147,5 @@ assert(
 
 console.log(
   `PASS GrammarPractice Flashcard bridge: tracks=${tracksChecked} launches=${launchChecks} ` +
-  `mixedCards=6 existingEngineReuse=PASS noEngineFork=PASS noNewStorage=PASS`
+  `mixedCards=11 translations=10 zhVi=5 viZh=5 existingEngineReuse=PASS noEngineFork=PASS noNewStorage=PASS`
 );

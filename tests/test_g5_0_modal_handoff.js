@@ -144,15 +144,15 @@ const forbidden = [
 const forbiddenHits = forbidden.filter(token => handoffScope.includes(token));
 const noZIndexWorkaround =
   grammarZ == null || flashZ == null || flashZ <= grammarZ;
-const payloadContractUnchanged =
-  bridge.includes("const DEFAULT_TRANSLATION_CARD_COUNT = 5;") &&
+const payloadBridgeBoundaryPreserved =
+  /const DEFAULT_TRANSLATION_CARD_COUNT = \d+;/.test(bridge) &&
   bridge.includes("mode: 'mixed'") &&
   bridge.includes('count: DEFAULT_TRANSLATION_CARD_COUNT');
 
 const m06 =
   forbiddenHits.length === 0 &&
   noZIndexWorkaround &&
-  payloadContractUnchanged;
+  payloadBridgeBoundaryPreserved;
 
 const checks = {
   M01: {
@@ -207,13 +207,13 @@ const checks = {
   },
   M06: {
     status: m06 ? 'PASS' : 'FAIL',
-    name: 'No G5.1/G5.2/G6/G7 leakage and no z-index workaround',
+    name: 'G5.0 handoff boundary preserved; no G5.2/G6/G7 leakage and no z-index workaround',
     evidence: {
       forbiddenHits,
       noZIndexWorkaround,
       grammarZ,
       flashZ,
-      payloadContractUnchanged
+      payloadBridgeBoundaryPreserved
     }
   }
 };

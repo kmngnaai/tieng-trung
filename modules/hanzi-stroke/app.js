@@ -9507,7 +9507,7 @@ if(window.HanziWriter){
           HSK_FLASHCARD_TYPING_CUSTOM_DELAY_DEFAULT_SECONDS
         );
         saveFlashcardSettings(session.settings);
-        renderFlashcardOverlay();
+        rerenderFlashcardOverlayPreservingScroll();
         return;
       }
       const orderingDisplay = event.target.closest('[data-hsk-ordering-display-count]');
@@ -9515,7 +9515,7 @@ if(window.HanziWriter){
         const value = Number(orderingDisplay.value);
         session.settings.sentenceOrderingDisplayCount = [1,2,3].includes(value) ? value : 1;
         saveFlashcardSettings(session.settings);
-        renderFlashcardOverlay();
+        rerenderFlashcardOverlayPreservingScroll();
       }
     });
     overlay.addEventListener('keydown', event => {
@@ -10044,15 +10044,26 @@ if(window.HanziWriter){
     playNext(0);
   }
 
+  function normalizeFlashcardGrammarExamples(grammar){
+    const rows = Array.isArray(grammar?.examples) ? grammar.examples : [];
+    return rows.map(row => ({
+      hanzi: String(row?.hanzi || row?.chinese || '').trim(),
+      pinyin: String(row?.pinyin || '').trim(),
+      meaning: String(row?.meaning || row?.vietnamese || '').trim()
+    })).filter(row => row.hanzi || row.pinyin || row.meaning);
+  }
+
   function renderFlashcardFace(session, card, type){
     const answerVisible = session.flipped;
     if(card?.cardType === 'grammar'){
       const grammar = card.grammar || {};
-      const examples = Array.isArray(grammar.examples) ? grammar.examples : [];
+      const examples = normalizeFlashcardGrammarExamples(grammar);
+      const compactTitleStyle = 'font-size:14px;line-height:1.35';
+      const compactPatternStyle = 'font-size:clamp(20px,5vw,26px);line-height:1.35';
       if(!answerVisible){
-        return `<div class="hsk-flashcard-front hsk-flashcard-front--grammar"><small>NGỮ PHÁP</small><h3>${escapeHtml(card.title || grammar.topic || 'Ngữ pháp')}</h3><strong>${escapeHtml(grammar.pattern || card.word || '')}</strong><p>Bấm để xem giải thích và ví dụ</p></div>`;
+        return `<div class="hsk-flashcard-front hsk-flashcard-front--grammar"><small>NGỮ PHÁP</small><h3 class="grammar-card-title--compact" style="${compactTitleStyle}">${escapeHtml(card.title || grammar.topic || 'Ngữ pháp')}</h3><strong style="${compactPatternStyle}">${escapeHtml(grammar.pattern || card.word || '')}</strong><p>Bấm để xem giải thích và ví dụ</p></div>`;
       }
-      return `<div class="hsk-flashcard-answer hsk-flashcard-answer--grammar"><small>NGỮ PHÁP</small><h3>${escapeHtml(card.title || grammar.topic || 'Ngữ pháp')}</h3><strong>${escapeHtml(grammar.pattern || card.word || '')}</strong>${grammar.explanation || card.meaningVi ? `<p>${escapeHtml(grammar.explanation || card.meaningVi)}</p>` : ''}${grammar.tips ? `<div class="grammar-card-note"><b>Mẹo</b><span>${escapeHtml(grammar.tips)}</span></div>` : ''}${grammar.attentions ? `<div class="grammar-card-note is-attention"><b>Lưu ý</b><span>${escapeHtml(grammar.attentions)}</span></div>` : ''}${examples.length ? `<div class="grammar-card-examples">${examples.slice(0,3).map(example => `<article><b>${escapeHtml(example.hanzi || '')}</b>${session.settings.showPinyin && example.pinyin ? `<i>${escapeHtml(example.pinyin)}</i>` : ''}<span>${escapeHtml(example.meaning || '')}</span></article>`).join('')}</div>` : ''}</div>`;
+      return `<div class="hsk-flashcard-answer hsk-flashcard-answer--grammar"><small>NGỮ PHÁP</small><h3 class="grammar-card-title--compact" style="${compactTitleStyle}">${escapeHtml(card.title || grammar.topic || 'Ngữ pháp')}</h3><strong style="${compactPatternStyle}">${escapeHtml(grammar.pattern || card.word || '')}</strong>${grammar.explanation || card.meaningVi ? `<p>${escapeHtml(grammar.explanation || card.meaningVi)}</p>` : ''}${grammar.tips ? `<div class="grammar-card-note"><b>Mẹo</b><span>${escapeHtml(grammar.tips)}</span></div>` : ''}${grammar.attentions ? `<div class="grammar-card-note is-attention"><b>Lưu ý</b><span>${escapeHtml(grammar.attentions)}</span></div>` : ''}${examples.length ? `<div class="grammar-card-examples">${examples.slice(0,3).map(example => `<article><b>${escapeHtml(example.hanzi)}</b>${session.settings.showPinyin && example.pinyin ? `<i>${escapeHtml(example.pinyin)}</i>` : ''}<span>${escapeHtml(example.meaning)}</span></article>`).join('')}</div>` : ''}</div>`;
     }
     if(type === 'listen' && !answerVisible){
       return `
@@ -10132,11 +10143,11 @@ if(window.HanziWriter){
     if(result.speechText && session.settings.tapHanziSpeak) speakChar(result.speechText);
     if(result.status === 'correct') saveFlashcardMatchingResult(session, result.pairId);
     persistFlashcardSession();
-    renderFlashcardOverlay();
+    rerenderFlashcardOverlayPreservingScroll();
     if(result.status === 'wrong'){
       Matching.scheduleFeedbackClear(session.matching, () => {
         persistFlashcardSession();
-        renderFlashcardOverlay();
+        rerenderFlashcardOverlayPreservingScroll();
       });
     }else if(result.status === 'correct' && result.roundComplete && !result.complete){
       scheduleFlashcardMatchingRoundAdvance(session);
@@ -10295,7 +10306,7 @@ if(window.HanziWriter){
       flashcardRadicalDropTarget(event)?.node?.classList.add('is-hsk-drag-over');
     }
     const overlay=document.getElementById('hskFlashcardOverlay');
-    const scrollHost=overlay?.querySelector('.hsk-flashcard-body') || overlay;
+    const scrollHost=getFlashcardScrollHost(overlay);
     if(scrollHost){
       const bounds=scrollHost.getBoundingClientRect();
       if(event.clientY<bounds.top+46) scrollHost.scrollBy({top:-18,behavior:'auto'});
@@ -10320,7 +10331,7 @@ if(window.HanziWriter){
     item.feedback='';
     const correct=evaluateFlashcardSentenceOrdering(session,item);
     persistFlashcardSession();
-    renderFlashcardOverlay();
+    rerenderFlashcardOverlayPreservingScroll();
     if(correct) scheduleFlashcardOrderingAdvance(session);
     return true;
   }
@@ -10335,7 +10346,7 @@ if(window.HanziWriter){
     state.selectionLead='item';
     attemptFlashcardRadicalMatch(session,item.id,target.groupId);
     scheduleFlashcardRadicalPersist();
-    renderFlashcardOverlay();
+    rerenderFlashcardOverlayPreservingScroll();
     return true;
   }
 
@@ -10677,6 +10688,32 @@ if(window.HanziWriter){
       }
       if(session.phase === 'study' && getCurrentFlashcardType(session) === 'typing') startFlashcardTypingClock(session);
       else stopFlashcardTypingClock();
+    });
+  }
+
+  function getFlashcardScrollHost(overlay = document.getElementById('hskFlashcardOverlay')){
+    if(!overlay) return null;
+    const session = hskState.flashcardSession;
+    if(session?.phase === 'study' && getCurrentFlashcardType(session) === 'sentence-ordering'){
+      return overlay.querySelector('.hsk-flashcard-ordering-controls')
+        || overlay.querySelector('.hsk-flashcard-body')
+        || overlay;
+    }
+    return overlay.querySelector('.hsk-flashcard-body') || overlay;
+  }
+
+  function rerenderFlashcardOverlayPreservingScroll(){
+    const overlay = document.getElementById('hskFlashcardOverlay');
+    const host = getFlashcardScrollHost(overlay);
+    const scrollTop = Number(host?.scrollTop || 0);
+    const scrollLeft = Number(host?.scrollLeft || 0);
+    renderFlashcardOverlay();
+    window.requestAnimationFrame(() => {
+      const nextOverlay = document.getElementById('hskFlashcardOverlay');
+      const nextHost = getFlashcardScrollHost(nextOverlay);
+      if(!nextHost) return;
+      nextHost.scrollTop = scrollTop;
+      nextHost.scrollLeft = scrollLeft;
     });
   }
 
@@ -11092,14 +11129,14 @@ if(window.HanziWriter){
         session.settings.mode = modeButton.dataset.hskFlashcardMode || 'flashcard';
         saveFlashcardSettings(session.settings);
         if(session.settings.mode==='radical-sort') prepareFlashcardRadicalSortState(session.cards).catch(()=>{});
-        renderFlashcardOverlay();
+        rerenderFlashcardOverlayPreservingScroll();
         return;
       }
       const typingPromptButton = event.target.closest('[data-hsk-flashcard-typing-prompt]');
       if(typingPromptButton && session.phase === 'setup'){
         session.settings.typingPromptType = typingPromptButton.dataset.hskFlashcardTypingPrompt || 'hanzi-to-pinyin';
         saveFlashcardSettings(session.settings);
-        renderFlashcardOverlay();
+        rerenderFlashcardOverlayPreservingScroll();
         return;
       }
       const typingDelayButton = event.target.closest('[data-hsk-flashcard-typing-delay]');
@@ -11112,14 +11149,14 @@ if(window.HanziWriter){
           session.settings.typingAutoAdvanceSeconds = normalizeFlashcardTypingAutoAdvanceSeconds(value);
         }
         saveFlashcardSettings(session.settings);
-        renderFlashcardOverlay();
+        rerenderFlashcardOverlayPreservingScroll();
         return;
       }
       const orderingDelayButton = event.target.closest('[data-hsk-ordering-delay]');
       if(orderingDelayButton && session.phase === 'setup'){
         session.settings.sentenceOrderingAutoAdvanceSeconds = normalizeFlashcardOrderingDelay(orderingDelayButton.dataset.hskOrderingDelay, 1.2);
         saveFlashcardSettings(session.settings);
-        renderFlashcardOverlay();
+        rerenderFlashcardOverlayPreservingScroll();
         return;
       }
       const option = event.target.closest('[data-hsk-flashcard-option]');
@@ -11128,7 +11165,7 @@ if(window.HanziWriter){
         if(option.dataset.hskFlashcardOption === 'tapHanziSpeak' && Matching) Matching.setSetting('tapHanziSpeak', option.checked);
         if(option.dataset.hskFlashcardOption === 'showPinyin' && Matching) Matching.setSetting('matchingShowPinyin', option.checked);
         saveFlashcardSettings(session.settings);
-        if(['typingAutoAdvanceEnabled','sentenceOrderingAutoAdvanceEnabled'].includes(option.dataset.hskFlashcardOption)) renderFlashcardOverlay();
+        if(['typingAutoAdvanceEnabled','sentenceOrderingAutoAdvanceEnabled'].includes(option.dataset.hskFlashcardOption)) rerenderFlashcardOverlayPreservingScroll();
         return;
       }
       if(event.target.closest('[data-hsk-flashcard-start]')){
@@ -11178,7 +11215,8 @@ if(window.HanziWriter){
           Matching.setAutoNextDelay(matching, input?.value);
         }else if(action === 'manual-next') Matching.nextRound(matching);
         persistFlashcardSession();
-        renderFlashcardOverlay();
+        if(action === 'manual-next') renderFlashcardOverlay();
+        else rerenderFlashcardOverlayPreservingScroll();
         if(Matching.isRoundComplete(matching) && !Matching.isComplete(matching) && matching.autoNext && !matching.settingsOpen){
           scheduleFlashcardMatchingRoundAdvance(session);
         }
@@ -11202,7 +11240,7 @@ if(window.HanziWriter){
         session.settings.sentenceOrderingVocabularyList=session.settings.sentenceOrderingVocabularyList !== true;
         saveFlashcardSettings(session.settings);
         persistFlashcardSession();
-        renderFlashcardOverlay();
+        rerenderFlashcardOverlayPreservingScroll();
         return;
       }
       const orderVocabSpeak=event.target.closest('[data-hsk-order-vocab-speak]');
@@ -11216,7 +11254,7 @@ if(window.HanziWriter){
         session.settings.showPinyin=!session.settings.showPinyin;
         saveFlashcardSettings(session.settings);
         persistFlashcardSession();
-        renderFlashcardOverlay();
+        rerenderFlashcardOverlayPreservingScroll();
         return;
       }
       const orderSpeakButton=event.target.closest('[data-hsk-order-speak]');
@@ -11240,7 +11278,7 @@ if(window.HanziWriter){
         }else item.selected=item.selected.filter(row=>row.id!==tokenId);
         item.feedback='';
         const correct=evaluateFlashcardSentenceOrdering(session,item);
-        persistFlashcardSession(); renderFlashcardOverlay();
+        persistFlashcardSession(); rerenderFlashcardOverlayPreservingScroll();
         if(correct) scheduleFlashcardOrderingAdvance(session);
         return;
       }
@@ -11249,7 +11287,7 @@ if(window.HanziWriter){
         const state=session.sentenceOrdering; const resetButton=event.target.closest('[data-hsk-order-reset]');
         const itemId=resetButton?.closest('[data-hsk-order-item-id]')?.dataset.hskOrderItemId || '';
         const item=state?.items?.find(row=>row.id===itemId);
-        if(item){ item.selected=[]; item.complete=false; item.feedback=''; item.rating=''; persistFlashcardSession(); renderFlashcardOverlay(); }
+        if(item){ item.selected=[]; item.complete=false; item.feedback=''; item.rating=''; persistFlashcardSession(); rerenderFlashcardOverlayPreservingScroll(); }
         return;
       }
       const orderRatingButton=event.target.closest('[data-hsk-order-rating]');
@@ -11257,7 +11295,7 @@ if(window.HanziWriter){
         const state=session.sentenceOrdering;
         const itemId=orderRatingButton.closest('[data-hsk-order-item-id]')?.dataset.hskOrderItemId || '';
         const item=state?.items?.find(row=>row.id===itemId); const rating=orderRatingButton.dataset.hskOrderRating;
-        if(item?.complete && ['easy','review','hard'].includes(rating)){ const previous=session.ratings[item.card.id]||''; item.rating=rating; session.ratings[item.card.id]=rating; saveFlashcardRatingResult(item.card,rating,previous); persistFlashcardSession(); renderFlashcardOverlay(); }
+        if(item?.complete && ['easy','review','hard'].includes(rating)){ const previous=session.ratings[item.card.id]||''; item.rating=rating; session.ratings[item.card.id]=rating; saveFlashcardRatingResult(item.card,rating,previous); persistFlashcardSession(); rerenderFlashcardOverlayPreservingScroll(); }
         return;
       }
       if(event.target.closest('[data-hsk-order-next]') && getCurrentFlashcardType(session) === 'sentence-ordering'){
@@ -11269,7 +11307,7 @@ if(window.HanziWriter){
       const radicalDisplayButton=event.target.closest('[data-hsk-radical-display-mode]');
       if(radicalDisplayButton && getCurrentFlashcardType(session)==='radical-sort'){
         const mode=radicalDisplayButton.dataset.hskRadicalDisplayMode;
-        if(['hanzi','pinyin','meaning'].includes(mode)){ session.settings.radicalSortDisplayMode=mode; saveFlashcardSettings(session.settings); persistFlashcardSession(); renderFlashcardOverlay(); }
+        if(['hanzi','pinyin','meaning'].includes(mode)){ session.settings.radicalSortDisplayMode=mode; saveFlashcardSettings(session.settings); persistFlashcardSession(); rerenderFlashcardOverlayPreservingScroll(); }
         return;
       }
       const radicalMeaningToggle=event.target.closest('[data-hsk-radical-meaning-toggle]');
@@ -11277,7 +11315,7 @@ if(window.HanziWriter){
         session.settings.radicalSortMeaningList=session.settings.radicalSortMeaningList !== true;
         saveFlashcardSettings(session.settings);
         persistFlashcardSession();
-        renderFlashcardOverlay();
+        rerenderFlashcardOverlayPreservingScroll();
         return;
       }
       const radicalItemButton=event.target.closest('[data-hsk-radical-item]');
@@ -11291,7 +11329,7 @@ if(window.HanziWriter){
         const matched=state.selectedItemId && state.selectedGroupId ? attemptFlashcardRadicalMatch(session,state.selectedItemId,state.selectedGroupId) : false;
         if(!state.selectedItemId || !state.selectedGroupId) state.feedback=state.selectedItemId?'Đã chọn chữ. Hãy chọn bộ thủ.':state.selectedGroupId?'Đã chọn bộ thủ. Hãy chọn chữ.':'';
         scheduleFlashcardRadicalPersist();
-        if(matched) renderFlashcardOverlay(); else patchFlashcardRadicalSelection(session);
+        if(matched) rerenderFlashcardOverlayPreservingScroll(); else patchFlashcardRadicalSelection(session);
         return;
       }
       const radicalGroupButton=event.target.closest('[data-hsk-radical-group]');
@@ -11304,7 +11342,7 @@ if(window.HanziWriter){
         const matched=state.selectedItemId && state.selectedGroupId ? attemptFlashcardRadicalMatch(session,state.selectedItemId,state.selectedGroupId) : false;
         if(!state.selectedItemId || !state.selectedGroupId) state.feedback=state.selectedGroupId?'Đã chọn bộ thủ. Hãy chọn chữ.':state.selectedItemId?'Đã chọn chữ. Hãy chọn bộ thủ.':'';
         scheduleFlashcardRadicalPersist();
-        if(matched) renderFlashcardOverlay(); else patchFlashcardRadicalSelection(session);
+        if(matched) rerenderFlashcardOverlayPreservingScroll(); else patchFlashcardRadicalSelection(session);
         return;
       }
       if(event.target.closest('[data-hsk-radical-next-round]') && getCurrentFlashcardType(session)==='radical-sort'){
@@ -11353,14 +11391,14 @@ if(window.HanziWriter){
         event.preventDefault();
         event.stopPropagation();
         session.strokeExpanded = true;
-        renderFlashcardOverlay();
+        rerenderFlashcardOverlayPreservingScroll();
         return;
       }
       if(event.target.closest('[data-hsk-flashcard-stroke-collapse]')){
         event.preventDefault();
         event.stopPropagation();
         session.strokeExpanded = false;
-        renderFlashcardOverlay();
+        rerenderFlashcardOverlayPreservingScroll();
         return;
       }
       if(event.target.closest('[data-hsk-flashcard-stroke-area]')){
@@ -11392,7 +11430,7 @@ if(window.HanziWriter){
         if(Date.now() < flashcardSuppressClickUntil) return;
         session.flipped = !session.flipped;
         if(!session.flipped) session.strokeExpanded = false;
-        renderFlashcardOverlay();
+        rerenderFlashcardOverlayPreservingScroll();
         if(session.flipped && session.settings.autoPlay){
           speakChar(session.cards[session.index]?.word || '');
         }
@@ -11405,7 +11443,7 @@ if(window.HanziWriter){
         const previousRating = session.ratings[activeCard.id] || '';
         session.ratings[activeCard.id] = rating;
         saveFlashcardRatingResult(activeCard, rating, previousRating);
-        renderFlashcardOverlay();
+        rerenderFlashcardOverlayPreservingScroll();
         return;
       }
       if(event.target.closest('[data-hsk-flashcard-prev]')){
@@ -11545,7 +11583,7 @@ if(window.HanziWriter){
         event.preventDefault();
         session.flipped = !session.flipped;
         if(!session.flipped) session.strokeExpanded = false;
-        renderFlashcardOverlay();
+        rerenderFlashcardOverlayPreservingScroll();
         return;
       }
       if(event.key === 'ArrowLeft'){
