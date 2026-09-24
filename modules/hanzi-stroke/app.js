@@ -2472,9 +2472,11 @@ if(window.HanziWriter){
     })).filter(example => example.hanzi);
     const topic = String(item?.topic || item?.title || 'Ngữ pháp').trim();
     const pattern = String(item?.grammar_syntax || item?.pattern || topic).trim();
+    const grammarId = ['hsk', 'new_hsk'].includes(sourceKey) ? String(item?.id || '').trim() : '';
     return {
       id: `curriculum:${sourceKey}:${level}:${lessonKey}:grammar:${String(item?.id || item?.item_order || topic)}`,
       cardType: 'grammar',
+      entityRef: grammarId ? { source: 'grammarv1', kind: 'grammar', grammarId } : null,
       word: pattern,
       pinyin: '',
       meaningVi: String(item?.grammar_explanation || item?.explanation || '').trim(),
@@ -2817,13 +2819,55 @@ if(window.HanziWriter){
     }
   }
 
-  function startFlashcardCurriculumSession(){
+  async function buildGrammarV1CurriculumSessionCards(cards){
+    if(!GrammarPracticeFlashcard || !GrammarPracticeAdapter){
+      throw new Error('GrammarV1 Flashcard bridge chua san sang.');
+    }
+    const expectedCardsPerGrammar = Number(GrammarPracticeFlashcard.DEFAULT_TRANSLATION_CARD_COUNT) + 1;
+    if(expectedCardsPerGrammar !== 11){
+      throw new Error('GrammarV1 Flashcard bridge khong con dung contract 11 the.');
+    }
+    const sessionCards = [];
+    for(const card of cards || []){
+      const ref = card?.entityRef;
+      const grammarId = ref?.source === 'grammarv1' && ref?.kind === 'grammar'
+        ? String(ref.grammarId || '').trim()
+        : '';
+      if(!grammarId){
+        throw new Error('Nguyen phap chua co lien ket GrammarV1 chinh xac.');
+      }
+      const runtimeGrammar = await loadGrammarPracticeById(grammarId);
+      if(!runtimeGrammar){
+        throw new Error(`Khong tai duoc GrammarV1 ${grammarId}.`);
+      }
+      const payload = GrammarPracticeFlashcard.buildPayload(GrammarPracticeAdapter, runtimeGrammar);
+      if(!payload || !Array.isArray(payload.cards) || payload.cards.length !== expectedCardsPerGrammar){
+        throw new Error(`Payload GrammarV1 ${grammarId} khong dung contract.`);
+      }
+      sessionCards.push(...payload.cards);
+    }
+    return sessionCards;
+  }
+
+  async function startFlashcardCurriculumSession(){
     const cards = getFlashcardCurriculumSelectedCards();
     const lesson = flashcardLibraryState.curriculumLesson;
     if(!lesson || !cards.length) return;
     const contentType = curriculumContentTypes(lesson).find(type => type.id === flashcardLibraryState.curriculumContentType);
-    const contentLabel = contentType?.label || 'Thẻ';
-    createFlashcardSessionFromCards(cards, `${lesson.title} · ${contentLabel}`, {
+    const contentLabel = contentType?.label || '\u0054\u0068\u1ebb';
+    let sessionCards = cards;
+    const grammarV1Source = ['hsk', 'new_hsk'].includes(flashcardLibraryState.curriculumSource);
+    if(contentType?.id === 'grammar' && grammarV1Source){
+      try{
+        flashcardLibraryState.curriculumError = '';
+        sessionCards = await buildGrammarV1CurriculumSessionCards(cards);
+      }catch(error){
+        flashcardLibraryState.curriculumError = error?.message || 'Khong tai duoc GrammarV1 cho phien the.';
+        await renderFlashcardLibrary();
+        return;
+      }
+    }
+    createFlashcardSessionFromCards(sessionCards, `${lesson.title} · ${contentLabel}`, {
       origin: 'curriculum-library',
       contextKey: `curriculum:${flashcardLibraryState.curriculumSource}:${flashcardLibraryState.curriculumLevel}:${lesson.key}:${flashcardLibraryState.curriculumContentType}`,
       contextLabel: `${lesson.title} · ${contentLabel}`
