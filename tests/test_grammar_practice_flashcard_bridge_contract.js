@@ -8,12 +8,14 @@ const runtimeBase = path.resolve(
 );
 const adapterPath = path.join(ROOT, 'modules/shared/grammar-practice.js');
 const bridgePath = path.join(ROOT, 'modules/shared/grammar-practice-flashcard.js');
+const viewPath = path.join(ROOT, 'modules/shared/grammar-practice-view.js');
 const appPath = path.join(ROOT, 'modules/hanzi-stroke/app.js');
 const htmlPath = path.join(ROOT, 'modules/hanzi-stroke/index.html');
 
 const Adapter = require(adapterPath);
 const Bridge = require(bridgePath);
 const source = fs.readFileSync(bridgePath, 'utf8');
+const viewSource = fs.readFileSync(viewPath, 'utf8');
 const app = fs.readFileSync(appPath, 'utf8');
 const html = fs.readFileSync(htmlPath, 'utf8');
 
@@ -87,7 +89,7 @@ for(const trackRow of index.tracks){
   assert.deepStrictEqual(captured.cards, payload.cards);
   assert.strictEqual(captured.title, payload.title);
   assert.deepStrictEqual(captured.options, {
-    origin: 'external',
+    origin: payload.origin,
     contextKey: payload.contextKey,
     contextLabel: payload.contextLabel,
     returnUrl: ''
@@ -121,9 +123,11 @@ const g32Begin = app.indexOf('/* G3.2 PRACTICE UI BEGIN */');
 const g32End = app.indexOf('/* G3.2 PRACTICE UI END */');
 assert(g32Begin >= 0 && g32End > g32Begin);
 const g32Block = app.slice(g32Begin, g32End);
-assert(!/flashcard/i.test(g32Block), 'G3.2 block must retain its no-Flashcard contract');
-assert(g32Block.includes('data-grammar-practice-study-cards'));
-assert(g32Block.includes('launchGrammarPracticeCards(session.grammar)'));
+assert(!/flashcard/i.test(g32Block), 'G3.2 block must retain its no-Flashcard-engine contract');
+assert(g32Block.includes('GrammarPracticeView.render'));
+assert(g32Block.includes('onStudyCards: launchGrammarPracticeCards'));
+assert(viewSource.includes('data-grammar-practice-study-cards'));
+assert(viewSource.includes('onStudyCards(session.grammar)'));
 
 assert(app.includes('function createFlashcardSessionFromCards(cards, title, options = {})'));
 assert(app.includes("origin: options.origin || FLASHCARD_SESSION_DEFAULTS.origin"));
@@ -134,18 +138,20 @@ assert(app.includes("returnUrl: String(options.returnUrl"));
 const adapterScript = html.indexOf('../shared/grammar-practice.js');
 const runtimeScript = html.indexOf('../shared/grammar-practice-runtime.js');
 const uiScript = html.indexOf('../shared/grammar-practice-ui.js');
+const viewScript = html.indexOf('../shared/grammar-practice-view.js');
 const flashScript = html.indexOf('../shared/grammar-practice-flashcard.js');
 const appScript = html.indexOf('app.js?');
 assert(
   adapterScript >= 0 &&
   runtimeScript > adapterScript &&
   uiScript > runtimeScript &&
-  flashScript > uiScript &&
+  viewScript > uiScript &&
+  flashScript > viewScript &&
   appScript > flashScript,
-  'GrammarPractice Flashcard script order mismatch'
+  'GrammarPractice Flashcard/shared presenter script order mismatch'
 );
 
 console.log(
   `PASS GrammarPractice Flashcard bridge: tracks=${tracksChecked} launches=${launchChecks} ` +
-  `mixedCards=11 translations=10 zhVi=5 viZh=5 existingEngineReuse=PASS noEngineFork=PASS noNewStorage=PASS`
+  `mixedCards=11 translations=10 zhVi=5 viZh=5 sharedPresenter=PASS existingEngineReuse=PASS noEngineFork=PASS noNewStorage=PASS`
 );

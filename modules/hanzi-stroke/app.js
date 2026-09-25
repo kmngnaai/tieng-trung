@@ -5476,6 +5476,7 @@ if(window.HanziWriter){
   const GrammarPracticeAdapter = window.TiengTrungGrammarPractice;
   const GrammarPracticeRuntime = window.TiengTrungGrammarPracticeRuntime;
   const GrammarPracticeUi = window.TiengTrungGrammarPracticeUi;
+  const GrammarPracticeView = window.TiengTrungGrammarPracticeView;
   const GrammarPracticeFlashcard = window.TiengTrungGrammarPracticeFlashcard;
   const GRAMMAR_PRACTICE_RUNTIME_BASE = '../GrammarV1/runtime/exercises/';
   const grammarPracticeLoader = (
@@ -7475,11 +7476,6 @@ if(window.HanziWriter){
   /* G3.3 FLASHCARD BRIDGE END */
 
   /* G3.2 PRACTICE UI BEGIN */
-  const GRAMMAR_PRACTICE_SKILL_META = Object.freeze({
-    mcq: { label: 'Trắc nghiệm', note: 'Chọn một đáp án.' },
-    translate_zh_vi: { label: 'Trung → Việt', note: 'Tự dịch rồi xem đáp án tham khảo.' },
-    translate_vi_zh: { label: 'Việt → Trung', note: 'Tự dịch rồi xem đáp án tham khảo.' }
-  });
   let grammarPracticeUiLoadId = 0;
 
   function scrollGrammarPracticeTarget(host, selector, block = 'nearest'){
@@ -7499,169 +7495,21 @@ if(window.HanziWriter){
   }
 
   function renderGrammarPracticeUi(host, session){
-    if(!host || !GrammarPracticeUi) return;
-    const view = GrammarPracticeUi.getView(session);
-    const exercise = view.exercise;
-    if(!exercise) return;
-
-    const result = view.result;
-    const isMcq = exercise.type === 'mcq';
-    const skillButtons = GrammarPracticeUi.SKILLS.map(skill => {
-      const meta = GRAMMAR_PRACTICE_SKILL_META[skill];
-      return `
-        <button
-          type="button"
-          class="hsk-grammar-practice__skill ${skill === view.skill ? 'is-active' : ''}"
-          data-grammar-practice-skill="${escapeHtml(skill)}"
-          aria-pressed="${skill === view.skill}"
-        >${escapeHtml(meta.label)}</button>
-      `;
-    }).join('');
-
-    let bodyHtml = '';
-    if(isMcq){
-      const options = Array.isArray(view.presentationOptions) && view.presentationOptions.length
-        ? view.presentationOptions
-        : (Array.isArray(exercise.options)
-          ? exercise.options.map(option => ({ ...option, displayId: String(option?.id || '').trim() }))
-          : []);
-      bodyHtml = `
-        <div class="hsk-grammar-practice__options">
-          ${options.map(option => {
-            const optionId = String(option?.id || '').trim();
-            const displayId = String(option?.displayId || optionId).trim();
-            const classes = ['hsk-grammar-practice__option'];
-            if(result?.expected === optionId) classes.push('is-correct');
-            if(result && !result.correct && result.response === optionId) classes.push('is-wrong');
-            return `
-              <button
-                type="button"
-                class="${classes.join(' ')}"
-                data-grammar-practice-option="${escapeHtml(optionId)}"
-                ${result ? 'disabled' : ''}
-              >
-                <span class="hsk-grammar-practice__option-id">${escapeHtml(displayId)}</span>
-                <span>${formatGrammarPracticeText(option?.text || '')}</span>
-              </button>
-            `;
-          }).join('')}
-        </div>
-        ${result ? `
-          <div class="hsk-grammar-practice__feedback" aria-live="polite">
-            <strong>${result.correct ? 'Chính xác' : 'Chưa đúng'}</strong>
-            ${result.explanation ? `<p>${escapeHtml(result.explanation)}</p>` : ''}
-          </div>
-        ` : ''}
-      `;
-    }else{
-      bodyHtml = `
-        <div class="hsk-grammar-practice__translation">
-          ${result ? `
-            <div class="hsk-grammar-practice__feedback" aria-live="polite">
-              <strong>Tự đối chiếu — không chấm đúng/sai</strong>
-              <div class="hsk-grammar-practice__review-block hsk-grammar-practice__review-block--user" data-grammar-practice-user-answer>
-                <span class="hsk-grammar-practice__review-label">Bài của bạn</span>
-                <p class="hsk-grammar-practice__review-answer">${result.response ? formatGrammarPracticeText(result.response) : '<span class="hsk-grammar-practice__review-empty">Chưa nhập câu trả lời.</span>'}</p>
-              </div>
-              <div class="hsk-grammar-practice__review-block hsk-grammar-practice__review-block--reference" data-grammar-practice-reference-answer>
-                <span class="hsk-grammar-practice__review-label">Đáp án tham khảo</span>
-                <p class="hsk-grammar-practice__review-answer">${formatGrammarPracticeText(result.referenceAnswer || '')}</p>
-                ${result.pinyin ? `<span class="hsk-grammar-practice__review-pinyin">${escapeHtml(formatPinyin(result.pinyin))}</span>` : ''}
-              </div>
-            </div>
-          ` : `
-            <textarea
-              data-grammar-practice-input
-              aria-label="Nhập bản dịch của bạn"
-              placeholder="Nhập câu trả lời của bạn trước khi xem đáp án tham khảo"
-            ></textarea>
-            <button type="button" class="hsk-grammar-practice__action hsk-grammar-practice__action--primary" data-grammar-practice-reveal>
-              Xem đáp án tham khảo
-            </button>
-            <span class="hsk-grammar-practice__self-review">Phần dịch dùng tự đối chiếu, hệ thống không chấm đúng/sai.</span>
-          `}
-        </div>
-      `;
-    }
-
-    host.innerHTML = `
-      <div class="hsk-grammar-practice__head">
-        <div>
-          <h4>Luyện tập</h4>
-          <p>${escapeHtml(GRAMMAR_PRACTICE_SKILL_META[view.skill].note)}</p>
-        </div>
-        <div class="hsk-grammar-practice__head-tools">
-          <button type="button" class="hsk-grammar-practice__action" data-grammar-practice-study-cards>Ôn thẻ</button>
-          <button
-            type="button"
-            class="hsk-grammar-practice__action hsk-grammar-practice__shuffle"
-            data-grammar-practice-shuffle
-            aria-label="Đổi câu ngẫu nhiên"
-            title="Đổi câu ngẫu nhiên"
-            ${view.canShuffle ? '' : 'disabled'}
-          >🔀</button>
-          <span class="hsk-grammar-practice__progress">Câu ${view.index + 1}/${view.total}</span>
-        </div>
-      </div>
-      <div class="hsk-grammar-practice__skills" role="group" aria-label="Chọn dạng bài">
-        ${skillButtons}
-      </div>
-      <div class="hsk-grammar-practice__card">
-        <p class="hsk-grammar-practice__prompt">${formatGrammarPracticeText(exercise.prompt || '')}</p>
-        ${bodyHtml}
-        ${result ? `
-          <div class="hsk-grammar-practice__actions">
-            <button type="button" class="hsk-grammar-practice__action hsk-grammar-practice__action--primary" data-grammar-practice-next>
-              Câu tiếp
-            </button>
-          </div>
-        ` : ''}
-      </div>
-    `;
-
-    host.querySelector('[data-grammar-practice-study-cards]')?.addEventListener('click', () => {
-      launchGrammarPracticeCards(session.grammar);
-    });
-
-    host.querySelector('[data-grammar-practice-shuffle]')?.addEventListener('click', () => {
-      GrammarPracticeUi.shuffleCurrent(session);
-      renderGrammarPracticeUi(host, session);
-      scrollGrammarPracticeTarget(host, '.hsk-grammar-practice__prompt', 'nearest');
-    });
-
-    host.querySelectorAll('[data-grammar-practice-skill]').forEach(button => {
-      button.addEventListener('click', () => {
-        GrammarPracticeUi.selectSkill(session, button.dataset.grammarPracticeSkill);
-        renderGrammarPracticeUi(host, session);
-      });
-    });
-
-    host.querySelectorAll('[data-grammar-practice-option]').forEach(button => {
-      button.addEventListener('click', () => {
-        GrammarPracticeUi.submit(session, button.dataset.grammarPracticeOption);
-        renderGrammarPracticeUi(host, session);
-        scrollGrammarPracticeTarget(host, '.hsk-grammar-practice__feedback', 'center');
-      });
-    });
-
-    host.querySelector('[data-grammar-practice-reveal]')?.addEventListener('click', () => {
-      const input = host.querySelector('[data-grammar-practice-input]');
-      GrammarPracticeUi.submit(session, input?.value || '');
-      renderGrammarPracticeUi(host, session);
-      scrollGrammarPracticeTarget(host, '.hsk-grammar-practice__feedback', 'center');
-    });
-
-    host.querySelector('[data-grammar-practice-next]')?.addEventListener('click', () => {
-      GrammarPracticeUi.next(session);
-      renderGrammarPracticeUi(host, session);
-      scrollGrammarPracticeTarget(host, '.hsk-grammar-practice__prompt', 'nearest');
+    if(!host || !GrammarPracticeView || !GrammarPracticeUi) return;
+    GrammarPracticeView.render(host, session, {
+      ui: GrammarPracticeUi,
+      escapeHtml,
+      formatPinyin,
+      formatText: formatGrammarPracticeText,
+      onStudyCards: launchGrammarPracticeCards,
+      scrollTarget: scrollGrammarPracticeTarget
     });
   }
 
   async function mountGrammarPracticeUi(grammar, body){
     const grammarId = String(grammar?.id || '').trim();
     const requestId = ++grammarPracticeUiLoadId;
-    if(!grammarId || !body || !GrammarPracticeUi || !GrammarPracticeAdapter) return;
+    if(!grammarId || !body || !GrammarPracticeView || !GrammarPracticeUi || !GrammarPracticeAdapter) return;
 
     const runtimeGrammar = await loadGrammarPracticeById(grammarId);
     if(requestId !== grammarPracticeUiLoadId || body.dataset.grammarDetailId !== grammarId) return;

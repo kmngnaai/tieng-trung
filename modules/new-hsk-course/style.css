@@ -897,3 +897,19 @@ html.nhsk-lightbox-open{overflow:hidden}
 /* LS Lite V1 V4: preserve order badge palette; state is a subtle outer ring only */
 .nhsk-vocab-item__order[data-learning-state="learning"]{outline:1.5px solid rgba(217,119,6,.72);outline-offset:1px}
 .nhsk-vocab-item__order[data-learning-state="learned"]{outline:1.5px solid rgba(22,131,92,.72);outline-offset:1px}
+
+/* G5.3 Patch B/R2B · popup + exact lesson-native Practice placement only. */
+.nhsk-lesson-grammar-practice{display:grid;gap:8px;margin-top:12px;min-width:0;max-width:100%;box-sizing:border-box}
+.nhsk-grammar-practice-toggle{justify-self:end;min-height:38px;border:1px solid rgba(139,116,184,.28);border-radius:999px;background:#f4f0fb;color:#67558f;padding:0 14px;font:850 12px/1 var(--ui-font-sans);cursor:pointer;transition:border-color .16s ease,background .16s ease,box-shadow .16s ease}
+.nhsk-grammar-practice-toggle:hover,.nhsk-grammar-practice-toggle:focus-visible{border-color:rgba(122,95,175,.52);background:#eee8f8;box-shadow:0 3px 10px rgba(96,72,145,.10);outline:none}
+.nhsk-grammar-practice-toggle[aria-expanded="true"]{border-color:rgba(122,95,175,.45);background:#e9e1f6;color:#58457e}
+.nhsk-grammar-practice-inline,.nhsk-grammar-practice-host{min-width:0;max-width:100%;box-sizing:border-box}
+.nhsk-grammar-practice-inline{border:1px solid rgba(139,116,184,.20);border-radius:18px;background:#fff;padding:12px;box-shadow:0 7px 20px rgba(73,55,105,.055)}
+.nhsk-hsk-popup-body .nhsk-grammar-practice-host{margin:0}
+.nhsk-grammar-practice-status{margin:0;color:#71677c;font-size:12px;font-weight:750;line-height:1.5;overflow-wrap:anywhere}
+@media(max-width:640px){
+  .nhsk-lesson-grammar-practice{gap:7px;margin-top:10px}
+  .nhsk-grammar-practice-toggle{justify-self:stretch;width:100%;min-height:40px}
+  .nhsk-grammar-practice-inline{padding:9px;border-radius:15px}
+  .nhsk-grammar-practice-inline,.nhsk-grammar-practice-host{overflow-wrap:anywhere}
+}

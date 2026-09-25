@@ -38,13 +38,14 @@ function main(){
   const adapter = require(path.join(repo, 'modules/shared/grammar-practice.js'));
   const ui = require(path.join(repo, 'modules/shared/grammar-practice-ui.js'));
   const app = read(path.join(repo, 'modules/hanzi-stroke/app.js'));
+  const view = read(path.join(repo, 'modules/shared/grammar-practice-view.js'));
   const css = read(path.join(repo, 'modules/shared/grammar-practice-ui.css'));
   const uiSource = read(path.join(repo, 'modules/shared/grammar-practice-ui.js'));
 
   const marker = 'Tự đối chiếu — không chấm đúng/sai';
-  const markerAt = app.indexOf(marker);
-  assert(markerAt >= 0, 'translation self-review marker missing');
-  const translationRender = app.slice(Math.max(0, markerAt - 1000), Math.min(app.length, markerAt + 3800));
+  const markerAt = view.indexOf(marker);
+  assert(markerAt >= 0, 'translation self-review marker missing from shared presenter');
+  const translationRender = view.slice(Math.max(0, markerAt - 1000), Math.min(view.length, markerAt + 3800));
 
   const grammar = sampleGrammar();
   const zhvi = ui.createSession(adapter, grammar, { skill: 'translate_zh_vi' });
@@ -62,9 +63,9 @@ function main(){
   }
 
   check('T01', 'submitted response shown as Bài của bạn',
-    app.includes('Bài của bạn')
-      && app.includes('data-grammar-practice-user-answer')
-      && /formatGrammarPracticeText\(result\.response\)/.test(translationRender),
+    view.includes('Bài của bạn')
+      && view.includes('data-grammar-practice-user-answer')
+      && /formatText\(result\.response\)/.test(translationRender),
     { adapterResponse: zhviResult.response });
 
   const userRegionAt = translationRender.indexOf('data-grammar-practice-user-answer');
@@ -72,8 +73,8 @@ function main(){
   check('T02', 'user answer and reference answer are separate ordered regions',
     userRegionAt >= 0
       && referenceRegionAt > userRegionAt
-      && app.includes('Đáp án tham khảo')
-      && /formatGrammarPracticeText\(result\.referenceAnswer/.test(translationRender),
+      && view.includes('Đáp án tham khảo')
+      && /formatText\(result\.referenceAnswer/.test(translationRender),
     { userRegionAt, referenceRegionAt });
 
   check('T03', 'pinyin remains rendered',
@@ -95,7 +96,10 @@ function main(){
       && vizhResult.correct === null
       && !uiSource.includes('localStorage')
       && !uiSource.includes('sessionStorage')
-      && !/indexedDB/i.test(uiSource));
+      && !/indexedDB/i.test(uiSource)
+      && !view.includes('localStorage')
+      && !view.includes('sessionStorage')
+      && !/indexedDB/i.test(view));
 
   check('T06', 'shared translation result presentation covers both directions',
     zhviResult.direction === 'zh-vi'
@@ -104,13 +108,14 @@ function main(){
       && translationRender.includes('data-grammar-practice-reference-answer'));
 
   check('T07', 'user/reference Chinese text keeps repository Han wrapper',
-    /formatGrammarPracticeText\(result\.response\)/.test(translationRender)
-      && /formatGrammarPracticeText\(result\.referenceAnswer/.test(translationRender)
+    /formatText\(result\.response\)/.test(translationRender)
+      && /formatText\(result\.referenceAnswer/.test(translationRender)
       && app.includes('lang="zh-Hans"'));
 
   check('T08', 'G4.1 feedback/autoscroll contract remains intact',
     translationRender.includes('hsk-grammar-practice__feedback')
-      && app.includes("scrollGrammarPracticeTarget(host, '.hsk-grammar-practice__feedback', 'center')"));
+      && app.includes('scrollTarget: scrollGrammarPracticeTarget')
+      && view.includes("scroll('.hsk-grammar-practice__feedback', 'center')"));
 
   const reviewCssAt = css.indexOf('.hsk-grammar-practice__review-block');
   const reviewCss = reviewCssAt >= 0 ? css.slice(reviewCssAt, reviewCssAt + 2200) : '';

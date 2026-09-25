@@ -4,11 +4,13 @@ const { execFileSync } = require('child_process');
 
 const repo = path.resolve(process.argv[2] || process.cwd());
 const uiPath = path.join(repo, 'modules/shared/grammar-practice-ui.js');
+const viewPath = path.join(repo, 'modules/shared/grammar-practice-view.js');
 const appPath = path.join(repo, 'modules/hanzi-stroke/app.js');
 const cssPath = path.join(repo, 'modules/shared/grammar-practice-ui.css');
 const fontPath = path.join(repo, 'modules/shared/font-han-serif.css');
 const Ui = require(uiPath);
 const uiSource = fs.readFileSync(uiPath, 'utf8');
+const viewSource = fs.readFileSync(viewPath, 'utf8');
 const appSource = fs.readFileSync(appPath, 'utf8');
 const cssSource = fs.readFileSync(cssPath, 'utf8');
 const fontSource = fs.readFileSync(fontPath, 'utf8');
@@ -136,7 +138,7 @@ function assert(cond, message){ if(!cond) throw new Error(message); }
     Ui.resetAnswer(session);
   }
   const appAllowsAllSkills = !uiSource.includes("session.skill !== 'mcq'") &&
-    appSource.includes("${view.canShuffle ? '' : 'disabled'}");
+    viewSource.includes("${view.canShuffle ? '' : 'disabled'}");
   record('S01',ok && appAllowsAllSkills,{...evidence,appAllowsAllSkills});
 }
 
@@ -188,9 +190,9 @@ const correctDisplayLabels=[];
     if(!graded.correct || graded.response !== view.exercise.answer) allCorrect=false;
     if(i<9) Ui.next(session);
   }
-  const appMapsDisplayToCanonical = appSource.includes("const displayId = String(option?.displayId || optionId).trim();") &&
-    appSource.includes('data-grammar-practice-option="${escapeHtml(optionId)}"') &&
-    appSource.includes('${escapeHtml(displayId)}</span>');
+  const appMapsDisplayToCanonical = viewSource.includes("const displayId = String(option?.displayId || optionId).trim();") &&
+    viewSource.includes('data-grammar-practice-option="${escapeHtml(optionId)}"') &&
+    viewSource.includes('${escapeHtml(displayId)}</span>');
   record('S04',allCorrect && Boolean(mappingExample) && appMapsDisplayToCanonical,{mappingExample,appMapsDisplayToCanonical,mappedDisplayCount});
 }
 
@@ -263,8 +265,9 @@ const correctDisplayLabels=[];
 
 // Manual mobile UX contract: after re-render, feedback/reference and next prompt are brought into view without changing grading semantics.
 const scrollUxPass = appSource.includes("function scrollGrammarPracticeTarget(host, selector, block = 'nearest')") &&
-  appSource.includes("scrollGrammarPracticeTarget(host, '.hsk-grammar-practice__feedback', 'center')") &&
-  appSource.includes("scrollGrammarPracticeTarget(host, '.hsk-grammar-practice__prompt', 'nearest')") &&
+  appSource.includes('scrollTarget: scrollGrammarPracticeTarget') &&
+  viewSource.includes("scroll('.hsk-grammar-practice__feedback', 'center')") &&
+  viewSource.includes("scroll('.hsk-grammar-practice__prompt', 'nearest')") &&
   appSource.includes("behavior: 'smooth'") &&
   appSource.includes("target.scrollIntoView({ behavior: 'smooth', block })");
 
@@ -280,7 +283,10 @@ const themePass = cssSource.includes('--grammar-practice-accent:#9b86c8') &&
 const boundaryPass =
   !uiSource.includes('buildExternalFlashcardPayload') &&
   !uiSource.includes('localStorage') &&
-  !uiSource.includes('sessionStorage');
+  !uiSource.includes('sessionStorage') &&
+  !viewSource.includes('localStorage') &&
+  !viewSource.includes('sessionStorage') &&
+  !viewSource.includes('indexedDB');
 
 // G4.1 R2B typography alignment: reuse the repository Han font contract only.
 // Mixed Vietnamese/Chinese strings keep the UI font for Vietnamese and wrap only
@@ -288,9 +294,10 @@ const boundaryPass =
 const fontAlignmentPass =
   appSource.includes('function formatGrammarPracticeText(value){') &&
   appSource.includes("'<span lang=\"zh-Hans\">$1</span>'") &&
-  appSource.includes("${formatGrammarPracticeText(option?.text || '')}") &&
-  appSource.includes("${formatGrammarPracticeText(result.referenceAnswer || '')}") &&
-  appSource.includes("${formatGrammarPracticeText(exercise.prompt || '')}") &&
+  appSource.includes('formatText: formatGrammarPracticeText') &&
+  viewSource.includes("${formatText(option?.text || '')}") &&
+  viewSource.includes("${formatText(result.referenceAnswer || '')}") &&
+  viewSource.includes("${formatText(exercise.prompt || '')}") &&
   fontSource.includes('--ui-font-han-serif') &&
   fontSource.includes('[lang="zh-Hans"]') &&
   !/font-family\s*:/i.test(cssSource);

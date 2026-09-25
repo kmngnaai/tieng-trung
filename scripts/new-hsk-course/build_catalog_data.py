@@ -215,6 +215,22 @@ def match_lesson_units(items: list[dict], units: list[dict]) -> list[dict | None
     return matches
 
 
+def exact_lesson_practice_identity(item: dict, units: list[dict]) -> dict | None:
+    overlaps = [example_overlap_count(item, unit) for unit in units]
+    best = max(overlaps, default=0)
+    winners = [index for index, score in enumerate(overlaps) if score == best and score > 0]
+    if len(winners) != 1:
+        return None
+    source_ref = str(units[winners[0]].get("ref") or "").strip()
+    if not source_ref:
+        return None
+    return {
+        "sourceRef": source_ref,
+        "provenance": "unique-exact-example-overlap",
+        "overlapCount": best,
+    }
+
+
 def merge_grammar_examples(item: dict, unit: dict | None) -> dict:
     result = dict(item)
     base_examples = [dict(row) for row in item.get("examples", [])]
@@ -256,7 +272,12 @@ def build_grammar(level: int) -> list[dict]:
     for chapter, chapter_items in by_chapter.items():
         units = lesson_grammar_units(level, chapter)
         matches = match_lesson_units(chapter_items, units)
-        result.extend(merge_grammar_examples(item, unit) for item, unit in zip(chapter_items, matches))
+        for item, unit in zip(chapter_items, matches):
+            merged = merge_grammar_examples(item, unit)
+            practice_identity = exact_lesson_practice_identity(item, units)
+            if practice_identity:
+                merged["lessonPracticeIdentity"] = practice_identity
+            result.append(merged)
     return result
 
 

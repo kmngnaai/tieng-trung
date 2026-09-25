@@ -8,13 +8,16 @@ const runtimeBase = path.resolve(
 );
 const adapterPath = path.join(ROOT, 'modules/shared/grammar-practice.js');
 const uiPath = path.join(ROOT, 'modules/shared/grammar-practice-ui.js');
+const viewPath = path.join(ROOT, 'modules/shared/grammar-practice-view.js');
 const cssPath = path.join(ROOT, 'modules/shared/grammar-practice-ui.css');
 const appPath = path.join(ROOT, 'modules/hanzi-stroke/app.js');
 const htmlPath = path.join(ROOT, 'modules/hanzi-stroke/index.html');
 
 const Adapter = require(adapterPath);
 const Ui = require(uiPath);
+const View = require(viewPath);
 const uiSource = fs.readFileSync(uiPath, 'utf8');
+const viewSource = fs.readFileSync(viewPath, 'utf8');
 const css = fs.readFileSync(cssPath, 'utf8');
 const app = fs.readFileSync(appPath, 'utf8');
 const html = fs.readFileSync(htmlPath, 'utf8');
@@ -22,6 +25,9 @@ const html = fs.readFileSync(htmlPath, 'utf8');
 assert.strictEqual(Ui.VERSION, 'grammar-practice-ui-v1');
 assert.deepStrictEqual(Ui.SKILLS, ['mcq', 'translate_zh_vi', 'translate_vi_zh']);
 assert(Object.isFrozen(Ui));
+assert.strictEqual(View.VERSION, 'grammar-practice-view-v1');
+assert(Object.isFrozen(View));
+assert(Object.isFrozen(View.SKILL_META));
 
 [
   'fetch(',
@@ -36,6 +42,18 @@ assert(Object.isFrozen(Ui));
   'toTranslationFlashcards'
 ].forEach(token => {
   assert(!uiSource.includes(token), `UI controller side-effect token: ${token}`);
+});
+
+[
+  'fetch(',
+  'localStorage',
+  'sessionStorage',
+  'indexedDB',
+  'document.',
+  'window.location',
+  'location.href'
+].forEach(token => {
+  assert(!viewSource.includes(token), `Shared Practice presenter side-effect token: ${token}`);
 });
 
 const index = JSON.parse(fs.readFileSync(path.join(runtimeBase, 'index.json'), 'utf8'));
@@ -104,16 +122,33 @@ assert(begin >= 0 && end > begin, 'G3.2 app block missing');
 const block = app.slice(begin, end);
 
 assert(block.includes('GrammarPracticeUi.createSession'));
-assert(block.includes('GrammarPracticeUi.submit'));
-assert(block.includes('GrammarPracticeUi.selectSkill'));
-assert(block.includes('GrammarPracticeUi.next'));
+assert(block.includes('GrammarPracticeView.render'));
 assert(block.includes('data-grammar-practice'));
-assert(block.includes('Tự đối chiếu'));
-assert(block.includes('không chấm đúng/sai'));
-assert(!/flashcard/i.test(block), 'G3.2 block must not add Flashcard UI');
+assert(block.includes('onStudyCards: launchGrammarPracticeCards'));
+assert(!block.includes('GrammarPracticeUi.submit'), 'Hanzi app must delegate submit interaction to shared presenter');
+assert(!block.includes('GrammarPracticeUi.selectSkill'), 'Hanzi app must delegate skill interaction to shared presenter');
+assert(!block.includes('GrammarPracticeUi.next'), 'Hanzi app must delegate next interaction to shared presenter');
+assert(!block.includes('GrammarPracticeUi.shuffleCurrent'), 'Hanzi app must delegate shuffle interaction to shared presenter');
+assert(!block.includes('Tự đối chiếu'), 'presentation text must live in shared presenter');
+assert(!/flashcard/i.test(block), 'G3.2 block must not add Flashcard engine UI');
 assert(!block.includes('localStorage'));
 assert(!block.includes('sessionStorage'));
 assert(!block.includes('indexedDB'));
+
+[
+  'ui.submit',
+  'ui.selectSkill',
+  'ui.next',
+  'ui.shuffleCurrent',
+  'data-grammar-practice-study-cards',
+  'data-grammar-practice-option',
+  'data-grammar-practice-reveal',
+  'data-grammar-practice-next',
+  'Tự đối chiếu — không chấm đúng/sai',
+  'Bài của bạn',
+  'Đáp án tham khảo'
+].forEach(token => assert(viewSource.includes(token), `Shared presenter missing ${token}`));
+assert(!/flashcard/i.test(viewSource), 'Shared presenter must not own the Flashcard engine');
 
 assert(app.includes('void mountGrammarPracticeUi(grammar, body);'));
 assert(app.includes('body.dataset.grammarDetailId = grammar.id;'));
@@ -121,8 +156,16 @@ assert(app.includes('body.dataset.grammarDetailId = grammar.id;'));
 const adapterScript = html.indexOf('../shared/grammar-practice.js');
 const runtimeScript = html.indexOf('../shared/grammar-practice-runtime.js');
 const uiScript = html.indexOf('../shared/grammar-practice-ui.js');
+const viewScript = html.indexOf('../shared/grammar-practice-view.js');
 const appScript = html.indexOf('app.js?');
-assert(adapterScript >= 0 && runtimeScript > adapterScript && uiScript > runtimeScript && appScript > uiScript);
+assert(
+  adapterScript >= 0 &&
+  runtimeScript > adapterScript &&
+  uiScript > runtimeScript &&
+  viewScript > uiScript &&
+  appScript > viewScript,
+  'GrammarPractice shared presenter script order mismatch'
+);
 assert(html.includes('../shared/grammar-practice-ui.css'));
 
 [
@@ -135,5 +178,5 @@ assert(html.includes('../shared/grammar-practice-ui.css'));
 
 console.log(
   `PASS GrammarPractice UI: tracks=${tracksChecked} mcqAuto=${mcqAutoChecks} ` +
-  `translationSelfReview=${translationSelfReviewChecks} noPersistence=PASS noFlashcard=PASS`
+  `translationSelfReview=${translationSelfReviewChecks} sharedPresenter=PASS noPersistence=PASS noFlashcard=PASS`
 );

@@ -5,6 +5,12 @@
   const SETTINGS_VERSION = 10;
   const Matching = window.TiengTrungMatching;
   const LearningState = window.TiengTrungLearningState;
+  const GrammarPracticeAdapter = window.TiengTrungGrammarPractice;
+  const GrammarPracticeRuntime = window.TiengTrungGrammarPracticeRuntime;
+  const GrammarPracticeUi = window.TiengTrungGrammarPracticeUi;
+  const GrammarPracticeView = window.TiengTrungGrammarPracticeView;
+  const GrammarPracticeFlashcard = window.TiengTrungGrammarPracticeFlashcard;
+  const GRAMMAR_PRACTICE_RUNTIME_BASE = '../GrammarV1/runtime/exercises/';
   const LAST_LOCATION_KEY = 'tiengTrung.newHskCourse.lastLocation.v1';
   const PROGRESS_KEY = 'tiengTrung.newHskCourse.progress.v1';
   const SUMMARY_PROGRESS_KEY = 'tiengTrung.newHskCourse.summaryProgress.v1';
@@ -92,6 +98,9 @@
   let hsk1SentenceIndexPromise = null;
   let learningTaxonomy = null;
   let learningTaxonomyPromise = null;
+  let lessonPracticeGrammarId = '';
+  let grammarPracticeLoadId = 0;
+  let pendingGrammarPracticeRestore = null;
 
   Object.assign(state, readSettings());
   if (params.get('view')) state.view = ['book', 'grouped', 'practice'].includes(params.get('view')) ? params.get('view') : 'book';
@@ -108,6 +117,50 @@
   const sortByOrder = (items = []) => [...items].sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
   const entityMap = (items = []) => new Map(items.map(item => [item.id, item]));
 
+  const grammarPracticeLoader = (
+    GrammarPracticeAdapter
+    && GrammarPracticeRuntime
+    && typeof GrammarPracticeRuntime.createLoader === 'function'
+  ) ? GrammarPracticeRuntime.createLoader({
+    adapter: GrammarPracticeAdapter,
+    baseUrl: GRAMMAR_PRACTICE_RUNTIME_BASE,
+    fetchJson: async path => {
+      const response = await fetch(path);
+      if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+      return response.json();
+    }
+  }) : null;
+
+  async function loadGrammarPracticeById(grammarId) {
+    const target = String(grammarId || '').trim();
+    if (!target || !grammarPracticeLoader) return null;
+    try {
+      return await grammarPracticeLoader.loadGrammar(target);
+    } catch (error) {
+      console.warn(`Cannot load GrammarV1 runtime for ${target}:`, error);
+      return null;
+    }
+  }
+
+  function formatGrammarPracticeText(value) {
+    return escapeHtml(value || '').replace(
+      /([\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]+[\u3000-\u303F\uFF01-\uFF65]*)/g,
+      '<span lang="zh-Hans">$1</span>'
+    );
+  }
+
+  function formatGrammarPracticePinyin(value) {
+    return String(value || '').trim();
+  }
+
+  function scrollGrammarPracticeTarget(host, selector, block = 'nearest') {
+    if (!host || !selector) return;
+    window.requestAnimationFrame(() => {
+      const target = host.querySelector(selector);
+      if (!target || typeof target.scrollIntoView !== 'function') return;
+      target.scrollIntoView({ behavior: 'smooth', block });
+    });
+  }
 
   function normalizeLearningHanzi(value){
     return String(value || '').trim();
@@ -696,6 +749,9 @@
   async function openCatalog(mode, options = {}) {
     state.catalog = ['topics', 'grammar'].includes(mode) ? mode : '';
     state.grammarPlusId = '';
+    lessonPracticeGrammarId = '';
+    grammarPracticeLoadId += 1;
+    pendingGrammarPracticeRestore = null;
     state.topicId = state.catalog === 'topics' ? String(options.topicId || '') : '';
     state.grammarId = state.catalog === 'grammar' ? String(options.grammarId || '') : '';
     state.focusWord = '';
@@ -715,6 +771,9 @@
     if (!first) return;
     state.topicId = '';
     state.grammarId = '';
+    lessonPracticeGrammarId = '';
+    grammarPracticeLoadId += 1;
+    pendingGrammarPracticeRestore = null;
     state.catalogData = catalogCache.get(normalizedLevel) || null;
     await loadLessonData(normalizedLevel, Number(first.lessonNumber), { push: true });
     if (!state.catalogData) await loadCatalogData(normalizedLevel);
@@ -872,6 +931,7 @@
         ${renderGrammarPopupBlock('attention', 'Lưu ý', item?.attentions, '!')}
         ${examples.length ? `<section class="hsk-popup-section hsk-grammar-examples hsk-grammar-detail-examples"><div class="hsk-grammar-examples-head"><h4>Ví dụ</h4><span>${examples.length.toLocaleString('vi-VN')} ví dụ</span></div><div class="hsk-grammar-example-list">${examples.map((row, index) => `<article class="hsk-grammar-example-card" ${index >= 3 ? 'hidden data-nhsk-grammar-example-extra' : ''}><span class="hsk-grammar-example-index">${String(index + 1).padStart(2, '0')}</span><div class="hsk-grammar-example-main"><strong>${escapeHtml(row.chinese || '')}</strong>${row.pinyin ? `<em>${escapeHtml(row.pinyin)}</em>` : ''}${row.vietnamese ? `<span class="nhsk-translation">${escapeHtml(row.vietnamese)}</span>` : ''}</div>${row.chinese ? `<button type="button" class="hsk-grammar-example-speaker nhsk-catalog-grammar-example-speak nhsk-speak" data-nhsk-speak="${attr(row.chinese)}" aria-label="Nghe ${attr(row.chinese)}">🔊</button>` : ''}</article>`).join('')}</div>${examples.length > 3 ? `<button type="button" class="nhsk-grammar-examples-more" data-nhsk-grammar-examples-more aria-expanded="false">Xem thêm ${examples.length - 3} câu</button>` : ''}</section>` : ''}
         ${item?.chapter && options.plus !== true ? `<a class="nhsk-catalog-source-lesson" href="${attr(catalogLessonUrl(item.chapter))}">Mở HSK ${state.level} · Bài ${item.chapter} theo sách <span>›</span></a>` : ''}
+        <section class="hsk-popup-section nhsk-grammar-practice-host hsk-grammar-practice" data-nhsk-grammar-practice-host="popup" data-nhsk-grammar-practice-grammar-id="${attr(item?.id || '')}" aria-live="polite"><p class="nhsk-grammar-practice-status" data-nhsk-grammar-practice-status>Đang tải bài luyện...</p></section>
       </div>`;
   }
 
@@ -926,11 +986,172 @@
       : selectedCatalogGrammar();
     if (!item) return;
     const target = ensureGrammarPopup();
-    target.querySelector('.nhsk-hsk-popup-body').innerHTML = renderGrammarPopupContent(item, { plus: plusMode });
+    const body = target.querySelector('.nhsk-hsk-popup-body');
+    body.innerHTML = renderGrammarPopupContent(item, { plus: plusMode });
     target.hidden = false;
     document.body.classList.add('nhsk-modal-open');
+    const host = body.querySelector('[data-nhsk-grammar-practice-host="popup"]');
+    const mode = plusMode ? 'plus' : 'catalog';
+    if (host) void mountNewHskGrammarPractice(item.id, host, { mode, grammarId: item.id });
   }
 
+  function buildGrammarPracticeReturnSnapshot(context = {}, sourceElement = null) {
+    const mode = ['plus', 'catalog', 'lesson'].includes(context.mode) ? context.mode : 'lesson';
+    const grammarId = String(context.grammarId || '').trim();
+    const popupCard = (mode === 'plus' || mode === 'catalog') ? document.querySelector('#nhskGrammarPopup .nhsk-hsk-popup-card') : null;
+    const shell = mode === 'lesson' ? sourceElement?.closest?.('[data-nhsk-lesson-grammar-practice]') : null;
+    return {
+      scrollY: Number(window.scrollY || document.documentElement.scrollTop || 0),
+      view: state.view,
+      filter: state.filter,
+      practiceActivity: state.practiceActivity,
+      practiceSourceSelections: state.practiceSourceSelections,
+      grammarPractice: {
+        mode,
+        grammarId,
+        popupScrollTop: Number(popupCard?.scrollTop || 0),
+        sourceViewportTop: Number(shell?.getBoundingClientRect?.().top || 0)
+      }
+    };
+  }
+
+  function grammarPracticeContextIsActive(grammarId, context = {}) {
+    if (context.mode === 'plus') return !state.catalog && state.grammarPlusId === grammarId;
+    if (context.mode === 'catalog') return state.catalog === 'grammar' && state.grammarId === grammarId;
+    return !state.catalog && lessonPracticeGrammarId === grammarId;
+  }
+
+  function setGrammarPracticeStatus(host, message) {
+    if (!host) return;
+    host.innerHTML = `<p class="nhsk-grammar-practice-status" data-nhsk-grammar-practice-status>${escapeHtml(message)}</p>`;
+  }
+
+  function restoreGrammarPracticeAfterMount(host, context, grammarId) {
+    const pending = pendingGrammarPracticeRestore;
+    if (!pending || pending.grammarId !== grammarId || pending.mode !== context.mode) return;
+    pendingGrammarPracticeRestore = null;
+    window.requestAnimationFrame(() => {
+      if (context.mode === 'plus' || context.mode === 'catalog') {
+        const popupCard = document.querySelector('#nhskGrammarPopup .nhsk-hsk-popup-card');
+        if (popupCard) popupCard.scrollTop = Math.max(0, Number(pending.popupScrollTop) || 0);
+      } else if (Number.isFinite(Number(pending.sourceViewportTop))) {
+        const shell = host.closest?.('[data-nhsk-lesson-grammar-practice]');
+        if (shell) {
+          const delta = shell.getBoundingClientRect().top - Number(pending.sourceViewportTop || 0);
+          window.scrollBy({ top: delta, behavior: 'auto' });
+        }
+      }
+      const focusTarget = host.querySelector('[data-grammar-practice-study-cards]') || host.querySelector('button,textarea');
+      if (focusTarget && typeof focusTarget.focus === 'function') {
+        try { focusTarget.focus({ preventScroll: true }); } catch (_error) { focusTarget.focus(); }
+      }
+    });
+  }
+
+  function launchNewHskGrammarPracticeCards(runtimeGrammar, host, context = {}) {
+    if (!runtimeGrammar || !GrammarPracticeFlashcard || !GrammarPracticeAdapter) return false;
+    try {
+      const payload = GrammarPracticeFlashcard.buildPayload(GrammarPracticeAdapter, runtimeGrammar);
+      if (!payload || !Array.isArray(payload.cards) || payload.cards.length !== 11) {
+        throw new TypeError('GrammarV1 Flashcard payload must contain exactly 11 cards');
+      }
+      const sourceElement = host?.querySelector?.('[data-grammar-practice-study-cards]') || host;
+      const returnSnapshot = buildGrammarPracticeReturnSnapshot({ ...context, grammarId: runtimeGrammar.grammarId }, sourceElement);
+      openFlashcards(sourceElement, payload.cards, {
+        title: payload.title,
+        contextKey: payload.contextKey,
+        contextLabel: payload.contextLabel,
+        filterByProgress: false,
+        returnSnapshot
+      });
+      return true;
+    } catch (error) {
+      console.warn('Cannot launch New 3.0 GrammarV1 Flashcards:', error);
+      return false;
+    }
+  }
+
+  async function mountNewHskGrammarPractice(grammarId, host, context = {}) {
+    const target = String(grammarId || '').trim();
+    const requestId = ++grammarPracticeLoadId;
+    if (!target || !host) return false;
+    host.dataset.nhskGrammarPracticeGrammarId = target;
+    if (!GrammarPracticeUi || !GrammarPracticeView || !GrammarPracticeAdapter || !grammarPracticeLoader) {
+      setGrammarPracticeStatus(host, 'Không tải được GrammarV1 lúc này.');
+      return false;
+    }
+    setGrammarPracticeStatus(host, 'Đang tải bài luyện...');
+    const runtimeGrammar = await loadGrammarPracticeById(target);
+    if (
+      requestId !== grammarPracticeLoadId
+      || !host.isConnected
+      || host.dataset.nhskGrammarPracticeGrammarId !== target
+      || !grammarPracticeContextIsActive(target, context)
+    ) return false;
+    if (!runtimeGrammar) {
+      setGrammarPracticeStatus(host, 'Ngữ pháp này chưa có bài luyện GrammarV1.');
+      return false;
+    }
+    try {
+      const session = GrammarPracticeUi.createSession(GrammarPracticeAdapter, runtimeGrammar, { skill: 'mcq' });
+      GrammarPracticeView.render(host, session, {
+        ui: GrammarPracticeUi,
+        escapeHtml,
+        formatPinyin: formatGrammarPracticePinyin,
+        formatText: formatGrammarPracticeText,
+        onStudyCards: grammar => launchNewHskGrammarPracticeCards(grammar, host, { ...context, grammarId: target }),
+        scrollTarget: scrollGrammarPracticeTarget
+      });
+      restoreGrammarPracticeAfterMount(host, context, target);
+      return true;
+    } catch (error) {
+      console.warn(`Cannot mount GrammarV1 Practice for ${target}:`, error);
+      setGrammarPracticeStatus(host, 'Không tải được GrammarV1 lúc này.');
+      return false;
+    }
+  }
+
+  function toggleLessonGrammarPractice(grammarId, sourceElement) {
+    const target = String(grammarId || '').trim();
+    const item = (state.catalogData?.grammar || []).find(row => row.id === target);
+    const sourceRef = String(item?.lessonPracticeIdentity?.sourceRef || '').trim();
+    const clickedSourceRef = String(sourceElement?.dataset?.nhskLessonSourceRef || '').trim();
+    if (!target || !sourceRef || !clickedSourceRef || clickedSourceRef !== sourceRef || state.catalog) return false;
+    const shell = sourceElement?.closest?.('[data-nhsk-lesson-grammar-practice]');
+    const viewportTop = Number(shell?.getBoundingClientRect?.().top || 0);
+    const opening = lessonPracticeGrammarId !== target;
+    lessonPracticeGrammarId = opening ? target : '';
+    grammarPracticeLoadId += 1;
+    render();
+    window.requestAnimationFrame(() => {
+      const nextShell = Array.from(root.querySelectorAll('[data-nhsk-lesson-grammar-practice]'))
+        .find(node => node.dataset.nhskLessonGrammarPractice === sourceRef);
+      if (nextShell && Number.isFinite(viewportTop)) {
+        const delta = nextShell.getBoundingClientRect().top - viewportTop;
+        window.scrollBy({ top: delta, behavior: 'auto' });
+      }
+      const toggle = nextShell?.querySelector('[data-nhsk-lesson-grammar-practice-toggle]');
+      if (toggle && typeof toggle.focus === 'function') {
+        try { toggle.focus({ preventScroll: true }); } catch (_error) { toggle.focus(); }
+      }
+    });
+    return true;
+  }
+
+  function syncLessonGrammarPractice() {
+    if (state.catalog || !lessonPracticeGrammarId) return;
+    const grammarId = lessonPracticeGrammarId;
+    const item = (state.catalogData?.grammar || []).find(row => row.id === grammarId);
+    const sourceRef = String(item?.lessonPracticeIdentity?.sourceRef || '').trim();
+    if (!sourceRef) {
+      lessonPracticeGrammarId = '';
+      grammarPracticeLoadId += 1;
+      return;
+    }
+    const host = Array.from(root.querySelectorAll('[data-nhsk-grammar-practice-host="inline"]'))
+      .find(node => node.dataset.nhskGrammarPracticeGrammarId === grammarId && node.dataset.nhskLessonSourceRef === sourceRef);
+    if (host) void mountNewHskGrammarPractice(grammarId, host, { mode: 'lesson', grammarId, sourceRef });
+  }
 
   function renderCatalog() {
     return state.catalog === 'grammar' ? renderGrammarCatalog() : renderTopicCatalog();
@@ -1524,28 +1745,53 @@
     </article>`;
   }
 
-  function renderGrammarDisplayBody(display = {}, includeToolbar = true) {
+  function lessonGrammarPracticeItemBySourceRef(sourceRef) {
+    const target = String(sourceRef || '').trim();
+    if (!target) return null;
+    return (state.catalogData?.grammar || []).find(item => String(item?.lessonPracticeIdentity?.sourceRef || '').trim() === target) || null;
+  }
+
+  function renderLessonGrammarPractice(sourceRef) {
+    const item = lessonGrammarPracticeItemBySourceRef(sourceRef);
+    if (!item) return '';
+    const grammarId = String(item.id || '').trim();
+    if (!grammarId) return '';
+    const practiceOpen = lessonPracticeGrammarId === grammarId;
+    const panelId = `nhskLessonGrammarPractice-${grammarId.replace(/[^A-Za-z0-9_-]/g, '-')}`;
+    return `<div class="nhsk-lesson-grammar-practice" data-nhsk-lesson-grammar-practice="${attr(sourceRef)}">
+      <button type="button" class="nhsk-grammar-practice-toggle" data-nhsk-lesson-grammar-practice-toggle="${attr(grammarId)}" data-nhsk-lesson-source-ref="${attr(sourceRef)}" aria-expanded="${practiceOpen}" aria-controls="${attr(panelId)}">Luyện tập</button>
+      ${practiceOpen ? `<section id="${attr(panelId)}" class="nhsk-grammar-practice-inline hsk-grammar-practice" data-nhsk-grammar-practice-host="inline" data-nhsk-grammar-practice-grammar-id="${attr(grammarId)}" data-nhsk-lesson-source-ref="${attr(sourceRef)}" aria-live="polite"><p class="nhsk-grammar-practice-status" data-nhsk-grammar-practice-status>Đang tải bài luyện...</p></section>` : ''}
+    </div>`;
+  }
+
+  function renderGrammarDisplayBody(display = {}, includeToolbar = true, section = null) {
     const groups = Array.isArray(display.groups) ? display.groups : [];
+    const sectionRef = String(section?.id || '').trim();
+    const sectionPracticeItem = lessonGrammarPracticeItemBySourceRef(sectionRef);
     let exampleIndex = 0;
     return `${includeToolbar ? `<div class="nhsk-grammar-toolbar">${renderLayerToggle('grammar', 'Câu mẫu')}</div>` : ''}
       ${display.introMarkdown ? `<div class="nhsk-grammar-intro">${renderMarkdown(display.introMarkdown)}</div>` : ''}
-      ${groups.map(group => {
+      ${groups.map((group, groupIndex) => {
         const examples = Array.isArray(group.examples) ? group.examples : [];
         const title = String(group.title || '').trim();
         const generic = /^(đọc to|đọc to hội thoại|ví dụ)$/i.test(title);
+        const groupRef = sectionRef ? `${sectionRef}#group-${groupIndex + 1}` : '';
+        const practice = sectionPracticeItem ? '' : renderLessonGrammarPractice(groupRef);
         return `<section class="nhsk-grammar-group">
           ${title && !generic ? `<h3>${escapeHtml(title)}</h3>` : title ? `<h3 class="nhsk-grammar-group__label">${escapeHtml(title)}</h3>` : ''}
           ${group.introMarkdown ? renderMarkdown(group.introMarkdown) : ''}
           ${examples.length ? `<div class="nhsk-grammar-examples">${examples.map(example => renderGrammarExample(example, exampleIndex++)).join('')}</div>` : ''}
+          ${practice}
         </section>`;
-      }).join('')}`;
+      }).join('')}
+      ${sectionPracticeItem ? renderLessonGrammarPractice(sectionRef) : ''}`;
   }
 
   function renderGrammarSection(section) {
     const display = section.grammarDisplay || {};
     const groups = Array.isArray(display.groups) ? display.groups : [];
     if (!display.introMarkdown && !groups.length) return sectionCard(section.title, renderMarkdown(section.markdown || ''), '语法');
-    return sectionCard(section.title, renderGrammarDisplayBody(display, true), '语法', 'nhsk-card--grammar');
+    return sectionCard(section.title, renderGrammarDisplayBody(display, true, section), '语法', 'nhsk-card--grammar');
   }
 
   function renderLearningSummary(section) {
@@ -1689,7 +1935,7 @@
     if (key === 'grammar') {
       const grammarSections = (lesson.entities.contentSections || []).filter(section => section.kind === 'grammar' && section.grammarDisplay);
       body = grammarSections.length
-        ? `<div class="nhsk-grammar-toolbar">${renderLayerToggle('grammar', 'Câu mẫu')}</div>${grammarSections.map(section => `<article class="nhsk-group-block nhsk-grammar-item"><h3>${escapeHtml(section.title)}</h3>${renderGrammarDisplayBody(section.grammarDisplay, false)}</article>`).join('')}`
+        ? `<div class="nhsk-grammar-toolbar">${renderLayerToggle('grammar', 'Câu mẫu')}</div>${grammarSections.map(section => `<article class="nhsk-group-block nhsk-grammar-item"><h3>${escapeHtml(section.title)}</h3>${renderGrammarDisplayBody(section.grammarDisplay, false, section)}</article>`).join('')}`
         : renderGrammarItems(ids.map(id => idx.grammar.get(id)).filter(Boolean));
     }
     if (key === 'grammarPlus') body = `<div class="nhsk-hsk-parity nhsk-grammar-plus-parity"><div class="nhsk-grammar-plus-intro"><span>NP+</span><p>Ngữ pháp bổ sung theo đúng bài hiện tại; ngữ pháp gốc của sách vẫn nằm ở tab Ngữ pháp.</p></div><div class="nhsk-grammar-card-list hsk-list hsk-list--grammar">${grammarPlusItems.map((item, index) => renderGrammarCard(item, index, { plus: true })).join('')}</div></div>`;
@@ -3159,6 +3405,28 @@
       if (Array.isArray(snapshot.practiceCharacterGlyphs)) state.practiceCharacterGlyphs = snapshot.practiceCharacterGlyphs;
       state.practiceActivityStarted = snapshot.practiceActivityStarted === true;
       restoreRadicalSession(snapshot);
+      const grammarPractice = snapshot.grammarPractice && typeof snapshot.grammarPractice === 'object' ? snapshot.grammarPractice : null;
+      if (grammarPractice && ['plus', 'catalog', 'lesson'].includes(grammarPractice.mode)) {
+        const grammarId = String(grammarPractice.grammarId || '').trim();
+        if (grammarId) {
+          pendingGrammarPracticeRestore = { ...grammarPractice, grammarId };
+          lessonPracticeGrammarId = '';
+          if (grammarPractice.mode === 'plus') {
+            state.catalog = '';
+            state.grammarId = '';
+            state.grammarPlusId = grammarId;
+          } else if (grammarPractice.mode === 'catalog') {
+            state.catalog = 'grammar';
+            state.grammarId = grammarId;
+            state.grammarPlusId = '';
+          } else if (grammarPractice.mode === 'lesson') {
+            state.catalog = '';
+            state.grammarId = '';
+            state.grammarPlusId = '';
+            lessonPracticeGrammarId = grammarId;
+          }
+        }
+      }
       render();
       restoreWordSourcePosition(snapshot);
     }
@@ -3507,15 +3775,18 @@
           source: 'new-hsk-course',
           lessonId: state.lesson.id
         }));
-    cards = filterFlashcardsByProgress(cards);
+    if (options.filterByProgress !== false) cards = filterFlashcardsByProgress(cards);
     if (!cards.length) return;
-    const snapshot = sourceDescriptor(sourceElement?.closest?.('[data-vocab-source-key]') || document.querySelector('[data-vocab-source-key]')) || {
+    const fallbackSnapshot = sourceDescriptor(sourceElement?.closest?.('[data-vocab-source-key]') || document.querySelector('[data-vocab-source-key]')) || {
       scrollY: window.scrollY || 0,
       view: state.view,
       filter: state.filter,
       practiceActivity: state.practiceActivity
     };
-    snapshot.practiceSourceSelections = state.practiceSourceSelections;
+    const snapshot = options.returnSnapshot && typeof options.returnSnapshot === 'object'
+      ? { ...options.returnSnapshot }
+      : { ...fallbackSnapshot };
+    if (!snapshot.practiceSourceSelections) snapshot.practiceSourceSelections = state.practiceSourceSelections;
     const token = saveReturnSnapshot(snapshot);
     const returnUrl = new URL(location.href);
     returnUrl.searchParams.set('restoreToken', token);
@@ -3553,6 +3824,7 @@
     saveSettings();
     syncUrl(true);
     focusLessonWord();
+    syncLessonGrammarPractice();
     syncGrammarPopup();
   }
 
@@ -3636,6 +3908,13 @@
         state.grammarId = '';
         syncUrl(false);
         render();
+        return;
+      }
+      const lessonGrammarPracticeToggle = event.target.closest('[data-nhsk-lesson-grammar-practice-toggle]');
+      if (lessonGrammarPracticeToggle && !state.catalog) {
+        event.preventDefault();
+        event.stopPropagation();
+        toggleLessonGrammarPractice(lessonGrammarPracticeToggle.dataset.nhskLessonGrammarPracticeToggle || '', lessonGrammarPracticeToggle);
         return;
       }
       const grammarButton = event.target.closest('[data-nhsk-grammar-id]');
@@ -4166,6 +4445,9 @@
     state.topicId = state.catalog === 'topics' ? next.get('topic') || '' : '';
     state.grammarId = state.catalog === 'grammar' ? next.get('grammar') || '' : '';
     state.grammarPlusId = !state.catalog ? next.get('grammarPlus') || '' : '';
+    lessonPracticeGrammarId = '';
+    grammarPracticeLoadId += 1;
+    pendingGrammarPracticeRestore = null;
     state.filter = next.get('filter') || 'all';
     state.focusWord = next.get('focusWord') || '';
     if (level === state.level && lessonNumber === state.lessonNumber) {

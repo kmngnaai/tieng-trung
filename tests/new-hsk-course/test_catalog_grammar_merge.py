@@ -88,3 +88,42 @@ def test_flashcard_grammar_rows_use_merged_catalog_examples():
     assert "hanzi: example.chinese" in app
     assert "meaning: example.vietnamese" in app
     assert "if (id === 'grammar') return grammarRows().length;" in app
+
+def test_lesson_practice_identity_only_uses_unique_exact_example_overlap():
+    expected_counts = {1: 21, 2: 44, 3: 57}
+    denied = {
+        'hsk1_new_2','hsk1_new_3','hsk1_new_4','hsk1_new_10','hsk1_new_15','hsk1_new_16','hsk1_new_19','hsk1_new_20','hsk1_new_21','hsk1_new_23','hsk1_new_24','hsk1_new_25','hsk1_new_28','hsk1_new_32','hsk1_new_34','hsk1_new_38','hsk1_new_39',
+        'hsk2_new_2','hsk3_new_33','hsk3_new_36','hsk3_new_47','hsk3_new_56',
+    }
+    catalog_only = {'hsk1_new_6','hsk1_new_8','hsk3_new_23','hsk3_new_27'}
+    seen_refs = set()
+    total = 0
+
+    builder = load_builder()
+    for level, expected_count in expected_counts.items():
+        rebuilt = builder.build_grammar(level)
+        identified = [row for row in rebuilt if row.get('lessonPracticeIdentity')]
+        assert len(identified) == expected_count
+        for row in rebuilt:
+            identity = row.get('lessonPracticeIdentity')
+            if row['id'] in denied or row['id'] in catalog_only:
+                assert identity is None, row['id']
+                continue
+            assert identity, row['id']
+            assert identity['provenance'] == 'unique-exact-example-overlap'
+            assert identity['overlapCount'] > 0
+            assert identity['sourceRef'] not in seen_refs
+            seen_refs.add(identity['sourceRef'])
+            total += 1
+
+    assert total == 122
+    assert len(denied) == 22
+    assert len(catalog_only) == 4
+
+    hsk1 = builder.build_grammar(1)
+    fallback = next(row for row in hsk1 if row['id'] == 'hsk1_new_3')
+    ambiguous = next(row for row in hsk1 if row['id'] == 'hsk1_new_32')
+    assert fallback['exampleMerge']['sourceRefs'] == ['nhsk-1-03-content-04']
+    assert 'lessonPracticeIdentity' not in fallback
+    assert ambiguous['exampleMerge']['sourceRefs'] == ['nhsk-1-12-content-05']
+    assert 'lessonPracticeIdentity' not in ambiguous
